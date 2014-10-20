@@ -15,7 +15,7 @@ package com.clarityenglish.clearpronunciation.view.course
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.globalization.DateTimeFormatter;
+	import flash.globalization.DateTimeFormatter; 
 	
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
@@ -94,11 +94,9 @@ package com.clarityenglish.clearpronunciation.view.course
 		// or should we just let the mediator do it?
 		public var group:com.clarityenglish.common.vo.manageable.Group;
 		
-		private var _course:XML;
 		// gh#870
 		private var _unit:XML;
 		private var _unitChanged:Boolean;
-		private var courseChanged:Boolean;
 		// gh#211
 		private var currentIndex:Number;
 		private var unitListLength:Number;		
@@ -124,19 +122,6 @@ package com.clarityenglish.clearpronunciation.view.course
 			actionBarVisible = false;
 			// if we don't add it, randomly click title bar will cause error
 			tabBarVisible = false;
-		}
-		
-		[Bindable]
-		public function get course():XML {
-			return _course;
-		}
-		
-		public function set course(value:XML):void {
-			if (_course != value) {
-				_course = value;
-				courseChanged = true;
-				invalidateProperties();
-			}
 		}
 		
 		[Bindable]
@@ -180,7 +165,6 @@ package com.clarityenglish.clearpronunciation.view.course
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
-			course = _xhtml.selectOne("script#model[type='application/xml'] course");
 		}
 		
 		// gh#208

@@ -28,6 +28,7 @@ confirm that the rotterdam.clearpronunciation namespaces are NOT used please
 @namespace widgetskins "skins.rotterdam.unit.widgets.*";
 @namespace marking "com.clarityenglish.bento.view.marking.*";
 @namespace warning "com.clarityenglish.bento.view.warning.*";
+@namespace ui "com.clarityenglish.clearpronunciation.view.home.ui.*";
 
 global {
 	defaultColor: #00A2C8;
@@ -90,6 +91,10 @@ s|TitleWindow.markingTitleWindow {
 
 s|TitleWindow.warningTitleWindow {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.warning.WarningTitleWindowSkin");
+}
+
+ui|UnitListItemButton {
+	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitListItemButtonSkin");
 }
 
 recorder|RecorderView {

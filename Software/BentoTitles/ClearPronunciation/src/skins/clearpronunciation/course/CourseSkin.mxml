@@ -161,6 +161,15 @@
 												} else {
 													unitDropDownIndexLabel.text = String(itemIndex + 1);
 												}
+												
+												if (data.hasOwnProperty("@rightIcon")) {
+													unitDropDownRightItemButton.visible = true;
+													unitDropDownRightItemLabel.visible = true;
+													
+												} else {
+													unitDropDownRightItemButton.visible = false;
+													unitDropDownRightItemLabel.visible = false;
+												}
 											}
 										}
 									]]>
@@ -171,11 +180,11 @@
 									<s:Group width="70%" verticalCenter="0">
 										<s:HGroup left="0" verticalAlign="middle">								
 											<s:Button id="unitDropDownLeftItemButton" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@leftIcon)}" />
-											<s:Label text="{data.@leftIcon}" fontSize="14" color="0x000000" verticalCenter="0" />
+											<s:Label id="unitDropDownLeftItemLabel" text="{data.@leftIcon}" fontSize="14" color="0x000000" verticalCenter="0" />
 										</s:HGroup>
 										<s:HGroup right="0" verticalAlign="middle" width="60">
 											<s:Button id="unitDropDownRightItemButton" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@rightIcon)}" />
-											<s:Label text="{data.@rightIcon}" fontSize="14" color="0x000000" verticalCenter="0" />
+											<s:Label id="unitDropDownRightItemLabel" text="{data.@rightIcon}" fontSize="14" color="0x000000" verticalCenter="0" />
 										</s:HGroup>
 									</s:Group>		
 								</s:HGroup>				

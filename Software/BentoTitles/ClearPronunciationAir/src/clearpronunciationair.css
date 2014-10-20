@@ -57,6 +57,10 @@ login|LoginView s|TextInput {
 	skinClass: ClassReference("spark.skins.mobile.TextInputSkin");
 }
 
+title|TitleView {
+	skinClass: ClassReference("skins.clearpronunciationair.title.TitleSkin");
+}
+
 home|HomeView {
 	skinClass: ClassReference("skins.clearpronunciationair.home.HomeSkin");
 }

@@ -106,13 +106,16 @@ package com.clarityenglish.textLayout.components {
 			
 			stop();
 			loaderContext = new SoundLoaderContext(2500);
-			sound = new Sound(new URLRequest(src), loaderContext);
-			sound.addEventListener(ProgressEvent.PROGRESS, onSoundLoadProgress, false, 0, true);
-			sound.addEventListener(Event.COMPLETE, onSoundLoadComplete, false, 0, true);
-			// gh#1055
-			sound.addEventListener(IOErrorEvent.IO_ERROR, onSoundLoadError);
-			// gh#614 add 
-			if (autoplay && playComponentEnable) play();
+			// gh#1066
+			if (src) {
+				sound = new Sound(new URLRequest(src), loaderContext);
+				sound.addEventListener(ProgressEvent.PROGRESS, onSoundLoadProgress, false, 0, true);
+				sound.addEventListener(Event.COMPLETE, onSoundLoadComplete, false, 0, true);
+				// gh#1055
+				sound.addEventListener(IOErrorEvent.IO_ERROR, onSoundLoadError);
+				// gh#614 add 
+				if (autoplay && playComponentEnable) play();
+			}	
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

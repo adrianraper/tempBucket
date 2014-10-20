@@ -48,6 +48,12 @@
 				unitDropDownVGroup.left = applicationWidth * 0.5 - 300;
 				courseButtonHGroup.left = applicationWidth * 0.5 + 80;
 				courseButtonHGroup.gap = (applicationWidth * 0.5 - 50 ) * 0.09;
+				
+				if (hostComponent.unit.hasOwnProperty("@rightIcon")) {
+					rightUnitCaptionComponent.visible = true;
+				} else {
+					rightUnitCaptionComponent.visible = false;
+				}
 			}
 			
 			protected function onUpdate(event:Event):void {
@@ -161,6 +167,16 @@
 												} else {
 													unitDropDownIndexLabel.text = String(itemIndex + 1);
 												}
+												
+												if (data.hasOwnProperty("@rightIcon")) {
+													unitDropDownRightItemButton.visible = true;
+													unitDropDownRightItemLabel.visible = true;
+													unitDropDownRightItemButton.label = outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@rightIcon);
+													unitDropDownRightItemLabel.text = data.@rightIcon
+												} else {
+													unitDropDownRightItemButton.visible = false;
+													unitDropDownRightItemLabel.visible = false;
+												}
 											}
 										}
 									]]>
@@ -174,8 +190,8 @@
 											<s:Label text="{data.@leftIcon}" fontSize="14" color="0x000000" verticalCenter="0" />
 										</s:HGroup>
 										<s:HGroup right="0" verticalAlign="middle" width="60">
-											<s:Button id="unitDropDownRightItemButton" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@rightIcon)}" />
-											<s:Label text="{data.@rightIcon}" fontSize="14" color="0x000000" verticalCenter="0" />
+											<s:Button id="unitDropDownRightItemButton" />
+											<s:Label id="unitDropDownRightItemLabel" fontSize="14" color="0x000000" verticalCenter="0" />
 										</s:HGroup>
 									</s:Group>		
 								</s:HGroup>				

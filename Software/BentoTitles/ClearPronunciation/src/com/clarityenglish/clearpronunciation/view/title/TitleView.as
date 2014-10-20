@@ -9,6 +9,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.net.*;
 	
 	import mx.events.FlexEvent;
 	import mx.events.StateChangeEvent;
@@ -45,6 +46,12 @@ package com.clarityenglish.clearpronunciation.view.title {
 		
 		[SkinPart]
 		public var settingsButton:Button;
+		
+		[SkinPart]
+		public var phonemicChartButton:Button;
+		
+		[SkinPart]
+		public var helpButton:Button;
 		
 		[SkinPart]
 		public var logoutButton:Button;
@@ -113,6 +120,12 @@ package com.clarityenglish.clearpronunciation.view.title {
 					//settingsButton.label = copyProvider.getCopyForId("settingsButton");
 					settingsButton.addEventListener(MouseEvent.CLICK, onSettingsClick);
 					break;
+				case phonemicChartButton:
+					phonemicChartButton.addEventListener(MouseEvent.CLICK, onPhonemicChartClick);
+					break;
+				case helpButton:
+					helpButton.addEventListener(MouseEvent.CLICK, onHelpButtonClick);
+					break;
 				case logoutButton:
 					// gh#217
 					//instance.label = copyProvider.getCopyForId("LogOut");
@@ -152,6 +165,14 @@ package com.clarityenglish.clearpronunciation.view.title {
 				progressTransform.dispatch();
 			}
 				
+		}
+		
+		protected function onPhonemicChartClick(event:Event):void {
+			navigateToURL(new URLRequest(copyProvider.getCopyForId("phonemicChartURL")), "_blank");
+		}
+		
+		protected function onHelpButtonClick(event:Event):void {
+			navigateToURL(new URLRequest(copyProvider.getCopyForId("helpURL")), "_blank");
 		}
 	}
 }

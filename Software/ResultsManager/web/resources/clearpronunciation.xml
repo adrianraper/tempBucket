@@ -268,8 +268,9 @@
 			<lit name="deleteUnitWarning">Do you want to delete this unit?</lit>
 			<lit name="noUndoWarning">There is no undo.</lit>
 			<lit name="creditLabel">Thank you for using the Clarity Course Builder.</lit>
+			<lit name="phonemicChartURL"><![CDATA[http://www.clarityenglish.com/Content/ClearPronunciation-International/sharedMedia/phonemicChart.pdf]]></lit>
 			<lit name="helpButton">Support materials</lit>
-			<lit name="helpURL"><![CDATA[http://www.clarityenglish.com/area1/CCB/Player.php?prefix=CST&course=039011031594193044]]></lit>
+			<lit name="helpURL"><![CDATA[http://www.clarityenglish.com/Software/ClearPronunciation/Help/help.htm]]></lit>
 			<lit name="helpLabel1">Please also feel free to email us at support@clarityenglish.com</lit>
 			<lit name="helpLabel2">with any questions you have or problems you are having.</lit>
 			<lit name="newUnitCaption">New unit</lit>
@@ -389,27 +390,29 @@
 			<lit name="Rang">ŋ</lit>
 			<lit name="Right">r</lit>
 			<lit name="Light">l</lit>
-			<lit name="Sheep">S</lit>
-			<lit name="Head">l</lit>
-			<lit name="Had">l</lit>
-			<lit name="Arrive">l</lit>
-			<lit name="Luck">l</lit>
-			<lit name="Look">l</lit>
-			<lit name="Hat">l</lit>
-			<lit name="Heart">l</lit>
-			<lit name="But">l</lit>
-			<lit name="Boot">l</lit>
-			<lit name="Who">l</lit>
-			<lit name="Her">l</lit>
-			<lit name="Pot">l</lit>
-			<lit name="Port">l</lit>
-			<lit name="Hair">l</lit>
-			<lit name="Hear">l</lit>
-			<lit name="Boy">l</lit>
-			<lit name="Pay">l</lit>
-			<lit name="Pie">l</lit>
-			<lit name="Know">l</lit>
-			<lit name="Now">l</lit>
+			<lit name="Ship2">ɪ</lit>
+			<lit name="Sheep">i:</lit>
+			<lit name="Head">e</lit>
+			<lit name="Had">æ</lit>
+			<lit name="Arrive">ə</lit>
+			<lit name="Luck">ʌ</lit>
+			<lit name="Look">ʊ</lit>
+			<lit name="Hat">æ</lit>
+			<lit name="Heart">ɑː</lit>
+			<lit name="But">ʌ</lit>
+			<lit name="Boot">u:</lit>
+			<lit name="Who">u:</lit>
+			<lit name="Her">ɜː</lit>
+			<lit name="Pot">ɒ</lit>
+			<lit name="Port">ɔː</lit>
+			<lit name="Hair">eə</lit>
+			<lit name="Hear">ɪə</lit>
+			<lit name="Pay">eɪ</lit>
+			<lit name="Pie">aɪ</lit>
+			<lit name="Boy">ɔɪ</lit>
+			<lit name="Buy2">aɪ</lit>
+			<lit name="Know">əʊ</lit>
+			<lit name="Now">aʊ</lit>
 		</group>
 	</language>
 </literals>

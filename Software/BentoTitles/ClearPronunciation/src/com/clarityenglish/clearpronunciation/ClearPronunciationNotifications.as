@@ -7,5 +7,7 @@ package com.clarityenglish.clearpronunciation {
 		public static const PROGRESS_TRANSFORM:String = "clearpronunciation/progress_transform";
 		
 		public static const HOME_BACK:String = "clearpronunciation/home_back";
+		
+		public static const COMPOSITEUNIT_START:String = "clearpronunciation/compositeunit_start";
 	}
 }

@@ -2,17 +2,34 @@
 <s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				xmlns:s="library://ns.adobe.com/flex/spark" 
 				xmlns:mx="library://ns.adobe.com/flex/mx" 
-				autoDrawBackground="false" xmlns:layout="org.alivepdf.layout.*">
+				autoDrawBackground="false" xmlns:layout="org.alivepdf.layout.*" xmlns:ui="com.clarityenglish.clearpronunciation.view.home.ui.*">
 	
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.clearpronunciation.view.home.event.ListItemSelectedEvent;
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
 			
 			import mx.collections.ArrayCollection;
+			import mx.collections.XMLListCollection;
 			import mx.events.FlexEvent;
+			import mx.events.IndexChangedEvent;
+			
+			import spark.events.IndexChangeEvent;
+			
+			[Bindable]
+			private var leftIconString:String;
+			
+			[Bindable]
+			private var rightIconString:String;
+			
+			[Bindable]
+			private var listItemIndex:String;
 			
 			[Bindable]
 			private var unitItemPieChartArrayCollection:ArrayCollection;
+			
+			[Bindable]
+			private var exerciseXMLListCollection:XMLListCollection = new XMLListCollection();
 			
 			private var _copyProvider:CopyProvider;
 			
@@ -25,45 +42,108 @@
 				_copyProvider = value;
 			}
 			
+			public function getUnitIndex(unit:Object):Number {
+				return unit.parent().unit.(@id == unit.@id).childIndex() + 1;
+			}
+				
+			
 			public override function set data(value:Object):void {
 				super.data = value;
 				
-				if (data.@coverage == 0) {
-					pieChart.visible = false;
-				} else {
-					pieChart.visible = true;
-					unitItemPieChartArrayCollection = new ArrayCollection([{coverage: 100 - data.@coverage}, {coverage: data.@coverage}]);	
-				}
-				
-				if (itemIndex < 9) {
-					unitItemIndexLabel.text = "0" + String(itemIndex + 1);
-				} else {
-					unitItemIndexLabel.text = String(itemIndex + 1);
-				}
+				if (data) {
+					leftIconString = String(data.@caption).split(' ')[0];
+					rightIconString = String(data.@caption).split(' ')[1];
+					
+					if (data.@coverage == 0) {
+						pieChart.visible = false;
+					} else {
+						pieChart.visible = true;
+						unitItemPieChartArrayCollection = new ArrayCollection([{coverage: 100 - data.@coverage}, {coverage: data.@coverage}]);	
+					}
+					
+					if (getUnitIndex(data) < 10) {
+						listItemIndex = "0" + String(getUnitIndex(data));
+					} else {
+						listItemIndex = String(getUnitIndex(data));
+					}
+					
+					exerciseXMLListCollection.addItem(data.exercise.(@["class"] == "practiseSounds"));
+					for each (var exerciseXML:XML in data.exercise.(@["class"] == "exercise").exercise) {
+						exerciseXMLListCollection.addItem(exerciseXML);
+					}
+				}		
 			}
+			
+			protected function onExerciseListClick(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				dispatchEvent(new ListItemSelectedEvent(ListItemSelectedEvent.SELECTED, true, exerciseList.selectedItem));
+			}
+			
 		]]>
 	</fx:Script>
 	
-	<s:Group id="unitHGroup" left="0" top="0" height="70">
-		<mx:PieChart id="pieChart" dataProvider="{unitItemPieChartArrayCollection}" width="45" left="0" verticalCenter="0">
-			<mx:series>
-				<mx:PieSeries field="coverage" labelPosition="none" filters="{[]}">
-					<mx:fills>
-						<s:SolidColor color="#FFFFFF" />
-						<s:SolidColor color="#005D5F" />
-					</mx:fills>
-				</mx:PieSeries>
-			</mx:series>
-		</mx:PieChart>
-		<s:Label id="unitItemIndexLabel" fontFamily="Helvetica" fontSize="18" color="#333333" left="42" verticalCenter="2" />
-		<s:Group left="80" verticalCenter="0" >
-			<s:Button id="unitItemLeftButton" height="100%" label="{copyProvider.getCopyForId(data.@leftIcon)}" left="0"/>
-			<s:Label id="unitItemLeftLabel" text="{data.@leftIcon}" fontSize="20" left="40" verticalCenter="2" />
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="hovered" />
+		<s:State name="selected" />
+	</s:states>
+	
+	<s:VGroup height="100%" width="310" gap="0">
+		<s:Group id="unitHGroup" left="0" top="0" width="100%" height="50">
+			<s:Rect left="40" width="100%" height="100%" topLeftRadiusX="10" topLeftRadiusY="10" topRightRadiusX="10" topRightRadiusY="10" includeIn="hovered, selected">
+				<s:fill>
+					<s:SolidColor color="#FFEFD2" alpha="0.6" />
+				</s:fill>
+			</s:Rect>
+			<mx:PieChart id="pieChart" dataProvider="{unitItemPieChartArrayCollection}" width="45" left="0" verticalCenter="0">
+				<mx:series>
+					<mx:PieSeries field="coverage" labelPosition="none" filters="{[]}">
+						<mx:fills>
+							<s:SolidColor color="#FFFFFF" />
+							<s:SolidColor color="#005D5F" />
+						</mx:fills>
+					</mx:PieSeries>
+				</mx:series>
+			</mx:PieChart>
+			<ui:UnitListItemButton width="100%" height="100%" itemIndex="{listItemIndex}" caption="{data.@caption}" leftIconString="{data.@leftIcon}" rightIconString="{data.@rightIcon}" copyProvider="{copyProvider}"/>
 		</s:Group>
-		<s:Group left="200" verticalCenter="0" >
-			<s:Button id="unitItemRightButton" height="100%" label="{copyProvider.getCopyForId(data.@rightIcon)}" left="0"/>
-			<s:Label id="unitItemRightLabel" text="{data.@rightIcon}" fontSize="20" left="42" verticalCenter="2" />
-		</s:Group>							
-	</s:Group>
+		
+		<s:VGroup paddingLeft="40" width="100%">
+			<s:Group left="0" height="0" height.hovered="150" height.selected="150" width="100%">
+				<s:Rect width="100%" height="100%" bottomLeftRadiusX="10" bottomLeftRadiusY="10" bottomRightRadiusX="10" bottomRightRadiusY="10">
+					<s:fill>
+						<s:SolidColor color="#FFEFD2" alpha="0.6" />
+					</s:fill>
+				</s:Rect>
+				
+				<s:List id="exerciseList" width="100%" height="95%" dataProvider="{exerciseXMLListCollection}" includeIn="selected" includeInLayout="{currentState == 'selected'}" fontSize="13" contentBackgroundAlpha="0" click="onExerciseListClick(event)">
+					<s:layout>
+						<s:VerticalLayout />
+					</s:layout>
+					<s:itemRenderer>
+						<fx:Component>
+							<s:ItemRenderer width="100%" height="100%" autoDrawBackground="false">
+								<s:states>
+									<s:State name="normal" />
+									<s:State name="hovered" />
+									<s:State name="selected" />
+								</s:states>
+								
+								<s:Group width="100%" height="23">
+									<s:Rect left="0" right="0" height="100%">
+										<s:fill>
+											<s:SolidColor color="#005D5F" alpha.selected="1" alpha.hovered="1" alpha.normal="0"/>
+										</s:fill>
+									</s:Rect>
+									<s:Label horizontalCenter="15" verticalCenter="0" width="170" text="{data.@caption}" fontSize="13" color="#005D5F" color.hovered="#FFFFFF" color.selected="#FFFFFF" />
+								</s:Group>		
+							</s:ItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:List>
+			</s:Group>	
+		</s:VGroup>
+	</s:VGroup>
 	
 </s:ItemRenderer>

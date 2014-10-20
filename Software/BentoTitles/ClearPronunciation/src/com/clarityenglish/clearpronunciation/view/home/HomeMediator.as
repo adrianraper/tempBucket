@@ -1,17 +1,21 @@
 package com.clarityenglish.clearpronunciation.view.home
 {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.googlecode.bindagetools.Bind;
 	
-	import org.puremvc.as3.interfaces.INotification;
-	import com.clarityenglish.bento.model.BentoProxy;
+	import flash.media.Video;
+	
 	import mx.collections.ArrayCollection;
+	
+	import org.puremvc.as3.interfaces.INotification;
 	
 	public class HomeMediator extends BentoMediator {
 		public function HomeMediator(mediatorName:String, viewComponent:BentoView) {
@@ -25,7 +29,7 @@ package com.clarityenglish.clearpronunciation.view.home
 		override public function onRegister():void {
 			super.onRegister();
 			
-			view.selectUnit.add(onSelectUnit);
+			view.exerciseShow.add(onExerciseShow);
 			
 			// Load courses.xml serverside gh#84
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
@@ -45,7 +49,7 @@ package com.clarityenglish.clearpronunciation.view.home
 		override public function onRemove():void {
 			super.onRemove();
 			
-			view.selectUnit.remove(onSelectUnit);
+			view.exerciseShow.remove(onExerciseShow);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -75,8 +79,13 @@ package com.clarityenglish.clearpronunciation.view.home
 			}
 		}
 		
-		private function onSelectUnit(unit:XML):void {
-			facade.sendNotification(BBNotifications.UNIT_START, unit);
+		protected function onExerciseShow(item:XML):void {
+			if (item.hasOwnProperty("@class") && item.(@["class"] == "practiseSounds")) {
+				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, {unit: item.parent(), exercise: item});
+			} else {
+				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, {unit: item.parent().parent(), exercise: item});
+			}
+			
 		}
 	}
 }

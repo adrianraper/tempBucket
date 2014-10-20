@@ -38,6 +38,7 @@ package com.clarityenglish.clearpronunciation.view.course
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			if (bentoProxy.menuXHTML) view.href = bentoProxy.menuXHTML.href;
+			if (bentoProxy.selectedExerciseNode.hasOwnProperty("@href")) view.isExerciseVisible = true;
 			
 			view.unitSelect.add(onUnitSelect);;
 			// gh#849
@@ -61,7 +62,6 @@ package com.clarityenglish.clearpronunciation.view.course
 					return null;
 				}
 			}).toProperty(view, "unitListCollection");
-			
 			Bind.fromProperty(courseProxy, "currentUnit").toProperty(view, "unit");
 			
 			// gh#870 should be same as the one in WidgetMediator
