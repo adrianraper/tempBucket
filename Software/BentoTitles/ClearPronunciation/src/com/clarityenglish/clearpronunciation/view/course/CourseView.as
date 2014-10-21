@@ -1,6 +1,7 @@
 package com.clarityenglish.clearpronunciation.view.course
 {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.clearpronunciation.view.home.event.ListItemSelectedEvent;
 	import com.clarityenglish.clearpronunciation.view.unit.UnitView;
 	import com.clarityenglish.clearpronunciation.vo.WindowShade;
 	import com.clarityenglish.clearpronunciation.vo.transform.SingleVideoNodeTransform;
@@ -15,17 +16,20 @@ package com.clarityenglish.clearpronunciation.view.course
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.globalization.DateTimeFormatter; 
+	import flash.globalization.DateTimeFormatter;
 	
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	import mx.controls.SWFLoader;
+	import mx.core.ClassFactory;
 	import mx.events.CloseEvent;
 	import mx.events.EffectEvent;
 	import mx.skins.halo.WindowBackground;
 	
 	import org.davekeen.util.StringUtils;
 	import org.osflash.signals.Signal;
+	
+	import skins.clearpronunciation.home.ui.UnitListItemRenderer;
 	
 	import spark.components.Button;
 	import spark.components.Group;
@@ -108,7 +112,7 @@ package com.clarityenglish.clearpronunciation.view.course
 		private var _currentExerciseIndex:Number;
 		private var exerciseLength:Number;
 		
-		public var unitSelect:Signal = new Signal(XML);
+		public var itemShow:Signal = new Signal(XML);
 		// gh#849
 		public var settingsShow:Signal = new Signal();
 		public var record:Signal = new Signal();
@@ -196,13 +200,16 @@ package com.clarityenglish.clearpronunciation.view.course
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case unitList:									
+				case unitList:
+					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
+					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: false};
+					unitList.itemRenderer = unitListItemRenderer;
 					unitList.dragEnabled = unitList.dropEnabled = unitList.dragMoveEnabled = true;
-					unitList.addEventListener(IndexChangeEvent.CHANGE, onUnitSelected);
+					unitList.addEventListener(ListItemSelectedEvent.SELECTED, onListItemSelected);
 					break;
 				case settingsButton:
-					instance.addEventListener(MouseEvent.CLICK, onSettingsClick);
-					instance.label = copyProvider.getCopyForId("settingButton");
+					settingsButton.addEventListener(MouseEvent.CLICK, onSettingsClick);
+					settingsButton.label = copyProvider.getCopyForId("settingButton");
 					break;
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuClick);
@@ -221,16 +228,16 @@ package com.clarityenglish.clearpronunciation.view.course
 			}
 		}
 		
-		protected function onUnitSelected(event:IndexChangeEvent):void {
+		protected function onListItemSelected(event:ListItemSelectedEvent):void {
 			if (unitList.selectedIndex != -1) {
 				// to hide vertical scroll bar, use verticalScrollPolicy = off
-				windowShade.close();
+				windowShade.contentGroup.height = 0;
 			}
 			
 			if (isExerciseVisible) {
 				isExerciseVisible = false;
 			}
-			unitSelect.dispatch(event.target.selectedItem);
+			itemShow.dispatch(event.item);
 		}
 		
 		/**

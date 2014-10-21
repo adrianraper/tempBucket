@@ -64,6 +64,7 @@
 				// when user back from unit, the bubble should zoom in to big size
 				if (hostComponent.selectedCourseIndex) {
 					myHomeBubble.scaleX = myHomeBubble.scaleY = applicationWidth / myHomeBubble.width;
+					backgroundBubbleGroup.left = 250;
 				}
 			}
 			

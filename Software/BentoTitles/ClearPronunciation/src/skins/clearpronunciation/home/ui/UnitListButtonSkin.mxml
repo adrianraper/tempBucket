@@ -33,7 +33,7 @@
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
              minWidth="21" minHeight="21" 
              alpha.disabled="0.5" creationComplete="onCreationComplete(event)">
-	<fx:Metadata>[HostComponent("com.clarityenglish.clearpronunciation.view.home.ui.UnitListItemButton")]</fx:Metadata>
+	<fx:Metadata>[HostComponent("com.clarityenglish.clearpronunciation.view.home.ui.UnitListButton")]</fx:Metadata>
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
@@ -72,18 +72,18 @@
         <s:State name="disabled" />
     </s:states>
     
-	<s:Rect left="40" width="100%" height="100%" radiusX="10" radiusY="10" includeIn="over, down">
+	<s:Rect left="0" width="100%" height="100%" radiusX="10" radiusY="10" includeIn="over, down">
 		<s:fill>
 			<s:SolidColor color.over="#FFEFD2" color.down="#FFEFD2" alpha.over="0.6" alpha.down="0.6" />
 		</s:fill>
 	</s:Rect>
 	
-	<s:Label id="unitItemIndexLabel" fontFamily="Helvetica" fontSize="18" color="#333333" left="55" verticalCenter="2" text="{hostComponent.itemIndex}" />
-	<s:Group left="90" verticalCenter="0" >
+	<s:Label id="unitItemIndexLabel" fontFamily="Helvetica" fontSize="18" color="#333333" left="15" verticalCenter="2" text="{hostComponent.itemIndex}" />
+	<s:Group left="50" verticalCenter="0" >
 		<s:Button id="unitItemLeftButton" height="100%" scaleX="0.9" scaleY="0.9" label="{hostComponent.copyProvider.getCopyForId(hostComponent.leftIconString)}" left="0"/>
 		<s:Label id="unitItemLeftLabel" text="{leftItemButtonLabel}" fontSize="16" left="40" verticalCenter="2" />
 	</s:Group>
-	<s:Group left="200" verticalCenter="0" >
+	<s:Group left="160" verticalCenter="0" >
 		<s:Button id="unitItemRightButton" height="100%" scaleX="0.9" scaleY="0.9" left="0"/>
 		<s:Label id="unitItemRightLabel" fontSize="16" left="42" verticalCenter="2" />
 	</s:Group>

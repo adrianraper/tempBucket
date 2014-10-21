@@ -50,6 +50,12 @@
 			}
 		]]>
 	</fx:Script>
+	<!--video player black background-->
+	<s:Rect left="30" width="324" height="245">
+		<s:fill>
+			<s:SolidColor color="#000000" />
+		</s:fill>
+	</s:Rect>
 	
 	<!-- The video players -->
 	<!--players:WebViewVideoPlayer id="videoPlayer" left="30" width="320" height="240" visible="{videoList.selectedItem != null}" /-->
@@ -59,7 +65,7 @@
 	<s:Image id="placeholderImage" left="30" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
 	
 	<!-- Channel list -->
-	<s:List id="channelList" top="300" left="30" horizontalCenter="0" horizontalScrollPolicy="off" contentBackgroundAlpha="0">
+	<s:List id="channelList" top="310" left="30" horizontalCenter="0" horizontalScrollPolicy="off" contentBackgroundAlpha="0">
 		<s:layout>
 			<s:HorizontalLayout columnWidth="176" gap="10"/>
 		</s:layout>

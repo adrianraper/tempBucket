@@ -218,7 +218,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 					instance.addEventListener(MouseEvent.CLICK, onUnitListClick);
 					instance.addEventListener(ListItemSelectedEvent.SELECTED, onItemSelected);
 					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
-					unitListItemRenderer.properties = { copyProvider: copyProvider};
+					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: true};
 					instance.itemRenderer = unitListItemRenderer;
 					break;
 				case homeInstructionLabel:
@@ -267,7 +267,6 @@ package com.clarityenglish.clearpronunciation.view.home {
 		}
 		
 		protected function onItemSelected(event:ListItemSelectedEvent):void {
-			trace("selected item: "+event.item);
 			exerciseShow.dispatch(event.item);
 		}
 		

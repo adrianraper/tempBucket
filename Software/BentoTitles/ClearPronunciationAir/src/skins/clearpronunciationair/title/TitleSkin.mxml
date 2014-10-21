@@ -51,5 +51,5 @@
 		<s:Button id="logoutButton" useHandCursor="true" buttonMode="true" scaleX.course="0.6" scaleY.course="0.6" includeIn="home, course" />	
 	</s:HGroup>
 	
-	<s:Button id="backButon" left="{applicationWidth - 100}" useHandCursor="true" buttonMode="true" includeIn="progress" />	
+	<s:Button id="backButton" top="12" right="10" useHandCursor="true" buttonMode="true" includeIn="progress" />
 </s:Skin>

@@ -34,6 +34,11 @@ s|TextInput {
 	paddingRight: 10;
 }
 
+s|List {
+	verticalScrollPolicy: off;
+	horizontalScrollPolicy: off;
+}
+
 @media (os-platform: "IOS") {
 	video|VideoSelector {
 		skinClass: ClassReference("skins.clearpronunciationair.controls.video.IOSVideoSelectorSkin");

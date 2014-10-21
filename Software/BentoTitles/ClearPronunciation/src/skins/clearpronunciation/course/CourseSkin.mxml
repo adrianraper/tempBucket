@@ -146,7 +146,7 @@
 					</s:layout>
 					<s:itemRenderer>
 						<fx:Component>
-							<s:ItemRenderer width="100%" autoDrawBackground="false">
+							<s:ItemRenderer width="100%" autoDrawBackground="false" useHandCursor="true" buttonMode="true">
 								<fx:Script>
 									<![CDATA[
 										public override function set data(value:Object):void {

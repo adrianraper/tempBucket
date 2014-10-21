@@ -4,7 +4,7 @@ package com.clarityenglish.clearpronunciation.view.home.ui {
 	import spark.components.Button;
 	import spark.components.supportClasses.ButtonBase;
 	
-	public class UnitListItemButton extends ButtonBase {
+	public class UnitListButton extends ButtonBase {
 		private var _caption:String;
 		private var _leftIconString:String;
 		private var _rightIconString:String;

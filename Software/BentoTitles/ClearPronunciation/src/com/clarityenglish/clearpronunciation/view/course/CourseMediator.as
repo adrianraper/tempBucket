@@ -40,7 +40,7 @@ package com.clarityenglish.clearpronunciation.view.course
 			if (bentoProxy.menuXHTML) view.href = bentoProxy.menuXHTML.href;
 			if (bentoProxy.selectedExerciseNode.hasOwnProperty("@href")) view.isExerciseVisible = true;
 			
-			view.unitSelect.add(onUnitSelect);;
+			view.itemShow.add(onItemShow);;
 			// gh#849
 			view.settingsShow.add(onSettingsShow);
 			view.record.add(onRecorderOpen);
@@ -73,7 +73,7 @@ package com.clarityenglish.clearpronunciation.view.course
 		override public function onRemove():void {
 			super.onRemove();
 			
-			view.unitSelect.remove(onUnitSelect);
+			view.itemShow.remove(onItemShow);
 			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			courseProxy.currentUnit = null;
@@ -84,8 +84,19 @@ package com.clarityenglish.clearpronunciation.view.course
 			]);
 		}
 		
-		protected function onUnitSelect(unit:XML):void {
-			facade.sendNotification(BBNotifications.UNIT_START, unit);
+		override public function handleNotification(note:INotification):void {
+			super.handleNotification(note);
+			
+		}
+		
+		protected function onItemShow(item:XML):void {
+			if (item.hasOwnProperty("@class") && item.(@["class"] == "practiseSounds")) {
+				view.isExerciseVisible = false;
+				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, {unit: item.parent(), exercise: item, isWidgetExercise: true});
+			} else {
+				view.isExerciseVisible = true;
+				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, {unit: item.parent().parent(), exercise: item, isWidgetExercise: false});
+			}
 		}
 		
 		protected function onSettingsShow():void {

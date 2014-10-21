@@ -136,68 +136,20 @@
 		
 		<s:VGroup width="100%" paddingLeft="25">
 			<vo:WindowShade id="windowShade" width="300">
-				<s:Rect width="270" height="411" top="0" horizontalCenter="0" bottomLeftRadiusX="10" bottomLeftRadiusY="10" bottomRightRadiusX="10" bottomRightRadiusY="10">
+				<s:Rect width="270" height="421" top="0" horizontalCenter="0" bottomLeftRadiusX="10" bottomLeftRadiusY="10" bottomRightRadiusX="10" bottomRightRadiusY="10">
 					<s:fill>
 						<s:SolidColor color="#497A7A" />
 					</s:fill>
 				</s:Rect>
-				<s:Rect width="255" height="393" top="8" horizontalCenter="0" bottomLeftRadiusX="7" bottomLeftRadiusY="7" bottomRightRadiusX="7" bottomRightRadiusY="7">
+				<s:Rect width="255" height="403" top="8" horizontalCenter="0" bottomLeftRadiusX="7" bottomLeftRadiusY="7" bottomRightRadiusX="7" bottomRightRadiusY="7">
 					<s:fill>
 						<s:SolidColor color="#FFFFFF" />
 					</s:fill>
 				</s:Rect>
-				<s:List id="unitList"  width="250" height="387" top="8" horizontalCenter="0" dataProvider="{hostComponent.unitListCollection}" requireSelection="true" borderVisible="false" contentBackgroundColor="#FFFFFF">
+				<s:List id="unitList" width="250" height="387" top="18" horizontalCenter="0" dataProvider="{hostComponent.unitListCollection}" requireSelection="true" borderVisible="false" contentBackgroundColor="#FFFFFF">
 					<s:layout>
 						<s:VerticalLayout requestedMinRowCount="1" horizontalAlign="justify" gap="10" />
 					</s:layout>
-					<s:itemRenderer>
-						<fx:Component>
-							<s:ItemRenderer width="100%" autoDrawBackground="false">
-								<fx:Script>
-									<![CDATA[
-										public override function set data(value:Object):void {
-											// gh#151
-											super.data = value;
-											
-											if (data) {
-												this.enabled = !(data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8);
-												
-												if (itemIndex < 9) {
-													unitDropDownIndexLabel.text = "0" + String(itemIndex + 1);
-												} else {
-													unitDropDownIndexLabel.text = String(itemIndex + 1);
-												}
-												
-												if (data.hasOwnProperty("@rightIcon")) {
-													unitDropDownRightItemButton.visible = true;
-													unitDropDownRightItemLabel.visible = true;
-													unitDropDownRightItemButton.label = outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@rightIcon);
-													unitDropDownRightItemLabel.text = data.@rightIcon
-												} else {
-													unitDropDownRightItemButton.visible = false;
-													unitDropDownRightItemLabel.visible = false;
-												}
-											}
-										}
-									]]>
-								</fx:Script>
-								<s:HGroup width="90%" height="100%" paddingTop="10" horizontalAlign="center" verticalAlign="middle" gap="0">
-									<s:Label id="unitDropDownIndexLabel" fontSize="15" color="#333333" verticalCenter="0"/>
-									<s:Spacer width="20" />
-									<s:Group width="70%" verticalCenter="0">
-										<s:HGroup left="0" verticalAlign="middle">								
-											<s:Button id="unitDropDownLeftItemButton" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@leftIcon)}" />
-											<s:Label text="{data.@leftIcon}" fontSize="14" color="0x000000" verticalCenter="0" />
-										</s:HGroup>
-										<s:HGroup right="0" verticalAlign="middle" width="60">
-											<s:Button id="unitDropDownRightItemButton" />
-											<s:Label id="unitDropDownRightItemLabel" fontSize="14" color="0x000000" verticalCenter="0" />
-										</s:HGroup>
-									</s:Group>		
-								</s:HGroup>				
-							</s:ItemRenderer>
-						</fx:Component>
-					</s:itemRenderer>
 				</s:List>
 			</vo:WindowShade>	
 		</s:VGroup>

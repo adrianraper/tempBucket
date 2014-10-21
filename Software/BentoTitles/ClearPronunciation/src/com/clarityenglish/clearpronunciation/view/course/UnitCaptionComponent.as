@@ -49,7 +49,7 @@ package com.clarityenglish.clearpronunciation.view.course {
 		[Bindable(event="sourceChanged")]
 		public function get mp3Source():String {
 			if (_source)
-				return (StringUtils.beginsWith(_source.toLowerCase(), "http")) ? _source : mediaFolder  + _source + "_sound.mp3";
+				return (StringUtils.beginsWith(_source.toLowerCase(), "http")) ? _source : mediaFolder  + _source.toLowerCase() + "_sound.mp3";
 			
 			return null;
 		}

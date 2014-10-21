@@ -94,8 +94,8 @@ s|TitleWindow.warningTitleWindow {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.warning.WarningTitleWindowSkin");
 }
 
-ui|UnitListItemButton {
-	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitListItemButtonSkin");
+ui|UnitListButton {
+	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitListButtonSkin");
 }
 
 recorder|RecorderView {
