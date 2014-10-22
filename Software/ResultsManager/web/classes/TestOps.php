@@ -193,11 +193,11 @@ class TestOps {
 		 */
 		
 		if (!$score)
-			$score - new Score();
+			$score = new Score();
 			
 		$numQuestions = $potentialScore = 0;
 		$score->scoreCorrect = $score->scoreMissed = $score->scoreWrong = 0;
-		$weightedScore = 0;
+		//$weightedScore = 0;
 		
 		$answersXmlString = $this->decodeSafeChars($answers);
 		$answersXmlString = $this->decrypt($this->decodeSafeChars($answers));
@@ -213,7 +213,7 @@ class TestOps {
 		foreach ($answersXml->MultipleChoiceQuestion as $mcq) {
 			$qId = $mcq['block'];
 			$scoreBand = $mcq['scoreBand'];
-			$potentialScore += $this->scoreMultiplier($scoreBand);
+			$potentialScore = $this->scoreMultiplier($scoreBand);
 			
 			$thisQuestionAttempts = $attemptsXml->xpath("//input[@id='$qId']");
 			// Has the user attempted to answer this question? 
@@ -221,19 +221,18 @@ class TestOps {
 				$attemptedAnswer = $thisQuestionAttempts[0]['value'];
 				
 				if ($mcq->xpath('//answer[@correct="true"][@source="'.$attemptedAnswer.'"]')) {
-					$score->scoreCorrect++;
-					$weightedScore += $this->scoreMultiplier($scoreBand);
+					$score->scoreCorrect += $potentialScore;
 				} else {
-					$score->scoreWrong++;
+					$score->scoreWrong += $potentialScore;
 				}
 			} else {
-				$score->scoreMissed++;
+				$score->scoreMissed += $potentialScore;
 			}
 		}
 		foreach ($answersXml->GapFillQuestion as $gfq) {
 			$qId = $gfq['block'];
 			$scoreBand = $gfq['scoreBand'];
-			$potentialScore += $this->scoreMultiplier($scoreBand);
+			$potentialScore = $this->scoreMultiplier($scoreBand);
 			
 			$thisQuestionAttempts = $attemptsXml->xpath("//input[@id='$qId']");
 			// Has the user attempted to answer this question? 
@@ -242,17 +241,16 @@ class TestOps {
 				
 				// NOTE: This will fail if the correct answer has a double quote in it
 				if ($gfq->xpath('//answer[@correct="true"][@value="'.$attemptedAnswer.'"]')) {
-					$score->scoreCorrect++;
-					$weightedScore += $this->scoreMultiplier($scoreBand);
+					$score->scoreCorrect += $potentialScore;
 				} else {
-					$score->scoreWrong++;
+					$score->scoreWrong += $potentialScore;
 				}
 			} else {
-				$score->scoreMissed++;
+				$score->scoreMissed += $potentialScore;
 			}
 		}
 		
-		$score->score = round(100 * ($weightedScore / $potentialScore));
+		$score->score = round(100 * ($score->scoreCorrect / ($score->scoreCorrect + $score->scoreWrong + $score->scoreMissed)));
 		return $score;
 		
 	}
@@ -291,6 +289,75 @@ SQL;
 		}
 	}
 	
+	/**
+	 * This function will create a starting point (course and unit) based on your test score
+	 * 
+	 * @param Score $score
+	 */
+	public function getDirectStart($score) {
+
+		// raw score is out of 75
+		if ($score->scoreCorrect < 7) {
+			$course = '1189057932446';
+			$unit = '1192013076011'; // Am, is, are
+		} elseif ($score->scoreCorrect < 22) {
+			$course = '1189060123431';
+			$unit = '1192625080479'; // Simple present
+		} elseif ($score->scoreCorrect < 40) {
+			$course = '1195467488046';
+			$unit = '1195467532331'; // The passive
+		} elseif ($score->scoreCorrect < 60) {
+			$course = '1190277377521';
+			$unit = '1192625319203'; // Past continuous
+		} else {
+			$course = '1196935701119';
+			$unit = '1196216926895'; // Reported speech
+		}
+			
+		return '<startingPoint course="'.$course.'" unit="'.$unit.'" />';
+	}
+	
+	/**
+	 * This function calculates a student's CEF level based on their score
+	 * 
+	 * @param Score $score
+	 */
+	public function getCEFLevel($score) {
+		
+		if ($score->scoreCorrect < 4)
+			return "A1";
+		if ($score->scoreCorrect < 7)
+			return "A2";
+		if ($score->scoreCorrect < 22)
+			return "B1";
+		if ($score->scoreCorrect < 70)
+			return "B2";	
+		return "C1";
+	}
+	
+	public function scoreMultiplier($scoreBand) {
+		switch ($scoreBand) {
+			case 'ELE':
+				return 1;	
+				break;
+			case 'LI':
+				return 2;	
+				break;
+			case 'INT':
+				return 3;	
+				break;
+ 			case 'UI':
+				return 4;	
+				break;
+ 			case 'ADV':
+				return 5;	
+				break;
+			default:
+				break;
+		}
+		return 0;
+	}
+	
 	public function encrypt($data)	{
 		$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
         $securekey = hash('sha256', 'ClarityLanguageConsultantsLtd', TRUE);
@@ -311,5 +378,6 @@ SQL;
 	function encodeSafeChars($text) {
 		return strtr($text, '+/=', '-_~');
 	}
+
 	
 }

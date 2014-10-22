@@ -48,6 +48,7 @@
             <li class="cd-label">Test yourself</li>
 
             <li class="cd-label">Register</li>
+            <li class="cd-label">Welcome</li>
         </ul>
     </nav>
     <div id="container">
@@ -73,7 +74,7 @@
             <div class="register-content">
                 <h2>Register here</h2>
                 <div class="divider"></div>
-				<form id="registrationForm" method="post" action="TB6weeks.php" >
+				<form id="registrationForm" >
 	                <p>
 	                <label for="userEmail">What is your email?</label><br/>
 					<input id="userEmail" name="userEmail" type="text" />
@@ -85,6 +86,15 @@
 					<input id="submitResults" text="register" type="submit" />
 				</form>
 				<span id="validationMessage"></span>
+            </div>
+        </div>
+        <div id="welcome" class="section">
+            <img src="images/cows.jpg" alt="Welcome" class="welcome-bg" />
+            <div class="welcome-content">
+                <h2>You are subscribed</h2>
+                <div class="divider"></div>
+                <p>Your CEF level is <span id="CEFLevelMessage"></span></p>
+                <p>You can start Tense Buster <a id="programUrl" target="tbwindow">right here</a></p>
             </div>
         </div>
     </div>

@@ -15,6 +15,7 @@ class ManageableOps {
 		$this->copyOps = new CopyOps();
 		$this->emailOps = new EmailOps($db);
 		$this->templateOps = new TemplateOps($db);
+		//$this->memoryOps = new MemoryOps($db);
 	}
 	
 	/**
@@ -2102,11 +2103,12 @@ EOD;
 	}
 
 	/**
-	 * This is to check if email exists in a particular account, or is unique
+	 * This is to check, using your email, if you have already subscribed to this product in a particular account.
+	 * Not sure if this should go in here or in TestOps?
 	 * 
 	 * return: 'new', 'exists' or 'conflict'
 	 */
-	function checkEmailInAccount($email, $rootID) {
+	function checkProductSubscription($email, $rootID, $productCode) {
 		
 		$rootID = ($rootID) ? $rootID : Session::get('rootID');
 		AbstractService::$debugLog->notice("check email $email for root $rootID");
@@ -2119,23 +2121,62 @@ EOD;
 EOD;
 		$rs = $this->db->Execute($sql, array($email));
 		$recordCount = $rs->RecordCount();
-		AbstractService::$debugLog->notice("got $recordCount records");
+		
 		switch ($recordCount) {
 			case 0:
 				// This is a new email address
-				return 'new';
+				$status = 'new';
 				break;
+				
 			case 1:
 				// This email exists, does it match the root?
 				$dbObj = $rs->FetchNextObj();
-				if ($dbObj->rootID == $rootID)
-					return 'exists';
-					
-				return 'conflict';
+				if ($dbObj->rootID == $rootID) {
+					// Does this user already have a subscription to this product?
+					Session::set('userID', $dbObj->F_UserID);
+					$this->memoryOps = new MemoryOps($this->db);
+					$subscription = $this->memoryOps->getElement('subscription');
+					if ($subscription && count($subscription)>0) {
+						$status = 'exists';
+					} else {
+						$status = 'new';
+					}
+						
+				} else {
+					$status = 'conflict';
+				}
 				break;
+				
 			default:
-				return 'conflict';
+				$status = 'conflict';
+				
 		}
+		return $status;
+	}
+	/**
+	 * This will either find the user in the account, or will add a new one
+	 * NOTE: not sure if it should go here or testOps
+	 * 
+	 * @param pair/value string $userDetails
+	 */
+	public function getOrAddUser($userDetails) {
+		$rootId = Session::get('rootID');
+		$productCode = Session::get('productCode');
+		$groupId = Session::get('groupID');
+		$loginOption = 128;
+		
+		parse_str($userDetails, $tempUser);
+		$users = $this->getUserFromEmail($tempUser['userEmail']);
+		if (!$users) {
+			$user = new User();
+			$user->email = $tempUser['userEmail'];
+			$user->name = $tempUser['userName'];
+			$group = new Group();
+			$group->id = $groupId;
+			$users = array($this->addUser($user, $group, $rootID, $loginOption));
+		}
+		
+		return $users[0];
 	}
 }
 

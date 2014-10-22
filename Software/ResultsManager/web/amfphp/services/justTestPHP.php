@@ -1,5 +1,15 @@
 <?php
 
+	$_REQUEST['operation'] = 'submitAnswers';
+	$_REQUEST['prefix'] = 'clarity';
+	$_REQUEST['exercise'] = '1193901049540.xml';
+	$_REQUEST['user'] = 'userEmail=adrian@noodles.hk&userName=Adrian%20Raper';
+	$_REQUEST['answers'] = '1193901049540.xml';
+	$_REQUEST['code'] = '1193901049540.xml';
+	
+	require_once(dirname(__FILE__)."/TB6weeksService.php");
+	
+/*
 	require_once(dirname(__FILE__)."/MinimalService.php");
 	$dummy = new MinimalService();
 
@@ -10,7 +20,6 @@
 	$randArray = array_rand(range(0, $maxQuestions-1), $numQuestionsToUse);
 	shuffle($randArray);
 	var_dump($randArray);			
-/*
 	$accountFolder = '../../../Clarity';
 	Session::set('userID', '12345');
 	

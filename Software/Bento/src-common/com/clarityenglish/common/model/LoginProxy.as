@@ -71,7 +71,7 @@ package com.clarityenglish.common.model {
 		
 		// #341
 		//public function login(key:String, password:String):void {
-		public function login(user:User, loginOption:Number, verified:Boolean = true, demoVersion = null):void {
+		public function login(user:User, loginOption:Number, verified:Boolean = true, demoVersion:String = null):void {
 			// getAccountSettings will already have established rootID and productCode
 			// The parameters you pass are controlled by loginOption
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -327,6 +327,25 @@ package com.clarityenglish.common.model {
 							var authenticated:Boolean = configProxy.checkAuthentication();
 						}
 						
+								
+						// gh#1040
+						if (_user.memory) {
+							// Is there a startingPoint set?
+							config = configProxy.getConfig();
+							var bookmark:XML = _user.memoryXml.product.(@code=config.productCode).bookmark[0];
+							if (bookmark) {
+								var courseId:String = bookmark.startingPoint.@course.toString();
+								var unitId:String = bookmark.startingPoint.@unit.toString();
+								var exerciseId:String = bookmark.startingPoint.@exercise.toString();
+								if (courseId)
+									config.courseID = courseId;
+								if (unitId)
+									config.startingPoint = 'unit:' + unitId;
+								if (exerciseId)
+									config.startingPoint = 'ex:' + exerciseId;
+							}
+						}
+								
 						// Carry on with the process
 						sendNotification(CommonNotifications.LOGGED_IN, data);
 						

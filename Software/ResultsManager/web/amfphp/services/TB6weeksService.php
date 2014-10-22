@@ -17,6 +17,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Title.p
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Group.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/User.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/progress/Score.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/LoginAPI.php");
 
 require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
@@ -31,6 +32,8 @@ require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
 require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
 require_once(dirname(__FILE__)."/../../classes/CourseOps.php");
 require_once(dirname(__FILE__)."/../../classes/TestOps.php");
+require_once(dirname(__FILE__)."/../../classes/MemoryOps.php");
+require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php");
 
 require_once(dirname(__FILE__)."/AbstractService.php");
 
@@ -55,11 +58,20 @@ class TB6weeksService extends AbstractService {
 		$this->courseOps = new CourseOps($this->db);
 		$this->loginOps = new LoginOps($this->db);
 		$this->testOps = new TestOps($this->db);
+		$this->subscriptionOps = new SubscriptionOps($this->db);
+		//$this->memoryOps = new MemoryOps($this->db);
 
+		// This is a back end service adding users, so doesn't use authentication
+		AuthenticationOps::$useAuthentication = false;
+		
+		// for debugging if you only have one session
+		//Session::set('productCode', 59);
+		//Session::set('userID', 27639);
+		
 		// To mimic amfphp handling
 		try {
 			
-			if (isset($_REQUEST['operation']))
+			if (isset($_REQUEST['operation'])) {
 				switch ($_REQUEST['operation']) {
 					case 'checkEmail':
 						$prefix = isset($_REQUEST['prefix']) ? $_REQUEST['prefix'] : null;
@@ -74,10 +86,11 @@ class TB6weeksService extends AbstractService {
 						break;
 					
 					case 'submitAnswers':
+						$prefix = isset($_REQUEST['prefix']) ? $_REQUEST['prefix'] : null;
 						$attempts = isset($_REQUEST['answers']) ? $_REQUEST['answers'] : null;
 						$answers = isset($_REQUEST['code']) ? $_REQUEST['code'] : null;
 						$userDetails = isset($_REQUEST['user']) ? $_REQUEST['user'] : null;
-						$returnData = $this->checkAnswers($attempts, $answers, $userDetails);
+						$returnData = $this->submitAnswers($attempts, $answers, $userDetails, $prefix);
 						break;
 					
 					default:
@@ -85,7 +98,8 @@ class TB6weeksService extends AbstractService {
 						break;
 				}
 			
-			echo $returnData;
+				echo $returnData;
+			}
 			
 		} catch (Exception $e) {
 			$errorData = new DOMDocument();
@@ -104,16 +118,18 @@ class TB6weeksService extends AbstractService {
 	 * Check that the email is new or is registered in this account
 	 * 
 	 * @param string $prefix
-	 * @param object $userDetails
+	 * @param string $userEmail
 	 */
 	public function checkEmail($prefix, $userEmail) {
 		
 		//parse_str($userDetails, $tempUser);
 		//$user = new User();
 		//$user->email = $tempUser['userEmail'];
-		$rootID = Session::get('rootID');
+		$rootId = Session::get('rootID');
+		$productCode = Session::get('productCode');
 		
-		$rc = $this->manageableOps->checkEmailInAccount($userEmail, $rootID);
+		AbstractService::$debugLog->info("check email session variables: rootId=".$rootId.' productCode='.$productCode);
+		$rc = $this->manageableOps->checkProductSubscription($userEmail, $rootId, $productCode);
 		
 		return json_encode($rc);
 
@@ -181,55 +197,44 @@ class TB6weeksService extends AbstractService {
 	 * @param encrypted string of xml $code
 	 * @param pair/value string $userDetails
 	 */
-	public function submitAnswers($attempts, $answers, $userDetails) {
+	public function submitAnswers($attempts, $answers, $userDetails, $prefix) {
 		
 		$score = $this->testOps->checkAnswers($attempts, $answers);
+		//AbstractService::$debugLog->info("score: %=".$score->score." raw=".$score->scoreCoorect);
 		
-		// Is this an existing user, or do we need to register a new one 
-		$rootID = Session::get('rootID');
-		$loginOption = 128;
-		parse_str($userDetails, $tempUser);
-		$user = $this->manageableOps->getUserFromEmail($tempUser['userEmail']);
-		if (!$user) {
-			$user = new User();
-			$user->email = $tempUser['userEmail'];
-			$user->name = $tempUser['userName'];
-			$group = new Group();
-			$group->id = Session::get('groupID');
-			// NOTE that this is going to fail because of authentication check on logged in user having rights on the group
-			$rc = $this->manageableOps->addUser($user, $group, $rootID, $loginOption);
-		}
-
+		// Is this an existing user, or do we need to register a new one?
+		$user = $this->manageableOps->getOrAddUser($userDetails);
+		AbstractService::$debugLog->info("user: id=".$user->userID." name=".$user->name.' email='.$user->email);
+		Session::set('userID', $user->userID);
+		
+		// make sure the above user has set the Session::set('userID') before calling memoryOps
+		$this->memoryOps = new MemoryOps($this->db);
+		
 		// Work out the TB6weeks settings for direct start and save for the user
 		$directStart = $this->testOps->getDirectStart($score);
-		$user->memory .= $directStart;
-		$rc = $this->managableOps->updateUser($user);
+		$CEFLevel = $this->testOps->getCEFLevel($score);
+		// The bookmark (which controls direct start), is written to Tense Buster memory, not TB6weeks.
+		$tbProductCode = 55;
+		$rc = $this->memoryOps->addToMemory('bookmark', $directStart, $tbProductCode);
+		$rc = $this->memoryOps->addToMemory('CEF', $CEFLevel);
+		$now = new DateTime();
+		$rc = $this->memoryOps->addToMemory('subscription', $now->format('Y-m-d'));
+		$rc = $this->memoryOps->writeMemory();
 		
-		return json_encode(array('debug' => $debug, 'percentage' => $score->score, 'of' => $numQuestions, 'correct' => $score->scoreCorrect, 'skipped' => $score->scoreMissed, 'wrong' => $score->scoreWrong));
+		// Trigger a welcome email
+		$apiInformation = new LoginAPI();
+		$apiInformation->emailTemplateID = 'TB6weeksWelcome';
 		
-	}
-	
-	public function scoreMultiplier($scoreBand) {
-		switch ($scoreBand) {
-			case 'ELE':
-				return 1;	
-				break;
-			case 'LI':
-				return 2;	
-				break;
-			case 'INT':
-				return 3;	
-				break;
- 			case 'UI':
-				return 4;	
-				break;
- 			case 'ADV':
-				return 5;	
-				break;
-			default:
-				break;
-		}
-		return 0;
+		$this->subscriptionOps->sendUserEmail($user, $apiInformation);
+		//AbstractService::$debugLog->info("queued email to ".$user->email.' using '.$apiInformation->emailTemplateID);
+		
+		// Send back the CEF level and a direct start link (based on user details)
+		// TODO: encrytped please
+		$startProgram = '/area1/TenseBuster10/Start.php?prefix='.$prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
+		
+		$debug='';
+		return json_encode(array('debug' => $debug, 'startProgram' => $startProgram, 'CEFLevel' => $CEFLevel, 'score' => $score->score, 'correct' => $score->scoreCorrect, 'skipped' => $score->scoreMissed, 'wrong' => $score->scoreWrong));
+		
 	}
 	
 }

@@ -1,36 +1,9 @@
-	// Check if this email is already registered with TB6weeks. 
-	// If it is, warn the user that taking this test will override their existing record. 
-	checkEmail = function (value, element, parameter) {
-		var prefix = getURLParameter('prefix');
-		var validator = false;
-		$.ajax({
-			type: "POST",
-			url: "http://dock.projectbench/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",
-			data: {operation: 'checkEmail', user: $("#registrationForm").serialize(), prefix: prefix},
-			dataType: "json",
-			error: function(jqXHR, textStatus, errorThrown) {
-				console.log('Error: ' + errorThrown);
-			},
-			success: function (data) {
-				if (data == 'new') {
-					console.log(data + " is new");
-					validator = true;
-				} else if (data == 'exists') {
-					console.log(data + " exists");
-					validator = false;
-					return "note: you already have TB6weeks, if you complete this test the result will overwrite your old one.";
-				} else {
-					console.log(data + " conflicts");
-					validator = false;					
-				}
-			}
-		});
-		return validator;
-	};
 
 	// Send the test data to the server
 	submitTestData = function() {
 	
+		var prefix = getURLParameter('prefix');
+		
 		// block the button to avoid double clicking
 		$("#submitResults").hide();
 		$("#validationMessage").text("Please wait while your level is checked...").show();
@@ -50,15 +23,18 @@
 		$.ajax({
 			type: "POST",
 			url: "http://dock.projectbench/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",
-			data: {operation: 'submitAnswers', answers: answers, code: $("#codeHolder").text(), user: $("#registration").serialize()},
+			data: {operation: 'submitAnswers', answers: answers, code: $("#codeHolder").text(), user: $("#registrationForm").serialize(), prefix: prefix},
 			dataType: "json",
 			error: function(jqXHR, textStatus, errorThrown) {
 				console.log('Error: ' + errorThrown);
 			},
 			success: function (data) {
 				//var resultsData = jQuery.parseJSON(data);
-				console.log('Marked ' + data.percentage + '%, debug ' + data.debug + '; from ' + data.of + ' questions (' + data.correct + ',' + data.wrong + ',' + data.skipped + ')');
-				$("#validationMessage").text("You scored " + data.percentage + "%").show();
+				console.log('Marked ' + data.score + '%, debug ' + data.debug + '; level ' + data.CEFLevel + ' questions (' + data.correct + ',' + data.wrong + ',' + data.skipped + ')');
+				// I want to go to the welcome screen here
+				$("#CEFLevelMessage").text(data.CEFLevel);
+				$("a#programUrl").attr("href", data.startProgram);
+				//setupWelcome();
 			}
 		});
 	};
@@ -142,6 +118,7 @@
     	  setupAboutImages();
     	  setupTestImages();
     	  setupRegisterImages();
+    	  setupWelcomeImages();
 
           $('#container').fullpage({
               'verticalCentered': false,
@@ -171,6 +148,10 @@
                       setupRegister();
                       setupRegisterImages();
                   }
+                  if (nextIndex == 4) {
+                	  setupWelcome();
+                	  setupWelcomeImages();
+                  }
               }
           });
 
@@ -179,6 +160,7 @@
               setupAboutImages();
               setupTestImages();
               setupRegisterImages();
+              setupWelcomeImages();
           });
 
       }
@@ -208,8 +190,9 @@
 	    						
 	    						// Need to dynamically change the error to a warning
 	    						// NOTE: Either show an alert at this point and leave it as true or make this dynamic message change work!
-	    						$("#userEmail").rules('add', {messages: {remote: "You are already registered"}});
-	    						return false;
+	    						//$("#userEmail").rules('add', {messages: {remote: "You are already registered"}});
+	    						$("#validationMessage").text("You already have TB6weeks, if you continue you will start it again.");
+	    						return true;
 	    					} else {
 	    						console.log(decodedData + " conflicts");
 	    						return false;					
@@ -217,7 +200,7 @@
     	        	    }
     	        	  },
     	            required: true,
-    	            email: true,
+    	            email: true
     	          }
     	        },
     	        messages: {
@@ -226,9 +209,14 @@
     	            email: "That doesn't seem to be a good email address, please check it.",
     	            remote: "That email is no good."
     	          }
+    	        },
+    	        submitHandler: function(form) {
+    	        	submitTestData();
     	        }
     	      });
       
+      /*
+       * I DO want some of these missing question checks
 		$("#submitResults").click(function() {
 			console.log('Checking form data before submission');
 			seemsOK = true;
@@ -254,6 +242,7 @@
 				return false;
 			}
 		});
+       */
 	
       function setupAboutImages() {
 
@@ -346,7 +335,7 @@
           $('#testPlaceholder').css('height', 0.8 * (1080 * ratio));
 		  
 		  // Background colour
-		  $('#test').css('background-color', 'blue');
+		  $('#test').css('background-color', 'white');
 
 		  // $('.test-content').prepend("<p>" + $(".about-content h2").text() + "</p>");
 		  
@@ -356,7 +345,7 @@
               animate({
                   top: '5%',
                   opacity: 1
-              }, 800, "easeOutCubic")
+              }, 800, "easeOutCubic");
           }, 1000);
       }
 
@@ -463,6 +452,77 @@
           var fx = parseInt($('register-content h2').css('font-size'));
           var fxp = parseInt($('.register-content p').css('font-size'));
           var size = parseInt($(".register-content h2").css('font-size'));
+
+          setTimeout(function () {
+              $('#um-outline-bg, .um-outline').fadeOut(100);
+          }, 100);
+      }
+	  
+      function setupWelcomeImages() {
+
+          $('.welcome-content').css({
+              top: '50%',
+              opacity: 0
+          });
+
+          var w = $(window).width();
+          var h = $(window).height();
+          var srcWidth = 1920; // Max width for the image
+          var srcHeight = 1080; // Max height for the image
+          var ratio = w / srcWidth;
+          if (1080 * ratio < h)
+              ratio = h / srcHeight;
+
+          $('#welcome .welcome-bg').css('width', 1920 * ratio);
+          $('#welcome .welcome-bg').css('height', 1080 * ratio);
+          $('#welcome svg').css('transform', 'scale(' + ratio + ')');
+          var svg_diffx = 720 - 720 * ratio;
+          var svg_diffy = 500 - 500 * ratio;
+          $('#welcome svg').css('left', (920 * ratio - svg_diffx / 2));
+          $('#welcome svg').css('margin-top', (350 * ratio - svg_diffy / 2));
+          $('#welcome .welcome-bg').css('left', 0);
+          //////////////////////
+          setTimeout(function () {
+              $('.welcome-content').
+              animate({
+                  bottom: '20%',
+                  opacity: 1
+              }, 100, "easeOutCubic");
+          }, 100);
+      }
+
+      function setupWelcome() {
+
+          var w = $(window).width();
+          var h = $(window).height();
+          var srcWidth = 1920; // Max width for the image
+          var srcHeight = 1080; // Max height for the image
+          var ratio = w / srcWidth;
+          if (1080 * ratio < h)
+              ratio = h / srcHeight;
+
+          $('#um-outline-bg, .um-outline').fadeIn(0);
+          $(".um-outline path").each(function () {
+              var path = this;
+              var length = path.getTotalLength();
+              // Clear any previous transition
+              path.style.transition = path.style.WebkitTransition =
+                  'none';
+              // Set up the starting positions
+              path.style.strokeDasharray = length + ' ' + length;
+              path.style.strokeDashoffset = length;
+              // Trigger a layout so styles are calculated & the browser
+              // picks up the starting position before animating
+              path.getBoundingClientRect();
+              // Define our transition
+              path.style.transition = path.style.WebkitTransition =
+                  'stroke-dashoffset 1.5s ease-in-out';
+              // Go!
+              path.style.strokeDashoffset = '0';
+          });
+          var fx = parseInt($('welcome-content h2').css('font-size'));
+          var fxp = parseInt($('.welcome-content p').css('font-size'));
+          var size = parseInt($(".welcome-content h2").css('font-size'));
 
           setTimeout(function () {
               $('#um-outline-bg, .um-outline').fadeOut(100);

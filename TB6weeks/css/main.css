@@ -699,6 +699,10 @@ body {
     line-height: 30px;
     bottom: 180px;
 }
+.question-text {
+    margin-top: 12px;
+}
+
 /*
  * Register
  */
@@ -732,6 +736,41 @@ body {
     line-height: 30px;
     bottom: 180px;
 }
+/*
+ * Welcome
+ */
+
+#welcome .welcome-bg {
+    position: absolute;
+}
+#welcome .welcome-content {
+    position: absolute;
+    width: 400px;
+    margin-left: 50px;
+    bottom: 20%;
+}
+#welcome h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    font-size: 45px;
+    font-weight: 800;
+    width: 100%;
+    line-height: 44px;
+    text-align: left;
+    bottom: 460px;
+}
+#welcome p {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 300;
+    width: 100%;
+    text-align: left;
+    line-height: 30px;
+    bottom: 180px;
+}
+
+
 .cd-popup {
     opacity: 0;
     visibility: hidden;
