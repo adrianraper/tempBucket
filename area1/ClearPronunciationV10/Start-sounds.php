@@ -14,7 +14,7 @@
 	// For this product
 	$productCode = 57; // CP - Sounds
 	$swfName = 'ClearPronunciation.swf';
-	$startControl = '/Software/BentoTitles/ClearPronunciation/bin-release/';
+	$startControl = '/Software/BentoTitles/ClearPronunciation/bin-debug/';
 	$version = '1107';
 	$coordsMinWidth = '990';
 	$coordsMaxWidth = '1200';

@@ -31,7 +31,7 @@
 				var component:Object = event.target;
 				var isClickVideoSelector:Boolean;
 				while (component.parent) {
-					if (component == videoList || component == videoPlayer) {
+					if (component == videoList || component == videoPlayer || component == placeholderImage || channelList) {
 						isClickVideoSelector = true;
 						break;
 					}

@@ -161,18 +161,11 @@
 			<lit name="exerciseFeedbackButton">Feedback</lit>
 			<lit name="exerciseMarkingButton">Marking</lit>
 			<lit name="exerciseLogOutButton">Log out</lit>
-			<lit name="tryAgainButton">Try again</lit>
-			<lit name="seeAnswersButton">See answers</lit>
-			<lit name="moveForwardButton">Forward</lit>
 			<lit name="overallScoreLabel">You scored {score}%</lit>
 			<lit name="correctLabel">Correct: {correct}</lit> 
 			<lit name="wrongLabel">Wrong: {wrong}</lit> 
 			<lit name="missedLabel">Skipped: {missed}</lit> 
-			<lit name="loseAnswerWarning1">Are you sure you want to leave this exercise?</lit>
-			<lit name="loseAnswerWarning2">(You will lose your work in this exercise.)</lit>
-			<lit name="loseChangesWarning">Your changes have not been saved. Are you sure you want to continue?</lit>
 			<lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
-			<lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>
 			<lit name="versionLabel">Software, design, navigation</lit>
 			<lit name="footerLabel"> © Clarity Language Consultants Ltd, 2013-14. All rights reserved.</lit>
 			<lit name="creditCaptionLabel">Credits and acknowledgements</lit>
@@ -366,6 +359,21 @@
 			<!--unit-->
 			<lit name="practiseSoundsLabel"><![CDATA[Practise the sounds]]></lit>
 			<lit name="makeSoundsLabel"><![CDATA[How do I make the sounds?]]></lit>
+			
+			<!-- Marking and feedback -->
+			<lit name="tryAgainButton">Try again</lit>
+			<lit name="seeAnswersButton">See answers</lit>
+			<lit name="moveForwardButton">Forward</lit>
+			<lit name="loseAnswerWarning1">Are you sure you want to leave this exercise?</lit>
+			<lit name="loseAnswerWarning2">(You will lose your work in this exercise.)</lit>
+			<lit name="loseChangesWarning">Your changes have not been saved. Are you sure you want to continue?</lit>
+			<lit name="loseRecordingWarning">You will lose any unsaved recording you have made. Are you sure you want to continue?</lit>
+			<lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>
+			<lit name="feedbackClickAnswersMsg">Click on any answer to see feedback.</lit>			
+            <lit name="correctFeedbackTitle">Well done!</lit>
+            <lit name="incorrectFeedbackTitle">Sorry...</lit>
+            <lit name="neutralFeedbackTitle"></lit>
+            <lit name="generalFeedbackTitle"></lit>
 			
 			<!--phonetic -->
             <lit name="Pill">p</lit>

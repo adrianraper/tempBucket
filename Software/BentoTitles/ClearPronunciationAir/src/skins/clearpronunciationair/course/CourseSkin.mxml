@@ -128,9 +128,13 @@
 	<s:VGroup id="unitDropDownVGroup" top="-65" width="350" gap="0">
 		<s:Group>
 			<course1:dropDownListBg horizontalCenter="0" />
-			<s:HGroup id="swfloaderHGroup" height="40" gap="100" horizontalCenter="0" top="15">
-				<course:UnitCaptionComponent id="leftUnitCaptionComponent" source="{hostComponent.unit.@leftIcon}" copyProvider="{hostComponent.getCopyProvider()}" />
-				<course:UnitCaptionComponent id="rightUnitCaptionComponent" source="{hostComponent.unit.@rightIcon}" copyProvider="{hostComponent.getCopyProvider()}" />
+			<s:HGroup id="swfloaderHGroup" left="10" right="10" height="40" gap="0" top="15">
+				<s:Group width="165">
+					<course:UnitCaptionComponent id="leftUnitCaptionComponent" source="{hostComponent.unit.@leftIcon}" copyProvider="{hostComponent.getCopyProvider()}" horizontalCenter="0" />
+				</s:Group>
+				<s:Group width="165">
+					<course:UnitCaptionComponent id="rightUnitCaptionComponent" source="{hostComponent.unit.@rightIcon}" copyProvider="{hostComponent.getCopyProvider()}" horizontalCenter="0" visible="{hostComponent.unit.hasOwnProperty('@rightIcon')}" />
+				</s:Group>
 			</s:HGroup>
 		</s:Group>
 		

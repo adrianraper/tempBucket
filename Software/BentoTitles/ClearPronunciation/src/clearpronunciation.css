@@ -98,6 +98,14 @@ s|TitleWindow.warningTitleWindow {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.warning.WarningTitleWindowSkin");
 }
 
+s|TitleWindow.feedbackTitleWindow {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.feedback.FeedbackTitleWindowSkin");
+}
+
+s|VScrollBar {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.VScrollBarSkin");
+}
+
 ui|UnitListButton {
 	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitListButtonSkin");
 }
@@ -186,12 +194,6 @@ video|VideoSelector {
 	skinClass: ClassReference("skins.clearpronunciation.controls.video.AndroidVideoSelectorSkin");
 }
 
-@media (os-platform: "IOS"), (os-platform: "Android") {
-	home|HomeView s|List#courseList s|VScrollBar {
-		skinClass:ClassReference("spark.skins.mobile.VScrollBarSkin");
-	}
-}
-
 course|CourseView {
 	skinClass: ClassReference("skins.clearpronunciation.course.CourseSkin");
 }
@@ -199,11 +201,6 @@ course|CourseView {
 course|CourseView s|BorderContainer#unitContainer {
 	skinClass: ClassReference("skins.rotterdam.course.UnitListContainerSkin");
 }
-
-course|CourseView s|List#unitList s|VScrollBar {
-	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
-}
-
 
 course|CourseView s|Button#unitDropDownLeftItemButton, #unitDropDownRightItemButton {
 	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitItemButtonSkin");
@@ -361,12 +358,9 @@ settings|SettingsView video|VideoSelector {
 settings|SettingsView s|Button#saveCloseButton {
 	skinClass: ClassReference("skins.clearpronunciation.settings.ui.SettingsCloseButtonSkin");
 }
+
 credits|CreditsView {
 	skinClass: ClassReference("skins.clearpronunciation.CreditsSkin");
-}
-
-ui2|WidgetList s|VScrollBar {
-	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
 }
 
 widgets|VideoWidget {

@@ -32,7 +32,7 @@
                    xmlns:s="library://ns.adobe.com/flex/spark" 
                    xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
                    minWidth="21" minHeight="21" 
-                   alpha.disabledStates="0.5" creationComplete="onCreationComplete(event)">
+                   alpha.disabledStates="0.5" creationComplete="onCreationComplete(event)" xmlns:home="skins.clearpronunciation.assets.home.*">
 	<fx:Metadata>[HostComponent("com.clarityenglish.clearpronunciation.view.home.ui.ExerciseListRenderer")]</fx:Metadata>
 	
 	<fx:Script>
@@ -74,6 +74,7 @@
 			</s:fill>
 		</s:Rect>
 		
+		<home:menuDot horizontalCenter="-90" verticalCenter="0" includeIn="down, selectedStates" />
 		<!-- layer 8: text -->
 		<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
 		<s:Label id="labelDisplay"

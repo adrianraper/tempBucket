@@ -198,7 +198,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 			if (videoSelector) {
 				videoSelector.href = href;
 				videoSelector.channelCollection = channelCollection;
-				videoSelector.videoCollection = new XMLListCollection(_course[0].unit[0].exercise);
+				videoSelector.videoCollection = new XMLListCollection(course[0].unit[0].exercise.(@type == "videoSelector").exercise);
 				videoSelector.placeholderSource = href.rootPath + "/" + _course[0].unit[0].exercise.@placeholder;
 			}
 		}
