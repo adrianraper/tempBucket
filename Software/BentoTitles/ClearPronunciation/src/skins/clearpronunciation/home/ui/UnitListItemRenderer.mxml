@@ -2,25 +2,21 @@
 <s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				xmlns:s="library://ns.adobe.com/flex/spark" 
 				xmlns:mx="library://ns.adobe.com/flex/mx" 
-				autoDrawBackground="false" xmlns:layout="org.alivepdf.layout.*" xmlns:ui="com.clarityenglish.clearpronunciation.view.home.ui.*">
+				autoDrawBackground="false" xmlns:layout="org.alivepdf.layout.*" xmlns:ui="com.clarityenglish.clearpronunciation.view.home.ui.*" creationComplete="onCreationComplete(event)">
 	
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.clearpronunciation.view.home.event.ListItemSelectedEvent;
+			import com.clarityenglish.clearpronunciation.view.home.ui.ExerciseListRenderer;
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
 			
 			import mx.collections.ArrayCollection;
 			import mx.collections.XMLListCollection;
 			import mx.events.FlexEvent;
 			import mx.events.IndexChangedEvent;
+			import mx.events.StateChangeEvent;
 			
 			import spark.events.IndexChangeEvent;
-			
-			[Bindable]
-			private var leftIconString:String;
-			
-			[Bindable]
-			private var rightIconString:String;
 			
 			[Bindable]
 			private var listItemIndex:String;
@@ -31,8 +27,14 @@
 			[Bindable]
 			private var exerciseXMLListCollection:XMLListCollection;
 			
+			[Bindable]
+			private var exerciseListRenderer:ClassFactory;
+			
+			public static var exerciseSelectedIndex:Number;
+			
 			private var _copyProvider:CopyProvider;
 			private var _showPieChart:Boolean;
+			private var _isPlatformTablet:Boolean;
 			
 			[Bindable]
 			public function get copyProvider():CopyProvider {
@@ -52,51 +54,82 @@
 				_showPieChart = value;
 			}
 			
+			[Bindable]
+			public function get isPlatformTablet():Boolean {
+				return _isPlatformTablet;
+			}
+			
+			public function set isPlatformTablet(value:Boolean):void {
+				_isPlatformTablet = value;
+			}
+			
 			public function getUnitIndex(unit:Object):Number {
 				return unit.parent().unit.(@id == unit.@id).childIndex() + 1;
 			}
 			
-			public override function set data(value:Object):void {
+			override public function set data(value:Object):void {
 				super.data = value;
 				
-				if (data) {
-					leftIconString = String(data.@caption).split(' ')[0];
-					rightIconString = String(data.@caption).split(' ')[1];
+				if (value == null)
+					return;
+				
+				if (showPieChart) {
+					pieChart.visible = data.@coverage == 0? false : true;
+					unitItemPieChartArrayCollection = new ArrayCollection([{coverage: 100 - data.@coverage}, {coverage: data.@coverage}]);
 					
-					if (showPieChart) {
-						pieChart.visible = data.@coverage == 0? false : true;
-						unitItemPieChartArrayCollection = new ArrayCollection([{coverage: 100 - data.@coverage}, {coverage: data.@coverage}]);
-						
-						unitListBackgroundRect.width = 269;
-						unitListBackgroundRect.left = 40;
-					} else {
-						// adjust position and size for the drop down list in course page
+					unitListBackgroundRect.width = 269;
+					unitListBackgroundRect.left = 40;
+				} else {
+					// adjust position and size for the drop down list in course page
+					unitListBackgroundRect.left = 10;
+					unitListButtonHGroup.left = 10;
+					exerciseListVGroup.paddingLeft = 10;
+					exerciseListVGroup.width = 240;
+					if (isPlatformTablet) {
 						unitListItemVGroup.width = 240;
 						unitListBackgroundRect.width = 230;
-						unitListBackgroundRect.left = 10;
-						exerciseListVGroup.paddingLeft = 10;
-						unitListButtonHGroup.left = 10;
 						unitListButton.scaleX = unitListButton.scaleY = 0.9;
-					}
-					
-					if (getUnitIndex(data) < 10) {
-						listItemIndex = "0" + String(getUnitIndex(data));
 					} else {
-						listItemIndex = String(getUnitIndex(data));
+						unitListItemVGroup.width = 230;
+						unitListBackgroundRect.width = 220;
+						unitListButton.scaleX = unitListButton.scaleY = 0.85;
 					}
-					
-					exerciseXMLListCollection = new XMLListCollection();
-					exerciseXMLListCollection.addItem(data.exercise.(@["class"] == "practiseSounds"));
-					for each (var exerciseXML:XML in data.exercise.(@["class"] == "exercise").exercise) {
-						exerciseXMLListCollection.addItem(exerciseXML);
-					}
-				}		
+				}
+				
+				unitListButton.leftItemButtonLabel = (data.@caption ).split(" ")[0];
+				unitListButton.rightItemButtonLabel = (data.@caption).split(" ")[1];
+				
+				if (getUnitIndex(data) < 10) {
+					listItemIndex = "0" + String(getUnitIndex(data));
+				} else {
+					listItemIndex = String(getUnitIndex(data));
+				}
+				
+				exerciseXMLListCollection = new XMLListCollection();
+				exerciseXMLListCollection.addItem(data.exercise.(@["class"] == "practiseSounds"));
+				for each (var exerciseXML:XML in data.exercise.(@["class"] == "exercise").exercise) {
+					exerciseXMLListCollection.addItem(exerciseXML);
+				}
+				exerciseListRenderer = new ClassFactory(ExerciseListRenderer);
+				exerciseListRenderer.properties = {showPieChart: showPieChart};
+				if (exerciseList) {
+					exerciseList.selectedIndex = exerciseSelectedIndex;
+				}
 			}
 			
 			protected function onExerciseListClick(event:MouseEvent):void
 			{
-				// TODO Auto-generated method stub
+				exerciseSelectedIndex = exerciseList.selectedIndex;
 				dispatchEvent(new ListItemSelectedEvent(ListItemSelectedEvent.SELECTED, true, exerciseList.selectedItem));
+			}
+			
+			protected function onCreationComplete(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				if (exerciseList) {
+					exerciseList.selectedIndex = exerciseSelectedIndex;
+					exerciseList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+				}
 			}
 			
 		]]>
@@ -118,9 +151,9 @@
 		</s:stroke>
 	</s:Rect>
 	
-	<s:VGroup id="unitListItemVGroup" height="100%" width="310" gap="0">
+	<s:VGroup id="unitListItemVGroup" left="0" height="100%" width="310" gap="0">
 		<s:Group id="unitHGroup" left="0" top="0" width="100%" height="50">
-			<s:HGroup id="unitListButtonHGroup" width="100%" height="50">
+			<s:HGroup id="unitListButtonHGroup" left="0" width="100%" height="50" gap="-1">
 				<mx:PieChart id="pieChart" dataProvider="{unitItemPieChartArrayCollection}" width="45" height="45" left="0" visible="{showPieChart}" includeInLayout="{showPieChart}">
 					<mx:series>
 						<mx:PieSeries field="coverage" labelPosition="none" filters="{[]}">
@@ -136,39 +169,12 @@
 		</s:Group>
 		
 		<s:VGroup id="exerciseListVGroup" paddingLeft="40" width="100%">
-			<s:Group left="0" height="0" height.hovered="150" height.selected="150" width="100%">
-				<s:List id="exerciseList" left="0" width="100%" height="95%" dataProvider="{exerciseXMLListCollection}" includeIn="selected" includeInLayout="{currentState == 'selected'}" fontSize="13" contentBackgroundAlpha="0" click="onExerciseListClick(event)">
+			<s:Group left="0" height="0" height.selected="160" width="100%" includeIn="selected">
+				<s:List id="exerciseList" left="0" width="100%" height="95%" dataProvider="{exerciseXMLListCollection}" labelField="@caption" includeInLayout="{currentState == 'selected'}" fontSize="13" borderVisible="false" contentBackgroundAlpha="0" 
+						click="onExerciseListClick(event)" itemRenderer="{exerciseListRenderer}" >
 					<s:layout>
 						<s:VerticalLayout />
 					</s:layout>
-					<s:itemRenderer>
-						<fx:Component>
-							<s:ItemRenderer width="100%" height="100%" autoDrawBackground="false">
-								<fx:Script>
-									<![CDATA[
-										public override function set data(value:Object):void {
-											super.data = value;
-											
-											if (outerDocument.showPieChart) {
-												exerciseListButton.setStyle("fontSize", 13);
-											} else {
-												exerciseListButton.setStyle("fontSize", 11);
-												exerciseListButton.width = 240;
-											}
-												
-										}
-									]]>
-								</fx:Script>
-								<s:states>
-									<s:State name="normal" />
-									<s:State name="hovered" />
-									<s:State name="selected" />
-								</s:states>
-								
-								<s:Button id="exerciseListButton" width="100%" height="23" label="{data.@caption}" skinClass="skins.clearpronunciation.home.ui.ExerciseListButtonSkin" />	
-							</s:ItemRenderer>
-						</fx:Component>
-					</s:itemRenderer>
 				</s:List>
 			</s:Group>	
 		</s:VGroup>

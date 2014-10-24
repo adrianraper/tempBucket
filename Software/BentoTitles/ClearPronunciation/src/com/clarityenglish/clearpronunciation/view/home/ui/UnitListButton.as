@@ -6,10 +6,30 @@ package com.clarityenglish.clearpronunciation.view.home.ui {
 	
 	public class UnitListButton extends ButtonBase {
 		private var _caption:String;
+		private var _leftItemButtonLabel:String;
+		private var _rightItemButtonLabel:String;
 		private var _leftIconString:String;
 		private var _rightIconString:String;
 		private var _itemIndex:String;
 		private var _copyProvider:CopyProvider;
+		
+		[Bindable]
+		public function get leftItemButtonLabel():String {
+			return _leftItemButtonLabel;
+		}
+		
+		public function set leftItemButtonLabel(value:String):void {
+			_leftItemButtonLabel = value;
+		}
+		
+		[Bindable]
+		public function get rightItemButtonLabel():String {
+			return _rightItemButtonLabel;
+		}
+		
+		public function set rightItemButtonLabel(value:String):void {
+			_rightItemButtonLabel = value;
+		}
 		
 		[Bindable]
 		public function get caption():String {

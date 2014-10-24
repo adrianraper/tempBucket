@@ -80,10 +80,6 @@ package com.clarityenglish.clearpronunciation.view.home {
 		public var exerciseShow:Signal = new Signal(XML);
 		public var channelCollection:ArrayCollection;
 		
-		private var consonantsLeftXMLListCollection:XMLListCollection = new XMLListCollection();
-		private var consonantsRightXMLListCollection:XMLListCollection = new XMLListCollection();
-		private var vowelsLeftXMLListCollection:XMLListCollection = new XMLListCollection();
-		private var vowelsRightXMLListCollection:XMLListCollection = new XMLListCollection();
 		private var _unitListCollection:ListCollectionView; 
 		private var _selectedCourseID:String;
 		private var _selectedCourseIDChanged:Boolean;
@@ -143,6 +139,8 @@ package com.clarityenglish.clearpronunciation.view.home {
 			courseList.dataProvider = new XMLListCollection(xhtml..menu.(@id == productCode).course);
 			_course = xhtml..menu.(@id == productCode).course;
 			
+			var consonantsLeftXMLListCollection:XMLListCollection = new XMLListCollection();
+			var consonantsRightXMLListCollection:XMLListCollection = new XMLListCollection();
 			for each (var consonantsUnit:XML in xhtml..menu.(@id == productCode).course.(@["class"] == "consonants").unit) {
 				if (consonantsUnit.childIndex() < 7) {
 					consonantsLeftXMLListCollection.addItem(consonantsUnit);
@@ -153,6 +151,8 @@ package com.clarityenglish.clearpronunciation.view.home {
 			consonantsLeftList.dataProvider = consonantsLeftXMLListCollection;
 			consonantsRightList.dataProvider = consonantsRightXMLListCollection;
 			
+			var vowelsLeftXMLListCollection:XMLListCollection = new XMLListCollection();
+			var vowelsRightXMLListCollection:XMLListCollection = new XMLListCollection();
 			for each (var vowelsUnit:XML in xhtml..menu.(@id == productCode).course.(@["class"] == "vowels").unit) {
 				if (vowelsUnit.childIndex() < 4) {
 					vowelsLeftXMLListCollection.addItem(vowelsUnit);
@@ -267,7 +267,8 @@ package com.clarityenglish.clearpronunciation.view.home {
 		}
 		
 		protected function onItemSelected(event:ListItemSelectedEvent):void {
-			exerciseShow.dispatch(event.item);
+			if (event.item)
+				exerciseShow.dispatch(event.item);
 		}
 		
 		// get selected list

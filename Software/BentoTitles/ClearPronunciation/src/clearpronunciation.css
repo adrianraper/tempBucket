@@ -70,6 +70,10 @@ tlfcomponents|AudioPlayer {
 	fullPauseIcon: Embed(source="skins/clearpronunciation/assets/pause.png");
 }
 
+tlfcomponents|AudioPlayer s|ScrubBar {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.audio.AudioScruBarSkin");
+}
+
 vo|WindowShade {
 	skinClass: ClassReference("skins.clearpronunciation.course.WindowShadeSkin");
 }
@@ -172,6 +176,10 @@ home|HomeView {
 
 home|HomeView s|Button#courseListButton {
 	skinClass: ClassReference("skins.clearpronunciation.home.ui.CourseListButtonSkin");
+}
+
+ui|ExerciseListRenderer {
+	skinClass: ClassReference("skins.clearpronunciation.home.ui.ExerciseListBarButtonSkin");
 }
 
 video|VideoSelector {

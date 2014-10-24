@@ -38,7 +38,12 @@ package com.clarityenglish.clearpronunciation.view.course
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			if (bentoProxy.menuXHTML) view.href = bentoProxy.menuXHTML.href;
-			if (bentoProxy.selectedExerciseNode.hasOwnProperty("@href")) view.isExerciseVisible = true;
+			if (bentoProxy.selectedExerciseNode && bentoProxy.selectedExerciseNode.hasOwnProperty("@href")) {
+				view.bentoExercise = bentoProxy.selectedExerciseNode;
+				view.isExerciseVisible = true;
+			} else {
+				view.isExerciseVisible = false;
+			}
 			
 			view.itemShow.add(onItemShow);;
 			// gh#849
@@ -48,10 +53,6 @@ package com.clarityenglish.clearpronunciation.view.course
 			view.nextExercise.add(onNextExercise);
 			view.backExercise.add(onBackExercise);
 			view.dirtyWarningShow.add(onDirtyWarningShow);
-			
-			// gh#208 need the teacher's group
-			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
-			view.group = loginProxy.group;
 			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			// gh#871 Course_Start notification doesn't be sent when open a unit, so unitCollection in CourseProxy cannot be used to bind data
@@ -68,6 +69,8 @@ package com.clarityenglish.clearpronunciation.view.course
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.mediaFolder = new Href(Href.XHTML, "media/", configProxy.getConfig().paths.content).url;
 			UnitCaptionComponent.mediaFolder = new Href(Href.XHTML, "media/", configProxy.getConfig().paths.content).url;
+			
+			view.isPlatformTablet = configProxy.isPlatformTablet();
 		}
 		
 		override public function onRemove():void {
@@ -81,21 +84,19 @@ package com.clarityenglish.clearpronunciation.view.course
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
+				
 			]);
 		}
 		
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
-			
 		}
 		
 		protected function onItemShow(item:XML):void {
 			if (item.hasOwnProperty("@class") && item.(@["class"] == "practiseSounds")) {
-				view.isExerciseVisible = false;
-				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, {unit: item.parent(), exercise: item, isWidgetExercise: true});
+				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, {unit: item.parent(), exercise: item});
 			} else {
-				view.isExerciseVisible = true;
-				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, {unit: item.parent().parent(), exercise: item, isWidgetExercise: false});
+				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, {unit: item.parent().parent(), exercise: item});
 			}
 		}
 		

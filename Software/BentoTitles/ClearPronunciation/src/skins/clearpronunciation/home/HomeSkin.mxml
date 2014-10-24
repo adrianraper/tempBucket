@@ -126,7 +126,7 @@
 			</s:itemRenderer>
 		</s:List>
 		
-		<s:Group id="unitListGroup" left="275" width="100%" height="600" >
+		<s:Group id="unitListGroup" left="275" width="100%" height="660" >
 			
 			<!--instruction-->
 			<s:Group id="unitListInstuctionGroup" height="100" left="40" verticalCenter="-30">
@@ -135,16 +135,32 @@
 			</s:Group>
 			
 			<video:VideoSelector id="videoSelector" verticalCenter="0" horizontalCenter="0" visible="false" />
-			<s:List id="consonantsList" width="100%" left="100" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 1}" includeInLayout="{hostComponent.selectedCourseIndex == 1}" contentBackgroundAlpha="0">
-				<s:layout>
-					<s:TileLayout verticalGap="5" requestedColumnCount="2" orientation="columns" rowHeight="70" />
-				</s:layout>
-			</s:List>
-			<s:List id="vowelsList" width="100%" left="100" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 2}" includeInLayout="{hostComponent.selectedCourseIndex == 2}" contentBackgroundAlpha="0">
-				<s:layout>
-					<s:TileLayout verticalGap="20" requestedColumnCount="2" orientation="columns" rowHeight="70" />
-				</s:layout>
-			</s:List>
+			<s:HGroup id="consonantsListHGroup" left="100" top="60" width="100%" height="100%">
+				<s:List id="consonantsLeftList" minWidth="310" height="100%" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 1}" contentBackgroundAlpha="0">
+					<s:layout>
+						<s:VerticalLayout gap="10" />
+					</s:layout>
+				</s:List>
+				<s:List id="consonantsRightList" minWidth="310" height="100%" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 1}" contentBackgroundAlpha="0">
+					<s:layout>
+						<s:VerticalLayout gap="10" />
+					</s:layout>
+				</s:List>
+			</s:HGroup>
+
+			<s:HGroup id="vowelsListHGroup" left="100" top="120" width="100%" height="100%">
+				<s:List id="vowelsLeftList" minWidth="310" height="100%" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 2}" contentBackgroundAlpha="0">
+					<s:layout>
+						<s:VerticalLayout gap="10" />
+					</s:layout>
+				</s:List>
+				<s:List id="vowelsRightList" minWidth="310" height="100%" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 2}" contentBackgroundAlpha="0">
+					<s:layout>
+						<s:VerticalLayout gap="10" />
+					</s:layout>
+				</s:List>
+			</s:HGroup>
+			
 			<s:List id="diphthongsList" width="100%" left="100" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 3}" includeInLayout="{hostComponent.selectedCourseIndex == 3}" contentBackgroundAlpha="0">
 				<s:layout>
 					<s:TileLayout verticalGap="20" requestedColumnCount="2" orientation="columns" rowHeight="70" />

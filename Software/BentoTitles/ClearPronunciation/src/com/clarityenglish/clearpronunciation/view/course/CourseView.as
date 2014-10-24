@@ -89,27 +89,29 @@ package com.clarityenglish.clearpronunciation.view.course
 		public var windowShade:WindowShade;
 		
 		[Bindable]
-		public var unitListCollection:ListCollectionView;
-		
-		[Bindable]
 		public var mediaFolder:String;
 		
-		// gh#208 DK: should we pass the group from the mediator to here so that the view can create the default node
-		// or should we just let the mediator do it?
-		public var group:com.clarityenglish.common.vo.manageable.Group;
+		[Bindable]
+		private var unitLength:Number;
 		
 		// gh#870
 		private var _unit:XML;
 		private var _unitChanged:Boolean;
+		private var _bentoExercise:XML;
+		private var _bentoExerciseChanged:Boolean;
+		private var _isExerciseVisible:Boolean;
+		private var _exerciseVisibleChanged:Boolean;
+		private var _currentExerciseIndex:Number = 0;
+		private var _currentExerciseIndexChanged:Boolean;
+		private var _unitListCollection:ListCollectionView;
+		private var _unitListCollectionChanged:Boolean;
+		private var _isPlatformTablet:Boolean;
 		// gh#211
 		private var currentIndex:Number;
 		private var unitListLength:Number;		
 		private var isOutsideClick:Boolean;
 		private var isItemClick:Boolean;
 		private var isHidden:Boolean;
-		private var _isExerciseVisible:Boolean;
-		private var _exerciseVisibleChanged:Boolean;
-		private var _currentExerciseIndex:Number;
 		private var exerciseLength:Number;
 		
 		public var itemShow:Signal = new Signal(XML);
@@ -129,6 +131,21 @@ package com.clarityenglish.clearpronunciation.view.course
 		}
 		
 		[Bindable]
+		public function get unitListCollection():ListCollectionView {
+			return _unitListCollection;
+		}
+		
+		public function set unitListCollection(value:ListCollectionView):void {
+			if (value) {
+				if (!_unitListCollection) {
+					_unitListCollection = value;
+				} else if (value.toString() != _unitListCollection.toString()) {
+					_unitListCollection = value;
+				}	
+			}
+		}
+		
+		[Bindable]
 		public function get unit():XML {
 			return _unit;
 		}
@@ -136,6 +153,13 @@ package com.clarityenglish.clearpronunciation.view.course
 		public function set unit(value:XML):void {
 			_unit = value;
 			_unitChanged = true;
+			
+			invalidateProperties();
+		}
+		
+		public function set bentoExercise(value:XML):void {
+			_bentoExercise = value;
+			_bentoExerciseChanged = true;
 			
 			invalidateProperties();
 		}
@@ -161,6 +185,13 @@ package com.clarityenglish.clearpronunciation.view.course
 		
 		public function set currentExerciseIndex(value:Number):void {
 			_currentExerciseIndex = value;
+			_currentExerciseIndexChanged = true;
+			
+			invalidateProperties();
+		}
+		
+		public function set isPlatformTablet(value:Boolean):void {
+			_isPlatformTablet = value;
 		}
 		
 		public function getCopyProvider():CopyProvider {
@@ -178,21 +209,38 @@ package com.clarityenglish.clearpronunciation.view.course
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
-			
+				
 			// set unit list to select the correct unit
 			if (_unitChanged) {
 				unitList.selectedItem = unit;
-				_unitChanged = true;
+				// "+1" is add "practise exercise"
+				unitLength = unit.exercise.(@["class"] == "exercise").exercise.length() + 1;
+				_unitChanged = false;
+			}
+			
+			if (_bentoExerciseChanged) {
+				currentExerciseIndex = unit.exercise.(@["class"] == "exercise").exercise.(@id == _bentoExercise.@id).childIndex() + 1;
+				_bentoExerciseChanged = false;
 			}
 			
 			if (_exerciseVisibleChanged) {
-				if (isExerciseVisible) {
-					backButton.enabled = true;
-				} else {
+				if (!_isExerciseVisible) {
+					currentExerciseIndex = 0;
+				}
+			}
+			
+			if (_currentExerciseIndexChanged) {
+				if (currentExerciseIndex == 0) {
 					backButton.enabled = false;
 					nextButton.enabled = true;
+				} else if (currentExerciseIndex == (unitLength - 1)) {
+					backButton.enabled = true;
+					nextButton.enabled = false;
+				} else {
+					backButton.enabled = true;
+					nextButton.enabled = true;
 				}
-				_exerciseVisibleChanged = false;
+				_currentExerciseIndexChanged = false;
 			}
 		}
 		
@@ -202,9 +250,8 @@ package com.clarityenglish.clearpronunciation.view.course
 			switch (instance) {
 				case unitList:
 					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
-					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: false};
+					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: false, isPlatformTablet: _isPlatformTablet};
 					unitList.itemRenderer = unitListItemRenderer;
-					unitList.dragEnabled = unitList.dropEnabled = unitList.dragMoveEnabled = true;
 					unitList.addEventListener(ListItemSelectedEvent.SELECTED, onListItemSelected);
 					break;
 				case settingsButton:
@@ -229,17 +276,21 @@ package com.clarityenglish.clearpronunciation.view.course
 		}
 		
 		protected function onListItemSelected(event:ListItemSelectedEvent):void {
-			if (unitList.selectedIndex != -1) {
-				// to hide vertical scroll bar, use verticalScrollPolicy = off
-				windowShade.contentGroup.height = 0;
+			if (event.item) {
+				if (unitList.selectedIndex != -1) {
+					windowShade.contentGroup.height = 0;
+				}
+				
+				var item:XML = event.item;
+				if (item.hasOwnProperty("@class") && item.(@["class"] == "practiseSounds")) {				
+					isExerciseVisible = false;
+				} else {
+					bentoExercise = item;
+					isExerciseVisible = true;
+				}
+				itemShow.dispatch(item);
 			}
-			
-			if (isExerciseVisible) {
-				isExerciseVisible = false;
-			}
-			itemShow.dispatch(event.item);
 		}
-		
 		/**
 		 * TODO: Switch between editing and viewing
 		 */
@@ -267,29 +318,20 @@ package com.clarityenglish.clearpronunciation.view.course
 				
 				exerciseShow.dispatch(unit.exercise.(@["class"] == "exercise").exercise[0]);
 				currentExerciseIndex = 1;
-				exerciseLength = unit.exercise.(@["class"] == "exercise").exercise.length();
 			} else {
 				nextExercise.dispatch();
-				currentExerciseIndex++;
-			}
-			
-			if (currentExerciseIndex == exerciseLength) {
-				nextButton.enabled = false;
-			} else {
-				nextButton.enabled = true;
+				currentExerciseIndex ++;
 			}
 		}
 		
 		protected function onBackButtonClick(event:Event):void {
 			if (getCurrentSkinState() == "unitExercise") {
-				nextButton.enabled = true;
-				
-				if (currentExerciseIndex == 1) {
-					isExerciseVisible = false;					
-				} else {
+				if (currentExerciseIndex > 1) {
 					backExercise.dispatch();
-					currentExerciseIndex--;
+				} else {
+					isExerciseVisible = false;
 				}
+				currentExerciseIndex --;
 			}
 		}
 		

@@ -32,37 +32,8 @@
              xmlns:s="library://ns.adobe.com/flex/spark" 
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
              minWidth="21" minHeight="21" 
-             alpha.disabled="0.5" creationComplete="onCreationComplete(event)">
+             alpha.disabled="0.5">
 	<fx:Metadata>[HostComponent("com.clarityenglish.clearpronunciation.view.home.ui.UnitListButton")]</fx:Metadata>
-	<fx:Script>
-		<![CDATA[
-			import mx.events.FlexEvent;
-			
-			[Bindable]
-			private var leftItemButtonLabel:String;
-			
-			[Bindable]
-			private var rightItemButtonLabel:String;
-			
-			protected function onCreationComplete(event:FlexEvent):void
-			{
-				// TODO Auto-generated method stub
-				leftItemButtonLabel = hostComponent.caption.split(" ")[0];
-				rightItemButtonLabel = hostComponent.caption.split(" ")[1];
-				
-				if (hostComponent.rightIconString) {
-					unitItemRightButton.visible = true;
-					unitItemRightLabel.visible = true;
-					unitItemRightButton.label = hostComponent.copyProvider.getCopyForId(hostComponent.rightIconString);
-					unitItemRightLabel.text = rightItemButtonLabel;
-				} else {
-					unitItemRightButton.visible = false;
-					unitItemRightLabel.visible = false;
-				}
-			}
-			
-		]]>
-	</fx:Script>
      
     <!-- states -->
     <s:states>
@@ -81,11 +52,11 @@
 	<s:Label id="unitItemIndexLabel" fontFamily="Helvetica" fontSize="18" color="#333333" left="15" verticalCenter="2" text="{hostComponent.itemIndex}" />
 	<s:Group left="50" verticalCenter="0" >
 		<s:Button id="unitItemLeftButton" height="100%" scaleX="0.9" scaleY="0.9" label="{hostComponent.copyProvider.getCopyForId(hostComponent.leftIconString)}" left="0"/>
-		<s:Label id="unitItemLeftLabel" text="{leftItemButtonLabel}" fontSize="16" left="40" verticalCenter="2" />
+		<s:Label id="unitItemLeftLabel" text="{hostComponent.leftItemButtonLabel}" fontSize="16" left="40" verticalCenter="2" />
 	</s:Group>
 	<s:Group left="160" verticalCenter="0" >
-		<s:Button id="unitItemRightButton" height="100%" scaleX="0.9" scaleY="0.9" left="0"/>
-		<s:Label id="unitItemRightLabel" fontSize="16" left="42" verticalCenter="2" />
+		<s:Button id="unitItemRightButton" height="100%" scaleX="0.9" scaleY="0.9" left="0" label="{hostComponent.copyProvider.getCopyForId(hostComponent.rightIconString)}" visible="{hostComponent.rightIconString != null}"/>
+		<s:Label id="unitItemRightLabel" text="{hostComponent.rightItemButtonLabel}" fontSize="16" left="42" verticalCenter="2" visible="{hostComponent.rightIconString != null}"/>
 	</s:Group>
     
     <!-- layer 8: text -->

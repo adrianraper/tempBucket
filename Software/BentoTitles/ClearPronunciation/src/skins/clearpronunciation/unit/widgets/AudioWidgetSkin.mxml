@@ -18,7 +18,7 @@
 			protected function creationComplete(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
-				audioPlayer.playComponent.addEventListener(MouseEvent.CLICK, hostComponent.onPlayClicked);
+				audioPlayer.compactComponent.addEventListener(MouseEvent.CLICK, hostComponent.onPlayClicked);
 			}
 			
 		]]>
@@ -33,7 +33,7 @@
 	
 	<s:HGroup left="0" right="10" top="10" paddingBottom="10" verticalAlign="middle" width="100">
 		<!-- Audio player -->
-		<components:AudioPlayer id="audioPlayer" src="{hostComponent.audioUrl}" controls="full" />
+		<components:AudioPlayer id="audioPlayer" src="{hostComponent.audioUrl}" controls="compact" />
 		
 		<!-- Text -->
 		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20"/>

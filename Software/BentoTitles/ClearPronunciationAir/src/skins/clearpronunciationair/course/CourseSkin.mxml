@@ -6,7 +6,7 @@
 		xmlns:course="com.clarityenglish.clearpronunciation.view.course.*"
 		xmlns:course1="skins.clearpronunciation.assets.course.*"
 		xmlns:unit="com.clarityenglish.clearpronunciation.view.unit.*" 
-		xmlns:exercise="com.clarityenglish.bento.view.exercise.*" creationComplete="onCreationComplete(event)" xmlns:local="*" xmlns:vo="com.clarityenglish.clearpronunciation.vo.*" >
+		xmlns:exercise="com.clarityenglish.bento.view.exercise.*" creationComplete="onCreationComplete(event)" xmlns:local="*" xmlns:vo="com.clarityenglish.clearpronunciation.vo.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.course.CourseView")]
@@ -146,9 +146,9 @@
 						<s:SolidColor color="#FFFFFF" />
 					</s:fill>
 				</s:Rect>
-				<s:List id="unitList" width="250" height="387" top="18" horizontalCenter="0" dataProvider="{hostComponent.unitListCollection}" requireSelection="true" borderVisible="false" contentBackgroundColor="#FFFFFF">
+				<s:List id="unitList" width="250" height="387" top="18" horizontalCenter="0" requireSelection="true" labelField="@caption" dataProvider="{hostComponent.unitListCollection}" borderVisible="false" contentBackgroundColor="#FFFFFF" verticalScrollPolicy="on">
 					<s:layout>
-						<s:VerticalLayout requestedMinRowCount="1" horizontalAlign="justify" gap="10" />
+						<s:VerticalLayout gap="10" />
 					</s:layout>
 				</s:List>
 			</vo:WindowShade>	
