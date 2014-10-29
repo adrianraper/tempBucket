@@ -134,18 +134,17 @@ EOD;
 		
 		switch ($section) {
 			// NOTE: the $value passed might be a simple value ('B2') or it might be a node <startingPoint course='123' unit='123' exercise='123' />
-			case 'bookmark':
-			case 'CEF':
-				$newNode = $doc->loadXML('<'.$section.'>'.$value.'</'.$section.'>');
-				$this->addElement($section, $doc->getElementsByTagName($section)->item(0), $pc);
-				break;
-
 			case 'subscription':
-				$newNode = $doc->loadXML('<'.$section.' startDate="'.$value.'"/>');
+				$newNode = $doc->loadXML('<'.$section.' startDate="'.$value.'" valid="true" frequency="2 days" />');
 				$this->addElement($section, $doc->getElementsByTagName($section)->item(0), $pc);
 				break;
 				
+			case 'bookmark':
+			case 'CEF':
+			case 'level':
 			default:
+				$newNode = $doc->loadXML('<'.$section.'>'.$value.'</'.$section.'>');
+				$this->addElement($section, $doc->getElementsByTagName($section)->item(0), $pc);
 				break;
 		}
 		AbstractService::$debugLog->info('after adding, $this->memory='.$this->toString());

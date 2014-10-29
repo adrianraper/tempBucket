@@ -213,10 +213,12 @@ class TB6weeksService extends AbstractService {
 		// Work out the TB6weeks settings for direct start and save for the user
 		$directStart = $this->testOps->getDirectStart($score);
 		$CEFLevel = $this->testOps->getCEFLevel($score);
+		$ClarityLevel = $this->testOps->getClarityLevel($score);
 		// The bookmark (which controls direct start), is written to Tense Buster memory, not TB6weeks.
 		$tbProductCode = 55;
 		$rc = $this->memoryOps->addToMemory('bookmark', $directStart, $tbProductCode);
 		$rc = $this->memoryOps->addToMemory('CEF', $CEFLevel);
+		$rc = $this->memoryOps->addToMemory('level', $ClarityLevel);
 		$now = new DateTime();
 		$rc = $this->memoryOps->addToMemory('subscription', $now->format('Y-m-d'));
 		$rc = $this->memoryOps->writeMemory();

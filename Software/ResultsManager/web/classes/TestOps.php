@@ -334,6 +334,29 @@ SQL;
 			return "B2";	
 		return "C1";
 	}
+	/**
+	 * This function calculates a student's Clarity level based on their score
+	 * 
+	 * @param Score $score
+	 */
+	public function getLevel($score, $productCode) {
+		
+		switch ($productCode) {
+			case 59:
+				if ($score->scoreCorrect < 4)
+					return "ELE";
+				if ($score->scoreCorrect < 7)
+					return "LI";
+				if ($score->scoreCorrect < 22)
+					return "INT";
+				if ($score->scoreCorrect < 70)
+					return "UI";	
+				return "ADV";
+				break;
+			default:
+				break;
+		}
+	}
 	
 	public function scoreMultiplier($scoreBand) {
 		switch ($scoreBand) {

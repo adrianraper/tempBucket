@@ -1,5 +1,25 @@
 <?php
 
+	$xmlString = '<memory><product><bookmark><startingPoint course="123" unit="12" /><level>B1</level></bookmark><book id="1"></book><bank /></product></memory>';
+	$xml = simplexml_load_string($xmlString);
+	
+	$product = $xml->product;
+	if (empty($product)) echo 'product is empty';
+	$bookmark = $xml->product->bookmark;
+	if (empty($bookmark)) echo 'bookmark is empty';
+	$book = $xml->product->book;
+	if (empty($book)) echo 'book is empty';
+	if (!isset($xml->product->book)) echo 'book is not isset';
+	$buck = $xml->product->buck;
+	if (empty($buck)) echo 'buck is empty';
+	if (!isset($xml->product->buck)) echo 'buck is not isset';
+	$busk = $xml->priduct->buck;
+	if (empty($busk)) echo 'busk is empty';
+	if (!isset($xml->priduct->buck)) echo 'busk is not isset';
+	$bank = $xml->product->bank;
+	if (empty($bank)) echo 'bank is empty';
+	if (!isset($xml->product->bank)) echo 'bank is not isset';
+/*
 	$_REQUEST['operation'] = 'submitAnswers';
 	$_REQUEST['prefix'] = 'clarity';
 	$_REQUEST['exercise'] = '1193901049540.xml';
@@ -8,7 +28,8 @@
 	$_REQUEST['code'] = '1193901049540.xml';
 	
 	require_once(dirname(__FILE__)."/TB6weeksService.php");
-	
+*/
+
 /*
 	require_once(dirname(__FILE__)."/MinimalService.php");
 	$dummy = new MinimalService();

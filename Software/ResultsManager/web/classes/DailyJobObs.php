@@ -649,7 +649,20 @@ SQL;
 		}
 		
 		return $accounts;
-	} 
+	}
+
+	/**
+	 * This will take an account and find the users in the account with a subscription
+	 * A subscription is defined by startDate, frequency and valid
+	 * Then it will work out if we need to update the bookmark for that user to reflect a new 'week'
+	 * 
+	 */
+	public function updateSubscriptionBookmarks($account, $productCode, $today = null) {
+
+if (isset($_SERVER["SERVER_NAME"])) {
+	$newLine = '<br/>';
+} else {
+	$newLine = "\n";
 
 	/**
 	 * For all users in a group (or groups), get their email addresses and include the user details.
@@ -690,4 +703,214 @@ SQL;
 		return $emailArray;
 	}
 
+}
+		
+		// Find all users in this account with a subscription to this product
+		$sql = <<<SQL
+			SELECT u.F_Memory as memory, u.F_UserID as userId
+			FROM T_User u, T_Membership m
+			WHERE u.F_Memory like '%<product code="$productCode"%'
+			AND u.F_UserID = m.F_UserID
+			AND m.F_RootID = ?
+SQL;
+		$bindingParams = array($account->id);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs->RecordCount() > 0) {
+			while ($dbObj = $rs->FetchNextObj()) {
+				
+				// TODO: Implement with memoryOps when it is ready. Need a memory class
+				// $memory = $this->memoryOps->getMemoryFromDb($userId, $productCode);
+				//   or
+				// $memory = new Memory($dbObj->memory);
+				$memory = simplexml_load_string($dbObj->memory);
+				
+				// Does this user have a valid subscription?
+				$productMemories = $memory->xpath("//product[@code=$productCode]");
+				$productMemory = $productMemories[0];
+				if ($productMemory->subscription['valid'] == true) {
+					
+					echo "user ".$dbObj->userId." has valid subscription $newLine";
+					
+					// They do, so figure out if today is a frequency unit away from their subscription start date
+					$level = (string)$productMemory->level;
+					$sd = (string)$productMemory->subscription['startDate'];
+					$f = (string)$productMemory->subscription['frequency'];
+					
+					// Data checking
+					if (empty($level) || empty($sd) || empty($f))
+						continue;
+						
+					$startDate = new DateTime($sd.' 00:00:00');
+					echo "their start date ".$startDate->format('Y-m-d')." and today=".$today->format('Y-m-d').$newLine";
+					$frequency = DateInterval::createFromDateString($f);
+					$keyDate = $startDate->add($frequency);
+					
+					// For testing we might pass in a different date to use as 'today'
+					//$now = new DateTime(null, new DateTimeZone(TIMEZONE));
+					//$today = new DateTime($now->format('Y-m-d'. '00:00:00'));
+					$unitsAdded = 1;
+					
+					// Note: Do we need a 'sensible' limit on number of units to add (in case start date was 1900 or something)
+					while ($keyDate <= $today) {
+						echo "test key date ".$keyDate->format('Y-m-d')."$newLine";
+						if ($keyDate == $today) {
+							// Need to update the relevant bookmark
+							// Should this be a function or a db lookup?
+							// What should the new bookmark be?
+							$newBookmark = $this->lookupSubscriptionBookmark($level, $unitsAdded, $productCode);
+							
+							// The subscription might have completed
+							if ($newBookmark->isFinished()) {
+								// set the subscription to false or delete it altogether?
+								$productMemory->subscription['valid'] = false;
+								
+								// remove the related bookmark
+								echo "YES but subscription now finished $newLine";
+							}
+							echo "YES update $unitsAdded time so new unit is ".$newBookmark->unit."$newLine";
+							switch ($productCode) {
+								case 59:
+									// Need to update the Tense Buster bookmark
+									$tbMemories = $memory->xpath("//product[@code=55]");
+									if ($tbMemories) {
+										$tbMemory = $tbMemories[0];
+									} else {
+										$tbMemory = $memory->addChild('product');
+										$tbMemory->addAttribute('code', 55);
+									}
+									echo $tbMemory->asXML();
+									
+									$bookmark = $tbMemory->bookmark;
+									if (empty($bookmark))
+										$bookmark = $tbMemory->addChild('bookmark');
+										
+									$startingPoint = $bookmark->startingPoint;
+									if (empty($startingPoint)) {
+										$startingPoint = $bookmark->addChild('startingPoint');
+										$startingPoint->addAttribute('course', $newBookmark->course);
+										$startingPoint->addAttribute('unit', $newBookmark->unit);
+									} else {
+										$startingPoint['course'] = $newBookmark->course;
+										$startingPoint['unit'] = $newBookmark->unit;
+									}
+										
+									break;
+									
+								default:
+									break;
+							}
+							
+							$rc = $this->updateMemory($dbObj->userId, $memory->asXML());
+							continue 2;
+						}
+						$unitsAdded++;
+						$keyDate = $keyDate->add($frequency);
+					}
+				}
+			}
+		}
+		
+	}
+	public function updateMemory($userId, $memory) {
+		$sql = <<<SQL
+			UPDATE T_User
+			SET F_Memory = ?
+			WHERE F_UserID = ?
+SQL;
+		$bindingParams = array($memory, $userId);
+		$rc = $this->db->Execute($sql, $bindingParams);
+	}
+	/**
+	 * This might be better as db lookup?
+	 * Calculates the starting point for a subscription on its nth week in a particular level
+	 * 
+	 * @param int $level
+	 * @param int $unitsAdded
+	 * @param int $productCode
+	 */
+	public function lookupSubscriptionBookmark($level, $unitsAdded, $productCode) {
+		$courseId = $unitId = $exerciseId = '';
+		$b = new Bookmark($productCode);
+		
+		switch ($productCode) {
+			case 59:
+				switch ($level) {
+					case 'ELE':
+						$b->course = '1189057932446';
+						switch ($unitsAdded) {
+							case 1:
+								$b->unit = '12';
+								break;
+							case 2:
+								$b->unit = '13';
+								break;
+							case 3:
+								$b->unit = '14';
+								break;
+							case 4:
+								$b->unit = '15';
+								break;
+							case 5:
+								$b->unit = '16';
+								break;
+							case 6:
+								$b->setFinished();
+								break;
+						}
+						break;
+					case 'LI':
+						$b->course = '2189060123431';
+						switch ($unitsAdded) {
+							case 1:
+								$b->unit = '22';
+								break;
+							case 2:
+								$b->unit = '23';
+								break;
+							case 3:
+								$b->unit = '24';
+								break;
+							case 4:
+								$b->unit = '25';
+								break;
+							case 5:
+								$b->unit = '26';
+								break;
+							case 6:
+								$b->setFinished();
+								break;
+						}
+						break;
+					case 'INT':
+						$b->course = '3189060123432';
+						switch ($unitsAdded) {
+							case 1:
+								$b->unit = '32';
+								break;
+							case 2:
+								$b->unit = '33';
+								break;
+							case 3:
+								$b->unit = '34';
+								break;
+							case 4:
+								$b->unit = '35';
+								break;
+							case 5:
+								$b->unit = '36';
+								break;
+							case 6:
+								$b->setFinished();
+								break;
+						}
+						break;
+				}
+				break;
+				
+			default:
+				break;
+		}
+		
+		return $b;
+	}
 }

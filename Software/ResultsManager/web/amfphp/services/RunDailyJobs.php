@@ -134,6 +134,21 @@ function runDailyJobs($triggerDate = null) {
 	echo "$rc accounts active yesterday. $newLine";	
 	*/
 	
+	// 7. Update TB6weeks bookmarks 
+	// a. Loop round all accounts that have productCode=59 (and are active)
+	$productCode = 59;
+	$trigger = new Trigger();
+	$trigger->parseCondition("method=getAccounts&accountType=1&active=true&productCode=$productCode");
+	//$trigger->condition->customerType = '1'; // If we want to limit this to libraries
+		
+	$triggerResults = $thisService->triggerOps->applyCondition($trigger, $triggerDate);
+	foreach ($triggerResults as $account) {
+		
+		// b. For each user in this account, update their subscription, if they have one.
+		echo "check account ".$account->prefix."$newLine";
+		$rc = $thisService->dailyJobOps->updateSubscriptionBookmarks($account, $productCode, $expiryDate);
+	}
+	
 }
 
 // Action
