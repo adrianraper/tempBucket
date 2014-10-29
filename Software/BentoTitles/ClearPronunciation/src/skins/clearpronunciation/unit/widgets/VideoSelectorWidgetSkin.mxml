@@ -18,5 +18,5 @@
 	
 	<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
 	
-	<video:VideoSelector id="videoSelector" />
+	<video:VideoSelector id="videoSelector" top="3" />
 </s:Skin>

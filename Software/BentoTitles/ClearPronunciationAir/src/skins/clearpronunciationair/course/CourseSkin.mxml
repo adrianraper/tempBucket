@@ -49,6 +49,15 @@
 				courseButtonHGroup.left = applicationWidth * 0.5 + 80;
 				courseButtonHGroup.gap = (applicationWidth * 0.5 - 50 ) * 0.09;
 				
+				// for introduction, no @leftIcon and @rightIcon in unit tag.
+				if (hostComponent.unit.hasOwnProperty("@leftIcon")) {
+					swfloaderHGroup.visible = true;
+					unitCaptionLabel.visible = false;
+				} else {
+					swfloaderHGroup.visible = false;
+					unitCaptionLabel.visible = true;
+				}
+				
 				if (hostComponent.unit.hasOwnProperty("@rightIcon")) {
 					rightUnitCaptionComponent.visible = true;
 				} else {
@@ -116,6 +125,7 @@
 		<s:Button id="phonemicChartButton" buttonMode="true" useHandCursor="true" />
 		<s:Button id="youWillButton" buttonMode="true" useHandCursor="true" />
 	</s:HGroup>
+	<s:Button id="logoutButton" top="-61" right="10" scaleX="0.6" scaleY="0.6" buttonMode="true" useHandCursor="true" />
 	
 	<s:HGroup top="20" left="150">
 		<s:Button id="backButton" enabled="false" useHandCursor="true" buttonMode="true" />
@@ -129,13 +139,14 @@
 		<s:Group>
 			<course1:dropDownListBg horizontalCenter="0" />
 			<s:HGroup id="swfloaderHGroup" left="10" right="10" height="40" gap="0" top="15">
-				<s:Group width="165">
-					<course:UnitCaptionComponent id="leftUnitCaptionComponent" source="{hostComponent.unit.@leftIcon}" copyProvider="{hostComponent.getCopyProvider()}" horizontalCenter="0" />
-				</s:Group>
-				<s:Group width="165">
-					<course:UnitCaptionComponent id="rightUnitCaptionComponent" source="{hostComponent.unit.@rightIcon}" copyProvider="{hostComponent.getCopyProvider()}" horizontalCenter="0" visible="{hostComponent.unit.hasOwnProperty('@rightIcon')}" />
-				</s:Group>
+					<s:Group width="165">
+						<course:UnitCaptionComponent id="leftUnitCaptionComponent" text="{(hostComponent.unit.@caption).split(' ')[0]}" phoneticSymbol="{hostComponent.unit.@leftIcon}" audioSource="{hostComponent.unit.@leftAudio}" copyProvider="{hostComponent.getCopyProvider()}" horizontalCenter="0" />
+					</s:Group>
+					<s:Group width="165">
+						<course:UnitCaptionComponent id="rightUnitCaptionComponent" text="{(hostComponent.unit.@caption).split(' ')[1]}" phoneticSymbol="{hostComponent.unit.@rightIcon}" audioSource="{hostComponent.unit.@rightAudio}" copyProvider="{hostComponent.getCopyProvider()}" horizontalCenter="0" visible="{hostComponent.unit.hasOwnProperty('@rightIcon')}" />
+					</s:Group>
 			</s:HGroup>
+			<s:Label id="unitCaptionLabel" horizontalCenter="0" verticalCenter="0" text="{hostComponent.unit.@caption}" fontSize="20" color="#FFFFFF" />
 		</s:Group>
 		
 		<s:VGroup width="100%" paddingLeft="25">
@@ -157,6 +168,5 @@
 				</s:List>
 			</vo:WindowShade>	
 		</s:VGroup>
-	</s:VGroup>
-	
+	</s:VGroup>	
 </s:Skin>

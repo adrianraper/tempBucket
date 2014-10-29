@@ -5,6 +5,11 @@
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.controls.video.VideoSelector")]
 	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="260" distance="1.5" alpha="0.5" blurX="8" blurY="5" />
+	</fx:Declarations>
+	
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.controls.video.VideoSelector;
@@ -14,6 +19,7 @@
 			import mx.binding.utils.BindingUtils;
 			import mx.events.FlexEvent;
 			
+			import spark.components.VideoPlayer;
 			import spark.events.IndexChangeEvent;
 			
 			private var paretnDocumentOnwer:Object;
@@ -24,6 +30,7 @@
 				
 				videoPlayer.stop();
 				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
+				videoList.addEventListener(FocusEvent.FOCUS_OUT, onVideoListFocusOut);
 				stage.addEventListener(MouseEvent.CLICK, onStageClick);
 			}
 			
@@ -31,7 +38,7 @@
 				var component:Object = event.target;
 				var isClickVideoSelector:Boolean;
 				while (component.parent) {
-					if (component == videoList || component == videoPlayer || component == placeholderImage || channelList) {
+					if (component is List || component is VideoPlayer|| component is Image) {
 						isClickVideoSelector = true;
 						break;
 					}
@@ -46,7 +53,12 @@
 			
 			protected function onVideoListIndexChange(event:Event):void {
 				videoPlayer.createStageWebView();
-				videoPlayer.visible = true;
+				videoPlayer.visible = true; 
+			}
+			
+			protected function onVideoListFocusOut(event:FocusEvent):void {
+				videoList.selectedItem = null;
+				videoPlayer.visible = false;
 			}
 			
 			protected function onPlaceholderClick(event:MouseEvent):void {
@@ -59,9 +71,9 @@
 		]]>
 	</fx:Script>
 	<!--video player black background-->
-	<s:Rect left="30" width="324" height="245">
+	<s:Rect left="30" width="324" height="245" filters="{[dropShadowFilter]}">
 		<s:fill>
-			<s:SolidColor color="#000000" />
+			<s:SolidColor color="0x273A45" />
 		</s:fill>
 	</s:Rect>
 	

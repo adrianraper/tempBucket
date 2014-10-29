@@ -7,11 +7,16 @@
 		[HostComponent("com.clarityenglish.controls.video.VideoSelector")]
 	</fx:Metadata>
 	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="260" distance="1.5" alpha="0.5" blurX="8" blurY="5" />
+	</fx:Declarations>
+	
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
 			import mx.managers.FocusManager;
 			
+			import spark.components.VideoPlayer;
 			import spark.events.IndexChangeEvent;
 			
 			protected function onCreationComplete(event:FlexEvent):void
@@ -34,11 +39,15 @@
 				focusManager.setFocus(videoList);
 			}
 			
+			protected function onVideoListFocusOut(event:FocusEvent):void {
+				videoList.selectedItem = null;
+			}
+			
 			protected function onStageClick(event:Event):void {
 				var component:Object = event.target;
 				var isClickVideoSelector:Boolean;
 				while (component.parent) {
-					if (component == videoList || component == videoPlayer) {
+					if (component is List || component is VideoPlayer|| component is Image) {
 						isClickVideoSelector = true;
 						break;
 					}
@@ -52,6 +61,13 @@
 		]]>
 	</fx:Script>
 	
+	<!--video player black background-->
+	<s:Rect left="30" width="324" height="245" filters="{[dropShadowFilter]}">
+		<s:fill>
+			<s:SolidColor color="0x273A45" />
+		</s:fill>
+	</s:Rect>
+	
 	<!-- The video players -->
 	<!--players:WebViewVideoPlayer id="videoPlayer" left="30" width="320" height="240" visible="{videoList.selectedItem != null}" /-->
 	<players:OSMFVideoPlayer id="videoPlayer" left="30" width="320" height="240" visible="{videoList.selectedItem != null}" />
@@ -60,10 +76,57 @@
 	<s:Image id="placeholderImage" left="30" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
 	
 	<!-- Channel list -->
-	<s:List id="channelList" top="260" left="30" width="320" horizontalScrollPolicy="off" >
+	<s:List id="channelList" top="310" left="30" horizontalCenter="0" horizontalScrollPolicy="off" borderVisible="false" contentBackgroundAlpha="0">
 		<s:layout>
-			<s:HorizontalLayout />
+			<s:HorizontalLayout columnWidth="176" gap="10"/>
 		</s:layout>
+		<s:itemRenderer>
+			<fx:Component>
+				<s:ItemRenderer autoDrawBackground="false">
+					<fx:Script>
+						<![CDATA[
+							override public function set data(value:Object):void {
+								super.data = value;
+								
+								if (data) {
+									channelLabel.text = data.caption;
+								}
+							}
+						]]>
+					</fx:Script>
+					
+					<s:states>
+						<s:State name="normal" />
+						<s:State name="hovered" />
+						<s:State name="selected" />
+					</s:states>
+					<s:Group width="176" height="31" useHandCursor="true" buttonMode="true">
+						<s:Rect left="0" width="100%" height="100%" radiusX="5" radiusY="5">
+							<s:fill>
+								<s:SolidColor color="#FFEFD2" />
+							</s:fill>
+							<s:stroke>
+								<s:SolidColorStroke color="#9E9E9E" weight="1" />
+							</s:stroke>
+						</s:Rect>
+						<s:Ellipse x="18" y="9" width="14" height="14">
+							<s:fill>
+								<s:SolidColor color="#FFFFFF" />
+							</s:fill>
+							<s:stroke>
+								<s:SolidColorStroke color="#9E9E9E" />
+							</s:stroke>
+						</s:Ellipse>
+						<s:Ellipse x="22" y="13" width="6" height="6" includeIn="hovered, selected">
+							<s:fill>
+								<s:SolidColor color="#000000" />
+							</s:fill>
+						</s:Ellipse>
+						<s:Label id="channelLabel" left="50" verticalCenter="0" fontSize="16" fontWeight="bold" fontFamily="Mgbold" color="#333333" />
+					</s:Group>		
+				</s:ItemRenderer>
+			</fx:Component>
+		</s:itemRenderer>
 	</s:List>
 	<s:Button id="scriptButton" left="411" top="172" width="50" height="45" />
 	

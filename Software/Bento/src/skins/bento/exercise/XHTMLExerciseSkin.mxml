@@ -127,10 +127,10 @@
 				</s:fill>
 			</s:Rect>
 			
-			<components:XHTMLRichText id="rightNoScrollRichText" top="-1" left="0" right="0" bottom="0" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
+			<components:XHTMLRichText id="rightNoScrollRichText" top="-2" left="0" right="0" bottom="0" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
 			<!--blur the right no scroll image-->
 			<s:SWFLoader source="@Embed(source='skins/assets/sideBlur.png')" left="-1" top="-1" />
-			<s:SWFLoader source="@Embed(source='skins/assets/bottomBlur.png')" left="-1" top="527" />
+			<s:SWFLoader source="@Embed(source='skins/assets/bottomBlur.png')" left="-1" top="538" />
 		</s:Group>
 	</s:Group>		
 </s:Skin>

@@ -9,5 +9,7 @@ package com.clarityenglish.clearpronunciation {
 		public static const HOME_BACK:String = "clearpronunciation/home_back";
 		
 		public static const COMPOSITEUNIT_START:String = "clearpronunciation/compositeunit_start";
+		
+		public static const YOUWILL_SHOW:String = "clearpronunciation/youwill_show";
 	}
 }

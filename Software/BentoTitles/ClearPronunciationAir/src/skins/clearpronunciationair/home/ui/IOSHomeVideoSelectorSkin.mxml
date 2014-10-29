@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:players="com.clarityenglish.controls.video.players.*" creationComplete="onCreationComplete(event)">
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:players="com.clarityenglish.controls.video.players.*" creationComplete="onCreatComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.controls.video.VideoSelector")]
 	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="260" distance="1.5" alpha="0.5" blurX="8" blurY="5" />
+	</fx:Declarations>
+	
 	<fx:Script>
 		<![CDATA[
-			import mx.events.FlexEvent;
-			import mx.managers.FocusManager;
+			import com.clarityenglish.controls.video.VideoSelector;
+			import com.clarityenglish.rotterdam.view.unit.ui.WidgetList;
+			import com.googlecode.bindagetools.Bind;
 			
+			import mx.binding.utils.BindingUtils;
+			import mx.events.FlexEvent;
+			
+			import spark.components.VideoPlayer;
 			import spark.events.IndexChangeEvent;
 			
-			protected function onCreationComplete(event:FlexEvent):void
-			{
-				var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
-				if (settingsSharedObject.data["channelIndex"]) {
-					channelList.selectedIndex = settingsSharedObject.data["channelIndex"];
-				}
+			private var paretnDocumentOnwer:Object;
+			
+			protected function onCreatComplete(event:FlexEvent):void {
+				// TODO Auto-generated method stub
 				channelList.visible = false;
 				
+				videoPlayer.stop();
+				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
+				videoList.addEventListener(FocusEvent.FOCUS_OUT, onVideoListFocusOut);
 				stage.addEventListener(MouseEvent.CLICK, onStageClick);
-			}
-			
-			protected function onPlaceholderClick(event:MouseEvent):void
-			{
-				// For now the default index is 0, but latter we will get index from widgetlist which is user prefered.
-				videoList.selectedIndex = 0;
-				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
-				// Manually set the focus here, for we manually change the video list index.
-				focusManager.setFocus(videoList);
 			}
 			
 			protected function onStageClick(event:Event):void {
 				var component:Object = event.target;
 				var isClickVideoSelector:Boolean;
 				while (component.parent) {
-					if (component == videoList || component == videoPlayer || component == placeholderImage || component == channelList) {
+					if (component is List || component is VideoPlayer|| component is Image) {
 						isClickVideoSelector = true;
 						break;
 					}
@@ -45,28 +48,47 @@
 				
 				if (!isClickVideoSelector) {
 					videoList.selectedItem = null;
+					videoPlayer.visible = false;
 				}
+			}
+			
+			protected function onVideoListIndexChange(event:Event):void {
+				videoPlayer.createStageWebView();
+				videoPlayer.visible = true;
+			}
+			
+			protected function onVideoListFocusOut(event:FocusEvent):void {
+				videoList.selectedItem = null;
+				videoPlayer.visible = false;
+			}
+			
+			protected function onPlaceholderClick(event:MouseEvent):void {
+				// For now the default index is 0, but latter we will get index from widgetlist which is user prefered.
+				videoList.selectedIndex = 0;
+				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+				// Manually set the focus here, for we manually change the video list index.
+				focusManager.setFocus(videoList);
 			}
 		]]>
 	</fx:Script>
-	<!--video player black background-->
-	<s:Rect left="30" width="324" height="245">
+	
+	<s:Rect left="30" width="640" height="360" filters="{[dropShadowFilter]}">
 		<s:fill>
-			<s:SolidColor color="#000000" />
+			<s:SolidColor color="#FFFFFF" />
 		</s:fill>
 	</s:Rect>
-		
+	
 	<!-- The video players -->
-	<!--players:WebViewVideoPlayer id="videoPlayer" left="30" width="320" height="240" visible="{videoList.selectedItem != null}" /-->
-	<players:OSMFVideoPlayer id="videoPlayer" left="30" width="320" height="240" visible="{videoList.selectedItem != null}" />
+	<players:WebViewVideoPlayer id="videoPlayer" left="15" width="640" height="360" />
+	<!--players:OSMFVideoPlayer id="videoPlayer" width="411" height="231" /-->
 	
 	<!-- Placeholder image -->
 	<s:Image id="placeholderImage" left="30" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
 	
 	<!-- Channel list -->
-	<s:List id="channelList" top="260" left="30" width="320" horizontalScrollPolicy="off" >
+	<s:List id="channelList" top="260" left="30" width="320" horizontalScrollPolicy="off">
 		<s:layout>
-			<s:HorizontalLayout />
+			<s:TileLayout columnWidth="50" rowHeight="45" verticalGap="12" />
 		</s:layout>
 	</s:List>
 	<s:Button id="scriptButton" left="411" top="172" width="50" height="45" />
@@ -77,7 +99,7 @@
 			<s:SolidColor color="0x273A45" />
 		</s:fill>
 	</s:Rect>
-	<s:List id="videoList" top="4" right="41" width="64" height="100%" horizontalScrollPolicy="off" minHeight="0" minWidth="0" borderVisible="false" visible="{hostComponent.videoCollection.length > 1}" contentBackgroundAlpha="0">
+	<s:List id="videoList" top="4" right="41" width="64" height="100%" horizontalScrollPolicy="off" minHeight="0" minWidth="0" visible="{hostComponent.videoCollection.length > 1}" contentBackgroundAlpha="0">
 		<s:itemRenderer>
 			<fx:Component>
 				<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true"> 
@@ -117,5 +139,5 @@
 				</s:ItemRenderer>
 			</fx:Component>
 		</s:itemRenderer>
-	</s:List>	
+	</s:List>
 </s:Skin>

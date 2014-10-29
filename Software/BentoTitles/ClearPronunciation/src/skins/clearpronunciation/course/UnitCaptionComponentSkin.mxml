@@ -8,9 +8,9 @@
 	</fx:Metadata>
 	
 	<s:Group>
-		<s:Button id="unitIconButton" label="{hostComponent.iconLabel}"/>
-		<s:Label left="40" verticalCenter="0" text="{hostComponent.labelText}" fontSize="20" color="#FFFFFF" />
-		<components:AudioPlayer id="audioPlayer" src="{hostComponent.mp3Source}" controls="compact" bottom="-3" left="-10" />
+		<s:Button id="unitIconButton" label="{hostComponent.symbol}"/>
+		<s:Label left="40" verticalCenter="0" text="{hostComponent.text}" fontSize="20" color="#FFFFFF" />
+		<components:AudioPlayer id="audioPlayer" src="{hostComponent.audioSource}" controls="compact" bottom="-5" left="-13" />
 	</s:Group>
 	
 </s:Skin>

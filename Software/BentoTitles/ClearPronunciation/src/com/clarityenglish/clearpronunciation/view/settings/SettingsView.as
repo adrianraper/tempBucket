@@ -41,8 +41,10 @@ package com.clarityenglish.clearpronunciation.view.settings {
 			
 			videoSelector.href = href;
 			videoSelector.channelCollection = channelCollection;
-			videoSelector.videoCollection = new XMLListCollection(course[0].unit[0].exercise.(@type == "videoSelector").exercise);
-			videoSelector.placeholderSource = href.rootPath + "/" + course[0].unit[0].exercise.@placeholder;
+			var videoXMLListCollection:XMLListCollection = new XMLListCollection();
+			videoXMLListCollection.addItem(course[1].unit[0].exercise[0].exercise[0].exercise[0]);
+			videoSelector.videoCollection = videoXMLListCollection;
+			videoSelector.placeholderSource = href.rootPath + "/" + course[1].unit[0].exercise[0].exercise[0].@placeholder;
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

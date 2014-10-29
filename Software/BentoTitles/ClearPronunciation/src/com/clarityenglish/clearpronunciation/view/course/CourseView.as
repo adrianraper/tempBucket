@@ -17,6 +17,7 @@ package com.clarityenglish.clearpronunciation.view.course
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.globalization.DateTimeFormatter;
+	import flash.net.*;
 	
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
@@ -88,6 +89,15 @@ package com.clarityenglish.clearpronunciation.view.course
 		[SkinPart]
 		public var windowShade:WindowShade;
 		
+		[SkinPart]
+		public var phonemicChartButton:Button;
+		
+		[SkinPart]
+		public var youWillButton:Button;
+		
+		[SkinPart]
+		public var logoutButton:Button;
+		
 		[Bindable]
 		public var mediaFolder:String;
 		
@@ -122,6 +132,8 @@ package com.clarityenglish.clearpronunciation.view.course
 		public var nextExercise:Signal = new Signal();
 		public var backExercise:Signal = new Signal();
 		public var dirtyWarningShow:Signal = new Signal(Function);
+		public var youWillShow:Signal = new Signal(String);
+		public var logout:Signal = new Signal();
 		
 		public function CourseView():void {
 			super();
@@ -151,10 +163,12 @@ package com.clarityenglish.clearpronunciation.view.course
 		}
 		
 		public function set unit(value:XML):void {
-			_unit = value;
-			_unitChanged = true;
-			
-			invalidateProperties();
+			if (value) {
+				_unit = value;
+				_unitChanged = true;
+				
+				invalidateProperties();
+			}		
 		}
 		
 		public function set bentoExercise(value:XML):void {
@@ -272,6 +286,15 @@ package com.clarityenglish.clearpronunciation.view.course
 					backButton.addEventListener(MouseEvent.CLICK, onBackButtonClick);
 					backButton.label = copyProvider.getCopyForId("Back");
 					break;
+				case phonemicChartButton:
+					phonemicChartButton.addEventListener(MouseEvent.CLICK, onPhonemicChartButtonClick);
+					break;
+				case youWillButton:
+					youWillButton.addEventListener(MouseEvent.CLICK, onYouWillButtonClick);
+					break;
+				case logoutButton:
+					logoutButton.addEventListener(MouseEvent.CLICK, OnLogoutButtonClick);
+					break;
 			}
 		}
 		
@@ -340,5 +363,20 @@ package com.clarityenglish.clearpronunciation.view.course
 			dirtyWarningShow.dispatch(next);	
 		}
 		
+		protected function onPhonemicChartButtonClick(event:MouseEvent):void { 
+			navigateToURL(new URLRequest(copyProvider.getCopyForId("phonemicChartURL")), "_blank");
+		}
+		
+		protected function OnLogoutButtonClick(event:MouseEvent):void {
+			logout.dispatch();
+		}
+		
+		protected function onYouWillButtonClick(event:MouseEvent):void {
+			if (unit.parent().@["class"] == "introduction") {
+				youWillShow.dispatch("introductionYouWillLabel" + currentExerciseIndex);
+			} else {
+				youWillShow.dispatch("youWillLabel" + currentExerciseIndex);
+			}
+		}
 	}
 }

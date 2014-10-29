@@ -48,7 +48,7 @@
 		<s:Button id="settingsButton" useHandCursor="true" buttonMode="true" includeIn="home" />
 		<s:Button id="phonemicChartButton" useHandCursor="true" buttonMode="true" includeIn="home" />
 		<s:Button id="helpButton" useHandCursor="true" buttonMode="true" includeIn="home" />
-		<s:Button id="logoutButton" useHandCursor="true" buttonMode="true" scaleX.course="0.6" scaleY.course="0.6" includeIn="home, course" />	
+		<s:Button id="logoutButton" useHandCursor="true" buttonMode="true" includeIn="home" />
 	</s:HGroup>
 	
 	<s:Button id="backButton" top="12" right="10" useHandCursor="true" buttonMode="true" includeIn="progress" />

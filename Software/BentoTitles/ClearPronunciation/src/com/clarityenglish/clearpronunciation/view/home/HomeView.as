@@ -14,7 +14,6 @@ package com.clarityenglish.clearpronunciation.view.home {
 	import mx.collections.IList;
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
-	import mx.controls.Label;
 	import mx.core.ClassFactory;
 	import mx.events.FlexEvent;
 	import mx.events.IndexChangedEvent;
@@ -31,6 +30,9 @@ package com.clarityenglish.clearpronunciation.view.home {
 	import spark.events.IndexChangeEvent;
 	
 	public class HomeView extends BentoView {
+		
+		[SkinPart]
+		public var introductionList:List;
 		
 		[SkinPart]
 		public var consonantsLeftList:List;
@@ -51,13 +53,19 @@ package com.clarityenglish.clearpronunciation.view.home {
 		public var courseList:List;
 		
 		[SkinPart]
+		public var introductionGroup:Group;
+		
+		[SkinPart]
 		public var videoSelector:VideoSelector;
+		
+		[SkinPart]
+		public var introductionTutorialLabel:Label;
 		
 		[SkinPart]
 		public var unitListInstuctionGroup:Group;
 		
 		[SkinPart]
-		public var homeInstructionLabel:spark.components.Label;
+		public var homeInstructionLabel:Label;
 		
 		[SkinPart]
 		public var consonantsListHGroup:HGroup;
@@ -139,6 +147,8 @@ package com.clarityenglish.clearpronunciation.view.home {
 			courseList.dataProvider = new XMLListCollection(xhtml..menu.(@id == productCode).course);
 			_course = xhtml..menu.(@id == productCode).course;
 			
+			introductionList.dataProvider = new XMLListCollection(xhtml..menu.(@id == productCode).course.(@["class"] == "introduction").unit.exercise.(@["class"] == "exercise").exercise);
+			
 			var consonantsLeftXMLListCollection:XMLListCollection = new XMLListCollection();
 			var consonantsRightXMLListCollection:XMLListCollection = new XMLListCollection();
 			for each (var consonantsUnit:XML in xhtml..menu.(@id == productCode).course.(@["class"] == "consonants").unit) {
@@ -210,6 +220,12 @@ package com.clarityenglish.clearpronunciation.view.home {
 				case courseList:
 					courseList.addEventListener(IndexChangeEvent.CHANGE, onCourseListIndexChange);
 					break;
+				case introductionTutorialLabel:
+					introductionTutorialLabel.text = copyProvider.getCopyForId("introductionTutorialLabel");
+					break;
+				case introductionList:
+					introductionList.addEventListener(IndexChangeEvent.CHANGE, onIntroductionListIndexChange);
+					break;
 				case consonantsLeftList:
 				case consonantsRightList:
 				case vowelsLeftList:
@@ -240,12 +256,11 @@ package com.clarityenglish.clearpronunciation.view.home {
 			if (courseList.selectedItem) {
 				unitListInstuctionGroup.visible = false;
 				if (courseList.selectedIndex == 0) {
-					videoSelector.visible = true;
-					//videoSelector.videoList.selectedIndex = 0;
-					//videoSelector.videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+					introductionGroup.visible = true;
+					videoSelector.videoPlayer.visible = true;
 					listGroup.visible = false;
 				} else {
-					videoSelector.visible = false;
+					introductionGroup.visible = false;
 					videoSelector.videoPlayer.visible = false;
 					listGroup.visible = true;
 				}
@@ -269,6 +284,10 @@ package com.clarityenglish.clearpronunciation.view.home {
 		protected function onItemSelected(event:ListItemSelectedEvent):void {
 			if (event.item)
 				exerciseShow.dispatch(event.item);
+		}
+		
+		protected function onIntroductionListIndexChange(event:IndexChangeEvent):void {
+			exerciseShow.dispatch(introductionList.selectedItem);
 		}
 		
 		// get selected list

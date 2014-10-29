@@ -297,6 +297,35 @@
 			<lit name="youTubeBase"><![CDATA[http://youtu.be\/{id}]]></lit>
 			<lit name="vimeoBase"><![CDATA[https://vimeo.com\/{id}]]></lit>
 			
+			<!-- Introduction -->
+			<lit name="introductionTutorialLabel">Click on an activity below to start.</lit>
+			
+			<!-- You will -->
+			<lit name="introductionYouWillLabel1"><![CDATA[<p>When you have finished this exercise, you will know important vocabulary to help you improve your pronunciation.</p>]]></lit>
+			<lit name="introductionYouWillLabel2"><![CDATA[<p>When you have finished this exercise, you will know the names of the parts of the mouth.</p>]]></lit>
+			<lit name="introductionYouWillLabel3"><![CDATA[<p>When you have finished this exercise, you will know why it is important to learn the International Phonemic Alphabet.</p>]]></lit>
+			<lit name="youWillLabel0"><![CDATA[
+			<p>When you have finished this exercise, you should be able to:</p>
+			<p>- Recognise each sound when you hear it</p>
+			<p>- Pronounce the sounds in different positions in words, for example at the beginning, in the middle or at the end</p>
+			<p>- Recognise each phonemic symbol and know which sound it represents.</p>
+			]]>
+			</lit>
+			<lit name="youWillLabel1"><![CDATA[
+			<p>When you have finished this exercise, you should be able to hear and pronounce each of the sounds, in words and sentences.</p>
+			<p>Extra task: if the sound is at the beginning or end of the word, does it link to the word before or after?</p>
+			]]>
+			</lit>
+			<lit name="youWillLabel2"><![CDATA[
+			<p>When you have finished this exercise, you should be confident that you can recognise each of the sounds when you hear them.</p>
+			]]></lit>
+			<lit name="youWillLabel3"><![CDATA[
+			<p>When you have finished this exercise, you should be confident that you can recognise each of the sounds in a real-life situation.</p>
+			]]></lit>
+			<lit name="youWillLabel4"><![CDATA[
+			<p>When you have finished this exercise, you should be confident that you can read the phonemic symbols you will see in a dictionary.</p>
+			]]></lit>
+			
 			<!-- Progress -->
 			<lit name="progressNavBarCoverage">My coverage</lit>
 			<lit name="progressNavBarCompare">Compare</lit>
@@ -376,55 +405,55 @@
             <lit name="generalFeedbackTitle"></lit>
 			
 			<!--phonetic -->
-            <lit name="Pill">p</lit>
-            <lit name="Fill">f</lit>
-            <lit name="Buy">b</lit>
-            <lit name="My">m</lit>
-            <lit name="Tie">t</lit>
-            <lit name="Die">d</lit>
-            <lit name="Ship">ʃ</lit>
-            <lit name="Chip">tʃ</lit>
-            <lit name="Yet">j</lit>
-            <lit name="Jet">dʒ</lit>
-            <lit name="Game">g</lit>
-            <lit name="Came">k</lit>
-            <lit name="Wail">w</lit>
-            <lit name="Veil">v</lit>
-            <lit name="Think">θ</lit>
-            <lit name="Sink">s</lit>
-            <lit name="There">ð</lit>
-            <lit name="Dare">d</lit>
-            <lit name="Price">s</lit>
-            <lit name="Prize">z</lit>
-            <lit name="Asia">ʒ</lit>
-            <lit name="Hard">h</lit>
-            <lit name="Ran">n</lit>
-            <lit name="Rang">ŋ</lit>
-            <lit name="Right">r</lit>
-            <lit name="Light">l</lit>
-            <lit name="Ship2">ɪ</lit>
-            <lit name="Sheep">iː</lit>
-            <lit name="Head">e</lit>
-            <lit name="Had">æ</lit>
-            <lit name="Arrive">ə</lit>
-            <lit name="Luck">ʌ</lit>
-            <lit name="Look">ʊ</lit>
-            <lit name="Hat">æ</lit>
-            <lit name="Heart">ɑː</lit>
-            <lit name="But">ʌ</lit>
-            <lit name="Boot">uː</lit>
-            <lit name="Who">uː</lit>
-            <lit name="Her">ɜː</lit>
-            <lit name="Pot">ɒ</lit>
-            <lit name="Port">ɔː</lit>
-            <lit name="Hair">eə</lit>
-            <lit name="Hear">ɪə</lit>
-            <lit name="Boy">ɔɪ</lit>
-            <lit name="Buy2">aɪ</lit>
-            <lit name="Pay">eɪ</lit>
-            <lit name="Pie">aɪ</lit>
-            <lit name="Know">əʊ</lit>
-            <lit name="Now">aʊ</lit>
-        </group>
+			<lit name="Pill">p</lit>
+			<lit name="Fill">f</lit>
+			<lit name="Buy">b</lit>
+			<lit name="My">m</lit>
+			<lit name="Tie">t</lit>
+			<lit name="Die">d</lit>
+			<lit name="Ship">ʃ</lit>
+			<lit name="Chip">tʃ</lit>
+			<lit name="Yet">j</lit>
+			<lit name="Jet">dʒ</lit>
+			<lit name="Game">g</lit>
+			<lit name="Came">k</lit>
+			<lit name="Wail">w</lit>
+			<lit name="Veil">v</lit>
+			<lit name="Think">θ</lit>
+			<lit name="Sink">s</lit>
+			<lit name="There">ð</lit>
+			<lit name="Dare">d</lit>
+			<lit name="Price">s</lit>
+			<lit name="Prize">z</lit>
+			<lit name="Asia">ʒ</lit>
+			<lit name="Hard">h</lit>
+			<lit name="Ran">n</lit>
+			<lit name="Rang">ŋ</lit>
+			<lit name="Right">r</lit>
+			<lit name="Light">l</lit>
+			<lit name="Ship2">ɪ</lit>
+			<lit name="Sheep">i:</lit>
+			<lit name="Head">e</lit>
+			<lit name="Had">æ</lit>
+			<lit name="Arrive">ə</lit>
+			<lit name="Luck">ʌ</lit>
+			<lit name="Look">ʊ</lit>
+			<lit name="Hat">æ</lit>
+			<lit name="Heart">ɑː</lit>
+			<lit name="But">ʌ</lit>
+			<lit name="Boot">u:</lit>
+			<lit name="Who">u:</lit>
+			<lit name="Her">ɜː</lit>
+			<lit name="Pot">ɒ</lit>
+			<lit name="Port">ɔː</lit>
+			<lit name="Hair">eə</lit>
+			<lit name="Hear">ɪə</lit>
+			<lit name="Pay">eɪ</lit>
+			<lit name="Pie">aɪ</lit>
+			<lit name="Boy">ɔɪ</lit>
+			<lit name="Buy2">aɪ</lit>
+			<lit name="Know">əʊ</lit>
+			<lit name="Now">aʊ</lit>
+		</group>
 	</language>
 </literals>

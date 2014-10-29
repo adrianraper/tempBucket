@@ -6,6 +6,7 @@ package com.clarityenglish.clearpronunciation.view.course
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
+	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
@@ -53,6 +54,8 @@ package com.clarityenglish.clearpronunciation.view.course
 			view.nextExercise.add(onNextExercise);
 			view.backExercise.add(onBackExercise);
 			view.dirtyWarningShow.add(onDirtyWarningShow);
+			view.youWillShow.add(onYouWillShow);
+			view.logout.add(onLogout);
 			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			// gh#871 Course_Start notification doesn't be sent when open a unit, so unitCollection in CourseProxy cannot be used to bind data
@@ -125,6 +128,14 @@ package com.clarityenglish.clearpronunciation.view.course
 		// gh#1064
 		protected function onDirtyWarningShow(next:Function):void {
 			facade.sendNotification(ClearPronunciationNotifications.HOME_BACK, next);
+		}
+		
+		protected function onLogout():void {
+			sendNotification(CommonNotifications.LOGOUT);
+		}
+		
+		protected function onYouWillShow(value:String):void {
+			facade.sendNotification(ClearPronunciationNotifications.YOUWILL_SHOW, value);
 		}
 	}
 }

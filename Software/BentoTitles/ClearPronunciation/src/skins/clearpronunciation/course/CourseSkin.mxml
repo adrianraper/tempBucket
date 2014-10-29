@@ -48,6 +48,15 @@
 				unitDropDownVGroup.left = applicationWidth * 0.5 - 300;
 				courseButtonHGroup.left = applicationWidth * 0.5 + 80;
 				courseButtonHGroup.gap = (applicationWidth * 0.5 - 50 ) * 0.09;
+				
+				// for introduction, no @leftIcon and @rightIcon in unit tag.
+				if (hostComponent.unit.hasOwnProperty("@leftIcon")) {
+					swfloaderHGroup.visible = true;
+					unitCaptionLabel.visible = false;
+				} else {
+					swfloaderHGroup.visible = false;
+					unitCaptionLabel.visible = true;
+				}
 			}
 			
 			protected function onUpdate(event:Event):void {
@@ -110,6 +119,7 @@
 		<s:Button id="phonemicChartButton" buttonMode="true" useHandCursor="true" />
 		<s:Button id="youWillButton" buttonMode="true" useHandCursor="true" />
 	</s:HGroup>
+	<s:Button id="logoutButton" top="-61" right="10" scaleX="0.6" scaleY="0.6" buttonMode="true" useHandCursor="true" />
 	
 	<s:HGroup top="20" left="150">
 		<s:Button id="backButton" enabled="false" useHandCursor="true" buttonMode="true" />
@@ -123,9 +133,10 @@
 		<s:Group>
 			<course1:dropDownListBg horizontalCenter="0" />
 			<s:HGroup id="swfloaderHGroup" height="40" gap="100" horizontalCenter="0" top="15">
-				<course:UnitCaptionComponent id="leftUnitCaptionComponent" source="{hostComponent.unit.@leftIcon}" copyProvider="{hostComponent.getCopyProvider()}" width="60" />
-				<course:UnitCaptionComponent id="rightUnitCaptionComponent" source="{hostComponent.unit.@rightIcon}" copyProvider="{hostComponent.getCopyProvider()}" width="60"/>
+				<course:UnitCaptionComponent id="leftUnitCaptionComponent" text="{(hostComponent.unit.@caption).split(' ')[0]}" phoneticSymbol="{hostComponent.unit.@leftIcon}" audioSource="{hostComponent.unit.@leftAudio}" copyProvider="{hostComponent.getCopyProvider()}" horizontalCenter="0" />
+				<course:UnitCaptionComponent id="rightUnitCaptionComponent" text="{(hostComponent.unit.@caption).split(' ')[1]}" phoneticSymbol="{hostComponent.unit.@rightIcon}" audioSource="{hostComponent.unit.@rightAudio}" copyProvider="{hostComponent.getCopyProvider()}" horizontalCenter="0" visible="{hostComponent.unit.hasOwnProperty('@rightIcon')}" />
 			</s:HGroup>
+			<s:Label id="unitCaptionLabel" horizontalCenter="0" verticalCenter="0" text="{hostComponent.unit.@caption}" fontSize="20" color="#FFFFFF" />
 		</s:Group>
 		
 		<s:VGroup width="100%" paddingLeft="25">
@@ -140,60 +151,12 @@
 						<s:SolidColor color="#FFFFFF" />
 					</s:fill>
 				</s:Rect>
-				<s:List id="unitList" width="250" height="387" top="8" horizontalCenter="0" dataProvider="{hostComponent.unitListCollection}" requireSelection="true" borderVisible="false" contentBackgroundColor="#FFFFFF">
+				<s:List id="unitList" width="250" height="387" top="18" horizontalCenter="0" requireSelection="true" labelField="@caption" dataProvider="{hostComponent.unitListCollection}" borderVisible="false" contentBackgroundColor="#FFFFFF" verticalScrollPolicy="on">
 					<s:layout>
-						<s:VerticalLayout requestedMinRowCount="1" horizontalAlign="justify" gap="10" />
+						<s:VerticalLayout gap="10" />
 					</s:layout>
-					<s:itemRenderer>
-						<fx:Component>
-							<s:ItemRenderer width="100%" autoDrawBackground="false" useHandCursor="true" buttonMode="true">
-								<fx:Script>
-									<![CDATA[
-										public override function set data(value:Object):void {
-											// gh#151
-											super.data = value;
-											
-											if (data) {
-												this.enabled = !(data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8);
-												
-												if (itemIndex < 9) {
-													unitDropDownIndexLabel.text = "0" + String(itemIndex + 1);
-												} else {
-													unitDropDownIndexLabel.text = String(itemIndex + 1);
-												}
-												
-												if (data.hasOwnProperty("@rightIcon")) {
-													unitDropDownRightItemButton.visible = true;
-													unitDropDownRightItemLabel.visible = true;
-													
-												} else {
-													unitDropDownRightItemButton.visible = false;
-													unitDropDownRightItemLabel.visible = false;
-												}
-											}
-										}
-									]]>
-								</fx:Script>
-								<s:HGroup width="90%" height="100%" paddingTop="10" horizontalAlign="center" verticalAlign="middle" gap="0">
-									<s:Label id="unitDropDownIndexLabel" fontSize="15" color="#333333" verticalCenter="0"/>
-									<s:Spacer width="20" />
-									<s:Group width="70%" verticalCenter="0">
-										<s:HGroup left="0" verticalAlign="middle">								
-											<s:Button id="unitDropDownLeftItemButton" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@leftIcon)}" />
-											<s:Label id="unitDropDownLeftItemLabel" text="{data.@leftIcon}" fontSize="14" color="0x000000" verticalCenter="0" />
-										</s:HGroup>
-										<s:HGroup right="0" verticalAlign="middle" width="60">
-											<s:Button id="unitDropDownRightItemButton" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@rightIcon)}" />
-											<s:Label id="unitDropDownRightItemLabel" text="{data.@rightIcon}" fontSize="14" color="0x000000" verticalCenter="0" />
-										</s:HGroup>
-									</s:Group>		
-								</s:HGroup>				
-							</s:ItemRenderer>
-						</fx:Component>
-					</s:itemRenderer>
 				</s:List>
 			</vo:WindowShade>	
 		</s:VGroup>
-	</s:VGroup>
-	
+	</s:VGroup>	
 </s:Skin>

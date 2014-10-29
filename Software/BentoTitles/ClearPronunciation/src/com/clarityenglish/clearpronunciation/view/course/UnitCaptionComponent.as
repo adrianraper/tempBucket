@@ -7,11 +7,14 @@ package com.clarityenglish.clearpronunciation.view.course {
 	
 	import org.davekeen.util.StringUtils;
 	
+	import spark.components.mediaClasses.VolumeBar;
 	import spark.components.supportClasses.SkinnableComponent;
 	
 	public class UnitCaptionComponent extends SkinnableComponent {
 		
-		private var _source:String;
+		private var _text:String;
+		private var _phoneticSymbol:String;
+		private var _audioSource:String;
 		private var _copyProvider:CopyProvider;
 		 
 		public static var mediaFolder:String;
@@ -30,28 +33,35 @@ package com.clarityenglish.clearpronunciation.view.course {
 			return _copyProvider;
 		}
 		
-		public function set source(value:String):void {
-			_source = value;
-			dispatchEvent(new Event("sourceChanged"));
+		[Bindable]
+		public function get text():String {
+			return _text;
 		}
 		
-
-		[Bindable(event="sourceChanged")]
-		public function get iconLabel():String {
-			return copyProvider.getCopyForId(_source);
+		public function set text(value:String):void {
+			_text = value;
 		}
 		
-		[Bindable(event="sourceChanged")]
-		public function get labelText():String {
-			return _source;
+		public function set phoneticSymbol(value:String):void {
+			_phoneticSymbol = value;
+			dispatchEvent(new Event("phoneticSymbolChanged"));
 		}
 		
-		[Bindable(event="sourceChanged")]
-		public function get mp3Source():String {
-			if (_source)
-				return (StringUtils.beginsWith(_source.toLowerCase(), "http")) ? _source : mediaFolder  + _source.toLowerCase() + "_sound.mp3";
+		[Bindable(event="phoneticSymbolChanged")]
+		public function get symbol():String {
+			return copyProvider.getCopyForId(_phoneticSymbol);
+		}
+		
+		[Bindable]
+		public function get audioSource():String {
+			if (_audioSource)
+				return (StringUtils.beginsWith(_audioSource.toLowerCase(), "http")) ? _audioSource : mediaFolder  + _audioSource.toLowerCase() + ".mp3";
 			
 			return null;
+		}
+		
+		public function set audioSource(value:String):void {
+			_audioSource = value;
 		}
 		
 	}

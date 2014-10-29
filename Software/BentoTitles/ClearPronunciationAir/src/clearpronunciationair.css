@@ -44,17 +44,12 @@ s|List {
 		skinClass: ClassReference("skins.clearpronunciationair.controls.video.IOSVideoSelectorSkin");
 	}
 	
+	home|HomeView video|VideoSelector {
+		skinClass: ClassReference("skins.clearpronunciationair.home.ui.IOSHomeVideoSelectorSkin");
+	}
+	
 	settings|SettingsView video|VideoSelector {
 		skinClass: ClassReference("skins.clearpronunciationair.settings.ui.IOSSettingsVideoSelectorSkin");
-	}
-}
-
-@media (os-platform: "Android") {
-	/*video|VideoSelector {
-		skinClass: ClassReference("skins.clearpronunciationair.controls.video.AndroidVideoSelectorSkin");
-	}*/
-	settings|SettingsView video|VideoSelector {
-		skinClass: ClassReference("skins.clearpronunciationair.settings.ui.AndroidSettingsVideoSelectorSkin");
 	}
 }
 

@@ -101,7 +101,7 @@ package com.clarityenglish.bento.controller {
 				scroller.top = 20;
 				scroller.bottom = 20;
 				// gh#701
-				scroller.minWidth = 450;
+				scroller.minWidth = 0;
 				scroller.maxHeight = 320;
 				scroller.viewport = xhtmlRichText;
 				titleWindow.addElement(scroller);
@@ -123,7 +123,7 @@ package com.clarityenglish.bento.controller {
 						titleWindow.title = copyProvider.getCopyForId('neutralFeedbackTitle');					
 					}
 				} else {
-					titleWindow.title = copyProvider.getCopyForId('generalFeedbackTitle');					
+					titleWindow.title = copyProvider.getCopyForId('generalFeedbackTitle');
 				}
 
 				// This is very hacky, but otherwise the feedback popup can hijack uncommitted textfields and break the tab flow.  There is probably

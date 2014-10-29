@@ -17,6 +17,7 @@ confirm that the rotterdam.clearpronunciation namespaces are NOT used please
 @namespace recorder "com.clarityenglish.bento.view.recorder.*";
 @namespace clearpronunciation1 "com.clarityenglish.clearpronunciation.*";
 @namespace course "com.clarityenglish.clearpronunciation.view.course.*";
+@namespace courseui "com.clarityenglish.clearpronunciation.view.course.ui.*";
 @namespace credits "com.clarityenglish.bento.view.credits.*";
 @namespace title "com.clarityenglish.clearpronunciation.view.title.*";
 @namespace ui3 "skins.clearpronunciation.progress.ui.*";
@@ -100,6 +101,10 @@ s|TitleWindow.warningTitleWindow {
 
 s|TitleWindow.feedbackTitleWindow {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.feedback.FeedbackTitleWindowSkin");
+}
+
+s|TitleWindow.noTitleTitleWindow {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.NoTitleTitleWindowSkin");
 }
 
 s|VScrollBar {
@@ -186,12 +191,16 @@ home|HomeView s|Button#courseListButton {
 	skinClass: ClassReference("skins.clearpronunciation.home.ui.CourseListButtonSkin");
 }
 
+home|HomeView video|VideoSelector {
+	skinClass: ClassReference("skins.clearpronunciation.home.ui.HomeVideoSelectorSkin");
+}
+
 ui|ExerciseListRenderer {
 	skinClass: ClassReference("skins.clearpronunciation.home.ui.ExerciseListBarButtonSkin");
 }
 
 video|VideoSelector {
-	skinClass: ClassReference("skins.clearpronunciation.controls.video.AndroidVideoSelectorSkin");
+	skinClass: ClassReference("skins.clearpronunciation.controls.video.VideoSelectorSkin");
 }
 
 course|CourseView {
@@ -222,6 +231,10 @@ course|CourseView s|Button#youWillButton{
 	skinClass: ClassReference("skins.clearpronunciation.course.ui.YouWillButtonSkin");
 }
 
+course|CourseView s|Button#logoutButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.LogoutButtonSkin");
+}
+
 course|CourseView s|Button#backButton {
 	skinClass: ClassReference("skins.clearpronunciation.course.ui.BackButtonSkin");
 }
@@ -246,6 +259,10 @@ course|UnitCaptionComponent s|Button {
 	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitItemButtonSkin");
 }
 
+courseui|YouWillView {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.YouWillSkin");
+}
+
 unit|UnitView {
 	skinClass: ClassReference("skins.clearpronunciation.unit.UnitSkin");
 }
@@ -259,7 +276,7 @@ exercise|ExerciseView s|Button#markingButton {
 }
 
 exercise|ExerciseView s|Button#feedbackButton {
-	skinClass: ClassReference("skins.clearpronunciation.exercise.MarkingButtonSkin");
+	skinClass: ClassReference("skins.clearpronunciation.exercise.FeedbackButtonSkin");
 }
 
 exercise|ExerciseView s|Button#startAgainButton {
@@ -352,7 +369,7 @@ settings|SettingsView {
 }
 
 settings|SettingsView video|VideoSelector {
-	skinClass: ClassReference("skins.clearpronunciation.settings.ui.AndroidSettingsVideoSelectorSkin");
+	skinClass: ClassReference("skins.clearpronunciation.settings.ui.SettingsVideoSelectorSkin");
 }
 
 settings|SettingsView s|Button#saveCloseButton {
