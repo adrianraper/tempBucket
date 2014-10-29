@@ -51,7 +51,8 @@
         <s:State name="disabled" />
     </s:states>
     
-    <course:animationOn />
+	<course:practiceOff includeIn="up" />
+	<course:practiceOn includeIn="down, over"/>
 	
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
