@@ -43,6 +43,9 @@ package com.clarityenglish.clearpronunciation.view.course
 	import spark.events.IndexChangeEvent;
 	
 	import ws.tink.spark.controls.Alert;
+	import spark.components.DataGroup;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	
 	/*[SkinState("uniteditor")] - this is an optional skin state */
 	public class CourseView extends BentoView {
@@ -267,6 +270,8 @@ package com.clarityenglish.clearpronunciation.view.course
 					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: false, isPlatformTablet: _isPlatformTablet};
 					unitList.itemRenderer = unitListItemRenderer;
 					unitList.addEventListener(ListItemSelectedEvent.SELECTED, onListItemSelected);
+					unitList.selectedIndex = unit.childIndex();
+					callLater(scrollToIndex, [unitList, unit.childIndex()]);
 					break;
 				case settingsButton:
 					settingsButton.addEventListener(MouseEvent.CLICK, onSettingsClick);
@@ -376,6 +381,35 @@ package com.clarityenglish.clearpronunciation.view.course
 				youWillShow.dispatch("introductionYouWillLabel" + currentExerciseIndex);
 			} else {
 				youWillShow.dispatch("youWillLabel" + currentExerciseIndex);
+			}
+		}
+		
+		private function scrollToIndex(list:List,index:int):void
+		{
+			if (!list.layout)
+				return;
+			
+			var dataGroup:DataGroup = list.dataGroup;
+			
+			var spDelta:Point = dataGroup.layout.getScrollPositionDeltaToElement(index);
+			
+			if (spDelta)
+			{
+				dataGroup.horizontalScrollPosition += spDelta.x;
+				//move it to the top if the list has enough items
+				if(spDelta.y > 0)
+				{
+					var maxVSP:Number = dataGroup.contentHeight - dataGroup.height + 160;
+					var itemBounds:Rectangle = list.layout.getElementBounds(index);
+					var newHeight:Number = dataGroup.verticalScrollPosition + spDelta.y 
+						+ dataGroup.height - itemBounds.height;
+					dataGroup.verticalScrollPosition = Math.min(maxVSP, newHeight);
+				}
+				else
+				{
+					dataGroup.verticalScrollPosition += spDelta.y;
+					
+				}
 			}
 		}
 	}

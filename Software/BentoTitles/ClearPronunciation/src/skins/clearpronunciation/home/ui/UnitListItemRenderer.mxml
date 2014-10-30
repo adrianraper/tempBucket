@@ -31,6 +31,7 @@
 			private var exerciseListRenderer:ClassFactory;
 			
 			public static var exerciseSelectedIndex:Number;
+			public static var selectedUnitCaption:String;
 			
 			private var _copyProvider:CopyProvider;
 			private var _showPieChart:Boolean;
@@ -123,13 +124,15 @@
 				}
 				exerciseListRenderer = new ClassFactory(ExerciseListRenderer);
 				exerciseListRenderer.properties = {showPieChart: showPieChart};
-				if (showPieChart && exerciseList) {
+				// alice: data will be reset when you srcoll or come back from course page to home page, so you will lose the selected exercise 
+				if (exerciseList && selectedUnitCaption == data.@caption) {
 					exerciseList.selectedIndex = exerciseSelectedIndex;
 				}
 			}
 			
-			protected function onExerciseListClick(event:MouseEvent):void
-			{
+			protected function onExerciseListClick(event:MouseEvent):void {
+				// record the selected exercise in a static variable
+				selectedUnitCaption = unitListLabel.text;
 				exerciseSelectedIndex = exerciseList.selectedIndex;
 				dispatchEvent(new ListItemSelectedEvent(ListItemSelectedEvent.SELECTED, true, exerciseList.selectedItem));
 			}
@@ -140,6 +143,15 @@
 				if (exerciseList) {
 					exerciseList.selectedIndex = exerciseSelectedIndex;
 					exerciseList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+				}
+			}
+			
+			protected function onUnitListVGroupClick(event:MouseEvent):void
+			{
+				// alice: in course page unit list, when you select another unit and reopen the last selected unit, the last selected exercise will disappear
+				// so here we use static variable to reset the selected exercise
+				if (unitListLabel.text == selectedUnitCaption) {
+					exerciseList.selectedIndex = exerciseSelectedIndex;
 				}
 			}
 			
@@ -162,7 +174,7 @@
 		</s:stroke>
 	</s:Rect>
 	
-	<s:VGroup id="unitListItemVGroup" left="0" height="100%" width="310" gap="0">
+	<s:VGroup id="unitListItemVGroup" left="0" height="100%" width="310" gap="0" click="onUnitListVGroupClick(event)">
 		<s:Group id="unitHGroup" left="0" top="0" width="100%" height="50">
 			<s:HGroup id="unitListButtonHGroup" left="0" width="100%" height="50" gap="-1">
 				<mx:PieChart id="pieChart" dataProvider="{unitItemPieChartArrayCollection}" width="45" height="45" left="0" visible="{showPieChart}" includeInLayout="{showPieChart}">

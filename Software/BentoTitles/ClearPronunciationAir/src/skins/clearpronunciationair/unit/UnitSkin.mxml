@@ -12,36 +12,11 @@
 		<![CDATA[
 			import mx.events.EffectEvent;
 			import mx.events.FlexEvent;
-			protected function onMakeSoundsExpandClick(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				makeSoundsExpandAnimation.play();
-				buttonGroupUpAnimation.play();
-			}
-			
-			protected function onMakeSoundsCollapseClick(event:MouseEvent):void {
-				makeSoundsCollapseAnimation.play();
-				buttonGroupDownAniamtion.play();
-			}
-			
-			protected function onMakeSoundsExpandAnimationEnd(event:EffectEvent):void
-			{
-				// TODO Auto-generated method stub
-				makeSoundsExpandButton.visible = false;				
-				makeSoundsCollapseButton.visible = true;
-				practiseSoundVGroup.visible = false;
-			}
-			
-			protected function onMakeSoundsCollapseEnd(event:EffectEvent):void {
-				makeSoundsExpandButton.visible = true;				
-				makeSoundsCollapseButton.visible = false;
-			}
 			
 			protected function onCreationComplete(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
 				makeSoundsGroup.top = height;
-				expandCollapseGroup.top = height - 50;
 			}
 			
 			protected function onButtonGroupDownStart(event:EffectEvent):void
@@ -51,25 +26,7 @@
 			}
 			
 		]]>
-	</fx:Script>	
-	
-	<fx:Declarations>
-		<s:Animate id="makeSoundsExpandAnimation" target="{makeSoundsGroup}" duration="600" effectEnd="onMakeSoundsExpandAnimationEnd(event)">
-			<s:SimpleMotionPath property="top" valueTo="-1" />
-		</s:Animate>
-		
-		<s:Animate id="buttonGroupUpAnimation" target="{expandCollapseGroup}" duration="600">
-			<s:SimpleMotionPath property="top" valueTo="0" />
- 		</s:Animate>
-		
-		<s:Animate id="makeSoundsCollapseAnimation" target="{makeSoundsGroup}" duration="600" effectEnd="onMakeSoundsCollapseEnd(event)">
-			<s:SimpleMotionPath property="top" valueTo="{height}" />
-		</s:Animate>
-		
-		<s:Animate id="buttonGroupDownAniamtion" target="{expandCollapseGroup}" duration="600" effectStart="onButtonGroupDownStart(event)">
-			<s:SimpleMotionPath property="top" valueTo="{height - 50}" />
-		</s:Animate>
-	</fx:Declarations>
+	</fx:Script>
 	
 	<!-- states -->
 	<s:states>
@@ -114,10 +71,4 @@
 			</ui:WidgetList>
 		</s:VGroup>	
 	</s:Group>
-	
-	<s:Group id="expandCollapseGroup" right="0" visible="{!hostComponent.isPlatformiPad}">
-		<s:Button id="makeSoundsExpandButton" click="onMakeSoundsExpandClick(event)" useHandCursor="true" buttonMode="true" />
-		<s:Button id="makeSoundsCollapseButton" click="onMakeSoundsCollapseClick(event)" visible="false" useHandCursor="true" buttonMode="true" />
-	</s:Group>
-	
 </s:Skin>
