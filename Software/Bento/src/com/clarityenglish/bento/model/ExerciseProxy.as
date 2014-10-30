@@ -266,7 +266,7 @@ package com.clarityenglish.bento.model {
 			checkExercise();
 
 			if (!disabled) {
-				log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.markingClass, answer.score);
+				//log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.markingClass, answer.score);
 				
 				// If we are using instant marking then we may need to store an answer for this question (if it has been marked already this will have no effect)
 				if (!delayedMarking)
@@ -315,7 +315,7 @@ package com.clarityenglish.bento.model {
 			checkExercise();
 			
 			if (!disabled) {
-				log.debug("Cleared question {0}", question);
+				//log.debug("Cleared question {0}", question);
 				
 				// Get the answer map for this question
 				var answerMap:AnswerMap = getSelectedAnswerMap(question);
@@ -356,13 +356,13 @@ package com.clarityenglish.bento.model {
 				// For mutually exlusive questions we store the answer if there isn't one already
 				if (markableAnswerMap.keys.length == 0) {
 					markableAnswerMap.put(key, answer);
-					log.debug("Setting as markable question {0} = {1}", (key is XML) ? key.toXMLString() : key, answer);
+					//log.debug("Setting as markable question {0} = {1}", (key is XML) ? key.toXMLString() : key, answer);
 				}
 			} else {
 				// For non-mutually exclusive question we store the answer if there isn't already an entry for the particular key
 				if (!(markableAnswerMap.containsKey(key))) {
 					markableAnswerMap.put(key, answer);
-					log.debug("Setting as markable question {0} = {1}", (key is XML) ? key.toXMLString() : key, answer);
+					//log.debug("Setting as markable question {0} = {1}", (key is XML) ? key.toXMLString() : key, answer);
 				}
 			}
 			

@@ -81,7 +81,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 								try {
 									// Get the word and send it to the outside world as an event on the container
 									var word:String = StringUtil.trim(textFlowLine.paragraph.getText(textFlowLine.paragraph.findPreviousWordBoundary(relativeIdx), textFlowLine.paragraph.findNextWordBoundary(relativeIdx)));
-									log.debug("User clicked on the word '{0}'", word);
+									//log.debug("User clicked on the word '{0}'", word);
 									
 									container.dispatchEvent(new DictionaryEvent(DictionaryEvent.WORD_CLICK, word, true));
 								} catch (e:Error) {
