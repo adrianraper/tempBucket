@@ -47,8 +47,6 @@ package com.clarityenglish.clearpronunciation.view.course
 			}
 			
 			view.itemShow.add(onItemShow);;
-			// gh#849
-			view.settingsShow.add(onSettingsShow);
 			view.record.add(onRecorderOpen);
 			view.exerciseShow.add(onExerciseShow);
 			view.nextExercise.add(onNextExercise);
@@ -80,6 +78,13 @@ package com.clarityenglish.clearpronunciation.view.course
 			super.onRemove();
 			
 			view.itemShow.remove(onItemShow);
+			view.record.remove(onRecorderOpen);
+			view.exerciseShow.remove(onExerciseShow);
+			view.nextExercise.remove(onNextExercise);
+			view.backExercise.remove(onBackExercise);
+			view.dirtyWarningShow.remove(onDirtyWarningShow);
+			view.youWillShow.remove(onYouWillShow);
+			view.logout.remove(onLogout);
 			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			courseProxy.currentUnit = null;
@@ -101,10 +106,6 @@ package com.clarityenglish.clearpronunciation.view.course
 			} else {
 				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, {unit: item.parent().parent(), exercise: item});
 			}
-		}
-		
-		protected function onSettingsShow():void {
-			facade.sendNotification(RotterdamNotifications.SETTINGS_SHOW);
 		}
 		
 		protected function onRecorderOpen():void {

@@ -69,9 +69,6 @@ package com.clarityenglish.clearpronunciation.view.course
 		public var unitListCollapseAnimate:Animate;
 		
 		[SkinPart]
-		public var settingsButton:Button;
-		
-		[SkinPart]
 		public var anim:Animate;
 		
 		[SkinPart]
@@ -119,17 +116,8 @@ package com.clarityenglish.clearpronunciation.view.course
 		private var _unitListCollection:ListCollectionView;
 		private var _unitListCollectionChanged:Boolean;
 		private var _isPlatformTablet:Boolean;
-		// gh#211
-		private var currentIndex:Number;
-		private var unitListLength:Number;		
-		private var isOutsideClick:Boolean;
-		private var isItemClick:Boolean;
-		private var isHidden:Boolean;
-		private var exerciseLength:Number;
 		
 		public var itemShow:Signal = new Signal(XML);
-		// gh#849
-		public var settingsShow:Signal = new Signal();
 		public var record:Signal = new Signal();
 		public var exerciseShow:Signal = new Signal(XML);
 		public var nextExercise:Signal = new Signal();
@@ -273,10 +261,6 @@ package com.clarityenglish.clearpronunciation.view.course
 					unitList.selectedIndex = unit.childIndex();
 					callLater(scrollToIndex, [unitList, unit.childIndex()]);
 					break;
-				case settingsButton:
-					settingsButton.addEventListener(MouseEvent.CLICK, onSettingsClick);
-					settingsButton.label = copyProvider.getCopyForId("settingButton");
-					break;
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuClick);
 					break;
@@ -329,11 +313,6 @@ package com.clarityenglish.clearpronunciation.view.course
 		
 		// gh#208
 		protected function onStageClick(event:MouseEvent):void {						
-		}
-		
-		protected function onSettingsClick(event:MouseEvent):void {
-			// gh#849
-			settingsShow.dispatch();
 		}
 		
 		protected function onRecorderClick(event:Event):void {

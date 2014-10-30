@@ -38,6 +38,8 @@ package com.clarityenglish.clearpronunciation.view.title {
 			super.onRemove();
 			
 			view.dirtyWarningShow.remove(onDirtyWarningShow);
+			view.logout.remove(onLogout);
+			view.settingsOpen.remove(onSettingsOpen);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -80,17 +82,6 @@ package com.clarityenglish.clearpronunciation.view.title {
 		
 		// gh#217
 		private function onLogout():void {
-			/*var logOutFun:Function = function():void {
-			sendNotification(CommonNotifications.LOGOUT);
-			view.myCoursesViewNavigator.popToFirstView();
-			}
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			if (bentoProxy.isDirty) {
-			sendNotification(BBNotifications.WARN_DATA_LOSS, { message: bentoProxy.getDirtyMessage(), func: logOutFun }, "changes_not_saved");
-			} else {
-			logOutFun();
-			}*/
-			
 			sendNotification(CommonNotifications.LOGOUT);
 		}
 		

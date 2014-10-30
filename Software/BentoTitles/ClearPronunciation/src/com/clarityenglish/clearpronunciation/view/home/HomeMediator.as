@@ -33,12 +33,10 @@ package com.clarityenglish.clearpronunciation.view.home
 			
 			// Load courses.xml serverside gh#84
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			view.href = bentoProxy.menuXHTML.href; 
+			if (bentoProxy.menuXHTML) view.href = bentoProxy.menuXHTML.href; 
 			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			
-			if (courseProxy.currentUnit)
-				view.unit = courseProxy.currentUnit;
+			if (courseProxy.currentUnit) view.unit = courseProxy.currentUnit;
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.channelCollection = new ArrayCollection(configProxy.getConfig().channels);

@@ -28,7 +28,7 @@ package com.clarityenglish.clearpronunciation.view.unit {
 				.toProperty(view, "widgetCollection");
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			view.href = bentoProxy.menuXHTML.href;
+			if (bentoProxy.menuXHTML) view.href = bentoProxy.menuXHTML.href;
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.channelCollection = new ArrayCollection(configProxy.getConfig().channels);

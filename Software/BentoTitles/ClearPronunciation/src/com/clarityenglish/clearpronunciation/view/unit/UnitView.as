@@ -41,7 +41,7 @@ package com.clarityenglish.clearpronunciation.view.unit {
 		
 		public function set widgetCollection(value:ListCollectionView):void {
 			// gh#731
-			if (value !== _widgetCollection) {
+			if (value !== _widgetCollection && value) {
 				_widgetCollection = null;
 				dispatchEvent(new Event("widgetCollectionChanged"));
 				
