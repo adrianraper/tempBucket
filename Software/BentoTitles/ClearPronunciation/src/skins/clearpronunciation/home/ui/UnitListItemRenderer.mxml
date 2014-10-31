@@ -97,23 +97,21 @@
 					}
 				}
 				
+				unitListButton.visible = data.hasOwnProperty("@leftIcon");
+				unitListButton.caption = data.@caption;
+				
+				unitListButton.leftIconString = data.@leftIcon;
+				unitListButton.rightIconString = data.@rightIcon; 
+				
+				unitListLabel.visible = !data.hasOwnProperty("@leftIcon");
+				unitListLabel.text = data.@caption;
+				
 				if (data.hasOwnProperty("@leftIcon")) {
-					unitListButton.leftItemButtonLabel = (data.@caption ).split(" ")[0];
+					unitListButton.leftItemButtonLabel = (data.@caption).split(" ")[0];
 					unitListButton.rightItemButtonLabel = (data.@caption).split(" ")[1];
-					
-					unitListButton.visible = true;
-					unitListLabel.visible = false;	
-				} else {
-					unitListButton.visible = false;
-					unitListLabel.visible = true;
 				}
 				
-				
-				if (getUnitIndex(data) < 10) {
-					listItemIndex = "0" + String(getUnitIndex(data));
-				} else {
-					listItemIndex = String(getUnitIndex(data));
-				}
+				listItemIndex = (getUnitIndex(data) < 10) ? "0" + String(getUnitIndex(data)) : String(getUnitIndex(data));
 				
 				exerciseXMLListCollection = new XMLListCollection();
 				if (data.exercise.(@["class"] == "practiseSounds").toXMLString() != "") {
@@ -123,7 +121,8 @@
 					exerciseXMLListCollection.addItem(exerciseXML);
 				}
 				exerciseListRenderer = new ClassFactory(ExerciseListRenderer);
-				exerciseListRenderer.properties = {showPieChart: showPieChart};
+				exerciseListRenderer.properties = { showPieChart: showPieChart };
+				
 				// alice: data will be reset when you srcoll or come back from course page to home page, so you will lose the selected exercise 
 				if (exerciseList && selectedUnitCaption == data.@caption) {
 					exerciseList.selectedIndex = exerciseSelectedIndex;
@@ -137,17 +136,14 @@
 				dispatchEvent(new ListItemSelectedEvent(ListItemSelectedEvent.SELECTED, true, exerciseList.selectedItem));
 			}
 			
-			protected function onCreationComplete(event:FlexEvent):void
-			{
-				// TODO Auto-generated method stub
+			protected function onCreationComplete(event:FlexEvent):void {
 				if (exerciseList) {
 					exerciseList.selectedIndex = exerciseSelectedIndex;
 					exerciseList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 				}
 			}
 			
-			protected function onUnitListVGroupClick(event:MouseEvent):void
-			{
+			protected function onUnitListVGroupClick(event:MouseEvent):void {
 				// alice: in course page unit list, when you select another unit and reopen the last selected unit, the last selected exercise will disappear
 				// so here we use static variable to reset the selected exercise
 				if (unitListLabel.text == selectedUnitCaption) {
@@ -164,7 +160,7 @@
 		<s:State name="selected" />
 	</s:states>
 	
-	<!--Background rectangle-->
+	<!-- Background rectangle -->
 	<s:Rect id="unitListBackgroundRect" height.selected="200" radiusX="10" radiusY="10">
 		<s:fill>
 			<s:SolidColor color="#FFEFD2" alpha="0" alpha.selected="0.6" />
@@ -188,8 +184,8 @@
 					</mx:series>
 				</mx:PieChart>
 				<s:Group width="100%" height="100%">
-					<ui:UnitListButton id="unitListButton" width="100%" height="100%" itemIndex="{listItemIndex}" caption="{data.@caption}" copyProvider="{copyProvider}" leftIconString="{data.@leftIcon}" rightIconString="{data.@rightIcon}" />
-					<s:Label id="unitListLabel" verticalCenter="0" horizontalCenter="0" text="{data.@caption}" visible="false" />
+					<ui:UnitListButton id="unitListButton" width="100%" height="100%" itemIndex="{listItemIndex}" copyProvider="{copyProvider}" />
+					<s:Label id="unitListLabel" verticalCenter="0" horizontalCenter="0" visible="false" />
 				</s:Group>		
 			</s:HGroup>
 		</s:Group>
