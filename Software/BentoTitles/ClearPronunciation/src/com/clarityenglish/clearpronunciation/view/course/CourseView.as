@@ -1,51 +1,33 @@
-package com.clarityenglish.clearpronunciation.view.course
-{
+package com.clarityenglish.clearpronunciation.view.course {
+	
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.clearpronunciation.view.home.event.ListItemSelectedEvent;
 	import com.clarityenglish.clearpronunciation.view.unit.UnitView;
 	import com.clarityenglish.clearpronunciation.vo.WindowShade;
-	import com.clarityenglish.clearpronunciation.vo.transform.SingleVideoNodeTransform;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
-	import com.clarityenglish.common.vo.manageable.Group;
-	import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
-	import com.clarityenglish.rotterdam.view.course.ui.PublishButton;
-	import com.clarityenglish.rotterdam.view.schedule.ScheduleView;
-	import com.clarityenglish.rotterdam.view.settings.SettingsView;
-	import com.clarityenglish.rotterdam.view.unit.UnitHeaderView;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.globalization.DateTimeFormatter;
-	import flash.net.*;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	
 	import mx.collections.ListCollectionView;
-	import mx.collections.XMLListCollection;
-	import mx.controls.SWFLoader;
 	import mx.core.ClassFactory;
-	import mx.events.CloseEvent;
-	import mx.events.EffectEvent;
-	import mx.skins.halo.WindowBackground;
-	
-	import org.davekeen.util.StringUtils;
-	import org.osflash.signals.Signal;
-	
-	import skins.clearpronunciation.home.ui.UnitListItemRenderer;
 	
 	import spark.components.Button;
-	import spark.components.Group;
+	import spark.components.DataGroup;
 	import spark.components.HGroup;
-	import spark.components.Label;
 	import spark.components.List;
 	import spark.components.ToggleButton;
 	import spark.components.ViewNavigator;
 	import spark.effects.Animate;
-	import spark.events.IndexChangeEvent;
 	
-	import ws.tink.spark.controls.Alert;
-	import spark.components.DataGroup;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
+	import org.osflash.signals.Signal;
+	
+	import skins.clearpronunciation.home.ui.UnitListItemRenderer;
 	
 	/*[SkinState("uniteditor")] - this is an optional skin state */
 	public class CourseView extends BentoView {

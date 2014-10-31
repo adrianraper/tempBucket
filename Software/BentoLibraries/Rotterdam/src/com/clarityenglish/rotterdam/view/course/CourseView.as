@@ -3,8 +3,6 @@ package com.clarityenglish.rotterdam.view.course {
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
 	import com.clarityenglish.rotterdam.view.course.ui.PublishButton;
-	import com.clarityenglish.rotterdam.view.schedule.ScheduleView;
-	import com.clarityenglish.rotterdam.view.settings.SettingsView;
 	import com.clarityenglish.rotterdam.view.unit.UnitHeaderView;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -18,17 +16,16 @@ package com.clarityenglish.rotterdam.view.course {
 	import mx.events.CloseEvent;
 	import mx.events.EffectEvent;
 	
-	import org.davekeen.util.StringUtils;
-	import org.osflash.signals.Signal;
-	
 	import spark.components.Button;
 	import spark.components.Group;
-	import spark.components.HGroup;
 	import spark.components.Label;
 	import spark.components.List;
 	import spark.components.ToggleButton;
 	import spark.effects.Animate;
 	import spark.events.IndexChangeEvent;
+	
+	import org.davekeen.util.StringUtils;
+	import org.osflash.signals.Signal;
 	
 	import ws.tink.spark.controls.Alert;
 	
