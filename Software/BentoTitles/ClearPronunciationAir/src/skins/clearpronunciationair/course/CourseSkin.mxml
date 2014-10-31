@@ -6,7 +6,9 @@
 		xmlns:course="com.clarityenglish.clearpronunciation.view.course.*"
 		xmlns:course1="skins.clearpronunciation.assets.course.*"
 		xmlns:unit="com.clarityenglish.clearpronunciation.view.unit.*" 
-		xmlns:exercise="com.clarityenglish.bento.view.exercise.*" creationComplete="onCreationComplete(event)" xmlns:local="*" xmlns:vo="com.clarityenglish.clearpronunciation.vo.*">
+		xmlns:exercise="com.clarityenglish.bento.view.exercise.*"
+		xmlns:vo="com.clarityenglish.clearpronunciation.vo.*"
+		creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.course.CourseView")]
@@ -19,57 +21,31 @@
 			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 			
-			import spark.transitions.ViewTransitionBase;
-			
 			private var applicationWidth:Number;
 			
-			private function unitViewNavigatorShow(viewClass:Class, transition:ViewTransitionBase = null):void {
-				// This needs a callLater otherwise the first time we open the editor mouse events are not picked up
-				callLater(function():void {
-					if (!unitViewNavigator.activeView) {
-						unitViewNavigator.pushView(viewClass);
-					} else if (!(unitViewNavigator.activeView is viewClass)) {
-						unitViewNavigator.activeView.actionBarVisible = false;
-						unitViewNavigator.replaceView(viewClass, unitViewNavigator.activeView.data, null, transition);
-					}
-				});
-			}	
-			
-			protected function onCreationComplete(event:FlexEvent):void
-			{
+			protected function onCreationComplete(event:FlexEvent):void {
 				applicationWidth = FlexGlobals.topLevelApplication.width;
-				
-				if (unitViewNavigator.actionBar)
-					unitViewNavigator.actionBar.visible = false;
-				unitViewNavigator.defaultPopTransition = null;
-				unitViewNavigator.defaultPushTransition = null;
-				unitViewNavigator.addEventListener(FlexEvent.UPDATE_COMPLETE, onUpdate);
 				
 				unitDropDownVGroup.left = applicationWidth * 0.5 - 300;
 				courseButtonHGroup.left = applicationWidth * 0.5 + 80;
 				courseButtonHGroup.gap = (applicationWidth * 0.5 - 50 ) * 0.09;
 				
 				// for introduction, no @leftIcon and @rightIcon in unit tag.
-				if (hostComponent.unit.hasOwnProperty("@leftIcon")) {
-					swfloaderHGroup.visible = true;
-					unitCaptionLabel.visible = false;
-				} else {
-					swfloaderHGroup.visible = false;
-					unitCaptionLabel.visible = true;
-				}
+				swfloaderHGroup.visible = hostComponent.unit.hasOwnProperty("@leftIcon");
 				
-				if (hostComponent.unit.hasOwnProperty("@rightIcon")) {
-					rightUnitCaptionComponent.visible = true;
-				} else {
-					rightUnitCaptionComponent.visible = false;
-				}
+				unitCaptionLabel.visible = !hostComponent.unit.hasOwnProperty("@leftIcon");
+				unitCaptionLabel.text = hostComponent.unit.@caption; 
+				
+				leftUnitCaptionComponent.text = (hostComponent.unit.@caption).split(' ')[0];
+				leftUnitCaptionComponent.phoneticSymbol = hostComponent.unit.@leftIcon;
+				leftUnitCaptionComponent.audioSource = hostComponent.unit.@leftAudio;
+				
+				rightUnitCaptionComponent.visible = rightUnitCaptionComponent.includeInLayout = hostComponent.unit.hasOwnProperty('@rightIcon');
+				rightUnitCaptionComponent.text = (hostComponent.unit.@caption).split(' ')[1];
+				rightUnitCaptionComponent.phoneticSymbol = hostComponent.unit.@rightIcon;
+				rightUnitCaptionComponent.audioSource = hostComponent.unit.@rightAudio;
 			}
 			
-			protected function onUpdate(event:Event):void {
-				if (unitViewNavigator.activeView) {
-					unitViewNavigator.activeView.actionBarVisible = false;
-				}
-			}
 		]]>
 	</fx:Script>
 	
@@ -86,8 +62,8 @@
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
-		<s:State name="unitWidget" enterState="unitViewNavigatorShow(UnitView)" />
-		<s:State name="unitExercise" enterState="unitViewNavigatorShow(ExerciseView)" />
+		<s:State name="unitWidget" />
+		<s:State name="unitExercise" />
 	</s:states>
 	
 	<!--Background color-->
@@ -97,7 +73,8 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:ViewNavigator id="unitViewNavigator" left="13" right="13" top="20" bottom="10" />
+	<unit:UnitView left="13" right="13" top="20" bottom="10" includeIn="unitWidget" />
+	<exercise:ExerciseView left="13" right="13" top="20" bottom="10" includeIn="unitExercise" />
 	
 	<!--Title bar background-->
 	<s:Rect left="13" right="13" height="13" top="7">
@@ -140,13 +117,13 @@
 			<course1:dropDownListBg horizontalCenter="0" />
 			<s:HGroup id="swfloaderHGroup" left="10" right="10" height="40" gap="0" top="15">
 					<s:Group width="165">
-						<course:UnitCaptionComponent id="leftUnitCaptionComponent" text="{(hostComponent.unit.@caption).split(' ')[0]}" phoneticSymbol="{hostComponent.unit.@leftIcon}" audioSource="{hostComponent.unit.@leftAudio}" copyProvider="{hostComponent.getCopyProvider()}" horizontalCenter="0" />
+						<course:UnitCaptionComponent id="leftUnitCaptionComponent" copyProvider="{hostComponent.getCopyProvider()}" horizontalCenter="0" />
 					</s:Group>
 					<s:Group width="165">
-						<course:UnitCaptionComponent id="rightUnitCaptionComponent" text="{(hostComponent.unit.@caption).split(' ')[1]}" phoneticSymbol="{hostComponent.unit.@rightIcon}" audioSource="{hostComponent.unit.@rightAudio}" copyProvider="{hostComponent.getCopyProvider()}" horizontalCenter="0" visible="{hostComponent.unit.hasOwnProperty('@rightIcon')}" />
+						<course:UnitCaptionComponent id="rightUnitCaptionComponent" copyProvider="{hostComponent.getCopyProvider()}" horizontalCenter="0" />
 					</s:Group>
 			</s:HGroup>
-			<s:Label id="unitCaptionLabel" horizontalCenter="0" verticalCenter="0" text="{hostComponent.unit.@caption}" fontSize="20" color="#FFFFFF" />
+			<s:Label id="unitCaptionLabel" horizontalCenter="0" verticalCenter="0" fontSize="20" color="#FFFFFF" />
 		</s:Group>
 		
 		<s:VGroup width="100%" paddingLeft="25">
