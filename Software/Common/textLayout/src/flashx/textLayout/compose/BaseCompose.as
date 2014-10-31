@@ -258,7 +258,7 @@ package flashx.textLayout.compose
 			{ 
 				var count:int = 0;
 				_textFlow.applyFunctionToElements(function (elem:FlowElement):Boolean{ if (elem.defaultTypeName == "img") count++; return false; });
-				assert(count == _textFlow.graphicObjectCount,"BaseCompose mistmatched graphicObject count");
+				//assert(count == _textFlow.graphicObjectCount,"BaseCompose mistmatched graphicObject count");
 				
 				count = 0;
 				_textFlow.applyFunctionToElements(function (elem:FlowElement):Boolean{ if (elem.hasActiveEventMirror()) count++; if (elem is LinkElement) count++; return false; });
