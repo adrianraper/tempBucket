@@ -79,9 +79,9 @@ package com.clarityenglish.clearpronunciation.view.home
 		
 		protected function onExerciseShow(item:XML):void {
 			if (item.hasOwnProperty("@class") && item.(@["class"] == "practiseSounds")) {
-				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, {unit: item.parent(), exercise: item});
+				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, { unit: item.parent(), exercise: item });
 			} else {
-				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, {unit: item.parent().parent(), exercise: item});
+				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, { unit: item.parent().parent(), exercise: item });
 			}
 			
 		}

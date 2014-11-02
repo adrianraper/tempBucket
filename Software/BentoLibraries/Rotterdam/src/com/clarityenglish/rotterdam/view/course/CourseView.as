@@ -303,7 +303,7 @@ package com.clarityenglish.rotterdam.view.course {
 				unitListExpandAnimate.play();
 			} else {
 				unitListCollapseAnimate.play();
-			}	
+			}
 		}
 		
 		protected function onUnitSelected(event:IndexChangeEvent):void {

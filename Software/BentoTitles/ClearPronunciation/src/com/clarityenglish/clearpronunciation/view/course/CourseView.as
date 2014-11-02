@@ -237,11 +237,11 @@ package com.clarityenglish.clearpronunciation.view.course {
 			switch (instance) {
 				case unitList:
 					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
-					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: false, isPlatformTablet: _isPlatformTablet};
+					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: false, isPlatformTablet: _isPlatformTablet };
 					unitList.itemRenderer = unitListItemRenderer;
 					unitList.addEventListener(ListItemSelectedEvent.SELECTED, onListItemSelected);
 					unitList.selectedIndex = unit.childIndex();
-					callLater(scrollToIndex, [unitList, unit.childIndex()]);
+					callLater(scrollToIndex, [ unitList, unit.childIndex() ]);
 					break;
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuClick);
@@ -285,13 +285,13 @@ package com.clarityenglish.clearpronunciation.view.course {
 				itemShow.dispatch(item);
 			}
 		}
+		
 		/**
 		 * TODO: Switch between editing and viewing
 		 */
 		protected override function getCurrentSkinState():String {
-			return (isExerciseVisible)? "unitExercise" : "unitWidget";
+			return (isExerciseVisible) ? "unitExercise" : "unitWidget";
 		}
-		
 		
 		// gh#208
 		protected function onStageClick(event:MouseEvent):void {						
@@ -325,7 +325,7 @@ package com.clarityenglish.clearpronunciation.view.course {
 		}
 		
 		protected function onBackToMenuClick(event:Event):void {
-			var next:Function = function():void {navigator.popView()};
+			var next:Function = function():void { navigator.popView() };
 			dirtyWarningShow.dispatch(next);	
 		}
 		
@@ -345,8 +345,7 @@ package com.clarityenglish.clearpronunciation.view.course {
 			}
 		}
 		
-		private function scrollToIndex(list:List,index:int):void
-		{
+		private function scrollToIndex(list:List,index:int):void {
 			if (!list.layout)
 				return;
 			
@@ -354,20 +353,16 @@ package com.clarityenglish.clearpronunciation.view.course {
 			
 			var spDelta:Point = dataGroup.layout.getScrollPositionDeltaToElement(index);
 			
-			if (spDelta)
-			{
+			if (spDelta) {
 				dataGroup.horizontalScrollPosition += spDelta.x;
-				//move it to the top if the list has enough items
-				if(spDelta.y > 0)
-				{
+				// move it to the top if the list has enough items
+				if (spDelta.y > 0) {
 					var maxVSP:Number = dataGroup.contentHeight - dataGroup.height + 160;
 					var itemBounds:Rectangle = list.layout.getElementBounds(index);
 					var newHeight:Number = dataGroup.verticalScrollPosition + spDelta.y 
 						+ dataGroup.height - itemBounds.height;
 					dataGroup.verticalScrollPosition = Math.min(maxVSP, newHeight);
-				}
-				else
-				{
+				} else {
 					dataGroup.verticalScrollPosition += spDelta.y;
 					
 				}

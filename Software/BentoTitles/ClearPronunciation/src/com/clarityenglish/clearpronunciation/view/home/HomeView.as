@@ -2,32 +2,26 @@ package com.clarityenglish.clearpronunciation.view.home {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.clearpronunciation.view.home.event.ListItemSelectedEvent;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
-	import com.clarityenglish.controls.video.UniversalVideoPlayer;
 	import com.clarityenglish.controls.video.VideoSelector;
 	import com.clarityenglish.textLayout.vo.XHTML;
-	import com.hurlant.crypto.symmetric.NullPad;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.collections.ArrayCollection;
-	import mx.collections.IList;
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	import mx.core.ClassFactory;
-	import mx.events.FlexEvent;
-	import mx.events.IndexChangedEvent;
-	
-	import org.osflash.signals.Signal;
-	
-	import skins.clearpronunciation.home.ui.UnitListItemRenderer;
-	import skins.rotterdam.course.UnitListContainerSkin;
 	
 	import spark.components.Group;
 	import spark.components.HGroup;
 	import spark.components.Label;
 	import spark.components.List;
 	import spark.events.IndexChangeEvent;
+	
+	import org.osflash.signals.Signal;
+	
+	import skins.clearpronunciation.home.ui.UnitListItemRenderer;
 	
 	public class HomeView extends BentoView {
 		
@@ -62,7 +56,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 		public var introductionTutorialLabel:Label;
 		
 		[SkinPart]
-		public var unitListInstuctionGroup:Group;
+		public var unitListInstructionGroup:Group;
 		
 		[SkinPart]
 		public var homeInstructionLabel:Label;
@@ -234,7 +228,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 					instance.addEventListener(MouseEvent.CLICK, onUnitListClick);
 					instance.addEventListener(ListItemSelectedEvent.SELECTED, onItemSelected);
 					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
-					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: true};
+					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: true };
 					instance.itemRenderer = unitListItemRenderer;
 					break;
 				case homeInstructionLabel:
@@ -254,7 +248,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 			diphthongsList.selectedItem = null;
 			
 			if (courseList.selectedItem) {
-				unitListInstuctionGroup.visible = false;
+				unitListInstructionGroup.visible = false;
 				if (courseList.selectedIndex == 0) {
 					introductionGroup.visible = true;
 					videoSelector.videoPlayer.visible = true;

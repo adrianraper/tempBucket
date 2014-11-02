@@ -157,10 +157,9 @@ package com.clarityenglish.textLayout.components {
 					var importer:XHTMLImporter = new XHTMLImporter();
 					var node:XML = _xhtml.selectOne(_selector);
 					if (node) {
-						
 						// gh#655 remove any node with a background class as this is rendered separately
-						while (node.*.(attribute('class')=='background').length() > 0) {
-							delete node.*.(attribute('class')=='background')[0];
+						while (node.*.(attribute('class') == 'background').length() > 0) {
+							delete node.*.(attribute('class') == 'background')[0];
 						}
 
 						// Parse the XHTML into a RenderFlow

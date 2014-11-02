@@ -2,8 +2,10 @@
 <s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				xmlns:s="library://ns.adobe.com/flex/spark" 
 				xmlns:mx="library://ns.adobe.com/flex/mx" 
-				autoDrawBackground="false" xmlns:layout="org.alivepdf.layout.*" xmlns:ui="com.clarityenglish.clearpronunciation.view.home.ui.*" creationComplete="onCreationComplete(event)">
-	
+				xmlns:layout="org.alivepdf.layout.*"
+				xmlns:ui="com.clarityenglish.clearpronunciation.view.home.ui.*"
+				autoDrawBackground="false"
+				creationComplete="onCreationComplete(event)">
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.clearpronunciation.view.home.event.ListItemSelectedEvent;
@@ -75,8 +77,8 @@
 					return;
 				
 				if (showPieChart) {
-					pieChart.visible = data.@coverage == 0? false : true;
-					unitItemPieChartArrayCollection = new ArrayCollection([{coverage: 100 - data.@coverage}, {coverage: data.@coverage}]);
+					pieChart.visible = (data.@coverage != 0);
+					unitItemPieChartArrayCollection = new ArrayCollection([{ coverage: 100 - data.@coverage }, { coverage: data.@coverage }]);
 					
 					unitListBackgroundRect.width = 269;
 					unitListBackgroundRect.left = 40;

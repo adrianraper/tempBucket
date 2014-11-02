@@ -2,7 +2,12 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx" 
-		enabled="{hostComponent.enabled}" xmlns:video="com.clarityenglish.controls.video.*" creationComplete="onCreationComplete(event)" xmlns:home="skins.clearpronunciation.assets.home.*" xmlns:vo="com.clarityenglish.clearpronunciation.vo.*" xmlns:title="skins.clearpronunciation.assets.title.*">
+		enabled="{hostComponent.enabled}"
+		xmlns:video="com.clarityenglish.controls.video.*"
+		xmlns:home="skins.clearpronunciation.assets.home.*"
+		xmlns:vo="com.clarityenglish.clearpronunciation.vo.*"
+		xmlns:title="skins.clearpronunciation.assets.title.*"
+		creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.home.HomeView")]
@@ -10,13 +15,10 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import mx.collections.ArrayCollection;
 			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 			
 			import spark.events.IndexChangeEvent;
-			import spark.layouts.TileLayout;
-			import spark.layouts.TileOrientation;
 			import spark.layouts.VerticalLayout;
 			
 			public var applicationWidth:Number;
@@ -28,9 +30,7 @@
 			[Bindable]
 			public var unitListWidth:Number;
 			
-			protected function onCreationComplete(event:FlexEvent):void
-			{	
-				loadingRect.visible = false;
+			protected function onCreationComplete(event:FlexEvent):void {
 				applicationWidth = FlexGlobals.topLevelApplication.width;
 				applicationHeight = FlexGlobals.topLevelApplication.height;
 				
@@ -47,7 +47,7 @@
 				unitListGroup.height = applicationHeight * 0.83;
 				backgroundBubbleGroup.height = applicationHeight * 0.83;
 				myHomeBubble.scaleX = myHomeBubble.scaleY = unitListGroup.width / myHomeBubble.width < unitListGroup.height / myHomeBubble.height ? unitListGroup.width / myHomeBubble.width : myHomeBubble.height / myHomeBubble.height;
-				unitListInstuctionGroup.width = myHomeBubble.width * myHomeBubble.scaleX;
+				unitListInstructionGroup.width = myHomeBubble.width * myHomeBubble.scaleX;
 				unitListWidth = (unitListGroup.width - 150) * 0.5;
 				unitListHeight = (unitListGroup.height * 0.8) / 7;
 				
@@ -105,7 +105,6 @@
 						</fx:Script>
 						
 						<fx:Declarations>
-							<s:DropShadowFilter id="dropDownShadowFilter" distance="2" angle="320" alpha="0.6" />
 						</fx:Declarations>
 						
 						<s:states>
@@ -127,7 +126,7 @@
 		
 		<s:Group id="unitListGroup">
 			<!-- Instruction -->
-			<s:Group id="unitListInstuctionGroup" height="100" left="0" verticalCenter="-30">
+			<s:Group id="unitListInstructionGroup" height="100" left="0" verticalCenter="-30">
 				<home:homeInstructionArrow verticalCenter="-60" horizontalCenter="-220" />
 				<s:Label id="homeInstructionLabel" width="380" horizontalCenter="20" verticalCenter="0" fontWeight="bold" fontSize="25" color="#333333" />
 			</s:Group>
@@ -226,26 +225,20 @@
 		</s:Group>
 	</s:Group>
 	
-	<!--home title bar-->
+	<!-- Home title bar -->
 	<s:HGroup id="homeTitleBarHGroup" gap="0" left="0" top="-70">
 		<title:menuBarLT id="menuBarLT" />
 		<title:menuBarMid id="menuBarMid" />
 		<title:menuBarRT id="menuBarRT" />
 	</s:HGroup>
 	
-	<!--home left corner logo-->
+	<!-- Home left corner logo -->
 	<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/home/homeLogo.png')" top="-70" left="0" />
 	
-	<!--home footer-->
+	<!-- Home footer -->
 	<s:Group id="homeFooterGroup">
 		<home:homeFooter left="0" top="150" />
 		<s:SWFLoader id="girlSWFLoader" source="@Embed(source='skins/clearpronunciation/assets/home/homeGirl.png')" left="0" />
 	</s:Group>
-	
-	<s:Rect id="loadingRect" width="100%" height="100%">
-		<s:fill>
-			<s:SolidColor color="#FFFFFF" />
-		</s:fill>
-	</s:Rect>
 	
 </s:Skin>

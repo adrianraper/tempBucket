@@ -66,7 +66,7 @@
 		<s:State name="unitExercise" />
 	</s:states>
 	
-	<!--Background color-->
+	<!-- Background color -->
 	<s:Rect width="100%" top="-50" bottom="0">
 		<s:fill>
 			<s:SolidColor color="#19B5E0" />
@@ -76,7 +76,7 @@
 	<unit:UnitView left="13" right="13" top="20" bottom="10" includeIn="unitWidget" />
 	<exercise:ExerciseView left="13" right="13" top="20" bottom="10" includeIn="unitExercise" />
 	
-	<!--Title bar background-->
+	<!-- Title bar background -->
 	<s:Rect left="13" right="13" height="13" top="7">
 		<s:fill>
 			<s:SolidColor color="#FBCF57" />
@@ -109,7 +109,7 @@
 		<s:Button id="nextButton" useHandCursor="true" buttonMode="true" />
 	</s:HGroup>
 	
-	<!--CP logo-->
+	<!-- CP logo -->
 	<course1:courseLogo top="-70" left="0" />
 	
 	<s:VGroup id="unitDropDownVGroup" top="-65" width="350" gap="0">

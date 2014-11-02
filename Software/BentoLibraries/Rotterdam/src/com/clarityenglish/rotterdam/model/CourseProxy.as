@@ -14,8 +14,6 @@ package com.clarityenglish.rotterdam.model {
 	
 	import flash.events.Event;
 	import flash.events.TimerEvent;
-	import flash.net.FileReference;
-	import flash.net.URLRequest;
 	import flash.utils.Timer;
 	
 	import mx.collections.ListCollectionView;
@@ -230,26 +228,32 @@ package com.clarityenglish.rotterdam.model {
 		public function get isEditable():Boolean {
 			return _editable;	
 		}
+		
 		public function get isOwner():Boolean {
 			return _role == Course.ROLE_OWNER;	
 		}
+		
 		public function get isCollaborator():Boolean {
 			return _role == Course.ROLE_COLLABORATOR;	
 		}
+		
 		public function get isPublisher():Boolean {
 			return _role == Course.ROLE_PUBLISHER;	
 		}
+		
 		public function setPermission(permission:XMLList):void {
 			if (permission) {
 				if (permission.hasOwnProperty("@role"))
 					_role = int(permission.@role);
 				if (permission.hasOwnProperty("@editable"))
-					_editable = (permission.@editable == "true") ? true : false;
+					_editable = (permission.@editable == "true");
 			}
 		}
+		
 		public function get isPreviewMode():Boolean {
 			return _previewMode;
 		}
+		
 		public function set isPreviewMode(mode:Boolean):void {
 			if (_previewMode != mode)
 				_previewMode = mode;

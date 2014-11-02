@@ -8,12 +8,8 @@ package com.clarityenglish.clearpronunciation.view.course
 	import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
-	import com.clarityenglish.common.model.LoginProxy;
-	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.googlecode.bindagetools.Bind;
-	
-	import flash.events.Event;
 	
 	import mx.collections.XMLListCollection;
 	

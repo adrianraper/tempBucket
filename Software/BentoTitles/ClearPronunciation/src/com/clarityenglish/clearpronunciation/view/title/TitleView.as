@@ -29,6 +29,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 	//[SkinState("filemanager")] // optional
 	
 	public class TitleView extends BentoView {
+		
 		[SkinPart(required="true")]
 		public var sectionNavigator:CancelableTabbedViewNavigator;
 		
@@ -72,7 +73,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 			
 			// The first one listed will be the default
 			StateUtil.addStates(this, [ "home", "course", "progress", "settings", "schedule", "progress" ], true);
-			this.actionBarVisible = false;
+			actionBarVisible = false;
 		}
 		
 		public function showCourseView():void {
@@ -87,7 +88,6 @@ package com.clarityenglish.clearpronunciation.view.title {
 			currentState = "schedule";
 		}
 		
-		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
@@ -96,10 +96,10 @@ package com.clarityenglish.clearpronunciation.view.title {
 					setNavStateMap(sectionNavigator, {
 						home: { viewClass: HomeView },
 						course: { viewClass: CourseView, stack: true },
-						settings: {viewClass: SettingsView, stack: true},
-						schedule: {viewClass: ScheduleView, stack:true},
+						settings: { viewClass: SettingsView, stack: true },
+						schedule: { viewClass: ScheduleView, stack: true },
 						// TODO: this really should be here, but there is some bug whereby the framework is straight away changing back from progress to course, so leave for now
-						progress: { viewClass: ProgressView, stack:true }
+						progress: { viewClass: ProgressView, stack: true }
 					});
 					// gh#83
 					sectionNavigator.changeConfirmFunction = function(next:Function):void {
@@ -154,7 +154,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 			return currentState;
 		}
 		
-		protected function onBackClick(evnet:Event):void {
+		protected function onBackClick(event:Event):void {
 			if (currentState == "progress")
 				sectionNavigator.selectedIndex = 0;
 		}
@@ -163,8 +163,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 			if (sectionNavigator.selectedIndex == 1) {
 				sectionNavigator.tabBar.visible = false;
 				progressTransform.dispatch();
-			}
-				
+			}	
 		}
 		
 		protected function onPhonemicChartClick(event:Event):void {
