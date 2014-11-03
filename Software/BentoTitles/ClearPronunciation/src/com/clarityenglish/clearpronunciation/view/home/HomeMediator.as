@@ -48,6 +48,8 @@ package com.clarityenglish.clearpronunciation.view.home
 			super.onRemove();
 			
 			view.exerciseShow.remove(onExerciseShow);
+			// gh#1073
+			view.unit = null;
 		}
 		
 		override public function listNotificationInterests():Array {

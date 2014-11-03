@@ -104,9 +104,6 @@
 							]]>
 						</fx:Script>
 						
-						<fx:Declarations>
-						</fx:Declarations>
-						
 						<s:states>
 							<s:State name="normal" />
 							<s:State name="hovered" />
