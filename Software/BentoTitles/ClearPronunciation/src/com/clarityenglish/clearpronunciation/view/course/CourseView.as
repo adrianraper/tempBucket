@@ -311,6 +311,8 @@ package com.clarityenglish.clearpronunciation.view.course {
 				nextExercise.dispatch();
 				currentExerciseIndex ++;
 			}
+			// gh#1077
+			UnitListItemRenderer.exerciseSelectedIndex = currentExerciseIndex;
 		}
 		
 		protected function onBackButtonClick(event:Event):void {
@@ -322,6 +324,8 @@ package com.clarityenglish.clearpronunciation.view.course {
 				}
 				currentExerciseIndex --;
 			}
+			// gh#1077
+			UnitListItemRenderer.exerciseSelectedIndex = currentExerciseIndex;
 		}
 		
 		protected function onBackToMenuClick(event:Event):void {
