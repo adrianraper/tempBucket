@@ -2,12 +2,13 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx" 
-		enabled="{hostComponent.enabled}"
 		xmlns:video="com.clarityenglish.controls.video.*"
 		xmlns:home="skins.clearpronunciation.assets.home.*"
 		xmlns:vo="com.clarityenglish.clearpronunciation.vo.*"
 		xmlns:title="skins.clearpronunciation.assets.title.*"
-		creationComplete="onCreationComplete(event)">
+		xmlns:flexlayouts="org.flexlayouts.layouts.*"
+		enabled="{hostComponent.enabled}"
+		width="100%" height="100%">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.home.HomeView")]
@@ -15,63 +16,6 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import mx.core.FlexGlobals;
-			import mx.events.FlexEvent;
-			
-			import spark.events.IndexChangeEvent;
-			import spark.layouts.VerticalLayout;
-			
-			public var applicationWidth:Number;
-			public var applicationHeight:Number;
-			
-			[Bindable]
-			public var unitListHeight:Number;
-			
-			[Bindable]
-			public var unitListWidth:Number;
-			
-			protected function onCreationComplete(event:FlexEvent):void {
-				applicationWidth = FlexGlobals.topLevelApplication.width;
-				applicationHeight = FlexGlobals.topLevelApplication.height;
-				
-				// position course list part
-				courseList.height = applicationHeight * 0.33;
-				var verticalLayout:VerticalLayout = new VerticalLayout();
-				verticalLayout.gap = (courseList.height - 185) / 3;
-				courseList.layout = verticalLayout;
-				
-				// position unit list part
-				unitListGroup.left = backgroundBubbleGroup.left = applicationWidth * 0.31;
-				unitListGroup.width = applicationWidth * 0.66;
-				backgroundBubbleGroup.width = applicationWidth * 0.66;
-				unitListGroup.height = applicationHeight * 0.83;
-				backgroundBubbleGroup.height = applicationHeight * 0.83;
-				myHomeBubble.scaleX = myHomeBubble.scaleY = unitListGroup.width / myHomeBubble.width < unitListGroup.height / myHomeBubble.height ? unitListGroup.width / myHomeBubble.width : myHomeBubble.height / myHomeBubble.height;
-				unitListInstructionGroup.width = myHomeBubble.width * myHomeBubble.scaleX;
-				unitListWidth = (unitListGroup.width - 150) * 0.5;
-				unitListHeight = (unitListGroup.height * 0.8) / 7;
-				
-				// position title bar
-				homeTitleBarHGroup.width = applicationWidth;
-				menuBarLT.width = Math.round((homeTitleBarHGroup.width - 64) * 0.35);
-				menuBarMid.width = 64;
-				menuBarRT.width = Math.round((homeTitleBarHGroup.width - 64) * 0.65);
-				
-				// position footer
-				homeFooterGroup.top = applicationHeight - 330;
-				
-				courseList.addEventListener(IndexChangeEvent.CHANGE, onCourseListIndexChange);
-				// when user back from unit, the bubble should zoom in to big size
-				if (hostComponent.selectedCourseIndex > -1) {
-					myHomeBubble.scaleX = myHomeBubble.scaleY = applicationWidth / myHomeBubble.width;
-					backgroundBubbleGroup.left = 250;
-				}
-			}
-			
-			protected function onCourseListIndexChange(evnet:IndexChangeEvent):void {
-				myHomeBubble.scaleX = myHomeBubble.scaleY = applicationWidth / myHomeBubble.width;
-				backgroundBubbleGroup.left = 250;
-			}
 			
 		]]>
 	</fx:Script>
@@ -80,162 +24,51 @@
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
+		
+		<!--<s:State name="introduction" />
+		<s:State name="consonants" />
+		<s:State name="vowels" />
+		<s:State name="dipthongs" />-->
 	</s:states>
-			
-	<s:Group>
-		<s:Group id="backgroundBubbleGroup">
-			<!--unilit list background bubble-->
-			<home:homeBubble id="myHomeBubble" verticalCenter="0" />
-		</s:Group>
-		
-		<s:List id="courseList" labelField="@caption" verticalCenter="-40" width="205" left="70" borderVisible="false" contentBackgroundAlpha="0">
-			<s:itemRenderer>
-				<fx:Component>
-					<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true">
-						<fx:Script>
-							<![CDATA[
-								[Bindable]
-								protected var caption:String;
-								
-								public override function set data(value:Object):void {
-									super.data = value;
-									caption = value.@caption;
-								}
-							]]>
-						</fx:Script>
-						
-						<s:states>
-							<s:State name="normal" />
-							<s:State name="hovered" />
-							<s:State name="selected" />
-						</s:states>
-						
-						<s:Button id="courseListButton" label="{caption}" width="185" includeIn="hovered, normal" />
-						<home:triangleButton includeIn="selected" />
-						
-						<s:Group width="185" height="100%" includeIn="selected">
-							<s:Label id="courseLabel" text="{caption}" horizontalCenter="0" verticalCenter="0" verticalAlign="middle" color="#1D2D36" fontWeight="bold" fontSize="20" fontFamily="Mgbold" />
-						</s:Group>
-					</s:ItemRenderer>
-				</fx:Component>
-			</s:itemRenderer>
-		</s:List>
-		
-		<s:Group id="unitListGroup">
-			<!-- Instruction -->
-			<s:Group id="unitListInstructionGroup" height="100" left="0" verticalCenter="-30">
-				<home:homeInstructionArrow verticalCenter="-60" horizontalCenter="-220" />
-				<s:Label id="homeInstructionLabel" width="380" horizontalCenter="20" verticalCenter="0" fontWeight="bold" fontSize="25" color="#333333" />
-			</s:Group>
-			
-			<s:Group id="introductionGroup" top="100" width="640" height="450" horizontalCenter="10" visible="false">
-				<video:VideoSelector id="videoSelector" width="100%" height="360" horizontalCenter="0" />
-				<s:Rect top="360" width="90%" height="88" horizontalCenter="20" bottomLeftRadiusX="10" bottomLeftRadiusY="10" bottomRightRadiusX="10" bottomRightRadiusY="10">
-					<s:fill>
-						<s:SolidColor color="#263A45" />
-					</s:fill>
-				</s:Rect>
-				<s:Label id="introductionTutorialLabel" top="370" left="70" fontFamily="Mgbold" fontWeight="bold" fontSize="20" color="#FFFFFF" />
-				<s:List id="introductionList" bottom="15" width="540" height="35" horizontalCenter="20" labelField="@caption" borderVisible="false" useVirtualLayout="false" contentBackgroundAlpha="0">
-					<s:layout>
-						<s:HorizontalLayout gap="10" />
-					</s:layout>
-					<s:itemRenderer>
-						<fx:Component>
-							<s:ItemRenderer width="100%" height="100%" autoDrawBackground="false" buttonMode="true" useHandCursor="true">
-								<fx:Script>
-									<![CDATA[
-										public override function set data(value:Object):void {
-											super.data = value;
-											if (introLabel) introLabel.text = data.@caption;
-										}
-									]]>
-								</fx:Script>
-								<s:states>
-									<s:State name="normal" />
-									<s:State name="hovered" />
-									<s:State name="selected" />
-								</s:states>
-								
-								<s:Rect width="100%" height="100%" radiusX="6" radiusY="6">
-									<s:fill>
-										<s:SolidColor color="#FFEFD2" />
-									</s:fill>
-								</s:Rect>
-								<s:HGroup width="100%" height="100%" gap="5">
-									<s:Group>
-										<s:Ellipse x="10" y="9" width="14" height="14">
-											<s:fill>
-												<s:SolidColor color="#FFFFFF" />
-											</s:fill>
-											<s:stroke>
-												<s:SolidColorStroke color="#9E9E9E" />
-											</s:stroke>
-										</s:Ellipse>
-										<s:Ellipse x="14" y="13" width="6" height="6" includeIn="hovered, selected">
-											<s:fill>
-												<s:SolidColor color="#000000" />
-											</s:fill>
-										</s:Ellipse>
-									</s:Group>	
-									<s:Label id="introLabel" paddingTop="9" fontSize="16" fontFamily="Mgbold" fontWeight="bold" />
-								</s:HGroup>	
-							</s:ItemRenderer>
-						</fx:Component>
-					</s:itemRenderer>
-				</s:List>
-			</s:Group>
-			
-			<s:HGroup id="consonantsListHGroup" left="60" top="60" width="100%" height="100%">
-				<s:List id="consonantsLeftList" width="310" height="100%" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 1}" contentBackgroundAlpha="0">
-					<s:layout>
-						<s:VerticalLayout gap="10" />
-					</s:layout>
-				</s:List>
-				<s:List id="consonantsRightList" width="310" height="100%" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 1}" contentBackgroundAlpha="0">
-					<s:layout>
-						<s:VerticalLayout gap="10" />
-					</s:layout>
-				</s:List>
-			</s:HGroup>
-			
-			<s:HGroup id="vowelsListHGroup" left="60" top="120" width="100%" height="100%">
-				<s:List id="vowelsLeftList" width="310" height="100%" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 2}" contentBackgroundAlpha="0">
-					<s:layout>
-						<s:VerticalLayout gap="10" />
-					</s:layout>
-				</s:List>
-				<s:List id="vowelsRightList" width="310" height="100%" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 2}" contentBackgroundAlpha="0">
-					<s:layout>
-						<s:VerticalLayout gap="10" />
-					</s:layout>
-				</s:List>
-			</s:HGroup>
-			
-			<s:Group id="dispthongsGroup" left="60"  top="120" width="100%" height="100%">
-				<s:List id="diphthongsList" width="310" height="100%" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 3}" contentBackgroundAlpha="0">
-					<s:layout>
-						<s:VerticalLayout gap="10" />
-					</s:layout>
-				</s:List>
-			</s:Group>	
-		</s:Group>
-	</s:Group>
+	
+	<!-- The course list -->
+	<s:List id="courseList" labelField="@caption" height="100%" width="205" left="70" top="150" borderVisible="false" contentBackgroundAlpha="0">
+		<s:layout>
+			<s:VerticalLayout gap="25" />
+		</s:layout>
+		<s:itemRenderer>
+			<fx:Component>
+				<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true">
+					<s:states>
+						<s:State name="normal" />
+						<s:State name="hovered" />
+						<s:State name="selected" />
+					</s:states>
+					
+					<s:Button id="courseListButton" label="{label}" width="185" includeIn="hovered, normal" />
+					<home:triangleButton includeIn="selected" />
+					
+					<s:Group width="185" height="100%" includeIn="selected">
+						<s:Label id="courseLabel" text="{label}" horizontalCenter="0" verticalCenter="0" verticalAlign="middle" color="#1D2D36" fontWeight="bold" fontSize="20" fontFamily="Mgbold" />
+					</s:Group>
+				</s:ItemRenderer>
+			</fx:Component>
+		</s:itemRenderer>
+	</s:List>
+	
+	<!-- The introduction section -->
+	
+	<!-- The unit/exercise list (this covers all other sections -->
+	<s:List id="unitList" left="355" top="60" width="620" bottom="20" borderVisible="false" useVirtualLayout="true" contentBackgroundAlpha="0">
+		<s:layout>
+			<flexlayouts:AccordianListLayout columnWidth="310" collapsedElementHeight="55" expandedElementHeight="200" verticalGap="10" />
+		</s:layout>
+	</s:List>
 	
 	<!-- Home title bar -->
-	<s:HGroup id="homeTitleBarHGroup" gap="0" left="0" top="-70">
-		<title:menuBarLT id="menuBarLT" />
-		<title:menuBarMid id="menuBarMid" />
-		<title:menuBarRT id="menuBarRT" />
-	</s:HGroup>
-	
-	<!-- Home left corner logo -->
-	<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/home/homeLogo.png')" top="-70" left="0" />
-	
-	<!-- Home footer -->
-	<s:Group id="homeFooterGroup">
-		<home:homeFooter left="0" top="150" />
-		<s:SWFLoader id="girlSWFLoader" source="@Embed(source='skins/clearpronunciation/assets/home/homeGirl.png')" left="0" />
-	</s:Group>
+	<!-- TODO: THIS DOESN'T LAYOUT/RESIZE PROPERLY ON ALL DEVICE RESOLUTIONS, BUT ANYWAY SHOULDN'T IT BE IN TITLESKIN SINCE THAT IS WHERE THE BUTTONS ARE? -->
+	<title:menuBarLT id="menuBarLT" left="0" top="-70" />
+	<title:menuBarMid id="menuBarMid" left="334" top="-70" />
+	<title:menuBarRT id="menuBarRT" left="398" top="-70" />
 	
 </s:Skin>

@@ -51,8 +51,15 @@
         <s:State name="disabled" />
     </s:states>
     
-    <course:reconderOff includeIn="up" />
-	<course:reconderOn includeIn="down, over" />
+	<!-- Hit area -->
+	<s:Rect width="62" height="50">
+		<s:fill>
+			<s:SolidColor color="#000000" alpha="0" />
+		</s:fill>
+	</s:Rect>
+	
+    <course:recorderOff includeIn="up" />
+	<course:recorderOn includeIn="down, over" />
     
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->

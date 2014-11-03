@@ -154,7 +154,8 @@
 			<lit name="newPsdLabel">New password:</lit>
 			<lit name="confirmPsdLabel">Confirm password:</lit>
 			<lit name="accountLanguageLabel">Language:</lit>
-			<lit name="exerciseBackToMenuButton">Back to menu</lit>
+			<lit name="exerciseBackToMenuButton"></lit> <!-- CP doesn't have a label on this button as it is in the icon -->
+			<lit name="recorderButton"></lit> <!-- CP doesn't have a label on this button as it is in the icon -->
 			<lit name="exerciseStartAgainButton">Start again</lit>
 			<lit name="exerciseBackButton">Back</lit>
 			<lit name="exerciseForwardButton">Forward</lit>

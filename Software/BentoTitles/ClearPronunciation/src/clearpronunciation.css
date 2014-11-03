@@ -21,7 +21,7 @@ confirm that the rotterdam.clearpronunciation namespaces are NOT used please
 @namespace credits "com.clarityenglish.bento.view.credits.*";
 @namespace title "com.clarityenglish.clearpronunciation.view.title.*";
 @namespace ui3 "skins.clearpronunciation.progress.ui.*";
-@namespace exercise "com.clarityenglish.bento.view.exercise.*";
+@namespace exercise "com.clarityenglish.clearpronunciation.view.exercise.*";
 @namespace settings "com.clarityenglish.clearpronunciation.view.settings.*";
 @namespace home "com.clarityenglish.clearpronunciation.view.home.*";
 @namespace video "com.clarityenglish.controls.video.*";
@@ -111,10 +111,6 @@ s|VScrollBar {
 	skinClass: ClassReference("skins.clearpronunciation.course.ui.VScrollBarSkin");
 }
 
-ui|UnitListButton {
-	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitListButtonSkin");
-}
-
 recorder|RecorderView {
 	skinClass: ClassReference("skins.clearpronunciation.unit.recorder.RecorderSkin");
 }
@@ -195,14 +191,11 @@ home|HomeView video|VideoSelector {
 	skinClass: ClassReference("skins.clearpronunciation.home.ui.HomeVideoSelectorSkin");
 }
 
-ui|ExerciseListRenderer {
-	skinClass: ClassReference("skins.clearpronunciation.home.ui.ExerciseListBarButtonSkin");
-}
-
 video|VideoSelector {
 	skinClass: ClassReference("skins.clearpronunciation.controls.video.VideoSelectorSkin");
 }
 
+/*
 course|CourseView {
 	skinClass: ClassReference("skins.clearpronunciation.course.CourseSkin");
 }
@@ -250,6 +243,7 @@ course|CourseView s|Button#makeSoundsExpandButton {
 course|CourseView s|Button#makeSoundsCollapseButton {
 	skinClass: ClassReference("skins.clearpronunciation.course.ui.MakeSoundsCollapseButtonSkin");
 }
+*/
 
 course|UnitCaptionComponent {
 	skinClass: ClassReference("skins.clearpronunciation.course.UnitCaptionComponentSkin");	
@@ -268,7 +262,8 @@ unit|UnitView {
 }
 
 exercise|ExerciseView {
-	skinClass: ClassReference("skins.clearpronunciation.unit.ExerciseSkin");
+	top: -70; /* Something really weird is going on, but ExerciseSkin comes in 70px too low.  Use this hack till I find the source of it. */
+	skinClass: ClassReference("skins.clearpronunciation.ExerciseSkin");
 }
 
 exercise|ExerciseView s|Button#markingButton {
@@ -282,6 +277,47 @@ exercise|ExerciseView s|Button#feedbackButton {
 exercise|ExerciseView s|Button#startAgainButton {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.StartAgainButtonSkin");
 }
+
+exercise|ExerciseView s|Button#unitDropDownLeftItemButton, #unitDropDownRightItemButton {
+	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitItemButtonSkin");
+}
+
+exercise|ExerciseView s|Button#backToMenuButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.MenuButtonSkin");
+}
+
+exercise|ExerciseView s|Button#recorderButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.RecorderButtonSkin");
+}
+
+exercise|ExerciseView s|Button#phonemicChartButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.PhonemicChartButtonSkin");
+}
+
+exercise|ExerciseView s|Button#youWillButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.YouWillButtonSkin");
+}
+
+exercise|ExerciseView s|Button#logoutButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.LogoutButtonSkin");
+}
+
+exercise|ExerciseView s|Button#backButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.BackButtonSkin");
+}
+
+exercise|ExerciseView s|Button#forwardButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.NextButtonSkin");
+}
+
+/*course|CourseView s|Button#makeSoundsExpandButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.MakeSoundsExpandButtonSkin");
+}
+
+course|CourseView s|Button#makeSoundsCollapseButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.MakeSoundsCollapseButtonSkin");
+}*/
+
 
 marking|MarkingView {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.marking.MarkingSkin");

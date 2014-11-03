@@ -15,14 +15,7 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import mx.collections.ArrayCollection;
-			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
-			
-			import spark.events.IndexChangeEvent;
-			import spark.layouts.TileLayout;
-			import spark.layouts.TileOrientation;
-			import spark.layouts.VerticalLayout;
 			
 			public var applicationWidth:Number;
 			public var applicationHeight:Number;
@@ -185,7 +178,7 @@
 			</s:Group>
 			
 			<s:HGroup id="consonantsListHGroup" left="100" top="60" width="100%" height="100%">
-				<s:List id="consonantsLeftList" minWidth="310" height="100%" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 1}" contentBackgroundAlpha="0">
+				<!--<s:List id="consonantsLeftList" minWidth="310" height="100%" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 1}" contentBackgroundAlpha="0">
 					<s:layout>
 						<s:VerticalLayout gap="10" />
 					</s:layout>
@@ -194,11 +187,11 @@
 					<s:layout>
 						<s:VerticalLayout gap="10" />
 					</s:layout>
-				</s:List>
+				</s:List>-->
 			</s:HGroup>
 
 			<s:HGroup id="vowelsListHGroup" left="100" top="120" width="100%" height="100%">
-				<s:List id="vowelsLeftList" minWidth="310" height="100%" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 2}" contentBackgroundAlpha="0">
+				<!--<s:List id="vowelsLeftList" minWidth="310" height="100%" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 2}" contentBackgroundAlpha="0">
 					<s:layout>
 						<s:VerticalLayout gap="10" />
 					</s:layout>
@@ -207,15 +200,15 @@
 					<s:layout>
 						<s:VerticalLayout gap="10" />
 					</s:layout>
-				</s:List>
+				</s:List>-->
 			</s:HGroup>
 			
 			<s:Group id="dispthongsGroup" left="60"  top="120" width="100%" height="100%">
-				<s:List id="diphthongsList" width="310" height="100%" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 3}" contentBackgroundAlpha="0">
+				<!--<s:List id="diphthongsList" width="310" height="100%" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 3}" contentBackgroundAlpha="0">
 					<s:layout>
 						<s:VerticalLayout gap="10" />
 					</s:layout>
-				</s:List>
+				</s:List>-->
 			</s:Group>
 		</s:Group>
 		

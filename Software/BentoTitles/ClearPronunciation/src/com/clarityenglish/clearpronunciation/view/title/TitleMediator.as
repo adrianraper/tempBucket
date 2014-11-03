@@ -3,17 +3,14 @@ package com.clarityenglish.clearpronunciation.view.title {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
-	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	
-	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
 	/**
 	 * A Mediator
 	 */	
 	public class TitleMediator extends BentoMediator {
+		
 		public function TitleMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
@@ -23,6 +20,34 @@ package com.clarityenglish.clearpronunciation.view.title {
 		}
 		
 		override public function onRegister():void {
+			super.onRegister();
+			
+			// This view runs off the menu xml so inject it here
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			view.href = bentoProxy.menuXHTML.href;
+		}
+		
+		override public function onRemove():void {
+			super.onRemove();
+		}
+		
+		override public function listNotificationInterests():Array {
+			return super.listNotificationInterests().concat([
+				BBNotifications.SELECTED_NODE_CHANGED,
+			]);
+		}
+		
+		override public function handleNotification(note:INotification):void {
+			super.handleNotification(note);
+			
+			switch (note.getName()) {
+				case BBNotifications.SELECTED_NODE_CHANGED:
+					view.selectedNode = note.getBody() as XML;
+					break;
+			}
+		}
+		
+		/*override public function onRegister():void {
 			super.onRegister();
 			
 			view.dirtyWarningShow.add(onDirtyWarningShow);
@@ -87,6 +112,6 @@ package com.clarityenglish.clearpronunciation.view.title {
 		
 		protected function onProgressTransform():void {
 			//sendNotification();
-		}
+		}*/
 	}
 }

@@ -47,6 +47,10 @@
 			view.record.add(onRecord); // gh#267
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			
+			if (view.hasOwnProperty("selectedExerciseNode"))
+				Bind.fromProperty(bentoProxy, "selectedExerciseNode").toProperty(view, "selectedExerciseNode");
+			
 			Bind.fromProperty(bentoProxy, "selectedExerciseNode").convert(function(node:XML):Href {
 				// gh#265
 				if (node) {

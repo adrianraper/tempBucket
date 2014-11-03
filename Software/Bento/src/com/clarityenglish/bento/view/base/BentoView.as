@@ -238,8 +238,6 @@ package com.clarityenglish.bento.view.base {
 	
 }
 
-import caurina.transitions.Tweener;
-
 import com.clarityenglish.bento.view.base.BentoView;
 
 import flash.events.Event;
@@ -249,13 +247,15 @@ import mx.core.mx_internal;
 import mx.events.FlexEvent;
 import mx.events.StateChangeEvent;
 
-import org.davekeen.transitions.PatchedSlideViewTransition;
-import org.davekeen.util.ClassUtil;
-
 import spark.components.TabbedViewNavigator;
 import spark.components.ViewNavigator;
 import spark.components.supportClasses.NavigationStack;
 import spark.transitions.ViewTransitionDirection;
+
+import caurina.transitions.Tweener;
+
+import org.davekeen.transitions.PatchedSlideViewTransition;
+import org.davekeen.util.ClassUtil;
 
 class NavStateMap {
 	

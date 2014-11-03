@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:view="com.clarityenglish.bento.view.*"
+		xmlns:course1="skins.clearpronunciation.assets.course.*"
+		xmlns:flexlayouts="org.flexlayouts.layouts.*"
+		alpha.disabled="0.5"
+		addedToStage="onAddedToStage(event)"
+		width="100%" height="100%" xmlns:vo="com.clarityenglish.clearpronunciation.vo.*" xmlns:ui="skins.clearpronunciation.home.ui.*">
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.clearpronunciation.view.exercise.ExerciseView")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			protected function onAddedToStage(event:Event):void {
+				hostComponent.actionBarVisible = false;
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
+		<s:State name="exercise" />
+		<s:State name="other" />
+	</s:states>
+	
+	<!-- Background coloured blocks -->
+	<s:Rect width="100%" top="0" bottom="0">
+		<s:fill>
+			<s:SolidColor color="#19B5E0" />
+		</s:fill>
+	</s:Rect>
+	<s:Rect left="13" right="13" top="70" bottom="10">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF" />
+		</s:fill>
+	</s:Rect>
+		
+	<!-- Exercise -->
+	<view:DynamicView id="dynamicView" left="13" right="13" top="130" bottom="10" />
+	
+	<!-- Title bar background -->
+	<s:Group top="70" left="0" right="0" bottom="0">
+			
+		<s:Rect left="13" right="13" height="13" top="7">
+			<s:fill>
+				<s:SolidColor color="#FBCF57" />
+			</s:fill>
+		</s:Rect>
+		<s:Rect width="100%" top="-70" height="80" bottomRightRadiusX="30" bottomRightRadiusY="30">
+			<s:fill>
+				<s:SolidColor color="#19B5E0" />
+			</s:fill>
+			<s:stroke>
+				<s:SolidColorStroke color="#000000" />
+			</s:stroke>
+		</s:Rect>
+		<s:Rect width="100%" top="-70" height="9">
+			<s:fill>
+				<s:SolidColor color="#273B46" />
+			</s:fill>
+		</s:Rect>
+				
+		<!-- Left buttons -->
+		<s:HGroup top="20" left="150">
+			<s:Button id="backButton" useHandCursor="true" buttonMode="true" />
+			<s:Button id="forwardButton" useHandCursor="true" buttonMode="true" />
+		</s:HGroup>
+		
+		<!-- Right buttons -->
+		<s:HGroup right="45" top="20">
+			<s:Button id="feedbackButton" useHandCursor="true" buttonMode="true" />
+			<s:Button id="markingButton" useHandCursor="true" buttonMode="true" />
+			<s:Button id="startAgainButton" useHandCursor="true" buttonMode="true" />
+		</s:HGroup>
+		
+		<!-- Rectangle to cover left and right sections of dynamic view -->
+		<s:Rect top="38" bottom="0" width="13">
+			<s:fill>
+				<s:SolidColor color="#19B5E0" />
+			</s:fill>
+		</s:Rect>
+		<s:Rect right="0" top="38" bottom="0" width="13">
+			<s:fill>
+				<s:SolidColor color="#19B5E0" />
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	
+	<!-- Top row -->
+	<s:HGroup left="0" right="0">
+		
+		<course1:courseLogo />	
+		
+		<s:Spacer width="100%" />
+		
+		<s:VGroup gap="-10" width="350" height="61">
+			<s:Group>
+				<course1:dropDownListBg />
+				<ui:UnitListItemRenderer data="{hostComponent.selectedExerciseNode.parent()}" showPieChart="false" showItemIndex="false" horizontalCenter="0" verticalCenter="0" scaleX="1.3" scaleY="1.3" />
+			</s:Group>
+			<!--<vo:WindowShade id="windowShade">
+				<s:Rect height="411" horizontalCenter="0" bottomLeftRadiusX="10" bottomLeftRadiusY="10" bottomRightRadiusX="10" bottomRightRadiusY="10">
+					<s:fill>
+						<s:SolidColor color="#497A7A" />
+					</s:fill>
+				</s:Rect>
+				<s:Rect height="393" top="8" horizontalCenter="0" bottomLeftRadiusX="7" bottomLeftRadiusY="7" bottomRightRadiusX="7" bottomRightRadiusY="7">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF" />
+					</s:fill>
+				</s:Rect>
+				<s:List id="unitList" width="250" height="387" top="18" horizontalCenter="0" borderVisible="false" contentBackgroundColor="#FFFFFF" verticalScrollPolicy="on">
+					<s:layout>
+						<flexlayouts:AccordianListLayout columnWidth="310" collapsedElementHeight="55" expandedElementHeight="200" verticalGap="10" />
+					</s:layout>
+				</s:List>
+			</vo:WindowShade>-->
+		</s:VGroup>
+		
+		<s:Spacer width="100%" />
+		
+		<s:HGroup paddingTop="22" paddingRight="32" gap="43">
+			<s:Button id="backToMenuButton" buttonMode="true" useHandCursor="true" />
+			<s:Button id="recorderButton" buttonMode="true" useHandCursor="true" />
+			<s:Button id="phonemicChartButton" buttonMode="true" useHandCursor="true" />
+			<s:Button id="youWillButton" buttonMode="true" useHandCursor="true" />
+		</s:HGroup>
+		
+	</s:HGroup>
+	
+	<s:Button id="logoutButton" top="9" right="10" scaleX="0.6" scaleY="0.6" buttonMode="true" useHandCursor="true" />
+	
+</s:Skin>

@@ -1,7 +1,6 @@
 package com.clarityenglish.clearpronunciation.view.course {
 	
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.clearpronunciation.view.home.event.ListItemSelectedEvent;
 	import com.clarityenglish.clearpronunciation.view.unit.UnitView;
 	import com.clarityenglish.clearpronunciation.vo.WindowShade;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
@@ -239,7 +238,7 @@ package com.clarityenglish.clearpronunciation.view.course {
 					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
 					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: false, isPlatformTablet: _isPlatformTablet };
 					unitList.itemRenderer = unitListItemRenderer;
-					unitList.addEventListener(ListItemSelectedEvent.SELECTED, onListItemSelected);
+					//unitList.addEventListener(ListItemSelectedEvent.SELECTED, onListItemSelected);
 					unitList.selectedIndex = unit.childIndex();
 					callLater(scrollToIndex, [ unitList, unit.childIndex() ]);
 					break;
@@ -269,7 +268,7 @@ package com.clarityenglish.clearpronunciation.view.course {
 			}
 		}
 		
-		protected function onListItemSelected(event:ListItemSelectedEvent):void {
+		/*protected function onListItemSelected(event:ListItemSelectedEvent):void {
 			if (event.item) {
 				if (unitList.selectedIndex != -1) {
 					windowShade.contentGroup.height = 0;
@@ -284,7 +283,7 @@ package com.clarityenglish.clearpronunciation.view.course {
 				}
 				itemShow.dispatch(item);
 			}
-		}
+		}*/
 		
 		/**
 		 * TODO: Switch between editing and viewing
@@ -312,7 +311,7 @@ package com.clarityenglish.clearpronunciation.view.course {
 				currentExerciseIndex ++;
 			}
 			// gh#1077
-			UnitListItemRenderer.exerciseSelectedIndex = currentExerciseIndex;
+			//UnitListItemRenderer.exerciseSelectedIndex = currentExerciseIndex;
 		}
 		
 		protected function onBackButtonClick(event:Event):void {
@@ -325,7 +324,7 @@ package com.clarityenglish.clearpronunciation.view.course {
 				currentExerciseIndex --;
 			}
 			// gh#1077
-			UnitListItemRenderer.exerciseSelectedIndex = currentExerciseIndex;
+			//UnitListItemRenderer.exerciseSelectedIndex = currentExerciseIndex;
 		}
 		
 		protected function onBackToMenuClick(event:Event):void {

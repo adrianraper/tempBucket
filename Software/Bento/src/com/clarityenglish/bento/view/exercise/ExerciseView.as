@@ -3,7 +3,6 @@ package com.clarityenglish.bento.view.exercise {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.bento.view.recorder.events.RecorderEvent;
-	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.textLayout.events.AudioPlayerEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -15,9 +14,9 @@ package com.clarityenglish.bento.view.exercise {
 	
 	import mx.controls.Text;
 	
-	import org.osflash.signals.Signal;
-	
 	import spark.components.Button;
+	
+	import org.osflash.signals.Signal;
 	
 	[SkinState("exercise")]
 	[SkinState("other")]
@@ -178,8 +177,6 @@ package com.clarityenglish.bento.view.exercise {
 					backButton.includeInLayout = visibleValue;						
 				}
 			}
-			
-			
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -249,7 +246,7 @@ package com.clarityenglish.bento.view.exercise {
 		}
 		
 		protected function onMouseClick(event:MouseEvent):void {
-			var url:String = config.contentRoot + config.account.getTitle().contentLocation + "/" +   _ruleLink;
+			var url:String = config.contentRoot + config.account.getTitle().contentLocation + "/" + _ruleLink;
 			var urlRequest:URLRequest = new URLRequest(url);
 			navigateToURL(urlRequest, "_blank");
 		}

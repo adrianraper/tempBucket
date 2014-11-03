@@ -1,13 +1,8 @@
-package com.clarityenglish.clearpronunciation.vo
-{
+package com.clarityenglish.clearpronunciation.vo {
 	import flash.display.DisplayObject;
-	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.events.TouchEvent;
-	import flash.geom.Point;
 	
-	import mx.events.FlexEvent;
 	import mx.events.SandboxMouseEvent;
 	
 	import spark.components.Button;
@@ -25,8 +20,8 @@ package com.clarityenglish.clearpronunciation.vo
 	 * This is a simple implementation that only supports dragging.  It
 	 * could be extended to support throw gestures as well.
 	 */
-	public class WindowShade extends SkinnableContainer
-	{
+	public class WindowShade extends SkinnableContainer {
+		
 		[Bindable]
 		[SkinPart(required="true")]			
 		/** The Button that is dragged to resize the contentGroup */
@@ -41,8 +36,7 @@ package com.clarityenglish.clearpronunciation.vo
 		
 		private var _isWindowShadeOpen:Boolean;
 		
-		public function WindowShade()
-		{
+		public function WindowShade() {
 			super();
 			
 			animationPath = new SimpleMotionPath("height");
@@ -61,8 +55,7 @@ package com.clarityenglish.clearpronunciation.vo
 			_isWindowShadeOpen = value;
 		}
 		
-		override protected function partAdded(partName:String, instance:Object):void
-		{
+		override protected function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
@@ -79,8 +72,7 @@ package com.clarityenglish.clearpronunciation.vo
 			}
 		}
 		
-		private function thumbButton_mouseDownHandler(event:MouseEvent):void
-		{
+		private function thumbButton_mouseDownHandler(event:MouseEvent):void {
 			mouseDownYOffset = event.localY;
 			
 			var sbRoot:DisplayObject = systemManager.getSandboxRoot();
@@ -89,51 +81,44 @@ package com.clarityenglish.clearpronunciation.vo
 			sbRoot.addEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, mouseUpHandler);
 		}
 		
-		private function mouseMoveHandler(event:MouseEvent):void 
-		{
+		private function mouseMoveHandler(event:MouseEvent):void {
 			// change the size of the contentGroup
 			contentGroup.height = contentMouseY;
 		}
 		
-		private function mouseUpHandler(event:Event):void 
-		{
+		private function mouseUpHandler(event:Event):void {
 			// cleanup event listeners                
 			var sbRoot:DisplayObject = systemManager.getSandboxRoot();
 			sbRoot.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
 			sbRoot.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, true);
 			sbRoot.removeEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, mouseUpHandler);
 			
-			if (event is  MouseEvent)
-			{
+			if (event is  MouseEvent) {
 				// play an effect to change the size of this container
-				if (contentMouseY < (elementHeight / 2))
+				if (contentMouseY < (elementHeight / 2)) {
 					close();
-				else
+				} else {
 					open();
+				}
 			}
-			
 		}
 		
-		private function animateSize(from:Number, to:Number):void 
-		{
+		private function animateSize(from:Number, to:Number):void {
 			animationPath.valueFrom = from;
 			animationPath.valueTo = to;
 			animation.play();
 		}
 		
 		/** Brings the height to zero */
-		public function close():void 
-		{
+		public function close():void {
 			isWindowShadeOpen = false;
 			animateSize(contentGroup.height, 0);
 		}
 		
 		/** Brings the height to the max available in its parent */
-		public function open():void 
-		{	
+		public function open():void {	
 			isWindowShadeOpen = true;
-			animateSize(contentGroup.height, 
-				elementHeight);
+			animateSize(contentGroup.height, elementHeight);
 		}
 		
 		protected function onElementAdd(event:Event):void {

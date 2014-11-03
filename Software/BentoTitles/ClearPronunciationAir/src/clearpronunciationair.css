@@ -65,16 +65,8 @@ home|HomeView {
 	skinClass: ClassReference("skins.clearpronunciationair.home.HomeSkin");
 }
 
-course|CourseView {
-	skinClass: ClassReference("skins.clearpronunciationair.course.CourseSkin");
-}
-
 unit|UnitView {
 	skinClass: ClassReference("skins.clearpronunciationair.unit.UnitSkin");
-}
-
-exercise|ExerciseView {
-	skinClass: ClassReference("skins.clearpronunciationair.unit.ExerciseSkin");
 }
 
 progress|ProgressView {

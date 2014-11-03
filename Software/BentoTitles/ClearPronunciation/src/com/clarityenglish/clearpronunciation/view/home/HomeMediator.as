@@ -1,5 +1,4 @@
-package com.clarityenglish.clearpronunciation.view.home
-{
+package com.clarityenglish.clearpronunciation.view.home {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
@@ -9,9 +8,6 @@ package com.clarityenglish.clearpronunciation.view.home
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
-	import com.googlecode.bindagetools.Bind;
-	
-	import flash.media.Video;
 	
 	import mx.collections.ArrayCollection;
 	
@@ -29,14 +25,14 @@ package com.clarityenglish.clearpronunciation.view.home
 		override public function onRegister():void {
 			super.onRegister();
 			
-			view.exerciseShow.add(onExerciseShow);
+			view.exerciseSelect.add(onExerciseSelected);
 			
 			// Load courses.xml serverside gh#84
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			if (bentoProxy.menuXHTML) view.href = bentoProxy.menuXHTML.href; 
 			
-			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			if (courseProxy.currentUnit) view.unit = courseProxy.currentUnit;
+			//var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+			//if (courseProxy.currentUnit) view.unit = courseProxy.currentUnit;
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
@@ -47,9 +43,7 @@ package com.clarityenglish.clearpronunciation.view.home
 		override public function onRemove():void {
 			super.onRemove();
 			
-			view.exerciseShow.remove(onExerciseShow);
-			// gh#1073
-			view.unit = null;
+			view.exerciseSelect.remove(onExerciseSelected);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -79,13 +73,16 @@ package com.clarityenglish.clearpronunciation.view.home
 			}
 		}
 		
-		protected function onExerciseShow(item:XML):void {
+		protected function onExerciseSelected(exercise:XML, attribute:String = null):void {
+			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise, attribute);
+		}
+		
+		/*protected function onExerciseShow(item:XML):void {
 			if (item.hasOwnProperty("@class") && item.(@["class"] == "practiseSounds")) {
 				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, { unit: item.parent(), exercise: item });
 			} else {
 				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, { unit: item.parent().parent(), exercise: item });
 			}
-			
-		}
+		}*/
 	}
 }
