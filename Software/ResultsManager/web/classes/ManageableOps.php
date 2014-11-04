@@ -15,7 +15,6 @@ class ManageableOps {
 		$this->copyOps = new CopyOps();
 		$this->emailOps = new EmailOps($db);
 		$this->templateOps = new TemplateOps($db);
-		//$this->memoryOps = new MemoryOps($db);
 	}
 	
 	/**

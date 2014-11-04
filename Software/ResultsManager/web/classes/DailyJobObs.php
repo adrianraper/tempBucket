@@ -656,58 +656,24 @@ SQL;
 	 * A subscription is defined by startDate, frequency and valid
 	 * Then it will work out if we need to update the bookmark for that user to reflect a new 'week'
 	 * 
+	 * Return an array of 'there is a new unit' emails to be sent
 	 */
-	public function updateSubscriptionBookmarks($account, $productCode, $today = null) {
+	public function updateSubscriptionBookmarks($account, $productCode, $timestamp = null) {
 
-if (isset($_SERVER["SERVER_NAME"])) {
-	$newLine = '<br/>';
-} else {
-	$newLine = "\n";
-
-	/**
-	 * For all users in a group (or groups), get their email addresses and include the user details.
-	 * Would be more useful if you could include other information in the emailArray
-	 * 
-	 */
-	public function getEmailsForGroup($groupId) {
-
-		// Initialise
+		// Initialize
 		$emailArray = array();
 		
-		$groups = $this->manageableOps->getGroupSubgroups($groupId);
-		$groupList = implode(',', $groups);
-		
-		$sql = <<<SQL
-			SELECT u.*
-			FROM T_User u, T_Membership m 
-			WHERE u.F_UserID = m.F_UserID
-			AND m.F_GroupID in ($groupList)
-SQL;
-		$bindingParams = array();
-		$rs = $this->db->Execute($sql, $bindingParams);
-
-		if ($rs->RecordCount() > 0) {
-			while ($dbObj = $rs->FetchNextObj()) {
-				$user = new User();
-				$user->fromDatabaseObj($dbObj);
-				
-				// Send email IF we have one
-				if (isset($user->email) && $user->email) {
-					$toEmail = $user->email;
-					$emailData = array("user" => $user);
-					$thisEmail = array("to" => $toEmail, "data" => $emailData);
-					$emailArray[] = $thisEmail;
-				}
-			}
+		if (!$timestamp) { 
+			$now = new DateTime(null, new DateTimeZone(TIMEZONE));
+		} else {
+			$now = new DateTime();
+			$now->setTimestamp($timestamp);
 		}
-		return $emailArray;
-	}
-
-}
-		
+		$today = new DateTime($now->format('Y-m-d'. '00:00:00'));
+			
 		// Find all users in this account with a subscription to this product
-		$sql = <<<SQL
-			SELECT u.F_Memory as memory, u.F_UserID as userId
+		$sql  = "SELECT ".User::getSelectFields($this->db);
+		$sql .= <<<SQL
 			FROM T_User u, T_Membership m
 			WHERE u.F_Memory like '%<product code="$productCode"%'
 			AND u.F_UserID = m.F_UserID
@@ -722,14 +688,14 @@ SQL;
 				// $memory = $this->memoryOps->getMemoryFromDb($userId, $productCode);
 				//   or
 				// $memory = new Memory($dbObj->memory);
-				$memory = simplexml_load_string($dbObj->memory);
+				$memory = simplexml_load_string($dbObj->F_Memory);
 				
 				// Does this user have a valid subscription?
 				$productMemories = $memory->xpath("//product[@code=$productCode]");
 				$productMemory = $productMemories[0];
-				if ($productMemory->subscription['valid'] == true) {
+				if ((string)$productMemory->subscription['valid'] == 'true') {
 					
-					echo "user ".$dbObj->userId." has valid subscription $newLine";
+					//echo "user ".$dbObj->F_UserID." has a valid subscription $newLine";
 					
 					// They do, so figure out if today is a frequency unit away from their subscription start date
 					$level = (string)$productMemory->level;
@@ -741,7 +707,6 @@ SQL;
 						continue;
 						
 					$startDate = new DateTime($sd.' 00:00:00');
-					echo "their start date ".$startDate->format('Y-m-d')." and today=".$today->format('Y-m-d').$newLine";
 					$frequency = DateInterval::createFromDateString($f);
 					$keyDate = $startDate->add($frequency);
 					
@@ -752,7 +717,6 @@ SQL;
 					
 					// Note: Do we need a 'sensible' limit on number of units to add (in case start date was 1900 or something)
 					while ($keyDate <= $today) {
-						echo "test key date ".$keyDate->format('Y-m-d')."$newLine";
 						if ($keyDate == $today) {
 							// Need to update the relevant bookmark
 							// Should this be a function or a db lookup?
@@ -762,12 +726,13 @@ SQL;
 							// The subscription might have completed
 							if ($newBookmark->isFinished()) {
 								// set the subscription to false or delete it altogether?
-								$productMemory->subscription['valid'] = false;
+								$productMemory->subscription['valid'] = 'false';
 								
 								// remove the related bookmark
-								echo "YES but subscription now finished $newLine";
+								//echo "  but subscription now finished $newLine";
+							} else {
+								//echo "  add $unitsAdded timeslots so new unit is ".$newBookmark->unit."$newLine";
 							}
-							echo "YES update $unitsAdded time so new unit is ".$newBookmark->unit."$newLine";
 							switch ($productCode) {
 								case 59:
 									// Need to update the Tense Buster bookmark
@@ -786,12 +751,19 @@ SQL;
 										
 									$startingPoint = $bookmark->startingPoint;
 									if (empty($startingPoint)) {
-										$startingPoint = $bookmark->addChild('startingPoint');
-										$startingPoint->addAttribute('course', $newBookmark->course);
-										$startingPoint->addAttribute('unit', $newBookmark->unit);
+										// if finished, remove the unit, just leave the course? Or remove the whole thing
+										if (!$newBookmark->isFinished()) {
+											$startingPoint = $bookmark->addChild('startingPoint');
+											$startingPoint->addAttribute('course', $newBookmark->course);
+											$startingPoint->addAttribute('unit', $newBookmark->unit);
+										}
 									} else {
-										$startingPoint['course'] = $newBookmark->course;
-										$startingPoint['unit'] = $newBookmark->unit;
+										if ($newBookmark->isFinished()) {
+											unset($startingPoint[0]->{0});
+										} else {
+											$startingPoint['course'] = $newBookmark->course;
+											$startingPoint['unit'] = $newBookmark->unit;
+										}
 									}
 										
 									break;
@@ -800,7 +772,20 @@ SQL;
 									break;
 							}
 							
-							$rc = $this->updateMemory($dbObj->userId, $memory->asXML());
+							$rc = $this->updateMemory($dbObj->F_UserID, $memory->asXML());
+							
+							// Save each user that we update and their new bookmark
+							$user = new User();
+							$user->fromDatabaseObj($dbObj);
+							// TODO: encrytped please
+							$startProgram = '/area1/TenseBuster10/Start.php?prefix='.$account->prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
+							
+							$toEmail = $user->email;
+							$emailData = array("user" => $user, "level" => $level, "programLink" => $startProgram, "dateDiff" => $f, "weekX" => $unitsAdded);
+							$thisEmail = array("to" => $toEmail, "data" => $emailData);
+							$emailArray[] = $thisEmail;
+							AbstractService::$debugLog->info("update user ".$user->email." to week $unitsAdded");
+							
 							continue 2;
 						}
 						$unitsAdded++;
@@ -809,8 +794,9 @@ SQL;
 				}
 			}
 		}
-		
+		return $emailArray;
 	}
+	
 	public function updateMemory($userId, $memory) {
 		$sql = <<<SQL
 			UPDATE T_User
@@ -839,19 +825,19 @@ SQL;
 						$b->course = '1189057932446';
 						switch ($unitsAdded) {
 							case 1:
-								$b->unit = '12';
+								$b->unit = '1192013076627';
 								break;
 							case 2:
-								$b->unit = '13';
+								$b->unit = '1192013076406';
 								break;
 							case 3:
-								$b->unit = '14';
+								$b->unit = '1192013076042';
 								break;
 							case 4:
-								$b->unit = '15';
+								$b->unit = '1192013076442';
 								break;
 							case 5:
-								$b->unit = '16';
+								$b->unit = '1192013076075';
 								break;
 							case 6:
 								$b->setFinished();
@@ -859,22 +845,22 @@ SQL;
 						}
 						break;
 					case 'LI':
-						$b->course = '2189060123431';
+						$b->course = '1189060123431';
 						switch ($unitsAdded) {
 							case 1:
-								$b->unit = '22';
+								$b->unit = '1192625080536';
 								break;
 							case 2:
-								$b->unit = '23';
+								$b->unit = '1192625080519';
 								break;
 							case 3:
-								$b->unit = '24';
+								$b->unit = '1192625080036';
 								break;
 							case 4:
-								$b->unit = '25';
+								$b->unit = '1192625080950';
 								break;
 							case 5:
-								$b->unit = '26';
+								$b->unit = '1192625080483';
 								break;
 							case 6:
 								$b->setFinished();
@@ -882,22 +868,70 @@ SQL;
 						}
 						break;
 					case 'INT':
-						$b->course = '3189060123432';
+						$b->course = '1195467488046';
 						switch ($unitsAdded) {
 							case 1:
-								$b->unit = '32';
+								$b->unit = '1195467532329';
 								break;
 							case 2:
-								$b->unit = '33';
+								$b->unit = '1192625080157';
 								break;
 							case 3:
-								$b->unit = '34';
+								$b->unit = '1195467532343';
 								break;
 							case 4:
-								$b->unit = '35';
+								$b->unit = '1195467532330';
 								break;
 							case 5:
-								$b->unit = '36';
+								$b->unit = '1195467532328';
+								break;
+							case 6:
+								$b->setFinished();
+								break;
+						}
+						break;
+						
+					case 'UI':
+						$b->course = '1190277377521';
+						switch ($unitsAdded) {
+							case 1:
+								$b->unit = '1192625319263';
+								break;
+							case 2:
+								$b->unit = '1192625319990';
+								break;
+							case 3:
+								$b->unit = '1192625319573';
+								break;
+							case 4:
+								$b->unit = '1192625319744';
+								break;
+							case 5:
+								$b->unit = '1193054443818';
+								break;
+							case 6:
+								$b->setFinished();
+								break;
+						}
+						break;
+						
+					case 'ADV':
+						$b->course = '1196935701119';
+						switch ($unitsAdded) {
+							case 1:
+								$b->unit = '1196301393947';
+								break;
+							case 2:
+								$b->unit = '1196649107233';
+								break;
+							case 3:
+								$b->unit = '1196204720339';
+								break;
+							case 4:
+								$b->unit = '1196293510373';
+								break;
+							case 5:
+								$b->unit = '1196641272970';
 								break;
 							case 6:
 								$b->setFinished();

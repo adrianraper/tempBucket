@@ -22,7 +22,7 @@
 		console.log("answers=" + answers);
 		$.ajax({
 			type: "POST",
-			url: "http://dock.projectbench/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",
+			url: "/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",
 			data: {operation: 'submitAnswers', answers: answers, code: $("#codeHolder").text(), user: $("#registrationForm").serialize(), prefix: prefix},
 			dataType: "json",
 			error: function(jqXHR, textStatus, errorThrown) {
@@ -32,7 +32,7 @@
 				//var resultsData = jQuery.parseJSON(data);
 				console.log('Marked ' + data.score + '%, debug ' + data.debug + '; level ' + data.CEFLevel + ' questions (' + data.correct + ',' + data.wrong + ',' + data.skipped + ')');
 				// I want to go to the welcome screen here
-				$("#CEFLevelMessage").text(data.CEFLevel);
+				$("#ClarityLevelMessage").text(data.ClarityLevel);
 				$("a#programUrl").attr("href", data.startProgram);
 				//setupWelcome();
 			}
@@ -46,7 +46,7 @@
 		// Inject the questions
 		$.ajax({
 			type: "GET",
-			url: "http://dock.projectbench/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",
+			url: "/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",
 			data: {operation: 'getQuestions', exercise: '1193901049540.xml', prefix: prefix},
 			dataType: "xml",
 			error: function(jqXHR, textStatus, errorThrown) {
@@ -65,6 +65,7 @@
 				});
 				
 				// Parse the xml file and get data
+				var questionNumber = 1;
 				$(xml).find(".question").each(function () {
 					// What is the id of this question?
 					var questionID = $(this).attr("id");
@@ -94,8 +95,12 @@
 					$(this).find("li a").each(function() {
 						$(this).replaceWith("<input type='radio' value='" + $(this).attr('id') + "' name='" + questionID + "'>" + $(this).html() + "</input>");
 					});
-
-					$("#testPlaceholder").append($(this).html());
+					
+					// Add a question number
+					$(this).prepend("<div class='question-number'>" + questionNumber++ + "</div>");
+					
+					// An outer div for styling purposes
+					$("#testPlaceholder").append("<div class='question'>" + $(this).html() + "</div>");
 				});
 				
 				// save the checksum code
@@ -177,7 +182,7 @@
     	          userEmail: {
     	        	remote: {
     	        	  type: "POST",
-    	        	  url: "http://dock.projectbench/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",
+    	        	  url: "/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",
     	        	  data: {operation: 'checkEmail', prefix: getURLParameter('prefix')},
     	        	  dataType: "json",
     	        	  dataFilter: function(data, dataType) {
@@ -201,6 +206,12 @@
     	        	  },
     	            required: true,
     	            email: true
+    	          },
+    	          password: {
+    	        	  required: true
+    	          },
+    	          confirmPassword: {
+    	        	  equalTo: "#password"
     	          }
     	        },
     	        messages: {
@@ -208,6 +219,9 @@
     	            required: "Please type your email address.",
     	            email: "That doesn't seem to be a good email address, please check it.",
     	            remote: "That email is no good."
+    	          },
+    	          confirmPassword: {
+    	        	  equalTo: "Please make sure the passwords are the same."
     	          }
     	        },
     	        submitHandler: function(form) {

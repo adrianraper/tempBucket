@@ -294,24 +294,39 @@ SQL;
 	 * 
 	 * @param Score $score
 	 */
-	public function getDirectStart($score) {
+	public function getDirectStart($level, $productCode = null) {
 
-		// raw score is out of 75
-		if ($score->scoreCorrect < 7) {
-			$course = '1189057932446';
-			$unit = '1192013076011'; // Am, is, are
-		} elseif ($score->scoreCorrect < 22) {
-			$course = '1189060123431';
-			$unit = '1192625080479'; // Simple present
-		} elseif ($score->scoreCorrect < 40) {
-			$course = '1195467488046';
-			$unit = '1195467532331'; // The passive
-		} elseif ($score->scoreCorrect < 60) {
-			$course = '1190277377521';
-			$unit = '1192625319203'; // Past continuous
-		} else {
-			$course = '1196935701119';
-			$unit = '1196216926895'; // Reported speech
+		if (!$productCode) $productCode = Session::get('productCode');
+		switch ($productCode) {
+				// raw score is out of 75
+			case 59:
+				switch ($level) {
+					case 'ELE':
+						$course = '1189057932446';
+						$unit = '1192013076011'; // Am, is, are
+						break;
+					case 'LI':
+						$course = '1189060123431';
+						$unit = '1192625080479'; // Simple present
+						break;
+					case 'INT':
+						$course = '1195467488046';
+						$unit = '1195467532331'; // The passive
+						break;
+					case 'UI':
+						$course = '1190277377521';
+						$unit = '1192625319203'; // Past continuous
+						break;
+					case 'ADV':
+						$course = '1196935701119';
+						$unit = '1196216926895'; // Reported speech
+						break;
+					default:
+						$course = $unit = '';
+				}
+				break;
+			default:
+				$course = $unit = '';
 		}
 			
 		return '<startingPoint course="'.$course.'" unit="'.$unit.'" />';
@@ -322,25 +337,33 @@ SQL;
 	 * 
 	 * @param Score $score
 	 */
-	public function getCEFLevel($score) {
+	public function getCEFLevel($score, $productCode = null) {
 		
-		if ($score->scoreCorrect < 4)
-			return "A1";
-		if ($score->scoreCorrect < 7)
-			return "A2";
-		if ($score->scoreCorrect < 22)
-			return "B1";
-		if ($score->scoreCorrect < 70)
-			return "B2";	
-		return "C1";
+		if (!$productCode) $productCode = Session::get('productCode');
+		switch ($productCode) {
+			case 59:
+				if ($score->scoreCorrect < 4)
+					return "A1";
+				if ($score->scoreCorrect < 7)
+					return "A2";
+				if ($score->scoreCorrect < 22)
+					return "B1";
+				if ($score->scoreCorrect < 70)
+					return "B2";	
+				return "C1";
+				break;
+			default:
+				return "A1";
+		}
 	}
 	/**
 	 * This function calculates a student's Clarity level based on their score
 	 * 
 	 * @param Score $score
 	 */
-	public function getLevel($score, $productCode) {
+	public function getClarityLevel($score, $productCode = null) {
 		
+		if (!$productCode) $productCode = Session::get('productCode');
 		switch ($productCode) {
 			case 59:
 				if ($score->scoreCorrect < 4)

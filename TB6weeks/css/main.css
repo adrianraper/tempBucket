@@ -97,6 +97,11 @@ body {
     /*Avoid flicker on slides transitions for mobile phones #336 */
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+/*
+#registrationForm {
+	width: 100%;
+}
+*/
 .scrollable {
     height: 100px; /* or any value */
     overflow-y: auto;
@@ -675,14 +680,14 @@ body {
 }
 #test .test-content {
     position: absolute;
-    width: 400px;
+    width: 100%;
     margin-left: 50px;
     bottom: 20%;
 }
 #test h2 {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
-    color: #fff;
+    color: #1234EF;
     font-size: 45px;
     font-weight: 800;
     width: 100%;
@@ -691,17 +696,41 @@ body {
     bottom: 460px;
 }
 #test p {
-    color: #fff;
+    color: #1234EF;
     font-size: 18px;
     font-weight: 300;
-    width: 80%;
+    width: 100%;
     text-align: left;
     line-height: 30px;
     bottom: 180px;
 }
-.question-text {
-    margin-top: 12px;
+
+#testPlaceholder {
+	text-align: left;
 }
+    .question { 
+        display: table-row;
+        width: 100%;
+    }
+
+    .question > div {
+        display: table-cell;
+        line-height: 120%;
+        padding-bottom: 20px;
+    }
+    
+    .question > .question-number {
+        /* Give the column a fixed width */
+        width: 40px;
+        padding-right: 10px;
+
+        /* Style the question number text */
+        text-align: right;
+    }
+
+    .question > .question-text {
+        width: 100%;
+    }
 
 /*
  * Register
@@ -712,7 +741,7 @@ body {
 }
 #register .register-content {
     position: absolute;
-    width: 400px;
+    width: 100%;
     margin-left: 50px;
     bottom: 20%;
 }

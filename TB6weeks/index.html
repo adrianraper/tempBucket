@@ -64,6 +64,7 @@
             <!-- <img src="images/banner_jackie.jpg" alt="Your test" class="test-bg" /> -->
             <div class="test-content">
                 <h2>This is your test</h2>
+                <p>Answer the questions (25) and then scroll to the next screen to add your details and have the test marked</p>
                 <div class="divider"></div>
 				<div id="testPlaceholder" class="scrollable"></div>
             </div>
@@ -74,7 +75,7 @@
             <div class="register-content">
                 <h2>Register here</h2>
                 <div class="divider"></div>
-				<form id="registrationForm" >
+				<form id="registrationForm">
 	                <p>
 	                <label for="userEmail">What is your email?</label><br/>
 					<input id="userEmail" name="userEmail" type="text" />
@@ -83,6 +84,14 @@
 	                <label for="userName">and your name (optional)?</label><br/>
 					<input id="userName" name="userName" type="text" />
 					</p>
+                    <p>
+                    <label for="password">what password do you want to use?</label><br/>
+                    <input id="password" name="password" type="password" />
+                    </p>
+                    <p>
+                    <label for="confirmPassword">repeat the password</label><br/>
+                    <input id="confirmPassword" name="confirmPassword" type="password" />
+                    </p>
 					<input id="submitResults" text="register" type="submit" />
 				</form>
 				<span id="validationMessage"></span>
@@ -93,7 +102,7 @@
             <div class="welcome-content">
                 <h2>You are subscribed</h2>
                 <div class="divider"></div>
-                <p>Your CEF level is <span id="CEFLevelMessage"></span></p>
+                <p>Your Clarity level is <span id="ClarityLevelMessage"></span></p>
                 <p>You can start Tense Buster <a id="programUrl" target="tbwindow">right here</a></p>
             </div>
         </div>

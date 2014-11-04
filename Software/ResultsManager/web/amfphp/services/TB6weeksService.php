@@ -33,7 +33,7 @@ require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
 require_once(dirname(__FILE__)."/../../classes/CourseOps.php");
 require_once(dirname(__FILE__)."/../../classes/TestOps.php");
 require_once(dirname(__FILE__)."/../../classes/MemoryOps.php");
-require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php");
+//require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php");
 
 require_once(dirname(__FILE__)."/AbstractService.php");
 
@@ -58,14 +58,14 @@ class TB6weeksService extends AbstractService {
 		$this->courseOps = new CourseOps($this->db);
 		$this->loginOps = new LoginOps($this->db);
 		$this->testOps = new TestOps($this->db);
-		$this->subscriptionOps = new SubscriptionOps($this->db);
+		//$this->subscriptionOps = new SubscriptionOps($this->db);
 		//$this->memoryOps = new MemoryOps($this->db);
 
 		// This is a back end service adding users, so doesn't use authentication
 		AuthenticationOps::$useAuthentication = false;
 		
 		// for debugging if you only have one session
-		//Session::set('productCode', 59);
+		Session::set('productCode', 59);
 		//Session::set('userID', 27639);
 		
 		// To mimic amfphp handling
@@ -199,10 +199,12 @@ class TB6weeksService extends AbstractService {
 	 */
 	public function submitAnswers($attempts, $answers, $userDetails, $prefix) {
 		
+		$rootId = Session::get('rootID');
 		$score = $this->testOps->checkAnswers($attempts, $answers);
 		//AbstractService::$debugLog->info("score: %=".$score->score." raw=".$score->scoreCoorect);
 		
 		// Is this an existing user, or do we need to register a new one?
+		AbstractService::$debugLog->info("add user to root=$rootId");
 		$user = $this->manageableOps->getOrAddUser($userDetails);
 		AbstractService::$debugLog->info("user: id=".$user->userID." name=".$user->name.' email='.$user->email);
 		Session::set('userID', $user->userID);
@@ -211,9 +213,9 @@ class TB6weeksService extends AbstractService {
 		$this->memoryOps = new MemoryOps($this->db);
 		
 		// Work out the TB6weeks settings for direct start and save for the user
-		$directStart = $this->testOps->getDirectStart($score);
 		$CEFLevel = $this->testOps->getCEFLevel($score);
 		$ClarityLevel = $this->testOps->getClarityLevel($score);
+		$directStart = $this->testOps->getDirectStart($ClarityLevel);
 		// The bookmark (which controls direct start), is written to Tense Buster memory, not TB6weeks.
 		$tbProductCode = 55;
 		$rc = $this->memoryOps->addToMemory('bookmark', $directStart, $tbProductCode);
@@ -223,19 +225,21 @@ class TB6weeksService extends AbstractService {
 		$rc = $this->memoryOps->addToMemory('subscription', $now->format('Y-m-d'));
 		$rc = $this->memoryOps->writeMemory();
 		
-		// Trigger a welcome email
-		$apiInformation = new LoginAPI();
-		$apiInformation->emailTemplateID = 'TB6weeksWelcome';
-		
-		$this->subscriptionOps->sendUserEmail($user, $apiInformation);
-		//AbstractService::$debugLog->info("queued email to ".$user->email.' using '.$apiInformation->emailTemplateID);
-		
-		// Send back the CEF level and a direct start link (based on user details)
 		// TODO: encrytped please
 		$startProgram = '/area1/TenseBuster10/Start.php?prefix='.$prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
 		
+		// Trigger a welcome email
+		$templateID = 'user/TB6weeksWelcome';
+		$emailData = array("user" => $user, "level" => $ClarityLevel, "programLink" => $startProgram, "dateDiff" => '2 days');
+		$thisEmail = array("to" => $user->email, "data" => $emailData);
+		$emailArray[] = $thisEmail;
+		
+		$this->emailOps->sendEmails("", $templateID, $emailArray);
+		//AbstractService::$debugLog->info("queued email to ".$user->email.' using '.$templateID);
+		
+		// Send back the CEF level and a direct start link (based on user details)
 		$debug='';
-		return json_encode(array('debug' => $debug, 'startProgram' => $startProgram, 'CEFLevel' => $CEFLevel, 'score' => $score->score, 'correct' => $score->scoreCorrect, 'skipped' => $score->scoreMissed, 'wrong' => $score->scoreWrong));
+		return json_encode(array('debug' => $debug, 'startProgram' => $startProgram, 'ClarityLevel' => $ClarityLevel, 'score' => $score->score, 'correct' => $score->scoreCorrect, 'skipped' => $score->scoreMissed, 'wrong' => $score->scoreWrong));
 		
 	}
 	
