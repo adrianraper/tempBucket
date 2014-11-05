@@ -5,20 +5,23 @@
 				xmlns:layout="org.alivepdf.layout.*"
 				xmlns:ui="com.clarityenglish.clearpronunciation.view.home.ui.*"
 				autoDrawBackground="false"
-				width="310"
+				width.showPieChart="310"
+				width.hidePieChart="265"
 				height.normal="55"
-				height.selected="200">
+				height.selected="200"
+				creationComplete="onCreationComplete(event)">
 	<fx:Script>
 		<![CDATA[
 			import org.davekeen.util.StringUtils;
 			import mx.collections.ArrayCollection;
 			import mx.collections.XMLListCollection;
 			import com.clarityenglish.bento.events.ExerciseEvent;
+			import mx.events.FlexEvent;
+			import spark.events.IndexChangeEvent;
 			
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
 			
-			[Bindable]
-			public var copyProvider:CopyProvider;
+			protected var _copyProvider:CopyProvider;
 			
 			[Bindable]
 			public var showPieChart:Boolean;
@@ -32,8 +35,17 @@
 			[Bindable]
 			private var exerciseXMLListCollection:XMLListCollection;
 			
-			override public function set data(value:Object):void {
-				super.data = value;
+			private function onCreationComplete(e:Event):void {
+				addEventListener(FlexEvent.DATA_CHANGE, function():void { invalidateProperties(); });
+			}
+			
+			public function set copyProvider(value:CopyProvider):void {
+				_copyProvider = value;
+				invalidateProperties();
+			}
+			
+			override protected function commitProperties():void {
+				super.commitProperties();
 				
 				if (data) {
 					// Provide the pie chart data if pie charts are on (and if there is actually some coverage)
@@ -41,28 +53,28 @@
 						pieChartArrayCollection = (data.@coverage != 0) ? new ArrayCollection([{ coverage: 100 - data.@coverage }, { coverage: data.@coverage }]) : null;
 					
 					// Set the labels on the left symbol
-					unitItemLeftButton.label = copyProvider.getCopyForId(data.@leftIcon);
-					unitItemLeftLabel.text = (data.@caption).split(" ")[0];
+					if (unitItemLeftButton && _copyProvider) unitItemLeftButton.label = _copyProvider.getCopyForId(data.@leftIcon);
+					if (unitItemLeftLabel) unitItemLeftLabel.text = (data.@caption).split(" ")[0];
 					
 					// Set the labels on the right symbol.  Hide this altogether if @rightIcon isn't defined.
-					unitItemRightButton.visible = unitItemRightLabel.visible = data.attribute("rightIcon").length() > 0;
-					unitItemRightButton.label = copyProvider.getCopyForId(data.@rightIcon);
-					unitItemRightLabel.text = (data.@caption).split(" ")[1];
-					
-					exerciseXMLListCollection = new XMLListCollection();
-					for each (var exerciseXML:XML in data.exercise) {
-						if (exerciseXML.@["class"] != "makeSounds")
-							exerciseXMLListCollection.addItem(exerciseXML);
+					if (unitItemRightButton && unitItemRightLabel && _copyProvider) {
+						unitItemRightButton.visible = unitItemRightLabel.visible = data.attribute("rightIcon").length() > 0;
+						unitItemRightButton.label = _copyProvider.getCopyForId(data.@rightIcon);
+						unitItemRightLabel.text = (data.@caption).split(" ")[1];
 					}
+					
+					exerciseXMLListCollection = new XMLListCollection(data.exercise);
 				} else {
-					unitItemLeftButton.label = unitItemLeftLabel.text = unitItemRightButton.label = unitItemRightLabel.text = "";
+					if (unitItemLeftButton && unitItemLeftLabel) unitItemLeftButton.label = unitItemLeftLabel.text = "";
+					if (unitItemRightButton && unitItemRightLabel) unitItemRightButton.label = unitItemRightLabel.text = "";
 					pieChartArrayCollection = null;
 					exerciseXMLListCollection = null;
 				}
 			}
 			
 			protected function onExerciseListClick(event:MouseEvent):void {
-				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, null, exerciseList.selectedItem));
+				//dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, null, exerciseList.selectedItem));
+				exerciseList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE, true));
 			}
 			
 			/**
@@ -93,7 +105,7 @@
 		</mx:series>
 	</mx:PieChart>
 	
-	<s:Group width="100%" left.showPieChart="40">
+	<s:Group width="100%" left.hidePieChart="0" left.showPieChart="40">
 		<!-- The background rectangle (only visible when the renderer is expanded) -->
 		<s:Rect height="200" width="100%" radiusX="10" radiusY="10" includeIn="selected">
 			<s:fill>
@@ -157,11 +169,11 @@
 		<s:Label id="unitItemIndexLabel" text="{StringUtils.padLeft((itemIndex + 1).toString(), '0', 2)}" fontFamily="Helvetica" fontSize="20" color="#333333" left="15" top="15" visible="{showItemIndex}" />
 		
 		<!-- The left item -->
-		<s:Button id="unitItemLeftButton" scaleX="0.9" scaleY="0.9" left="50"  top="8" />
+		<s:Button id="unitItemLeftButton" color="#4e4e4e" scaleX="0.9" scaleY="0.9" left="50"  top="8" />
 		<s:Label id="unitItemLeftLabel" fontSize="16" left="90" top="16" />
 		
 		<!-- The right item -->
-		<s:Button id="unitItemRightButton" scaleX="0.9" scaleY="0.9" left="160" top="8" />
+		<s:Button id="unitItemRightButton" color="#4e4e4e" scaleX="0.9" scaleY="0.9" left="160" top="8" />
 		<s:Label id="unitItemRightLabel" fontSize="16" left="200" top="16" />
 	</s:Group>
 	

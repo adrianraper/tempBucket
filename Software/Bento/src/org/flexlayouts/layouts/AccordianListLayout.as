@@ -52,9 +52,9 @@ package org.flexlayouts.layouts {
 			var layoutTarget:GroupBase = target;
 			var count:int = layoutTarget.numElements;
 			
-			// Figure out how many elements there are in each row
-			var maxElementsPerRow:uint = Math.floor((containerHeight - _expandedElementHeight) / _collapsedElementHeight) + 1;
-			var elementsPerRow:uint = Math.min(Math.ceil(count / _columnCount), maxElementsPerRow);
+			// Figure out how many elements there are in each column
+			var maxElementsPerColumn:uint = Math.floor((containerHeight - _expandedElementHeight) / _collapsedElementHeight) + 1;
+			var elementsPerColumn:uint = Math.min(Math.ceil(count / _columnCount), maxElementsPerColumn);
 			
 			for (var i:int = 0; i < count; i++) {
 				var element:ILayoutElement = (useVirtualLayout ? layoutTarget.getVirtualElementAt(i) : layoutTarget.getElementAt(i));
@@ -65,7 +65,7 @@ package org.flexlayouts.layouts {
 				var elementHeight:Number = element.getLayoutBoundsHeight();
 				
 				// Move along a column if necessary
-				if (i > 0 && i % elementsPerRow == 0) {
+				if (i > 0 && i % elementsPerColumn == 0) {
 					y = 0;
 					x += ((_columnWidth > 0) ? _columnWidth : elementWidth) + _horizontalGap;
 				}

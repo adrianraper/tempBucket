@@ -38,7 +38,6 @@ package com.clarityenglish.clearpronunciation.view.progress
 		[Bindable]
 		public var unitCaptionListDataProvider:XMLListCollection;
 		
-		
 		[SkinPart]
 		public var scoreGridC1:GridColumn;
 		
@@ -118,7 +117,7 @@ package com.clarityenglish.clearpronunciation.view.progress
 				}
 				
 				if (courseClass) {
-					var buildXML:XMLList = menu.course.(@["class"] == courseClass).unit.exercise.(@['class'] == "exercise").exercise.score;
+					var buildXML:XMLList = menu.course.(@["class"] == courseClass).unit.exercise.score;
 					
 					// Then add the caption from the exercise to the score to make it easy to display in the grid
 					// If the grid can do some sort of subheading, then I could do something similar with the unit name too

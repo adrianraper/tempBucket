@@ -173,15 +173,15 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 						newImage.top = parseInt(item.@top);
 						// TODO DK worries that hasOwnProperty can cause crashes when packaging for iOS.
 						// This codes actually works fine without the checks it just seemed better to test first...
-						if (item.hasOwnProperty("@width") || item.hasOwnProperty("@height")) {
+						if (item.attribute("width").length() > 0 || item.attribute("height").length() > 0) {
 							newImage.fillMode = mx.graphics.BitmapFillMode.SCALE;
 							newImage.scaleMode = mx.graphics.BitmapScaleMode.STRETCH;
 							newImage.smooth = true;
 							newImage.smoothingQuality = BitmapSmoothingQuality.HIGH;
 						}
-						if (item.hasOwnProperty("@width")) 
+						if (item.attribute("width").length() > 0) 
 							newImage.width = parseInt(item.@width);
-						if (item.hasOwnProperty("@height"))
+						if (item.attribute("height").length() > 0)
 							newImage.height = parseInt(item.@height);
 						backgroundGraphics.addElement(newImage);
 					}
@@ -207,7 +207,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		 * @param event
 		 */
 		protected function onSectionClick(event:MouseEvent):void {
-			
 			// gh#533 If you are in a gap, stop the click from progressing with this event
 			if (event.target.hasOwnProperty("editable") && event.target.editable)
 				return;

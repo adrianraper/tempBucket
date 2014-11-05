@@ -1,7 +1,5 @@
 package com.clarityenglish.clearpronunciation.view.exercise {
-	import com.clarityenglish.bento.events.ExerciseEvent;
 	import com.clarityenglish.bento.view.exercise.ExerciseView;
-	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
@@ -49,7 +47,7 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 			switch (instance) {
 				case unitList:
 					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
-					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: true };
+					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: false };
 					instance.itemRenderer = unitListItemRenderer;
 					//unitList.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
 					break;

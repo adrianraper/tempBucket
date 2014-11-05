@@ -193,8 +193,8 @@ package com.clarityenglish.controls.video {
 					channelList.addEventListener(IndexChangeEvent.CHANGE, onChannelSelected);
 					
 					// For the moment just hide the channel selector.  Its all working if we want to turn it back on in the future though.
-					  channelList.visible = false;
-
+					channelList.visible = false;
+					
 					//gt#57
 					channelList.labelField = "caption";
 					break;
@@ -218,7 +218,7 @@ package com.clarityenglish.controls.video {
 			_videoChanged = true;
 			
 			// Show the script button if there is a @scriptHref attribute
-			scriptButton.visible = (videoList.selectedItem && videoList.selectedItem.hasOwnProperty("@scriptHref"));
+			scriptButton.visible = (videoList.selectedItem && videoList.selectedItem.attribute("scriptHref").length() > 0);
 			
 			invalidateProperties();
 		}
@@ -262,7 +262,7 @@ package com.clarityenglish.controls.video {
 		}
 		
 		public function getVideoScore():ExerciseMark {
-			if (videoList.selectedItem && currentVideoStartTime && hrefToUidFunction) { // #138 // for some video (candidates video), no hrefToUidFunction can apply
+			if (videoList.selectedItem && currentVideoStartTime && hrefToUidFunction != null) { // #138 // for some video (candidates video), no hrefToUidFunction can apply
 				var videoHref:Href = href.createRelativeHref(null, videoList.selectedItem.@href);
 				
 				var exerciseMark:ExerciseMark = new ExerciseMark();
@@ -286,7 +286,7 @@ package com.clarityenglish.controls.video {
 		}
 		
 		protected function onScriptButtonClicked(event:MouseEvent):void {
-			if (videoList.selectedItem && videoList.selectedItem.hasOwnProperty("@scriptHref"))
+			if (videoList.selectedItem && videoList.selectedItem.attribute("scriptHref").length() > 0)
 				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, videoList.selectedItem.@scriptHref, videoList.selectedItem, "scriptHref"));
 		}
 		

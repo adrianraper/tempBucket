@@ -4,16 +4,15 @@ package com.clarityenglish.clearpronunciation.view.home {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
-	import com.clarityenglish.rotterdam.model.CourseProxy;
 	
 	import mx.collections.ArrayCollection;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	
 	public class HomeMediator extends BentoMediator {
+		
 		public function HomeMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
@@ -31,13 +30,15 @@ package com.clarityenglish.clearpronunciation.view.home {
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			if (bentoProxy.menuXHTML) view.href = bentoProxy.menuXHTML.href; 
 			
-			//var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			//if (courseProxy.currentUnit) view.unit = courseProxy.currentUnit;
-			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
 			
 			view.mediaFolder = new Href(Href.XHTML, "media/", configProxy.getConfig().paths.content).url;
+			
+			// Try and hack a bit of direct start for testing...
+			/*setTimeout(function():void {
+				sendNotification(BBNotifications.SELECTED_NODE_CHANGE, bentoProxy.menuXHTML..exercise.(@id == "1250740678061")[0]);
+			}, 500);*/
 		}
 		
 		override public function onRemove():void {
@@ -52,6 +53,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 				BBNotifications.MENU_XHTML_LOAD,
 				BBNotifications.MENU_XHTML_LOADED,
 				BBNotifications.MENU_XHTML_NOT_LOADED,
+				BBNotifications.SELECTED_NODE_CHANGED,
 			]);
 		}
 		
@@ -70,6 +72,9 @@ package com.clarityenglish.clearpronunciation.view.home {
 				case BBNotifications.MENU_XHTML_NOT_LOADED:
 					view.enabled = true; // gh#280
 					break;
+				case BBNotifications.SELECTED_NODE_CHANGED:
+					view.selectedNode = note.getBody() as XML;
+					break;
 			}
 		}
 		
@@ -77,12 +82,5 @@ package com.clarityenglish.clearpronunciation.view.home {
 			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise, attribute);
 		}
 		
-		/*protected function onExerciseShow(item:XML):void {
-			if (item.hasOwnProperty("@class") && item.(@["class"] == "practiseSounds")) {
-				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, { unit: item.parent(), exercise: item });
-			} else {
-				facade.sendNotification(ClearPronunciationNotifications.COMPOSITEUNIT_START, { unit: item.parent().parent(), exercise: item });
-			}
-		}*/
 	}
 }

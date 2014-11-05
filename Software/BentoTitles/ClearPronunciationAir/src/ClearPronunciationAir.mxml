@@ -16,7 +16,6 @@
 			import com.clarityenglish.common.CommonNotifications;
 			import com.clarityenglish.common.vo.config.BentoError;
 			import com.clarityenglish.components.SpinnerDropDownList;
-			import com.clarityenglish.clearpronunciation.ClearPronunciationApplicationFacade;
 			import com.clarityenglish.textLayout.conversion.XHTMLImporter;
 			import com.clarityenglish.textLayout.elements.SelectElement;
 			import com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator;

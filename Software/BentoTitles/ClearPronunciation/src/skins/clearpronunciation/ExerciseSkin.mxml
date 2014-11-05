@@ -13,6 +13,7 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.collections.XMLListCollection;
 			protected function onAddedToStage(event:Event):void {
 				hostComponent.actionBarVisible = false;
 			}
@@ -91,34 +92,31 @@
 	
 	<!-- Top row -->
 	<s:HGroup left="0" right="0">
-		
 		<course1:courseLogo />	
 		
 		<s:Spacer width="100%" />
 		
-		<s:VGroup gap="-10" width="350" height="61">
+		<s:Group width="350" height="61">
 			<s:Group>
 				<course1:dropDownListBg />
-				<ui:UnitListItemRenderer data="{hostComponent.selectedExerciseNode.parent()}" showPieChart="false" showItemIndex="false" horizontalCenter="0" verticalCenter="0" scaleX="1.3" scaleY="1.3" />
+				<ui:UnitListItemRenderer data="{hostComponent.selectedExerciseNode.parent()}" copyProvider="{hostComponent.copyProvider}" showPieChart="false" showItemIndex="false" color="#FFFFFF" horizontalCenter="2" verticalCenter="2" scaleX="1.2" scaleY="1.2" />
 			</s:Group>
-			<!--<vo:WindowShade id="windowShade">
-				<s:Rect height="411" horizontalCenter="0" bottomLeftRadiusX="10" bottomLeftRadiusY="10" bottomRightRadiusX="10" bottomRightRadiusY="10">
-					<s:fill>
-						<s:SolidColor color="#497A7A" />
-					</s:fill>
-				</s:Rect>
-				<s:Rect height="393" top="8" horizontalCenter="0" bottomLeftRadiusX="7" bottomLeftRadiusY="7" bottomRightRadiusX="7" bottomRightRadiusY="7">
+			<vo:WindowShade id="windowShade" x="40" y="61" width="270" height="420">
+				<s:Rect width="262" height="420" top="0" bottom="0" bottomLeftRadiusX="10" bottomLeftRadiusY="10" bottomRightRadiusX="10" bottomRightRadiusY="10" horizontalCenter="0">
+					<s:stroke>
+						<s:SolidColorStroke color="#497A7A" weight="8" />
+					</s:stroke>
 					<s:fill>
 						<s:SolidColor color="#FFFFFF" />
 					</s:fill>
 				</s:Rect>
-				<s:List id="unitList" width="250" height="387" top="18" horizontalCenter="0" borderVisible="false" contentBackgroundColor="#FFFFFF" verticalScrollPolicy="on">
+				<s:List id="unitList" dataProvider="{new XMLListCollection(hostComponent.selectedExerciseNode.parent().parent().unit)}" width="250" bottom="10" top="12" horizontalCenter="0" verticalScrollPolicy="on" borderVisible="false" contentBackgroundAlpha="0">
 					<s:layout>
-						<flexlayouts:AccordianListLayout columnWidth="310" collapsedElementHeight="55" expandedElementHeight="200" verticalGap="10" />
+						<s:VerticalLayout gap="10" />
 					</s:layout>
 				</s:List>
-			</vo:WindowShade>-->
-		</s:VGroup>
+			</vo:WindowShade>
+		</s:Group>
 		
 		<s:Spacer width="100%" />
 		
@@ -128,7 +126,6 @@
 			<s:Button id="phonemicChartButton" buttonMode="true" useHandCursor="true" />
 			<s:Button id="youWillButton" buttonMode="true" useHandCursor="true" />
 		</s:HGroup>
-		
 	</s:HGroup>
 	
 	<s:Button id="logoutButton" top="9" right="10" scaleX="0.6" scaleY="0.6" buttonMode="true" useHandCursor="true" />

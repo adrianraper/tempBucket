@@ -26,6 +26,9 @@ package com.clarityenglish.controls.video {
 		
 		protected var videoPlayer:IVideoPlayer;
 		
+		private var _source:Object;
+		private var _sourceChanged:Boolean;
+		
 		protected static var providers:Array = [
 			YouTubeProvider,
 			VimeoProvider,
@@ -86,40 +89,46 @@ package com.clarityenglish.controls.video {
 				addElement(videoPlayer as IVisualElement);
 			}
 		}
+		
+		protected override function commitProperties():void {
+			if (_sourceChanged && videoPlayer) {
+				// Go through the registered providers, selecting the first one that can handle this source
+				var provider:IVideoProvider;
+				for each (var providerClass:Class in providers) {
+					// gh#875
+					if (new providerClass(videoPlayer).isRightProvider(_source)) {
+						// TODO: THIS SHOULD ABSOLUTELY *NOT* BE HERE AS IT IS C-BUILDER SPECIFIC AND THIS IS SUPPOSED TO BE A UNIVERSAL VIDEO PLAYER!
+						// for youku video, the span button bar in widget menu is hided.
+						if (providerClass == YouKuProvider) {
+							dispatchEvent(new VideoSpanButtonBarEvent(VideoSpanButtonBarEvent.SPANBUTTONBAR_HIDE, true, true));
+						} else {
+							dispatchEvent(new VideoSpanButtonBarEvent(VideoSpanButtonBarEvent.SPANBUTTONBAR_HIDE, true, false));
+						}
+						provider = new providerClass(videoPlayer);
+						break;
+					}
+					
+				}
+				
+				if (!provider) {
+					log.error("Unable to find a provider supporting source '" + _source + "'");
+					return;
+				} else {
+					(videoPlayer as IVideoProvidable).provider = provider;
+					videoPlayer.source = provider.toSource(_source);
+				}
+				
+				_sourceChanged = false;
+			}
+		}
 
 		/**
 		 * Expects source like vimeo:12345678, which comes from saved src value in exercise node
-		 * 
 		 */
 		public function set source(value:Object):void {
-			// Go through the registered providers, selecting the first one that can handle this source
-			var provider:IVideoProvider;
-			for each (var providerClass:Class in providers) {
-				// gh#875
-				if (new providerClass(videoPlayer).isRightProvider(value)) {
-					// for youku video, the span button bar in widget menu is hided.
-					if (providerClass == YouKuProvider) {
-						dispatchEvent(new VideoSpanButtonBarEvent(VideoSpanButtonBarEvent.SPANBUTTONBAR_HIDE, true, true));
-					} else {
-						dispatchEvent(new VideoSpanButtonBarEvent(VideoSpanButtonBarEvent.SPANBUTTONBAR_HIDE, true, false));
-					}
-					provider = new providerClass(videoPlayer);
-					break;
-				}
-				
-			}
-			
-			if (!provider) {
-				log.error("Unable to find a provider supporting source '" + value + "'");
-				return;
-			} else {
-				// Set the provider
-				(videoPlayer as IVideoProvidable).provider = provider;
-				
-				// Set the source
-				// gh#875
-				videoPlayer.source = provider.toSource(value);
-			}
+			_source = value;
+			_sourceChanged = true;
+			invalidateProperties();
 		}
 		
 		public function get source():Object {

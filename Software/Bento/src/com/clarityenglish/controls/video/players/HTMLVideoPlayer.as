@@ -145,17 +145,19 @@ package com.clarityenglish.controls.video.players {
 				// gh#732
 				if (parentDocument.owner && parentDocument.owner.owner) {
 					var parentDocumentOwner:Object = parentDocument.owner.owner;
-					while(!(parentDocumentOwner is List)) {
+					while(!(parentDocumentOwner is List) && parentDocumentOwner.hasOwnProperty("owner")) {
 						parentDocumentOwner = parentDocumentOwner.owner;
 					}
-					var list:List = parentDocumentOwner as List;	
-					var listRect:Rectangle = list.getVisibleRect(stage);
-					
-					// #732 - this is necessary to get this to work properly on a Retina iPad
-					listRect.width *= dpiScaleFactor;
-					listRect.height *= dpiScaleFactor;
-					
-					rectangle = rectangle.intersection(listRect);
+					var list:List = parentDocumentOwner as List;
+					if (list) {
+						var listRect:Rectangle = list.getVisibleRect(stage);
+						
+						// #732 - this is necessary to get this to work properly on a Retina iPad
+						listRect.width *= dpiScaleFactor;
+						listRect.height *= dpiScaleFactor;
+						
+						rectangle = rectangle.intersection(listRect);
+					}
 				}
 				
 				if (!stageWebView.viewPort || !rectangle.equals(stageWebView.viewPort)) {

@@ -41,7 +41,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 					if (flowElement) {
 						var eventMirror:IEventDispatcher = flowElement.tlf_internal::getEventMirror();
 						if (eventMirror) {
-							eventMirror.addEventListener(FlowElementMouseEvent.CLICK, Closure.create(this, onClick, popupNode.@source, popupNode.@width, popupNode.@height, popupNode.hasOwnProperty("@title") ? popupNode.@title : " "));
+							eventMirror.addEventListener(FlowElementMouseEvent.CLICK, Closure.create(this, onClick, popupNode.@source, popupNode.@width, popupNode.@height, popupNode.attribute("title").length() > 0 ? popupNode.@title : " "));
 						} else {
 							log.error("Attempt to bind a click handler to non-leaf element {0}", flowElement);
 						}

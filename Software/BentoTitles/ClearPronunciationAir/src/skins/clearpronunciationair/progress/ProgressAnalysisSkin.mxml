@@ -92,7 +92,7 @@
 														unitItemRightLabel.visible = false;
 													}
 													// gh#1056 only count the exercise duration
-													exerciseDuration = data.exercise.(@["class"] == "exercise").@duration;
+													exerciseDuration = data.exercise.@duration;
 												}			
 											}
 										]]>

@@ -2,9 +2,11 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
     	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
-		alpha.disabled="0.5" xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" 
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" 
 		xmlns:exerciseNumber="skins.tensebuster.assets.exerciseNumber.*" 
-		xmlns:numberIcon="skins.tensebuster.assets.progress.coverage.numberIcon.*" creationComplete="onCreationComplete(event)">
+		xmlns:numberIcon="skins.tensebuster.assets.progress.coverage.numberIcon.*"
+		alpha.disabled="0.5" 
+		creationComplete="onCreationComplete(event)">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.progress.ProgressCoverageView")]
@@ -12,11 +14,9 @@
 	
 	<fx:Script>
 		<![CDATA[			
-			import mx.collections.XMLListCollection;
 			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 			
-			import org.davekeen.util.StringUtils;
 			private function getItemRenderer(item:Object):ClassFactory {
 				return item.@caption;
 			}
@@ -111,7 +111,7 @@
 											}
 											
 											unitItemLeftButton.label = outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@leftIcon);
-											if (data.hasOwnProperty("@rightIcon")) {
+											if (data.attribute("rightIcon").length() > 0) {
 												unitItemRightButton.visible = true;
 												unitItemRightLabel.visible = true;
 												unitItemRightButton.label = outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@rightIcon);
@@ -120,13 +120,7 @@
 												unitItemRightLabel.visible = false;
 											}
 											
-											// gh#1058
-											var circleXMLListCollection:XMLListCollection = new XMLListCollection();
-											circleXMLListCollection.addItem(data.exercise.(@['class'] == "practiseSounds"));
-											for each (var exerciseXML:XML in data.exercise.(@["class"] == "exercise").exercise) {
-												circleXMLListCollection.addItem(exerciseXML);
-											}
-											coverageCirclesDataGroup.dataProvider = circleXMLListCollection;
+											coverageCirclesDataGroup.dataProvider = new XMLListCollection(data.exercise);
 										}			
 									}
 									

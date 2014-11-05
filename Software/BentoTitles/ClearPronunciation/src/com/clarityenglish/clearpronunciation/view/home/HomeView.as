@@ -6,12 +6,14 @@ package com.clarityenglish.clearpronunciation.view.home {
 	import flash.events.Event;
 	
 	import mx.collections.ArrayCollection;
+	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	import mx.core.ClassFactory;
 	
 	import spark.components.List;
 	import spark.events.IndexChangeEvent;
 	
+	import org.davekeen.util.StateUtil;
 	import org.osflash.signals.Signal;
 	
 	import skins.clearpronunciation.home.ui.UnitListItemRenderer;
@@ -24,22 +26,43 @@ package com.clarityenglish.clearpronunciation.view.home {
 		[SkinPart]
 		public var unitList:List;
 		
+		[Bindable]
+		public var courses:ListCollectionView;
+		
 		public var channelCollection:ArrayCollection;
 		
 		public var mediaFolder:String;
 		
 		public var exerciseSelect:Signal = new Signal(XML);
 		
+		public function set selectedNode(value:XML):void {
+			switch (value.localName()) {
+				/*case "menu":
+				case "course":
+				case "unit":
+					currentState = "home";
+					break;
+				case "exercise":
+					currentState = "exercise";
+					break;*/
+				case "course":
+					currentState = value.@["class"];
+					unitList.dataProvider = new XMLListCollection(value.unit);
+					break;
+			}
+		}
+		
 		public function HomeView():void {
 			super();
 			actionBarVisible = false;
+			StateUtil.addStates(this, [ "introduction", "consonants", "vowels", "diphthongs" ]);
 		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
 			// Populate the course list
-			courseList.dataProvider = new XMLListCollection(xhtml..menu.(@id == productCode).course);
+			courses = new XMLListCollection(xhtml..menu.(@id == productCode).course);
 		}
 		
 		protected override function commitProperties():void {
@@ -51,23 +74,25 @@ package com.clarityenglish.clearpronunciation.view.home {
 			
 			switch (instance) {
 				case courseList:
-					courseList.addEventListener(IndexChangeEvent.CHANGE, onCourseListIndexChange);
+					courseList.addEventListener(IndexChangeEvent.CHANGE, onNodeSelected);
 					break;
 				case unitList:
 					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
 					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: true };
 					instance.itemRenderer = unitListItemRenderer;
-					unitList.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
+					
+					// Note that this listener catches both unit and exercise selection (same event, different targets)
+					unitList.addEventListener(IndexChangeEvent.CHANGE, onNodeSelected);
 					break;
 			}
 		}
 		
-		protected function onCourseListIndexChange(event:Event):void {
-			unitList.dataProvider = new XMLListCollection(courseList.selectedItem.unit);
+		protected function onNodeSelected(event:Event):void {
+			exerciseSelect.dispatch(event.target.selectedItem);
 		}
 		
-		protected function onExerciseSelected(event:ExerciseEvent):void {
-			exerciseSelect.dispatch(event.node);
+		protected override function getCurrentSkinState():String {
+			return currentState;
 		}
 		
 		/*[SkinPart]

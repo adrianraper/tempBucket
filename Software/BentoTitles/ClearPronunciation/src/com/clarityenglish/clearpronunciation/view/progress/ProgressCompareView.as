@@ -1,5 +1,4 @@
-package com.clarityenglish.clearpronunciation.view.progress
-{
+package com.clarityenglish.clearpronunciation.view.progress {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.progress.ui.ProgressCourseButtonBar;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
@@ -9,28 +8,18 @@ package com.clarityenglish.clearpronunciation.view.progress
 	
 	import mx.charts.BarChart;
 	import mx.charts.CategoryAxis;
-	import mx.charts.Legend;
-	import mx.charts.LegendItem;
 	import mx.charts.LinearAxis;
 	import mx.charts.series.BarSeries;
 	import mx.collections.XMLListCollection;
 	import mx.containers.Grid;
-	import mx.containers.GridItem;
-	import mx.containers.GridRow;
-	import mx.containers.TileDirection;
 	import mx.events.FlexEvent;
-	import mx.graphics.GradientEntry;
-	import mx.graphics.LinearGradient;
-	import mx.graphics.SolidColor;
-	
-	import org.davekeen.util.StateUtil;
-	import org.davekeen.util.StringUtils;
-	import org.osflash.signals.Signal;
 	
 	import spark.components.BusyIndicator;
 	import spark.components.Button;
 	import spark.components.Label;
 	import spark.events.IndexChangeEvent;
+	
+	import org.osflash.signals.Signal;
 	
 	public class ProgressCompareView extends BentoView {
 		
@@ -164,7 +153,7 @@ package com.clarityenglish.clearpronunciation.view.progress
 				
 				for each (var unitNode:XML in menu.course.(@["class"] == courseClass).unit) {
 					var everyoneAverageScore:Number = (everyOneScoreObject[unitNode.@id]) ? everyOneScoreObject[unitNode.@id] : 0;
-					xml.appendChild(<unit caption={unitNode.@caption} myAverageScore={unitNode.exercise.(@["class"] == "exercise").@averageScore} everyoneAverageScore={everyoneAverageScore} />);
+					xml.appendChild(<unit caption={unitNode.@caption} myAverageScore={unitNode.exercise.@averageScore} everyoneAverageScore={everyoneAverageScore} />);
 					if (unitNode.@averageScore > 0 || everyoneAverageScore > 0) {
 						isNoData = false;
 					}

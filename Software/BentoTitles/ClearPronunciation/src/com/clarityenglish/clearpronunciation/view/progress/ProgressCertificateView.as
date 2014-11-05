@@ -161,9 +161,9 @@ package com.clarityenglish.clearpronunciation.view.progress
 				for (var i:Number = 0; i < totalUnit; i++) {
 					var unitXML:XML = menu.course.(@["class"] == courseClass).unit[i];
 					// gh#1062
-					var totalExercisePerUnit:Number = unitXML.exercise.(@["class"] == "exercise").exercise.length();
+					var totalExercisePerUnit:Number = unitXML.exercise.length();
 					for (var j:Number = 0; j < totalExercisePerUnit; j++) {
-						if (unitXML.exercise.(@["class"] == "exercise").exercise[j].hasOwnProperty("@done")) {
+						if (unitXML.exercise[j].attribute("done")) {
 							exerciseAmount++;
 						}
 					}

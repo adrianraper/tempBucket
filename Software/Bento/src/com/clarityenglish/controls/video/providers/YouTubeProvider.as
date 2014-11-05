@@ -1,19 +1,13 @@
 package com.clarityenglish.controls.video.providers {
-	import com.clarityenglish.common.model.CopyProxy;
-	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.controls.video.IVideoPlayer;
 	import com.clarityenglish.controls.video.IVideoProvider;
 	import com.clarityenglish.controls.video.events.VideoEvent;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.utils.setTimeout;
 	
 	import mx.controls.SWFLoader;
 	import mx.core.IVisualElementContainer;
-	import mx.core.UIComponent;
-	
-	import org.puremvc.as3.patterns.facade.Facade;
 	
 	public class YouTubeProvider implements IVideoProvider {
 		

@@ -177,8 +177,7 @@ package com.clarityenglish.clearpronunciation.view.progress {
 
 			if (_courseChanged && menu){
 				courseCaption = menu.course.(@["class"] == courseClass).@caption;
-				// gh#1056
-				stackedChart.dataProvider = menu.course.(@["class"] == courseClass).unit.exercise.(@["class"] == "exercise");
+				stackedChart.dataProvider = menu.course.(@["class"] == courseClass).unit.exercise;
 				stackedChart.colours = getStyle("circleWedgeColors");
 				
 				unitListCollection = new XMLListCollection(menu.course.(@["class"] == courseClass).unit);
@@ -190,7 +189,7 @@ package com.clarityenglish.clearpronunciation.view.progress {
 			
 			// gh#1056
 			var duration:Number = 0;
-			for each (var item:XML in menu.course.(@["class"] == courseClass).unit.exercise.(@["class"] == "exercise")) {
+			for each (var item:XML in menu.course.(@["class"] == courseClass).unit.exercise) {
 				var itemDuration:Number = new Number(item.@duration)
 				duration += Math.floor(itemDuration / 60);
 			}				
@@ -240,7 +239,7 @@ package com.clarityenglish.clearpronunciation.view.progress {
 		
 		protected function onStackedBarMouseOver(event:StackedBarMouseOverEvent):void {
 			totalTimeWedgeVGroup.visible = false;
-			var duration:Number = menu.course.(@["class"] == courseClass).unit.(@caption == event.caption).exercise.(@["class"] == "exercise").@duration;
+			var duration:Number = menu.course.(@["class"] == courseClass).unit.(@caption == event.caption).exercise.@duration;
 
 			analysisTimeLabel.text = String(Math.floor(duration / 60) );
 			
