@@ -5,6 +5,8 @@ package com.clarityenglish.clearpronunciation.view.title {
 	import com.clarityenglish.clearpronunciation.view.progress.ProgressView;
 	import com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator;
 	
+	import mx.events.StateChangeEvent;
+	
 	import spark.components.Button;
 	import spark.components.Label;
 	import spark.components.ViewNavigator;

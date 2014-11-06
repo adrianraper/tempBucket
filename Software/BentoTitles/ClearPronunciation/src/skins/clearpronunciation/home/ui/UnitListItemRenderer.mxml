@@ -73,8 +73,8 @@
 			}
 			
 			protected function onExerciseListClick(event:MouseEvent):void {
-				//dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, null, exerciseList.selectedItem));
-				exerciseList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE, true));
+				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, null, exerciseList.selectedItem));
+				//exerciseList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE, true));
 			}
 			
 			/**

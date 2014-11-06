@@ -24,7 +24,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 		override public function onRegister():void {
 			super.onRegister();
 			
-			view.exerciseSelect.add(onExerciseSelected);
+			view.nodeSelect.add(onNodeSelected);
 			
 			// Load courses.xml serverside gh#84
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
@@ -44,7 +44,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 		override public function onRemove():void {
 			super.onRemove();
 			
-			view.exerciseSelect.remove(onExerciseSelected);
+			view.nodeSelect.remove(onNodeSelected);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -78,7 +78,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 			}
 		}
 		
-		protected function onExerciseSelected(exercise:XML, attribute:String = null):void {
+		protected function onNodeSelected(exercise:XML, attribute:String = null):void {
 			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise, attribute);
 		}
 		

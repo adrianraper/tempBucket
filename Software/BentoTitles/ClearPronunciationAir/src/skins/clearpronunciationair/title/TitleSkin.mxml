@@ -15,18 +15,9 @@
 		<![CDATA[
 			import mx.events.FlexEvent;
 			
-			//[Bindable]
-			//private var applicationWidth:Number;
-			
 			protected function onCreationComplete(event:FlexEvent):void {
-				/*applicationWidth = FlexGlobals.topLevelApplication.width;
-				titleButtonHGroup.gap = ((applicationWidth - 64) * 0.65 - 500) * 0.25;
-				titleButtonHGroup.left = (applicationWidth - 64) * 0.35 + 185 + titleButtonHGroup.gap;*/
-				
-				// Temporarily disable transition as a) the action bar is displaying during it and b) don't want to effect performance
-				myCoursesViewNavigator.transitionsEnabled = false;
+
 			}
-			
 		]]>
 	</fx:Script>
 	

@@ -33,7 +33,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 		
 		public var mediaFolder:String;
 		
-		public var exerciseSelect:Signal = new Signal(XML);
+		public var nodeSelect:Signal = new Signal(XML);
 		
 		public function set selectedNode(value:XML):void {
 			switch (value.localName()) {
@@ -74,21 +74,25 @@ package com.clarityenglish.clearpronunciation.view.home {
 			
 			switch (instance) {
 				case courseList:
-					courseList.addEventListener(IndexChangeEvent.CHANGE, onNodeSelected);
+					// Catch course changes
+					courseList.addEventListener(IndexChangeEvent.CHANGE, onNodeSelect);
 					break;
 				case unitList:
 					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
 					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: true };
 					instance.itemRenderer = unitListItemRenderer;
 					
-					// Note that this listener catches both unit and exercise selection (same event, different targets)
-					unitList.addEventListener(IndexChangeEvent.CHANGE, onNodeSelected);
+					// Catch unit changes
+					unitList.addEventListener(IndexChangeEvent.CHANGE, onNodeSelect);
+					
+					// Catch exercise changes (this one is a special case as the event doesn't come from the right target)
+					unitList.addEventListener(ExerciseEvent.EXERCISE_SELECTED, function(e:ExerciseEvent):void { nodeSelect.dispatch(e.node); });
 					break;
 			}
 		}
 		
-		protected function onNodeSelected(event:Event):void {
-			exerciseSelect.dispatch(event.target.selectedItem);
+		protected function onNodeSelect(e:Event):void {
+			nodeSelect.dispatch(e.target.selectedItem);
 		}
 		
 		protected override function getCurrentSkinState():String {
