@@ -1,5 +1,4 @@
-package com.clarityenglish.clearpronunciation.controller
-{
+package com.clarityenglish.clearpronunciation.controller {
 	import com.clarityenglish.bento.RecorderNotifications;
 	import com.clarityenglish.bento.controller.BentoStartupCommand;
 	import com.clarityenglish.bento.model.AudioProxy;
@@ -9,8 +8,6 @@ package com.clarityenglish.clearpronunciation.controller
 	import com.clarityenglish.bento.model.adaptor.WebRecorderAdaptor;
 	import com.clarityenglish.bento.view.progress.ProgressMediator;
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.bento.vo.content.transform.CourseAttributeCopyTransform;
-	import com.clarityenglish.bento.vo.content.transform.CourseEnabledTransform;
 	import com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform;
 	import com.clarityenglish.bento.vo.content.transform.HiddenContentTransform;
 	import com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform;
@@ -25,8 +22,8 @@ package com.clarityenglish.clearpronunciation.controller
 	import com.clarityenglish.bento.model.BentoProxy;
 	import org.puremvc.as3.patterns.facade.Facade;
 	
-	public class ClearPronunciationStartupCommand extends BentoStartupCommand
-	{
+	public class ClearPronunciationStartupCommand extends BentoStartupCommand {
+		
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
@@ -70,5 +67,6 @@ package com.clarityenglish.clearpronunciation.controller
 			
 			facade.registerMediator(new ClearPronunciationApplicationMediator(note.getBody()));
 		}
+		
 	}
 }

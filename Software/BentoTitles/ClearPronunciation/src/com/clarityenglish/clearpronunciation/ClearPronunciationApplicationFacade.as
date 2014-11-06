@@ -3,8 +3,6 @@ package com.clarityenglish.clearpronunciation {
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.bento.view.exercise.ExerciseMediator;
 	import com.clarityenglish.clearpronunciation.controller.ClearPronunciationStartupCommand;
-	import com.clarityenglish.clearpronunciation.controller.CompositeUnitStartCommand;
-	import com.clarityenglish.clearpronunciation.controller.HomeBackCommand;
 	import com.clarityenglish.clearpronunciation.controller.SettingsShowCommand;
 	import com.clarityenglish.clearpronunciation.controller.YouWillShowCommand;
 	import com.clarityenglish.clearpronunciation.view.course.ui.YouWillMediator;
@@ -54,8 +52,6 @@ package com.clarityenglish.clearpronunciation {
 			
 			registerCommand(BBNotifications.STARTUP, ClearPronunciationStartupCommand);
 			registerCommand(ClearPronunciationNotifications.SETTINGS_SHOW, SettingsShowCommand);
-			registerCommand(ClearPronunciationNotifications.HOME_BACK, HomeBackCommand);
-			registerCommand(ClearPronunciationNotifications.COMPOSITEUNIT_START, CompositeUnitStartCommand);
 			registerCommand(ClearPronunciationNotifications.YOUWILL_SHOW, YouWillShowCommand);
 		}
 	}
