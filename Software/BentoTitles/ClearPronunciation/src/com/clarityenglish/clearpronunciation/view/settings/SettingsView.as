@@ -45,7 +45,6 @@ package com.clarityenglish.clearpronunciation.view.settings {
 				videoSelector.channelCollection = channelCollection;
 				
 				// I don't really understand what this video is for or how it is chosen so comment it out for the moment
-				
 				/*
 				var videoXMLListCollection:XMLListCollection = new XMLListCollection();
 				videoXMLListCollection.addItem(course[1].unit[0].exercise[0].exercise[0].exercise[0]);

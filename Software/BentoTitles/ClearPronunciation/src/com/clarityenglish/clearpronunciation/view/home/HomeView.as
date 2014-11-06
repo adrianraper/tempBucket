@@ -1,9 +1,9 @@
 package com.clarityenglish.clearpronunciation.view.home {
 	import com.clarityenglish.bento.events.ExerciseEvent;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.controls.video.IVideoPlayer;
 	import com.clarityenglish.controls.video.VideoSelector;
 	import com.clarityenglish.textLayout.vo.XHTML;
+	import com.googlecode.bindagetools.Bind;
 	
 	import flash.events.Event;
 	
@@ -17,6 +17,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 	import spark.events.IndexChangeEvent;
 	
 	import org.davekeen.util.StateUtil;
+	import org.davekeen.util.XmlUtils;
 	import org.osflash.signals.Signal;
 	
 	import skins.clearpronunciation.home.ui.UnitListItemRenderer;
@@ -48,22 +49,18 @@ package com.clarityenglish.clearpronunciation.view.home {
 		
 		public var mediaFolder:String;
 		
+		private var _selectedNode:XML;
+		
 		public var nodeSelect:Signal = new Signal(XML);
 		
 		public function set selectedNode(value:XML):void {
-			switch (value.localName()) {
-				case "course":
-					// There is one state per course
-					currentState = value.@["class"];
-					unitList.dataProvider = new XMLListCollection(value.unit);
-					break;
-			}
+			_selectedNode = value;
 		}
 		
 		public function HomeView():void {
 			super();
 			actionBarVisible = false;
-			StateUtil.addStates(this, [ "introduction", "consonants", "vowels", "diphthongs" ]);
+			StateUtil.addStates(this, [ "normal", "introduction", "consonants", "vowels", "diphthongs" ], true);
 		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
@@ -76,18 +73,19 @@ package com.clarityenglish.clearpronunciation.view.home {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
+			// Configure the introduction (TODO: this only needs to happen once... should I do it elsewhere?)
 			var introductionCourse:XML = _xhtml..course.(@["class"] == "introduction")[0];
-			
-			// Configure the introduction
-			if (introductionVideoSelector) {
-				introductionVideoSelector.href = href;
-				introductionVideoSelector.channelCollection = channelCollection;
-				introductionVideoSelector.videoCollection = new XMLListCollection(new XMLList(<item href={introductionCourse.@videoHref} />));
-				introductionVideoSelector.placeholderSource = href.rootPath + "/" + introductionCourse.@videoPoster;
-			}
-			
-			if (introductionList) {
-				introductionList.dataProvider = new XMLListCollection(introductionCourse.unit.exercise);
+			if (introductionCourse) {
+				if (introductionVideoSelector) {
+					introductionVideoSelector.href = href;
+					introductionVideoSelector.channelCollection = channelCollection;
+					introductionVideoSelector.videoCollection = new XMLListCollection(new XMLList(<item href={introductionCourse.@videoHref} />));
+					introductionVideoSelector.placeholderSource = href.rootPath + "/" + introductionCourse.@videoPoster;
+				}
+				
+				if (introductionList) {
+					introductionList.dataProvider = new XMLListCollection(introductionCourse.unit.exercise);
+				}
 			}
 		}
 		
@@ -102,18 +100,31 @@ package com.clarityenglish.clearpronunciation.view.home {
 					homeInstructionLabel.text = copyProvider.getCopyForId("homeInstructionLabel");
 					break;
 				case courseList:
-					// Catch course changes
+					// Bind the course list to the state and to the unit list so that these always reflect the currently selected course
+					Bind.fromProperty(courseList, "selectedItem").toFunction(function(course:XML):void {
+						currentState = (course) ? course.@["class"] : "normal";
+						if (unitList) unitList.dataProvider = (course) ? new XMLListCollection(course.unit) : null;
+					});
+					
+					// Auto select the course if necessary
+					if (_selectedNode) courseList.selectedItem = XmlUtils.searchUpForNode(_selectedNode, "course");
+					
+					// Listen for course changes
 					courseList.addEventListener(IndexChangeEvent.CHANGE, onNodeSelect);
 					break;
 				case unitList:
+					// Set the item renderer
 					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
 					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: true };
 					instance.itemRenderer = unitListItemRenderer;
 					
-					// Catch unit changes
+					// Auto select the unit if necessary
+					if (_selectedNode) unitList.selectedItem = XmlUtils.searchUpForNode(_selectedNode, "unit");
+					
+					// Listen for unit changes
 					unitList.addEventListener(IndexChangeEvent.CHANGE, onNodeSelect);
 					
-					// Catch exercise changes (this one is a special case as the event doesn't come from the right target)
+					// Listen for exercise changes (this one is a special case as the event doesn't come from the expected target)
 					unitList.addEventListener(ExerciseEvent.EXERCISE_SELECTED, function(e:ExerciseEvent):void { nodeSelect.dispatch(e.node); });
 					break;
 				case introductionList:
