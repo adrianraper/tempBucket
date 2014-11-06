@@ -205,7 +205,7 @@ exercise|YouWillView {
 }
 
 exercise|ExerciseView {
-	top: -70; /* Something really weird is going on, but ExerciseSkin comes in 70px too low.  Use this hack till I find the source of it. */
+	top: -70; /* WebTabbedViewNavigatorSkin makes everything come in 70px too low.  Use this hack for now so that we don't need to change the whole layout. */
 	skinClass: ClassReference("skins.clearpronunciation.ExerciseSkin");
 }
 
