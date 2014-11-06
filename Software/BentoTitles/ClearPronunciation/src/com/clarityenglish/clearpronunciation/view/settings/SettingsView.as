@@ -26,6 +26,7 @@ package com.clarityenglish.clearpronunciation.view.settings {
 		public var saveCloseButton:Button;
 		
 		public var channelCollection:ArrayCollection;
+		
 		public var channelSaveClose:Signal = new Signal(Number);
 		
 		private var course:XMLList;
@@ -39,12 +40,19 @@ package com.clarityenglish.clearpronunciation.view.settings {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			videoSelector.href = href;
-			videoSelector.channelCollection = channelCollection;
-			var videoXMLListCollection:XMLListCollection = new XMLListCollection();
-			videoXMLListCollection.addItem(course[1].unit[0].exercise[0].exercise[0].exercise[0]);
-			videoSelector.videoCollection = videoXMLListCollection;
-			videoSelector.placeholderSource = href.rootPath + "/" + course[1].unit[0].exercise[0].exercise[0].@placeholder;
+			if (videoSelector) {
+				videoSelector.href = href;
+				videoSelector.channelCollection = channelCollection;
+				
+				// I don't really understand what this video is for or how it is chosen so comment it out for the moment
+				
+				/*
+				var videoXMLListCollection:XMLListCollection = new XMLListCollection();
+				videoXMLListCollection.addItem(course[1].unit[0].exercise[0].exercise[0].exercise[0]);
+				videoSelector.videoCollection = videoXMLListCollection;
+				videoSelector.placeholderSource = href.rootPath + "/" + course[1].unit[0].exercise[0].exercise[0].@placeholder;
+				*/
+			}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

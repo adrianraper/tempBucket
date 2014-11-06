@@ -9,7 +9,7 @@ package com.clarityenglish.clearpronunciation.view.settings {
 	import mx.collections.ArrayCollection;
 	
 	public class SettingsMediator extends BentoMediator {
-		public function SettingsMediator(mediatorName:String, viewComponent:BentoView){
+		public function SettingsMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
 		
@@ -28,6 +28,12 @@ package com.clarityenglish.clearpronunciation.view.settings {
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
+		}
+		
+		override public function onRemove():void {
+			super.onRemove();
+			
+			view.channelSaveClose.remove(onChannelSaveClose);
 		}
 		
 		protected function onChannelSaveClose(value:Number):void {

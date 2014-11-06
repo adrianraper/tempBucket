@@ -3,6 +3,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
 	import com.clarityenglish.common.CommonNotifications;
 	
 	import org.puremvc.as3.interfaces.INotification;
@@ -55,7 +56,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 		}
 		
 		protected function onSettingsOpen():void {
-			
+			sendNotification(ClearPronunciationNotifications.SETTINGS_SHOW);
 		}
 		
 		protected function onLogout():void {
@@ -66,12 +67,6 @@ package com.clarityenglish.clearpronunciation.view.title {
 			super.onRegister();
 			
 			view.dirtyWarningShow.add(onDirtyWarningShow);
-			view.settingsOpen.add(onSettingsOpen);
-			view.logout.add(onLogout);
-			view.progressTransform.add(onProgressTransform);
-			
-			// gh#299 - always start in course selector
-			view.currentState = "home";
 		}
 		
 		override public function onRemove():void {
@@ -82,30 +77,6 @@ package com.clarityenglish.clearpronunciation.view.title {
 			view.settingsOpen.remove(onSettingsOpen);
 		}
 		
-		override public function listNotificationInterests():Array {
-			return super.listNotificationInterests().concat([
-				BBNotifications.UNIT_STARTED,
-				RotterdamNotifications.SETTINGS_SHOW,
-				RotterdamNotifications.SCHEDULE_SHOW,
-			]);
-		}
-		
-		override public function handleNotification(note:INotification):void {
-			super.handleNotification(note);
-			
-			switch (note.getName()) {
-				case BBNotifications.UNIT_STARTED:
-					view.showCourseView();
-					break;
-				case RotterdamNotifications.SETTINGS_SHOW:
-					view.showSettingsView();
-					break;
-				case RotterdamNotifications.SCHEDULE_SHOW:
-					view.showScheduleView();
-					break;
-			}
-		}
-		
 		protected function onDirtyWarningShow(next:Function):void {
 			// gh#83 and gh#90
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
@@ -114,15 +85,6 @@ package com.clarityenglish.clearpronunciation.view.title {
 			} else {
 				next();
 			}
-		}
-		
-		protected function onSettingsOpen():void {
-			sendNotification(ClearPronunciationNotifications.SETTINGS_SHOW);
-		}
-		
-		// gh#217
-		private function onLogout():void {
-			sendNotification(CommonNotifications.LOGOUT);
 		}
 		
 		protected function onProgressTransform():void {
