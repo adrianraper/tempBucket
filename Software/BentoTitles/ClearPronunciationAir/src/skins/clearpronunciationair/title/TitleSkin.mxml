@@ -38,19 +38,27 @@
 	<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/home/homeBg.png')" width="100%" height="100%" maintainAspectRatio="false" scaleContent="true" includeIn="home" />
 	<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/home/homeLogo.png')" includeIn="home" />
 	<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/home/homeGirl.png')" bottom="0" includeIn="home" />
-	<home:homeFooter left="0" bottom="0" includeIn="home" />
+	<!--home:homeFooter left="0" bottom="0" includeIn="home" /-->
 	
 	<ui:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0">
 		<s:ViewNavigator id="myCoursesViewNavigator" firstView="com.clarityenglish.clearpronunciation.view.home.HomeView" left="0" right="0" height="100%" />
 		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.clearpronunciation.view.progress.ProgressView" left="0" right="0" height="100%" />
 	</ui:CancelableTabbedViewNavigator>
 	
-	<!--<s:HGroup id="titleButtonHGroup" top="5" left.course="{applicationWidth - 50}">
-		<s:Button id="settingsButton" useHandCursor="true" buttonMode="true" includeIn="home" />
-		<s:Button id="phonemicChartButton" useHandCursor="true" buttonMode="true" includeIn="home" />
-		<s:Button id="helpButton" useHandCursor="true" buttonMode="true" includeIn="home" />
-		<s:Button id="logoutButton" useHandCursor="true" buttonMode="true" includeIn="home" />
-	</s:HGroup>-->
+	<s:Group right="0" includeIn="home">
+		<s:HGroup gap="0">
+			<title:menuBarLT id="menuBarLT" left="0" top="-70" />
+			<title:menuBarMid id="menuBarMid" left="334" top="-70" />
+			<title:menuBarRT id="menuBarRT" left="398" top="-70" />
+		</s:HGroup>
+		<s:HGroup id="titleButtonHGroup" top="5" right="0" gap="30">
+			<s:Button id="progressButton" useHandCursor="true" buttonMode="true" />
+			<s:Button id="settingsButton" useHandCursor="true" buttonMode="true" />
+			<s:Button id="phonemicChartButton" useHandCursor="true" buttonMode="true" />
+			<s:Button id="helpButton" useHandCursor="true" buttonMode="true" />
+			<s:Button id="logoutButton" useHandCursor="true" buttonMode="true" />
+		</s:HGroup>
+	</s:Group>
 	
 	<s:Button id="backButton" top="12" right="10" useHandCursor="true" buttonMode="true" includeIn="progress" />
 </s:Skin>

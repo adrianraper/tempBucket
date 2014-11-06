@@ -127,11 +127,4 @@
 			<flexlayouts:AccordianListLayout columnWidth="305" collapsedElementHeight="55" expandedElementHeight="200" verticalGap="10" />
 		</s:layout>
 	</s:List>
-	
-	<!-- Home title bar -->
-	<!-- SHOULD THIS BE IN TITLESKIN SINCE THAT IS WHERE THE BUTTONS ARE? -->
-	<title:menuBarLT id="menuBarLT" left="0" top="-70" />
-	<title:menuBarMid id="menuBarMid" left="334" top="-70" />
-	<title:menuBarRT id="menuBarRT" left="398" top="-70" />
-	
 </s:Skin>

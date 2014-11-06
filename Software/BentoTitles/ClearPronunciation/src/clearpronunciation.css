@@ -159,6 +159,10 @@ title|TitleView s|TabbedViewNavigator {
 	skinClass: ClassReference("skins.clearpronunciation.title.ui.WebTabbedViewNavigatorSkin");
 }
 
+title|TitleView s|Button#progressButton {
+	skinClass: ClassReference("skins.clearpronunciation.title.ui.ProgressButtonSkin");
+}
+
 title|TitleView s|Button#settingsButton {
 	skinClass: ClassReference("skins.clearpronunciation.title.ui.SettingsButtonSkin");
 }

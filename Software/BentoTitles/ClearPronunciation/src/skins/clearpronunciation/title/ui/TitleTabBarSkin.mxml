@@ -63,7 +63,7 @@
             @see spark.skins.spark.ButtonBarMiddleButtonSkin
         -->
         <fx:Component id="middleButton" >
-            <s:ButtonBarButton skinClass="skins.clearpronunciation.title.ui.TitleButtonBarProgressButtonSkin"/>
+            <s:ButtonBarButton skinClass="skins.clearpronunciation.title.ui.TitleButtonBarProgressButtonSkin" visible="false" includeInLayout="false"/>
         </fx:Component>
 
         <!--- 
