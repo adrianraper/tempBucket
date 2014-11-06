@@ -1,6 +1,7 @@
 package com.clarityenglish.clearpronunciation.view.exercise {
 	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
+	import com.googlecode.bindagetools.Bind;
 	
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
@@ -21,6 +22,9 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 	public class ExerciseView extends com.clarityenglish.bento.view.exercise.ExerciseView {
 		
 		[SkinPart]
+		public var currentUnitRenderer:UnitListItemRenderer;
+		
+		[SkinPart]
 		public var unitList:List;
 		
 		[SkinPart]
@@ -29,16 +33,8 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 		[SkinPart]
 		public var youWillButton:Button;
 		
-		private var _selectedExerciseNode:XML;
-		
 		[Bindable]
-		public function get selectedExerciseNode():XML {
-			return _selectedExerciseNode;
-		}
-		
-		public function set selectedExerciseNode(value:XML):void {
-			_selectedExerciseNode = value;
-		}
+		public var selectedExerciseNode:XML;
 		
 		public function ExerciseView() {
 			super();
@@ -48,10 +44,22 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
+				case currentUnitRenderer:
+					currentUnitRenderer.copyProvider = copyProvider;
+					Bind.fromProperty(this, "selectedExerciseNode").toFunction(function(node:XML):void {
+						currentUnitRenderer.data = node ? node.parent() : null;
+					});
+					break;
 				case unitList:
 					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
 					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: false };
 					instance.itemRenderer = unitListItemRenderer;
+					
+					if (selectedExerciseNode) {
+						unitList.selectedItem = selectedExerciseNode.parent();
+						// How am I supposed to select an exercise???
+					}
+					
 					//unitList.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
 					break;
 				case phonemicChartButton:
@@ -70,6 +78,8 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 		protected function onYouWillButtonClick(event:MouseEvent):void {
 			var prefix:String = (XmlUtils.searchUpForNode(selectedExerciseNode, "course").@["class"] == "introduction") ? "introductionYouWillLabel" : "youWillLabel";
 			var exerciseIndex:String = selectedExerciseNode.childIndex();
+			
+			// Use the generic sendNotification signal so we don't need to override the mediator just for the sake of this
 			sendNotification.dispatch(ClearPronunciationNotifications.YOUWILL_SHOW, prefix + exerciseIndex);
 		}
 		
