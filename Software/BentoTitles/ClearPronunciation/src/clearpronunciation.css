@@ -249,20 +249,8 @@ course|CourseView s|Button#makeSoundsCollapseButton {
 }
 */
 
-course|UnitCaptionComponent {
-	skinClass: ClassReference("skins.clearpronunciation.course.UnitCaptionComponentSkin");	
-}
-
-course|UnitCaptionComponent s|Button {
-	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitItemButtonSkin");
-}
-
 courseui|YouWillView {
 	skinClass: ClassReference("skins.clearpronunciation.course.ui.YouWillSkin");
-}
-
-unit|UnitView {
-	skinClass: ClassReference("skins.clearpronunciation.unit.UnitSkin");
 }
 
 exercise|ExerciseView {

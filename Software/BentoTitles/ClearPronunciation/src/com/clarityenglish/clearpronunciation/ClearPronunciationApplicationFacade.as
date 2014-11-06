@@ -7,8 +7,6 @@ package com.clarityenglish.clearpronunciation {
 	import com.clarityenglish.clearpronunciation.controller.HomeBackCommand;
 	import com.clarityenglish.clearpronunciation.controller.SettingsShowCommand;
 	import com.clarityenglish.clearpronunciation.controller.YouWillShowCommand;
-	import com.clarityenglish.clearpronunciation.view.course.CourseMediator;
-	import com.clarityenglish.clearpronunciation.view.course.CourseView;
 	import com.clarityenglish.clearpronunciation.view.course.ui.YouWillMediator;
 	import com.clarityenglish.clearpronunciation.view.course.ui.YouWillView;
 	import com.clarityenglish.clearpronunciation.view.exercise.ExerciseView;
@@ -30,8 +28,6 @@ package com.clarityenglish.clearpronunciation {
 	import com.clarityenglish.clearpronunciation.view.settings.SettingsView;
 	import com.clarityenglish.clearpronunciation.view.title.TitleMediator;
 	import com.clarityenglish.clearpronunciation.view.title.TitleView;
-	import com.clarityenglish.clearpronunciation.view.unit.UnitMediator;
-	import com.clarityenglish.clearpronunciation.view.unit.UnitView;
 	import com.clarityenglish.rotterdam.CommonAbstractApplicationFacade;
 	
 	public class ClearPronunciationApplicationFacade extends CommonAbstractApplicationFacade {
@@ -46,8 +42,6 @@ package com.clarityenglish.clearpronunciation {
 			
 			mapView(TitleView, TitleMediator);
 			mapView(HomeView, HomeMediator);
-			mapView(CourseView, CourseMediator);
-			mapView(UnitView, UnitMediator);
 			mapView(ExerciseView, ExerciseMediator);
 			mapView(SettingsView, SettingsMediator);
 			mapView(YouWillView, YouWillMediator);

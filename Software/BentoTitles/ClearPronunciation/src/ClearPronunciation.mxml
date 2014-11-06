@@ -64,7 +64,6 @@
 			import com.clarityenglish.clearpronunciation.ClearPronunciationApplicationFacade;
 			import com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator;
 			
-			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 			
 			protected function onInitialize(event:FlexEvent):void {

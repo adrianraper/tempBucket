@@ -65,10 +65,6 @@ home|HomeView {
 	skinClass: ClassReference("skins.clearpronunciationair.home.HomeSkin");
 }
 
-unit|UnitView {
-	skinClass: ClassReference("skins.clearpronunciationair.unit.UnitSkin");
-}
-
 progress|ProgressView {
 	skinClass: ClassReference("skins.clearpronunciationair.progress.ProgressSkin");
 }

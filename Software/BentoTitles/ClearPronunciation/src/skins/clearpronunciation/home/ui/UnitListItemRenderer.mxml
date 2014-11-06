@@ -63,7 +63,6 @@
 						unitItemRightLabel.text = (data.@caption).split(" ")[1];
 					}
 					
-					trace("SETTING COLLECTION TO EXERCISES!!!!!!");
 					exerciseXMLListCollection = new XMLListCollection(data.exercise);
 				} else {
 					if (unitItemLeftButton && unitItemLeftLabel) unitItemLeftButton.label = unitItemLeftLabel.text = "";
