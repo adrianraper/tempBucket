@@ -5,6 +5,9 @@ package com.clarityenglish.clearpronunciation.view.title {
 	import com.clarityenglish.clearpronunciation.view.progress.ProgressView;
 	import com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator;
 	
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	
 	import mx.events.StateChangeEvent;
 	
 	import spark.components.Button;
@@ -12,6 +15,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 	import spark.components.ViewNavigator;
 	
 	import org.davekeen.util.StateUtil;
+	import org.osflash.signals.Signal;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
 	[SkinState("home")]
@@ -35,6 +39,9 @@ package com.clarityenglish.clearpronunciation.view.title {
 		public var helpViewNavigator:ViewNavigator;
 		
 		[SkinPart]
+		public var progressButton:Button;
+		
+		[SkinPart]
 		public var settingsButton:Button;
 		
 		[SkinPart]
@@ -53,6 +60,8 @@ package com.clarityenglish.clearpronunciation.view.title {
 		public var productTitle:Label;
 		
 		private var _selectedNode:XML;
+		
+		public var logout:Signal = new Signal();
 		
 		public function set selectedNode(value:XML):void {
 			_selectedNode = value;
@@ -73,7 +82,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 			super();
 			
 			// The first one listed will be the default
-			StateUtil.addStates(this, [ "home", "exercise", "course", "progress", "settings", "schedule" ], true);
+			StateUtil.addStates(this, [ "home", "exercise", "progress", "settings" ], true);
 			actionBarVisible = false;
 		}
 		
@@ -87,21 +96,35 @@ package com.clarityenglish.clearpronunciation.view.title {
 						exercise: { viewClass: ExerciseView, stack: true }, // note that this is a CP ExerciseView which extends the default Bento one
 						progress: { viewClass: ProgressView }
 					});
-					
-					/*setNavStateMap(sectionNavigator, {
-						home: { viewClass: HomeView },
-						course: { viewClass: CourseView, stack: true },
-						settings: { viewClass: SettingsView, stack: true },
-						schedule: { viewClass: ScheduleView, stack: true },
-						// TODO: this really should be here, but there is some bug whereby the framework is straight away changing back from progress to course, so leave for now
-						progress: { viewClass: ProgressView, stack: true }
-					});
 					// gh#83
-					sectionNavigator.changeConfirmFunction = function(next:Function):void {
+					/*sectionNavigator.changeConfirmFunction = function(next:Function):void {
 						dirtyWarningShow.dispatch(next); // If there is no dirty warning this will cause next() to be executed immediately
 					};*/
 					break;
+				case progressButton:
+					progressButton.addEventListener(MouseEvent.CLICK, onProgressClick);
+					break;
+				case backButton:
+					backButton.label = copyProvider.getCopyForId("Back");
+					backButton.addEventListener(MouseEvent.CLICK, onBackClick);
+					break;
+				case logoutButton:
+					logoutButton.addEventListener(MouseEvent.CLICK, onLogoutClick);
+					break;
 			}
+		}
+		
+		protected function onProgressClick(e:Event):void {
+			sectionNavigator.selectedIndex = 1;
+		}
+		
+		protected function onBackClick(event:Event):void {
+			if (currentState == "progress")
+				sectionNavigator.selectedIndex = 0;
+		}
+		
+		protected function onLogoutClick(event:Event):void {
+			logout.dispatch();
 		}
 		
 		protected override function getCurrentSkinState():String {

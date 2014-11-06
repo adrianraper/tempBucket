@@ -45,6 +45,7 @@
 			view.showFeedbackReminder.add(onShowFeedbackReminder); // gh#388
 			view.audioPlayed.add(onAudioPlayed); // gh#267
 			view.record.add(onRecord); // gh#267
+			view.logout.add(onLogout);
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			
@@ -81,7 +82,8 @@
 			view.printExercise.remove(onPrintExercise);
 			view.backToMenu.remove(onBackToMenu);
 			view.showFeedbackReminder.remove(onShowFeedbackReminder); // gh#388
-			view.audioPlayed.add(onAudioPlayed); // gh#267
+			view.audioPlayed.remove(onAudioPlayed); // gh#267
+			view.logout.remove(onLogout);
 			
 			// #414
 			sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view);
@@ -248,6 +250,10 @@
 		// gh#267
 		private function onRecord():void {
 			sendNotification(BBNotifications.RECORDER_SHOW);
+		}
+		
+		private function onLogout():void {
+			sendNotification(CommonNotifications.LOGOUT);
 		}
 		
 	}

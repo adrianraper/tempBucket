@@ -13,6 +13,8 @@
 		[HostComponent("com.clarityenglish.clearpronunciation.view.home.HomeView")]
 	</fx:Metadata>
 	
+	<!-- I AM NO LONGER USED -->
+	
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;

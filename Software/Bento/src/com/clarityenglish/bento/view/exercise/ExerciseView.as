@@ -50,8 +50,8 @@ package com.clarityenglish.bento.view.exercise {
 		public var ruleButton:Button;
 		
 		[SkinPart]
-		public var exerciseLogOutButton:Button;
-				
+		public var logoutButton:Button;
+		
 		[SkinPart(required="true")]
 		public var dynamicView:DynamicView;
 		
@@ -149,6 +149,7 @@ package com.clarityenglish.bento.view.exercise {
 		public var showFeedbackReminder:Signal = new Signal(String); // gh#388
 		public var audioPlayed:Signal = new Signal(String); // gh#267
 		public var record:Signal = new Signal(); // gh#267 
+		public var logout:Signal = new Signal();
 		
 		public function ExerciseView() {
 			super();
@@ -222,8 +223,9 @@ package com.clarityenglish.bento.view.exercise {
 					backToMenuButton.addEventListener(MouseEvent.CLICK, function():void { backToMenu.dispatch(); } );
 					backToMenuButton.label = copyProvider.getCopyForId("exerciseBackToMenuButton");
 					break;
-				case exerciseLogOutButton:
-					exerciseLogOutButton.label = copyProvider.getCopyForId("exerciseLogOutButton");
+				case logoutButton:	
+					logoutButton.addEventListener(MouseEvent.CLICK, function():void { logout.dispatch(); });
+					logoutButton.label = copyProvider.getCopyForId("exerciseLogOutButton");
 					break;
 				case footerLabel:
 					footerLabel.text = copyProvider.getCopyForId("footerLabel");

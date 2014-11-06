@@ -161,7 +161,7 @@
 			<lit name="exerciseForwardButton">Forward</lit>
 			<lit name="exerciseFeedbackButton">Feedback</lit>
 			<lit name="exerciseMarkingButton">Marking</lit>
-			<lit name="exerciseLogOutButton">Log out</lit>
+			<lit name="exerciseLogOutButton"></lit> <!-- CP doesn't have a label on this button as it is in the icon -->
 			<lit name="overallScoreLabel">You scored {score}%</lit>
 			<lit name="correctLabel">Correct: {correct}</lit> 
 			<lit name="wrongLabel">Wrong: {wrong}</lit> 

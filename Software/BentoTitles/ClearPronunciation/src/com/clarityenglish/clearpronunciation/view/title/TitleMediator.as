@@ -3,6 +3,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.CommonNotifications;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -22,6 +23,8 @@ package com.clarityenglish.clearpronunciation.view.title {
 		override public function onRegister():void {
 			super.onRegister();
 			
+			view.logout.add(onLogout);
+			
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
@@ -29,6 +32,8 @@ package com.clarityenglish.clearpronunciation.view.title {
 		
 		override public function onRemove():void {
 			super.onRemove();
+			
+			view.logout.remove(onLogout);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -45,6 +50,10 @@ package com.clarityenglish.clearpronunciation.view.title {
 					view.selectedNode = note.getBody() as XML;
 					break;
 			}
+		}
+		
+		protected function onLogout():void {
+			sendNotification(CommonNotifications.LOGOUT);
 		}
 		
 		/*override public function onRegister():void {
