@@ -302,9 +302,9 @@
 			<lit name="introductionTutorialLabel">Click on an activity below to start.</lit>
 			
 			<!-- You will -->
-			<lit name="introductionYouWillLabel1"><![CDATA[<p>When you have finished this exercise, you will know important vocabulary to help you improve your pronunciation.</p>]]></lit>
-			<lit name="introductionYouWillLabel2"><![CDATA[<p>When you have finished this exercise, you will know the names of the parts of the mouth.</p>]]></lit>
-			<lit name="introductionYouWillLabel3"><![CDATA[<p>When you have finished this exercise, you will know why it is important to learn the International Phonemic Alphabet.</p>]]></lit>
+			<lit name="introductionYouWillLabel0"><![CDATA[<p>When you have finished this exercise, you will know important vocabulary to help you improve your pronunciation.</p>]]></lit>
+			<lit name="introductionYouWillLabel1"><![CDATA[<p>When you have finished this exercise, you will know the names of the parts of the mouth.</p>]]></lit>
+			<lit name="introductionYouWillLabel2"><![CDATA[<p>When you have finished this exercise, you will know why it is important to learn the International Phonemic Alphabet.</p>]]></lit>
 			<lit name="youWillLabel0"><![CDATA[
 			<p>When you have finished this exercise, you should be able to:</p>
 			<p>- Recognise each sound when you hear it</p>

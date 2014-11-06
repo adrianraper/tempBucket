@@ -1,5 +1,6 @@
 package com.clarityenglish.clearpronunciation.view.exercise {
 	import com.clarityenglish.bento.view.exercise.ExerciseView;
+	import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
 	
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
@@ -9,6 +10,8 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 	
 	import spark.components.Button;
 	import spark.components.List;
+	
+	import org.davekeen.util.XmlUtils;
 	
 	import skins.clearpronunciation.home.ui.UnitListItemRenderer;
 	
@@ -65,11 +68,9 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 		}
 		
 		protected function onYouWillButtonClick(event:MouseEvent):void {
-			/*if (unit.parent().@["class"] == "introduction") {
-				youWillShow.dispatch("introductionYouWillLabel" + currentExerciseIndex);
-			} else {
-				youWillShow.dispatch("youWillLabel" + currentExerciseIndex);
-			}*/
+			var prefix:String = (XmlUtils.searchUpForNode(selectedExerciseNode, "course").@["class"] == "introduction") ? "introductionYouWillLabel" : "youWillLabel";
+			var exerciseIndex:String = selectedExerciseNode.childIndex();
+			sendNotification.dispatch(ClearPronunciationNotifications.YOUWILL_SHOW, prefix + exerciseIndex);
 		}
 		
 	}

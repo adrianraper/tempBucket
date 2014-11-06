@@ -16,6 +16,7 @@ package com.clarityenglish.bento.view.base {
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
+	import org.osflash.signals.Signal;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -73,6 +74,9 @@ package com.clarityenglish.bento.view.base {
 			}
 			
 			injectCopy();
+			
+			// All views have an sendNotification signal which will directly send a notification.  
+			view.getSendNotificationSignal().add(onViewSendNotification);
 		}
 		
 		protected function onXHTMLReady(xhtml:XHTML):void {
@@ -94,6 +98,8 @@ package com.clarityenglish.bento.view.base {
 		
 		public override function onRemove():void {
 			super.onRemove();
+			
+			view.getSendNotificationSignal().remove(onViewSendNotification);
 			
 			// Remove event listeners from the view
 			view.removeEventListener(FlexEvent.CREATION_COMPLETE, onViewCreationComplete);
@@ -140,6 +146,10 @@ package com.clarityenglish.bento.view.base {
 		 */
 		protected function onHrefChanged(event:Event):void {
 			sendNotification(BBNotifications.XHTML_LOAD, view.href);
+		}
+		
+		protected function onViewSendNotification(name:String, body:Object):void {
+			sendNotification(name, body);
 		}
 		
 	}
