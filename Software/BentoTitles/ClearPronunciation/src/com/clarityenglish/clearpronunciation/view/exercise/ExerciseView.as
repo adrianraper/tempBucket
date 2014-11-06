@@ -1,16 +1,20 @@
 package com.clarityenglish.clearpronunciation.view.exercise {
+	import com.clarityenglish.bento.events.ExerciseEvent;
 	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
+	import com.clarityenglish.clearpronunciation.view.exercise.ui.WindowShade;
 	import com.googlecode.bindagetools.Bind;
 	
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
+	import flash.utils.setTimeout;
 	
 	import mx.core.ClassFactory;
 	
 	import spark.components.Button;
 	import spark.components.List;
+	import spark.events.IndexChangeEvent;
 	
 	import org.davekeen.util.XmlUtils;
 	
@@ -26,6 +30,9 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 		
 		[SkinPart]
 		public var unitList:List;
+		
+		[SkinPart]
+		public var windowShade:WindowShade;
 		
 		[SkinPart]
 		public var phonemicChartButton:Button;
@@ -52,15 +59,27 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 					break;
 				case unitList:
 					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
-					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: false };
+					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: false, selectedExercise: selectedExerciseNode };
 					instance.itemRenderer = unitListItemRenderer;
 					
-					if (selectedExerciseNode) {
-						unitList.selectedItem = selectedExerciseNode.parent();
-						// How am I supposed to select an exercise???
-					}
+					// When a unit is selected make sure it is visible
+					unitList.addEventListener(IndexChangeEvent.CHANGE, function(e:IndexChangeEvent):void { unitList.ensureIndexIsVisible(e.newIndex); });
 					
-					//unitList.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
+					// Listen for exercise changes
+					unitList.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
+					
+					// Select the current unit and exercise
+					/*if (selectedExerciseNode) {
+						unitList.selectedItem = selectedExerciseNode.parent();
+						callLater(function():void { unitList.ensureIndexIsVisible(unitList.selectedIndex); });
+						
+						// How am I supposed to select an exercise???
+						
+					}*/
+					Bind.fromProperty(this, "selectedExerciseNode").toFunction(function(node:XML):void {
+						unitList.selectedItem = node.parent();
+						callLater(function():void { unitList.ensureIndexIsVisible(unitList.selectedIndex); });
+					});
 					break;
 				case phonemicChartButton:
 					phonemicChartButton.addEventListener(MouseEvent.CLICK, onPhonemicChartButtonClick);
@@ -69,6 +88,11 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 					youWillButton.addEventListener(MouseEvent.CLICK, onYouWillButtonClick);
 					break;
 			}
+		}
+		
+		protected function onExerciseSelected(e:ExerciseEvent):void {
+			windowShade.close();
+			setTimeout(nodeSelect.dispatch, 400, e.node);
 		}
 		
 		protected function onPhonemicChartButtonClick(event:MouseEvent):void { 

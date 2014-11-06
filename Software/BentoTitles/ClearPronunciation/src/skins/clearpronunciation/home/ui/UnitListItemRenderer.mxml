@@ -32,6 +32,9 @@
 			public var showItemIndex:Boolean = true;
 			
 			[Bindable]
+			public var selectedExercise:XML;
+			
+			[Bindable]
 			private var pieChartArrayCollection:ArrayCollection;
 			
 			[Bindable]
@@ -126,6 +129,7 @@
 				height="95%"
 				top="55" left="2" right="2"
 				dataProvider="{exerciseXMLListCollection}"
+				selectedItem="{selectedExercise}"
 				borderVisible="false" contentBackgroundAlpha="0"
 				includeIn="selected"
 				click="onExerciseListClick(event)">

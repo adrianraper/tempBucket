@@ -40,6 +40,7 @@
 			view.showMarking.add(onShowMarking);
 			view.nextExercise.add(onNextExercise);
 			view.previousExercise.add(onPreviousExercise);
+			view.nodeSelect.add(onNodeSelect);
 			view.printExercise.add(onPrintExercise);
 			view.backToMenu.add(onBackToMenu);
 			view.showFeedbackReminder.add(onShowFeedbackReminder); // gh#388
@@ -70,6 +71,7 @@
 			view.showMarking.remove(onShowMarking);
 			view.nextExercise.remove(onNextExercise);
 			view.previousExercise.remove(onPreviousExercise);
+			view.nodeSelect.remove(onNodeSelect);
 			view.printExercise.remove(onPrintExercise);
 			view.backToMenu.remove(onBackToMenu);
 			view.showFeedbackReminder.remove(onShowFeedbackReminder); // gh#388
@@ -222,6 +224,10 @@
 		private function onPreviousExercise():void {
 			log.debug("The user clicked on previous exercise");
 			sendNotification(BBNotifications.EXERCISE_SHOW_PREVIOUS);
+		}
+		
+		private function onNodeSelect(node:XML):void {
+			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, node);
 		}
 		
 		private function onBackToMenu():void {

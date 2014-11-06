@@ -144,6 +144,7 @@ package com.clarityenglish.bento.view.exercise {
 		public var showMarking:Signal = new Signal();
 		public var nextExercise:Signal = new Signal();
 		public var previousExercise:Signal = new Signal();
+		public var nodeSelect:Signal = new Signal(XML);
 		public var printExercise:Signal = new Signal(DynamicView);
 		public var backToMenu:Signal = new Signal();
 		public var showFeedbackReminder:Signal = new Signal(String); // gh#388
