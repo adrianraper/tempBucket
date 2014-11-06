@@ -82,7 +82,9 @@
 							<![CDATA[
 								public override function set data(value:Object):void {
 									super.data = value;
+									
 									if (introLabel) introLabel.text = data.@caption;
+									if (doneGraphic) doneGraphic.visible = data.attribute("done").length() > 0 && parseInt(data.@done) > 0;
 								}
 							]]>
 						</fx:Script>
@@ -98,7 +100,7 @@
 							</s:fill>
 						</s:Rect>
 						<s:HGroup width="100%" height="100%" gap="5">
-							<s:Group>
+							<s:Group id="doneGraphic">
 								<s:Ellipse x="10" y="9" width="14" height="14">
 									<s:fill>
 										<s:SolidColor color="#FFFFFF" />
@@ -107,7 +109,7 @@
 										<s:SolidColorStroke color="#9E9E9E" />
 									</s:stroke>
 								</s:Ellipse>
-								<s:Ellipse x="14" y="13" width="6" height="6" includeIn="hovered, selected">
+								<s:Ellipse x="14" y="13" width="6" height="6">
 									<s:fill>
 										<s:SolidColor color="#000000" />
 									</s:fill>
