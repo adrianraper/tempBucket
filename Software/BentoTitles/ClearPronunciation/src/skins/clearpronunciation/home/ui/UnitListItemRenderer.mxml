@@ -21,6 +21,8 @@
 			
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
 			
+			private var _dataChanged:Boolean;
+			
 			protected var _copyProvider:CopyProvider;
 			
 			[Bindable]
@@ -44,10 +46,16 @@
 				invalidateProperties();
 			}
 			
+			override public function set data(value:Object):void {
+				super.data = value;
+				_dataChanged = true;
+				invalidateProperties();
+			}
+			
 			override protected function commitProperties():void {
 				super.commitProperties();
 				
-				if (data && data.attribute("caption").length() > 0) {
+				if (_dataChanged && data.attribute("caption").length() > 0) {
 					// Provide the pie chart data if pie charts are on (and if there is actually some coverage)
 					if (showPieChart)
 						pieChartArrayCollection = (data.@coverage != 0) ? new ArrayCollection([{ coverage: 100 - data.@coverage }, { coverage: data.@coverage }]) : null;
@@ -64,11 +72,8 @@
 					}
 					
 					exerciseXMLListCollection = new XMLListCollection(data.exercise);
-				} else {
-					if (unitItemLeftButton && unitItemLeftLabel) unitItemLeftButton.label = unitItemLeftLabel.text = "";
-					if (unitItemRightButton && unitItemRightLabel) unitItemRightButton.label = unitItemRightLabel.text = "";
-					pieChartArrayCollection = null;
-					exerciseXMLListCollection = null;
+					
+					_dataChanged = false;
 				}
 			}
 			
