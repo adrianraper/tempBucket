@@ -2,7 +2,7 @@
     xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5">
 	
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.clearpronunciation.view.course.ui.YouWillView")]
+		[HostComponent("com.clarityenglish.clearpronunciation.view.exercise.YouWillView")]
 	</fx:Metadata>
 
     <s:states>

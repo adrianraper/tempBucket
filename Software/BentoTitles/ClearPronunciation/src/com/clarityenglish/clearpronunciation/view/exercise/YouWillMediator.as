@@ -1,4 +1,4 @@
-package com.clarityenglish.clearpronunciation.view.course.ui {
+package com.clarityenglish.clearpronunciation.view.exercise {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	

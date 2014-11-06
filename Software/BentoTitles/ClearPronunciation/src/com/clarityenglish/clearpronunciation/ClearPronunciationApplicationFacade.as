@@ -5,8 +5,8 @@ package com.clarityenglish.clearpronunciation {
 	import com.clarityenglish.clearpronunciation.controller.ClearPronunciationStartupCommand;
 	import com.clarityenglish.clearpronunciation.controller.SettingsShowCommand;
 	import com.clarityenglish.clearpronunciation.controller.YouWillShowCommand;
-	import com.clarityenglish.clearpronunciation.view.course.ui.YouWillMediator;
-	import com.clarityenglish.clearpronunciation.view.course.ui.YouWillView;
+	import com.clarityenglish.clearpronunciation.view.exercise.YouWillMediator;
+	import com.clarityenglish.clearpronunciation.view.exercise.YouWillView;
 	import com.clarityenglish.clearpronunciation.view.exercise.ExerciseView;
 	import com.clarityenglish.clearpronunciation.view.home.HomeMediator;
 	import com.clarityenglish.clearpronunciation.view.home.HomeView;

@@ -1,4 +1,4 @@
-package com.clarityenglish.clearpronunciation.vo {
+package com.clarityenglish.clearpronunciation.view.exercise.ui {
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.MouseEvent;

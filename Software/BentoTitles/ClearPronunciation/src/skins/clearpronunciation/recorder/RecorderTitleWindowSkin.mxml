@@ -161,7 +161,7 @@
                 <s:Group id="moveArea" left="0" right="0" top="0" bottom="0" />
                 
                 <!--- @copy spark.components.TitleWindow#closeButton -->
-                <s:Button id="closeButton" skinClass="skins.clearpronunciation.unit.recorder.ui.CloseButtonSkin"
+                <s:Button id="closeButton" skinClass="skins.clearpronunciation.recorder.ui.CloseButtonSkin"
                           width="30" height="25" right="10" top="13" useHandCursor="true" buttonMode="true" />
             </s:Group>
             

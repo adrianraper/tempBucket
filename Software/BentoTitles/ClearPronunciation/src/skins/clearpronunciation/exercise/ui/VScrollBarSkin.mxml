@@ -67,7 +67,7 @@ VScrollBarThumbSkin and VScrollBarTrackSkin classes, respectively.
             @see spark.skins.spark.VScrollBarThumbSkin -->
     <s:Button id="thumb" left="10" 
               focusEnabled="false" visible.inactive="false" tabEnabled="false"
-              skinClass="skins.clearpronunciation.course.ui.VScrollBarThumbSkin" />
+              skinClass="skins.clearpronunciation.exercise.ui.VScrollBarThumbSkin" />
     
     <!--- The default skin class is ScrollBarUpButtonSkin. 
             @copy spark.components.supportClasses.ScrollBarBase#decrementButton 

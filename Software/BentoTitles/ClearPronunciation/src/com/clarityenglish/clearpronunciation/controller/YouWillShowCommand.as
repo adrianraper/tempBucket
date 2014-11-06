@@ -1,5 +1,5 @@
 package com.clarityenglish.clearpronunciation.controller {
-	import com.clarityenglish.clearpronunciation.view.course.ui.YouWillView;
+	import com.clarityenglish.clearpronunciation.view.exercise.YouWillView;
 	
 	import flash.display.DisplayObject;
 	

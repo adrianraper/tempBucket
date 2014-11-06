@@ -31,6 +31,7 @@ confirm that the rotterdam.clearpronunciation namespaces are NOT used please
 @namespace marking "com.clarityenglish.bento.view.marking.*";
 @namespace warning "com.clarityenglish.bento.view.warning.*";
 @namespace ui "com.clarityenglish.clearpronunciation.view.home.ui.*";
+@namespace ui4 "com.clarityenglish.clearpronunciation.view.exercise.ui.*";
 
 global {
 	defaultColor: #00A2C8;
@@ -62,7 +63,7 @@ global {
 }
 
 tlfcomponents|AudioPlayer {
-	skinClass: ClassReference("skins.clearpronunciation.unit.widgets.ui.AudioPlayerSkin");
+	skinClass: ClassReference("skins.clearpronunciation.components.AudioPlayerSkin");
 	compactStoppedIcon: Embed(source="skins/clearpronunciation/assets/play.png");
 	compactPlayedIcon: Embed(source="skins/clearpronunciation/assets/played.png");
 	compactPausedIcon: Embed(source="skins/clearpronunciation/assets/pause.png");
@@ -75,16 +76,16 @@ tlfcomponents|AudioPlayer s|ScrubBar {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.audio.AudioScruBarSkin");
 }
 
-vo|WindowShade {
-	skinClass: ClassReference("skins.clearpronunciation.course.WindowShadeSkin");
+ui4|WindowShade {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.WindowShadeSkin");
 }
 
-vo|WindowShade s|Button#thumbButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.WindowShadeThumbButtonSkin");
+ui4|WindowShade s|Button#thumbButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.WindowShadeThumbButtonSkin");
 }
 
 s|TitleWindow.RecorderTitleWindow {
-	skinClass: ClassReference("skins.clearpronunciation.unit.recorder.RecorderTitleWindowSkin");
+	skinClass: ClassReference("skins.clearpronunciation.recorder.RecorderTitleWindowSkin");
 }
 
 s|TitleWindow.SettingsTitleWindow {
@@ -104,19 +105,19 @@ s|TitleWindow.feedbackTitleWindow {
 }
 
 s|TitleWindow.noTitleTitleWindow {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.NoTitleTitleWindowSkin");
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.NoTitleTitleWindowSkin");
 }
 
 s|VScrollBar {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.VScrollBarSkin");
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.VScrollBarSkin");
 }
 
 recorder|RecorderView {
-	skinClass: ClassReference("skins.clearpronunciation.unit.recorder.RecorderSkin");
+	skinClass: ClassReference("skins.clearpronunciation.recorder.RecorderSkin");
 }
 
 recorder|WaveformView {
-	skinClass: ClassReference("skins.clearpronunciation.unit.recorder.WaveformSkin");
+	skinClass: ClassReference("skins.clearpronunciation.recorder.WaveformSkin");
 }
 
 s|Button#unitItemLeftButton,#unitItemRightButton {
@@ -199,58 +200,8 @@ video|VideoSelector {
 	skinClass: ClassReference("skins.clearpronunciation.controls.video.VideoSelectorSkin");
 }
 
-/*
-course|CourseView {
-	skinClass: ClassReference("skins.clearpronunciation.course.CourseSkin");
-}
-
-course|CourseView s|BorderContainer#unitContainer {
-	skinClass: ClassReference("skins.rotterdam.course.UnitListContainerSkin");
-}
-
-course|CourseView s|Button#unitDropDownLeftItemButton, #unitDropDownRightItemButton {
-	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitItemButtonSkin");
-}
-
-course|CourseView s|Button#backToMenuButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.MenuButtonSkin");
-}
-
-course|CourseView s|Button#recorderButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.RecorderButtonSkin");
-}
-
-course|CourseView s|Button#phonemicChartButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.PhonemicChartButtonSkin");
-}
-
-course|CourseView s|Button#youWillButton{
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.YouWillButtonSkin");
-}
-
-course|CourseView s|Button#logoutButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.LogoutButtonSkin");
-}
-
-course|CourseView s|Button#backButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.BackButtonSkin");
-}
-
-course|CourseView s|Button#nextButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.NextButtonSkin");
-}
-
-course|CourseView s|Button#makeSoundsExpandButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.MakeSoundsExpandButtonSkin");
-}
-
-course|CourseView s|Button#makeSoundsCollapseButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.MakeSoundsCollapseButtonSkin");
-}
-*/
-
-courseui|YouWillView {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.YouWillSkin");
+exercise|YouWillView {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.YouWillSkin");
 }
 
 exercise|ExerciseView {
@@ -259,15 +210,15 @@ exercise|ExerciseView {
 }
 
 exercise|ExerciseView s|Button#markingButton {
-	skinClass: ClassReference("skins.clearpronunciation.exercise.MarkingButtonSkin");
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.MarkingButtonSkin");
 }
 
 exercise|ExerciseView s|Button#feedbackButton {
-	skinClass: ClassReference("skins.clearpronunciation.exercise.FeedbackButtonSkin");
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.FeedbackButtonSkin");
 }
 
 exercise|ExerciseView s|Button#startAgainButton {
-	skinClass: ClassReference("skins.clearpronunciation.exercise.StartAgainButtonSkin");
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.StartAgainButtonSkin");
 }
 
 exercise|ExerciseView s|Button#unitDropDownLeftItemButton, #unitDropDownRightItemButton {
@@ -275,31 +226,31 @@ exercise|ExerciseView s|Button#unitDropDownLeftItemButton, #unitDropDownRightIte
 }
 
 exercise|ExerciseView s|Button#backToMenuButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.MenuButtonSkin");
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.MenuButtonSkin");
 }
 
 exercise|ExerciseView s|Button#recorderButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.RecorderButtonSkin");
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.RecorderButtonSkin");
 }
 
 exercise|ExerciseView s|Button#phonemicChartButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.PhonemicChartButtonSkin");
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.PhonemicChartButtonSkin");
 }
 
 exercise|ExerciseView s|Button#youWillButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.YouWillButtonSkin");
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.YouWillButtonSkin");
 }
 
 exercise|ExerciseView s|Button#logoutButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.LogoutButtonSkin");
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.LogoutButtonSkin");
 }
 
 exercise|ExerciseView s|Button#backButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.BackButtonSkin");
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.BackButtonSkin");
 }
 
 exercise|ExerciseView s|Button#forwardButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.NextButtonSkin");
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.NextButtonSkin");
 }
 
 /*course|CourseView s|Button#makeSoundsExpandButton {
@@ -381,7 +332,7 @@ progress|ProgressCertificateView {
 }
 
 progress|ProgressCertificateView s|Button#printButton {
-	skinClass: ClassReference("skins.clearpronunciation.exercise.PrintButtonSkin");
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.PrintButtonSkin");
 }
 
 progressui|ProgressCourseButtonBar {
@@ -406,37 +357,4 @@ settings|SettingsView s|Button#saveCloseButton {
 
 credits|CreditsView {
 	skinClass: ClassReference("skins.clearpronunciation.CreditsSkin");
-}
-
-widgets|VideoWidget {
-	skinClass: ClassReference("skins.clearpronunciation.unit.widgets.VideoWidgetSkin");
-}
-
-widgets|AudioWidget {
-	skinClass: ClassReference("skins.clearpronunciation.unit.widgets.AudioWidgetSkin");
-}
-
-widgets|AnimationWidget {
-	skinClass: ClassReference("skins.clearpronunciation.unit.widgets.AnimationWidgetSkin");
-}
-
-widgets|OrchidWidget {
-	skinClass: ClassReference("skins.clearpronunciation.unit.widgets.OrchidWidgetSkin");
-}
-
-widgets|SelectorWidget {
-	skinClass: ClassReference("skins.clearpronunciation.unit.widgets.SelectorWidgetSkin");
-}
-
-widgets|GroupWidget {
-	skinClass: ClassReference("skins.clearpronunciation.unit.widgets.GroupWidgetSkin");
-}
-
-widgets|VideoSelectorWidget {
-	skinClass: ClassReference("skins.clearpronunciation.unit.widgets.VideoSelectorWidgetSkin");
-}
-
-widgets|AudioWidget widgetcomponents|PromptingRichEditableText {
-	fontSize: 18;
-	fontFamily: Verdana;
 }
