@@ -17,6 +17,7 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 	import spark.events.IndexChangeEvent;
 	
 	import org.davekeen.util.XmlUtils;
+	import org.osflash.signals.Signal;
 	
 	import skins.clearpronunciation.home.ui.UnitListItemRenderer;
 	
@@ -58,8 +59,10 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 					});
 					break;
 				case unitList:
+					var exerciseSelected:Signal = new Signal(XML);
+					
 					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
-					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: false, selectedExercise: selectedExerciseNode };
+					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: false, selectedExerciseNode: selectedExerciseNode, exerciseSelected: exerciseSelected };
 					instance.itemRenderer = unitListItemRenderer;
 					
 					// When a unit is selected make sure it is visible
@@ -69,16 +72,12 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 					unitList.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
 					
 					// Select the current unit and exercise
-					/*if (selectedExerciseNode) {
-						unitList.selectedItem = selectedExerciseNode.parent();
-						callLater(function():void { unitList.ensureIndexIsVisible(unitList.selectedIndex); });
-						
-						// How am I supposed to select an exercise???
-						
-					}*/
 					Bind.fromProperty(this, "selectedExerciseNode").toFunction(function(node:XML):void {
 						unitList.selectedItem = node.parent();
-						callLater(function():void { unitList.ensureIndexIsVisible(unitList.selectedIndex); });
+						callLater(function():void {
+							unitList.ensureIndexIsVisible(unitList.selectedIndex);
+							exerciseSelected.dispatch(node);
+						});
 					});
 					break;
 				case phonemicChartButton:
@@ -91,8 +90,10 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 		}
 		
 		protected function onExerciseSelected(e:ExerciseEvent):void {
-			windowShade.close();
-			setTimeout(nodeSelect.dispatch, 400, e.node);
+			if (e.node) {
+				windowShade.close();
+				setTimeout(nodeSelect.dispatch, 400, e.node);
+			}
 		}
 		
 		protected function onPhonemicChartButtonClick(event:MouseEvent):void { 

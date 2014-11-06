@@ -9,7 +9,8 @@
 				width.hidePieChart="265"
 				height.normal="55"
 				height.selected="200"
-				creationComplete="onCreationComplete(event)">
+				creationComplete="onCreationComplete(event)"
+				removedFromStage="onRemovedFromStage(event)">
 	<fx:Script>
 		<![CDATA[
 			import org.davekeen.util.StringUtils;
@@ -18,12 +19,20 @@
 			import com.clarityenglish.bento.events.ExerciseEvent;
 			import mx.events.FlexEvent;
 			import spark.events.IndexChangeEvent;
+			import org.osflash.signals.Signal;
 			
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
 			
 			private var _dataChanged:Boolean;
 			
 			protected var _copyProvider:CopyProvider;
+			
+			// This is passed into the item renderer properties so an external element can inform the renderer about exercise selection
+			private var _exerciseSelected:Signal;
+			public function set exerciseSelected(value:Signal):void {
+				_exerciseSelected = value;
+				_exerciseSelected.add(onExerciseSelected);
+			}
 			
 			[Bindable]
 			public var showPieChart:Boolean;
@@ -32,7 +41,7 @@
 			public var showItemIndex:Boolean = true;
 			
 			[Bindable]
-			public var selectedExercise:XML;
+			public var selectedExerciseNode:XML;
 			
 			[Bindable]
 			private var pieChartArrayCollection:ArrayCollection;
@@ -42,6 +51,14 @@
 			
 			private function onCreationComplete(e:Event):void {
 				addEventListener(FlexEvent.DATA_CHANGE, function():void { invalidateProperties(); });
+			}
+			
+			private function onRemovedFromStage(e:Event):void {
+				if (_exerciseSelected) _exerciseSelected.remove(onExerciseSelected);
+			}
+			
+			private function onExerciseSelected(node:XML):void {
+				callLater(function():void { selectedExerciseNode = node; });
 			}
 			
 			public function set copyProvider(value:CopyProvider):void {
@@ -129,7 +146,7 @@
 				height="95%"
 				top="55" left="2" right="2"
 				dataProvider="{exerciseXMLListCollection}"
-				selectedItem="{selectedExercise}"
+				selectedItem="{selectedExerciseNode}"
 				borderVisible="false" contentBackgroundAlpha="0"
 				includeIn="selected"
 				click="onExerciseListClick(event)">
