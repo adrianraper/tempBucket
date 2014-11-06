@@ -23,6 +23,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 		override public function onRegister():void {
 			super.onRegister();
 			
+			view.settingsOpen.add(onSettingsOpen);
 			view.logout.add(onLogout);
 			
 			// This view runs off the menu xml so inject it here
@@ -33,6 +34,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 		override public function onRemove():void {
 			super.onRemove();
 			
+			view.settingsOpen.remove(onSettingsOpen);
 			view.logout.remove(onLogout);
 		}
 		
@@ -50,6 +52,10 @@ package com.clarityenglish.clearpronunciation.view.title {
 					view.selectedNode = note.getBody() as XML;
 					break;
 			}
+		}
+		
+		protected function onSettingsOpen():void {
+			
 		}
 		
 		protected function onLogout():void {

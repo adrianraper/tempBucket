@@ -7,8 +7,8 @@ package com.clarityenglish.clearpronunciation.view.title {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	
-	import mx.events.StateChangeEvent;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	
 	import spark.components.Button;
 	import spark.components.Label;
@@ -61,6 +61,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 		
 		private var _selectedNode:XML;
 		
+		public var settingsOpen:Signal = new Signal();
 		public var logout:Signal = new Signal();
 		
 		public function set selectedNode(value:XML):void {
@@ -104,6 +105,15 @@ package com.clarityenglish.clearpronunciation.view.title {
 				case progressButton:
 					progressButton.addEventListener(MouseEvent.CLICK, onProgressClick);
 					break;
+				case settingsButton:
+					settingsButton.addEventListener(MouseEvent.CLICK, onSettingsClick);
+					break;
+				case phonemicChartButton:
+					phonemicChartButton.addEventListener(MouseEvent.CLICK, onPhonemicChartClick);
+					break;
+				case helpButton:
+					helpButton.addEventListener(MouseEvent.CLICK, onHelpButtonClick);
+					break;
 				case backButton:
 					backButton.label = copyProvider.getCopyForId("Back");
 					backButton.addEventListener(MouseEvent.CLICK, onBackClick);
@@ -116,6 +126,18 @@ package com.clarityenglish.clearpronunciation.view.title {
 		
 		protected function onProgressClick(e:Event):void {
 			sectionNavigator.selectedIndex = 1;
+		}
+		
+		protected function onSettingsClick(event:MouseEvent):void {
+			settingsOpen.dispatch();
+		}
+		
+		protected function onPhonemicChartClick(event:Event):void {
+			navigateToURL(new URLRequest(copyProvider.getCopyForId("phonemicChartURL")), "_blank");
+		}
+		
+		protected function onHelpButtonClick(event:Event):void {
+			navigateToURL(new URLRequest(copyProvider.getCopyForId("helpURL")), "_blank");
 		}
 		
 		protected function onBackClick(event:Event):void {
