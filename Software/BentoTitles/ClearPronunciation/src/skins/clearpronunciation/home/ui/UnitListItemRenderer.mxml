@@ -63,6 +63,7 @@
 						unitItemRightLabel.text = (data.@caption).split(" ")[1];
 					}
 					
+					trace("SETTING COLLECTION TO EXERCISES!!!!!!");
 					exerciseXMLListCollection = new XMLListCollection(data.exercise);
 				} else {
 					if (unitItemLeftButton && unitItemLeftLabel) unitItemLeftButton.label = unitItemLeftLabel.text = "";
@@ -135,7 +136,7 @@
 								import skins.clearpronunciation.assets.home.menuDot;
 								
 								private function getIcon(item:Object):Object {
-									return item.attribute("coverage").length() > 0 && parseInt(item.@coverage) > 0 ? new menuDot() : null;
+									return item.attribute("done").length() > 0 && parseInt(item.@done) > 0 ? new menuDot() : null;
 								}
 								
 								override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
@@ -144,7 +145,7 @@
 									super.updateDisplayList(unscaledWidth, unscaledHeight);
 								}
 								
-								override protected function drawBackground(unscaledWidth:Number,  unscaledHeight:Number):void {
+								override protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void {
 									graphics.clear();
 									
 									if (selected || down) {

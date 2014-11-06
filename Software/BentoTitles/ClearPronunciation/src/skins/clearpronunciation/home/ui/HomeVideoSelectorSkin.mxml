@@ -14,13 +14,11 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
-			import mx.managers.FocusManager;
 			
 			import spark.components.VideoPlayer;
 			import spark.events.IndexChangeEvent;
 			
-			protected function onCreationComplete(event:FlexEvent):void
-			{
+			protected function onCreationComplete(event:FlexEvent):void {
 				var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
 				if (settingsSharedObject.data["channelIndex"]) {
 					channelList.selectedIndex = settingsSharedObject.data["channelIndex"];
@@ -30,8 +28,7 @@
 				stage.addEventListener(MouseEvent.CLICK, onStageClick);
 			}
 			
-			protected function onPlaceholderClick(event:MouseEvent):void
-			{
+			protected function onPlaceholderClick(event:MouseEvent):void {
 				// For now the default index is 0, but latter we will get index from widgetlist which is user prefered.
 				videoList.selectedIndex = 0;
 				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
