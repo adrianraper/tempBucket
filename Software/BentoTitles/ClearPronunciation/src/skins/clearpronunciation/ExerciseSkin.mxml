@@ -110,7 +110,7 @@
 						<s:SolidColor color="#FFFFFF" />
 					</s:fill>
 				</s:Rect>
-				<s:List id="unitList" dataProvider="{new XMLListCollection(hostComponent.selectedExerciseNode.parent().parent().unit)}" width="250" bottom="10" top="12" horizontalCenter="0" verticalScrollPolicy="on" borderVisible="false" contentBackgroundAlpha="0">
+				<s:List id="unitList" dataProvider="{new XMLListCollection(hostComponent.selectedExerciseNode.parent().parent().unit)}" width="273" bottom="10" top="12" horizontalCenter="4" verticalScrollPolicy="on" scaleX="0.9" scaleY="0.9" borderVisible="false" contentBackgroundAlpha="0">
 					<s:layout>
 						<s:VerticalLayout gap="10" />
 					</s:layout>
