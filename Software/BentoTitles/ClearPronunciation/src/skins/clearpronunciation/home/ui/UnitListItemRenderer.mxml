@@ -13,15 +13,17 @@
 				removedFromStage="onRemovedFromStage(event)">
 	<fx:Script>
 		<![CDATA[
-			import org.davekeen.util.StringUtils;
+			import com.clarityenglish.bento.events.ExerciseEvent;
+			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			
 			import mx.collections.ArrayCollection;
 			import mx.collections.XMLListCollection;
-			import com.clarityenglish.bento.events.ExerciseEvent;
 			import mx.events.FlexEvent;
-			import spark.events.IndexChangeEvent;
+			
+			import org.davekeen.util.StringUtils;
 			import org.osflash.signals.Signal;
 			
-			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			import spark.events.IndexChangeEvent;
 			
 			private var _dataChanged:Boolean;
 			
@@ -81,8 +83,17 @@
 						pieChartArrayCollection = (data.@coverage != 0) ? new ArrayCollection([{ coverage: 100 - data.@coverage }, { coverage: data.@coverage }]) : null;
 					
 					// Set the labels on the left symbol
+					
 					if (unitItemLeftButton && _copyProvider) unitItemLeftButton.label = _copyProvider.getCopyForId(data.@leftIcon);
 					if (unitItemLeftLabel) unitItemLeftLabel.text = (data.@caption).split(" ")[0];
+					// for introduction course, the left icon should be hided and the gap between lable and index number should be closed
+					if (data.@caption == "Introduction") {
+						unitItemLeftButton.visible = false;
+						unitItemIndexLabel.left = 55;
+					} else {
+						unitItemLeftButton.visible = true;
+						unitItemIndexLabel.left = 15;
+					}
 					
 					// Set the labels on the right symbol.  Hide this altogether if @rightIcon isn't defined.
 					if (unitItemRightButton && unitItemRightLabel && _copyProvider) {
