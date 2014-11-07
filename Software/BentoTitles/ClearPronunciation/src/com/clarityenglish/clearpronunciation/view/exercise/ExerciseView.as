@@ -5,6 +5,7 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 	import com.clarityenglish.clearpronunciation.view.exercise.ui.WindowShade;
 	import com.googlecode.bindagetools.Bind;
 	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
@@ -12,14 +13,15 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 	
 	import mx.core.ClassFactory;
 	
-	import spark.components.Button;
-	import spark.components.List;
-	import spark.events.IndexChangeEvent;
-	
 	import org.davekeen.util.XmlUtils;
 	import org.osflash.signals.Signal;
 	
+	import skins.clearpronunciation.exercise.ui.WindowShadeSkin;
 	import skins.clearpronunciation.home.ui.UnitListItemRenderer;
+	
+	import spark.components.Button;
+	import spark.components.List;
+	import spark.events.IndexChangeEvent;
 	
 	/**
 	 * This extends the default ExerciseView to add a few CP specific features
@@ -46,6 +48,13 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 		
 		public function ExerciseView() {
 			super();
+		}
+		
+		protected override function onAddedToStage(event:Event):void {
+			super.onAddedToStage(event);
+			
+			// gh#1099
+			stage.addEventListener(MouseEvent.CLICK, onStageClick);
 		}
 
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -110,5 +119,19 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 			sendNotification.dispatch(ClearPronunciationNotifications.YOUWILL_SHOW, prefix + exerciseIndex);
 		}
 		
+		// gh#1099
+		protected function onStageClick(event:MouseEvent):void {
+			var component:Object = event.target;
+			while(component) {
+				if (component is WindowShadeSkin) {
+					break;
+				}
+				component = component.parent;
+			}
+			
+			if (!(component is WindowShadeSkin)) {
+				windowShade.close();
+			}
+		}
 	}
 }
