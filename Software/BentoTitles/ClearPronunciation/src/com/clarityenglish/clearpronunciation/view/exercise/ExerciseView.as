@@ -73,11 +73,13 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 					
 					// Select the current unit and exercise
 					Bind.fromProperty(this, "selectedExerciseNode").toFunction(function(node:XML):void {
-						unitList.selectedItem = node.parent();
-						callLater(function():void {
-							unitList.ensureIndexIsVisible(unitList.selectedIndex);
-							exerciseSelected.dispatch(node);
-						});
+						if (node) {
+							unitList.selectedItem = node.parent();
+							callLater(function():void {
+								unitList.ensureIndexIsVisible(unitList.selectedIndex);
+								exerciseSelected.dispatch(node);
+							});
+						}	
 					});
 					break;
 				case phonemicChartButton:
