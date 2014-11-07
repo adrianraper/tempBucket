@@ -31,14 +31,17 @@
 		<s:State name="diphthongs" />
 	</s:states>
 	
+	<!-- Background bubble -->
+	<home:homeBubble top="{(courseList.selectedItem==null) ? 50 : -200}" left="250" scaleX="{(courseList.selectedItem==null) ? 1 : 1.5}" scaleY="{(courseList.selectedItem==null) ? 1 : 1.5}"/>
+	
 	<!-- The initial instruction graphics -->
-	<s:Group height="100" left="300" verticalCenter="-30" visible="{courseList.selectedItem == null}">
-		<home:homeInstructionArrow verticalCenter="-60" horizontalCenter="-220" />
-		<s:Label id="homeInstructionLabel" width="380" horizontalCenter="20" verticalCenter="0" fontWeight="bold" fontSize="25" color="#333333" />
+	<s:Group height="100" left="300" top="250" visible="{courseList.selectedItem == null}">
+		<home:homeInstructionArrow  />
+		<s:Label id="homeInstructionLabel" top="50" left="100" width="380" fontWeight="bold" fontSize="25" color="#333333" />
 	</s:Group>
 	
 	<!-- The course list -->
-	<s:List id="courseList" dataProvider="{hostComponent.courses}" labelField="@caption" height="100%" width="205" left="70" top="150" borderVisible="false" contentBackgroundAlpha="0">
+	<s:List id="courseList" dataProvider="{hostComponent.courses}" labelField="@caption" width="205" left="70" top="150" borderVisible="false" contentBackgroundAlpha="0">
 		<s:layout>
 			<s:VerticalLayout gap="25" />
 		</s:layout>
@@ -123,7 +126,7 @@
 		</s:List>
 	</s:Group>
 	
-	<!-- The unit/exercise list (this covers all other courses) -->
+	<!-- The unit/exercise list (this covers all other courses) top="60" -->
 	<s:List id="unitList" left="355" top="60" width="630" bottom="1" borderVisible="false" useVirtualLayout="true" contentBackgroundAlpha="0" excludeFrom="introduction">
 		<s:layout>
 			<flexlayouts:AccordianListLayout columnWidth="305" collapsedElementHeight="55" expandedElementHeight="200" verticalGap="10" />

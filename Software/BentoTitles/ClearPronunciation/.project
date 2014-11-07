@@ -39,7 +39,7 @@
 		<link>
 			<name>bin-release</name>
 			<type>2</type>
-			<location>/Applications/Adobe Flash Builder 4.7/Adobe Flash Builder 4.7.app/Contents/MacOS/D::/Projectbench/ClearPronunciation</location>
+			<location>C:/Applications/Adobe Flash Builder 4.7/Adobe Flash Builder 4.7.app/Contents/MacOS/D::/Projectbench/ClearPronunciation</location>
 		</link>
 	</linkedResources>
 	<variableList>
