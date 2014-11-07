@@ -95,7 +95,8 @@ package com.clarityenglish.clearpronunciation.view.progress.ui
 					myArc.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
 					// as a parameter pass to event handler
 					// may only for CP, for passing children exercise in but need to get parent unit caption
-					myArc.name = item.parent().@caption;					
+					// gh#1092
+					myArc.name = item.@caption;					
 				} 
 			} else {
 				arcArray = [];

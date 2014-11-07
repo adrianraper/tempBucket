@@ -113,7 +113,7 @@
 												</s:HGroup>	
 											</s:HGroup>
 											<s:HGroup id="durationHGroup" top="5" width="100%" horizontalAlign="right" verticalCenter="0">
-												<s:Label id="durationLable" text="{outerDocument.hostComponent.getCopyProvider().getCopyForId('courseDurationRenderTime', { time: Math.floor(exerciseDuration / 60) })}" color="#204C57" fontFamily="Mgbold" fontSize="21" fontWeight="bold" />
+												<s:Label id="durationLabel" text="{outerDocument.hostComponent.getCopyProvider().getCopyForId('courseDurationRenderTime', { time: Math.floor(exerciseDuration / 60) })}" color="#204C57" fontFamily="Mgbold" fontSize="21" fontWeight="bold" />
 												<s:Label id="minLabel" fontSize="10" text="{outerDocument.hostComponent.getCopyProvider().getCopyForId('minLabel')}" color="#204C57" paddingTop="8"/>
 											</s:HGroup>	
 										</s:Group>	

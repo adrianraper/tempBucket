@@ -4,7 +4,9 @@
     	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
 		alpha.disabled="0.5" 
 		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*"
-		xmlns:ui1="com.clarityenglish.clearpronunciation.view.progress.ui.*" xmlns:progress="skins.clearpronunciation.progress.*" creationComplete="onCreationComplete(event)">
+		xmlns:ui1="com.clarityenglish.clearpronunciation.view.progress.ui.*" 
+		xmlns:progress="skins.clearpronunciation.progress.*" 
+		creationComplete="onCreationComplete(event)">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.progress.ProgressAnalysisView")]
@@ -68,7 +70,7 @@
 											import spark.components.DataGroup;
 											
 											[Bindable]
-											private var exerciseDuration:Number;
+											private var unitDuration:Number;
 											
 											public function getIndex(data:Object):Number {
 												return (owner as DataGroup).dataProvider.getItemIndex(data);
@@ -91,8 +93,14 @@
 														unitItemRightButton.visible = false;
 														unitItemRightLabel.visible = false;
 													}
-													// gh#1056 only count the exercise duration
-													exerciseDuration = data.exercise.@duration;
+													// correct unit name text is split from caption rather than the iconNames
+													var leftIconString:String = String(data.@caption).split(' ')[0];
+													var rightIconString:String = String(data.@caption).split(' ')[1];
+													unitItemLeftLabel.text = leftIconString;
+													unitItemRightLabel.text = rightIconString;
+
+													// gh#1092
+													unitDuration = data.@duration;
 												}			
 											}
 										]]>
@@ -104,16 +112,16 @@
 												<s:Spacer width="10" />
 												<s:HGroup left="0" width="80" verticalCenter="0" verticalAlign="middle">
 													<s:Button id="unitItemLeftButton" scaleX="0.8" scaleY="0.8" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@leftIcon)}" />
-													<s:Label id="unitItemLeftLabel" text="{data.@leftIcon}" fontSize="14" color="#005D5F" />
+													<s:Label id="unitItemLeftLabel" fontSize="14" color="#005D5F" />
 												</s:HGroup>
 												<s:Spacer width="20" />
 												<s:HGroup width="80" verticalCenter="0" verticalAlign="middle">
 													<s:Button id="unitItemRightButton" scaleX="0.8" scaleY="0.8" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@rightIcon)}" />
-													<s:Label id="unitItemRightLabel" text="{data.@rightIcon}" fontSize="14" color="#005D5F" />
+													<s:Label id="unitItemRightLabel" fontSize="14" color="#005D5F" />
 												</s:HGroup>	
 											</s:HGroup>
 											<s:HGroup id="durationHGroup" top="5" width="100%" horizontalAlign="right" verticalCenter="0">
-												<s:Label id="durationLable" text="{outerDocument.hostComponent.getCopyProvider().getCopyForId('courseDurationRenderTime', { time: Math.floor(exerciseDuration / 60) })}" color="#204C57" fontFamily="Mgbold" fontSize="21" fontWeight="bold" />
+												<s:Label id="durationLabel" text="{outerDocument.hostComponent.getCopyProvider().getCopyForId('courseDurationRenderTime', { time: Math.floor(unitDuration / 60) })}" color="#204C57" fontFamily="Mgbold" fontSize="21" fontWeight="bold" />
 												<s:Label id="minLabel" fontSize="10" text="{outerDocument.hostComponent.getCopyProvider().getCopyForId('minLabel')}" color="#204C57" paddingTop="8"/>
 											</s:HGroup>	
 										</s:Group>	

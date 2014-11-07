@@ -153,7 +153,8 @@ package com.clarityenglish.clearpronunciation.view.progress {
 				
 				for each (var unitNode:XML in menu.course.(@["class"] == courseClass).unit) {
 					var everyoneAverageScore:Number = (everyOneScoreObject[unitNode.@id]) ? everyOneScoreObject[unitNode.@id] : 0;
-					xml.appendChild(<unit caption={unitNode.@caption} myAverageScore={unitNode.exercise.@averageScore} everyoneAverageScore={everyoneAverageScore} />);
+					// gh#1092
+					xml.appendChild(<unit caption={unitNode.@caption} myAverageScore={unitNode.@averageScore} everyoneAverageScore={everyoneAverageScore} />);
 					if (unitNode.@averageScore > 0 || everyoneAverageScore > 0) {
 						isNoData = false;
 					}
