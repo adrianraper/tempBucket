@@ -31,6 +31,14 @@
 				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
 				videoList.addEventListener(FocusEvent.FOCUS_OUT, onVideoListFocusOut);
 				stage.addEventListener(MouseEvent.CLICK, onStageClick);
+				
+				if (hostComponent.videoCollection.length > 1) {
+					videoListRect.visible = true;
+					videoList.visible = true;
+				} else {
+					videoListRect.visible = false;
+					videoList.visible = false;
+				}
 			}
 			
 			protected function onStageClick(event:Event):void {
@@ -93,12 +101,12 @@
 	<s:Button id="scriptButton" left="411" top="172" width="50" height="45" />
 	
 	<!-- Video list -->
-	<s:Rect top="2" right="-70" width="70" height="236" topRightRadiusX="18" topRightRadiusY="18" bottomRightRadiusX="18" bottomRightRadiusY="18" visible="{hostComponent.videoCollection.length > 1}">
+	<s:Rect id="videoListRect" top="2" right="-70" width="70" height="236" topRightRadiusX="18" topRightRadiusY="18" bottomRightRadiusX="18" bottomRightRadiusY="18">
 		<s:fill>
 			<s:SolidColor color="0x273A45" />
 		</s:fill>
 	</s:Rect>
-	<s:List id="videoList" top="4" right="-64" width="64" height="100%" horizontalScrollPolicy="off" minHeight="0" minWidth="0" visible="{hostComponent.videoCollection.length > 1}" contentBackgroundAlpha="0">
+	<s:List id="videoList" top="4" right="-64" width="64" height="100%" horizontalScrollPolicy="off" minHeight="0" minWidth="0" contentBackgroundAlpha="0">
 		<s:itemRenderer>
 			<fx:Component>
 				<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true"> 

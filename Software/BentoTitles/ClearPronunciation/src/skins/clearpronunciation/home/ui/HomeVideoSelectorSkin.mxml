@@ -62,7 +62,7 @@
 	<s:Image id="placeholderImage" left="30" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
 	
 	<!-- Channel list -->
-	<s:List id="channelList" top="260" left="30" width="320" horizontalScrollPolicy="off" >
+	<s:List id="channelList" top="260" left="30" width="320" horizontalScrollPolicy="off">
 		<s:layout>
 			<s:HorizontalLayout />
 		</s:layout>
