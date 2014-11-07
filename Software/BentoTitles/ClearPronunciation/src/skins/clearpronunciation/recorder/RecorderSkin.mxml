@@ -39,6 +39,7 @@
 	</s:Group>
 	
 	<s:Group includeIn="nomic">
+		<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/unit/recorder/RecorderBarMiddle.png')" bottom="12" />
 		<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/unit/recorder/RecorderBarBottom.png')" bottom="0" />
 		<s:Label id="warningLabel" horizontalCenter="0" verticalCenter="-10" width="550" color="0xFFFFFF" textAlign="center" text="Sorry, the Recorder either can't find a microphone attached to your computer, or you have denied access to it. Please use the settings panel to change this, or plug a microphone in!" />
 	</s:Group>

@@ -34,7 +34,7 @@
 			<video:VideoSelector id="videoSelector" width="390" horizontalCenter="0"/>
 			<s:VGroup top="255" width="100%">
 				<progress:DottedLine width="100%" dotColor="#263A45" height="1" />
-				<s:Label id="settingsLabel" width="100%" fontSize="14" color="#263A45"/>
+				<s:Label id="settingsLabel" paddingLeft="30" width="100%" fontSize="14" color="#263A45"/>
 				<progress:DottedLine width="100%" dotColor="#263A45" height="1" />
 			</s:VGroup>		
 		</s:Group>	
