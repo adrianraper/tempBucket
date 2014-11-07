@@ -41,16 +41,12 @@ package com.clarityenglish.clearpronunciation.view.settings {
 			super.commitProperties();
 			
 			if (videoSelector) {
+				var consonantsCourse:XML = _xhtml..course.(@["class"] == "consonants")[0];
 				videoSelector.href = href;
 				videoSelector.channelCollection = channelCollection;
-				
-				// I don't really understand what this video is for or how it is chosen so comment it out for the moment
-				/*
-				var videoXMLListCollection:XMLListCollection = new XMLListCollection();
-				videoXMLListCollection.addItem(course[1].unit[0].exercise[0].exercise[0].exercise[0]);
-				videoSelector.videoCollection = videoXMLListCollection;
-				videoSelector.placeholderSource = href.rootPath + "/" + course[1].unit[0].exercise[0].exercise[0].@placeholder;
-				*/
+				// gh#1100
+				videoSelector.videoCollection = new XMLListCollection(new XMLList(<item href={consonantsCourse.@videoHref} />));
+				videoSelector.placeholderSource = href.rootPath + "/" + consonantsCourse.@videoPoster;
 			}
 		}
 		
