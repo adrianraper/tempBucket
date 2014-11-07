@@ -46,6 +46,8 @@ package com.clarityenglish.clearpronunciation.view.home {
 			super.onRemove();
 			
 			view.nodeSelect.remove(onNodeSelected);
+			// gh#1112
+			view.courses = null;
 		}
 		
 		protected function onNodeSelected(exercise:XML, attribute:String = null):void {
