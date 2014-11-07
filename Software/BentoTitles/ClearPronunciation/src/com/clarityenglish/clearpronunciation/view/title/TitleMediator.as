@@ -60,6 +60,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 		}
 		
 		protected function onLogout():void {
+			sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view);
 			sendNotification(CommonNotifications.LOGOUT);
 		}
 		
