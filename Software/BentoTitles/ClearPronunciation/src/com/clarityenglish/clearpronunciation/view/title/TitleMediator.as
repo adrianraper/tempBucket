@@ -5,8 +5,10 @@ package com.clarityenglish.clearpronunciation.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.ConfigProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
+	import org.puremvc.as3.patterns.facade.Facade;
 	
 	/**
 	 * A Mediator
@@ -30,6 +32,9 @@ package com.clarityenglish.clearpronunciation.view.title {
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.isPlatformiPad = configProxy.isPlatformiPad();
 		}
 		
 		override public function onRemove():void {

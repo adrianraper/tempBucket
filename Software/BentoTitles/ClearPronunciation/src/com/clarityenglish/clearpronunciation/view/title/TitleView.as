@@ -10,12 +10,12 @@ package com.clarityenglish.clearpronunciation.view.title {
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	
+	import org.davekeen.util.StateUtil;
+	import org.osflash.signals.Signal;
+	
 	import spark.components.Button;
 	import spark.components.Label;
 	import spark.components.ViewNavigator;
-	
-	import org.davekeen.util.StateUtil;
-	import org.osflash.signals.Signal;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
 	[SkinState("home")]
@@ -61,6 +61,9 @@ package com.clarityenglish.clearpronunciation.view.title {
 		
 		private var _selectedNode:XML;
 		
+		[Bindable]
+		public var isPlatformiPad:Boolean;
+		
 		public var settingsOpen:Signal = new Signal();
 		public var logout:Signal = new Signal();
 		
@@ -103,6 +106,11 @@ package com.clarityenglish.clearpronunciation.view.title {
 					break;
 				case settingsButton:
 					settingsButton.addEventListener(MouseEvent.CLICK, onSettingsClick);
+					if (isPlatformiPad) {
+						settingsButton.enabled = false;
+					} else {
+						settingsButton.enabled = true;
+					}
 					break;
 				case phonemicChartButton:
 					phonemicChartButton.addEventListener(MouseEvent.CLICK, onPhonemicChartClick);

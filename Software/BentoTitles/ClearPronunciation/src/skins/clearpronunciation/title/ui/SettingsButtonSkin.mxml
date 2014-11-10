@@ -51,6 +51,7 @@
         <s:State name="disabled" />
     </s:states>
     
+	<title:menuSettingOff includeIn="disabled" />
     <title:menuSettingOff includeIn="up" />
 	<title:menuSettingOn includeIn="down, over" />
     
