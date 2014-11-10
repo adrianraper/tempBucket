@@ -143,6 +143,8 @@
 		
 		private function configureButtonVisibility(exercise:Exercise):void {
 			if (view.markingButton) view.markingButton.visible = view.markingButton.includeInLayout = !(getExerciseProxy(exercise).exerciseMarked) && exercise.hasQuestions();
+			// gh#1113
+			if (view.startAgainButton) view.startAgainButton.visible =  view.startAgainButton.includeInLayout = !(getExerciseProxy(exercise).exerciseMarked) && exercise.hasQuestions();
 			
 			// If there is exercise feedback then show the exercise feedback button
 			// gh#413
