@@ -166,13 +166,15 @@
 			</s:layout>
 			<s:itemRenderer>
 				<fx:Component>
-					<s:IconItemRenderer labelField="@caption" iconFunction="getIcon" paddingLeft="42" fontSize="13" height="23" iconWidth="13" width="100%">
+					<s:IconItemRenderer labelField="@caption" iconFunction="getIcon" paddingLeft="42" fontSize="13" height="23" iconWidth="8" width="100%">
 						<fx:Script>
 							<![CDATA[
 								import skins.clearpronunciation.assets.home.menuDot;
+								import skins.clearpronunciation.assets.home.yellowDot;
+								import skins.clearpronunciation.assets.home.yellowDotOutline;
 								
 								private function getIcon(item:Object):Object {
-									return item.attribute("done").length() > 0 && parseInt(item.@done) > 0 ? new menuDot() : null;
+									return item.attribute("done").length() > 0 && parseInt(item.@done) > 0 ? new yellowDot() : new yellowDotOutline();
 								}
 								
 								override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
