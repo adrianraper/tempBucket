@@ -29,7 +29,6 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 			switch (instance) {
 				case youWillRichText:
 					var youWillString:String = copyProvider.getCopyForId(labelString);
-					trace("youWillString: "+youWillString);
 					var youWillTextFlow:TextFlow = TextFlowUtil.importFromString(youWillString);
 					youWillRichText.textFlow = youWillTextFlow;
 					break;

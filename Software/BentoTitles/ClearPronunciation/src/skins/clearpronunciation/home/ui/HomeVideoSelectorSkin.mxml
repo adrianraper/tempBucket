@@ -70,12 +70,12 @@
 	<s:Button id="scriptButton" left="411" top="172" width="50" height="45" />
 	
 	<!-- Video list -->
-	<s:Rect top="2" right="37" width="71" height="236" topRightRadiusX="18" topRightRadiusY="18" bottomRightRadiusX="18" bottomRightRadiusY="18" visible="{hostComponent.videoCollection.length > 1}">
+	<s:Rect id="videoListRect" top="2" right="37" width="71" height="236" topRightRadiusX="18" topRightRadiusY="18" bottomRightRadiusX="18" bottomRightRadiusY="18" visible="false">
 		<s:fill>
 			<s:SolidColor color="0x273A45" />
 		</s:fill>
 	</s:Rect>
-	<s:List id="videoList" top="4" right="41" width="64" height="100%" horizontalScrollPolicy="off" minHeight="0" minWidth="0" borderVisible="false" visible="{hostComponent.videoCollection.length > 1}" contentBackgroundAlpha="0">
+	<s:List id="videoList" top="4" right="41" width="64" height="100%" horizontalScrollPolicy="off" minHeight="0" minWidth="0" borderVisible="false" visible="false" contentBackgroundAlpha="0">
 		<s:itemRenderer>
 			<fx:Component>
 				<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true"> 
