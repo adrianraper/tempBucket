@@ -163,7 +163,8 @@ package com.clarityenglish.clearpronunciation.view.progress
 					// gh#1062
 					var totalExercisePerUnit:Number = unitXML.exercise.length();
 					for (var j:Number = 0; j < totalExercisePerUnit; j++) {
-						if (unitXML.exercise[j].attribute("done")) {
+						// gh#1107
+						if (unitXML.exercise[j].attribute("done").length() > 0) {
 							exerciseAmount++;
 						}
 					}
