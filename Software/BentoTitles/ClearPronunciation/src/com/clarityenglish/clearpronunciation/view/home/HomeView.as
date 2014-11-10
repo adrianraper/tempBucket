@@ -12,15 +12,15 @@ package com.clarityenglish.clearpronunciation.view.home {
 	import mx.collections.XMLListCollection;
 	import mx.core.ClassFactory;
 	
-	import spark.components.Label;
-	import spark.components.List;
-	import spark.events.IndexChangeEvent;
-	
 	import org.davekeen.util.StateUtil;
 	import org.davekeen.util.XmlUtils;
 	import org.osflash.signals.Signal;
 	
 	import skins.clearpronunciation.home.ui.UnitListItemRenderer;
+	
+	import spark.components.Label;
+	import spark.components.List;
+	import spark.events.IndexChangeEvent;
 	
 	public class HomeView extends BentoView {
 		
@@ -125,7 +125,11 @@ package com.clarityenglish.clearpronunciation.view.home {
 					unitList.addEventListener(IndexChangeEvent.CHANGE, onNodeSelect);
 					
 					// Listen for exercise changes (this one is a special case as the event doesn't come from the expected target)
-					unitList.addEventListener(ExerciseEvent.EXERCISE_SELECTED, function(e:ExerciseEvent):void { nodeSelect.dispatch(e.node); });
+					unitList.addEventListener(ExerciseEvent.EXERCISE_SELECTED, function(e:ExerciseEvent):void { 
+						// gh#1116
+						if (e.node)
+							nodeSelect.dispatch(e.node);
+					});
 					break;
 				case introductionList:
 					introductionList.addEventListener(IndexChangeEvent.CHANGE, onNodeSelect);
@@ -134,7 +138,9 @@ package com.clarityenglish.clearpronunciation.view.home {
 		}
 		
 		protected function onNodeSelect(e:Event):void {
-			nodeSelect.dispatch(e.target.selectedItem);
+			// gh#1116
+			if (e.target.selectedItem)
+				nodeSelect.dispatch(e.target.selectedItem);
 		}
 		
 		protected override function getCurrentSkinState():String {
