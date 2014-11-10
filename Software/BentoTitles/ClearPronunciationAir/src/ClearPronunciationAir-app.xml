@@ -18,11 +18,11 @@
 	<id>com.clarityenglish.clearpronunciation.app</id>
 
 	<!-- Used as the filename for the application. Required. -->
-	<filename>ClearPronunciationAir</filename>
+	<filename>CP Sounds</filename>
 
 	<!-- The name that is displayed in the AIR application installer. 
 	May have multiple values for each language. See samples or xsd schema file. Optional. -->
-	<name>ClearPronunciationAir</name>
+	<name>CP Sounds</name>
 	
 	<!-- A string value of the format <0-999>.<0-999>.<0-999> that represents application version which can be used to check for application upgrade. 
 	Values can also be 1-part or 2-part. It is not necessary to have a 3-part value.
@@ -162,8 +162,10 @@
 		<image1024x1024></image1024x1024> -->
 		<image57x57>icons/CP1_iOS_appIcon_57.png</image57x57>
 		<image72x72>icons/CP1_iOS_appIcon_72.png</image72x72>
+		<image76x76>icons/CP1_iOS_appIcon_76.png</image76x76>
 		<image114x114>icons/CP1_iOS_appIcon_114.png</image114x114>
 		<image144x144>icons/CP1_iOS_appIcon_144.png</image144x144>
+		<image152x152>icons/CP1_iOS_appIcon_152.png</image152x152>
 	</icon>
 
 	<!-- Whether the application handles the update when a user double-clicks an update version
