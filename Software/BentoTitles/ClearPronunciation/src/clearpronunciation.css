@@ -25,6 +25,7 @@ confirm that the rotterdam.clearpronunciation namespaces are NOT used please
 @namespace settings "com.clarityenglish.clearpronunciation.view.settings.*";
 @namespace home "com.clarityenglish.clearpronunciation.view.home.*";
 @namespace video "com.clarityenglish.controls.video.*";
+@namespace players "com.clarityenglish.controls.video.players.*";
 @namespace vo "com.clarityenglish.clearpronunciation.vo.*";
 @namespace widgetcomponents "com.clarityenglish.components.*";
 @namespace widgetskins "skins.rotterdam.unit.widgets.*";
@@ -32,6 +33,7 @@ confirm that the rotterdam.clearpronunciation namespaces are NOT used please
 @namespace warning "com.clarityenglish.bento.view.warning.*";
 @namespace ui "com.clarityenglish.clearpronunciation.view.home.ui.*";
 @namespace ui4 "com.clarityenglish.clearpronunciation.view.exercise.ui.*";
+@namespace error "com.clarityenglish.common.view.error.*";
 
 global {
 	defaultColor: #00A2C8;
@@ -108,6 +110,19 @@ s|TitleWindow.noTitleTitleWindow {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.NoTitleTitleWindowSkin");
 }
 
+s|TitleWindow.errorTitleWindow {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.error.ErrorTitleWindowSkin");
+}
+
+error|ErrorView {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.error.ErrorSkin");
+}
+
+error|ErrorView s|Button#closeButton{
+	skinClass: ClassReference("skins.clearpronunciation.settings.ui.SettingsCloseButtonSkin");
+}
+
+
 s|VScrollBar {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.VScrollBarSkin");
 }
@@ -118,6 +133,10 @@ recorder|RecorderView {
 
 recorder|WaveformView {
 	skinClass: ClassReference("skins.clearpronunciation.recorder.WaveformSkin");
+}
+
+players|OSMFVideoPlayer {
+	skinClass: ClassReference("skins.clearpronunciation.controls.video.videoplayer.VideoPlayerSkin");
 }
 
 s|Button#unitItemLeftButton,#unitItemRightButton {
