@@ -28,6 +28,7 @@
 			protected function onCreatComplete(event:FlexEvent):void {
 				// TODO Auto-generated method stub
 				channelList.visible = false;
+				hostComponent.showSelector = false;
 				
 				videoPlayer.stop();
 				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);

@@ -24,6 +24,7 @@
 					channelList.selectedIndex = settingsSharedObject.data["channelIndex"];
 				}
 				channelList.visible = false;
+				hostComponent.showSelector = false;
 				
 				stage.addEventListener(MouseEvent.CLICK, onStageClick);
 			}
@@ -54,13 +55,6 @@
 		]]>
 	</fx:Script>
 	
-	<!-- The video players -->
-	<!--players:WebViewVideoPlayer id="videoPlayer" left="30" width="320" height="240" visible="{videoList.selectedItem != null}" /-->
-	<players:OSMFVideoPlayer id="videoPlayer" left="30" width="640" height="360" visible="{videoList.selectedItem != null}" filters="{[dropShadowFilter]}" />
-	
-	<!-- Placeholder image -->
-	<s:Image id="placeholderImage" left="30" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
-	
 	<!-- Channel list -->
 	<s:List id="channelList" top="260" left="30" width="320" horizontalScrollPolicy="off">
 		<s:layout>
@@ -69,13 +63,20 @@
 	</s:List>
 	<s:Button id="scriptButton" left="411" top="172" width="50" height="45" />
 	
+	<!-- The video players -->
+	<!--players:WebViewVideoPlayer id="videoPlayer" left="30" width="320" height="240" visible="{videoList.selectedItem != null}" /-->
+	<players:OSMFVideoPlayer id="videoPlayer" left="30" width="640" height="360" visible="{videoList.selectedItem != null}" filters="{[dropShadowFilter]}" />	
+	
+	<!-- Placeholder image -->
+	<s:Image id="placeholderImage" left="30" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
+	
 	<!-- Video list -->
 	<s:Rect id="videoListRect" top="2" right="37" width="71" height="236" topRightRadiusX="18" topRightRadiusY="18" bottomRightRadiusX="18" bottomRightRadiusY="18" visible="false">
 		<s:fill>
 			<s:SolidColor color="0x273A45" />
 		</s:fill>
 	</s:Rect>
-	<s:List id="videoList" top="4" right="41" width="64" height="100%" horizontalScrollPolicy="off" minHeight="0" minWidth="0" borderVisible="false" visible="false" contentBackgroundAlpha="0">
+	<s:List id="videoList" top="4" right="41" width="64" height="100%" horizontalScrollPolicy="off" minHeight="0" minWidth="0" borderVisible="false" visible="{hostComponent.videoCollection.length > 1}" contentBackgroundAlpha="0">
 		<s:itemRenderer>
 			<fx:Component>
 				<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true"> 
