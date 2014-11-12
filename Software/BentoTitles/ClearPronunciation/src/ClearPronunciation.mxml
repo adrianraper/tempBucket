@@ -5,7 +5,8 @@
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:clearpronunciation="com.clarityenglish.clearpronunciation.*"
 			   minWidth="955" minHeight="600" 
-			   initialize="onInitialize(event)">
+			   initialize="onInitialize(event)"
+			   preloader="com.clarityenglish.clearpronunciation.ClearPronunciationPreloader">
 	
 	<fx:Metadata>
 		[SWF(width="990", height="740")]
