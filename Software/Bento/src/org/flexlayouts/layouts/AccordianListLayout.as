@@ -83,6 +83,7 @@ package org.flexlayouts.layouts {
 			
 			// Set final content size (needed for scrolling)
 			layoutTarget.setContentSize(maxWidth, maxHeight);
+			trace("maxHeight=" + maxHeight);
 		}
 	}
 }

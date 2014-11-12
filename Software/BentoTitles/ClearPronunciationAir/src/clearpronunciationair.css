@@ -15,7 +15,7 @@
 @namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 
 clearpronunciation|ClearPronunciationApplication {
-	skinClass: ClassReference("skins.clearpronunciationair.ClearPronunciationAirSkin");
+	skinClass: ClassReference("skins.clearpronunciation.ClearPronunciationApplicationSkin");
 }
 
 components|XHTMLExerciseView s|TextInput {
@@ -58,33 +58,33 @@ login|LoginView s|TextInput {
 }
 
 title|TitleView {
-	skinClass: ClassReference("skins.clearpronunciationair.title.TitleSkin");
+	skinClass: ClassReference("skins.clearpronunciation.title.TitleSkin");
 }
 
 home|HomeView {
-	skinClass: ClassReference("skins.clearpronunciationair.home.HomeSkin");
+	skinClass: ClassReference("skins.clearpronunciation.home.HomeSkin");
 }
 
 progress|ProgressView {
-	skinClass: ClassReference("skins.clearpronunciationair.progress.ProgressSkin");
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressSkin");
 }
 
 progress|ProgressCoverageView {
-	skinClass: ClassReference("skins.clearpronunciationair.progress.ProgressCoverageSkin");
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressCoverageSkin");
 }
 
 progress|ProgressCompareView {
-	skinClass: ClassReference("skins.clearpronunciationair.progress.ProgressCompareSkin");
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressCompareSkin");
 }
 
 progress|ProgressAnalysisView {
-	skinClass: ClassReference("skins.clearpronunciationair.progress.ProgressAnalysisSkin");
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressAnalysisSkin");
 }
 
 progress|ProgressScoreView {
-	skinClass: ClassReference("skins.clearpronunciationair.progress.ProgressScoreSkin");
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressScoreSkin");
 }
 
 progress|ProgressCertificateView {
-	skinClass: ClassReference("skins.clearpronunciationair.progress.ProgressCertificateSkin");
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressCertificateSkin");
 }

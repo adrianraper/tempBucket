@@ -4,7 +4,8 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:controls="com.clarityenglish.bento.view.*"
 		xmlns:progress="com.clarityenglish.clearpronunciation.view.progress.*"
-		xmlns:components="com.clarityenglish.bento.view.progress.components.*" creationComplete="onCreationComplete(event)">
+		xmlns:components="com.clarityenglish.bento.view.progress.components.*" 
+		creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.progress.ProgressView")]
@@ -85,7 +86,7 @@
 						<progress:ProgressAnalysisView id="progressAnalysisView" width="100%" height="100%" includeIn="analysis" />
 						<progress:ProgressScoreView id="progressScoreView"   width="100%" height="100%" includeIn="score" />
 						<progress:ProgressCompareView id="progressCompareView" width="100%" height="100%" includeIn="compare" />
-						<progress:ProgressCertificateView id="progressCertificateView" width="100%" height="100%" includeIn="certificate" skinClass="skins.clearpronunciation.progress.ProgressCertificateSkin" />
+						<progress:ProgressCertificateView id="progressCertificateView" width="100%" height="100%" includeIn="certificate" />
 					</s:Group>
 				</s:Group>
 			</s:HGroup>
