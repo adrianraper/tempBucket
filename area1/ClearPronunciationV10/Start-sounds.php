@@ -17,7 +17,7 @@
 	$startControl = '/Software/BentoTitles/ClearPronunciation/bin-debug/';
 	$version = '1107';
 	$coordsMinWidth = '990';
-	$coordsMaxWidth = '1200';
+	$coordsMaxWidth = null;
 	$coordsMinHeight = '760';
 	$coordsMaxHeight = null;
 	$locationFile = "config.xml";

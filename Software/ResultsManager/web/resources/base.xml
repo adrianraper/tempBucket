@@ -72,6 +72,7 @@
             <lit name="errorSavingCourseToDb" code="888">Your course has been saved, but a problem with the database means the publishing details and settings have not. Please try again in a minute. If the problem persists, please contact support@clarityenglish.com and tell us the course you were editing and the date/time.</lit>
             
             <lit name="supportEmail">support@clarityenglish.com</lit>
+            <lit name="problemLabel"></lit> <!-- "Sorry, there is a problem" is hardcoded in ShowErrorCommand -->
             
             <!-- Login -->
             <lit name="loginButton">Log in</lit>
