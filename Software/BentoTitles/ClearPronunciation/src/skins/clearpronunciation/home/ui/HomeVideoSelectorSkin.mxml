@@ -63,9 +63,15 @@
 	</s:List>
 	<s:Button id="scriptButton" left="411" top="172" width="50" height="45" />
 	
+	<!--video player black background-->
+	<s:Rect left="30" width="640" height="360" filters="{[dropShadowFilter]}">
+		<s:fill>
+			<s:SolidColor color="0x273A45" />
+		</s:fill>
+	</s:Rect>
 	<!-- The video players -->
 	<!--players:WebViewVideoPlayer id="videoPlayer" left="30" width="320" height="240" visible="{videoList.selectedItem != null}" /-->
-	<players:OSMFVideoPlayer id="videoPlayer" left="30" width="640" height="360" visible="{videoList.selectedItem != null}" filters="{[dropShadowFilter]}" />	
+	<players:OSMFVideoPlayer id="videoPlayer" left="30" width="640" height="360" visible="{videoList.selectedItem != null}" />	
 	
 	<!-- Placeholder image -->
 	<s:Image id="placeholderImage" left="30" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
