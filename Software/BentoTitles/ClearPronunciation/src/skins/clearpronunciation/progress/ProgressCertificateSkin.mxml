@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" xmlns:ui="com.clarityenglish.bento.view.progress.ui.*"  xmlns:certificate="skins.tensebuster.assets.progress.certificate.*" xmlns:certificate1="skins.clearpronunciation.assets.progress.certificate.*">
+		xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" 
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*"  
+		xmlns:certificate="skins.clearpronunciation.assets.progress.certificate.*">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.progress.ProgressCertificateView")]
@@ -28,7 +30,7 @@
 	
 	<!-- Not complete text-->
 	<s:VGroup id="oopsVGroup" horizontalCenter="0" verticalCenter="-20" visible="false" gap="20">
-		<certificate1:oops />
+		<certificate:oops />
 		<s:RichEditableText id="notCompleteRichEditableText" verticalCenter="0" horizontalCenter="0" fontSize="13" lineHeight="30" />
 	</s:VGroup>
 	

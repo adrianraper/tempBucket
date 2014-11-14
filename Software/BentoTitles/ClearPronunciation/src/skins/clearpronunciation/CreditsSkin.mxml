@@ -30,11 +30,6 @@
 	<!--home left corner logo-->
 	<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/home/homeLogo.png')" top="0" left="0" />
 	
-	<!--home footer
-	<s:Group id="homeFooterGroup" bottom="0">
-		<home:homeFooter left="0" bottom="0" />
-	</s:Group>
-	-->
 	<s:VGroup horizontalCenter="0" verticalCenter="-150" >
 		<s:Label id="creditLabel" fontWeight="bold" fontSize="22" textAlign="center" color="0x343433"/>
 	</s:VGroup>
