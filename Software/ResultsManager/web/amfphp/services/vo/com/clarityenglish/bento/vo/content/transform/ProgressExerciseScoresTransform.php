@@ -51,50 +51,7 @@ SQL;
 				}
 			}
 			
-			foreach ( $xml->xpath ( '/xmlns:bento/xmlns:head/xmlns:script[@id="model"]//xmlns:exercise' ) as $exercise ) {
-				if ($exercise ['contentuid']) {
-					$uid = explode ( ".", $exercise ['contentuid'] );
-					if (count ( $uid ) < 4) {
-						$sql = <<<SQL
-							SELECT SUM(F_Duration) as duration, AVG(F_Score) as score, MIN(F_DateStamp) as dateStamp
-								FROM T_Score s
-								WHERE s.F_UserID=?
-								AND s.F_ProductCode=?
-SQL;
-						if (count ( $uid ) > 2)
-							$sql .= ' AND s.F_CourseID=' . $uid [1];
-						if (count ( $uid ) > 3)
-							$sql .= ' AND s.F_UnitID=' . $uid [2];
-						$bindingParams = array ($user->userID, $uid [0] );
-					
-					} else {
-						$sql = <<<SQL
-							SELECT SUM(F_Duration) as duration, MAX(F_Score) as score, MIN(F_DateStamp) as dateStamp
-								FROM T_Score s
-								WHERE s.F_UserID=?
-								AND s.F_ProductCode=?
-								AND s.F_CourseID=?
-								AND s.F_UnitID=?
-								AND s.F_ExerciseID=?;
-SQL;
-						$bindingParams = array ($user->userID, $uid [0], $uid [1], $uid [2], $uid [3] );
-					}
-					$rs2 = $db->Execute ( $sql, $bindingParams );
-					
-					foreach ( $rs2 as $record2 ) {
-						$score = $exercise->addChild ( 'score' );
-						$score->addAttribute ( 'score', $record2 ['score'] );
-						$score->addAttribute ( 'duration', $record2 ['duration'] );
-						$score->addAttribute ( 'datetime', $record2 ['dateStamp'] );
-						
-						// Increment the @done attribute
-						if ($record2 ['duration'] > 0) {
-							$exercise ['done'] = ($exercise ['done']) ? $exercise ['done'] + 1 : 1;
-						}
-					}
-				}
-			}
-			/*foreach ( $xml->head->script->menu->course->unit as $unit ) {
+			foreach ( $xml->head->script->menu->course->unit as $unit ) {
 				foreach ( $unit->exercise as $exercise ) {
 					// gh#238
 					if ($exercise ['contentuid']) {
@@ -138,7 +95,7 @@ SQL;
 						}
 					}
 				}			
-			}*/
+			}
 		}
 	}
 }
