@@ -11,6 +11,7 @@
 package flashx.textLayout.compose
 {
 	import flash.display.DisplayObject;
+	import flash.display.Shape;
 	import flash.geom.Rectangle;
 	import flash.text.engine.TextBaseline;
 	import flash.text.engine.TextBlock;
@@ -20,6 +21,7 @@ package flashx.textLayout.compose
 	import flash.text.engine.TextLineValidity;
 	import flash.utils.Dictionary;
 	
+	import flashx.textLayout.tlf_internal;
 	import flashx.textLayout.container.ContainerController;
 	import flashx.textLayout.debug.Debugging;
 	import flashx.textLayout.debug.assert;
@@ -50,7 +52,6 @@ package flashx.textLayout.compose
 	import flashx.textLayout.formats.TextAlign;
 	import flashx.textLayout.formats.TextLayoutFormat;
 	import flashx.textLayout.formats.VerticalAlign;
-	import flashx.textLayout.tlf_internal;
 	import flashx.textLayout.utils.LocaleUtil;
 	import flashx.textLayout.utils.Twips;
 
@@ -858,6 +859,9 @@ package flashx.textLayout.compose
 				
 				CONFIG::debug { assert(_curLine != null, "curLine is null!"); }
 				
+				// gh#1103
+				if (_curElement is InlineGraphicElement && (_curElement as InlineGraphicElement).graphic is Shape) textLine.visible = false;
+					
 				// Adjust the coordinates of the line for center/right.  The line is always left aligned.  TextBlock handles justified cases
 				// If we're on the last line of a justified paragraph, use the textAlignLast value 
 				var textAlignment:String = _curParaFormat.textAlign;
