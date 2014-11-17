@@ -2,6 +2,7 @@ package com.clarityenglish.common.vo.config {
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
 	
@@ -128,6 +129,9 @@ package com.clarityenglish.common.vo.config {
 		
 		// gh#21	
 		public var loginOption:Number;
+		
+		// gh#1090
+		public var signInAs:uint = Title.SIGNIN_TRACKING;
 		
 		// #410
 		public var checkNetworkAvailabilityUrl:String;
@@ -666,6 +670,16 @@ package com.clarityenglish.common.vo.config {
 				this.customisation = new XML(customisationFromDB);
 		}
 
+		/**
+		 * Update the user details you are holding when you come back from login
+		 * 
+		 */
+		public function mergeUser(user:User) {
+			this.username = user.name;
+			this.studentID = user.studentID;
+			this.email = user.email;
+			this.userID = user.id;
+		}
 		/**
 		 * Check for all the errors that you might know about now
 		 * Move this into ConfigProxy so you can do better handling of the error.

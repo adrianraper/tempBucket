@@ -29,7 +29,7 @@ package com.clarityenglish.tensebuster.view.login
 	import spark.components.Label;
 	import spark.components.TextInput;
 	
-	public class LoginView extends BentoView implements LoginComponent {
+	public class xxLoginView extends BentoView implements LoginComponent {
 		
 		[SkinPart(required="true")]
 		public var loginButton:Button;
@@ -148,7 +148,7 @@ package com.clarityenglish.tensebuster.view.login
 		// gh#41
 		private var _noAccount:Boolean;
 		
-		public function LoginView() {
+		public function xxLoginView() {
 			super();
 		}
 		

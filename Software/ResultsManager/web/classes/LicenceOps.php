@@ -54,12 +54,16 @@ class LicenceOps {
 		}
 		
 		// Then licence slot checking is based on licence type
+		/*
 		switch ($licence->licenceType) {
-			// Concurrent licences
 			case Title::LICENCE_TYPE_AA:
 			case Title::LICENCE_TYPE_CT:
 			case Title::LICENCE_TYPE_NETWORK:
-				
+		*/
+		switch ($licence->signInAs) {
+			// gh#1090
+			// Concurrent licences
+			case Title::SIGNIN_ANONYMOUS:
 				// Only check on learners. AA licence doesn't have teachers, but a CT licence will
 				if ($user->userType != User::USER_TYPE_STUDENT) {
 					$licenceID = 0;
@@ -122,14 +126,14 @@ EOD;
 				}
 				break;
 
-			// TODO. What about single and individual licences?
 			// Currently treated as tracking types.
+			/*
 			case Title::LICENCE_TYPE_SINGLE:
 			case Title::LICENCE_TYPE_I:
-			
-			// Named licences
 			case Title::LICENCE_TYPE_LT:
 			case Title::LICENCE_TYPE_TT:
+			*/
+			case Title::SIGNIN_TRACKING:
 				// Only track learners
 				if ($user->userType != User::USER_TYPE_STUDENT) {
 					$licenceID = 0;

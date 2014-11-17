@@ -51,7 +51,7 @@
 		public var startDate:String;
 		public var contactMethod:String;
 		public var registrationDate:String;
-		public var userProfileOption:Number;
+		public var userProfileOption:Number = 0;
 		public var registerMethod:String;
 		
 		/** 
@@ -251,7 +251,11 @@
 		 * that Flex components still know which object is which even when performing a complete refresh from the backend.
 		 */
 		override public function get uid():String{
-			return "user" + id;
+			if (id) {
+				return "user" + id;
+			} else {
+				return "";
+			}
 		}
 		
 		override public function set uid(value:String):void { }

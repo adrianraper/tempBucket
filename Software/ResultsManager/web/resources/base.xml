@@ -75,22 +75,33 @@
             <lit name="problemLabel"></lit> <!-- "Sorry, there is a problem" is hardcoded in ShowErrorCommand -->
             
             <!-- Login -->
-            <lit name="loginButton">Log in</lit>
+            <lit name="loginButton">Sign in</lit>
             <lit name="passwordLabel">Password:</lit>
             <lit name="yourLoginDetail">Your {loginDetail}:</lit>
-            <lit name="nameLoginDetail">name</lit>
+            <lit name="nameLoginDetail">Name</lit>
             <lit name="IDLoginDetail">ID</lit>
-            <lit name="emailLoginDetail">email</lit>
-            <lit name="loginID">Login id:</lit>
+            <lit name="emailLoginDetail">Email</lit>
             <lit name="yourID">Your id:</lit>
             <lit name="yourEmail">Your email:</lit>
             <lit name="welcomeLabel">Welcome, {fullname}</lit>
             <lit name="licencedToName">Licensed to {name}</lit>
             <lit name="forgotPasswordLabel">Forgot your password?</lit>
             <lit name="forgotPasswordLink"><![CDATA[http://www.clarityenglish.com/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
-            <lit name="loginIDLabel">You need to have already registered your email with your school or with British Council to log in.</lit>
-            <lit name="loginDetailLabel">Please type your login details to continue.</lit>
-            <lit name="loginDetailLabelNetwork">Please type your login details if you want to save your progress records.</lit>
+            <lit name="loginCaption">Sign in with your Clarity account</lit>
+            <lit name="anonymousCaption">Just practice</lit>
+            <lit name="loginDetail">Signing in will save your progress.</lit>
+            <lit name="newUserButtonCaption">Create new user</lit>
+            <lit name="addUserButtonCaption">Create user</lit>
+            <lit name="cancelButtonCaption">Cancel</lit>
+            <lit name="anonymousButtonCaption">Start</lit>
+            <lit name="selfRegisterCaption">Create your account</lit>
+            <lit name="selfRegisterNameCaption">Name</lit>
+            <lit name="selfRegisterIDCaption">ID</lit>
+            <lit name="selfRegisterEmailCaption">Email</lit>
+            <lit name="selfRegisterPasswordCaption">Password</lit>
+            <lit name="confirmPasswordCaption">Confirm password</lit>
+            <lit name="demoButtonCaption">Demo</lit>
+            <lit name="accountName">You are signed in as: {name}</lit>
             
             <!-- General screen literals -->
             <lit name="myProgress">My progress</lit>

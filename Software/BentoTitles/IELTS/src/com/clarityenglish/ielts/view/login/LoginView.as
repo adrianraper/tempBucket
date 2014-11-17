@@ -862,7 +862,6 @@ package com.clarityenglish.ielts.view.login {
 				urlString = copyProvider.getCopyForId("androidRateLink");
 			}
 			
-			trace("androidRateLink: "+urlString);
 			var urlRequest:URLRequest = new URLRequest(urlString);
 			navigateToURL(urlRequest, "_blank");
 		}

@@ -4,12 +4,13 @@
 package com.clarityenglish.common.view.login {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.view.login.LoginView;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
-	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
+	//import com.clarityenglish.common.view.login.interfaces.LoginComponent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
@@ -27,8 +28,8 @@ package com.clarityenglish.common.view.login {
 			super(mediatorName, viewComponent);
 		}
 		
-		private function get view():LoginComponent {
-			return viewComponent as LoginComponent;
+		private function get view():LoginView {
+			return viewComponent as LoginView;
 		}
 		
 		/**
@@ -44,8 +45,11 @@ package com.clarityenglish.common.view.login {
 			
 			// Inject some data to the login view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			view.setLicencee(configProxy.getAccount().name);
+			// gh#1090
+			view.licenceeName = configProxy.getAccount().name;
 			
+			// gh#1090 Not generally needed. If a specific view wants it, it can get it direct from view.config.platform
+			/*
 			// get the login platform
 			if (configProxy.isPlatformTablet()) {
 				view.setPlatformTablet(true);
@@ -57,35 +61,37 @@ package com.clarityenglish.common.view.login {
 			} else {
 				view.setPlatformTablet(false);
 			}
+			*/
 			
 			// gh#224
 			//view.setBranding(configProxy.getConfig().customisation);
-			view.setBranding(configProxy.getBranding('login'));
+			view.branding = configProxy.getBranding('login');
 			
-			view.setProductVersion(configProxy.getProductVersion());
-			view.setProductCode(configProxy.getProductCode());
+			view.productVersion = configProxy.getProductVersion();
+			view.productCode = configProxy.getProductCode();
 			
 			// gh#659 using productCodes to distinguish the ipad login and online login
 			// And using productCodes length to distinguish an account has IPrange setting.
-			if (configProxy.getAccount().IPMatchedProductCodes && configProxy.getAccount().IPMatchedProductCodes.length > 0){
+			/*
+			if (configProxy.getAccount().IPMatchedProductCodes.length > 0){
 				view.setHasMatchedIPrange(true);
 				view.setIPMatchedProductCodes(configProxy.getAccount().IPMatchedProductCodes);
 			} else {
 				view.setHasMatchedIPrange(false);
 			}
+			*/
 			
 			// #341
-			view.setLoginOption(configProxy.getLoginOption()); // gh#44
-			view.setSelfRegister(configProxy.getAccount().selfRegister);
-			view.setVerified(configProxy.getAccount().verified);
-			view.setLicenceType(configProxy.getLicenceType());
+			view.loginOption = configProxy.getLoginOption(); // gh#44
+			view.selfRegister = configProxy.getAccount().selfRegister;
+			view.verified = (configProxy.getAccount().verified == Config.LOGIN_REQUIRE_PASSWORD);
+			view.licenceType = configProxy.getLicenceType();
 			
 			// #41
-			var noAccount:Boolean = !(configProxy.getRootID());
-			view.setNoAccount(noAccount);
+			view.noAccount = !(configProxy.getRootID());
 			
 			// gh#886
-			view.setNoLogin(configProxy.getConfig().noLogin);
+			view.noLogin = configProxy.getConfig().noLogin;
 		}
         
 		override public function onRemove():void {
@@ -158,7 +164,7 @@ package com.clarityenglish.common.view.login {
 					} else {
 						//trace("error from add new user");
 						// Need to pass the error in. Perhaps the error is flagged as a popup just like wrong password in login.
-						view.setState("registerError");
+						view.setState("error");
 					}
 					break;
 				

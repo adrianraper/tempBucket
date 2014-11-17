@@ -2,6 +2,7 @@ package com.clarityenglish.tensebuster.view.home {
 	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.tensebuster.view.home.courseselector.TBCourseSelector;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -36,7 +37,7 @@ package com.clarityenglish.tensebuster.view.home {
 	public class HomeView extends BentoView {
 		
 		[SkinPart]
-		public var instructioGroup:Group;
+		public var instructionGroup:Group;
 		
 		[SkinPart]
 		public var instructionLabel:Label; 
@@ -80,6 +81,9 @@ package com.clarityenglish.tensebuster.view.home {
 		public var courseSelect:Signal = new Signal(XML);
 		public var unitSelect:Signal = new Signal(XML);
 		public var exerciseSelect:Signal = new Signal(XML);
+		
+		[Bindable]
+		public var accountName:String;
 		
 		// gh#757
 		private var _course:XML;
@@ -201,13 +205,17 @@ package com.clarityenglish.tensebuster.view.home {
 			super.onViewCreationComplete();
 			
 			if (!courseSelector.level) {
-				instructioGroup.visible = true;
+				instructionGroup.visible = true;
 				var downMove:Move = new Move();
 				downMove.yFrom = 0;
 				downMove.yTo = 160;
 				downMove.duration = 300;
-				downMove.play([instructioGroup]);
+				downMove.play([instructionGroup]);
 			}
+			
+			// gh#1090 Allow username on home screen
+			if (config.signInAs == Title.SIGNIN_TRACKING)
+				accountName = copyProvider.getCopyForId("accountNameLabel", {name:config.username});
 		}
 
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
@@ -307,7 +315,7 @@ package com.clarityenglish.tensebuster.view.home {
 		}
 		
 		protected function onCourseSelectorClick(event:Event):void {
-			instructioGroup.visible = false;
+			instructionGroup.visible = false;
 			
 			if (!isDirectStart) {
 				switch (event.type) {

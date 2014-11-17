@@ -265,14 +265,17 @@ class BentoService extends AbstractService {
 		// #341 or for network licence working in anonymous mode
 		// #341 
 		// gh#100 or for CT
+		// gh#1067
+		/*
 		if ($licence->licenceType == Title::LICENCE_TYPE_AA || 
 			($licence->licenceType == Title::LICENCE_TYPE_NETWORK && $loginObj == NULL) ||
 			($licence->licenceType == Title::LICENCE_TYPE_CT && $loginObj == NULL) ||
 			($loginOption & User::LOGIN_BY_ANONYMOUS && $loginObj == NULL)) {
+		*/
+		if ($licence->signInAs == Title::SIGNIN_ANONYMOUS) {
 			$userObj = $this->loginOps->anonymousUser($rootID);
-			
 		} else {
-			// First, confirm that the user details are correct
+			// Confirm that the user details are correct
 			$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $verified, $allowedUserTypes, $rootID, $productCode);
 		}
 		

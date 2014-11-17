@@ -1,5 +1,5 @@
 @namespace tensebuster "com.clarityenglish.tensebuster.*";
-@namespace login "com.clarityenglish.tensebuster.view.login.*";
+@namespace login "com.clarityenglish.bento.view.login.*";
 @namespace title "com.clarityenglish.tensebuster.view.title.*";
 @namespace home "com.clarityenglish.tensebuster.view.home.*";
 @namespace unit "com.clarityenglish.tensebuster.view.unit.*";

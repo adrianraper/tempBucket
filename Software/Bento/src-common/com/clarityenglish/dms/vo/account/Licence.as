@@ -15,6 +15,8 @@
 		public var licenceStartDate:String;
 		public var licenceClearanceFrequency:String;
 		public var licenceType:Number;
+		// gh#1090
+		public var signInAs:uint;
 		
 		public var licenceControlStartDate:String;
 		

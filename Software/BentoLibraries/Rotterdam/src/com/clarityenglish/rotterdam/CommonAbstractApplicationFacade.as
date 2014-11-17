@@ -13,7 +13,7 @@
 	import com.clarityenglish.rotterdam.view.course.CourseView;
 	import com.clarityenglish.rotterdam.view.courseselector.CourseSelectorMediator;
 	import com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView;
-	import com.clarityenglish.rotterdam.view.login.LoginView;
+	//import com.clarityenglish.rotterdam.view.login.LoginView;
 	import com.clarityenglish.rotterdam.view.title.TitleMediator;
 	import com.clarityenglish.rotterdam.view.title.TitleView;
 	import com.clarityenglish.rotterdam.view.unit.UnitHeaderMediator;
@@ -48,7 +48,8 @@
 			// gh#13
 			registerCommand(RotterdamNotifications.COURSE_RESET, CourseResetCommand);
 			
-			mapView(LoginView, LoginMediator);
+			// gh#1090
+			//mapView(LoginView, LoginMediator);
 			mapView(TitleView, TitleMediator);
 			mapView(CourseSelectorView, CourseSelectorMediator);
 			mapView(CourseView, CourseMediator);

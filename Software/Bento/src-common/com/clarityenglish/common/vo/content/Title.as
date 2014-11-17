@@ -20,6 +20,10 @@
 		public static const LICENCE_TYPE_TT:int = 6;
 		public static const LICENCE_TYPE_CT:int = 7;
 		
+		// gh#1090
+		public static const SIGNIN_TRACKING:uint = 1;
+		public static const SIGNIN_ANONYMOUS:uint = 2;
+		
 		public static function getLicenceTypeText(licenceType:int):String {
 			switch (licenceType) {
 				case LICENCE_TYPE_AA:

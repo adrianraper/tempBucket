@@ -5,7 +5,7 @@
 		xmlns:login="skins.rotterdam.player.assets.login.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.rotterdam.view.login.LoginView")]
+		[HostComponent("com.clarityenglish.bento.view.login.LoginView")]
 	</fx:Metadata>
 	
 	<fx:Script>
@@ -20,16 +20,6 @@
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
-			import flash.net.navigateToURL;
-			
-			protected function forgotPasswordHandler(event:MouseEvent):void {
-				var substTags:Object = { productCode: hostComponent.config.productCode };
-				if (hostComponent.config.rootID)
-					substTags.rootID = hostComponent.config.rootID; 
-				substTags.loginOption = (isNaN(hostComponent.loginOption)) ? '' : hostComponent.loginOption;
-				var urlReq:URLRequest = new URLRequest(hostComponent.getCopyProvider().getCopyForId("forgotPasswordLink", substTags ));
-				navigateToURL(urlReq, "_new");
-			}
 		]]>
 	</fx:Script>
 	
@@ -37,6 +27,7 @@
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
+		<s:State name="register" />
 	</s:states>
 	
 	<!-- shadow -->
@@ -69,7 +60,7 @@
 	</s:Rect>
 
 	<!-- top header -->
-	<s:Label id="sch_lbl" text="{hostComponent.getCopyProvider().getCopyForId('licencedToName', {name: hostComponent.licenceeName})}" right="20" top="14" fontSize="13" color="0xFFFFFF" visible="{hostComponent.licenceeName}" includeInLayout="{hostComponent.licenceeName}" />
+	<s:Label text="{hostComponent.getCopyProvider().getCopyForId('licencedToName', {name: hostComponent.licenceeName})}" right="20" top="14" fontSize="13" color="0xFFFFFF" />
 	
 	<!-- gh#224 If it seems likely that more than 4 image components are needed, we should switch to a DataGroup and ItemRenderer -->
 	<s:BitmapImage id="brandingImage1" visible="{hostComponent.branding}" includeInLayout="{hostComponent.branding}"/>
@@ -80,35 +71,63 @@
 	<s:SWFLoader source="@Embed(source='/skins/rotterdam/player/assets/login/HoneyConesLarge.png')" horizontalCenter="250" top="360" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
 	<login:HoneyGraphic horizontalCenter="300" top="40" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
 	
-	<s:Group horizontalCenter="0" top="40">
+	<s:Group horizontalCenter="0" top="200">
 		<!-- gh#224 -->
-		<s:Rect width="424" height="290" filters="{dropShadowFilter}" radiusX="8" radiusY="8" verticalCenter="70" horizontalCenter="0" alpha="0.7">
+		<s:Rect width="424" height="290" filters="{dropShadowFilter}" radiusX="8" radiusY="8" alpha="0.7">
 			<s:fill>
 				<s:SolidColor color="0xFFFFFF"/>
 			</s:fill>
 		</s:Rect>
 
-		<s:Group horizontalCenter="0" verticalCenter="90">
+		<!-- /*
+		loginCaption, anonymousCaption
+		loginKeyCaption, loginKeyInput, loginButton, loginButtonCaption
+		passwordCaption, passwordInput
+		forgotPasswordButton, forgotPasswordCaption
+		anonymousStartButton, anonymousStartButtonCaption
+		*/ -->
+		<s:Group horizontalCenter="0" >
 			<s:VGroup horizontalAlign="center">
+				<s:Label text="{hostComponent.loginCaption}" fontSize="18" fontWeight="bold" color="0x333333" />
 				<s:VGroup>
 					<s:Spacer height="1" />
 					<s:VGroup>
-						<s:Label id="loginKey_lbl" fontSize="16" fontWeight="bold" color="0x333333" text="{hostComponent.loginKey_lbl}"/>
+						<s:Label text="{hostComponent.loginKeyCaption}" fontSize="16" fontWeight="bold" color="0x333333" />
 						<s:TextInput id="loginKeyInput" fontSize="14" width="220" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
 					</s:VGroup>
 					<s:Spacer height="20" />
 					<s:VGroup>
-						<s:Label id="loginPassword_lbl" fontSize="16" fontWeight="bold" color="0x333333" text="{hostComponent.loginPassword_lbl}" />
+						<s:Label text="{hostComponent.passwordCaption}" fontSize="16" fontWeight="bold" color="0x333333" />
 						<s:TextInput id="passwordInput" displayAsPassword="true" width="220" height="35" fontSize="14" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
 					    <s:VGroup paddingLeft="77">
-							<s:Button id="forgotPassword_btn" label="{hostComponent.forgotPassword_lbl}" click="forgotPasswordHandler(event)" useHandCursor="true" buttonMode="true" />
+							<s:Button id="forgotPasswordButton" label="{hostComponent.forgotPasswordCaption}" useHandCursor="true" buttonMode="true" />
 						</s:VGroup>					
 					</s:VGroup>
 					<s:Spacer height="10" />
 				</s:VGroup>
-				<s:Button id="loginButton" label="{hostComponent.getCopyProvider().getCopyForId('loginButton')}" />	
+			</s:VGroup>
+			<s:Button id="loginButton" label="{hostComponent.loginButtonCaption}" bottom="0"/>	
+		</s:Group>
+	</s:Group>
+	
+	<s:Group horizontalCenter="0" top="500">
+		<s:Rect width="424" height="190" filters="{dropShadowFilter}" radiusX="8" radiusY="8" verticalCenter="70" horizontalCenter="0" alpha="0.7">
+			<s:fill>
+				<s:SolidColor color="0xFFFFFF"/>
+			</s:fill>
+		</s:Rect>
+		
+		<s:Group horizontalCenter="0" verticalCenter="90">
+			<s:VGroup horizontalAlign="center">
+				<s:VGroup>
+					<s:Spacer height="1" />
+					<s:Label text="{hostComponent.anonymousCaption}" fontSize="16" fontWeight="bold" color="0x333333" />
+					<s:Spacer height="10" />
+				</s:VGroup>
+				<s:Button id="anonymousStartButton" label="{hostComponent.anonymousStartButtonCaption}" />	
 			</s:VGroup>
 		</s:Group>
+		
 	</s:Group>
 	
 	<s:BitmapImage source="@Embed(source='/skins/rotterdam/player/assets/login/CCBLogo.png')" horizontalCenter="0" bottom="100" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}" />

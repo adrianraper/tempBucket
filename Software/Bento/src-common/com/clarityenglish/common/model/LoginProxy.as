@@ -1,4 +1,4 @@
-/*
+﻿/*
 Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
@@ -121,13 +121,17 @@ package com.clarityenglish.common.model {
 			// gh#100 as does CT
 			// gh#165
 			// gh#886
+			// gh#1090 No it doesn't
+			/*
 			if (((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) || 
 				(configProxy.getLicenceType() == Title.LICENCE_TYPE_CT) ||
-				(configProxy.getLicenceType() == Title.LICENCE_TYPE_AA && configProxy.getConfig().noLogin == false) ||
+				(configProxy.getLicenceType() == Title.LICENCE_TYPE_AA && configProxy.getConfig().noLogin == true) ||
 				(loginOption & Config.LOGIN_BY_ANONYMOUS)) &&
 				(!user.name || user.name=='') &&
 				(!user.studentID || user.studentID=='') &&
 				(!user.email || user.email==''))
+			*/
+			if (configProxy.getConfig().signInAs == Title.SIGNIN_ANONYMOUS)
 				loginObj = null;
 			
 			// #307 Add rootID and productCode
@@ -150,7 +154,9 @@ package com.clarityenglish.common.model {
 				} else if (user == null) {
 					// TODO: Test Drive: how to set these settings nicely??
 					// and how to offer them a choice of different titles??
-					loginOption = Config.LOGIN_BY_ANONYMOUS;
+					// gh#1090
+					//loginOption = Config.LOGIN_BY_ANONYMOUS;
+					configProxy.getConfig().signInAs = Title.SIGNIN_ANONYMOUS;
 					rootID = new Array(2);
 					if (demoVersion == "NAMEN") {
 						// for Noth American Demo
@@ -173,6 +179,9 @@ package com.clarityenglish.common.model {
 			
 			// gh#165 This call requires licence!
 			configProxy.getConfig().licence.licenceType = configProxy.getLicenceType();
+			
+			// gh#1067 TODO please tidy this duplication up
+			configProxy.getConfig().licence.signInAs = configProxy.getConfig().signInAs;
 			
 			// gh#39 You might not know an exact productCode, in which case we have to send comma delimited list
 			// gh#36 Also need dbHost if this is the first call
@@ -325,6 +334,9 @@ package com.clarityenglish.common.model {
 								loginSharedObject.flush();
 							}		
 						}
+						
+						// gh#1067 Update our user details held in config
+						configProxy.getConfig().mergeUser(_user);
 						
 						// gh#21 If login changed the account 
 						// save what we now know about the account in Config

@@ -5,7 +5,7 @@
 		alpha.disabled="0.5">
 	
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.tensebuster.view.login.LoginView")]
+		[HostComponent("com.clarityenglish.bento.view.login.LoginView")]
 	</fx:Metadata>
 	
 	<fx:Declarations>
@@ -16,107 +16,166 @@
 
     <s:states>
         <s:State name="normal" />
+        <s:State name="register" />
+        <s:State name="error" />
         <s:State name="disabled" />
-		
+		<!--
 		<s:State name="login" stateGroups="loginStates" />
-		<s:State name="loginConcurrentTracking" stateGroups="loginStates" />
 		<s:State name="register" stateGroups="registerStates" />
+		<s:State name="loginConcurrentTracking" stateGroups="loginStates" />
 		<s:State name="registerConcurrentTracking" stateGroups="registerStates" />
 		<s:State name="registerError" stateGroups="registerStates" />
+		-->
     </s:states>
     
-	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/hexagonBg.png')" horizontalCenter="0" bottom="0"/>
-	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/login/loginInput.png')" left="20" top="100" includeIn="login"/>
-	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/login/premierLoginInput.png')" left="20" top="100" includeIn="loginConcurrentTracking, registerStates"/>
-	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/login/loginBG.png')" bottom="25" includeIn="login" />
-	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/login/premierLoginBG.png')" bottom="25"  includeIn="loginConcurrentTracking, registerStates" />
-	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/title/header.png')" top="20" horizontalCenter="0" />
+	<!-- This should be split into a vertical strip and then tiled -->
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" horizontalCenter="0" bottom="0"/>
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/header.png')" top="0" horizontalCenter="0" />
+	<!-- This should split the slogan from the punched hole -->
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/login/loginInput.png')" horizontalCenter="-100" verticalCenter="0" />
 	
-	<s:Group horizontalCenter="0" horizontalCenter.login="20" width.login="250" width.loginConcurrentTracking="280" top.login="270" top.loginConcurrentTracking="250">
-		<s:VGroup gap.login="5" gap.loginConcurrentTracking="10">
-			<s:Group>
-				<s:VGroup id="normalLoginTitleBlock" includeIn="login">
-					<s:Label id="loginInputTitle" color="0xFFFFFF" fontSize="21" fontWeight="bold"/>
-					<s:Rect width="245" height="1">
-						<s:fill>
-							<s:SolidColor color="0xEC1C32" />
-						</s:fill>
-					</s:Rect>
-					<s:Spacer height="15"/>
-					<s:Label id="loginInstruction" fontSize="12" color="0xFFFFFF"/>
-					<s:Spacer height="10" />
+	<s:Label text="{hostComponent.getCopyProvider().getCopyForId('licencedToName', {name: hostComponent.licenceeName})}" right="20" top="14" fontSize="13" color="0xFFFFFF" />
+
+	<s:Group excludeFrom="register" horizontalCenter="0" verticalCenter="0" >
+		<s:Group left="0" includeInLayout="{hostComponent.allowLogin}" visible="{hostComponent.allowLogin}" >
+			<s:VGroup horizontalAlign="center" gap="10">
+				<s:Label text="{hostComponent.loginCaption}" fontSize="18" fontWeight="bold" color="0x333333" />
+				<s:TextInput id="loginKeyInput" prompt="{hostComponent.loginKeyCaption}" fontSize="14" width="220" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+				<s:VGroup visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" >
+					<s:TextInput id="passwordInput" displayAsPassword="true" prompt="{hostComponent.passwordCaption}" width="220" height="35" fontSize="14" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
+					<s:Button id="forgotPasswordButton" label="{hostComponent.forgotPasswordCaption}" useHandCursor="true" buttonMode="true" />
 				</s:VGroup>
-				<s:VGroup id="CTOption1TitleBlock" top="40" gap="10" includeIn="loginConcurrentTracking">
-					<s:Label id="option1Label" color="0xFFFFFF" fontSize="21" fontWeight="bold"/>
-					<s:Label id="option1InstructionLabel" fontSize="12" color="0xFFFFFF" width="300"/>
-				</s:VGroup>
-			</s:Group>
-			
-			<s:VGroup id="loginBlock" gap="15" includeIn="loginStates">
-				<s:Group width="219">
-					<s:Label id="loginKey_lbl" left="0" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginKey_lbl}" paddingTop="5"/>
-					<s:TextInput id="loginKeyInput" right="0" width="147" height="21" filters="{dropShadowFilter2}" borderVisible="false" fontSize="14" />
-				</s:Group>					
-				<s:HGroup gap="10">
-					<s:Label id="loginPassword_lbl" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginPassword_lbl}" paddingTop="5"/>
-					<s:TextInput id="passwordInput" displayAsPassword="true" width="147" height="21" fontSize="12" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
+				<s:Button id="loginButton" label="{hostComponent.loginButtonCaption}" right="10" bottom="0"/>
+				<s:Button id="newUserButton" label="{hostComponent.newUserButtonCaption}" left="10" bottom="0" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" />
+			</s:VGroup>
+		</s:Group>
+		<s:Group right="0" verticalCenter="0" includeInLayout="{hostComponent.allowAnonymous}" visible="{hostComponent.allowAnonymous}" >
+			<s:VGroup horizontalAlign="center">
+				<s:Label text="{hostComponent.anonymousCaption}" fontSize="16" fontWeight="bold" color="0x333333" />
+				<s:Button id="anonymousStartButton" label="{hostComponent.anonymousStartButtonCaption}" />	
+			</s:VGroup>
+		</s:Group>
+	</s:Group>
+	<s:Group includeIn="register" horizontalCenter="0" verticalCenter="0" >
+		<s:VGroup horizontalAlign="center">
+			<s:Label text="{hostComponent.selfRegisterCaption}" fontSize="18" fontWeight="bold" color="0x333333" />
+			<s:VGroup gap="10">
+				<s:HGroup includeInLayout="{hostComponent.selfRegisterNameCaption != null}" visible="{hostComponent.selfRegisterNameCaption != null}">
+					<s:TextInput id="selfRegisterName" prompt="{hostComponent.selfRegisterNameCaption}" fontSize="14" width="220" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+				</s:HGroup>
+				<s:HGroup includeInLayout="{hostComponent.selfRegisterIdCaption != null}" visible="{hostComponent.selfRegisterIdCaption != null}">
+					<s:TextInput id="selfRegisterId" prompt="{hostComponent.selfRegisterIdCaption}" fontSize="14" width="220" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+				</s:HGroup>
+				<s:HGroup includeInLayout="{hostComponent.selfRegisterEmailCaption != null}" visible="{hostComponent.selfRegisterEmailCaption != null}">
+					<s:TextInput id="selfRegisterEmail" prompt="{hostComponent.selfRegisterEmailCaption}" fontSize="14" width="220" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+				</s:HGroup>
+				<s:HGroup includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}" >
+					<s:TextInput id="selfRegisterPassword" displayAsPassword="true" prompt="{hostComponent.selfRegisterPasswordCaption}" width="220" height="35" fontSize="14" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
+				</s:HGroup>
+				<s:HGroup includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}" >
+					<s:TextInput id="confirmPassword" displayAsPassword="true" prompt="{hostComponent.confirmPasswordCaption}" width="220" height="35" fontSize="14" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
 				</s:HGroup>
 			</s:VGroup>
-			
-			<s:VGroup id="CTOption2TitleBlock" gap="10" includeIn="loginConcurrentTracking">
-				<s:VGroup paddingTop="5" paddingLeft="-20">
-					<s:Rect horizontalCenter="-20" width="{280 + loginButton.width}" height="1">
-						<s:fill>
-							<s:SolidColor color="0xEC1C32" />
-						</s:fill>
-					</s:Rect>
-				</s:VGroup>
-				<s:Label id="option1Label2" color="0xFFFFFF" fontSize="21" fontWeight="bold"/>
-				<s:HGroup gap="0">
-					<s:Label id="option2InstructionLabel" fontSize="12" color="0xFFFFFF" width="100"/>
-					<s:VGroup paddingTop="-10">
-						<s:Button id="CTStartButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" />
-					</s:VGroup>
-				</s:HGroup>				
-			</s:VGroup>
 		</s:VGroup>
-		<!-- gh#965 -->
-		<s:Button id="loginButton" top.login="170" left.login="73" top.loginConcurrentTracking="121" left.loginConcurrentTracking="240" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" includeIn="loginStates"/>
+		<s:Button id="cancelButton" label="{hostComponent.cancelButtonCaption}" left="10" bottom="0"/>
+		<s:Button id="addUserButton" label="{hostComponent.addUserButtonCaption}" right="10" bottom="0"/>
+	</s:Group>
+	<!-- If you want a demo button -->
+	<s:Group>
+		<s:Button id="demoButton" label="{hostComponent.demoButtonCaption}" top="100" right="100" />
+	</s:Group>
+	<!--
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/login/premierLoginInput.png')" left="20" top="100" includeIn="loginConcurrentTracking, registerStates"/>
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/login/loginBG.png')" bottom="25" includeIn="login" />
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/login/premierLoginBG.png')" bottom="25"  includeIn="loginConcurrentTracking, registerStates" />
+	-->
+	
+	<!--
+	<s:Group horizontalCenter="0" width="250" top="270" >
+	<s:VGroup gap="5" >
+	<s:Group>
+	<s:VGroup id="normalLoginTitleBlock" >
+	<s:Label id="loginCaption" color="0xFFFFFF" fontSize="21" fontWeight="bold"/>
+	<s:Rect width="245" height="1">
+	<s:fill>
+	<s:SolidColor color="0xEC1C32" />
+	</s:fill>
+	</s:Rect>
+	<s:Spacer height="15"/>
+	<s:Label id="loginInstruction" fontSize="12" color="0xFFFFFF"/>
+	<s:Spacer height="10" />
+	</s:VGroup>
+	<s:VGroup id="CTOption1TitleBlock" top="40" gap="10" includeIn="loginConcurrentTracking">
+	<s:Label id="option1Label" color="0xFFFFFF" fontSize="21" fontWeight="bold"/>
+	<s:Label id="option1InstructionLabel" fontSize="12" color="0xFFFFFF" width="300"/>
+	</s:VGroup>
+	</s:Group>
+	
+	<s:VGroup id="loginBlock" gap="15" includeIn="loginStates">
+	<s:Group width="219">
+	<s:Label id="loginKey_lbl" left="0" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginKey_lbl}" paddingTop="5"/>
+	<s:TextInput id="loginKeyInput" right="0" width="147" height="21" filters="{dropShadowFilter2}" borderVisible="false" fontSize="14" />
+	</s:Group>					
+	<s:HGroup gap="10">
+	<s:Label id="loginPassword_lbl" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginPassword_lbl}" paddingTop="5"/>
+	<s:TextInput id="passwordInput" displayAsPassword="true" width="147" height="21" fontSize="12" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
+	</s:HGroup>
+	</s:VGroup>
+	
+	<s:VGroup id="CTOption2TitleBlock" gap="10" includeIn="loginConcurrentTracking">
+	<s:VGroup paddingTop="5" paddingLeft="-20">
+	<s:Rect horizontalCenter="-20" width="{280 + loginButton.width}" height="1">
+	<s:fill>
+	<s:SolidColor color="0xEC1C32" />
+	</s:fill>
+	</s:Rect>
+	</s:VGroup>
+	<s:Label id="option1Label2" color="0xFFFFFF" fontSize="21" fontWeight="bold"/>
+	<s:HGroup gap="0">
+	<s:Label id="option2InstructionLabel" fontSize="12" color="0xFFFFFF" width="100"/>
+	<s:VGroup paddingTop="-10">
+	<s:Button id="CTStartButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" />
+	</s:VGroup>
+	</s:HGroup>				
+	</s:VGroup>
+	</s:VGroup>
+	<s:Button id="loginButton" top.login="170" left.login="73" top.loginConcurrentTracking="121" left.loginConcurrentTracking="240" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" includeIn="loginStates"/>
 	</s:Group>
 	
 	<s:Group id="registerBlock" horizontalCenter="0" top="320" width="200" includeIn="registerStates">
-		<s:Label id="RegisterOption1Label" fontSize="16" color="0x0C436B" paddingTop="20" />
-		<s:VGroup width="100%">
-			<s:Label id="registerDetailLabel" 
-					 text.registerConcurrentTracking="This is the first time you have used the program, click New user to confirm." 
-					 width="100%" fontSize="12" color="0xFFFFFF" paddingTop="10" />
-			<s:Spacer height="3" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}"/>
-			<s:HGroup id="nameGroup" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}">
-				<s:Label id="loginName_lbl" text="{hostComponent.loginName_lbl}" color="0xFFFFFF" fontWeight="bold" paddingTop="6" />
-				<s:TextInput id="loginNameInput" width="180" text="{hostComponent.savedName}"/>
-			</s:HGroup>
-			<s:Spacer height="3" visible="{hostComponent.selfRegisterID}" includeInLayout="{hostComponent.selfRegisterID}" />
-			<s:HGroup id="idGroup" visible="{hostComponent.selfRegisterID}" includeInLayout="{hostComponent.selfRegisterID}">
-				<s:Label id="loginID_lbl" text="{hostComponent.loginID_lbl}" color="0xFFFFFF" fontWeight="bold" paddingTop="6" />
-				<s:Spacer width="13" />
-				<s:TextInput id="loginIDInput" width="180" text="{hostComponent.savedName}"/>
-			</s:HGroup>
-			<s:Spacer height="3" visible="{hostComponent.selfRegisterEmail}" includeInLayout="{hostComponent.selfRegisterEmail}" />
-			<s:HGroup id="emailGroup" visible="{hostComponent.selfRegisterEmail}" includeInLayout="{hostComponent.selfRegisterEmail}">
-				<s:Label id="loginEmail_lbl" text="{hostComponent.loginEmail_lbl}" color="0xFFFFFF" fontWeight="bold" paddingTop="6" />
-				<s:TextInput id="loginEmailInput" width="180" left="500" text="{hostComponent.savedName}" />
-			</s:HGroup>
-			<s:Spacer height="3" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" />
-			<s:HGroup id="passwordGroup" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}">
-				<s:Label text="{hostComponent.loginPassword_lbl}" color="0xFFFFFF"  fontWeight="bold" paddingTop="6" />
-				<s:TextInput id="newPasswordInput" displayAsPassword="true" width="180" text="{hostComponent.savedPassword}" />
-			</s:HGroup>
-			<s:Spacer height="3" />
-			<s:HGroup gap="30">
-				<s:Button id="addUserButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" />
-				<s:Button id="cancelButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true"/>
-			</s:HGroup>
-		</s:VGroup>
+	<s:Label id="RegisterOption1Label" fontSize="16" color="0x0C436B" paddingTop="20" />
+	<s:VGroup width="100%">
+	<s:Label id="registerDetailLabel" 
+	text.registerConcurrentTracking="This is the first time you have used the program, click New user to confirm." 
+	width="100%" fontSize="12" color="0xFFFFFF" paddingTop="10" />
+	<s:Spacer height="3" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}"/>
+	<s:HGroup id="nameGroup" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}">
+	<s:Label id="loginName_lbl" text="{hostComponent.loginName_lbl}" color="0xFFFFFF" fontWeight="bold" paddingTop="6" />
+	<s:TextInput id="loginNameInput" width="180" text="{hostComponent.savedName}"/>
+	</s:HGroup>
+	<s:Spacer height="3" visible="{hostComponent.selfRegisterID}" includeInLayout="{hostComponent.selfRegisterID}" />
+	<s:HGroup id="idGroup" visible="{hostComponent.selfRegisterID}" includeInLayout="{hostComponent.selfRegisterID}">
+	<s:Label id="loginID_lbl" text="{hostComponent.loginID_lbl}" color="0xFFFFFF" fontWeight="bold" paddingTop="6" />
+	<s:Spacer width="13" />
+	<s:TextInput id="loginIDInput" width="180" text="{hostComponent.savedName}"/>
+	</s:HGroup>
+	<s:Spacer height="3" visible="{hostComponent.selfRegisterEmail}" includeInLayout="{hostComponent.selfRegisterEmail}" />
+	<s:HGroup id="emailGroup" visible="{hostComponent.selfRegisterEmail}" includeInLayout="{hostComponent.selfRegisterEmail}">
+	<s:Label id="loginEmail_lbl" text="{hostComponent.loginEmail_lbl}" color="0xFFFFFF" fontWeight="bold" paddingTop="6" />
+	<s:TextInput id="loginEmailInput" width="180" left="500" text="{hostComponent.savedName}" />
+	</s:HGroup>
+	<s:Spacer height="3" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" />
+	<s:HGroup id="passwordGroup" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}">
+	<s:Label text="{hostComponent.loginPassword_lbl}" color="0xFFFFFF"  fontWeight="bold" paddingTop="6" />
+	<s:TextInput id="newPasswordInput" displayAsPassword="true" width="180" text="{hostComponent.savedPassword}" />
+	</s:HGroup>
+	<s:Spacer height="3" />
+	<s:HGroup gap="30">
+	<s:Button id="addUserButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" />
+	<s:Button id="cancelButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true"/>
+	</s:HGroup>
+	</s:VGroup>
 	</s:Group>
+	-->
 
 </s:Skin>

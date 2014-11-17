@@ -8,7 +8,7 @@
 @namespace progress "com.clarityenglish.bento.view.progress.*";
 @namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 @namespace progressui "com.clarityenglish.bento.view.progress.ui.*";
-@namespace login "com.clarityenglish.rotterdam.view.login.*";
+@namespace login "com.clarityenglish.bento.view.login.*";
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
 @namespace ui "skins.rotterdam.player.progress.ui.*";
 @namespace ui2 "com.clarityenglish.rotterdam.view.unit.ui.*";
@@ -35,7 +35,11 @@ login|LoginView s|Button#loginButton {
 	skinClass: ClassReference("skins.rotterdam.ui.LoginButtonSkin");
 }
 
-login|LoginView s|Button#forgotPassword_btn {
+login|LoginView s|Button#anonymousStartButton {
+	skinClass: ClassReference("skins.rotterdam.ui.LoginButtonSkin");
+}
+
+login|LoginView s|Button#forgotPasswordButton {
 	skinClass: ClassReference("skins.rotterdam.ui.ForgotPasswordButtonSkin");
 }
 
