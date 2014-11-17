@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Change your TB6weeks level</title>
+</head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
+    <script src="js/changeLevel.js"></script>
+
+<body>
+<h1>Change your TB6weeks level</h1>
+<p>Please fill in the email that you used to register for TB6weeks.</p>
+
+                <form id="changeLevelForm">
+                    <p>
+                    <label for="userEmail">What is your email?</label><br/>
+                    <input id="userEmail" name="userEmail" type="text" />
+                    <label for="password">and your password?</label><br/>
+                    <input id="password" name="password" type="password" />
+                    </p>
+                    <p>
+                    <label for="level">What level do you want to do?</label><br/>
+                    <select id="level" title="choose a new level">
+                    <option value="">select...</option>
+                    <option value="ELE">Elementary</option>
+                    <option value="LI">Lower Intermediate</option>
+                    <option value="INT">Intermediate</option>
+                    <option value="UI">Upper Intermediate</option>
+                    <option value="ADV">Advanced</option>
+                    </select>
+                    </p>
+                    <input id="changeLevel" text="change" type="submit" />
+                </form>
+                <span id="validationMessage"></span>
+</body>
+</html>

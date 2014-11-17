@@ -33,14 +33,16 @@ require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
 require_once(dirname(__FILE__)."/../../classes/CourseOps.php");
 require_once(dirname(__FILE__)."/../../classes/TestOps.php");
 require_once(dirname(__FILE__)."/../../classes/MemoryOps.php");
-//require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php");
+require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php");
 
 require_once(dirname(__FILE__)."/AbstractService.php");
 
 class TB6weeksService extends AbstractService {
 	
-	var $db;
-
+	var $productCode = 59;
+	var $dbHost = 2;
+	var $dateDiff = '2 days';
+	
 	function __construct() {
 		parent::__construct();
 		
@@ -58,39 +60,59 @@ class TB6weeksService extends AbstractService {
 		$this->courseOps = new CourseOps($this->db);
 		$this->loginOps = new LoginOps($this->db);
 		$this->testOps = new TestOps($this->db);
-		//$this->subscriptionOps = new SubscriptionOps($this->db);
+		$this->subscriptionOps = new SubscriptionOps($this->db);
 		//$this->memoryOps = new MemoryOps($this->db);
 
 		// This is a back end service adding users, so doesn't use authentication
 		AuthenticationOps::$useAuthentication = false;
 		
 		// for debugging if you only have one session
-		Session::set('productCode', 59);
-		//Session::set('userID', 27639);
+		//Session::set('productCode', 59);
+		//Session::set('rootID', 163);
+		//$_REQUEST['operation'] = "submitAnswers";
+		//$_REQUEST['productCode'] = "59";
+		//$_REQUEST['userEmail'] = "adrian@noodles.hk";
+		//$_REQUEST['level'] = "UI";
+		//$_REQUEST['answers'] = "UI";
 		
 		// To mimic amfphp handling
 		try {
 			
+			AbstractService::$debugLog->info("try ".$_REQUEST['operation']);
+			
 			if (isset($_REQUEST['operation'])) {
+				$productCode = isset($_REQUEST['productCode']) ? $_REQUEST['productCode'] : null;
+				$level = isset($_REQUEST['level']) ? $_REQUEST['level'] : null;
+				$prefix = isset($_REQUEST['prefix']) ? $_REQUEST['prefix'] : null;
+				$exercise = isset($_REQUEST['exercise']) ? $_REQUEST['exercise'] : null;
+				$attempts = isset($_REQUEST['answers']) ? $_REQUEST['answers'] : null;
+				$answers = isset($_REQUEST['code']) ? $_REQUEST['code'] : null;
+				$userDetails = isset($_REQUEST['user']) ? $_REQUEST['user'] : null;
+				
 				switch ($_REQUEST['operation']) {
-					case 'checkEmail':
-						$prefix = isset($_REQUEST['prefix']) ? $_REQUEST['prefix'] : null;
-						$userEmail = isset($_REQUEST['userEmail']) ? $_REQUEST['userEmail'] : null;
-						$returnData = $this->checkEmail($prefix, $userEmail);
+					case 'changeLevel':
+						$returnData = $this->changeLevel($userDetails, $level, $productCode);
 						break;
 					
+					case 'unsubscribe':
+						$returnData = $this->unsubscribe($userDetails, $productCode);
+						break;
+						
 					case 'getQuestions':
-						$prefix = isset($_REQUEST['prefix']) ? $_REQUEST['prefix'] : null;
-						$exercise = isset($_REQUEST['exercise']) ? $_REQUEST['exercise'] : null;
-						$returnData = $this->getQuestions($prefix, $exercise);
-						break;
-					
+					case 'checkEmail':
 					case 'submitAnswers':
-						$prefix = isset($_REQUEST['prefix']) ? $_REQUEST['prefix'] : null;
-						$attempts = isset($_REQUEST['answers']) ? $_REQUEST['answers'] : null;
-						$answers = isset($_REQUEST['code']) ? $_REQUEST['code'] : null;
-						$userDetails = isset($_REQUEST['user']) ? $_REQUEST['user'] : null;
-						$returnData = $this->submitAnswers($attempts, $answers, $userDetails, $prefix);
+						if (!Session::get('groupID'))
+							$rc = $this->checkAccount($prefix);
+
+						if ($_REQUEST['operation'] == 'checkEmail') {
+							$returnData = $this->checkEmail($prefix, $userEmail);
+
+						} elseif ($_REQUEST['operation'] == 'getQuestions') { 
+							$returnData = $this->getQuestions($exercise);
+					
+						} elseif ($_REQUEST['operation'] == 'submitAnswers') { 
+							$returnData = $this->submitAnswers($attempts, $answers, $userDetails, $prefix);
+						}
 						break;
 					
 					default:
@@ -129,8 +151,66 @@ class TB6weeksService extends AbstractService {
 		$productCode = Session::get('productCode');
 		
 		AbstractService::$debugLog->info("check email session variables: rootId=".$rootId.' productCode='.$productCode);
-		$rc = $this->manageableOps->checkProductSubscription($userEmail, $rootId, $productCode);
+		$rc = $this->subscriptionOps->checkProductSubscription($userEmail, $rootId, $productCode);
 		
+		return json_encode($rc);
+
+	}
+	
+	/**
+	 * Unsubscribe a user. Means totally remove them.
+	 * 
+	 * @param string $userEmail
+	 */
+	public function unsubscribe($userEmail, $productCode) {
+		
+		$rc = $this->subscriptionOps->removeProductSubscription($userEmail, $productCode);
+		AbstractService::$debugLog->info("unsubscribe: email=".$userEmail.' productCode='.$productCode);
+		
+		return json_encode($rc);
+
+	}
+	
+	/**
+	 * Change a user's level
+	 * <level>INT</level><subscription startDate="2014-11-05" frequency="2 days" valid="true"/>
+	 * 
+	 * @param string $userEmail, $level
+	 */
+	public function changeLevel($userDetails, $level, $productCode) {
+		
+		// Get this user
+		$user = $this->manageableOps->getOrAddUser($userDetails);
+		if ($user) {
+			AbstractService::$debugLog->info("user: id=".$user->userID." name=".$user->name.' email='.$user->email);
+			parse_str($userDetails, $tempUser);
+			if ($user->password == $tempUser['password']) {
+				Session::set('userID', $user->userID);
+				
+				$account = $this->manageableOps->getAccountFromUser($user);
+				$rc = $this->subscriptionOps->changeProductSubscription($user, $level, $productCode);
+				
+				if ($rc == 'success') {
+					// TODO: encrytped please
+					$startProgram = '/area1/TenseBuster10/Start.php?prefix='.$account->prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
+					
+					// Trigger a welcome email
+					$templateID = 'user/TB6weeksWelcome';
+					$emailData = array("user" => $user, "level" => $level, "programLink" => $startProgram, "dateDiff" => $this->dateDiff);
+					$thisEmail = array("to" => $user->email, "data" => $emailData);
+					$emailArray[] = $thisEmail;
+					
+					$this->emailOps->sendEmails("", $templateID, $emailArray);
+					
+					AbstractService::$debugLog->info("change level: email=".$user->email.' to='.$level);
+				}
+			} else {
+				$rc = 'wrong password';
+			}
+			
+		} else {
+			$rc = "no such user";
+		}
 		return json_encode($rc);
 
 	}
@@ -140,13 +220,17 @@ class TB6weeksService extends AbstractService {
 	 * 
 	 * @param String $prefix
 	 */
-	public function checkAccount($config) {
+	public function checkAccount($prefix) {
 		
+		if (!$prefix)
+			throw new Exception('This test must be run from a nice link');
+
+		$config = array('prefix' => $prefix, 'productCode' => $this->productCode, 'dbHost' => $this->dbHost);
 		$account = $this->loginOps->getAccountSettings($config);
 		
 		// gh#315 If no account and you didn't throw an exception, just means we can't find it from partial parameters
 		if (!$account)
-			return null;
+			throw new Exception('Your account is not setup for TB6weeks');
 			
 		$group = $this->manageableOps->getGroup($this->manageableOps->getGroupIdForUserId($account->getAdminUserID()));
 		
@@ -157,7 +241,7 @@ class TB6weeksService extends AbstractService {
 		
 		return array("group" => $group,
 					 "account" => $account);
-		
+			
 	}
 	
 	/**
@@ -166,25 +250,9 @@ class TB6weeksService extends AbstractService {
 	 * @param string $prefix
 	 * @param string $exercise
 	 */
-	public function getQuestions($prefix, $exercise) {
+	public function getQuestions($exercise) {
 		
-		if (!$prefix)
-			throw new Exception('This test must be run from a nice link');
-			
-		$productCode = 59;
-		$dbHost = 2;
-			
-		$config = array('prefix' => $prefix, 'productCode' => $productCode, 'dbHost' => $dbHost);
-
-		try {
-			$rc = $this->checkAccount($config);
-		} catch (Exception $e) {
-		}
-		if ($rc) {
-			$data = $this->testOps->getQuestions($exercise);
-		} else {
-			throw new Exception('Your account is not setup for TB6weeks');
-		}
+		$data = $this->testOps->getQuestions($exercise);
 		return $data->saveXML();
 
 	}
@@ -226,11 +294,12 @@ class TB6weeksService extends AbstractService {
 		$rc = $this->memoryOps->writeMemory();
 		
 		// TODO: encrytped please
-		$startProgram = '/area1/TenseBuster10/Start.php?prefix='.$prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
+		$server = 'dock.projectbench';
+		$startProgram = 'http://'.$server.'/area1/TenseBuster10/Start.php?prefix='.$prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
 		
 		// Trigger a welcome email
 		$templateID = 'user/TB6weeksWelcome';
-		$emailData = array("user" => $user, "level" => $ClarityLevel, "programLink" => $startProgram, "dateDiff" => '2 days');
+		$emailData = array("user" => $user, "level" => $ClarityLevel, "programLink" => $startProgram, "dateDiff" => $this->dateDiff, "server" => $server);
 		$thisEmail = array("to" => $user->email, "data" => $emailData);
 		$emailArray[] = $thisEmail;
 		
@@ -248,3 +317,18 @@ class TB6weeksService extends AbstractService {
 $doIt = new TB6weeksService();
 flush();
 exit();
+
+		if (!$prefix)
+			throw new Exception('This test must be run from a nice link');
+			
+		$config = array('prefix' => $prefix, 'productCode' => $this->productCode, 'dbHost' => $this->dbHost);
+
+		try {
+			$rc = $this->checkAccount($config);
+		} catch (Exception $e) {
+		}
+		if ($rc) {
+			$data = $this->testOps->getQuestions($exercise);
+		} else {
+			throw new Exception('Your account is not setup for TB6weeks');
+		}

@@ -7,6 +7,8 @@
 // TODO: For updates, we are not altering $account->name or anything account details, just changing titles.
 // TODO: For Emu, the licencedProducts (IYJ Practice Centre) need licenceAttributes, action=validatedLogin which we are not setting
 //
+// Add TB6weeks style subscriptions
+//
 class SubscriptionOps {
 
 	var $db;
@@ -21,6 +23,8 @@ class SubscriptionOps {
 		$this->accountOps = new AccountOps($db);
 		$this->emailOps = new EmailOps($db);
 		$this->templateOps = new TemplateOps($db);
+		$this->memoryOps = new MemoryOps($db);
+		$this->testOps = new TestOps($db);
 	}
 	
 	/**
@@ -33,6 +37,8 @@ class SubscriptionOps {
 		$this->accountOps->changeDB($db);
 		$this->emailOps->changeDB($db);
 		$this->templateOps->changeDB($db);
+		$this->memoryOps->changeDB($db);
+		$this->testOps->changeDB($db);
 	}
 	
 	function validateApiInformation($apiInformation) {
@@ -637,6 +643,142 @@ EOD;
 		}
 		
 		return false;				
+	}
+	
+	/**
+	 * This is to check, using your email, if you have already subscribed to this product in a particular account.
+	 * 
+	 * return: 'new', 'exists' or 'conflict'
+	 */
+	public function checkProductSubscription($email, $rootID, $productCode) {
+		
+		$rootID = ($rootID) ? $rootID : Session::get('rootID');
+		AbstractService::$debugLog->notice("check email $email for root $rootID");
+		
+		$sql = <<<EOD
+				SELECT u.*, m.F_RootID as rootID
+				FROM T_User u, T_Membership m
+				WHERE u.F_UserID = m.F_UserID 
+				AND u.F_Email = ?
+EOD;
+		$rs = $this->db->Execute($sql, array($email));
+		$recordCount = $rs->RecordCount();
+		
+		switch ($recordCount) {
+			case 0:
+				// This is a new email address
+				$status = 'new';
+				break;
+				
+			case 1:
+				// This email exists, does it match the root?
+				$dbObj = $rs->FetchNextObj();
+				if ($dbObj->rootID == $rootID) {
+					// Does this user already have a subscription to this product?
+					Session::set('userID', $dbObj->F_UserID);
+					$this->memoryOps = new MemoryOps($this->db);
+					$subscription = $this->memoryOps->getElement('subscription');
+					if ($subscription && count($subscription)>0) {
+						$status = 'exists';
+					} else {
+						$status = 'new';
+					}
+						
+				} else {
+					$status = 'conflict';
+				}
+				break;
+				
+			default:
+				$status = 'conflict';
+				
+		}
+		return $status;
+	}
+	
+	/**
+	 * Based on your email, change your subscription.
+	 * 
+	 * return: 'success' or 'fail'
+	 */
+	public function changeProductSubscription($user, $level, $productCode) {
+		
+		AbstractService::$debugLog->notice("change level to $level for $user->email");
+		
+		// Now check that the user has a subscription (memory) for this product
+		Session::set('userID', $user->userID);
+		Session::set('productCode', $productCode);
+		$this->memoryOps = new MemoryOps($this->db);
+		$subscription = $this->memoryOps->getElement('subscription');
+		if (!$subscription)
+			return 'no subscription';
+			
+		// <level>INT</level><subscription startDate="2014-11-05" frequency="2 days" valid="true"/>
+		$now = new DateTime();
+		$subscription->setAttribute('startDate', $now->format('Y-m-d'));
+		$subscription->setAttribute('valid', 'true');
+		$levelNode = $this->memoryOps->getElement('level');
+		$levelNode->nodeValue = $level;
+		
+		$directStart = $this->testOps->getDirectStart($level);
+		// The bookmark (which controls direct start), is written to Tense Buster memory, not TB6weeks.
+		$tbProductCode = 55;
+		$rc = $this->memoryOps->addToMemory('bookmark', $directStart, $tbProductCode);
+		
+		$this->memoryOps->writeMemory();
+		
+		return 'success';
+	}
+	
+	/**
+	 * Remove a student's subscription.
+	 * Whilst this will completely delete the user, it will only do it if they have a subscription to this product.
+	 * If they have other subscriptions those will not be removed.
+	 * 
+	 */
+	public function removeProductSubscription($email, $productCode) {
+		$sql = <<<EOD
+				SELECT u.*
+				FROM T_User u, T_Membership m, T_Accounts a
+				WHERE u.F_UserID = m.F_UserID 
+				AND a.F_RootID = m.F_RootID
+				AND u.F_Email = ?
+				AND a.F_ProductCode = ?
+EOD;
+		$rs = $this->db->Execute($sql, array($email, $productCode));
+		$recordCount = $rs->RecordCount();
+		
+		switch ($recordCount) {
+			case 0:
+				$status = 'no such email';
+				break;
+			case 1:
+				$user = new User();
+				$user->fromDatabaseObj($rs->FetchNextObj());
+				// We know that this user exists in an account that has this product
+				// Now check that the user has a subscription (memory) for this and only this product
+				Session::set('userID', $user->userID);
+				Session::set('productCode', $productCode);
+				$this->memoryOps = new MemoryOps($this->db);
+				// TODO: this only returns subscription for TB6weeks - which is fine whilst that is the only title!
+				$subscription = $this->memoryOps->getElement('subscription');
+				if (!$subscription) {
+					$status = "you don't have a subscription";
+				} else if (count($subscription) == 1) {
+					$rc = $this->manageableOps->deleteManageables(array($user));
+					$status = 'done';
+				} else {
+					// Not yet used, see above todo.
+					$rc = $this->memoryOps->deleteElement('subscription');
+					$status = 'you have other subscriptions which have been left';
+				}
+				
+				break;
+			default:
+				$status = 'more than 1 email';
+				
+		}
+		return $status;
 	}
 	
 	// =========

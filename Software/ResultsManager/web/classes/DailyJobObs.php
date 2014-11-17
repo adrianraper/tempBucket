@@ -778,10 +778,11 @@ SQL;
 							$user = new User();
 							$user->fromDatabaseObj($dbObj);
 							// TODO: encrytped please
-							$startProgram = '/area1/TenseBuster10/Start.php?prefix='.$account->prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
+							$server = 'dock.projectbench';
+							$startProgram = 'http://'.$server.'/area1/TenseBuster10/Start.php?prefix='.$account->prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
 							
 							$toEmail = $user->email;
-							$emailData = array("user" => $user, "level" => $level, "programLink" => $startProgram, "dateDiff" => $f, "weekX" => $unitsAdded);
+							$emailData = array("user" => $user, "level" => $level, "programLink" => $startProgram, "dateDiff" => $f, "weekX" => $unitsAdded+1, "server" => $server);
 							$thisEmail = array("to" => $toEmail, "data" => $emailData);
 							$emailArray[] = $thisEmail;
 							AbstractService::$debugLog->info("update user ".$user->email." to week $unitsAdded");
@@ -839,7 +840,7 @@ SQL;
 							case 5:
 								$b->unit = '1192013076075';
 								break;
-							case 6:
+							default:
 								$b->setFinished();
 								break;
 						}
@@ -862,7 +863,7 @@ SQL;
 							case 5:
 								$b->unit = '1192625080483';
 								break;
-							case 6:
+							default:
 								$b->setFinished();
 								break;
 						}
@@ -885,7 +886,7 @@ SQL;
 							case 5:
 								$b->unit = '1195467532328';
 								break;
-							case 6:
+							default:
 								$b->setFinished();
 								break;
 						}
@@ -909,7 +910,7 @@ SQL;
 							case 5:
 								$b->unit = '1193054443818';
 								break;
-							case 6:
+							default:
 								$b->setFinished();
 								break;
 						}
@@ -933,7 +934,7 @@ SQL;
 							case 5:
 								$b->unit = '1196641272970';
 								break;
-							case 6:
+							default:
 								$b->setFinished();
 								break;
 						}

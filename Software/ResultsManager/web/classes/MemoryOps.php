@@ -31,6 +31,7 @@ class MemoryOps {
 		$this->userId = Session::get('userID');
 		
 		// NOTE: Is it safe or even a good idea to get this immediately?
+		// I now think this is a BAD idea
 		if (isset($this->userId) && isset($this->productCode))
 			$this->memory = $this->getMemoryFromDb();
 			
@@ -63,7 +64,7 @@ EOD;
 		$recordCount = $rs->RecordCount();
 		switch ($recordCount) {
 			case 0:
-				throw new Exception("asking for memory of a user who doesn't exist");
+				//throw new Exception("asking for memory of a user who doesn't exist");
 				break;
 				
 			case 1:
@@ -205,7 +206,20 @@ EOD;
 		if ($xmlNodes->length > 0)
 			return $xmlNodes->item(0);
 	}
-
+	
+	// Not yet used or tested
+	public function deleteElement($nodeName, $productCode = null) {
+		$pc = ($productCode) ? $productCode : $this->productCode;
+		if (!$this->memory)
+			return null;
+			
+		$xpath = new DOMXPath($this->memory);
+		$xmlNodes = $xpath->query("//product[@code='$pc']/$nodeName");
+		
+		if ($xmlNodes->length > 0)
+			return $this->memory->removeChild($xmlNodes->item(0));
+	}
+	
 	public function toString() {
 		if (isset($this->memory))
 			return $this->memory->saveXML();
