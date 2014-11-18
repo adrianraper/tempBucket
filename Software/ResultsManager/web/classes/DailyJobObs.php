@@ -650,4 +650,44 @@ SQL;
 		
 		return $accounts;
 	} 
+
+	/**
+	 * For all users in a group (or groups), get their email addresses and include the user details.
+	 * Would be more useful if you could include other information in the emailArray
+	 * 
+	 */
+	public function getEmailsForGroup($groupId) {
+
+		// Initialise
+		$emailArray = array();
+		
+		$groups = $this->manageableOps->getGroupSubgroups($groupId);
+		$groupList = implode(',', $groups);
+		
+		$sql = <<<SQL
+			SELECT u.*
+			FROM T_User u, T_Membership m 
+			WHERE u.F_UserID = m.F_UserID
+			AND m.F_GroupID in ($groupList)
+SQL;
+		$bindingParams = array();
+		$rs = $this->db->Execute($sql, $bindingParams);
+
+		if ($rs->RecordCount() > 0) {
+			while ($dbObj = $rs->FetchNextObj()) {
+				$user = new User();
+				$user->fromDatabaseObj($dbObj);
+				
+				// Send email IF we have one
+				if (isset($user->email) && $user->email) {
+					$toEmail = $user->email;
+					$emailData = array("user" => $user);
+					$thisEmail = array("to" => $toEmail, "data" => $emailData);
+					$emailArray[] = $thisEmail;
+				}
+			}
+		}
+		return $emailArray;
+	}
+
 }

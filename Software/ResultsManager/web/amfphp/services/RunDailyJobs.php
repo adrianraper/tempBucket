@@ -82,7 +82,7 @@ function runDailyJobs($triggerDate = null) {
 	
 	*/
 	// 4. EmailMe for Rotterdam
-	
+	/*
 	// First task is to find units that start today, get all users in the groups the units are published for
 	// and send out the email.
 	// Date is UTC and this job runs at 16:00 UTC. So it should be based on units starting tomorrow.
@@ -103,6 +103,7 @@ function runDailyJobs($triggerDate = null) {
 			echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
 		}
 	}
+	*/
 	/*
 	// Then repeat for courses that are published to start whenever a user first goes into them
 	$templateID = 'EmailMeUserFirstStart';
@@ -131,6 +132,25 @@ function runDailyJobs($triggerDate = null) {
 	$database = 'rack80829';
 	$rc = $thisService->dailyJobOps->monitorCBBActivity($database);
 	echo "$rc accounts active yesterday. $newLine";	
+	*/
+	// 7. Any email to all users in a group
+	// This is REALLY the wrong place to do this. Push into EmailToSelectedAccounts or someplace
+	/*
+	$groupId = 10379;
+	$templateID = 'user/RM-welcome';
+	$emailArray = $thisService->dailyJobOps->getEmailsForGroup($groupId);
+	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+		// Send the emails
+		$thisService->emailOps->sendEmails("", $templateID, $emailArray);
+		echo "Queued ".count($emailArray)." emails for units starting $courseDate. $newLine";
+			
+	} else {
+		// Or print on screen
+		echo count($emailArray)." emails for group $groupId $newLine";
+		foreach($emailArray as $email) {
+			echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
+		}
+	}
 	*/
 	
 }
