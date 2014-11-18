@@ -105,7 +105,7 @@
 		}
 		
 		@font-face {
-			src: url("skins/clearpronunciationair/assets/MGBOLD.otf");
+			src: url("skins/clearpronunciation/assets/MGBOLD.otf");
 			fontFamily: Mgbold;
 			fontStyle: normal;
 			fontWeight: bold;

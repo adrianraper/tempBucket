@@ -9,6 +9,7 @@
 			<lit name="phonemicChartURL"><![CDATA[http://www.clarityenglish.com/Content/ClearPronunciation-International/sharedMedia/phonemicChart.pdf]]></lit>
 			<lit name="helpURL"><![CDATA[http://www.clarityenglish.com/Software/ClearPronunciation/Help/help.htm]]></lit>
 			<lit name="warningWindowCaption">Sorry</lit>
+            <lit name="homeInstructionLabel">Choose the section you want to view.</lit>
 			
 			<!--  overrides -->
 			<lit name="exerciseBackToMenuButton"></lit> <!-- CP doesn't have a label on this button as it is in the icon -->

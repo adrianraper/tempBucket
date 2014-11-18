@@ -103,7 +103,6 @@
             <lit name="Back">Back</lit>
             <lit name="Next">Forward</lit>
             <lit name="LogOut">Log out</lit>
-            <lit name="homeInstructionLabel">Click to choose the section you want to view.</lit>
             <lit name="updateError">The two new passwords you typed must be the same.</lit>
             <lit name="updateFail">Sorry, these details can't be updated.</lit>
             <lit name="updateSuccess">Your details have been saved.</lit>

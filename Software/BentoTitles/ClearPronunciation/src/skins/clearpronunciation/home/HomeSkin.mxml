@@ -38,9 +38,9 @@
 	</s:Group>
 	
 	<!-- The initial instruction graphics -->
-	<s:Group height="100" left="400" verticalCenter="0" visible="{courseList.selectedItem == null}">
+	<s:Group height="100" left="400" verticalCenter="-20" visible="{courseList.selectedItem == null}">
 		<home:homeInstructionArrow  />
-		<s:Label id="homeInstructionLabel" top="70" left="100" width="380" fontWeight="bold" fontSize="25" color="#333333" />
+		<s:Label id="homeInstructionLabel" top="28" left="110" width="300" fontWeight="bold" fontSize="25" color="#333333" />
 	</s:Group>
 	
 	<!-- The course list -->
