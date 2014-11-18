@@ -24,7 +24,10 @@
 	
 	<!-- Body -->
 	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0" bottom.title="44">
-		<s:BusyIndicator includeIn="loading" verticalCenter="0" horizontalCenter="0" />
+		<!--s:BusyIndicator includeIn="loading" verticalCenter="0" horizontalCenter="0" /-->
+		<s:Group verticalCenter="0" horizontalCenter="0">
+			<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/cpPreloader.swf')" scaleX="0.5" scaleY="0.5" includeIn="loading" horizontalAlign="center" />
+		</s:Group>
 		<login:LoginView id="loginView" width="100%" height="100%" includeIn="login" />
 		<title:TitleView id="titleView" width="100%" height="100%" includeIn="title" />
 		<credits:CreditsView id="creditsView" width="100%" height="100%" includeIn="credits" />

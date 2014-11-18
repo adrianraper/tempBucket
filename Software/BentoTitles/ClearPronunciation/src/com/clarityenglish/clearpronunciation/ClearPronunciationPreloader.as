@@ -39,10 +39,10 @@ package com.clarityenglish.clearpronunciation {
 		
 		protected function onResize(event:Event = null):void {
 			if (preloaderDisplay) {
-				preloaderDisplay.scaleX = 0.6;
-				preloaderDisplay.scaleY = 0.6;
-				preloaderDisplay.x = Math.round((stage.stageWidth - preloaderDisplay.width)/ 2 + 170);
-				preloaderDisplay.y = Math.round((stage.stageHeight - preloaderDisplay.height)/ 2 + 70);
+				preloaderDisplay.scaleX = 0.8;
+				preloaderDisplay.scaleY = 0.8;
+				preloaderDisplay.x = Math.round((stage.stageWidth - preloaderDisplay.width)/ 2 + 160);
+				preloaderDisplay.y = Math.round((stage.stageHeight - preloaderDisplay.height)/ 2 + 150);
 			}
 		}
 		
