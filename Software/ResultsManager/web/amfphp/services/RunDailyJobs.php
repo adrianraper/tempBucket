@@ -59,7 +59,7 @@ function runDailyJobs($triggerDate = null) {
 	/*
 	// For the Road to IELTS Last Minute accounts in the merged database
 	$database = 'rack80829';
-	$roots = array(163);
+	$roots = array(100,101,167,168,169,170,171,14028,14030,14031);
 	$usersMoved = $thisService->dailyJobOps->archiveExpiredUsers($expiryDate, $roots, $database);
 	echo "Moved $usersMoved users from $database to expiry table. $newLine";
 	*/
@@ -74,9 +74,9 @@ function runDailyJobs($triggerDate = null) {
 	
 	// 3. Archive older users from some roots
 
-	// We want to archive users who took their test more than a month ago from LearnEnglish accounts
-	$regDate = date('Y-m-d', addDaysToTimestamp($triggerDate, -31));
-	$roots = array(13982);
+	// We want to archive users who took their test more than 3 months ago from LearnEnglish accounts
+	$regDate = date('Y-m-d', addDaysToTimestamp($triggerDate, -92));
+	$roots = array(13982,14084,16180,14987);
 	$rc = $thisService->dailyJobOps->archiveOldUsers($roots,$regDate);
 	echo "Archived $rc LearnEnglish level test users who registered before $regDate. $newLine";	
 	
@@ -132,25 +132,6 @@ function runDailyJobs($triggerDate = null) {
 	$database = 'rack80829';
 	$rc = $thisService->dailyJobOps->monitorCBBActivity($database);
 	echo "$rc accounts active yesterday. $newLine";	
-	*/
-	// 7. Any email to all users in a group
-	// This is REALLY the wrong place to do this. Push into EmailToSelectedAccounts or someplace
-	/*
-	$groupId = 10379;
-	$templateID = 'user/RM-welcome';
-	$emailArray = $thisService->dailyJobOps->getEmailsForGroup($groupId);
-	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
-		// Send the emails
-		$thisService->emailOps->sendEmails("", $templateID, $emailArray);
-		echo "Queued ".count($emailArray)." emails for units starting $courseDate. $newLine";
-			
-	} else {
-		// Or print on screen
-		echo count($emailArray)." emails for group $groupId $newLine";
-		foreach($emailArray as $email) {
-			echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
-		}
-	}
 	*/
 	
 }

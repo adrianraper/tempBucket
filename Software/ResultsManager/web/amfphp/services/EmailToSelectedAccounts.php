@@ -57,13 +57,32 @@ function specificEmail($account, $messageType, $templateID, $addReseller = false
 // If you want to run specific triggers for specific days (for testing)
 // you can put 'date=-1' in the URL
 $testingTriggers = "";
+$testingTriggers = "RM-welcome";
 //$testingTriggers = "R2I announce email";
 //$testingTriggers .= "Service";
 //$testingTriggers .= "terms and conditions";
 //$testingTriggers .= "TBV10 release";
 //$testingTriggers .= "C-Builder upgrade";
-$testingTriggers .= "TBV10 released";
+//$testingTriggers .= "TBV10 released";
 
+if (stristr($testingTriggers, "RM-welcome")) {
+	// Email to all users in a group
+	$groupId = 10379;
+	$templateID = 'user/RM-welcome';
+	$emailArray = $thisService->dailyJobOps->getEmailsForGroup($groupId);
+	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+		// Send the emails
+		$thisService->emailOps->sendEmails("", $templateID, $emailArray);
+		echo "Queued ".count($emailArray)." emails for units starting $courseDate. $newLine";
+			
+	} else {
+		// Or print on screen
+		echo count($emailArray)." emails for group $groupId $newLine";
+		foreach($emailArray as $email) {
+			echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
+		}
+	}
+} else {
 	if (stristr($testingTriggers, "Service")) {
 		// These are not sent through triggers but programmatically
 		$conditions['active'] = true;
@@ -226,7 +245,5 @@ $testingTriggers .= "TBV10 released";
 	} else {
 		echo "no accounts found";
 	}
-
-
+}
 exit(0);
-?>
