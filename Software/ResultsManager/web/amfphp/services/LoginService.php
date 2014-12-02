@@ -84,7 +84,7 @@ class LoginService extends AbstractService {
 		if (isset($loginDetails->rootID))
 			return $this->manageableOps->getUserByKey($stubUser, $loginDetails->rootID, $loginDetails->loginOption);
 			
-		return $this->manageableOps->getUserByKey($stubUser, null, $loginDetails->loginOption);
+		return $this->manageableOps->getUserByKey($stubUser, 0, $loginDetails->loginOption);
 	}
 	
 	// Add this user

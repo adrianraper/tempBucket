@@ -21,7 +21,7 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getOrAddUser","studentID":"P10102928-170","name":"RAPER, Adrian","dbHost":2,"custom1":"Basic","custom2":"IMD","prefix":"CSTDI","loginOption":"8"}';
 	//$inputData = '{"method":"getOrAddUser","studentID":"5217-0123-4567","name":"asdf","password":"1234","email":"adrian@noodles.hk","groupID":"170","productCode":"52","subscriptionPeriod":"3m","emailTemplateID":"Welcome-BC-user","adminPassword":"clarity88","dbHost":102,"loginOption":2}';
 	//$inputData = '{"method":"getOrAddUser","dbHost":2,"prefix":"CSTDI","rootID":14449,"groupID":26271,"city":"Hong Kong","country":"Hong Kong","loginOption":2,"subscriptionPeriod":"1y","adminPassword":"57845612","studentID":"cstdi-1234","name":"RAPER, Adrian","custom1":"100","custom2":"21"}';
-	//$inputData = '{"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5","dbHost":102,"loginOption":"8"}';
+	//$inputData = '{"method":"signInUser","rootID":"15095","prefix":"BCLECH","studentID":"123456","password":"aaa","dbHost":2,"loginOption":"2"}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","licenceType":5,"loginOption":128,"dbHost":20}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","loginOption":128,"dbHost":20}';
 	//$inputData = '{"method":"getOrAddUserAutoGroup", "prefix":"TW_TTU", "groupName":"noGroup", "name":"winhoey", "password":"testing", "teacherName":"TTU_Teacher", "adminPassword":"68777214", "dbHost":2, "city":"Taichung", "country":"Taiwan", "loginOption":1}';
@@ -68,6 +68,9 @@ function returnError($errCode, $data = null) {
 			break;
 		case 252:
 			$apiReturnInfo['message'] = 'Group not found '.$data;
+			break;
+		case 253:
+			$apiReturnInfo['message'] = 'Wrong password';
 			break;
 		default:
 			$apiReturnInfo['message'] = 'Unknown error';
@@ -174,6 +177,32 @@ try {
 			// If you don't know the group, send that back too
 			if (!isset($apiInformation->groupID))
 				$group = $loginService->getGroup($apiInformation, $account);
+			
+			break;
+			
+		// The following confirms the user details, including password, and returns the user
+		case 'signInUser':
+			$user = $loginService->getUser($apiInformation);
+			
+			if ($user==false) {
+				// Return the key information you used to search
+				switch ($apiInformation->loginOption) {
+					case 1:
+						$key = $apiInformation->userName;
+						break;		
+					case 2:
+						$key = $apiInformation->studentID;
+						break;
+					case 128:
+						$key = $apiInformation->email;
+						break;
+					default:
+						$key = "unknown login option ".$apiInformation->loginOption;
+				}
+				returnError(200, $key);
+			}
+			if ($apiInformation->password != $user->password) 
+				returnError(253);
 			
 			break;
 			

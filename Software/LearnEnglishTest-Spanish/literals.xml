@@ -227,12 +227,12 @@
 <lit name="multipleUsers">Sorry, your name or id has been used more than once. Please contact your administrator.</lit>
 <lit name="cannotSkipMarkingSCORM">You can only move forward by finishing the exercise and clicking Marking.</lit>
 
-<lit name="specialIntroduction">The level test starts with 15 general questions. (7min)
-Then you will do the main test (30-40min).[newline]This has 3 sections:[newline]1. Grammar[newline]2. Vocabulary[newline]3. Reading
-Please read the instructions for each screen carefully. The instructions tell you how many questions there are and how many screens there are. There is a timer on the right of the screen that tells you how many minutes you have left until the end of the test.
-This level test is designed to give you a good indication of your English level. In order to assess your level accurately, it is important that you don’t use dictionaries, reference books or ask anyone for help.
-Your result will be displayed and can be printed when you have finished the test. 
-Now, click on the 'Start the test' button on the left.
+<lit name="specialIntroduction">El examen de nivel comienza con 15 preguntas generales. (7min)
+Luego harás el examen principal (30-40min).[newline]Consta de 3 partes:[newline]1. Gramática [newline]2. Vocabulario[newline]3. Lectura
+Por favor lee con atención las instrucciones de cada pantalla.  Las instrucciones te indicarán cuántas preguntas y pantallas hay.   A la derecha de la pantalla hay un cronómetro que te indica cuántos minutos te quedan para terminar el examen.
+Este examen de nivel se diseñó para que tengas una idea de cuál es tu nivel de inglés. Para evaluar tu nivel con exactitud, es importante que no uses diccionarios ni material de consulta ni pidas ayuda. 
+Una vez que termines el examen, verás los resultados en la pantalla y podrás imprimirlos. 
+Ahora, haz clic en el botón 'Comenzar el examen' que aparece a la izquierda.
 </lit>
 <lit name="certificateCEFLevelA0"><![CDATA[A0 (Breakthrough):<br/>Basic user]]></lit>
 <lit name="certificateCEFLevelA1"><![CDATA[A1 (Breakthrough):<br/>Basic user]]></lit>
@@ -256,7 +256,7 @@ Now, click on the 'Start the test' button on the left.
 <lit name="certificateCEFDetailC1"><![CDATA[<ul><li>Understand a wide range of demanding, longer texts, and recognise implicit meaning.</li><li>Express him/herself fluently and spontaneously without much obvious searching for expressions.</li><li>Use language flexibly and effectively for social, academic and professional purposes.</li><li>Produce clear, well-structured, detailed text on complex subjects, showing controlled use of organisational patterns, connectors and cohesive devices.</li></ul>]]></lit>
 <lit name="certificateCEFDetailC2"><![CDATA[<ul><li>Understand with ease virtually everything heard or read.</li><li>Can summarise information from different spoken and written sources, reconstructing arguments and accounts in a coherent presentation.</li><li>Express him/herself spontaneously, very fluently and precisely, differentiating finer shades of meaning even in the most complex situations.</li></ul>]]></lit>
 <lit name="certificateCEFSummary"><![CDATA[<font size="13"><b>CEF Level: [CEFLevel]</b><br/>grammar=[grammarCEF]<br/>vocabulary=[vocabCEF]<br/>reading=[readingCEF]<font>]]></lit>
-<lit name="certificateBCSummary"><![CDATA[<font size="13">This level test indicates your level is:</font>]]></lit>
+<lit name="certificateBCSummary"><![CDATA[<font size="13">Según este examen, tu nivel es:</font>]]></lit>
 <lit name="certificateBCContact"><![CDATA[Call to action section.]]></lit>
 <lit name="certificateBCDisclaimer"><![CDATA[<font size="9">Disclaimer: This online test has been administered under unsupervised conditions and the identity of candidates has not been verified. The British Council takes no responsibility for ensuring that the test taker's personal details given above are correct or that they are those of the person who actually completed the test.<br/><br/>This level test offers an approximate indication of level based primarily of grammar, vocabulary and reading skills. For a comprehensive assessment of English proficiency across all skills the British Council would recommend a more detailed assessment such as that offered by the International English Language Testing System (IELTS).</font>]]></lit>
 <lit name="certificateCEFDetail"><![CDATA[<font size="12">Someone at your level can usually:<br/><br/>[CEFLevelDetail]</font>]]></lit>
@@ -279,86 +279,6 @@ Now, click on the 'Start the test' button on the left.
 <lit name="licenceMissing">The licence can't be found. Some webservers hide the file licence.ini. Try renaming it to licence.txt and restart.</lit>
 <lit name="noDBConnection">The database cannot be read, please try again later or contact your support team.</lit>
 <lit name="cannotLoadXML">[x] cannot be read, please contact your support team.</lit>
-<lit name="wrongRU">The licence can only run from a limited range of websites (RU address).</lit>
-</group>
-</language>
-<language name="English in Japan" code="ENinJP" mediaFolder="EN">
-<comment>This is used to provide an English version of the test with a summary aimed just at Japan. It is controlled by &language=ENinJP in location.txt</comment>
-<group name="messages">
-<lit name="certificateBCSummary"><![CDATA[<font size="10">Please remember this word or phrase for when you come to the British Council for the assessment of your speaking level and counselling.<br/><br/></font><font size="11">Thanks for taking the LearnEnglish Level test! This level test indicates your level is:<br/><b>British Council Level: [BCLevel]</b></font>]]></lit>
-<lit name="certificateBCContact"><![CDATA[<font size="11">Contact us now to complete your level test with a free assessment of your speaking level and counselling with a teacher. Please email or call us on:<font size="6"><br/><br/></font><u><a href='mailTo:courses@britishcouncil.or.jp'>courses@britishcouncil.or.jp</a></u>&nbsp;&nbsp;03-3235-8011<font size="6"><br/><br/></font>After the speaking assessment, the teacher will explain your overall level in more detail and advise you of the best course for you.</font>]]></lit>
-<lit name="certificateCEFSummary"><![CDATA[<font size="11"><b>CEF Level: [CEFLevel]</b>&nbsp;(grammar=[grammarCEF], vocabulary=[vocabCEF], reading=[readingCEF])<font>]]></lit>
-<lit name="certificateCEFDetail"><![CDATA[<font size="11">Someone at your level can usually:<br/>[CEFLevelDetail]</font>]]></lit>
-<lit name="certificateBCDisclaimer"><![CDATA[<font size="10">Please be aware that level test scores are only to be used for placement into British Council courses and not for any other reason.</font>]]></lit>
-<lit name="certificateHeader">[unit].  Your word or phrase is: [name]</lit>
-<lit name="certificateBCLevel-Starter">Starter</lit>
-<lit name="certificateBCLevel-Elementary">Elementary</lit>
-<lit name="certificateBCLevel-Pre-Intermediate">Pre-Intermediate</lit>
-<lit name="certificateBCLevel-Intermediate">Intermediate</lit>
-<lit name="certificateBCLevel-Upper-Intermediate">Upper Intermediate</lit>
-<lit name="certificateBCLevel-Advanced">Advanced</lit>
-<lit name="certificateBCLevel-Advanced-Plus">Advanced Plus</lit>
-<lit name="certificateLayout"><![CDATA[[BCSummary]<br/><br/>[BCDetail]<br/><br/>[CEFSummary]<br/><br/>[CEFDetail]<br/><br/>[BCDisclaimer]<br/><br/>]]></lit>
-</group>
-</language>
-<language name="Japanese" code="JP" mediaFolder="EN">
-<group name="labels">
-<lit name="specialIntroduction">はじめに</lit>
-</group>
-<group name="messages">
-<lit name="specialIntroduction">このレベルチェックでは、まず一般的な内容の問題15問が出題されます。
-次に、本編のレベルチェックに進みます。本編は、重要な3つの項目で構成されています。[newline]1. 文法[newline]2. 語彙[newline]3. 読解
-各項目の画面に表示されている説明には、問題数、画面について記載がありますので、よくお読みください。画面右下に時計があり、テスト終了までの残り時間が表示されています。
-このレベルチェックは、皆さんの英語学習にとって適切なアドバイスをお伝えするために、正確な英語レベルを把握できるよう作成されています。そのため、辞書や参考書を使用したり、他の人に聞いた答えを回答しないでください。
-レベルチェックを終了すると結果が画面に表示されます。ブリティッシュ・カウンシルでは、皆さんの結果を保存します。
-テスト開始の準備が出来ましたら、画面左側の‘Start the test’ボタンをクリックしてください。
-</lit>
-<lit name="certificateCEFLevelA0">A0 (Breakthrough): Basic user</lit>
-<lit name="certificateCEFLevelA1">A1 (Breakthrough): Basic user</lit>
-<lit name="certificateCEFLevelA2">A2 (Waystage): Basic user</lit>
-<lit name="certificateCEFLevelB1">B1 (Threshold): Independent User</lit>
-<lit name="certificateCEFLevelB2">B2 (Vantage): Independent User</lit>
-<lit name="certificateCEFLevelC1">C1 (Effective Operational Proficiency): Proficient User</lit>
-<lit name="certificateCEFLevelC2">C2 (Mastery): Proficient User</lit>
-<lit name="certificateCEFDetailA0"><![CDATA[<ul><li>なじみのある日常会話表現や基礎的なフレーズを理解して使用することができます。</li><li>自分や相手を紹介したり、住んでいる場所、知っていること、持っているものなどの個人的な情報を尋ねたり答えたりできます。</li><li>相手がゆっくり分かりやすく、リードして話してくれると簡単な表現で情報交換できます。</li></ul>]]></lit>
-<lit name="certificateCEFDetailA1"><![CDATA[<ul><li>なじみのある日常会話表現や基礎的なフレーズを理解して使用することができます。</li><li>自分や相手を紹介したり、住んでいる場所、知っていること、持っているものなどの個人的な情報を尋ねたり答えたりできます。</li><li>相手がゆっくり分かりやすく、リードして話してくれると簡単な表現で情報交換できます。]</li></ul>]]></lit>
-<lit name="certificateCEFDetailA2"><![CDATA[<ul><li>その場の出来事に関連した内容でよく使う文章や表現を理解することができます。</li><li>なじみのあることや習慣的なことについて、情報交換が必要な場合、簡潔で分かりやすい表現でコミュニケーションをとることができます。</li><li>自分を紹介するための情報やその場の状況、出来事について簡単な用語を使って説明できます。</li></ul>]]></lit>
-<lit name="certificateCEFDetailB1"><![CDATA[<ul><li>仕事、学校、余暇などで日常よく使うなじみのある内容について、要点を理解し聴き取ることができます。</li><li>海外へ旅行に出かけたとき、英語を使うあらゆる場面に対応できます。</li><li> なじみのあることや興味のある話題に関連した内容を簡単な文章で話すことができます。</li><li>経験、出来事、夢、希望、将来の目標などについて説明することができ、考えや計画に対する理由を簡潔に述べることができます。</li></ul>]]></lit>
-<lit name="certificateCEFDetailB2"><![CDATA[<ul><li>具体的、抽象的内容のどちらでも、複雑な文章の要点を理解することができます。</li><li>緊張せず、常に流暢な英語で自発的にネイティブ・スピーカーと情報交換できます。</li><li>幅広い話題について明確に、詳しく話すことができます。また、時事的な問題について利点、不利点などいろいろな角度から見た自分の意見を説明することができます。</li><li>経験、出来事、夢、希望、将来の目標などについて説明することができ、考えや計画に対する理由を簡潔に述べることができます。</li></ul>]]></lit>
-<lit name="certificateCEFDetailC1"><![CDATA[<ul><li>幅広い範囲で難易度の高い長文や行間に含まれる意味、及び背景を関連付けて理解することができます。</li><li>流暢で自発的に、迷うことなく正しい表現で意見を述べることができます。</li><li>社会的にも学術的にも専門的にも自由に効果的に英語を使うことができます。</li><li>複雑な話題についても分かりやすく、筋道を立てて詳しく表現することができます。</li></ul>]]></lit>
-<lit name="certificateCEFDetailC2"><![CDATA[<ul><li>聴いたり読んだりしたことすべてを、頭の中で容易に想像させながら理解することができます。</li><li>それぞれ異なる情報源の話や文章の要約ができ、解釈や議論を明瞭に再現することができます。</li><li>非常に流暢で自発的に、正確な意見を表現することができ、非常に複雑な状況でもわずかな意味の違いを理解することができます。</li></ul>]]></lit>
-<lit name="certificateCEFSummary"><![CDATA[<b>CEF Level: [CEFLevel]</b><br/>(Grammar=[grammarCEF], vocabulary=[vocabCEF], reading=[readingCEF])]]></lit>
-<lit name="certificateBCSummary"><![CDATA[<font size="10">このユーザーネームは、ブリティッシュ・カウンシルにお越しいただき、スピーキングレベルの評価やカウンセリングを行う際に必要になりますので、必ず覚えておくようにしてください。</font><br/><br/>レベルチェックお疲れ様でした！<br/><b>ブリティッシュ・カウンシル英語コースでのあなたのレベル： [BCLevel]</b>]]></lit>
-<lit name="certificateBCContact"><![CDATA[このあと、ブリティッシュ・カウンシルで、講師による無料の英語インタビュー、カウンセリングを受けるとレベルチェックが全て完了します。[newline]英語インタビュー及びカウンセリングはEメールまたはお電話でご予約ください。<font size="4"><br/><br/></font><u><a href='mailTo:courses@britishcouncil.or.jp'>courses@britishcouncil.or.jp</a></u>, 03-3235-8011<font size="4"><br/><br/></font><font size="10">スピーキングテストを受けて頂いた後、総合的な英語力の詳細、及び最適なコースを講師がご案内させて頂きます。</font>]]></lit>
-<lit name="certificateBCDisclaimer"><![CDATA[<font size="10">レベルチェックの結果は、ブリティシュ・カウンシルで英語コースを受講する時のみ使用されるもので、他の目的で使用されることはありません。</font>]]></lit>
-<lit name="certificateCEFDetail"><![CDATA[このレベルの方は：<br/>[CEFLevelDetail]]]></lit>
-<lit name="certificateHeader">[unit]    ユーザーネーム: [name]</lit>
-<lit name="certificateBCLevel-Starter">入門 Starter</lit>
-<lit name="certificateBCLevel-Elementary">初級 Elementary</lit>
-<lit name="certificateBCLevel-Pre-Intermediate">準中級 Pre-Intermediate</lit>
-<lit name="certificateBCLevel-Intermediate">中級 Intermediate</lit>
-<lit name="certificateBCLevel-Upper-Intermediate">中上級 Upper Intermediate</lit>
-<lit name="certificateBCLevel-Advanced">上級 Advanced</lit>
-<lit name="certificateBCLevel-Advanced-Plus">上級プラス Advanced Plus</lit>
-<lit name="certificateLayout"><![CDATA[[BCSummary]<br/><br/>[BCDetail]<br/><br/>[CEFSummary]<br/><br/>[CEFDetail]<br/><br/>[BCDisclaimer]<br/><br/>]]></lit>
-</group>
-</language>
-<language name="Malaysia" code="MY" mediaFolder="EN">
-<comment>This is used to provide a call to action for Malaysia. It is controlled by &language=MY in location.txt</comment>
-<group name="messages">
-<lit name="certificateBCSummary"><![CDATA[<font size="12">This was the first part of the LearnEnglish<br/>Level test. The level test indicates your level is:<br/><b>British Council Level: [BCLevel]</b></font>]]></lit>
-<lit name="certificateCEFSummary"><![CDATA[<font size="12"><b>CEF Level: [CEFLevel]</b><br/>grammar=[grammarCEF], vocabulary=[vocabCEF], reading=[readingCEF]<font>]]></lit>
-<lit name="certificateCEFDetail"><![CDATA[<font size="12"><b>What next?</b><br/><br/>The next step is a short speaking test with a teacher either face to face or via Skype to confirm your level. Please email or call us on:<font size="6"><br/><br/></font><u><a href='mailTo:kualalumpur@britishcouncil.org.my'>kualalumpur@britishcouncil.org.my</a></u>&nbsp;&nbsp;03 2723 7900<font size="6"><br/><br/></font>After the speaking assessment, the teacher will explain your overall level in more detail and advise you of the best course for you.</font>]]></lit>
-<lit name="certificateBCDisclaimer"><![CDATA[<font size="11">Please be aware that level test scores are only to be used for placement into British Council courses and not for any other reason.</font>]]></lit>
-<lit name="certificateHeader">[unit]. Test result for [name]</lit>
-<lit name="certificateBCLevel-Starter">Starter</lit>
-<lit name="certificateBCLevel-Elementary">Elementary</lit>
-<lit name="certificateBCLevel-Pre-Intermediate">Pre-Intermediate</lit>
-<lit name="certificateBCLevel-Intermediate">Intermediate</lit>
-<lit name="certificateBCLevel-Upper-Intermediate">Upper Intermediate</lit>
-<lit name="certificateBCLevel-Advanced">Advanced</lit>
-<lit name="certificateBCLevel-Advanced-Plus">Advanced Plus</lit>
-<lit name="certificateLayout"><![CDATA[[BCSummary]<br/>[CEFSummary]<br/>]]></lit>
 </group>
 </language>
 <language name="Spanish" code="ES" mediaFolder="EN">
@@ -401,6 +321,44 @@ Ahora, haz clic en el botón 'Comenzar el examen' que aparece a la izquierda.
 <lit name="certificateBCLevel-Advanced">Advanced</lit>
 <lit name="certificateBCLevel-Advanced-Plus">Advanced Plus</lit>
 <lit name="certificateLayout"><![CDATA[[BCSummary]<br/>[CEFSummary]<br/>]]></lit>
+</group>
+</language>
+<language name="French" code="FR" mediaFolder="EN">
+<group name="labels">
+<lit name="specialIntroduction">Bonjour</lit>
+</group>
+<group name="messages">
+<lit name="specialIntroduction">El examen de nivel comienza con 15 preguntas generales.[newline]1. Gramática[newline]2. Vocabulario[newline]3. Lectura
+Start the test.
+</lit>
+<lit name="certificateCEFLevelA0">A0 (Acceso): Usuario básico</lit>
+<lit name="certificateCEFLevelA1">A1 (Acceso): Usuario básico</lit>
+<lit name="certificateCEFLevelA2">A2 (Plataforma): Usuario básico</lit>
+<lit name="certificateCEFLevelB1">B1 (Umbral): Usuario independiente</lit>
+<lit name="certificateCEFLevelB2">B2 (Avanzado): Usuario independiente</lit>
+<lit name="certificateCEFLevelC1">C1 (Dominio operativo eficaz): Usuario competente</lit>
+<lit name="certificateCEFLevelC2">C2 (Maestría): Usuario competente</lit>
+<lit name="certificateCEFDetailA0"><![CDATA[<ul><li>Comprender y utilizar expresiones coloquiales cotidianas y frases muy básicas.</li><li>Presentarse y presentar a otras personas, hacer y contestar preguntas personales sobre el lugar donde vive, las personas que conoce y las cosas que posee.</li><li>Relacionarse de forma sencilla siempre que la otra persona hable lentamente y con claridad y esté dispuesta a ayudar.</li></ul>]]></lit>
+<lit name="certificateCEFDetailA1"><![CDATA[<ul><li>Comprender y utilizar expresiones coloquiales cotidianas y frases muy básicas destinadas a satisfacer necesidades concretas.</li><li>Presentarse y presentar a otras personas, hacer y contestar preguntas personales sobre el lugar donde vive, las personas que conoce y las cosas que posee.</li><li>Relacionarse de forma sencilla siempre que la otra persona hable lentamente y con claridad y esté dispuesta a ayudar.</li></ul>]]></lit>
+<lit name="certificateCEFDetailA2"><![CDATA[<ul><li>Comprender frases y expresiones de uso frecuente relacionadas con áreas que le son especialmente relevantes (por ejemplo, información personal y familiar muy básica, compras, lugares de interés, empleo).</li><li>Comunicarse en actividades simples y cotidianas que requieren un intercambio de información sencillo y directo sobre cuestiones familiares y cotidianas.</li><li>Describir en términos sencillos aspectos de su pasado y su entorno, y también cuestiones relacionadas con sus necesidades inmediatas.</li></ul>]]></lit>
+<lit name="certificateCEFDetailB1"><![CDATA[<ul><li>Comprender las ideas principales de conversaciones en lengua clara y estándar sobre cuestiones que se le presentan a menudo en el trabajo, la escuela, el tiempo libre, etc.</li><li>Desenvolverse en la mayoría de las situaciones que pueden surgir cuando viaja a un lugar donde se utiliza la lengua.</li><li>Redactar textos sencillos y coherentes sobre temas que le son familiares o le interesan.</li><li>Describir experiencias, hechos, sueños, esperanzas y aspiraciones y justificar y explicar brevemente sus opiniones y planes.</li></ul>]]></lit>
+<lit name="certificateCEFDetailB2"><![CDATA[<ul><li>Comprender las ideas principales de textos complejos que traten temas tanto concretos como abstractos, incluso de carácter técnico en un campo de especialización.</li><li>Relacionarse con hablantes nativos con un grado de fluidez y naturalidad permitiendo que la comunicación se realice sin el esfuerzo de los participantes.</li><li>Redactar textos claros y detallados sobre temas diversos y exponer su posición indicando los pros y los contra de las opciones.</li><li>Describir experiencias, hechos, sueños, esperanzas y aspiraciones.</li></ul>]]></lit>
+<lit name="certificateCEFDetailC1"><![CDATA[<ul><li>Comprender una gran variedad de textos complicados y extensos, y reconocer el significado implícito.</li><li>Expresarse con fluidez y naturalidad sin recurrir a la búsqueda evidente de expresiones.</li><li>Hacer un uso flexible y efectivo del idioma con fines sociales, académicos y profesionales.</li><li>Redactar textos claros, bien estructurados y detallados sobre temas complejos, haciendo uso de pautas de organización, conectores y mecanismos de cohesión.</li></ul>]]></lit>
+<lit name="certificateCEFDetailC2"><![CDATA[<ul><li>Comprender con facilidad prácticamente todo lo que oye o lee.</li><li>Resumir información proveniente de distintas fuentes orales y escritas y reconstruir argumentos y relatos de manera coherente.</li><li>Expresarse con naturalidad, gran fluidez y precisión, lo que le permite diferenciar pequeños matices de significado incluso en las situaciones más complejas.</li></ul>]]></lit>
+<lit name="certificateCEFSummary"><![CDATA[<b>CEF Nivel: [CEFLevel]</b><br/>(Gramática=[grammarCEF], Vocabulario=[vocabCEF], Lectura=[readingCEF])]]></lit>
+<lit name="certificateBCSummary"><![CDATA[<font size="10">Según este examen, tu nivel es: [BCLevel]</b>]]></lit>
+<lit name="certificateBCContact"><![CDATA[このあと、ブリティッシュ・カウンシルで、講師による無料の英語インタビュー、カウンセリングを受けるとレベルチェックが全て完了します。[newline]英語インタビュー及びカウンセリングはEメールまたはお電話でご予約ください。<font size="4"><br/><br/></font><u><a href='mailTo:courses@britishcouncil.or.jp'>courses@britishcouncil.or.jp</a></u>, 03-3235-8011<font size="4"><br/><br/></font><font size="10">スピーキングテストを受けて頂いた後、総合的な英語力の詳細、及び最適なコースを講師がご案内させて頂きます。</font>]]></lit>
+<lit name="certificateBCDisclaimer"><![CDATA[<font size="10">Descargo de responsabilidad: Este examen en línea se efectúa sin supervisión y la identidad de los candidatos no ha sido verificada. El British Council no se hace responsable de verificar que los datos personales de quien rinde el examen sean correctos o correspondan a la persona que realmente lo completó.<br/><br/>Este examen indica el nivel aproximado principalmente en función de las habilidades de gramática, vocabulario y lectura. Para una evaluación exhaustiva de la competencia en inglés en todas las habilidades, el British Council recomienda una evaluación más detallada como la que ofrece el International English Language Testing System (IELTS).</font>]]></lit>
+<lit name="certificateCEFDetail"><![CDATA["><font size="12">Alguien de tu nivel habitualmente es capaz de:<br/>[CEFLevelDetail]]]></lit>
+<lit name="certificateHeader">[unit]    User name: [name]</lit>
+<lit name="certificateBCLevel-Starter">Starter</lit>
+<lit name="certificateBCLevel-Elementary">Elementary</lit>
+<lit name="certificateBCLevel-Pre-Intermediate">Pre-Intermediate</lit>
+<lit name="certificateBCLevel-Intermediate">Intermediate</lit>
+<lit name="certificateBCLevel-Upper-Intermediate">Upper Intermediate</lit>
+<lit name="certificateBCLevel-Advanced">Advanced</lit>
+<lit name="certificateBCLevel-Advanced-Plus">Advanced Plus</lit>
+<lit name="certificateLayout"><![CDATA[[BCSummary]<br/><br/>[BCDetail]<br/><br/>[CEFSummary]<br/><br/>[CEFDetail]<br/><br/>[BCDisclaimer]<br/><br/>]]></lit>
 </group>
 </language>
 </literals>
