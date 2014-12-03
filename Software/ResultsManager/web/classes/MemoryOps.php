@@ -5,224 +5,190 @@ class MemoryOps {
 	 * This class manages the user's memory. This is used for storing product specific information
 	 * that needs to be retained between sessions.
 	 * 
-	 * Memories are first sorted by productCode
-	 * <product code="59">
-	 * and then either follow common nodes, or product specific ones
-	 * 
-	 * Common nodes:
-	 *   <bookmark>
-	 *   
-	 * Specific nodes:
-	 *   For TB6weeks
-	 *     <CEF>B2</CEF>
-	 *     <subscription startDate="2014-10-27" valid="true" />
+	 * Memories are stored by userId and productCode, then key. The value is any JSON object.
 	 */
 	
 	var $db;
 	private $productCode;
 	private $userId;
-	private $memory; // as DOMDocument
 	
-	function MemoryOps($db) {
+	function __construct($db) {
 		$this->db = $db;
 		$this->copyOps = new CopyOps();
 		
 		$this->productCode = Session::get('productCode');
 		$this->userId = Session::get('userID');
-		
-		// NOTE: Is it safe or even a good idea to get this immediately?
-		// I now think this is a BAD idea
-		if (isset($this->userId) && isset($this->productCode))
-			$this->memory = $this->getMemoryFromDb();
-			
-	}
-	public function __destruct() {
-		unset($this->memory);
 	}
 	
 	/**
 	 * If you changed the db, you'll need to refresh it here
 	 * Not a very neat function...
 	 */
-	function changeDB($db) {
+	public function changeDB($db) {
 		$this->db = $db;
 	}
 
-	// NOTE: will you ever need to do this?
-	function changeProductCode($productCode) { }
-	
-	// NOTE: Not sure if this should throw exceptions if user doesn't exist, or just not set the memory
-	public function getMemoryFromDb($productCode = null) {
-		$pc = ($productCode) ? $productCode : $this->productCode;
-		
+    /**
+     * Gets the memory for the given key as a PHP object. If the key is not found this will return null.  The user and product
+     * are inferred from the session.
+     * You can pass userId and productCode if you want memory for a user or product that is not the default
+     *
+     * @param $key
+     * @param optional productCode, userId
+     * @return array|bool|float|int|mixed|null|stdClass|string
+     */
+    public function get($key, $productCode = null, $userId = null) {
+    	if (!$userId)
+    		$userId = $this->userId;
+    	if (!$productCode)
+    		$productCode = $this->productCode;
+    		
+        $value = $this->db->GetOne("SELECT F_Value FROM T_Memory WHERE F_UserID=? AND F_ProductCode=? AND F_Key=?",
+            array($userId, $productCode, $key));
+
+        // Return arrays rather than objects. Could use serialize if we really want both. 
+        // Or use the fact that _explictType will be set for our Bento classes
+        // http://stackoverflow.com/questions/2281973/json-encode-json-decode-returns-stdclass-instead-of-array-in-php 
+        return json_decode($value, true);
+    }
+
+    /**
+     * Sets the memory for the given key.  If the key does not exist a new one will be created.  The user and product are
+     * inferred from the session.
+     * You can pass userId and productCode if you want memory for a user or product that is not the default.
+     * TODO If you pass a $value of null, then treat that as a sign to delete the key if it exists.
+     *
+     * @param $key
+     * @param $value
+     * @param optional productCode, userId
+     * @return bool The function will return false if the database query fails for some reason
+     */
+    public function set($key, $value, $productCode = null, $userId = null) {
+    	if (!$userId)
+    		$userId = $this->userId;
+    	if (!$productCode)
+    		$productCode = $this->productCode;
+
+    	if (is_null($value)) {
+    		$bindingParams = array($userId, $productCode, $key);
+    		$success = $this->db->Execute("DELETE FROM T_Memory WHERE F_UserID=? AND F_ProductCode=? AND F_Key=?", $bindingParams);
+    		$rc = !($success == false);
+    		
+    	} else {
+	        $success = $this->db->Replace("T_Memory",
+            array("F_UserID" => $userId, "F_ProductCode" => $productCode, "F_Key" => $key, "F_Value" => json_encode($value)),
+            array("F_UserID", "F_ProductCode", "F_Key"), true);
+            $rc = ($success > 0);
+    	}
+
+        return $rc;
+    }
+    
+    /**
+     * Get all matching keys from a user's memory, no matter what product.
+     * return: recordset
+     */
+    public function getAllKeys($key, $userId = null) {
+    	if (!$userId)
+    		$userId = $this->userId;
+
 		$sql = <<<EOD
-			SELECT u.*
-			FROM T_User u
-			WHERE u.F_UserID = ?
+			SELECT *
+			FROM T_Memory m
+			WHERE m.F_UserID = ?
+			AND m.F_Key = ?
 EOD;
-		$rs = $this->db->Execute($sql, array($this->userId));
-		$recordCount = $rs->RecordCount();
-		switch ($recordCount) {
-			case 0:
-				//throw new Exception("asking for memory of a user who doesn't exist");
-				break;
-				
-			case 1:
-				$dbObj = $rs->FetchNextObj();
-				break;
-				
-			default:
-				throw new Exception("asking for memory of many users at once");
-				break;
-		}
-		// NOTE: The creation of memory should go somewhere neater...
-		// If this user has no memory at all, create one!
-		if (!isset($dbObj->F_Memory) || ($dbObj->F_Memory == '')) {
-			$dbObj->F_Memory = '<memory />';
-		}
+		$bindingParams = array($userId, $key);
+		return $this->db->Execute($sql, $bindingParams);
 		
-		$xml = new DOMDocument();
-		$xml->loadXML($dbObj->F_Memory);
-		$xpath = new DOMXPath($xml);
-		$xmlNodes = $xpath->query("//product[@code='$pc']");
-		
-		switch ($xmlNodes->length) {
-			case 0:
-				// If the user has no memory for this product, create one
-				$newNode = $xml->createElement('product');
-				$newNode->setAttribute('code', $pc);
-				$xml->getElementsByTagName('memory')->item(0)->appendChild($newNode);
-				AbstractService::$debugLog->info("created memory for pc=".$pc);
-				return $xml;
-				break;
-			case 1:
-				return $xml;
-				break;
-			default:
-				throw new Exception('Memory has more than one node for product '.$pc);
-		}
-		return null;
-	}
-	
-	// Not used...?
-	public function getMemory($section, $productCode = null) {
-		$pc = ($productCode) ? $productCode : $this->productCode;
-		$xpath = new DOMXPath($this->memory);
-		$xmlNodes = $xpath->query("//product[@code='$pc']/$section");
-		if ($xmlNodes->length) 
-			return null;
-		return $xmlNodes;
-	}
-	
-	// TODO: What happens if this user is running another Clarity program at the same time that also updates memory?
-	public function writeMemory() {
+    }
+    
+    /**
+     * Get all of a user's memory for this product
+     * 
+     */
+    public function getWholeMemory($productCode = null, $userId = null) {
+    	if (!$userId)
+    		$userId = $this->userId;
+    	if (!$productCode)
+    		$productCode = $this->productCode;
+    		
 		$sql = <<<EOD
-			UPDATE T_User u
-			SET u.F_Memory = ?
-			WHERE u.F_UserID = ?
+			SELECT F_Key as k, F_Value as v
+			FROM T_Memory m
+			WHERE m.F_UserID = ?
+			AND m.F_ProductCode = ?
 EOD;
-		$rc = $this->db->Execute($sql, array($this->toString(), $this->userId));
-		return $rc;
-	}
-	
-	/**
-	 * This is a function to handle specific memory setting within the class.
-	 * It is called by any service that wants to write data to memory.
-	 */
-	public function addToMemory($section, $value, $productCode = null) {
-		$pc = ($productCode) ? $productCode : $this->productCode;
-		$doc = new DOMDocument();
+		$bindingParams = array($userId, $productCode);
+		$rs = $this->db->Execute($sql, $bindingParams);
 		
-		switch ($section) {
-			// NOTE: the $value passed might be a simple value ('B2') or it might be a node <startingPoint course='123' unit='123' exercise='123' />
-			case 'subscription':
-				$newNode = $doc->loadXML('<'.$section.' startDate="'.$value.'" valid="true" frequency="2 days" />');
-				$this->addElement($section, $doc->getElementsByTagName($section)->item(0), $pc);
-				break;
-				
-			case 'bookmark':
-			case 'CEF':
-			case 'level':
-			default:
-				$newNode = $doc->loadXML('<'.$section.'>'.$value.'</'.$section.'>');
-				$this->addElement($section, $doc->getElementsByTagName($section)->item(0), $pc);
-				break;
-		}
-		AbstractService::$debugLog->info('after adding, $this->memory='.$this->toString());
-	}
-	
-	/**
-	 * Add a chunk of XML to the memory. This should merge with any existing XML
-	 * 
-	 * @param DOMNode $node
-	 */
-	public function addElement($section, $node, $productCode = null) {
-		$mem = $this->getElement($section, $productCode);
-		$pc = ($productCode) ? $productCode : $this->productCode;
-		
-		// This element does not exist, so add it
-		if (!$mem) {
-			AbstractService::$debugLog->info('new node '.$section.' in pc='.$pc);
-			
-			$xpath = new DOMXPath($this->memory);
-			$xmlNodes = $xpath->query("//product[@code='$pc']");
-			
-			// If the user has no memory for this product, create one
-			if ($xmlNodes->length == 0) {
-				$newNode = $this->memory->createElement('product');
-				$newNode->setAttribute('code', $pc);
-				$this->memory->getElementsByTagName('memory')->item(0)->appendChild($newNode);
-				AbstractService::$debugLog->info('need to add memory for pc='.$pc.' it is '.$this->toString());
-				$xmlNodes = $xpath->query("//product[@code='$pc']");
+		//$memory = new Memory();
+		$memory = array();
+		if ($rs) {
+			while ($dbObj = $rs->FetchNextObj()) {
+				$memory[$dbObj->k] = json_decode($dbObj->v, true);
 			}
-			
-			$importedNode = $this->memory->importNode($node, true);
-			$basenode = $xmlNodes->item(0);
-			$basenode->appendChild($importedNode);
-			
-		// Otherwise replace it (what about merging??)
-		} else { 
-			AbstractService::$debugLog->info('replace node '.$section.' in pc='.$pc);
-			$mem->parentNode->removeChild($mem);
-			
-			$pc = ($productCode) ? $productCode : $this->productCode;
-			$xpath = new DOMXPath($this->memory);
-			$xmlNodes = $xpath->query("//product[@code='$pc']");
-			
-			$importedNode = $this->memory->importNode($node, true);
-			$basenode = $xmlNodes->item(0);
-			$basenode->appendChild($importedNode);
 		}
-	}
-	
-	public function getElement($nodeName, $productCode = null) {
-		$pc = ($productCode) ? $productCode : $this->productCode;
-		if (!$this->memory)
-			return null;
-			
-		$xpath = new DOMXPath($this->memory);
-		$xmlNodes = $xpath->query("//product[@code='$pc']/$nodeName");
+		return $memory;
+    }
+    
+    /**
+     * Delete the user's memory, to a greater or lesser degree.
+     * 
+     */
+    public function forget($userId = null, $productCode = null, $key = null) {
+    	if (!$userId)
+    		$userId = $this->userId;
+    	
+    	$sql = "DELETE FROM T_Memory WHERE F_UserID=?";
+		$bindingParams = array($userId);
+    	if ($productCode) {
+    		$sql .= " AND F_ProductCode=?";
+    		$bindingParams[] = $productCode;
+   		}
+    	if ($key) {
+    		$sql .= " AND F_Key=?";
+    		$bindingParams[] = $key;
+   		}
+		return $this->db->Execute($sql, $bindingParams);
+    }
+    /**
+     * Forget everything you know
+     */
+    public function amnesia($userId = null) {
+    	return $this->forget($userId);
+    }
+    
+	/**
+	 * Get the whole of the user's memory (all products if not specified).
+	 * Not used yet.
+	 * 
+	public function getAll($productCode = null, $userId = null) {
+    	if (!$userId)
+    		$userId = $this->userId;
+    	if (!$productCode)
+    		$productCode = $this->productCode;
+    		
+		$sql = <<<EOD
+			SELECT *
+			FROM T_Memory m
+			WHERE m.F_UserID = ?
+EOD;
+		$bindingParams = array($userId);
+		if ($productCode != 'all') {
+			$sql .= ' AND F_ProductCode=?';
+			$bindingParams[] = $productCode;
+		}
 		
-		if ($xmlNodes->length > 0)
-			return $xmlNodes->item(0);
-	}
-	
-	// Not yet used or tested
-	public function deleteElement($nodeName, $productCode = null) {
-		$pc = ($productCode) ? $productCode : $this->productCode;
-		if (!$this->memory)
-			return null;
-			
-		$xpath = new DOMXPath($this->memory);
-		$xmlNodes = $xpath->query("//product[@code='$pc']/$nodeName");
+		$rs = $this->db->Execute($sql, $bindingParams);
 		
-		if ($xmlNodes->length > 0)
-			return $this->memory->removeChild($xmlNodes->item(0));
+		$memory = array();
+		if ($rs && ($rs->RecordCount() > 0)) {
+			while ($dbObj = $rs->FetchNextObj()) {
+				$memory[$dbObj->F_Key] = json_decode($dbObj->F_Value);
+			}
+		}
+		return $memory;
 	}
-	
-	public function toString() {
-		if (isset($this->memory))
-			return $this->memory->saveXML();
-		return '';
-	}
+	*/
 }

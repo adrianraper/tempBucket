@@ -1,14 +1,18 @@
 <?php
+require_once($GLOBALS['common_dir'].'/encryptURL.php');
+
 class DailyJobObs {
 	
 	var $db;
+	var $server;
 	
 	function DailyJobObs($db = null) {
+		$this->server = $_SERVER['HTTP_HOST'];
 		$this->db = $db;
 		$this->manageableOps = new ManageableOps($this->db);
-		if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
-			$this->courseOps = new CourseOps($this->db);
-		}
+		$this->courseOps = new CourseOps($this->db);
+		$this->subscriptionOps = new SubscriptionOps($this->db);
+		$this->memoryOps = new MemoryOps($this->db);
 	}
 	
 	/**
@@ -672,280 +676,65 @@ SQL;
 		$today = new DateTime($now->format('Y-m-d'. '00:00:00'));
 			
 		// Find all users in this account with a subscription to this product
-		$sql  = "SELECT ".User::getSelectFields($this->db);
-		$sql .= <<<SQL
-			FROM T_User u, T_Membership m
-			WHERE u.F_Memory like '%<product code="$productCode"%'
-			AND u.F_UserID = m.F_UserID
-			AND m.F_RootID = ?
-SQL;
-		$bindingParams = array($account->id);
-		$rs = $this->db->Execute($sql, $bindingParams);
-		if ($rs->RecordCount() > 0) {
-			while ($dbObj = $rs->FetchNextObj()) {
+		$users = $this->subscriptionOps->getSubscribedUsersInAccount($account, $productCode);
+		
+		foreach ($users as $user) {
+			$subscription = $this->memoryOps->get('subscription', $productCode, $user->userID);
 				
-				// TODO: Implement with memoryOps when it is ready. Need a memory class
-				// $memory = $this->memoryOps->getMemoryFromDb($userId, $productCode);
-				//   or
-				// $memory = new Memory($dbObj->memory);
-				$memory = simplexml_load_string($dbObj->F_Memory);
+			if ($subscription['valid'] == 'true') {
 				
-				// Does this user have a valid subscription?
-				$productMemories = $memory->xpath("//product[@code=$productCode]");
-				$productMemory = $productMemories[0];
-				if ((string)$productMemory->subscription['valid'] == 'true') {
+				$level = $this->memoryOps->get('level', $productCode, $user->userID);
+				$sd = $subscription['startDate'];
+				$f = $subscription['frequency'];
+				
+				// Data checking
+				if (empty($level) || empty($sd) || empty($f))
+					continue;
 					
-					//echo "user ".$dbObj->F_UserID." has a valid subscription $newLine";
-					
-					// They do, so figure out if today is a frequency unit away from their subscription start date
-					$level = (string)$productMemory->level;
-					$sd = (string)$productMemory->subscription['startDate'];
-					$f = (string)$productMemory->subscription['frequency'];
-					
-					// Data checking
-					if (empty($level) || empty($sd) || empty($f))
-						continue;
+				$startDate = new DateTime($sd.' 00:00:00');
+				$frequency = DateInterval::createFromDateString($f);
+				$keyDate = $startDate->add($frequency);
+				
+				// For testing we might pass in a different date to use as 'today'
+				//$now = new DateTime(null, new DateTimeZone(TIMEZONE));
+				//$today = new DateTime($now->format('Y-m-d'. '00:00:00'));
+				$unitsAdded = 1;
+				
+				// TODO: Do we need a 'sensible' limit on number of units to add (in case start date was 1900 or something)
+				while ($keyDate <= $today) {
+					if ($keyDate == $today) {
+						// Need to update the relevant bookmark
+						$newBookmark = $this->subscriptionOps->getDirectStart($level, $unitsAdded, $productCode);
 						
-					$startDate = new DateTime($sd.' 00:00:00');
-					$frequency = DateInterval::createFromDateString($f);
-					$keyDate = $startDate->add($frequency);
-					
-					// For testing we might pass in a different date to use as 'today'
-					//$now = new DateTime(null, new DateTimeZone(TIMEZONE));
-					//$today = new DateTime($now->format('Y-m-d'. '00:00:00'));
-					$unitsAdded = 1;
-					
-					// Note: Do we need a 'sensible' limit on number of units to add (in case start date was 1900 or something)
-					while ($keyDate <= $today) {
-						if ($keyDate == $today) {
-							// Need to update the relevant bookmark
-							// Should this be a function or a db lookup?
-							// What should the new bookmark be?
-							$newBookmark = $this->lookupSubscriptionBookmark($level, $unitsAdded, $productCode);
-							
-							// The subscription might have completed
-							if ($newBookmark->isFinished()) {
-								// set the subscription to false or delete it altogether?
-								$productMemory->subscription['valid'] = 'false';
-								
-								// remove the related bookmark
-								//echo "  but subscription now finished $newLine";
-							} else {
-								//echo "  add $unitsAdded timeslots so new unit is ".$newBookmark->unit."$newLine";
-							}
-							switch ($productCode) {
-								case 59:
-									// Need to update the Tense Buster bookmark
-									$tbMemories = $memory->xpath("//product[@code=55]");
-									if ($tbMemories) {
-										$tbMemory = $tbMemories[0];
-									} else {
-										$tbMemory = $memory->addChild('product');
-										$tbMemory->addAttribute('code', 55);
-									}
-									echo $tbMemory->asXML();
-									
-									$bookmark = $tbMemory->bookmark;
-									if (empty($bookmark))
-										$bookmark = $tbMemory->addChild('bookmark');
-										
-									$startingPoint = $bookmark->startingPoint;
-									if (empty($startingPoint)) {
-										// if finished, remove the unit, just leave the course? Or remove the whole thing
-										if (!$newBookmark->isFinished()) {
-											$startingPoint = $bookmark->addChild('startingPoint');
-											$startingPoint->addAttribute('course', $newBookmark->course);
-											$startingPoint->addAttribute('unit', $newBookmark->unit);
-										}
-									} else {
-										if ($newBookmark->isFinished()) {
-											unset($startingPoint[0]->{0});
-										} else {
-											$startingPoint['course'] = $newBookmark->course;
-											$startingPoint['unit'] = $newBookmark->unit;
-										}
-									}
-										
-									break;
-									
-								default:
-									break;
-							}
-							
-							$rc = $this->updateMemory($dbObj->F_UserID, $memory->asXML());
-							
-							// Save each user that we update and their new bookmark
-							$user = new User();
-							$user->fromDatabaseObj($dbObj);
-							// TODO: encrytped please
-							$server = 'dock.projectbench';
-							$startProgram = 'http://'.$server.'/area1/TenseBuster10/Start.php?prefix='.$account->prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
-							
-							$toEmail = $user->email;
-							$emailData = array("user" => $user, "level" => $level, "programLink" => $startProgram, "dateDiff" => $f, "weekX" => $unitsAdded+1, "server" => $server);
-							$thisEmail = array("to" => $toEmail, "data" => $emailData);
-							$emailArray[] = $thisEmail;
-							AbstractService::$debugLog->info("update user ".$user->email." to week $unitsAdded");
-							
-							continue 2;
+						// The subscription might have completed
+						if (!$newBookmark) {
+							$subscription['valid'] = 'false';
+							$this->memoryOps->set('subscription', $subscription, $productCode, $user->userID);
 						}
-						$unitsAdded++;
-						$keyDate = $keyDate->add($frequency);
+						
+						// Need to update the Tense Buster bookmark
+						$tbProductCode = $this->subscriptionOps->relatedProducts($productCode);
+						$this->memoryOps->set('directStart', $newBookmark, $tbProductCode, $user->userID);
+						
+						$parameters = 'prefix='.$account->prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
+						$crypt = new Crypt();
+						$argList = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
+						$startProgram = 'http://'.$this->server.'/area1/TenseBuster10/Start.php'.$argList;
+						
+						$toEmail = $user->email;
+						$emailData = array("user" => $user, "level" => $level, "programLink" => $startProgram, "dateDiff" => $f, "weekX" => $unitsAdded+1, "server" => $this->server);
+						$thisEmail = array("to" => $toEmail, "data" => $emailData);
+						$emailArray[] = $thisEmail;
+						AbstractService::$debugLog->info("update user ".$user->email." to week $unitsAdded");
+						
+						continue 2;
 					}
+					$unitsAdded++;
+					$keyDate = $keyDate->add($frequency);
 				}
 			}
 		}
 		return $emailArray;
 	}
 	
-	public function updateMemory($userId, $memory) {
-		$sql = <<<SQL
-			UPDATE T_User
-			SET F_Memory = ?
-			WHERE F_UserID = ?
-SQL;
-		$bindingParams = array($memory, $userId);
-		$rc = $this->db->Execute($sql, $bindingParams);
-	}
-	/**
-	 * This might be better as db lookup?
-	 * Calculates the starting point for a subscription on its nth week in a particular level
-	 * 
-	 * @param int $level
-	 * @param int $unitsAdded
-	 * @param int $productCode
-	 */
-	public function lookupSubscriptionBookmark($level, $unitsAdded, $productCode) {
-		$courseId = $unitId = $exerciseId = '';
-		$b = new Bookmark($productCode);
-		
-		switch ($productCode) {
-			case 59:
-				switch ($level) {
-					case 'ELE':
-						$b->course = '1189057932446';
-						switch ($unitsAdded) {
-							case 1:
-								$b->unit = '1192013076627';
-								break;
-							case 2:
-								$b->unit = '1192013076406';
-								break;
-							case 3:
-								$b->unit = '1192013076042';
-								break;
-							case 4:
-								$b->unit = '1192013076442';
-								break;
-							case 5:
-								$b->unit = '1192013076075';
-								break;
-							default:
-								$b->setFinished();
-								break;
-						}
-						break;
-					case 'LI':
-						$b->course = '1189060123431';
-						switch ($unitsAdded) {
-							case 1:
-								$b->unit = '1192625080536';
-								break;
-							case 2:
-								$b->unit = '1192625080519';
-								break;
-							case 3:
-								$b->unit = '1192625080036';
-								break;
-							case 4:
-								$b->unit = '1192625080950';
-								break;
-							case 5:
-								$b->unit = '1192625080483';
-								break;
-							default:
-								$b->setFinished();
-								break;
-						}
-						break;
-					case 'INT':
-						$b->course = '1195467488046';
-						switch ($unitsAdded) {
-							case 1:
-								$b->unit = '1195467532329';
-								break;
-							case 2:
-								$b->unit = '1192625080157';
-								break;
-							case 3:
-								$b->unit = '1195467532343';
-								break;
-							case 4:
-								$b->unit = '1195467532330';
-								break;
-							case 5:
-								$b->unit = '1195467532328';
-								break;
-							default:
-								$b->setFinished();
-								break;
-						}
-						break;
-						
-					case 'UI':
-						$b->course = '1190277377521';
-						switch ($unitsAdded) {
-							case 1:
-								$b->unit = '1192625319263';
-								break;
-							case 2:
-								$b->unit = '1192625319990';
-								break;
-							case 3:
-								$b->unit = '1192625319573';
-								break;
-							case 4:
-								$b->unit = '1192625319744';
-								break;
-							case 5:
-								$b->unit = '1193054443818';
-								break;
-							default:
-								$b->setFinished();
-								break;
-						}
-						break;
-						
-					case 'ADV':
-						$b->course = '1196935701119';
-						switch ($unitsAdded) {
-							case 1:
-								$b->unit = '1196301393947';
-								break;
-							case 2:
-								$b->unit = '1196649107233';
-								break;
-							case 3:
-								$b->unit = '1196204720339';
-								break;
-							case 4:
-								$b->unit = '1196293510373';
-								break;
-							case 5:
-								$b->unit = '1196641272970';
-								break;
-							default:
-								$b->setFinished();
-								break;
-						}
-						break;
-				}
-				break;
-				
-			default:
-				break;
-		}
-		
-		return $b;
-	}
 }

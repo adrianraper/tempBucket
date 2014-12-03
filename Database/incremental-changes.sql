@@ -1076,4 +1076,23 @@ INSERT INTO `T_ProductVersion` VALUES
 (59,'DEMO'),
 (59,'FV');
 
+-- T_Memory
+DROP TABLE IF EXISTS T_Memory;
+CREATE TABLE T_Memory (
+F_UserID int(10) NOT NULL,
+F_ProductCode SMALLINT(5) NOT NULL,
+F_Key VARCHAR(128) NOT NULL,
+F_Value TEXT NULL,
+  PRIMARY KEY (F_UserID, F_ProductCode, F_Key),
+  KEY Index_1 (F_UserID)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
+
+-- Is it better to leave this column so that backups remain compatible?
+-- ALTER TABLE T_User DROP COLUMN F_Memory;
+-- ALTER TABLE T_User_Expiry DROP COLUMN F_Memory;
+UPDATE T_User SET F_Memory = null WHERE F_Memory is not null;
+
+INSERT INTO `T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (1957, '2014-12-03 00:00:00', 'user memory T_Memory');
 

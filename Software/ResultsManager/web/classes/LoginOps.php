@@ -832,7 +832,7 @@ EOD;
 			$rootID = (int) $rawRootID;
 			// #519
 			if (!$rootID) {
-				$logMessage = 'prefix error, prefix='.$prefix.' rootID='.$rawRootID.' dbHost='.$config['dbHost'].' db='.$GLOBALS['db'];
+				$logMessage = 'prefix error, prefix='.$prefix.' rootID='.$rawRootID.' db='.$GLOBALS['db'];
 				AbstractService::$debugLog->err($logMessage);
 				throw $this->copyOps->getExceptionForId("errorNoPrefixForRoot", array("prefix" => $prefix));
 			}		

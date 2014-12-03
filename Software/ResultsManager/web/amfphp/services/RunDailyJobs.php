@@ -72,7 +72,8 @@ function runDailyJobs($triggerDate = null) {
 	$database = 'rack80829';
 	$accountsMoved = $thisService->dailyJobOps->archiveExpiredAccounts($expiryDate, $database);
 	echo "Moved $accountsMoved titles from $database to expiry table for $expiryDate. $newLine";	
-	
+	*/
+	/*
 	// 3. Archive older users from some roots
 
 	// We want to archive users who took their test more than 3 months ago from LearnEnglish accounts
@@ -80,8 +81,8 @@ function runDailyJobs($triggerDate = null) {
 	$roots = array(13982,14084,16180,14987);
 	$rc = $thisService->dailyJobOps->archiveOldUsers($roots,$regDate);
 	echo "Archived $rc LearnEnglish level test users who registered before $regDate. $newLine";	
-	
 	*/
+	
 	// 4. EmailMe for Rotterdam
 	/*
 	// First task is to find units that start today, get all users in the groups the units are published for
@@ -144,7 +145,7 @@ function runDailyJobs($triggerDate = null) {
 	$trigger->templateID = 'user/TB6weeksNewUnit';
 	$trigger->parseCondition("method=getAccounts&accountType=1&active=true&productCode=$productCode");
 	//$trigger->condition->customerType = '1'; // If we want to limit this to libraries
-		
+	
 	$triggerResults = $thisService->triggerOps->applyCondition($trigger, $triggerDate);
 	foreach ($triggerResults as $account) {
 		

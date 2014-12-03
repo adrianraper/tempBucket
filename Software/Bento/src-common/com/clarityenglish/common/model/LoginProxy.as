@@ -7,8 +7,10 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
+	import com.clarityenglish.common.events.MemoryEvent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
+	import com.clarityenglish.common.vo.content.Bookmark;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.User;
@@ -45,7 +47,9 @@ package com.clarityenglish.common.model {
 		private var _user:User;
 		private var _group:Group;
 		private var _groupTrees:Array;
-		//private var _licence:Licence;
+		
+		// gh#1067
+		//private var _memory:Memory;
 
 		private var licenceTimer:Timer;
 
@@ -68,6 +72,17 @@ package com.clarityenglish.common.model {
 		public function get groupTrees():Array {
 			return _groupTrees;
 		}
+		
+		// gh#1067
+		/*
+		public function get memory():Memory {
+			return _memory;
+		}
+		public function set memory(value:Memory):void {
+			if (value != _memory)
+				_memory = value;
+		}
+		*/
 		
 		// #341
 		//public function login(key:String, password:String):void {
@@ -327,23 +342,15 @@ package com.clarityenglish.common.model {
 							var authenticated:Boolean = configProxy.checkAuthentication();
 						}
 						
-								
-						// gh#1040
-						if (_user.memory) {
-							// Is there a startingPoint set?
+						// gh#1040, gh#1067
+						var memory:Object = data.memory;
+						
+						// Is there a startingPoint set?
+						if (memory.directStart) {
 							config = configProxy.getConfig();
-							var bookmark:XML = _user.memoryXml.product.(@code=config.productCode).bookmark[0];
-							if (bookmark) {
-								var courseId:String = bookmark.startingPoint.@course.toString();
-								var unitId:String = bookmark.startingPoint.@unit.toString();
-								var exerciseId:String = bookmark.startingPoint.@exercise.toString();
-								if (courseId)
-									config.courseID = courseId;
-								if (unitId)
-									config.startingPoint = 'unit:' + unitId;
-								if (exerciseId)
-									config.startingPoint = 'ex:' + exerciseId;
-							}
+							var bookmark:Bookmark = new Bookmark(memory.directStart);
+							config.courseID = bookmark.course;
+							config.startingPoint = bookmark.startingPoint;
 						}
 								
 						// Carry on with the process

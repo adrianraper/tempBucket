@@ -25,6 +25,8 @@ require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php");
 require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
+require_once(dirname(__FILE__)."/../../classes/MemoryOps.php");
+
 require_once(dirname(__FILE__)."/AbstractService.php");
 
 class LoginService extends AbstractService {

@@ -8,7 +8,9 @@ package com.clarityenglish.common.controller {
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.MemoryProxy;
 	import com.clarityenglish.common.model.ProgressProxy;
+	import com.clarityenglish.common.vo.content.Bookmark;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
@@ -46,6 +48,13 @@ package com.clarityenglish.common.controller {
 					scormProxy.writeScore(data.UID, data.correctPercent, hasQuestion);
 				}	
 			}
+			
+			// gh#1067 Write a bookmark to show you have completed this exercise
+			var bookmark:Bookmark = new Bookmark(data.UID);
+			var memories:Object = {lastExerciseCompleted:bookmark.uid};
+			var memoryProxy:MemoryProxy = facade.retrieveProxy(MemoryProxy.NAME) as MemoryProxy;
+			memoryProxy.writeMemory(memories);
+			
 		}
 		
 	}

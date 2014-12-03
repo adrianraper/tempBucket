@@ -21,19 +21,22 @@
 	if (empty($bank)) echo 'bank is empty';
 	if (!isset($xml->product->bank)) echo 'bank is not isset';
 */
-	//$_REQUEST['prefix'] = 'clarity';
+
+	$_REQUEST['prefix'] = 'clarity';
 	$_REQUEST['productCode'] = '59';
-	$_REQUEST['operation'] = 'changeLevel';
-	$_REQUEST['user'] = 'userEmail=dandy%40email&password=password';
+	//$_REQUEST['user'] = 'userEmail=dandy%40email&userName=asfsadf&password=password&confirmPassword=password';
+	$_REQUEST['userEmail'] = 'andrew@claritysupport.com';
 	$_REQUEST['level'] = 'INT';
-	
-/*
-	$_REQUEST['operation'] = 'submitAnswers';
 	$_REQUEST['exercise'] = '1193901049540.xml';
-	$_REQUEST['user'] = 'userEmail=fifthtest%40email&userName=Fifth+Test&userPassword=secret';
 	$_REQUEST['answers'] = '<input class="MultipleChoiceQuestion" id="b2" value="q3" /><input class="GapFillQuestion" id="b1" value="goes" />';
 	$_REQUEST['code'] = 'f9pewPgs1OT88yqENaxTiq0RwtOmPlCy6KmgFl04fxJAEIxLLW3RnPOIHwSYQHCVt_ZmUZn7uylRZfXERX9RVvaQ3A-zdrhMUQrKCgxlX274KyJlmPzT9zpMpW2x9ujVxmsscCANwuvf5HbqV-xVdmB3iv9SzEpQiGxdHchM085esAl7-GNPfsTDyiQBpJsBYZ0So_rdOh2jJZg-bbnDOTNWSYZTp9uFGJb66a8aEOtHNx9_NpYVQSn71LiUWxEkeemQ357S1SmeDMYDTs9Qy0CYEez7KlC7Qmzvq_ZfEKVa8RJW7wZWqGkuXMjSaFMo2oLslj4KDXv4TaIEOUB5SjxlqwbxB5q2VzKfn6WUnezP4bmGW8kRCqBgwpDwvrwW37Gv80vqfI73ye1wzdixmpoG6jpT8rc46xAseNcX8jo8d8Vr8HBa_5OQIPGB4J4kjZl4fu_a7w2yFxVqx6F4udp208Sr-eK5EC13AH7kePllPYI_83gp4WgEazAOWO2ZqMEwrjtdvWaO9MIPGqWKB_EgjY1JNI0POngvAOxRHvZXVTzSAqy1LQ8gaShY7SzSuyBX3Kk74E-FJtC8AsVI1-P4YbuICyeaG6NYHVEqs2TcBAdMPYvfeRPdscr99d3TUh77vOGtrVzGGrolYsqvEzejRyv7sGJ_04QuUtbwpsn3z9L3uM1lyYxXfMVc-IQRbSC-6gvhCY81B4elcsOGGBeam-nAiIbswgQ-K9TDrgBLCYZJ6mDOnOLwvXZ1DB2qI_1OEcniqzkk-j5cgrqSXElvxRTV0O02n6ndfvmssIN1pSHAzwPd-Ev2W25sbj73q9CU24r71DNSB1RBK1PPLuJ4NFuxHWv_sN2xcx4_3BBmX0w4Ne_1cif_NCo6N9mSpX0ZTZtJBJAlBPxBud9x9kKO4hl2ghiAaW1vKrsmMbuXPf-6HNzx_ckcJZQN94NKOnzhatZWkZ8mo6TxUqmJVWy7FollmkMWI57GJEhdRkxkuWzNs1YdclfYD8K4cTYgpRlkGrGwi2wuXILb2o8SPS2tZ2WtUnOAWpWOwN5b7jLRl5ipl9axobPJdf7gh7xTCUvHhSDWUeoWLfNefuG-gOII0A3DqsQ5QpZ4VDhZaAC7OcUS7e_m2nL6u40RyxIVQHlo3wvTYoxzfqj98LPrq6TyU5VS4QXEF_0V4SR3eQsTUociNHo1_htUSD7jJ9BNZVQzlbWvyDySLKUtAavkZFDbEIvW7A7LQ1d1XdVZx0PfatJZG_1DZOqsEHl14SjB9QDPF2zaK0hwDsKRdm1Nnx8Rfyp0BI6Oj8jkta4MYfnJfMK01sWuZpa5Jk0dUb2QjGsAtVM4aVw8CB85WaL2LhcegMQpHluWvUUSAwrSWPDsFkT0hkhphI0PRxbpIrrQmQw509vMcDjHEbHcDQG9zI8Z_VEYIqXPUtp07LWIfXahQ7tPhYISQbpejqMrSN-G9_GHrZbJtEikb9uFDiFd0km8ZD4wdgMWWYwcN0przlXxj1xOCue7M---8GTXnjABcoNu6ffsbMr7y7naQ63BoJZggKQC14qvr0PZ-fJPHPQNAyC4JuniZAzMbpTaqLpRW64jhrvMTJcDhMGUUWj7KDK0bxVQsnfZ012edPGddZ-R2yTsNUj5s2LURXA8max5de1odT9dc8RNnAczaslhuHdI93dZ1fujZ0FGiYU7Z0XkHL-J2ZPufG-uYkQ4wYy9pv2X6r0tSiRMngQ5hkwSsnPsi1IRQZlwY2soLEoCezD2LtdgE2W8dGxmdq8PNkUnK9JmKnVSUWEbAJuU-Oy2wRplKl_-bTtynS4rgYvYk51BDOqXh1LPqAtbBWxQ0Sdv7zWHwCI0QKIq01imADeIHZAQUt-KWajXeCD74uqVIDQc_Iilo0eHq1e7pvmVGg3sZcNfPMcX1qWz-MsMwXDRIjgdRxSOyojs-4yvIHhiDeKuFg35ooZfZnEsodJuuPulBchFDnHKlFqfEl1miOD69rKjCfOlIisnkyQYXDfxbwuRqkFT1O9l93o1ItkxLKzAOsllndNOJ4UbgYm-UtWBvaG7TT7nLi_ZQze93Rc4SxoZ4oF93JX9UzjosuMhVnaYTdlwGA6mEX6XmijXCP69wjPR090PVbJM1D2jslnFr8WuCjL8TXnp8RsrNkUflvtGpGVfg7xJS8STv_LQKgWeZt8SA_Lj0Zwc5wtOnJ8yuxeGwdcbZec5tdSP9yIAt1-36jctsAe_Xt7N3jeucDHSjSnaXM182I4svHjAckaGi6kkc9PjJ1nJJ-_JgRDplCyV-Q8Q-YZ8BYCrikOxoXOmSEyHb9yIfQGzcSfps5GmFODgwlTj4MX_f_aSlfun8X_P1s7R8qkwnftt3-C2pmFnr2Fcrq0fLjHSxejv5XeP-xjnGNuCmRZhPk8g0_ENPlBunHp1_rieNwrCXEgEVFzC0GDz8V91YxIOPMt6SqACpCizegUwCoRQIsOVNzqRlV9sGuKfFbCVVBI-tmtAs3yuvmQvmBule2-EupiEl26_ZBdYao3JI9dW9kTpJKQ3ur_buRpO_NzYnVdOMEowM_BaN2GicDxCPeXaWbePjRWPg-9BTe748ZtpLGSpvZ0R2ZHeisnMnP8u5DUsYUxj_8pYvncZeK0gXnRqJIAPY55ALzTTV24bxl8UyuXzYW2y-PagP9fuPwt3YFMt5rE9H7KwmehsbwD1YtvBbJ1upzaeYnOmhES3Z4KIalVV9CDrnRdVUCn7YDNRULx4GEp1u0v-ZFaj8Ui2l5HB3Reqr0mgXPqR7uHeuyIRSG5Kq74lr5gQcA060onL-7qNnVN7cP-9ig~~';
-*/
+	
+	$_REQUEST['operation'] = 'getQuestions';
+	$_REQUEST['operation'] = 'changeLevel';
+	$_REQUEST['operation'] = 'submitAnswers';
+	$_REQUEST['operation'] = 'unsubscribe';
+	$_REQUEST['operation'] = 'isEmailValid';
+	
 	require_once(dirname(__FILE__)."/TB6weeksService.php");
 
 /*
@@ -128,6 +131,19 @@
 	echo $rc;
 */
 /*
+require_once(dirname(__FILE__)."/../../config.php");
+require_once($GLOBALS['common_dir'].'/encryptURL.php');
+  
+	$parameters = "prefix=clarity&userName=Mrs Twaddle&email=twaddle@email.com&password=password&course=1189057932446&startingPoint=unit:1192013076011";
+	$crypt = new Crypt();
+	$argList = $crypt->encodeSafeChars($crypt->encrypt($parameters));
+	echo $argList;
+	
+	$data = $crypt->decodeSafeChars($argList);
+	echo $crypt->decrypt($data);
+	
+*/
+/*
 	$args = "prefix=GLOBAL&session=123gadfasdf456798&studentID=P574528(8)&password=Sunshine1787&padding=00000000000000000000000000";
 	
 	$key = '123457980123457890';
@@ -149,7 +165,7 @@
 	$passedArgs = base64_encode($encryptedArgs);
 	$newURL = 'http://dock.projectbench/Software/ResultsManager/web/amfphp/services/justTestPHP2.php?data='.$passedArgs;
 	header('Location: ' . $newURL);
-	*/
+*/
 
 /*
 	$validUnitIds = array();

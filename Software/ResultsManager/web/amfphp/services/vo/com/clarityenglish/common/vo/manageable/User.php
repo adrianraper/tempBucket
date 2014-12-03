@@ -30,7 +30,7 @@ class User extends Manageable {
 	var $registerMethod;
 	
 	// gh#956
-	var $memory;
+	//var $memory;
 	
 	const USER_TYPE_DMS_VIEWER = -2;
 	const USER_TYPE_DMS = -1;
@@ -135,7 +135,7 @@ class User extends Manageable {
 		$this->registerMethod = $obj->F_RegisterMethod;
 		// gh#856
 		//$this->memory = ($obj->F_Memory) ? new SimpleXMLElement($obj->F_Memory) : null;
-		$this->memory = $obj->F_Memory;
+		//$this->memory = $obj->F_Memory;
 	}
 	
 	/**
@@ -144,6 +144,7 @@ class User extends Manageable {
 	function toSQLUpdate($userID) {
 		$this->setDefaultValues();
 		
+		//			F_Memory=?
 		$sql = <<<EOD
 			UPDATE T_User 
 			SET F_UserName=?,F_Email=?,F_Password=?,F_StudentID=?,F_UserType=?,
@@ -151,7 +152,6 @@ class User extends Manageable {
 					F_Countryv,F_City=?,
 					F_custom1=?,F_custom2=?,F_custom3=?,F_custom4=?,
 					F_FullName=?,F_ContactMethod=?,F_UserProfileOption=?,F_RegisterMethod=?
-					F_Memory=?
 			WHERE F_UserID=$userID
 EOD;
 		return $sql;
@@ -163,19 +163,18 @@ EOD;
 	function toSQLInsert() {
 		$this->setDefaultValues();
 		
+		//			F_Memory)
 		$sql = <<<EOD
 			INSERT INTO T_User (F_UserName,F_Email,F_Password,F_StudentID,F_UserType,
 					F_ExpiryDate,F_StartDate,F_RegistrationDate,F_Birthday,
 					F_Country,F_City,
 					F_custom1,F_custom2,F_custom3,F_custom4,
-					F_FullName,F_ContactMethod,F_UserProfileOption,F_RegisterMethod,
-					F_Memory)
+					F_FullName,F_ContactMethod,F_UserProfileOption,F_RegisterMethod)
 			VALUES (?,?,?,?,?, 
 					?,?,?,?,
 					?,?,
 					?,?,?,?,
-					?,?,?,?,
-					?)
+					?,?,?,?)
 EOD;
 		return $sql;
 	}
@@ -187,9 +186,9 @@ EOD;
 					$this->country, $this->city,
 					$this->custom1, $this->custom2, $this->custom3, $this->custom4, 
 					$this->fullName, $this->contactMethod, $this->userProfileOption,
-					$this->registerMethod, 
+					$this->registerMethod); 
 					//($this->memory) ? $this->memory->asXML() : null);
-					$this->memory);
+					//$this->memory);
 	}
 	
 	/**
@@ -221,7 +220,7 @@ EOD;
 		$array['F_UserProfileOption'] = $this->userProfileOption;
 		$array['F_RegisterMethod'] = $this->registerMethod;
 		//$array['F_Memory'] = ($this->memory) ? $this->memory->asXML() : null;
-		$array['F_Memory'] = $this->memory;
+		//$array['F_Memory'] = $this->memory;
 		
 		return $array;
 	}
@@ -247,7 +246,7 @@ EOD;
 						"$prefix.F_UserProfileOption",
 						"$prefix.F_RegisterMethod",
 						"$prefix.F_ContactMethod",
-						"$prefix.F_Memory", // gh#856
+						//"$prefix.F_Memory", // gh#856
 						);
 		
 		return implode(",", $fields);

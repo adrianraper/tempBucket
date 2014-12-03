@@ -9,6 +9,7 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.LoginProxy;
+	import com.clarityenglish.common.model.MemoryProxy;
 	import com.clarityenglish.common.model.ProgressProxy;
 	
 	import flash.system.Capabilities;
@@ -39,6 +40,8 @@ package com.clarityenglish.bento.controller {
 			facade.registerProxy(new CopyProxy());
 			facade.registerProxy(new ExternalInterfaceProxy());
 			facade.registerProxy(new DataProxy());
+			// gh#1067
+			facade.registerProxy(new MemoryProxy());
 			
 			// #336
 			facade.registerProxy(new SCORMProxy());

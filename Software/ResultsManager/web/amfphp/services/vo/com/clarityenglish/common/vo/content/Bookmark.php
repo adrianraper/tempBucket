@@ -48,10 +48,10 @@ class Bookmark {
 		$this->exercise = value;
 	}
 	public function setFinished() {
-		$this->title = 'exit';
+		$this->title = null;
 	}
 	public function isFinished() {
-		return (isset($this->title) && $this->title == 'exit');
+		return !isset($this->title);
 	}
 	
 	public function uid() {

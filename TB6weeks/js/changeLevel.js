@@ -1,12 +1,13 @@
 /**
  * Remove all traces of an individual from the TB6 weeks system
  */
+	var productCode = 59;
+	
 	// Server action
 	changeLevel = function() {
 	
 		$("#validationMessage").text("Please wait while we up your Tense Buster.");
 		
-		var productCode = 59;
 		$.ajax({
 			type: "POST",
 			url: "/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",

@@ -162,23 +162,23 @@ class ManageableOps {
 			switch ($rc['returnCode']) {
 				case User::LOGIN_BY_NAME:
 					if (isset($rc['conflictedUsers'])) {
-						throw new Exception($this->copyOps->getCopyForId("usernameExistsError", array(username => $user->name)));
+						throw new Exception($this->copyOps->getCopyForId("usernameExistsError", array('username' => $user->name)));
 					} else {
-						throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array(studentID => $user->studentID, email => $user->email)));							
+						throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array('studentID' => $user->studentID, 'email' => $user->email)));							
 					}
 					break;
 				case User::LOGIN_BY_ID:
 					if (isset($rc['conflictedUsers'])) {
-						throw new Exception($this->copyOps->getCopyForId("studentIDExistsError", array(studentID => $user->studentID)));
+						throw new Exception($this->copyOps->getCopyForId("studentIDExistsError", array('studentID' => $user->studentID)));
 					} else {
-						throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array(username => $user->name, email => $user->email)));							
+						throw new Exception($this->copyOps->getCopyForId("studentIDBlankError", array('username' => $user->name, 'email' => $user->email)));							
 					}
 					break;
 				case User::LOGIN_BY_EMAIL:
 					if (isset($rc['conflictedUsers'])) {
-						throw new Exception($this->copyOps->getCopyForId("emailExistsError", array(email => $user->email)));
+						throw new Exception($this->copyOps->getCopyForId("emailExistsError", array('email' => $user->email)));
 					} else {
-						throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array(username => $user->name, studentID => $user->studentID)));							
+						throw new Exception($this->copyOps->getCopyForId("emailBlankError", array('username' => $user->name, 'studentID' => $user->studentID)));							
 					}
 			    	break;
 				default:
@@ -786,6 +786,8 @@ EOD;
 				$this->db->Execute("DELETE FROM T_User WHERE F_UserID=?", $bindingParams);
 				$this->db->Execute("DELETE FROM T_Membership WHERE F_UserID=?", $bindingParams);
 				$this->db->Execute("DELETE FROM T_Score WHERE F_UserID=?", $bindingParams);
+				// gh#1067
+				$this->db->Execute("DELETE FROM T_Memory WHERE F_UserID=?", $bindingParams);
 			}
 			$this->db->CompleteTrans();
 			
@@ -1236,8 +1238,13 @@ EOD;
 	 */
 	function getUserByKey($stubUser, $rootID = NULL, $loginOption = null) {
 
-		//gh#653
-		$rootID = ($rootID) ? $rootID : Session::get('rootID');
+		// gh#653
+		// gh#1067 you might want to force root to be empty, not picked up from session
+		if ($rootID === 0) {
+			$rootID = null;
+		} else {
+			$rootID = ($rootID) ? $rootID : Session::get('rootID');
+		}
 		$loginOption = ($loginOption) ? $loginOption : Session::get('loginOption');
 		
 		if ($loginOption == User::LOGIN_BY_NAME) {
@@ -1450,6 +1457,19 @@ EOD;
 
 		return null;
 	}
+	/**
+	 * This returns the root ID that a given user belongs to.
+	 */
+	function getRootIdForUserId($userId) {
+		$sql = <<<EOD
+			   SELECT m.F_RootID
+			   FROM T_User u, T_Membership m
+			   WHERE m.F_UserID = u.F_UserID
+			   AND u.F_UserID=?
+EOD;
+		return $this->db->GetOne($sql, array($userId));
+	}
+	
 	/**
 	 * This returns a group. 
 	 * Added for loginGateway, though I don't see why it isn't here already!
@@ -2131,25 +2151,17 @@ EOD;
 	}
 	
 	/**
-	 * This will either find the user in the account, or will add a new one
+	 * This will either find the user, or will add a new one
 	 * 
-	 * @param pair/value string $userDetails
+	 * @param User $stubUser
 	 */
-	public function getOrAddUser($userDetails) {
-		$rootId = Session::get('rootID');
-		$groupId = Session::get('groupID');
-		$loginOption = 128;
+	public function getOrAddUser($stubUser, $rootId, $groupId, $loginOption = User::LOGIN_BY_EMAIL) {
 		
-		parse_str($userDetails, $tempUser);
-		$users = $this->getUserFromEmail($tempUser['userEmail']);
+		$users = $this->getUserFromEmail($stubUser->email);
 		if (!$users) {
-			$user = new User();
-			$user->email = $tempUser['userEmail'];
-			$user->name = $tempUser['userName'];
-			$user->password = $tempUser['userPassword'];
 			$group = new Group();
 			$group->id = $groupId;
-			$users = array($this->addUser($user, $group, $rootId, $loginOption));
+			$users = array($this->addUser($stubUser, $group, $rootId, $loginOption));
 		}
 		
 		return $users[0];

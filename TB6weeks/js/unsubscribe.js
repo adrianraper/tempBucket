@@ -1,16 +1,17 @@
 /**
  * Remove all traces of an individual from the TB6 weeks system
  */
+	var productCode = 59;
+	
 	// Server action
 	unsubscribe = function() {
 	
 		$("#validationMessage").text("Please wait while your details are expunged.");
 		
-		var productCode = 59;
 		$.ajax({
 			type: "POST",
 			url: "/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",
-			data: {operation: 'unsubscribe', productCode: productCode, userEmail: $("#userEmail").val()},
+			data: {operation: 'unsubscribe', productCode: productCode, user: $("#unsubscribeForm").serialize()},
 			dataType: "json",
 			error: function(jqXHR, textStatus, errorThrown) {
 				console.log('Error: ' + errorThrown);
@@ -31,6 +32,9 @@
 			  userEmail: {
 			    required: true,
 			    email: true
+			  },
+			  password: {
+				  required: true
 			  }
 			},
 			messages: {

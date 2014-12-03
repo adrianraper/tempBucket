@@ -37,6 +37,8 @@ require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
 require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
 require_once(dirname(__FILE__)."/../../classes/CourseOps.php");
 require_once(dirname(__FILE__)."/../../classes/TriggerOps.php");
+require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php");
+require_once(dirname(__FILE__)."/../../classes/MemoryOps.php");
 
 require_once(dirname(__FILE__)."/AbstractService.php");
 
@@ -66,6 +68,8 @@ class MinimalService extends AbstractService {
 		$this->dailyJobOps = new DailyJobObs($this->db);
 		$this->courseOps = new CourseOps($this->db);
 		$this->triggerOps = new TriggerOps($this->db);
+		$this->subscriptionOps = new SubscriptionOps($this->db);
+		$this->memoryOps = new MemoryOps($this->db);
 		
 		// DMS has no restrictions on user/group access so disable manageable authentication
 		AuthenticationOps::$useAuthentication = false;
@@ -98,6 +102,8 @@ class MinimalService extends AbstractService {
 		$this->dailyJobOps->changeDB($this->db);
 		$this->courseOps->changeDB($this->db);
 		$this->triggerOps->changeDB($this->db);
+		$this->subscriptionOps->changeDB($this->db);
+		$this->memoryOps->changeDB($this->db);
 	}
 	
 	public function checkDirectStartSecurityCode($securityCode) {

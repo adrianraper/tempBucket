@@ -76,7 +76,7 @@
 <p>Clarity English</p>
 
 <p>Want to change your level? <a href="http://{$server}/TB6weeks/changeLevel.html?email={$user->email}">Click here.</a></p>
-<p><a href="http://{$server}/TB6weeks/unsubscribe.html?email={$user->email}"</a>>Unsubscribe.</a></p>
+<p><a href="http://{$server}/TB6weeks/unsubscribe.html?email={$user->email}">Unsubscribe.</a></p>
 
 [footer: Clarity contact details]             
 </body>

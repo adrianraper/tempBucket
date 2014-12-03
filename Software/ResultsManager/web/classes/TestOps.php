@@ -1,6 +1,13 @@
 <?php
 class TestOps {
 
+	/**
+	 * This class helps with creating and marking tests.
+	 * 
+	 * TODO: Why are sessions written here? If not, then no need for $db parameter.
+	 * TODO: Could this all be in ContentOps?
+	 * TODO: encryption should be in a utility function
+	 */
 	var $db;
 	
 	function TestOps($db) {
@@ -16,6 +23,7 @@ class TestOps {
 		$this->db = $db;
 	}
 
+	// TODO The content folder should be picked up from the normal way we do this...
 	public function getQuestions($exercise) {
 	
 		// Get the test definition
@@ -166,7 +174,7 @@ class TestOps {
 		}
 			
 		// encrypt the answers as a CDATA string
-		$encryptedAnswers = $this->encodeSafeChars($answerData);
+		//$encryptedAnswers = $this->encodeSafeChars($answerData);
 		$encryptedAnswers = $this->encodeSafeChars($this->encrypt($answerData));
 		
 		$answers->appendChild($data->createCDATASection($encryptedAnswers));
@@ -199,7 +207,7 @@ class TestOps {
 		$score->scoreCorrect = $score->scoreMissed = $score->scoreWrong = 0;
 		//$weightedScore = 0;
 		
-		$answersXmlString = $this->decodeSafeChars($answers);
+		//$answersXmlString = $this->decodeSafeChars($answers);
 		$answersXmlString = $this->decrypt($this->decodeSafeChars($answers));
 		$answersXml = simplexml_load_string('<answers>'.$answersXmlString.'</answers>');
 		$numQuestions = $answersXml->MultipleChoiceQuestion->count() + $answersXml->GapFillQuestion->count();
@@ -290,49 +298,6 @@ SQL;
 	}
 	
 	/**
-	 * This function will create a starting point (course and unit) based on your test score
-	 * 
-	 * @param Score $score
-	 */
-	public function getDirectStart($level, $productCode = null) {
-
-		if (!$productCode) $productCode = Session::get('productCode');
-		switch ($productCode) {
-				// raw score is out of 75
-			case 59:
-				switch ($level) {
-					case 'ELE':
-						$course = '1189057932446';
-						$unit = '1192013076011'; // Am, is, are
-						break;
-					case 'LI':
-						$course = '1189060123431';
-						$unit = '1192625080479'; // Simple present
-						break;
-					case 'INT':
-						$course = '1195467488046';
-						$unit = '1195467532331'; // The passive
-						break;
-					case 'UI':
-						$course = '1190277377521';
-						$unit = '1192625319203'; // Past continuous
-						break;
-					case 'ADV':
-						$course = '1196935701119';
-						$unit = '1196216926895'; // Reported speech
-						break;
-					default:
-						$course = $unit = '';
-				}
-				break;
-			default:
-				$course = $unit = '';
-		}
-			
-		return '<startingPoint course="'.$course.'" unit="'.$unit.'" />';
-	}
-	
-	/**
 	 * This function calculates a student's CEF level based on their score
 	 * 
 	 * @param Score $score
@@ -381,6 +346,10 @@ SQL;
 		}
 	}
 	
+	/**
+	 * This function allows questions that are linked to a particular level to carry more weight
+	 * @param string $scoreBand
+	 */
 	public function scoreMultiplier($scoreBand) {
 		switch ($scoreBand) {
 			case 'ELE':

@@ -82,7 +82,7 @@
 		public var userID:String;
 		
 		// gh#956
-		public var memory:String;
+		//public var memory:String;
 		
 		public function User(data:Object = null) {
 			if (data)
@@ -155,6 +155,7 @@
 		}
 		
 		// gh#1040 I think we will end up with a much more sophisticated memory handler
+		/*
 		public function get memoryXml():XML {
 			if (memory) {
 				return new XML(memory);
@@ -162,6 +163,7 @@
 				return null;
 			}
 		}
+		*/
 		
 		/**
 		 * Has this user expired?

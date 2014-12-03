@@ -34,6 +34,7 @@ require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
 require_once(dirname(__FILE__)."/../../classes/ProgressOps.php");
 require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
+require_once(dirname(__FILE__)."/../../classes/MemoryOps.php");
 
 // v3.6 What happens if I want to add in AccountOps so that I can pull back the account object?
 // I already getContent - will that clash or duplicate?
@@ -73,6 +74,7 @@ class BentoService extends AbstractService {
 		$this->contentOps = new ContentOps($this->db);
 		$this->progressOps = new ProgressOps($this->db);
 		$this->licenceOps = new LicenceOps($this->db);
+		$this->memoryOps = new MemoryOps($this->db);
 		
 		// Set the root id (if set)
 		// I am now using is_set, but is that safe? If not set it might be an error. 
@@ -378,11 +380,10 @@ class BentoService extends AbstractService {
 			Session::set('valid_groupIDs', array($group->id));
 			//if ($user->userType == User::USER_TYPE_STUDENT)
 			//	$contentObj = $this->contentOps->getHiddenContent($productCode);
-			
 		}
-		// TODO. What is a good format for sending back bookmark information?
-		// For now I will just expect an array of courseIDs that this user has started so that
-		// you can use them in licence control.
+		
+		// gh#1067
+		$memory = $this->memoryOps->getWholeMemory($productCode, $user->userID);
 		
 		// Send this information back
 		// #503 including the root that you really found the user in
@@ -390,6 +391,7 @@ class BentoService extends AbstractService {
 		$dataObj = array("group" => $group,
 						 "groupTrees" => $groupTrees,
 						 "licence" => $licence,
+						 "memory" => $memory,
 						 "rootID" => $rootID);
 		
 		// gh#21 include the account you found if the rootID changed based on the login
@@ -761,5 +763,26 @@ EOD;
 		//	a summary at the course level for time spent by me
 		return array("progress" => $progress);
 	}
-	
+
+	/**
+	 * Write memory for this user. Memories is an associative array of keys and values
+	 * gh#1067
+	 * 
+	 */
+	public function writeMemory($memories, $productCode = null) {
+		
+		foreach ($memories as $key => $value) {
+			$this->memoryOps->set($key, $value, $productCode);
+		}
+		
+	} 
+	/**
+	 * Get memory for this key.
+	 * gh#1067
+	 * 
+	 */
+	public function getMemory($key, $productCode = null) {
+		
+		return $this->memoryOps->get($key, $productCode);
+	} 
 }

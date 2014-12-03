@@ -22,7 +22,7 @@
 		public var verified:Boolean;
 		public var demoVersion:String;
 		
-		public function LoginEvent(type:String, userObject:Object, loginOption:uint, verified:Boolean = true, demoVersion = null, bubbles:Boolean = false, cancelable:Boolean = false) { 
+		public function LoginEvent(type:String, userObject:Object, loginOption:uint, verified:Boolean = true, demoVersion:String = null, bubbles:Boolean = false, cancelable:Boolean = false) { 
 			super(type, bubbles, cancelable);
 			
 			//this.name = username;

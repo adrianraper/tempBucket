@@ -24,7 +24,6 @@ class SubscriptionOps {
 		$this->emailOps = new EmailOps($db);
 		$this->templateOps = new TemplateOps($db);
 		$this->memoryOps = new MemoryOps($db);
-		$this->testOps = new TestOps($db);
 	}
 	
 	/**
@@ -38,7 +37,6 @@ class SubscriptionOps {
 		$this->emailOps->changeDB($db);
 		$this->templateOps->changeDB($db);
 		$this->memoryOps->changeDB($db);
-		$this->testOps->changeDB($db);
 	}
 	
 	function validateApiInformation($apiInformation) {
@@ -646,139 +644,275 @@ EOD;
 	}
 	
 	/**
-	 * This is to check, using your email, if you have already subscribed to this product in a particular account.
+	 * TB6weeks
+	 * This is to check if you have already subscribed to this product.
 	 * 
-	 * return: 'new', 'exists' or 'conflict'
+	 * return: null or the 
 	 */
-	public function checkProductSubscription($email, $rootID, $productCode) {
+	public function hasProductSubscription($user, $productCode) {
 		
-		$rootID = ($rootID) ? $rootID : Session::get('rootID');
-		AbstractService::$debugLog->notice("check email $email for root $rootID");
-		
-		$sql = <<<EOD
-				SELECT u.*, m.F_RootID as rootID
-				FROM T_User u, T_Membership m
-				WHERE u.F_UserID = m.F_UserID 
-				AND u.F_Email = ?
-EOD;
-		$rs = $this->db->Execute($sql, array($email));
-		$recordCount = $rs->RecordCount();
-		
-		switch ($recordCount) {
-			case 0:
-				// This is a new email address
-				$status = 'new';
-				break;
-				
-			case 1:
-				// This email exists, does it match the root?
-				$dbObj = $rs->FetchNextObj();
-				if ($dbObj->rootID == $rootID) {
-					// Does this user already have a subscription to this product?
-					Session::set('userID', $dbObj->F_UserID);
-					$this->memoryOps = new MemoryOps($this->db);
-					$subscription = $this->memoryOps->getElement('subscription');
-					if ($subscription && count($subscription)>0) {
-						$status = 'exists';
-					} else {
-						$status = 'new';
-					}
-						
-				} else {
-					$status = 'conflict';
-				}
-				break;
-				
-			default:
-				$status = 'conflict';
-				
-		}
-		return $status;
-	}
-	
-	/**
-	 * Based on your email, change your subscription.
-	 * 
-	 * return: 'success' or 'fail'
-	 */
-	public function changeProductSubscription($user, $level, $productCode) {
-		
-		AbstractService::$debugLog->notice("change level to $level for $user->email");
-		
-		// Now check that the user has a subscription (memory) for this product
-		Session::set('userID', $user->userID);
-		Session::set('productCode', $productCode);
-		$this->memoryOps = new MemoryOps($this->db);
-		$subscription = $this->memoryOps->getElement('subscription');
+		$subscription = $this->memoryOps->get('subscription', $productCode, $user->userID);
 		if (!$subscription)
-			return 'no subscription';
+			return false;
 			
-		// <level>INT</level><subscription startDate="2014-11-05" frequency="2 days" valid="true"/>
-		$now = new DateTime();
-		$subscription->setAttribute('startDate', $now->format('Y-m-d'));
-		$subscription->setAttribute('valid', 'true');
-		$levelNode = $this->memoryOps->getElement('level');
-		$levelNode->nodeValue = $level;
-		
-		$directStart = $this->testOps->getDirectStart($level);
-		// The bookmark (which controls direct start), is written to Tense Buster memory, not TB6weeks.
-		$tbProductCode = 55;
-		$rc = $this->memoryOps->addToMemory('bookmark', $directStart, $tbProductCode);
-		
-		$this->memoryOps->writeMemory();
-		
-		return 'success';
+		// Is this subscription valid?
+		return (isset($subscription['valid']) && $subscription['valid']);
 	}
 	
 	/**
-	 * Remove a student's subscription.
-	 * Whilst this will completely delete the user, it will only do it if they have a subscription to this product.
-	 * If they have other subscriptions those will not be removed.
+	 * Based on the user set in the session, change their subscription.
 	 * 
+	 * return: true|false
 	 */
-	public function removeProductSubscription($email, $productCode) {
-		$sql = <<<EOD
-				SELECT u.*
-				FROM T_User u, T_Membership m, T_Accounts a
-				WHERE u.F_UserID = m.F_UserID 
-				AND a.F_RootID = m.F_RootID
-				AND u.F_Email = ?
-				AND a.F_ProductCode = ?
-EOD;
-		$rs = $this->db->Execute($sql, array($email, $productCode));
-		$recordCount = $rs->RecordCount();
+	public function changeProductSubscription($productCode, $level, $bookmark, $dateDiff) {
 		
-		switch ($recordCount) {
-			case 0:
-				$status = 'no such email';
-				break;
-			case 1:
-				$user = new User();
-				$user->fromDatabaseObj($rs->FetchNextObj());
-				// We know that this user exists in an account that has this product
-				// Now check that the user has a subscription (memory) for this and only this product
-				Session::set('userID', $user->userID);
-				Session::set('productCode', $productCode);
-				$this->memoryOps = new MemoryOps($this->db);
-				// TODO: this only returns subscription for TB6weeks - which is fine whilst that is the only title!
-				$subscription = $this->memoryOps->getElement('subscription');
-				if (!$subscription) {
-					$status = "you don't have a subscription";
-				} else if (count($subscription) == 1) {
-					$rc = $this->manageableOps->deleteManageables(array($user));
-					$status = 'done';
-				} else {
-					// Not yet used, see above todo.
-					$rc = $this->memoryOps->deleteElement('subscription');
-					$status = 'you have other subscriptions which have been left';
-				}
-				
+		$now = new DateTime();
+		
+		$this->memoryOps = new MemoryOps($this->db);
+		$newSubscription = array('startDate' => $now->format('Y-m-d'), 'frequency' => $dateDiff, 'valid' => true); 
+		$this->memoryOps->set('subscription', $newSubscription);
+		$this->memoryOps->set('level', $level);
+		
+		// The bookmark (which controls direct start), is written to Tense Buster memory, not TB6weeks.
+		switch ($productCode) {
+			case 59;
+				return $this->memoryOps->set('directStart', $bookmark, $this->relatedProducts($productCode));
 				break;
 			default:
-				$status = 'more than 1 email';
-				
 		}
+		
+	}
+	
+	/**
+	 * Remove a student's subscription to this title.
+	 * If they have other subscriptions those will not be removed and the user is not deleted.
+	 * 
+	 * Perhaps unsubscribe means remove yourself from this subscription - so no more TB6weeks. But you still exist as a user.
+	 * Whilst this will completely delete the user, it will only do it if they have a subscription to this product. NO.
+	 * 
+	 * 
+	 */
+	public function removeProductSubscription($user, $productCode) {
+		// Check that this user has a subscription (valid or not)
+		$this->memoryOps = new MemoryOps($this->db);
+		$subscription = $this->memoryOps->get('subscription');
+		
+		if (!$subscription) {
+			$status = 'no subscription';
+			
+		} else {
+			$this->memoryOps->forget($user->userID, $productCode);
+			$this->memoryOps->forget($user->userID, $this->relatedProducts($productCode), 'directStart');
+			$status = 'done';
+					
+			// Does this user have other subscriptions?
+			/*
+			$rs = $this->memoryOps->getAllKeys('subscription');
+			if ($rs) {
+				if ($rs->recordCount() > 1) {
+					$status = 'other records';
+				} else {
+					
+					// Has the user done anything else besides this subscription?
+					//$rc = $this->manageableOps->deleteManageables(array($user));
+					$status = 'done';
+				}
+			} else {
+				$status = 'unexpected error, no subscriptions at all';
+			}
+			*/
+		}				
 		return $status;
+	}
+
+	/**
+	 * Get all users in an account who have a subscription
+	 * 
+	 */
+	public function getSubscribedUsersInAccount($account, $productCode) {
+		$users = array();
+		
+		$sql = <<<SQL
+			SELECT u.*
+			FROM T_User u, T_Membership m, T_Memory me
+			WHERE me.F_ProductCode = ?
+			AND me.F_Key = 'subscription'
+			AND me.F_UserID = u.F_UserID
+			AND u.F_UserID = m.F_UserID
+			AND m.F_RootID = ?
+SQL;
+		$bindingParams = array($productCode, $account->id);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs->RecordCount() > 0) {
+			while ($dbObj = $rs->FetchNextObj()) {
+				$user = new User();
+				$user->fromDatabaseObj($dbObj);
+				$users[] = $user;
+			}
+		}
+		return $users;		
+	}
+	
+	/**
+	 * This might be better as a db lookup?
+	 * Calculates the starting point for a subscription on its nth week in a particular level
+	 * 
+	 */
+	public function getDirectStart($level, $unitsAdded = 0, $productCode = null) {
+		if (!$productCode) $productCode = Session::get('productCode');
+		$relatedProductCode = $this->relatedProducts($productCode);
+		
+		switch ($relatedProductCode) {
+			case 55:
+				switch ($level) {
+					case 'ELE':
+						$course = '1189057932446';
+						switch ($unitsAdded) {
+							case 0:
+								$unit = '1192013076011'; // Am, is, are
+								break;
+							case 1:
+								$unit = '1192013076627';
+								break;
+							case 2:
+								$unit = '1192013076406';
+								break;
+							case 3:
+								$unit = '1192013076042';
+								break;
+							case 4:
+								$unit = '1192013076442';
+								break;
+							case 5:
+								$unit = '1192013076075';
+								break;
+							default:
+								return null;
+						}
+						break;
+					case 'LI':
+						$course = '1189060123431';
+						switch ($unitsAdded) {
+							case 0:
+								$unit = '1192625080479'; // Simple present
+								break;
+							case 1:
+								$unit = '1192625080536';
+								break;
+							case 2:
+								$unit = '1192625080519';
+								break;
+							case 3:
+								$unit = '1192625080036';
+								break;
+							case 4:
+								$unit = '1192625080950';
+								break;
+							case 5:
+								$unit = '1192625080483';
+								break;
+							default:
+								return null;
+						}
+						break;
+					case 'INT':
+						$course = '1195467488046';
+						switch ($unitsAdded) {
+							case 0:
+								$unit = '1195467532331'; // The passive
+								break;
+							case 1:
+								$unit = '1195467532329';
+								break;
+							case 2:
+								$unit = '1192625080157';
+								break;
+							case 3:
+								$unit = '1195467532343';
+								break;
+							case 4:
+								$unit = '1195467532330';
+								break;
+							case 5:
+								$unit = '1195467532328';
+								break;
+							default:
+								return null;
+						}
+						break;
+						
+					case 'UI':
+						$course = '1190277377521';
+						switch ($unitsAdded) {
+							case 0:
+								$unit = '1192625319203'; // Past continuous
+								break;
+							case 1:
+								$unit = '1192625319263';
+								break;
+							case 2:
+								$unit = '1192625319990';
+								break;
+							case 3:
+								$unit = '1192625319573';
+								break;
+							case 4:
+								$unit = '1192625319744';
+								break;
+							case 5:
+								$unit = '1193054443818';
+								break;
+							default:
+								return null;
+						}
+						break;
+						
+					case 'ADV':
+						$course = '1196935701119';
+						switch ($unitsAdded) {
+							case 0:
+								$unit = '1196216926895'; // Reported speech
+								break;
+							case 1:
+								$unit = '1196301393947';
+								break;
+							case 2:
+								$unit = '1196649107233';
+								break;
+							case 3:
+								$unit = '1196204720339';
+								break;
+							case 4:
+								$unit = '1196293510373';
+								break;
+							case 5:
+								$unit = '1196641272970';
+								break;
+							default:
+								return null;
+						}
+						break;
+				}
+				break;
+				
+			default:
+				break;
+		}
+		
+		return $relatedProductCode.'.'.$course.'.'.$unit;
+	}
+	
+	/**
+	 * Related products for subscriptions
+	 * 
+	 */
+	public function relatedProducts($productCode) {
+		switch ($productCode) {
+			case 59:
+				return 55;
+				break;
+		}
+		return null;
 	}
 	
 	// =========
