@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5" xmlns:mx="library://ns.adobe.com/flex/mx" 
+		xmlns:core="org.davekeen.core.*">
+	
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.activereading.view.progress.ProgressCompareView")]
+	</fx:Metadata>
+    
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.common.vo.content.Unit;
+			
+			import mx.charts.CategoryAxis;
+			import mx.charts.ChartItem;
+			import mx.charts.LegendItem;
+			import mx.charts.LinearAxis;
+			import mx.collections.ArrayCollection;
+			import mx.collections.XMLListCollection;
+			import mx.containers.GridItem;
+			import mx.containers.GridRow;
+			import mx.containers.TileDirection;
+			import mx.events.FlexEvent;
+			import mx.graphics.IFill;
+			import mx.graphics.SolidColor;
+			
+			import org.davekeen.util.StringUtils;
+			
+			private function myAverageScoreFill(element:ChartItem, index:Number):IFill {
+				return new SolidColor(getStyle("EColor"));
+			}
+			
+			private function everyoneAverageScoreFill(element:ChartItem, index:Number):IFill {
+				return new SolidColor(getStyle("AColor"));
+			}
+			
+			public function percentageLabel(item:Object, prevValue:Object, axis:LinearAxis):String {
+				return item + "%";
+			}
+			
+			public function captionLabel(item:Object, prevValue:Object, axis:CategoryAxis, categoryItem:Object):String {
+				return categoryItem.@caption;
+			}
+			
+			public function getTopColor(index:Number):Number {
+				return  getStyle("homeNumberTagTopColors")[index];
+			}
+			
+			public function getTopMidColor(index:Number):Number {
+				return getStyle("homeNumberTagTopMidColors")[index];
+			}
+			
+			public function getBottomMidColor(index:Number):Number {
+				return getStyle("homeNumberTagBottomMidColors")[index];
+			}
+			
+			public function getCaptionBackgroundColor(index:Number):Number {
+				return getStyle("textBackgroundColor")[index];
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:SolidColorStroke id="blankStroke" color="#00ff00" weight="0" alpha="0" />
+	</fx:Declarations>
+	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		<s:State name="normalOnline" />
+	</s:states>
+	
+	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="45" right="45" height="60" useHandCursor="true" buttonMode="true">
+		<ui:layout>
+			<s:ButtonBarHorizontalLayout/>
+		</ui:layout>
+	</ui:ProgressCourseButtonBar>
+	
+	<s:Rect top="60" left="45" right="45" height="1">
+		<s:fill>
+			<s:SolidColor color="#000000" />
+		</s:fill>
+	</s:Rect>
+	
+	<s:Label id="compareInstructionLabel" left="45" top="75" fontSize="14" />
+	<!--histogram chart legend-->
+	<s:HGroup top="75" right="45">
+		<s:Rect width="16" height="10">
+			<s:fill>
+				<s:LinearGradient>
+					<s:GradientEntry id="myAverageLegendTopColor" color="{getTopColor(hostComponent.courseIndex)}" />
+					<s:GradientEntry id="myAverageLegendTopMidColor" color="{getTopMidColor(hostComponent.courseIndex)}" />
+					<s:GradientEntry id="myAverageLegendBottomMidColor" color="{getBottomMidColor(hostComponent.courseIndex)}" />
+					<s:GradientEntry id="myAverageLegendBottomColor" color="{getTopMidColor(hostComponent.courseIndex)}" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		<s:Label id="mylegendLabel" fontSize="12" />
+		<s:Spacer width="10" />
+		<s:Rect width="16" height="10">
+			<s:fill>
+				<s:LinearGradient>
+					<s:GradientEntry color="#B7B8B8" />
+					<s:GradientEntry color="#D3D3D3" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		<s:Label id="everyonelegendLabel" fontSize="12" />
+	</s:HGroup>
+	
+	<!--horizontalAxis.title display blur text in ipad, so we use a separate label to display title-->
+	<s:Rect top="100" left="45" right="45" height="22">
+		<s:fill>
+			<s:SolidColor id="chartCaptionBackgroundColor" color="{getCaptionBackgroundColor(hostComponent.courseIndex)}" />
+		</s:fill>
+	</s:Rect>
+	<s:Label id="chartCaptionLabel" textAlign="center" fontSize="14" left="0" right="0" top="105" />
+	<mx:BarChart id="compareChart" left="20" right="45" top="130" bottom="70" bottom.normalOnline="120" dataProvider="{hostComponent.unitListCollection}" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="200">
+		<mx:horizontalAxis>
+			<mx:LinearAxis id="horizontalAxis" minimum="0" maximum="100" labelFunction="percentageLabel" />
+		</mx:horizontalAxis>
+		<mx:verticalAxis>
+			<mx:CategoryAxis id="verticalAxis" dataProvider="{hostComponent.unitListCollection}" categoryField="@caption" labelFunction="captionLabel"  />
+		</mx:verticalAxis>
+		
+		<mx:horizontalAxisRenderers>
+			<mx:AxisRenderer axis="{horizontalAxis}" fontSize="14" showLine="false" tickStroke="{blankStroke}" placement="top" />
+		</mx:horizontalAxisRenderers>
+		<mx:verticalAxisRenderers>
+			<mx:AxisRenderer axis="{verticalAxis}" fontSize="13" tickStroke="{blankStroke}"  labelGap="20">
+				<mx:axisStroke>
+					<mx:SolidColorStroke color="#B3B3B3" weight="1"/>
+				</mx:axisStroke>
+			</mx:AxisRenderer>
+		</mx:verticalAxisRenderers>
+		
+		<mx:series>
+			<mx:BarSeries id="myBarSeries" yField="@caption" xField="@myAverageScore" maxBarWidth="8" >
+				<mx:fill>
+					<s:LinearGradient>
+						<s:GradientEntry id="myAverageBarTopColor" color="{getTopColor(hostComponent.courseIndex)}" />
+						<s:GradientEntry id="myAverageBarTopMidColor" color="{getTopMidColor(hostComponent.courseIndex)}" />
+						<s:GradientEntry id="myAverageBarBottomMidColor" color="{getBottomMidColor(hostComponent.courseIndex)}" />
+						<s:GradientEntry id="myAverageBarBottomColor" color="{getTopMidColor(hostComponent.courseIndex)}" />
+					</s:LinearGradient>
+				</mx:fill>
+			</mx:BarSeries>
+			<mx:BarSeries id="everyoneBarSeries" yField="@caption" xField="@everyoneAverageScore" maxBarWidth="5" >
+				<mx:fill>
+					<s:LinearGradient>
+						<s:GradientEntry color="#B7B8B8"/>
+						<s:GradientEntry color="#D3D3D3" />
+					</s:LinearGradient>
+				</mx:fill>				
+			</mx:BarSeries>
+		</mx:series>
+	</mx:BarChart>
+	
+	<!--histogram chart bottom line-->
+	<s:Rect left="220" right="45" bottom="70" bottom.normalOnline="120" height="1">
+		<s:fill>
+			<s:SolidColor color="#B3B3B3" />
+		</s:fill>
+	</s:Rect>
+	
+	<!--chart empty tip-->
+	<s:Button id="compareEmptyScoreLabel" visible="false" fontSize="12" fontWeight="normal" verticalCenter="0" horizontalCenter="100"/>
+	
+	<!--busy indicator-->
+	<s:BusyIndicator id="busyIndicator" verticalCenter="0" horizontalCenter="0" />
+</s:Skin>

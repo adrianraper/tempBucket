@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="12" viewWidth="29" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="12" d:pageWidth="29" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Group ai:seqID="1">
+        <Path winding="nonZero" ai:seqID="2" data="M29 0 29 6.08203C29 7.73242 27.6836 9.38281 26.0752 9.75L17.4248 11.7246C15.8164 12.0918 13.1841 12.0918 11.5752 11.7246L2.9248 9.75C1.31592 9.38281 0 7.73242 0 6.08203L0 0 29 0Z">
+          <fill>
+            <SolidColor color="#025555"/>
+          </fill>
+        </Path>
+        <Group x="10.1406" y="2.08789" ai:seqID="3" flm:knockout="false">
+          <Path winding="nonZero" ai:seqID="4" data="M0.700195 0C0.314941 0 0 0.279297 0 0.620605 0 0.962402 0.314941 1.2417 0.700195 1.2417L8.01855 1.2417C8.4043 1.2417 8.71875 0.962402 8.71875 0.620605 8.71875 0.279297 8.4043 0 8.01855 0L0.700195 0Z">
+            <fill>
+              <SolidColor color="#FFFFFF"/>
+            </fill>
+          </Path>
+        </Group>
+        <Group x="10.1406" y="5.1167" ai:seqID="5" flm:knockout="false">
+          <Path winding="nonZero" ai:seqID="6" data="M0.700195 0C0.314941 0 0 0.279297 0 0.62207 0 0.963867 0.314941 1.24365 0.700195 1.24365L8.01855 1.24365C8.4043 1.24365 8.71875 0.963867 8.71875 0.62207 8.71875 0.279297 8.4043 0 8.01855 0L0.700195 0Z">
+            <fill>
+              <SolidColor color="#FFFFFF"/>
+            </fill>
+          </Path>
+        </Group>
+        <Group x="10.1406" y="8.14697" ai:seqID="7" flm:knockout="false">
+          <Path winding="nonZero" ai:seqID="8" data="M0.700195 -0.000488281C0.314941 -0.000488281 0 0.278809 0 0.620605 0 0.962402 0.314941 1.2417 0.700195 1.2417L8.01855 1.2417C8.4043 1.2417 8.71875 0.962402 8.71875 0.620605 8.71875 0.278809 8.4043 -0.000488281 8.01855 -0.000488281L0.700195 -0.000488281Z">
+            <fill>
+              <SolidColor color="#FFFFFF"/>
+            </fill>
+          </Path>
+        </Group>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

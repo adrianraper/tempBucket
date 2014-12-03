@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
+		alpha.disabled="0.5" xmlns:login="skins.activereading.assets.login.*" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:title="skins.activereading.assets.title.*">
+	
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.activereading.view.login.LoginView")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" blurX="3" blurY="3" alpha="0.3" distance="0" angle="180" knockout="false"/>
+		<s:DropShadowFilter id="dropShadowFilter2" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" inner="true"/>
+	</fx:Declarations>
+
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+		
+		<s:State name="login" stateGroups="loginStates" />
+		<s:State name="loginConcurrentTracking" stateGroups="loginStates" />
+		<s:State name="register" stateGroups="registerStates" />
+		<s:State name="registerConcurrentTracking" stateGroups="registerStates" />
+		<s:State name="registerError" stateGroups="registerStates" />
+    </s:states>
+    
+	<!--Background-->
+	<login:loginbg verticalCenter="0" horizontalCenter="0" />
+	<s:BitmapImage width="100%" verticalCenter="150" source="@Embed(source='skins/activereading/assets/login/loginlines.png')" fillMode="clip" />
+	
+	<!--Header-->
+	<login:logintopBar width="100%" />
+	<title:titlelogoAR right="{width * 0.17}" top="20" scaleX="1.8" scaleY="1.8" />
+	
+	<s:Group horizontalCenter="0" verticalCenter="0" horizontalCenter.login="-270" verticalCenter.login="10" width.login="374" width.loginConcurrentTracking="280" height="358" top.loginConcurrentTracking="250">	
+		<s:Rect width="100%" height="100%" verticalCenter="0" horizontalCenter="0" radiusX="28" radiusY="28" filters="{[dropShadowFilter]}">
+			<s:fill>
+				<s:LinearGradient rotation="-90">
+					<s:GradientEntry color="#F7F7F7" ratio="0" />
+					<s:GradientEntry color="#EDEDED" ratio="0.13"/>
+					<s:GradientEntry color="#F9F9F9" ratio="0.51"/>
+					<s:GradientEntry color="#EAEAEA" ratio="0.84"/>
+					<s:GradientEntry color="#FFFFFF" ratio="0.92"/>
+					<s:GradientEntry color="#E8E8E8" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		<s:Rect width="360" height="344" verticalCenter="0" horizontalCenter="0" radiusX="24" radiusY="24">
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="#EAEAEB" ratio="0" />
+					<s:GradientEntry color="#FFFFFF" ratio="0.37" />
+					<s:GradientEntry color="#E5E5E5" ratio="0.86"/>
+					<s:GradientEntry color="#E2E3E2" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		
+		<s:VGroup top="30" width="100%" height="100%" gap.login="5" gap.loginConcurrentTracking="10">
+			<s:Group width="100%">
+				<s:VGroup id="normalLoginTitleBlock" width="100%" horizontalAlign="center" gap="10" includeIn="login">
+					<login:loginlogoCE />
+					<s:Rect width="70%" height="1">
+						<s:fill>
+							<s:SolidColor color="0x4D4D4D" />
+						</s:fill>
+					</s:Rect>
+				</s:VGroup>
+				<s:VGroup id="CTOption1TitleBlock" top="40" gap="10" includeIn="loginConcurrentTracking">
+					<s:Label id="option1Label" color="0xFFFFFF" fontSize="21" fontWeight="bold"/>
+					<s:Label id="option1InstructionLabel" fontSize="12" color="0xFFFFFF" width="300"/>
+				</s:VGroup>
+			</s:Group>
+			
+			<s:VGroup id="loginBlock" width="60%" height="100%" paddingTop="30" paddingLeft="70" gap="15" includeIn="loginStates">
+				<s:VGroup width="100%">
+					<s:Label id="loginKey_lbl" left="0" fontSize="18" fontFamily="MyriadPro" fontWeight="bold" color="0x125558" text="{hostComponent.loginKey_lbl}" paddingTop="5"/>
+					<s:TextInput id="loginKeyInput" right="0" width="235" height="32" filters="{dropShadowFilter2}" borderVisible="false" fontSize="14" />
+				</s:VGroup>					
+				<s:VGroup width="100%">
+					<s:Label id="loginPassword_lbl" fontSize="18" fontFamily="MyriadPro" fontWeight="bold" color="0x125558" text="{hostComponent.loginPassword_lbl}" paddingTop="5"/>
+					<s:TextInput id="passwordInput" displayAsPassword="true" width="235" height="32" fontSize="12" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
+				</s:VGroup>
+			</s:VGroup>
+			
+			<s:VGroup id="CTOption2TitleBlock" gap="10" includeIn="loginConcurrentTracking">
+				<s:VGroup paddingTop="5" paddingLeft="-20">
+					<s:Rect horizontalCenter="-20" width="{280 + loginButton.width}" height="1">
+						<s:fill>
+							<s:SolidColor color="0xEC1C32" />
+						</s:fill>
+					</s:Rect>
+				</s:VGroup>
+				<s:Label id="option1Label2" color="0xFFFFFF" fontSize="21" fontWeight="bold"/>
+				<s:HGroup gap="0">
+					<s:Label id="option2InstructionLabel" fontSize="12" color="0xFFFFFF" width="100"/>
+					<s:VGroup paddingTop="-10">
+						<s:Button id="CTStartButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" />
+					</s:VGroup>
+				</s:HGroup>				
+			</s:VGroup>
+		</s:VGroup>
+		<!-- gh#965 -->
+		<s:Button id="loginButton" bottom.login="10" horizontalCenter.login="0" top.loginConcurrentTracking="121" left.loginConcurrentTracking="240" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" includeIn="loginStates"/>
+		<s:Button id="forgetPasswordButton" right="60" bottom="85" />
+	</s:Group>
+	
+	<s:Group id="registerBlock" horizontalCenter="0" top="320" width="200" includeIn="registerStates">
+		<s:Label id="RegisterOption1Label" fontSize="16" color="0x0C436B" paddingTop="20" />
+		<s:VGroup width="100%">
+			<s:Label id="registerDetailLabel" 
+					 text.registerConcurrentTracking="This is the first time you have used the program, click New user to confirm." 
+					 width="100%" fontSize="12" color="0xFFFFFF" paddingTop="10" />
+			<s:Spacer height="3" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}"/>
+			<s:HGroup id="nameGroup" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}">
+				<s:Label id="loginName_lbl" text="{hostComponent.loginName_lbl}" color="0xFFFFFF" fontWeight="bold" paddingTop="6" />
+				<s:TextInput id="loginNameInput" width="180" text="{hostComponent.savedName}"/>
+			</s:HGroup>
+			<s:Spacer height="3" visible="{hostComponent.selfRegisterID}" includeInLayout="{hostComponent.selfRegisterID}" />
+			<s:HGroup id="idGroup" visible="{hostComponent.selfRegisterID}" includeInLayout="{hostComponent.selfRegisterID}">
+				<s:Label id="loginID_lbl" text="{hostComponent.loginID_lbl}" color="0xFFFFFF" fontWeight="bold" paddingTop="6" />
+				<s:Spacer width="13" />
+				<s:TextInput id="loginIDInput" width="180" text="{hostComponent.savedName}"/>
+			</s:HGroup>
+			<s:Spacer height="3" visible="{hostComponent.selfRegisterEmail}" includeInLayout="{hostComponent.selfRegisterEmail}" />
+			<s:HGroup id="emailGroup" visible="{hostComponent.selfRegisterEmail}" includeInLayout="{hostComponent.selfRegisterEmail}">
+				<s:Label id="loginEmail_lbl" text="{hostComponent.loginEmail_lbl}" color="0xFFFFFF" fontWeight="bold" paddingTop="6" />
+				<s:TextInput id="loginEmailInput" width="180" left="500" text="{hostComponent.savedName}" />
+			</s:HGroup>
+			<s:Spacer height="3" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" />
+			<s:HGroup id="passwordGroup" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}">
+				<s:Label text="{hostComponent.loginPassword_lbl}" color="0xFFFFFF"  fontWeight="bold" paddingTop="6" />
+				<s:TextInput id="newPasswordInput" displayAsPassword="true" width="180" text="{hostComponent.savedPassword}" />
+			</s:HGroup>
+			<s:Spacer height="3" />
+			<s:HGroup gap="30">
+				<s:Button id="addUserButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" />
+				<s:Button id="cancelButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Group>
+	
+	<!--Book-->
+	<s:SWFLoader bottom="0" right="-120" source="@Embed(source='skins/activereading/assets/login/loginbook.png')" />
+	
+	<!--Footer-->
+	<s:Group width="100%" height="28" bottom="20" left="10">
+		<s:Rect width="90%" height="28" radiusX="14" radiusY="14">
+			<s:fill>
+				<s:LinearGradient>
+					<s:GradientEntry color="#D4D4D4" alpha="1"  />
+					<s:GradientEntry color="#D4D4D4" alpha="0"  />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		<s:HGroup height="100%" left="10" verticalAlign="middle" gap="5">
+			<s:Label id="versionLabel" color="#333333" fontSize="11" />
+			<s:Label id="copyrightLabel" color="#333333" fontSize="11" />
+		</s:HGroup>
+	</s:Group>
+	
+	<!--Girl-->
+	<s:SWFLoader bottom="0" right="50" source="@Embed(source='skins/activereading/assets/login/logingirl.png')" />
+</s:Skin>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<!--- The default skin class for the Spark Button component.  
+
+       @see spark.components.Button
+        
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+             xmlns:s="library://ns.adobe.com/flex/spark" 
+             xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+             minWidth="21" minHeight="21" 
+             alpha.disabled="0.5">
+     
+    <fx:Metadata>
+        <![CDATA[ 
+        /** 
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("spark.components.Button")]
+        ]]>
+    </fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="70" distance="1.5" alpha="0.8"/>
+	</fx:Declarations>
+	
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" />
+        <s:State name="down" />
+        <s:State name="disabled" />
+    </s:states>
+    
+	<s:Group top.over="2" top.down="2" top.up="0">
+		<s:Path filters.up="{[dropShadowFilter]}" data="M80 0 80 46.1826C80 47.7422 78.7734 49.3682 77.2744 49.7969L42.7256 59.6777C41.2266 60.1064 38.7734 60.1064 37.2744 59.6777L2.72559 49.7969C1.22656 49.3682 0 47.7422 0 46.1826L0 0 80 0Z">
+			<s:fill>
+				<s:LinearGradient x="40" y="0" scaleX="59.9995" rotation="90">
+					<s:GradientEntry ratio="0.286496" color="#FFFFFF"/>
+					<s:GradientEntry ratio="1" color="#E6E6E5"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Path>
+		<s:Path data="M79 1 79 46.1826C79 47.291 78.0649 48.5308 76.9995 48.8354L42.4507 58.7163C41.8218 58.896 40.9287 58.9995 40 58.9995 39.0713 58.9995 38.1782 58.896 37.5493 58.7163L3.00049 48.8354C1.93506 48.5308 1 47.291 1 46.1826L1 1 79 1M80 0 0 0 0 46.1826
+			  C0 47.7422 1.22656 49.3682 2.72559 49.7969L37.2744 59.6777C38.0239 59.8921 39.0117 59.9995 40 59.9995 40.9883 59.9995 41.9761 59.8921 42.7256 59.6777L77.2744 49.7969C78.7734 49.3682 80 47.7422 80 46.1826L80 0 80 0Z">
+			<s:fill>
+				<s:SolidColor color="#989898"/>
+			</s:fill>
+		</s:Path>
+		
+		<!--Icon-->
+		<s:Group y="33" x="13">
+			<s:Line xFrom="2.99219" yFrom="0.894531" xTo="12.9131" yTo="0.894531" />
+			<s:Rect x="2.99219" width="9.9209" height="1.78711" radiusX="0.69668" radiusY="0.69668">
+				<s:fill>
+					<s:SolidColor color="#025555"/>
+				</s:fill>
+			</s:Rect>
+			<s:Line xFrom="2.99219" yFrom="5.25195" xTo="12.9131" yTo="5.25195" />
+			<s:Rect x="2.99219" y="4.35693" width="9.9209" height="1.78711" radiusX="0.69668" radiusY="0.69668">
+				<s:fill>
+					<s:SolidColor color="#025555"/>
+				</s:fill>
+			</s:Rect>
+			<s:Line xFrom="2.99219" yFrom="9.60986" xTo="12.9131" yTo="9.60986" />
+			<s:Rect x="2.99219" y="8.71533" width="9.9209" height="1.78516" radiusX="0.69668" radiusY="0.69668">
+				<s:fill>
+					<s:SolidColor color="#025555"/>
+				</s:fill>
+			</s:Rect>
+			<s:Line yFrom="0.894531" xTo="1.54199" yTo="0.894531" />
+			<s:Rect width="1.54199" height="1.78711" radiusX="0.69668" radiusY="0.69668">
+				<s:fill>
+					<s:SolidColor color="#025555"/>
+				</s:fill>
+			</s:Rect>
+			<s:Line yFrom="5.25195" xTo="1.54199" yTo="5.25195" />
+			<s:Rect y="4.35693" width="1.54199" height="1.78711" radiusX="0.69668" radiusY="0.69668">
+				<s:fill>
+					<s:SolidColor color="#025555"/>
+				</s:fill>
+			</s:Rect>
+			<s:Line yFrom="9.60986" xTo="1.54199" yTo="9.60986" />
+			<s:Rect y="8.71533" width="1.54199" height="1.78516" radiusX="0.69668" radiusY="0.69668">
+				<s:fill>
+					<s:SolidColor color="#025555"/>
+				</s:fill>
+			</s:Rect>
+		</s:Group>
+		
+		<!-- layer 8: text -->
+		<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
+		<s:Label id="labelDisplay"
+				 textAlign="center"
+				 maxDisplayedLines="1"
+				 left="32" top="33" fontFamily="MyriadPro" fontWeight="bold" color="#025555">
+		</s:Label>
+	</s:Group>
+</s:SparkButtonSkin>

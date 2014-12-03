@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:view="com.clarityenglish.bento.view.*"
+		xmlns:recorder="com.clarityenglish.bento.view.recorder.*" xmlns:ui="com.clarityenglish.activereading.view.exercise.ui.*" xmlns:exercise="skins.activereading.assets.exercise.*" xmlns:home="skins.activereading.assets.home.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.activereading.view.exercise.ExerciseView")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.XMLListCollection;
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="1.5" alpha="0.6" blurX="7" blurY="7" />
+	</fx:Declarations>
+	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
+		<s:State name="exercise" />
+		<s:State name="other" />
+	</s:states>
+	
+	<s:layout>
+		<s:BasicLayout />
+	</s:layout>
+	
+	<!--Exercise Background-->
+	<s:Group width="100%" height="100%" filters="{[dropShadowFilter]}" includeIn="exercise">
+		<s:Rect left="15" right="15" height="100%">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF" />
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	
+	<!--Top control bar background-->
+	<s:Rect width="100%" height="75">
+		<s:fill>
+			<s:SolidColor color="#F5F5F5" />
+		</s:fill>
+	</s:Rect>
+	
+	<!--Top control bar button-->
+	<s:HGroup top="0" right="50" gap="10">
+		<s:Button id="backToMenuButton" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
+		<s:Button id="progressButton" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
+	</s:HGroup>
+	
+	<!-- Exercise -->
+	<view:DynamicView id="dynamicView" left="15" right="15" top="124" bottom="20"/>
+	
+	<!--Left patch-->
+	<s:Rect left="0" width="15" top="75" bottom="0" filters="{[dropShadowFilter]}">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF" />
+		</s:fill>
+	</s:Rect>
+	
+	<!--Right patch-->
+	<s:Rect right="0" width="15" top="75" bottom="0" filters="{[dropShadowFilter]}">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF" />
+		</s:fill>
+	</s:Rect>
+	
+	<!-- Top Left buttons -->
+	<s:HGroup left="30" top="76" includeIn="exercise" gap="3">
+		<s:Button id="backButton" color="0xFFFFFF" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}" visible="{!hostComponent.isDirectStartEx}"/>
+		<s:Button id="forwardButton" color="0xFFFFFF" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
+		<s:Button id="feedbackButton" visible="false" color="0xFFFFFF" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
+	</s:HGroup>	
+	
+	<!-- Top Right buttons -->
+	<s:HGroup right="30" top="76" includeIn="exercise" gap="3"> 
+		<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
+		<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
+		<s:Button id="recorderButton" color="0xFFFFFF" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
+	</s:HGroup>
+	
+	<!--Top green line-->
+	<s:Rect left="0" right="0" height="3" top="75" horizontalCenter="0">
+		<s:fill>
+			<s:SolidColor color="#003B3B" />
+		</s:fill>
+	</s:Rect>
+	
+	<!--Roll out text-->
+	<s:HGroup id="rollOutHGroup" top="192" right="302" gap="-6" visible="{hostComponent.hasVideoScript}">
+		<s:VGroup paddingTop="10" width="50">
+			<s:Button id="readButton" buttonMode="true" useHandCursor="true" />
+		</s:VGroup>
+		<s:Group id="rollOutTextGroup" width="0" height="355">
+			<s:Rect width="100%" height="100%" filters="{[dropShadowFilter]}" bottomLeftRadiusX="8" bottomLeftRadiusY="8" topLeftRadiusX="8" topLeftRadiusY="8">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF" />
+				</s:fill>
+			</s:Rect>
+			<s:Rect width="100%" height="28" top="10">
+				<s:fill>
+					<s:SolidColor color="#025555" />
+				</s:fill>
+			</s:Rect>
+			<s:RichEditableText id="rollOutRichEditableText" width="80%" editable="false" verticalCenter="0" horizontalCenter="0" />
+		</s:Group>
+	</s:HGroup>
+	
+	<!--Top raw-->
+	<s:Group top="0" horizontalCenter="0" width="370" height="59">
+		<s:Group width="100%" height="100%">
+			<s:Rect width="100%" height="100%" bottomLeftRadiusX="8" bottomLeftRadiusY="8" bottomRightRadiusX="8" bottomRightRadiusY="8">
+				<s:fill>
+					<s:SolidColor color="#EFEFEF" />
+				</s:fill>
+				<s:stroke>
+					<s:SolidColorStroke color="#005454" weight="2"/>
+				</s:stroke>
+			</s:Rect>
+			<s:Label text="{hostComponent.selectedExerciseNode.@caption}" horizontalCenter="0" verticalCenter="10" color="#005454" fontSize="16" fontFamily="HelveticaMd" fontWeight="bold" />
+		</s:Group>
+		<ui:WindowShade id="windowShade" x="35" y="58" width="304" height="304">
+			<s:Rect width="304" height="543" top="0" bottom="0" bottomLeftRadiusX="10" bottomLeftRadiusY="10" bottomRightRadiusX="10" bottomRightRadiusY="10" horizontalCenter="0">
+				<s:stroke>
+					<s:SolidColorStroke color="#497A7A" weight="8" />
+				</s:stroke>
+				<s:fill>
+					<s:SolidColor color="#062E2E" />
+				</s:fill>
+			</s:Rect>
+			<s:List id="unitList" dataProvider="{new XMLListCollection(hostComponent.selectedExerciseNode.parent().parent().unit)}" width="318" bottom="10" top="18" left="20" verticalScrollPolicy="on" scaleX="0.9" scaleY="0.9" borderVisible="false" contentBackgroundAlpha="0">
+				<s:layout>
+					<s:VerticalLayout gap="10" />
+				</s:layout>
+			</s:List>
+		</ui:WindowShade>
+	</s:Group>
+	
+	<!--Header-->
+	<s:BitmapImage left="0" top="0" width="100%" source="@Embed(source='skins/activereading/assets/exercise/exTopBar.png')" fillMode="clip" />
+	<s:HGroup left="50" top="5" gap="5" verticalAlign="middle">
+		<s:Group>
+			<home:menuicon1 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 0}" scaleX="0.5" scaleY="0.5" />
+			<home:menuicon2 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 1}" scaleX="0.5" scaleY="0.5" />
+			<home:menuicon3 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 2}" scaleX="0.5" scaleY="0.5" />
+			<home:menuicon4 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 3}" scaleX="0.5" scaleY="0.5" />
+			<home:menuicon5 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 4}" scaleX="0.5" scaleY="0.5" />
+			<home:menuicon6 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 5}" scaleX="0.5" scaleY="0.5" />
+		</s:Group>
+		<s:Label text="{hostComponent.selectedExerciseNode.parent().parent().@caption}" paddingTop="6" color="#FFFFFF" fontSize="15" fontFamily="HelveticaMd" fontWeight="bold" />
+	</s:HGroup>
+	
+	<!--Footer-->
+	<s:Rect width="100%" height="10" bottom="0">
+		<s:fill>
+			<s:SolidColor color="#003B3B" />
+		</s:fill>
+	</s:Rect>
+</s:Skin>

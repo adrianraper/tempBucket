@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>ActiveReading</name>
+	<comment></comment>
+	<projects>
+		<project>Bento</project>
+		<project>csslib</project>
+		<project>textLayout</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.adobe.flexbuilder.project.flexbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.adobe.flexbuilder.project.flexnature</nature>
+		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>[source path] src</name>
+			<type>2</type>
+			<locationURI>SDK_HOME/frameworks/projects/mobiletheme/src</locationURI>
+		</link>
+	</linkedResources>
+</projectDescription>

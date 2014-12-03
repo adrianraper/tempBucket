@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:recorder="com.clarityenglish.bento.view.recorder.*" xmlns:exercise="skins.tensebuster.assets.exercise.*" xmlns:title="skins.activereading.assets.title.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.activereading.view.title.TitleView")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.bento.BentoApplication;
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
+		<s:State name="home" />
+		<s:State name="exercise" />
+		<s:State name="progress" />
+	</s:states>
+	
+	<!--Header-->
+	<s:Group id="headerGroup" top="0" left="0" right="0" width="100%" height="100%" excludeFrom="exercise">
+		<title:titletopBar width="100%" />
+		<title:titlelogoCE top="20" left="30" />
+		<title:titlelogoAR top="10" right="{width * 0.15}" />
+	</s:Group>
+	
+	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
+		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.activereading.view.home.HomeView" label="Menu"  left="0" right="0" height="100%" />
+		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.activereading.view.progress.ProgressView" label="My Progress" left="0" right="0" height="100%" />
+	</s:TabbedViewNavigator>
+	
+	<s:Button id="helpButton" right="120" top="37" buttonMode="true" useHandCursor="true" excludeFrom="exercise"/>
+	<s:Button id="logoutButton" right="21" top="37" buttonMode="true" useHandCursor="true" excludeFrom="exercise"/>
+	
+	<!--Demo version label-->
+	<s:Group id="demoGroup" width="208" height="29" right="20" top="0" visible="{hostComponent.productVersion == BentoApplication.DEMO}">
+		<s:Rect width="100%" height="100%" bottomLeftRadiusX="10" bottomRightRadiusX="10">
+			<s:fill>
+				<s:SolidColor color="#591117" />
+			</s:fill>
+		</s:Rect>
+		<s:HGroup top="10" left="10" gap="7">
+			<s:Label id="topLeftDemoLabel" fontSize="14" color="#FFFFFF" fontWeight="bold" />
+			<s:VGroup paddingTop="-2">
+				<s:Line yFrom="0" yTo="13">
+					<s:stroke>
+						<s:SolidColorStroke color="#FFFFFF" />
+					</s:stroke>
+				</s:Line>
+			</s:VGroup>
+			<s:Label id="topRightDemoLabel" fontSize="13" color="#FFFFFF" />
+		</s:HGroup>
+	</s:Group>
+	
+	<!--s:Button id="backToMenuButton" right="60" top="35" color="0x000000" fontWeight="bold" fontSize="13" includeIn="exercise" buttonMode="true" useHandCursor="true"/-->	
+</s:Skin>

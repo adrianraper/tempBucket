@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<!--- The default skin class for the Spark Button component.  
+
+       @see spark.components.Button
+        
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+             xmlns:s="library://ns.adobe.com/flex/spark" 
+             xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+             minWidth="21" minHeight="21" 
+             alpha.disabled="0.5" xmlns:warning="skins.activereading.assets.exercise.warning.*">
+     
+    <fx:Metadata>
+        <![CDATA[ 
+        /** 
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("spark.components.Button")]
+        ]]>
+    </fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="70" distance="1.5" alpha="0.8"/>
+	</fx:Declarations>
+    
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" />
+        <s:State name="down" />
+        <s:State name="disabled" />
+    </s:states>
+    
+	<s:Group top.over="2" top.down="2" top.up="0">
+		<s:Path filters.up="{[dropShadowFilter]}"  data="M10.5278 33.6641C8.96875 33.6641 6.71973 32.8398 5.5293 31.833L2.16406 28.9854C0.973633 27.9785 0 25.8789 0 24.3193L0 9.34424C0 7.78516 0.973633 5.68604 2.16406 4.67871L5.5293 1.83105C6.71973 0.82373 8.96875 0 10.5278 0L66.8145 0C68.374 0 70.623
+				0.82373 71.8135 1.83105L75.1787 4.67871C76.3691 5.68604 77.3428 7.78516 77.3428 9.34424L77.3428 24.3193C77.3428 25.8789 76.3691 27.9785 75.1787 28.9854L71.8135 31.833C70.623 32.8398 68.374 33.6641 66.8145 33.6641L10.5278 33.6641Z">
+			<s:fill>
+				<s:SolidColor color="#e61e1e" />
+			</s:fill>
+		</s:Path>
+		
+		<warning:cross left="20" top="10" />
+		
+		<!-- layer 8: text -->
+		<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
+		<s:Label id="labelDisplay"
+				 textAlign="center"
+				 maxDisplayedLines="1"
+				 horizontalCenter="8" verticalCenter="0" verticalAlign="middle"
+				 left="10" right="10" top="2" bottom="2">
+		</s:Label>
+	</s:Group>
+	
+    
+</s:SparkButtonSkin>

@@ -121,6 +121,10 @@ package com.clarityenglish.bento.vo.content {
 			return model.getRule();
 		}
 		
+		public function hasVideoScript():Boolean {
+			return model.getSettingParam("videoScript");
+		}
+		
 		/**
 		 * This is a static function that determines whether an exercise should be navigable to or not. It runs off the exercise xml node in the menu
 		 * xml, not the exercise file itself.

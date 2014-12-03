@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" 
+		xmlns:login="com.clarityenglish.activereading.view.login.*" 
+		xmlns:title="com.clarityenglish.activereading.view.title.*" 
+		xmlns:credits="com.clarityenglish.bento.view.credits.*" 
+		xmlns:nonetwork="com.clarityenglish.bento.view.nonetwork.*">
+	
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.activereading.ActiveReadingApplication")]
+	</fx:Metadata>
+	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
+		<s:State name="loading" />
+		<s:State name="login" />
+		<s:State name="title" />
+		<s:State name="credits" />
+		<s:State name="nonetwork" />
+	</s:states>
+	
+	<!--Background-->
+	<s:Rect width="100%" height="100%">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="#FFFFFF" />
+				<s:GradientEntry color="#DBDBDB" />
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<s:BitmapImage width="100%" verticalCenter="150" source="@Embed(source='skins/activereading/assets/login/loginlines.png')" fillMode="clip" />
+	
+	<!-- Body -->
+	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0">
+		<s:Group verticalCenter="0" horizontalCenter="0">
+			<s:SWFLoader id="loadingSWFLoader" source="@Embed(source='skins/activereading/assets/loading.swf')" includeIn="loading" horizontalAlign="center" />
+		</s:Group> <!-- TODO: just used the mobile one for speediness for the moment -->
+		<login:LoginView id="loginView" width="100%" height="100%" includeIn="login" />
+		<title:TitleView id="titleView" width="100%" height="100%" includeIn="title" />
+		<credits:CreditsView id="creditsView" width="100%" height="100%" includeIn="credits" />
+		<nonetwork:NoNetworkView id="noNetworkView" verticalCenter="0" horizontalCenter="0" includeIn="nonetwork" />
+	</s:Group>
+	
+	<!-- Footer --> 
+	<s:Group horizontalCenter="0" height="37" bottom="0" excludeFrom="login">
+		<s:HGroup right="10" top="12">
+			<s:Label id="versionLabel" text="v{hostComponent.versionNumber}" color="#FFFFFF" fontSize="12" paddingTop="6" />
+			<s:Label id="copyrightLabel" text="© Clarity Language Consultants Ltd, 1993-2014. All rights reserved." color="#FFFFFF" fontSize="12" paddingTop="6" />
+		</s:HGroup>		
+	</s:Group>
+	
+</s:Skin>

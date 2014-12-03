@@ -3,9 +3,7 @@ package com.clarityenglish.bento.view.exercise {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.bento.view.recorder.events.RecorderEvent;
-	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.textLayout.events.AudioPlayerEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -52,8 +50,11 @@ package com.clarityenglish.bento.view.exercise {
 		public var ruleButton:Button;
 		
 		[SkinPart]
-		public var exerciseLogOutButton:Button;
-				
+		public var logoutButton:Button;
+		
+		[SkinPart]
+		public var progressButton:Button;
+		
 		[SkinPart(required="true")]
 		public var dynamicView:DynamicView;
 		
@@ -68,6 +69,9 @@ package com.clarityenglish.bento.view.exercise {
 			
 		[Bindable]
 		public var hasPrintStylesheet:Boolean;
+		
+		[Bindable]
+		public var hasVideoScript:Boolean;
 		
 		[Bindable]
 		public var footerLabel:Text;
@@ -151,20 +155,19 @@ package com.clarityenglish.bento.view.exercise {
 			return _languageCode;
 		}
 		
-		public function getCopyProvider():CopyProvider {
-			return copyProvider;
-		}
-		
 		public var startAgain:Signal = new Signal();
 		public var showFeedback:Signal = new Signal();
 		public var showMarking:Signal = new Signal();
 		public var nextExercise:Signal = new Signal();
 		public var previousExercise:Signal = new Signal();
+		public var nodeSelect:Signal = new Signal(XML);
 		public var printExercise:Signal = new Signal(DynamicView);
 		public var backToMenu:Signal = new Signal();
 		public var showFeedbackReminder:Signal = new Signal(String); // gh#388
 		public var audioPlayed:Signal = new Signal(String); // gh#267
 		public var record:Signal = new Signal(); // gh#267 
+		public var logout:Signal = new Signal();
+		public var openProgress:Signal = new Signal();
 		
 		public function ExerciseView() {
 			super();
@@ -193,8 +196,6 @@ package com.clarityenglish.bento.view.exercise {
 					backButton.includeInLayout = visibleValue;						
 				}
 			}
-			
-			
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -240,8 +241,9 @@ package com.clarityenglish.bento.view.exercise {
 					backToMenuButton.addEventListener(MouseEvent.CLICK, function():void { backToMenu.dispatch(); } );
 					backToMenuButton.label = copyProvider.getCopyForId("exerciseBackToMenuButton");
 					break;
-				case exerciseLogOutButton:
-					exerciseLogOutButton.label = copyProvider.getCopyForId("exerciseLogOutButton");
+				case logoutButton:	
+					logoutButton.addEventListener(MouseEvent.CLICK, function():void { logout.dispatch(); });
+					logoutButton.label = copyProvider.getCopyForId("exerciseLogOutButton");
 					break;
 				case footerLabel:
 					footerLabel.text = copyProvider.getCopyForId("footerLabel");
@@ -254,6 +256,10 @@ package com.clarityenglish.bento.view.exercise {
 					ruleButton.label = copyProvider.getCopyForId("ruleButton");
 					ruleButton.addEventListener(MouseEvent.CLICK, onMouseClick);
 					break;
+				case progressButton:
+					progressButton.label = copyProvider.getCopyForId("myProgress");
+					progressButton.addEventListener(MouseEvent.CLICK, onProgressButtonClick);
+					break;
 			}
 		}
 		
@@ -264,10 +270,15 @@ package com.clarityenglish.bento.view.exercise {
 		}
 		
 		protected function onMouseClick(event:MouseEvent):void {
-			var url:String = config.contentRoot + config.account.getTitle().contentLocation + "/" +   _ruleLink;
+			var url:String = config.contentRoot + config.account.getTitle().contentLocation + "/" + _ruleLink;
 			var urlRequest:URLRequest = new URLRequest(url);
 			navigateToURL(urlRequest, "_blank");
 		}
+		
+		protected function onProgressButtonClick(event:MouseEvent):void {
+			openProgress.dispatch();
+		}
+		
 	}
 	
 }

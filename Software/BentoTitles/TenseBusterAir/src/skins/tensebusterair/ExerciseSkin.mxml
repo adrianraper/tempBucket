@@ -6,7 +6,7 @@
 		xmlns:recorder="com.clarityenglish.bento.view.recorder.*" xmlns:exercise="skins.tensebuster.assets.exercise.*" creationComplete="onCreationComplete(event)" xmlns:android="skins.tensebusterair.assets.android.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.bento.view.exercise.ExerciseView")]
+		[HostComponent("com.clarityenglish.tensebuster.view.exercise.ExerciseView")]
 	</fx:Metadata>
 	<fx:Script>
 		<![CDATA[

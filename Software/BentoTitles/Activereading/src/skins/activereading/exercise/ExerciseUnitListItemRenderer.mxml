@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="false"
+				width="302"
+				height.normal="35"
+				height.selected="205"
+				creationComplete="onCreationComplete(event)"
+				removedFromStage="onRemovedFromStage(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.bento.events.ExerciseEvent;
+			
+			import mx.collections.XMLListCollection;
+			import mx.events.FlexEvent;
+			
+			import org.osflash.signals.Signal;
+			
+			[Bindable]
+			public var selectedExerciseNode:XML;
+			
+			[Bindable]
+			private var exerciseXMLListCollection:XMLListCollection;
+			
+			private var _dataChanged:Boolean;
+			
+			private var _exerciseSelected:Signal;
+			
+			public function set exerciseSelected(value:Signal):void {
+				_exerciseSelected = value;
+				_exerciseSelected.add(onExerciseSelected);
+			}
+			
+			override public function set data(value:Object):void {
+				super.data = value;
+				_dataChanged = true;
+				invalidateProperties();
+			}
+			
+			protected function onCreationComplete(event:FlexEvent):void {
+				addEventListener(FlexEvent.DATA_CHANGE, function():void { invalidateProperties(); });
+			}
+			
+			protected override function commitProperties():void {
+				super.commitProperties();
+				
+				if (_dataChanged && data && data.attribute("caption").length() > 0) {
+					if (unitItemLabel) unitItemLabel.text = data.@caption;
+					
+					exerciseXMLListCollection = new XMLListCollection(data.exercise);
+					
+					_dataChanged = false;
+				}
+			}
+			
+			protected override function getCurrentRendererState():String {
+				return selected ? "selected" : "normal";
+			}
+			
+			protected function onExerciseListClick(event:MouseEvent):void {
+				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, null, exerciseList.selectedItem));
+			}
+			
+			private function onExerciseSelected(node:XML):void {
+				callLater(function():void { selectedExerciseNode = node; });
+			}
+			
+			private function onRemovedFromStage(e:Event):void {
+				if (_exerciseSelected) _exerciseSelected.remove(onExerciseSelected);
+			}
+		]]>
+	</fx:Script>
+	
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="selected" />
+	</s:states>
+	
+	<s:Group width="100%">
+		<!-- The background rectangle (only visible when the renderer is expanded) -->
+		<s:Rect height="205" width="100%" radiusX="12" radiusY="12" includeIn="selected">
+			<s:fill>
+				<s:SolidColor color="#FFEFD2" />
+			</s:fill>
+			<s:stroke>
+				<s:SolidColorStroke color="#FFBF4A" weight="1" />
+			</s:stroke>
+		</s:Rect>
+		
+		<!-- The exercise list (only visible when the renderer is expanded) -->
+		<s:List id="exerciseList"
+				width="100%"
+				height="95%"
+				top="40" left="2" right="2"
+				dataProvider="{exerciseXMLListCollection}"
+				selectedItem="{selectedExerciseNode}"
+				borderVisible="false" contentBackgroundAlpha="0"
+				includeIn="selected"
+				click="onExerciseListClick(event)"
+				verticalScrollPolicy="off">
+			<s:layout>
+				<s:VerticalLayout gap="3" />
+			</s:layout>
+			<s:itemRenderer>
+				<fx:Component>
+					<s:IconItemRenderer labelField="@caption" paddingTop="6" paddingLeft="50" fontSize="13" fontFamily="Helvetica" height="23" width="100%">
+						<fx:Script>
+							<![CDATA[
+								import skins.activereading.assets.exercise.yellowDot;
+								import skins.activereading.assets.exercise.yellowDotOutline;
+								
+								private function getIcon(item:Object):Object {
+									return item.attribute("done").length() > 0 && parseInt(item.@done) > 0 ? new yellowDot(): new yellowDotOutline();
+								}
+								
+								override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+									labelDisplay.setStyle("color", selected || down ? 0xFFFFFF : 0x333333);
+									
+									super.updateDisplayList(unscaledWidth, unscaledHeight);
+								}
+								
+								override protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void {
+									graphics.clear();
+									
+									if (selected || down) {
+										graphics.beginFill(0x004947, 1);
+										graphics.drawRect(0, 0, unscaledWidth, unscaledHeight);
+										graphics.endFill();
+									}
+								}
+								
+								override protected function drawBorder(unscaledWidth:Number, unscaledHeight:Number):void {
+									// No border for this renderer
+								}
+							]]>
+						</fx:Script>
+					</s:IconItemRenderer>
+				</fx:Component>
+			</s:itemRenderer>
+		</s:List>
+		
+		<!--Dot-->
+		<s:Group width="16" height="16" left="13" top="13">
+			<s:Ellipse width="100%" height="100%">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF" />
+				</s:fill>
+			</s:Ellipse>
+			<s:Ellipse width="8" height="8" verticalCenter="0" horizontalCenter="0" includeIn="selected">
+				<s:fill>
+					<s:SolidColor color="#333333" />
+				</s:fill>
+			</s:Ellipse>
+		</s:Group>
+		
+		
+		<!-- Unit label -->
+		<s:Label id="unitItemLabel" left="50" top="16" fontSize="14" color="#FFFFFF" color.selected="333333" fontFamily="Helvetica" />
+	</s:Group>
+	
+</s:ItemRenderer>

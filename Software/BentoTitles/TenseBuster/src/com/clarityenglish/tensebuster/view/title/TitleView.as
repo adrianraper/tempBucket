@@ -1,7 +1,7 @@
 package com.clarityenglish.tensebuster.view.title {
 	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.view.exercise.ExerciseView;
+	import com.clarityenglish.tensebuster.view.exercise.ExerciseView;
 	import com.clarityenglish.tensebuster.view.help.HelpView;
 	import com.clarityenglish.tensebuster.view.home.HomeView;
 	import com.clarityenglish.tensebuster.view.progress.ProgressView;

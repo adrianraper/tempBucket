@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<!--- The default skin class for a Spark ToggleButton component.  
+
+     @see spark.components.ToggleButton
+        
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                   xmlns:s="library://ns.adobe.com/flex/spark" 
+                   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+                   minHeight="21" 
+                   alpha.disabledStates="0.5" xmlns:home="skins.activereading.assets.home.*">
+	<fx:Metadata>
+		<![CDATA[
+			[HostComponent("spark.components.ButtonBarButton")]
+		]]>
+	</fx:Metadata>
+    
+    <!-- host component -->
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" stateGroups="overStates" />
+        <s:State name="down" stateGroups="downStates" />
+        <s:State name="disabled" stateGroups="disabledStates" />
+        <s:State name="upAndSelected" stateGroups="selectedStates, selectedUpStates" />
+        <s:State name="overAndSelected" stateGroups="overStates, selectedStates" />
+        <s:State name="downAndSelected" stateGroups="downStates, selectedStates" />
+        <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
+    </s:states>
+    
+	<s:HGroup gap="5" verticalCenter="0" verticalAlign="middle">
+		<s:Group>
+			<home:menuicon1 visible="{hostComponent.data.courseClass == 'elementary'}" scaleX="0.6" scaleY="0.6" />
+			<home:menuicon2 visible="{hostComponent.data.courseClass == 'preintermediate'}" scaleX="0.6" scaleY="0.6" />
+			<home:menuicon3 visible="{hostComponent.data.courseClass == 'intermediate'}" scaleX="0.6" scaleY="0.6" />
+			<home:menuicon4 visible="{hostComponent.data.courseClass == 'upperintermediate'}" scaleX="0.6" scaleY="0.6" />
+			<home:menuicon5 visible="{hostComponent.data.courseClass == 'preadvanced'}" scaleX="0.6" scaleY="0.6" />
+			<home:menuicon6 visible="{hostComponent.data.courseClass == 'advanced'}" scaleX="0.6" scaleY="0.6" />
+		</s:Group>
+		
+		<!-- layer 8: icon and text -->
+		<!---  @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
+		<!--- source="{(hostComponent as ButtonBarButton).data.courseIcon}" -->
+		<s:Label id="labelDisplay"
+				 maxDisplayedLines="1"
+				 color="0x303030"
+				 color.selectedUpStates="0x303030"
+				 color.over="0x303030"
+				 color.up="0xCCCCCC"
+				 fontSize="14" fontWeight="bold" fontFamily="HelveticaMd">
+		</s:Label>
+	</s:HGroup>  
+</s:SparkSkin>

@@ -1,0 +1,251 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace activereading "com.clarityenglish.activereading.*";
+@namespace login "com.clarityenglish.activereading.view.login.*";
+@namespace home "com.clarityenglish.activereading.view.home.*";
+@namespace homeui "com.clarityenglish.activereading.view.home.ui.*";
+@namespace homeuitb "com.clarityenglish.tensebuster.view.home.ui.*";
+@namespace title "com.clarityenglish.activereading.view.title.*";
+@namespace exercise "com.clarityenglish.activereading.view.exercise.*";
+@namespace exerciseui "com.clarityenglish.activereading.view.exercise.ui.*";
+@namespace progress "com.clarityenglish.activereading.view.progress.*";
+@namespace progressui "com.clarityenglish.bento.view.progress.ui.*";
+@namespace recorder "com.clarityenglish.bento.view.recorder.*";
+@namespace warning "com.clarityenglish.bento.view.warning.*";
+@namespace marking "com.clarityenglish.bento.view.marking.*";
+
+global {
+	outlineColors: #C63C47, #E6641E, #CF7D00, #47613D, #1E7496, #554091;
+	
+	homeButtonTopColors: #FF6E6E, #FF8340, #FCA723, #5D9948, #539CAD, #9E84E8;
+	homeButtonTopMidColors: #FFC4C4, #FFB891, #FFDBA2, #BAD4B2, #B0E3F4, #D8D3F5;
+	homeButtonBottomMidColors: #FF9A99, #FA9C69, #FFB74A, #9FC791, #86CADB, #C0AEF5;
+	
+	homeButtonTopOverColors: #FFBFBF, #FFA373, #FFC05E, #94B586, #A3CAD1, #C6B5F5;
+	homeButtonTopMidOverColors: #FFE3E3, #FFD9C4, #FFEAC9, #E2F5D9, #D3EDF4, #EEE8FF;
+	homeButtonBottomMidOverColors: #FFC6C4, #FCB892, #FFD594, #CFE0CA, #AFD8E2, #DFD7F7;
+	
+	homeNumberTagTopColors: #B3343E, #BD4D11, #C27500, #314A28, #146384, #3B2773;
+	homeNumberTagTopMidColors: #E64652, #D95E1C, #E68B00, #506946, #2284A8, #6F5BA6;
+	homeNumberTagBottomMidColors: #F05B67, #ED671F, #E08800, #597050, #3A7E9A, #7260A6;
+	
+	homeButtonLabelColors: #B51223, A13300, #723600, #30541C, #0D5673, #4A3191;
+	
+	textBackgroundColor: #FBDBDE, #FCD0BD, #FFDFB4, #DBECCA, #CFECF6, #DDD2E8;
+	progressAnalysisTextColors: #C63D47, #E96024, #D78D28, #47613D, #1E7496, #442E88;
+	
+	elementaryCircleWedgeColors: #C63D47, #F8B5BC, #EE3745, #E57780, #77171F, #C63D47, #8C1922, #E25F69, #703135, #DF1E26;
+	
+	exerciseDisabledColors: #E6AFBA, #E8CC9E, #CFD67E, #92CAD6, #BBB3E6;
+	
+	markingColours: #2CA874, #E61E1E, #0066FF;
+}
+
+activereading|ActiveReadingApplication {
+	skinClass: ClassReference("skins.activereading.ActiveReadingApplicationSkin");
+}
+
+login|LoginView {
+	skinClass: ClassReference("skins.activereading.LoginSkin");
+}
+
+login|LoginView s|Button#loginButton {
+	skinClass: ClassReference("skins.activereading.login.LoginButtonSkin");
+}
+
+login|LoginView s|Button#forgetPasswordButton {
+	skinClass: ClassReference("skins.activereading.login.LoginForgotPasswordButton");
+}
+
+login|LoginView s|TextInput {
+	skinClass: ClassReference("skins.activereading.login.TextInputSkin");
+}
+
+title|TitleView {
+	skinClass: ClassReference("skins.activereading.TitleSkin");
+} 
+
+home|HomeView {
+	skinClass: ClassReference("skins.activereading.HomeSkin");
+}
+
+home|HomeView s|List#unitList {
+	skinClass: ClassReference("skins.activereading.home.UnitListSkin");
+}
+
+homeui|ARCourseSelector homeui|LevelButton#elementary {
+	skinClass: ClassReference("skins.activereading.home.ElementaryLevelButtonSkin");
+}
+
+homeui|ARCourseSelector homeui|LevelButton#preInter {
+	skinClass: ClassReference("skins.activereading.home.PreInterLevelButtonSkin");
+}
+
+homeui|ARCourseSelector homeui|LevelButton#intermediate {
+	skinClass: ClassReference("skins.activereading.home.IntermediateLevelButtonSkin");
+}
+
+homeui|ARCourseSelector homeui|LevelButton#upperInter {
+	skinClass: ClassReference("skins.activereading.home.UpperInterLevelButtonSkin");
+}
+
+homeui|ARCourseSelector homeui|LevelButton#preAdvanced {
+	skinClass: ClassReference("skins.activereading.home.PreAdvancedLevelButtonSkin");
+}
+
+homeui|ARCourseSelector homeui|LevelButton#advanced {
+	skinClass: ClassReference("skins.activereading.home.AdvancedLevelButtonSkin");
+}
+
+homeui|MenuButton#exerciseUnopenedMenuButton {
+	skinClass: ClassReference("skins.activereading.home.ExerciseUnopenedMenuButtonSkin");
+}
+
+homeui|MenuButton#exerciseOpenedMenuButton {
+	skinClass: ClassReference("skins.activereading.home.ExerciseOpenedMenuButtonSkin");
+}
+
+exercise|ExerciseView {
+	skinClass: ClassReference("skins.activereading.ExerciseSkin");
+}
+
+exercise|ExerciseView exerciseui|WindowShade {
+	skinClass: ClassReference("skins.activereading.exercise.WindowShadeSkin");
+}
+
+exercise|ExerciseView exerciseui|WindowShade s|Button#thumbButton {
+	skinClass: ClassReference("skins.activereading.exercise.WindowShadeThumbButtonSkin");
+}
+
+exercise|ExerciseView s|Button#backButton {
+	skinClass: ClassReference("skins.activereading.exercise.BackButtonSkin");
+}
+
+exercise|ExerciseView s|Button#forwardButton {
+	skinClass: ClassReference("skins.activereading.exercise.ForwardButtonSkin");
+}
+
+exercise|ExerciseView s|Button#markingButton {
+	skinClass: ClassReference("skins.activereading.exercise.MarkingButtonSkin");
+}
+
+exercise|ExerciseView s|Button#recorderButton {
+	skinClass: ClassReference("skins.activereading.exercise.RecorderButtonSkin");
+}
+
+exercise|ExerciseView s|Button#startAgainButton {
+	skinClass: ClassReference("skins.activereading.exercise.StartAgainButton");
+}
+
+exercise|ExerciseView s|Button#backToMenuButton {
+	skinClass: ClassReference("skins.activereading.exercise.BackToMenuButton");
+}
+
+exercise|ExerciseView s|Button#progressButton {
+	skinClass: ClassReference("skins.activereading.exercise.ProgressButtonSkin");
+}
+
+exercise|ExerciseView s|Button#readButton {
+	skinClass: ClassReference("skins.activereading.exercise.ReadButtonSkin");
+}
+
+exercise|ExerciseView s|Button#feedbackButton {
+	skinClass: ClassReference("skins.activereading.exercise.FeedbackButtonSkin");
+}
+
+warning|WarningView {
+	skinClass: ClassReference("skins.activereading.exercise.warning.WarningSkin");
+}
+
+marking|MarkingView {
+	skinClass: ClassReference("skins.activereading.exercise.marking.MarkingSkin");
+}
+
+marking|MarkingView s|Button {
+	skinClass: ClassReference("skins.activereading.exercise.marking.TryAgainButtonSkin");
+}
+
+marking|MarkingView s|Button#seeAnswersButton {
+	skinClass: ClassReference("skins.activereading.exercise.marking.SeeTheAnswersButtonSkin");
+}
+
+warning|WarningView s|Button#yesButton {
+	skinClass: ClassReference("skins.activereading.exercise.warning.YesButtonSkin");
+}
+
+warning|WarningView s|Button#noButton {
+	skinClass: ClassReference("skins.activereading.exercise.warning.NoButtonSkin");
+}
+	
+s|Button#compareEmptyScoreLabel, #ScoreEmptyScoreLabelButton {
+	skinClass: ClassReference("skins.activereading.progress.ui.GreyLabelButtonSkin");
+}
+
+progress|ProgressView {
+	skinClass: ClassReference("skins.activereading.ProgressSkin");
+}
+
+progress|ProgressView s|ButtonBar#progressNavBar {
+	skinClass: ClassReference("skins.activereading.progress.ui.ProgressNavBarSkin");
+}
+
+progressui|ProgressBarRenderer {
+	skinClass: ClassReference("skins.activereading.progress.ui.ProgressBarRendererSkin");
+}
+
+progressui|ProgressCourseButtonBar#progressCourseButtonBar {
+	skinClass: ClassReference("skins.activereading.progress.ui.ProgressCourseButtonBarSkin");
+}
+
+progress|ProgressCoverageView {
+	skinClass: ClassReference("skins.activereading.progress.ProgressCoverageSkin");
+}
+
+progress|ProgressCompareView {
+	skinClass: ClassReference("skins.activereading.progress.ProgressCompareSkin");
+}
+
+progress|ProgressAnalysisView {
+	skinClass: ClassReference("skins.activereading.progress.ProgressAnalysisSkin");
+}
+
+progress|ProgressScoreView {
+	skinClass: ClassReference("skins.activereading.progress.ProgressScoreSkin");
+}
+
+progress|ProgressScoreView s|DataGrid#scoreDetailsDataGrid {
+	skinClass: ClassReference("skins.activereading.progress.ui.ProgressScoreDataGridSkin");
+}
+
+/*progresstb|ProgressCertificateView {
+	skinClass: ClassReference("skins.tensebuster.progress.ProgressCertificateSkin");
+}*/
+
+s|VideoPlayer {
+	skinClass: ClassReference("skins.activereading.exercise.video.VideoPlayerSkin");
+}
+
+s|TitleWindow.RecorderTitleWindow {
+	skinClass: ClassReference("skins.activereading.exercise.recorder.RecorderTitleWindowSkin");
+}
+
+s|TitleWindow.feedbackTitleWindow {
+	skinClass: ClassReference("skins.activereading.exercise.feedback.FeedbackTitleWindowSkin");
+}
+
+s|TitleWindow.warningTitleWindow {
+	skinClass: ClassReference("skins.activereading.exercise.warning.WarningTitleWindowSkin");
+}
+
+s|TitleWindow.markingTitleWindow {
+	skinClass: ClassReference("skins.activereading.exercise.marking.MarkingTitleWindowSkin");
+}
+
+recorder|RecorderView {
+	skinClass: ClassReference("skins.activereading.exercise.recorder.RecorderSkin");
+}
+
+recorder|WaveformView {
+	skinClass: ClassReference("skins.activereading.exercise.recorder.WaveformSkin");
+}

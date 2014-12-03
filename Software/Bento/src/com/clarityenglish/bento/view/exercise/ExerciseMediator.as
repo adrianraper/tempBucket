@@ -40,30 +40,29 @@
 			view.showMarking.add(onShowMarking);
 			view.nextExercise.add(onNextExercise);
 			view.previousExercise.add(onPreviousExercise);
+			view.nodeSelect.add(onNodeSelect);
 			view.printExercise.add(onPrintExercise);
 			view.backToMenu.add(onBackToMenu);
 			view.showFeedbackReminder.add(onShowFeedbackReminder); // gh#388
 			view.audioPlayed.add(onAudioPlayed); // gh#267
 			view.record.add(onRecord); // gh#267
+			view.logout.add(onLogout);
+			view.openProgress.add(onOpenProgress);
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			
+			if (view.hasOwnProperty("selectedExerciseNode"))
+				Bind.fromProperty(bentoProxy, "selectedExerciseNode").toProperty(view, "selectedExerciseNode");
+			
 			Bind.fromProperty(bentoProxy, "selectedExerciseNode").convert(function(node:XML):Href {
-				// gh#265
-				if (node) {
-					if (bentoProxy.selectedNodeType == "test") {
-						var serverSide:Boolean = true;
-					} else {
-						serverSide = false;
-					}
-				}
-				
-				return (node) ? bentoProxy.createRelativeHref(Href.EXERCISE, node.@href, serverSide) : null;
+				return (node) ? bentoProxy.createRelativeHref(Href.EXERCISE, node.@href, (bentoProxy.selectedNodeType == "test")) : null; // gh#265
 			}).toProperty(view, "href");
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			if (configProxy.getDirectStart().exerciseID && !configProxy.getDirectStart().scorm) {
 				view.isDirectStartEx = true;
 			}
+			
 			view.languageCode = configProxy.getConfig().languageCode;
 		}
 		
@@ -75,10 +74,12 @@
 			view.showMarking.remove(onShowMarking);
 			view.nextExercise.remove(onNextExercise);
 			view.previousExercise.remove(onPreviousExercise);
+			view.nodeSelect.remove(onNodeSelect);
 			view.printExercise.remove(onPrintExercise);
 			view.backToMenu.remove(onBackToMenu);
 			view.showFeedbackReminder.remove(onShowFeedbackReminder); // gh#388
-			view.audioPlayed.add(onAudioPlayed); // gh#267
+			view.audioPlayed.remove(onAudioPlayed); // gh#267
+			view.logout.remove(onLogout);
 			
 			// #414
 			sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view);
@@ -123,6 +124,8 @@
 					// #123
 					view.hasPrintStylesheet = exercise.hasPrintStylesheet();
 					
+					view.hasVideoScript = exercise.hasVideoScript();
+					
 					// #171
 					configureButtonVisibility(exercise);
 					break;
@@ -145,6 +148,8 @@
 		
 		private function configureButtonVisibility(exercise:Exercise):void {
 			if (view.markingButton) view.markingButton.visible = view.markingButton.includeInLayout = !(getExerciseProxy(exercise).exerciseMarked) && exercise.hasQuestions();
+			// gh#1113
+			if (view.startAgainButton) view.startAgainButton.visible =  view.startAgainButton.includeInLayout = exercise.hasQuestions();
 			
 			// If there is exercise feedback then show the exercise feedback button
 			// gh#413
@@ -228,6 +233,10 @@
 			sendNotification(BBNotifications.EXERCISE_SHOW_PREVIOUS);
 		}
 		
+		private function onNodeSelect(node:XML):void {
+			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, node);
+		}
+		
 		private function onBackToMenu():void {
 			sendNotification(BBNotifications.SELECTED_NODE_UP);
 		}
@@ -247,5 +256,12 @@
 			sendNotification(BBNotifications.RECORDER_SHOW);
 		}
 		
+		private function onLogout():void {
+			sendNotification(CommonNotifications.LOGOUT);
+		}
+		
+		private function onOpenProgress():void {
+			sendNotification(BBNotifications.PROGRESS_OPEN);
+		}
 	}
 }

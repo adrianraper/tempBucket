@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		initialize="onInitialize(event)" width="388" height="210">
+	
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.bento.view.marking.MarkingView")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="5" alpha="0.5" blurX="5" blurY="5" />
+		<s:DropShadowFilter id="dropShadowElementFilter" angle="70" distance="1.5" alpha="0.8" />
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[			
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var markingCount:ArrayCollection;
+			
+			protected function onInitialize(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				if (hostComponent.exerciseMark) {
+					markingCount = new ArrayCollection([{Count: hostComponent.exerciseMark.correctCount}, {Count: hostComponent.exerciseMark.incorrectCount}, {Count: hostComponent.exerciseMark.missedCount}]);
+				}
+			}
+			
+		]]>
+	</fx:Script>
+
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<s:Group id="content" width="250" height="155">
+		<s:HGroup left="16" gap="-5">
+			<mx:PieChart id="markingPieChart" width="25%" height="35%" paddingTop="10" dataProvider="{markingCount}" innerRadius="0.55">
+				<mx:series>
+					<mx:PieSeries field="Count" filters="{[]}" fills="{getStyle('markingColours')}"/>
+				</mx:series>
+			</mx:PieChart>
+			<s:VGroup paddingTop="40">
+				<s:Label id="overallScore" text="You scored {hostComponent.exerciseMark.correctPercent}% in this exercise." fontSize="12" paddingLeft="-5" />
+				<s:Spacer height="6"/>
+				<s:Label text="Correct: {hostComponent.exerciseMark.correctCount}" color="#2CA874" fontSize="12" />
+				<s:Label text="Incorrect: {hostComponent.exerciseMark.incorrectCount}" color="#E61E1E" fontSize="12" />
+				<s:Label text="Missed: {hostComponent.exerciseMark.missedCount}" color="#0066FF" fontSize="12" />
+			</s:VGroup>		
+		</s:HGroup>		
+	</s:Group>
+
+	<s:HGroup width="310" horizontalCenter="0" bottom="20" gap="12">
+		<s:Button id="tryAgainButton" height="35" width="85" color="0x333333" fontFamily="MyriadPro" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
+		<s:Button id="seeAnswersButton" height="35" width="130" color="0x333333" fontFamily="MyriadPro" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
+		<s:Button id="moveForwardButton" height="35" width="90" color="0x333333" fontFamily="MyriadPro" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
+	</s:HGroup>
+
+</s:Skin>

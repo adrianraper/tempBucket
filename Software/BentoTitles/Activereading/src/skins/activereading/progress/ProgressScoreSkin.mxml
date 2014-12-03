@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5">
+	
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.activereading.view.progress.ProgressScoreView")]
+	</fx:Metadata>
+
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import spark.events.IndexChangeEvent;
+			
+			private function courseChangeHandler(event:IndexChangeEvent):void {
+				hostComponent.onCourseSelect(event.target.selectedItem.label.toLowerCase());
+			}
+			
+			/**
+			 * Sort the scores so that --- is less than 0
+			 */
+			private function sortScores(obj1:Object, obj2:Object, gc:GridColumn):int {
+				if (obj1[gc.dataField] == obj2[gc.dataField])
+					return 0;
+				
+				if (obj1[gc.dataField].indexOf('-') >= 0)
+					return -1;
+				
+				if (obj2[gc.dataField].indexOf('-') >= 0)
+					return 1;
+				
+				if (Number(obj1[gc.dataField]) < Number(obj2[gc.dataField]))
+					return -1;
+				
+				return 1;
+			}
+			
+			private function sortDuration(obj1:Object, obj2:Object, gc:GridColumn):int {
+				if (obj1[gc.dataField] == obj2[gc.dataField])
+					return 0;
+				
+				if (obj1[gc.dataField].indexOf('-') >= 0)
+					return -1;
+				
+				if (obj2[gc.dataField].indexOf('-') >= 0)
+					return 1;
+				
+				if (Number(obj1[gc.dataField]) < Number(obj2[gc.dataField]))
+					return -1;
+				
+				return 1;
+			}
+			
+			// Sort unit names with numbers in them so that Set 2 task 2 is less than Set 12 task 1
+			private function sortUnits(obj1:Object, obj2:Object, gc:GridColumn):int {
+				var df1:String = obj1[gc.dataField].toString();
+				var df2:String = obj2[gc.dataField].toString();
+				
+				if (df1 == '')
+					return -1;
+				
+				if (df2 == '')
+					return 1;
+				
+				if (df1 == df2)
+					return 0;
+				
+				if ((df1.substr(0, 4).toLowerCase() == 'set ') && (df2.substr(0, 4).toLowerCase() == 'set ')) {
+					
+					// Grab the number at the beginning of the string
+					var numberRegexPattern:RegExp = /\d*/;
+					var df1n:Number = new Number(numberRegexPattern.exec(df1.substr(4)));
+					var df2n:Number = new Number(numberRegexPattern.exec(df2.substr(4)));
+					if (df1n < df2n)
+						return -1;
+					if (df1n == df2n) {
+						// Do a normal sort after that (we never get to 10 with tasks!)
+						if (df1.substr(4).toLowerCase() < df2.substr(4).toLowerCase())
+							return -1;
+					}
+				}
+				
+				// Regular alphabetic checking
+				if (df1 < df2)
+					return -1;
+				
+				return 1;
+			}
+			
+			/**
+			 * Display duration in a friendly format
+			 * Convert from seconds to a nice string
+			 */
+			private function displayDuration(score:Object, column:GridColumn):String {
+				
+				var seconds:Number = Number(score.@duration);
+				var minutes:Number = Math.round(seconds / 60);
+				
+				// #318. Duration of 0 means offline exercise (download a pdf), so should show as ---
+				if (seconds == 0)
+					return "---";
+				
+				if (minutes < 1)
+					return "<" + pluralUnits(1, "min");
+				
+				if (minutes < 60)
+					return pluralUnits(minutes, "min");
+				
+				// Any figures after here will use hour and modulus of the minutes
+				minutes = Math.floor(seconds / 60);
+				var hours:Number = Math.floor(minutes / 60);
+				minutes = minutes % 60;
+				
+				return pluralUnits(hours, "hr") + " " + pluralUnits(minutes, "min");
+			}
+			
+			/**
+			 * Utility function for 0, 1 and more of a unit
+			 */
+			private function pluralUnits(value:uint, unit:String):String {
+				if (value == 0)
+					return "";
+				if (value == 1)
+					return "1 " + unit;
+				return value.toString() + " " + unit + "s";
+			}
+			
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
+				
+				progressBar.trackColour = getStyle("homeNumberTagTopMidColors")[hostComponent.courseIndex];
+				progressBar.fillColour = getStyle("homeNumberTagBottomMidColors")[hostComponent.courseIndex];
+				scoreDetailsDataGrid.setStyle("headerColor", getStyle("textBackgroundColor")[hostComponent.courseIndex]);
+				
+				if (scoreDetailsDataGrid.dataProviderLength == 0) {
+					scoreDetailsDataGrid.dataProvider.itemUpdated(null);
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="45" right="45" height="60" useHandCursor="true" buttonMode="true">
+		<ui:layout>
+			<s:ButtonBarHorizontalLayout />
+		</ui:layout>
+	</ui:ProgressCourseButtonBar>
+	
+	<s:Rect top="60" left="45" right="45" height="1">
+		<s:fill>
+			<s:SolidColor color="#000000" />
+		</s:fill>
+	</s:Rect>
+	
+	<ui:ProgressBarRenderer id="progressBar" top="75" left="45" right="45" />
+	
+	<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="45" right="45" top="130" bottom="60" rowHeight="30">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn id="scoreGridC1" dataField="@unitCaption" sortCompareFunction="sortUnits" width="{(width - 94) * 0.25}" />
+				<s:GridColumn id="scoreGridC2" dataField="@caption" width="{(width - 94) * 0.3}" />
+				<s:GridColumn id="scoreGridC3" dataField="@displayScore" sortCompareFunction="sortScores" width="{(width - 94) * 0.1}" />
+				<s:GridColumn id="scoreGridC4" dataField="@duration" sortCompareFunction="sortDuration" labelFunction="displayDuration" width="{(width - 94) * 0.15}" />
+				<s:GridColumn id="scoreGridC5" dataField="@datetime" width="{(width - 94) * 0.2}"/>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<s:Button id="ScoreEmptyScoreLabelButton" fontSize="12" fontWeight="normal" horizontalCenter="0" verticalCenter="40" />
+</s:Skin>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" 
+		xmlns:exercise="skins.tensebuster.assets.exercise.*" 
+		xmlns:progress="com.clarityenglish.activereading.view.progress.*" xmlns:progresstb="com.clarityenglish.tensebuster.view.progress.*" xmlns:home="skins.tensebuster.assets.home.*">
+	
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.activereading.view.progress.ProgressView")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" blurX="8" blurY="8" alpha="0.3" distance="1" angle="180" knockout="false" />
+	</fx:Declarations>
+
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+		
+		<s:State name="coverage" stateGroups="normalStates,coverageStates"/>
+		<s:State name="compare" stateGroups="normalStates,compareStates"/>
+		<s:State name="analysis" stateGroups="normalStates,analysisStates"/>
+		<s:State name="score" stateGroups="normalStates,scoreStates"/>
+		<s:State name="certificate" stateGroups="normalStates, certificateStates"/>
+    </s:states>
+	
+	<s:HGroup width="100%" paddingLeft="40" top="105">
+		<s:ButtonBar id="progressNavBar" buttonMode="true" useHandCursor="true"/>			
+	</s:HGroup>
+	
+	<s:Group width="100%" height="100%" filters="{[dropShadowFilter]}">
+		<!--rectangle panel-->
+		<s:Rect left="29" right="29" bottom="0" top="150" radiusX="5" radiusY="5">
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="0xFFFFFF" ratio="0"/>
+					<s:GradientEntry color="0xFFFFFF" ratio="0.9"/>
+					<s:GradientEntry color="0xB3B3B3" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	
+	<s:HGroup width="100%" height="100%" top="160" left="15" bottom="10" right="15">
+		<s:Group width="100%" height="100%">
+			<s:Group width="100%" height="100%" includeIn="normalStates">
+				<progress:ProgressCoverageView id="progressCoverageView" width="100%" height="100%" includeIn="coverage" />
+				<progress:ProgressCompareView id="progressCompareView" width="100%" height="100%" includeIn="compare" />
+				<progress:ProgressAnalysisView id="progressAnalysisView" width="100%" height="100%" includeIn="analysis" />
+				<progress:ProgressScoreView id="progressScoreView"   width="100%" height="100%" includeIn="score" />
+				<!--progresstb:ProgressCertificateView id="progressCertificateView" width="100%" height="100%" includeIn="certificate" /-->
+			</s:Group>
+		</s:Group>
+	</s:HGroup>
+</s:Skin>

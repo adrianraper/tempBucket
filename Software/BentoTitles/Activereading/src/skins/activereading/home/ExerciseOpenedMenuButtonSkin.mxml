@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.activereading.view.home.ui.MenuButton")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="100" distance="1" alpha="0.4"/>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			public function getOutlineColor(index:Number):Number {
+				var colors:Array = getStyle("outlineColors");
+				return colors[index];
+			}
+			
+			public function getTopColor(index:Number):Number {
+				var colors:Array = getStyle("homeButtonTopColors");
+				return colors[index];
+			}
+			
+			public function getTopMidColor(index:Number):Number {
+				var colors:Array = getStyle("homeButtonTopMidColors");
+				return colors[index];
+			}
+			
+			public function getBottomMidColor(index:Number):Number {
+				var colors:Array = getStyle("homeButtonBottomMidColors");
+				return colors[index];
+			}
+			
+			public function getTopOverColor(index:Number):Number {
+				var colors:Array = getStyle("homeButtonTopOverColors");
+				return colors[index];
+			}
+			
+			public function getTopMidOverColor(index:Number):Number {
+				var colors:Array = getStyle("homeButtonTopMidOverColors");
+				return colors[index];
+			}
+			
+			public function getBottomMidOverColor(index:Number):Number {
+				var colors:Array = getStyle("homeButtonBottomMidOverColors");
+				return colors[index];
+			}
+			
+			public function getLabelColor(index:Number):Number {
+				var colors:Array = getStyle("homeButtonLabelColors");
+				return colors[index];
+			}
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="down" />
+		<s:State name="over" />
+		<s:State name="up" />
+	</s:states>
+	
+	<s:Rect id="donePath" left="2" height="100%" width="100%" radiusX="6" radiusY="6" filters="{[dropShadowFilter]}">
+		<s:fill>			
+			<s:LinearGradient rotation="270">
+				<s:GradientEntry ratio="0" color="{getTopColor(hostComponent.courseIndex)}" color.down="{getTopOverColor(hostComponent.courseIndex)}" color.over="{getTopOverColor(hostComponent.courseIndex)}"/>
+				<s:GradientEntry ratio="0.169041" color="{getTopMidColor(hostComponent.courseIndex)}" color.down="{getTopMidOverColor(hostComponent.courseIndex)}" color.over="{getTopMidOverColor(hostComponent.courseIndex)}"/>
+				<s:GradientEntry ratio="0.325843" color="{getBottomMidColor(hostComponent.courseIndex)}" color.down="{getBottomMidOverColor(hostComponent.courseIndex)}" color.over="{getBottomMidOverColor(hostComponent.courseIndex)}"/>
+				<s:GradientEntry ratio="0.797753" color="{getTopMidColor(hostComponent.courseIndex)}" color.down="{getTopMidOverColor(hostComponent.courseIndex)}" color.over="{getTopMidOverColor(hostComponent.courseIndex)}"/>
+			</s:LinearGradient>
+		</s:fill>
+		<s:stroke>
+			<s:SolidColorStroke color="{getOutlineColor(hostComponent.courseIndex)}" />
+		</s:stroke>
+	</s:Rect>
+	
+	<s:Label id="labelDisplay"
+			 verticalAlign="middle"
+			 maxDisplayedLines="1"
+			 left="20" verticalCenter="3" fontSize="14"
+			 color="{getLabelColor(hostComponent.courseIndex)}">
+	</s:Label>
+</s:Skin>
