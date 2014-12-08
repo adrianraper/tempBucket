@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<id>/area1/ActiveReading in localhost</id>
+	<dbHost>2</dbHost>
+	<productCode>56</productCode>
+	<loginOption>128</loginOption>
+	<useCacheBuster>true</useCacheBuster>
+	<courseFile>menu-{productVersion}.xml</courseFile>
+	<platform>tablet|android</platform>
+	<sharedMedia />
+	<brandingMedia />
+	
+	<language>EN</language>
+	<contentPath>http://dock.contentbench/Content/</contentPath>
+	
+	<remoteDomain>http://dock.projectbench/</remoteDomain>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteService>ActiveReadingService</remoteService>
+	
+	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+	
+	<rememberLogin>true</rememberLogin>
+	<disableAutoTimeout>true</disableAutoTimeout>
+	
+	<checkNetworkAvailabilityUrl>http://www.clarityenglish.com</checkNetworkAvailabilityUrl>
+	<checkNetworkAvailabilityInterval>30</checkNetworkAvailabilityInterval>
+	<checkNetworkAvailabilityReconnectInterval>5</checkNetworkAvailabilityReconnectInterval>
+	
+	<randomizedTestQuestionTotalNumber></randomizedTestQuestionTotalNumber>
+</config>
+

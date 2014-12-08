@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<activereading:ActiveReadingApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								  		xmlns:s="library://ns.adobe.com/flex/spark"
+										xmlns:activereading="com.clarityenglish.activereading.*"
+										width="100%" height="100%" applicationDPI="160" runtimeDPIProvider="org.davekeen.core.RetinaRuntimeDPIProvider"
+										initialize="onInitialize(event)"  applicationComplete="onApplicationComplete(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.activereading.ActiveReadingApplicationFacade;
+			import com.clarityenglish.common.vo.config.BentoError;
+			import com.clarityenglish.components.SpinnerDropDownList;
+			import com.clarityenglish.textLayout.conversion.XHTMLImporter;
+			import com.clarityenglish.textLayout.elements.SelectElement;
+			import com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator;
+			
+			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+			
+			import org.davekeen.delegates.RemoteDelegate;
+			
+			import skins.bento.components.SpinnerDropDownListSkin;
+			
+			import spark.components.DropDownList;
+			
+			protected function onInitialize(event:FlexEvent):void {
+				// Determine what platform we are running on
+				var platform:String = Capabilities.version.split(" ")[0];
+				switch (platform) {
+					case "IOS":
+						// Set the iOS config xml file
+						FlexGlobals.topLevelApplication.parameters.configFile = "ios-config.xml";
+						XHTMLImporter.media = "ios";
+						break;
+					case "AND":
+						// Set the Android config xml file as well as getting the prefix, product code and font size from the iOS settings
+						FlexGlobals.topLevelApplication.parameters.configFile = "android-config.xml";
+						XHTMLImporter.media = "android";
+						break
+					default:
+						throw new Error("Unsupported platform - " + Capabilities.version);
+				}
+				
+				// Hardcode the font offset to +4 for tablet gh#55
+				CSSApplicator.fontSizeOffset = 3;
+				
+				// The AIR application uses a custom Spinner instead of the normal dropdown
+				SelectElement.elementFactoryFunction = function():DropDownList {
+					var dropDownList:DropDownList = new SpinnerDropDownList();
+					dropDownList.setStyle("skinClass", SpinnerDropDownListSkin);
+					return dropDownList;
+				}
+				
+				// #383 No busy cursor on AIR
+				RemoteDelegate.setShowBusyCursor(false);
+				
+				// #444 Use gestures for swiping (may eventually be used in the help screen)
+				Multitouch.inputMode = MultitouchInputMode.GESTURE;
+				
+				// #479 For the AIR version we get the version number out of the xml descripter
+				var descriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
+				var ns:Namespace = descriptor.namespace();
+				versionNumber = descriptor.ns::versionNumber.toString();
+				
+				// Set the facade
+				facade = ActiveReadingApplicationFacade.getInstance();
+			}
+			
+			protected function onApplicationComplete(event:FlexEvent):void {
+				FlexGlobals.topLevelApplication.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);
+			}
+			
+			protected function onUncaughtError(event:UncaughtErrorEvent):void {
+				var bentoError:BentoError = new BentoError();
+				
+				if (event.error is Error) {
+					log.error((event.error as Error).message + " - " + (event.error as Error).getStackTrace());
+				} else if (event.error is ErrorEvent) {
+					log.error((event.error as ErrorEvent).toString());
+				} else {
+					log.error("Unknown: " + event.error);
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Style source="activereading.css" />
+	<fx:Style source="activereadingair.css" />
+	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace activereading "com.clarityenglish.activereading.*";
+		
+		global {
+			fontFamily: Verdana;
+			fontLookup: embeddedCFF;
+			fontAntiAliasType: advanced;
+		}
+		
+		@font-face {
+			src: url("skins/activereading/assets/HelveticaNeueLTStd-Md.otf");
+			fontFamily: HelveticaMd;
+			fontWeight: bold;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+		
+		@font-face {
+			src: url("skins/activereading/assets/MyriadPro-Semibold.otf");
+			fontFamily: MyriadPro;
+			fontStyle: normal;
+			fontWeight: bold;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+	</fx:Style>
+	
+</activereading:ActiveReadingApplication>

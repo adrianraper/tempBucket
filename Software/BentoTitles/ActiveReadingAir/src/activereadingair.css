@@ -1,0 +1,29 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace activereading "com.clarityenglish.activereading.*";
+@namespace title "com.clarityenglish.activereading.view.title.*";
+@namespace login "com.clarityenglish.activereading.view.login.*";
+
+global {
+	interactionMode: touch;
+}
+
+activereading|ActiveReadingApplication {
+	skinClass: ClassReference("skins.activereadingair.ActiveReadingApplicationSkin");
+}
+
+s|TextInput {
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 1;
+	paddingLeft: 10;
+	paddingRight: 10;
+}
+
+login|LoginView s|TextInput {
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 1;
+	paddingLeft: 10;
+	paddingRight: 10;
+}

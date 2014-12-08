@@ -1,0 +1,1 @@
+"C:\Flex\4.12_AIR4.0\bin\adt.bat" -package -target ipa-app-store -storetype pkcs12 -keystore "%USERPROFILE%\.ssh\ios-clarity\distribution\ios_distribution.p12" -storepass password -provisioning-profile "%USERPROFILE%\.ssh\ios-clarity\distribution\ActiveReading.mobileprovision" ActiveReadingAir.ipa ActiveReadingAir-app.xml ActiveReadingAir.swf ios-config.xml icons
