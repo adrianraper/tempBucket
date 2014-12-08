@@ -51,8 +51,14 @@
         <s:State name="disabled" />
     </s:states>
     
-    <!--s:SWFLoader source="@Embed(source='skins/tensebuster/assets/exercise/audio/audioThumb.png')" /-->
-	<video:videoThumb />
+   <s:Rect width="7" height="20">
+	   <s:fill>
+		   <s:LinearGradient>
+			   <s:GradientEntry color="#ED3B3F" />
+			   <s:GradientEntry color="#8F5051" />
+		   </s:LinearGradient>
+	   </s:fill>
+   </s:Rect>
     
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->

@@ -32,7 +32,7 @@
              xmlns:s="library://ns.adobe.com/flex/spark" 
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
              minWidth="21" minHeight="21" 
-             alpha.disabled="0.5" xmlns:audio="skins.tensebuster.assets.exercise.audio.*">
+             alpha.disabled="0.5">
      
     <fx:Metadata>
         <![CDATA[ 
@@ -51,8 +51,21 @@
         <s:State name="disabled" />
     </s:states>
     
-	<audio:audioTrack left="1" right="1" top="1" bottom="1" />
-    
+	<s:Rect left="-12" right="-9" top="1" bottom="1" radiusX="8" radiusY="8">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="#FCFCFC" />
+				<s:GradientEntry color="#CFCFCF" />
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+    <s:Rect left="1" right="1" top="8" bottom="7" radiusX="3" radiusY="3">
+		<s:fill>
+			<s:SolidColor color="#808080" />
+		</s:fill>
+	</s:Rect>
+	
+	
     <!-- layer 2: fill -->
     <!--- @private -->
     <!--s:Rect id="fill" left="1" right="1" top="1" bottom="1" radiusX="2">

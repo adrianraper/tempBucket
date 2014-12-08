@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="18.7793" viewWidth="16.498" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="18.779" d:pageWidth="16.498" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Group ai:seqID="1" flm:knockout="false">
+        <Group x="6.7832" ai:seqID="2" flm:knockout="false">
+          <Path winding="nonZero" ai:seqID="3" data="M1.46484 12.123C0.660156 12.123 0 11.4678 0 10.6563L0 1.46484C0 0.655273 0.660156 0 1.46484 0 2.27539 0 2.93359 0.655273 2.93359 1.46484L2.93359 10.6563C2.93359 11.4678 2.27539 12.123 1.46484 12.123L1.46484 12.123Z">
+            <fill>
+              <SolidColor color="#FFFFFF"/>
+            </fill>
+          </Path>
+        </Group>
+        <Path y="2.92969" winding="nonZero" ai:seqID="4" data="M11.3398 0 11.3398 2.45898C13.0977 3.51074 14.3008 5.40137 14.3008 7.60156 14.3008 10.9365 11.5859 13.6523 8.24805 13.6523 4.91406 13.6523 2.19922 10.9365 2.19922 7.60156 2.19922 5.4043 3.40039 3.51367 5.16016 2.45898L5.16016 0C2.14648 1.22949
+ 0 4.15039 0 7.60156 0 12.1504 3.69727 15.8496 8.24805 15.8496 12.8008 15.8496 16.498 12.1504 16.498 7.60156 16.498 4.14746 14.3535 1.22754 11.3398 0Z">
+          <fill>
+            <SolidColor color="#FFFFFF"/>
+          </fill>
+        </Path>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

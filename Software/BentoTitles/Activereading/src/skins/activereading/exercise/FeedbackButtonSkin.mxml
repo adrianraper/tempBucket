@@ -31,8 +31,7 @@
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
              xmlns:s="library://ns.adobe.com/flex/spark" 
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-             minWidth="21" minHeight="21" 
-             alpha.disabled="0.5">
+             minWidth="21" minHeight="21">
      
     <fx:Metadata>
         <![CDATA[ 
@@ -56,15 +55,24 @@
     </s:states>
     
 	<s:Group top.over="2" top.down="2" top.up="0">
-		<s:Path filters.up="{[dropShadowFilter]}" data="M108 0 108 24.499C108 26.1494 106.677 27.7646 105.059 28.0898L56.9414 37.7559C55.3232 38.0811 52.6758 38.0811 51.0586 37.7559L2.94141 28.0898C1.32373 27.7646 0 26.1494 0 24.499L0 0 108 0Z">
+		<s:Path filters.up="{[dropShadowFilter]}" data="M116.684 0 116.684 27C116.684 30.2998 113.984 33 110.684 33L16 33C12.7002 33 9.21729 30.416 8.26025 27.2578L0 0 116.684 0Z">
 			<s:fill>
-				<s:SolidColor color="#005454"/>
+				<s:LinearGradient x="58.3418" y="0" scaleX="33.0005" rotation="90">
+					<s:GradientEntry ratio="0.286496" color="#FFFFFF"/>
+					<s:GradientEntry ratio="1" color="#E6E6E6"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Path>
+		<s:Path data="M118.031 1 118.031 28C118.031 31.2998 115.331 34 112.031 34L17.3477 34C14.0479 34 10.5649 31.416 9.60791 28.2578L1.34766 1 118.031 1ZM119.031 0 0 0 8.65088 28.5479C9.729 32.1055 13.6304 35 17.3477 35L112.031 35C115.892 35 119.031 31.8594 119.031
+			  28L119.031 0 119.031 0Z">
+			<s:fill>
+				<s:SolidColor color="#999999"/>
 			</s:fill>
 		</s:Path>
 		
-		<s:Path top="10" left="10" data="M8.56348 0C3.83594 0 0 2.48828 0 5.55664 0 8.62451 3.83594 11.1128 8.56348 11.1128L8.62207 11.1108 11.3623 14.6479 11.9346 10.6636C14.9863 9.81396 17.126 7.84766 17.126 5.55664 17.126 2.48828 13.292 0 8.56348 0Z">
+		<s:Path top="11" left="20" data="M8.56348 0C3.83594 0 0 2.48828 0 5.55664 0 8.62451 3.83594 11.1128 8.56348 11.1128L8.62207 11.1108 11.3623 14.6479 11.9346 10.6636C14.9863 9.81396 17.126 7.84766 17.126 5.55664 17.126 2.48828 13.292 0 8.56348 0Z">
 			<s:fill>
-				<s:SolidColor color="#FFFFFF"/>
+				<s:SolidColor color="#333333"/>
 			</s:fill>
 		</s:Path>
 		
@@ -73,7 +81,7 @@
 		<s:Label id="labelDisplay"
 				 textAlign="center"
 				 maxDisplayedLines="1"
-				 left="33" top="11" fontFamily="MyriadPro" fontWeight="bold">
+				 right="15" top="13" fontFamily="MyriadPro" fontWeight="bold">
 		</s:Label>
 	</s:Group>
 </s:SparkButtonSkin>

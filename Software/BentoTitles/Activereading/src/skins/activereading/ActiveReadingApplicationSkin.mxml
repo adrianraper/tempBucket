@@ -44,13 +44,4 @@
 		<credits:CreditsView id="creditsView" width="100%" height="100%" includeIn="credits" />
 		<nonetwork:NoNetworkView id="noNetworkView" verticalCenter="0" horizontalCenter="0" includeIn="nonetwork" />
 	</s:Group>
-	
-	<!-- Footer --> 
-	<s:Group horizontalCenter="0" height="37" bottom="0" excludeFrom="login">
-		<s:HGroup right="10" top="12">
-			<s:Label id="versionLabel" text="v{hostComponent.versionNumber}" color="#FFFFFF" fontSize="12" paddingTop="6" />
-			<s:Label id="copyrightLabel" text="© Clarity Language Consultants Ltd, 1993-2014. All rights reserved." color="#FFFFFF" fontSize="12" paddingTop="6" />
-		</s:HGroup>		
-	</s:Group>
-	
 </s:Skin>

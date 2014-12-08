@@ -16,12 +16,14 @@ package com.clarityenglish.activereading.view.exercise {
 	
 	import skins.activereading.exercise.ExerciseUnitListItemRenderer;
 	import skins.activereading.exercise.WindowShadeSkin;
+	import skins.activereading.exercise.video.VideoPlayerSkin;
 	
 	import spark.components.Button;
 	import spark.components.Group;
 	import spark.components.HGroup;
 	import spark.components.List;
 	import spark.components.RichEditableText;
+	import spark.components.VideoPlayer;
 	import spark.utils.TextFlowUtil;
 	
 	public class ExerciseView extends com.clarityenglish.bento.view.exercise.ExerciseView {
@@ -109,9 +111,7 @@ package com.clarityenglish.activereading.view.exercise {
 			var component:Object = event.target;
 			
 			while(component) {
-				if (component is WindowShadeSkin) { // detect if user click on window shade
-					break;
-				} else if (component == rollOutHGroup) { // detect if user click on roll out HGroup
+				if (component is WindowShadeSkin || component == rollOutHGroup || component is VideoPlayerSkin) { // detect if user click on window shade
 					break;
 				}
 				component = component.parent;
@@ -121,7 +121,7 @@ package com.clarityenglish.activereading.view.exercise {
 				windowShade.close();
 			} 
 			
-			if (component != rollOutHGroup) {
+			if ((component != rollOutHGroup) && !(component is VideoPlayerSkin)) {
 				rollOutTextGroup.width = 0;
 			}
 		}

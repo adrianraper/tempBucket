@@ -31,8 +31,7 @@
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
              xmlns:s="library://ns.adobe.com/flex/spark" 
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-             minWidth="21" minHeight="21" 
-             alpha.disabled="0.5">
+             minWidth="21" minHeight="21">
      
     <fx:Metadata>
         <![CDATA[ 
@@ -56,15 +55,23 @@
     </s:states>
     
 	<s:Group top.over="2" top.down="2" top.up="0">
-		<s:Path filters.up="{[dropShadowFilter]}" data="M0 0 0 24.6421C0 26.292 1.57373 28.0171 3.49658 28.4756L42.0034 37.6563C43.9263 38.1147 47.0737 38.1147 48.9966 37.6563L87.5034 28.4756C89.4263 28.0171 91 26.292 91 24.6421L91 0 0 0Z">
+		<s:Path filters.up="{[dropShadowFilter]}" data="M0 0 0 27C0 30.2998 2.7002 33 6 33L84.6519 33C87.9517 33 91.4351 30.416 92.3921 27.2578L100.652 0 0 0Z">
 			<s:fill>
-				<s:SolidColor color="#025555"/>
+				<s:LinearGradient x="50.3257" y="0" scaleX="33" rotation="90">
+					<s:GradientEntry ratio="0.286496" color="#FFFFFF"/>
+					<s:GradientEntry ratio="1" color="#E6E6E5"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Path>
+		<s:Path data="M101.652 1 93.3921 28.2578C92.4351 31.416 88.9517 34 85.6519 34L7 34C3.7002 34 1 31.2998 1 28L1 1 101.652 1M103 0 0 0 0 28C0 31.8599 3.14014 35 7 35L85.6519 35C89.3696 35 93.271 32.1055 94.3491 28.5479L103 0 103 0Z">
+			<s:fill>
+				<s:SolidColor color="#999999"/>
 			</s:fill>
 		</s:Path>
 		
-		<s:Path top="12" right="10" data="M-0.000488281 0 8.625 4.98047 -0.000488281 9.95996 -0.000488281 0Z">
+		<s:Path top="14" right="18" data="M-0.000488281 0 8.625 4.98047 -0.000488281 9.95996 -0.000488281 0Z">
 			<s:fill>
-				<s:SolidColor color="#FFFFFF"/>
+				<s:SolidColor color="#333333"/>
 			</s:fill>
 		</s:Path>
 		
@@ -73,7 +80,7 @@
 		<s:Label id="labelDisplay"
 				 textAlign="center"
 				 maxDisplayedLines="1"
-				 left="12" top="11" fontFamily="MyriadPro" fontWeight="bold">
+				 left="15" top="13" fontFamily="MyriadPro" fontWeight="bold">
 		</s:Label>
 	</s:Group>
     

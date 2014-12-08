@@ -47,7 +47,6 @@
 			view.audioPlayed.add(onAudioPlayed); // gh#267
 			view.record.add(onRecord); // gh#267
 			view.logout.add(onLogout);
-			view.openProgress.add(onOpenProgress);
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			
@@ -258,10 +257,6 @@
 		
 		private function onLogout():void {
 			sendNotification(CommonNotifications.LOGOUT);
-		}
-		
-		private function onOpenProgress():void {
-			sendNotification(BBNotifications.PROGRESS_OPEN);
 		}
 	}
 }

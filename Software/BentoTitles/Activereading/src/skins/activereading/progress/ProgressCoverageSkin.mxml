@@ -41,6 +41,12 @@
         <s:State name="disabled" />
     </s:states>
 	
+	<!--Gird and book-->
+	<s:Group bottom="0" right="10" width="550" height="280">
+		<s:SWFLoader source="@Embed(source='skins/activereading/assets/progress/progressBook.png')" bottom="-10" horizontalCenter="0" />
+		<s:SWFLoader source="@Embed(source='skins/activereading/assets/progress/progressGirl.png')" bottom="0" horizontalCenter="0" />
+	</s:Group>
+	
 	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="45" right="45" height="60" buttonMode="true" useHandCursor="true">
 		<ui:layout>
 			<s:ButtonBarHorizontalLayout />

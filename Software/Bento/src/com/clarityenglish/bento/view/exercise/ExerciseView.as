@@ -52,9 +52,6 @@ package com.clarityenglish.bento.view.exercise {
 		[SkinPart]
 		public var logoutButton:Button;
 		
-		[SkinPart]
-		public var progressButton:Button;
-		
 		[SkinPart(required="true")]
 		public var dynamicView:DynamicView;
 		
@@ -167,7 +164,6 @@ package com.clarityenglish.bento.view.exercise {
 		public var audioPlayed:Signal = new Signal(String); // gh#267
 		public var record:Signal = new Signal(); // gh#267 
 		public var logout:Signal = new Signal();
-		public var openProgress:Signal = new Signal();
 		
 		public function ExerciseView() {
 			super();
@@ -256,10 +252,6 @@ package com.clarityenglish.bento.view.exercise {
 					ruleButton.label = copyProvider.getCopyForId("ruleButton");
 					ruleButton.addEventListener(MouseEvent.CLICK, onMouseClick);
 					break;
-				case progressButton:
-					progressButton.label = copyProvider.getCopyForId("myProgress");
-					progressButton.addEventListener(MouseEvent.CLICK, onProgressButtonClick);
-					break;
 			}
 		}
 		
@@ -273,10 +265,6 @@ package com.clarityenglish.bento.view.exercise {
 			var url:String = config.contentRoot + config.account.getTitle().contentLocation + "/" + _ruleLink;
 			var urlRequest:URLRequest = new URLRequest(url);
 			navigateToURL(urlRequest, "_blank");
-		}
-		
-		protected function onProgressButtonClick(event:MouseEvent):void {
-			openProgress.dispatch();
 		}
 		
 	}

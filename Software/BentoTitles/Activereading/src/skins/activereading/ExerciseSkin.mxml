@@ -39,59 +39,46 @@
 		</s:Rect>
 	</s:Group>
 	
-	<!--Top control bar background-->
-	<s:Rect width="100%" height="75">
-		<s:fill>
-			<s:SolidColor color="#F5F5F5" />
-		</s:fill>
-	</s:Rect>
-	
-	<!--Top control bar button-->
-	<s:HGroup top="0" right="50" gap="10">
-		<s:Button id="backToMenuButton" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
-		<s:Button id="progressButton" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
-	</s:HGroup>
-	
 	<!-- Exercise -->
-	<view:DynamicView id="dynamicView" left="15" right="15" top="124" bottom="20"/>
+	<view:DynamicView id="dynamicView" left="15" right="15" top="100" bottom="20"/>
 	
 	<!--Left patch-->
-	<s:Rect left="0" width="15" top="75" bottom="0" filters="{[dropShadowFilter]}">
+	<s:Rect left="0" width="15" top="0" bottom="0" filters="{[dropShadowFilter]}">
 		<s:fill>
 			<s:SolidColor color="#FFFFFF" />
 		</s:fill>
 	</s:Rect>
 	
 	<!--Right patch-->
-	<s:Rect right="0" width="15" top="75" bottom="0" filters="{[dropShadowFilter]}">
+	<s:Rect right="0" width="15" top="0" bottom="0" filters="{[dropShadowFilter]}">
 		<s:fill>
 			<s:SolidColor color="#FFFFFF" />
 		</s:fill>
 	</s:Rect>
 	
+	<!--Header lines-->
+	<s:HGroup width="100%" top="10" gap="0">
+		<exercise:exTopBarLTLines />
+		<exercise:exTopBarMLines width="80%" />
+		<exercise:exTopBarRTLines />
+	</s:HGroup>
+	
 	<!-- Top Left buttons -->
-	<s:HGroup left="30" top="76" includeIn="exercise" gap="3">
-		<s:Button id="backButton" color="0xFFFFFF" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}" visible="{!hostComponent.isDirectStartEx}"/>
-		<s:Button id="forwardButton" color="0xFFFFFF" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
-		<s:Button id="feedbackButton" visible="false" color="0xFFFFFF" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
+	<s:HGroup top="45" left="230" includeIn="exercise" gap="3">
+		<s:Button id="backButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}" visible="{!hostComponent.isDirectStartEx}"/>
+		<s:Button id="forwardButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
 	</s:HGroup>	
 	
 	<!-- Top Right buttons -->
-	<s:HGroup right="30" top="76" includeIn="exercise" gap="3"> 
-		<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
-		<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
-		<s:Button id="recorderButton" color="0xFFFFFF" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
+	<s:HGroup right="75" top="45" includeIn="exercise" gap="3"> 
+		<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
+		<s:Button id="feedbackButton" visible="false" includeInLayout="false" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
+		<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
+		<s:Button id="recorderButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
 	</s:HGroup>
 	
-	<!--Top green line-->
-	<s:Rect left="0" right="0" height="3" top="75" horizontalCenter="0">
-		<s:fill>
-			<s:SolidColor color="#003B3B" />
-		</s:fill>
-	</s:Rect>
-	
 	<!--Roll out text-->
-	<s:HGroup id="rollOutHGroup" top="192" right="302" gap="-6" visible="{hostComponent.hasVideoScript}">
+	<s:HGroup id="rollOutHGroup" top="170" right="302" gap="-6" visible="{hostComponent.hasVideoScript}">
 		<s:VGroup paddingTop="10" width="50">
 			<s:Button id="readButton" buttonMode="true" useHandCursor="true" />
 		</s:VGroup>
@@ -106,24 +93,26 @@
 					<s:SolidColor color="#025555" />
 				</s:fill>
 			</s:Rect>
-			<s:RichEditableText id="rollOutRichEditableText" width="80%" editable="false" verticalCenter="0" horizontalCenter="0" />
+			<s:Scroller width="80%" height="280" verticalCenter="20" horizontalCenter="0">
+				<s:RichEditableText id="rollOutRichEditableText" editable="false"/>
+			</s:Scroller>
 		</s:Group>
 	</s:HGroup>
 	
+	<!--Header-->
+	<s:HGroup width="100%" gap="0">
+		<exercise:exTopBarLT />
+		<exercise:exTopBarM width="80%" />
+		<exercise:exTopBarRT />
+	</s:HGroup>
+	
 	<!--Top raw-->
-	<s:Group top="0" horizontalCenter="0" width="370" height="59">
+	<s:Group top="0" horizontalCenter="0" width="370" height="40">
 		<s:Group width="100%" height="100%">
-			<s:Rect width="100%" height="100%" bottomLeftRadiusX="8" bottomLeftRadiusY="8" bottomRightRadiusX="8" bottomRightRadiusY="8">
-				<s:fill>
-					<s:SolidColor color="#EFEFEF" />
-				</s:fill>
-				<s:stroke>
-					<s:SolidColorStroke color="#005454" weight="2"/>
-				</s:stroke>
-			</s:Rect>
-			<s:Label text="{hostComponent.selectedExerciseNode.@caption}" horizontalCenter="0" verticalCenter="10" color="#005454" fontSize="16" fontFamily="HelveticaMd" fontWeight="bold" />
+			<exercise:dropDownMenu />
+			<s:Label text="{hostComponent.selectedExerciseNode.@caption}" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" fontSize="16" fontFamily="HelveticaMd" fontWeight="bold" />
 		</s:Group>
-		<ui:WindowShade id="windowShade" x="35" y="58" width="304" height="304">
+		<ui:WindowShade id="windowShade" x="32" y="40" width="304" height="304">
 			<s:Rect width="304" height="543" top="0" bottom="0" bottomLeftRadiusX="10" bottomLeftRadiusY="10" bottomRightRadiusX="10" bottomRightRadiusY="10" horizontalCenter="0">
 				<s:stroke>
 					<s:SolidColorStroke color="#497A7A" weight="8" />
@@ -140,18 +129,20 @@
 		</ui:WindowShade>
 	</s:Group>
 	
-	<!--Header-->
-	<s:BitmapImage left="0" top="0" width="100%" source="@Embed(source='skins/activereading/assets/exercise/exTopBar.png')" fillMode="clip" />
-	<s:HGroup left="50" top="5" gap="5" verticalAlign="middle">
+	<!--Top control bar button-->
+	<s:Button id="backToMenuButton" top="0" right="100" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
+
+	<!--Header course title-->
+	<s:HGroup left="0" top="15" width="220" gap="8" horizontalAlign="center" verticalAlign="middle">
 		<s:Group>
-			<home:menuicon1 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 0}" scaleX="0.5" scaleY="0.5" />
-			<home:menuicon2 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 1}" scaleX="0.5" scaleY="0.5" />
-			<home:menuicon3 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 2}" scaleX="0.5" scaleY="0.5" />
-			<home:menuicon4 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 3}" scaleX="0.5" scaleY="0.5" />
-			<home:menuicon5 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 4}" scaleX="0.5" scaleY="0.5" />
-			<home:menuicon6 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 5}" scaleX="0.5" scaleY="0.5" />
+			<home:menuicon1 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 0}" scaleX="0.7" scaleY="0.7" />
+			<home:menuicon2 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 1}" scaleX="0.7" scaleY="0.7" />
+			<home:menuicon3 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 2}" scaleX="0.7" scaleY="0.7" />
+			<home:menuicon4 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 3}" scaleX="0.7" scaleY="0.7" />
+			<home:menuicon5 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 4}" scaleX="0.7" scaleY="0.7" />
+			<home:menuicon6 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 5}" scaleX="0.7" scaleY="0.7" />
 		</s:Group>
-		<s:Label text="{hostComponent.selectedExerciseNode.parent().parent().@caption}" paddingTop="6" color="#FFFFFF" fontSize="15" fontFamily="HelveticaMd" fontWeight="bold" />
+		<s:Label text="{hostComponent.selectedExerciseNode.parent().parent().@caption}" paddingTop="3" color="#FFFFFF" fontSize="17" fontFamily="HelveticaMd" fontWeight="bold" />
 	</s:HGroup>
 	
 	<!--Footer-->

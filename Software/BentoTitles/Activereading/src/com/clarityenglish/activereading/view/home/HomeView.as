@@ -79,6 +79,12 @@ package com.clarityenglish.activereading.view.home {
 		[SkinPart]
 		public var demoTooltipLabel2:Label;
 		
+		[SkinPart]
+		public var versionLabel:Label;
+		
+		[SkinPart]
+		public var copyrightLabel:Label;
+		
 		[Bindable]
 		public var exerciseXMLListCollection:XMLListCollection;
 		
@@ -255,6 +261,12 @@ package com.clarityenglish.activereading.view.home {
 					break;
 				case demoTooltipLabel2:
 					demoTooltipLabel2.text = copyProvider.getCopyForId("demoTooltipLabel2");
+					break;
+				case versionLabel:
+					versionLabel.text = "v" + FlexGlobals.topLevelApplication.versionNumber + "  " + copyProvider.getCopyForId("versionLabel");
+					break;
+				case copyrightLabel:
+					copyrightLabel.text = copyProvider.getCopyForId("footerLabel");
 					break;
 			}
 		}

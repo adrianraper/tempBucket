@@ -31,8 +31,7 @@
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
              xmlns:s="library://ns.adobe.com/flex/spark" 
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-             minWidth="21" minHeight="21" 
-             alpha.disabled="0.5">
+             minWidth="21" minHeight="21">
      
     <fx:Metadata>
         <![CDATA[ 
@@ -56,15 +55,23 @@
     </s:states>
     
 	<s:Group top.over="2" top.down="2" top.up="0">
-		<s:Path filters.up="{[dropShadowFilter]}" data="M0 0 0 24.6421C0 26.292 1.69482 28.0171 3.76563 28.4756L45.2344 37.6563C47.3052 38.1147 50.6948 38.1147 52.7656 37.6563L94.2344 28.4756C96.3052 28.0171 98 26.292 98 24.6421L98 0 0 0Z">
+		<s:Path filters.up="{[dropShadowFilter]}" data="M107.652 0 107.652 27C107.652 30.2998 104.953 33 101.652 33L16 33C12.7002 33 9.21729 30.416 8.26025 27.2578L0 0 107.652 0Z">
 			<s:fill>
-				<s:SolidColor color="#025555"/>
+				<s:LinearGradient x="53.8257" y="0" scaleX="33.0005" rotation="90">
+					<s:GradientEntry ratio="0.286496" color="#FFFFFF"/>
+					<s:GradientEntry ratio="1" color="#E6E6E6"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Path>
+		<s:Path data="M109 1 109 28C109 31.2998 106.3 34 103 34L17.3477 34C14.0479 34 10.5649 31.416 9.60791 28.2578L1.34766 1 109 1M110 0 0 0 8.65088 28.5479C9.729 32.1055 13.6304 35 17.3477 35L103 35C106.86 35 110 31.8594 110 28L110 0 110 0Z">
+			<s:fill>
+				<s:SolidColor color="#999999"/>
 			</s:fill>
 		</s:Path>
 		
-		<s:Path left="13" top="8" data="M0 5.56055C3.30078 7.47266 4.69141 8.51563 4.69141 8.51563 4.69141 8.51563 9.2085 3.30176 15.1187 0 11.6421 2.60742 4.98242 12.8945 4.98242 12.8945 4.98242 12.8945 1.56445 6.95117 0 5.56055Z">
+		<s:Path left="24" top="13" data="M0 5.56055C3.30078 7.47266 4.69141 8.51563 4.69141 8.51563 4.69141 8.51563 9.2085 3.30176 15.1187 0 11.6421 2.60742 4.98242 12.8945 4.98242 12.8945 4.98242 12.8945 1.56445 6.95117 0 5.56055Z">
 			<s:fill>
-				<s:SolidColor color="#FFFFFF"/>
+				<s:SolidColor color="#333333"/>
 			</s:fill>
 		</s:Path>
 		
@@ -73,7 +80,7 @@
 		<s:Label id="labelDisplay"
 				 textAlign="center"
 				 maxDisplayedLines="1"
-				 left="33" top="10" fontFamily="MyriadPro" fontWeight="bold">
+				 right="12" top="14" fontFamily="MyriadPro" fontWeight="bold">
 		</s:Label>
 	</s:Group>
     

@@ -84,7 +84,6 @@ package com.clarityenglish.activereading.view.title {
 		public function set selectedNode(value:XML):void {
 			_selectedNode = value;
 			
-			trace("local name: "+_selectedNode.localName());
 			switch (_selectedNode.localName()) {
 				case "menu":
 				case "course":
@@ -169,7 +168,6 @@ package com.clarityenglish.activereading.view.title {
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
 					break;
 				case logoutButton:
-					instance.label = copyProvider.getCopyForId("logoutButton");
 					instance.addEventListener(MouseEvent.CLICK, onLogoutClick);
 					break;
 				case helpButton:

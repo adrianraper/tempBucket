@@ -31,7 +31,7 @@
       @productversion Flex 4
 -->
 <s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
-      xmlns:fb="http://ns.adobe.com/flashbuilder/2009" minHeight="14" minWidth="60"
+      xmlns:fb="http://ns.adobe.com/flashbuilder/2009" minHeight="14" minWidth="298"
       alpha.disabled="0.5">
 
     <fx:Metadata>
@@ -76,8 +76,8 @@
     
     <!--- The skin pat that defines the video timeline. The timeline shows the current playhead location  
           in the video, the amount of the video previously played, and the loaded in part of the video. -->
-    <s:Button id="track" left="0" right="0" top="5" height="14"
-              skinClass="skins.tensebuster.exercise.ui.AudioScrubBarTrackSkin" />
+    <s:Button id="track" left="0" right="0" height="20" verticalCenter="0"
+              skinClass="skins.activereading.exercise.audio.AudioScrubBarTrackSkin" />
 
     <!--- @copy spark.components.mediaClasses.ScrubBar#loadedRangeArea -->
 	<!--audio seems doesn't have loaded range area-->
@@ -120,10 +120,10 @@
     </s:Group>
     
     <!--- @copy spark.components.mediaClasses.ScrubBar#playedArea -->
-    <s:Group id="playedArea" x="0" y="8" height="8" includeInLayout="false">
+    <s:Group id="playedArea" x="0" y="8" height="5" includeInLayout="false">
     
         <!-- inset 7 and 6 pixels because that's thumbSize/2 -->
-        <s:Group left="5" right="5" top="0" bottom="0" minWidth="0">
+        <s:Group left="2" right="6" top="0" bottom="0" minWidth="0">
         
             <!-- inner glow -->
             <!--s:Rect left="1" right="1" top="1" bottom="1">
@@ -136,9 +136,9 @@
             </s:Rect-->
             
             <!-- fill -->
-            <s:Rect left="2" right="2" top="2" bottom="2" radiusX="6" radiusY="6">
+            <s:Rect left="0" right="0" top="0" bottom="0" radiusX="6" radiusY="6">
                 <s:fill>
-                    <s:SolidColor color="0xEB2133"/>
+                    <s:SolidColor color="0x005254"/>
                 </s:fill>
             </s:Rect>
             
@@ -156,7 +156,7 @@
 
     <!--- A skin part that defines a button that can be dragged along the track to increase or decrease 
           the playhead location in the video.   -->
-    <s:Button id="thumb" x="0" y="-2" width="14" height="19" includeInLayout="false"
-              skinClass="skins.tensebuster.exercise.ui.AudioScrubBarThumbSkin" />
+    <s:Button id="thumb" x="0" y="0" verticalCenter="0" width="7" height="20" includeInLayout="false"
+              skinClass="skins.activereading.exercise.audio.AudioScrubBarThumbSkin" />
 
 </s:SparkSkin>

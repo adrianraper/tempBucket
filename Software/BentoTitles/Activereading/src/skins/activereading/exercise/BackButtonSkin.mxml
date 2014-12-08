@@ -31,8 +31,7 @@
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
              xmlns:s="library://ns.adobe.com/flex/spark" 
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-             minWidth="21" minHeight="21" 
-             alpha.disabled="0.5">
+             minWidth="21" minHeight="21">
      
     <fx:Metadata>
         <![CDATA[ 
@@ -56,15 +55,23 @@
     </s:states>
     
 	<s:Group top.over="2" top.down="2" top.up="0">
-		<s:Path filters.up="{[dropShadowFilter]}" data="M72 0 72 24.6875C72 26.3379 70.707 28.0762 69.127 28.5508L38.873 37.6445C37.293 38.1191 34.707 38.1191 33.127 37.6445L2.87305 28.5508C1.29297 28.0762 0 26.3379 0 24.6875L0 0 72 0Z">
+		<s:Path filters.up="{[dropShadowFilter]}" data="M0 0 8.25977 27.2578C9.2168 30.416 12.7002 33 16 33L75.6523 33C78.9521 33 81.6523 30.2998 81.6523 27L81.6523 0 0 0Z">
 			<s:fill>
-				<s:SolidColor color="#005454"/>
+				<s:LinearGradient x="40.8262" y="0" scaleX="33" rotation="90">
+					<s:GradientEntry ratio="0.286496" color="#FFFFFF"/>
+					<s:GradientEntry ratio="1" color="#E6E6E5"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Path>
+		<s:Path data="M83 1 83 28C83 31.2998 80.2998 34 77 34L17.3477 34C14.0479 34 10.5645 31.416 9.60742 28.2578L1.34766 1 83 1M84 0 0 0 8.65039 28.5479C9.72852 32.1055 13.6299 35 17.3477 35L77 35C80.8594 35 84 31.8594 84 28L84 0 84 0Z">
+			<s:fill>
+				<s:SolidColor color="#999999"/>
 			</s:fill>
 		</s:Path>
 		
-		<s:Path top="12" left="10" data="M8.62549 9.95996 0 4.98047 8.62549 0 8.62549 9.95996Z">
+		<s:Path top="14" left="20" data="M8.62549 9.95996 0 4.98047 8.62549 0 8.62549 9.95996Z">
 			<s:fill>
-				<s:SolidColor color="#FFFFFF"/>
+				<s:SolidColor color="#333333" alpha.disabled="0.5"/>
 			</s:fill>
 		</s:Path>
 		
@@ -74,7 +81,7 @@
 				 textAlign="center"
 				 maxDisplayedLines="1"
 				 verticalAlign="middle"
-				 left="25" top="11" fontFamily="MyriadPro" fontWeight="bold">
+				 right="18" top="13" fontFamily="MyriadPro" fontWeight="bold" alpha.disabled="0.5">
 		</s:Label>
 	</s:Group>
     

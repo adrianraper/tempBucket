@@ -79,7 +79,6 @@ package com.clarityenglish.activereading.view.title {
 			return super.listNotificationInterests().concat([
 				BBNotifications.SELECTED_NODE_CHANGED,
 				BBNotifications.SELECTED_NODE_UP,
-				BBNotifications.PROGRESS_OPEN,
 			]);
 		}
 		
@@ -89,9 +88,7 @@ package com.clarityenglish.activereading.view.title {
 			switch (note.getName()) {
 				case BBNotifications.SELECTED_NODE_CHANGED:
 					view.selectedNode = note.getBody() as XML;
-					break;
-				case BBNotifications.PROGRESS_OPEN:
-					view.sectionNavigator.selectedIndex = 1;
+					view.sectionNavigator.tabBar.visible = true;
 					break;
 			}
 		}

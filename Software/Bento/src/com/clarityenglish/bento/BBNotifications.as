@@ -118,9 +118,6 @@
 		
 		// gh#267
 		public static const RECORDER_SHOW:String = "bb/recorder_show";
-		
-		// gh#1133
-		public static const PROGRESS_OPEN:String = "bb/progress_open";
 	}
 	
 }

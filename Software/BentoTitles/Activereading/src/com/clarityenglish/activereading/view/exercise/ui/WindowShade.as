@@ -95,7 +95,8 @@ package com.clarityenglish.activereading.view.exercise.ui {
 			
 			if (event is  MouseEvent) {
 				// play an effect to change the size of this container
-				if (contentMouseY < (elementHeight / 2)) {
+				// contentGroup.height != 0 for mouse clicking thumb button
+				if (contentMouseY < (elementHeight / 2) && contentGroup.height != 0) {
 					close();
 				} else {
 					open();
@@ -124,5 +125,6 @@ package com.clarityenglish.activereading.view.exercise.ui {
 		protected function onElementAdd(event:Event):void {
 			elementHeight = contentGroup.getElementAt(0).height;
 		}
+		
 	}
 }

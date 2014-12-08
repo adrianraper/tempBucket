@@ -14,6 +14,8 @@
 @namespace recorder "com.clarityenglish.bento.view.recorder.*";
 @namespace warning "com.clarityenglish.bento.view.warning.*";
 @namespace marking "com.clarityenglish.bento.view.marking.*";
+@namespace components "com.clarityenglish.textLayout.components.*";
+@namespace error "com.clarityenglish.common.view.error.*";
 
 global {
 	outlineColors: #C63C47, #E6641E, #CF7D00, #47613D, #1E7496, #554091;
@@ -62,9 +64,33 @@ login|LoginView s|TextInput {
 	skinClass: ClassReference("skins.activereading.login.TextInputSkin");
 }
 
+error|ErrorView {
+	skinClass: ClassReference("skins.activereading.login.ErrorSkin");
+}
+
+error|ErrorView s|Button#closeButton {
+	skinClass: ClassReference("skins.activereading.exercise.feedback.FeedbackCloseButtonSkin");
+}
+
 title|TitleView {
 	skinClass: ClassReference("skins.activereading.TitleSkin");
-} 
+}
+
+title|TitleView s|TabbedViewNavigator {
+	skinClass: ClassReference("skins.activereading.title.TabbedViewNavigatorSkin");
+}
+
+title|TitleView s|TabbedViewNavigator s|ButtonBar#tabBar {
+	skinClass: ClassReference("skins.activereading.title.TitleButtonBarSkin");
+}
+
+title|TitleView s|Button#logoutButton {
+	skinClass: ClassReference("skins.activereading.title.LogoutButtonSkin");
+}
+
+title|TitleView s|Button#helpButton {
+	skinClass: ClassReference("skins.activereading.title.HelpButtonSkin");
+}
 
 home|HomeView {
 	skinClass: ClassReference("skins.activereading.HomeSkin");
@@ -154,6 +180,21 @@ exercise|ExerciseView s|Button#feedbackButton {
 	skinClass: ClassReference("skins.activereading.exercise.FeedbackButtonSkin");
 }
 
+components|AudioPlayer {
+	skinClass: ClassReference("skins.activereading.exercise.audio.AudioPlayerSkin");
+	
+	compactStoppedIcon: Embed("skins/activereading/assets/exercise/audio/play.png");
+	compactPlayedIcon: Embed("skins/activereading/assets/exercise/audio/played.png");
+	compactPausedIcon: Embed("skins/activereading/assets/exercise/audio/pause.png");
+	compactPlayingIcon: Embed("skins/activereading/assets/exercise/audio/playing.png");
+	fullPlayIcon: Embed("skins/activereading/assets/exercise/audio/play.png");
+	fullPauseIcon: Embed("skins/activereading/assets/exercise/audio/pause.png");
+}
+
+components|AudioPlayer s|ScrubBar {
+	skinClass: ClassReference("skins.activereading.exercise.audio.AudioScrubBarSkin");
+}
+
 warning|WarningView {
 	skinClass: ClassReference("skins.activereading.exercise.warning.WarningSkin");
 }
@@ -240,6 +281,14 @@ s|TitleWindow.warningTitleWindow {
 
 s|TitleWindow.markingTitleWindow {
 	skinClass: ClassReference("skins.activereading.exercise.marking.MarkingTitleWindowSkin");
+}
+
+s|TitleWindow.errorTitleWindow {
+	skinClass: ClassReference("skins.activereading.login.ErrorTitleWindowSkin");
+}
+
+s|VScrollBar {
+	skinClass: ClassReference("skins.activereading.vo.VScrollBarSkin");
 }
 
 recorder|RecorderView {
