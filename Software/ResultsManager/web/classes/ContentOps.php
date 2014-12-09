@@ -1127,6 +1127,15 @@ EOD;
 				} else if (intval($titleObj->F_ProductCode) == 55) { 
 					$courseType = 'bento';
 					$titleObj->indexFile = "menu-FullVersion.xml";
+				} else if (intval($titleObj->F_ProductCode) == 56) { 
+					$courseType = 'bento';
+					$titleObj->indexFile = "menu-FullVersion.xml";
+				} else if (intval($titleObj->F_ProductCode) == 57) { 
+					$courseType = 'bento';
+					$titleObj->indexFile = "menu-Sounds-FullVersion.xml";
+				} else if (intval($titleObj->F_ProductCode) == 58) { 
+					$courseType = 'bento';
+					$titleObj->indexFile = "menu-Speech-FullVersion.xml";
 				} else {
 					$courseType = 'orchid';	
 					$titleObj->indexFile = "course.xml";
