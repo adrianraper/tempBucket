@@ -88,7 +88,6 @@ package com.clarityenglish.activereading.view.title {
 			switch (note.getName()) {
 				case BBNotifications.SELECTED_NODE_CHANGED:
 					view.selectedNode = note.getBody() as XML;
-					view.sectionNavigator.tabBar.visible = true;
 					break;
 			}
 		}
