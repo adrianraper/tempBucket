@@ -259,9 +259,9 @@ progress|ProgressScoreView s|DataGrid#scoreDetailsDataGrid {
 	skinClass: ClassReference("skins.activereading.progress.ui.ProgressScoreDataGridSkin");
 }
 
-/*progresstb|ProgressCertificateView {
-	skinClass: ClassReference("skins.tensebuster.progress.ProgressCertificateSkin");
-}*/
+progress|ProgressCertificateView {
+	skinClass: ClassReference("skins.activereading.progress.ProgressCertificateSkin");
+}
 
 s|VideoPlayer {
 	skinClass: ClassReference("skins.activereading.exercise.video.VideoPlayerSkin");

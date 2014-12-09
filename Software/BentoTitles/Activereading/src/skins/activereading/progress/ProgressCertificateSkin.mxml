@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" xmlns:certificate="skins.tensebuster.assets.progress.certificate.*">
+    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" xmlns:certificate="skins.activereading.assets.progress.certificate.*" >
 	
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.tensebuster.view.progress.ProgressCertificateView")]
+		[HostComponent("com.clarityenglish.activereading.view.progress.ProgressCertificateView")]
 	</fx:Metadata>
 
     <s:states>
         <s:State name="normal" />
         <s:State name="disabled" />
     </s:states>
-    
-	<s:SWFLoader id="certificateFooter" visible="false" source="@Embed(source='skins/tensebuster/assets/progress/progressFooter.png')" horizontalCenter="-1" bottom="-40"/>
 	
 	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="40" height="60">
 		<ui:layout>
@@ -26,19 +24,19 @@
 		</s:fill>
 	</s:Rect>	
 	
-	<s:VGroup id="oopsVGroup"  horizontalCenter="0" top="160" bottom="0" visible="false">
+	<s:VGroup id="oopsVGroup" horizontalCenter="0" top="160" bottom="0" visible="false">
 		<s:Group top="0">
-			<certificate:EOops visible="{hostComponent.courseClass == 'elementary'}" />
-			<certificate:IOops visible="{hostComponent.courseClass == 'intermediate'}"/>
-			<certificate:UOops visible="{hostComponent.courseClass == 'upperintermediate'}"/>
-			<certificate:LOops visible="{hostComponent.courseClass == 'lowerintermediate'}"/>
-			<certificate:AOops visible="{hostComponent.courseClass == 'advanced'}"/>
+			<certificate:ElementaryOops visible="{hostComponent.courseClass == 'elementary'}" />
+			<certificate:PreIntermediateOops visible="{hostComponent.courseClass == 'preintermediate'}" />
+			<certificate:IntermediateOops visible="{hostComponent.courseClass == 'intermediate'}"/>
+			<certificate:UpperIntermediateOops visible="{hostComponent.courseClass == 'upperintermediate'}"/>
+			<certificate:AdvancedOops visible="{hostComponent.courseClass == 'advanced'}"/>
 		</s:Group>	
 		<s:RichEditableText id="notCompleteRichEditableText" width="100%" paddingTop="25" fontSize="13" lineHeight="30" horizontalCenter="0"/>
 	</s:VGroup>
 	
 	<s:Group id="printGroup" right="0" top="60">
-		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/progress/certificate/printTip.png')" right="150" top="10"/>
+		<s:SWFLoader source="@Embed(source='skins/activereading/assets/progress/certificate/printTip.png')" right="150" top="10"/>
 		<s:Button id="printButton"  color="0xFFFFFF" buttonMode="true" useHandCursor="true" right="60"/>		
 	</s:Group>
 	

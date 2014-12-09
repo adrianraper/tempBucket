@@ -6,6 +6,8 @@ package com.clarityenglish.activereading {
 	import com.clarityenglish.activereading.view.login.LoginView;
 	import com.clarityenglish.activereading.view.progress.ProgressAnalysisMediator;
 	import com.clarityenglish.activereading.view.progress.ProgressAnalysisView;
+	import com.clarityenglish.activereading.view.progress.ProgressCertificateMediator;
+	import com.clarityenglish.activereading.view.progress.ProgressCertificateView;
 	import com.clarityenglish.activereading.view.progress.ProgressCompareMediator;
 	import com.clarityenglish.activereading.view.progress.ProgressCompareView;
 	import com.clarityenglish.activereading.view.progress.ProgressCoverageMediator;
@@ -40,7 +42,7 @@ package com.clarityenglish.activereading {
 			mapView(ProgressAnalysisView, ProgressAnalysisMediator);
 			mapView(ProgressCompareView, ProgressCompareMediator);
 			mapView(ProgressScoreView, ProgressScoreMediator);
-			//mapView(ProgressCertificateView, ProgressCertificateMediator);
+			mapView(ProgressCertificateView, ProgressCertificateMediator);
 			
 			registerCommand(BBNotifications.STARTUP, ActiveReadingStartupCommand);
 		}

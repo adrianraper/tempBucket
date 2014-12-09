@@ -105,9 +105,10 @@
 			</s:layout>
 			<s:itemRenderer>
 				<fx:Component>
-					<s:IconItemRenderer labelField="@caption" paddingTop="6" paddingLeft="50" fontSize="13" fontFamily="Helvetica" height="23" width="100%">
+					<s:IconItemRenderer labelField="@caption" iconFunction="getIcon" paddingTop="6" paddingLeft="50" fontSize="13" fontFamily="Helvetica" height="23" width="100%">
 						<fx:Script>
 							<![CDATA[
+								import skins.activereading.assets.exercise.dropDownMenuArrow;
 								import skins.activereading.assets.exercise.yellowDot;
 								import skins.activereading.assets.exercise.yellowDotOutline;
 								
@@ -134,6 +135,7 @@
 								override protected function drawBorder(unscaledWidth:Number, unscaledHeight:Number):void {
 									// No border for this renderer
 								}
+								
 							]]>
 						</fx:Script>
 					</s:IconItemRenderer>
