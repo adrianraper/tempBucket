@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<id>/area1/ActiveReading in localhost</id>
+	<dbHost>2</dbHost>
+	<productCode>56</productCode>
+	<useCacheBuster>true</useCacheBuster>
+	<courseFile>menu-{productVersion}.xml</courseFile>
+	<platform>browser</platform>
+
+	<sharedMedia />
+	<brandingMedia />
+	<language>EN</language>
+
+	<contentPath>http://dock.contentbench/Content/</contentPath>
+	<remoteDomain>http://dock.projectbench/</remoteDomain>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteService>TenseBusterService</remoteService>
+	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+</config>
+
