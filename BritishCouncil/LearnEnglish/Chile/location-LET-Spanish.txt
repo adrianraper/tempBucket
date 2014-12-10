@@ -1,0 +1,1 @@
+language=CH&content=/Content&dbHost=2&mainMovies=/Software/Common&interfaceMovies=/Software/LearnEnglishTest-Spanish&help=/Software/LearnEnglishTest-Spanish/Help/help.htm#openWindow&dbPath=/Database&scripting=PHP&database=SQLServer&brandMovies=/branding/LearnEnglishTest-Chile&customised=true&end=1

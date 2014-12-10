@@ -1,0 +1,50 @@
+to LoginGateway with {"method":"getOrAddUser","studentID":"351cdbf19773c2d9971ae1204a9543e2","name":"asdfsafddsdfgdfsg","password":"BCLELT","productCode":46,"subscriptionPeriod":"1m","country":"Chile","prefix":"BCLECH","groupID":"54222","adminPassword":"clarity88","dbHost":2,"loginOption":2}
+going to the program with BCLECH
+to LoginGateway with {"method":"getOrAddUser","studentID":"b84d3ede354b0cddd3ed35d314e6fa73","name":"aaa","password":"BCLELT","productCode":46,"subscriptionPeriod":"1m","country":"Chile","prefix":"BCLECH","groupID":"54222","adminPassword":"clarity88","dbHost":2,"loginOption":2}
+going to the program with BCLECH
+to LoginGateway with {"method":"getOrAddUser","studentID":"49fb4eb794ada7901681c9a7c6b8fb26","name":"aaa","password":"BCLELT","productCode":46,"subscriptionPeriod":"1m","country":"Chile","prefix":"BCLECH","groupID":"54222","adminPassword":"clarity88","dbHost":2,"loginOption":2}
+going to the program with BCLECH
+to LoginGateway with {"method":"getOrAddUser","studentID":"902af082296dcf68083ea03b0e002f69","name":"assss","email":"assss","password":"BCLELT","productCode":46,"subscriptionPeriod":"1m","country":"Chile","prefix":"BCLECH","groupID":"54222","adminPassword":"clarity88","dbHost":2,"loginOption":2}
+going to the program with BCLECH
+to LoginGateway with {"method":"getOrAddUser","studentID":"69cceca778205fbbbc2660837bdcf50a","name":"asdfasdfsad","email":"asdfsadfsad","password":"BCLELT","productCode":46,"subscriptionPeriod":"1m","country":"Chile","prefix":"BCLECH","groupID":"54222","adminPassword":"clarity88","dbHost":2,"loginOption":2}
+going to the program with BCLECH
+to LoginGateway with {"method":"getOrAddUser","studentID":"4b51deb8732c1f34c4b991ae894809ee","name":"arasfrsa","email":"asrsar","password":"BCLELT","productCode":46,"subscriptionPeriod":"1m","country":"Chile","prefix":"BCLECH","groupID":"54222","adminPassword":"clarity88","dbHost":2,"loginOption":2}
+going to the program with BCLECH
+to LoginGateway with {"method":"signInUser","studentID":"123456798","password":"sdf","prefix":"BCLECH","dbHost":2,"loginOption":2}
+error from LoginGateway 200, No such user 123456798
+to LoginGateway with {"method":"signInUser","studentID":"123456789","password":"sdf","prefix":"BCLECH","dbHost":2,"loginOption":2}
+error from LoginGateway 253, Wrong password
+to LoginGateway with {"method":"signInUser","studentID":"123456789","password":"aaa","prefix":"BCLECH","dbHost":2,"loginOption":2}
+going to the program with BCLECH
+to LoginGateway with {"method":"signInUser","studentID":"123456","password":"asdfsdf","prefix":"BCLECH","dbHost":2,"loginOption":2}
+error from LoginGateway 1, Exception, More than one user with this key 123456
+to LoginGateway with {"method":"signInUser","studentID":"123456789","password":"asdfsdf","prefix":"BCLECH","dbHost":2,"loginOption":2}
+error from LoginGateway 253, Wrong password
+to LoginGateway with {"method":"signInUser","studentID":"123456789","password":"asfdasdf","prefix":"BCLECH","dbHost":2,"loginOption":2}
+error from LoginGateway 253, Wrong password
+to LoginGateway with {"method":"signInUser","studentID":"123456789","password":"asdf","prefix":"BCLECH","dbHost":2,"loginOption":2}
+error from LoginGateway 253, Wrong password
+to LoginGateway with {"method":"signInUser","studentID":"123456789","password":"asdfafsd","prefix":"BCLECH","dbHost":2,"loginOption":2}
+error from LoginGateway 253, Wrong password
+to LoginGateway with {"method":"signInUser","studentID":"123456789","password":"aaa","prefix":"BCLECH","dbHost":2,"loginOption":2}
+going to the program with BCLECH
+to LoginGateway with {"method":"signInUser","studentID":"123456789","password":"aaa","prefix":"BCLECH","dbHost":2,"loginOption":2}
+going to the program with BCLECH
+to LoginGateway with {"method":"signInUser","studentID":"123456789","password":"aaa","prefix":"BCLECH","dbHost":2,"loginOption":2}
+going to the program with BCLECH
+to LoginGateway with {"method":"signInUser","studentID":"123456","password":"aaa","rootID":"15095","dbHost":2,"loginOption":2}
+error from LoginGateway 200, No such user 123456
+to LoginGateway with {"method":"signInUser","studentID":"123456","password":"asdasdsad","rootID":"15095","dbHost":2,"loginOption":2}
+error from LoginGateway 200, No such user 123456
+to LoginGateway with {"method":"signInUser","studentID":"123456","password":"asdfsafdsadf","rootID":"15095","dbHost":2,"loginOption":2}
+error from LoginGateway 200, No such user 123456
+to LoginGateway with {"method":"signInUser","studentID":"123456","password":"aaa","rootID":"15095","dbHost":2,"loginOption":2}
+error from LoginGateway 200, No such user 123456
+to LoginGateway with {"method":"signInUser","studentID":"123456789","password":"aaad","rootID":"15095","dbHost":2,"loginOption":2}
+error from LoginGateway 253, Wrong password
+to LoginGateway with {"method":"signInUser","studentID":"123456789","password":"aaa","rootID":"15095","dbHost":2,"loginOption":2}
+going to the program with BCLECH
+to LoginGateway with {"method":"signInUser","studentID":"12345789","password":"aaa","rootID":"15095","dbHost":2,"loginOption":2}
+error from LoginGateway 200, No such user 12345789
+to LoginGateway with {"method":"signInUser","studentID":"123456789","password":"aaa","rootID":"15095","dbHost":2,"loginOption":2}
+going to the program with BCLECH

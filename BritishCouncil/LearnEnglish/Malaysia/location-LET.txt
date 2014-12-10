@@ -1,0 +1,1 @@
+language=MY&content=/Content&dbHost=2&mainMovies=/Software/Common&interfaceMovies=/Software/LearnEnglishTest1&help=/Software/LearnEnglishTest1/Help/help.htm#openWindow&dbPath=/Database&scripting=PHP&database=SQLServer&brandMovies=/branding/LearnEnglishTest-Malaysia&customised=true&end=1

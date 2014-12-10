@@ -1,0 +1,1 @@
+language=CH&content=/Content&dbHost=2&mainMovies=/Software/Common&interfaceMovies=/Software/LearnEnglishTest-OLPC&help=/Software/LearnEnglishTest-OLPC/Help/help.htm#openWindow&dbPath=/Database&scripting=PHP&database=SQLServer&brandMovies=/branding/LearnEnglishTest-OLPC&customised=true&end=1
