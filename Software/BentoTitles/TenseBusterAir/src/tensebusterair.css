@@ -6,7 +6,7 @@
 @namespace title "com.clarityenglish.tensebuster.view.title.*";
 @namespace titleui "com.clarityenglish.tensebuster.view.title.ui.*";
 @namespace login "com.clarityenglish.tensebuster.view.login.*";
-@namespace exercise "com.clarityenglish.tensebuster.view.exercise.*";
+@namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 @namespace progresstb "com.clarityenglish.tensebuster.view.progress.*";
 @namespace home "com.clarityenglish.tensebuster.view.home.*";

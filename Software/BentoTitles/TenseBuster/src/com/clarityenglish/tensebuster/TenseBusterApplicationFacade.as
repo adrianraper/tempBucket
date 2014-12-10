@@ -2,9 +2,9 @@
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.bento.view.exercise.ExerciseMediator;
+	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.tensebuster.controller.TenseBusterStartupCommand;
-	import com.clarityenglish.tensebuster.view.exercise.ExerciseView;
 	import com.clarityenglish.tensebuster.view.help.HelpMediator;
 	import com.clarityenglish.tensebuster.view.help.HelpView;
 	import com.clarityenglish.tensebuster.view.home.HomeMediator;

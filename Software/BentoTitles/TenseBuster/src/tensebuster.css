@@ -4,7 +4,7 @@
 @namespace home "com.clarityenglish.tensebuster.view.home.*";
 @namespace unit "com.clarityenglish.tensebuster.view.unit.*";
 @namespace zone "com.clarityenglish.tensebuster.view.zone.*";
-@namespace exercise "com.clarityenglish.tensebuster.view.exercise.*";
+@namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace progress "com.clarityenglish.bento.view.progress.*";
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace components "com.clarityenglish.textLayout.components.*";
