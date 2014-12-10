@@ -4,9 +4,8 @@ class TestOps {
 	/**
 	 * This class helps with creating and marking tests.
 	 * 
-	 * TODO: Why are sessions written here? If not, then no need for $db parameter.
-	 * TODO: Could this all be in ContentOps?
-	 * TODO: encryption should be in a utility function
+	 * TODO Could this all be in ContentOps?
+	 * TODO encryption should be in a utility function
 	 */
 	var $db;
 	
@@ -62,10 +61,13 @@ class TestOps {
 				foreach ($groupQbanks as $groupQbank) {
 					$groupQbank->setAttribute('use', 0);
 				}
-				$arrayIndexes = range(0, $numOfQbanks-1);
-				$useThese = array_rand($arrayIndexes, $numberForGroup);
-				for ($i = 0; $i < $numberForGroup; $i++) {
-		            $groupQbanks->item($useThese[$i])->setAttribute('use', intval(1));
+				// If you are selecting some questions from this question bank
+				if ($numberForGroup > 0) {
+					$arrayIndexes = range(0, $numOfQbanks-1);
+					$useThese = array_rand($arrayIndexes, $numberForGroup);
+					for ($i = 0; $i < $numberForGroup; $i++) {
+			            $groupQbanks->item($useThese[$i])->setAttribute('use', intval(1));
+					}
 				}
 				
 			} else {
@@ -74,12 +76,14 @@ class TestOps {
 				foreach ($groupQbanks as $groupQbank) {
 					$groupQbank->setAttribute('use', $base);
 				}
-				$arrayIndexes = range(0, $numOfQbanks-1);
-				$useThese = array_rand($arrayIndexes, $extra);
-				for ($i = 0; $i < $numberForGroup; $i++) {
-		            $groupQbanks->item($useThese[$i])->setAttribute('use', $base+1);
-				}
-				
+				// If there are extra to allocate, randomly grab one more from some of the question banks
+				if ($extra > 0) {
+					$arrayIndexes = range(0, $numOfQbanks-1);
+					$useThese = array_rand($arrayIndexes, $extra);
+					for ($i = 0; $i < $numberForGroup; $i++) {
+			            $groupQbanks->item($useThese[$i])->setAttribute('use', $base+1);
+					}
+				}				
 			}
 		}
 		
@@ -106,12 +110,19 @@ class TestOps {
 			$xmlXPath->registerNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 			
 			// Get all the question nodes and pick x at random
-			$query = "//xmlns:div[@class='question']";
+			$query = "//xmlns:div[@class='question'][@placementTest='true']";
 			$matchingNodes = $xmlXPath->query($query);
 			$maxQuestions = $matchingNodes->length;
-			if ($maxQuestions < 1)
+			// How to alert if there weren't enough questions to satisfy the number we want? Unlikely, but...
+			if ($maxQuestions < 1) {
+				$debugNode = $data->createElement('lostQuestions', $numQuestionsToUse);
+				$debug->appendChild($debugNode);
 				continue;
-			$numQuestionsToUse = ($maxQuestions < $numQuestionsToUse) ? $maxQuestions : $numQuestionsToUse;			
+			} else if ($maxQuestions < $numQuestionsToUse) {
+				$debugNode = $data->createElement('lostQuestions', $numQuestionsToUse - $maxQuestions);
+				$debug->appendChild($debugNode);
+				$numQuestionsToUse = $maxQuestions;
+			}
 			
 			// gh#1030 Pick x questions at random from the bank
 			if ($numQuestionsToUse == 1) {
@@ -264,40 +275,6 @@ class TestOps {
 	}
 	
 	/**
-	 * This method is called to insert a session record when a user starts a program
-	 */
-	function startSession($user, $rootID, $productCode, $dateNow = null) {
-		// For teachers we will set rootID to -1 in the session record, so, are you a teacher?
-		// Or more specifically are you NOT a student
-		if (!$user->userType == 0)
-			$rootID = -1;
-		
-		$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
-		$dateNow = $dateStampNow->format('Y-m-d H:i:s');
-		$dateSoon = $dateStampNow->modify('+15 seconds')->format('Y-m-d H:i:s');
-		
-		$sql = <<<SQL
-			INSERT INTO T_Session (F_UserID, F_StartDateStamp, F_EndDateStamp, F_Duration, F_RootID, F_ProductCode)
-			VALUES (?, ?, ?, 15, ?, ?)
-SQL;
-
-		// We want to return the newly created F_SessionID (or the SQL error)
-		$bindingParams = array($user->userID, $dateNow, $dateSoon, $rootID, $productCode);
-		$rs = $this->db->Execute($sql, $bindingParams);
-		if ($rs) {
-			$sessionID = $this->db->Insert_ID();
-			if ($sessionID) {
-				return $sessionID;
-			} else {
-				// The database probably doesn't support the Insert_ID function
-				throw $this->copyOps->getExceptionForId("errorCantFindAutoIncrementSessionId");
-			}
-		} else {
-			throw $this->copyOps->getExceptionForId("errorDatabaseWriting");
-		}
-	}
-	
-	/**
 	 * This function calculates a student's CEF level based on their score
 	 * 
 	 * @param Score $score
@@ -372,7 +349,7 @@ SQL;
 		}
 		return 0;
 	}
-	
+
 	public function encrypt($data)	{
 		$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
         $securekey = hash('sha256', 'ClarityLanguageConsultantsLtd', TRUE);
@@ -394,5 +371,4 @@ SQL;
 		return strtr($text, '+/=', '-_~');
 	}
 
-	
 }
