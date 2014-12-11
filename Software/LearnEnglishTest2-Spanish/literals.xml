@@ -143,7 +143,7 @@
 <lit name="loseWork">(You will lose your work in this exercise.)</lit>
 <lit name="blankNameID">Sorry, the name and/or ID cannot be blank.</lit>
 <lit name="noSuchUser">Sorry, that name is not registered, please try again.</lit>
-<lit name="wrongPassword">Sorry, that password and name do not match, please try again.</lit>
+<lit name="wrongPassword">Sorry, that password and id do not match, please try again.</lit>
 <lit name="noLicences">Sorry, there are no licences at the moment, please try again later.</lit>
 <lit name="userExists">Sorry, that user name is already taken, please try another.</lit>
 <lit name="newUser">Please type your details.</lit>
@@ -159,7 +159,7 @@
 <lit name="cannotPrint">Sorry, your Flash player cannot print. Please upgrade to at least version 7.</lit>
 <lit name="months">Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec</lit>
 <lit name="noSuchUserTryNew">Sorry, that name is not registered. Please click New user to register.</lit>
-<lit name="logOn"></lit>
+<lit name="logOn">R.U.T. sin puntos, con guión.      Ej.: 11222333-4</lit>
 <lit name="logOnSelfRegister">Please type your name and click Start, or click New user if it is your first time.</lit>
 <lit name="logOnAnon">For anonymous use, just click Start.</lit>
 <lit name="blankFields">Please fill in all the information.</lit>
