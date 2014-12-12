@@ -7,7 +7,8 @@ class DailyJobObs {
 	var $server;
 	
 	function DailyJobObs($db = null) {
-		$this->server = $_SERVER['HTTP_HOST'];
+		// gh#1137 This doesn't work from a cronjob
+		$this->server = (isset($_SERVER['HTTP_HOST'])) ? $_SERVER['HTTP_HOST'] : 'www.clarityenglish.com';
 		$this->db = $db;
 		$this->manageableOps = new ManageableOps($this->db);
 		$this->courseOps = new CourseOps($this->db);

@@ -150,12 +150,12 @@ function runDailyJobs($triggerDate = null) {
 	foreach ($triggerResults as $account) {
 		
 		// b. For each user in this account, update their subscription, if they have one.
-		echo "check account ".$account->prefix."$newLine";
+		echo "TB6weeks check account ".$account->prefix."$newLine";
 		$emailArray = $thisService->dailyJobOps->updateSubscriptionBookmarks($account, $productCode, $triggerDate);
 		if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 			// Send the emails
 			$thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
-			echo "Sent ".count($emailArray)." emails for users starting $expiryDate. $newLine";
+			echo "Sent ".count($emailArray)." emails. $newLine";
 				
 		} else {
 			// Or print on screen
