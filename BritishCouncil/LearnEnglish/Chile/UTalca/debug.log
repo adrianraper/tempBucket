@@ -48,3 +48,7 @@ to LoginGateway with {"method":"signInUser","studentID":"12345789","password":"a
 error from LoginGateway 200, No such user 12345789
 to LoginGateway with {"method":"signInUser","studentID":"123456789","password":"aaa","rootID":"15095","dbHost":2,"loginOption":2}
 going to the program with BCLECH
+to LoginGateway with {"method":"signInUser","studentID":"123456789","password":"aaa","rootID":"29130","dbHost":2,"loginOption":2}
+error from LoginGateway 200, No such user 123456789
+to LoginGateway with {"method":"signInUser","studentID":"123456789","password":"aaa","rootID":"29130","dbHost":2,"loginOption":2}
+error from LoginGateway 200, No such user 123456789

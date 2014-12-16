@@ -1,10 +1,10 @@
 <?php
 	$thisDomain = 'http://'.$_SERVER['HTTP_HOST'].'/';
-	$commonDomain = 'http://dock.projectbench/';
+	$commonDomain = 'http://'.$_SERVER['HTTP_HOST'].'/';
 	$startFolder = "BritishCouncil/LearnEnglish/Chile/UTalca/";
 	
 	$prefix = "TALCA";
-	$rootID = "29130";
+	$rootID = "21970";
 	$dbHost = 2;
 	$language = "Spanish";
 

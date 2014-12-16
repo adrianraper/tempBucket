@@ -21,7 +21,7 @@
 		$prefix = $_SESSION['Prefix'];
 	// This can come from registration screen
 	} else {
-		$prefix = 'LET1';
+		$prefix = 'TALCA';
 	}
 	// v6.5.5.1 If the licence file exists, send a reference to it. Here we work out what the name would be.
 	$licenceFile = $prefix."_licence.txt";

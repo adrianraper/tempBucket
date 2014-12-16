@@ -1096,3 +1096,16 @@ INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (1957, '2014-12-03 00:00:00', 'user memory T_Memory');
 
+-- SSSV10
+DELETE FROM T_ProductLanguage WHERE F_ProductCode = 60;
+INSERT INTO T_ProductLanguage VALUES 
+(60,'EN','StudySkillsSuccessV10-International');
+
+DELETE FROM T_Product WHERE F_ProductCode = 60;
+INSERT INTO `T_Product` VALUES
+(60,'Study Skills Success V10',NULL,2);
+
+DELETE FROM T_ProductVersion WHERE F_ProductCode = 60;
+INSERT INTO `T_ProductVersion` VALUES 
+(60,'DEMO'),
+(60,'FV');
