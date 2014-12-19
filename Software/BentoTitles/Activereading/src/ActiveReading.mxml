@@ -3,7 +3,7 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:activereading="com.clarityenglish.activereading.*"
-			   minWidth="990" minHeight="760" initialize="onInitialize(event)">
+			   minWidth="990" minHeight="760" initialize="onInitialize(event)" preloader="com.clarityenglish.activereading.ActiveReadingPreloader">
 	
 	<fx:Style source="activereading.css" />
 	
