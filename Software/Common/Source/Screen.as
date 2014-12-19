@@ -1156,8 +1156,10 @@ _global.ORCHID.root.buttonsHolder.LoginScreen.display = function() {
 		// v6.3 Set the self-register button off
 		this.newUserBtn.setEnabled(false);
 	}
-	this.message_txt.text = _global.ORCHID.literalModelObj.getLiteral(messageLit, "messages");
-	//myTrace("text=" + this.message_txt.text);
+	// 2014/12/19 Add newline option into message text
+	var substList = [{tag:"[newline]", text:newline}];
+	this.message_txt.text = _global.ORCHID.root.objectHolder.substTags(_global.ORCHID.literalModelObj.getLiteral(messageLit, "messages"), substList);
+	
 	// v6.3 New RM setting to allow anonymous, new default will be not to
 	//if (_global.ORCHID.programSettings.selfRegister > 0) {
 	if (me.loginOption & _global.ORCHID.accessControl.ACAllowAnonymous) {
