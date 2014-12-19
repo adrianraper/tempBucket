@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:recorder="com.clarityenglish.bento.view.recorder.*" 
 		xmlns:homeui="com.clarityenglish.activereading.view.home.ui.*"
-		creationComplete="onCreationComplete(event)" xmlns:home="skins.activereading.assets.home.*">
+		creationComplete="onCreationComplete(event)" xmlns:home="skins.activereading.assets.home.*" initialize="onInitialize(event)">
 	
 	<!-- host component -->	
 	<fx:Metadata>
@@ -156,10 +156,6 @@
 			}
 			
 			protected function onCreationComplete(event:FlexEvent):void {
-				courseSelector.addEventListener("courseSelectorClicked", onCourseSelectorSelect, false, 0, true);
-				courseSelector.addEventListener("animationCompleted", onAnimationCompleted, false, 0, true);				
-				unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
-				
 				// !courseSelector.level use to judge the initial situation
 				if (!courseSelector.level) {
 					var downMove:Move = new Move();
@@ -188,10 +184,22 @@
 						triangleReferenceGroup.y = unitList.selectedIndex * 37 + 65;
 						
 						exerciseGroup.alpha = 1;
-						exerciseGroup.verticalCenter= unitList.selectedIndex * 39 - 100;
+						if (unitList.selectedIndex < 7) {
+							exerciseGroup.verticalCenter= unitList.selectedIndex * 39 - 100;
+						} else {
+							exerciseGroup.verticalCenter = 7 * 39 - 100;
+						}
+						
 					}
 				}
 			}
+			
+			protected function onInitialize(event:FlexEvent):void {
+				courseSelector.addEventListener("courseSelectorClicked", onCourseSelectorSelect, false, 0, true);
+				courseSelector.addEventListener("animationCompleted", onAnimationCompleted, false, 0, true);				
+				unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -321,10 +329,9 @@
 								<s:fill>
 									<s:LinearGradient rotation="270">
 										<s:GradientEntry ratio="0" color="#E3E3E3" color.hovered="{getUnitButtonTopOverColor(data)}" color.selected="{getUnitButtonTopOverColor(data)}"/>
-										<s:GradientEntry ratio="0.169041" color="#F8F8F8" color.hovered="{getUnitButtonTopOverColor(data)}" color.selected="{getUnitButtonTopOverColor(data)}"/>
-										<s:GradientEntry ratio="0.325843" color="#FFFFFF" color.hovered="{getUnitButtonTopMidOverColor(data)}" color.selected="{getUnitButtonTopMidOverColor(data)}"/>
-										<s:GradientEntry ratio="0.797753" color="#DCDCDC" color.hovered="{getUnitButtonBottomMidOverColor(data)}" color.selected="{getUnitButtonBottomMidOverColor(data)}"/>
-										<s:GradientEntry ratio="0.94382" color="#FFFFFF" color.hovered="{getUnitButtonTopMidOverColor(data)}" color.selected="{getUnitButtonTopMidOverColor(data)}"/>
+										<s:GradientEntry ratio="0.3" color="#FFFFFF" color.hovered="{getUnitButtonTopMidOverColor(data)}" color.selected="{getUnitButtonTopMidOverColor(data)}"/>
+										<s:GradientEntry ratio="0.8" color="#DCDCDC" color.hovered="{getUnitButtonBottomMidOverColor(data)}" color.selected="{getUnitButtonBottomMidOverColor(data)}"/>
+										<s:GradientEntry ratio="0.9" color="#FFFFFF" color.hovered="{getUnitButtonTopMidOverColor(data)}" color.selected="{getUnitButtonTopMidOverColor(data)}"/>
 									</s:LinearGradient>
 								</s:fill>
 								<s:stroke>
@@ -332,14 +339,13 @@
 								</s:stroke>
 							</s:Rect>
 							
-							<s:Rect id="overallProgressPath" left="2" right="0" top="1" bottom="1" height="34" maxWidth="245" radiusX="8" radiusY="8">
+							<s:Rect id="overallProgressPath" left="2" right="0" top="1" bottom="1" height="34" maxWidth="244" radiusX="8" radiusY="8">
 								<s:fill>
 									<s:LinearGradient rotation="270">
-										<s:GradientEntry ratio="0" color="{getUnitButtonProgressTopColor(data)}" color.hovered="{getUnitButtonTopOverColor(data)}" color.selected="{getUnitButtonTopOverColor(data)}" />
-										<s:GradientEntry ratio="0.169041" color="{getUnitButtonProgressTopMidColor(data)}" color.hovered="{getUnitButtonTopOverColor(data)}" color.selected="{getUnitButtonTopOverColor(data)}" />
-										<s:GradientEntry ratio="0.325843" color="{getUnitButtonProgressTopMidColor(data)}" color.hovered="{getUnitButtonTopMidOverColor(data)}" color.selected="{getUnitButtonTopMidOverColor(data)}" />
-										<s:GradientEntry ratio="0.797753" color="{getUnitButtonProgressBottomMidColor(data)}" color.hovered="{getUnitButtonBottomMidOverColor(data)}" color.selected="{getUnitButtonBottomMidOverColor(data)}" />
-										<s:GradientEntry ratio="0.94382" color="{getUnitButtonProgressTopMidColor(data)}" color.hovered="{getUnitButtonTopMidOverColor(data)}" color.selected="{getUnitButtonTopMidOverColor(data)}" />
+										<s:GradientEntry ratio="0" color="{getUnitButtonProgressTopColor(data)}" />
+										<s:GradientEntry ratio="0.3" color="{getUnitButtonProgressTopMidColor(data)}" />
+										<s:GradientEntry ratio="0.8" color="{getUnitButtonProgressBottomMidColor(data)}" />
+										<s:GradientEntry ratio="0.9" color="{getUnitButtonProgressTopMidColor(data)}" />
 									</s:LinearGradient>
 								</s:fill>
 							</s:Rect>
@@ -350,10 +356,9 @@
 									<s:fill>
 										<s:LinearGradient>
 											<s:GradientEntry ratio="0" color="{getNumberTagTopColor(data)}"/>
-											<s:GradientEntry ratio="0.1" color="{getNumberTagTopColor(data)}"/>
-											<s:GradientEntry ratio="0.325843" color="{getNumberTagTopMidColor(data)}"/>
-											<s:GradientEntry ratio="0.797753" color="{getNumberTagBottomMidColor(data)}"/>
-											<s:GradientEntry ratio="0.94382" color="{getNumberTagTopMidColor(data)}"/>
+											<s:GradientEntry ratio="0.3" color="{getNumberTagTopMidColor(data)}"/>
+											<s:GradientEntry ratio="0.8" color="{getNumberTagBottomMidColor(data)}"/>
+											<s:GradientEntry ratio="0.9" color="{getNumberTagTopMidColor(data)}"/>
 										</s:LinearGradient>
 									</s:fill>
 								</s:Path>

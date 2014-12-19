@@ -47,10 +47,9 @@
 		<s:fill>			
 			<s:LinearGradient rotation="270">
 				<s:GradientEntry ratio="0" color="#E3E3E3" color.down="{getTopOverColor(hostComponent.courseIndex)}" color.over="{getTopOverColor(hostComponent.courseIndex)}"/>
-				<s:GradientEntry ratio="0.169041" color="#F8F8F8" color.down="{getTopOverColor(hostComponent.courseIndex)}" color.over="{getTopOverColor(hostComponent.courseIndex)}"/>
-				<s:GradientEntry ratio="0.325843" color="#FFFFFF"  color.down="{getTopMidOverColor(hostComponent.courseIndex)}" color.over="{getTopMidOverColor(hostComponent.courseIndex)}"/>
-				<s:GradientEntry ratio="0.797753" color="#EBEBEB" color.down="{getBottomMidOverColor(hostComponent.courseIndex)}" color.over="{getBottomMidOverColor(hostComponent.courseIndex)}"/>
-				<s:GradientEntry ratio="0.94382" color="#FFFFFF" color.down="{getTopMidOverColor(hostComponent.courseIndex)}" color.over="{getTopMidOverColor(hostComponent.courseIndex)}"/>
+				<s:GradientEntry ratio="0.3" color="#FFFFFF"  color.down="{getTopMidOverColor(hostComponent.courseIndex)}" color.over="{getTopMidOverColor(hostComponent.courseIndex)}"/>
+				<s:GradientEntry ratio="0.8" color="#EBEBEB" color.down="{getBottomMidOverColor(hostComponent.courseIndex)}" color.over="{getBottomMidOverColor(hostComponent.courseIndex)}"/>
+				<s:GradientEntry ratio="0.9" color="#FFFFFF" color.down="{getTopMidOverColor(hostComponent.courseIndex)}" color.over="{getTopMidOverColor(hostComponent.courseIndex)}"/>
 			</s:LinearGradient>
 		</s:fill>
 		<s:stroke>

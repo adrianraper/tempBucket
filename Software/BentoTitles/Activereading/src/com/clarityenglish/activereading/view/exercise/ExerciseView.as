@@ -2,6 +2,7 @@ package com.clarityenglish.activereading.view.exercise {
 	import com.clarityenglish.activereading.view.exercise.ui.WindowShade;
 	import com.clarityenglish.bento.events.ExerciseEvent;
 	import com.clarityenglish.bento.view.exercise.ExerciseView;
+	import com.clarityenglish.common.vo.content.Bookmark;
 	import com.googlecode.bindagetools.Bind;
 	
 	import flash.events.Event;
@@ -48,6 +49,8 @@ package com.clarityenglish.activereading.view.exercise {
 		
 		[Bindable]
 		public var selectedExerciseNode:XML;
+		
+		private var isRollOutTextOpen:Boolean;
 		
 		public function ExerciseView() {
 			super();
@@ -101,17 +104,24 @@ package com.clarityenglish.activereading.view.exercise {
 		}
 		
 		protected function onRollOutButtonClick(event:MouseEvent):void {
-			rollOutTextGroup.width = 500;
-			var rollOutTextString:String = copyProvider.getCopyForId("exercise" + selectedExerciseNode.@id);
-			var textFlow:TextFlow = TextFlowUtil.importFromString(rollOutTextString);
-			rollOutRichEditableText.textFlow = textFlow;
+			if (!isRollOutTextOpen) {
+				rollOutTextGroup.width = 500;
+				var rollOutTextString:String = copyProvider.getCopyForId("exercise" + selectedExerciseNode.@id);
+				var textFlow:TextFlow = TextFlowUtil.importFromString(rollOutTextString);
+				rollOutRichEditableText.textFlow = textFlow;
+				isRollOutTextOpen = true;
+			} else {
+				rollOutTextGroup.width = 0;
+				isRollOutTextOpen = false;
+			}
+			
 		}
 		
 		protected function onStageClick(event:MouseEvent):void {
 			var component:Object = event.target;
 			
 			while(component) {
-				if (component is WindowShadeSkin || component == rollOutHGroup || component is VideoPlayerSkin) { // detect if user click on window shade
+				if (component is WindowShadeSkin || component == rollOutHGroup || component is VideoPlayerSkin || component == backToMenuButton) { // detect if user click on window shade
 					break;
 				}
 				component = component.parent;
@@ -123,6 +133,7 @@ package com.clarityenglish.activereading.view.exercise {
 			
 			if ((component != rollOutHGroup) && !(component is VideoPlayerSkin)) {
 				rollOutTextGroup.width = 0;
+				isRollOutTextOpen = false;
 			}
 		}
 	}

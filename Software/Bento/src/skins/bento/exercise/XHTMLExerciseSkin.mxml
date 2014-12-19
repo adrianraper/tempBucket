@@ -84,7 +84,7 @@
 			<s:Group id="noscrollGroup" width="100%">
 				<s:Rect width="100%" height="100%" minHeight="52">
 					<s:fill>
-						<s:SolidColor color="#D2DDE2" />
+						<s:SolidColor color="#FFFFFF" />
 					</s:fill>
 				</s:Rect>
 				
@@ -103,18 +103,23 @@
 						</s:fill>
 					</s:Rect>
 					
-					<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="0" left="10" right="0" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
+					<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="15" left="15" right="15" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
 						<components:XHTMLRichText id="readingTextRichText" top="5" left="30" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour, AudioFeedbackBehaviour]}" />
 					</s:Scroller>
+					
+					<s:Rect width="1" top="15" bottom="15" right="10">
+						<s:fill>
+							<s:SolidColor color="#6ca8a8" />
+						</s:fill>
+					</s:Rect>
 				</s:Group>
 				
-				<s:Group id="bodyGroup" width="100%" height="98%" minHeight="52" left="50">
-					
+				<s:Group id="bodyGroup" width="100%" height="98%" minHeight="52" left="50">			
 					<s:Group id="backgroundGraphics" clipAndEnableScrolling="true" verticalScrollPosition="{bodyRichText.verticalScrollPosition}" visible="false" addedEffect="{backgroundGraphicShowEffect}">
 						<!-- <s:BitmapImage left="150" top="200" source="/6.gif" /> -->
 					</s:Group>
 					
-					<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="0" left="0" right="0" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
+					<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="15" left="15" right="15" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
 						<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour, AudioFeedbackBehaviour, RecorderButtonBehaviour]}" />
 					</s:Scroller>
 				</s:Group>				
@@ -130,8 +135,8 @@
 			
 			<components:XHTMLRichText id="rightNoScrollRichText" top="-1" left="0" right="0" bottom="0" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour, AudioFeedbackBehaviour]}" />
 			<!--blur the right no scroll image-->
+			<s:SWFLoader source="@Embed(source='skins/assets/bottomBlur.png')" left="-1" top="604" />
 			<s:SWFLoader source="@Embed(source='skins/assets/sideBlur.png')" left="-1" top="-1" />
-			<s:SWFLoader source="@Embed(source='skins/assets/bottomBlur.png')" left="-1" top="507" />
 		</s:Group>
 	</s:Group>		
 </s:Skin>

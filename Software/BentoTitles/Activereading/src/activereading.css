@@ -16,6 +16,9 @@
 @namespace marking "com.clarityenglish.bento.view.marking.*";
 @namespace components "com.clarityenglish.textLayout.components.*";
 @namespace error "com.clarityenglish.common.view.error.*";
+@namespace video "com.clarityenglish.controls.video.*";
+@namespace players "com.clarityenglish.controls.video.players.*";
+@namespace credits "com.clarityenglish.activereading.view.credits.*";
 
 global {
 	outlineColors: #C63C47, #E6641E, #CF7D00, #47613D, #1E7496, #554091;
@@ -38,6 +41,11 @@ global {
 	progressAnalysisTextColors: #C63D47, #E96024, #D78D28, #47613D, #1E7496, #442E88;
 	
 	elementaryCircleWedgeColors: #C63D47, #F8B5BC, #EE3745, #E57780, #77171F, #C63D47, #8C1922, #E25F69, #703135, #DF1E26;
+	preintermediateCircleWedgeColors: #E96024, #FCD5C5, #C95F2E, #F18252, #7F351A, #F59469, #B13A24, #F05A22, #BE4526, #F6966C;
+	intermediateCircleWedgeColors: #D78D28, #FECB82, #E58128, #ECAB4E, #5B3814, #D6B992, #7C4F1F, #E7AC29, #9E6F29, #FCBA5B;
+	upperintermediateCircleWedgeColors: #47B13D, #B4CBAB, #67845B, #7AA569, #334A2B, #9CB591, #375C2B, #719961, #327539, #738E65;
+	preadvancedCircleWedgeColors: #1E7496, #CAEBFB, #7CB1C7, #528BA3, #10516B, #8DBDD0, #0B5E7F, #1B7AA1, #2899C7, #6ACEF5;
+	advancedCircleWedgeColors: #442E88, #DAD2E8, #635789, #8677B7, #221D54, #A49CBE, #5A479D, #36276C, #917AB0, #BD62D5;
 	
 	exerciseDisabledColors: #E6AFBA, #E8CC9E, #CFD67E, #92CAD6, #BBB3E6;
 	
@@ -187,8 +195,8 @@ components|AudioPlayer {
 	compactPlayedIcon: Embed("skins/activereading/assets/exercise/audio/played.png");
 	compactPausedIcon: Embed("skins/activereading/assets/exercise/audio/pause.png");
 	compactPlayingIcon: Embed("skins/activereading/assets/exercise/audio/playing.png");
-	fullPlayIcon: Embed("skins/activereading/assets/exercise/audio/play.png");
-	fullPauseIcon: Embed("skins/activereading/assets/exercise/audio/pause.png");
+	fullPlayIcon: Embed("skins/activereading/assets/exercise/audio/fullplay.png");
+	fullPauseIcon: Embed("skins/activereading/assets/exercise/audio/fullpause.png");
 }
 
 components|AudioPlayer s|ScrubBar {
@@ -217,6 +225,18 @@ warning|WarningView s|Button#yesButton {
 
 warning|WarningView s|Button#noButton {
 	skinClass: ClassReference("skins.activereading.exercise.warning.NoButtonSkin");
+}
+
+video|VideoSelector {
+	skinClass: ClassReference("skins.activereading.exercise.video.VideoSelectorSkin");
+}
+
+video|VideoSelector s|Button#scriptButton {
+	skinClass: ClassReference("skins.activereading.exercise.video.ScriptButtonSkin");
+}
+
+players|OSMFVideoPlayer {
+	skinClass: ClassReference("skins.activereading.exercise.video.VideoPlayerSkin");
 }
 	
 s|Button#compareEmptyScoreLabel, #ScoreEmptyScoreLabelButton {
@@ -263,8 +283,12 @@ progress|ProgressCertificateView {
 	skinClass: ClassReference("skins.activereading.progress.ProgressCertificateSkin");
 }
 
-s|VideoPlayer {
-	skinClass: ClassReference("skins.activereading.exercise.video.VideoPlayerSkin");
+progress|ProgressCertificateView s|Button#printButton {
+	skinClass: ClassReference("skins.activereading.progress.ui.PrintButtonSkin");
+}
+
+credits|CreditsView {
+	skinClass: ClassReference("skins.activereading.CreditsSkin");
 }
 
 s|TitleWindow.RecorderTitleWindow {

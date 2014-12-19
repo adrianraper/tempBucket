@@ -346,7 +346,7 @@ package com.clarityenglish.common.model {
 						var memory:Object = data.memory;
 						
 						// Is there a startingPoint set?
-						if (memory.directStart) {
+						if (memory && memory.directStart) {
 							config = configProxy.getConfig();
 							var bookmark:Bookmark = new Bookmark(memory.directStart);
 							config.courseID = bookmark.course;

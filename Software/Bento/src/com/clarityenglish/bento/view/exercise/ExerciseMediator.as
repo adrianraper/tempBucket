@@ -14,6 +14,7 @@
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
+	import org.puremvc.as3.patterns.observer.Notification;
 	
 	/**
 	 * A Mediator
@@ -239,7 +240,14 @@
 		}
 		
 		private function onBackToMenu():void {
-			sendNotification(BBNotifications.SELECTED_NODE_UP);
+			// #210 - can you simply stop the exercise now, or do you need any warning first?
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(bentoProxy.currentExercise)) as ExerciseProxy;
+			
+			if (exerciseProxy.attemptToLeaveExercise(new Notification(BBNotifications.SELECTED_NODE_UP))) {
+				sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view); // #265
+				sendNotification(BBNotifications.SELECTED_NODE_UP);
+			}
 		}
 		
 		// gh#388

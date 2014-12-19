@@ -12,17 +12,11 @@
         <s:State name="disabled" />
     </s:states>
 	
-	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="40" height="60">
+	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="45" right="45" height="60" buttonMode="true" useHandCursor="true">
 		<ui:layout>
-			<s:ButtonBarHorizontalLayout gap="16" />
+			<s:ButtonBarHorizontalLayout />
 		</ui:layout>
 	</ui:ProgressCourseButtonBar>
-	
-	<s:Rect top="60" left="45" right="50" height="1">
-		<s:fill>
-			<s:SolidColor color="0xEC1C32" />
-		</s:fill>
-	</s:Rect>	
 	
 	<s:VGroup id="oopsVGroup" horizontalCenter="0" top="160" bottom="0" visible="false">
 		<s:Group top="0">
@@ -30,32 +24,43 @@
 			<certificate:PreIntermediateOops visible="{hostComponent.courseClass == 'preintermediate'}" />
 			<certificate:IntermediateOops visible="{hostComponent.courseClass == 'intermediate'}"/>
 			<certificate:UpperIntermediateOops visible="{hostComponent.courseClass == 'upperintermediate'}"/>
+			<certificate:PreAdvancedOops visible="{hostComponent.courseClass == 'preadvanced'}"/>
 			<certificate:AdvancedOops visible="{hostComponent.courseClass == 'advanced'}"/>
 		</s:Group>	
 		<s:RichEditableText id="notCompleteRichEditableText" width="100%" paddingTop="25" fontSize="13" lineHeight="30" horizontalCenter="0"/>
 	</s:VGroup>
 	
-	<s:Group id="printGroup" right="0" top="60">
-		<s:SWFLoader source="@Embed(source='skins/activereading/assets/progress/certificate/printTip.png')" right="150" top="10"/>
-		<s:Button id="printButton"  color="0xFFFFFF" buttonMode="true" useHandCursor="true" right="60"/>		
-	</s:Group>
+	<s:VGroup top="60" bottom="0" width="100%" gap="0">
+		<s:Group id="printGroup" width="100%" visible="{!hostComponent.isPlatformTablet}" includeInLayout="{!hostComponent.isPlatformTablet}">
+			<s:SWFLoader source="@Embed(source='skins/activereading/assets/progress/certificate/printTip.png')" right="165" top="10"/>
+			<s:Button id="printButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" right="60" top="-1"/>
+		</s:Group>	
+		
+		<s:Spacer height="10" />
+		
+		<s:Scroller width="100%" bottom="0">
+			<s:Group id="certificateGroup" width="100%">
+				<s:SWFLoader id="certificateSWFLoader" horizontalCenter="0" source="@Embed(source='skins/activereading/assets/progress/certificate/certSmall.png')" />
+				<s:HGroup top="120" width="700" horizontalCenter="0" gap="16">
+					<s:VGroup paddingLeft="100" gap="15">
+						<s:Label id="nameTextLabel" fontSize="15" />
+						<s:Label id="courseTextLabel" fontSize="15" />
+						<s:Label id="dateTextLabel" fontSize="15" />
+					</s:VGroup>
+					<s:VGroup gap="10">
+						<s:Label id="nameLabel" fontWeight="bold" fontSize="16" />						
+						<s:Label id="courseLabel" fontWeight="bold" fontSize="16" />
+						<s:Label id="dateLabel" fontWeight="bold" fontSize="16" />
+					</s:VGroup>										
+				</s:HGroup>						
+				<s:RichEditableText id="certificateRichEditableText" width="500" horizontalCenter="0" top="240" fontSize="16" textAlign="center" />
+			</s:Group>
+		</s:Scroller>
+	</s:VGroup>
 	
-	<s:Scroller top="110" bottom="0">
-		<s:Group id="certificateGroup">
-			<s:SWFLoader id="certificateSWFLoader" left="60" />
-			<s:HGroup top="150" left="160" gap="16">
-				<s:VGroup gap="10">
-					<s:Label id="nameTextLabel" fontSize="15" />
-					<s:Label id="courseTextLabel" fontSize="15" />
-					<s:Label id="dateTextLabel" fontSize="15" />
-				</s:VGroup>
-				<s:VGroup gap="10">
-					<s:Label id="nameLabel" fontWeight="bold" fontSize="16" />						
-					<s:Label id="courseLabel" fontWeight="bold" fontSize="16" />
-					<s:Label id="dateLabel" fontWeight="bold" fontSize="16" />
-				</s:VGroup>										
-			</s:HGroup>						
-			<s:RichEditableText id="certificateRichEditableText" width="500" horizontalCenter="0" top="260" fontSize="16" textAlign="center" />
-		</s:Group>
-	</s:Scroller>
+	<s:Rect top="60" left="45" right="45" height="1">
+		<s:fill>
+			<s:SolidColor color="0x000000" />
+		</s:fill>
+	</s:Rect>
 </s:Skin>

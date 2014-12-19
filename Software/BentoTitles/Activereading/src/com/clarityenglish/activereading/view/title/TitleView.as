@@ -8,6 +8,7 @@ package com.clarityenglish.activereading.view.title {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.media.Video;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	
@@ -88,7 +89,7 @@ package com.clarityenglish.activereading.view.title {
 				case "menu":
 				case "course":
 				case "unit":
-					currentState = "home";
+					currentState = "home";	
 					break;
 				case "exercise":
 					currentState = "exercise";
@@ -158,10 +159,6 @@ package com.clarityenglish.activereading.view.title {
 						exercise: { viewClass: ExerciseView, stack: true },
 						progress: { viewClass: ProgressView }
 					});
-					break;
-				case homeViewNavigator:
-					// remove the right transition when back to the home screen
-					homeViewNavigator.defaultPopTransition = new ViewTransitionBase();
 					break;
 				case backToMenuButton:
 					backToMenuButton.label = copyProvider.getCopyForId("backToMenuButton");

@@ -3,6 +3,9 @@
 @namespace activereading "com.clarityenglish.activereading.*";
 @namespace title "com.clarityenglish.activereading.view.title.*";
 @namespace login "com.clarityenglish.activereading.view.login.*";
+@namespace video "com.clarityenglish.controls.video.*";
+@namespace nonetwork "com.clarityenglish.bento.view.nonetwork.*";
+@namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 
 global {
 	interactionMode: touch;
@@ -20,10 +23,28 @@ s|TextInput {
 	paddingRight: 10;
 }
 
+components|XHTMLExerciseView s|TextInput {
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 0;
+	paddingLeft: 0;
+	paddingRight: 0;
+}
+
 login|LoginView s|TextInput {
 	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
 	contentBackgroundColor: #FFFFFF;
 	contentBackgroundAlpha: 1;
 	paddingLeft: 10;
 	paddingRight: 10;
+}
+
+@media(os-platform:"IOS") {
+	video|VideoSelector {
+		skinClass: ClassReference("skins.activereadingair.exercise.video.IOSVideoSelectorSkin");
+	}
+}
+
+nonetwork|NoNetworkView {
+	skinClass: ClassReference("skins.activereadingair.NoNetworkSkin");
 }

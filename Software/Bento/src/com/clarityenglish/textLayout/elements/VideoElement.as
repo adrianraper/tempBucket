@@ -1,4 +1,7 @@
 package com.clarityenglish.textLayout.elements {
+	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.controls.video.VideoSelector;
 	import com.clarityenglish.controls.video.players.OSMFVideoPlayer;
 	
 	import flash.events.Event;
@@ -10,6 +13,8 @@ package com.clarityenglish.textLayout.elements {
 	import flashx.textLayout.formats.FormatValue;
 	import flashx.textLayout.tlf_internal;
 	
+	import mx.collections.ArrayCollection;
+	import mx.collections.XMLListCollection;
 	import mx.controls.SWFLoader;
 	import mx.events.FlexEvent;
 	
@@ -17,6 +22,8 @@ package com.clarityenglish.textLayout.elements {
 	import org.osmf.net.DynamicStreamingItem;
 	import org.osmf.net.DynamicStreamingResource;
 	import org.osmf.net.StreamType;
+	import org.puremvc.as3.interfaces.IFacade;
+	import org.puremvc.as3.patterns.facade.Facade;
 	
 	import spark.components.VideoPlayer;
 
@@ -27,6 +34,10 @@ package com.clarityenglish.textLayout.elements {
 		private static const NORMAL:String = "normal";
 		private static const YOU_TUBE:String = "you_tube";
 		private static const VIMEO:String = "vimeo";
+		private static const VIDEO_SELECTOR:String = "video_selector";
+		
+		public var items:XMLList;
+		public var poster:String;
 		
 		private static var inititalized:Boolean = false;
 		
@@ -153,6 +164,24 @@ package com.clarityenglish.textLayout.elements {
 					
 					component = swfLoader;
 					break;
+				case VIDEO_SELECTOR:
+					var videoSelector:VideoSelector = new VideoSelector();
+					videoSelector.width = width;
+					videoSelector.height = height;
+					
+					// NOTE: This is absolutely awful, and NOT to be used as an example of how to do stuff.  The entire VideoSelector/
+					// channel system needs to be carefully looked at, and due to time constraints this hack will have to do for now.
+					var facade:IFacade = Facade.getInstance();
+					var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+					videoSelector.href = bentoProxy.menuXHTML.href;
+					videoSelector.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
+					videoSelector.videoCollection = new XMLListCollection(items);
+					videoSelector.autoPlay = _autoPlay;
+					if (poster) videoSelector.placeholderSource = bentoProxy.menuXHTML.href.rootPath + "/" + poster;
+					
+					component = videoSelector;
+					break;
 			}
 		}
 		
@@ -171,7 +200,6 @@ package com.clarityenglish.textLayout.elements {
 		
 		//gh#145 replay
 		protected function onVideoPlayerComplete(event:TimeEvent):void {
-			trace("you are here");
 			videoPlayer.endVideo = true;
 		}
 		
@@ -284,14 +312,14 @@ package com.clarityenglish.textLayout.elements {
 		 * @return 
 		 */
 		private function getVideoType():String {
-			if (_src.search(/www\.youtube\.com/) >= 0) { 
-				trace("found a YouTube video");
+			if (_src && _src.search(/www\.youtube\.com/) >= 0) { 
 				return YOU_TUBE;
-			}
-			if (_src.search(/\.vimeo\.com/) >= 0) {
-				trace("found a vimeo video");
+			} else if (_src && _src.search(/\.vimeo\.com/) >= 0) {
 				return VIMEO;
+			} else if (_src == null && items && items.length() > 0) {
+				return VIDEO_SELECTOR;
 			}
+			
 			return NORMAL;
 		}
 		

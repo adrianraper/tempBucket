@@ -3,7 +3,8 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:view="com.clarityenglish.bento.view.*"
-		xmlns:recorder="com.clarityenglish.bento.view.recorder.*" xmlns:ui="com.clarityenglish.activereading.view.exercise.ui.*" xmlns:exercise="skins.activereading.assets.exercise.*" xmlns:home="skins.activereading.assets.home.*">
+		xmlns:recorder="com.clarityenglish.bento.view.recorder.*"
+		xmlns:ui="com.clarityenglish.activereading.view.exercise.ui.*" xmlns:exercise="skins.activereading.assets.exercise.*" xmlns:home="skins.activereading.assets.home.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.activereading.view.exercise.ExerciseView")]
@@ -31,7 +32,7 @@
 	</s:layout>
 	
 	<!--Exercise Background-->
-	<s:Group width="100%" height="100%" filters="{[dropShadowFilter]}" includeIn="exercise">
+	<s:Group width="100%" height="100%" filters="{[dropShadowFilter]}">
 		<s:Rect left="15" right="15" height="100%">
 			<s:fill>
 				<s:SolidColor color="#FFFFFF" />
@@ -64,13 +65,13 @@
 	</s:HGroup>
 	
 	<!-- Top Left buttons -->
-	<s:HGroup top="45" left="230" includeIn="exercise" gap="3">
+	<s:HGroup top="45" left="230" gap="3">
 		<s:Button id="backButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}" visible="{!hostComponent.isDirectStartEx}"/>
 		<s:Button id="forwardButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
 	</s:HGroup>	
 	
 	<!-- Top Right buttons -->
-	<s:HGroup right="75" top="45" includeIn="exercise" gap="3"> 
+	<s:HGroup right="75" top="45" gap="3"> 
 		<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
 		<s:Button id="feedbackButton" visible="false" includeInLayout="false" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
 		<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
@@ -78,12 +79,12 @@
 	</s:HGroup>
 	
 	<!--Roll out text-->
-	<s:HGroup id="rollOutHGroup" top="170" right="302" gap="-6" visible="{hostComponent.hasVideoScript}">
+	<s:HGroup id="rollOutHGroup" top="190" right="302" gap="-6" visible="{hostComponent.hasVideoScript}">
 		<s:VGroup paddingTop="10" width="50">
 			<s:Button id="readButton" buttonMode="true" useHandCursor="true" />
 		</s:VGroup>
-		<s:Group id="rollOutTextGroup" width="0" height="355">
-			<s:Rect width="100%" height="100%" filters="{[dropShadowFilter]}" bottomLeftRadiusX="8" bottomLeftRadiusY="8" topLeftRadiusX="8" topLeftRadiusY="8">
+		<s:Group id="rollOutTextGroup" width="0" height="450">
+			<s:Rect width="100%" height="100%" filters="{[dropShadowFilter]}" bottomLeftRadiusX="8" bottomLeftRadiusY="8" bottomRightRadiusX="8" bottomRightRadiusY="8" topLeftRadiusX="8" topLeftRadiusY="8">
 				<s:fill>
 					<s:SolidColor color="#FFFFFF" />
 				</s:fill>
@@ -93,8 +94,8 @@
 					<s:SolidColor color="#025555" />
 				</s:fill>
 			</s:Rect>
-			<s:Scroller width="80%" height="280" verticalCenter="20" horizontalCenter="0">
-				<s:RichEditableText id="rollOutRichEditableText" editable="false"/>
+			<s:Scroller width="85%" height="85%" verticalCenter="20" horizontalCenter="0">
+				<s:RichEditableText id="rollOutRichEditableText" editable="false" selectable="false" verticalAlign="middle"/>
 			</s:Scroller>
 		</s:Group>
 	</s:HGroup>
@@ -130,7 +131,7 @@
 	</s:Group>
 	
 	<!--Top control bar button-->
-	<s:Button id="backToMenuButton" top="0" right="100" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
+	<s:Button id="backToMenuButton" top="0" right="100" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" includeIn="exercise" />
 
 	<!--Header course title-->
 	<s:HGroup left="0" top="15" width="220" gap="8" horizontalAlign="center" verticalAlign="middle">

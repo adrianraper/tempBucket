@@ -160,7 +160,7 @@ in accordance with the terms of the license agreement accompanying it.
 									focusOut="event.target.depth=0" buttonMode="true" useHandCursor="true" />
 					
 					<!-- scrubbar + the currentTime/duration labels -->
-					<s:Group left="35" right="35" top="0" bottom="25">
+					<s:Group left="35" right="45" top="0" bottom="25">
 						<s:Group left="0" right="0" height="23" bottom="0">
 							<s:layout>
 								<s:HorizontalLayout verticalAlign="middle" gap="1" />
@@ -216,12 +216,16 @@ in accordance with the terms of the license agreement accompanying it.
 				</s:Group>
 			</s:Group>
 			
-			<!-- border -->
-			<!--s:Rect left="0" right="0" top="0" bottom="0" excludeFrom="fullScreenStates">
-				<s:stroke>
-					<s:SolidColorStroke color="0x131313" />
-				</s:stroke>
-			</s:Rect-->
+			<!-- buffering -->
+			<s:Group left="15" right="15" top="15" bottom="70" includeIn="loading, bufferingStates,ready">
+				<s:Rect left="0" right="0" top="0" bottom="0">
+					<s:fill>
+						<s:SolidColor color="0xFFFFFF" alpha="0.75" />
+					</s:fill>
+				</s:Rect>
+				
+				<s:SWFLoader source="@Embed(source='/skins/activereading/assets/loading.swf')" verticalCenter="0" horizontalCenter="0"  />
+			</s:Group>
 		</s:Group>
 	</s:Group>
 </s:SparkSkin>

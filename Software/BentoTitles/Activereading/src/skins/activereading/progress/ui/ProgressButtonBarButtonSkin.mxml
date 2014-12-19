@@ -63,7 +63,7 @@
 	<s:Group id="trapezoidTab" top.selectedStates="0" top="6">
 		<s:Path data="M0 49.2021 0 17.2021C0 12.8018 3.54785 8.59082 7.88379 7.84277L50.1162 0.561523C54.4521 -0.186523 61.5479 -0.186523 65.8838 0.561523L108.116 7.84277C112.452 8.59082 116 12.8018 116 17.2021L116 49.1436 0 49.2021Z" filters="{[dropShadowFilter]}">
 			<s:fill>
-				<s:LinearGradient>
+				<s:LinearGradient rotation="-90">
 					<s:GradientEntry color.selectedStates="#004947" color.down="#004947" color.over="#004947" color="#FFFFFF" />
 					<s:GradientEntry color.selectedStates="#337C78" color.down="#337C78" color.over="#337C78" color="#FFFFFF" />
 				</s:LinearGradient>

@@ -165,7 +165,7 @@
 				<!--- @copy spark.components.Panel#titleDisplay -->
 				<s:Label id="titleDisplay" maxDisplayedLines="1"
 						 left="37" right="36" top="5" bottom="0" minHeight="30"
-						 verticalAlign="middle"
+						 verticalAlign="middle" visible="true"
 						 text="Warning" fontFamily="MyriadPro" fontWeight="bold" fontSize="20" color="#FFFFFF"/>
 				
 				<!-- layer 4: moveArea -->

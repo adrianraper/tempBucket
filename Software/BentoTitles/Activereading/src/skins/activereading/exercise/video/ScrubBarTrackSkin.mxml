@@ -52,18 +52,18 @@
     </s:states>
     
 	<s:Group>
-		<s:Rect width="177.584" height="12.3623" radiusX="5.97482" radiusY="5.97482">
+		<s:Rect width="167.584" height="12.3623" radiusX="5.97482" radiusY="5.97482">
 			<s:fill>
 				<s:SolidColor color="#B4B4B4"/>
 			</s:fill>
 		</s:Rect>
-		<s:Rect x="0.5" y="0.5" width="177.584" height="12.3623" radiusX="5.97482" radiusY="5.97482">
+		<s:Rect x="0.5" y="0.5" width="167.584" height="12.3623" radiusX="5.97482" radiusY="5.97482">
 			<s:fill>
 				<s:SolidColor color="#E6E6E5"/>
 			</s:fill>
 		</s:Rect>
 	</s:Group>
-	<s:Group x="4.35742" y="3.98926">
+	<s:Group x="4.35742" y="3.98926" scaleX="0.95" scaleY="0.95">
 		<s:Path winding="nonZero" data="M168.869 2.19238C168.869 3.39746 167.52 4.38379 165.869 4.38379L3 4.38379C1.34961 4.38379 0 3.39746 0 2.19238 0 0.986328 1.34961 0 3 0L165.869 0C167.52 0 168.869 0.986328 168.869 2.19238Z">
 			<s:fill>
 				<s:SolidColor color="#989898"/>

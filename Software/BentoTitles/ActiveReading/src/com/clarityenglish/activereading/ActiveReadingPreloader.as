@@ -168,7 +168,6 @@ package com.clarityenglish.activereading {
 			// I would like to do the following, but swfTotalBytes never reaches full size until it is fully loaded!
 			//var totalPercent:Number = Math.round(100 * (swfBytesLoaded + bytesLoaded) / (swfBytesTotal + bytesTotal)); 
 			var totalPercent:Number = Math.round(100 * (swfBytesLoaded + bytesLoaded) / (swfEstimate + bytesTotal)); 
-			trace("total percent: "+totalPercent);
 			preloaderDisplay.setMainProgress(totalPercent);
 		}
 		

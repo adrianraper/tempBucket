@@ -143,7 +143,6 @@ package com.clarityenglish.controls.video {
 				_channelCollectionChanged = false;
 				if (channelList) {
 					channelList.dataProvider = _channelCollection;
-
 					if (channelList.dataProvider.length>1)
 						channelList.visible = true;
 				}
@@ -218,7 +217,7 @@ package com.clarityenglish.controls.video {
 			_videoChanged = true;
 			
 			// Show the script button if there is a @scriptHref attribute
-			scriptButton.visible = (videoList.selectedItem && videoList.selectedItem.hasOwnProperty("@scriptHref"));
+			scriptButton.visible = (videoList.selectedItem && videoList.selectedItem.attribute("scriptHref").length() > 0);
 			
 			invalidateProperties();
 		}
@@ -263,7 +262,7 @@ package com.clarityenglish.controls.video {
 		}
 		
 		public function getVideoScore():ExerciseMark {
-			if (videoList.selectedItem && currentVideoStartTime) { // #138
+			if (videoList.selectedItem && currentVideoStartTime && hrefToUidFunction != null) { // #138 // for some video (candidates video), no hrefToUidFunction can apply
 				var videoHref:Href = href.createRelativeHref(null, videoList.selectedItem.@href);
 				
 				var exerciseMark:ExerciseMark = new ExerciseMark();
@@ -287,7 +286,7 @@ package com.clarityenglish.controls.video {
 		}
 		
 		protected function onScriptButtonClicked(event:MouseEvent):void {
-			if (videoList.selectedItem && videoList.selectedItem.hasOwnProperty("@scriptHref"))
+			if (videoList.selectedItem && videoList.selectedItem.attribute("scriptHref").length() > 0)
 				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, videoList.selectedItem.@scriptHref, videoList.selectedItem, "scriptHref"));
 		}
 		

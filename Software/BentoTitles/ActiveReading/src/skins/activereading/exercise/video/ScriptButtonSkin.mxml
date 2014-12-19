@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+    ADOBE SYSTEMS INCORPORATED
+    Copyright 2008 Adobe Systems Incorporated
+    All Rights Reserved.
+
+    NOTICE: Adobe permits you to use, modify, and distribute this file
+    in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+<!--- The default skin class for the Spark Button component.  
+
+       @see spark.components.Button
+        
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+             xmlns:s="library://ns.adobe.com/flex/spark" 
+             xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+             minWidth="21" minHeight="21" 
+             alpha.disabled="0.5">
+     
+    <fx:Metadata>
+        <![CDATA[ 
+        /** 
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("spark.components.Button")]
+        ]]>
+    </fx:Metadata>
+    
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" />
+        <s:State name="down" />
+        <s:State name="disabled" />
+    </s:states>
+
+	<!-- The background -->
+	<s:Rect width="48" height="45" topRightRadiusX="6" topRightRadiusY="6" bottomRightRadiusX="6" bottomRightRadiusY="6">
+		<s:fill>
+			<s:LinearGradient x="965.7625" y="449.5" scaleX="-48.225">
+				<s:GradientEntry ratio="0" color="#4E4E4E"/>
+				<s:GradientEntry ratio="0.44705882" color="#3F3F3F"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	
+	<!-- The icon -->
+	<s:Group>
+		<s:Path x="-917.55" y="-427.05" data="M933.75 438.15 947.3 438.15Q948.45 438.15 949.25 438.95 950.05 439.75 950.05 440.85L950.05 457.5Q950.05 458.6 949.25 459.4 948.45 460.2 947.3 460.2L933.75 460.2Q932.65 460.2 931.85 459.4 931.05 458.65 931.05 457.5L931.05 440.85Q931.05 439.75 931.85 438.95 932.65 438.15 933.75 438.15M942.65 442.55 946.65 446.5Q947.45 447.35 948.05 447.1 948.65 446.85 948.65 445.65L948.65 443.4Q948.65 442.2 947.85 441.35 947 440.5 945.8 440.5L943.5 440.5Q942.35 440.5 942.1 441.1 941.85 441.75 942.65 442.55">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+		<s:Path x="-917.55" y="-427.05" data="M946.7 450.7 934.05 450.7 934.05 448.5 946.7 448.5 946.7 450.7">
+			<s:fill>
+				<s:SolidColor color="#666666"/>
+			</s:fill>
+		</s:Path>
+		<s:Path x="-917.55" y="-427.05" data="M946.7 456 934.05 456 934.05 453.85 946.7 453.85 946.7 456">
+			<s:fill>
+				<s:SolidColor color="#666666"/>
+			</s:fill>
+		</s:Path>
+	</s:Group>
+    
+    <!-- layer 8: text -->
+    <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
+    <s:Label id="labelDisplay"
+             textAlign="center"
+             maxDisplayedLines="1"
+             horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
+             left="10" right="10" top="2" bottom="2">
+    </s:Label>
+    
+</s:SparkButtonSkin>

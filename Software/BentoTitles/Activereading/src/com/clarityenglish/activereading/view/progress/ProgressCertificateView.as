@@ -14,6 +14,8 @@ package com.clarityenglish.activereading.view.progress {
 	
 	import flashx.textLayout.elements.TextFlow;
 	
+	import mx.controls.SWFLoader;
+	
 	import org.alivepdf.display.Display;
 	import org.alivepdf.fonts.CoreFont;
 	import org.alivepdf.fonts.FontFamily;
@@ -33,7 +35,6 @@ package com.clarityenglish.activereading.view.progress {
 	import spark.components.VGroup;
 	import spark.events.IndexChangeEvent;
 	import spark.utils.TextFlowUtil;
-	import mx.controls.SWFLoader;
 	
 	public class ProgressCertificateView extends BentoView {
 		
@@ -99,6 +100,7 @@ package com.clarityenglish.activereading.view.progress {
 		
 		private var _courseChanged:Boolean;
 		private var _courseClass:String;
+		private var _isPlatformTablet:Boolean;
 		//private var pdf:PDF;
 		
 		[Bindable]
@@ -121,6 +123,15 @@ package com.clarityenglish.activereading.view.progress {
 		[Bindable]
 		public function get courseClass():String {
 			return _courseClass;
+		}
+		
+		public function set isPlatformTablet(value:Boolean):void {
+			_isPlatformTablet = value;
+		}
+		
+		[Bindable]
+		public function get isPlatformTablet():Boolean {
+			return _isPlatformTablet;
 		}
 		
 		protected override function onViewCreationComplete():void {
@@ -174,24 +185,6 @@ package com.clarityenglish.activereading.view.progress {
 				} else {
 					certificateGroup.visible = true;
 					printGroup.visible = true;
-					switch (courseClass.charAt(0)) {
-						case "e":
-							certificateSWFLoader.source = ECert;
-							break;
-						case "u":
-							certificateSWFLoader.source = UCert;
-							break;
-						case "i":
-							certificateSWFLoader.source = ICert;
-							break;
-						case "l":
-							certificateSWFLoader.source = LCert;
-							break;
-						case "a":
-							certificateSWFLoader.source = ACert;
-							break;
-						
-					}
 					courseLabel.text = menu.course.(@["class"] == courseClass).@caption;
 					var completeString:String = copyProvider.getCopyForId("completeString", {aveScore: aveScore});
 					var completeTextFlow:TextFlow = TextFlowUtil.importFromString(completeString);
