@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<application xmlns="http://ns.adobe.com/air/application/4.0">
+<application xmlns="http://ns.adobe.com/air/application/15.0">
 
 <!-- Adobe AIR Application Descriptor File Template.
 
@@ -137,8 +137,8 @@
 
 	<!-- The icon the system uses for the application. For at least one resolution,
 	specify the path to a PNG file included in the AIR package. Optional. -->
-	<!-- <icon>
-		<image16x16></image16x16>
+	<icon>
+		<!--image16x16></image16x16>
 		<image29x29></image29x29>
 		<image32x32></image32x32>
 		<image36x36></image36x36>
@@ -159,8 +159,14 @@
 		<image152x152></image152x152>
 		<image512x512></image512x512>
 		<image732x412></image732x412>
-		<image1024x1024></image1024x1024>
-	</icon> -->
+		<image1024x1024></image1024x1024>-->
+		<image57x57>icons/AR_iOS_appIcon_57.png</image57x57>
+		<image72x72>icons/AR_iOS_appIcon_72.png</image72x72>
+		<image76x76>icons/AR_iOS_appIcon_76.png</image76x76>
+		<image114x114>icons/AR_iOS_appIcon_114.png</image114x114>
+		<image144x144>icons/AR_iOS_appIcon_144.png</image144x144>
+		<image152x152>icons/AR_iOS_appIcon_152.png</image152x152>
+	</icon>
 
 	<!-- Whether the application handles the update when a user double-clicks an update version
 	of the AIR file (true), or the default AIR application installer handles the update (false).
