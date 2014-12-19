@@ -117,6 +117,11 @@ package com.clarityenglish.bento.vo.content {
 			return (model.questions.length > 0 && model.hasSettingParam("delayedMarking"));
 		}
 		
+		// gh#1139
+		public function noMarking():Boolean {
+			return (model.hasSettingParam("noMarking") && model.getSettingParam("noMarking"));
+		}
+		
 		public function getRule():String {
 			return model.getRule();
 		}

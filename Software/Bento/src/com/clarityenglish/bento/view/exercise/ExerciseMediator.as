@@ -132,7 +132,7 @@
 					configureButtonVisibility(note.getBody() as Exercise);
 					break;
 				case BBNotifications.EXERCISE_PRINTED:
-					trace("exercise printed");
+					//trace("exercise printed");
 					break;
 				case BBNotifications.EXERCISE_TRY_AGAIN:
 					view.isMarked = false;
@@ -146,7 +146,9 @@
 		}
 		
 		private function configureButtonVisibility(exercise:Exercise):void {
-			if (view.markingButton) view.markingButton.visible = view.markingButton.includeInLayout = !(getExerciseProxy(exercise).exerciseMarked) && exercise.hasQuestions();
+			// gh#1139
+			if (view.markingButton) 
+				view.markingButton.visible = view.markingButton.includeInLayout = !(getExerciseProxy(exercise).exerciseMarked) && exercise.hasQuestions() && !exercise.noMarking();
 			// gh#1113
 			if (view.startAgainButton) view.startAgainButton.visible =  view.startAgainButton.includeInLayout = exercise.hasQuestions();
 			
