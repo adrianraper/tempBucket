@@ -75,6 +75,9 @@
 			
 			configureTitlesButton.label = copyProvider.getCopyForId("configureTitles");
 			
+			// gh#1090
+			loginBlockedFormItem.label = copyProvider.getCopyForId("loginBlockedFormItem");
+			
 			// v3.3 To list languages that you can use for a given title.
 			// Start with everything available.
 			//availableLanguagesCollection = new ArrayCollection(DictionarySingleton.getInstance().languageCode);
@@ -131,6 +134,11 @@
 			//contentLocationTextInput.text = selectedTitle.contentLocation;
 			contentLocationTextInput.text = selectedTitle.dbContentLocation;
 			licenceTypeComboBox.value = selectedTitle.licenceType;
+			
+			// gh#1090
+			loginBlockedCheckBox.selected = (selectedTitle.loginModifier & Title.LOGIN_BLOCKED);
+			loginBlockedFormItem.enabled = editMode && (licenceTypeComboBox.value == Title.LICENCE_TYPE_AA);
+			loginBlockedFormItem.visible = (licenceTypeComboBox.value == Title.LICENCE_TYPE_AA);
 			
 			// To help create accounts, disable fields that don't need to be changed
 			// RM only cares about teachers, reporters and authors. It also CAN'T have a content location
@@ -193,6 +201,12 @@
 					//selectedTitle.contentLocation = contentLocationTextInput.text;
 					selectedTitle.dbContentLocation = contentLocationTextInput.text;
 					selectedTitle.licenceType = licenceTypeComboBox.value as Number;
+					// gh#1090
+					if (loginBlockedCheckBox.selected) {
+						selectedTitle.loginModifier |= Title.LOGIN_BLOCKED;
+					} else {
+						selectedTitle.loginModifier &= ~Title.LOGIN_BLOCKED;
+					}
 				}
 			}
 		}
@@ -337,6 +351,12 @@
 			e.target.removeEventListener(Event.CANCEL, onTitlesCancel);
 			PopUpManager.removePopUp(e.target as IFlexDisplayObject);
 		}
+			
+		// gh#1090
+		private function onLicenceTypeChange(e:Event):void {
+			loginBlockedFormItem.enabled = editMode && (licenceTypeComboBox.value == Title.LICENCE_TYPE_AA);
+			loginBlockedFormItem.visible = (licenceTypeComboBox.value == Title.LICENCE_TYPE_AA);
+		}
 		
 		]]>
 		
@@ -402,9 +422,15 @@
 					<mx:NumericStepper id="maxAuthorsStepper" enabled="{editMode}" maximum="999999" />
 				</mx:FormItem>
 			</mx:HBox>
-			<mx:FormItem id="licenceTypeFormItem">
-				<fxc:VAComboBox id="licenceTypeComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().licenceType}" />
-			</mx:FormItem>
+			<mx:HBox width="100%">
+				<mx:FormItem id="licenceTypeFormItem">
+					<fxc:VAComboBox id="licenceTypeComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().licenceType}"
+									change="onLicenceTypeChange(event)" />
+				</mx:FormItem>
+				<mx:FormItem id="loginBlockedFormItem" >
+					<mx:CheckBox id="loginBlockedCheckBox" />
+				</mx:FormItem>
+			</mx:HBox>
 			<mx:FormItem id="languageCodeFormItem">
 				<!-- <fxc:VAComboBox id="languageCodeComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().languageCode}" />  -->
 				<fxc:VAComboBox id="languageCodeComboBox" enabled="{editMode}" dataField="data" dataProvider="{availableLanguagesCollection}" />

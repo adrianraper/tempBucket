@@ -21,6 +21,9 @@
 		public static const LICENCE_TYPE_TT:int = 6;
 		public static const LICENCE_TYPE_CT:int = 7;
 		
+		// gh#1090
+		public static const LOGIN_BLOCKED:uint = 1;
+		
 		/**
 		 * The collection of courses belonging to this title
 		 */
@@ -56,6 +59,9 @@
 		public var licenceType:Number;
 		
 		public var checksum:String;
+		
+		// gh#1090
+		public var loginModifier:uint;
 		
 		public function Title() {
 			courses = new Array();

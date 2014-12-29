@@ -32,7 +32,8 @@ package com.clarityenglish.common.vo.config {
 		public static const LOGIN_BY_NAME:uint = 1;
 		public static const LOGIN_BY_ID:uint = 2;
 		public static const LOGIN_BY_NAME_AND_ID:uint = 4;
-		public static const LOGIN_BY_ANONYMOUS:uint = 8;
+		// gh#1090
+		//public static const LOGIN_BY_ANONYMOUS:uint = 8;
 		public static const LOGIN_BY_EMAIL:uint = 128;
 		
 		// #341 These values are from compatability with Orchid and RM
@@ -166,8 +167,8 @@ package com.clarityenglish.common.vo.config {
 		// gh#224
 		public var customisation:XML;
 		
-		// gh#886
-		private var _noLogin:String;
+		// gh#886, gh#1090
+		private var _noLogin:Boolean;
 		
 		/**
 		 * Developer option
@@ -228,12 +229,7 @@ package com.clarityenglish.common.vo.config {
 		}
 		
 		public function get noLogin():Boolean {
-			if (_noLogin == "true") {
-				return true;
-			} else {
-				return false;
-			}
-			
+			return _noLogin;
 		}
 		
 		/**
@@ -600,14 +596,6 @@ package com.clarityenglish.common.vo.config {
 				this.error.errorContext = 'More than one title matched the product code';
 			}
 			
-			// gh#886
-			for (var i:Number = 0; i < this.account.licenceAttributes.length; i++) {
-				if (this.account.licenceAttributes[i]['licenceKey'] == 'noLogin') {
-					this._noLogin = this.account.licenceAttributes[i]['licenceValue'];
-				}
-					
-			}
-			
 			var thisTitle:Title = this.account.getTitle();
 			
 			// gh#11 thisTitle.language changed to thisTitle.productVersion due to Alice local database add F_ProductVersion column			
@@ -624,6 +612,17 @@ package com.clarityenglish.common.vo.config {
 			// gh#20
 			/*if(thisTitle.languageCode)
 				this.language = thisTitle.languageCode;*/
+			
+			// gh#886
+			// gh#1090
+			/*
+			for (var i:Number = 0; i < this.account.licenceAttributes.length; i++) {
+				if (this.account.licenceAttributes[i]['licenceKey'] == 'noLogin') {
+					this._noLogin = this.account.licenceAttributes[i]['licenceValue'];
+				}
+			}
+			*/
+			this._noLogin = (thisTitle.loginModifier & Title.LOGIN_BLOCKED);
 			
 			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
 			// and comes from a mix of T_ProductLanguage and T_Accounts. 

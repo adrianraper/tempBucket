@@ -1129,3 +1129,5 @@ DELETE FROM T_ProductVersion WHERE F_ProductCode = 60;
 INSERT INTO `T_ProductVersion` VALUES 
 (60,'DEMO'),
 (60,'FV');
+
+-- gh#1090 Option to block personal tracking from AA

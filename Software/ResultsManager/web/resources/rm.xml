@@ -513,6 +513,7 @@
 			<lit name="frequencyHelp">(special cases - 2 years, 3 months)</lit>
 			<lit name="AuthorPlusContentLocationEmpty">You must fill in a content location for Author Plus, usually it is just the account prefix.</lit>
 			<lit name="mismatchedLanguageCode">One of the titles, {productCode}, has a language code, {languageCode}, set that is NOT in the database (or is empty).</lit>
+			<lit name="loginBlockedFormItem">Block sign in</lit>
 			
 			<lit name="rootIDFormItem">RootID:</lit>
 			<lit name="nameFormItem">Name:</lit>
