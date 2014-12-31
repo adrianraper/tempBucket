@@ -4,7 +4,7 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:view="com.clarityenglish.bento.view.*"
 		xmlns:recorder="com.clarityenglish.bento.view.recorder.*"
-		xmlns:ui="com.clarityenglish.activereading.view.exercise.ui.*" xmlns:exercise="skins.activereading.assets.exercise.*" xmlns:home="skins.activereading.assets.home.*">
+		xmlns:ui="com.clarityenglish.activereading.view.exercise.ui.*" xmlns:exercise="skins.activereading.assets.exercise.*" xmlns:home="skins.activereading.assets.home.*" creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.activereading.view.exercise.ExerciseView")]
@@ -12,11 +12,23 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.XMLListCollection;
+			import mx.events.FlexEvent;
+			
+			protected function onCreationComplete(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				if (hostComponent.isPlatformiPad) {
+					rollOutHGroup.right = 265;
+				} else {
+					rollOutHGroup.right = 294;
+				}
+			}
+			
 		]]>
 	</fx:Script>
 	
 	<fx:Declarations>
-		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="1.5" alpha="0.6" blurX="7" blurY="7" />
+		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="1.5" alpha="0.6" blurX="10" blurY="10" />
 	</fx:Declarations>
 	
 	<s:states>
@@ -32,8 +44,8 @@
 	</s:layout>
 	
 	<!--Exercise Background-->
-	<s:Group width="100%" height="100%" filters="{[dropShadowFilter]}">
-		<s:Rect left="15" right="15" height="100%">
+	<s:Group width="100%" height="100%">
+		<s:Rect left="0" right="0" height="100%">
 			<s:fill>
 				<s:SolidColor color="#FFFFFF" />
 			</s:fill>
@@ -41,26 +53,26 @@
 	</s:Group>
 	
 	<!-- Exercise -->
-	<view:DynamicView id="dynamicView" left="15" right="15" top="100" bottom="20"/>
+	<view:DynamicView id="dynamicView" left="0" right="0" top="100" bottom="20"/>
 	
 	<!--Left patch-->
-	<s:Rect left="0" width="15" top="0" bottom="0" filters="{[dropShadowFilter]}">
+	<!--s:Rect left="0" width="15" top="0" bottom="0" filters="{[dropShadowFilter]}">
 		<s:fill>
 			<s:SolidColor color="#FFFFFF" />
 		</s:fill>
-	</s:Rect>
+	</s:Rect-->
 	
 	<!--Right patch-->
-	<s:Rect right="0" width="15" top="0" bottom="0" filters="{[dropShadowFilter]}">
+	<!--s:Rect right="0" width="15" top="0" bottom="0" filters="{[dropShadowFilter]}">
 		<s:fill>
 			<s:SolidColor color="#FFFFFF" />
 		</s:fill>
-	</s:Rect>
+	</s:Rect-->
 	
 	<!--Header lines-->
 	<s:HGroup width="100%" top="10" gap="0">
 		<exercise:exTopBarLTLines />
-		<exercise:exTopBarMLines width="80%" />
+		<exercise:exTopBarMLines width="81%" />
 		<exercise:exTopBarRTLines />
 	</s:HGroup>
 	
@@ -79,7 +91,7 @@
 	</s:HGroup>
 	
 	<!--Roll out text-->
-	<s:HGroup id="rollOutHGroup" top="190" right="302" gap="-6" visible="{hostComponent.hasVideoScript}">
+	<s:HGroup id="rollOutHGroup" top="190" gap="-6" visible="{hostComponent.hasVideoScript}">
 		<s:VGroup paddingTop="10" width="50">
 			<s:Button id="readButton" buttonMode="true" useHandCursor="true" />
 		</s:VGroup>
@@ -109,14 +121,10 @@
 	
 	<!--Top raw-->
 	<s:Group top="0" horizontalCenter="0" width="370" height="40">
-		<s:Group width="100%" height="100%">
-			<exercise:dropDownMenu />
-			<s:Label text="{hostComponent.selectedExerciseNode.@caption}" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" fontSize="16" fontFamily="HelveticaMd" fontWeight="bold" />
-		</s:Group>
-		<ui:WindowShade id="windowShade" x="32" y="40" width="304" height="304">
-			<s:Rect width="304" height="543" top="0" bottom="0" bottomLeftRadiusX="10" bottomLeftRadiusY="10" bottomRightRadiusX="10" bottomRightRadiusY="10" horizontalCenter="0">
+		<ui:WindowShade id="windowShade" x="34" y="40" width="296" height="304">
+			<s:Rect width="296" height="543" top="0" bottom="0" bottomLeftRadiusX="8" bottomLeftRadiusY="8" bottomRightRadiusX="8" bottomRightRadiusY="8" horizontalCenter="0">
 				<s:stroke>
-					<s:SolidColorStroke color="#497A7A" weight="8" />
+					<s:SolidColorStroke color="#497A7A" weight="6" />
 				</s:stroke>
 				<s:fill>
 					<s:SolidColor color="#062E2E" />
@@ -128,13 +136,17 @@
 				</s:layout>
 			</s:List>
 		</ui:WindowShade>
+		<s:Group width="100%" height="100%">
+			<exercise:dropDownMenu />
+			<s:Label text="{hostComponent.selectedExerciseNode.@caption}" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" fontSize="16" fontFamily="HelveticaMd" fontWeight="bold" />
+		</s:Group>
 	</s:Group>
 	
 	<!--Top control bar button-->
 	<s:Button id="backToMenuButton" top="0" right="100" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" includeIn="exercise" />
 
 	<!--Header course title-->
-	<s:HGroup left="0" top="15" width="220" gap="8" horizontalAlign="center" verticalAlign="middle">
+	<s:HGroup left="15" top="15" gap="8" verticalAlign="middle">
 		<s:Group>
 			<home:menuicon1 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 0}" scaleX="0.7" scaleY="0.7" />
 			<home:menuicon2 visible="{hostComponent.selectedExerciseNode.parent().parent().childIndex() == 1}" scaleX="0.7" scaleY="0.7" />

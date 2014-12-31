@@ -73,6 +73,9 @@ package com.clarityenglish.bento.view.exercise {
 		[Bindable]
 		public var footerLabel:Text;
 		
+		[Bindable]
+		public var isPlatformiPad:Boolean;
+		
 		private var _courseCaption:String;
 		
 		// gh#388

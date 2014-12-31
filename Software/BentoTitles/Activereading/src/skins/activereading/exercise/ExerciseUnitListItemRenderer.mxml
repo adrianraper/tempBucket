@@ -49,7 +49,6 @@
 					if (unitItemLabel) unitItemLabel.text = data.@caption;
 					
 					exerciseXMLListCollection = new XMLListCollection(data.exercise);
-					
 					_dataChanged = false;
 				}
 			}
@@ -80,7 +79,7 @@
 	
 	<s:Group width="100%">
 		<!-- The background rectangle (only visible when the renderer is expanded) -->
-		<s:Rect height="205" width="100%" radiusX="12" radiusY="12" includeIn="selected">
+		<s:Rect height="202" width="100%" radiusX="8" radiusY="8" includeIn="selected">
 			<s:fill>
 				<s:SolidColor color="#FFEFD2" />
 			</s:fill>

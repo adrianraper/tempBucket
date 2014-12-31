@@ -67,7 +67,7 @@
 	</fx:Script>
 	
 	<!--Video background-->
-	<s:Group left="24" top="20" width="238" height="320">
+	<s:Group left="84" top="20" width="238" height="320">
 		<s:Rect width="100%" height="100%" filters="{[dropShadowFilter]}">
 			<s:fill>
 				<s:SolidColor color="#FFFFFF" />
@@ -77,11 +77,11 @@
 	</s:Group>	
 	
 	<!-- The video players -->
-	<players:WebViewVideoPlayer id="videoPlayer" left="12" top="10" width="245" height="325"/>
+	<players:WebViewVideoPlayer id="videoPlayer" left="42" top="10" width="245" height="325"/>
 	<!--players:OSMFVideoPlayer id="videoPlayer" left="0" width="290" height="400" /-->
 	
 	<!-- Placeholder image -->
-	<s:Image id="placeholderImage" filters="{[dropShadowFilter]}" left="23" top="20" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
+	<s:Image id="placeholderImage" filters="{[dropShadowFilter]}" left="83" top="20" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
 	
 	<!-- Channel list -->
 	<s:List id="channelList" top="260" left="30" width="320" horizontalScrollPolicy="off" >

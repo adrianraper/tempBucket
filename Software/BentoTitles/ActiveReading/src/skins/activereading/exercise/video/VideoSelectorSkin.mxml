@@ -44,10 +44,10 @@
 
 	<!-- The video players -->
 	<!--players:WebViewVideoPlayer id="videoPlayer" left="30" width="320" height="240" visible="{videoList.selectedItem != null}" /-->
-	<players:OSMFVideoPlayer id="videoPlayer" left="0" top="10" width="290" height="400" />
+	<players:OSMFVideoPlayer id="videoPlayer" left="30" top="10" width="290" height="400" />
 	
 	<!-- Placeholder image -->
-	<s:Image id="placeholderImage" left="25" top="23" source="@Embed(source='skins/activereading/assets/exercise/video/iosVideoPlaceHolder.png')" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
+	<s:Image id="placeholderImage" left="55" top="23" source="@Embed(source='skins/activereading/assets/exercise/video/iosVideoPlaceHolder.png')" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
 	
 	<!-- Channel list -->
 	<s:List id="channelList" top="260" right="10" width="320" horizontalScrollPolicy="off" >

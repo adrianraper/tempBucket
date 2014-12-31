@@ -64,6 +64,7 @@
 			}
 			
 			view.languageCode = configProxy.getConfig().languageCode;
+			view.isPlatformiPad = configProxy.isPlatformiPad();
 		}
 		
 		public override function onRemove():void {

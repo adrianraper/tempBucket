@@ -126,7 +126,7 @@
 			</s:Group>			
 		</s:Group>
 		
-		<s:Group id="rightNoScrollGroup" width="312" height="100%" minHeight="52" right="0">
+		<s:Group id="rightNoScrollGroup" height="100%" minHeight="52" right="0">
 			<s:Rect width="100%" height="100%">
 				<s:fill>
 					<s:SolidColor color="#FFFFFF" />
