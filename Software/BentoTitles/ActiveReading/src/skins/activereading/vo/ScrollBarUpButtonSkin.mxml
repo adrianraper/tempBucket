@@ -51,7 +51,7 @@
         <s:State name="disabled" />
     </s:states>
     
-    <s:Ellipse width="5" height="5" verticalCenter="0" horizontalCenter="0">
+    <s:Ellipse width="6" height="6" verticalCenter="0" horizontalCenter="5">
 		<s:fill>
 			<s:SolidColor color="#9DCCCB" alpha="0.7" />
 		</s:fill>
