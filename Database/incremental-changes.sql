@@ -1131,3 +1131,5 @@ INSERT INTO `T_ProductVersion` VALUES
 (60,'FV');
 
 -- gh#1090 Option to block personal tracking from AA
+ALTER TABLE T_Accounts ADD COLUMN F_LoginModifier SMALLINT NULL DEFAULT NULL;
+
