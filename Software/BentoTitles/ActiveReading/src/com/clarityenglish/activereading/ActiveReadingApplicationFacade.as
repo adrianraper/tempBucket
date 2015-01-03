@@ -5,7 +5,7 @@ package com.clarityenglish.activereading {
 	import com.clarityenglish.activereading.view.exercise.ExerciseView;
 	import com.clarityenglish.activereading.view.home.HomeMediator;
 	import com.clarityenglish.activereading.view.home.HomeView;
-	import com.clarityenglish.activereading.view.login.LoginView;
+	import com.clarityenglish.bento.view.login.LoginView;
 	import com.clarityenglish.activereading.view.progress.ProgressAnalysisMediator;
 	import com.clarityenglish.activereading.view.progress.ProgressAnalysisView;
 	import com.clarityenglish.activereading.view.progress.ProgressCertificateMediator;
@@ -35,7 +35,6 @@ package com.clarityenglish.activereading {
 		override protected function initializeController():void {
 			super.initializeController();
 			
-			mapView(LoginView, LoginMediator);
 			mapView(TitleView, TitleMediator);
 			mapView(HomeView, HomeMediator);
 			mapView(ExerciseView, ExerciseMediator);

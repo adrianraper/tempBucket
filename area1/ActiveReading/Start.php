@@ -17,9 +17,9 @@
 	$startControl = '/Software/BentoTitles/ActiveReading/bin-debug/';
 	$version = '1107';
 	$coordsMinWidth = '990';
-	$coordsMaxWidth = '990';
+	$coordsMaxWidth = null;
 	$coordsMinHeight = '760';
-	$coordsMaxHeight = '970';
+	$coordsMaxHeight = null;
 	$locationFile = "config.xml";
 	
 	// Picking up IP and referrer for security checking

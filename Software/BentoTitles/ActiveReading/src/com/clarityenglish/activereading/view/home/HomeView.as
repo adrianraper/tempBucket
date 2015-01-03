@@ -4,6 +4,7 @@ package com.clarityenglish.activereading.view.home {
 	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.textLayout.vo.XHTML;
 
 	import flash.events.Event;
@@ -26,7 +27,7 @@ package com.clarityenglish.activereading.view.home {
 	public class HomeView extends BentoView {
 		
 		[SkinPart]
-		public var instructioGroup:Group;
+		public var instructionGroup:Group;
 		
 		[SkinPart]
 		public var instructionLabel:Label; 
@@ -195,16 +196,21 @@ package com.clarityenglish.activereading.view.home {
 			actionBarVisible = false;
 		}
 		
+		// gh#487
+		public function getCopyProvider():CopyProvider {
+			return copyProvider;
+		}
+		
 		override protected function onViewCreationComplete():void {
 			super.onViewCreationComplete();
 			
 			if (!courseSelector.level) {
-				instructioGroup.visible = true;
+				instructionGroup.visible = true;
 				var downMove:Move = new Move();
 				downMove.yFrom = 0;
 				downMove.yTo = 160;
 				downMove.duration = 300;
-				downMove.play([instructioGroup]);
+				downMove.play([instructionGroup]);
 			}
 		}
 		
@@ -251,10 +257,10 @@ package com.clarityenglish.activereading.view.home {
 					demoTooltipLabel2.text = copyProvider.getCopyForId("demoTooltipLabel2");
 					break;
 				case versionLabel:
-					versionLabel.text = "v" + FlexGlobals.topLevelApplication.versionNumber + "  " + copyProvider.getCopyForId("versionLabel");
+					versionLabel.text = copyProvider.getCopyForId("versionLabel", {versionNumber: FlexGlobals.topLevelApplication.versionNumber});
 					break;
 				case copyrightLabel:
-					copyrightLabel.text = copyProvider.getCopyForId("footerLabel");
+					copyrightLabel.text = copyProvider.getCopyForId("copyright");
 					break;
 			}
 		}
@@ -304,7 +310,7 @@ package com.clarityenglish.activereading.view.home {
 		}
 		
 		protected function onCourseSelect(event:NodeSelectEvent):void {
-			instructioGroup.visible = false;
+			instructionGroup.visible = false;
 			
 			if (!isDirectStart &&  event.node.@["class"].length() > 0) {
 				courseSelect.dispatch(menu.course.(@["class"] == event.node.@["class"])[0]);
@@ -319,11 +325,11 @@ package com.clarityenglish.activereading.view.home {
 					var move:Move = new Move();
 					move.easingFunction = Back.easeOut;
 					move.yFrom = triangleReferenceGroup.y;
-					move.yTo = unitList.selectedIndex * 37 + 65;	
+					move.yTo = unitList.selectedIndex * 38 + 65;	
 					move.duration = 300;
 					move.play([triangleReferenceGroup]);
 				} else {
-					triangleReferenceGroup.y = unitList.selectedIndex * 37 + 65;
+					triangleReferenceGroup.y = unitList.selectedIndex * 38 + 65;
 				}
 				
 				if (unitList.selectedIndex < 7) {

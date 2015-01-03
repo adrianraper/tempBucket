@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<literals progam="ActiveReading" version="2.0">
+	<language name="English International" code="EN" mediaFolder="EN">
+		<group name="group">	
+			<lit name="loginInputTitle">Active Reading</lit>
+			<lit name="applicationVersion">Version {version}</lit>
+			
+			<!-- Skin buttons -->
+			<lit name="elementary">Elementary</lit>
+			<lit name="preIntermediate">Pre-Intermediate</lit>
+			<lit name="intermediate">Intermediate</lit>lit>
+			<lit name="upperIntermediate">Upper Intermediate</lit>
+			<lit name="preAdvanced">Pre-Advanced</lit>
+			<lit name="advanced">Advanced</lit>
+			<lit name="homeInstructionLabel">Choose a level to start.</lit>
+			<lit name="unitInstructionLabel">Choose a unit.</lit>
+			<lit name="exInstructionLabel">Choose an exercise.</lit>
+			
+			<!-- Help -->
+			<lit name="helpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/AR_Help_doc_full.pdf</lit>
+			<lit name="recorderHelpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/AR_Help_doc_recorder.pdf</lit>
+			
+			<!-- Footer -->
+			<lit name="copyright">© Clarity Language Consultants Ltd, 1993-2015. All rights reserved.</lit>
+            <lit name="versionLabel">v{versionNumber}</lit>
+            
+			<!-- Log out page -->
+			<lit name="thankYouLabel">Active Reading from Clarity.</lit>
+			
+            <!-- Credits -->			
+			 <lit name="creditCaptionLabel">Credits and acknowledgements</lit>
+			 <lit name="creditsRichText">
+			    <![CDATA[
+                        <p>Clarity would like to thank the following people for giving their voices to Tense Buster: Simon Broad,<br/>Jessica Caplan, Sally Nichols, Ben Pelletier, Kath Ryan, Scott Sauer, Michelle Tam, Sarah Toogood.</p>
+
+                        <p>Photos were taken from Shutterstock with permission.</p>
+
+                        <p>Every effort has been made to trace owners of copyright, but if any omissions can be rectified,<br/>we will be pleased to make the necessary arrangements.</p>
+                ]]>
+			</lit>
+			
+		</group>
+	</language>
+</literals>

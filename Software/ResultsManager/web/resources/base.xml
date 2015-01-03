@@ -74,24 +74,29 @@
             <lit name="supportEmail">support@clarityenglish.com</lit>
             <lit name="problemLabel"></lit> <!-- "Sorry, there is a problem" is hardcoded in ShowErrorCommand -->
             
+            <lit name="problemLabel">Sorry, there is a problem...</lit>
+            
+            <!-- Loading -->
+            <lit name="loadingLabel">loading...</lit>
+            
             <!-- Login -->
             <lit name="loginButton">Sign in</lit>
-            <lit name="passwordLabel">Password:</lit>
-            <lit name="yourLoginDetail">Your {loginDetail}:</lit>
+            <lit name="passwordLabel">Password</lit>
+            <lit name="yourLoginDetail">{loginDetail}</lit>
             <lit name="nameLoginDetail">Name</lit>
             <lit name="IDLoginDetail">ID</lit>
             <lit name="emailLoginDetail">Email</lit>
             <lit name="yourID">Your id:</lit>
             <lit name="yourEmail">Your email:</lit>
-            <lit name="welcomeLabel">Welcome, {fullname}</lit>
+            <lit name="welcomeLabel">Account: {name}</lit>
             <lit name="licencedToName">Licensed to {name}</lit>
             <lit name="forgotPasswordLabel">Forgot your password?</lit>
             <lit name="forgotPasswordLink"><![CDATA[http://www.clarityenglish.com/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
             <lit name="loginCaption">Sign in with your Clarity account</lit>
             <lit name="anonymousCaption">Just practice</lit>
             <lit name="loginDetail">Signing in will save your progress.</lit>
-            <lit name="newUserButtonCaption">Create new user</lit>
-            <lit name="addUserButtonCaption">Create user</lit>
+            <lit name="newUserButtonCaption">Create an account</lit>
+            <lit name="addUserButtonCaption">Start</lit>
             <lit name="cancelButtonCaption">Cancel</lit>
             <lit name="anonymousButtonCaption">Start</lit>
             <lit name="selfRegisterCaption">Create your account</lit>
@@ -102,6 +107,7 @@
             <lit name="confirmPasswordCaption">Confirm password</lit>
             <lit name="demoButtonCaption">Demo</lit>
             <lit name="accountName">You are signed in as: {name}</lit>
+            <lit name="orCaption">OR</lit>
             
             <!-- General screen literals -->
             <lit name="myProgress">My progress</lit>
@@ -110,7 +116,7 @@
             <lit name="credits">Credits</lit>
             <lit name="more">More</lit>
             <lit name="Home">Home</lit>
-            <lit name="recorder">Recorder</lit>
+            <lit name="recorderButton">Recorder</lit>
             <lit name="Back">Back</lit>
             <lit name="Next">Forward</lit>
             <lit name="LogOut">Log out</lit>
@@ -123,8 +129,8 @@
             <lit name="accountExpiryDateLabel">Account expiry date:</lit>
             <lit name="saveChangesButton">Save changes</lit>
             <lit name="currentPwdLabel">Current password:</lit>
-            <lit name="newPsdLabel">New password:</lit>
-            <lit name="confirmPsdLabel">Confirm password:</lit>
+            <lit name="newPwdLabel">New password:</lit>
+            <lit name="confirmPwdLabel">Confirm password:</lit>
             <lit name="accountLanguageLabel">Language:</lit>
             <lit name="exerciseBackToMenuButton">Back to menu</lit>
             <lit name="exerciseStartAgainButton">Start again</lit>
@@ -143,6 +149,7 @@
             <lit name="printButton">Print</lit>
             <lit name="noButton">No</lit>
             <lit name="yesButton">Yes</lit>
+            <lit name="closeButton">OK</lit>
             
             <!--  Progress literals -->
             <lit name="analysisInstructionLabel1">This shows how you spent your time</lit>

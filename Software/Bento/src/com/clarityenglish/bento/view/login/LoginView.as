@@ -14,6 +14,7 @@ package com.clarityenglish.bento.view.login {
 	import flash.net.navigateToURL;
 	
 	import mx.core.ComponentDescriptor;
+	import mx.core.FlexGlobals;
 	import mx.events.FlexEvent;
 	import mx.utils.StringUtil;
 	
@@ -40,7 +41,7 @@ package com.clarityenglish.bento.view.login {
 		[SkinPart(required="true")]
 		public var forgotPasswordButton:Button;
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var anonymousStartButton:Button;
 		
 		[Bindable]
@@ -59,6 +60,9 @@ package com.clarityenglish.bento.view.login {
 		public var forgotPasswordCaption:String;
 		
 		[Bindable]
+		public var orCaption:String;
+		
+		[Bindable]
 		public var anonymousCaption:String;
 		
 		[Bindable]
@@ -74,7 +78,10 @@ package com.clarityenglish.bento.view.login {
 		public var demoButtonCaption:String;
 		
 		[SkinPart]
-		public var demoButton:Button;
+		public var demoButton1:Button;
+		
+		[SkinPart]
+		public var demoButton2:Button;
 		
 		// Registration
 		// #341
@@ -133,24 +140,18 @@ package com.clarityenglish.bento.view.login {
 		[SkinPart]
 		public var brandingImage4:BitmapImage;
 		
-		/*
-		[Bindable]
-		public var isPlatformTablet:Boolean;
+		[SkinPart]
+		public var copyrightLabel:Label;
+		[SkinPart]
+		public var versionLabel:Label;
 		
 		[Bindable]
-		public var isPlatformiPad:Boolean;
-		
-		[Bindable]
-		public var isPlatformAndroid:Boolean;
-		*/
+		public var isDemo:Boolean = false;
 		
 		// #341
 		private var _loginOption:Number;
 		private var _selfRegister:Number;
 		private var _verified:Boolean;
-		// gh#659
-		private var _hasIPrange:Boolean;
-		private var _IPMatchedProductCodes:Array;
 		
 		private var _currentState:String;
 		
@@ -171,6 +172,8 @@ package com.clarityenglish.bento.view.login {
 		[Bindable]
 		public var allowLogin:Boolean = true;
 
+		public var startDemo:Signal = new Signal(String);
+		
 		public function LoginView() {
 			super();
 		}
@@ -219,40 +222,6 @@ package com.clarityenglish.bento.view.login {
 			}
 		}
 
-		/*
-		[Bindable]
-		public function get selfRegisterName():Boolean {
-			return ((selfRegister & Config.SELF_REGISTER_NAME) == Config.SELF_REGISTER_NAME); 
-		}
-		public function set selfRegisterName(value:Boolean):void {
-			selfRegister = selfRegister | Config.SELF_REGISTER_NAME;
-		}
-		
-		[Bindable]
-		public function get selfRegisterID():Boolean {
-			return ((selfRegister & Config.SELF_REGISTER_ID) == Config.SELF_REGISTER_ID); 
-		}
-		public function set selfRegisterID(value:Boolean):void {
-			selfRegister = selfRegister | Config.SELF_REGISTER_ID;
-		}
-		
-		[Bindable]
-		public function get selfRegisterEmail():Boolean {
-			return ((selfRegister & Config.SELF_REGISTER_EMAIL) == Config.SELF_REGISTER_EMAIL); 
-		}
-		public function set selfRegisterEmail(value:Boolean):void {
-			selfRegister = selfRegister | Config.SELF_REGISTER_EMAIL;
-		}
-		
-		[Bindable]
-		public function get selfRegisterPassword():Boolean {
-			return ((selfRegister & Config.SELF_REGISTER_PASSWORD) == Config.SELF_REGISTER_PASSWORD); 
-		}
-		public function set selfRegisterPassword(value:Boolean):void {
-			selfRegister = selfRegister | Config.SELF_REGISTER_PASSWORD;
-		}
-		*/
-		
 		public function get loginOption():Number {
 			return _loginOption; 
 		}
@@ -283,33 +252,12 @@ package com.clarityenglish.bento.view.login {
 			return _branding;
 		}
 		
-		// #341 Need to know if it is a network version.
-		/*
-		public function get isNetwork():Boolean {
-			return (_licenceType == Title.LICENCE_TYPE_NETWORK);
-		}
-		
-		// gh#659
-		public function setHasMatchedIPrange(value:Boolean):void {
-			_hasIPrange = value;
-		}
-		
-		// gh#659
-		public function setIPMatchedProductCodes(value:Array):void {
-			_IPMatchedProductCodes = value;
-			dispatchEvent(new Event("productCodesChanged"));
-		}
-		public function setNoLogin(value:Boolean):void {
-			noLogin = value;
-		}
-		*/
-		
 		override protected function onViewCreationComplete():void {
 			super.onViewCreationComplete();
 
 			// gh#1090 Use data to set literals and layout
-			setLoginLabels();
 			setLoginComponents();
+			setLoginLabels();
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -323,7 +271,7 @@ package com.clarityenglish.bento.view.login {
 					break;
 				
 				case forgotPasswordButton:
-					instance.addEventListener(FlexEvent.ENTER, onForgotPassword, false, 0, true);
+					instance.addEventListener(MouseEvent.CLICK, onForgotPassword, false, 0, true);
 					break;
 				
 				case loginButton:
@@ -331,7 +279,8 @@ package com.clarityenglish.bento.view.login {
 				case newUserButton:
 				case cancelButton:
 				case anonymousStartButton:
-				case demoButton:
+				case demoButton1:
+				case demoButton2:
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;
 				
@@ -342,6 +291,14 @@ package com.clarityenglish.bento.view.login {
 					if (branding && branding.image)
 						addBrandingImageToInstance(instance, branding.image);
 					break;
+				
+				case versionLabel:
+					versionLabel.text = copyProvider.getCopyForId("versionLabel", {versionNumber: FlexGlobals.topLevelApplication.versionNumber});
+					break;
+				case copyrightLabel:
+					copyrightLabel.text = copyProvider.getCopyForId("copyright");
+					break;
+
 			}
 		}
 		
@@ -406,68 +363,11 @@ package com.clarityenglish.bento.view.login {
 				}
 			}
 		}
-		/**
-		 * Add branding. 
-		 * gh#224
-		 */
-		/*
-		public function setBranding(branding:XML):void {
-			if (branding)
-				this.branding = branding;
-		}
-		*/
-		/**
-		 * Add the institution name from the licence to the screen 
-		 * @param String name
-		 * 
-		 */
-		/*
-		public function setLicencee(name:String):void {
-			// gh#224
-			licenceeName = name;
-		}
-		*/
-		/**
-		 * Push the login option into the view 
-		 * @param uint value
-		 * 
-		 */
-		/*
-		public function setLoginOption(value:Number):void {
-			loginOption = value;
-		}
-		public function setSelfRegister(value:Number):void {
-			selfRegister = value;
-		}
-		public function setVerified(value:Number):void {
-			verified = (value == 1) ? true : false;
-		}
-		public function setLicenceType(value:uint):void {
-			licenceType = value;
-			
-			// #341 for network version
-			setState("login");
-		}
-		*/
-		
 		// gh#41
 		public function setNoAccount(value:Boolean):void {
 			noAccount = value;
 		}
 		
-		/*
-		public function setPlatformTablet(value:Boolean):void {
-			isPlatformTablet = value;
-		}
-		
-		public function setPlatformiPad(value:Boolean):void {
-			isPlatformiPad = value;
-		}
-		
-		public function setPlatformAndroid(value:Boolean):void {
-			isPlatformAndroid = value;
-		}
-		*/
 		/**
 		 * To let you work out what data you need for logging in to this account. 
 		 * It isn't really login option change, more that it is set in the first place.
@@ -496,6 +396,7 @@ package com.clarityenglish.bento.view.login {
 			// gh#1090
 			loginCaption = copyProvider.getCopyForId("loginCaption");
 			loginButtonCaption = copyProvider.getCopyForId("loginButton");
+			orCaption = copyProvider.getCopyForId("orCaption");
 			anonymousCaption = copyProvider.getCopyForId("anonymousCaption");
 			anonymousStartButtonCaption = copyProvider.getCopyForId("anonymousButtonCaption");		
 
@@ -505,11 +406,11 @@ package com.clarityenglish.bento.view.login {
 				selfRegisterIdCaption = copyProvider.getCopyForId("IDLoginDetail");
 			if (selfRegister & Config.SELF_REGISTER_EMAIL)
 				selfRegisterEmailCaption = copyProvider.getCopyForId("emailLoginDetail");
-			if (selfRegister & Config.SELF_REGISTER_PASSWORD) {
+			if (verified) {
 				selfRegisterPasswordCaption = copyProvider.getCopyForId("passwordLabel");
 				confirmPasswordCaption = copyProvider.getCopyForId("confirmPasswordCaption");
 			}
-			if (selfRegister > 0) {
+			if (allowAnonymous) {
 				newUserButtonCaption = copyProvider.getCopyForId("newUserButtonCaption");		
 				addUserButtonCaption = copyProvider.getCopyForId("addUserButtonCaption");
 				cancelButtonCaption = copyProvider.getCopyForId("cancelButtonCaption");
@@ -533,11 +434,13 @@ package com.clarityenglish.bento.view.login {
 			} else {
 			
 				// Is self-registration allowed?
-				// Note that all AA accounts should automatically have the selfRegister settings forced on them (name, email, password) + verified
-				// In the meantime I can do a double check.
-				// Or you could allow name/id/password to be account selectable?
+				// If an account has some AA and some LT, they may switch off selfRegister in RM as they don't want it in LT titles.
+				// So if an AA account has no selfRegister, overwrite with email + loginOption + verified
+				// If the account does have selfRegister, force email to be on
 				if (licenceType == Title.LICENCE_TYPE_AA || licenceType == Title.LICENCE_TYPE_CT) {
-					selfRegister = Config.SELF_REGISTER_EMAIL + Config.SELF_REGISTER_NAME + Config.SELF_REGISTER_PASSWORD;
+					if (selfRegister <= 0)
+						selfRegister = loginOption;
+					selfRegister |= Config.SELF_REGISTER_EMAIL;
 					verified = true;
 				}
 				allowSelfRegister = (selfRegister > 0) ? true : false;
@@ -548,6 +451,9 @@ package com.clarityenglish.bento.view.login {
 				// Is anonymous access allowed?
 				allowAnonymous = (licenceType == Title.LICENCE_TYPE_AA || licenceType == Title.LICENCE_TYPE_CT) ? true : false;
 			}
+			
+			// gh#1090 Might be useful for various skins
+			isDemo = (productVersion == 'DEMO');
 		}
 		
 		// #254
@@ -586,8 +492,8 @@ package com.clarityenglish.bento.view.login {
 					break;
 				
 				case anonymousStartButton:
-					event.target.enabled = false;
-					user =  new User();
+					//event.target.enabled = false;
+					user = new User();
 					// gh#1090
 					config.signInAs = Title.SIGNIN_ANONYMOUS;
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
@@ -595,17 +501,6 @@ package com.clarityenglish.bento.view.login {
 
 				case newUserButton:
 					setState("register");
-					// Try to save anything they type before clicking to register
-					/*
-					if (loginOption & Config.LOGIN_BY_NAME || loginOption & Config.LOGIN_BY_NAME_AND_ID) {
-						selfRegisterName.text = loginKeyInput.text;
-					} else if (loginOption & Config.LOGIN_BY_ID) {
-						selfRegisterId.text = loginKeyInput.text;
-					} else if (loginOption & Config.LOGIN_BY_EMAIL) {
-						selfRegisterEmail.text = loginKeyInput.text;
-					}
-					selfRegisterPassword.text = passwordInput.text;
-					*/
 					break;
 				
 				case addUserButton:
@@ -614,9 +509,9 @@ package com.clarityenglish.bento.view.login {
 					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
 					break;
 				
-				case demoButton:
-					//config.signInAs = Title.SIGNIN_ANONYMOUS;
-					//dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
+				case demoButton1:
+				case demoButton2:
+					onStartDemo(event.target as Button);
 					break;
 				
 				default:
@@ -658,6 +553,12 @@ package com.clarityenglish.bento.view.login {
 		// Temporary - until Alice removes getTestDrive from the LoginMediator and interface
 		public function getTestDrive():Signal {
 			return new Signal();
+		}
+		
+		// gh#1090 Restart the application to run a demo
+		public function onStartDemo(target:Button):void {
+			var demoPrefix:String = "DEMO";
+			startDemo.dispatch(demoPrefix, productCode);
 		}
 		
 	}

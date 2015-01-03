@@ -38,8 +38,8 @@
 	<s:SWFLoader bottom="0" right="-100" source="@Embed(source='/skins/activereading/assets/login/loginbook.png')" />
 	
 	<!--Footer-->
-	<s:Group width="100%" height="28" bottom="20" left="10">
-		<s:Rect width="90%" height="28" radiusX="14" radiusY="14">
+	<s:Group height="28" bottom="10" left="10">
+		<s:Rect width="100%" height="100%" radiusX="14" radiusY="14">
 			<s:fill>
 				<s:LinearGradient>
 					<s:GradientEntry color="#D4D4D4" alpha="1"  />

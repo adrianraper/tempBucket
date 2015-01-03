@@ -2,7 +2,7 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace activereading "com.clarityenglish.activereading.*";
-@namespace login "com.clarityenglish.activereading.view.login.*";
+@namespace login "com.clarityenglish.bento.view.login.*";
 @namespace home "com.clarityenglish.activereading.view.home.*";
 @namespace homeui "com.clarityenglish.activereading.view.home.ui.*";
 @namespace homeuitb "com.clarityenglish.tensebuster.view.home.ui.*";
@@ -60,16 +60,20 @@ login|LoginView {
 	skinClass: ClassReference("skins.activereading.LoginSkin");
 }
 
-login|LoginView s|Button#loginButton {
+login|LoginView s|Button {
 	skinClass: ClassReference("skins.activereading.login.LoginButtonSkin");
 }
 
-login|LoginView s|Button#forgetPasswordButton {
+login|LoginView s|Button#newUserButton, s|Button#forgotPasswordButton {
 	skinClass: ClassReference("skins.activereading.login.LoginForgotPasswordButton");
 }
 
 login|LoginView s|TextInput {
 	skinClass: ClassReference("skins.activereading.login.TextInputSkin");
+}
+
+login|LoginView s|SkinnableContainer {
+	skinClass: ClassReference("skins.activereading.login.SignInContainerSkin");
 }
 
 error|ErrorView {

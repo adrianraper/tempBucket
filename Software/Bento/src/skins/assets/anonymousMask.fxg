@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="20.0493" viewWidth="33.75" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="20.049" d:pageWidth="33.75" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Path y="-9.25064e-005" winding="nonZero" ai:seqID="1" data="M25.8955 0.822358C20.624 -2.14297 16.875 3.86533 16.875 3.86533 16.875 3.86533 13.126 -2.14297 7.85449 0.822358 2.85449 3.63486 0 9.25064e-005 0 9.25064e-005 0.504395 2.69833 0.371094 5.39707 1.07764 9.99033 1.875 15.1778 5.24902 20.0494 10.1875
+ 20.0494 14.75 20.0494 16.875 15.8653 16.875 15.8653 16.875 15.8653 19 20.0494 23.5625 20.0494 28.501 20.0494 31.875 15.1778 32.6724 9.99033 33.3789 5.39707 33.2456 2.69833 33.75 9.25064e-005 33.75 9.25064e-005 30.8955 3.63486 25.8955 0.822358Z
+M14.2095 11.8238C4.7085 12.9068 4.375 7.69882 4.375 7.69882 14.5415 3.44882 14.2095 11.8238 14.2095 11.8238ZM19.5405 11.8238C19.5405 11.8238 19.2085 3.44882 29.375 7.69882 29.375 7.69882 29.0415 12.9068 19.5405 11.8238Z">
+        <fill>
+          <LinearGradient x="16.875" y="20.0494" scaleX="20.0493" rotation="270">
+            <GradientEntry ratio="0" color="#3F5560"/>
+            <GradientEntry ratio="1" color="#8799A8"/>
+          </LinearGradient>
+        </fill>
+      </Path>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

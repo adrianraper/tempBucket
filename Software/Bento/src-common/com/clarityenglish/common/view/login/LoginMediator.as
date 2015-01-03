@@ -10,11 +10,12 @@ package com.clarityenglish.common.view.login {
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
-	//import com.clarityenglish.common.view.login.interfaces.LoginComponent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
+	
+	import mx.core.FlexGlobals;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -42,6 +43,7 @@ package com.clarityenglish.common.view.login {
 			view.addEventListener(LoginEvent.ADD_USER, onAddUser);
 			
 			view.getTestDrive().add(onTestDrive);
+			view.startDemo.add(onStartDemo);
 			
 			// Inject some data to the login view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -139,21 +141,11 @@ package com.clarityenglish.common.view.login {
 					view.clearData();
 					break;
 				
+				// gh#1090 no longer used
+				/*
 				case CommonNotifications.CONFIRM_NEW_USER:
 					view.setState("register");
 					break;
-				
-				case CommonNotifications.INVALID_LOGIN:
-					// If we catch this notification here, I want to handle it on the loginView
-					// So I need to reimplement view.showInvalidLogin, and also stop the notification
-					// from going on to be caught be IELTSApplicationMediator.
-					//trace("caught login error in login mediator");
-					
-					// AR Clear anything that is in the fields out - relevant to returning to this screen on logout
-					view.clearData();
-						
-					break;
-				
 				case CommonNotifications.ADDED_USER:
 					// #341
 					// Check if successful. If yes, then just login that user
@@ -166,6 +158,18 @@ package com.clarityenglish.common.view.login {
 						// Need to pass the error in. Perhaps the error is flagged as a popup just like wrong password in login.
 						view.setState("error");
 					}
+					break;
+				*/
+				
+				case CommonNotifications.INVALID_LOGIN:
+					// If we catch this notification here, I want to handle it on the loginView
+					// So I need to reimplement view.showInvalidLogin, and also stop the notification
+					// from going on to be caught be IELTSApplicationMediator.
+					//trace("caught login error in login mediator");
+					
+					// AR Clear anything that is in the fields out - relevant to returning to this screen on logout
+					view.clearData();
+						
 					break;
 				
 				default:
@@ -186,6 +190,12 @@ package com.clarityenglish.common.view.login {
 			//trace("the productcode in test drive is "+ productCode);
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			configProxy.getConfig().productCode = productCode;			
+		}
+		
+		// gh#1090
+		private function onStartDemo(prefix:String, productCode:String):void {
+			FlexGlobals.topLevelApplication.parameters.configFile = 'config-demo.xml';
+			sendNotification(CommonNotifications.CONFIG_LOAD);
 		}
 		
 	}

@@ -31,27 +31,28 @@ login|LoginView {
 	skinClass: ClassReference("skins.rotterdam.player.login.LoginSkin");
 }
 
-login|LoginView s|Button#loginButton {
-	skinClass: ClassReference("skins.rotterdam.ui.LoginButtonSkin");
+login|LoginView s|Button {
+	skinClass: ClassReference("skins.rotterdam.login.LoginButtonSkin");
 }
 
-login|LoginView s|Button#anonymousStartButton {
-	skinClass: ClassReference("skins.rotterdam.ui.LoginButtonSkin");
+login|LoginView s|Button#newUserButton, s|Button#forgotPasswordButton {
+	skinClass: ClassReference("skins.rotterdam.login.ForgotPasswordButtonSkin");
 }
 
-login|LoginView s|Button#forgotPasswordButton {
-	skinClass: ClassReference("skins.rotterdam.ui.ForgotPasswordButtonSkin");
+login|LoginView s|SkinnableContainer {
+	skinClass: ClassReference("skins.rotterdam.login.SignInContainerSkin");
 }
 
-/*login|LoginView s|TextInput {
+/*
+login|LoginView s|Label {
 	skinClass: ClassReference("spark.skins.spark.TextInputSkin");
 	borderVisible: true;
 	borderColor: #C8C8C8;
 	contentBackgroundColor: #FFFFFF;
-}*/
-
+}
+*/
 login|LoginView s|TextInput {
-	skinClass: ClassReference("skins.rotterdam.ui.LoginTextInputSkin");
+	skinClass: ClassReference("skins.rotterdam.login.LoginTextInputSkin");
 	cornerRadius: 5;
 }
 

@@ -8,7 +8,7 @@
 @namespace uniteditor "com.clarityenglish.rotterdam.builder.view.uniteditor.*";
 @namespace filemanager "com.clarityenglish.rotterdam.builder.view.filemanager.*";
 @namespace widgets "skins.rotterdam.unit.widgets.*";
-@namespace login "com.clarityenglish.rotterdam.view.login.*";
+@namespace login "com.clarityenglish.bento.view.login.*";
 @namespace buildercourse "com.clarityenglish.rotterdam.builder.view.course.*";
 @namespace course "com.clarityenglish.rotterdam.view.course.*";
 @namespace courseui "com.clarityenglish.rotterdam.view.course.ui.*";
@@ -36,10 +36,10 @@ login|LoginView {
 }
 
 login|LoginView s|Button#loginButton {
-	skinClass: ClassReference("skins.rotterdam.ui.LoginButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.login.LoginButtonSkin");
 }
 login|LoginView s|Button#forgotPassword_btn {
-	skinClass: ClassReference("skins.rotterdam.ui.ForgotPasswordButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.login.ForgotPasswordButtonSkin");
 }
 login|LoginView s|Button#freeCourseButton {
 	skinClass: ClassReference("skins.rotterdam.builder.login.FreeCourseButtonSkin");
@@ -53,7 +53,7 @@ login|LoginView s|Button#freeCourseButton {
 }*/
 
 login|LoginView s|TextInput {
-	skinClass: ClassReference("skins.rotterdam.ui.LoginTextInputSkin");
+	skinClass: ClassReference("skins.rotterdam.login.LoginTextInputSkin");
 	cornerRadius: 5;
 }
 

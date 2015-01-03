@@ -99,9 +99,9 @@ package com.clarityenglish.common.model {
 			if (user == null) {
 		        loginObj = null;
 			} else if (loginOption & Config.LOGIN_BY_NAME || loginOption & Config.LOGIN_BY_NAME_AND_ID) {
-				loginObj = { username: user.name, password: user.password};
+				loginObj = { username: user.name, password: user.password };
 			} else if (loginOption & Config.LOGIN_BY_ID) {
-				loginObj = { studentID: user.studentID, password: user.password};
+				loginObj = { studentID: user.studentID, password: user.password };
 			} else if (loginOption & Config.LOGIN_BY_EMAIL) {
 				loginObj = { email: user.email, password: user.password };
 			} else {
@@ -303,10 +303,11 @@ package com.clarityenglish.common.model {
 					if (data) {
 						// Just go back into login for this user now
 						configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-						login(data as User, configProxy.getAccount().loginOption);
+						var verified:Boolean = (configProxy.getAccount().verified == 1) ? true : false;
+						login(data as User, configProxy.getAccount().loginOption, verified);
 						
 					} else {
-						sendNotification(CommonNotifications.ADD_USER_FAILED);						
+						sendNotification(CommonNotifications.ADD_USER_FAILED);					
 					}
 					break;
 				
@@ -417,12 +418,14 @@ package com.clarityenglish.common.model {
 					// #445 Any error other than user not found is simply reported
 					var thisError:BentoError = BentoError.create(fault);
 					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoSuchUser")) {
+						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 						
 						// #341 For network, if you don't find the user, offer to add them
 						// gh#100 and for CT too (so long as selfRegister is set)
 						// gh#100 and for LT/TT too surely!
 						// gh#837 not allowed self-register in C-Builder
-						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+						// gh#1090 Bin all this, hopefully the 'create account' is clear enough
+						/*
 						if ((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK ||
 							configProxy.getLicenceType() == Title.LICENCE_TYPE_CT ||
 							configProxy.getLicenceType() == Title.LICENCE_TYPE_LT ||
@@ -431,9 +434,9 @@ package com.clarityenglish.common.model {
 							configProxy.getAccount().selfRegister > 0 &&
 							(FlexGlobals.topLevelApplication.name as String).indexOf("Builder") < 0) {
 							sendNotification(CommonNotifications.CONFIRM_NEW_USER);
-							
+						*/
 						// For SCORM, if the user doesn't exist, automatically add them
-						} else if (configProxy.getConfig().scorm) {
+						if (configProxy.getConfig().scorm) {
 							var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 							var configUser:User = new User({name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID});
 							var loginOption:uint = configProxy.getAccount().loginOption;
@@ -452,8 +455,9 @@ package com.clarityenglish.common.model {
 					break;
 				
 				case "addUser":
-					sendNotification(CommonNotifications.ADD_USER_FAILED, BentoError.create(fault));
+					sendNotification(CommonNotifications.ADD_USER_FAILED, BentoError.create(fault, false));
 					break;
+				
 				case "updateLicence":
 					sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault));
 					// Stop the licence update timer

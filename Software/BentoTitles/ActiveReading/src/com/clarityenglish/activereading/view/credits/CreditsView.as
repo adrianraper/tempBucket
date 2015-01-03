@@ -18,10 +18,10 @@ package com.clarityenglish.activereading.view.credits {
 			
 			switch(instance) {
 				case versionLabel:
-					versionLabel.text = "v" + FlexGlobals.topLevelApplication.versionNumber + "  " + copyProvider.getCopyForId("versionLabel");
+					versionLabel.text = copyProvider.getCopyForId("versionLabel", {versionNumber: FlexGlobals.topLevelApplication.versionNumber});
 					break;
 				case copyrightLabel:
-					copyrightLabel.text = copyProvider.getCopyForId("footerLabel");
+					copyrightLabel.text = copyProvider.getCopyForId("copyright");
 					break;
 			}
 		}
