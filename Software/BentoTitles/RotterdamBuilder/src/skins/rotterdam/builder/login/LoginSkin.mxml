@@ -75,10 +75,10 @@
 	<s:BitmapImage id="brandingImage2" />
 	<s:BitmapImage id="brandingImage3" />
 	<s:BitmapImage id="brandingImage4" />
-	<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/login/HoneyCones.png')" horizontalCenter="-260" top="330" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
-	<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/login/HoneyConesLarge.png')" horizontalCenter="250" top="360" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
+	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/login/HoneyCones.png')" horizontalCenter="-260" top="330" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
+	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/login/HoneyConesLarge.png')" horizontalCenter="250" top="360" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
 	<login:HoneyGraphic horizontalCenter="300" top="40" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
-	<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/login/FreeCourse.png')" horizontalCenter="240" top="400" click="onFreeCourseClick(event)" buttonMode="true" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
+	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/login/FreeCourse.png')" horizontalCenter="240" top="400" click="onFreeCourseClick(event)" buttonMode="true" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
 	
 	<s:Group horizontalCenter="0" top="40">
 		<!-- gh#224 -->
@@ -110,5 +110,5 @@
 		</s:Group>
 	</s:Group>
 	
-	<s:BitmapImage source="@Embed(source='skins/rotterdam/builder/assets/login/CCBLogo.png')" horizontalCenter="0" top="100" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
+	<s:BitmapImage source="@Embed(source='/skins/rotterdam/builder/assets/login/CCBLogo.png')" horizontalCenter="0" top="100" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
 </s:Skin>

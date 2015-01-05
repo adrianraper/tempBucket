@@ -33,7 +33,7 @@
 		</s:Rect>
 		
 		<components:XHTMLRichText id="headerRichText" top="13" left="38" right="16" bottom="13" maxWidth="680" behaviours="{[AnswerableBehaviour, OverlayBehaviour]}" />
-		<s:SWFLoader source="@Embed(source='skins/assets/instructionIcon.png')" left="16" top="13" />
+		<s:SWFLoader source="@Embed(source='/skins/assets/instructionIcon.png')" left="16" top="13" />
 	</s:Group>
 	
 	<s:Group id="noscrollGroup" width="100%">

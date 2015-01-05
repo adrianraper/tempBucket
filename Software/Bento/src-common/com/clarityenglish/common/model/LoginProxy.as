@@ -1,4 +1,4 @@
-﻿/*
+/*
 Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
@@ -70,7 +70,7 @@ package com.clarityenglish.common.model {
 		
 		// #341
 		//public function login(key:String, password:String):void {
-		public function login(user:User, loginOption:Number, verified:Boolean = true):void {
+		public function login(user:User, loginOption:Number, verified:Boolean = true, demoVersion:String = null):void {
 			// getAccountSettings will already have established rootID and productCode
 			// The parameters you pass are controlled by loginOption
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;

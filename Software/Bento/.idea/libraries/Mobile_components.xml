@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Mobile components" type="flex">
+    <CLASSES>
+      <root url="jar://$SDK_HOME$/frameworks/libs/mobile/mobilecomponents.swc!/" />
+      <root url="jar://$SDK_HOME$/frameworks/themes/Mobile/mobile.swc!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

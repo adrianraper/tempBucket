@@ -206,7 +206,7 @@ package memorphic.parser
 		{
 			//var t:Object;
 			var marker:RuleMarker;
-			while(!(marker = (stack.pop() as RuleMarker)));
+			while(!(marker = (stack.pop() as RuleMarker))) {};
 			restoreState(marker.treeState);
 			return marker;
 		}

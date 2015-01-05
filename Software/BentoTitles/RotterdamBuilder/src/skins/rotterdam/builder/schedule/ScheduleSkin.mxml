@@ -22,7 +22,7 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
-			[Embed(source="skins/rotterdam/builder/assets/settings/group_icon.swf", symbol="GroupIcon")]
+			[Embed(source="/skins/rotterdam/builder/assets/settings/group_icon.swf", symbol="GroupIcon")]
 			private var groupIcon:Class;
 			
 			private function getTreeIcon(item:Object, isOpen:Boolean, isBranch:Boolean):Class {

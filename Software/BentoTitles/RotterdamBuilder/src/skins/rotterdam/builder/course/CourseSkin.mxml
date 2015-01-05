@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" 
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:uniteditor="com.clarityenglish.rotterdam.builder.view.uniteditor.*"
 		xmlns:course="com.clarityenglish.rotterdam.builder.view.course.*"
 		xmlns:courseui="com.clarityenglish.rotterdam.view.course.ui.*"
-		xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*"
 		xmlns:unit="com.clarityenglish.rotterdam.view.unit.*"
-		xmlns:ui1="com.clarityenglish.rotterdam.view.title.ui.*"
-		initialize="onInitialize(event)" >
+		initialize="onInitialize(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.course.CourseView")]
@@ -16,40 +13,40 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
-			import com.clarityenglish.rotterdam.view.unit.UnitView;
-			import mx.events.FlexEvent;
-			
-			import org.davekeen.transitions.PatchedSlideViewTransition;
-			
-			import spark.transitions.ViewTransitionBase;
-			import spark.transitions.ViewTransitionDirection;
-			
-			protected function onInitialize(event:FlexEvent):void {
-				// Use a custom PatchedSlideViewTransition as the stock one has a bug when the tab bar is hidden.
-				var pushTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
-				pushTransition.direction = ViewTransitionDirection.UP;
-				unitViewNavigator.defaultPushTransition = pushTransition;
-				
-				var popTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
-				popTransition.direction = ViewTransitionDirection.DOWN;
-				unitViewNavigator.defaultPopTransition = popTransition;
-				
-				styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("backgroundColor","#333333");
-				styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("fontSize","13");
-			}
-			
-			private function unitViewNavigatorShow(viewClass:Class, transition:ViewTransitionBase = null):void {
-				// This needs a callLater otherwise the first time we open the editor mouse events are not picked up
-				callLater(function():void {
-					if (!unitViewNavigator.activeView) {
-						unitViewNavigator.pushView(viewClass);
-					} else if (!(unitViewNavigator.activeView is viewClass)) {
-						unitViewNavigator.replaceView(viewClass, unitViewNavigator.activeView.data, null, transition);
-					}
-				});
-			}
-			
+		import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
+		import com.clarityenglish.rotterdam.view.unit.UnitView;
+
+		import mx.events.FlexEvent;
+
+		import org.davekeen.transitions.PatchedSlideViewTransition;
+
+		import spark.transitions.ViewTransitionBase;
+		import spark.transitions.ViewTransitionDirection;
+
+		protected function onInitialize(event:FlexEvent):void {
+			// Use a custom PatchedSlideViewTransition as the stock one has a bug when the tab bar is hidden.
+			var pushTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
+			pushTransition.direction = ViewTransitionDirection.UP;
+			unitViewNavigator.defaultPushTransition = pushTransition;
+
+			var popTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
+			popTransition.direction = ViewTransitionDirection.DOWN;
+			unitViewNavigator.defaultPopTransition = popTransition;
+
+			styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("backgroundColor", "#333333");
+			styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("fontSize", "13");
+		}
+
+		private function unitViewNavigatorShow(viewClass:Class, transition:ViewTransitionBase = null):void {
+			// This needs a callLater otherwise the first time we open the editor mouse events are not picked up
+			callLater(function ():void {
+				if (!unitViewNavigator.activeView) {
+					unitViewNavigator.pushView(viewClass);
+				} else if (!(unitViewNavigator.activeView is viewClass)) {
+					unitViewNavigator.replaceView(viewClass, unitViewNavigator.activeView.data, null, transition);
+				}
+			});
+		}
 		]]>
 	</fx:Script>
 	
@@ -78,7 +75,7 @@
 			<s:Label id="courseCaptionLabel" paddingLeft="8" paddingRight="8" width="150" fontWeight="bold" fontSize="15"/>
 			<mx:Spacer height="16" />
 			<s:HGroup paddingLeft="8">
-				<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/unit/dotted-line.png')" />	
+				<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/unit/dotted-line.png')" />
 			</s:HGroup>			
 			<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" width="140" height="100%" borderVisible="false" selectionColor="0xC0C0C0" >
 				<s:layout>
@@ -90,7 +87,7 @@
 						<s:ItemRenderer width="100%" mouseOver="{deleteUnitButton.visible = !outerDocument.hostComponent.previewVisible}" mouseOut="deleteUnitButton.visible = false" toolTip="{data.@caption}" >
 							<fx:Script>
 								<![CDATA[
-									import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
+								import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
 								]]>
 							</fx:Script>
 							
@@ -107,7 +104,7 @@
 									<s:SolidColorStroke color="0XFFC700" weight="1" caps="square"/>
 								</s:stroke>
 							</s:Line-->
-							<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/unit/dotted-line.png')" bottom="0" left="8" />
+							<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/unit/dotted-line.png')" bottom="0" left="8" />
 						</s:ItemRenderer>
 					</fx:Component>
 				</s:itemRenderer>
@@ -145,7 +142,7 @@
 			<s:Group>
 				<s:Rect width="152" height="200" topLeftRadiusX="8" topRightRadiusX="8" filters="{dropShadowFilter}">
 					<s:fill>
-						<s:SolidColor color="0XF7F2F0" />
+						<s:SolidColor color="0xF7F2F0" />
 					</s:fill>
 				</s:Rect>
 				<courseui:PublishButton id="oneClickPublishButton" useHandCursor="true" buttonMode="true" width="145" height="90" left="4" top="6" />

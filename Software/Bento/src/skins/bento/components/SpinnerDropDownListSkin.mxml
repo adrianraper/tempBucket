@@ -25,7 +25,7 @@ for the PopUpAnchor defined by the popUp property.</p>
 @playerversion AIR 1.5
 @productversion Flex 4
 -->
-<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:sparkcomp="spark.components.*"
 			 xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled=".5" xmlns:components="com.clarityenglish.components.*"> 
 	
 	<!-- host component -->
@@ -65,10 +65,10 @@ for the PopUpAnchor defined by the popUp property.</p>
 	<s:PopUpAnchor id="popUp" displayPopUp.normal="false" displayPopUp.open="true" includeIn="open"
 				   left="0" right="0" top="-1" bottom="0" itemDestructionPolicy="auto"
 				   popUpPosition="below" popUpWidthMatchesAnchorWidth="true">
-		
-		<s:SpinnerListContainer>
+
+		<sparkcomp:SpinnerListContainer>
 			<components:PatchedSpinnerList width="100%" dataProvider="{dataGroup.dataProvider}" selectedItem="{hostComponent.selectedItem}" valueCommit="hostComponent.selectedItem = event.target.selectedItem" />
-		</s:SpinnerListContainer>
+		</sparkcomp:SpinnerListContainer>
 	</s:PopUpAnchor>
 	
 	<!-- A fake dataGroup bound to the spinner so we can mostly keep default DropDownList functionality -->

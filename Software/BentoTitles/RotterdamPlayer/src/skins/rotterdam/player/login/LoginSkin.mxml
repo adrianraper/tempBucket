@@ -76,8 +76,8 @@
 	<s:BitmapImage id="brandingImage2" />
 	<s:BitmapImage id="brandingImage3" />
 	<s:BitmapImage id="brandingImage4" />
-	<s:SWFLoader source="@Embed(source='skins/rotterdam/player/assets/login/HoneyCones.png')" horizontalCenter="-260" top="330" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
-	<s:SWFLoader source="@Embed(source='skins/rotterdam/player/assets/login/HoneyConesLarge.png')" horizontalCenter="250" top="360" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
+	<s:SWFLoader source="@Embed(source='/skins/rotterdam/player/assets/login/HoneyCones.png')" horizontalCenter="-260" top="330" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
+	<s:SWFLoader source="@Embed(source='/skins/rotterdam/player/assets/login/HoneyConesLarge.png')" horizontalCenter="250" top="360" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
 	<login:HoneyGraphic horizontalCenter="300" top="40" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
 	
 	<s:Group horizontalCenter="0" top="40">
@@ -111,5 +111,5 @@
 		</s:Group>
 	</s:Group>
 	
-	<s:BitmapImage source="@Embed(source='skins/rotterdam/player/assets/login/CCBLogo.png')" horizontalCenter="0" bottom="100" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}" />
+	<s:BitmapImage source="@Embed(source='/skins/rotterdam/player/assets/login/CCBLogo.png')" horizontalCenter="0" bottom="100" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}" />
 </s:Skin>

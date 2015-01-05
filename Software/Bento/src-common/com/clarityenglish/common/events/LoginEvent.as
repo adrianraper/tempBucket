@@ -1,4 +1,4 @@
-﻿package com.clarityenglish.common.events {
+package com.clarityenglish.common.events {
 	import com.clarityenglish.common.vo.manageable.User;
 	
 	import flash.events.Event;
@@ -21,7 +21,7 @@
 		public var loginOption:Number;
 		public var verified:Boolean;
 		
-		public function LoginEvent(type:String, userObject:Object, loginOption:uint, verified:Boolean = true, bubbles:Boolean = false, cancelable:Boolean = false) { 
+		public function LoginEvent(type:String, userObject:Object, loginOption:uint, verified:Boolean = true, bubbles:Boolean = false, cancelable:Boolean = false) {
 			super(type, bubbles, cancelable);
 			
 			//this.name = username;

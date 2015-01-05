@@ -77,7 +77,7 @@ in accordance with the terms of the license agreement accompanying it.
 		</s:fill>
 	</s:Rect>
 	
-	<s:SWFLoader source="@Embed(source='skins/assets/preview-icon.png')"
+	<s:SWFLoader source="@Embed(source='/skins/assets/preview-icon.png')"
 				 top="12" left="12"
 				 alpha.over="0.8" />
 
