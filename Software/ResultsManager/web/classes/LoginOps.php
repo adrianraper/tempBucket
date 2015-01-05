@@ -280,7 +280,9 @@ EOD;
 		AbstractService::$debugLog->info($logMessage);
 		
 		// Authenticate the user with the session
-		Authenticate::login($dbLoginObj->F_UserName, $dbLoginObj->F_UserType);
+		// gh#1140 In case name is null
+		$sessionName = (string)$dbLoginObj->F_UserID.$dbLoginObj->F_UserName;
+		Authenticate::login($sessionName, $dbLoginObj->F_UserType);
 		
 		// gh#156 - update the timezone difference for this user in the database
 		$this->db->Execute("UPDATE T_User SET F_TimeZoneOffset=? WHERE F_UserID=?", array(-$loginObj["timezoneOffset"] / 60, $dbLoginObj->F_UserID));
@@ -339,7 +341,9 @@ EOD;
 		}
 			
 		// gh#334 Authenticate the user with the session
-		Authenticate::login($loginObj->F_UserName, $loginObj->F_UserType);
+		// gh#1140 In case name is null
+		$sessionName = (string)$loginObj->F_UserID.$loginObj->F_UserName;
+		Authenticate::login($sessionName, $loginObj->F_UserType);
 		
 		return $loginObj;
 	}
@@ -472,7 +476,9 @@ EOD;
 					throw new Exception("Your Results Manager expired on ".date("d M Y", strtotime($loginObj->ProductExpiryDate)));
 				
 				// Authenticate the user with the session
-				Authenticate::login($username, $loginObj->F_UserType);
+				// gh#1140 In case name is null
+				$sessionName = (string)$loginObj->F_UserID.$loginObj->F_UserName;
+				Authenticate::login($sessionName, $loginObj->F_UserType);
 				
 				// Store information about this login in the session
 				Session::set('userID', $loginObj->F_UserID);

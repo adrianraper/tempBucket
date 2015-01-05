@@ -82,6 +82,8 @@ class Authenticate {
 	 * 
 	 * @param string $name The user name
 	 * @param string $roles The comma delimited list of roles for the user
+	 * 
+	 * gh#1140 LoginOps will now pass userID + name in case the name is null - no need for a change here
 	 */
 	function login($name, $roles) {
 		if(!session_id()) 
