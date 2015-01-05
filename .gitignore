@@ -52,3 +52,6 @@ roadtoielts
 html-template
 xhtml-template
 /Software/Common/textLayout/bin/textLayout.swc
+/Software/Common/OSMF/bin/OSMF.swc
+**/.idea/workspace.xml
+**/.idea/tasks.xml

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Proxy - PureMVC
 */
 package com.clarityenglish.common.model {

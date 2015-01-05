@@ -166,7 +166,7 @@ package org.osmf.utils
 		private static const GROUP_INDEX_MINUTE:Number = 5;
 		private static const GROUP_INDEX_SECOND:Number = 6;
 		private static const GROUP_INDEX_TZ:Number = 7;
-		private static const GROUP_INDEX_OFFSET_HOURS = 8;
-		private static const GROUP_INDEX_OFFSET_MINUTES = 9;
+		private static const GROUP_INDEX_OFFSET_HOURS:Number = 8;
+		private static const GROUP_INDEX_OFFSET_MINUTES:Number = 9;
 	}
 }

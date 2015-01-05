@@ -22,8 +22,8 @@
 	<s:Rect id="fill" left="2" right="2" top="2" bottom="1" radiusX="6" radiusY="6" filters="{dropShadowFilter}">
 		<s:fill>
 			<s:LinearGradient rotation="90">
-				<s:GradientEntry id="color1" color="0XFFC700" color.over="0XFFD43B" color.down="0XFFD43B" />
-				<s:GradientEntry id="color2" color="0XFF9D00" color.over="0XFFE382" color.down="0XFFE382" />
+				<s:GradientEntry id="color1" color="0xFFC700" color.over="0xFFD43B" color.down="0xFFD43B" />
+				<s:GradientEntry id="color2" color="0xFF9D00" color.over="0xFFE382" color.down="0xFFE382" />
 			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
@@ -34,7 +34,7 @@
 	</s:fill>
 	</s:Rect-->
 	
-	<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/unit/icon_1click.png')" top="8" left="12" />
+	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/unit/icon_1click.png')" top="8" left="12" />
 	
 	<!--s:Group left="105" includeIn="over">
 	<s:SWFLoader top="20" source="@Embed(source='skins/rotterdam/builder/assets/unit/icon_PublishCourse_arrow.png')"/>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="Flex" version="4">
+  <component name="FlexBuildConfigurationManager" active="Bento">
+    <configurations>
+      <configuration name="Bento" target-platform="Mobile" output-type="Library" output-file="Bento.swc" output-folder="$MODULE_DIR$/bin">
+        <dependencies>
+          <entries>
+            <entry module-name="csslib" build-configuration-name="csslib">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="textLayout" build-configuration-name="textLayout">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="OSMF" build-configuration-name="OSMF">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="96220ae6-3ea8-41d5-a4a8-caa59ed3b5a9">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="FlexUnit" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="MX components" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="13.0_AIR15 (Bento)" />
+        </dependencies>
+        <compiler-options>
+          <map>
+            <entry key="compiler.locale" value="en_US" />
+          </map>
+          <option name="filesToIncludeInSWC" value="$MODULE_DIR$/src/skins/assets/draggable_pointer.png&#10;$MODULE_DIR$/src/skins/assets/play.png&#10;$MODULE_DIR$/src/skins/assets/correctIcon.png&#10;$MODULE_DIR$/src/skins/assets/incorrectIcon.png&#10;$MODULE_DIR$/src/defaults.css&#10;$MODULE_DIR$/src/skins/assets/correctIcon.swf&#10;$MODULE_DIR$/src/skins/assets/incorrectIcon.swf&#10;$MODULE_DIR$/src/skins/assets/missedIcon.png&#10;$MODULE_DIR$/src/skins/assets/pause.png&#10;$MODULE_DIR$/src/skins/assets/stop.png" />
+          <option name="additionalOptions" value="-define=CONFIG::flex3,false -define=CONFIG::flex4,true -define=CONFIG::debug,true" />
+        </compiler-options>
+        <packaging-air-desktop />
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+    </configurations>
+    <compiler-options />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src-common" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor/bindage-tools/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor/alivepdf/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor/as3-signals/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor/puremvc/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor/scorm-api-wrapper/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor/tink/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor/tweener/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor/vector-collection/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor/corelib/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/bin" />
+    </content>
+    <orderEntry type="jdk" jdkName="13.0_AIR15 (Bento)" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="96220ae6-3ea8-41d5-a4a8-caa59ed3b5a9" />
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/libs" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="OSMF" exported="" />
+    <orderEntry type="module" module-name="textLayout" exported="" />
+    <orderEntry type="module" module-name="csslib" exported="" />
+    <orderEntry type="library" exported="" name="FlexUnit" level="application" />
+    <orderEntry type="library" exported="" name="FlexUnit" level="project" />
+    <orderEntry type="library" exported="" name="MX components" level="project" />
+  </component>
+</module>

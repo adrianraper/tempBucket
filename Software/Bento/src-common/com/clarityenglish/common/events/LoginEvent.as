@@ -1,4 +1,4 @@
-﻿package com.clarityenglish.common.events {
+package com.clarityenglish.common.events {
 	import com.clarityenglish.common.vo.manageable.User;
 	
 	import flash.events.Event;
@@ -22,7 +22,7 @@
 		public var verified:Boolean;
 		public var demoVersion:String;
 		
-		public function LoginEvent(type:String, userObject:Object, loginOption:uint, verified:Boolean = true, demoVersion:String = null, bubbles:Boolean = false, cancelable:Boolean = false) { 
+		public function LoginEvent(type:String, userObject:Object, loginOption:uint, verified:Boolean = true, bubbles:Boolean = false, cancelable:Boolean = false) {
 			super(type, bubbles, cancelable);
 			
 			//this.name = username;
@@ -37,7 +37,7 @@
 		
 		public override function clone():Event { 
 			//return new LoginEvent(type, username, password, bubbles, cancelable);
-			return new LoginEvent(type, user, loginOption, verified, demoVersion, bubbles, cancelable);
+			return new LoginEvent(type, user, loginOption, verified, bubbles, cancelable);
 		} 
 		
 		public override function toString():String { 

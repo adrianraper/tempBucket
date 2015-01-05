@@ -16,8 +16,7 @@
 		<![CDATA[
 			import mx.charts.events.ChartItemEvent;
 			import mx.charts.series.items.PieSeriesItem;
-			import mx.controls.Alert;
-			import mx.controls.Label;
+			
 			[Bindable]
 			private var rollOverFlag:Boolean;
 			

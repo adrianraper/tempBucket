@@ -1,44 +1,26 @@
 package com.clarityenglish.rotterdam.view.settings {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.vo.manageable.Group;
-	import com.clarityenglish.controls.calendar.Calendar;
-	import com.clarityenglish.rotterdam.view.settings.events.SettingsEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
-	import com.sparkTree.Tree;
-	
+
 	import flash.events.Event;
 	import flash.events.FocusEvent;
 	import flash.events.MouseEvent;
-	
-	import mx.collections.ArrayCollection;
-	import mx.collections.ArrayList;
-	import mx.collections.IViewCursor;
-	import mx.collections.ListCollectionView;
-	import mx.collections.XMLListCollection;
-	import mx.controls.DateField;
-	import mx.core.ClassFactory;
+
 	import mx.events.FlexEvent;
-	import mx.events.ItemClickEvent;
-	
-	import org.davekeen.util.DateUtil;
+
 	import org.davekeen.util.StringUtils;
 	import org.osflash.signals.Signal;
-	
+
 	import spark.components.Button;
 	import spark.components.CheckBox;
 	import spark.components.Form;
 	import spark.components.FormHeading;
 	import spark.components.FormItem;
-	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.List;
-	import spark.components.RadioButton;
-	import spark.components.RadioButtonGroup;
-	import spark.components.TabBar;
 	import spark.components.TextArea;
 	import spark.components.TextInput;
-	import spark.events.IndexChangeEvent;
-	
+
 	/**
 	 * There is quite a lot of code duplication here that could be neatened up into a mini form framework that automatically links xml properties and components.
 	 * in a Rails/Symfony style form system.  This might well be worth doing at some point, but for the moment just leave it hand coded.

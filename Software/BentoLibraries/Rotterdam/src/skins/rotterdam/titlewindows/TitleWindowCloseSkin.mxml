@@ -51,6 +51,6 @@
         </s:fill>
     </s:Rect>
 	
-    <s:SWFLoader source="@Embed(source='skins/assets/assets.swf', symbol='BackButton')" />
+    <s:SWFLoader source="@Embed(source='/skins/assets/assets.swf', symbol='BackButton')" />
     
 </s:SparkButtonSkin>

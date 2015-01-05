@@ -46,8 +46,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public function get hasSrc():Boolean {
 			return _xml.hasOwnProperty("@src");
 		}
-		
-		[Bindable]
+
 		public function get hideSpanButtonBar():Boolean {
 			return _hideSpanButtonBar;
 		}

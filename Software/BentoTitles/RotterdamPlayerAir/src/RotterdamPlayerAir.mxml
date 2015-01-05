@@ -36,6 +36,7 @@
 				var platform:String = Capabilities.version.split(" ")[0];
 				switch (platform) {
 					case "IOS":
+					case "MAC":
 						// Set the iOS config xml file
 						FlexGlobals.topLevelApplication.parameters.configFile = "ios-config.xml";
 						XHTMLImporter.media = "ios";
