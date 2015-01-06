@@ -2,7 +2,7 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="RotterdamPlayerAir">
     <configurations>
-      <configuration name="RotterdamPlayerAir" target-platform="Mobile" main-class="RotterdamPlayerAir" output-file="RotterdamPlayerAir.swf" output-folder="$MODULE_DIR$/../../Bento/out/production/RotterdamPlayerAir">
+      <configuration name="RotterdamPlayerAir" target-platform="Mobile" main-class="RotterdamPlayerAir" output-file="RotterdamPlayerAir.swf" output-folder="$MODULE_DIR$/bin-debug">
         <dependencies target-player="15.0">
           <entries>
             <entry module-name="Rotterdam" build-configuration-name="Rotterdam">
@@ -39,6 +39,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/libs" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/bin-debug" />
     </content>
     <orderEntry type="jdk" jdkName="13.0_AIR15 (Bento)" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />

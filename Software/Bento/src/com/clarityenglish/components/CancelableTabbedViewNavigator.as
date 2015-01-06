@@ -1,4 +1,4 @@
-package com.clarityenglish.rotterdam.view.title.ui {
+package com.clarityenglish.components {
 	import flash.events.MouseEvent;
 	
 	import mx.core.mx_internal;

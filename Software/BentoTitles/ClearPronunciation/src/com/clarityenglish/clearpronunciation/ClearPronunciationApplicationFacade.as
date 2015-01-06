@@ -26,9 +26,8 @@ package com.clarityenglish.clearpronunciation {
 	import com.clarityenglish.clearpronunciation.view.settings.SettingsView;
 	import com.clarityenglish.clearpronunciation.view.title.TitleMediator;
 	import com.clarityenglish.clearpronunciation.view.title.TitleView;
-	import com.clarityenglish.rotterdam.CommonAbstractApplicationFacade;
 	
-	public class ClearPronunciationApplicationFacade extends CommonAbstractApplicationFacade {
+	public class ClearPronunciationApplicationFacade extends BentoFacade {
 		
 		public static function getInstance():BentoFacade {
 			if (instance == null) instance = new ClearPronunciationApplicationFacade();

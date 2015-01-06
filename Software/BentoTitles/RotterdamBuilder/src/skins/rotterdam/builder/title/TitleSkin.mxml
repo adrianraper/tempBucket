@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" 
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:ui="com.clarityenglish.rotterdam.view.title.ui.*">
+		xmlns:components="com.clarityenglish.components.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.title.TitleView")]
 	</fx:Metadata>
-	
+
 	<!-- states -->
 	<s:states>
-		<s:State name="disabled" />
-		<s:State name="normal" />
-		
-		<s:State name="course_selector" />
-		<s:State name="course" />
-		<s:State name="filemanager" />
-		<s:State name="settings" />
-		<s:State name="schedule" />
+		<s:State name="disabled"/>
+		<s:State name="normal"/>
+
+		<s:State name="course_selector"/>
+		<s:State name="course"/>
+		<s:State name="filemanager"/>
+		<s:State name="settings"/>
+		<s:State name="schedule"/>
 	</s:states>
-	
+
 	<s:Group left="0" right="0" top="0">
 		<s:Rect left="0" right="0" top="0" bottom="0" height="45">
 			<s:fill>
@@ -29,16 +29,23 @@
 				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>
-		<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/title/ccb_logo.png')" right="320" top="8" includeIn="course_selector"/>
-		<s:Label id="productTitle" color="0xFFFFFF" fontWeight="bold" fontSize="15" right="150" top="15" includeIn="course_selector"/>
+		<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/title/ccb_logo.png')" right="320" top="8"
+					 includeIn="course_selector"/>
+		<s:Label id="productTitle" color="0xFFFFFF" fontWeight="bold" fontSize="15" right="150" top="15"
+				 includeIn="course_selector"/>
 	</s:Group>
-	
-	<ui:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0">
-		<s:ViewNavigator id="myCoursesViewNavigator" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%" />
-		<s:ViewNavigator id="cloudViewNavigator" firstView="com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView" left="0" right="0" height="100%" includeIn="course_selector"/>
-		<s:ViewNavigator id="helpViewNavigator" firstView="com.clarityenglish.rotterdam.builder.view.help.HelpView" left="0" right="0" height="100%" includeIn="course_selector"/>
-	</ui:CancelableTabbedViewNavigator>
-	
+
+	<components:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0">
+		<s:ViewNavigator id="myCoursesViewNavigator"
+						 firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0"
+						 right="0" height="100%"/>
+		<s:ViewNavigator id="cloudViewNavigator"
+						 firstView="com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView" left="0"
+						 right="0" height="100%" includeIn="course_selector"/>
+		<s:ViewNavigator id="helpViewNavigator" firstView="com.clarityenglish.rotterdam.builder.view.help.HelpView"
+						 left="0" right="0" height="100%" includeIn="course_selector"/>
+	</components:CancelableTabbedViewNavigator>
+
 	<!-- This needs to go 'on top' of the view navigator to be picked up -->
 	<s:Button id="logoutButton" right="10" top="6" useHandCursor="true" buttonMode="true" includeIn="course_selector"/>
 </s:Skin>

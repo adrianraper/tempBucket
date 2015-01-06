@@ -1,7 +1,6 @@
 package com.clarityenglish.clearpronunciation.view.progress.ui
 {
 	import com.clarityenglish.bento.view.progress.ui.IStackedChart;
-	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.clearpronunciation.view.progress.event.StackedBarMouseOutEvent;
 	import com.clarityenglish.clearpronunciation.view.progress.event.StackedBarMouseOverEvent;
 	
@@ -9,7 +8,6 @@ package com.clarityenglish.clearpronunciation.view.progress.ui
 	import flash.events.MouseEvent;
 	
 	import mx.core.UIComponent;
-	import mx.olap.aggregators.CountAggregator;
 	
 	import spark.components.Label;
 	

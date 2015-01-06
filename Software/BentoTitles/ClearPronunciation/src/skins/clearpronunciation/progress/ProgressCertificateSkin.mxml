@@ -55,7 +55,7 @@
 	
 	<!--Print button group-->
 	<s:HGroup id="printGroup" right="20" top="0" horizontalAlign="right">
-		<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/progress/certificate/printTip.png')" right="150" top="10" />
+		<s:SWFLoader source="@Embed(source='/skins/clearpronunciation/assets/progress/certificate/printTip.png')" right="150" top="10" />
 		<s:Button id="printButton"  color="0xFFFFFF" buttonMode="true" useHandCursor="true" right="60" />		
 	</s:HGroup>
 </s:Skin>

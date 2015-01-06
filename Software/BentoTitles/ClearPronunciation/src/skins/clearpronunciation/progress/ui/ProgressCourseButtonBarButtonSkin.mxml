@@ -69,7 +69,7 @@
     </s:states>
     
 	<s:HGroup gap="8" verticalCenter="0" horizontalCenter="0" verticalAlign="middle">
-		<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/progress/progressTabBarIcon.png')" />
+		<s:SWFLoader source="@Embed(source='/skins/clearpronunciation/assets/progress/progressTabBarIcon.png')" />
 		<!-- layer 8: icon and text -->
 		<!---  @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
 		<!--- source="{(hostComponent as ButtonBarButton).data.courseIcon}" -->

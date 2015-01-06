@@ -152,11 +152,11 @@ login|LoginView {
 }
 
 login|LoginView s|Button#loginButton {
-	skinClass: ClassReference("skins.rotterdam.ui.LoginButtonSkin");
+	skinClass: ClassReference("skins.clearpronunciation.ui.LoginButtonSkin");
 }
 
 login|LoginView s|Button#forgotPassword_btn {
-	skinClass: ClassReference("skins.rotterdam.ui.ForgotPasswordButtonSkin");
+	skinClass: ClassReference("skins.clearpronunciation.ui.ForgotPasswordButtonSkin");
 }
 
 /*login|LoginView s|TextInput {
@@ -167,7 +167,7 @@ contentBackgroundColor: #FFFFFF;
 }*/
 
 login|LoginView s|TextInput {
-	skinClass: ClassReference("skins.rotterdam.ui.LoginTextInputSkin");
+	skinClass: ClassReference("skins.clearpronunciation.ui.LoginTextInputSkin");
 	cornerRadius: 5;
 }
 

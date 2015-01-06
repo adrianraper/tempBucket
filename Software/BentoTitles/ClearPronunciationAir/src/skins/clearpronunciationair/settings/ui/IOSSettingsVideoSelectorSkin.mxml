@@ -12,62 +12,57 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.controls.video.VideoSelector;
-			import com.clarityenglish.rotterdam.view.unit.ui.WidgetList;
-			import com.googlecode.bindagetools.Bind;
-			
-			import mx.binding.utils.BindingUtils;
-			import mx.events.FlexEvent;
-			
-			import spark.components.VideoPlayer;
-			import spark.events.IndexChangeEvent;
-			
-			private var paretnDocumentOnwer:Object;
-			
-			protected function onCreatComplete(event:FlexEvent):void {
-				// TODO Auto-generated method stub
-				channelList.visible = false;
-				
-				videoPlayer.stop();
-				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
-				videoList.addEventListener(FocusEvent.FOCUS_OUT, onVideoListFocusOut);
-				stage.addEventListener(MouseEvent.CLICK, onStageClick);
-			}
-			
-			protected function onStageClick(event:Event):void {
-				var component:Object = event.target;
-				var isClickVideoSelector:Boolean;
-				while (component.parent) {
-					if (component is List || component is VideoPlayer|| component is Image) {
-						isClickVideoSelector = true;
-						break;
-					}
-					component = component.parent;
+		import mx.events.FlexEvent;
+
+		import spark.components.VideoPlayer;
+		import spark.events.IndexChangeEvent;
+
+		private var paretnDocumentOnwer:Object;
+
+		protected function onCreatComplete(event:FlexEvent):void {
+			// TODO Auto-generated method stub
+			channelList.visible = false;
+
+			videoPlayer.stop();
+			videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
+			videoList.addEventListener(FocusEvent.FOCUS_OUT, onVideoListFocusOut);
+			stage.addEventListener(MouseEvent.CLICK, onStageClick);
+		}
+
+		protected function onStageClick(event:Event):void {
+			var component:Object = event.target;
+			var isClickVideoSelector:Boolean;
+			while (component.parent) {
+				if (component is List || component is VideoPlayer || component is Image) {
+					isClickVideoSelector = true;
+					break;
 				}
-				
-				if (!isClickVideoSelector) {
-					videoList.selectedItem = null;
-					videoPlayer.visible = false;
-				}
+				component = component.parent;
 			}
-			
-			protected function onVideoListIndexChange(event:Event):void {
-				videoPlayer.createStageWebView();
-				videoPlayer.visible = true;
-			}
-			
-			protected function onVideoListFocusOut(event:FocusEvent):void {
+
+			if (!isClickVideoSelector) {
 				videoList.selectedItem = null;
 				videoPlayer.visible = false;
 			}
-			
-			protected function onPlaceholderClick(event:MouseEvent):void {
-				// For now the default index is 0, but latter we will get index from widgetlist which is user prefered.
-				videoList.selectedItem = videoList.dataProvider.getItemAt(0);
-				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
-				// Manually set the focus here, for we manually change the video list index.
-				focusManager.setFocus(videoList);
-			}
+		}
+
+		protected function onVideoListIndexChange(event:Event):void {
+			videoPlayer.createStageWebView();
+			videoPlayer.visible = true;
+		}
+
+		protected function onVideoListFocusOut(event:FocusEvent):void {
+			videoList.selectedItem = null;
+			videoPlayer.visible = false;
+		}
+
+		protected function onPlaceholderClick(event:MouseEvent):void {
+			// For now the default index is 0, but latter we will get index from widgetlist which is user prefered.
+			videoList.selectedItem = videoList.dataProvider.getItemAt(0);
+			videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+			// Manually set the focus here, for we manually change the video list index.
+			focusManager.setFocus(videoList);
+		}
 		]]>
 	</fx:Script>
 	<!--video player black background-->

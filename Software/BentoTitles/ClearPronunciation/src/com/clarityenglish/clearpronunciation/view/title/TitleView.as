@@ -3,20 +3,20 @@ package com.clarityenglish.clearpronunciation.view.title {
 	import com.clarityenglish.clearpronunciation.view.exercise.ExerciseView;
 	import com.clarityenglish.clearpronunciation.view.home.HomeView;
 	import com.clarityenglish.clearpronunciation.view.progress.ProgressView;
-	import com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator;
-	
+	import com.clarityenglish.components.CancelableTabbedViewNavigator;
+
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
-	
+
 	import org.davekeen.util.StateUtil;
 	import org.osflash.signals.Signal;
-	
+
 	import spark.components.Button;
 	import spark.components.Label;
 	import spark.components.ViewNavigator;
-	
+
 	// This tells us that the skin has these states, but the view needs to know about them too
 	[SkinState("home")]
 	[SkinState("course")]

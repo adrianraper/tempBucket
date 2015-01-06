@@ -13,7 +13,7 @@
     <classEntry path="com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsMediator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.title.TitleMediator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.title.TitleView"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator"/>
+    <classEntry path="com.clarityenglish.components.CancelableTabbedViewNavigator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.unit.UnitHeaderView"/>
     <classEntry path="com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayout"/>
     <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget"/>

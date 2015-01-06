@@ -55,6 +55,7 @@
       <sourceFolder url="file://$MODULE_DIR$/vendor/vector-collection/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/corelib/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/bin" />
     </content>
     <orderEntry type="jdk" jdkName="13.0_AIR15 (Bento)" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
