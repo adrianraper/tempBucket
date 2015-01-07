@@ -24,6 +24,9 @@
 				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
 				stage.addEventListener(MouseEvent.CLICK, onStageClick);
 				
+				videoList.selectedIndex = 0;
+				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+				
 				if (hostComponent.videoCollection.length > 1) {
 					videoList.visible = true;
 				} else {
@@ -67,21 +70,21 @@
 	</fx:Script>
 	
 	<!--Video background-->
-	<s:Group left="84" top="20" width="238" height="320">
+	<!--s:Group left="84" top="20" width="240" height="320">
 		<s:Rect width="100%" height="100%" filters="{[dropShadowFilter]}">
 			<s:fill>
 				<s:SolidColor color="#FFFFFF" />
 			</s:fill>
 		</s:Rect>
 		<s:SWFLoader source="@Embed(source='skins/activereading/assets/loading.swf')" verticalCenter="0" horizontalCenter="0" />
-	</s:Group>	
+	</s:Group-->	
 	
 	<!-- The video players -->
-	<players:WebViewVideoPlayer id="videoPlayer" left="42" top="10" width="245" height="325"/>
+	<players:WebViewVideoPlayer id="videoPlayer" left="42" top="10" width="245" height="325" placeholderSource="{hostComponent.placeholderSource}"/>
 	<!--players:OSMFVideoPlayer id="videoPlayer" left="0" width="290" height="400" /-->
 	
 	<!-- Placeholder image -->
-	<s:Image id="placeholderImage" filters="{[dropShadowFilter]}" left="83" top="20" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
+	<!--s:Image id="placeholderImage" filters="{[dropShadowFilter]}" left="83" top="20" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" /-->
 	
 	<!-- Channel list -->
 	<s:List id="channelList" top="260" left="30" width="320" horizontalScrollPolicy="off" >

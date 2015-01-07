@@ -1,5 +1,6 @@
 package com.clarityenglish.controls.video.players {
 	import com.clarityenglish.controls.video.IVideoPlayer;
+	import com.googlecode.bindagetools.converters.nullToValue;
 	
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
@@ -24,6 +25,7 @@ package com.clarityenglish.controls.video.players {
 		
 		private var _source:Object;
 		private var _sourceChanged:Boolean;
+		private var _placeholderSource:String;
 		
 		private var dpiScaleFactor:Number = 1;
 		
@@ -43,7 +45,21 @@ package com.clarityenglish.controls.video.players {
 		}
 		
 		public function get source():Object {
-			return _source;
+			var sourceHtml:String = "";
+			sourceHtml += "<!DOCTYPE html>";
+			sourceHtml += "<html>";
+			sourceHtml += "<head>";
+			sourceHtml += "	<meta name='viewport' content='width=240px, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi' />";
+			sourceHtml += "</head>";
+			sourceHtml += "<body style='margin:0;padding:0;border:0;overflow:hidden;background-image:url(" + placeholderSource + ");'>";
+			sourceHtml += "	<video width='240' height='320' controls>";
+			sourceHtml += "			<source src='" + _source + "' type='video/mp4' >";
+			sourceHtml += "	</video>";
+			sourceHtml += "</body>";
+			sourceHtml += "</html>";
+			
+			//return _source;
+			return sourceHtml;
 		}
 		
 		// For ipad candidates video which require video stop when switch to another. 
@@ -58,6 +74,14 @@ package com.clarityenglish.controls.video.players {
 				addEventListener(FlexEvent.HIDE, onRemovedFromStage, false, 0, true);
 				addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
 			}
+		}
+		
+		public function get placeholderSource():String {
+			return _placeholderSource;
+		}
+		
+		public function set placeholderSource(value:String):void {
+			_placeholderSource = value;
 		}
 		
 		private function get isHtml():Boolean {
@@ -154,7 +178,7 @@ package com.clarityenglish.controls.video.players {
 						} else {
 							if (source.toString()) {
 								log.debug("loading url {0}", source.toString());
-								stageWebView.loadURL(source.toString());
+								stageWebView.loadString(source.toString());
 							}
 						}
 					}
