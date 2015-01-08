@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="Flex" version="4">
+  <component name="FlexBuildConfigurationManager" active="ActiveReadingAir">
+    <configurations>
+      <configuration name="ActiveReadingAir" target-platform="Mobile" main-class="ActiveReadingAir" output-file="ActiveReadingAir.swf" output-folder="$MODULE_DIR$/bin-debug">
+        <dependencies target-player="15.0">
+          <entries>
+            <entry module-name="Bento" build-configuration-name="Bento">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="ActiveReading" build-configuration-name="ActiveReadingLib">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="MX components" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="13.0_AIR15 (Bento)" />
+        </dependencies>
+        <compiler-options />
+        <packaging-air-desktop />
+        <packaging-android enabled="true" package-file-name="ActiveReadingAir" />
+        <packaging-ios enabled="true" package-file-name="ActiveReadingAir" />
+      </configuration>
+    </configurations>
+    <compiler-options />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/bin-debug" />
+    </content>
+    <orderEntry type="jdk" jdkName="13.0_AIR15 (Bento)" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="ActiveReading" exported="" />
+    <orderEntry type="module" module-name="Bento" exported="" />
+    <orderEntry type="library" exported="" name="MX components" level="project" />
+  </component>
+</module>

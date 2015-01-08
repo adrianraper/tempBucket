@@ -32,7 +32,7 @@
 	
 	<s:VGroup top="60" bottom="0" width="100%" gap="0">
 		<s:Group id="printGroup" width="100%" visible="{!hostComponent.isPlatformTablet}" includeInLayout="{!hostComponent.isPlatformTablet}">
-			<s:SWFLoader source="@Embed(source='skins/activereading/assets/progress/certificate/printTip.png')" right="165" top="10"/>
+			<s:SWFLoader source="@Embed(source='/skins/activereading/assets/progress/certificate/printTip.png')" right="165" top="10"/>
 			<s:Button id="printButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" right="60" top="-1"/>
 		</s:Group>	
 		
@@ -40,7 +40,7 @@
 		
 		<s:Scroller width="100%" bottom="0">
 			<s:Group id="certificateGroup" width="100%">
-				<s:SWFLoader id="certificateSWFLoader" horizontalCenter="0" source="@Embed(source='skins/activereading/assets/progress/certificate/certSmall.png')" />
+				<s:SWFLoader id="certificateSWFLoader" horizontalCenter="0" source="@Embed(source='/skins/activereading/assets/progress/certificate/certSmall.png')" />
 				<s:HGroup top="120" width="700" horizontalCenter="0" gap="16">
 					<s:VGroup paddingLeft="100" gap="15">
 						<s:Label id="nameTextLabel" fontSize="15" />

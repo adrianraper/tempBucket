@@ -30,7 +30,7 @@
 	<s:VGroup verticalCenter="20" horizontalCenter="-120" height="500" width="600" gap="60">
 		<nonetwork:noConnectionText top="150" />
 		<s:HGroup width="100%" paddingLeft="70">
-			<s:SWFLoader source="@Embed(source='skins/activereadingair/nonetwork/noConnection.png')" />
+			<s:SWFLoader source="@Embed(source='/skins/activereadingair/nonetwork/noConnection.png')" />
 		</s:HGroup>	
 	</s:VGroup>
 	

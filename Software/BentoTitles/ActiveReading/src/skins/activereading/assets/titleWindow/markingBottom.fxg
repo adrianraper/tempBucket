@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="41.0264" viewWidth="354.878" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="41.026" d:pageWidth="354.878" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Group x="-8" y="-164" ai:seqID="1">
+        <mask>
+          <Group x="8" y="164" ai:spare="1">
+            <Rect width="354.878" height="41.0264" ai:seqID="2">
+              <fill>
+                <SolidColor color="#FFFFFF"/>
+              </fill>
+            </Rect>
+          </Group>
+        </mask>
+        <Group ai:seqID="3">
+          <Group ai:seqID="4">
+            <Path x="8" y="7.75" winding="nonZero" ai:seqID="5" data="M11.791 0 0 11.792 0 160.276 354.878 160.276 354.878 11.792 343.087 0 11.791 0Z">
+              <fill>
+                <LinearGradient x="177.439" y="94.8472" scaleX="66.2213" rotation="90">
+                  <GradientEntry ratio="0" color="#FFFFFF"/>
+                  <GradientEntry ratio="0.340877" color="#FCFCFC"/>
+                  <GradientEntry ratio="0.583847" color="#F1F1F1"/>
+                  <GradientEntry ratio="0.80193" color="#D9D9D9"/>
+                  <GradientEntry ratio="1" color="#B4B4B4"/>
+                </LinearGradient>
+              </fill>
+              <filters>
+                <DropShadowFilter blurX="6" blurY="6" quality="2" color="#010101" alpha="0.5" angle="63.4349" distance="2.23607"/>
+              </filters>
+            </Path>
+            <Path x="8" y="44.75" winding="nonZero" ai:seqID="6" data="M343.087 160.276 354.878 148.484 354.878 0 0 0 0 148.484 11.791 160.276 343.087 160.276Z">
+              <fill>
+                <LinearGradient x="177.438" y="65.4297" scaleX="66.2211" rotation="270">
+                  <GradientEntry ratio="0" color="#FFFFFF"/>
+                  <GradientEntry ratio="0.340877" color="#FCFCFC"/>
+                  <GradientEntry ratio="0.583847" color="#F1F1F1"/>
+                  <GradientEntry ratio="0.80193" color="#D9D9D9"/>
+                  <GradientEntry ratio="1" color="#B4B4B4"/>
+                </LinearGradient>
+              </fill>
+            </Path>
+            <Rect x="8" y="44.1768" width="354.878" height="138.934" ai:seqID="7">
+              <fill>
+                <LinearGradient x="177.438" y="139.183" scaleX="138.934" rotation="270">
+                  <GradientEntry ratio="0.00598802" color="#FFFFFF"/>
+                  <GradientEntry ratio="1" color="#EB2133"/>
+                </LinearGradient>
+              </fill>
+            </Rect>
+            <Rect x="8" y="44.7354" width="354.878" height="3" ai:seqID="8">
+              <fill>
+                <SolidColor color="#EB2133"/>
+              </fill>
+              <filters>
+                <DropShadowFilter blurX="2" blurY="2" quality="2" color="#010101" alpha="0.4" angle="90" distance="1"/>
+              </filters>
+            </Rect>
+          </Group>
+        </Group>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

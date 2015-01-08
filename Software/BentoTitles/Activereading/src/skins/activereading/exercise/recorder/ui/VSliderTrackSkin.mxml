@@ -8,5 +8,5 @@
 		<s:State name="disabled"/>
 	</s:states>
 	
-	<s:SWFLoader source="@Embed(source='skins/activereading/assets/exercise/recorder/sliderBar.png')" />
+	<s:SWFLoader source="@Embed(source='/skins/activereading/assets/exercise/recorder/sliderBar.png')" />
 </s:Skin>

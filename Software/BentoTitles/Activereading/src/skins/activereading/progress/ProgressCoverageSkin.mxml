@@ -2,9 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
     	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
-		alpha.disabled="0.5" xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" 
-		xmlns:exerciseNumber="skins.tensebuster.assets.exerciseNumber.*" 
-		xmlns:numberIcon="skins.tensebuster.assets.progress.coverage.numberIcon.*">
+		alpha.disabled="0.5" xmlns:ui="com.clarityenglish.bento.view.progress.ui.*">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.activereading.view.progress.ProgressCoverageView")]
@@ -43,8 +41,8 @@
 	
 	<!--Gird and book-->
 	<s:Group bottom="0" right="10" width="550" height="280">
-		<s:SWFLoader source="@Embed(source='skins/activereading/assets/progress/progressBook.png')" bottom="-10" horizontalCenter="0" />
-		<s:SWFLoader source="@Embed(source='skins/activereading/assets/progress/progressGirl.png')" bottom="0" horizontalCenter="0" />
+		<s:SWFLoader source="@Embed(source='/skins/activereading/assets/progress/progressBook.png')" bottom="-10" horizontalCenter="0" />
+		<s:SWFLoader source="@Embed(source='/skins/activereading/assets/progress/progressGirl.png')" bottom="0" horizontalCenter="0" />
 	</s:Group>
 	
 	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="45" right="45" height="60" buttonMode="true" useHandCursor="true">
@@ -128,10 +126,10 @@
 															doneCircle.visible = true;
 															undoneCircle.visible = false;
 															var courseClass:String = data.parent().parent().@["class"];
-															circleTopColor.color = getStyle("homeNumberTagTopColors")[data.parent().parent().childIndex()];
-															circleTopMidColor.color = getStyle("homeNumberTagTopMidColors")[data.parent().parent().childIndex()];
-															circleBottomMidColor.color = getStyle("homeNumberTagBottomMidColors")[data.parent().parent().childIndex()];
-															circleBottomColor.color = getStyle("homeNumberTagTopMidColors")[data.parent().parent().childIndex()];
+															circleTopColor2.color = getStyle("homeNumberTagTopColors")[data.parent().parent().childIndex()];
+															circleTopMidColor2.color = getStyle("homeNumberTagTopMidColors")[data.parent().parent().childIndex()];
+															circleBottomMidColor2.color = getStyle("homeNumberTagBottomMidColors")[data.parent().parent().childIndex()];
+															circleBottomColor2.color = getStyle("homeNumberTagTopMidColors")[data.parent().parent().childIndex()];
 														} else {
 															doneCircle.visible = false;
 															undoneCircle.visible = true;
@@ -164,10 +162,10 @@
 												<s:Ellipse id="doneCircle" x="0" y="0" width="20" height="20">
 													<s:fill>
 														<s:LinearGradient>
-															<s:GradientEntry id="circleTopColor" />
-															<s:GradientEntry id="circleTopMidColor" />
-															<s:GradientEntry id="circleBottomMidColor" />
-															<s:GradientEntry id="circleBottomColor" />
+															<s:GradientEntry id="circleTopColor2" />
+															<s:GradientEntry id="circleTopMidColor2" />
+															<s:GradientEntry id="circleBottomMidColor2" />
+															<s:GradientEntry id="circleBottomColor2" />
 														</s:LinearGradient>
 													</s:fill>
 												</s:Ellipse>

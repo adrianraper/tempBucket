@@ -603,7 +603,7 @@
 			<s:Label id="versionLabel" color="#333333" fontSize="11" />
 			<s:Label id="copyrightLabel" color="#333333" fontSize="11" />
 			<s:Spacer width="20" />
-			<s:SWFLoader source="@Embed(source='skins/activereading/assets/home/menuClarityenglishLogo.png')" />
+			<s:SWFLoader source="@Embed(source='/skins/activereading/assets/home/menuClarityenglishLogo.png')" />
 		</s:HGroup>
 	</s:Group>
 </s:Skin>

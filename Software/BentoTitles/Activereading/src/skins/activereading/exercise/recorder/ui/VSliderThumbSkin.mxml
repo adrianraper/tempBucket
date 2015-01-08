@@ -7,5 +7,5 @@
 		<s:State name="down"/>
 		<s:State name="disabled"/>
 	</s:states>
-	<s:SWFLoader source="@Embed(source='skins/activereading/assets/exercise/recorder/sliderDot.png')" />
+	<s:SWFLoader source="@Embed(source='/skins/activereading/assets/exercise/recorder/sliderDot.png')" />
 </s:Skin>

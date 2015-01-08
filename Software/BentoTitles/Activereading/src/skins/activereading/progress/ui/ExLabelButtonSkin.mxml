@@ -45,19 +45,19 @@
 	
 	<fx:Script>
 		<![CDATA[
-			[Embed(source="skins/tensebuster/assets/progress/coverage/EArrow.png")]
+			[Embed(source="/skins/activereading/assets/progress/coverage/EArrow.png")]
 			private static var EArrow:Class;
 			
-			[Embed(source="skins/tensebuster/assets/progress/coverage/LArrow.png")]
+			[Embed(source="/skins/activereading/assets/progress/coverage/LArrow.png")]
 			private static var LArrow:Class;
 			
-			[Embed(source="skins/tensebuster/assets/progress/coverage/IArrow.png")]
+			[Embed(source="/skins/activereading/assets/progress/coverage/IArrow.png")]
 			private static var IArrow:Class;
 			
-			[Embed(source="skins/tensebuster/assets/progress/coverage/UArrow.png")]
+			[Embed(source="/skins/activereading/assets/progress/coverage/UArrow.png")]
 			private static var UArrow:Class;
 			
-			[Embed(source="skins/tensebuster/assets/progress/coverage/AArrow.png")]
+			[Embed(source="/skins/activereading/assets/progress/coverage/AArrow.png")]
 			private static var AArrow:Class;
 			
 			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {

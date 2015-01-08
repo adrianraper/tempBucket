@@ -35,7 +35,7 @@
 	<credits:thankYouText verticalCenter="-100" horizontalCenter="-120" top="200" />
 	
 	<!--Book-->
-	<s:SWFLoader bottom="0" right="-100" source="@Embed(source='skins/activereading/assets/login/loginbook.png')" />
+	<s:SWFLoader bottom="0" right="-100" source="@Embed(source='/skins/activereading/assets/login/loginbook.png')" />
 	
 	<!--Footer-->
 	<s:Group width="100%" height="28" bottom="20" left="10">
@@ -54,6 +54,6 @@
 	</s:Group>
 	
 	<!--Girl-->
-	<s:SWFLoader bottom="0" right="50" source="@Embed(source='skins/activereading/assets/login/logingirl.png')" />
+	<s:SWFLoader bottom="0" right="50" source="@Embed(source='/skins/activereading/assets/login/logingirl.png')" />
 	
 </s:Skin>

@@ -5,36 +5,24 @@ package com.clarityenglish.activereading.view.home {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.textLayout.vo.XHTML;
-	
+
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
-	
-	import flashx.textLayout.container.ScrollPolicy;
-	
+
 	import mx.collections.XMLListCollection;
 	import mx.core.FlexGlobals;
-	import mx.effects.Fade;
+	import mx.core.ScrollPolicy;
 	import mx.effects.Move;
-	import mx.effects.Parallel;
-	import mx.effects.Resize;
 	import mx.effects.easing.Back;
-	import mx.effects.easing.Bounce;
-	import mx.effects.easing.Elastic;
-	import mx.events.CollectionEvent;
-	import mx.events.EffectEvent;
-	import mx.graphics.GradientEntry;
-	
+
 	import org.osflash.signals.Signal;
-	
-	import spark.components.Button;
+
 	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.List;
-	import spark.components.MobileGrid;
-	import spark.components.VGroup;
 	import spark.primitives.Path;
-	
+
 	public class HomeView extends BentoView {
 		
 		[SkinPart]
