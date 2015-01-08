@@ -23,6 +23,10 @@ s|TextInput {
 	paddingRight: 10;
 }
 
+s|Scroller {
+	skinClass: ClassReference("skins.activereadingair.vo.AlwaysVisibleScrollerSkin");
+}
+
 components|XHTMLExerciseView s|TextInput {
 	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
 	contentBackgroundColor: #FFFFFF;

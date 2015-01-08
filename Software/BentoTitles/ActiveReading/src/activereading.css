@@ -319,8 +319,8 @@ s|TitleWindow.errorTitleWindow {
 	skinClass: ClassReference("skins.activereading.login.ErrorTitleWindowSkin");
 }
 
-s|VScrollBar {
-	skinClass: ClassReference("skins.activereading.vo.VScrollBarSkin");
+s|Scroller {
+	skinClass: ClassReference("skins.activereading.vo.ScrollerSkin");
 }
 
 recorder|RecorderView {
