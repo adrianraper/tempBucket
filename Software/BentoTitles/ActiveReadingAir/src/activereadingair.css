@@ -23,7 +23,7 @@ s|TextInput {
 	paddingRight: 10;
 }
 
-s|Scroller {
+components|XHTMLExerciseView s|Scroller {
 	skinClass: ClassReference("skins.activereadingair.vo.AlwaysVisibleScrollerSkin");
 }
 
