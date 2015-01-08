@@ -41,8 +41,8 @@
 	</s:states>
 	
 	<!--background-->
-	<s:BitmapImage id="tenInchesBg" bottom="0" width="100%" source="@Embed(source='skins/tensebusterair/assets/android/tenInches/hexagonBg.png')" fillMode="repeat" visible="false" />
-	<s:BitmapImage id="sevenInchesBg" bottom="0" width="100%" source="@Embed(source='skins/tensebusterair/assets/android/sevenInches/hexagonBg.png')" fillMode="repeat" visible="false" />
+	<s:BitmapImage id="tenInchesBg" bottom="0" width="100%" source="@Embed(source='/skins/tensebusterair/assets/android/tenInches/hexagonBg.png')" fillMode="repeat" visible="false" />
+	<s:BitmapImage id="sevenInchesBg" bottom="0" width="100%" source="@Embed(source='/skins/tensebusterair/assets/android/sevenInches/hexagonBg.png')" fillMode="repeat" visible="false" />
 	<s:Group horizontalCenter="0" height="100%" filters="{[dropShadowFilter]}">
 		<s:HGroup top="10" gap="-1">
 			<android:exTriangle />
@@ -114,7 +114,7 @@
 	
 	<!-- Footer -->
 	<s:Group horizontalCenter="0" bottom="0">
-		<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/exercise/TB-footer.png')" bottom="0" />
+		<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/exercise/TB-footer.png')" bottom="0" />
 	</s:Group>
 	
 </s:Skin>

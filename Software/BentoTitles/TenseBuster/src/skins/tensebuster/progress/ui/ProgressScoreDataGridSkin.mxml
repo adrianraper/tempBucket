@@ -245,7 +245,7 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
 					<s:SolidColorStroke color="0xE6E6E6" weight="1" caps="square"/>
 					</s:stroke-->		
 				</s:Line>
-				<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/progress/score/scoreDashline.png')" />
+				<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/progress/score/scoreDashline.png')" />
 			</s:Group>
         </fx:Component>
         

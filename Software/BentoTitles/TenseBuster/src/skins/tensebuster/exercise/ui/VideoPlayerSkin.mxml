@@ -139,7 +139,7 @@ in accordance with the terms of the license agreement accompanying it.
 							top.fullScreenStates="0" />
 			
 			<!--video frame-->
-			<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/exercise/video/videoBg.png')" top="0" left="0" height="389" />
+			<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/exercise/video/videoBg.png')" top="0" left="0" height="389" />
 			
 			<!-- video player controls -->
 			<s:Group height="60" bottom="0" left="0" right="0" bottom.fullScreenStates="150">

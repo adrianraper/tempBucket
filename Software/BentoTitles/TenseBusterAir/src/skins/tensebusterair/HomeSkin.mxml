@@ -236,7 +236,7 @@
 	<!--Rotation Circle-->
 	<home:circleBg left="0" verticalCenter="-10" />
 	<courseselector:TBCourseSelector id="courseSelector" left="-30" verticalCenter="-110" width="30%"/>
-	<s:SWFLoader id="homeInitialBg" source="@Embed(source='skins/tensebusterair/assets/home/homeInitialBg.png')" right="0" bottom="-50" visible="{courseSelector.level == null}" />
+	<s:SWFLoader id="homeInitialBg" source="@Embed(source='/skins/tensebusterair/assets/home/homeInitialBg.png')" right="0" bottom="-50" visible="{courseSelector.level == null}" />
 	<home:homeBg right="0" visible="{courseSelector.level != null}" bottom="50" />
 	
 	<!--Instruction-->

@@ -54,8 +54,8 @@
     </s:states>
     
    <s:Group>
-	   <s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/home.png')" visible.up="true" visible.over="false" visible.down="false" visible.selectedStates="false" top="0" height="30" filters="{[dropShadowFilter]}" />
-	   <s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/homeOver.png')" visible.up="false" visible.over="true" visible.down="true" visible.selectedStates="true" top="0" height="30" filters="{[dropShadowFilter]}"/>
+	   <s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/title/home.png')" visible.up="true" visible.over="false" visible.down="false" visible.selectedStates="false" top="0" height="30" filters="{[dropShadowFilter]}" />
+	   <s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/title/homeOver.png')" visible.up="false" visible.over="true" visible.down="true" visible.selectedStates="true" top="0" height="30" filters="{[dropShadowFilter]}"/>
    </s:Group>
    
     

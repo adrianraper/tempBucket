@@ -130,8 +130,8 @@
             <s:Group id="topGroup" mask="{topGroupMask}">
 
 				<s:Group left="2" right="2" top="5" filters="{[dropShadowTitleFilter]}">
-					<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/titleWindow/feedbackUpLeft.png')" left="0"  />
-					<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/titleWindow/feedbackUpRight.png')" right="0" />	
+					<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/titleWindow/feedbackUpLeft.png')" left="0"  />
+					<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/titleWindow/feedbackUpRight.png')" right="0" />
 					<titleWindow:feedbackUpMiddle left="15" right="15" bottom="5" />	
 				</s:Group>							
 									
@@ -204,8 +204,8 @@
 			<s:Group bottom="2" height="43" filters="{[dropShadowFilter]}">
 				<!--titleWindow:bottom left="2" right="2" /-->
 				<s:Group left="2" right="2">
-					<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/titleWindow/feedbackBottomLeft.png')" left="0" />
-					<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/titleWindow/feedbackBottomRight.png')" right="0" />
+					<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/titleWindow/feedbackBottomLeft.png')" left="0" />
+					<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/titleWindow/feedbackBottomRight.png')" right="0" />
 					<titleWindow:feedbackBottomMiddle left="15" right="15" />
 				</s:Group>
 				

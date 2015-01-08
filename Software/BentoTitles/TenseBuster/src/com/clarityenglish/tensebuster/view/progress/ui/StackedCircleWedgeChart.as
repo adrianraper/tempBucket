@@ -1,18 +1,16 @@
 package com.clarityenglish.tensebuster.view.progress.ui
 {
 	import com.clarityenglish.bento.view.progress.ui.IStackedChart;
-	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.tensebuster.view.progress.event.StackedBarMouseOutEvent;
 	import com.clarityenglish.tensebuster.view.progress.event.StackedBarMouseOverEvent;
-	
+
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
-	
+
 	import mx.core.UIComponent;
-	import mx.olap.aggregators.CountAggregator;
-	
+
 	import spark.components.Label;
-	
+
 	public class StackedCircleWedgeChart extends UIComponent implements IStackedChart {
 		
 		private var _colours:Array = [];

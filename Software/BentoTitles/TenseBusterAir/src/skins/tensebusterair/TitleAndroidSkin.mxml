@@ -100,6 +100,6 @@
 				<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/arrow.png')" />
 				<s:Label text="{hostComponent.exerciseCaption}" color="{getStyle(TitleView.courseCode + 'Color')}" fontSize="14" paddingTop="6" />
 			</s:HGroup>
-		</s:HGroup>	
+		</s:HGroup>
 	</s:Group>
 </s:Skin>

@@ -28,8 +28,8 @@
 	
 	<!--background-->
 	<s:Group width="100%" height="100%">
-		<s:BitmapImage bottom="0" width="100%" source="@Embed('skins/tensebusterair/assets/android/tenInches/login/loginBg.png')" fillMode="repeat" includeIn="login10Inches" />
-		<s:BitmapImage bottom="0" width="100%" source="@Embed('skins/tensebusterair/assets/android/sevenInches/login/loginBg.png')" fillMode="repeat" includeIn="login7Inches" />
+		<s:BitmapImage bottom="0" width="100%" source="@Embed('/skins/tensebusterair/assets/android/tenInches/login/loginBg.png')" fillMode="repeat" includeIn="login10Inches" />
+		<s:BitmapImage bottom="0" width="100%" source="@Embed('/skins/tensebusterair/assets/android/sevenInches/login/loginBg.png')" fillMode="repeat" includeIn="login7Inches" />
 		<!--s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/sevenInches/login/loginBg.png')" includeIn="login7Inches" /-->
 	</s:Group>
 	
@@ -37,10 +37,10 @@
 	<s:Label id="versionLabel" text="v {hostComponent.parentApplication.versionNumber}" color="#000000" fontSize="12" right="22" top.normal7InchesStates="50" top.normal10InchesStates="60" />
 	
 	<!--login area-->
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/loginBrokenPaper.png')" horizontalCenter="-10" verticalCenter="-50" includeIn="login10Inches" />
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/premierLoginBrokenPaper.png')" horizontalCenter="-35" verticalCenter="-50" includeIn="loginIPConcurrentTracking10Inches, registerIPConcurrentTracking10Inches" />
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/sevenInches/login/loginBrokenPaper.png')" horizontalCenter="-30" verticalCenter="-30" includeIn="login7Inches" />
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/sevenInches/login/premierLoginBrokenPaper.png')" horizontalCenter="-30" verticalCenter="-10" includeIn="IP7InchesStates" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/login/loginBrokenPaper.png')" horizontalCenter="-10" verticalCenter="-50" includeIn="login10Inches" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/login/premierLoginBrokenPaper.png')" horizontalCenter="-35" verticalCenter="-50" includeIn="loginIPConcurrentTracking10Inches, registerIPConcurrentTracking10Inches" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/android/sevenInches/login/loginBrokenPaper.png')" horizontalCenter="-30" verticalCenter="-30" includeIn="login7Inches" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/android/sevenInches/login/premierLoginBrokenPaper.png')" horizontalCenter="-30" verticalCenter="-10" includeIn="IP7InchesStates" />
 	<login:loginText horizontalCenter="-300" verticalCenter="-230" horizontalCenter.IP10InchesStates="-330" verticalCenter.IP10InchesStates="-230" includeIn="normal10InchesStates" />
 	<login:loginText horizontalCenter="-280" top="65" horizontalCenter.IP7InchesStates="-290" top.IP7InchesStates="70" scaleX="0.8" scaleY="0.8" includeIn="normal7InchesStates" />
 	
@@ -50,10 +50,10 @@
 	
 	<!-- Footer -->
 	<s:Group bottom="0" horizontalCenter="0">
-		<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/tenInches/login/loginFooter.png')" includeIn="login10Inches" />
-		<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/tenInches/login/premierLoginFooter.png')" includeIn="IP10InchesStates" />
-		<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/sevenInches/login/loginFooter.png')" includeIn="login7Inches" />
-		<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/sevenInches/login/premierLoginFooter.png')" includeIn="IP7InchesStates" />
+		<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/android/tenInches/login/loginFooter.png')" includeIn="login10Inches" />
+		<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/android/tenInches/login/premierLoginFooter.png')" includeIn="IP10InchesStates" />
+		<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/android/sevenInches/login/loginFooter.png')" includeIn="login7Inches" />
+		<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/android/sevenInches/login/premierLoginFooter.png')" includeIn="IP7InchesStates" />
 	</s:Group>
 	
 	<s:Group horizontalCenter="0" verticalCenter.normal10InchesStates="-40" verticalCenter.login7Inches="-20" verticalCenter.loginIPConcurrentTracking7Inches="-10" width.loginIPConcurrentTracking10Inches="270" width.loginIPConcurrentTracking7Inches="250">
@@ -154,7 +154,7 @@
 	<s:Group width="100%" height="100%" id="disableGroup">
 		<s:Rect width="100%" height="100%">
 			<s:fill>
-				<s:SolidColor color="0X000000" alpha="0.6" />
+				<s:SolidColor color="0x000000" alpha="0.6" />
 			</s:fill>
 		</s:Rect>
 	</s:Group>

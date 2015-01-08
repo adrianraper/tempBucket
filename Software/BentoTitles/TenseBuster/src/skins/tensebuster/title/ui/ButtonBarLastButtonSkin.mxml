@@ -53,8 +53,8 @@
     </s:states>
     
 	<s:Group>
-		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/help.png')" visible.up="true" visible.over="false" visible.down="false" visible.selectedStates="false" top="0" height="30" filters="{[dropShadowFilter]}" />
-		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/helpOver.png')" visible.up="false" visible.over="true" visible.down="true" visible.selectedStates="true" left="0" top="0" filters="{[dropShadowFilter]}"/>
+		<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/title/help.png')" visible.up="true" visible.over="false" visible.down="false" visible.selectedStates="false" top="0" height="30" filters="{[dropShadowFilter]}" />
+		<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/title/helpOver.png')" visible.up="false" visible.over="true" visible.down="true" visible.selectedStates="true" left="0" top="0" filters="{[dropShadowFilter]}"/>
 	</s:Group>
 	
     <!-- layer 8: text -->

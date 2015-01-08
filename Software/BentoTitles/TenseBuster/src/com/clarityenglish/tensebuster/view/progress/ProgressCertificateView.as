@@ -90,19 +90,19 @@ package com.clarityenglish.tensebuster.view.progress
 		[SkinPart]
 		public var certificateFooter:SWFLoader;
 		
-		[Embed(source="skins/tensebuster/assets/progress/certificate/ACert.png")]
+		[Embed(source="/skins/tensebuster/assets/progress/certificate/ACert.png")]
 		private static var ACert:Class;
 		
-		[Embed(source="skins/tensebuster/assets/progress/certificate/ECert.png")]
+		[Embed(source="/skins/tensebuster/assets/progress/certificate/ECert.png")]
 		private static var ECert:Class;
 		
-		[Embed(source="skins/tensebuster/assets/progress/certificate/ICert.png")]
+		[Embed(source="/skins/tensebuster/assets/progress/certificate/ICert.png")]
 		private static var ICert:Class;
 		
-		[Embed(source="skins/tensebuster/assets/progress/certificate/UCert.png")]
+		[Embed(source="/skins/tensebuster/assets/progress/certificate/UCert.png")]
 		private static var UCert:Class;
 		
-		[Embed(source="skins/tensebuster/assets/progress/certificate/LCert.png")]
+		[Embed(source="/skins/tensebuster/assets/progress/certificate/LCert.png")]
 		private static var LCert:Class;
 		
 		private var _courseChanged:Boolean;

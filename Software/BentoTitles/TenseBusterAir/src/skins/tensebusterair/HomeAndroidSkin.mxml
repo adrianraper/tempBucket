@@ -39,10 +39,10 @@
 			private var isUnitListClick:Boolean;
 			private var unitListRendererArray:Array = [];
 			
-			[Embed(source="skins/tensebusterair/assets/android/sevenInches/home/homeInitialBg.png")]
+			[Embed(source="/skins/tensebusterair/assets/android/sevenInches/home/homeInitialBg.png")]
 			private var initial7InchesBg:Class;
 			
-			[Embed(source="skins/tensebusterair/assets/android/tenInches/home/homeInitialBg.png")]
+			[Embed(source="/skins/tensebusterair/assets/android/tenInches/home/homeInitialBg.png")]
 			private var initial10InchesBg:Class;
 			
 			public function getTitleBarTopColor(index:Number):Number {		
@@ -235,8 +235,8 @@
 	</s:states>
 	
 	<!--background-->
-	<s:BitmapImage bottom="-50" width="100%" source="@Embed(source='skins/tensebusterair/assets/android/tenInches/hexagonBg.png')" fillMode="repeat" includeIn="normal10Inches" />
-	<s:BitmapImage bottom="-50" width="100%" source="@Embed(source='skins/tensebusterair/assets/android/sevenInches/hexagonBg.png')" fillMode="repeat" includeIn="normal7Inches"/>
+	<s:BitmapImage bottom="-50" width="100%" source="@Embed(source='/skins/tensebusterair/assets/android/tenInches/hexagonBg.png')" fillMode="repeat" includeIn="normal10Inches" />
+	<s:BitmapImage bottom="-50" width="100%" source="@Embed(source='/skins/tensebusterair/assets/android/sevenInches/hexagonBg.png')" fillMode="repeat" includeIn="normal7Inches"/>
 	<s:Rect width="100%" top="50" bottom="30">
 		<s:fill>
 			<s:LinearGradient rotation="90">
@@ -249,8 +249,8 @@
 		</s:fill>
 	</s:Rect>
 	<s:SWFLoader id="homeInitialBg" right="0" bottom="-50" visible="{courseSelector.level == null}" />
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/sevenInches/home/homeBg.png')" right="0" top="80" visible="{courseSelector.level != null}" includeIn="normal7Inches" />
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/tenInches/home/homeBg.png')" right="0" bottom="-50" visible="{courseSelector.level != null}" includeIn="normal10Inches" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/android/sevenInches/home/homeBg.png')" right="0" top="80" visible="{courseSelector.level != null}" includeIn="normal7Inches" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/android/tenInches/home/homeBg.png')" right="0" bottom="-50" visible="{courseSelector.level != null}" includeIn="normal10Inches" />
 	
 	<!--tense buster brand header-->
 	<android:header left="5" right="5" height="9%" top="10" />

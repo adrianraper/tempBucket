@@ -240,7 +240,7 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" bottom="0" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/hexagonBg.png')" bottom="0" />
 	<s:Rect width="100%" bottom="0" top="30">
 		<s:fill>
 			<s:LinearGradient rotation="90">
@@ -253,8 +253,8 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/home/homeBg.png')" right="0" visible="{courseSelector.level != null}" top="80" />
-	<s:SWFLoader id="homeInitialBg" source="@Embed(source='skins/tensebuster/assets/home/homeInitialBg.png')" left="0" bottom="20" visible="{courseSelector.level == null}" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/home/homeBg.png')" right="0" visible="{courseSelector.level != null}" top="80" />
+	<s:SWFLoader id="homeInitialBg" source="@Embed(source='/skins/tensebuster/assets/home/homeInitialBg.png')" left="0" bottom="20" visible="{courseSelector.level == null}" />
 	
 	<!--Rotation Circle-->
 	<home:circleBg left="0" verticalCenter="-100" />

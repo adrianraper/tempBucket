@@ -12,7 +12,7 @@
 		<s:State name="disabled" />
 	</s:states>
 	
-	<s:SWFLoader id="certificateFooter" visible="false" source="@Embed(source='skins/tensebusterair/assets/progress/progressFooter.png')" bottom="-50" right="20" />
+	<s:SWFLoader id="certificateFooter" visible="false" source="@Embed(source='/skins/tensebusterair/assets/progress/progressFooter.png')" bottom="-50" right="20" />
 	
 	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="50" height="60">
 		<ui:layout>

@@ -12,7 +12,7 @@
         <s:State name="disabled" />
     </s:states>
     
-	<s:SWFLoader id="certificateFooter" visible="false" source="@Embed(source='skins/tensebuster/assets/progress/progressFooter.png')" horizontalCenter="-1" bottom="-40"/>
+	<s:SWFLoader id="certificateFooter" visible="false" source="@Embed(source='/skins/tensebuster/assets/progress/progressFooter.png')" horizontalCenter="-1" bottom="-40"/>
 	
 	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="40" height="60">
 		<ui:layout>
@@ -38,7 +38,7 @@
 	</s:VGroup>
 	
 	<s:Group id="printGroup" right="0" top="60">
-		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/progress/certificate/printTip.png')" right="150" top="10"/>
+		<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/progress/certificate/printTip.png')" right="150" top="10"/>
 		<s:Button id="printButton"  color="0xFFFFFF" buttonMode="true" useHandCursor="true" right="60"/>		
 	</s:Group>
 	

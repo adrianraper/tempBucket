@@ -116,9 +116,9 @@ global {
 	ProfileOverBg: Embed(source="skins/tensebuster/assets/title/progressOverBg.png");
 	
 	elementaryUnitIconSmall: Embed(source="skins/tensebuster/assets/unitIcon/elementary.png");
-	lowerintermediateUnitIconSmall: Embed(source="skins/tensebuster/assets/unitIcon/lowerIntermediate.png");
+	lowerintermediateUnitIconSmall: Embed(source="skins/tensebuster/assets/unitIcon/lowerintermediate.png");
 	intermediateUnitIconSmall: Embed(source="skins/tensebuster/assets/unitIcon/intermediate.png");
-	upperintermediateUnitIconSmall: Embed(source="skins/tensebuster/assets/unitIcon/upperIntermediate.png");
+	upperintermediateUnitIconSmall: Embed(source="skins/tensebuster/assets/unitIcon/upperintermediate.png");
 	advancedUnitIconSmall: Embed(source="skins/tensebuster/assets/unitIcon/advanced.png");
 	
 	ENumber10: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/ENumber10.png");

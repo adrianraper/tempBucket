@@ -71,7 +71,7 @@
 				<s:Label text="{hostComponent.courseCaption}" color="0x333333" fontSize="19" paddingTop="2" />
 			</s:HGroup>
 			<s:HGroup verticalAlign="middle" id="unitPath">
-				<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/arrow.png')" />
+				<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/arrow.png')" />
 				<s:Group>
 					<exercise:elementaryPencil visible="{hostComponent.courseCaption == 'Elementary'}" />
 					<exercise:lowerinterPencil visible="{hostComponent.courseCaption == 'Lower Intermediate'}" />
@@ -82,7 +82,7 @@
 				<s:Label text="{hostComponent.unitCaption}" color="0x333333" fontSize="14" paddingTop="6" />
 			</s:HGroup>
 			<s:HGroup verticalAlign="middle" id="exercisePath">
-				<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/arrow.png')" />
+				<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/arrow.png')" />
 				<s:Label text="{hostComponent.exerciseCaption}" color="{getStyle(TitleView.courseCode + 'Color')}" fontSize="14" paddingTop="6" />
 			</s:HGroup>
 		</s:HGroup>	

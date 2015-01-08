@@ -51,8 +51,8 @@
         <s:State name="disabled" />
     </s:states>
     
-    <s:SWFLoader source="@Embed(source='skins/tensebuster/assets/backButton.png')" visible.up="true" visible.over="false" visible.down="false" />
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/backButtonOver.png')" visible.up="false" visible.over="true" visible.down="true" />
+    <s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/backButton.png')" visible.up="true" visible.over="false" visible.down="false" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/backButtonOver.png')" visible.up="false" visible.over="true" visible.down="true" />
     
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->

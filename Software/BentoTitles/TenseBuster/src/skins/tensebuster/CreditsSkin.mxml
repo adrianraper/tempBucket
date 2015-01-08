@@ -16,8 +16,8 @@
         <s:State name="disabled" />
     </s:states>
     
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" bottom="0" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/hexagonBg.png')" bottom="0" />
 	<home:header top="15" />
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/credits/creditBg.png')" bottom="0" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/credits/creditBg.png')" bottom="0" />
 	<credits:thankYou top="200" left="80" />
 </s:Skin>

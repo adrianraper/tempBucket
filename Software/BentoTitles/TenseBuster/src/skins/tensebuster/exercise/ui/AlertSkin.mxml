@@ -122,8 +122,8 @@ in accordance with the terms of the license agreement accompanying it.
 				
 				<!-- layer 0: title bar fill -->
 				<s:Group left="2" right="2" top="5" filters="{[dropShadowTitleFilter]}">
-					<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/titleWindow/feedbackUpLeft.png')" left="0"  />
-					<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/titleWindow/feedbackUpRight.png')" right="0" />	
+					<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/titleWindow/feedbackUpLeft.png')" left="0"  />
+					<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/titleWindow/feedbackUpRight.png')" right="0" />
 					<titleWindow:feedbackUpMiddle left="15" right="15" bottom="5" />	
 				</s:Group>							
 				
@@ -192,8 +192,8 @@ in accordance with the terms of the license agreement accompanying it.
 			<!--Bottom part-->
 			<s:Group bottom="0" height="43" filters="{[dropShadowFilter]}">
 				<s:Group left="2" right="2">
-					<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/titleWindow/feedbackBottomLeft.png')" left="0" />
-					<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/titleWindow/feedbackBottomRight.png')" right="0" />
+					<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/titleWindow/feedbackBottomLeft.png')" left="0" />
+					<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/titleWindow/feedbackBottomRight.png')" right="0" />
 					<titleWindow:feedbackBottomMiddle left="15" right="15" />
 				</s:Group>
 				

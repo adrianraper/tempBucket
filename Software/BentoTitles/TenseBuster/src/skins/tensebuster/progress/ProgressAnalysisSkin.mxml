@@ -83,34 +83,34 @@
 									[Bindable]
 									public var copyProvider:CopyProvider;
 									
-									[Embed(source="skins/tensebuster/assets/progress/analyse/EDashline.png")]
+									[Embed(source="/skins/tensebuster/assets/progress/analyse/EDashline.png")]
 									private static var EDashline:Class;
 									
-									[Embed(source="skins/tensebuster/assets/progress/analyse/ELongDashline.png")]
+									[Embed(source="/skins/tensebuster/assets/progress/analyse/ELongDashline.png")]
 									private static var ELongDashline:Class;
 									
-									[Embed(source="skins/tensebuster/assets/progress/analyse/LDashline.png")]
+									[Embed(source="/skins/tensebuster/assets/progress/analyse/LDashline.png")]
 									private static var LDashline:Class;
 									
-									[Embed(source="skins/tensebuster/assets/progress/analyse/LLongDashline.png")]
+									[Embed(source="/skins/tensebuster/assets/progress/analyse/LLongDashline.png")]
 									private static var LLongDashline:Class;
 									
-									[Embed(source="skins/tensebuster/assets/progress/analyse/IDashline.png")]
+									[Embed(source="/skins/tensebuster/assets/progress/analyse/IDashline.png")]
 									private static var IDashline:Class;
 									
-									[Embed(source="skins/tensebuster/assets/progress/analyse/ILongDashline.png")]
+									[Embed(source="/skins/tensebuster/assets/progress/analyse/ILongDashline.png")]
 									private static var ILongDashline:Class;
 									
-									[Embed(source="skins/tensebuster/assets/progress/analyse/UDashline.png")]
+									[Embed(source="/skins/tensebuster/assets/progress/analyse/UDashline.png")]
 									private static var UDashline:Class;
 									
-									[Embed(source="skins/tensebuster/assets/progress/analyse/ULongDashline.png")]
+									[Embed(source="/skins/tensebuster/assets/progress/analyse/ULongDashline.png")]
 									private static var ULongDashline:Class;
 									
-									[Embed(source="skins/tensebuster/assets/progress/analyse/ADashline.png")]
+									[Embed(source="/skins/tensebuster/assets/progress/analyse/ADashline.png")]
 									private static var ADashline:Class;
 									
-									[Embed(source="skins/tensebuster/assets/progress/analyse/ALongDashline.png")]
+									[Embed(source="/skins/tensebuster/assets/progress/analyse/ALongDashline.png")]
 									private static var ALongDashline:Class;
 																
 									private function getTimeColour(data:Object):Number {

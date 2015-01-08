@@ -25,14 +25,14 @@
 		<s:DropShadowFilter id="dropShadowFilter2" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" inner="true"/>
 	</fx:Declarations>
 	
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/hexagonBg.png')" horizontalCenter="0" bottom="0"/>
+	<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/login/hexagonBg.png')" horizontalCenter="0" bottom="0"/>
 	<assets:logo top="30" right="20" />
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/loginBrokenPaper.png')" horizontalCenter="0" top="110" includeIn="login" />
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/premierLoginBrokenPaper.png')" horizontalCenter="-35" top="80" includeIn="loginIPConcurrentTracking, registerStates" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/login/loginBrokenPaper.png')" horizontalCenter="0" top="110" includeIn="login" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/login/premierLoginBrokenPaper.png')" horizontalCenter="-35" top="80" includeIn="loginIPConcurrentTracking, registerStates" />
 	<login:loginText left="30" top="130" includeIn="login"/>
 	<login:premierLoginText left="40" top="110" includeIn="loginIPConcurrentTracking, registerStates" />
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/loginBG.png')" bottom="0" horizontalCenter="0" includeIn="login" />
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/premierLoginBG.png')" bottom="0" horizontalCenter="0" includeIn="loginIPConcurrentTracking, registerStates" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/login/loginBG.png')" bottom="0" horizontalCenter="0" includeIn="login" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/login/premierLoginBG.png')" bottom="0" horizontalCenter="0" includeIn="loginIPConcurrentTracking, registerStates" />
 	<home:header top="10" />
 	<s:Label id="versionLabel" text="v {hostComponent.parentApplication.versionNumber}" color="#000000" fontSize="12" right="22" top="60" />
 	<!--s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/stampHCT.png')" right="65" top="100" /-->
@@ -132,7 +132,7 @@
 	<s:Group width="100%" height="100%" id="disableGroup">
 		<s:Rect width="100%" height="100%">
 			<s:fill>
-				<s:SolidColor color="0X000000" alpha="0.6" />
+				<s:SolidColor color="0x000000" alpha="0.6" />
 			</s:fill>
 		</s:Rect>
 	</s:Group>
