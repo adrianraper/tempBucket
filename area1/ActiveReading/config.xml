@@ -6,6 +6,7 @@
 	<useCacheBuster>true</useCacheBuster>
 	<courseFile>menu-{productVersion}.xml</courseFile>
 	<platform>browser</platform>
+	<disableAutoTimeout>true</disableAutoTimeout>
 
 	<sharedMedia />
 	<brandingMedia>http://dock.contentbench/CCB/{prefix}/assets/</brandingMedia>

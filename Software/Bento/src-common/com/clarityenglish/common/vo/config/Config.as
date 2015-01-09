@@ -184,6 +184,9 @@ package com.clarityenglish.common.vo.config {
 			this.illustrationCloseFlag = true;
 			// gh#476
 			this.useCacheBuster = false;
+			
+			// gh#1090
+			this.rootID = 0;
 		}
 		
 		/**

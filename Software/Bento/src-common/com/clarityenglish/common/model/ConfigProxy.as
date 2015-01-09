@@ -382,7 +382,6 @@ package com.clarityenglish.common.model {
 				}
 			}
 				
-			
 			// #336 SCORM probably needs to be checked here
 			if (config.scorm) {
 				//trace("scorm");
@@ -448,6 +447,16 @@ package com.clarityenglish.common.model {
 			//config.courseID = null;
 			//config.startingPoint = null;
 			_directStartOverride = true;
+		}
+
+		// gh#790 Is this account a pure AA - so will avoid login
+		public function isAccountJustAnonymous():Boolean {
+			if (this.getLicenceType() == Title.LICENCE_TYPE_AA) {
+				if (config.remoteService.toLowerCase().indexOf("builder") < 0 && this.getConfig().noLogin == true) {
+					return true;
+				}
+			}
+			return false;
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */

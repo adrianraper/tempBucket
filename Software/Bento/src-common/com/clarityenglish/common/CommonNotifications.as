@@ -50,6 +50,7 @@
 		public static const TRACE_ERROR:String = "trace_error";
 		
 		public static const EXIT:String = "exit";
+		public static const EXITED:String = "exited";
 		
 		public static const PERFORMANCE_LOG:String = "performance_log";
 		

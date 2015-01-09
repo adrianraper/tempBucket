@@ -2,6 +2,8 @@
  Mediator - PureMVC
  */
 package com.clarityenglish.common.view.login {
+	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.login.LoginView;
@@ -94,6 +96,9 @@ package com.clarityenglish.common.view.login {
 			
 			// gh#886
 			view.noLogin = configProxy.getConfig().noLogin;
+			
+			// gh#1090
+			view.clearData();
 		}
         
 		override public function onRemove():void {
@@ -187,15 +192,16 @@ package com.clarityenglish.common.view.login {
 		
 		// gh#41 Make sure that we know which productCode they want to run
 		private function onTestDrive(productCode:String):void {
-			//trace("the productcode in test drive is "+ productCode);
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			configProxy.getConfig().productCode = productCode;			
 		}
 		
 		// gh#1090
 		private function onStartDemo(prefix:String, productCode:String):void {
-			FlexGlobals.topLevelApplication.parameters.configFile = 'config-demo.xml';
-			sendNotification(CommonNotifications.CONFIG_LOAD);
+			FlexGlobals.topLevelApplication.parameters.prefix = 'DEMO';
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			configProxy.reset();
+			sendNotification(CommonNotifications.ACCOUNT_RELOAD);
 		}
 		
 	}

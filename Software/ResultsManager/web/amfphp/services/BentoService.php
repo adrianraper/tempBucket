@@ -422,7 +422,7 @@ class BentoService extends AbstractService {
 		return true;
 	}
 	 	
-	public function logout($licence, $sessionID = null) {
+	public function logout($licence, $sessionID = null, $justAnonymous = null) {
 		// Clear the licence
 		$rs = $this->licenceOps->dropLicenceSlot($licence);
 
@@ -434,6 +434,8 @@ class BentoService extends AbstractService {
 		$this->loginOps->logout();
 		
 		Session::clear();
+		
+		return array("justAnonymous" => $justAnonymous);
 	}
 	
 	/**

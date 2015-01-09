@@ -190,8 +190,10 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function logout():void {
+			// gh#970 Is this a logout from a pure AA?
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			var params:Array = [ configProxy.getConfig().licence, configProxy.getConfig().sessionID ];
+			var justAnonymous:Boolean = configProxy.isAccountJustAnonymous();
+			var params:Array = [ configProxy.getConfig().licence, configProxy.getConfig().sessionID, justAnonymous ];
 			new RemoteDelegate("logout", params, this).execute();
 			
 			// Stop the licence update timer
@@ -398,7 +400,13 @@ package com.clarityenglish.common.model {
 					break;
 				
 				case "logout":
-					sendNotification(CommonNotifications.LOGGED_OUT);
+					// gh#790 You can't use configProxy as it will have been initialised
+					// So can you get logout to send back the justAnonymous flag?
+					if (data && data.justAnonymous) {
+						sendNotification(CommonNotifications.EXITED);
+					} else {
+						sendNotification(CommonNotifications.LOGGED_OUT);
+					}
 					break;
 				
 				default:

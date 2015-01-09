@@ -547,7 +547,8 @@ package com.clarityenglish.bento.view.login {
 		}
 		
 		public function clearData():void {
-			passwordInput.text = "";
+			if (passwordInput) passwordInput.text = "";
+			if (loginKeyInput) loginKeyInput.text = "";
 		}
 		
 		// Temporary - until Alice removes getTestDrive from the LoginMediator and interface
