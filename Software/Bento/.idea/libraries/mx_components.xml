@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="MX components" type="flex">
-    <CLASSES>
-      <root url="jar://$SDK_HOME$/frameworks/libs/mx/mx.swc!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
