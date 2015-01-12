@@ -26,6 +26,8 @@
 				// Determine what platform we are running on
 				var platform:String = Capabilities.version.split(" ")[0];
 				switch (platform) {
+					case "WIN":
+					case "MAC":
 					case "IOS":
 						// Set the iOS config xml file
 						FlexGlobals.topLevelApplication.parameters.configFile = "ios-config.xml";
