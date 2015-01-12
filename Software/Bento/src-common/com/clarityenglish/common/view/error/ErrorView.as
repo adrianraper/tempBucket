@@ -43,9 +43,9 @@ package com.clarityenglish.common.view.error {
 					break;
 				case problemLabel:
 					if (copyProvider.isCopyLoaded()) {
-						instance.text = copyProvider.getCopyForId("problemLabel");
+						instance.text = copyProvider.getCopyForId("stdErrorTitle");
 					} else {
-						instance.text = 'Sorry, there is a problem:';						
+						instance.text = 'Sorry, there is a problem...';						
 					}
 					break;
 			}

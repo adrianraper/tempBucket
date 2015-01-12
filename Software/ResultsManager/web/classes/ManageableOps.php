@@ -1137,14 +1137,17 @@ EOD;
 		if (isset($stubUser->name)) {
 			$whereClause = 'u.F_UserName=?';
 			$key = $stubUser->name;
+			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");
 		} else if (isset($stubUser->studentID)) {
 			$whereClause = 'u.F_StudentID=?';
 			$key = $stubUser->studentID;
+			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
 		} else if (isset($stubUser->email)) {
 			$whereClause = 'u.F_Email=?';
 			$key = $stubUser->email;
+			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
 		} else {
-			throw new Exception("Unspecified loginOption");
+			throw new Exception("Unspecified login option");
 		}
 		// gh#653 Might be duplicate membership records so just grab unique userIDs
 		$sql  = "SELECT DISTINCT ".User::getSelectFields($this->db);
@@ -1169,7 +1172,7 @@ EOD;
 		} else if ($usersRS->RecordCount()==0) {
 			return false;
 		} else {
-			throw new Exception("More than one user with this key $key");
+			throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("loginKeyField" => $loginKeyField));
 		}
 		
 		// How can we use AuthenticationOps to make sure that the logged in teacher has rights over this user?
@@ -1186,21 +1189,27 @@ EOD;
 		if ($loginOption == User::LOGIN_BY_NAME) {
 			$whereClause = 'WHERE u.F_UserName=?';
 			$key = $stubUser->name;
+			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");
 		} else if ($loginOption == User::LOGIN_BY_ID) {
 			$whereClause = 'WHERE u.F_StudentID=?';
 			$key = $stubUser->studentID;
+			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
 		} else if ($loginOption == User::LOGIN_BY_EMAIL) {
 			$whereClause = 'WHERE u.F_Email=?';
 			$key = $stubUser->email;
+			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
 		} else if (isset($stubUser->name)) {
 			$whereClause = 'WHERE u.F_UserName=?';
 			$key = $stubUser->name;
+			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");
 		} else if (isset($stubUser->studentID)) {
 			$whereClause = 'WHERE u.F_StudentID=?';
 			$key = $stubUser->studentID;
 		} else if (isset($stubUser->email)) {
+			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
 			$whereClause = 'WHERE u.F_Email=?';
 			$key = $stubUser->email;
+			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
 		} else {
 			throw new Exception("Unspecified loginOption");
 		}
@@ -1223,7 +1232,9 @@ EOD;
 		} else if ($usersRS->RecordCount()==0) {
 			return false;
 		} else {
-			throw new Exception("More than one user with this key $key");
+			//throw new Exception("More than one user with this key $key");
+			throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("loginKeyField" => $loginKeyField));
+			
 		}
 		
 		// How can we use AuthenticationOps to make sure that the logged in teacher has rights over this user?
@@ -1250,21 +1261,27 @@ EOD;
 		if ($loginOption == User::LOGIN_BY_NAME) {
 			$whereClause = 'WHERE u.F_UserName=?';
 			$key = $stubUser->name;
+			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");			
 		} else if ($loginOption == User::LOGIN_BY_ID) {
 			$whereClause = 'WHERE u.F_StudentID=?';
 			$key = $stubUser->studentID;
+			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");			
 		} else if ($loginOption == User::LOGIN_BY_EMAIL) {
 			$whereClause = 'WHERE u.F_Email=?';
 			$key = $stubUser->email;
+			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");			
 		} else if (isset($stubUser->name)) {
 			$whereClause = 'WHERE u.F_UserName=?';
 			$key = $stubUser->name;
+			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");			
 		} else if (isset($stubUser->studentID)) {
 			$whereClause = 'WHERE u.F_StudentID=?';
 			$key = $stubUser->studentID;
+			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");			
 		} else if (isset($stubUser->email)) {
 			$whereClause = 'WHERE u.F_Email=?';
 			$key = $stubUser->email;
+			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");			
 		} else {
 			throw new Exception("Unspecified loginOption");
 		}
@@ -1297,8 +1314,8 @@ EOD;
 		} else if ($usersRS->RecordCount()==0) {
 			return false;
 		} else {
-			throw new Exception("More than one user with this key $key");
-			//throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("key" => $key));
+			//throw new Exception("More than one user with this key $key");
+			throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("loginKeyField" => $loginKeyField));
 		}
 		
 		// How can we use AuthenticationOps to make sure that the logged in teacher has rights over this user?

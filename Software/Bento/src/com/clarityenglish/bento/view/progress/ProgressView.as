@@ -94,6 +94,10 @@ package com.clarityenglish.bento.view.progress {
 		 * The state comes from the selection in the progress bar, plus _demo if we are in a demo version 
 		 */
 		protected override function getCurrentSkinState():String {
+			// gh#1090
+			if (isAnonymousUser)
+				return "anonymous";
+			
 			var state:String = (!progressNavBar || !progressNavBar.selectedItem) ? "coverage" : progressNavBar.selectedItem.data;
 			return state + ((productVersion == BentoApplication.DEMO) ? "_demo" : "");
 		}

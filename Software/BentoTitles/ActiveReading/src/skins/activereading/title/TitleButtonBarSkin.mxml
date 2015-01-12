@@ -54,7 +54,7 @@
             @see spark.skins.spark.ButtonBarFirstButtonSkin
         -->
         <fx:Component id="firstButton">
-            <s:ButtonBarButton skinClass="skins.activereading.title.MenuButtonBarButtonSkin" width="40%" />
+            <s:ButtonBarButton skinClass="skins.activereading.title.MenuButtonBarButtonSkin" width="40%" enabled="{data.enabled}"  />
         </fx:Component>
 
         <!--- 
@@ -63,7 +63,7 @@
             @see spark.skins.spark.ButtonBarMiddleButtonSkin
         -->
         <fx:Component id="middleButton" >
-            <s:ButtonBarButton skinClass="skins.activereading.title.ProgressButtonBarButtonSkin" width="60%" />
+            <s:ButtonBarButton skinClass="skins.activereading.title.ProgressButtonBarButtonSkin" width="60%" enabled="{data.enabled}" />
         </fx:Component>
 
         <!--- 

@@ -410,7 +410,7 @@ package com.clarityenglish.bento.view.login {
 				selfRegisterPasswordCaption = copyProvider.getCopyForId("passwordLabel");
 				confirmPasswordCaption = copyProvider.getCopyForId("confirmPasswordCaption");
 			}
-			if (allowAnonymous) {
+			if (selfRegister) {
 				newUserButtonCaption = copyProvider.getCopyForId("newUserButtonCaption");		
 				addUserButtonCaption = copyProvider.getCopyForId("addUserButtonCaption");
 				cancelButtonCaption = copyProvider.getCopyForId("cancelButtonCaption");
@@ -458,22 +458,14 @@ package com.clarityenglish.bento.view.login {
 		
 		// #254
 		public function onEnter(event:FlexEvent):void {
-			if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)) {
-				var user:User = new User({ name: loginKeyInput.text, studentID: loginKeyInput.text, email: loginKeyInput.text, password: passwordInput.text });
-				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
-			}
-			
-			// Go to the password field if press Enter but it is empty
-			// TODO. Ideally we would check loginOptions to see if password required
-			// #341 Password is hidden if verified = false
-			if (verified) {
-				if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)=='')
+			if (StringUtil.trim(loginKeyInput.text) != "") {
+				if (!verified || (StringUtil.trim(passwordInput.text) != "")) {
+					loginButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+				} else {
 					passwordInput.setFocus();
+				}
 			} else {
-				if (StringUtil.trim(loginKeyInput.text)) {
-					user = new User({ name:loginKeyInput.text, studentID: loginKeyInput.text, email: loginKeyInput.text, password: null});
-					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
-				}				
+				loginKeyInput.setFocus();
 			}
 		}
 		
@@ -492,7 +484,6 @@ package com.clarityenglish.bento.view.login {
 					break;
 				
 				case anonymousStartButton:
-					//event.target.enabled = false;
 					user = new User();
 					// gh#1090
 					config.signInAs = Title.SIGNIN_ANONYMOUS;
@@ -549,6 +540,11 @@ package com.clarityenglish.bento.view.login {
 		public function clearData():void {
 			if (passwordInput) passwordInput.text = "";
 			if (loginKeyInput) loginKeyInput.text = "";
+			if (selfRegisterName) selfRegisterName.text = "";
+			if (selfRegisterId) selfRegisterId.text = "";
+			if (selfRegisterEmail) selfRegisterEmail.text = "";
+			if (selfRegisterPassword) selfRegisterPassword.text = "";
+			if (confirmPassword) confirmPassword.text = "";
 		}
 		
 		// Temporary - until Alice removes getTestDrive from the LoginMediator and interface

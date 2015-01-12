@@ -1,6 +1,8 @@
 package com.clarityenglish.common.controller {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.error.ErrorView;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
@@ -35,10 +37,12 @@ package com.clarityenglish.common.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 
+			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
+
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
 			titleWindow.styleName = "errorTitleWindow";
-			titleWindow.title = "Sorry, there is a problem:";
+			titleWindow.title = copyProvider.getCopyForId('stdErrorTitle');
 			
 			errorView = new ErrorView();
 			//trace("load error message");

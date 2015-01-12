@@ -16,6 +16,7 @@
     <s:states>
         <s:State name="normal" />
         <s:State name="disabled" />
+        <s:State name="anonymous" />
 		
 		<s:State name="coverage" stateGroups="normalStates,coverageStates"/>
 		<s:State name="compare" stateGroups="normalStates,compareStates"/>
@@ -24,11 +25,11 @@
 		<s:State name="certificate" stateGroups="normalStates, certificateStates"/>
     </s:states>
 	
-	<s:HGroup width="100%" paddingLeft="40" top="105">
+	<s:HGroup width="100%" paddingLeft="40" top="105" excludeFrom="anonymous">
 		<s:ButtonBar id="progressNavBar" buttonMode="true" useHandCursor="true"/>			
 	</s:HGroup>
 	
-	<s:Group width="100%" height="100%" filters="{[dropShadowFilter]}">
+	<s:Group width="100%" height="100%" filters="{[dropShadowFilter]}" excludeFrom="anonymous" >
 		<!--rectangle panel-->
 		<s:Rect left="29" right="29" bottom="0" top="150" radiusX="5" radiusY="5">
 			<s:fill>
@@ -37,7 +38,7 @@
 		</s:Rect>
 	</s:Group>
 	
-	<s:HGroup width="100%" height="100%" top="160" left="15" bottom="0" right="15">
+	<s:HGroup width="100%" height="100%" top="160" left="15" bottom="0" right="15" excludeFrom="anonymous" >
 		<s:Group width="100%" height="100%">
 			<s:Group width="100%" height="100%" includeIn="normalStates">
 				<progress:ProgressCoverageView id="progressCoverageView" width="100%" height="100%" includeIn="coverage" />
@@ -48,4 +49,8 @@
 			</s:Group>
 		</s:Group>
 	</s:HGroup>
+	<s:HGroup width="100%" height="100%" top="105" left="15" bottom="0" right="15" includeIn="anonymous" >
+		<s:Label text="You are anonymous. To keep track of your progress, sign in next time." />
+	</s:HGroup>
+
 </s:Skin>

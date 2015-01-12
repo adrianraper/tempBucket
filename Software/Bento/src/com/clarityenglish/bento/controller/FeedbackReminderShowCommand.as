@@ -1,5 +1,8 @@
 package com.clarityenglish.bento.controller
 {
+	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
+	
 	import flash.display.DisplayObject;
 	import flash.events.KeyboardEvent;
 	import flash.ui.Keyboard;
@@ -30,12 +33,15 @@ package com.clarityenglish.bento.controller
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
+			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
+			
 			var text:String = note.getBody() as String;
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
 			//titleWindow.styleName = "markingTitleWindow"; ... if we want to skin the title window
 			titleWindow.styleName = "feedbackTitleWindow";
-			titleWindow.title = "Feedback";
+			titleWindow.title = copyProvider.getCopyForId('exerciseFeedbackButton');
+
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
 			
 			var label:spark.components.Label = new spark.components.Label();

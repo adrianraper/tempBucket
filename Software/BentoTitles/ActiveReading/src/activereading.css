@@ -76,6 +76,10 @@ login|LoginView s|SkinnableContainer {
 	skinClass: ClassReference("skins.activereading.login.SignInContainerSkin");
 }
 
+login|LoginView s|SkinnableContainer#anonymousGroup {
+	skinClass: ClassReference("skins.activereading.login.AnonymousContainerSkin");
+}
+
 error|ErrorView {
 	skinClass: ClassReference("skins.activereading.login.ErrorSkin");
 }

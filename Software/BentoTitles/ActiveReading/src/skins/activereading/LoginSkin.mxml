@@ -22,6 +22,12 @@
 		.signInPrompt {
 			fontSize: 14;
 		}
+		.buttonText {
+			fontSize: 14;
+			fontFamily: "MyriadPro";
+			fontWeight: "bold";
+			color: #FFFFFF;
+		}
 	</fx:Style>
 	<fx:Script>
 		<![CDATA[
@@ -81,50 +87,75 @@
 	<s:BitmapImage id="brandingImage4" visible="{hostComponent.branding}" includeInLayout="{hostComponent.branding}"/>
 
 	<!-- Sign in details -->
-	<s:HGroup id="signInGroup" excludeFrom="register" horizontalCenter="0" verticalCenter="0" gap="20" >
-		<s:SkinnableContainer includeInLayout="{hostComponent.allowLogin}" visible="{hostComponent.allowLogin}" >
-			<s:VGroup paddingTop="{signInDetailsMargin}" paddingRight="{signInDetailsMargin}" paddingBottom="{signInDetailsMargin}" paddingLeft="{signInDetailsMargin}" 
+	<s:Group id="signInGroup" excludeFrom="register" horizontalCenter="0" verticalCenter="0" >
+		<s:SkinnableContainer id="trackingGroup" includeInLayout="{hostComponent.allowLogin}" visible="{hostComponent.allowLogin}" left="0" >
+			<s:VGroup paddingTop="{2*signInDetailsMargin}" paddingRight="{signInDetailsMargin}" paddingBottom="8" paddingLeft="{signInDetailsMargin}" 
 					  horizontalAlign="center" gap="10">
 				<assets:loginlogoCE horizontalCenter="0" />
-				<s:Rect height="10" /> <!-- this is a spacer -->
-				<s:Label text="{hostComponent.loginCaption}" styleName="signInHeader"  />
-				<s:TextInput id="loginKeyInput" prompt="{hostComponent.loginKeyCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
-				<s:VGroup visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" >
-					<s:TextInput id="passwordInput" displayAsPassword="true" prompt="{hostComponent.passwordCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
-					<s:Button id="forgotPasswordButton" label="{hostComponent.forgotPasswordCaption}" useHandCursor="true" buttonMode="true" />
-				</s:VGroup>
-				<s:Button id="loginButton" label="{hostComponent.loginButtonCaption}" />
-				<s:Rect height="10" /> <!-- this is a spacer -->
 				<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
 					<s:stroke>
-						<s:SolidColorStroke color="#666666" weight="1" caps="square"/>
+						<s:SolidColorStroke color="#9E9E9E" weight="1" caps="square"/>
 					</s:stroke>
 				</s:Line>
-				<s:Button id="newUserButton" label="{hostComponent.newUserButtonCaption}"  
-						  includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" />
+				<s:Label text="{hostComponent.loginCaption}" styleName="signInHeader"  />
+				<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+					<s:stroke>
+						<s:SolidColorStroke color="#9E9E9E" weight="1" caps="square"/>
+					</s:stroke>
+				</s:Line>
+				<s:Rect height="5" /> <!-- this is a spacer -->
+				<s:TextInput id="loginKeyInput" prompt="{hostComponent.loginKeyCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+				<s:VGroup visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" gap="10" >
+					<s:TextInput id="passwordInput" displayAsPassword="true" prompt="{hostComponent.passwordCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+					<s:HGroup width="100%" horizontalAlign="right">
+						<s:Button id="forgotPasswordButton" label="{hostComponent.forgotPasswordCaption}" useHandCursor="true" buttonMode="true"/>
+					</s:HGroup>
+				</s:VGroup>
+				<s:HGroup width="100%" horizontalAlign="right" >
+					<s:Button id="newUserButton" label="{hostComponent.newUserButtonCaption}"  
+							  includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" />
+				</s:HGroup>
+				<s:Button id="loginButton" label="{hostComponent.loginButtonCaption}" styleName="buttonText" />
 			</s:VGroup>
 		</s:SkinnableContainer>
-		<s:Group includeInLayout="{hostComponent.allowAnonymous}" visible="{hostComponent.allowAnonymous}" >
-			<s:Label paddingTop="{signInDetailsMargin}" text="{hostComponent.orCaption}" styleName="signInHeader" />
-		</s:Group>
-		<s:SkinnableContainer includeInLayout="{hostComponent.allowAnonymous}" visible="{hostComponent.allowAnonymous}" >
-			<s:VGroup paddingTop="{signInDetailsMargin}" paddingRight="{2*signInDetailsMargin}" paddingBottom="{2*signInDetailsMargin}" paddingLeft="{2*signInDetailsMargin}" 
+		<s:SkinnableContainer id="anonymousGroup" includeInLayout="{hostComponent.allowAnonymous}" visible="{hostComponent.allowAnonymous}" left="{trackingGroup.width+1}" top="28">
+			<s:VGroup paddingTop="{signInDetailsMargin}" paddingRight="{2*signInDetailsMargin}" paddingBottom="8" paddingLeft="{2*signInDetailsMargin}" 
 					  horizontalAlign="center" gap="10">
 				<assets:anonymousMask />
-				<s:Rect height="10" /> <!-- this is a spacer -->
+				<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+					<s:stroke>
+						<s:SolidColorStroke color="#999999" weight="1" caps="square"/>
+					</s:stroke>
+				</s:Line>
 				<s:Label text="{hostComponent.anonymousCaption}" styleName="signInHeader"  />
-				<s:Button id="anonymousStartButton" label="{hostComponent.anonymousStartButtonCaption}" />	
+				<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+					<s:stroke>
+						<s:SolidColorStroke color="#999999" weight="1" caps="square"/>
+					</s:stroke>
+				</s:Line>
+				<s:Rect height="10" /> <!-- this is a spacer -->
+				<s:Button id="anonymousStartButton" label="{hostComponent.anonymousStartButtonCaption}" styleName="buttonText" />	
 			</s:VGroup>
 		</s:SkinnableContainer>
-	</s:HGroup>
+	</s:Group>
 	
 	<!-- self register screen -->
 	<s:SkinnableContainer id="registerGroup" excludeFrom="normal" horizontalCenter="0" verticalCenter="0" >
-			<s:VGroup paddingTop="{signInDetailsMargin}" paddingRight="{signInDetailsMargin}" paddingBottom="{signInDetailsMargin}" paddingLeft="{signInDetailsMargin}" 
+			<s:VGroup paddingTop="{signInDetailsMargin}" paddingRight="{signInDetailsMargin}" paddingBottom="8" paddingLeft="{signInDetailsMargin}" 
 					  horizontalAlign="center" gap="10">
 				<assets:loginlogoCE horizontalCenter="0" />
 				<s:Rect height="10" /> <!-- this is a spacer -->
+				<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+					<s:stroke>
+						<s:SolidColorStroke color="#999999" weight="1" caps="square"/>
+					</s:stroke>
+				</s:Line>
 				<s:Label text="{hostComponent.selfRegisterCaption}" fontSize="16" fontFamily="MyriadPro" fontWeight="bold" color="0x125558" />
+				<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+					<s:stroke>
+						<s:SolidColorStroke color="#999999" weight="1" caps="square"/>
+					</s:stroke>
+				</s:Line>
 				<s:TextInput id="selfRegisterName" prompt="{hostComponent.selfRegisterNameCaption}" 
 							 includeInLayout="{hostComponent.selfRegisterNameCaption != null}" visible="{hostComponent.selfRegisterNameCaption != null}"
 							 styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
@@ -141,9 +172,9 @@
 							 includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}" 
 							 width="260" height="35" styleName="signInPrompt" filters="{dropShadowFilter2}" borderVisible="false"/>
 				<s:Rect height="10" /> <!-- this is a spacer -->
-				<s:HGroup>
-					<s:Button id="cancelButton" label="{hostComponent.cancelButtonCaption}" left="10" bottom="0"/>
-					<s:Button id="addUserButton" label="{hostComponent.addUserButtonCaption}" right="10" bottom="0"/>
+				<s:HGroup gap="20">
+					<s:Button id="cancelButton" label="{hostComponent.cancelButtonCaption}" styleName="buttonText" />
+					<s:Button id="addUserButton" label="{hostComponent.addUserButtonCaption}" styleName="buttonText" />
 				</s:HGroup>
 			</s:VGroup>
 	</s:SkinnableContainer>

@@ -49,7 +49,7 @@
 				return colors[index];
 			}
 			
-			public function getOutLineStrockColor(index:Number):Number {
+			public function getOutLineStrokeColor(index:Number):Number {
 				var colors:Array = hostComponent.getStyle("outlineColors");
 				return colors[index]
 			}
@@ -140,7 +140,7 @@
 					fadeIn.duration = 400;
 					fadeIn.startDelay = 200;
 					fadeIn.play([triangleGroup]);
-					// for exercise list frame, when the list doesn't roll out completely and we selecte another unit, we don't want it to roll out again
+					// for exercise list frame, when the list doesn't roll out completely and we select another unit, we don't want it to roll out again
 					isAnimationPlayed = true;
 				}
 			}
@@ -154,22 +154,20 @@
 			protected function setTitleBarColor():void {
 				// We set title bar new gradient here for remaining time for old gradient title bar fading out
 				// If we set gradient inside tag, the color will change immediately when the courseIndex change, so we never can see the old gradient fade out
-				unitTitleBarStrockColor.color = getOutLineStrockColor(hostComponent.courseIndex);
-				exerciseTopBarStrockColor.color = getOutLineStrockColor(hostComponent.courseIndex);
-				exerciseBottomBarStrockColor.color = getOutLineStrockColor(hostComponent.courseIndex);
-				exerciseBackgroundStrockColor.color = getOutLineStrockColor(hostComponent.courseIndex);
+				unitTitleBarStrokeColor.color = getOutLineStrokeColor(hostComponent.courseIndex);
+				exerciseTopBarStrokeColor.color = getOutLineStrokeColor(hostComponent.courseIndex);
+				exerciseBottomBarStrokeColor.color = getOutLineStrokeColor(hostComponent.courseIndex);
+				exerciseBackgroundStrokeColor.color = getOutLineStrokeColor(hostComponent.courseIndex);
 			}
 			
 			protected function onCreationComplete(event:FlexEvent):void {
-				// !courseSelector.level use to judge the initial situation
 				if (!courseSelector.level) {
 					var downMove:Move = new Move();
 					downMove.yFrom = 0;
-					downMove.yTo = 150;
+					downMove.yTo = instructionGroup.y;
 					downMove.duration = 300;
 					downMove.play([instructionGroup]);
 				} else {
-					//hostComponent.isBackToHome = true;
 					instructionGroup.visible = false;
 					hostComponent.isInitialSelect = false;
 					
@@ -220,7 +218,7 @@
 	<s:BitmapImage width="100%" verticalCenter="150" source="@Embed(source='skins/activereading/assets/login/loginlines.png')" fillMode="scale" />
 	
 	<!-- Student name -->
-	<s:Label left="150" top="80" text="{hostComponent.getCopyProvider().getCopyForId('welcomeLabel', {name: hostComponent.config.username})}" fontSize="13" color="0x000000" />
+	<s:Label left="150" top="80" text="{hostComponent.userNameCaption}" fontSize="13" color="0x000000" />
 	
 	<!--Book-->
 	<s:BitmapImage bottom="0" right="-120" source="@Embed(source='skins/activereading/assets/login/loginbook.png')" />
@@ -237,7 +235,7 @@
 	
 	<!--unit list-->
 	<s:Group left="300" verticalCenter="10" height="400" width="267">
-		<s:List id="unitList" visible="false" width="260" top="38" horizontalCenter="6" contentBackgroundAlpha="1" borderVisible="true" borderColor="{getOutLineStrockColor(hostComponent.courseIndex)}">
+		<s:List id="unitList" visible="false" width="260" top="38" horizontalCenter="6" contentBackgroundAlpha="1" borderVisible="true" borderColor="{getOutLineStrokeColor(hostComponent.courseIndex)}">
 			<s:layout>
 				<s:VerticalLayout gap="1" paddingTop="15" paddingLeft="5" /> 
 			</s:layout>
@@ -351,7 +349,7 @@
 									</s:LinearGradient>
 								</s:fill>
 								<s:stroke>
-									<s:SolidColorStroke color="{outerDocument.getOutLineStrockColor(data.parent().childIndex())}" weight="1" />
+									<s:SolidColorStroke color="{outerDocument.getOutLineStrokeColor(data.parent().childIndex())}" weight="1" />
 								</s:stroke>
 							</s:Rect>
 							
@@ -412,10 +410,10 @@
 					</s:LinearGradient>
 				</s:fill>
 				<s:stroke>
-					<s:SolidColorStroke id="unitTitleBarStrockColor" />
+					<s:SolidColorStroke id="unitTitleBarStrokeColor" />
 				</s:stroke>
 			</s:Path>
-			<s:Label id="levelTitleGroupLabel" color="{getOutLineStrockColor(hostComponent.courseIndex)}" fontSize="19" left="40" top="15" />
+			<s:Label id="levelTitleGroupLabel" color="{getOutLineStrokeColor(hostComponent.courseIndex)}" fontSize="19" left="40" top="15" />
 		</s:Group>
 	</s:Group>	
 	
@@ -433,7 +431,7 @@
 					</s:LinearGradient>
 				</s:fill>
 				<s:stroke>
-					<s:SolidColorStroke color="{getOutLineStrockColor(hostComponent.courseIndex)}" />
+					<s:SolidColorStroke color="{getOutLineStrokeColor(hostComponent.courseIndex)}" />
 				</s:stroke>
 			</s:Path>
 		</s:Group>	
@@ -454,7 +452,7 @@
 					</s:LinearGradient>
 				</s:fill>
 				<s:stroke>
-					<s:SolidColorStroke id="exerciseTopBarStrockColor" />
+					<s:SolidColorStroke id="exerciseTopBarStrokeColor" />
 				</s:stroke>
 			</s:Path>
 			
@@ -470,7 +468,7 @@
 						</s:LinearGradient>
 					</s:fill>
 					<s:stroke>
-						<s:SolidColorStroke id="exerciseBackgroundStrockColor" />
+						<s:SolidColorStroke id="exerciseBackgroundStrokeColor" />
 					</s:stroke>
 				</s:Rect>
 			</s:VGroup>
@@ -487,7 +485,7 @@
 					</s:LinearGradient>
 				</s:fill>
 				<s:stroke>
-					<s:SolidColorStroke id="exerciseBottomBarStrockColor" />
+					<s:SolidColorStroke id="exerciseBottomBarStrokeColor" />
 				</s:stroke>
 			</s:Path>				
 		</s:VGroup>

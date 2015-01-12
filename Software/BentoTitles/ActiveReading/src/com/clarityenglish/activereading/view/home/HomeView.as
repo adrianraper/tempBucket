@@ -73,6 +73,10 @@ package com.clarityenglish.activereading.view.home {
 		
 		[SkinPart]
 		public var copyrightLabel:Label;
+
+		// gh#1090
+		[Bindable]
+		public var userNameCaption:String;
 		
 		[Bindable]
 		public var exerciseXMLListCollection:XMLListCollection;
@@ -267,6 +271,8 @@ package com.clarityenglish.activereading.view.home {
 		
 		protected override function commitProperties():void {			
 			super.commitProperties();
+			
+			userNameCaption = copyProvider.getCopyForId('welcomeLabel', {name: config.username});
 			
 			// for re-login
 			if (!course && !unit) {

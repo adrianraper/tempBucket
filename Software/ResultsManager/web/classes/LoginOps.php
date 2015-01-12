@@ -30,25 +30,28 @@ class LoginOps {
 		// loginOption controls what fields you use to login with.
 		// TODO. The code below doesn't properly do username+studentID at the moment
 		if ($loginOption & User::LOGIN_BY_NAME || $loginOption & User::LOGIN_BY_NAME_AND_ID) {
+			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");
 			if (isset($loginObj['username'])) {
 				$key = 'u.F_UserName';
 				$keyValue = $loginObj['username'];
 			} else {
-				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption));
+				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 			}
 		} elseif ($loginOption & User::LOGIN_BY_ID) {
+			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
 			if (isset($loginObj['studentID'])) {
 				$key = 'u.F_StudentID';
 				$keyValue = $loginObj['studentID'];
 			} else {
-				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption));
+				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 			}
 		} elseif ($loginOption & User::LOGIN_BY_EMAIL) {
+			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
 			if (isset($loginObj['email'])) {
 				$key = 'u.F_Email';
 				$keyValue = $loginObj['email'];
 			} else {
-				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption));
+				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 			}
 		} else {
 			throw $this->copyOps->getExceptionForId("errorInvalidLoginOption", array("loginOption" => $loginOption));
@@ -99,7 +102,7 @@ EOD;
 				if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
 				AbstractService::$debugLog->info($logMessage);
 				// Invalid login
-				throw $this->copyOps->getExceptionForId("errorNoSuchUser", array("loginOption" => $loginOption));
+				throw $this->copyOps->getExceptionForId("errorNoSuchUser", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 				break;
 				
 			case 1:
@@ -243,7 +246,7 @@ EOD;
 				// TODO. This is not perfect. You might have an expired account that is HU and it is chosen over
 				// non-expired FV ones.
 				
-				throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("loginOption" => $loginOption));
+				throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 		}
 		
 		// A special case to check that the password matches the case (by default MSSQL and MYSQL are case-insensitive)
@@ -253,7 +256,7 @@ EOD;
 				$logMessage = "login $keyValue wrong password, they typed $password, should be ".$dbLoginObj->F_Password;
 				if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
 				AbstractService::$debugLog->info($logMessage);
-				throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption));
+				throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 			}
 		}
 		

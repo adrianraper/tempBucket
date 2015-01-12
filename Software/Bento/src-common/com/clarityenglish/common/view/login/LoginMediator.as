@@ -99,6 +99,7 @@ package com.clarityenglish.common.view.login {
 			
 			// gh#1090
 			view.clearData();
+			view.setState("normal");
 		}
         
 		override public function onRemove():void {

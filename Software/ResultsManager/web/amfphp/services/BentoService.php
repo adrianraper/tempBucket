@@ -581,30 +581,43 @@ class BentoService extends AbstractService {
 		// gh#886: fix empty user detail can still registered. 
 		$stubUser = new User ();
 		if ($loginOption & User::LOGIN_BY_NAME || $loginOption & User::LOGIN_BY_NAME_AND_ID) {
-			if (isset ( $user->name )) {
+			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");
+			if (isset($user->name)) {
 				$stubUser->name = $user->name;
 			} else {
-				throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array ("loginOption" => $loginOption ) );
+				throw $this->copyOps->getExceptionForId ("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 			}
 		} elseif ($loginOption & User::LOGIN_BY_ID) {
-			if (isset ( $user->studentID )) {
+			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
+			if (isset($user->studentID)) {
 				$stubUser->studentID = $user->studentID;
 			} else {
-				throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array ("loginOption" => $loginOption ) );
+				throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 			}
 		} elseif ($loginOption & User::LOGIN_BY_EMAIL) {
-			AbstractService::$debugLog->info("user email: ".$user->email);
+			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
+			//AbstractService::$debugLog->info("user email: ".$user->email);
 			if (isset ( $user->email )) {
 				$stubUser->email = $user->email;
 			} else {
-				throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array ("loginOption" => $loginOption ) );
+				throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 			}
 		} else {
-			throw $this->copyOps->getExceptionForId ( "errorInvalidLoginOption", array ("loginOption" => $loginOption ) );
+			throw $this->copyOps->getExceptionForId ( "errorInvalidLoginOption", array("loginOption" => $loginOption));
 		}
 		
 		// #341 Only need to check user details within this root
-		$stubUser = $this->manageableOps->getUserByKey($stubUser, $rootID, $loginOption);
+		// gh#1090 Catch duplicate users exception as we can give a better error
+		try {
+			$stubUser = $this->manageableOps->getUserByKey($stubUser, $rootID, $loginOption);
+		} catch (Exception $e) {
+			if ($e->getCode() == $this->copyOps->getCodeForId("errorDuplicateUsers")) {
+				// mimic an existing user so we throw a better exception later
+				$stubUser = true;
+			} else {
+				throw $e;
+			}
+		}
 		
 		// Go ahead and add the user to the top level group
 		if ($stubUser==false) {
@@ -626,7 +639,7 @@ class BentoService extends AbstractService {
 		} else {
 			
 			// A user already exists with these details, so throw an error as we can't add the new one
-			throw $this->copyOps->getExceptionForId("errorDuplicateUser", array("name" => $stubUser->name, "loginOption" => $loginOption));
+			throw $this->copyOps->getExceptionForId("errorDuplicateUser", array("name" => $stubUser->name, "loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 		}
 
 		return false;

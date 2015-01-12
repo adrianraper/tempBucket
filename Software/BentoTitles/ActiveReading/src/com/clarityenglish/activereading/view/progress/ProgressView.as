@@ -86,10 +86,13 @@ package com.clarityenglish.activereading.view.progress {
 		 * The state comes from the selection in the progress bar, plus _demo if we are in a demo version 
 		 */
 		protected override function getCurrentSkinState():String {
+			// gh#1090
+			if (isAnonymousUser)
+				return "anonymous";
+			
 			var state:String = (!progressNavBar || !progressNavBar.selectedItem) ? "coverage" : progressNavBar.selectedItem.data;
 			return state;
 		}
-		
 		/**
 		 * When the tab is changed invalidate the skin state to force getCurrentSkinState() to get called again
 		 * 
