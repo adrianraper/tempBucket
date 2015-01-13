@@ -153,6 +153,8 @@
 				view.markingButton.visible = view.markingButton.includeInLayout = !(getExerciseProxy(exercise).exerciseMarked) && exercise.hasQuestions() && !exercise.noMarking();
 			// gh#1113
 			if (view.startAgainButton) view.startAgainButton.visible =  view.startAgainButton.includeInLayout = exercise.hasQuestions();
+			// gh#1113
+			if (view.startAgainButton) view.startAgainButton.visible =  view.startAgainButton.includeInLayout = exercise.hasQuestions();
 			
 			// If there is exercise feedback then show the exercise feedback button
 			// gh#413

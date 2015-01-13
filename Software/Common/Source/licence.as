@@ -1,7 +1,25 @@
 
 //Internal methods
 licenceNS.getConfirmLicence = function() {
-	//trace("getting the licence");
+	myTrace("getConfirmLicence");
+	// ar#869 Initialise licence variables
+	this.version = '';
+	//this.db = '';
+	//this.scripting = '';
+	this.action = '';
+	this.allowedActions = '';
+	this.institution = '';
+	this.licences = '';
+	this.expiry = '';
+	this.licencing = "Concurrent";
+	this.licenceType = 2;
+	this.master = new Object();
+	this.master.central = new Object();
+	this.master.central.key = '';
+	this.master.central.root = '';
+	this.master.control = new Object();
+	this.master.control.server = '';
+	
 	// 6.0.5.0 this function hugely changed
 	var loadVarsText = new LoadVars();
 	//myTrace("load licence file: " + _global.ORCHID.paths.root + "licence.ini");
@@ -513,6 +531,9 @@ licenceNS.getConfirmLicence = function() {
 		// Set branding based on productCode if you know it - you could overwrite later if the db holds this
 		_global.ORCHID.root.licenceHolder.licenceNS.branding = this.setProductBranding(_global.ORCHID.root.licenceHolder.licenceNS.productCode);
 		myTrace("licence.branding=" + _global.ORCHID.root.licenceHolder.licenceNS.branding);
+
+		// ar#869 initialise more
+		//_global.ORCHID.root.licenceHolder.licenceNS.central.root = '';
 		
 		//_global.ORCHID.root.licenceHolder.licenceNS.registerDate
 		_global.ORCHID.root.mainHolder.dbInterfaceNS.connect();

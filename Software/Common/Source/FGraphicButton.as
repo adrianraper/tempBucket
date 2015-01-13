@@ -80,6 +80,7 @@ GraphicButtonClass.prototype.getSize = function() {
 }
 // set what happens when enabled or disabled
 GraphicButtonClass.prototype.setEnabled = function(enabled) {
+	//myTrace("setEnabled for " + this + " to " + enabled);
 	if (enabled) {
 		this.target.gotoAndStop("up");
 		// it is possible that setting to disabled will have lost the label
@@ -93,6 +94,7 @@ GraphicButtonClass.prototype.setEnabled = function(enabled) {
 			this.setReleaseAction(this.componentRelease);
 		}
 	} else {
+		//myTrace("button disabled=" + this.target);
 		this.target.gotoAndStop("disabled");
 		this.disableAction();
 	}
@@ -100,8 +102,7 @@ GraphicButtonClass.prototype.setEnabled = function(enabled) {
 }
 
 // v6.5.1 Yiu
-GraphicButtonClass.prototype.setVisible	= function(visible)
-{
+GraphicButtonClass.prototype.setVisible	= function(visible) {
 	this.target._visible	= visible;
 }
 
@@ -150,6 +151,12 @@ GraphicButtonClass.prototype.setAction = function() {
 			delete this.onMouseUp;
 			delete this.onPress;
 		}
+		// v6.5.5.8 Allow roll over to trigger a function for this button
+		if ((typeof this.componentRollOver) == "function") {
+			//myTrace("do setRollOverAction for " + this);
+			this.componentRollOver();
+		}
+
 	}
 }
 GraphicButtonClass.prototype.disableAction = function() {
@@ -159,6 +166,13 @@ GraphicButtonClass.prototype.disableAction = function() {
 	delete this.onPress;
 	delete this.onRelease;
 	delete this.onMouseUp;
+	
+	// v6.5.6.5 What if I want to keep rollOver even for a disabled item?
+	if ((typeof this.componentRollOver) == "function") {
+		this.onRollOver = function() {
+			this.componentRollOver();
+		}
+	}
 }
 // ======
 // Public functions for button behaviour
@@ -169,10 +183,18 @@ GraphicButtonClass.prototype.setReleaseAction = function(myFunc) {
 	this.onRelease = function() {
 		//this.target.gotoAndStop("over");
 		//this.componentRelease();
+		//myTrace("onRelease go to " + this.componentRelease);
 		// Can I pass a reference to myself?
 		this.componentRelease(this);
 	};
 }
+// v6.5.5.8 For Clear Pronunciation menu display
+// You HAVE to call this before setReleaseAction otherwise you lose it
+GraphicButtonClass.prototype.setRollOverAction = function(myFunc) {
+	//myTrace("setting setRollOverAction for " + this);
+	this.componentRollOver = myFunc;
+}
+
 GraphicButtonClass.prototype.setPressAction = function(myFunc) {
 	//trace("setting onRelease for " + this);
 	this.componentPress = myFunc;
@@ -199,7 +221,7 @@ GraphicButtonClass.prototype.setLabel = function(labelText, labelTextFormat) {
 		this.componentTF = this.target.caption.getTextFormat(0);
 		//this.componentTF = this.target.caption.getNewTextFormat();
 		var thisTF = this.componentTF;
-		//myTrace("use " + this.componentLabel + "'s TF, align=" + thisTF.align + ", font=" + thisTF.font + ", size=" + thisTF.size);
+		//myTrace("use " + this.componentLabel + "'s TF, align=" + thisTF.align + ", font=" + thisTF.font + ", size=" + thisTF.size + ", fixedWidth=" + this.fixedWidth);
 	}
 	this.target.caption.setTextFormat(thisTF);
 	//} else {
@@ -213,6 +235,9 @@ GraphicButtonClass.prototype.setLabel = function(labelText, labelTextFormat) {
 	//myTrace("button label " + labelText + " width=" + thisTF.getTextExtent(labelText).width);
 	// v6.4.1 Note that if you stretch the target, the target.caption._width does NOT change
 	// so try using textWidth
+	// v6.5.6.4 If you have used a fixed width, just jump out now
+	if (this.fixedWidth) return;
+	
 	// v6.4.2.7 Increase the margin (especially for SSS)
 	//var textMargin = 12;
 	if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sss") >= 0) {
@@ -237,11 +262,11 @@ GraphicButtonClass.prototype.setLabel = function(labelText, labelTextFormat) {
 	// I am putting canShrink into the target button MC. Only doing it for halfBtn right now.
 	// But note that it doesn't get picked up correctly for buttons that are added to popup window. Too quick?
 	//if ((measuredCaptionWidth > this.originalWidth) &&
-	if (this.target.canShrink) {
+	//if (this.target.canShrink) {
 		//myTrace("can shrink " + labelText + " w=" + measuredCaptionWidth + "original=" + this.originalWidth);
-	} else {
+	//} else {
 		//myTrace("no shrink " + labelText + " w=" + measuredCaptionWidth + "original=" + this.originalWidth);
-	}
+	//}
 	if (((this.measuredCaptionWidth > this.originalWidth) || this.target.canShrink) &&
 		(this.target.caption.multiline == false)){
 		//myTrace(labelText + "=" + measuredCaptionWidth + " caption.width=" + this.target.caption._width);
@@ -345,6 +370,48 @@ GraphicButtonClass.prototype.setCaptionVerticalAlign = function(alignment) {
 		}
 	}
 }
+// v6.5.6.4 Can I make buttons bigger? This is fine, but we often call setLabel after this, which reduces everything again. 
+// So this has to be built into setLabel somehow.
+GraphicButtonClass.prototype.setFixedWidth = function(targetWidth) {
+	//myTrace("expanding button");
+	// If you call this at all, then don't let setLabel disrupt the width anymore
+	this.fixedWidth = true;
+	if ((this.target.canShrink) && (this.target.caption.multiline == false)){
+		var extraSpace = 0;
+		if (this.target.leftSection == undefined) {
+			this.target._width = targetWidth;
+		} else {
+			//myTrace("button has sections, left.width=" + this.target.leftSection._width);
+			this.target.leftSection._x = 0;
+			this.target.centreSection._x = Math.floor(this.target.leftSection._width);
+			//myTrace(labelText + " left.w=" + this.target.leftSection._width + " right.w=" + this.target.rightSection._width);
+			this.target.centreSection._width = targetWidth - (this.target.leftSection._width + this.target.rightSection._width);
+			//myTrace(labelText + " target.w=" + targetWidth + " centre.w" + this.target.centreSection._width);
+			//myTrace("centre.width=" + this.target.centreSection._width);
+			this.target.rightSection._x = Math.floor(this.target.centreSection._x + this.target.centreSection._width);
+			//myTrace(labelText + " centre.x=" + this.target.centreSection._x + " right.x=" + this.target.rightSection._x);
+			//this.target.caption._width = this.measuredCaptionWidth;
+			// v6.4.2.8 And this one for when you are stretching the centre section only
+			//this.target.caption._xscale = 100;
+			//this.target._xscale = 100;
+			// Having done this, you might need to reset the stretch coordinates for the initial display
+			// (this is a function in the .fla that moves the graphics over the sections I positioned above)
+			this.target.resetStretch();
+		}
+		// v6.4.1 This line seems essential to stop height going to 0
+		this.target._yscale = 100;
+		//myTrace("so stretch button to target.width" + targetWidth + ", target.height=" + this.target._height);
+		this.stretched = true;
+		// this will also leave the buttons misaligned.
+		//myTrace("to width = " + targetWidth);
+	} else {
+		this.target._width = targetWidth;
+		// v6.4.1 Add it here as well for safety sake
+		this.target._yscale = 100;
+		this.stretched = false;		
+	}
+}
+
 //
 // end of component
 Object.registerClass("FGraphicButtonSymbol", GraphicButtonClass);

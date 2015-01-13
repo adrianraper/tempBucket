@@ -128,7 +128,7 @@ package com.clarityenglish.bento.model {
 			
 			// If the resource has already been loaded then just return it
 			if (loadedResources[href]) {
-				log.debug("Href already loaded so returning cached copy {0}", href);
+				// log.debug("Href already loaded so returning cached copy {0}", href);
 				notifyXHTMLLoaded(href, true);
 				return;
 			}
@@ -154,10 +154,9 @@ package com.clarityenglish.bento.model {
 				// gh#761 Because the configProxy.getDirectStart() doesn't be set value in xxStartupCommand, so I put DirectStartDisableTransform here 
 				if (ObjectUtil.getClassInfo(configProxy.getDirectStart()).properties.length > 0)
 					registerTransforms([new DirectStartDisableTransform(configProxy.getDirectStart())], [ Href.MENU_XHTML ]);				
-				
 				// gh#265				
 				if (href.type == Href.EXERCISE) {
-					transformDefinitions.splice(0, transformDefinitions.length);
+					// gh#1115 transformDefinitions.splice(0, transformDefinitions.length);
 					var transforms:Array = [new RandomizedTestTransform()];
 					registerTransforms(transforms, [ Href.EXERCISE ]);
 					// gh#660, gh#1030 pick up from exercise

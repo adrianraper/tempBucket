@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" 
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:ui="com.clarityenglish.rotterdam.view.title.ui.*">
+		xmlns:components="com.clarityenglish.components.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.title.TitleView")]
 	</fx:Metadata>
-	
+
 	<!-- states -->
 	<s:states>
-		<s:State name="disabled" />
-		<s:State name="normal" />
-		
-		<s:State name="course_selector" />
-		<s:State name="course" />
-		<s:State name="progress" />
+		<s:State name="disabled"/>
+		<s:State name="normal"/>
+
+		<s:State name="course_selector"/>
+		<s:State name="course"/>
+		<s:State name="progress"/>
 	</s:states>
-	
+
 	<s:Group left="0" right="0" top="0">
 		<s:Rect left="0" right="0" top="0" bottom="0" height="40">
 			<s:fill>
@@ -29,9 +29,9 @@
 		</s:Rect>
 		<s:SWFLoader source="@Embed(source='/skins/rotterdam/player/assets/title/ccb_logo.png')" left="35" top="8"/>
 		<s:Label text="Clarity Course Player" color="0xFFFFFF" fontWeight="bold" fontSize="15" left="70" top="15"/>
-		
-		<s:Button id="logoutButton" right="10" top="4" useHandCursor="true" buttonMode="true" />
-		
+
+		<s:Button id="logoutButton" right="10" top="4" useHandCursor="true" buttonMode="true"/>
+
 		<s:Rect left="0" right="0" top="40" bottom="0" height="45">
 			<s:fill>
 				<s:LinearGradient x="55.0005" y="45" scaleX="44.9995" rotation="-90">
@@ -41,10 +41,13 @@
 			</s:fill>
 		</s:Rect>
 	</s:Group>
-	
-	<ui:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="40" bottom="30">
-		<s:ViewNavigator id="myCoursesViewNavigator" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%" />
-		<s:ViewNavigator id="progressViewNavigator"  firstView="com.clarityenglish.bento.view.progress.ProgressView" left="0" right="0" height="100%" excludeFrom="course_selector" />
-	</ui:CancelableTabbedViewNavigator>
-	
+
+	<components:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="40" bottom="30">
+		<s:ViewNavigator id="myCoursesViewNavigator"
+						 firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0"
+						 right="0" height="100%"/>
+		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.bento.view.progress.ProgressView"
+						 left="0" right="0" height="100%" excludeFrom="course_selector"/>
+	</components:CancelableTabbedViewNavigator>
+
 </s:Skin>

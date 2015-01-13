@@ -134,7 +134,6 @@ package com.clarityenglish.controls.video.players {
 			//if (!stageWebView.viewPort) {
 			if (stageWebView) {
 				var globalPos:Point = contentToGlobal(new Point(x, y));
-				
 				stageWebView.viewPort = new Rectangle(globalPos.x, globalPos.y, Math.max(0, unscaledWidth * dpiScaleFactor), unscaledHeight * dpiScaleFactor);
 			}
 				
@@ -195,7 +194,6 @@ package com.clarityenglish.controls.video.players {
 		protected function onEnterFrame(event:Event):void {
 			if (stageWebView.viewPort) {
 				var globalPos:Point = contentToGlobal(new Point(x, y));
-				
 				stageWebView.viewPort = new Rectangle(globalPos.x, globalPos.y, stageWebView.viewPort.width, stageWebView.viewPort.height);
 			}
 		}

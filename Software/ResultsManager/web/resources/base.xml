@@ -72,6 +72,7 @@
             <lit name="errorSavingCourseToDb" code="888">Your course has been saved, but a problem with the database means the publishing details and settings have not. Please try again in a minute. If the problem persists, please contact support@clarityenglish.com and tell us the course you were editing and the date/time.</lit>
             
             <lit name="supportEmail">support@clarityenglish.com</lit>
+            <lit name="problemLabel"></lit> <!-- "Sorry, there is a problem" is hardcoded in ShowErrorCommand -->
             
             <!-- Login -->
             <lit name="loginButton">Log in</lit>
@@ -102,7 +103,6 @@
             <lit name="Back">Back</lit>
             <lit name="Next">Forward</lit>
             <lit name="LogOut">Log out</lit>
-            <lit name="homeInstructionLabel">Click to choose the section you want to view.</lit>
             <lit name="updateError">The two new passwords you typed must be the same.</lit>
             <lit name="updateFail">Sorry, these details can't be updated.</lit>
             <lit name="updateSuccess">Your details have been saved.</lit>
@@ -128,7 +128,7 @@
             <lit name="missedLabel">Skipped: {missed}</lit> 
             <lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
             <lit name="versionLabel">Software, design, navigation</lit>
-            <lit name="footerLabel">© Clarity Language Consultants Ltd, 2014. All rights reserved.</lit>
+            <lit name="footerLabel"> © Clarity Language Consultants Ltd, 2013-14. All rights reserved.</lit>
             <lit name="printButton">Print</lit>
             <lit name="noButton">No</lit>
             <lit name="yesButton">Yes</lit>

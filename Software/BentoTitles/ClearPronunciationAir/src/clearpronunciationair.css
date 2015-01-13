@@ -1,0 +1,90 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace clearpronunciation "com.clarityenglish.clearpronunciation.*";
+@namespace title "com.clarityenglish.clearpronunciation.view.title.*";
+@namespace video "com.clarityenglish.controls.video.*";
+@namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
+@namespace login "com.clarityenglish.rotterdam.view.login.*";
+@namespace settings "com.clarityenglish.clearpronunciation.view.settings.*";
+@namespace home "com.clarityenglish.clearpronunciation.view.home.*";
+@namespace course "com.clarityenglish.clearpronunciation.view.course.*";
+@namespace unit "com.clarityenglish.clearpronunciation.view.unit.*";
+@namespace exercise "com.clarityenglish.bento.view.exercise.*";
+@namespace progress "com.clarityenglish.clearpronunciation.view.progress.*";
+@namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
+
+clearpronunciation|ClearPronunciationApplication {
+	skinClass: ClassReference("skins.clearpronunciation.ClearPronunciationApplicationSkin");
+}
+
+components|XHTMLExerciseView s|TextInput {
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 0;
+	paddingLeft: 0;
+	paddingRight: 0;
+}
+
+s|TextInput {
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 1;
+	paddingLeft: 10;
+	paddingRight: 10;
+}
+
+s|List {
+	verticalScrollPolicy: off;
+	horizontalScrollPolicy: off;
+}
+
+@media (os-platform: "IOS") {
+	video|VideoSelector {
+		skinClass: ClassReference("skins.clearpronunciationair.controls.video.IOSVideoSelectorSkin");
+	}
+	
+	home|HomeView video|VideoSelector {
+		skinClass: ClassReference("skins.clearpronunciationair.home.ui.IOSHomeVideoSelectorSkin");
+	}
+	
+	settings|SettingsView video|VideoSelector {
+		skinClass: ClassReference("skins.clearpronunciationair.settings.ui.IOSSettingsVideoSelectorSkin");
+	}
+}
+
+login|LoginView s|TextInput {
+	skinClass: ClassReference("spark.skins.mobile.TextInputSkin");
+}
+
+title|TitleView {
+	skinClass: ClassReference("skins.clearpronunciation.title.TitleSkin");
+}
+
+home|HomeView {
+	skinClass: ClassReference("skins.clearpronunciation.home.HomeSkin");
+}
+
+progress|ProgressView {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressSkin");
+}
+
+progress|ProgressCoverageView {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressCoverageSkin");
+}
+
+progress|ProgressCompareView {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressCompareSkin");
+}
+
+progress|ProgressAnalysisView {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressAnalysisSkin");
+}
+
+progress|ProgressScoreView {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressScoreSkin");
+}
+
+progress|ProgressCertificateView {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressCertificateSkin");
+}

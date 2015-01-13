@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				xmlns:layout="org.alivepdf.layout.*"
+				xmlns:ui="com.clarityenglish.clearpronunciation.view.home.ui.*"
+				autoDrawBackground="false"
+				width.showPieChart="310"
+				width.hidePieChart="265"
+				height.normal="55"
+				height.selected="200"
+				creationComplete="onCreationComplete(event)"
+				removedFromStage="onRemovedFromStage(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.bento.events.ExerciseEvent;
+			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			
+			import mx.collections.ArrayCollection;
+			import mx.collections.XMLListCollection;
+			import mx.events.FlexEvent;
+			
+			import org.davekeen.util.StringUtils;
+			import org.osflash.signals.Signal;
+			
+			import spark.events.IndexChangeEvent;
+			
+			private var _dataChanged:Boolean;
+			
+			protected var _copyProvider:CopyProvider;
+			
+			// This is passed into the item renderer properties so an external element can inform the renderer about exercise selection
+			private var _exerciseSelected:Signal;
+			public function set exerciseSelected(value:Signal):void {
+				_exerciseSelected = value;
+				_exerciseSelected.add(onExerciseSelected);
+			}
+			
+			[Bindable]
+			public var showPieChart:Boolean;
+			
+			[Bindable]
+			public var showItemIndex:Boolean = true;
+			
+			[Bindable]
+			public var selectedExerciseNode:XML;
+			
+			[Bindable]
+			private var pieChartArrayCollection:ArrayCollection;
+			
+			[Bindable]
+			private var exerciseXMLListCollection:XMLListCollection;
+			
+			private function onCreationComplete(e:Event):void {
+				addEventListener(FlexEvent.DATA_CHANGE, function():void { invalidateProperties(); });
+			}
+			
+			private function onRemovedFromStage(e:Event):void {
+				if (_exerciseSelected) _exerciseSelected.remove(onExerciseSelected);
+			}
+			
+			private function onExerciseSelected(node:XML):void {
+				callLater(function():void { selectedExerciseNode = node; });
+			}
+			
+			public function set copyProvider(value:CopyProvider):void {
+				_copyProvider = value;
+				invalidateProperties();
+			}
+			
+			override public function set data(value:Object):void {
+				super.data = value;
+				_dataChanged = true;
+				invalidateProperties();
+			}
+			
+			override protected function commitProperties():void {
+				super.commitProperties();
+				
+				if (_dataChanged && data && data.attribute("caption").length() > 0) {
+					// Provide the pie chart data if pie charts are on (and if there is actually some coverage)
+					if (showPieChart)
+						pieChartArrayCollection = (data.@coverage != 0) ? new ArrayCollection([{ coverage: 100 - data.@coverage }, { coverage: data.@coverage }]) : null;
+					
+					// Set the labels on the left symbol
+					
+					if (unitItemLeftButton && _copyProvider) unitItemLeftButton.label = _copyProvider.getCopyForId(data.@leftIcon);
+					if (unitItemLeftLabel) unitItemLeftLabel.text = (data.@caption).split(" ")[0];
+					// for introduction course, the left icon should be hided and the gap between lable and index number should be closed
+					if (data.@caption == "Introduction") {
+						unitItemLeftButton.visible = false;
+						unitItemIndexLabel.left = 55;
+					} else {
+						unitItemLeftButton.visible = true;
+						unitItemIndexLabel.left = 15;
+					}
+					
+					// Set the labels on the right symbol.  Hide this altogether if @rightIcon isn't defined.
+					if (unitItemRightButton && unitItemRightLabel && _copyProvider) {
+						unitItemRightButton.visible = unitItemRightLabel.visible = data.attribute("rightIcon").length() > 0;
+						unitItemRightButton.label = _copyProvider.getCopyForId(data.@rightIcon);
+						unitItemRightLabel.text = (data.@caption).split(" ")[1];
+					}
+					
+					exerciseXMLListCollection = new XMLListCollection(data.exercise);
+					
+					_dataChanged = false;
+				}
+			}
+			
+			protected function onExerciseListClick(event:MouseEvent):void {
+				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, null, exerciseList.selectedItem));
+			}
+			
+			/**
+			 * Override the skin state to return a compound of normal/selected and the pie chart state
+			 */
+			override protected function getCurrentRendererState():String {  
+				return (selected ? "selected" : "normal") + "_" + (showPieChart ? "showPieChart" : "hidePieChart");
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="normal_hidePieChart" stateGroups="normal, hidePieChart" />
+		<s:State name="selected_hidePieChart" stateGroups="selected, hidePieChart" />
+		<s:State name="normal_showPieChart" stateGroups="normal, showPieChart" />
+		<s:State name="selected_showPieChart" stateGroups="selected, showPieChart" />
+	</s:states>
+	
+	<mx:PieChart id="pieChart" dataProvider="{pieChartArrayCollection}" width="45" height="45" includeIn="showPieChart" visible="{pieChartArrayCollection != null}" includeInLayout="{pieChartArrayCollection != null}">
+		<mx:series>
+			<mx:PieSeries field="coverage" labelPosition="none" filters="{[]}">
+				<mx:fills>
+					<s:SolidColor color="#FFFFFF" />
+					<s:SolidColor color="#005D5F" />
+				</mx:fills>
+			</mx:PieSeries>
+		</mx:series>
+	</mx:PieChart>
+	
+	<s:Group width="100%" left.hidePieChart="0" left.showPieChart="40">
+		<!-- The background rectangle (only visible when the renderer is expanded) -->
+		<s:Rect height="200" width="100%" radiusX="10" radiusY="10" includeIn="selected">
+			<s:fill>
+				<s:SolidColor color="#FFEFD2" alpha="0" alpha.selected="0.6" />
+			</s:fill>
+			<s:stroke>
+				<s:SolidColorStroke color="#FFBF4A" weight="1" alpha="0" alpha.selected="1" />
+			</s:stroke>
+		</s:Rect>
+		
+		<!-- The exercise list (only visible when the renderer is expanded) -->
+		<s:List id="exerciseList"
+				width="100%"
+				height="95%"
+				top="55" left="2" right="2"
+				dataProvider="{exerciseXMLListCollection}"
+				selectedItem="{selectedExerciseNode}"
+				borderVisible="false" contentBackgroundAlpha="0"
+				includeIn="selected"
+				click="onExerciseListClick(event)">
+			<s:layout>
+				<s:VerticalLayout gap="3" />
+			</s:layout>
+			<s:itemRenderer>
+				<fx:Component>
+					<s:IconItemRenderer labelField="@caption" iconFunction="getIcon" paddingTop="6" paddingLeft="42" fontSize="13" height="23" iconWidth="8" width="100%">
+						<fx:Script>
+							<![CDATA[
+								import skins.clearpronunciation.assets.home.menuDot;
+								import skins.clearpronunciation.assets.home.yellowDot;
+								import skins.clearpronunciation.assets.home.yellowDotOutline;
+								
+								private function getIcon(item:Object):Object {
+									return item.attribute("done").length() > 0 && parseInt(item.@done) > 0 ? new yellowDot() : new yellowDotOutline();
+								}
+								
+								override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+									labelDisplay.setStyle("color", selected || down ? 0xFFFFFF : 0x005D5F);
+									
+									super.updateDisplayList(unscaledWidth, unscaledHeight);
+								}
+								
+								override protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void {
+									graphics.clear();
+									
+									if (selected || down) {
+										graphics.beginFill(0x005D5F, 1);
+										graphics.drawRect(0, 0, unscaledWidth, unscaledHeight);
+										graphics.endFill();
+									}
+								}
+								
+								override protected function drawBorder(unscaledWidth:Number, unscaledHeight:Number):void {
+									// No border for this renderer
+								}
+							]]>
+						</fx:Script>
+					</s:IconItemRenderer>
+				</fx:Component>
+			</s:itemRenderer>
+		</s:List>
+		
+		<!-- The question number -->
+		<s:Label id="unitItemIndexLabel" text="{StringUtils.padLeft((itemIndex + 1).toString(), '0', 2)}" fontFamily="Helvetica" fontSize="20" color="#333333" left="15" top="15" visible="{showItemIndex}" />
+		
+		<!-- The left item -->
+		<s:Button id="unitItemLeftButton" color="#4e4e4e" scaleX="0.9" scaleY="0.9" left="50"  top="8" />
+		<s:Label id="unitItemLeftLabel" fontSize="16" left="90" top="16" />
+		
+		<!-- The right item -->
+		<s:Button id="unitItemRightButton" color="#4e4e4e" scaleX="0.9" scaleY="0.9" left="160" top="8" />
+		<s:Label id="unitItemRightLabel" fontSize="16" left="200" top="16" />
+	</s:Group>
+	
+</s:ItemRenderer>

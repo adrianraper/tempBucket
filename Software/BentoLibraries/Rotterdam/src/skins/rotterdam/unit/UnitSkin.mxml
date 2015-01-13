@@ -20,5 +20,4 @@
 			<layouts:FreeUnitLayout columns="3" horizontalGap="20" />
 		</ui:layout>
 	</ui:WidgetList>
-	
 </s:Skin>

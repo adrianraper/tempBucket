@@ -28,7 +28,7 @@ _global.ORCHID.root.buttonsHolder.BaseScreen.setLiterals = function() {
 	//this.help_pb.setLabel(_global.ORCHID.literalModelObj.getLiteral("help", "buttons"));
 	//this.scratchPad_pb.setLabel(_global.ORCHID.literalModelObj.getLiteral("scratchPad", "buttons"));
 	//this.progress_pb.setLabel(_global.ORCHID.literalModelObj.getLiteral("progress", "buttons"));
-	//this.exmarking_pb.setReleaseAction(_global.ORCHID.literalModelObj.getLiteral("marking", "buttons"));
+	//this.exMarking_pb.setReleaseAction(_global.ORCHID.literalModelObj.getLiteral("marking", "buttons"));
 }
 
 _global.ORCHID.root.buttonsHolder.BaseScreen.display = function() {
@@ -66,7 +66,7 @@ _global.ORCHID.root.buttonsHolder.ExerciseScreen.init = function() {
 	this.navExit_pb.setReleaseAction(_global.ORCHID.viewObj.cmdExit);
 	this.navCourseList_pb.setReleaseAction(_global.ORCHID.viewObj.cmdCourseList);
 	this.help_pb.setReleaseAction(_global.ORCHID.viewObj.cmdHelp);
-	this.exmarking_pb.setReleaseAction(_global.ORCHID.viewObj.cmdMarking);
+	this.exMarking_pb.setReleaseAction(_global.ORCHID.viewObj.cmdMarking); // ar#869
 	this.exFeedback_pb.setReleaseAction(_global.ORCHID.viewObj.cmdFeedback);
 	// print button should only be here if we are running Flash v7
 	this.exPrint_pb.setReleaseAction(_global.ORCHID.viewObj.cmdPrint);
@@ -1058,10 +1058,10 @@ _global.ORCHID.root.buttonsHolder.MenuScreen.display = function() {
 	// v6.5.4.3 certificate button - only show it if there is a certificate in the scaffold
 	// v6.5.5.2 Oops. BW Intl has courseID=51 - which clashes. For now just sort this by checking for filename too.
 	var goTo = _global.ORCHID.course.scaffold.getObjectByID(51); // 51 is the standard ID for a certificate
-	if (goTo==null || goTo.filename=="" || goTo.filename==undefined) {
+	if (goTo==null || goTo.fileName=="" || goTo.fileName==undefined) {
 		this.certificate_pb.setEnabled(false);
 	} else {
-		myTrace("screens.as, got cert=" + goTo.filename);
+		myTrace("screens.as, got cert=" + goTo.fileName);
 	}
 }
 
@@ -1885,7 +1885,7 @@ _global.ORCHID.root.buttonsHolder.CourseListScreen.display = function() {
 				var presetCourseID = _global.ORCHID.root.scormHolder.scormNS.getCourseID();
 				myTrace("use scorm based preset course");
 			// v6.5.3 If this is preview, first time load, just stop here and tell APP to give you the navigation details by lc
-			} else if (_global.ORCHID.commandLine.course==0 && _global.ORCHID.commandLine.preview) {
+			} else if (_global.ORCHID.commandLine.course==0 && _global.ORCHID.commandLine.preview) { 
 				_global.ORCHID.root.controlNS.receiveConn.send("OrchidResponse", "onOrchidReady", true);
 				return; 
 			} else if (_global.ORCHID.commandLine.course>0) {
@@ -1894,7 +1894,13 @@ _global.ORCHID.root.buttonsHolder.CourseListScreen.display = function() {
 			} else if (_global.ORCHID.root.licenceHolder.licenceNS.defaultCourseID > 0 ) {
 				var presetCourseID = _global.ORCHID.root.licenceHolder.licenceNS.defaultCourseID;
 				myTrace("use licence based preset course")
-			}			
+			}
+			// gh#869 Let Bento know you are ready, but keep going with your original course
+			if (_global.ORCHID.commandLine.bento && _global.ORCHID.commandLine.preview) {
+				myTrace("send to OrchidResponse.onOrchidReady")
+				_global.ORCHID.root.controlNS.receiveConn.send("OrchidResponse", "onOrchidReady", true);
+			}
+
 			// v6.3.4 You also want to jump straight in if there is only one course
 			if (this.firstChild.childNodes.length == 1) {
 				var presetCourseID = this.firstChild.childNodes[0].attributes["id"];

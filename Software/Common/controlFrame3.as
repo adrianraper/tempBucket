@@ -289,6 +289,7 @@ controlNS.checkLoadingProgress = function() {
 			this.startTheProgram();
 			//this.master.tmpStartTheProgram.onRelease();
 		} else {
+			myTrace("new loading problem " + missingName);
 			var errObj = {literal:"cannotLoadModules", detail:missingName};
 			this.sendError(errObj);
 		}
@@ -494,6 +495,7 @@ controlNS.initView = function() {
 	//_root.buttonsHolder.introFinished = function() {
 	//	this._introFinished = true;
 	//}	
+	//myTrace("baseScreen still at depth=" + _global.ORCHID.root.buttonsHolder.BaseScreen.getDepth());
 	
 	// v6.5 We have now added in a progressModule extra loaded swf. But this can contain an interface, so unload it here?
 	// All we wanted to do by loading it earlier was to get it in cache.
@@ -1011,7 +1013,7 @@ controlNS.sendNotice= function(noticeObject) {
 // 6.0.5.0 pass back new parameters from the licence
 controlNS.dbConnected = function(errObj) {
 	// once the database is connected, find all the program settings
-	//myTrace("control:dbConnected this=" + this.whoami); // this=proxy root!
+	myTrace("control:dbConnected this=" + this.whoami); // this=proxy root!
 	if (errObj == undefined) {
 		var getSettings = function() {
 			//myTrace("getSettings this=" + this.whoami); // this=??
@@ -1039,7 +1041,7 @@ controlNS.readProgramSettings = function() {
 	// v6.5.5.1 Moved from inside confirmLicence to here - I don't think it is dependent on the licence
 	// so you can ask the intro screen to display (as it might be dependent on the licence)
 	_global.ORCHID.viewObj.displayScreen("IntroScreen");
-	//myTrace("confirm licence " + _global.ORCHID.root.licenceHolder.licenceNS.product + " licenced to " + _global.ORCHID.root.licenceHolder.licenceNS.institution,0);
+	myTrace("confirm licence " + _global.ORCHID.root.licenceHolder.licenceNS.product + " licenced to " + _global.ORCHID.root.licenceHolder.licenceNS.institution,0);
 	// v6.4.2.4 Trigger the institution name onto the screen as it might not have been
 	// read when you are doing the regular introScreen processing.
 	// v6.5.5.1 and it sill might not if coming from getRMSettings
@@ -1050,7 +1052,7 @@ controlNS.readProgramSettings = function() {
 	var internalReadProgramSettings = function() {
 		// v6.3.6 Remove login into merged main
 		 //_global.ORCHID.loginModuleLoaded) {
-		//myTrace("intReadProgSet this=" + this.whoami); // nothing
+		myTrace("intReadProgSet this=" + this.whoami); // nothing
 
 		// v6.4.2 Different loading counting method
 		//if ((_global.ORCHID.commandLine.scorm == Boolean(_global.ORCHID.scormModuleLoaded)) &&
@@ -1552,24 +1554,32 @@ controlNS.setCourse = function(menuRootItems) {
 }
 // 6.0.6.0 Once the session record is written, you can get progress for this course
 controlNS.setProgress = function() {
-	var courseModule = _global.ORCHID.course;
-	courseModule.onLoadProgress = function() {
-		// once the progress has been loaded save the object globally
-		
-		// v6.4.2.8 At this point I want to do a quick race through the scaffold summarising
-		// the everyone information at the course/unit/xxx level. 
-		myTrace("summariseEveryoneInformation");
-		//_global.ORCHID.course.scaffold.summariseEveryoneInformation();
-		_global.ORCHID.course.scaffold.summariseInformation(2);
-		
-		// and go on to display the menu
-		//myTrace("course.onLoadProgress this=" + this.whoami);
+	
+	// gh#869 No need for scores in Bento
+	if (_global.ORCHID.commandLine.bento) {
+		myTrace("no progress records thanks");
 		controlNS.displayButtons();
-		// 6.0.2.0 do this after setting the buttons in case the
-		// stateInit calls clash
-		//_$displayMenu();
+	} else {
+		var courseModule = _global.ORCHID.course;
+		myTrace("control.setProgress");
+		courseModule.onLoadProgress = function() {
+			// once the progress has been loaded save the object globally
+			
+			// v6.4.2.8 At this point I want to do a quick race through the scaffold summarising
+			// the everyone information at the course/unit/xxx level. 
+			myTrace("summariseEveryoneInformation");
+			//_global.ORCHID.course.scaffold.summariseEveryoneInformation();
+			_global.ORCHID.course.scaffold.summariseInformation(2);
+			
+			// and go on to display the menu
+			//myTrace("course.onLoadProgress this=" + this.whoami);
+			controlNS.displayButtons();
+			// 6.0.2.0 do this after setting the buttons in case the
+			// stateInit calls clash
+			//_$displayMenu();
+		}
+		courseModule.loadProgress();
 	}
-	courseModule.loadProgress();
 }
 
 controlNS.displayButtons = function() {
@@ -1786,8 +1796,8 @@ controlNS.onMenuPress = function(id, action, itemObj) {
 		//trace("got this ex as id=" + itemObj.id);
 		// v6.2 At this point, can I also quickly get the previous and next exercises?
 		//trace("old next=" + _global.ORCHID.session.nextItem.id + " old previous=" + _global.ORCHID.session.previousItem.id);
-		_global.ORCHID.session.nextItem = _global.ORCHID.course.scaffold.getNextItemID(itemObj.ID);
-		_global.ORCHID.session.previousItem = _global.ORCHID.course.scaffold.getPreviousItemID(itemObj.ID);
+		_global.ORCHID.session.nextItem = _global.ORCHID.course.scaffold.getNextItemID(itemObj.id);
+		_global.ORCHID.session.previousItem = _global.ORCHID.course.scaffold.getPreviousItemID(itemObj.id);
 		//trace("new next=" + _global.ORCHID.session.nextItem.id + " new previous=" + _global.ORCHID.session.previousItem.id);
 		//trace("got next id=" + _global.ORCHID.session.nextItem.id);
 		this.createExercise(itemObj);

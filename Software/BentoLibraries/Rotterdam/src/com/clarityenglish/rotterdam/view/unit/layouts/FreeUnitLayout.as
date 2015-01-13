@@ -53,7 +53,7 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 			var measuredHeight:Number = 0;
 			
 			// Get the width of a column
-			var columnWidth:Number = (width - horizontalGap * (columns - 1)) / columns;
+			var columnWidth:Number = (width - horizontalGap * (columns - 1)) / columns - 8;
 			
 			for (var i:int = 0; i < target.numElements; i++) {
 				var element:ILayoutElement = (useVirtualLayout ? target.getVirtualElementAt(i) : target.getElementAt(i));
@@ -76,7 +76,8 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 					measuredHeight = Math.max(measuredHeight, Math.max(elementY + currentElement.getLayoutBoundsHeight(),  elementY + 275));
 					
 					// Set the position
-					currentElement.setLayoutBoundsPosition(elementX, elementY);
+					// cp: Widget put on screen start from 10 pixels away from left
+					currentElement.setLayoutBoundsPosition(elementX + 12, elementY);
 					
 					// #17 - this is somewhat hacky, but set the current height of the element in the XML so that WidgetAddCommand can figure out
 					// where to put new widgets.  When widget layout is figured out properly this will definitely go.

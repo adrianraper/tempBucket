@@ -1,9 +1,14 @@
 package com.clarityenglish.rotterdam.view.unit.ui {
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayout;
+	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.AnimationWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AudioWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ExerciseWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ImageWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.OrchidWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.SelectorWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.TextWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.VideoWidget;
 	
@@ -11,6 +16,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
+	import mx.collections.ArrayCollection;
 	import mx.collections.ListCollectionView;
 	import mx.core.ClassFactory;
 	import mx.core.DragSource;
@@ -36,6 +42,9 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		private var dragSource:DragSource;
+		// For video selector widget: the video selector is the one with channel list
+		private var _href:Href;
+		private var _channelCollection:ArrayCollection;
 		
 		public var editable:Boolean;
 		
@@ -45,32 +54,39 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			itemRendererFunction = widgetItemRendererFunction;
 		}
 		
-		private function typeToWidgetClass(type:String):Class {
-			// TODO: These should probably be specified elsewhere
-			switch (type) {
-				case "text":
-					return TextWidget;
-				case "pdf":
-					return PDFWidget;
-				case "video":
-					return VideoWidget;
-				case "image":
-					return ImageWidget;
-				case "audio":
-					return AudioWidget;
-				case "exercise":
-					return ExerciseWidget;
-				default:
-					log.error("Unsupported widget type " + type);
-					return null;
-			}
+		// for video selector widget
+		[Bindable]
+		public function get channelCollection():ArrayCollection {
+			return _channelCollection;
+		}
+		
+		public function set channelCollection(value:ArrayCollection):void {
+			_channelCollection = value;
+		}
+		
+		// for video selector widget
+		[Bindable]
+		public function get href():Href {
+			return _href;
+		}
+		
+		public function set href(value:Href):void {
+			_href = value;
 		}
 		
 		private function widgetItemRendererFunction(item:Object):ClassFactory {
-			var widgetClass:Class = typeToWidgetClass(item.@type);
+			var widgetClass:Class = AbstractWidget.typeToWidgetClass(item.@type);
+			if (!widgetClass)
+				log.error("Unsupported widget type " + item.@type);
 			
 			var classFactory:ClassFactory = new ClassFactory(widgetClass);
-			classFactory.properties = { xml: item, editable: editable, widgetCaptionChanged: true };
+			if (item.@type == "group") {
+				classFactory.properties = { xml: item, editable: editable, widgetCaptionChanged: true, width: width - 30};
+			} else if (item.@type == "videoSelector") {
+				classFactory.properties = { xml: item, editable: editable, widgetCaptionChanged: true, width: width - 30, href: href, channelCollection: channelCollection};
+			} else {
+				classFactory.properties = { xml: item, editable: editable, widgetCaptionChanged: true};
+			}
 			
 			//gh#260
 			/*if (scroller.verticalScrollBar) {

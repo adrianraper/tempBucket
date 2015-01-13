@@ -61,7 +61,7 @@ package com.clarityenglish.bento.model {
 		
 		[Bindable(event="selectedNodeChanged")]
 		public function get selectedGroupNode():XML {
-			if (!selectedExerciseNode.hasOwnProperty("@group")) return null;
+			if (!selectedExerciseNode.attribute("group").length() > 0) return null;
 			var matchingGroups:XMLList = selectedCourseNode.groups[0].group.(@id == selectedExerciseNode.@group);
 			return (matchingGroups.length() == 1) ? matchingGroups[0] : null;
 		}
@@ -79,7 +79,7 @@ package com.clarityenglish.bento.model {
 		// gh#265
 		[Bindable(event="selectedNodeChanged")]
 		public function get selectedNodeType():String {			
-			return (selectedExerciseNode.hasOwnProperty("@type") == true)? selectedExerciseNode.@type : null;
+			return (selectedExerciseNode.attribute("type").length() > 0) ? selectedExerciseNode.@type : null;
 		}		 
 
 		public function reset():void {
@@ -172,7 +172,7 @@ package com.clarityenglish.bento.model {
 					return null;
 				
 				var parentMatch:Boolean = (selectedExerciseNode.parent() === otherExerciseNode.parent());
-				var groupMatch:Boolean = (!selectedExerciseNode.hasOwnProperty("@group") && !otherExerciseNode.hasOwnProperty("@group")) || (selectedExerciseNode.@group == otherExerciseNode.@group);
+				var groupMatch:Boolean = (!selectedExerciseNode.attribute("group").length() > 0 && !otherExerciseNode.attribute("group").length()) || (selectedExerciseNode.@group == otherExerciseNode.@group);
 				
 				// If this exercise is valid to link to, then return it
 				if (parentMatch && groupMatch && Exercise.linkExerciseInMenu(otherExerciseNode))
@@ -214,8 +214,8 @@ package com.clarityenglish.bento.model {
 				log.error("Attempt to get exercise UID from an empty href");
 				return "";
 			}
-
-			var matchingExerciseNodes:XMLList = menu..exercise.(@href == href.filename);
+			
+			var matchingExerciseNodes:XMLList = menu..exercise.(attribute("href") == href.filename);
 			if (matchingExerciseNodes.length() > 1) {
 				throw new Error("Found multiple Exercise nodes in the menu xml matching " + href);
 			} else if (matchingExerciseNodes.length() == 0) {
@@ -223,11 +223,16 @@ package com.clarityenglish.bento.model {
 			}
 
 			var thisNode:XML = matchingExerciseNodes[0];
+			// for CP, exericse parent is not unit but group exercise
+			var unitXML:XML = thisNode.parent();
+			while(unitXML.name() != "unit") {
+				unitXML = unitXML.parent();
+			}
 			
 			var eid:String = thisNode.@id;			
-			var uid:String = thisNode.parent().@id;			
-			var cid:String = thisNode.parent().parent().@id;			
-			var pid:String = thisNode.parent().parent().parent().@id;
+			var uid:String = unitXML.@id;			
+			var cid:String = unitXML.parent().@id;			
+			var pid:String = unitXML.parent().parent().@id;
 			
 			return pid + "." + cid + "." + uid + "." + eid;
 		}

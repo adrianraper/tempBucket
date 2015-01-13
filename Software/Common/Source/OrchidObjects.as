@@ -17,6 +17,7 @@ ProgramSettingsObject = function() {
 }
 ProgramSettingsObject.prototype.load = function() {
 
+	myTrace("ProgramSettingsObject load");
 	// v6.5.4.6 Group doesn't always equal root for new users anymore, but it is still the default
 	// v6.5.6 Though we might set a different default group for SCORM users - NAS wants this
 	// perhaps it will come from licence settings in the account? Yes.
@@ -169,7 +170,8 @@ ProgramSettingsObject.prototype.load = function() {
 				
 				// This will overwrite any information that comes from the licence
 				// v6.5.5.1 Most important is to pick up the root if we didn't already know it
-				if (_global.ORCHID.root.licenceHolder.licenceNS.central.root==undefined) {
+				myTrace('XX original root=' + _global.ORCHID.root.licenceHolder.licenceNS.central.root + ' db root=' + tN.attributes.rootID);
+				if (_global.ORCHID.root.licenceHolder.licenceNS.central.root==undefined || _global.ORCHID.root.licenceHolder.licenceNS.central.root=='') {
 					myTrace("we don't know the root, so read it as " + tN.attributes.rootID);
 					_global.ORCHID.root.licenceHolder.licenceNS.central.root = tN.attributes.rootID;
 				}
@@ -178,7 +180,8 @@ ProgramSettingsObject.prototype.load = function() {
 				_global.ORCHID.root.licenceHolder.licenceNS.licenceStartDate = _global.ORCHID.root.licenceHolder.licenceNS.registrationDate;
 
 				// v6.5.5.1 Do we know who owns the licence?
-				if (_global.ORCHID.root.licenceHolder.licenceNS.institution==undefined) {
+				myTrace('XX original name=' + _global.ORCHID.root.licenceHolder.licenceNS.institution + ' db root=' + tN.attributes.institution);
+				if (_global.ORCHID.root.licenceHolder.licenceNS.institution==undefined || _global.ORCHID.root.licenceHolder.licenceNS.institution=='') {
 					_global.ORCHID.root.licenceHolder.licenceNS.institution = tN.attributes.institution;
 				}
 				// parse the returned XML to get account details
@@ -211,7 +214,7 @@ ProgramSettingsObject.prototype.load = function() {
 				_global.ORCHID.root.licenceHolder.licenceNS.checksum = tN.attributes.checksum;
 				//if (_global.ORCHID.root.licenceHolder.licenceNS.licencing!=licenceType) {
 				if (_global.ORCHID.root.licenceHolder.licenceNS.licencing) {
-					myTrace("overwriting ("+ _global.ORCHID.root.licenceHolder.licenceNS.licencing + ") licence type from licence file with (" + licenceType + ") from the T_Accounts table");
+					myTrace("overwriting ("+ _global.ORCHID.root.licenceHolder.licenceNS.licencing + ") licence type from licence file with (" + tN.attributes.licenceType + ") from the T_Accounts table");
 					//_global.ORCHID.root.licenceHolder.licenceNS.licencing = licenceType;
 				}
 				// v6.5.5.2 And if it is an AA licence, lets go all anonymous. You can override this with a specific action in the licence if you need.
@@ -408,13 +411,13 @@ ProgramSettingsObject.prototype.load = function() {
 				// Build the string of data that was protected
 				//$account->name.$account->selfHostDomain.$title-> expiryDate.$title-> maxStudents.$title->licenceType.$account->id.$title->productCode;
 				var protectedString = _global.ORCHID.root.licenceHolder.licenceNS.institution + 
-								_global.ORCHID.root.licenceHolder.licenceNS.control.server +
+								//_global.ORCHID.root.licenceHolder.licenceNS.control.server + // _global.ORCHID.root.licenceHolder.licenceNS.control.server
 								this.master.expiryDate+
 								this.master.maxStudents+
 								_global.ORCHID.root.licenceHolder.licenceNS.licenceType + 
 								_global.ORCHID.root.licenceHolder.licenceNS.central.root+
 								_global.ORCHID.root.licenceHolder.licenceNS.productCode;
-				//myTrace("oo.protectedString=" + protectedString + " and checksum=" + _global.ORCHID.root.licenceHolder.licenceNS.checksum);
+				myTrace("oo.protectedString=" + protectedString + " and checksum=" + _global.ORCHID.root.licenceHolder.licenceNS.checksum);
 				// Check it out - and go on if all is OK
 				_global.ORCHID.root.displayListHolder.displayListNS.checkDisplay(protectedString, _global.ORCHID.root.licenceHolder.licenceNS.checksum);			
 			}			
@@ -906,7 +909,7 @@ UserObject.prototype.startUser = function(myName, myPassword, myStudentID, myUse
 			//	// parse the returned XML to get licence details
 			//	// licence details are saved in the session object
 			//	mySession.licenceHost = tN.attributes.host;
-			//	mySession.licenceID = tN.attributes.ID;
+			//	mySession.licenceID = tN.attributes.id;
 			//	mySession.licenceNote = tN.attributes.note;
 			//	myTrace("your licence is " + mySession.licenceHost+":"+mySession.licenceID + " (" + mySession.licenceNote + ")");
 
@@ -1316,7 +1319,7 @@ UserObject.prototype.getLicenceSlot = function(userObject) {
 				// licence details are saved in the session object
 				// v6.5.5.0 For learner tracking licences most of this information will be null
 				mySession.licenceHost = tN.attributes.host;
-				mySession.licenceID = tN.attributes.ID;
+				mySession.licenceID = tN.attributes.id;
 				mySession.licenceNote = tN.attributes.note;
 				myTrace("node: licenceSlot is " + mySession.licenceHost+":"+mySession.licenceID + " (" + mySession.licenceNote + ")");
 
@@ -1740,7 +1743,7 @@ UserObject.prototype.addNewUser = function(userObject) {
 			//} else if (tN.nodeName == "licence") {
 			//	// parse the returned XML to get licence details
 			//	mySession.licenceHost = tN.attributes.host;
-			//	mySession.licenceID = tN.attributes.ID;
+			//	mySession.licenceID = tN.attributes.id;
 			//	mySession.licenceNote = tN.attributes.note;
 			//	myTrace("your licence is " + mySession.licenceHost+":"+mySession.licenceID + " (" + mySession.licenceNote + ")");
 
@@ -1822,10 +1825,10 @@ UserObject.prototype.getAllUsers = function() {
 				// parse the returned XML to get user details
 				// ignore the teacher (and anyone else special)
 				// v6.3.6 This is now done with userType rather than special userIDs
-				//if (tN.attributes.ID > 1) {
+				//if (tN.attributes.id > 1) {
 				if (tN.attributes.userType == 0) {
-					myTrace("got user id=" + tN.attributes.ID + " name=" + tN.attributes.name);
-					_global.ORCHID.user.userList.push({userID:tN.attributes.ID, userName:tN.attributes.name});
+					myTrace("got user id=" + tN.attributes.id + " name=" + tN.attributes.name);
+					_global.ORCHID.user.userList.push({userID:tN.attributes.id, userName:tN.attributes.name});
 				}
 				
 			// anything we didn't expect?
@@ -2600,9 +2603,9 @@ SessionObject.prototype.holdLicence = function() {
 					// parse the returned XML to get licence details
 					// licence details are saved in the session object
 					//mySession.licenceHost = tN.attributes.host;
-					//mySession.licenceID = tN.attributes.ID;
+					//mySession.licenceID = tN.attributes.id;
 					//mySession.licenceNote = tN.attributes.note;
-					myTrace("your licence is " + tN.firstChild.nodeValue + " (" + tN.attributes.ID + ")");
+					myTrace("your licence is " + tN.firstChild.nodeValue + " (" + tN.attributes.id + ")");
 	
 				// anything we didn't expect?
 				} else {
@@ -2664,7 +2667,7 @@ SessionObject.prototype.dropLicence = function() {
 				// there is probably no need to send anything back
 				// and a licence node
 				} else if (tN.nodeName == "licence") {
-					myTrace("your licence was " + tN.firstChild.nodeValue + " (" + tN.attributes.ID + ")");
+					myTrace("your licence was " + tN.firstChild.nodeValue + " (" + tN.attributes.id + ")");
 	
 				// anything we didn't expect?
 				} else {
@@ -2738,9 +2741,9 @@ SessionObject.prototype.exit = function() {
 				// parse the returned XML to get licence details
 				// licence details are saved in the session object
 				//mySession.licenceHost = tN.attributes.host;
-				//mySession.licenceID = tN.attributes.ID;
+				//mySession.licenceID = tN.attributes.id;
 				//mySession.licenceNote = tN.attributes.note;
-				//myTrace("your licence is " + tN.firstChild.nodeValue + " (" + tN.attributes.ID + ")");
+				//myTrace("your licence is " + tN.firstChild.nodeValue + " (" + tN.attributes.id + ")");
 
 			// anything we didn't expect?
 			} else {
@@ -2921,9 +2924,10 @@ SessionObject.prototype.startSession = function() {
 				// But it would be better to call a different routine that warned and THEN you let you go on.
 				// v6.5.5.6 Now records written for title based sessions
 				// and I don't need to call anything, just go ahead
-				callbackModule.setProgress();
+				callBackModule.setProgress();
 			} else {
-				callbackModule.setProgress();
+				myTrace("callBack to setProgress");
+				callBackModule.setProgress();
 			}
 		}
 		thisDB.runQuery();
@@ -3001,9 +3005,9 @@ SessionObject.prototype.stopSession = function() {
 					// parse the returned XML to get licence details
 					// licence details are saved in the session object
 					//mySession.licenceHost = tN.attributes.host;
-					//mySession.licenceID = tN.attributes.ID;
+					//mySession.licenceID = tN.attributes.id;
 					//mySession.licenceNote = tN.attributes.note;
-					//myTrace("your licence is " + tN.firstChild.nodeValue + " (" + tN.attributes.ID + ")");
+					//myTrace("your licence is " + tN.firstChild.nodeValue + " (" + tN.attributes.id + ")");
 	
 				// anything we didn't expect?
 				} else {
@@ -3037,7 +3041,7 @@ function ScoreObject(myObject) {
 		this.dateStamp = dateFormat(new Date());
 	}
 	if (myObject.itemID == undefined) {
-		this.itemID = _global.ORCHID.session.currentItem.ID; 
+		this.itemID = _global.ORCHID.session.currentItem.id; 
 	} else {
 		this.itemID = myObject.itemID;
 	}
@@ -3099,9 +3103,9 @@ ScoreObject.prototype.writeOut = function() {
 		_global.ORCHID.root.scormHolder.scormNS.setScore(this);
 		// v6.3.5 or you could set the bookmark here (not quite right working from mainMarking)
 		// V6.5.5 Content paths. Whole bookmark thing will need rethinking.
-		if (_global.ORCHID.session.nextItem.ID != undefined) {
+		if (_global.ORCHID.session.nextItem.id != undefined) {
 			myTrace("in writeOut, set bookmark");
-			_global.ORCHID.root.scormHolder.scormNS.setBookmark(_global.ORCHID.session.nextItem.ID);
+			_global.ORCHID.root.scormHolder.scormNS.setBookmark(_global.ORCHID.session.nextItem.id);
 		} else {
 			myTrace("in writeOut, so set bookmark empty");
 			//v6.4.2 I think you should still set the bookmark, but to empty. If you leave it
@@ -3114,7 +3118,7 @@ ScoreObject.prototype.writeOut = function() {
 		// make a new db query
 		// v6.3.6 Merge database to main
 		var thisDB = new _global.ORCHID.root.mainHolder.dbQuery();
-		//myTrace("in writeOutScore for " + this.itemID);
+		myTrace("in writeOutScore for " + this.itemID);
 		var myUserID = _global.ORCHID.user.userID;
 		//myTrace("write out score for user " + myUserID);
 		// v6.3.5 Session table contains courseID not courseName
@@ -3481,7 +3485,7 @@ function ScoreDetailObject(myObject) {
 		this.dateStamp = myObject.dateStamp;
 	}
 	if (myObject.exerciseID == undefined) {
-		this.exerciseID = _global.ORCHID.session.currentItem.ID; 
+		this.exerciseID = _global.ORCHID.session.currentItem.id; 
 	} else {
 		this.exerciseID = myObject.exerciseID;
 	}

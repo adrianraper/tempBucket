@@ -59,7 +59,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		 */
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var widgetChrome:WidgetChrome;
 		
 		[SkinPart(required="true")]
@@ -194,14 +194,30 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public function get clarityUID():String {
 			if (_xml && _xml.(hasOwnProperty("@id"))) {
 				var eid:String = _xml.@id;
-				var unitid:String = _xml.parent().@id;			
-				var cid:String = _xml.parent().parent().@id;			
+				
+				// For CP, the menu structure doesn't follow 3 level deep format
+				var unitNode:XML = _xml.parent();
+				while (unitNode.name() != 'unit') {
+					unitNode = unitNode.parent();
+				}
+				var unitid:String = unitNode.@id;
+				var cid:String = unitNode.parent().@id;			
 				//var pid:String = _xml.parent().parent().parent().@id;
 			} else {
 				cid = unitid = eid = '0';
 			}
 			
-			var UID:String = "54" + "." + cid + "." + unitid + "." + eid;
+			var menuNode:XML = _xml.parent();
+			while(menuNode.name() != 'menu') {
+				menuNode = menuNode.parent();
+			}
+			// CP: get the menu id(product code). But for existed CCB menu.xml, there is no id
+			if (menuNode.hasOwnProperty("@id")){
+				var UID:String = menuNode.@id + "." + cid + "." + unitid + "." + eid;
+			} else {
+				UID = "54" + "." + cid + "." + unitid + "." + eid;
+			}
+			
 			return UID;
 		}
 		
@@ -221,6 +237,41 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public function setProgress(event:ProgressEvent):void {
 			if (progressRange)
 				progressRange.value = event.bytesLoaded / event.bytesTotal * 100;
+		}
+		
+		// for selectorwidget, when select widget with same type, no more new widget will be creates, insteadly the src of widget will be updated
+		public function updateSrc(value:String):void {
+			
+		}
+		
+		public static function typeToWidgetClass(type:String):Class {
+			// TODO: These should probably be specified elsewhere
+			switch (type) {
+				case "text":
+					return TextWidget;
+				case "pdf":
+					return PDFWidget;
+				case "video":
+					return VideoWidget;
+				case "image":
+					return ImageWidget;
+				case "audio":
+					return AudioWidget;
+				case "exercise":
+					return ExerciseWidget;
+				case "animation":
+					return AnimationWidget;
+				case "orchid":
+					return OrchidWidget;
+				case "selector":
+					return SelectorWidget;
+				case "group":
+					return GroupWidget;
+				case "videoSelector":
+					return VideoSelectorWidget;
+				default:
+					return null;
+			}
 		}
 			
 		// gh#187

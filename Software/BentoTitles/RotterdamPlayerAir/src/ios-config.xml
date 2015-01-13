@@ -14,10 +14,10 @@
     
     <platform>tablet|iPad</platform>
     
-    <contentPath>http://www.clarityenglish.com/Content/CCB/</contentPath>
-    <remoteDomain>http://www.clarityenglish.com/Software/</remoteDomain>
-    <remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
-    <remoteStartFolder>http://www.clarityenglish.com/area1/</remoteStartFolder>
+    <contentPath>http://claritydev2/Content/CCB/</contentPath>
+    <remoteDomain>http://claritydev2/Software/</remoteDomain>
+    <remoteGateway>http://claritydev2/Software/ResultsManager/web/amfphp/</remoteGateway>
+    <remoteStartFolder>http://claritydev2/area1/</remoteStartFolder>
     <!--  
     <contentPath>http://claritydevelop/Content/CCB/</contentPath>
     <remoteDomain>http://192.168.8.60/Software/</remoteDomain>

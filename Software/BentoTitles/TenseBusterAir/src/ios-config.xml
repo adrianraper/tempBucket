@@ -11,10 +11,10 @@
 	<brandingMedia />
 	
 	<language>EN</language>
-	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
+	<contentPath>http://192.168.8.82/Content/</contentPath>
 	
-	<remoteDomain>http://www.clarityenglish.com/</remoteDomain>
-	<remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteDomain>http://192.168.8.82/</remoteDomain>
+	<remoteGateway>http://192.168.8.82/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>TenseBusterService</remoteService>
 	
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>

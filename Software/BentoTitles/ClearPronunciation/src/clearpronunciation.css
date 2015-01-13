@@ -1,0 +1,379 @@
+/*
+confirm that the rotterdam.clearpronunciation namespaces are NOT used please
+@namespace clearpronunciation "com.clarityenglish.rotterdam.clearpronunciation.*";
+@namespace ui "skins.rotterdam.clearpronunciation.progress.ui.*";
+*/
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace progress "com.clarityenglish.clearpronunciation.view.progress.*";
+@namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
+@namespace progressui "com.clarityenglish.bento.view.progress.ui.*"; 
+@namespace login "com.clarityenglish.rotterdam.view.login.*";
+@namespace unit "com.clarityenglish.clearpronunciation.view.unit.*";
+@namespace unitui "com.clarityenglish.rotterdam.view.unit.ui.*";
+@namespace ui2 "com.clarityenglish.rotterdam.view.unit.ui.*";
+@namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
+@namespace tlfcomponents "com.clarityenglish.textLayout.components.*";
+@namespace recorder "com.clarityenglish.bento.view.recorder.*";
+@namespace clearpronunciation1 "com.clarityenglish.clearpronunciation.*";
+@namespace course "com.clarityenglish.clearpronunciation.view.course.*";
+@namespace courseui "com.clarityenglish.clearpronunciation.view.course.ui.*";
+@namespace credits "com.clarityenglish.bento.view.credits.*";
+@namespace title "com.clarityenglish.clearpronunciation.view.title.*";
+@namespace ui3 "skins.clearpronunciation.progress.ui.*";
+@namespace exercise "com.clarityenglish.clearpronunciation.view.exercise.*";
+@namespace settings "com.clarityenglish.clearpronunciation.view.settings.*";
+@namespace home "com.clarityenglish.clearpronunciation.view.home.*";
+@namespace video "com.clarityenglish.controls.video.*";
+@namespace players "com.clarityenglish.controls.video.players.*";
+@namespace vo "com.clarityenglish.clearpronunciation.vo.*";
+@namespace widgetcomponents "com.clarityenglish.components.*";
+@namespace widgetskins "skins.rotterdam.unit.widgets.*";
+@namespace marking "com.clarityenglish.bento.view.marking.*";
+@namespace warning "com.clarityenglish.bento.view.warning.*";
+@namespace ui "com.clarityenglish.clearpronunciation.view.home.ui.*";
+@namespace ui4 "com.clarityenglish.clearpronunciation.view.exercise.ui.*";
+@namespace error "com.clarityenglish.common.view.error.*";
+
+global {
+	defaultColor: #00A2C8;
+	defaultColorDark: #005063;
+	rollOverColor: #FBCF57;
+	selectionColor: #19B5E0;
+	/*defaultIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall');
+	defaultIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconBare');*/
+	IColor : #EC1C32;
+	CColor : #D19D2E;
+	VColor : #8AA13B;
+	DColor : #0499A6;
+	
+	cDarkColor: #263A45;
+	cLightColor: #416B75;
+	vDarkColor: #603813;
+	vLightColor: #E0E06B;
+	dDarkColor: #3A4F00;
+	dLightColor: #8BC452;
+	
+	undoneDarkColor: #979797;
+	undoneLightColor: #CACACA;
+	
+	circleWedgeColors: #006669, #C7EAE4, #37A6A0, #427F7F, #204C57, #9AB5B1, #2F7571, #2F5252, #3CBDBD, #093333, #588C8B;
+	markingColours: #2CA874, #E61E1E, #0066FF;
+	
+	unitColours: #FFCC00, #99CC33, #29ABE2, #77449D, #D4145A, #AA0000, #FF5900, #00A99D, #140382;
+	gradientColours: #FFFF66, #CCFF33, #70D9FF, #AD8EC4, #FF73BB, #FF8085, #FFBD00, #7AD6C7, #617AC4;
+}
+
+tlfcomponents|AudioPlayer {
+	skinClass: ClassReference("skins.clearpronunciation.components.AudioPlayerSkin");
+	compactStoppedIcon: Embed(source="skins/clearpronunciation/assets/play.png");
+	compactPlayedIcon: Embed(source="skins/clearpronunciation/assets/played.png");
+	compactPausedIcon: Embed(source="skins/clearpronunciation/assets/pause.png");
+	compactPlayingIcon: Embed(source="skins/clearpronunciation/assets/playing.png");
+	fullPlayIcon: Embed(source="skins/clearpronunciation/assets/play.png");
+	fullPauseIcon: Embed(source="skins/clearpronunciation/assets/pause.png");
+}
+
+tlfcomponents|AudioPlayer s|ScrubBar {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.audio.AudioScruBarSkin");
+}
+
+ui4|WindowShade {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.WindowShadeSkin");
+}
+
+ui4|WindowShade s|Button#thumbButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.WindowShadeThumbButtonSkin");
+}
+
+s|TitleWindow.RecorderTitleWindow {
+	skinClass: ClassReference("skins.clearpronunciation.recorder.RecorderTitleWindowSkin");
+}
+
+s|TitleWindow.SettingsTitleWindow {
+	skinClass: ClassReference("skins.clearpronunciation.settings.SettingsTitleWindowSkin");
+}
+
+s|TitleWindow.markingTitleWindow {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.marking.MarkingTitleWindowSkin");
+}
+
+s|TitleWindow.warningTitleWindow {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.warning.WarningTitleWindowSkin");
+}
+
+s|TitleWindow.feedbackTitleWindow {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.feedback.FeedbackTitleWindowSkin");
+}
+
+s|TitleWindow.noTitleTitleWindow {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.NoTitleTitleWindowSkin");
+}
+
+s|TitleWindow.errorTitleWindow {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.error.ErrorTitleWindowSkin");
+}
+
+error|ErrorView {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.error.ErrorSkin");
+}
+
+error|ErrorView s|Button#closeButton{
+	skinClass: ClassReference("skins.clearpronunciation.settings.ui.SettingsCloseButtonSkin");
+}
+
+
+s|VScrollBar {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.VScrollBarSkin");
+}
+
+recorder|RecorderView {
+	skinClass: ClassReference("skins.clearpronunciation.recorder.RecorderSkin");
+}
+
+recorder|WaveformView {
+	skinClass: ClassReference("skins.clearpronunciation.recorder.WaveformSkin");
+}
+
+players|OSMFVideoPlayer {
+	skinClass: ClassReference("skins.clearpronunciation.controls.video.videoplayer.VideoPlayerSkin");
+}
+
+s|Button#unitItemLeftButton,#unitItemRightButton {
+	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitItemButtonSkin");
+}
+
+clearpronunciation1|ClearPronunciationApplication {
+	skinClass: ClassReference("skins.clearpronunciation.ClearPronunciationApplicationSkin");
+}
+
+login|LoginView {
+	skinClass: ClassReference("skins.clearpronunciation.login.LoginSkin");
+}
+
+login|LoginView s|Button#loginButton {
+	skinClass: ClassReference("skins.clearpronunciation.ui.LoginButtonSkin");
+}
+
+login|LoginView s|Button#forgotPassword_btn {
+	skinClass: ClassReference("skins.clearpronunciation.ui.ForgotPasswordButtonSkin");
+}
+
+/*login|LoginView s|TextInput {
+skinClass: ClassReference("spark.skins.spark.TextInputSkin");
+borderVisible: true;
+borderColor: #C8C8C8;
+contentBackgroundColor: #FFFFFF;
+}*/
+
+login|LoginView s|TextInput {
+	skinClass: ClassReference("skins.clearpronunciation.ui.LoginTextInputSkin");
+	cornerRadius: 5;
+}
+
+title|TitleView {
+	skinClass: ClassReference("skins.clearpronunciation.title.TitleSkin");
+}
+
+title|TitleView s|TabbedViewNavigator {
+	skinClass: ClassReference("skins.clearpronunciation.title.ui.WebTabbedViewNavigatorSkin");
+}
+
+title|TitleView s|Button#progressButton {
+	skinClass: ClassReference("skins.clearpronunciation.title.ui.ProgressButtonSkin");
+}
+
+title|TitleView s|Button#settingsButton {
+	skinClass: ClassReference("skins.clearpronunciation.title.ui.SettingsButtonSkin");
+}
+
+title|TitleView s|Button#phonemicChartButton {
+	skinClass: ClassReference("skins.clearpronunciation.title.ui.PhonemicChartButtonSkin");
+}
+
+title|TitleView s|Button#helpButton {
+	skinClass: ClassReference("skins.clearpronunciation.title.ui.HelpButtonSkin");
+}
+
+title|TitleView s|Button#logoutButton {
+	skinClass: ClassReference("skins.clearpronunciation.title.ui.LogoutButtonSkin");
+}
+
+title|TitleView s|Button#backButton {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressBackButtonSkin");
+}
+
+home|HomeView {
+	skinClass: ClassReference("skins.clearpronunciation.home.HomeSkin");
+}
+
+home|HomeView s|Button#courseListButton {
+	skinClass: ClassReference("skins.clearpronunciation.home.ui.CourseListButtonSkin");
+}
+
+home|HomeView video|VideoSelector {
+	skinClass: ClassReference("skins.clearpronunciation.home.ui.HomeVideoSelectorSkin");
+}
+
+video|VideoSelector {
+	skinClass: ClassReference("skins.clearpronunciation.controls.video.VideoSelectorSkin");
+}
+
+exercise|YouWillView {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.YouWillSkin");
+}
+
+exercise|ExerciseView {
+	top: -70; /* WebTabbedViewNavigatorSkin makes everything come in 70px too low.  Use this hack for now so that we don't need to change the whole layout. */
+	skinClass: ClassReference("skins.clearpronunciation.ExerciseSkin");
+}
+
+exercise|ExerciseView s|Button#markingButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.MarkingButtonSkin");
+}
+
+exercise|ExerciseView s|Button#feedbackButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.FeedbackButtonSkin");
+}
+
+exercise|ExerciseView s|Button#startAgainButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.StartAgainButtonSkin");
+}
+
+exercise|ExerciseView s|Button#unitDropDownLeftItemButton, #unitDropDownRightItemButton {
+	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitItemButtonSkin");
+}
+
+exercise|ExerciseView s|Button#backToMenuButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.MenuButtonSkin");
+}
+
+exercise|ExerciseView s|Button#recorderButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.RecorderButtonSkin");
+}
+
+exercise|ExerciseView s|Button#phonemicChartButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.PhonemicChartButtonSkin");
+}
+
+exercise|ExerciseView s|Button#youWillButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.YouWillButtonSkin");
+}
+
+exercise|ExerciseView s|Button#logoutButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.LogoutButtonSkin");
+}
+
+exercise|ExerciseView s|Button#backButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.BackButtonSkin");
+}
+
+exercise|ExerciseView s|Button#forwardButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.NextButtonSkin");
+}
+
+/*course|CourseView s|Button#makeSoundsExpandButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.MakeSoundsExpandButtonSkin");
+}
+
+course|CourseView s|Button#makeSoundsCollapseButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.MakeSoundsCollapseButtonSkin");
+}*/
+
+
+marking|MarkingView {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.marking.MarkingSkin");
+}
+
+marking|MarkingView s|Button {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.marking.TryAgainButtonSkin");
+}
+marking|MarkingView s|Button#seeAnswersButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.marking.SeeTheAnswersButtonSkin");
+}
+
+warning|WarningView {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.warning.WarningSkin");
+}
+
+warning|WarningView s|Button#yesButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.warning.YesButtonSkin");
+}
+
+warning|WarningView s|Button#noButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.warning.NoButtonSkin");
+}
+
+/* Progress view styles */
+progress|ProgressView {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressSkin");
+}
+
+progress|ProgressView s|ButtonBar#progressNavBar {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ui.ProgressNavBarSkin");
+}
+
+progress|ProgressCoverageView {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressCoverageSkin");
+}
+
+progress|ProgressAnalysisView {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressAnalysisSkin");
+}
+
+progress|ProgressAnalysisView s|Button#circleWedgeInstructionLabel {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ui.GreyLabelButtonSkin");
+}
+
+progress|ProgressScoreView {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressScoreSkin");
+}
+
+progress|ProgressScoreView s|DataGrid#scoreDetailsDataGrid {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ui.ProgressScoreDataGridSkin");
+	borderAlpha: 0;
+}
+
+progress|ProgressScoreView s|Button#ScoreEmptyScoreLabelButton {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ui.GreyLabelButtonSkin");
+}
+
+progress|ProgressCompareView {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressCompareSkin");
+}
+
+progress|ProgressCompareView s|Button#compareEmptyScoreLabel {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ui.GreyLabelButtonSkin");
+}
+
+progress|ProgressCertificateView {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressCertificateSkin");
+}
+
+progress|ProgressCertificateView s|Button#printButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.PrintButtonSkin");
+}
+
+progressui|ProgressCourseButtonBar {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ui.ProgressCourseButtonBarSkin");
+}
+
+progressui|ProgressBarRenderer {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ui.ProgressBarRendererSkin");
+}
+
+settings|SettingsView {
+	skinClass: ClassReference("skins.clearpronunciation.settings.SettingsSkin");
+}
+
+settings|SettingsView video|VideoSelector {
+	skinClass: ClassReference("skins.clearpronunciation.settings.ui.SettingsVideoSelectorSkin");
+}
+
+settings|SettingsView s|Button#saveCloseButton {
+	skinClass: ClassReference("skins.clearpronunciation.settings.ui.SettingsCloseButtonSkin");
+}
+
+credits|CreditsView {
+	skinClass: ClassReference("skins.clearpronunciation.CreditsSkin");
+}

@@ -1,6 +1,4 @@
 package com.clarityenglish.bento.events {
-	import com.clarityenglish.bento.vo.Href;
-	
 	import flash.events.Event;
 	
 	public class ExerciseEvent extends Event {

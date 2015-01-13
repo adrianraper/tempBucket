@@ -10,13 +10,16 @@ package com.clarityenglish.textLayout.elements {
 	import flash.system.Security;
 	import flash.utils.Dictionary;
 	
-	import flashx.textLayout.formats.FormatValue;
-	import flashx.textLayout.tlf_internal;
-	
 	import mx.collections.ArrayCollection;
 	import mx.collections.XMLListCollection;
 	import mx.controls.SWFLoader;
+	import mx.core.FlexGlobals;
 	import mx.events.FlexEvent;
+	
+	import spark.components.VideoPlayer;
+	
+	import flashx.textLayout.tlf_internal;
+	import flashx.textLayout.formats.FormatValue;
 	
 	import org.osmf.events.TimeEvent;
 	import org.osmf.net.DynamicStreamingItem;
@@ -24,24 +27,27 @@ package com.clarityenglish.textLayout.elements {
 	import org.osmf.net.StreamType;
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.patterns.facade.Facade;
-	
-	import spark.components.VideoPlayer;
 
 	use namespace tlf_internal;
 	
+	/**
+	 * TODO: THIS NEEDS TO BE REWRITTEN TO USE UniversalVideoPlayer
+	 */
 	public class VideoElement extends ImageComponentElement implements IComponentElement {
 		
 		private static const NORMAL:String = "normal";
 		private static const YOU_TUBE:String = "you_tube";
 		private static const VIMEO:String = "vimeo";
-		private static const VIDEO_SELECTOR:String = "video_selector";
 		
-		public var items:XMLList;
-		public var poster:String;
+		private static const VIDEO_SELECTOR:String = "video_selector";
 		
 		private static var inititalized:Boolean = false;
 		
-		private var _src:String;
+		public var src:String;
+		
+		public var items:XMLList;
+		
+		public var poster:String;
 		
 		private var _autoPlay:Boolean = true;
 		
@@ -49,7 +55,7 @@ package com.clarityenglish.textLayout.elements {
 		
 		private var _videoDimensionsCalculated:Boolean;
 		
-		//gh#145 replay
+		// gh#145 replay
 		private var videoPlayer:OSMFVideoPlayer;
 		
 		// #306
@@ -80,14 +86,6 @@ package com.clarityenglish.textLayout.elements {
 		tlf_internal override function get defaultTypeName():String
 		{ return "video"; }
 		
-		public function set src(value:String):void {
-			_src = value;
-		}
-		
-		public function get src():String {
-			return _src;
-		}
-		
 		public function set autoPlay(value:Boolean):void {
 			_autoPlay = value;
 		}
@@ -106,7 +104,7 @@ package com.clarityenglish.textLayout.elements {
 					
 					// To let practice zone video come from rtmp too, we need some handling here
 					// But this does NOT work, we see nothing in the exercise.
-					if (_src.indexOf("rtmp") >= 0) {
+					if (src.indexOf("rtmp") >= 0) {
 						// Parse the filename
 						var host:String = "rtmp://streaming.clarityenglish.com:1935/cfx/st";
 						var streamName:String = "RoadToIELTS2/speaking/media/speaking_key_facts_700";
@@ -123,7 +121,7 @@ package com.clarityenglish.textLayout.elements {
 						videoPlayer.source = dynamicSource;
 						videoPlayer.callLater(videoPlayer.play);
 					} else {
-						videoPlayer.source = _src;
+						videoPlayer.source = src;
 					}
 					
 					videoPlayer.width = width;
@@ -159,8 +157,8 @@ package com.clarityenglish.textLayout.elements {
 					
 					swfLoader.scaleContent = false;
 					swfLoader.maintainAspectRatio = true;
-					swfLoader.load(_src);
-					trace("try to load " + _src);
+					swfLoader.load(src);
+					trace("try to load " + src);
 					
 					component = swfLoader;
 					break;
@@ -177,7 +175,6 @@ package com.clarityenglish.textLayout.elements {
 					videoSelector.href = bentoProxy.menuXHTML.href;
 					videoSelector.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
 					videoSelector.videoCollection = new XMLListCollection(items);
-					videoSelector.autoPlay = _autoPlay;
 					if (poster) videoSelector.placeholderSource = bentoProxy.menuXHTML.href.rootPath + "/" + poster;
 					
 					component = videoSelector;
@@ -307,16 +304,17 @@ package com.clarityenglish.textLayout.elements {
 		}
 		
 		/**
-		 * If the src contains "www.youtube.com" this must be a YouTube embed, otherwise we use the Spark VideoPlayer
+		 * If the src contains "www.youtube.com" this must be a YouTube embed, otherwise we use the Spark VideoPlayer.
+		 * If there is no src and items instead then this is a video selector.
 		 * Add in vimeo.com
 		 * @return 
 		 */
 		private function getVideoType():String {
-			if (_src && _src.search(/www\.youtube\.com/) >= 0) { 
+			if (src && src.search(/www\.youtube\.com/) >= 0) { 
 				return YOU_TUBE;
-			} else if (_src && _src.search(/\.vimeo\.com/) >= 0) {
+			} else if (src && src.search(/\.vimeo\.com/) >= 0) {
 				return VIMEO;
-			} else if (_src == null && items && items.length() > 0) {
+			} else if (src == null && items && items.length() > 0) {
 				return VIDEO_SELECTOR;
 			}
 			

@@ -42,7 +42,7 @@ package com.clarityenglish.bento.controller
 			label.text = text;
 			label.top = 20;
 			label.right = 20;
-			label.left = 50;
+			label.left = 20;
 			label.bottom = 20;
 			titleWindow.addElement(label);
 			

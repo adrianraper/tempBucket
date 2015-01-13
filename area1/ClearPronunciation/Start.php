@@ -87,8 +87,10 @@
 	// v6.5.6 Add support for HTTP_X_FORWARDED_FOR
 	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 		// This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
-		$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
-		$ip = $ipList[0];
+		// Not always it doesn't. So need to send the whole list to the licence checking algorithm. Better send as a list than an array.
+		//$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
+		//$ip = $ipList[0];
+		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 	} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
 		$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
 	} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
@@ -212,6 +214,8 @@
 		var params = {
 			id: "orchid",
 			name: "orchid",
+			scale: "showall",
+			menu: "false",
 			allowfullscreen: "true"
 		};
 		// v6.5.5.6 Allow resize screen mode
@@ -225,14 +229,33 @@
 			name: "orchid"
 		};
 		var expressInstall = startControl + "expressInstall.swf";
-		swfobject.embedSWF(startControl + "control.swf" + argList, "altContent", coordsWidth, coordsHeight, "9.0.28", expressInstall, flashvars, params, attr);
+//		swfobject.embedSWF(startControl + "control.swf" + argList, "altContent", coordsWidth, coordsHeight, "9.0.28", expressInstall, flashvars, params, attr);
+		swfobject.embedSWF(startControl + "control.swf" + argList, "altContent", "100%", "100%", "9.0.28", expressInstall, flashvars, params, attr);
 	</script>
 <!--CSS pop up layout box-->
 <link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />
+<style type="text/css">
+	body { 	margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px}
+</style>
 </head>
 <body onload="onLoad()">
+<?php 
+//2013 Mar 3 Vivying added 
+//if it is resizing flag, disable the scollbar enabling in CSS by removing the div id
+if (isset($_GET['resize'])) {
+?> 
+<div id="">
+<?php 
+}
+else {
+//otheriwse this id in CSS will enable the scrollbar
+?> 	
+<div id="load_program_original">
+<?php 
+}
+?> 	
 	<div align="center" id="altContent">
-		<p>This application requires Adobe's Flash player, running at least version 9.</p>
+		<p>This application requires Adobe's Flash player, running at least version 10.1.</p>
 		<p>It seems your browser doesn't have this.</p>
 		<p>Please download the latest Adobe Flash Player.</p>
 		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
@@ -242,5 +265,6 @@
 This application requires your browser to support javascript and to have Adobe's Flash player installed. <br>
 Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br>
 to switch this on and then refresh this page.</NOSCRIPT>
+</div> 
 </body>
 </html>

@@ -173,6 +173,12 @@ menuNS.displaySubMenu = function() {
 			var refPoint = new Object();
 			refPoint.x=0;refPoint.y=0;
 			thisSub.localToGlobal(refPoint);
+			// gh#869
+			var orchidAnchor = {x:0, y:0};
+			_global.ORCHID.root.globalToLocal(orchidAnchor);
+			refPoint.x += orchidAnchor.x;
+			refPoint.y += orchidAnchor.y;
+
 			//myTrace("thisSub.items=" + menuItems.length);
 			//myTrace("thisSub.width=" + subMenuDim.width + " .height=" + subMenuDim.height); 
 			//myTrace("thisSub.globalX=" + refPoint.x + " .localX=" + thisSub._x + " .stage=" + Stage.width); 
@@ -332,7 +338,7 @@ menuNS.internalDisplayMainMenu = function(items, progressItems) {
 				}
 			}
 			
-			//myTrace("set caption to " + items[i].caption);
+			myTrace("set caption to " + items[i].caption);
 			//thisMenu.setLabel(items[i].caption);
 			//thisMenu._x = items[i].x;
 			//thisMenu._y = items[i].y;
@@ -353,7 +359,7 @@ menuNS.internalDisplayMainMenu = function(items, progressItems) {
 				//myTrace("disabled menu " + items[i].caption);
 				thisMenu.setEnabled(false);
 			} else {
-				thisMenu.setReleaseAction(MenuNS.displaySubMenu);
+				thisMenu.setReleaseAction(menuNS.displaySubMenu); //ar#869
 			}
 			// v6.4.3 Add the progress indicator to the menu items here?
 			//myTrace("add progress indicator for menu " + i);

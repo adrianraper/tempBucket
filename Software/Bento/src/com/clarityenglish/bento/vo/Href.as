@@ -48,7 +48,7 @@ package com.clarityenglish.bento.vo {
 		 */
 		public function get extension():String {
 			var matches:Array = filename.match(/\.([^\.]+)$/);
-			return (matches.length == 2) ? matches[1].toLowerCase() : null;
+			return (matches && matches.length == 2) ? matches[1].toLowerCase() : null;
 		}
 		
 		/**

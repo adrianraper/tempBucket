@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="10.5" viewWidth="12.9131" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="10.5" d:pageWidth="12.913" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Group y="-0.000488281" ai:seqID="1">
+        <Line xFrom="2.99219" yFrom="0.894531" xTo="12.9131" yTo="0.894531" ai:seqID="2"/>
+        <Rect x="2.99219" width="9.9209" height="1.78711" radiusX="0.69668" radiusY="0.69668" ai:seqID="3">
+          <fill>
+            <SolidColor color="#FFFFFF"/>
+          </fill>
+        </Rect>
+        <Line xFrom="2.99219" yFrom="5.25195" xTo="12.9131" yTo="5.25195" ai:seqID="4"/>
+        <Rect x="2.99219" y="4.35693" width="9.9209" height="1.78711" radiusX="0.69668" radiusY="0.69668" ai:seqID="5">
+          <fill>
+            <SolidColor color="#FFFFFF"/>
+          </fill>
+        </Rect>
+        <Line xFrom="2.99219" yFrom="9.60986" xTo="12.9131" yTo="9.60986" ai:seqID="6"/>
+        <Rect x="2.99219" y="8.71533" width="9.9209" height="1.78516" radiusX="0.69668" radiusY="0.69668" ai:seqID="7">
+          <fill>
+            <SolidColor color="#FFFFFF"/>
+          </fill>
+        </Rect>
+        <Line yFrom="0.894531" xTo="1.54199" yTo="0.894531" ai:seqID="8"/>
+        <Rect width="1.54199" height="1.78711" radiusX="0.69668" radiusY="0.69668" ai:seqID="9">
+          <fill>
+            <SolidColor color="#FFFFFF"/>
+          </fill>
+        </Rect>
+        <Line yFrom="5.25195" xTo="1.54199" yTo="5.25195" ai:seqID="10"/>
+        <Rect y="4.35693" width="1.54199" height="1.78711" radiusX="0.69668" radiusY="0.69668" ai:seqID="11">
+          <fill>
+            <SolidColor color="#FFFFFF"/>
+          </fill>
+        </Rect>
+        <Line yFrom="9.60986" xTo="1.54199" yTo="9.60986" ai:seqID="12"/>
+        <Rect y="8.71533" width="1.54199" height="1.78516" radiusX="0.69668" radiusY="0.69668" ai:seqID="13">
+          <fill>
+            <SolidColor color="#FFFFFF"/>
+          </fill>
+        </Rect>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

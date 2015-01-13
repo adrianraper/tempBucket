@@ -51,11 +51,11 @@ SQL;
 				}
 			}
 			
-			foreach ($xml->head->script->menu->course->unit as $unit)  {
-				foreach ($unit->exercise as $exercise){
+			foreach ( $xml->head->script->menu->course->unit as $unit ) {
+				foreach ( $unit->exercise as $exercise ) {
 					// gh#238
-					if ($exercise['contentuid']) {
-						$uid = explode(".", $exercise['contentuid']);
+					if ($exercise ['contentuid']) {
+						$uid = explode ( ".", $exercise ['contentuid'] );
 						// gh#684
 						if (count($uid) < 4) {						
 							$sql = <<<SQL

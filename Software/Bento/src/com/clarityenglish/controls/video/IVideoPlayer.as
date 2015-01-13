@@ -21,6 +21,8 @@ package com.clarityenglish.controls.video {
 		function get y():Number;
 		function set y(value:Number):void;
 		
+		function set visible(value:Boolean):void;
+		
 	}
 	
 }

@@ -1,5 +1,6 @@
 ﻿package com.clarityenglish.rotterdam.view.unit {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
@@ -62,9 +63,12 @@
 			// gh#306
 			view.captionSelected.add(onCaptionSelected);
 			
-			// gh#106
-			view.playVideo.add(onPlay);
-			view.playAudio.add(onPlay);
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			//if (bentoProxy.menu.@id != 57) {
+				// gh#106
+				view.playVideo.add(onPlay);
+				view.playAudio.add(onPlay);
+			//}	
 			
 			injectCopy();
 		}

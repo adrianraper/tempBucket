@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<id>/area1/ClearPronunciationV10 in localhost</id>
+	<dbHost>2</dbHost>
+	<productCode>57</productCode>
+	<loginOption>128</loginOption>
+	<useCacheBuster>true</useCacheBuster>s
+	<courseFile>menu-{productCode}-FullVersion.xml</courseFile>
+	<platform>tablet|ipad</platform>
+	<channel name="ios-vimeo" caption="vimeo">
+        <streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+    </channel>    
+	<sharedMedia />
+	<brandingMedia />
+	<language>EN</language>
+	
+	<contentPath>http://192.168.8.82/Content/</contentPath>
+	<remoteDomain>http://192.168.8.82/</remoteDomain>
+	<remoteGateway>http://192.168.8.82/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteService>ClearPronunciationService</remoteService>
+	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+	
+	<rememberLogin>true</rememberLogin>
+	<disableAutoTimeout>true</disableAutoTimeout>
+	
+	<checkNetworkAvailabilityUrl>http://www.clarityenglish.com</checkNetworkAvailabilityUrl>
+	<checkNetworkAvailabilityInterval>30</checkNetworkAvailabilityInterval>
+	<checkNetworkAvailabilityReconnectInterval>5</checkNetworkAvailabilityReconnectInterval>
+	
+	<randomizedTestQuestionTotalNumber></randomizedTestQuestionTotalNumber>
+</config>
+

@@ -12,11 +12,13 @@ package com.clarityenglish.rotterdam.view.login {
 	import flash.events.MouseEvent;
 	
 	import mx.core.ComponentDescriptor;
+	import mx.core.FlexGlobals;
 	import mx.events.FlexEvent;
 	import mx.utils.StringUtil;
 	
 	import org.osflash.signals.Signal;
 	
+	import spark.components.Application;
 	import spark.components.Button;
 	import spark.components.FormHeading;
 	import spark.components.Label;
@@ -68,6 +70,12 @@ package com.clarityenglish.rotterdam.view.login {
 		public var brandingImage3:BitmapImage;
 		[SkinPart]
 		public var brandingImage4:BitmapImage;
+		
+		[SkinPart]
+		public var versionLabel:Label;
+		
+		[SkinPart]
+		public var copyrightLabel:Label;
 		
 		[Bindable]
 		public var loginKey_lbl:String;
@@ -286,6 +294,15 @@ package com.clarityenglish.rotterdam.view.login {
 					if (branding && branding.image)
 						addBrandingImageToInstance(instance, branding.image);
 					break;
+				case versionLabel:
+					versionLabel.text = "v" + FlexGlobals.topLevelApplication.versionNumber + "   " + copyProvider.getCopyForId("versionLabel");
+					break;
+				case copyrightLabel:
+					copyrightLabel.text = copyProvider.getCopyForId("footerLabel");
+					break;
+				case versionLabel:
+					versionLabel.text = copyProvider.getCopyForId("versionLabel");
+					break;
 			}
 		}
 		
@@ -503,6 +520,5 @@ package com.clarityenglish.rotterdam.view.login {
 		public function getTestDrive():Signal {
 			return new Signal();
 		}
-	
 	}
 }

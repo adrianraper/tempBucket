@@ -93,7 +93,7 @@ function populateExerciseFromXML(XMLSource, callBack, index) {
 						i:0,			// The start of your loop
 						proportion:25, 	// If this is multi-step process, what % is spent on this step?
 						startProportion:0,	// What is the starting % for this step?
-						callback:callBack}; // What function to call when you are finished?
+						callBack:callBack}; // What function to call when you are finished?
 		var tlc = _global.ORCHID.tlc;
 	
 		// first see if the controllerMC is already there
@@ -914,7 +914,7 @@ function getXMLContentAndFields(XMLSource, textType, index) {
 		} else if (myNodes[i].nodeName.toLowerCase() == "media") {
 			var myMedia = new Object();
 			//v6.4.2.1 All attributes might have been escaped
-			myMedia.filename = unescape(myNodes[i].attributes.filename); 
+			myMedia.fileName = unescape(myNodes[i].attributes.filename); 
 			myMedia.path = unescape(myNodes[i].attributes.path);
 			// v6.3.4 Add in hyperlinks
 			myMedia.url = unescape(myNodes[i].attributes.url); 
@@ -990,19 +990,19 @@ function getXMLContentAndFields(XMLSource, textType, index) {
 	// Therefore you need to find a way to go through the 'real' fields first or (better) for feedback
 	// to be displayed NOT by group IDX but by group ID. See delayedFeedback in Feedback.as
 	for (var i in ExText.field) {
-		//myTrace("checking group for field "+ExText.field[i].ID+ " (group "+ExText.field[i].group+")");
+		//myTrace("checking group for field "+ExText.field[i].id+ " (group "+ExText.field[i].group+")");
 		// only check up on interactive fields, media items aren't grouped
 		if (ExText.field[i].type.indexOf("i:") >= 0) {
 			// if there is no group ID (I think this shouldn't really be allowed to happen)
 			// just use the field ID. This could lead to duplication of group ID in exercises
 			// that mix groups and single interactive fields
 			if (ExText.field[i].group == undefined) {
-				ExText.field[i].group = ExText.field[i].ID;
+				ExText.field[i].group = ExText.field[i].id;
 			}
 			// I could check to see if group>0 which would let me exclude i:drag, or should
 			// drags actually be something else, not i:? (at present drags have group=0)
-			var groupArrayIDX = lookupArrayItem(ExText.group, ExText.field[i].group, "ID");
-			//trace("field " + ExText.field[i].ID + " is in groupIdx "+groupArrayIDX);
+			var groupArrayIDX = lookupArrayItem(ExText.group, ExText.field[i].group, "id");
+			//trace("field " + ExText.field[i].id + " is in groupIdx "+groupArrayIDX);
 			// if this group ID doesn't exist yet, create a new group item to hold it and its mates
 			if (groupArrayIDX < 0) {
 				var myGroup = new Object();
@@ -1024,11 +1024,11 @@ function getXMLContentAndFields(XMLSource, textType, index) {
 				// v6.3.4 Emergency patch up for drag fields having group=1
 				if (ExText.field[i].type == "i:drag") {
 					//myTrace("set drag group to 0");
-					myGroup.ID = 0;
+					myGroup.id = 0;
 				} else {
-					myGroup.ID = ExText.field[i].group;
+					myGroup.id = ExText.field[i].group;
 				}
-				//trace("added group ID=" + myGroup.ID);
+				//trace("added group ID=" + myGroup.id);
 				// v6.2 In order to allow deselection of targets, I want a field that lets me know
 				// that a group only contains one field.
 				myGroup.singleField = true;
@@ -1047,7 +1047,7 @@ function getXMLContentAndFields(XMLSource, textType, index) {
 				} else {
 					myGroup.maxScore = 0;
 				}
-				//myTrace("field " + ExText.field[i].ID + ", first in group " + myGroup.ID + " maxScore=" + myGroup.maxScore);
+				//myTrace("field " + ExText.field[i].id + ", first in group " + myGroup.id + " maxScore=" + myGroup.maxScore);
 				myGroup.fieldsInGroup = new Array();
 				groupArrayIDX = ExText.group.push(myGroup)-1;
 			} else {
@@ -1085,12 +1085,12 @@ function getXMLContentAndFields(XMLSource, textType, index) {
 						//myTrace("don't add point as this answer=" + ExText.field[i].answer[0].correct);
 					}
 				}
-				//myTrace("field " + ExText.field[i].ID + ", extra in group " + ExText.group[groupArrayIDX].ID + " maxScore=" + ExText.group[groupArrayIDX].maxScore);
+				//myTrace("field " + ExText.field[i].id + ", extra in group " + ExText.group[groupArrayIDX].id + " maxScore=" + ExText.group[groupArrayIDX].maxScore);
 			}
 			//v6.3.4 Add each field IDX to the group so it is easy to merge scores and feedback
 			ExText.group[groupArrayIDX].fieldsInGroup.push(i);
 			
-			//myTrace("for field "+ i+" the group index is "+ groupArrayIDX + " with ID " + ExText.group[groupArrayIDX].ID);
+			//myTrace("for field "+ i+" the group index is "+ groupArrayIDX + " with ID " + ExText.group[groupArrayIDX].id);
 			// what is the (first) correct answer in this group for feedback purposes?
 			// when we want to pop-up the answers I will need to know the text as well
 			if (ExText.group[groupArrayIDX].correctFbID == undefined) {
@@ -1107,22 +1107,22 @@ function getXMLContentAndFields(XMLSource, textType, index) {
 						// but you still need to be in this IF as drags and things have non-valid groups (but answer=false)
 						// I think these have been correctly set already, so just need one setting here
 						//if (me.settings.feedback.groupBased) {
-						//	ExText.group[groupArrayIDX].correctFbID = ExText.group[groupArrayIDX].ID;
+						//	ExText.group[groupArrayIDX].correctFbID = ExText.group[groupArrayIDX].id;
 						//} else {
-						//trace("but field=" + ExText.field[i].ID + " is " + "so add fbID="+ExText.field[i].answer[answerIdx].feedback);
+						//trace("but field=" + ExText.field[i].id + " is " + "so add fbID="+ExText.field[i].answer[answerIdx].feedback);
 						ExText.group[groupArrayIDX].correctFbID = ExText.field[i].answer[j].feedback;
 						//}
 						break; // found a correct answer, so skip out
-						//myTrace("set group " + ExText.group[groupArrayIDX].ID + " feedback to " + ExText.group[groupArrayIDX].correctFbID);
+						//myTrace("set group " + ExText.group[groupArrayIDX].id + " feedback to " + ExText.group[groupArrayIDX].correctFbID);
 					}
 				}
-				//myTrace("group ID=" + ExText.group[groupArrayIDX].ID + " has .correctFB=" + ExText.group[groupArrayIDX].correctFbID);
+				//myTrace("group ID=" + ExText.group[groupArrayIDX].id + " has .correctFB=" + ExText.group[groupArrayIDX].correctFbID);
 			}
 			// is there a popup field for this group? If so, hold the ID here to save time searching for it later
 			// since you are only allowed 1 pop-up per group, just overwrite here - too bad
 			if (ExText.field[i].type.indexOf("popup") >= 0) {
-				//myTrace("group " + groupArrayIDX + " has popup field " + ExText.field[i].ID);
-				ExText.group[groupArrayIDX].popup.fieldID = ExText.field[i].ID;
+				//myTrace("group " + groupArrayIDX + " has popup field " + ExText.field[i].id);
+				ExText.group[groupArrayIDX].popup.fieldID = ExText.field[i].id;
 			}
 		}
 	}
@@ -1134,7 +1134,7 @@ function getXMLContentAndFields(XMLSource, textType, index) {
 	
 	// debug only
 	//for (var i=0; i<ExText.group.length; i++) {
-	//	myTrace("group " + ExText.group[i].ID + " has pop-up field " + ExText.group[i].popup.fieldID);
+	//	myTrace("group " + ExText.group[i].id + " has pop-up field " + ExText.group[i].popup.fieldID);
 	//}
 	
 	// v6.2 Red herrings will not have set correctFbID as no fields in the group are correct.
@@ -1143,7 +1143,7 @@ function getXMLContentAndFields(XMLSource, textType, index) {
 	// Note, this might cause some other types of targets (hyperlinks) to go wrong cf targets in free practice
 	var redHerrings=0;
 	for (var i in ExText.field) {
-		var groupArrayIDX = lookupArrayItem(ExText.group, ExText.field[i].group, "ID");
+		var groupArrayIDX = lookupArrayItem(ExText.group, ExText.field[i].group, "id");
 		if (ExText.group[groupArrayIDX].correctFbID == undefined) {
 			ExText.group[groupArrayIDX].correctFbID = ExText.field[i].answer[0].feedback;
 			//trace("setting fake correctFb for group " + groupArrayIDX);
@@ -1161,12 +1161,12 @@ function getXMLContentAndFields(XMLSource, textType, index) {
 		// only check up on interactive fields that are part of sections, media items aren't grouped
 		if (ExText.field[i].type.indexOf("i:") >= 0 && ExText.field[i].section <> undefined) {
 			// Have we already got this section?
-			var sectionArrayIDX = lookupArrayItem(ExText.section, ExText.field[i].section, "ID");
+			var sectionArrayIDX = lookupArrayItem(ExText.section, ExText.field[i].section, "id");
 			// if this section ID doesn't exist yet, create a new group item to hold it and its mates
 			if (sectionArrayIDX < 0) {
 				var mySection = new Object();
 				mySection.fieldsInSection = new Array();
-				mySection.ID = ExText.field[i].section;
+				mySection.id = ExText.field[i].section;
 				sectionArrayIDX = ExText.section.push(mySection)-1;
 			} else {
 			// So this is the second (or more) field in this section, so...
@@ -1264,9 +1264,9 @@ function getXMLContentAndFields(XMLSource, textType, index) {
 						myEnd = changedText.indexOf("]", myStart);
 						thisField = changedText.substring(myStart+1, myEnd);
 						//trace("field=" + thisField);
-						var fieldArrayIDX = lookupArrayItem(ExText.field, thisField, "ID");
+						var fieldArrayIDX = lookupArrayItem(ExText.field, thisField, "id");
 						thisGroup = ExText.field[fieldArrayIDX].group;
-						var groupArrayIDX = lookupArrayItem(ExText.group, thisGroup, "ID");
+						var groupArrayIDX = lookupArrayItem(ExText.group, thisGroup, "id");
 						// v6.5.5.- Surely this should also have questionDelta added? I don't know this, but it seems likely
 						//ExText.group[groupArrayIDX].questionNumber = thereAreQuestions;
 						ExText.group[groupArrayIDX].questionNumber = Number(thereAreQuestions)+Number(questionDelta);
@@ -1505,7 +1505,7 @@ paraXMLtoExercise = function(XMLNode, paraNum, Foundfields, textType) {
 		// v6.3.6 Merge exercise into main but also create this TF on buttons not exercise
 		//_global.ORCHID.root.exerciseHolder.createTextField("tfFinder", _global.ORCHID.root.exerciseHolder.ExerciseNS.depth++, 0, -0, 300, 300);
 		//var tfFinder = _global.ORCHID.root.exerciseHolder.tfFinder;
-		_global.ORCHID.root.buttonsHolder.createTextField("tfFinder", _global.ORCHID.root.buttonsHolder.ButtonsNS.depth++, 0, 0, 300, 300);
+		_global.ORCHID.root.buttonsHolder.createTextField("tfFinder", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 0, 0, 300, 300);
 		var tfFinder = _global.ORCHID.root.buttonsHolder.tfFinder;
 		tfFinder._visible = false;
 		tfFinder.html = true;
@@ -1540,8 +1540,8 @@ paraXMLtoExercise = function(XMLNode, paraNum, Foundfields, textType) {
 				//trace("fieldText=" + myFieldText);
 				// v6.3 Find this field in the tFFinder textfield and get that location's TF
 				//myTrace("search " + "[" + myFieldID + "]" + " in " + tFFinder.text);
-				charInTFFinder = tFFinder.text.indexOf("[" + myFieldID + "]");
-				thisTF = tFFinder.getTextFormat(charInTFFinder);
+				charInTFFinder = tfFinder.text.indexOf("[" + myFieldID + "]");
+				thisTF = tfFinder.getTextFormat(charInTFFinder);
 				// v6.3 Add in the tab stops - see above comment
 				thisTF.tabStops = myPara.tabArray;
 				//myTrace("use tabs=" + thisTF.tabStops);
@@ -1761,8 +1761,8 @@ function insertFieldText(fieldIDX, Fields, TF) {
 			if (_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("CUP/GIU") >= 0) { 
 				return "<u>" + aTagHeader + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + aTagFooter + "</u>";
 			} else {
-				return "<u>" + aTagHeader + "&nbsp;&nbsp;•&nbsp;&nbsp;" + aTagFooter + "</u>";
-				//return aTagHeader + "&nbsp;&nbsp;•&nbsp;&nbsp;" + aTagFooter;
+				return "<u>" + aTagHeader + "&nbsp;&nbsp;o&nbsp;&nbsp;" + aTagFooter + "</u>";
+				//return aTagHeader + "&nbsp;&nbsp;Ã¯Â¿Â½&nbsp;&nbsp;" + aTagFooter;
 			}
 			Fields[fieldIDX].info.gapChars = 5;
 			break;			

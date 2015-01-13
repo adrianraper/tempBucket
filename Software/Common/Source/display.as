@@ -26,7 +26,7 @@ putParagraphsOnTheScreen = function(thisText, paneType, paneName, substList, coo
 	//trace("now know that ppotsVars.paneSymbol=" + ppotsVars.paneSymbol);
 	
 	// v6.3.4 Common settings for all display routines
-	_global.ORCHID.tlc.stuffBeforeCallback = putParagraphsOnTheScreen_stuffAfter;
+	_global.ORCHID.tlc.stuffBeforeCallBack = putParagraphsOnTheScreen_stuffAfter;
 	_global.ORCHID.tlc.timeLimit = 1000;
 	_global.ORCHID.tlc.maxLoop = thisText.paragraph.length;
 	_global.ORCHID.tlc.i = 0;
@@ -112,7 +112,7 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 	var myScroll = "auto";
 	var myX = myY = myW = myH = myLeftMargin = myTitleBar = myBackgroundColour = undefined;
 	
-	if (	(_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("CUP/GIU") >= 0) ||
+	if ((_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("CUP/GIU") >= 0) ||
 		(_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("BC/IELTS") >= 0)){
 		var myBorder = false;
 	} else {
@@ -699,7 +699,7 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 		//} else {
 		var myPane = paneHolder.attachMovie(paneSymbol, paneName, myDepth, initObj); // For now, this is a reserved depth at root level
 		//}
-		myTrace("created " + paneSymbol + ":" + myPane + " at depth=" + myDepth);
+		//myTrace("created " + paneSymbol + ":" + myPane + " at depth=" + myDepth);
 	}
 	
 	ppotsVars.myPane = myPane; 
@@ -713,7 +713,7 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 
 	// v6.3.5 use setTitle not setPaneTitle
 	//myTrace("set x=" + myX + " width=" + myWidth)
-	myPane.setTitle(myTitlebar);
+	myPane.setTitle(myTitleBar);
 	myPane._x = myX; 
 	myPane._y = myY;
 	//if (paneSymbol != "APDraggablePaneSymbol") {
@@ -763,7 +763,7 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 				
 				// finally send it to be printed
 				printPane._x = printPane._y = 0;
-				var namePath = _global.ORCHID.course.scaffold.getParentCaptions( _global.ORCHID.session.currentItem.ID);
+				var namePath = _global.ORCHID.course.scaffold.getParentCaptions( _global.ORCHID.session.currentItem.id);
 				fullName = namePath[namePath.length-2] + "&nbsp;&nbsp;" + namePath[namePath.length-1];
 			
 				var thisHeader = fullName;
@@ -1003,8 +1003,10 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 	// but FPopupWindow does have! Edit FScrollPane so that it aliases setBorder.
 	// v6.4.2.7 CUP lets avoid editing FScrollPane anymore
 	if (typeof myPane.setContentBorder == "function") {
+		//myTrace("setContentBorder");
 		myPane.setContentBorder(myBorder);
 	} else {
+		//myTrace("setBorder");
 		myPane.setBorder(myBorder);
 	}
 	
@@ -1052,7 +1054,7 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 		//if (firstTime) {
 			//myTrace("first time resume loop");
 		//} else {
-			//myTrace("resume loop, i=" + i + " of max=" + max + " timeLimit=" + timeLimit + " for " + paneName);
+			//myTrace("resume loop, i=" + i + " of max=" + max + " timeLimit=" + timeLimit + " for " + paneName + " firstTime=" + firstTime);
 		//}
 		// The paragraphs are going to be added at depths from 0 to numParagraphs. Reverse the depth
 		// order so that the first paragraphs are over the later ones - this should stop any problem with
@@ -1065,6 +1067,7 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 		//var paraDepth = thisText.paragraph.length - i; // starting point of depths for this run
 		var paraDepth = thisText.paragraph.length - i + initialParaDepth; // starting point of depths for this run
 		while (getTimer()-startTime <= timeLimit && i<max && !firstTime) {
+			//myTrace("while loop, i=" + i);
 			//if (paneName == "ReadingText_SP") {
 			//	myTrace("resume loop i=" + i + " of " + max);
 			//}
@@ -1075,7 +1078,7 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 			var lastBottom = 0;	var thisTop = 0;
 			var myCoords = new Object();
 			myCoords = thisText.paragraph[i].coordinates;
-			var mypara = i; 	// don't use paragraph ID anymore // thisFeedback.paragraph[i].id;
+			var myPara = i; 	// don't use paragraph ID anymore // thisFeedback.paragraph[i].id;
 						// but this variable is used for depths. Are depths used as indexes anywhere?
 	
 			// offset subsequent paragraphs
@@ -1102,7 +1105,7 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 			} else {
 				myTop = Number(myTop); // not sure what good this will do if the first character is NaN
 			}
-			//trace("last para (" + lastPara + ") top=" + lastTop + ", height=" + lastHeight + "(twfH=" + twfHeight + ") so this top=" + myTop);
+			//myTrace("last para (" + lastPara + ") top=" + lastTop + ", height=" + lastHeight + "(twfH=" + twfHeight + ") so this top=" + myTop);
 			//trace("para " + lastPara + " bottom=" + Number(Number(contentHolder["ExerciseBox"+lastPara]._y) + Number(contentHolder["ExerciseBox"+lastPara]._height)));
 			//if (paneName == "Example_SP") {
 			//	myTrace("example para " + myPara + " top=" + myTop);
@@ -1225,6 +1228,7 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 				//var thisFormat = new TextFormat();
 				//myTrace("write text in style=" + thisStyle);
 				var thisFormat = _global.ORCHID[thisStyle];
+				//myTrace(thisStyle + " font.bold=" + thisFormat.bold + " size=" + thisFormat.size);
 				// v6.4.3 Check that this is actually set. But this has the unintended side effect of 'correcting' the way
 				// that empty paragraphs are displayed. They now show properly, but this make the output for nonScroll
 				// wrong. Either revert and do later, or fix APP to output what you want and take the hit now. or build
@@ -1235,8 +1239,7 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 				thisFormat.tabStops = thisText.paragraph[i].tabArray;
 				//Note: this is where we should make a copy of the text and do the susbstTags changing
 				// so that the original does not get altered.
-				//myTrace("text for twf=" + substTags(thisText.paragraph[i].plainText, substList));
-				
+		
 				// v6.3.5 You  have to treat countDown differently at the twf level
 				if (paneName == "Exercise_SP" && (_global.ORCHID.LoadedExercises[0].settings.exercise.type == "Countdown")) {
 					//myTrace("call to set countDownText, version=" + me.getVersion());
@@ -1272,7 +1275,6 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 				}
 				*/
 				// End v6.5.4.2 Yiu these 3 lines make the dictionary function works, ID 1223
-
 				me.addDropsForHitTest();
 
 				// v6.4.2.8 If I want to have a graphical ruler, try picking up the style and using the TWF background
@@ -1348,7 +1350,7 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 		//tlc.proportion = 75;
 		//myTrace("ppoS: start the tlc loop from " + tlc.startProportion);
 		//myTrace("non-looper,  max=" + tlc.maxLoop + " timeLimit=" + tlc.timeLimit + " for " + tlc.paneName);
-		tlc.resumeLoop();
+		tlc.resumeLoop(false);
 	}
 }
 putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
@@ -1392,8 +1394,8 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 				var contentHolder = getRegion(thisField).getScrollContent();
 				//myTrace("region=" + thisField.region + " or " + contentHolder);
 				var thisParaBox = contentHolder["ExerciseBox" + thisField.paraNum];
-				//myTrace("add dropMarker to twf=" + thisParaBox + " for field " +myFields[idx].ID);
-				thisParaBox.setFieldBackground(myFields[idx].ID, "dropdownMarker", markProps);
+				//myTrace("add dropMarker to twf=" + thisParaBox + " for field " +myFields[idx].id);
+				thisParaBox.setFieldBackground(myFields[idx].id, "dropdownMarker", markProps);
 			}
 		}
 	}
@@ -1451,36 +1453,36 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 		//	var me = thisText.media[i];
 		for (var i = 0; i < mediaSorted.length; i++) {
 			var me = mediaSorted[i];
-			//myTrace("adding media  for id=" + me.id + " filename=" + me.filename + " type=" + me.type);
+			//myTrace("adding media  for id=" + me.id + " fileName=" + me.fileName + " type=" + me.type);
 			// the following check differentiates between different types of media - presently
 			// floating, embedded and anchored
 			if (me.type.substr(0, 2) == "m:" || me.type.substr(0, 2) == "q:" || me.type.substr(0, 2) == "a:") {
 				// deal with any floating media
 				//trace("in media loop, ex.mode=" + _global.ORCHID.LoadedExercises[0].mode);
-				//trace("media ID " + me.ID + " has x,y " + me.coordinates.x + "," + me.coordinates.y);
+				//trace("media ID " + me.id + " has x,y " + me.coordinates.x + "," + me.coordinates.y);
 				// floating media has no coordinates
 				//v6.4.2.1. The only media that floats is audio with autoplay. We don't have m:text (unless it comes
 				// from old TB I suppose) and m:url has never been used, I don't think.
 				if (me.coordinates.x == undefined || me.coordinates.y == undefined) {
 					//reading text xml files are in the exercises folder
-					//myTrace("floating, me.location=" + me.location + " " + me.filename); 
+					//myTrace("floating, me.location=" + me.location + " " + me.fileName); 
 					if (me.type == "m:text") {
 						// v6.3.4 Reading text will move from separate file to <texts> node soon. But for now (and maybe then)
 						// use mode to show that this is a special kind of text and will be linked to the special button. We
 						// might do a similar thing with IELTS tips actually.
 						if (me.mode & _global.ORCHID.mediaMode.ReadingText) {
-							//var myjbURL = _global.ORCHID.paths.root + _global.ORCHID.paths.exercises + me.filename;
-							var myjbURL = _global.ORCHID.paths.exercises + me.filename;
-							// v6.3 We also want to save the ReadingText filename in the exercise object
+							//var myjbURL = _global.ORCHID.paths.root + _global.ORCHID.paths.exercises + me.fileName;
+							var myjbURL = _global.ORCHID.paths.exercises + me.fileName;
+							// v6.3 We also want to save the ReadingText fileName in the exercise object
 							// For the current usage there will only be one
 							// It may be better to take the reading text link out of  the media items and put
 							// it as an attribute in the exercise xml object of the course, or a special item
 							// in the exercise XML itself. 
 							// v6.3.4 Move reading text to <texts> node
 							// and this bit is done in XMLtoObject
-							//_global.ORCHID.LoadedExercises[0].readingText = {file:me.filename, name:me.name};
+							//_global.ORCHID.LoadedExercises[0].readingText = {file:me.fileName, name:me.name};
 							//_global.ORCHID.LoadedExercises[0].readingText = {id:me.id, name:me.name};
-							//myTrace("saved readingText filename as " + me.id);
+							//myTrace("saved readingText fileName as " + me.id);
 						} else {
 							// v6.4.2.4 I think you should break out if you are using media in this odd way
 							// At present I am getting another media added twice, second time wrongly
@@ -1490,13 +1492,13 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 							continue;
 						}
 					} else if (me.type == "m:url") {
-						myTrace("found floating url=" + me.filename); // me.url);
+						myTrace("found floating url=" + me.fileName); // me.url);
 						// v6.4.2.7 use the better attribute
 						// This kind of floating url needs a special button (weblink) to be played. There is also an embedded url media type which has x, y
-						//var myjbURL = me.filename; // me.url;
+						//var myjbURL = me.fileName; // me.url;
 						var myjbURL = me.url;
 					} else {
-						//var myjbURL = _global.ORCHID.paths.root + _global.ORCHID.paths.media + me.filename;
+						//var myjbURL = _global.ORCHID.paths.root + _global.ORCHID.paths.media + me.fileName;
 						// v6.3.5 Allow for media to come from a shared location if desired
 						if (me.location == "shared") {
 							// also allow audio files to come from language sub folders
@@ -1511,31 +1513,31 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 							} else {
 								var subFolder = "";
 							}
-							var myjbURL = _global.ORCHID.paths.sharedMedia + subFolder + me.filename;
+							var myjbURL = _global.ORCHID.paths.sharedMedia + subFolder + me.fileName;
 							myTrace("shared floating media file= " + myjbURL)
 						// v6.5.6 Allow for media to come from a streaming location
 						} else if (me.location == "streaming") {
 							// v6.5.5.5 Slight change to steaming media path name
-							var myjbURL = _global.ORCHID.paths.streamingMediaFolder + me.filename;
+							var myjbURL = _global.ORCHID.paths.streamingMediaFolder + me.fileName;
 							myTrace("streaming floating media file= " + myjbURL)
 						//v6.4.2 Allow for media to come from a fully specified location
 						} else if (me.location == "URL") {
-							var myjbURL = me.filename;
+							var myjbURL = me.fileName;
 							myTrace("URL media file= " + myjbURL)
 						//v6.5.6.5 Allow media to come from a branding folder
 						} else if (me.location == "brandMovies") {
-							var myjbURL = _global.ORCHID.paths.brandMovies + me.filename;
+							var myjbURL = _global.ORCHID.paths.brandMovies + me.fileName;
 							myTrace("brand media file= " + myjbURL)
 						// v6.4.2.6 New type of "original" for an exercise in an MGS, but with media in the original
 						} else if (me.location == "original") {
-							var myjbURL = _global.ORCHID.paths.media + me.filename;
+							var myjbURL = _global.ORCHID.paths.media + me.fileName;
 							myTrace("original media file= " + myjbURL)
 						} else {
 							//v6.4.2 AP editing ce
 							if (_global.ORCHID.session.currentItem.enabledFlag & _global.ORCHID.enabledFlag.edited){
-								var myjbURL = _global.ORCHID.paths.editedMedia + me.filename;
+								var myjbURL = _global.ORCHID.paths.editedMedia + me.fileName;
 							} else {
-								var myjbURL = _global.ORCHID.paths.media + me.filename;
+								var myjbURL = _global.ORCHID.paths.media + me.fileName;
 							}
 						}
 					}
@@ -1558,15 +1560,15 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 							};
 					//myTrace("create floating media for " + jbObj.jbURL + " with autoplay=" + jbObj.jbAutoPlay);
 					//trace("jukebox=" + myMediaController.myJukeBox); // Variable _level0.exerciseHolder.Exercise_SP.tmp_mc.mediaHolder.myJukeBox = 
-					//trace("add " + me.filename + " to jukebox mediaList")
+					//trace("add " + me.fileName + " to jukebox mediaList")
 					var idx=myMediaController.myJukeBox.mediaList.push(jbObj);
 					//trace("just pushed item = " + idx); //myMediaController.myJukeBox.mediaList[idx-1].jbURL);
 				} else {
 					// this is for embedded media (at present it doesn't cope with autoPlay)
 					// media has a mode that (amongst other things) lets you set it to only appear after marking
-					//myTrace(me.filename+" has mode="  + me.mode + " type=" + me.type);
+					//myTrace(me.fileName+" has mode="  + me.mode + " type=" + me.type);
 					if (me.mode & _global.ORCHID.mediaMode.ShowAfterMarking) {
-						//trace("embedded media " + me.filename + " is only shown after marking");
+						//trace("embedded media " + me.fileName + " is only shown after marking");
 						//trace("now, ex.mode=" + _global.ORCHID.LoadedExercises[0].mode);
 					} else {
 						// but in this case you want the media to be shown right away
@@ -1687,10 +1689,17 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 	// comfort. But you wouldn't want to extend other regions, just exercise. APP clumsily gets round
 	// this by adding 3 blank paragraphs. Clearly these get ignored by test templates.
 	var max = ppotsVars.thisText.paragraph.length;
-	var lastTop = ppotsVars.contentHolder["ExerciseBox"+(max-1)]._y;
-	var lastHeight = Number(ppotsVars.contentHolder["ExerciseBox"+(max-1)].getSize().height);
+	//myTrace("max=" + max);
+	if (max>0) {
+		//myTrace("thing=" + ppotsVars.contentHolder["ExerciseBox"+(max-1)]);
+		var lastTop = ppotsVars.contentHolder["ExerciseBox"+(max-1)]._y;
+		var lastHeight = Number(ppotsVars.contentHolder["ExerciseBox"+(max-1)].getSize().height);
+		//myTrace("lastTop=" + lastTop + " lastHeight=" + lastHeight);
+	} else {
+		var lastTop = lastHeight = 0;
+	}
 	myPane.regionDepth = lastTop + lastHeight; // - 4; don't adjust for borders as you want them.
-	myTrace("new " + myPane._name + ".regionDepth=" + myPane.regionDepth);
+	//myTrace("new " + myPane._name + ".regionDepth=" + myPane.regionDepth);
 	//trace("same contentHeight=" + contentHolder._height);
 	
 	// noScroll code - does any media in the pane increase the height?
@@ -1700,7 +1709,7 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 		// effect anything.
 		var myHeight = Number(me.y) + Number(me.height);
 		if (myHeight > myPane.regionDepth) {
-			//myTrace("picture " + thisText.media[i].filename + " is deeper at=" + myHeight);
+			//myTrace("picture " + thisText.media[i].fileName + " is deeper at=" + myHeight);
 			myPane.regionDepth = myHeight;
 		}
 	}
@@ -1723,7 +1732,7 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 			//myTrace("setMaxHeight to " + myMaxH);
 		}
 		// v6.3.5 the window now lets you request a preferred size for the content
-		myTrace("contentHolder.height=" + contentHolder._height + ", width=" + contentHolder._width);
+		//myTrace("contentHolder.height=" + contentHolder._height + ", width=" + contentHolder._width);
 		//myTrace("contentHolder.height=" + contentHolder._height + ", myH=" + myH);
 		// v6.4.3 But unfortunately the contentHolder doesn't include any graphics.
 		// v6.5.5.8 For small feedback we ideally want the width to expand to fit the single-line feedback.
@@ -1736,16 +1745,16 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 			var hSpacer = vSpacer = 12;
 			for (var i in thisText.media) {
 				var me = thisText.media[i].coordinates;
-				myTrace("image is " + me.width)
+				//myTrace("image is " + me.width)
 				// stuff apart from pictures/animations tends not to have a height so it won't
 				// effect anything.
 				if (Number(me.width)>0) {
 					myImageWidth = Math.max(myImageWidth, Number(me.width) + hSpacer);
 					myImageHeight = Math.max(myImageHeight, Number(me.height));
-					myTrace("image is bigger at " + myImageWidth + ", " + myImageHeight)
+					//myTrace("image is bigger at " + myImageWidth + ", " + myImageHeight)
 				}
 			}
-			//myTrace("for " + thisText.media[i].filename + " bottom is at " + myHeight + " compare to " + contentHolder._height);
+			//myTrace("for " + thisText.media[i].fileName + " bottom is at " + myHeight + " compare to " + contentHolder._height);
 			if (myImageWidth > contentHolder._width) {
 				// can I make it bigger just like this? NO, it stretches everything
 				// so instead try adding in a dummy mc right at the bottom
@@ -1753,7 +1762,7 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 				//myTrace("safedepth=" + safeDepth);
 				var myInitObject = {_x:myImageWidth, _y:myImageHeight};
 				var dummy = contentHolder.attachMovie("blob","endMarker", safeDepth, myInitObject)
-				myTrace("widen contentHolder to " + myImageWidth);
+				//myTrace("widen contentHolder to " + myImageWidth);
 			}
 			var thisWidth = contentHolder._width;
 		} else {
@@ -1772,7 +1781,7 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 		//myPane.refreshScrollContent();
 		//trace("pane can scroll " + myPane.getScrolling());
 		// v6.3.5 hijack
-		myTrace("and enable the pane");
+		//myTrace("and enable the pane");
 		myPane.setEnabled(true);
 
 	} else {
@@ -1809,7 +1818,7 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 				var myHeight = Number(me.y) + Number(me.height);
 			}
 			var vSpacer = 20;
-			//myTrace("for " + thisText.media[i].filename + " bottom is at " + myHeight + " compare to " + contentHolder._height);
+			//myTrace("for " + thisText.media[i].fileName + " bottom is at " + myHeight + " compare to " + contentHolder._height);
 			if (myHeight > contentHolder._height) {
 				// can I make it deeper just like this? NO, it stretches everything
 				//contentHolder._height = myHeight + vSpacer;
@@ -1852,7 +1861,7 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 	//trace("at end of pPOTS, ex.mode=" + _global.ORCHID.LoadedExercises[0].mode);
 	//TIMING: this is the end of the timed function, so perform the original callback
 	//myTrace("do final callback from ppots");
-	_global.ORCHID.tlc.callback();
+	_global.ORCHID.tlc.callBack();
 	// if you didn't want to use tlc, then remove the bits that got created to make the function work
 	//if (_global.ORCHID.tlc.proportion <= 0) {
 	//	myTrace("delete the whole _global.ORCHID.tlc");
@@ -1868,18 +1877,18 @@ showMediaPopUp = function(thisMediaItem, contentHolder) {
 	var me = thisMediaItem;
 	// v6.3.5 Allow for media to come from a shared location if desired
 	if (me.location == "shared") {
-		var myFile = _global.ORCHID.paths.sharedMedia + me.filename;
+		var myFile = _global.ORCHID.paths.sharedMedia + me.fileName;
 		//myTrace("showMediaItem file= " + myFile)
 	//v6.4.2 Allow for media to come from a fully specified location
 	} else if (me.location == "URL") {
-		var myFile = me.filename;
+		var myFile = me.fileName;
 		myTrace("URL media file= " + myFile)
 	} else {
 		//v6.4.2 AP editing ce
 		if (_global.ORCHID.session.currentItem.enabledFlag & _global.ORCHID.enabledFlag.edited){
-			var myFile = _global.ORCHID.paths.editedMedia + me.filename;
+			var myFile = _global.ORCHID.paths.editedMedia + me.fileName;
 		} else {
-			var myFile = _global.ORCHID.paths.media + me.filename;
+			var myFile = _global.ORCHID.paths.media + me.fileName;
 		}
 	}
 	// object to hold media details (anything in a puw is anchored top left)
@@ -2008,7 +2017,7 @@ showMediaPopUp = function(thisMediaItem, contentHolder) {
 */
 // v6.4.2.4 This function might be called from various places - or it might not. Never mind.
 getFullMediaPath = function (me) {
-	//myTrace("fullMediaPath, me.location=" + me.location + " " + me.filename);
+	//myTrace("fullMediaPath, me.location=" + me.location + " " + me.fileName);
 	if (me.location == "shared") {
 		// v6.4.2.4 Also streamedAudio
 		//if (me.type.substr(2) == "audio") {
@@ -2020,56 +2029,56 @@ getFullMediaPath = function (me) {
 		} else {
 			var subFolder = "";
 		}
-		var myFile = _global.ORCHID.paths.sharedMedia + subFolder + me.filename;
+		var myFile = _global.ORCHID.paths.sharedMedia + subFolder + me.fileName;
 		//myTrace("showMediaItem file= " + myFile)
 	// v6.5.6 Streaming media
 	} else if (me.location == "streaming") {
 		// v6.5.5.5 Slight change to steaming media path name
-		var myFile = _global.ORCHID.paths.streamingMediaFolder + me.filename;
+		var myFile = _global.ORCHID.paths.streamingMediaFolder + me.fileName;
 		myTrace("full URL for streaming= " + myFile)
 	// v6.5.6.5 Brand media
 	} else if (me.location == "brandMovies") {
-		var myFile = _global.ORCHID.paths.brandMovies + me.filename;
+		var myFile = _global.ORCHID.paths.brandMovies + me.fileName;
 		myTrace("location is brandMovies:" + myFile)
 	//v6.4.2 Allow for media to come from a fully specified location
 	} else if (me.location.toUpperCase() == "URL") {
 		// v6.4.2.4 Allow our existing paths to be used here
-		// Example: filename=#brandMovies#certificate.swf
-		//myTrace("filename=" + me.filename + " brandMovies=" + _global.ORCHID.functions.addSlash(_global.ORCHID.paths.brandMovies));
-		if (me.filename.indexOf("#brandMovies#")>=0) {
+		// Example: fileName=#brandMovies#certificate.swf
+		//myTrace("fileName=" + me.fileName + " brandMovies=" + _global.ORCHID.functions.addSlash(_global.ORCHID.paths.brandMovies));
+		if (me.fileName.indexOf("#brandMovies#")>=0) {
 			myTrace("replacing brandMovies");
-			me.filename = findReplace(me.filename, "#brandMovies#", _global.ORCHID.functions.addSlash(_global.ORCHID.paths.brandMovies));
-		} else if (me.filename.indexOf("#mediaFolder#")>=0) {
+			me.fileName = findReplace(me.fileName, "#brandMovies#", _global.ORCHID.functions.addSlash(_global.ORCHID.paths.brandMovies));
+		} else if (me.fileName.indexOf("#mediaFolder#")>=0) {
 			myTrace("replacing mediaFolder");
 			if (_global.ORCHID.session.currentItem.enabledFlag & _global.ORCHID.enabledFlag.edited){
 				var myFolder = _global.ORCHID.paths.editedMedia;
 			} else {
 				var myFolder = _global.ORCHID.paths.media;
 			}
-			me.filename = findReplace(me.filename, "#mediaFolder#", _global.ORCHID.functions.addSlash(myFolder));
-		} else if (me.filename.indexOf("#exerciseFolder#")>=0) {
+			me.fileName = findReplace(me.fileName, "#mediaFolder#", _global.ORCHID.functions.addSlash(myFolder));
+		} else if (me.fileName.indexOf("#exerciseFolder#")>=0) {
 			myTrace("replacing exerciseFolder");
 			// v6.4.2.5 Media is always read from MGS (which defaults to content if none)
-			//me.filename = findReplace(me.filename, "#contentFolder#", _global.ORCHID.functions.addSlash(_global.ORCHID.paths.content));
+			//me.fileName = findReplace(me.fileName, "#contentFolder#", _global.ORCHID.functions.addSlash(_global.ORCHID.paths.content));
 			if (_global.ORCHID.session.currentItem.enabledFlag & _global.ORCHID.enabledFlag.edited){
 				var myFolder = _global.ORCHID.paths.editedExercises;
 			} else {
 				var myFolder = _global.ORCHID.paths.exercises;
 			}
-			me.filename = findReplace(me.filename, "#exerciseFolder#", _global.ORCHID.functions.addSlash(myFolder));
-		} else if (me.filename.indexOf("#sharedMedia#")>=0) {
+			me.fileName = findReplace(me.fileName, "#exerciseFolder#", _global.ORCHID.functions.addSlash(myFolder));
+		} else if (me.fileName.indexOf("#sharedMedia#")>=0) {
 			myTrace("replacing sharedMedia");
-			me.filename = findReplace(me.filename, "#sharedMedia#", _global.ORCHID.functions.addSlash(_global.ORCHID.paths.sharedMedia));
-		} else if (me.filename.indexOf("#streamingMedia#")>=0) {
+			me.fileName = findReplace(me.fileName, "#sharedMedia#", _global.ORCHID.functions.addSlash(_global.ORCHID.paths.sharedMedia));
+		} else if (me.fileName.indexOf("#streamingMedia#")>=0) {
 			myTrace("replacing streamingMedia");
 			// v6.5.5.5 Slight change to steaming media path name
-			me.filename = findReplace(me.filename, "#streamingMedia#", _global.ORCHID.functions.addSlash(_global.ORCHID.paths.streamingMediaFolder));
+			me.fileName = findReplace(me.fileName, "#streamingMedia#", _global.ORCHID.functions.addSlash(_global.ORCHID.paths.streamingMediaFolder));
 		}
-		var myFile = me.filename;
+		var myFile = me.fileName;
 		myTrace("URL media file= " + myFile)
 	// v6.4.2.6 New type of "original" for an exercise in an MGS, but with media in the original
 	} else if (me.location == "original") {
-		var myFile = _global.ORCHID.paths.media + me.filename;
+		var myFile = _global.ORCHID.paths.media + me.fileName;
 		myTrace("original media file= " + myFile)
 	} else if ( Number(me.location) ) {
 		// v6.5.5.7 the media file has been edited by AuthorPlusPro,
@@ -2087,7 +2096,7 @@ getFullMediaPath = function (me) {
 				break;
 			}
 		}
-		var myFile = _mediaPath + me.filename;
+		var myFile = _mediaPath + me.fileName;
 		//myTrace("myFile is " + myFile);
 		//myTrace("editedMedia=" + _global.ORCHID.paths.editedMedia);
 		
@@ -2095,10 +2104,10 @@ getFullMediaPath = function (me) {
 		//myTrace("Edited path is " + _global.ORCHID.paths.content.subString(0, _global.ORCHID.paths.content.indexOf("Content")));
 		//v6.4.2 AP editing ce
 		if (_global.ORCHID.session.currentItem.enabledFlag & _global.ORCHID.enabledFlag.edited){
-			var myFile = _global.ORCHID.paths.editedMedia + me.filename;
+			var myFile = _global.ORCHID.paths.editedMedia + me.fileName;
 			//myTrace("editedMedia = " + myFile);
 		} else {
-			var myFile = _global.ORCHID.paths.media + me.filename;
+			var myFile = _global.ORCHID.paths.media + me.fileName;
 			//myTrace("editedMedia = " + myFile);
 		}
 	}
@@ -2106,9 +2115,9 @@ getFullMediaPath = function (me) {
 }
 showMediaItem = function(thisMediaItem, contentHolder) {
 	var me = thisMediaItem;
-	//myTrace("showMediaItem.id " + me.id);
+	//myTrace("showMediaItem.id " + me.id + " fileName=" + me.fileName + "," + me.filename);
 	var mediaDepth = Number(_global.ORCHID.mediaDepth) + Number(me.id);
-	//var myFile = _global.ORCHID.paths.root + _global.ORCHID.paths.media + me.filename;
+	//var myFile = _global.ORCHID.paths.root + _global.ORCHID.paths.media + me.fileName;
 	// v6.3.5 Allow for media to come from a shared location if desired
 	// v6.4.2.4 Pull out code to separate function
 	var myFile = getFullMediaPath(me);
@@ -2169,7 +2178,7 @@ showMediaItem = function(thisMediaItem, contentHolder) {
 			var mediaBottom = Number(myCoords.height) + mediaTop + vSpacer;
 			var anchorParaY = contentHolder["ExerciseBox"+me.anchorPara]._y;
 			var nextParaY = anchorParaY + 10; // safety margin
-			//myTrace(me.filename + " bottom " + mediaBottom + " anchorY " + anchorParaY);
+			//myTrace(me.fileName + " bottom " + mediaBottom + " anchorY " + anchorParaY);
 			// vital to go through in y order so you can stop once you find the next para
 			// that starts after the anchored one (or others on the same line).
 			// In the end you might be able to find a way to let other paras in the same 'group'
@@ -2265,7 +2274,7 @@ showMediaItem = function(thisMediaItem, contentHolder) {
 				// v6.5.5.7 Now that I have played one of the audio files, I should be able to use recorder compare if I want
 				_global.ORCHID.viewObj.enableRecorderCompare(true);
 				
-				// v6.5.5.7 For compareWaveforms to work I need to know the filename of the last audio that I clicked on.
+				// v6.5.5.7 For compareWaveforms to work I need to know the fileName of the last audio that I clicked on.
 				// Which will be this one. I could probably pick it up direct from the videoPlayer, but since this whole audio player
 				// business is very messy, lets just save it in the currentItem Object for now.
 				_global.ORCHID.session.currentItem.lastAudioFile=this.mediaObj.jbURL;
@@ -2546,7 +2555,7 @@ showMediaItem = function(thisMediaItem, contentHolder) {
 			/*
 			// following should be done elsewhere I guess, but no matter
 			_global.ORCHID.root.jukeboxHolder.onPlayFinished = function() {
-				myTrace("onPlayFinished for " + _root.jukeboxHolder.nowPlaying.target.filename + " in " + _root.jukeboxHolder);
+				myTrace("onPlayFinished for " + _root.jukeboxHolder.nowPlaying.target.fileName + " in " + _root.jukeboxHolder);
 				_global.ORCHID.root.jukeboxHolder.nowPlaying.status = false;
 			}
 			*/
@@ -2566,7 +2575,7 @@ showMediaItem = function(thisMediaItem, contentHolder) {
 				//	insertAnswerIntoField(_global.ORCHID.session.currentItem.lastGap.field, _global.ORCHID.session.currentItem.lastGap.text, true);
 				//	_global.ORCHID.session.currentItem.lastGap = undefined;
 				//}
-				//myTrace("clicked on " + this.endEventTarget.filename + ", nowPlaying=" + _root.jukeboxHolder.nowPlaying.status);
+				//myTrace("clicked on " + this.endEventTarget.fileName + ", nowPlaying=" + _root.jukeboxHolder.nowPlaying.status);
 				//initObj.callingMC = this;
 				// this should enable the ONE media control panel for the exercise and pass in this media item's parameters
 				// 6.0.2.0 setting jbTarget to this.picture should give an audio masquerading as a swf
@@ -2757,7 +2766,7 @@ showMediaItem = function(thisMediaItem, contentHolder) {
 			//v 6.3.5 How to avoid the picture overlapping the top border of the scrollpane?
 			// It is fine at the bottom, and changing _y had no effect. I fear it is something complex
 			// to do with the mask. v6.4.1 Fixed in FScrollPane component.
-			//myTrace("adding " + me.filename + " to contentHolder=" + contentHolder);
+			//myTrace("adding " + me.fileName + " to contentHolder=" + contentHolder);
 			//var mediaDepth = Number(_global.ORCHID.mediaDepth) + Number(me.id);
 			//myTrace("add picture at depth=" + mediaDepth);
 			//v6.4.1 Whilst you can use an event from mediaHolder onClipEvent(data) which lets you
@@ -2924,7 +2933,7 @@ showMediaItem = function(thisMediaItem, contentHolder) {
 		} else if (me.type.substr(2) == "url") {
 			myTrace("found an embedded url " + me.url + " " + me.name);
 			// v6.4.2.7 use a better attribute name
-			//var initObj = {jbURL:me.filename, _x:myCoords.x, _y:myCoords.y, jbMediaType:me.type};
+			//var initObj = {jbURL:me.fileName, _x:myCoords.x, _y:myCoords.y, jbMediaType:me.type};
 			var initObj = {jbURL:me.url, _x:myCoords.x, _y:myCoords.y, jbMediaType:me.type};
 			// v6.4.2.7 Rather than click a button to get a URL, I want to put an underlined caption that acts as a link
 			// v6.5.0.1 It would be nice to have split screen weblinks at the bottom of the texts side. Author can't know
@@ -3015,7 +3024,7 @@ showMediaItem = function(thisMediaItem, contentHolder) {
 // v6.4.2.4 The line between me and initObj isn't always clear. They both seem to do much the same and in some cases are the same!
 // The only attributes you need from me are id and playTimes. Both are on initObj too (but with jb prefix)
 createVideoPlayer = function(me, initObj, contentHolder) {
-	var myPlayerVersionNum = new versionNumber(_global.ORCHID.projector.flashVersion);
+	var myPlayerVersionNum = new versionNumber(_global.ORCHID.projector.FlashVersion);
 	// v6.4.2.4 But the buttons for starting the media are already added at this depth! When you click audio it duly disappears (WRONG)
 	// but for some reason video doesn't. Wonder why. Ahh, probably due to video being in puw as content holder.
 	// So use relatedDepth here, then if video loses the play button, switch to media
@@ -3554,7 +3563,7 @@ putParagraphsOnThePrinter = function(paneHolder, thisText, paneType, paneName, s
 	//TIMING: This huge function needs to be broken up due to the timing breaker
 	// collect all variables that you need for the loop and stuffAfter into the an object
 	// v6.3.4 Common settings for all display routines
-	_global.ORCHID.tlc.stuffBeforeCallback = putParagraphsOnThePrinter_stuffAfter;
+	_global.ORCHID.tlc.stuffBeforeCallBack = putParagraphsOnThePrinter_stuffAfter;
 	_global.ORCHID.tlc.timeLimit = 1000;
 	_global.ORCHID.tlc.maxLoop = thisText.paragraph.length;
 	_global.ORCHID.tlc.i = 0;
@@ -4039,7 +4048,7 @@ putParagraphsOnThePrinter_mainLoop = function(ppotsVars) {
 			var lastBottom = 0;	var thisTop = 0;
 			var myCoords = new Object();
 			myCoords = thisText.paragraph[i].coordinates;
-			var mypara = i; 	// don't use paragraph ID anymore // thisFeedback.paragraph[i].id;
+			var myPara = i; 	// don't use paragraph ID anymore // thisFeedback.paragraph[i].id;
 						// but this variable is used for depths. Are depths used as indexes anywhere?
 	
 			// offset subsequent paragraphs
@@ -4286,9 +4295,9 @@ putParagraphsOnThePrinter_stuffAfter = function(ppotsVars) {
 					if (me.mode & _global.ORCHID.mediaMode.ShowAfterMarking) {
 					// v6.4.3 Also don't print pictures that go under the text
 					} else if (me.mode & _global.ORCHID.mediaMode.DisplayUnder) {
-						myTrace("ignoring displayUnder for " + me.filename);
+						myTrace("ignoring displayUnder for " + me.fileName);
 					} else {
-						//myTrace("adding print media=" + me.filename + " type=" + me.type);
+						//myTrace("adding print media=" + me.fileName + " type=" + me.type);
 						// but in this case you want the media to be shown right away
 						//showMediaItem(me, contentHolder);
 						/*
@@ -4296,7 +4305,7 @@ putParagraphsOnThePrinter_stuffAfter = function(ppotsVars) {
 							so remove a block of code
 						
 						//var me = thisMediaItem;
-						//var myFile = _global.ORCHID.paths.root + _global.ORCHID.paths.media + me.filename;
+						//var myFile = _global.ORCHID.paths.root + _global.ORCHID.paths.media + me.fileName;
 						// v6.3.5 Allow for media to come from a shared location if desired
 						if (me.location == "shared") {
 							// also allow audio files to come from language sub folders
@@ -4306,18 +4315,18 @@ putParagraphsOnThePrinter_stuffAfter = function(ppotsVars) {
 							//} else {
 								var subFolder = "";
 							//}
-							var myFile = _global.ORCHID.paths.sharedMedia + subFolder + me.filename;
+							var myFile = _global.ORCHID.paths.sharedMedia + subFolder + me.fileName;
 							//myTrace("shared media, so read file= " + myFile)
 						//v6.4.2 Allow for media to come from a fully specified location
 						} else if (me.location == "URL") {
-							var myFile = me.filename;
+							var myFile = me.fileName;
 							myTrace("URL media file= " + myFile)
 						} else {
 							//v6.4.2 AP editing ce
 							if (_global.ORCHID.session.currentItem.enabledFlag & _global.ORCHID.enabledFlag.edited){
-								var myFile = _global.ORCHID.paths.editedMedia + me.filename;
+								var myFile = _global.ORCHID.paths.editedMedia + me.fileName;
 							} else {
-								var myFile = _global.ORCHID.paths.media + me.filename;
+								var myFile = _global.ORCHID.paths.media + me.fileName;
 							}
 						}
 						var myCoords = new Object();
@@ -4415,7 +4424,7 @@ putParagraphsOnThePrinter_stuffAfter = function(ppotsVars) {
 		// effect anything.
 		var myHeight = Number(me.y) + Number(me.height);
 		if (myHeight > myPane.regionDepth) {
-			//trace("picture " + thisText.media[i].filename + " is deeper at=" + myHeight);
+			//trace("picture " + thisText.media[i].fileName + " is deeper at=" + myHeight);
 			myPane.regionDepth = myHeight;
 		}
 	}
@@ -4431,7 +4440,7 @@ putParagraphsOnThePrinter_stuffAfter = function(ppotsVars) {
 			var myHeight = Number(me.y) + Number(me.height);
 		}
 		var vSpacer = 20;
-		//myTrace("for " + thisText.media[i].filename + " bottom is at " + myHeight + " compare to " + contentHolder._height);
+		//myTrace("for " + thisText.media[i].fileName + " bottom is at " + myHeight + " compare to " + contentHolder._height);
 		if (myHeight > contentHolder._height) {
 			// can I make it deeper just like this? NO, it stretches everything
 			//contentHolder._height = myHeight + vSpacer;
@@ -4463,7 +4472,7 @@ printMediaItem = function(thisMediaItem, contentHolder) {
 	var me = thisMediaItem;
 	var mediaDepth = Number(_global.ORCHID.mediaDepth) + Number(me.id);
 	//myTrace("printMediaItem.id " + me.id + " at depth="+ mediaDepth + " to " + contentHolder);
-	//var myFile = _global.ORCHID.paths.root + _global.ORCHID.paths.media + me.filename;
+	//var myFile = _global.ORCHID.paths.root + _global.ORCHID.paths.media + me.fileName;
 	// v6.3.5 Allow for media to come from a shared location if desired
 	if (me.location == "shared") {
 		// v6.4.2.4 Also streamedAudio
@@ -4476,30 +4485,30 @@ printMediaItem = function(thisMediaItem, contentHolder) {
 		} else {
 			var subFolder = "";
 		}
-		var myFile = _global.ORCHID.paths.sharedMedia + subFolder + me.filename;
+		var myFile = _global.ORCHID.paths.sharedMedia + subFolder + me.fileName;
 	// v6.5.6 Streaming
 	} else if (me.location == "streaming") {
 		// v6.5.5.5 Slight change to steaming media path name
-		var myFile = _global.ORCHID.paths.streamingMediaFolder + me.filename;
+		var myFile = _global.ORCHID.paths.streamingMediaFolder + me.fileName;
 		//myTrace("showMediaItem file= " + myFile)
 	// v6.5.6.5 Brand
 	} else if (me.location == "brandMovies") {
-		var myFile = _global.ORCHID.paths.brandMovies + me.filename;
+		var myFile = _global.ORCHID.paths.brandMovies + me.fileName;
 	//v6.4.2 Allow for media to come from a fully specified location
 	} else if (me.location == "URL") {
-		var myFile = me.filename;
+		var myFile = me.fileName;
 		//myTrace("URL media file= " + myFile)
 	//v6.4.2.6 Media comes from original location
 	} else if (me.location == "original") {
-		var myFile = _global.ORCHID.paths.media + me.filename;
+		var myFile = _global.ORCHID.paths.media + me.fileName;
 		//myTrace("original media file= " + myFile)
 	} else {
 		//v6.4.2 AP editing ce
 		if (_global.ORCHID.session.currentItem.enabledFlag & _global.ORCHID.enabledFlag.edited){
-			var myFile = _global.ORCHID.paths.editedMedia + me.filename;
+			var myFile = _global.ORCHID.paths.editedMedia + me.fileName;
 			//myTrace("editedMedia = " + myFile);
 		} else {
-			var myFile = _global.ORCHID.paths.media + me.filename;
+			var myFile = _global.ORCHID.paths.media + me.fileName;
 			//myTrace("editedMedia = " + myFile);
 		}
 	}
@@ -4774,8 +4783,8 @@ printMediaItem = function(thisMediaItem, contentHolder) {
 			
 		// v6.3 Add in the url type (ready for when authoring supports it).
 		} else if (me.type.substr(2) == "url") {
-			myTrace("found an embedded url " + me.filename);
-			var initObj = {jbURL:me.filename, _x:myCoords.x, _y:myCoords.y, jbMediaType:me.type};
+			myTrace("found an embedded url " + me.fileName);
+			var initObj = {jbURL:me.fileName, _x:myCoords.x, _y:myCoords.y, jbMediaType:me.type};
 			/*
 				removed stuff
 			*/

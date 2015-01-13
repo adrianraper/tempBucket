@@ -44,4 +44,10 @@
 			<locationURI>SDK_HOME/frameworks/projects/mobiletheme/src</locationURI>
 		</link>
 	</linkedResources>
+	<variableList>
+		<variable>
+			<name>SDK_HOME</name>
+			<value>file:/Applications/Flex/13.0_AIR15</value>
+		</variable>
+	</variableList>
 </projectDescription>

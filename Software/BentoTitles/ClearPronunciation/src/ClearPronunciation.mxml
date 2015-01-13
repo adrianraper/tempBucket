@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clearpronunciation:ClearPronunciationApplication 
+			   xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:clearpronunciation="com.clarityenglish.clearpronunciation.*"
+			   minWidth="955" minHeight="600" 
+			   initialize="onInitialize(event)"
+			   preloader="com.clarityenglish.clearpronunciation.ClearPronunciationPreloader">
+	
+	<fx:Metadata>
+		[SWF(width="990", height="740")]
+	</fx:Metadata>
+	
+	<fx:Style source="clearpronunciation.css"/>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace clearpronunciation "com.clarityenglish.clearpronunciation.*";
+		
+		global {
+			fontFamily: Verdana;
+			fontWeight: normal;
+		}
+		
+		@font-face {
+			src: url("skins/clearpronunciation/assets/MGBOLD.otf");
+			fontFamily: Mgbold;
+			fontStyle: normal;
+			fontWeight: bold;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+		
+		@font-face {
+			src: url("skins/clearpronunciation/assets/L_10646.TTF");
+			fontFamily: Phonetic;
+			fontStyle: normal;
+			fontWeight: normal;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+		
+		@font-face {
+			src: url("skins/clearpronunciation/assets/MyriadPro-Regular.otf");
+			fontFamily: MyriadPro;
+			fontStyle: normal;
+			fontWeight: normal;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+		
+		@font-face {
+			src: url("skins/clearpronunciation/assets/MyriadPro-Semibold.otf");
+			fontFamily: MyriadPro;
+			fontStyle: normal;
+			fontWeight: bold;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.clearpronunciation.ClearPronunciationApplicationFacade;
+			import com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator;
+			
+			import mx.events.FlexEvent;
+			
+			protected function onInitialize(event:FlexEvent):void {
+				CSSApplicator.fontSizeOffset = 4;
+				
+				versionNumber = "10.1.13";
+				
+				facade = ClearPronunciationApplicationFacade.getInstance();
+			}
+		]]>
+	</fx:Script>
+	
+</clearpronunciation:ClearPronunciationApplication>

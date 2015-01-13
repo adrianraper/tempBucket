@@ -33,6 +33,9 @@ this.whoami = "proxy root";
 controlNS.whoami = "controlNS";
 controlNS.master = this;
 
+function talkToMe() {
+	myTrace("talk to me from " + this.whoami);
+}
 // v6.3.3 What information has been passed to you on the command line?
 _global.ORCHID.commandLine = new Object();
 // v6.4 2 For now, leave these all on root and they will only work if run at the 
@@ -55,14 +58,14 @@ _global.ORCHID.commandLine.course = this.course;
 _global.ORCHID.commandLine.entryPass = this.entryPass;
 _global.ORCHID.commandLine.encryptKey = this.encryptKey;
 // v6.3.5 new variables for APL - this is where the location.ini is for this account
-_global.ORCHID.commandLine.userDataPath = this.userdatapath;
+_global.ORCHID.commandLine.userDataPath = this.userDataPath; // ar#689
 // v6.4.2 what is location.ini actually called?
 _global.ORCHID.commandLine.location = this.location;
 
 // v6.3.4 Way to show that the program has started from within SCORM LMS
 _global.ORCHID.commandLine.scorm = (this.scorm == "true");
 // v6.5 And tell it how you will communicate with the start page/LMS
-_global.ORCHID.commandLine.scormCommunication = (this.scormCommunication=="" || this.scormCommunication==undefined) ? undefined : this.scormCommunication;
+_global.ORCHID.commandLine.scormCommunication = (this.scormCommunication=="" || this.scormCommunication==undefined) ? '' : this.scormCommunication; //ar#869
 // If you passed this parameter, then make sure that the plain one is also set to true
 myTrace("scormCommunication=" + scormCommunication);
 if (_global.ORCHID.commandLine.scormCommunication.length>=1) {
@@ -97,7 +100,7 @@ if (_global.ORCHID.commandLine.userName != undefined) {
 // as well that will override anything from location.ini. In particular dbHost and content.
 // v6.5.5.5 Expecting this to be a root for content. The specific folder will be added later.
 // UNLESS you are NOT getting account data from the db, in which case this must be the full folder.
-_global.ORCHID.commandLine.content = this.content;
+_global.ORCHID.commandLine.content = (this.content=="" || this.content==undefined) ? '' : this.content; //ar#869;
 if (_global.ORCHID.commandLine.content.length>=1) {
 	myTrace("content from commandline=" + _global.ORCHID.commandLine.content);
 }
@@ -108,13 +111,13 @@ _global.ORCHID.commandLine.brandMovies = this.brandMovies;
 _global.ORCHID.commandLine.interfaceMovies = this.interfaceMovies;
 // v6.3.6 Add yet more things that can come through the command line
 _global.ORCHID.commandLine.mainMovies = this.mainMovies;
-_global.ORCHID.commandLine.licence = this.licence;
+_global.ORCHID.commandLine.licence = (this.licence=="" || this.licence==undefined) ? '' : this.licence; //ar#869;
 _global.ORCHID.commandLine.dbDetails = new Object();
 _global.ORCHID.commandLine.dbDetails.dbHost = this.dbHost;
 // v6.4.2 For projector use
 _global.ORCHID.commandLine.dbDetails.dbPath = this.dbPath;
 // v6.3.5 You might be passed a required/suggested interface language
-_global.ORCHID.commandLine.language = this.language;
+_global.ORCHID.commandLine.language = (this.language=="" || this.language==undefined) ? 'EN' : this.language; //ar#869;
 
 // v6.4.1 The command line can tell you that preview has started you
 _global.ORCHID.commandLine.preview = (this.preview == "true");
@@ -129,34 +132,38 @@ _global.ORCHID.commandLine.database = this.database;
 _global.ORCHID.commandLine.MGSName = this.MGSName;
 myTrace("_global ORCHID MGSName is " + _global.ORCHID.commandLine.MGSName);
 // v6.4.2.6 If you pass this with SWFObject getUserQueryParam, then even if not used it will be empty rather than undefined.
-_global.ORCHID.commandLine.MGSRoot = (this.MGSRoot=="" || this.MGSRoot==undefined) ? undefined : this.MGSRoot;
+_global.ORCHID.commandLine.MGSRoot = (this.MGSRoot=="" || this.MGSRoot==undefined) ? '' : this.MGSRoot; //ar#869
 myTrace("_global ORCHID MGSRoot is " + _global.ORCHID.commandLine.MGSRoot);
 // v6.4.3 You might have loaded control using JSFG, in which case, what is the proxy id?
 // What id does the proxy have?
-_global.ORCHID.commandLine.flashProxyID = this.lcId;
+_global.ORCHID.commandLine.flashProxyID = (this.lcId=="" || this.lcId==undefined) ? '' : this.lcId; //ar#869;
 //myTrace("proxyID=" + _global.ORCHID.commandLine.flashProxyID);
 
 // v6.4.3 Have you started from a protected program?
 _global.ORCHID.commandLine.protectionParameter = this.protectionParameter;
 
 // v6.5.4.8 Very special case you want to pass the rootID
-_global.ORCHID.commandLine.rootID = (this.rootID=="" || this.rootID==undefined) ? undefined : this.rootID;
+_global.ORCHID.commandLine.rootID = (this.rootID=="" || this.rootID==undefined) ? '' : this.rootID; //ar#869
 
 // v6.5.5.1 If you pass the prefix it implies that you are within CE.com
-_global.ORCHID.commandLine.prefix = (this.prefix=="" || this.prefix==undefined) ? undefined : this.prefix;
-_global.ORCHID.commandLine.productCode = (this.productCode=="" || this.productCode==undefined) ? undefined : this.productCode;
+_global.ORCHID.commandLine.prefix = (this.prefix=="" || this.prefix==undefined) ? '' : this.prefix;  //ar#869
+_global.ORCHID.commandLine.productCode = (this.productCode=="" || this.productCode==undefined) ? '' : this.productCode; //ar#869
 myTrace("command-line root=" + _global.ORCHID.commandLine.rootID + " prefix=" + _global.ORCHID.commandLine.prefix);
 
 // v6.5.5.5 Also send instanceID if you have another set of scripts which initially create an instance ID for this user
-_global.ORCHID.commandLine.instanceID = this.instanceID;
+_global.ORCHID.commandLine.instanceID = (this.instanceID=="" || this.instanceID==undefined) ? '' : this.instanceID; //ar#869;
 if (_global.ORCHID.commandLine.instanceID) myTrace("command-line instanceID=" + _global.ORCHID.commandLine.instanceID);
 
 // v6.5.5.9 To help us with badger
 _global.ORCHID.commandLine.isConnected = false;
 
 // v6.5.6.2 Purely for testing certificates where you want to go direct, but report on an old session
-_global.ORCHID.commandLine.sessionID = (this.sessionID==undefined) ? undefined : this.sessionID;
+_global.ORCHID.commandLine.sessionID = (this.sessionID==undefined) ? '' : this.sessionID; //ar#869
 if (_global.ORCHID.commandLine.sessionID) myTrace("command-line sessionID=" + _global.ORCHID.commandLine.sessionID);
+
+// gh#869 For communication with Bento
+_global.ORCHID.commandLine.bento = (this.bento == "true");
+if (_global.ORCHID.commandLine.bento) myTrace("command-line running from Bento");
 
 // v6.5.5.5 And if you want to see what this whole command line was?
 _global.ORCHID.commandLine.toString = function() {
@@ -171,11 +178,10 @@ _global.ORCHID.paths = new Object();
 
 // v6.4.3 Might need a better version of online or not as slashes get mixed up when you run a file within the browser
 // v6.5.4.4 For running from a file - WET
-//_global.ORCHID.online = (this._url.subStr(0,7) == "http://");
 if (_root.mdm_winverstring != undefined) {
 	_global.ORCHID.online = false;
 } else {
-	if ((this._url.subStr(0,7) == "http://") || (this._url.subStr(0,8) == "https://") || (this._url.subStr(0,7) == "file://")) {
+	if ((this._url.substr(0,7) == "http://") || (this._url.substr(0,8) == "https://") || (this._url.substr(0,7) == "file://")) {
 		_global.ORCHID.online = true;
 	} else {
 		_global.ORCHID.online = false;
@@ -304,7 +310,8 @@ controlNS.setupPaths = function() {
 			}
 			// v6.5.5.5 Expecting this to be a root for content. The specific folder will be added later.
 			// UNLESS you are NOT getting account data from the db, in which case this must be the full folder.
-			if (_global.ORCHID.commandLine.content == undefined &&
+			// ar#869
+			if ((_global.ORCHID.commandLine.content == undefined || _global.ORCHID.commandLine.content == '') &&
 				this.content != undefined) {
 					myTrace("content from location=" + this.content);
 				_global.ORCHID.commandLine.content = this.content;
@@ -1022,9 +1029,10 @@ controlNS.runPreviewMode = function() {
 			} else {
 				// v6.4.1.4 And for browser mode, try window.focus. Works in all my browsers.
 				//myTrace("run js:window.focus");
-				getURL("javascript:window.focus()");
+				if (!_global.ORCHID.commandLine.bento)
+					getURL("javascript:window.focus()");
 			}
-			myTrace("ValidPreview: request course " + courseID + " and ex " + exID);
+			myTrace("valid preview request, course " + courseID + " and ex " + exID);
 			// Lets accept that this really is an author preview, so skip things like hiddenContent.
 			_global.ORCHID.session.validPreview = true;
 			
@@ -1086,7 +1094,7 @@ controlNS.runPreviewMode = function() {
 		}
 		//myTrace("tell conn 'OrchidCommand' ");
 		var connectSuccess = this.receiveConn.connect("OrchidCommand");
-		//myTrace("preview, so create localConnection, success=" + connectSuccess,1);
+		myTrace("preview, so create localConnection, success=" + connectSuccess,1);
 	} else {
 		//myTrace("no preview");
 	}

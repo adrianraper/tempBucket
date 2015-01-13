@@ -5,7 +5,7 @@ package com.clarityenglish.rotterdam.view.title {
 	import com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView;
 	import com.clarityenglish.rotterdam.view.schedule.ScheduleView;
 	import com.clarityenglish.rotterdam.view.settings.SettingsView;
-	import com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator;
+	import com.clarityenglish.components.CancelableTabbedViewNavigator;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;

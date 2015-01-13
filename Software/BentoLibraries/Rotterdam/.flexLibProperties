@@ -13,7 +13,7 @@
     <classEntry path="com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsMediator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.title.TitleMediator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.title.TitleView"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator"/>
+    <classEntry path="com.clarityenglish.components.CancelableTabbedViewNavigator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.unit.UnitHeaderView"/>
     <classEntry path="com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayout"/>
     <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget"/>
@@ -44,6 +44,9 @@
     <classEntry path="com.clarityenglish.rotterdam.view.settings.SettingsMediator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.settings.SettingsView"/>
     <classEntry path="skins.rotterdam.unit.widgets.AnimationWidgetSkin"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.SelectorWidget"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.GroupWidget"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.VideoSelectorWidget"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

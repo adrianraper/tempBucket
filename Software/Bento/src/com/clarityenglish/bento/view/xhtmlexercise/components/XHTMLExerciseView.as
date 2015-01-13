@@ -1,9 +1,6 @@
 package com.clarityenglish.bento.view.xhtmlexercise.components {
-	import caurina.transitions.Tweener;
-	
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.xhtmlexercise.IExerciseView;
-	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingButtonEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingOverlayEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
@@ -24,22 +21,23 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
-	import flash.utils.Dictionary;
-	
-	import flashx.textLayout.elements.FlowElement;
 	
 	import mx.controls.SWFLoader;
 	import mx.graphics.BitmapFillMode;
 	import mx.graphics.BitmapSmoothingQuality;
 	import mx.graphics.SolidColor;
 	
+	import spark.components.Group;
+	import spark.primitives.BitmapImage;
+	
+	import caurina.transitions.Tweener;
+	
+	import flashx.textLayout.elements.FlowElement;
+	
 	import org.davekeen.util.PointUtil;
 	import org.osflash.signals.Signal;
 	
-	import spark.components.Group;
-	import spark.components.TextInput;
 	import spark.primitives.BitmapImage;
-	
 	[Event(name="questionAnswered", type="com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent")]
 	[Event(name="feedbackShow", type="com.clarityenglish.bento.view.xhtmlexercise.events.FeedbackEvent")]
 	public class XHTMLExerciseView extends BentoView implements IExerciseView {
@@ -130,6 +128,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		public function getQuestionFeedback():Signal {
 			return gotQuestionFeedback;
 		}
+		
 		/**
 		 * Search through all the sections for the given node
 		 * 
@@ -175,15 +174,15 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 						newImage.top = parseInt(item.@top);
 						// TODO DK worries that hasOwnProperty can cause crashes when packaging for iOS.
 						// This codes actually works fine without the checks it just seemed better to test first...
-						if (item.hasOwnProperty("@width") || item.hasOwnProperty("@height")) {
+						if (item.attribute("width").length() > 0 || item.attribute("height").length() > 0) {
 							newImage.fillMode = mx.graphics.BitmapFillMode.SCALE;
 							newImage.scaleMode = mx.graphics.BitmapScaleMode.STRETCH;
 							newImage.smooth = true;
 							newImage.smoothingQuality = BitmapSmoothingQuality.HIGH;
 						}
-						if (item.hasOwnProperty("@width")) 
+						if (item.attribute("width").length() > 0) 
 							newImage.width = parseInt(item.@width);
-						if (item.hasOwnProperty("@height"))
+						if (item.attribute("height").length() > 0)
 							newImage.height = parseInt(item.@height);
 						backgroundGraphics.addElement(newImage);
 					}
@@ -209,7 +208,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		 * @param event
 		 */
 		protected function onSectionClick(event:MouseEvent):void {
-			
 			// gh#533 If you are in a gap, stop the click from progressing with this event
 			if (event.target.hasOwnProperty("editable") && event.target.editable)
 				return;
@@ -434,21 +432,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					}
 				}			
 			} 
-		}
-		
-		// gh#348
-		public function enableFeedbackAudio():void {
-			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
-			
-			var audioNodes:Array = exercise.select("audio.audio-feedback");
-			for each (var node:XML in audioNodes) {
-				var audioElement:AudioElement = getFlowElement(node) as AudioElement;
-				audioElement.getTextFlow().dispatchEvent(new MarkingButtonEvent(MarkingButtonEvent.MARK_BUTTON_CLICKED, audioElement));
-				
-				TLFUtil.markFlowElementFormatChanged(audioElement);
-				textFlowDamageAccumulator.damageTextFlow(audioElement.getTextFlow());
-			}
-			textFlowDamageAccumulator.updateDamagedTextFlows();				
 		}
 		
 	}

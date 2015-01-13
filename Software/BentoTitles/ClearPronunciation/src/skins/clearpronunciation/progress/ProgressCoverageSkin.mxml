@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" 
+		xmlns:exerciseNumber="skins.tensebuster.assets.exerciseNumber.*" 
+		xmlns:numberIcon="skins.tensebuster.assets.progress.coverage.numberIcon.*"
+		alpha.disabled="0.5" 
+		creationComplete="onCreationComplete(event)">
+	
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.clearpronunciation.view.progress.ProgressCoverageView")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[			
+			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+			
+			private function getItemRenderer(item:Object):ClassFactory {
+				return item.@caption;
+			}
+			
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
+				
+				progressBar.trackColour = getStyle(hostComponent.courseClass.charAt(0) + 'DarkColor');
+				progressBar.fillColour = getStyle(hostComponent.courseClass.charAt(0) + 'LightColor');	
+			}
+			
+			protected function onCreationComplete(event:FlexEvent):void {
+				coverageScroller.height = FlexGlobals.topLevelApplication.height - 310;
+				coverageScrollerLayout.rowHeight = coverageScroller.height / 8;
+				coverageScrollerLayout.columnWidth = (FlexGlobals.topLevelApplication.width - 80) * 0.5;
+			}
+			
+		]]>
+	</fx:Script>
+
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+    </s:states>
+	
+	<s:VGroup left="20" right="20" top="20" bottom="0" gap="15">
+		<ui:ProgressCourseButtonBar id="progressCourseButtonBar" height="40">
+			<ui:layout>
+				<s:ButtonBarHorizontalLayout gap="35" />
+			</ui:layout>
+		</ui:ProgressCourseButtonBar>
+		
+		<s:Rect id="titleLine" height="1" width="100%">
+			<s:fill>
+				<s:SolidColor color="#000000" />
+			</s:fill>
+		</s:Rect>
+		
+		<ui:ProgressBarRenderer id="progressBar" height="30" width="100%" />	
+		
+		<s:HGroup width="100%" height="20" verticalAlign="middle">
+			<s:Label id="coverageInstructionLabel" top="130" left="50" fontSize="12" color="#333333" />		
+			
+			<s:HGroup width="100%" horizontalAlign="right" paddingRight="5">
+				<s:Ellipse x="0" y="0" width="20" height="20">
+					<s:fill>
+						<s:LinearGradient>
+							<s:GradientEntry color="#263A45" />
+							<s:GradientEntry color="#416B75" />
+						</s:LinearGradient>
+					</s:fill>
+				</s:Ellipse>
+				<s:Label id="completeLabel" paddingTop="5" fontSize="13" color="#333333" />	
+				<s:Spacer width="14"/>
+				<s:Ellipse x="0" y="0" width="20" height="20">
+					<s:fill>
+						<s:LinearGradient>
+							<s:GradientEntry color="#979797" />
+							<s:GradientEntry color="#CACACA" />
+						</s:LinearGradient>
+					</s:fill>
+				</s:Ellipse>
+				<s:Label id="notCompleteLabel" paddingTop="5" fontSize="13" color="#333333" />
+			</s:HGroup>	
+		</s:HGroup>
+		
+		<!--Coverage list-->
+		<s:Scroller id="coverageScroller" left="50" right="0">
+			<s:DataGroup dataProvider="{hostComponent.unitListCollection}"  width="100%" height="100%" minWidth="0" minHeight="0">
+				<s:layout>
+					<s:TileLayout id="coverageScrollerLayout" orientation="columns" requestedColumnCount="2" />
+				</s:layout>
+				<s:itemRenderer>
+					<fx:Component>
+						<s:DataRenderer>
+							<fx:Script>
+								<![CDATA[
+									import mx.collections.XMLListCollection;
+									
+									public function getIndex(data:Object):Number {
+										return (owner as DataGroup).dataProvider.getItemIndex(data);
+									}
+									
+									override public function set data(value:Object):void {
+										super.data = value;
+										
+										if (data) {
+											if (getIndex(data) < 9) {
+												unitItemIndexLabel.text = "0" + String(getIndex(data) + 1);
+											} else {
+												unitItemIndexLabel.text = String(getIndex(data) + 1);
+											}
+											
+											unitItemLeftButton.label = outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@leftIcon);
+											if (data.attribute("rightIcon").length() > 0) {
+												unitItemRightButton.visible = true;
+												unitItemRightLabel.visible = true;
+												unitItemRightButton.label = outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@rightIcon);
+											} else {
+												unitItemRightButton.visible = false;
+												unitItemRightLabel.visible = false;
+											}
+											
+											coverageCirclesDataGroup.dataProvider = new XMLListCollection(data.exercise);
+										}			
+									}
+									
+								]]>
+							</fx:Script>
+							<s:HGroup width="100%" height="100%" verticalAlign="middle">
+								<s:Label id="unitItemIndexLabel" fontSize="14" verticalCenter="0" color="#005D5F" />
+								<s:Spacer width="5" />
+								<s:HGroup left="0" width="80" verticalCenter="0" verticalAlign="middle">
+									<s:Button id="unitItemLeftButton" scaleX="0.8" scaleY="0.8"/>
+									<s:Label id="unitItemLeftLabel" text="{data.@leftIcon}" fontSize="14" color="#005D5F" />
+								</s:HGroup>
+								<s:Spacer width="10" />
+								<s:HGroup width="80" verticalCenter="0" verticalAlign="middle">
+									<s:Button id="unitItemRightButton" scaleX="0.8" scaleY="0.8" />
+									<s:Label id="unitItemRightLabel" text="{data.@rightIcon}" fontSize="14" color="#005D5F" />
+								</s:HGroup>														
+								<s:Spacer width="10" />
+								<!--Coverage Circles-->
+								<s:DataGroup id="coverageCirclesDataGroup">
+									<s:layout>
+										<s:HorizontalLayout/>
+									</s:layout>
+									<s:itemRenderer>
+										<fx:Component>
+											<s:DataRenderer>
+												<fx:Script>
+													<![CDATA[
+														
+														import spark.components.DataGroup;
+														
+														private var lastIndex:Number = new Number();
+														private var lastIndex2:Number = new Number();
+														
+														public function getIndex(data:Object):Number {
+															return (owner as DataGroup).dataProvider.getItemIndex(data);
+														}
+														
+														override public function set data(value:Object):void {
+															super.data = value;
+															
+															if (data) {
+																if (data.attribute("done") > 0 || data.attribute("totalDone") > 0) {
+																	var courseClass:String = data.parent().parent().@["class"];
+																	topGradientColor.color = 0x263A45;
+																	bottomGradientColor.color = 0x416B75;
+																} else {
+																	topGradientColor.color = 0x979797;
+																	bottomGradientColor.color = 0xCACACA;
+																}																												
+															}
+														}
+														
+														
+														// mouse over show the exercise name
+														/*protected function onMouseOver(event:MouseEvent):void {	
+														outerDocument.exerciseLabelVisible = true;
+														outerDocument.exerciseLabel = data.@caption;
+														outerDocument.exerciseLabelIndex = getIndex(data);																						
+														}
+														
+														protected function onMouseOut(event:MouseEvent):void {
+														outerDocument.exerciseLabelVisible = false;																							
+														}*/
+														
+													]]>
+												</fx:Script>
+												<s:Group id="greyNumberGroup" width="21.5" top="-1">
+													<s:Ellipse x="0" y="0" width="20" height="20">
+														<s:fill>
+															<s:LinearGradient>
+																<s:GradientEntry id="topGradientColor" />
+																<s:GradientEntry id="bottomGradientColor" />
+															</s:LinearGradient>
+														</s:fill>
+													</s:Ellipse>
+												</s:Group>
+											</s:DataRenderer>
+										</fx:Component>
+									</s:itemRenderer>
+								</s:DataGroup>
+							</s:HGroup>
+						</s:DataRenderer>
+					</fx:Component>
+				</s:itemRenderer>
+			</s:DataGroup>
+		</s:Scroller>
+	</s:VGroup>
+</s:Skin>

@@ -1,6 +1,6 @@
 package com.clarityenglish.textLayout.components.behaviours {
+	import com.clarityenglish.bento.view.marking.events.MarkingEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.textLayout.components.AudioPlayer;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.elements.AudioElement;
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
@@ -11,18 +11,17 @@ package com.clarityenglish.textLayout.components.behaviours {
 	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.events.Event;
 	import flash.geom.Rectangle;
-	
-	import flashx.textLayout.elements.TextFlow;
-	
-	import mx.core.IUIComponent;
-	
-	import org.davekeen.util.PointUtil;
 	
 	import spark.components.Group;
 	
+	import flashx.textLayout.elements.FlowElement;
+	import flashx.textLayout.elements.TextFlow;
+	
 	public class OverlayBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
-		private var audioNodes:Array = [];
+		// gh#1051 Obsolete?
+		//private var afterMarkingAudioNodes:Array = [];
 		private var xmlBiMap:FlowElementXmlBiMap;
 		
 		public function OverlayBehaviour(container:Group):void {
@@ -53,18 +52,6 @@ package com.clarityenglish.textLayout.components.behaviours {
 				// If the component hasn't yet been created then create a new one and add it to the containing block
 				if (!componentElement.hasComponent()) {
 					componentElement.createComponent();
-					// gh#348 the feedback audio will be add to stage in AudioFeedbackBehaviour
-					if (componentElement.getComponent() is AudioPlayer) {
-						var audioElement:AudioElement = componentElement as AudioElement;
-						if (getAudioElementIndex(audioElement) >= 0) {
-							// disable playComponent for feedback audio before click "see answer"
-							//audioElement.playComponentEnable = false;
-							continue;
-						} /*else {
-							//audioElement.playComponentEnable = true;
-						}*/
-							
-					}
 					containingBlock.addChild(componentElement.getComponent());
 				}
 				
@@ -84,12 +71,14 @@ package com.clarityenglish.textLayout.components.behaviours {
 					// AR BUT 0 for gapfill in a split screen. Does that indicate that this is a css conflict issue?
 					// Yes. If I drop most css, I now get the gap too low! So set here as perfect for no css.
 					componentElement.getComponent().y = bounds.y - 1; 
-					
-					// Make the component visible, unless hideChrome is set in which case hide the component leaving the underlying area visible
-					componentElement.getComponent().visible = !componentElement.hideChrome;
-				} else {
-					componentElement.getComponent().visible = false;
 				}
+				
+				// gh#1501 If the node has either 'display-after-marking'/'audio-feedback' (legacy) then hide it
+				var node:XML = xmlBiMap.getXML(componentElement as FlowElement);
+				var displayAfterMarking:Boolean = XHTML.hasClass(node, "audio-feedback") || XHTML.hasClass(node, "display-after-marking");
+				
+				// Make the component visible, unless hideChrome is set in which case hide the component leaving the underlying area visible
+				componentElement.getComponent().visible = bounds && !componentElement.hideChrome && !displayAfterMarking;
 			}
 		}
 		
@@ -97,7 +86,11 @@ package com.clarityenglish.textLayout.components.behaviours {
 			var exercise:Exercise = xhtml as Exercise;
 			xmlBiMap = flowElementXmlBiMap;
 			
-			audioNodes = exercise.select("audio.audio-feedback");
+			if (!xhtml.hasEventListener(MarkingEvent.SEE_ANSWERS))
+				xhtml.addEventListener(MarkingEvent.SEE_ANSWERS, onSeeAnswers, false, 0, true);
+			
+			// gh#1051 Obsolete?
+			//afterMarkingAudioNodes = exercise.select("audio.audio-feedback");
 		}
 		
 		public function onTextFlowClear(textFlow:TextFlow):void {
@@ -106,14 +99,23 @@ package com.clarityenglish.textLayout.components.behaviours {
 					componentElement.removeComponent();
 		}
 		
-		private function getAudioElementIndex(element:AudioElement):Number {
-			for each (var node:XML in audioNodes) {
-				var audioElement:AudioElement = xmlBiMap.getFlowElement(node) as AudioElement;
-				if(element == audioElement) {
-					return audioNodes.indexOf(node);
-				}
+		/**
+		 * gh#1501 
+		 */
+		protected function onSeeAnswers(event:MarkingEvent):void {
+			var node:XML, componentElement:IComponentElement, xhtml:XHTML = event.currentTarget as XHTML;
+			
+			// Show any components with 'display-after-marking' or 'audio-feedback' (legacy)
+			for each (node in xhtml.select("audio.audio-feedback, .display-after-marking")) {
+				componentElement = xmlBiMap.getFlowElement(node) as IComponentElement;
+				if (componentElement) componentElement.getComponent().visible = true;
 			}
-			return -1;
+			
+			// Hide any components with 'hide-after-marking'
+			for each (node in xhtml.select(".hide-after-marking")) {
+				componentElement = xmlBiMap.getFlowElement(node) as IComponentElement;
+				if (componentElement) componentElement.getComponent().visible = false;
+			}
 		}
 		
 	}

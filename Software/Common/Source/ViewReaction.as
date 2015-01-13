@@ -477,6 +477,7 @@ _global.ORCHID.viewObj.literalEvent = function(event, success) {
 				this.setButtonColour(colourObj);
 				this.initAllScreens();
 				this.setLiterals();
+				myTrace("loaded literals");
 				// v6.3.5 Since you now want the literal selector on most screens
 				// it would be better to do this in screen.as I would think 
 				/*

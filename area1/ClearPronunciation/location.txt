@@ -1,1 +1,1 @@
-streamingMedia=rtmp://s20biv6lpnl07y.cloudfront.net:1935/cfx/st/ClearPronunciation-International/streamingMedia&dbHost=2&content=http://dock.contentbench/Content&mainMovies=/Software/Common&interfaceMovies=/Software/ClearPronunciation&database=SQLServer&scripting=PHP&help=/Software/ClearPronunciation/Help/help.htm&end=1
+content=http://dock.contentbench/Content&mainMovies=/Software/Common&interfaceMovies=/Software/ClearPronunciation&database=SQLServer&scripting=PHP&help=/Software/ClearPronunciation/Help/help.htm&MGSRoot=/ap&end=1

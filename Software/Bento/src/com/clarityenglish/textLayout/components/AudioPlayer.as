@@ -2,6 +2,7 @@ package com.clarityenglish.textLayout.components {
 	import com.clarityenglish.textLayout.events.AudioPlayerEvent;
 	
 	import flash.events.Event;
+	import flash.events.IOErrorEvent;
 	import flash.events.MouseEvent;
 	import flash.events.ProgressEvent;
 	import flash.events.TimerEvent;
@@ -60,7 +61,7 @@ package com.clarityenglish.textLayout.components {
 		/**
 		 * A timer for updating the scrub bar as the sound plays 
 		 */
-		private var scrubBarTimer:Timer;
+		//private var scrubBarTimer:Timer;
 		
 		/**
 		 * One of the 3 constants STOPPED, PLAYING or PLAYED defined above
@@ -86,29 +87,37 @@ package com.clarityenglish.textLayout.components {
 		 * The sound channel used for playback is static and hence is shared between all AudioPlayer instances  
 		 */
 		private static var soundChannel:SoundChannel;
+		// gh#1124
+		private static var scrubBarTimer:Timer;
 		
 		// alice
+		// gh#1055 Why is this a class level variable?
 		private var loaderContext:SoundLoaderContext;
 		
 		public function AudioPlayer() {
 			super();
 			
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-			
+
 			scrubBarTimer = new Timer(500, 0);
-			scrubBarTimer.addEventListener(TimerEvent.TIMER, onScrubBarTimer);
+			//scrubBarTimer.addEventListener(TimerEvent.TIMER, onScrubBarTimer);
 		}
 		
 		protected function onAddedToStage(event:Event):void {
 			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			
 			stop();
-			sound = new Sound(new URLRequest(src));
 			loaderContext = new SoundLoaderContext(2500);
-			sound.addEventListener(ProgressEvent.PROGRESS, onSoundLoadProgress, false, 0, true);
-			sound.addEventListener(Event.COMPLETE, onSoundLoadComplete, false, 0, true);
-			// gh#614 add 
-			if (autoplay && playComponentEnable) play();
+			// gh#1066
+			if (src) {
+				sound = new Sound(new URLRequest(src), loaderContext);
+				sound.addEventListener(ProgressEvent.PROGRESS, onSoundLoadProgress, false, 0, true);
+				sound.addEventListener(Event.COMPLETE, onSoundLoadComplete, false, 0, true);
+				// gh#1055
+				sound.addEventListener(IOErrorEvent.IO_ERROR, onSoundLoadError);
+				// gh#614 add 
+				if (autoplay && playComponentEnable) play();
+			}	
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -190,6 +199,14 @@ package com.clarityenglish.textLayout.components {
 		}
 		
 		/**
+		 * If the loading generates an error...
+		 * gh#1055
+		 */
+		protected function onSoundLoadError(errorEvent:IOErrorEvent):void {
+			trace("Error loading sound " + errorEvent.text);
+		}
+				
+		/**
 		 * Play the sound (stopping any previously playing sound) and set the appropriate state on the skin
 		 */
 		protected function play():void {
@@ -198,25 +215,36 @@ package com.clarityenglish.textLayout.components {
 			
 			// Stop any previously playing sound and play the new one
 			stop();
-			//sound = new Sound(new URLRequest(src));
-			//loaderContext = new SoundLoaderContext(2500);
+			
+			// gh#1055 Why am I reloading sound?
+			/*
+			loaderContext = new SoundLoaderContext(2500);
+			sound = new Sound(new URLRequest(src), loaderContext);
 			
 			// Attach listeners to update the scrub bar maximum as the sound loads
-			//sound.addEventListener(ProgressEvent.PROGRESS, onSoundLoadProgress, false, 0, true);
-			//sound.addEventListener(Event.COMPLETE, onSoundLoadComplete, false, 0, true);
-			
-			soundChannel = sound.play(startTime);
-			soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete, false, 0, true);
-			played = true;
-			
-			scrubBarTimer.reset();
-			scrubBarTimer.start();
-			
-			// Change the status and invalidate the skin state
-			soundStatus = PLAYING;
-			invalidateSkinState();
-			
-			dispatchEvent(new AudioPlayerEvent(AudioPlayerEvent.PLAY, src, true));
+			sound.addEventListener(ProgressEvent.PROGRESS, onSoundLoadProgress, false, 0, true);
+			sound.addEventListener(Event.COMPLETE, onSoundLoadComplete, false, 0, true);
+			*/
+			try {
+				soundChannel = sound.play(startTime);
+				soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete, false, 0, false);
+				played = true;
+				
+				// gh#1124 only start the timer for full audio
+				if (controls == "full") {
+					scrubBarTimer.addEventListener(TimerEvent.TIMER, onScrubBarTimer);
+					scrubBarTimer.reset();
+					scrubBarTimer.start();
+				}
+				
+				// Change the status and invalidate the skin state
+				soundStatus = PLAYING;
+				invalidateSkinState();
+				
+				dispatchEvent(new AudioPlayerEvent(AudioPlayerEvent.PLAY, src, true));
+			} catch (error:Error) {
+				trace('Error playing sound ' + sound.url + ': ' + error.message);
+			}
 		}
 		
 		protected function seek(time:Number):void {

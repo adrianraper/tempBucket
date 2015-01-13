@@ -15,7 +15,7 @@ uiMessages.push(Messages);
 Messages = new Object();
 Messages.language = "Chinese";
 Messages.marking = new Object();
-Messages.marking.WellDone = "ê4";
+Messages.marking.WellDone = "ï¿½4";
 Messages.marking.Sorry = "u~";
 uiMessages.push(Messages);
 getLanguageIdx = function(language) {

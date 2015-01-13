@@ -14,9 +14,9 @@ package com.clarityenglish.bento.view.exercise {
 	
 	import mx.controls.Text;
 	
-	import org.osflash.signals.Signal;
-	
 	import spark.components.Button;
+	
+	import org.osflash.signals.Signal;
 	
 	[SkinState("exercise")]
 	[SkinState("other")]

@@ -149,13 +149,34 @@ PopupWindowClass.prototype.init = function() {
 		this.canvasFillAlpha = 100;
 	}
 	if (this.titleLineThickness == undefined) {
-		this.titleLineThickness = lineThickness;
+		// v6.5.5.8 Clear Pronunciation customisation
+		if (this.branding.toLowerCase().indexOf("clarity/pro") >= 0 ){
+			this.titleLineThickness = 0;
+		} else {
+			this.titleLineThickness = lineThickness;
+		}
 	}
 	if (this.titleLineColour == undefined) {
-		this.titleLineColour =  mainColour;
+		// v6.5.5.8 Clear Pronunciation customisation
+		if (this.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
+			//this.titleLineColour = 0x1B2728;
+			this.titleLineColour = 0x1B0028;
+		} else {
+			this.titleLineColour =  mainColour;
+		}
 	}
 	if (this.titleFillColour == undefined) {
-		this.titleFillColour = mainColour;
+		// v6.5.5.8 Clear Pronunciation customisation
+		if (this.branding.toLowerCase().indexOf("clarity/pro") >= 0){
+			this.titleFillColour = 0x1B2728;
+		} else if (this.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+			this.titleFillColour = 0x31376D; // This is the top of the PUW
+			//this.titleFillColour = 0xFF0000;
+		} else if (this.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+			this.titleFillColour = 0x886BE8;
+		} else {
+			this.titleFillColour = mainColour;
+		}
 	}
 	if (this.titleFillAlpha == undefined) {
 		this.titleFillAlpha = 100;
@@ -182,6 +203,12 @@ PopupWindowClass.prototype.init = function() {
 	if (this.radius == undefined) {
 		if (this.branding.indexOf("CUP/GIU") >= 0) {
 			this.radius = 16; // default radius for corners
+		// v6.5.5.8 Clear Pronunciation customisation
+		// v6.5.6.4 New SSS
+		} else if (this.branding.toLowerCase().indexOf("clarity/pro") >= 0 || 
+			this.branding.toLowerCase().indexOf("clarity/cp2") >= 0 ||
+			this.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+			this.radius = 0; // default radius for corners
 		} else {
 			this.radius = 10; // default radius for corners
 		}
@@ -191,8 +218,16 @@ PopupWindowClass.prototype.init = function() {
 		//if (this.branding.indexOf("CUP/GIU") >= 0) {
 		//	this.borderSpacer = 10; 
 		//} else {
+		// v6.5.6.4 New SSS
+		if (this.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+			this.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+			this.borderSpacer = 4; 
+		// v6.5.5.8 Clear Pronunciation customisation
+		} else if (this.radius<10) {
+			this.borderSpacer = 8; 
+		} else {
 			this.borderSpacer = this.radius / 2; 
-		//}
+		}
 	}
 	// default content format
 	var thisTF = new TextFormat();
@@ -200,7 +235,16 @@ PopupWindowClass.prototype.init = function() {
 	thisTF.size = 12;
 	
 	// layout defaults
-	this.titleMinHeight = this.radius * 2;
+	// v6.5.6.4 New SSS
+	if (this.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+		this.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+		this.titleMinHeight = 36;
+		// v6.5.5.8 Clear Pronunciation customisation
+	} else if (this.radius<10) {
+		this.titleMinHeight = 36;
+	} else {
+		this.titleMinHeight = this.radius * 2;
+	}
 	this.hasTitle = false;
 	this.hasCloseButton = false;
 	this.hasResizeButton = false;
@@ -242,7 +286,17 @@ PopupWindowClass.prototype.init = function() {
 		this.title.drawRect = this.drawRect;
 		//this.title.clear();
 		// title text goes in the title mc, just a little bit in from the left
-		this.title.createTextField("title_txt", this.depth++, this.borderSpacer, 0, this.myWidth, this.titleMinHeight);
+		// v6.5.5.8 Why do we set it at min height I wonder? Doesn't work for CP anyway where I just want one line
+		// v6.5.6.4 new SSS
+		//if (this.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
+		if (this.branding.toLowerCase().indexOf("clarity/pro") >= 0 ) {
+			this.title.createTextField("title_txt", this.depth++, this.borderSpacer, 0, this.myWidth, 20);
+		} else if (this.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+			this.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+			this.title.createTextField("title_txt", this.depth++, 4*this.borderSpacer, 3*this.borderSpacer, this.myWidth, 20);
+		} else {
+			this.title.createTextField("title_txt", this.depth++, this.borderSpacer, 0, this.myWidth, this.titleMinHeight);
+		}
 		this.title.title_txt.setNewTextFormat(this.titleTF);
 		this.title._visible = false;
 		
@@ -280,7 +334,18 @@ PopupWindowClass.prototype.setCloseButton = function(enabled) {
 		// add the button component and associate it with the close button mc
 		var closeButton = this.attachMovie("FGraphicButtonSymbol", "closeButton", this.depth++, {controller:this});
 		//closeButton.setEnabled(false);
-		closeButton.setTarget("exitBtn");
+		// v6.5.5.8 Clear Pronunciation customisation
+		// v6.5.6.4 New SSS
+		if (this.branding.toLowerCase().indexOf("clarity/pro") >= 0){
+			//closeButton.setTarget("exitPUWBtn");
+			closeButton.setTarget("exitBtn");
+		} else if (this.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+			this.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+			closeButton.setTarget("exitPUWBtn");
+			//closeButton.setTarget("exitBtn");
+		} else {
+			closeButton.setTarget("exitBtn");
+		}
 		closeButton.setReleaseAction(this.closePane);
 	}
 	this.hasCloseButton = enabled;
@@ -491,6 +556,9 @@ PopupWindowClass.prototype.setButtons = function(buttonArray) {
 			// so give it a helping hand
 			button_mc.target.canShrink = true;
 		}
+		//if (this.branding.toLowerCase().indexOf("clarity/sss") >= 0){
+		//	button_mc.target.canExpand = true;
+		//}
 		//myTrace("PUW.button caption=" + buttonArray[i].caption);
 		button_mc.setLabel(buttonArray[i].caption, this.labelFormat);
 		// don't use the setReleaseAction of the glassTile, just set it here
@@ -535,18 +603,18 @@ PopupWindowClass.prototype.setKeys = function(keyArray) {
 // sometimes you want the window to include a scrollPane for the content to sit in
 // Rather than have to do that outside, you can do it here
 PopupWindowClass.prototype.setScrollContent = function(target) {
-	if (this.content.scrollpane_mc == undefined) {
+	if (this.content.scrollPane_mc == undefined) {
 		// first add the scrollPane to the component
-		this.content.attachMovie("FScrollPaneSymbol", "scrollpane_mc", this.depth++, {controller:this});
+		this.content.attachMovie("FScrollPaneSymbol", "scrollPane_mc", this.depth++, {controller:this});
 		// set some properties
-		this.content.scrollpane_mc.setDragContent(false);
+		this.content.scrollPane_mc.setDragContent(false);
 		// don't ever want the horizontal scroller
-		this.content.scrollpane_mc.setHScroll(false);
+		this.content.scrollPane_mc.setHScroll(false);
 		// not sure whether you want the vertical scroller to auto, or always on?
-		this.content.scrollpane_mc.setVScroll("auto");
+		this.content.scrollPane_mc.setVScroll("auto");
 	}
 	// and attach the content
-	this.content.scrollpane_mc.setScrollContent(target);
+	this.content.scrollPane_mc.setScrollContent(target);
 	// once you have decided to use this type of content, the original
 	// getContent should be modified so that it returns this one
 	// We are not allowing scroll content to be removed.
@@ -554,12 +622,12 @@ PopupWindowClass.prototype.setScrollContent = function(target) {
 }
 // and send back the container for someone to populate
 PopupWindowClass.prototype.getScrollContent = function() {
-	return this.content.scrollpane_mc.getScrollContent();
+	return this.content.scrollPane_mc.getScrollContent();
 }
 // 'inherit' from dragpane
 PopupWindowClass.prototype.setStyleProperty = function(propName, value, isGlobal)
 {
-	this.content.scrollpane_mc.setStyleProperty(propName, value, isGlobal);
+	this.content.scrollPane_mc.setStyleProperty(propName, value, isGlobal);
 };
 // Pass through to the scroll pane
 PopupWindowClass.prototype.setSmallScroll = function(x, y){
@@ -585,6 +653,15 @@ PopupWindowClass.prototype.format = function() {
 		if (this.branding.indexOf("CUP/GIU") >= 0) {
 			this.closeButton._x = this.myWidth - closeDims.width - (2*this.borderSpacer);
 			this.closeButton._y = this.borderSpacer;
+		// v6.5.5.8 Clear Pronunciation customisation
+		} else if (this.branding.toLowerCase().indexOf("clarity/pro") >= 0 ){
+			this.closeButton._x = this.myWidth - closeDims.width - 4;
+			this.closeButton._y = 8;
+		// v6.5.6.4 New SSS
+		} else if (this.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+			this.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+			this.closeButton._x = this.myWidth - closeDims.width - 4;
+			this.closeButton._y = 8;
 		} else {
 			this.closeButton._x = this.myWidth - closeDims.width - this.borderSpacer;
 			this.closeButton._y = this.borderSpacer;
@@ -621,16 +698,38 @@ PopupWindowClass.prototype.format = function() {
 			var closeborderVSpacer = 0;
 		}
 		// set the coords of the title mc
-		this.title._x = this.borderSpacer;
-		this.title._y = this.borderSpacer;
-		// and what will its dims be?
-		this.title.myWidth = this.myWidth - (2 * this.borderSpacer) - closeborderHSpacer;
+		// v6.5.5.8 Clear Pronunciation customisation
+		// v6.5.6.4 New SSS
+		//if (this.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
+		if (this.branding.toLowerCase().indexOf("clarity/pro") >= 0 || 
+			this.branding.toLowerCase().indexOf("clarity/cp2") >= 0 || 
+			this.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+			this.title._x = 0;
+			this.title._y = 0;
+			// and what will its dims be?
+			if (this.hasCloseButton) {
+				//this.title.myWidth = this.myWidth - 80;
+				this.title.myWidth = this.myWidth;
+			} else {
+				this.title.myWidth = this.myWidth;
+			}
+		} else {
+			this.title._x = this.borderSpacer;
+			this.title._y = this.borderSpacer;
+			// and what will its dims be?
+			this.title.myWidth = this.myWidth - (2 * this.borderSpacer) - closeborderHSpacer;
+		}
+		this.title.myWidth = Math.max(this.title.myWidth, 10);
+		// make the text field the same width
+		this.title.title_txt._width = this.title.myWidth;
 		this.title.myWidth = Math.max(this.title.myWidth, 10);
 		// make the text field the same width
 		this.title.title_txt._width = this.title.myWidth;
 		// at least the same height as the close button?
 		this.title.myHeight = Math.max(this.titleMinHeight, closeborderVSpacer);
 		// then do you need to vertically centre the text?
+		// v6.5.5.8 It seems we don't know the text height yet.
+		//myTrace("myHeight=" + this.title.myHeight + " title_txt._height=" + this.title.title_txt._height);
 		this.title.title_txt._y = (this.title.myHeight - this.title.title_txt._height) /2;
 		var titleSpace = this.title._y + this.title.myHeight + this.borderSpacer;
 	} else {
@@ -638,7 +737,10 @@ PopupWindowClass.prototype.format = function() {
 	}
 	titleSpace = Math.max(titleSpace, 0);
 	// normal number of buttons
-	if (this.numButtons > 0 && this.numButtons <= 3) {
+	// v6.5.6.4 But SSS progress has 4 buttons!
+	//if (this.numButtons > 0 && this.numButtons <= 3) {
+	///myTrace("sss with nuttons=" + this.numButtons);
+	if (this.numButtons > 0 && this.numButtons <= 4) {
 		// No, not all buttons will be the same width
 		var buttonDims = this.button0.getSize();
 		var buttonSpace = buttonDims.height + (this.borderSpacer * 2)
@@ -649,17 +751,61 @@ PopupWindowClass.prototype.format = function() {
 		} else {
 			var availableWidth = this.myWidth;
 		}
+		// v6.5.6.4 New SSS wants the buttons to fill the available space.
+		if (this.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+			this.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+			for (i=0; i<this.numButtons; i++) {
+				var button_mc = this["button"+i];
+				var buttonWidth = Math.ceil((availableWidth - this.borderSpacer*2)/this.numButtons);
+				button_mc.setFixedWidth(buttonWidth);
+				//myTrace("expand button to " + buttonWidth + ":" + button_mc.getSize().width);
+			}
+		}
+		// v6.5.5.8
+		var buttonsUsedSpace = 0;
 		for (i=0; i<this.numButtons; i++) {
 			var button_mc = this["button"+i];
 			var thisButtonWidth = button_mc.getSize().width;
-			if (i==0) { // first button is always left aligned
-				button_mc._x = this.borderSpacer;
-			} else if (i==2) { // second button is centre aligned
-				//button_mc._x = (availableWidth - buttonDims.width)/2;
-				button_mc._x = (availableWidth - thisButtonWidth)/2;
-			} else if (i==1) { // third button is right aligned
-				//button_mc._x = availableWidth - buttonDims.width - this.borderSpacer;
-				button_mc._x = availableWidth - thisButtonWidth - this.borderSpacer;
+			// v6.5.5.8 Clear Pronunciation customisation
+			if (this.branding.toLowerCase().indexOf("clarity/pro") >= 0 ) {
+				// Just left align buttons with a little space between, but note that second button has i=2, third button has i=1
+				if (i==0) { // first button is always left aligned
+					button_mc._x = this.borderSpacer;
+					buttonsUsedSpace+=button_mc._x + thisButtonWidth + this.borderSpacer;
+				} else if (i==2) { // second button is just to the right
+					button_mc._x = buttonsUsedSpace;
+					buttonsUsedSpace+=thisButtonWidth + this.borderSpacer;
+				} else if (i==1) { // third button is just to the right of that
+					button_mc._x = buttonsUsedSpace;
+					buttonsUsedSpace+=thisButtonWidth + this.borderSpacer;
+				}
+			} else {
+				if (this.numButtons==4) {
+					if (i==0) { // first button is always left aligned
+						button_mc._x = this.borderSpacer;
+						buttonsUsedSpace+=button_mc._x + thisButtonWidth;
+					} else if (i==1) { // second button is right aligned to the centre
+						button_mc._x = buttonsUsedSpace;
+						buttonsUsedSpace+=thisButtonWidth;
+					} else if (i==2) { // second button is right aligned to the centre
+						button_mc._x = buttonsUsedSpace;
+						buttonsUsedSpace+=thisButtonWidth;
+					} else if (i==3) { // 4th button is right aligned
+						//button_mc._x = availableWidth - buttonDims.width - this.borderSpacer;
+						button_mc._x = availableWidth - thisButtonWidth - this.borderSpacer;
+					}
+					//myTrace("button " + i + " x=" + button_mc._x + " y=" + button_mc._y);
+				} else {
+					if (i==0) { // first button is always left aligned
+						button_mc._x = this.borderSpacer;
+					} else if (i==2) { // second button is centre aligned
+						//button_mc._x = (availableWidth - buttonDims.width)/2;
+						button_mc._x = (availableWidth - thisButtonWidth)/2;
+					} else if (i==1) { // third button is right aligned
+						//button_mc._x = availableWidth - buttonDims.width - this.borderSpacer;
+						button_mc._x = availableWidth - thisButtonWidth - this.borderSpacer;
+					}
+				}
 			}
 			// v6.4.2.7 Build the window based on branding
 			if (this.branding.indexOf("CUP/GIU") >= 0) {
@@ -691,7 +837,7 @@ PopupWindowClass.prototype.format = function() {
 	this.content.myWidth = this.myWidth - (2 * this.borderSpacer);
 	this.content.myHeight = this.myHeight - titleSpace - buttonSpace;
 	//myTrace("format: mainWidth=" + this.myWidth + " contentWidth=" + this.content.myWidth);
-	var scrollContent = this.content.scrollpane_mc;
+	var scrollContent = this.content.scrollPane_mc;
 	if (scrollContent != undefined) {
 		scrollContent._x = this.borderSpacer;
 		scrollContent._y = this.borderSpacer;
@@ -879,7 +1025,7 @@ PopupWindowClass.prototype.resizeTrackBegin = function() {
 	//this.controller.resizeHandler({width:0, height:0}, true);
 }
 PopupWindowClass.prototype.resizeTrackEnd = function() {
-	//trace("end resize");
+	//myTrace("PUW end resize");
 	// v6.4.2.7 Build the window based on branding
 	if (this.branding.indexOf("CUP/GIU") >= 0) {
 		this.controller.restoreCursor();
@@ -946,6 +1092,22 @@ PopupWindowClass.prototype.drawTitleBox= function(x, y, w, h, r) {
 		this.title.beginFill(this.titleFillColour, this.titleFillAlpha);
 		this.title.drawRect(x, y, w, h, r);
 	}
+	// for CP I also want a second title rectangle over at the right to give a nice effect
+	if (this.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
+		this.title.lineStyle(this.titleLineThickness, 0x1E4447);
+		this.title.beginFill(0x1E4447, this.titleFillAlpha);
+		this.title.drawRect((w-80),y,80,h,r);
+	}
+	// v6.5.6.4 for SSS I want a gradient rectangle (or at least just a purple one)
+	if (this.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+		this.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+		// But for instant marking I want different colours for right and wrong
+		//this.title.lineStyle(this.titleLineThickness, 0x4E2D94);
+		//this.title.lineStyle(this.titleLineThickness, titleBarFillColour);
+		//this.title.beginFill(titleBarFillColour, this.titleFillAlpha);
+		//this.title.drawRect(x,y,w,h,0);
+	}
+			
 }
 // to draw the content holder
 PopupWindowClass.prototype.drawContentBox= function(x, y, w, h, r) {

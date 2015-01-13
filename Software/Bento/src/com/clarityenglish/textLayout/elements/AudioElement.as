@@ -2,11 +2,10 @@ package com.clarityenglish.textLayout.elements {
 	import com.clarityenglish.textLayout.components.AudioPlayer;
 	
 	import flash.geom.Rectangle;
-	import flash.utils.setTimeout;
-	
-	import flashx.textLayout.tlf_internal;
 	
 	import mx.events.FlexEvent;
+	
+	import flashx.textLayout.tlf_internal;
 
 	use namespace tlf_internal;
 	
@@ -17,9 +16,6 @@ package com.clarityenglish.textLayout.elements {
 		private var _controls:String;
 		
 		private var _autoplay:Boolean;
-		
-		// gh#348
-		private var _type:String;
 		
 		private var _playComponentEnable:Boolean;
 		
@@ -33,16 +29,6 @@ package com.clarityenglish.textLayout.elements {
 		
 		public function set controls(value:String):void {
 			_controls = value;
-		}
-		
-		// gh#348
-		public function set type(value:String):void {
-			_type = value;
-		}
-		
-		[Bindable]
-		public function get type():String {
-			return _type
 		}
 		
 		// disable playComponent for feedback audio before click "see answer"
@@ -73,8 +59,8 @@ package com.clarityenglish.textLayout.elements {
 			component.addEventListener(FlexEvent.CREATION_COMPLETE, onComponentCreationComplete);
 		}
 		
-		// gh348
-		public function clearCompoment():void {
+		// gh#348
+		public function clearComponent():void {
 			component = new AudioPlayer();
 			(component as AudioPlayer).src = null;
 			(component as AudioPlayer).controls = null;

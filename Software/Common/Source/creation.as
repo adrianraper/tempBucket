@@ -442,12 +442,12 @@ creationNS.continueCreateExercise = function() {
 		// v6.5.5 Content paths. What if I don't do this now, but do it at the end?
 		// Actually, I don't think there is any difference, certainly not for coping with a conditional 'exercise'
 		// Note the implications for bookmarks in scorm.as. So keep this here for now though it is duplication.
-		//myTrace("building an exercise for id=" + scaffoldItemArray.ID + " section/group=" + scaffoldItemArray.group);
+		//myTrace("building an exercise for id=" + scaffoldItemArray.id + " section/group=" + scaffoldItemArray.group);
 		//myTrace("caption=" + scaffoldItemArray.caption + " groupName=" + scaffoldItemArray.groupname);
-		_global.ORCHID.session.nextItem = _global.ORCHID.course.scaffold.getNextItemID(scaffoldItemArray.ID);
+		_global.ORCHID.session.nextItem = _global.ORCHID.course.scaffold.getNextItemID(scaffoldItemArray.id); //ar#869
 		//myTrace("the next exercise.group is " + _global.ORCHID.session.nextItem.group);
 		//_global.ORCHID.session.nextItem = undefined; 
-		_global.ORCHID.session.previousItem = _global.ORCHID.course.scaffold.getPreviousItemID(scaffoldItemArray.ID);
+		_global.ORCHID.session.previousItem = _global.ORCHID.course.scaffold.getPreviousItemID(scaffoldItemArray.id);
 		//trace("new next=" + _global.ORCHID.session.nextItem.id + " new previous=" + _global.ORCHID.session.previousItem.id);
 		//trace("got next id=" + _global.ORCHID.session.nextItem.id);
 		
@@ -502,7 +502,7 @@ creationNS.continueCreateExercise = function() {
 		myTrace("this ex enabledFlag=" + scaffoldItemArray.enabledFlag);
 		if (scaffoldItemArray.enabledFlag & _global.ORCHID.enabledFlag.edited){
 			//myTrace("which & with " + _global.ORCHID.enabledFlag.edited);
-			var fileName = _global.ORCHID.paths.editedExercises + scaffoldItemArray.filename;
+			var fileName = _global.ORCHID.paths.editedExercises + scaffoldItemArray.fileName;
 		} else {
 			var productUID = _global.ORCHID.root.licenceHolder.licenceNS.productCode;
 			var courseUID = _global.ORCHID.session.courseID;
@@ -514,12 +514,12 @@ creationNS.continueCreateExercise = function() {
 			//if (nTempPath <> null){
 			//	var fileName = _global.ORCHID.paths.movie + "../../.." + nTempPath + exerciseUID + ".xml";
 			//}else{
-				var fileName = _global.ORCHID.paths.exercises + scaffoldItemArray.filename;
+				var fileName = _global.ORCHID.paths.exercises + scaffoldItemArray.fileName;
 			//}
 		}
 		myTrace("load file=" + fileName);
 		
-		//myTrace("current item: id=" + _global.ORCHID.session.currentItem.ID + " .marked=" + _global.ORCHID.session.currentItem.marked);
+		//myTrace("current item: id=" + _global.ORCHID.session.currentItem.id + " .marked=" + _global.ORCHID.session.currentItem.marked);
 		// timing
 		_global.ORCHID.startTime = getTimer();
 		var ExerciseStructure = new XML();
@@ -779,7 +779,7 @@ creationNS.continueProcessExerciseXML = function() {
 	// EGU doesn't use rules, so for speed lets not do this call
 	if (_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("CUP/GIU") >= 0) {
 	} else {
-		var thisItem = _global.ORCHID.menuXML.getItemNodeByID(_global.ORCHID.session.currentItem.id);
+		var thisItem = _global.ORCHID.menuXML.getItemNodeByID(_global.ORCHID.session.currentItem.id); // ar#869
 		var ruleID = thisItem.parentNode.attributes["ruleID"];
 		//myTrace("menu.rule=" + ruleID);
 		var ruleItem = _global.ORCHID.menuXML.getItemNodeByID(ruleID);

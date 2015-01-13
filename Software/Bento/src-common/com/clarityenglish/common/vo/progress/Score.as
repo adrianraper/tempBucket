@@ -1,7 +1,6 @@
 package com.clarityenglish.common.vo.progress {
 
 	/**
-	 * 
 	 * @author Adrian
 	 * This class is for holding progress records
 	 * 
@@ -11,14 +10,20 @@ package com.clarityenglish.common.vo.progress {
 	public class Score {
 		
 		public var score:int;
-		public var correct:uint;
-		public var wrong:uint;
-		public var skipped:uint;
+		public var scoreCorrect:uint;
+		public var scoreWrong:uint;
+		public var scoreMissed:uint;
 		public var coverage:uint;
 		public var duration:uint;
 		public var dateStamp:String;
 		public var courseID:String;
 		public var exerciseID:String;
+		// Mirror the PHP Score object
+		public var userID:String;
+		public var sessionID:String;
+		public var productCode:uint;
+		public var unitID:String;
+		public var uid:String;
 		
 		/**
 		 * An empty constructor 

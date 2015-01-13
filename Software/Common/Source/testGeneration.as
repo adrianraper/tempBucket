@@ -723,7 +723,7 @@ testNS.getRandomQuestions = function(idx, questionNumbers) {
 			// I found a field in this question
 			if(index1 > -1 && index2 > -1) {
 				//myTrace("found field: " + myNode.substring(index1, index2+2));
-				tempFieldID = myNode.subString(index1 + 1, index2);
+				tempFieldID = myNode.substring(index1 + 1, index2);
 				// doing a findReplace will change several occurences is old and new fields are at a crossover point!
 				//tempStringArray[i] = findReplace(tempStringArray[i], "[" + tempFieldID + "]", "[" + _global.ORCHID.randomFieldIDStart + "]");
 				myNode = myNode.substring(0,index1+1) + this.randomFieldIDStart + myNode.substring(index2);

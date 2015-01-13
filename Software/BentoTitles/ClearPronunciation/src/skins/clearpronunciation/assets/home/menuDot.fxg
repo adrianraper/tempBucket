@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="13.0005" viewWidth="12.998" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="13" d:pageWidth="12.998" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Group x="-0.000976563" ai:seqID="1">
+        <Path winding="nonZero" ai:seqID="2" data="M13 6.5C13 10.0864 10.0894 13.0005 6.50098 13.0005 2.91064 13.0005 0 10.0864 0 6.5 0 2.9082 2.91064 0 6.50098 0 10.0894 0 13 2.9082 13 6.5Z">
+          <fill>
+            <RadialGradient x="6.5" y="6.5" scaleX="13.0015" scaleY="12.9995">
+              <GradientEntry ratio="0" color="#FFFFFF"/>
+              <GradientEntry ratio="0.446183" color="#FEFEFE"/>
+              <GradientEntry ratio="0.66797" color="#F5F5F5"/>
+              <GradientEntry ratio="0.849984" color="#DEDEDE"/>
+              <GradientEntry ratio="1" color="#B4B4B4"/>
+            </RadialGradient>
+          </fill>
+        </Path>
+        <Ellipse x="3.49902" y="3.5" width="6" height="6" ai:seqID="3">
+          <fill>
+            <SolidColor color="#333333"/>
+          </fill>
+        </Ellipse>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

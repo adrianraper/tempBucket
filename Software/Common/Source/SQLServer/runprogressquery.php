@@ -12,8 +12,8 @@ require_once($adodbPath."/adodb5/adodb-exceptions.inc.php");
 require_once($adodbPath."/adodb5/adodb.inc.php");
 require_once(dirname(__FILE__)."/dbPath.php");
 require_once(dirname(__FILE__)."/dbProgress.php");
-require_once(dirname(__FILE__)."/crypto/RSAKey.php");
-require_once(dirname(__FILE__)."/crypto/Base8.php");
+require_once(dirname(__FILE__)."/crypto/orchidRSAKey.php");
+require_once(dirname(__FILE__)."/crypto/orchidBase8.php");
 
 	// read the passed XML
 	$Query = new XMLQuery();
@@ -25,7 +25,8 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 	$vars['DBDRIVER']=$dbDetails->driver;
 	
 	//echo $dbDetails->dsn;
-	$db = &ADONewConnection($dbDetails->dsn);
+	$db = ADONewConnection($dbDetails->dsn);
+
 	if (!$db) die("Connection failed");
 	// Put this line on to see all sql calls before they are made
 	//$db->debug = true;

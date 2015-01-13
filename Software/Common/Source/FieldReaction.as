@@ -7,7 +7,7 @@
 // .fieldType, .fieldID, .fieldIDX, .fieldURL are all available from this
 _global.ORCHID.fieldRollOver = function() {
 	// one option is to change the text format of the field (the easy approach)
-	//myTrace("you rolled over " + this.fieldID);
+	myTrace("you rolled over " + this.fieldID + "," + this.fieldType);
 	//this._parent.setFieldTextFormat(this.fieldID, _global.ORCHID.underlineOn);
 	
 	// another option is to display a MC behind the text as a highlight
@@ -110,11 +110,15 @@ _global.ORCHID.fieldDrag = function() {
 		var coord = {x:0, y:0};
 		this.localToGlobal(coord);
 		// v6.4.2 Since we might be off the zero, need to realign to match proxy root
-		//myTrace("global x=" + coord.x + " proxy offset=" + _global.ORCHID.root._x);
-		var rootXOffset = _global.ORCHID.root._x;
-		var rootYOffset = _global.ORCHID.root._y;
-		realDrag._x = coord.x - rootXOffset;
-		realDrag._y = coord.y - rootYOffset;
+		// gh#869 When in Bento, the stage is quite different, this is what we need the 'proxy' offset for
+		var orchidAnchor = {x:0, y:0};
+		_global.ORCHID.root.globalToLocal(orchidAnchor);
+		//myTrace("global x=" + coord.x + " proxy offset=" + orchidAnchor.x);
+		//myTrace("global y=" + coord.y + " proxy offset=" + orchidAnchor.y);
+		//var rootXOffset = _global.ORCHID.root._x;
+		//var rootYOffset = _global.ORCHID.root._y;
+		realDrag._x = coord.x + orchidAnchor.x;
+		realDrag._y = coord.y + orchidAnchor.y;
 		realDrag._width = this._width;
 		realDrag._height = this._height;
 	}
@@ -317,7 +321,7 @@ _global.ORCHID.fieldDrag = function() {
 	if (thisField.linkedField > 0) {
 		//trace("remove answer from field " + this.fieldID);
 		//_global.ORCHID.LoadedExercises[0].getField(this.fieldID).dragField = undefined;
-		//var emptyAnswer = "  •  ";
+		//var emptyAnswer = "  Ã¯Â¿Â½  ";
 		//theDropField.dragField = undefined;
 		
 		// v6.2 whenever you start dragging a field, you should enable the original
@@ -817,12 +821,12 @@ _global.ORCHID.fieldFeedback = function(modKey) {
 		return;
 	} 
 	var fieldID = this.fieldID
-	//myTrace("fieldFeedback " + fieldID);
+	myTrace("fieldFeedback " + fieldID);
 	var me = _global.ORCHID.LoadedExercises[0];
 	var thisField = me.getField(fieldID);	
 	var thisGroupID = thisField.group;
 	//trace("look for group " + thisGroupID);
-	var groupArrayIDX = lookupArrayItem(me.body.text.group, thisGroupID, "ID");
+	var groupArrayIDX = lookupArrayItem(me.body.text.group, thisGroupID, "id");
 	//myTrace("found group idx "+groupArrayIDX + " containing fields " + thisGroup.fieldsInGroup[i].toString());
 	var thisGroup;
 	if (groupArrayIDX >= 0){
@@ -835,10 +839,10 @@ _global.ORCHID.fieldFeedback = function(modKey) {
 	// v6.3.4 Every field should know the fb it is supposed to show, no matter what the settings
 	//if (me.settings.feedback.groupBased) {
 	//	myTrace("group feedback id=" + thisGroup.correctFbID);
-	//	feedbackArrayIDX = lookupArrayItem(me.feedback, thisGroup.correctFbID, "ID");
+	//	feedbackArrayIDX = lookupArrayItem(me.feedback, thisGroup.correctFbID, "id");
 	//} else {
 	//	myTrace("individual feedback id=" + thisField.answer[0].feedback);
-		feedbackArrayIDX = lookupArrayItem(me.feedback, thisField.answer[0].feedback, "ID");
+		feedbackArrayIDX = lookupArrayItem(me.feedback, thisField.answer[0].feedback, "id");
 	//}
 	//trace("found fb idx "+feedbackArrayIDX);
 	if (feedbackArrayIDX >= 0){
@@ -904,7 +908,7 @@ displayHint = function(thisField) {
 	//}
 	var me = _global.ORCHID.LoadedExercises[0];
 	var thisGroupID = thisField.group;
-	hintArrayIDX = lookupArrayItem(me.hint, thisGroupID, "ID");
+	hintArrayIDX = lookupArrayItem(me.hint, thisGroupID, "id");
 	//myTrace("found hint idx "+hintArrayIDX);
 	if (hintArrayIDX >= 0){
 		var thisHint = me.hint[hintArrayIDX].text;
@@ -933,8 +937,9 @@ singleClearMarking = function(thisField) {
 		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("CUP/GIU") >= 0) {
 			var emptyAnswer = "     ";
 		} else {
-			var emptyAnswer = "  •  ";
+			var emptyAnswer = "  o  ";
 		}
+		//myTrace("empty answer=" + emptyAnswer);
 		insertAnswerIntoField(thisField, emptyAnswer);
 		//trace("enable drag field " + thisField.linkedField);
 		restoreFieldAppearance(me.getField(thisField.linkedField), true);
@@ -957,7 +962,7 @@ singleClearMarking = function(thisField) {
 	// v6.3.3 Move marking status to currentItem
 	if (!_global.ORCHID.session.currentItem.afterMarking) {
 		var thisGroupID = thisField.group;
-		var groupArrayIDX = lookupArrayItem(me.body.text.group, thisGroupID, "ID");
+		var groupArrayIDX = lookupArrayItem(me.body.text.group, thisGroupID, "id");
 		var thisGroup;
 		if (groupArrayIDX >= 0){
 			thisGroup = me.body.text.group[groupArrayIDX];
@@ -1009,7 +1014,7 @@ singleMarking = function(thisField, stdAnswer) {
 		thisField.origTextFormat.underline = true;
 		//myTrace("make the drop underlined=" + thisField.origTextFormat.underline);
 	}
-	//myTrace("in single marking");
+	myTrace("in single marking");
 	
 	var me = _global.ORCHID.LoadedExercises[0];
 	//trace("in singleMarking, ex.mode=" + me.mode);
@@ -1020,8 +1025,8 @@ singleMarking = function(thisField, stdAnswer) {
 	// find the group that this field is in
 	var thisGroupID = thisField.group;
 	//myTrace("look for group " + thisGroupID);
-	//for (var i in me.text.group) { trace("group[" + i + "].ID=" + me.text.group[i].ID)}; 
-	var groupArrayIDX = lookupArrayItem(me.body.text.group, thisGroupID, "ID");
+	//for (var i in me.text.group) { trace("group[" + i + "].id=" + me.text.group[i].id)}; 
+	var groupArrayIDX = lookupArrayItem(me.body.text.group, thisGroupID, "id");
 	//myTrace("found group idx "+groupArrayIDX);
 	var thisGroup;
 	if (groupArrayIDX >= 0){
@@ -1029,7 +1034,7 @@ singleMarking = function(thisField, stdAnswer) {
 	};
 	// debug only
 	//for (var i in me.body.text.group) {
-	//	myTrace("group " + me.body.text.group[i].ID + " has pop-up field " + me.body.text.group[i].popup.fieldID);
+	//	myTrace("group " + me.body.text.group[i].id + " has pop-up field " + me.body.text.group[i].popup.fieldID);
 	//}
 
 	// Check that you haven't done mainMarking.seeTheAnswers as after that scores and colours are not changed
@@ -1070,7 +1075,7 @@ singleMarking = function(thisField, stdAnswer) {
 			// *****
 			// SCORING section
 			// *****
-			//trace("marking " +stdAnswer + " against field " + thisField.id);
+			myTrace("marking " +stdAnswer + " against field " + thisField.id);
 			var correct = "neutral";
 			if (thisField.type == "i:target"){
 				// v6.2 if this is a singleField that has already been selected, just deselect it
@@ -1096,7 +1101,7 @@ singleMarking = function(thisField, stdAnswer) {
 					var stdAnswerArray = new Array();
 					var myFields = me.body.text.field;
 					for (var field in thisGroup.fieldsInGroup) {
-						//myTrace("for group " + myGroups[k].ID + " add field " + myGroups[k].fieldsInGroup[field] + " stdAnswer=" + myFields[myGroups[k].fieldsInGroup[field]].attempt.finalAnswer);
+						//myTrace("for group " + myGroups[k].id + " add field " + myGroups[k].fieldsInGroup[field] + " stdAnswer=" + myFields[myGroups[k].fieldsInGroup[field]].attempt.finalAnswer);
 						if (myFields[thisGroup.fieldsInGroup[field]].attempt.finalAnswer != undefined) {
 							stdAnswerArray.push(myFields[thisGroup.fieldsInGroup[field]].attempt.finalAnswer);
 						}
@@ -1125,7 +1130,7 @@ singleMarking = function(thisField, stdAnswer) {
 					// I think this should be the same as each field has the correct fb in it
 					//if (me.settings.feedback.groupBased) {
 					//	var thisFbID = thisGroup.correctFbID;						
-						//myTrace("use group feedback for group " + thisGroup.ID + " = " + thisGroup.correctFbID);
+						//myTrace("use group feedback for group " + thisGroup.id + " = " + thisGroup.correctFbID);
 					//} else {
 						var thisFbID = thisField.answer[answerIdx].feedback;	// v6.5 1 Yiu commented
 						//var thisFbID = thisField.group;	// v6.5.1 Yiu Use group id to find the feedback instead
@@ -1230,7 +1235,7 @@ singleMarking = function(thisField, stdAnswer) {
 				// first answer stored for later use	
 				if (thisField.attempt.finalAnswer == undefined) thisField.attempt.firstAnswer = stdAnswer;
 				thisField.attempt.finalAnswer = stdAnswer; // always record this answer to use in delayed feedback
-
+				//myTrace("stdAnswer=" + stdAnswer);
 				// can you match what they typed/dropped/chose against an 'expected' answer?
 				// v6.2 cope with someone removing a drop or typing in blanks
 				if (stdAnswer == "") {
@@ -1287,7 +1292,7 @@ singleMarking = function(thisField, stdAnswer) {
 						// Is this field also part of the same grouping? In which case use its answer(s) as well for matching
 						// But how to make sure I only match against this answer once? And can I use the same field
 						// to then help with inserting answers that weren't matched later on?
-						if (sections[s].ID == thisField.section) {
+						if (sections[s].id == thisField.section) {
 							//myTrace("found matching section");
 							for (var f in sections[s].fieldsInSection) {
 								// In which case use its answer(s) as well for matching
@@ -1391,7 +1396,7 @@ singleMarking = function(thisField, stdAnswer) {
 						thisTarget.attempt.score = null;
 					}
 				}
-				//myTrace("score for this field=" + thisField.attempt.score);
+				myTrace("score for this field=" + thisField.attempt.score);
 			}
 		}
 		//trace("marked it as "+correct+" - "+thisGroup.attempt.finalAnswer);
@@ -1499,7 +1504,7 @@ singleMarking = function(thisField, stdAnswer) {
 				var stdAnswerArray = new Array();
 				var myFields = me.body.text.field;
 				for (var field in thisGroup.fieldsInGroup) {
-					//myTrace("for group " + myGroups[k].ID + " add field " + myGroups[k].fieldsInGroup[field] + " stdAnswer=" + myFields[myGroups[k].fieldsInGroup[field]].attempt.finalAnswer);
+					//myTrace("for group " + myGroups[k].id + " add field " + myGroups[k].fieldsInGroup[field] + " stdAnswer=" + myFields[myGroups[k].fieldsInGroup[field]].attempt.finalAnswer);
 					if (myFields[thisGroup.fieldsInGroup[field]].attempt.finalAnswer != undefined) {
 						stdAnswerArray.push(myFields[thisGroup.fieldsInGroup[field]].attempt.finalAnswer);
 					}
@@ -1546,8 +1551,8 @@ singleMarking = function(thisField, stdAnswer) {
 		// now that you have the fb, display it
 		// build a text field for each paragraph in this feedback and get its content from ExObj
 		// feedback array is NOT based on the array index = ID
-		//for (var i in me.feedback) { trace("feedback[" + i + "].ID=" + me.feedback[i].ID)}; 
-		feedbackArrayIDX = lookupArrayItem(me.feedback, thisFbID, "ID");
+		//for (var i in me.feedback) { trace("feedback[" + i + "].id=" + me.feedback[i].id)}; 
+		feedbackArrayIDX = lookupArrayItem(me.feedback, thisFbID, "id");
 		//trace("found fb idx "+feedbackArrayIDX);
 		if (feedbackArrayIDX >= 0){
 			var thisFeedback = me.feedback[feedbackArrayIDX].text;
@@ -1748,7 +1753,7 @@ createDragObject= function(thisField, dragField) {
 	// v6.2 Now you will use the mc I just created rather than the cover
 	// so there doesn't seem much point in adding another mc under this purely dragging thing
 	// Ahhh, but the reason for doing it is to allow you to normalise the _xscale of the drag
-	var contentHolder = dragField.createEmptyMovieClip("drag",0); 
+	var contentHolder = dragField.createEmptyMovieClip("drag",0);
 	//var contentHolder = fieldCover; 
 	contentHolder._xscale = 10000 / origXScale;
 	contentHolder._yscale = 10000 / origYScale;
@@ -1758,7 +1763,8 @@ createDragObject= function(thisField, dragField) {
 	// and put a text field in it that duplicates the text you want to drag
 	//contentHolder.createTextField("dragText",2,fieldCover._x,fieldCover._y,fieldCover._width,fieldCover._height); 
 	var myX = -2; myY = -4;
-	contentHolder.createTextField("dragText",0,myX,myY,contentHolder._width,contentHolder._height); 
+	//myTrace("drag:1761 contentHolder.width=" + contentHolder.width + "dragField._width=" + dragField._width+5);
+	contentHolder.createTextField("dragText",0,myX,myY,dragField._width+5,dragField._height+5); //ar#869 
 	//var thisTF = contentHolder.cover._parent.getFieldTextFormat(fieldID); 
 	var thisTF = thisField.origTextFormat;
 	//trace("use TF.size=" + thisTF.size);
@@ -1792,7 +1798,7 @@ createSelectBox = function(thisField, fieldCover) {
 	//v6.3.5 If I remove this I get the desired effect of leaving text in place if I don't make new choice
 	// but for some reason I am losing the formatting of the list box font the second time I click.
 	var currentText = fieldCover.getText();
-	//myTrace("font=" + thisTF.font + ", " + thisTF.size);
+	//myTrace("font=" + thisTF.font + ", " + thisTF.size + " currentText=" + currentText);
 	fieldCover.clearText();
 	//myTrace("still font=" + thisTF.font + ", " + thisTF.size + ", text=" + currentText);
 
@@ -1806,10 +1812,13 @@ createSelectBox = function(thisField, fieldCover) {
 	fieldCover.localToGlobal(coord);
 	// v6.4.2 Since we might be off the zero, need to realign to match proxy root
 	//myTrace("global x=" + coord.x + " proxy offset=" + _global.ORCHID.root._x);
-	var rootXOffset = _global.ORCHID.root._x;
-	var rootYOffset = _global.ORCHID.root._y;
-	gapHolder._x = coord.x - rootXOffset;
-	gapHolder._y = coord.y - rootYOffset;
+	// gh#869
+	var orchidAnchor = {x:0, y:0};
+	_global.ORCHID.root.globalToLocal(orchidAnchor);
+	//var rootXOffset = _global.ORCHID.root._x;
+	//var rootYOffset = _global.ORCHID.root._y;
+	gapHolder._x = coord.x + orchidAnchor.x;
+	gapHolder._y = coord.y + orchidAnchor.y;
 	gapHolder._width = fieldCover._width;
 	gapHolder._height = fieldCover._height;
 	// v6.2 Now - because you are using fieldCover as a holding mc for the listbox, it will initially
@@ -1843,9 +1852,12 @@ createSelectBox = function(thisField, fieldCover) {
 	// v6.3.5 If you don't remove the cover text (fieldCover.clearText) earlier, then the size
 	// of the text in the list box gets bigger, irrespective of what you do here. There is some
 	// conflict of xscale perhaps? Leave it removed and simply add back text when you mouse out, see later
-	myListBox_lb.setStyleProperty("textFont", thisTF.font); 
-	myListBox_lb.setStyleProperty("textSize", thisTF.size); 
+	//myListBox_lb.setStyleProperty("textFont", thisTF.font); 
+	//myListBox_lb.setStyleProperty("textSize", thisTF.size); 
 	myListBox_lb.setStyleProperty("textColor", thisTF.color); 
+	myListBox_lb.setStyleProperty("textFont", "Verdana"); 
+	myListBox_lb.setStyleProperty("textSize", "16"); 
+	myListBox_lb.setStyleProperty("textBold", "true"); 
 	
 	// v6.3.4 It would be good to pick this colour up from buttons.ExerciseScreen.fakeTitle
 	// v6.4.2.4 Not always it wouldn't! Some titles might be a bit dark (Buffy) and anyway. Where do I set the outline?
@@ -1887,7 +1899,7 @@ createSelectBox = function(thisField, fieldCover) {
 	myListBox_lb.setRowCount(Math.min(5, myArray.length));
 	myListBox_lb.field = thisField;
 	fieldCover.onSelect = function(component) {
-		//trace("hello " + component.getSelectedItem().label);
+		//myTrace("hello " + component.getSelectedItem().label);
 		singleMarking(component.field, component.getSelectedItem().label);
 		//myListBox_lb.removeMovieClip();
 		//trace("remove " + myListBox_lb._parent._parent);
@@ -1937,8 +1949,12 @@ createSelectBox = function(thisField, fieldCover) {
 		if (!gapHolder.hitTest(_root._xmouse, _root._ymouse)) {
 			// v6.3.5
 			// since you are leaving without selecting anything, can we put back the original text? Yes.
-			//myTrace("old text=" + currentText + " into cover=" + gapHolder.cover);
-			gapHolder.cover.setText(currentText);
+			myTrace("old text=" + currentText + " into cover=" + gapHolder.cover);
+			if (currentText == undefined) {
+				gapHolder.cover.setText('');
+			} else {
+				gapHolder.cover.setText(currentText);
+			}
 			//myTrace("selectBox: " + gapHolder + ".removeMovieClip")
 			gapHolder.removeMovieClip();
 			clearInterval(checkOverInt);
@@ -1959,6 +1975,12 @@ gapListener.onMouseDown = function() {
 		var thisGap = eval(Selection.getFocus());
 		var thisPoint = {x:thisGap._x, y:thisGap._y};
 		thisGap._parent.localToGlobal(thisPoint);
+		// gh#869
+		var orchidAnchor = {x:0, y:0};
+		_global.ORCHID.root.globalToLocal(orchidAnchor);
+		thisPoint.x += orchidAnchor.x;
+		thisPoint.y += orchidAnchor.y;
+		
 		//myTrace("control click - check against gap=" + thisGap + " x=" + thisPoint.x + ", y=" + thisPoint.y);
 		if ((thisPoint.x > _root._xmouse) || ((thisPoint.x + thisGap._width) < _root._xmouse) ||
 		    (thisPoint.y > _root._ymouse) || ((thisPoint.y + thisGap._height) < _root._ymouse)){
@@ -2086,6 +2108,7 @@ gapListener.onSetFocus = function(oldFocus, newFocus){
 		// v6.2 But hey! What happens if there was something there and they just cleared it out!
 		// Whilst that doesn't need marking, it DOES need to be inserted into the field.
 		// as the last thing - insert the answer through an interval
+		myTrace("FR.as oldFocus.text=" + oldFocus.text);
 		if (oldFocus.text != "") {	// v6.5.1 Yiu commented     // AR reset
 		//if(true){						// v6.5.1 Yiu force it to go here     // AR reset
 			//myTrace("call single marking from onSetFocus");
@@ -2227,13 +2250,13 @@ createTypingBox = function(thisField, fieldCover) {
 	//if (currentAnswer == undefined && thisField.type == "i:presetGap") {
 	// v6.4.2.8 duplicated in fieldMouseUp (and anyway, but now this is a real gap)
 	if (currentAnswer == undefined && thisField.type == "i:targetGap") {
-	//	//myTrace("first time, so pick up default");
+		//myTrace("first time, so pick up default");
 		currentAnswer = thisField.answer[0].value;
 	}
 	//myTrace("currentAnswer=[" + currentAnswer + "] and type=" + thisField.type);
 	/*
 	var thisGroupID = thisField.group;
-	var groupArrayIDX = lookupArrayItem(me.body.text.group, thisGroupID, "ID");
+	var groupArrayIDX = lookupArrayItem(me.body.text.group, thisGroupID, "id");
 	if (groupArrayIDX >= 0){
 		var currentAnswer = me.body.text.group[groupArrayIDX].attempt.finalAnswer;
 	} else {
@@ -2255,10 +2278,13 @@ createTypingBox = function(thisField, fieldCover) {
 	fieldCover.localToGlobal(coord);
 	// v6.4.2 Since we might be off the zero, need to realign to match proxy root
 	//myTrace("global x=" + coord.x + " proxy offset=" + _global.ORCHID.root._x);
-	var rootXOffset = _global.ORCHID.root._x;
-	var rootYOffset = _global.ORCHID.root._y;
-	gapHolder._x = coord.x - rootXOffset;
-	gapHolder._y = coord.y - rootYOffset;
+	// gh#869
+	var orchidAnchor = {x:0, y:0};
+	_global.ORCHID.root.globalToLocal(orchidAnchor);
+	//var rootXOffset = _global.ORCHID.root._x;
+	//var rootYOffset = _global.ORCHID.root._y;
+	gapHolder._x = coord.x + orchidAnchor.x;
+	gapHolder._y = coord.y + orchidAnchor.y;
 	gapHolder._width = fieldCover._width;
 	gapHolder._height = fieldCover._height;
 	gapHolder._alpha = 100; //IE10+Win8 fix gh#390
@@ -2352,7 +2378,12 @@ createTypingBox = function(thisField, fieldCover) {
 		//myTrace("[" + currentAnswer + "]");
 		//myTrace("code=" + currentAnswer.charCodeAt(myGap.text.length-1));
 	}
-	myGap.text = currentAnswer;
+	// ar#869
+	if (currentAnswer==undefined) {
+		myGap.text = '';
+	} else {
+		myGap.text = currentAnswer;
+	}
 	myGap._width = myWidth;
 	myGap.type = "input";
 	myGap._visible = true;
@@ -2561,7 +2592,7 @@ insertAnswerIntoField = function(thisField, stdAnswer, justCover) {
 	//myTrace("fR.insertAnswer cover=" + thisCover + " answer=" + stdAnswer);
 	// v6.2 Now try using the cover text
 	if (justCover) {
-		//myTrace("justCover insert " + stdAnswer);
+		myTrace("justCover insert " + stdAnswer);
 		thisCover.setText(stdAnswer);
 	} else {
 		//myTrace("insert answer of " + stdAnswer + " into para " + thisParaBox);
@@ -2724,8 +2755,8 @@ changeFieldAppearance = function(thisField, thisFormat) {
 	var contentHolder = getRegion(thisField).getScrollContent();
 	var thisParaBox = contentHolder["ExerciseBox" + thisField.paraNum];
 	// the new method that uses start and ends held in the textField
-	//trace("try to call setFieldTextFormat for field " + thisField.id);
-	thisParaBox.setFieldTextFormat(thisField.ID, thisFormat);
+	//myTrace("try to call setFieldTextFormat for field " + thisField.id);
+	thisParaBox.setFieldTextFormat(thisField.id, thisFormat);
 };
 
 // this only undoes binary properties of the format (bold, italics, underline etc)
@@ -2743,7 +2774,7 @@ restoreFieldAppearance = function(thisField, enableField) {
 	//	}
 	//	if (applyFormat[name]!= null) myTrace("origTF." + name + "=" + applyFormat[name]);
 	//}
-	thisParaBox.setFieldTextFormat(thisField.ID, applyFormat);
+	thisParaBox.setFieldTextFormat(thisField.id, applyFormat);
 	// v6.2 as well as restoring formation, you might want to enable the field
 	if (enableField) {
 		thisParaBox.enableField(thisField.id);

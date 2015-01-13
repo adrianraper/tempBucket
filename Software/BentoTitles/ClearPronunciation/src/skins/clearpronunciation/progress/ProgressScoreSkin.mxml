@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5" creationComplete="onCreationComplete(event)" xmlns:vo="com.clarityenglish.clearpronunciation.vo.*">
+	
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.clearpronunciation.view.progress.ProgressScoreView")]
+	</fx:Metadata>
+
+	<fx:Script>
+		<![CDATA[
+			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+			
+			import spark.events.IndexChangeEvent;
+			
+			private function courseChangeHandler(event:IndexChangeEvent):void {
+				hostComponent.onCourseSelect(event.target.selectedItem.label.toLowerCase());
+			}
+			
+			/**
+			 * Sort the scores so that --- is less than 0
+			 */
+			private function sortScores(obj1:Object, obj2:Object, gc:GridColumn):int {
+				if (obj1[gc.dataField] == obj2[gc.dataField])
+					return 0;
+				
+				if (obj1[gc.dataField].indexOf('-') >= 0)
+					return -1;
+				
+				if (obj2[gc.dataField].indexOf('-') >= 0)
+					return 1;
+				
+				if (Number(obj1[gc.dataField]) < Number(obj2[gc.dataField]))
+					return -1;
+				
+				return 1;
+			}
+			
+			private function sortDuration(obj1:Object, obj2:Object, gc:GridColumn):int {
+				if (obj1[gc.dataField] == obj2[gc.dataField])
+					return 0;
+				
+				if (obj1[gc.dataField].indexOf('-') >= 0)
+					return -1;
+				
+				if (obj2[gc.dataField].indexOf('-') >= 0)
+					return 1;
+				
+				if (Number(obj1[gc.dataField]) < Number(obj2[gc.dataField]))
+					return -1;
+				
+				return 1;
+			}
+			
+			// Sort unit names with numbers in them so that Set 2 task 2 is less than Set 12 task 1
+			private function sortUnits(obj1:Object, obj2:Object, gc:GridColumn):int {
+				var df1:String = obj1[gc.dataField].toString();
+				var df2:String = obj2[gc.dataField].toString();
+				
+				if (df1 == '')
+					return -1;
+				
+				if (df2 == '')
+					return 1;
+				
+				if (df1 == df2)
+					return 0;
+				
+				if ((df1.substr(0, 4).toLowerCase() == 'set ') && (df2.substr(0, 4).toLowerCase() == 'set ')) {
+					
+					// Grab the number at the beginning of the string
+					var numberRegexPattern:RegExp = /\d*/;
+					var df1n:Number = new Number(numberRegexPattern.exec(df1.substr(4)));
+					var df2n:Number = new Number(numberRegexPattern.exec(df2.substr(4)));
+					if (df1n < df2n)
+						return -1;
+					if (df1n == df2n) {
+						// Do a normal sort after that (we never get to 10 with tasks!)
+						if (df1.substr(4).toLowerCase() < df2.substr(4).toLowerCase())
+							return -1;
+					}
+				}
+				
+				// Regular alphabetic checking
+				if (df1 < df2)
+					return -1;
+				
+				return 1;
+			}
+			
+			/**
+			 * Display duration in a friendly format
+			 * Convert from seconds to a nice string
+			 */
+			private function displayDuration(score:Object, column:GridColumn):String {
+				
+				var seconds:Number = Number(score.@duration);
+				var minutes:Number = Math.round(seconds / 60);
+				
+				// #318. Duration of 0 means offline exercise (download a pdf), so should show as ---
+				if (seconds == 0)
+					return "---";
+				
+				if (minutes < 1)
+					return "<" + pluralUnits(1, "min");
+				
+				if (minutes < 60)
+					return pluralUnits(minutes, "min");
+				
+				// Any figures after here will use hour and modulus of the minutes
+				minutes = Math.floor(seconds / 60);
+				var hours:Number = Math.floor(minutes / 60);
+				minutes = minutes % 60;
+				
+				return pluralUnits(hours, "hr") + " " + pluralUnits(minutes, "min");
+			}
+			
+			/**
+			 * Utility function for 0, 1 and more of a unit
+			 */
+			private function pluralUnits(value:uint, unit:String):String {
+				if (value == 0)
+					return "";
+				if (value == 1)
+					return "1 " + unit;
+				return value.toString() + " " + unit + "s";
+			}
+			
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
+				
+				progressBar.trackColour = getStyle(hostComponent.courseClass.charAt(0) + 'DarkColor');
+				progressBar.fillColour = getStyle(hostComponent.courseClass.charAt(0) + 'LightColor');	
+				
+				if (scoreDetailsDataGrid.dataProviderLength == 0) {
+					scoreDetailsDataGrid.dataProvider.itemUpdated(null);
+				}
+			}
+			
+			protected function onCreationComplete(event:FlexEvent):void {
+				// TODO Auto-generated method stub
+				scoreDataGridGroup.height = FlexGlobals.topLevelApplication.height - 270; 
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<s:VGroup left="20" right="20" top="25" bottom="0" gap="20">
+		<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="40">
+			<ui:layout>
+				<s:ButtonBarHorizontalLayout gap="35" />
+			</ui:layout>
+		</ui:ProgressCourseButtonBar>
+		
+		<s:Rect width="100%" height="1">
+			<s:fill>
+				<s:SolidColor color="#000000" />
+			</s:fill>
+		</s:Rect>
+		
+		<ui:ProgressBarRenderer id="progressBar" height="30" width="100%" />
+		
+		<s:Group id="scoreDataGridGroup" width="100%">
+			<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="0" right="0" height="100%" rowHeight="35" horizontalScrollPolicy="off">
+				<s:columns>
+					<s:ArrayList>
+						<s:GridColumn id="scoreGridC1" width="{scoreDetailsDataGrid.width * 0.25}">
+							<s:itemRenderer>
+								<fx:Component>
+										<s:GridItemRenderer>
+											<fx:Script>
+												<![CDATA[
+													import spark.components.DataGroup;
+													
+													public function getItemIdexText(value:Object):String {
+														var unit:XML = value.parent();
+														while(unit.name() != "unit") {
+															unit = unit.parent();
+														}
+														
+														if (unit.childIndex() < 9) {
+															return "0" + (unit.childIndex() +1);
+														} else {
+															return unit.childIndex() + 1;
+														}
+													}
+													
+													// hidden function cannot find it in override public function list
+													override public function prepare(hasBeenRecycled:Boolean):void {
+														if (data)
+															unitItemIndexLabel.text = getItemIdexText(data);
+													}
+												]]>
+											</fx:Script>
+											<s:HGroup width="100%" height="100%" verticalAlign="middle">
+												<s:Label id="unitItemIndexLabel" fontSize="14" verticalCenter="0" color="#005D5F" />
+												<s:Spacer width="5" />
+												<s:HGroup left="0" width="80" verticalCenter="0" verticalAlign="middle">
+													<s:Button id="unitItemLeftButton" scaleX="0.7" scaleY="0.7" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@unitLeftIcon)}" />
+													<s:Label id="unitItemLeftLabel" text="{data.@unitLeftIcon}" fontSize="14" color="#005D5F" />
+												</s:HGroup>
+												<s:HGroup width="80" verticalCenter="0" verticalAlign="middle">
+													<s:Button id="unitItemRightButton" scaleX="0.7" scaleY="0.7" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@unitRightIcon)}" />
+													<s:Label id="unitItemRightLabel" text="{data.@unitRightIcon}" fontSize="14" color="#005D5F" />
+												</s:HGroup>	
+											</s:HGroup>
+										</s:GridItemRenderer>
+								</fx:Component>
+							</s:itemRenderer>
+						</s:GridColumn>
+						<s:GridColumn id="scoreGridC2" width="{scoreDetailsDataGrid.width * 0.35}">
+							<s:itemRenderer>  
+								<fx:Component>  
+									<s:GridItemRenderer>
+										<s:layout>
+											<s:HorizontalLayout verticalAlign="middle" />
+										</s:layout>
+										<s:Label text="{data.@caption}" />
+									</s:GridItemRenderer>
+								</fx:Component>  
+							</s:itemRenderer>  
+						</s:GridColumn>
+						<s:GridColumn id="scoreGridC3" sortCompareFunction="sortScores" width="{scoreDetailsDataGrid.width * 0.1}">
+							<s:itemRenderer>  
+								<fx:Component>  
+									<s:GridItemRenderer>
+										<s:layout>
+											<s:HorizontalLayout verticalAlign="middle" />
+										</s:layout>
+										<s:Label text="{data.@displayScore}" />
+									</s:GridItemRenderer>
+								</fx:Component>  
+							</s:itemRenderer>  
+						</s:GridColumn>
+						<s:GridColumn id="scoreGridC4" sortCompareFunction="sortDuration" labelFunction="displayDuration" width="{scoreDetailsDataGrid.width * 0.1}">
+							<s:itemRenderer>  
+								<fx:Component>  
+									<s:GridItemRenderer>
+										<s:layout>
+											<s:HorizontalLayout verticalAlign="middle" />
+										</s:layout>
+										<s:Label text="{data.@duration}" />
+									</s:GridItemRenderer>
+								</fx:Component>  
+							</s:itemRenderer>  
+						</s:GridColumn>
+						<s:GridColumn id="scoreGridC5" width="{scoreDetailsDataGrid.width * 0.2}">
+							<s:itemRenderer>  
+								<fx:Component>  
+									<s:GridItemRenderer>
+										<s:layout>
+											<s:HorizontalLayout verticalAlign="middle" />
+										</s:layout>
+										<s:Label text="{data.@datetime}" />
+									</s:GridItemRenderer>
+								</fx:Component>  
+							</s:itemRenderer>  
+						</s:GridColumn>
+					</s:ArrayList>
+				</s:columns>
+			</s:DataGrid>
+			<s:Button id="ScoreEmptyScoreLabelButton" fontSize="12" fontWeight="normal" horizontalCenter="0" verticalCenter="0" />
+		</s:Group>	
+	</s:VGroup>
+</s:Skin>

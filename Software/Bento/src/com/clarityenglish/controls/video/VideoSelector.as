@@ -192,8 +192,8 @@ package com.clarityenglish.controls.video {
 					channelList.addEventListener(IndexChangeEvent.CHANGE, onChannelSelected);
 					
 					// For the moment just hide the channel selector.  Its all working if we want to turn it back on in the future though.
-					  channelList.visible = false;
-
+					channelList.visible = false;
+					
 					//gt#57
 					channelList.labelField = "caption";
 					break;
@@ -229,7 +229,6 @@ package com.clarityenglish.controls.video {
 			if (!videoList.selectedItem || !channelList.selectedItem)
 				return;
 			videoPlayer.stop();
-			
 			var url:String = href.createRelativeHref(null, videoList.selectedItem.@href).url;
 			if (url.match(/\.(rss|xml)$/)) {
 				new RssVideoLoader(videoPlayer).load(url, channelList.selectedItem);

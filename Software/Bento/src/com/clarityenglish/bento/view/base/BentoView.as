@@ -13,11 +13,12 @@ package com.clarityenglish.bento.view.base {
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
-	import org.davekeen.util.ClassUtil;
-	
 	import spark.components.TabbedViewNavigator;
 	import spark.components.View;
 	import spark.components.ViewNavigator;
+	
+	import org.davekeen.util.ClassUtil;
+	import org.osflash.signals.Signal;
 	
 	/**
 	 * This is the parent class of all views in Bento.
@@ -68,7 +69,19 @@ package com.clarityenglish.bento.view.base {
 		 */
 		public var config:Config;
 		
-		protected var copyProvider:CopyProvider;
+		[Bindable]
+		public var copyProvider:CopyProvider;
+		
+		/**
+		 * All BentoViews get access to this signal to directly send a notification without involving the mediator.  This is really intended to be used for
+		 * views that use stock Bento mediators (e.g. ExerciseMediator) and want to send a custom notification without having to set up a whole new mediator.
+		 */
+		protected var sendNotification:Signal = new Signal(String, Object);
+		
+		// This is just to allow the mediator access without making sendNotification public
+		internal function getSendNotificationSignal():Signal {
+			return sendNotification;
+		}
 		
 		public function BentoView() {
 			super();
@@ -238,8 +251,6 @@ package com.clarityenglish.bento.view.base {
 	
 }
 
-import caurina.transitions.Tweener;
-
 import com.clarityenglish.bento.view.base.BentoView;
 
 import flash.events.Event;
@@ -249,13 +260,15 @@ import mx.core.mx_internal;
 import mx.events.FlexEvent;
 import mx.events.StateChangeEvent;
 
-import org.davekeen.transitions.PatchedSlideViewTransition;
-import org.davekeen.util.ClassUtil;
-
 import spark.components.TabbedViewNavigator;
 import spark.components.ViewNavigator;
 import spark.components.supportClasses.NavigationStack;
 import spark.transitions.ViewTransitionDirection;
+
+import caurina.transitions.Tweener;
+
+import org.davekeen.transitions.PatchedSlideViewTransition;
+import org.davekeen.util.ClassUtil;
 
 class NavStateMap {
 	

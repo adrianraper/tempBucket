@@ -1051,6 +1051,26 @@ INSERT INTO `T_ProductVersion` VALUES
 (56,'DEMO'),
 (56,'FV');
 
+-- gh#1014 Weekly (or occasional) update for worldwide unit summaries
+ALTER TABLE T_ScoreCache ADD COLUMN `F_UnitID` bigint(20) DEFAULT NULL AFTER `F_CourseID`;
+
+-- Clear Pronunciation V10
+DELETE FROM T_ProductLanguage WHERE F_ProductCode in (57,58);
+INSERT INTO T_ProductLanguage VALUES 
+(57,'EN','ClearPronunciation10-International'),
+(58,'EN','ClearPronunciation10-International');
+
+DELETE FROM T_Product WHERE F_ProductCode in (57,58);
+INSERT INTO `T_Product` VALUES
+(57,'Clear Pronunciation Sounds',NULL,2),
+(58,'Clear Pronunciation Speech',NULL,2);
+
+DELETE FROM T_ProductVersion WHERE F_ProductCode in (57,58);
+INSERT INTO `T_ProductVersion` VALUES 
+(57,'DEMO'),
+(57,'FV'),
+(58,'DEMO'),
+(58,'FV');
 INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (1956, '2014-07-17 00:00:00', 'user memory');

@@ -115,13 +115,13 @@ function getRandomNumbers(min, max, num) {
 }
 // v6.3.4 A common function for comparing object IDs (used in array sort)
 function groupOrdering(ele1, ele2) {
-	var ele1ID = Number(ele1.ID);
-	var ele2ID = Number(ele2.ID);
+	var ele1ID = Number(ele1.id);
+	var ele2ID = Number(ele2.id);
 	if (ele1ID < ele2ID) {
-		//myTrace(ele1.ID + " < " + ele2.ID);
+		//myTrace(ele1.id + " < " + ele2.id);
 		return -1;
 	} else if (ele1ID > ele2ID) {
-		//myTrace(ele1.ID + " > " + ele2.ID);
+		//myTrace(ele1.id + " > " + ele2.id);
 		return 1;
 	} else {
 		return 0;
@@ -163,13 +163,13 @@ sortArrayOfObjects = function(myArray, sortField, sortType) {
 }
 // a function to return a string made up of n characters or blocks of character
 function makeString(textBlock, num) {
-//	var myBuild = "";
-//	for (var i=0; i<num; i++) {
-//		myBuild += textBlock;
-//	}
-//	return myBuild;
+	var myBuild = "";
+	for (var i=0; i<num; i++) {
+		myBuild += textBlock;
+	}
+	return myBuild;
 	// from Bokel
-	return new Array(++num).join(textBlock);
+	//return new Array(++num).join(textBlock);
 }
 String.prototype.repeat = function(count){
 	return new Array(++count).join(this);
@@ -435,7 +435,7 @@ _global.ORCHID.easeInOutExpo = function (t, b, c, d) {
 // any conflicting text formatting that the textString contained.
 // Pass the html/plain string to be added and the TextFormat object that describes the default style
 TextField.prototype.setHtmlText = function(myText, myTF) {
-//myTrace("[common.as]entering sethtmltext");
+//myTrace("[common.as]entering setHtmlText");
 	// add a head and tail around the text that sets the style that we want to use
 	//myTrace("common.sHT with " + myText);
 	// v6.3.6 If an italic 'p' is the first character in a line, the tail disappears. You can solve this

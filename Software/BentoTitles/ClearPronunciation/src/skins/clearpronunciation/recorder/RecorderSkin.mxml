@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:ui="com.clarityenglish.bento.view.recorder.ui.*"
+		xmlns:recorder="com.clarityenglish.bento.view.recorder.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.bento.view.recorder.RecorderView")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.bento.RecorderNotifications;
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
+		<s:State name="minimized" />
+		<s:State name="full" />
+		<s:State name="compare" />
+		<s:State name="progress" />
+		<s:State name="nomic" />
+	</s:states>
+	
+	<s:VGroup excludeFrom="nomic">
+		<recorder:WaveformView id="recordWaveformView" audioProxyName="{RecorderNotifications.RECORD_PROXY_NAME}" minimized.minimized="true" minimized.full="false" />
+		<recorder:WaveformView id="compareWaveformView" audioProxyName="{RecorderNotifications.MODEL_PROXY_NAME}" minimized="false" includeIn="compare" />
+	</s:VGroup>
+	
+	<s:Group horizontalCenter="0" verticalCenter="0" visible="false" visible.progress="true">
+		<s:VGroup>
+			<s:Label id="progressLabel" text="Doing stuff..." />
+			<mx:ProgressBar id="progressBar" mode="manual" />
+		</s:VGroup>
+	</s:Group>
+	
+	<s:Group includeIn="nomic">
+		<s:SWFLoader source="@Embed(source='/skins/clearpronunciation/assets/unit/recorder/RecorderBarMiddle.png')" bottom="12" />
+		<s:SWFLoader source="@Embed(source='/skins/clearpronunciation/assets/unit/recorder/RecorderBarBottom.png')" bottom="0" />
+		<s:Label id="warningLabel" horizontalCenter="0" verticalCenter="-10" width="550" color="0xFFFFFF" textAlign="center" text="Sorry, the Recorder either can't find a microphone attached to your computer, or you have denied access to it. Please use the settings panel to change this, or plug a microphone in!" />
+	</s:Group>
+	
+</s:Skin>

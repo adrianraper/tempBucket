@@ -1170,7 +1170,7 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 					// v6.5.4.2 Yiu, back up the text format first
 					thisTF			= this.holder.getTextFormat(this.lines[i].idx-1);
 
-					// v6.5.4.2 Yiu, replace with the word and newline, or it will overwrite the last CJK à of each line 
+					// v6.5.4.2 Yiu, replace with the word and newline, or it will overwrite the last CJK ï¿½ of each line 
 					this.holder.replaceSel(strMyString + newline);
 
 					// v6.5.4.2 Yiu, increase the offset 
@@ -2351,7 +2351,7 @@ TextWithFieldsClass.prototype.getWordEdges = function(words, idx) {
 	// See comment in findWordEdges about unicode characters
 	var specialEndChar = "'" + String.fromCharCode(146); // could be apostrophe
 	var wordEndChar = " ,.;:!?)}]>/%+=#@&*\~" 
-						+ "÷»›¶´®™˜•‰‡†…‚" // characters from ascii table
+						+ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" // characters from ascii table
 						+ String.fromCharCode(160) // &nbsp;
 						+ String.fromCharCode(9) // (tab)
 						+ String.fromCharCode(34)+ String.fromCharCode(148) // double quotes
@@ -2383,7 +2383,7 @@ TextWithFieldsClass.prototype.getWordEdges = function(words, idx) {
 				// so char after the apostrophe is a word ending character
 				// which means this is a quote not an apostrophe and we should
 				// end here.
-				// since you can have double punctuation - ¿'wouldn't I say?'
+				// since you can have double punctuation - ï¿½'wouldn't I say?'
 				// clicking on the first one means you still need to check that
 				// this really is the start (just once should be enough though)
 				if (wordEndChar.indexOf(words.charAt(testIdx-1)) >= 0) {
@@ -2398,7 +2398,7 @@ TextWithFieldsClass.prototype.getWordEdges = function(words, idx) {
 			}
 		} else {
 			if (wordEndChar.indexOf(words.charAt(testIdx)) >= 0) {
-				// since you can have double punctuation - ¿'wouldn't I say?'
+				// since you can have double punctuation - ï¿½'wouldn't I say?'
 				// clicking on the first one means you still need to check that
 				// this really is the start (just once should be enough though)
 				if (wordEndChar.indexOf(words.charAt(testIdx-1)) >= 0) {
@@ -2424,7 +2424,7 @@ TextWithFieldsClass.prototype.getWordEdges = function(words, idx) {
 	// then go backwards
 	var wordStartChar = " ({[</$#@~\*" + String.fromCharCode(9) // (tab)
 						+ "'" + String.fromCharCode(34) // straight quotes
-						+ "¥¢£€¿¡„‹«©" // characters from ascii table
+						+ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" // characters from ascii table
 						+ String.fromCharCode(160) // &nbsp;
 						+ String.fromCharCode(13) // (cr) v6.3.5
 						+ String.fromCharCode(10) // (lf)
@@ -2442,7 +2442,7 @@ TextWithFieldsClass.prototype.getWordEdges = function(words, idx) {
 				// so char before the apostrophe is a word starting character
 				// which means this is a quote not an apostrophe and we should
 				// start here.
-				// since you can have double punctuation - ¿'wouldn't I say?'
+				// since you can have double punctuation - ï¿½'wouldn't I say?'
 				// clicking on the first one means you still need to check that
 				// this really is the start (just once should be enough though)
 				if (wordStartChar.indexOf(words.charAt(testIdx+1)) >= 0) {
@@ -2457,7 +2457,7 @@ TextWithFieldsClass.prototype.getWordEdges = function(words, idx) {
 			}
 		} else {
 			if (wordStartChar.indexOf(words.charAt(testIdx)) >= 0) {
-				// since you can have double punctuation - ¿'wouldn't I say?'
+				// since you can have double punctuation - ï¿½'wouldn't I say?'
 				// clicking on the first one means you still need to check that
 				// this really is the start (just once should be enough though)
 				if (wordStartChar.indexOf(words.charAt(testIdx+1)) >= 0) {
@@ -2745,8 +2745,8 @@ TextWithFieldsClass.prototype.findWordEdges = function() {
 						+ " ,.;:!?)}]>%+=&" 
 						+ "-" + String.fromCharCode(8212) // hyphens
 						+ "'" + String.fromCharCode(34) // straight quotes
-						+ "¥¢£€¿¡„‹«©" // characters from ascii table
-						+ "÷»›¶´®™˜•‰‡†…‚" // characters from ascii table
+						+ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" // characters from ascii table
+						+ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" // characters from ascii table
 						+ String.fromCharCode(160) // &nbsp;
 						// v6.3.5 The characters in the xml are utf-8 format.
 						// fromCharCode at charCodeAt are based on unicode points

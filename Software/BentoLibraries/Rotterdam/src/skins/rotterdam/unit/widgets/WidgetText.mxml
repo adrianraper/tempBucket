@@ -209,10 +209,10 @@
 	</s:Rect>
 	
 	<!-- gh#389 selectable is always true -->
+	<!-- gh#1061 -->
 	<components:PromptingRichEditableText id="richEditableText"
 										  placeholder="{widget.placeholder}"
 										  left="8" right="8" top="8" minHeight="{minHeight}"
-										  fontFamily="Helvetica" fontSize="13"
 										  backgroundAlpha="0" focusSkin="{null}" 
 										  editable.normal="false" editable.editing="true"
 										  selectable="true"
