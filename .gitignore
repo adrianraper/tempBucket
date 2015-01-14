@@ -25,8 +25,6 @@ bin-release-temp
 
 /Software/BentoTitles/IELTS/src/skins/ielts/assets/assets.swc
 /Software/BentoTitles/IELTS/src/skins/ielts/assets/textLayout_2.0.0.232.swz
-/Software/Bento/bin/Bento.swc
-/Software/Common/as3csslib/bin/csslib.swc
 logs
 /Software/ResultsManager/web/*.swf
 /Software/ResultsManager/web/*.swz
@@ -51,7 +49,14 @@ ChinaLogin
 roadtoielts
 html-template
 xhtml-template
-/Software/Common/textLayout/bin/textLayout.swc
-/Software/Common/OSMF/bin/OSMF.swc
 **/.idea/workspace.xml
 **/.idea/tasks.xml
+/Software/Bento/bin
+/Software/Common/as3csslib/bin
+/Software/Common/textLayout/bin
+/Software/Common/OSMF/bin
+/Software/BentoLibraries/Rotterdam/bin
+/Software/BentoTitles/RotterdamPlayer/bin
+/Software/BentoTitles/ClearPronunciation/bin
+/Software/BentoTitles/ActiveReading/bin
+/Software/BentoTitles/TenseBuster/bin
