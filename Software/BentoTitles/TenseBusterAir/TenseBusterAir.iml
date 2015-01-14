@@ -19,8 +19,19 @@
         </dependencies>
         <compiler-options />
         <packaging-air-desktop />
-        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/TenseBusterAir-app.xml" package-file-name="TenseBusterAir" />
-        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/TenseBusterAir-app.xml" package-file-name="TenseBusterAir" />
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/TenseBusterAir-app.xml" package-file-name="TenseBusterAir">
+          <files-to-package>
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../ActiveReadingAir/src/android-config.xml" path-in-package="android-config.xml" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../ActiveReadingAir/src/icons" path-in-package="icons" />
+          </files-to-package>
+        </packaging-android>
+        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/TenseBusterAir-app.xml" package-file-name="TenseBusterAir">
+          <files-to-package>
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/ios-config.xml" path-in-package="ios-config.xml" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/icons" path-in-package="icons" />
+          </files-to-package>
+          <AirSigningOptions keystore-path="$USER_HOME$/.ssh/ios-clarity/development/ios_development.p12" provisioning-profile-path="$USER_HOME$/.ssh/ios-clarity/development/TenseBuster.mobileprovision" />
+        </packaging-ios>
       </configuration>
     </configurations>
     <compiler-options />

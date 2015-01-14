@@ -22,8 +22,19 @@
         </dependencies>
         <compiler-options />
         <packaging-air-desktop />
-        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/ActiveReadingAir-app.xml" package-file-name="ActiveReadingAir" />
-        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/ActiveReadingAir-app.xml" package-file-name="ActiveReadingAir" />
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/ActiveReadingAir-app.xml" package-file-name="ActiveReadingAir">
+          <files-to-package>
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/android-config.xml" path-in-package="android-config.xml" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/icons" path-in-package="icons" />
+          </files-to-package>
+        </packaging-android>
+        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/ActiveReadingAir-app.xml" package-file-name="ActiveReadingAir">
+          <files-to-package>
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/ios-config.xml" path-in-package="ios-config.xml" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/icons" path-in-package="icons" />
+          </files-to-package>
+          <AirSigningOptions keystore-path="$USER_HOME$/.ssh/ios-clarity/development/ios_development.p12" provisioning-profile-path="$USER_HOME$/.ssh/ios-clarity/development/ActiveReading.mobileprovision" />
+        </packaging-ios>
       </configuration>
     </configurations>
     <compiler-options />
