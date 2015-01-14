@@ -14,6 +14,9 @@
             <entry library-id="c568c4a3-0de6-41e9-b3cc-1e2ad1942c87">
               <dependency linkage="Merged" />
             </entry>
+            <entry module-name="textLayout" build-configuration-name="textLayout">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="13.0_AIR15 (Bento)" />
         </dependencies>
@@ -80,5 +83,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" name="MX components" level="project" />
+    <orderEntry type="module" module-name="textLayout" exported="" />
   </component>
 </module>

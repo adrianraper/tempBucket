@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../BentoTitles/Activereading/ActiveReading.iml" filepath="$PROJECT_DIR$/../BentoTitles/Activereading/ActiveReading.iml" group="ActiveReading" />
+      <module fileurl="file://$PROJECT_DIR$/../BentoTitles/ActiveReading/ActiveReading.iml" filepath="$PROJECT_DIR$/../BentoTitles/ActiveReading/ActiveReading.iml" group="ActiveReading" />
       <module fileurl="file://$PROJECT_DIR$/../BentoTitles/ActiveReadingAir/ActiveReadingAir.iml" filepath="$PROJECT_DIR$/../BentoTitles/ActiveReadingAir/ActiveReadingAir.iml" group="ActiveReading" />
       <module fileurl="file://$PROJECT_DIR$/../../area1/Area1.iml" filepath="$PROJECT_DIR$/../../area1/Area1.iml" />
       <module fileurl="file://$PROJECT_DIR$/Bento.iml" filepath="$PROJECT_DIR$/Bento.iml" group="Core" />

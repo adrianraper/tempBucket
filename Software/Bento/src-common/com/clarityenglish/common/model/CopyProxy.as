@@ -123,7 +123,7 @@ package com.clarityenglish.common.model {
 		
 		// gh#999 If you need to ask for a literal without generating an exception
 		public function isCopyLoaded():Boolean {
-			if (this.copy) 
+			if (this.parsedCopy)
 				return true;
 			return false;
 		}
@@ -142,7 +142,7 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function onDelegateFault(operation:String, fault:Fault):void {
-			sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault, true));
+			sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + fault.faultString);
 		}
 	
 	}
