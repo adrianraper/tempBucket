@@ -510,5 +510,9 @@ package com.clarityenglish.clearpronunciation.view.login {
 		public function getTestDrive():Signal {
 			return new Signal();
 		}
+
+		public function setNoLogin(value:Boolean):void {
+			// Added to fulfil interface, but haven't implemented anything yet
+		}
 	}
 }
