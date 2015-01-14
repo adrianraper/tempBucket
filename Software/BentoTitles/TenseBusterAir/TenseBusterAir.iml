@@ -19,8 +19,8 @@
         </dependencies>
         <compiler-options />
         <packaging-air-desktop />
-        <packaging-android enabled="true" package-file-name="TenseBusterAir" />
-        <packaging-ios enabled="true" package-file-name="TenseBusterAir" />
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/TenseBusterAir-app.xml" package-file-name="TenseBusterAir" />
+        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/TenseBusterAir-app.xml" package-file-name="TenseBusterAir" />
       </configuration>
     </configurations>
     <compiler-options />

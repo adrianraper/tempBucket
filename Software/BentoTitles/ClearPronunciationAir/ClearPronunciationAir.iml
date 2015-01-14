@@ -19,8 +19,8 @@
         </dependencies>
         <compiler-options />
         <packaging-air-desktop />
-        <packaging-android enabled="true" package-file-name="ClearPronunciationAir" />
-        <packaging-ios enabled="true" package-file-name="ClearPronunciationAir" />
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/ClearPronunciationAir-app.xml" package-file-name="ClearPronunciationAir" />
+        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/ClearPronunciationAir-app.xml" package-file-name="ClearPronunciationAir" />
       </configuration>
     </configurations>
     <compiler-options />

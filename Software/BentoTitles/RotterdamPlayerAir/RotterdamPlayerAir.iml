@@ -25,8 +25,8 @@
         </dependencies>
         <compiler-options />
         <packaging-air-desktop />
-        <packaging-android enabled="true" package-file-name="RotterdamPlayerAir" />
-        <packaging-ios enabled="true" package-file-name="RotterdamPlayerAir">
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/RotterdamPlayerAir-app.xml" package-file-name="RotterdamPlayerAir" />
+        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/RotterdamPlayerAir-app.xml" package-file-name="RotterdamPlayerAir">
           <AirSigningOptions keystore-path="~/.ssh/ios-clarity/development/ios_development.p12" provisioning-profile-path="~/.ssh/ios-clarity/development/RotterdamPlayer.mobileprovision" />
         </packaging-ios>
       </configuration>

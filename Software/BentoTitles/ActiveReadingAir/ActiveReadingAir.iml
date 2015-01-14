@@ -22,8 +22,8 @@
         </dependencies>
         <compiler-options />
         <packaging-air-desktop />
-        <packaging-android enabled="true" package-file-name="ActiveReadingAir" />
-        <packaging-ios enabled="true" package-file-name="ActiveReadingAir" />
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/ActiveReadingAir-app.xml" package-file-name="ActiveReadingAir" />
+        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/ActiveReadingAir-app.xml" package-file-name="ActiveReadingAir" />
       </configuration>
     </configurations>
     <compiler-options />
