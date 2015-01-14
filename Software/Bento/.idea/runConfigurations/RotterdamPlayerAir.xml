@@ -7,7 +7,7 @@
     <option name="appDescriptorForEmulator" value="IOS" />
     <option name="debugTransport" value="USB" />
     <option name="debuggerSdkRaw" value="BC SDK" />
-    <option name="emulator" value="E720" />
+    <option name="emulator" value="iPad" />
     <option name="emulatorAdlOptions" value="" />
     <option name="fastPackaging" value="true" />
     <option name="fullScreenHeight" value="0" />
