@@ -10,8 +10,8 @@
     <option name="emulator" value="iPad" />
     <option name="emulatorAdlOptions" value="" />
     <option name="fastPackaging" value="true" />
-    <option name="fullScreenHeight" value="0" />
-    <option name="fullScreenWidth" value="0" />
+    <option name="fullScreenHeight" value="1280" />
+    <option name="fullScreenWidth" value="800" />
     <option name="launchUrl" value="false" />
     <option name="launcherParameters">
       <LauncherParameters>
@@ -21,15 +21,15 @@
         <option name="playerPath" value="/Applications/Flash Player Debugger.app" />
       </LauncherParameters>
     </option>
-    <option name="mobileRunTarget" value="Emulator" />
+    <option name="mobileRunTarget" value="iOSDevice" />
     <option name="moduleName" value="ActiveReadingAir" />
     <option name="overriddenMainClass" value="" />
     <option name="overriddenOutputFileName" value="" />
     <option name="overrideMainClass" value="false" />
     <option name="runTrusted" value="true" />
-    <option name="screenDpi" value="0" />
-    <option name="screenHeight" value="0" />
-    <option name="screenWidth" value="0" />
+    <option name="screenDpi" value="149" />
+    <option name="screenHeight" value="1280" />
+    <option name="screenWidth" value="800" />
     <option name="url" value="http://" />
     <option name="usbDebugPort" value="7936" />
     <RunnerSettings RunnerId="FlexDebugRunner" />

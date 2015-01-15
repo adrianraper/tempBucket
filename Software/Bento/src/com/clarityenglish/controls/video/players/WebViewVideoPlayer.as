@@ -45,24 +45,7 @@ package com.clarityenglish.controls.video.players {
 		}
 		
 		public function get source():Object {
-			var sourceHtml:String = "";
-			sourceHtml += "<!DOCTYPE html>";
-			sourceHtml += "<html>";
-			sourceHtml += "<head>";
-			sourceHtml += "	<meta name='viewport' content='width=240px, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi' />";
-			sourceHtml += " <style type='text/css'>";
-			sourceHtml += "		video::-webkit-media-controls-fullscreen-button {display: none;}";
-			sourceHtml += "	</style>";
-			sourceHtml += "</head>";
-			sourceHtml += "<body style='margin:0;padding:0;border:0;overflow:hidden;'>";
-			sourceHtml += "	<video width='240' height='320' controls poster='" + placeholderSource + "'>";
-			sourceHtml += "			<source src='" + _source + "' type='video/mp4' >";
-			sourceHtml += "	</video>";
-			sourceHtml += "</body>";
-			sourceHtml += "</html>";
-			
-			return sourceHtml;
-			//return _source;
+			return _source;
 		}
 		
 		// For ipad candidates video which require video stop when switch to another. 
@@ -85,6 +68,26 @@ package com.clarityenglish.controls.video.players {
 		
 		public function set placeholderSource(value:String):void {
 			_placeholderSource = value;
+		}
+
+		private function get link():String {
+			var sourceHtml:String = "";
+			sourceHtml += "<!DOCTYPE html>";
+			sourceHtml += "<html>";
+			sourceHtml += "<head>";
+			sourceHtml += "	<meta name='viewport' content='width=240px, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi' />";
+			sourceHtml += " <style type='text/css'>";
+			sourceHtml += "		video::-webkit-media-controls-fullscreen-button {display: none;}";
+			sourceHtml += "	</style>";
+			sourceHtml += "</head>";
+			sourceHtml += "<body style='margin:0;padding:0;border:0;overflow:hidden;'>";
+			sourceHtml += "	<video width='240' height='320' controls poster='" + placeholderSource + "'>";
+			sourceHtml += "			<source src='" + source + "' type='video/mp4' >";
+			sourceHtml += "	</video>";
+			sourceHtml += "</body>";
+			sourceHtml += "</html>";
+
+			return sourceHtml;
 		}
 		
 		private function get isHtml():Boolean {
@@ -181,7 +184,7 @@ package com.clarityenglish.controls.video.players {
 						} else {
 							if (source.toString()) {
 								log.debug("loading url {0}", source.toString());
-								stageWebView.loadString(source.toString());
+								stageWebView.loadString(link);
 							}
 						}
 					}

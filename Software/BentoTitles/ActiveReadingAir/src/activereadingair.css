@@ -49,6 +49,12 @@ login|LoginView s|TextInput {
 	}
 }
 
+@media(os-platform: "Android"){
+	video|VideoSelector {
+		skinClass: ClassReference("skins.activereadingair.exercise.video.AndroidVideoSelectorSkin");
+	}
+}
+
 nonetwork|NoNetworkView {
 	skinClass: ClassReference("skins.activereadingair.NoNetworkSkin");
 }
