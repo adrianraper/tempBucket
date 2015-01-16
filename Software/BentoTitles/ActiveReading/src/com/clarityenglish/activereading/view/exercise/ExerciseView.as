@@ -18,8 +18,9 @@ package com.clarityenglish.activereading.view.exercise {
 	import skins.activereading.exercise.ExerciseUnitListItemRenderer;
 	import skins.activereading.exercise.WindowShadeSkin;
 	import skins.activereading.exercise.video.VideoPlayerSkin;
-	
-	import spark.components.Button;
+import skins.activereading.exercise.video.VideoSelectorSkin;
+
+import spark.components.Button;
 	import spark.components.Group;
 	import spark.components.HGroup;
 	import spark.components.List;
@@ -119,19 +120,19 @@ package com.clarityenglish.activereading.view.exercise {
 		
 		protected function onStageClick(event:MouseEvent):void {
 			var component:Object = event.target;
-			
+			trace("component: "+component);
 			while(component) {
-				if (component is WindowShadeSkin || component == rollOutHGroup || component is VideoPlayerSkin || component == backToMenuButton) { // detect if user click on window shade
+				if (component is WindowShadeSkin || component == rollOutHGroup || component is VideoSelectorSkin || component == backToMenuButton) { // detect if user click on window shade
 					break;
 				}
 				component = component.parent;
 			}
-			
+
 			if (!(component is WindowShadeSkin)) {
 				windowShade.close();
 			} 
 			
-			if ((component != rollOutHGroup) && !(component is VideoPlayerSkin)) {
+			if ((component != rollOutHGroup) && !(component is VideoSelectorSkin)) {
 				rollOutTextGroup.width = 0;
 				isRollOutTextOpen = false;
 			}
