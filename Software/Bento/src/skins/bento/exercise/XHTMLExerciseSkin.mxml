@@ -54,7 +54,7 @@
 		</s:Rect>
 		-->
 		
-		<components:XHTMLRichText verticalCenter="0" id="headerRichText" top="0" left="0" bottom="0" width="100%" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
+		<components:XHTMLRichText verticalCenter="0" id="headerRichText" top="0" left="0" bottom="0" width="100%" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, PopupableBehaviour/*, DictionaryBehaviour*/]}" />
 		<!--s:SWFLoader source="@Embed(source='skins/assets/instructionIcon.png')" left="16" top="13" /-->
 		
 		<!-- gh#388 -->
@@ -87,7 +87,7 @@
 					</s:fill>
 				</s:Rect>
 				
-				<components:XHTMLRichText id="noscrollRichText" top="8" left="10" right="16" bottom="8" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
+				<components:XHTMLRichText id="noscrollRichText" top="8" left="10" right="16" bottom="8" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, PopupableBehaviour/*, DictionaryBehaviour*/]}" />
 			</s:Group>
 			
 			<s:Group width="100%" height="100%">
@@ -103,7 +103,7 @@
 					</s:Rect>
 					
 					<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="15" left="15" right="15" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
-						<components:XHTMLRichText id="readingTextRichText" top="5" left="30" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
+						<components:XHTMLRichText id="readingTextRichText" top="5" left="30" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour/*, DictionaryBehaviour*/]}" />
 					</s:Scroller>
 					
 					<s:Rect width="1" top="15" bottom="15" right="10">
@@ -119,7 +119,7 @@
 					</s:Group>
 					
 					<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="15" left="15" right="15" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
-						<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour, RecorderButtonBehaviour]}" />
+						<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, /*DictionaryBehaviour,*/ RecorderButtonBehaviour]}" />
 					</s:Scroller>
 				</s:Group>				
 			</s:Group>			
@@ -132,7 +132,7 @@
 				</s:fill>
 			</s:Rect>
 			
-			<components:XHTMLRichText id="rightNoScrollRichText" top="-1" left="0" right="0" bottom="0" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
+			<components:XHTMLRichText id="rightNoScrollRichText" top="-1" left="0" right="0" bottom="0" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour/*, DictionaryBehaviour*/]}" />
 			<!--blur the right no scroll image-->
 			<s:SWFLoader source="@Embed(source='/skins/assets/sideBlur.png')" left="-1" top="-1" />
 			<s:SWFLoader source="@Embed(source='/skins/assets/bottomBlur.png')" left="-1" top="604" />
