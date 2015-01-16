@@ -117,12 +117,12 @@
 		</s:fill>
 	</s:Rect>
 	<s:Label id="chartCaptionLabel" textAlign="center" fontSize="14" left="0" right="0" top="105" />
-	<mx:BarChart id="compareChart" left="20" right="45" top="130" bottom="70" bottom.normalOnline="120" dataProvider="{hostComponent.unitListCollection}" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="200">
+	<mx:BarChart id="compareChart" left="20" right="45" top="130" bottom="70" bottom.normalOnline="120" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="200">
 		<mx:horizontalAxis>
 			<mx:LinearAxis id="horizontalAxis" minimum="0" maximum="100" labelFunction="percentageLabel" />
 		</mx:horizontalAxis>
 		<mx:verticalAxis>
-			<mx:CategoryAxis id="verticalAxis" dataProvider="{hostComponent.unitListCollection}" categoryField="@caption" labelFunction="captionLabel"  />
+			<mx:CategoryAxis id="verticalAxis" categoryField="@caption" labelFunction="captionLabel"  />
 		</mx:verticalAxis>
 		
 		<mx:horizontalAxisRenderers>

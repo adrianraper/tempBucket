@@ -9,7 +9,6 @@ package com.clarityenglish.activereading.view.progress {
 	import mx.charts.CategoryAxis;
 	import mx.charts.LinearAxis;
 	import mx.charts.series.BarSeries;
-	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	import mx.containers.Grid;
 	import mx.events.FlexEvent;
@@ -60,9 +59,6 @@ package com.clarityenglish.activereading.view.progress {
 		
 		[SkinPart]
 		public var busyIndicator:BusyIndicator;
-		
-		[Bindable]
-		public var unitListCollection:ListCollectionView;
 		
 		[Bindable]
 		public var courseIndex:Number;
@@ -156,8 +152,8 @@ package com.clarityenglish.activereading.view.progress {
 						isNoData = false;
 					}
 				}
-				unitListCollection = new XMLListCollection(xml.unit);
-				
+				verticalAxis.dataProvider = compareChart.dataProvider = new XMLListCollection(xml.unit).toArray().reverse();
+
 				if (isNoData) {
 					compareEmptyScoreLabel.visible = true;					
 				} else {
