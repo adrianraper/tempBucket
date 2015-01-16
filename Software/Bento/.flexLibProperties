@@ -68,7 +68,6 @@
     <classEntry path="com.clarityenglish.textLayout.components.XHTMLRichText"/>
     <classEntry path="com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour"/>
     <classEntry path="com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour"/>
-    <classEntry path="com.clarityenglish.textLayout.components.behaviours.OverlayBehaviour"/>
     <classEntry path="com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap"/>
     <classEntry path="com.clarityenglish.textLayout.conversion.XHTMLBlockImporter"/>
     <classEntry path="com.clarityenglish.textLayout.conversion.XHTMLImporter"/>
@@ -171,6 +170,10 @@
     <classEntry path="com.clarityenglish.bento.vo.content.model.Hint"/>
     <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.AudioFeedbackBehaviour"/>
     <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.events.MarkingButtonEvent"/>
+    <classEntry path="com.clarityenglish.controls.video.providers.YouTubeProvider"/>
+    <classEntry path="com.clarityenglish.controls.video.IVideoHTMLProvider"/>
+    <classEntry path="com.clarityenglish.controls.video.players.HTMLVideoPlayer"/>
+    <classEntry path="com.clarityenglish.bento.form.TextFormItemHandler"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>

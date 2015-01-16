@@ -271,7 +271,7 @@ class BentoService extends AbstractService {
 		$user->fromDatabaseObj($userObj);
 		// Hack the name for now
 		$user->fullName = $user->name;
-		
+
 		// Set various session variables
 		Session::set('valid_userIDs', array($userObj->F_UserID));
 		Session::set('userID', $userObj->F_UserID);
@@ -290,6 +290,15 @@ class BentoService extends AbstractService {
 		// have the same licence details, and I need to pass those roots to getLicenceSlot.
 		// But getLicenceSlot doesn't cope with that. For now this is OK as no-one uses it.
 		$newRootID = $userObj->rootID;
+		
+		// gh#723, gh#254 Special (and soon to be obsolete) handling for R2I so that if you do know which
+		// version you want to run, we remember it. Then if you login on a tablet next, we can pick it up.
+		if ($productCode == '52' || $productCode == '53') {
+			if ($userObj->F_UserProfileOption != $productCode) {
+				$user->userProfileOption = $productCode;
+				$this->updateUser($user, $newRootID);
+			}
+		}
 		
 		if ($rootID != array($newRootID)) {
 			// gh#39 Special case handling for BC LastMinute candidates using tablets. 
