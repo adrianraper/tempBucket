@@ -38,7 +38,8 @@ package com.clarityenglish.textLayout.elements {
 	import mx.graphics.BitmapFillMode;
 	import mx.managers.DragManager;
 	import mx.managers.FocusManager;
-	import mx.utils.StringUtil;
+import mx.managers.IFocusManagerComponent;
+import mx.utils.StringUtil;
 	
 	import org.davekeen.util.PointUtil;
 	
@@ -327,12 +328,12 @@ package com.clarityenglish.textLayout.elements {
 				var nextComponent:DisplayObject = event.target.focusManager.getNextFocusManagerComponent();
 				// gh#979 If nextComponent is Button, it is back button. navigating to ExerciseView marking button
 				if (nextComponent is Button) {
-					while (!(nextComponent is ExerciseView)) {
+					//while (!(nextComponent is ExerciseView)) {
 						nextComponent = nextComponent.parent;
-					}						
-					nextComponent = (nextComponent as ExerciseView).markingButton;
+					//}
+					// gh#1157 nextComponent = (nextComponent as ExerciseView).markingButton;
 				}
-				if (nextComponent) {
+				if (nextComponent is IFocusManagerComponent) {
 					event.target.focusManager.setFocus(nextComponent);	
 				} else {
 					event.target.focusManager.hideFocus();
