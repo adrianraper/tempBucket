@@ -51,11 +51,11 @@
         <s:State name="disabled" />
     </s:states>
     
-	<!--s:Rect width="15" top="0" bottom="0" horizontalCenter="0">
+	<s:Rect width="15" top="0" bottom="0" horizontalCenter="0">
 		<s:fill>
 			<s:SolidColor color="#FFFFFF" alpha="0" />
 		</s:fill>
-	</s:Rect-->
+	</s:Rect>
 	
 	<s:Rect id="fill" horizontalCenter="6" width="4" top="0" bottom="0" radiusX="5" radiusY="5">
 		<s:fill>
