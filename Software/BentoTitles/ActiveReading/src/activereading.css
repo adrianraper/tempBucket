@@ -330,3 +330,8 @@ recorder|RecorderView {
 recorder|WaveformView {
 	skinClass: ClassReference("skins.activereading.exercise.recorder.WaveformSkin");
 }
+
+mx|ToolTip {
+	backgroundColor: #333333;
+	color: #FFFFFF;
+}
