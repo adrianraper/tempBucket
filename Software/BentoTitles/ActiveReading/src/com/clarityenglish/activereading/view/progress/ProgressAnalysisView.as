@@ -8,8 +8,12 @@ package com.clarityenglish.activereading.view.progress {
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.MouseEvent;
-	
-	import mx.collections.ListCollectionView;
+
+import mx.collections.ArrayList;
+
+import mx.collections.ArrayList;
+
+import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	import mx.graphics.SolidColor;
 	
@@ -155,7 +159,7 @@ package com.clarityenglish.activereading.view.progress {
 			if (_courseChanged && menu){
 				courseCaption = menu.course.(@["class"] == courseClass).@caption;
 				// gh#1092
-				stackedChart.dataProvider = menu.course.(@["class"] == courseClass).unit;
+				stackedChart.dataProvider = new  XMLListCollection(menu.course.(@["class"] == courseClass).unit).toArray().reverse();
 				stackedChart.colours = getStyle(courseClass + "CircleWedgeColors");
 				
 				unitListCollection = new XMLListCollection(menu.course.(@["class"] == courseClass).unit);
