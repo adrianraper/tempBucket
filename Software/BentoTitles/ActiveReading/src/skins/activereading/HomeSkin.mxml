@@ -130,10 +130,10 @@
 					downMove.yFrom = 0;
 					downMove.yTo = 150;
 					downMove.duration = 300;
-					downMove.play([instructioGroup]);
+					downMove.play([instructionGroup]);
 				} else {
 					//hostComponent.isBackToHome = true;
-					instructioGroup.visible = false;
+					instructionGroup.visible = false;
 					hostComponent.isInitialSelect = false;
 					
 					levelTitleGroupLabel.text = hostComponent.course.@caption;
@@ -181,7 +181,7 @@
 	<homeui:ARCourseSelector id="courseSelector" left="-30" verticalCenter="-30" height="450"/>
 	
 	<!--Instruction-->
-	<s:Group id="instructioGroup" left="450" verticalCenter="0">
+	<s:Group id="instructionGroup" left="450" verticalCenter="0">
 		<home:menuArrow verticalCenter="-10"/>
 		<home:menuInstruction left="100" />
 	</s:Group>	
