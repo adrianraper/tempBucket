@@ -451,5 +451,5 @@ view|DynamicView s|Group s|VScrollBar {
 }*/
 
 .barLabelStyle {
-	verticalAlign:left;
+	verticalAlign: top;
 }

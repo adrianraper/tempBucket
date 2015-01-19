@@ -7,7 +7,9 @@
 	<courseFile>menu-{productVersion}.xml</courseFile>
 	<platform>browser</platform>
 	<disableAutoTimeout>true</disableAutoTimeout>
-
+	<channel name="aws-streaming" caption="awsstreaming">
+		<streamingMedia>https://s3-ap-southeast-1.amazonaws.com/clarity-video-streaming/</streamingMedia>
+	</channel>
 	<sharedMedia />
 	<brandingMedia>http://dock.contentbench/CCB/{prefix}/assets/</brandingMedia>
 	<language>EN</language>

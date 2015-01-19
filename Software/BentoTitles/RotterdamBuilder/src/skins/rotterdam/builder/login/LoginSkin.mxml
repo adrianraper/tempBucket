@@ -2,12 +2,30 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:login="skins.rotterdam.builder.assets.login.*">
+		xmlns:login="skins.rotterdam.builder.assets.login.*"
+		xmlns:assets="skins.assets.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.login.LoginView")]
 	</fx:Metadata>
-	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		.signInHeader {
+			fontSize: 16;
+			fontFamily: "MyriadPro";
+			fontWeight: "bold";
+			color: #125558;
+		}
+		.signInPrompt {
+			fontSize: 14;
+		}
+		.buttonText {
+			fontSize: 14;
+			fontFamily: "MyriadPro";
+			fontWeight: "bold";
+			color: #FFFFFF;
+		}
+	</fx:Style>
 	<fx:Declarations>
 		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
 		<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false"/>
@@ -16,26 +34,30 @@
 	
 	<fx:Script>
 		<![CDATA[
-			protected function onFreeCourseClick(event:MouseEvent):void {	
-				navigateToURL(new URLRequest("http://www.clarityenglish.com/service/prog/CCB-GettingStarted/index.html"),"_blank");
-			}
-			
-			// gh#224
-			protected function forgotPasswordHandler(event:MouseEvent):void {
-				var substTags:Object = { productCode: hostComponent.config.productCode };
-				if (hostComponent.config.rootID)
-					substTags.rootID = hostComponent.config.rootID; 
-				substTags.loginOption = (isNaN(hostComponent.loginOption)) ? '' : hostComponent.loginOption;
-				var urlReq:URLRequest = new URLRequest(hostComponent.getCopyProvider().getCopyForId("forgotPasswordLink", substTags ));
-				navigateToURL(urlReq, "_new");
-			}
+		import mx.core.FlexGlobals;
+		import mx.events.FlexEvent;
+
+		protected function onFreeCourseClick(event:MouseEvent):void {
+			navigateToURL(new URLRequest("http://www.clarityenglish.com/service/prog/CCB-GettingStarted/index.html"),"_blank");
+		}
+		protected function onSoftKeyboardActivating(event:SoftKeyboardEvent):void {
+			signInGroup.verticalCenter = -70;
+		}
+
+		protected function onSoftKeyboardDeactivate(event:SoftKeyboardEvent):void {
+			if (event.triggerType == SoftKeyboardTrigger.USER_TRIGGERED)
+				signInGroup.verticalCenter = 0;
+		}
+
+		protected var signInDetailsMargin:uint = 20;
+
 		]]>
 	</fx:Script>
-	
-	<!-- states -->
 	<s:states>
-		<s:State name="disabled" />
 		<s:State name="normal" />
+		<s:State name="register" />
+		<s:State name="error" />
+		<s:State name="disabled" />
 	</s:states>
 	
 	<!-- shadow -->

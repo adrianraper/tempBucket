@@ -215,13 +215,13 @@
 	<!-- Background (letters and lines) -->
 	<login:loginbg verticalCenter="0" horizontalCenter="0" />
 	<!-- Normally clip an image like this, but these lines scale nicely -->
-	<s:BitmapImage width="100%" verticalCenter="150" source="@Embed(source='skins/activereading/assets/login/loginlines.png')" fillMode="scale" />
+	<s:BitmapImage width="100%" verticalCenter="150" source="@Embed(source='/skins/activereading/assets/login/loginlines.png')" fillMode="scale" />
 	
 	<!-- Student name -->
 	<s:Label left="150" top="80" text="{hostComponent.userNameCaption}" fontSize="13" color="0x000000" />
 	
 	<!--Book-->
-	<s:BitmapImage bottom="0" right="-120" source="@Embed(source='skins/activereading/assets/login/loginbook.png')" />
+	<s:BitmapImage bottom="0" right="-120" source="@Embed(source='/skins/activereading/assets/login/loginbook.png')" />
 	
 	<!--Rotation Circle-->
 	<home:menucircle left="0" verticalCenter="0" />
@@ -557,10 +557,6 @@
 								
 							]]>
 						</fx:Script>
-						
-						<fx:Declarations>
-							<s:DropShadowFilter id="dropShadowFilter" angle="100" distance="1" alpha="0.4"/>
-						</fx:Declarations>
 						
 						<s:states>
 							<s:State name="normal" />

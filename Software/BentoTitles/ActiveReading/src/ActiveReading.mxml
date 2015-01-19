@@ -25,7 +25,7 @@
 			embedAsCFF: true;
 			advancedAntiAliasing: true;
 		}
-		
+
 		@font-face {
 			src: url("skins/activereading/assets/MyriadPro-Semibold.otf");
 			fontFamily: MyriadPro;
@@ -35,19 +35,19 @@
 			advancedAntiAliasing: true;
 		}
 	</fx:Style>
-	
+
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.activereading.ActiveReadingApplicationFacade;
-			
-			import mx.events.FlexEvent;
-			
+
 			protected function onInitialize(event:FlexEvent):void {
-				versionNumber = "10.0.0";
-				
+				versionNumber = "10.0.12";
+
 				facade = ActiveReadingApplicationFacade.getInstance();
 			}
-			
+
+			import mx.events.FlexEvent;
+
 		]]>
 	</fx:Script>
 	

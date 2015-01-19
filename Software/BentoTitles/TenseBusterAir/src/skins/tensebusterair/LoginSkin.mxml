@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:login="skins.tensebusterair.assets.login.*" xmlns:assets="skins.tensebusterair.assets.*" xmlns:home="skins.tensebuster.assets.home.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.tensebuster.view.login.LoginView")]
+		[HostComponent("com.clarityenglish.bento.view.login.LoginView")]
 	</fx:Metadata>
 	
 	<!-- states -->

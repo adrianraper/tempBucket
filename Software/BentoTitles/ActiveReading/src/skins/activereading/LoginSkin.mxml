@@ -63,20 +63,23 @@
 	<!-- Background (letters and lines) -->
 	<login:loginbg verticalCenter="0" horizontalCenter="0" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
 	<!-- Normally clip an image like this, but these lines scale nicely -->
-	<s:BitmapImage width="100%" verticalCenter="150" source="@Embed(source='skins/activereading/assets/login/loginlines.png')" fillMode="scale" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}" />
+	<s:BitmapImage width="100%" verticalCenter="150" source="@Embed(source='/skins/activereading/assets/login/loginlines.png')" fillMode="scale" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}" />
 
 	<!--Book-->
-	<s:BitmapImage bottom="0" right="-120" source="@Embed(source='skins/activereading/assets/login/loginbook.png')" />
+	<s:BitmapImage bottom="0" right="-120" source="@Embed(source='/skins/activereading/assets/login/loginbook.png')" />
 
 	<!--Girl and demo button-->
 	<s:VGroup bottom="0" right="50" horizontalAlign="center" gap="20">
-		<s:Button id="demoButton1" label="{hostComponent.demoButtonCaption} " useHandCursor="true" buttonMode="true" />
-		<s:Button id="demoButton2" label="{hostComponent.demoButtonCaption} 2" useHandCursor="true" buttonMode="true" />
-		<s:BitmapImage source="@Embed(source='skins/activereading/assets/login/logingirl.png')" />
+		<!-- <s:Button id="demoButton1" label="{hostComponent.demoButtonCaption} " useHandCursor="true" buttonMode="true" /> -->
+		<s:BitmapImage source="@Embed(source='/skins/activereading/assets/login/logingirl.png')" />
 	</s:VGroup>
 	
 	<!--Header-->
-	<login:logintopBar width="100%" />
+	<s:BitmapImage width="100%">
+		<s:source>
+			<login:logintopBar />
+		</s:source>
+	</s:BitmapImage>
 	<title:titlelogoAR right="{width * 0.17}" top="20" scaleX="1.8" scaleY="1.8" />
 	<s:Label text="{hostComponent.getCopyProvider().getCopyForId('licencedToName', {name: hostComponent.licenceeName})}" left="14" top="14" fontSize="13" color="0xFFFFFF" />
 
@@ -87,8 +90,8 @@
 	<s:BitmapImage id="brandingImage4" visible="{hostComponent.branding}" includeInLayout="{hostComponent.branding}"/>
 
 	<!-- Sign in details -->
-	<s:Group id="signInGroup" excludeFrom="register" horizontalCenter="0" verticalCenter="0" >
-		<s:SkinnableContainer id="trackingGroup" includeInLayout="{hostComponent.allowLogin}" visible="{hostComponent.allowLogin}" left="0" >
+	<s:Group id="signInGroup" excludeFrom="register" verticalCenter="0" left="100" >
+		<s:SkinnableContainer id="trackingGroup" includeInLayout="{hostComponent.allowLogin}" visible="{hostComponent.allowLogin}"  >
 			<s:VGroup paddingTop="{2*signInDetailsMargin}" paddingRight="{signInDetailsMargin}" paddingBottom="8" paddingLeft="{signInDetailsMargin}" 
 					  horizontalAlign="center" gap="10">
 				<assets:loginlogoCE horizontalCenter="0" />
@@ -140,9 +143,9 @@
 	</s:Group>
 	
 	<!-- self register screen -->
-	<s:SkinnableContainer id="registerGroup" excludeFrom="normal" horizontalCenter="0" verticalCenter="0" >
+	<s:SkinnableContainer id="registerGroup" excludeFrom="normal" verticalCenter="0" left="100" >
 			<s:VGroup paddingTop="{signInDetailsMargin}" paddingRight="{signInDetailsMargin}" paddingBottom="8" paddingLeft="{signInDetailsMargin}" 
-					  horizontalAlign="center" gap="10">
+					  horizontalAlign="center" gap="10" >
 				<assets:loginlogoCE horizontalCenter="0" />
 				<s:Rect height="10" /> <!-- this is a spacer -->
 				<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >

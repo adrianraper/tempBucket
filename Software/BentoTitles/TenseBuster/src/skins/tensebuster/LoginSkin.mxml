@@ -29,10 +29,10 @@
     </s:states>
     
 	<!-- This should be split into a vertical strip and then tiled -->
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" horizontalCenter="0" bottom="0"/>
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/header.png')" top="0" horizontalCenter="0" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/hexagonBg.png')" horizontalCenter="0" bottom="0"/>
+	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/title/header.png')" top="0" horizontalCenter="0" />
 	<!-- This should split the slogan from the punched hole -->
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/login/loginInput.png')" horizontalCenter="-100" verticalCenter="0" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/login/loginInput.png')" horizontalCenter="-100" verticalCenter="0" />
 	
 	<s:Label text="{hostComponent.getCopyProvider().getCopyForId('licencedToName', {name: hostComponent.licenceeName})}" right="20" top="14" fontSize="13" color="0xFFFFFF" />
 

@@ -4,7 +4,10 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:view="com.clarityenglish.bento.view.*"
 		xmlns:recorder="com.clarityenglish.bento.view.recorder.*"
-		xmlns:ui="com.clarityenglish.activereading.view.exercise.ui.*" xmlns:exercise="skins.activereading.assets.exercise.*" xmlns:home="skins.activereading.assets.home.*" creationComplete="onCreationComplete(event)">
+		xmlns:ui="com.clarityenglish.activereading.view.exercise.ui.*"
+		xmlns:exercise="skins.activereading.assets.exercise.*"
+		xmlns:home="skins.activereading.assets.home.*"
+		creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.activereading.view.exercise.ExerciseView")]
