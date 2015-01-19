@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/../BentoTitles/ActiveReadingAir/ActiveReadingAir.iml" filepath="$PROJECT_DIR$/../BentoTitles/ActiveReadingAir/ActiveReadingAir.iml" group="ActiveReading" />
       <module fileurl="file://$PROJECT_DIR$/../../area1/Area1.iml" filepath="$PROJECT_DIR$/../../area1/Area1.iml" />
       <module fileurl="file://$PROJECT_DIR$/Bento.iml" filepath="$PROJECT_DIR$/Bento.iml" group="Core" />
+      <module fileurl="file://$PROJECT_DIR$/BentoPHP/BentoPHP.iml" filepath="$PROJECT_DIR$/BentoPHP/BentoPHP.iml" />
       <module fileurl="file://$PROJECT_DIR$/../BentoTitles/ClearPronunciation/ClearPronunciation.iml" filepath="$PROJECT_DIR$/../BentoTitles/ClearPronunciation/ClearPronunciation.iml" group="ClearPronunciation" />
       <module fileurl="file://$PROJECT_DIR$/../BentoTitles/ClearPronunciationAir/ClearPronunciationAir.iml" filepath="$PROJECT_DIR$/../BentoTitles/ClearPronunciationAir/ClearPronunciationAir.iml" group="ClearPronunciation" />
       <module fileurl="file://$PROJECT_DIR$/../Common/OSMF/OSMF.iml" filepath="$PROJECT_DIR$/../Common/OSMF/OSMF.iml" group="Core" />
