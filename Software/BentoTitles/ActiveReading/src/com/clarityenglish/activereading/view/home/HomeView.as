@@ -16,15 +16,18 @@ package com.clarityenglish.activereading.view.home {
 	import mx.core.ScrollPolicy;
 	import mx.effects.Move;
 	import mx.effects.easing.Back;
+import mx.events.EffectEvent;
 
-	import org.osflash.signals.Signal;
+import org.osflash.signals.Signal;
 
 	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.List;
-	import spark.primitives.Path;
+import spark.effects.Scale;
+import spark.primitives.Path;
+import spark.primitives.Rect;
 
-	public class HomeView extends BentoView {
+public class HomeView extends BentoView {
 		
 		[SkinPart]
 		public var instructionGroup:Group;
@@ -49,9 +52,15 @@ package com.clarityenglish.activereading.view.home {
 		
 		[SkinPart]
 		public var exerciseGroup:Group;
+
+		[SkinPart]
+		public var exerciseRect:Rect;
 		
 		[SkinPart]
 		public var triangleGroup:Group;
+
+		[SkinPart]
+		public var exerciseListLabel:Label;
 		
 		[SkinPart]
 		public var exerciseList:List;
@@ -80,6 +89,12 @@ package com.clarityenglish.activereading.view.home {
 		
 		[Bindable]
 		public var exerciseXMLListCollection:XMLListCollection;
+
+		[Bindable]
+		public var isFirstClickCurrentUnitList:Boolean;
+
+		[Bindable]
+		public var isAnimationPlayed:Boolean;
 		
 		public var courseSelect:Signal = new Signal(XML);
 		public var unitSelect:Signal = new Signal(XML);
@@ -119,9 +134,11 @@ package com.clarityenglish.activereading.view.home {
 		}
 		
 		public function set unit(value:XML):void {
-			_unit = value;
-			unitChanged = true;
-			invalidateProperties();
+			if (value) {
+				_unit = value;
+				unitChanged = true;
+				invalidateProperties();
+			}
 		}
 		
 		[Bindable]
@@ -307,6 +324,38 @@ package com.clarityenglish.activereading.view.home {
 				// so the exercise reload function will be put here and the data provider.
 				exerciseXMLListCollection = new XMLListCollection(getExercisesList(unit))
 				exerciseList.dataProvider = exerciseXMLListCollection;
+
+				exerciseListLabel.text = unit.attribute("alt");
+				if (exerciseListLabel.text.length < 21) {
+					exerciseGroup.height = exerciseRect.height = exerciseXMLListCollection.length * 31 + 75;
+				} else {
+					exerciseGroup.height = exerciseRect.height = exerciseXMLListCollection.length * 31 + 95;
+				}
+
+				if (unitList.selectedIndex < 7) {
+					exerciseGroup.verticalCenter = unitList.selectedIndex * 39 - 100;
+				} else {
+					exerciseGroup.verticalCenter = 7 * 39 - 100;
+				}
+
+				if (isFirstClickCurrentUnitList && !isAnimationPlayed) {
+					var scale:Scale = new Scale();
+					scale.scaleYFrom = 0;
+					scale.scaleYTo = 1;
+					scale.duration = 500;
+					scale.addEventListener(EffectEvent.EFFECT_END, onScaleEnd);
+					scale.play([exerciseRect]);
+
+					var fadeIn:mx.effects.Fade = new mx.effects.Fade();
+					fadeIn.alphaFrom = 0;
+					fadeIn.alphaTo = 1;
+					fadeIn.duration = 400;
+					fadeIn.startDelay = 200;
+					fadeIn.play([triangleGroup, exerciseListLabel]);
+					// for exercise list frame, when the list doesn't roll out completely and we selecte another unit, we don't want it to roll out again
+					isAnimationPlayed = true;
+				}
+
 				unitChanged = false;
 			}
 		}
@@ -327,6 +376,11 @@ package com.clarityenglish.activereading.view.home {
 			var unitXML:XML =  unitList.selectedItem as XML;
 			
 			if (unitXML) {
+				isUnitListClick = true;
+				exerciseList.visible = true;
+				demoTooltipGroup.visible = false;
+				exerciseGroup.alpha = 1;
+
 				if (triangleReferenceGroup.y) {
 					var move:Move = new Move();
 					move.easingFunction = Back.easeOut;
@@ -337,15 +391,15 @@ package com.clarityenglish.activereading.view.home {
 				} else {
 					triangleReferenceGroup.y = unitList.selectedIndex * 38 + 65;
 				}
-				
-				if (unitList.selectedIndex < 7) {
-					exerciseGroup.verticalCenter = unitList.selectedIndex * 39 - 100;
-				} else {
-					exerciseGroup.verticalCenter = 7 * 39 - 100;
-				}
-				exerciseGroup.alpha = 1;	
+
 				unitSelect.dispatch(unitXML);
 			}	
+		}
+
+		protected function onScaleEnd(event:Event) {
+			// for the item on exercise list, when you first click unit with 6 exercises, and then click another with 11,
+			// the first 6 items has played fade in already and won't play again, but we also don't want the rest 5 items played fade in. So we use isFirstClickUnitList to avoid playing
+			isFirstClickCurrentUnitList = false;
 		}
 		
 		protected function onExerciseGroupMoveEnd(event:Event):void {
