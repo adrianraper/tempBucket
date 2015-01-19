@@ -81,7 +81,8 @@ package com.clarityenglish.activereading.view.title {
 		private var _isDirectStartEx:Boolean;
 		private var _directExercise:XML;
 		private var _isDirectLogout:Boolean;
-		
+		private var _isDirectStartProgress:Boolean;
+
 		public var backToMenu:Signal = new Signal();
 		public var logout:Signal = new Signal();	
 		
@@ -142,7 +143,7 @@ package com.clarityenglish.activereading.view.title {
 		public function get isDirectLogout():Boolean {
 			return _isDirectLogout;
 		}
-		
+
 		public function get isDemo():Boolean {
 			return productVersion == BentoApplication.DEMO;
 		}
@@ -187,7 +188,7 @@ package com.clarityenglish.activereading.view.title {
 			}
 			
 		}
-		
+
 		protected function onBackToMenuButtonClick(event:MouseEvent):void {
 			_isDirectLogout? logout.dispatch() : backToMenu.dispatch();
 		}

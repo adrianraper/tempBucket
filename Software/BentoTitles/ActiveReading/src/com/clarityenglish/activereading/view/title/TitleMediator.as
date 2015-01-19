@@ -42,7 +42,10 @@ package com.clarityenglish.activereading.view.title {
 				if (configProxy.getDirectStart().exerciseID) {
 					view.directExercise = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);
 					if (!view.directExercise) {
-						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("DirectStartInvalidID", { id: directStart.exerciseID, idType: "exercise" }, true ));
+						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("DirectStartInvalidID", {
+							id: directStart.exerciseID,
+							idType: "exercise"
+						}, true));
 					} else {
 						view.isDirectStartExercise = true;
 						view.isDirectLogout = configProxy.getDirectStart().scorm || configProxy.getDirectStart().exerciseID;
@@ -50,7 +53,10 @@ package com.clarityenglish.activereading.view.title {
 				} else if (directStart.unitID) {
 					view.directUnit = bentoProxy.menuXHTML..unit.(@id == directStart.unitID)[0];
 					if (!view.directUnit) {
-						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("DirectStartInvalidID", { id: directStart.unitID, idType: "unit" }, true ));
+						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("DirectStartInvalidID", {
+							id: directStart.unitID,
+							idType: "unit"
+						}, true));
 					} else {
 						view.isDirectStartUnit = true;
 						view.isDirectLogout = configProxy.getDirectStart().scorm;
@@ -58,15 +64,29 @@ package com.clarityenglish.activereading.view.title {
 				} else if (directStart.courseID) {
 					view.directCourse = bentoProxy.menuXHTML..course.(@id == directStart.courseID)[0];
 					if (!view.directCourse) {
-						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("DirectStartInvalidID", { id: directStart.courseID, idType: "course" }, true ));
+						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("DirectStartInvalidID", {
+							id: directStart.courseID,
+							idType: "course"
+						}, true));
 					} else {
 						view.isDirectStartCourse = true;
 					}
 				}
-				
+			}
+			// gh#1080 direct start to progress screen
+			// gh#1156 otherwise reset to menu
+			if (directStart.state && directStart.state == 'progress') {
+				view.callLater(setTabState, [1]);
+			} else {
+				view.callLater(setTabState, [0]);
 			}
 		}
-		
+
+		// gh#1080
+		private function setTabState(index:uint):void {
+			view.sectionNavigator.selectedIndex = index;
+		}
+
 		public override function onRemove():void {
 			super.onRemove();
 			

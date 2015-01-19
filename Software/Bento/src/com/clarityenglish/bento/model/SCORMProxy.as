@@ -296,6 +296,7 @@ package com.clarityenglish.bento.model {
 		/**
 		 * Utility function to parse string of name value pairs from SCORM
 		 *  expecting course=12345,unit=67890 or ex:12345
+		 *  gh#1080 or state:progress
 		 */
 		public function parseSCORMdata(data:String, voDivider:String = "="):Object {
 			if (!data)
@@ -333,6 +334,8 @@ package com.clarityenglish.bento.model {
 							//value = 0;
 						dataObject.next = value;
 						break;
+					case 'state':
+						dataObject.state = value;
 				}
 			}
 			
