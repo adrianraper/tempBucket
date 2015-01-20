@@ -10,7 +10,8 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
-	import com.clarityenglish.common.vo.manageable.User;
+import com.clarityenglish.common.vo.manageable.Group;
+import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
 	
@@ -91,7 +92,11 @@ package com.clarityenglish.common.model {
 			config.paths.menuFilename = config.configFilename;
 			var timeStamp:Date = new Date();
 			config.instanceID = timeStamp.getTime().toString();
-			
+
+			// gh#1160
+			config.userID = config.username = config.email = config.studentID = config.password = config.startingPoint = config.sessionID = null;
+			config.group = new Group();
+
 			_directStartOverride = false;
 		}
 		
@@ -103,7 +108,14 @@ package com.clarityenglish.common.model {
 			/**
 			 *  Use what is passed from start page or command line
 			 */
-			config.mergeParameters(FlexGlobals.topLevelApplication.parameters);
+			// gh#1160 If we have already used these, just keep those that are retainable.
+			if (config.retainedParameters) {
+				var parameters:Object = config.retainedParameters;
+			} else {
+				parameters = FlexGlobals.topLevelApplication.parameters;
+			}
+			config.mergeParameters(parameters);
+
 			// #336 SCORM
 			// The SCORM initialisation might fail and raise an exception. Don't bother going on...
 			var rc:Boolean = true;

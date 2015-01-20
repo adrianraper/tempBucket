@@ -169,7 +169,10 @@ package com.clarityenglish.common.vo.config {
 		
 		// gh#886, gh#1090
 		private var _noLogin:Boolean;
-		
+
+		// gh#1160
+		public var retainedParameters:Object = null;
+
 		/**
 		 * Developer option
 		 */
@@ -302,7 +305,18 @@ package com.clarityenglish.common.vo.config {
 				var timeStamp:Date = new Date();
 				this.instanceID = timeStamp.getTime().toString();
 			}
-				
+
+			// gh#1160
+			// gh#1160 If you started with passed parameters, clear [most of] them out now for a restart
+			this.retainedParameters = {};
+			for (var property:String in parameters) {
+				switch (property) {
+					case 'dbHost':
+					case 'prefix':
+						this.retainedParameters[property] = parameters[property];
+						break;
+				}
+			}
 		}
 		/**
 		 * Do any substitutions that you can for the menu filename

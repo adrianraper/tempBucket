@@ -8,8 +8,10 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Licence;
-	
-	import org.puremvc.as3.interfaces.INotification;
+
+import mx.core.FlexGlobals;
+
+import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import spark.primitives.Line;
@@ -35,7 +37,5 @@ package com.clarityenglish.bento.controller {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			configProxy.reset();
 		}
-		
 	}
-	
 }
