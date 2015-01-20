@@ -8,11 +8,8 @@ confirm that the rotterdam.clearpronunciation namespaces are NOT used please
 @namespace progress "com.clarityenglish.clearpronunciation.view.progress.*";
 @namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 @namespace progressui "com.clarityenglish.bento.view.progress.ui.*"; 
-@namespace login "com.clarityenglish.rotterdam.view.login.*";
+@namespace login "com.clarityenglish.bento.view.login.*";
 @namespace unit "com.clarityenglish.clearpronunciation.view.unit.*";
-@namespace unitui "com.clarityenglish.rotterdam.view.unit.ui.*";
-@namespace ui2 "com.clarityenglish.rotterdam.view.unit.ui.*";
-@namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
 @namespace tlfcomponents "com.clarityenglish.textLayout.components.*";
 @namespace recorder "com.clarityenglish.bento.view.recorder.*";
 @namespace clearpronunciation1 "com.clarityenglish.clearpronunciation.*";
@@ -27,8 +24,6 @@ confirm that the rotterdam.clearpronunciation namespaces are NOT used please
 @namespace video "com.clarityenglish.controls.video.*";
 @namespace players "com.clarityenglish.controls.video.players.*";
 @namespace vo "com.clarityenglish.clearpronunciation.vo.*";
-@namespace widgetcomponents "com.clarityenglish.components.*";
-@namespace widgetskins "skins.rotterdam.unit.widgets.*";
 @namespace marking "com.clarityenglish.bento.view.marking.*";
 @namespace warning "com.clarityenglish.bento.view.warning.*";
 @namespace ui "com.clarityenglish.clearpronunciation.view.home.ui.*";
@@ -122,7 +117,6 @@ error|ErrorView s|Button#closeButton{
 	skinClass: ClassReference("skins.clearpronunciation.settings.ui.SettingsCloseButtonSkin");
 }
 
-
 s|VScrollBar {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.VScrollBarSkin");
 }
@@ -151,20 +145,21 @@ login|LoginView {
 	skinClass: ClassReference("skins.clearpronunciation.login.LoginSkin");
 }
 
-login|LoginView s|Button#loginButton {
+login|LoginView s|SkinnableContainer {
+	skinClass: ClassReference("skins.clearpronunciation.login.SignInContainerSkin");
+}
+
+login|LoginView s|SkinnableContainer#anonymousGroup {
+	skinClass: ClassReference("skins.clearpronunciation.login.AnonymousContainerSkin");
+}
+
+login|LoginView s|Button {
 	skinClass: ClassReference("skins.clearpronunciation.ui.LoginButtonSkin");
 }
 
-login|LoginView s|Button#forgotPassword_btn {
+login|LoginView s|Button#newUserButton, s|Button#forgotPasswordButton {
 	skinClass: ClassReference("skins.clearpronunciation.ui.ForgotPasswordButtonSkin");
 }
-
-/*login|LoginView s|TextInput {
-skinClass: ClassReference("spark.skins.spark.TextInputSkin");
-borderVisible: true;
-borderColor: #C8C8C8;
-contentBackgroundColor: #FFFFFF;
-}*/
 
 login|LoginView s|TextInput {
 	skinClass: ClassReference("skins.clearpronunciation.ui.LoginTextInputSkin");

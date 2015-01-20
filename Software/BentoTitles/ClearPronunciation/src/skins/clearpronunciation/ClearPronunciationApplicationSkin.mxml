@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		xmlns:login="com.clarityenglish.clearpronunciation.view.login.*"
+		xmlns:login="com.clarityenglish.bento.view.login.*"
 		xmlns:assets="skins.clearpronunciation.assets.login.*"
 		xmlns:title="com.clarityenglish.clearpronunciation.view.title.*"
 		xmlns:credits="com.clarityenglish.bento.view.credits.*"
-		width="100%" height="100%">
+		xmlns:nonetwork="com.clarityenglish.bento.view.nonetwork.*">
+
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.ClearPronunciationApplication")]
@@ -20,10 +21,11 @@
 		<s:State name="login" />
 		<s:State name="title" />
 		<s:State name="credits" />
+		<s:State name="nonetwork" />
 	</s:states>
 	
 	<!-- Body -->
-	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0" bottom.title="44">
+	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0" >
 		<!--s:BusyIndicator includeIn="loading" verticalCenter="0" horizontalCenter="0" /-->
 		<s:Group verticalCenter="0" horizontalCenter="0">
 			<s:SWFLoader source="@Embed(source='/skins/clearpronunciation/assets/cpPreloader.swf')" scaleX="0.5" scaleY="0.5" includeIn="loading" horizontalAlign="center" />
@@ -31,22 +33,7 @@
 		<login:LoginView id="loginView" width="100%" height="100%" includeIn="login" />
 		<title:TitleView id="titleView" width="100%" height="100%" includeIn="title" />
 		<credits:CreditsView id="creditsView" width="100%" height="100%" includeIn="credits" />
+		<nonetwork:NoNetworkView id="noNetworkView" width="100%" height="100%" includeIn="nonetwork" />
 	</s:Group>
-	
-	<!-- Footer -->
-	<s:Rect left="0" right="0" bottom="33" height="11">
-		<s:fill>
-			<s:SolidColor color="#008391" />
-		</s:fill>
-	</s:Rect>
-	<s:Group left="0" right="0" height="33" bottom="0">
-		<s:Rect height="100%" width="100%">
-			<s:fill>
-				<s:SolidColor color="#263A45" />
-			</s:fill>
-		</s:Rect>
-		<assets:ClarityEnglishLogo left="23" top="8" height="20" width="100" />
-		<s:Label id="copyrightLabel" text="Software, Design, Navigation © Clarity Language Consultants Ltd, 2014. All rights reserved." color="#FFFFFF" paddingTop="13" right="20" fontSize="12" />
-		<s:Label id="versionLabel" text="v{hostComponent.versionNumber}" color="#FFFFFF" paddingTop="13" right="{copyrightLabel.width + 40}" fontSize="12" />
-	</s:Group>
+
 </s:Skin>

@@ -32,8 +32,7 @@
 			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
-	<s:BitmapImage width="100%" verticalCenter="150" verticalCenter.nonetwork="220" source="@Embed(source='skins/activereading/assets/login/loginlines.png')" fillMode="clip" excludeFrom="loading" />
-	
+
 	<!-- Body -->
 	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0">
 		<s:Group verticalCenter="-50" horizontalCenter="0">

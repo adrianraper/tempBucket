@@ -21,10 +21,6 @@
 			<lit name="helpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/AR_Help_doc_full.pdf</lit>
 			<lit name="recorderHelpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/AR_Help_doc_recorder.pdf</lit>
 			
-			<!-- Footer -->
-			<lit name="copyright">© Clarity Language Consultants Ltd, 1993-2015. All rights reserved.</lit>
-            <lit name="versionLabel">v{versionNumber}</lit>
-            
 			<!-- Log out page -->
 			<lit name="thankYouLabel">Active Reading from Clarity.</lit>
 			

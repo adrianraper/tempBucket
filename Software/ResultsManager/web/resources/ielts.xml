@@ -357,6 +357,8 @@
 			<lit name="fullVersionLabel">full version?</lit>
 			<lit name="moreButton">To find out more</lit>
 			<lit name="moreURL"><![CDATA[http://www.ieltspractice.com/]]></lit>
+			<lit name="myScoreLegendLabel">Your average score</lit>
+			<lit name="everyoneScoreLegendLabel">Worldwide average score</lit>
 		</group>
 	</language>
 

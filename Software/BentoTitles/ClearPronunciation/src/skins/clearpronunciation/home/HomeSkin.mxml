@@ -131,4 +131,14 @@
 			<flexlayouts:AccordianListLayout columnWidth="305" collapsedElementHeight="55" expandedElementHeight="200" verticalGap="10" />
 		</s:layout>
 	</s:List>
+
+	<!-- footer -->
+	<!-- footer (sits on top of application skin footer) -->
+	<s:Group left="0" bottom="0" height="33" right="0">
+		<s:HGroup height="100%" right="10" verticalAlign="middle" gap="5" >
+			<s:Label id="versionLabel" color="#FFFFFF" fontSize="11" />
+			<s:Label id="copyrightLabel" color="#FFFFFF" fontSize="11" />
+		</s:HGroup>
+	</s:Group>
+
 </s:Skin>

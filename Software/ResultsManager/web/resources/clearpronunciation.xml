@@ -16,29 +16,6 @@
             <lit name="recorderButton"></lit> <!-- CP doesn't have a label on this button as it is in the icon -->
 			<lit name="exerciseLogOutButton"></lit> <!-- CP doesn't have a label on this button as it is in the icon -->
 			
-            <!-- Progress certificate -->
-            <lit name="notCompleteString">
-             <![CDATA[
-                <p>You have not completed <span fontWeight="bold" fontSize="16">{courseCaption}</span> yet, so you cannot receive a certificate.</p>
-                <p>So far you have completed <span fontWeight="bold" fontSize="16">{exerciseAmount} of {totalExercise} exercises</span> and your average score is <span fontWeight="bold" fontSize="16">{aveScor}%.</span></p>
-                <p>Go to <span fontWeight="bold" fontSize="16">My Coverage</span> to see which exercises you have not completed so that</p>
-                <p>you can finish the whole section.</p> 
-             ]]>
-            </lit>
-            <lit name="completeString">
-                <![CDATA[
-                <p>This is to certify that this learner has completed this section</p>
-                <p>and has achieved an average score of <span fontWeight="bold" fontSize="20">{aveScore}%.</span></p>
-                ]]>
-            </lit>
-            <lit name="nameTextLabel">Name:</lit>
-            <lit name="courseTextLabel">Section:</lit>
-            <lit name="dateTextLabel">Date:</lit>
-            
-
-			<!--  settings screen -->
-			<lit name="closeButton">OK</lit>
-			
 			<!-- Introduction -->
 			<lit name="introductionTutorialLabel">Click on an activity below to start.</lit>
 			

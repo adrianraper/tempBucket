@@ -147,13 +147,15 @@
             <lit name="wrongLabel">Wrong: {wrong}</lit> 
             <lit name="missedLabel">Skipped: {missed}</lit> 
             <lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
-            <lit name="versionLabel">Software, design, navigation</lit>
-            <lit name="footerLabel"> © Clarity Language Consultants Ltd, 2013-14. All rights reserved.</lit>
             <lit name="printButton">Print</lit>
             <lit name="noButton">No</lit>
             <lit name="yesButton">Yes</lit>
             <lit name="closeButton">OK</lit>
-            
+
+            <!-- Footer -->
+            <lit name="copyright">© Clarity Language Consultants Ltd, 1993-2015. All rights reserved.</lit>
+            <lit name="versionLabel">v{versionNumber}</lit>
+
             <!--  Progress literals -->
             <lit name="analysisInstructionLabel1">This shows how you spent your time</lit>
             <lit name="analysisInstructionLabel2">Time spent on each unit</lit>

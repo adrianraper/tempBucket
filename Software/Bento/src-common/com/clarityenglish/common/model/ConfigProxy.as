@@ -10,8 +10,8 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
-import com.clarityenglish.common.vo.manageable.Group;
-import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
 	

@@ -109,7 +109,7 @@ public class HomeView extends BentoView {
 		private var _courseIndex:Number;
 		private var _isBackToHome:Boolean;
 		private var _isInitialSelect:Boolean =  true;
-		private var _isCourseSelectorClick:Boolean
+		private var _isCourseSelectorClick:Boolean;
 		private var _isUnitListClick:Boolean;
 		private var _isDirectStart:Boolean;
 		private var _directCourseID:String;
@@ -322,7 +322,7 @@ public class HomeView extends BentoView {
 			if (unitChanged) {
 				// used to put reload exercise in unit click handler, but turns out that evaluation to unit.exercise will cause unit select effect disfunctional
 				// so the exercise reload function will be put here and the data provider.
-				exerciseXMLListCollection = new XMLListCollection(getExercisesList(unit))
+				exerciseXMLListCollection = new XMLListCollection(getExercisesList(unit));
 				exerciseList.dataProvider = exerciseXMLListCollection;
 
 				exerciseListLabel.text = unit.attribute("alt");
@@ -396,7 +396,7 @@ public class HomeView extends BentoView {
 			}	
 		}
 
-		protected function onScaleEnd(event:Event) {
+		protected function onScaleEnd(event:Event):void {
 			// for the item on exercise list, when you first click unit with 6 exercises, and then click another with 11,
 			// the first 6 items has played fade in already and won't play again, but we also don't want the rest 5 items played fade in. So we use isFirstClickUnitList to avoid playing
 			isFirstClickCurrentUnitList = false;

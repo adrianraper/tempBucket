@@ -4,63 +4,60 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:login="skins.clearpronunciation.assets.login.*" 
 		xmlns:home="skins.clearpronunciation.assets.home.*"
-		creationComplete="onCreationComplete(event)"> 
-	<!-- host component -->
+		xmlns:assets="skins.assets.*">
+
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.clearpronunciation.view.login.LoginView")]
+		[HostComponent("com.clarityenglish.bento.view.login.LoginView")]
 	</fx:Metadata>
-	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		.signInHeader {
+			fontSize: 16;
+			fontFamily: "MyriadPro";
+			fontWeight: "bold";
+			color: #125558;
+		}
+		.signInPrompt {
+			fontSize: 14;
+		}
+		.buttonText {
+			fontSize: 14;
+			fontFamily: "MyriadPro";
+			fontWeight: "bold";
+			color: #FFFFFF;
+		}
+	</fx:Style>
 	<fx:Script>
 		<![CDATA[
-			import mx.core.FlexGlobals;
-			import mx.events.FlexEvent;
-			
-			/*
-			private var _applicationHeight:Number;
-			private var _applicationWidth:Number;
-			
-			[Bindable]
-			public var applicationWidth:Number;
-			
-			[Bindable]
-			public var applicationHeight:Number;
-			*/
-			
-			protected function onCreationComplete(event:FlexEvent):void {
-				//applicationWidth = FlexGlobals.topLevelApplication.width;
-				//applicationHeight = FlexGlobals.topLevelApplication.height;
-				
-				//loadingRect.visible = false;
-			}
+		import mx.core.FlexGlobals;
+		import mx.events.FlexEvent;
+
+		protected function onSoftKeyboardActivating(event:SoftKeyboardEvent):void {
+			signInGroup.verticalCenter = registerGroup.verticalCenter = -70;
+		}
+
+		protected function onSoftKeyboardDeactivate(event:SoftKeyboardEvent):void {
+			if (event.triggerType == SoftKeyboardTrigger.USER_TRIGGERED)
+				signInGroup.verticalCenter = registerGroup.verticalCenter = 0;
+		}
+
+		protected var signInDetailsMargin:uint = 20;
+
 		]]>
 	</fx:Script>
-	
-	<fx:Script>
-		<![CDATA[
-			protected function forgotPasswordHandler(event:MouseEvent):void {
-				var substTags:Object = { productCode: hostComponent.config.productCode };
-				substTags.rootID = (hostComponent.config.rootID) ? hostComponent.config.rootID : 0;
-				substTags.loginOption = (isNaN(hostComponent.loginOption)) ? '' : hostComponent.loginOption;
-				var urlReq:URLRequest = new URLRequest(hostComponent.getCopyProvider().getCopyForId("forgotPasswordLink", substTags ));
-				navigateToURL(urlReq, "_new");
-			}
-		]]>
-	</fx:Script>
-	
-	<!-- states -->
+
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" blurX="3" blurY="3" alpha="0.3" distance="0" angle="180" knockout="false"/>
+		<s:DropShadowFilter id="dropShadowFilter2" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" inner="true"/>
+	</fx:Declarations>
+
 	<s:states>
-		<s:State name="disabled" />
 		<s:State name="normal" />
+		<s:State name="register" />
+		<s:State name="error" />
+		<s:State name="disabled" />
 	</s:states>
-	
-	<!--Login screen background-->
-	<!--
-	<s:Rect id="backgroundRect" left="0" right="0" top="0" bottom="0">
-		<s:fill>
-			<s:BitmapFill source="@Embed('assets/SampleBackground.png')"/>
-		</s:fill>
-	</s:Rect>
-	-->
+
 	<s:Rect width="100%" height="100%">
 		<s:fill>
 			<s:RadialGradient y="300" scaleX="2000" scaleY="2000" >
@@ -81,47 +78,118 @@
 	
 	<!-- CP1 logo -->
 	<s:BitmapImage left="0" top="0" source="@Embed(source='/skins/clearpronunciation/assets/login/loginLogo.png')" />
-	
-	<!-- footer (sits on top of application skin footer) -->
-	<s:Group left="0" bottom="44" width="100%">
-		<!-- 
-		-->
-		<s:BitmapImage left="200" bottom="40" width="100%" fillMode="repeat" source="@Embed(source='/skins/clearpronunciation/assets/login/waveformFull.png')" />
-		<s:BitmapImage left="0" bottom="0" source="@Embed(source='/skins/clearpronunciation/assets/login/loginGirl.png')" />
+
+	<s:BitmapImage left="200" bottom="40" width="100%" fillMode="repeat" source="@Embed(source='/skins/clearpronunciation/assets/login/waveformFull.png')" />
+	<s:BitmapImage left="0" bottom="0" source="@Embed(source='/skins/clearpronunciation/assets/login/loginGirl.png')" />
+
+	<s:Label text="{hostComponent.getCopyProvider().getCopyForId('licencedToName', {name: hostComponent.licenceeName})}" includeInLayout="{hostComponent.licenceeName!=''}" visible="{hostComponent.licenceeName!=''}"
+			 right="14" top="14" fontSize="13" color="0xFFFFFF" />
+
+	<!-- branding -->
+	<s:BitmapImage id="brandingImage1" visible="{hostComponent.branding}" includeInLayout="{hostComponent.branding}"/>
+	<s:BitmapImage id="brandingImage2" visible="{hostComponent.branding}" includeInLayout="{hostComponent.branding}"/>
+	<s:BitmapImage id="brandingImage3" visible="{hostComponent.branding}" includeInLayout="{hostComponent.branding}"/>
+	<s:BitmapImage id="brandingImage4" visible="{hostComponent.branding}" includeInLayout="{hostComponent.branding}"/>
+
+	<!-- Sign in details -->
+	<s:Group id="signInGroup" excludeFrom="register" verticalCenter="0" horizontalCenter="0">
+		<s:SkinnableContainer id="trackingGroup" includeInLayout="{hostComponent.allowLogin}" visible="{hostComponent.allowLogin}"  >
+			<s:VGroup paddingTop="{2*signInDetailsMargin}" paddingRight="{signInDetailsMargin}" paddingBottom="8" paddingLeft="{signInDetailsMargin}"
+					  horizontalAlign="center" gap="10">
+				<assets:loginlogoCE horizontalCenter="0" />
+				<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+					<s:stroke>
+						<s:SolidColorStroke color="#9E9E9E" weight="1" caps="square"/>
+					</s:stroke>
+				</s:Line>
+				<s:Label text="{hostComponent.loginCaption}" styleName="signInHeader"  />
+				<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+					<s:stroke>
+						<s:SolidColorStroke color="#9E9E9E" weight="1" caps="square"/>
+					</s:stroke>
+				</s:Line>
+				<s:Rect height="5" /> <!-- this is a spacer -->
+				<s:TextInput id="loginKeyInput" prompt="{hostComponent.loginKeyCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+				<s:VGroup visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" gap="10" >
+					<s:TextInput id="passwordInput" displayAsPassword="true" prompt="{hostComponent.passwordCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+					<s:HGroup width="100%" horizontalAlign="right">
+						<s:Button id="forgotPasswordButton" label="{hostComponent.forgotPasswordCaption}" useHandCursor="true" buttonMode="true"/>
+					</s:HGroup>
+				</s:VGroup>
+				<s:HGroup width="100%" horizontalAlign="right" >
+					<s:Button id="newUserButton" label="{hostComponent.newUserButtonCaption}"
+							  includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" />
+				</s:HGroup>
+				<s:Button id="loginButton" label="{hostComponent.loginButtonCaption}" styleName="buttonText" />
+			</s:VGroup>
+		</s:SkinnableContainer>
+		<s:SkinnableContainer id="anonymousGroup" includeInLayout="{hostComponent.allowAnonymous}" visible="{hostComponent.allowAnonymous}" left="{trackingGroup.width+1}" top="28">
+			<s:VGroup paddingTop="{signInDetailsMargin}" paddingRight="{2*signInDetailsMargin}" paddingBottom="8" paddingLeft="{2*signInDetailsMargin}"
+					  horizontalAlign="center" gap="10">
+				<assets:anonymousMask />
+				<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+					<s:stroke>
+						<s:SolidColorStroke color="#999999" weight="1" caps="square"/>
+					</s:stroke>
+				</s:Line>
+				<s:Label text="{hostComponent.anonymousCaption}" styleName="signInHeader"  />
+				<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+					<s:stroke>
+						<s:SolidColorStroke color="#999999" weight="1" caps="square"/>
+					</s:stroke>
+				</s:Line>
+				<s:Rect height="10" /> <!-- this is a spacer -->
+				<s:Button id="anonymousStartButton" label="{hostComponent.anonymousStartButtonCaption}" styleName="buttonText" />
+			</s:VGroup>
+		</s:SkinnableContainer>
 	</s:Group>
-	
-	<s:Group id="loginBoxGroup" width="410" height="287" verticalCenter="0" horizontalCenter="0">
-		<!-- gh#224 -->
-		<s:Rect width="100%" height="100%" radiusX="20" radiusY="20" >
-			<s:fill>
-				<s:SolidColor color="#263A45"/>
-			</s:fill>
-		</s:Rect>
-		
-		<s:VGroup horizontalCenter="0">
-			<s:Spacer height="20" />
-			<s:VGroup width="250" >
-				<s:Label id="loginKey_lbl" fontSize="16" fontWeight="bold" fontFamily="MyriadPro" color="0xFFFFFF" text="{hostComponent.loginKey_lbl}"/>
-				<!--  -->
-				<s:TextInput id="loginKeyInput" fontSize="14" height="35" width="100%" borderVisible="false"/>
-			</s:VGroup>
-			<s:Spacer height="10" />
-			<s:VGroup width="250" >
-				<s:Label id="loginPassword_lbl" fontSize="16" fontWeight="bold" fontFamily="MyriadPro" color="0xFFFFFF" text="{hostComponent.loginPassword_lbl}" />
-				<s:TextInput id="passwordInput" displayAsPassword="true" width="100%" height="35" fontSize="14" fontWeight="bold" borderVisible="false"/>
-				<s:Button id="forgotPassword_btn" fontWeight="normal" label="{hostComponent.forgotPassword_lbl}" click="forgotPasswordHandler(event)" useHandCursor="true" buttonMode="true" />
-			</s:VGroup>
-			<s:Spacer height="10" />
+
+	<!-- self register screen -->
+	<s:SkinnableContainer id="registerGroup" excludeFrom="normal" verticalCenter="0" horizontalCenter="0" >
+		<s:VGroup paddingTop="{signInDetailsMargin}" paddingRight="{signInDetailsMargin}" paddingBottom="8" paddingLeft="{signInDetailsMargin}"
+				  horizontalAlign="center" gap="10" >
+			<assets:loginlogoCE horizontalCenter="0" />
+			<s:Rect height="10" /> <!-- this is a spacer -->
+			<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+				<s:stroke>
+					<s:SolidColorStroke color="#999999" weight="1" caps="square"/>
+				</s:stroke>
+			</s:Line>
+			<s:Label text="{hostComponent.selfRegisterCaption}" fontSize="16" fontFamily="MyriadPro" fontWeight="bold" color="0x125558" />
+			<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+				<s:stroke>
+					<s:SolidColorStroke color="#999999" weight="1" caps="square"/>
+				</s:stroke>
+			</s:Line>
+			<s:TextInput id="selfRegisterName" prompt="{hostComponent.selfRegisterNameCaption}"
+						 includeInLayout="{hostComponent.selfRegisterNameCaption != null}" visible="{hostComponent.selfRegisterNameCaption != null}"
+						 styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+			<s:TextInput id="selfRegisterId" prompt="{hostComponent.selfRegisterIdCaption}"
+						 includeInLayout="{hostComponent.selfRegisterIdCaption != null}" visible="{hostComponent.selfRegisterIdCaption != null}"
+						 styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+			<s:TextInput id="selfRegisterEmail" prompt="{hostComponent.selfRegisterEmailCaption}"
+						 includeInLayout="{hostComponent.selfRegisterEmailCaption != null}" visible="{hostComponent.selfRegisterEmailCaption != null}"
+						 styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+			<s:TextInput id="selfRegisterPassword" displayAsPassword="true" prompt="{hostComponent.selfRegisterPasswordCaption}"
+						 includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}"
+						 width="260" height="35" styleName="signInPrompt" filters="{dropShadowFilter2}" borderVisible="false"/>
+			<s:TextInput id="confirmPassword" displayAsPassword="true" prompt="{hostComponent.confirmPasswordCaption}"
+						 includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}"
+						 width="260" height="35" styleName="signInPrompt" filters="{dropShadowFilter2}" borderVisible="false"/>
+			<s:Rect height="10" /> <!-- this is a spacer -->
+			<s:HGroup gap="20">
+				<s:Button id="cancelButton" label="{hostComponent.cancelButtonCaption}" styleName="buttonText" />
+				<s:Button id="addUserButton" label="{hostComponent.addUserButtonCaption}" styleName="buttonText" />
+			</s:HGroup>
 		</s:VGroup>
-		<s:Button id="loginButton" horizontalCenter="0" bottom="0" label="{hostComponent.getCopyProvider().getCopyForId('loginButton')}" />
+	</s:SkinnableContainer>
+
+	<!-- footer (sits on top of application skin footer) -->
+	<s:Group left="0" bottom="0" height="33" right="0">
+		<s:HGroup height="100%" right="10" verticalAlign="middle" gap="5" >
+			<s:Label id="versionLabel" color="#FFFFFF" fontSize="11" />
+			<s:Label id="copyrightLabel" color="#FFFFFF" fontSize="11" />
+		</s:HGroup>
 	</s:Group>
-	<login:ClarityEnglishLogo horizontalCenter="0" verticalCenter="200" />
-	
-	<!--
-	<s:Rect id="loadingRect" width="100%" height="100%">
-	<s:fill>
-	<s:SolidColor color="#FFFFFF" />
-	</s:fill>
-	</s:Rect>
-	-->
+
 </s:Skin>
