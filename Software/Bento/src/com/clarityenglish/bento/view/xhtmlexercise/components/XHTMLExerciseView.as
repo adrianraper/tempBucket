@@ -90,7 +90,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="false")]
 		public var backColour:SolidColor;
 	
-		[SkinPart(type="group", required="false")]
+		[SkinPart(type="spark.components.Group", required="false")]
 		public var backgroundGraphics:Group;
 	
 		// TODO: These should be in IELTS, not Bento?
