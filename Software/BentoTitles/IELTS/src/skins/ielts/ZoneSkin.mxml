@@ -51,7 +51,10 @@
 	</s:states>
 	
 	<courseselector:CourseSelector id="courseSelector" course="{hostComponent.course}" left="0" top="100" tabletMode="true" />
-	
+
+	<!-- gh#1161 -->
+	<s:Label text="This is test drive" fontSize="18" fontWeight="bold" bottom="10" left="10" />
+
 	<zone:ZonesChrome top="70" right="10" />
 	<zone:ZonesBars top="70" right="10" />
 	<zone:ZonesBinder top="70" right="10" />

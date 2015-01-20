@@ -293,7 +293,8 @@ class BentoService extends AbstractService {
 		
 		// gh#723, gh#254 Special (and soon to be obsolete) handling for R2I so that if you do know which
 		// version you want to run, we remember it. Then if you login on a tablet next, we can pick it up.
-		if ($productCode == '52' || $productCode == '53') {
+		// gh#1161
+		if ($userObj->F_UserID > 0 && ($productCode == '52' || $productCode == '53')) {
 			if ($userObj->F_UserProfileOption != $productCode) {
 				$user->userProfileOption = $productCode;
 				$this->updateUser($user, $newRootID);

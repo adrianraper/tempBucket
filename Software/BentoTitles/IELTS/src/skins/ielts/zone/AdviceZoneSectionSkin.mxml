@@ -2,7 +2,10 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:video="com.clarityenglish.controls.video.*"
-		creationComplete="creationComplete(event)">
+		xmlns:zone="skins.ielts.assets.zone.*"
+		xmlns:ui="skins.ielts.assets.zone.ui"
+		creationComplete="creationComplete(event)" 
+		xmlns:ui1="com.clarityenglish.ielts.view.zone.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.AdviceZoneSectionView")]
@@ -10,6 +13,7 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.ielts.IELTSApplication;
 			import com.clarityenglish.ielts.view.zone.DisabledPopupWatcher;
 			
 			import mx.events.FlexEvent;
@@ -18,6 +22,10 @@
 			private var popupWatcher:DisabledPopupWatcher
 			protected function creationComplete(event:Event):void {
 				popupWatcher = new DisabledPopupWatcher(videoSelector.videoList, hostComponent.viewCopyProvider, hostComponent.productVersion);
+			}
+			
+			private function isTestDrive():Boolean {
+				return (hostComponent.productVersion == IELTSApplication.TEST_DRIVE);
 			}
 		]]>
 	</fx:Script>
@@ -57,6 +65,9 @@
 						 placeholderSource.speaking="@Embed(source='/skins/ielts/assets/zone/advicezone_speaking_video.png')"
 						 />
 
-	
+	<!-- gh#1161 -->
+	<s:Group top="350" horizontalCenter="0" includeInLayout="{isTestDrive()}" visible="{isTestDrive()}" >
+		<ui1:InfoLabel caption="{hostComponent.viewCopyProvider.getCopyForId('exampleInSpeaking')}" captionWidth="400" includeIn="reading,listening"/>
+	</s:Group> 
 	
 </s:Skin>

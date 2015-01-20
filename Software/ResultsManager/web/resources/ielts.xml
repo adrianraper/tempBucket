@@ -346,7 +346,7 @@
 					<p><span fontWeight="bold">Upgrade?</span><br/>If you would like to enquire about purchasing the full version of Road to IELTS, please contact Clarity.</p>					
 				 ]]>
 			</lit>
-			<lit name="testDriveSpan">This Test Drive version of Road to IELTS gives you all the IELTS basics.</lit>
+			<lit name="testDriveSpan">This Test Drive version of Road to IELTS is much smaller than:</lit>
 			<lit name="userManualLabel">Click here for a detailed user manual.</lit>
 			<lit name="exerciseBackToMenuButton">Back to Menu</lit>
 			<lit name="exerciseStartAgainButton">Start again</lit>
@@ -389,6 +389,11 @@
 			<lit name="candidatesVideoDescription4">Watch candidates discussing the IELTS Speaking test.</lit>
 			<lit name="candidatesVideoDescription5">Watch candidates discussing the IELTS Listening test. Find out how to make listening practice more fun.</lit>
 			<lit name="candidatesVideoPlayLabel">Click here to watch the {videoTitle} video.</lit>
+			
+			<lit name="exampleInSpeaking">Look at speaking or writing for examples.</lit>
+			<lit name="exampleInReading">Look at reading for an example.</lit>
+			<lit name="justEBookInTestDrive">Just the eBook is in Test Drive.</lit>
+			
 		</group>
 	</language>
 

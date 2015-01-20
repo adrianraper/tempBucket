@@ -4,6 +4,7 @@
 		xmlns:controls="com.clarityenglish.controls.*"
 		xmlns:zone="skins.ieltsair.assets.zone.*"
 		xmlns:tlfcomponents="com.clarityenglish.textLayout.components.*"
+		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
 		xmlns:components="com.clarityenglish.components.*"
 		creationComplete="onCreationComplete(event)"
 		removedFromStage="onRemoveFromStage(event)">
@@ -14,6 +15,8 @@
 	
 	<fx:Script>
 		<![CDATA[			
+			import com.clarityenglish.ielts.IELTSApplication;
+			
 			import mx.binding.utils.BindingUtils;
 			import mx.binding.utils.ChangeWatcher;
 			import mx.events.FlexEvent;
@@ -110,6 +113,10 @@
 								return (owner as List).dataProvider.getItemIndex(data) + 1;
 							}
 							
+							private function isTestDrive():Boolean {
+								return (outerDocument.hostComponent.productVersion == IELTSApplication.TEST_DRIVE);
+							}
+
 							override public function set data(value:Object):void {
 								super.data = value;
 								
@@ -130,8 +137,15 @@
 										practiceLabel.text = data.@caption;
 										practiceTestGroup.toolTip = null;
 										answerKeyGroup.toolTip = null;
+										testDriveInformation.includeInLayout = testDriveInformation.visible = false;
 									} else {
-										practiceLabel.text = outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailblePracticeTest");
+										// gh#1161
+										if (isTestDrive()) {
+											practiceLabel.text = '';
+											testDriveInformation.includeInLayout = testDriveInformation.visible = true;
+										} else {
+											practiceLabel.text = outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailblePracticeTest");
+										}
 										// gh#759
 										practiceTestGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion, getSequenceNumber(data));
 										answerKeyGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion, getSequenceNumber(data));
@@ -169,7 +183,11 @@
 					</fx:Script>
 					<s:SWFLoader id="swfLoader" />
 					<s:Label id="practiceLabel" top="268" horizontalCenter="0" fontSize="16" />
-					
+					<!-- gh#1161 -->
+					<s:Group id="testDriveInformation" top="250" horizontalCenter="0" includeInLayout="{isTestDrive()}" visible="{isTestDrive()}" >
+						<ui:InfoLabel caption="{outerDocument.hostComponent.getCopyProvider().getCopyForId('exampleInReading')}"  />
+					</s:Group> 
+
 					<s:HGroup top="295" gap="10" horizontalCenter="0">
 						<tlfcomponents:AudioPlayer id="audioPlayer" visible="{data.hasOwnProperty('@audioHref')}" includeInLayout="{data.hasOwnProperty('@audioHref')}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
 						<!--gh#759 using group to show tooltip when button is disabled-->

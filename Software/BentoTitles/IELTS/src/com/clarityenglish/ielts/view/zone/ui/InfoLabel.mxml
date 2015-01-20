@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 xmlns:zone="skins.ielts.assets.zone.*"
+		 minWidth="100" minHeight="34">
+	
+	<fx:Script>
+		<![CDATA[
+			public function set caption(value:String):void {
+				infoCaption.text = value;
+			}
+			public function set captionWidth(value:uint):void {
+				infoCaption.maxWidth = value;
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Group verticalCenter="0" left="24" >
+		<s:Rect height="100%" width="100%" radiusX="6" radiusY="6" >
+			<s:fill>
+				<s:SolidColor color="0x174A7D"/>
+			</s:fill>
+		</s:Rect>
+		<s:Label id="infoCaption" paddingLeft="16" paddingTop="6" paddingBottom="6" paddingRight="6"
+				 textAlign="center" horizontalCenter="0" verticalCenter="1"
+				 color="0xFFFFFF" fontSize="13" fontFamily="Helvetica"/> 
+	</s:Group>
+	<s:Group verticalCenter="0">
+		<s:Ellipse width="36" height="36" top="0" left="0">		
+			<s:stroke>
+				<s:SolidColorStroke color="0x174A7D" weight="2"/>
+			</s:stroke>
+			<s:fill>
+				<s:SolidColor color="0xFFFFFF"/>
+			</s:fill>
+		</s:Ellipse>
+		<zone:notInTestDrive top="9" left="14"/>
+	</s:Group>
+	
+</s:Group>
