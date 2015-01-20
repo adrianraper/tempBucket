@@ -62,7 +62,7 @@ package com.clarityenglish.bento.view.exercise {
 		public var isMarked:Boolean;
 		
 		[Bindable]
-		public var hasQuestions:Boolean;
+		public var noMarking:Boolean;
 			
 		[Bindable]
 		public var hasPrintStylesheet:Boolean;

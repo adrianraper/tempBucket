@@ -43,6 +43,13 @@ package com.clarityenglish.bento.controller {
 					exerciseMark.UID = bentoProxy.getExerciseUID(exercise.href);
 					
 					sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
+				} else if (exercise.hasQuestions() && exercise.hasNoMarking()) { //gh#1139
+					exerciseMark = new ExerciseMark();
+					exerciseMark.duration = Math.round(exerciseProxy.duration / 1000);
+					exerciseMark.UID = bentoProxy.getExerciseUID(exercise.href);
+					exerciseMark.noMarking = true;
+
+					sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
 				}
 				
 				bentoProxy.currentExercise = null;

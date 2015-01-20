@@ -288,8 +288,8 @@ package com.clarityenglish.bento.model {
 					answerMap.put(key, answer);
 				}
 				
-				// trac #121, gh#347
-				exerciseDirty = !(question.type == Question.TARGET_SPOTTING_QUESTION && exercise.model.getSettingParam("delayedMarking") == null);
+				// trac #121, gh#347, gh#1139
+				exerciseDirty = !(exercise.model.getSettingParam("delayedMarking") == null);
 				
 				// Send a notification to say the question has been answered
 				sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );

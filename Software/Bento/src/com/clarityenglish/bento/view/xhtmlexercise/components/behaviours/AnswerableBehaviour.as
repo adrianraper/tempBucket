@@ -224,16 +224,16 @@ class DropDownAnswerManager extends AnswerManager implements IAnswerManager {
 			}
 		}
 	}
-	
+
 	private function onAnswerSubmitted(e:Event, exercise:Exercise, question:Question, selectNode:XML):void {
 		// Since the event actually comes from the overlaid DropDownList we need to use this tomfoolery to get the associated SelectElement
 		var selectElement:SelectElement = e.target.tlf_internal::_element as SelectElement;
-		
+
 		// Get the Answer that matches the selected <option> node
 		var optionNode:XML = selectElement.selectedItem;
-		
+
 		if (!optionNode) return;
-		
+
 		for each (var answer:NodeAnswer in question.answers) {
 			for each (var source:XML in answer.getSourceNodes(exercise)) {
 				if (source === optionNode) {
@@ -243,7 +243,7 @@ class DropDownAnswerManager extends AnswerManager implements IAnswerManager {
 				}
 			}
 		}
-		
+
 		log.error("Unable to find a matching answer for option {0}", optionNode.toXMLString());
 	}
 	
@@ -313,20 +313,20 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 			}
 		}
 	}
-	
+
 	private function onAnswerSubmitted(e:Event, exercise:Exercise, question:Question, inputNode:XML):void {
 		// Since the event actually comes from the overlaid TextInput we need to use this tomfoolery to get the associated InputElement
 		var inputElement:InputElement = e.target.tlf_internal::_element as InputElement;
-		
+
 		var answerOrString:* = null;
-		
+
 		// Ignore empty answers (where there is neither a typed value, nor a dropped node)
 		if (inputElement.enteredValue == "" && !inputElement.droppedNode) {
 			// #gh474 - If the answer is empty then clear the selected answer
 			container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_CLEAR, question, null, inputNode, true));
 			return;
 		}
-		
+
 		// If there is a dropped node then match it up to an answer if possible
 		if (inputElement.droppedNode) {
 			for each (var nodeAnswer:NodeAnswer in question.answers) {
@@ -337,13 +337,13 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 					break;
 				}
 			}
-			
+
 			if (!answerOrString) {
 				// If the dropped node doesn't match any of the source nodes then we need to make a new answer with the droppedNode as the source.
 				// In case the dropped node doesn't have an id then we auto-generate one and add it to the XHTML.
 				if (!inputElement.droppedNode.attribute("id").length() > 0)
 					inputElement.droppedNode.@id = "auto-" + UIDUtil.createUID();
-				
+
 				// Create a NodeAnswer pointing to the dropped node with a score of 0
 				var source:String = inputElement.droppedNode.@id;
 				// gh#585 a) copy feedback to this new node
@@ -354,25 +354,25 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 					xmlString += '<feedback source="' + question.answers[0].feedback.source + '" />';
 				}
 				xmlString += "</answer>";
-				
+
 				answerOrString = new NodeAnswer(new XML(xmlString));
 			}
-			
+
 			if (inputElement.droppedFlowElement) {
 				// #11 - once a drag source has been moved it becomes disabled, unless allowMultipleDrags is set
 				if (!exercise.model.getSettingParam("allowMultipleDrags")) {
-					container.callLater(function():void {
-						XHTML.addClasses(inputElement.droppedNode, [ "disabled", "used" ]);
+					container.callLater(function ():void {
+						XHTML.addClasses(inputElement.droppedNode, ["disabled", "used"]);
 						TLFUtil.markFlowElementFormatChanged(inputElement.droppedFlowElement);
 						inputElement.droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
 					});
 				}
 			}
 		}
-		
+
 		// If this is a true gapfill, with a user entered answer then answerOrString will still be null, in which case we
 		// use a String with the value the user has entered.  QuestionStringAnswerCommand will derive the score for this
-		// string and create a TextAnswer to pass on to ExerciseProxy. 
+		// string and create a TextAnswer to pass on to ExerciseProxy.
 		if (!answerOrString)
 			answerOrString = inputElement.enteredValue;
 

@@ -100,7 +100,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			view.selectAnswerMap(question, exerciseProxy.getSelectedAnswerMap(question));
 			
 			// Show the marked answer map (gh#620 - we actually mark the selected answer map rather than the markable answer map)
-			if (!note.getBody().delayedMarking)
+			if (!note.getBody().delayedMarking && !view.exercise.hasNoMarking())
 				view.markAnswerMap(question, exerciseProxy.getSelectedAnswerMap(question));
 		}
 		
