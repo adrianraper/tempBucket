@@ -112,8 +112,8 @@ package com.clarityenglish.textLayout.rendering {
 		 */
 		public override function setLayoutBoundsSize(width:Number, height:Number, postLayoutTransform:Boolean = true):void {
 			super.setLayoutBoundsSize(width, height, postLayoutTransform);
-			
-			deferredHeight = 0; // gh#654
+
+			deferredHeight = height ? height : 0; // gh#654, gh#1153
 			
 			// Go down the RenderFlow tree sizing the children where possible (i.e. when not dynamic)
 			for each (var childRenderFlow:RenderFlow in childRenderFlows) {
