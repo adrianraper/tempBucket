@@ -15,6 +15,34 @@
 @namespace tink "ws.tink.spark.controls.*";
 @namespace recorder "com.clarityenglish.bento.view.recorder.*";
 
+/** gh#1162 */
+@font-face {
+	src: url("skins/assets/verdana.ttf");
+	fontFamily: Verdana;
+	fontStyle: normal;
+	fontWeight: normal;
+	embedAsCFF: true;
+	advancedAntiAliasing: true;
+}
+
+@font-face {
+	src: url("skins/assets/verdanab.ttf");
+	fontFamily: Verdana;
+	fontStyle: normal;
+	fontWeight: bold;
+	embedAsCFF: true;
+	advancedAntiAliasing: true;
+}
+
+@font-face {
+	src: url("skins/assets/verdanai.ttf");
+	fontFamily: Verdana;
+	fontStyle: italic;
+	fontWeight: normal;
+	embedAsCFF: true;
+	advancedAntiAliasing: true;
+}
+
 global {
 	correctIcon: Embed(source="skins/assets/correctIcon.swf");
 	correctIconWidth: 16;

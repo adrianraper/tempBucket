@@ -30,7 +30,7 @@
           <map>
             <entry key="compiler.locale" value="en_US" />
           </map>
-          <option name="filesToIncludeInSWC" value="$MODULE_DIR$/src/skins/assets/draggable_pointer.png&#10;$MODULE_DIR$/src/skins/assets/play.png&#10;$MODULE_DIR$/src/skins/assets/correctIcon.png&#10;$MODULE_DIR$/src/skins/assets/incorrectIcon.png&#10;$MODULE_DIR$/src/defaults.css&#10;$MODULE_DIR$/src/skins/assets/correctIcon.swf&#10;$MODULE_DIR$/src/skins/assets/incorrectIcon.swf&#10;$MODULE_DIR$/src/skins/assets/missedIcon.png&#10;$MODULE_DIR$/src/skins/assets/pause.png&#10;$MODULE_DIR$/src/skins/assets/stop.png" />
+          <option name="filesToIncludeInSWC" value="$MODULE_DIR$/src/skins/assets/draggable_pointer.png&#10;$MODULE_DIR$/src/skins/assets/play.png&#10;$MODULE_DIR$/src/skins/assets/correctIcon.png&#10;$MODULE_DIR$/src/skins/assets/incorrectIcon.png&#10;$MODULE_DIR$/src/defaults.css&#10;$MODULE_DIR$/src/skins/assets/correctIcon.swf&#10;$MODULE_DIR$/src/skins/assets/incorrectIcon.swf&#10;$MODULE_DIR$/src/skins/assets/missedIcon.png&#10;$MODULE_DIR$/src/skins/assets/pause.png&#10;$MODULE_DIR$/src/skins/assets/stop.png&#10;$MODULE_DIR$/src/skins/assets/verdana.ttf&#10;$MODULE_DIR$/src/skins/assets/verdanab.ttf&#10;$MODULE_DIR$/src/skins/assets/verdanai.ttf" />
           <option name="additionalOptions" value="-define=CONFIG::flex3,false -define=CONFIG::flex4,true -define=CONFIG::debug,true" />
         </compiler-options>
         <packaging-air-desktop />
