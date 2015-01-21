@@ -19,15 +19,20 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.display.DisplayObject;
-	import flash.events.MouseEvent;
-	import flash.geom.Point;
-	
-	import mx.controls.SWFLoader;
+import flash.events.Event;
+import flash.events.MouseEvent;
+import flash.events.TimerEvent;
+import flash.geom.Point;
+import flash.utils.Timer;
+
+import mx.controls.SWFLoader;
 	import mx.graphics.BitmapFillMode;
 	import mx.graphics.BitmapSmoothingQuality;
 	import mx.graphics.SolidColor;
-	
-	import spark.components.Group;
+
+import org.osmf.events.TimeEvent;
+
+import spark.components.Group;
 	import spark.primitives.BitmapImage;
 	
 	import caurina.transitions.Tweener;
@@ -155,6 +160,21 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				var course:XML = value.course.(@["class"] == courseClass)[0];
 				backColour.color = getStyle(courseClass + "ColorDark");		
 			}
+		}
+
+		// gh#1159
+		protected override function onViewCreationComplete():void {
+			super.onViewCreationComplete();
+
+			var richTextVisibleTimer:Timer = new Timer(1000, 1);
+			richTextVisibleTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
+			richTextVisibleTimer.reset();
+			richTextVisibleTimer.start();
+		}
+
+		protected function onTimerComplete(event:Event):void {
+			readingTextRichText.visible = true;
+			bodyRichText.visible = true;
 		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
@@ -433,7 +453,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				}			
 			} 
 		}
-		
 	}
 
 }
