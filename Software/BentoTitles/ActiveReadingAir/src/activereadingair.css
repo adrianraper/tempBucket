@@ -2,7 +2,7 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace activereading "com.clarityenglish.activereading.*";
 @namespace title "com.clarityenglish.activereading.view.title.*";
-@namespace login "com.clarityenglish.activereading.view.login.*";
+@namespace login "com.clarityenglish.bento.view.login.*";
 @namespace video "com.clarityenglish.controls.video.*";
 @namespace nonetwork "com.clarityenglish.bento.view.nonetwork.*";
 @namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
@@ -41,6 +41,8 @@ login|LoginView s|TextInput {
 	contentBackgroundAlpha: 1;
 	paddingLeft: 10;
 	paddingRight: 10;
+	fontSize: 14;
+	showPromptWhenFocused: false;
 }
 
 @media(os-platform:"IOS") {

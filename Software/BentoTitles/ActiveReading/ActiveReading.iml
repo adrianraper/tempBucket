@@ -17,6 +17,9 @@
             <entry module-name="textLayout" build-configuration-name="textLayout">
               <dependency linkage="Merged" />
             </entry>
+            <entry module-name="OSMF" build-configuration-name="OSMF">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="13.0_AIR16 (Bento)" />
         </dependencies>
@@ -84,5 +87,6 @@
     </orderEntry>
     <orderEntry type="library" exported="" name="MX components" level="project" />
     <orderEntry type="module" module-name="textLayout" exported="" />
+    <orderEntry type="module" module-name="OSMF" exported="" />
   </component>
 </module>

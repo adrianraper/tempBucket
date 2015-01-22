@@ -55,7 +55,7 @@
     </s:states>
     
 	<s:Group top.over="2" top.down="2" top.up="0">
-		<s:Path filters.up="{[dropShadowFilter]}" data="M101.652 0 93.3916 27.2578C92.4346 30.416 88.9531 33 85.6514 33L6 33C2.7002 33 0 30.2998 0 27L0 0 101.652 0Z">
+		<s:Path filters.up="{[dropShadowFilter]}" data="M113.652 0 105.392 27.2578C104.435 30.416 100.953 33 97.6514 33L6 33C2.7002 33 0 30.2998 0 27L0 0 113.652 0Z">
 			<s:fill>
 				<s:LinearGradient x="50.8257" y="0" scaleX="33.0005" rotation="90">
 					<s:GradientEntry ratio="0.286496" color="#FFFFFF"/>

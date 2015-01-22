@@ -56,6 +56,7 @@
 				hostComponent.isCourseSelectorClick = true;
 				levelTitleGroup.alpha = 0;
 				unitList.visible = false;
+				exerciseList.visible = false;
 				
 				// we need to detect the first click. If it is, the levelTitleGroup won't fade out, because it never fade in before.
 				if (hostComponent.isInitialSelect) {

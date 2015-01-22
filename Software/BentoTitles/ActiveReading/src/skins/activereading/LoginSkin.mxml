@@ -19,10 +19,8 @@
 			fontWeight: "bold";
 			color: #125558;
 		}
-		.signInPrompt {
-			fontSize: 14;
-		}
-		.buttonText {
+
+		buttonText {
 			fontSize: 14;
 			fontFamily: "MyriadPro";
 			fontWeight: "bold";
@@ -107,9 +105,9 @@
 					</s:stroke>
 				</s:Line>
 				<s:Rect height="5" /> <!-- this is a spacer -->
-				<s:TextInput id="loginKeyInput" prompt="{hostComponent.loginKeyCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+				<s:TextInput id="loginKeyInput" prompt="{hostComponent.loginKeyCaption}" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
 				<s:VGroup visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" gap="10" >
-					<s:TextInput id="passwordInput" displayAsPassword="true" prompt="{hostComponent.passwordCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+					<s:TextInput id="passwordInput" displayAsPassword="true" prompt="{hostComponent.passwordCaption}" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
 					<s:HGroup width="100%" horizontalAlign="right">
 						<s:Button id="forgotPasswordButton" label="{hostComponent.forgotPasswordCaption}" useHandCursor="true" buttonMode="true"/>
 					</s:HGroup>
@@ -161,19 +159,19 @@
 				</s:Line>
 				<s:TextInput id="selfRegisterName" prompt="{hostComponent.selfRegisterNameCaption}" 
 							 includeInLayout="{hostComponent.selfRegisterNameCaption != null}" visible="{hostComponent.selfRegisterNameCaption != null}"
-							 styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+							 width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
 				<s:TextInput id="selfRegisterId" prompt="{hostComponent.selfRegisterIdCaption}"
 							 includeInLayout="{hostComponent.selfRegisterIdCaption != null}" visible="{hostComponent.selfRegisterIdCaption != null}"
-							 styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+							 width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
 				<s:TextInput id="selfRegisterEmail" prompt="{hostComponent.selfRegisterEmailCaption}" 
 							 includeInLayout="{hostComponent.selfRegisterEmailCaption != null}" visible="{hostComponent.selfRegisterEmailCaption != null}"
-							 styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+							 width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
 				<s:TextInput id="selfRegisterPassword" displayAsPassword="true" prompt="{hostComponent.selfRegisterPasswordCaption}" 
 							 includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}"
-							 width="260" height="35" styleName="signInPrompt" filters="{dropShadowFilter2}" borderVisible="false"/>
+							 width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
 				<s:TextInput id="confirmPassword" displayAsPassword="true" prompt="{hostComponent.confirmPasswordCaption}" 
 							 includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}" 
-							 width="260" height="35" styleName="signInPrompt" filters="{dropShadowFilter2}" borderVisible="false"/>
+							 width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
 				<s:Rect height="10" /> <!-- this is a spacer -->
 				<s:HGroup gap="20">
 					<s:Button id="cancelButton" label="{hostComponent.cancelButtonCaption}" styleName="buttonText" />

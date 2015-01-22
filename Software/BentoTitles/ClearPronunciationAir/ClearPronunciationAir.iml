@@ -2,7 +2,7 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="ClearPronunciationAir">
     <configurations>
-      <configuration name="ClearPronunciationAir" target-platform="Mobile" main-class="ClearPronunciationAir" output-file="ClearPronunciationAir.swf" output-folder="$MODULE_DIR$/../../ClearPronunciationAir/bin-debug">
+      <configuration name="ClearPronunciationAir" target-platform="Mobile" main-class="ClearPronunciationAir" output-file="ClearPronunciationAir.swf" output-folder="$MODULE_DIR$/bin-debug">
         <dependencies target-player="15.0">
           <entries>
             <entry module-name="ClearPronunciation" build-configuration-name="ClearPronunciationLib">
@@ -12,6 +12,12 @@
               <dependency linkage="Merged" />
             </entry>
             <entry module-name="Bento" build-configuration-name="Bento">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="textLayout" build-configuration-name="textLayout">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="OSMF" build-configuration-name="OSMF">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -48,5 +54,7 @@
     <orderEntry type="module" module-name="ClearPronunciation" exported="" />
     <orderEntry type="library" exported="" name="MX components" level="project" />
     <orderEntry type="module" module-name="Bento" exported="" />
+    <orderEntry type="module" module-name="textLayout" exported="" />
+    <orderEntry type="module" module-name="OSMF" exported="" />
   </component>
 </module>
