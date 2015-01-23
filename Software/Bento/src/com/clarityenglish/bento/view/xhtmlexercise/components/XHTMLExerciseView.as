@@ -97,6 +97,13 @@ import spark.components.Group;
 	
 		[SkinPart(type="spark.components.Group", required="false")]
 		public var backgroundGraphics:Group;
+
+		[SkinPart] // gh#1164
+		public var imgLeftBlur:SWFLoader;
+
+		[SkinPart] // gh#1164
+		public var imgBottomBlur:SWFLoader;
+
 	
 		// TODO: These should be in IELTS, not Bento?
 		public var courseClass:String;
@@ -218,6 +225,17 @@ import spark.components.Group;
 					group.removeEventListener(MouseEvent.CLICK, onSectionClick);
 					if (exercise.model.hasSettingParam("incorrectClickSection") && exercise.model.getSettingParam("incorrectClickSection") == sectionName)
 						group.addEventListener(MouseEvent.CLICK, onSectionClick);
+
+					// gh#1164 hide the blur mask here for it covering the video scripture button. But after the image can blur itself we can remove the code.
+					if (sectionName == "rightNoScroll" && exercise.getSection("rightNoScroll")) {
+						if(exercise.getSection("rightNoScroll").video.length() > 0) {
+							imgLeftBlur.visible = false;
+							imgBottomBlur.visible = false;
+						} else {
+							imgLeftBlur.visible = true;
+							imgBottomBlur.visible = true;
+						}
+					}
 				}
 			}
 		}

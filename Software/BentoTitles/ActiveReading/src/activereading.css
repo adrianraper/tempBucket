@@ -188,10 +188,6 @@ exercise|ExerciseView s|Button#progressButton {
 	skinClass: ClassReference("skins.activereading.exercise.ProgressButtonSkin");
 }
 
-exercise|ExerciseView s|Button#readButton {
-	skinClass: ClassReference("skins.activereading.exercise.ReadButtonSkin");
-}
-
 exercise|ExerciseView s|Button#feedbackButton {
 	skinClass: ClassReference("skins.activereading.exercise.FeedbackButtonSkin");
 }

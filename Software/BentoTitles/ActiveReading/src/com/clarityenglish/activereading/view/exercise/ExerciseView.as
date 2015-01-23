@@ -36,22 +36,8 @@ import spark.components.Button;
 		[SkinPart]
 		public var windowShade:WindowShade;
 		
-		[SkinPart]
-		public var rollOutHGroup:HGroup;
-		
-		[SkinPart]
-		public var rollOutTextGroup:Group;
-		
-		[SkinPart]
-		public var readButton:Button;
-		
-		[SkinPart]
-		public var rollOutRichEditableText:RichEditableText;
-		
 		[Bindable]
 		public var selectedExerciseNode:XML;
-		
-		private var isRollOutTextOpen:Boolean;
 		
 		public function ExerciseView() {
 			super();
@@ -90,10 +76,6 @@ import spark.components.Button;
 						}	
 					});
 					break;
-				case readButton:
-					readButton.label = copyProvider.getCopyForId("readButton");
-					readButton.addEventListener(MouseEvent.CLICK, onRollOutButtonClick);
-					break;
 			}
 		}
 		
@@ -104,25 +86,11 @@ import spark.components.Button;
 			}
 		}
 		
-		protected function onRollOutButtonClick(event:MouseEvent):void {
-			if (!isRollOutTextOpen) {
-				rollOutTextGroup.width = 500;
-				var rollOutTextString:String = copyProvider.getCopyForId("exercise" + selectedExerciseNode.@id);
-				var textFlow:TextFlow = TextFlowUtil.importFromString(rollOutTextString);
-				rollOutRichEditableText.textFlow = textFlow;
-				isRollOutTextOpen = true;
-			} else {
-				rollOutTextGroup.width = 0;
-				isRollOutTextOpen = false;
-			}
-			
-		}
-		
 		protected function onStageClick(event:MouseEvent):void {
 			var component:Object = event.target;
-			trace("component: "+component);
+
 			while(component) {
-				if (component is WindowShadeSkin || component == rollOutHGroup || component is VideoSelectorSkin || component == backToMenuButton) { // detect if user click on window shade
+				if (component is WindowShadeSkin) { // detect if user click on window shade
 					break;
 				}
 				component = component.parent;
@@ -130,11 +98,6 @@ import spark.components.Button;
 
 			if (!(component is WindowShadeSkin)) {
 				windowShade.close();
-			} 
-			
-			if ((component != rollOutHGroup) && !(component is VideoSelectorSkin)) {
-				rollOutTextGroup.width = 0;
-				isRollOutTextOpen = false;
 			}
 		}
 	}

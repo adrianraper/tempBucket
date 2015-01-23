@@ -45,16 +45,8 @@ login|LoginView s|TextInput {
 	showPromptWhenFocused: false;
 }
 
-@media(os-platform:"IOS") {
-	video|VideoSelector {
-		skinClass: ClassReference("skins.activereadingair.exercise.video.IOSVideoSelectorSkin");
-	}
-}
-
-@media(os-platform: "Android"){
-	video|VideoSelector {
-		skinClass: ClassReference("skins.activereadingair.exercise.video.AndroidVideoSelectorSkin");
-	}
+video|VideoSelector {
+	skinClass: ClassReference("skins.activereadingair.exercise.video.TabletVideoSelectorSkin");
 }
 
 nonetwork|NoNetworkView {

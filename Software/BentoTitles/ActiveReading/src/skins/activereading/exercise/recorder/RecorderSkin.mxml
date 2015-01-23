@@ -34,7 +34,7 @@
 	<s:Group horizontalCenter="0" verticalCenter="0" visible="false" visible.progress="true">
 		<s:VGroup>
 			<s:Label id="progressLabel" text="Doing stuff..." />
-			<mx:ProgressBar id="progressBar" mode="manual" />
+			<mx:ProgressBar id="progressBar" mode="manual"/>
 		</s:VGroup>
 	</s:Group>
 	

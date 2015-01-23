@@ -39,9 +39,6 @@ package com.clarityenglish.controls.video.players {
 			
 			if (!StageWebView.isSupported)
 				throw new Error("StageWebView is not supported in this environment");
-			
-			if (stageWebView)
-				stageWebView = null;
 		}
 		
 		public function get source():Object {
@@ -161,13 +158,10 @@ package com.clarityenglish.controls.video.players {
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
-			//if (!stageWebView.viewPort) {
-			if (stageWebView) {
+			if (!stageWebView.viewPort) {
 				var globalPos:Point = contentToGlobal(new Point(x, y));
 				stageWebView.viewPort = new Rectangle(globalPos.x, globalPos.y, Math.max(0, unscaledWidth * dpiScaleFactor), unscaledHeight * dpiScaleFactor);
 			}
-				
-			//}
 		}
 		
 		public function play():void {

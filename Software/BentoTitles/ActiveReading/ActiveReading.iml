@@ -29,7 +29,7 @@
         <packaging-ios />
       </configuration>
       <configuration name="ActiveReadingLib" target-platform="Mobile" output-type="Library" output-file="ActiveReadingLib.swc" output-folder="$MODULE_DIR$/bin">
-        <dependencies>
+        <dependencies framework-linkage="Merged">
           <entries>
             <entry module-name="Bento" build-configuration-name="Bento">
               <dependency linkage="Merged" />
@@ -38,6 +38,9 @@
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="MX components" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="textLayout" build-configuration-name="textLayout">
               <dependency linkage="Merged" />
             </entry>
           </entries>

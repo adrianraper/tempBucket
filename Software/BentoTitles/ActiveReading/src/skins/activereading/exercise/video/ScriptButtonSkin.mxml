@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
 
-    ADOBE SYSTEMS INCORPORATED
-    Copyright 2008 Adobe Systems Incorporated
-    All Rights Reserved.
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
 
-    NOTICE: Adobe permits you to use, modify, and distribute this file
-    in accordance with the terms of the license agreement accompanying it.
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
 
 -->
+
 
 <!--- The default skin class for the Spark Button component.  
 
@@ -42,43 +50,22 @@
         <s:State name="down" />
         <s:State name="disabled" />
     </s:states>
-
-	<!-- The background -->
-	<s:Rect width="48" height="45" topRightRadiusX="6" topRightRadiusY="6" bottomRightRadiusX="6" bottomRightRadiusY="6">
-		<s:fill>
-			<s:LinearGradient x="965.7625" y="449.5" scaleX="-48.225">
-				<s:GradientEntry ratio="0" color="#4E4E4E"/>
-				<s:GradientEntry ratio="0.44705882" color="#3F3F3F"/>
-			</s:LinearGradient>
-		</s:fill>
-	</s:Rect>
-	
-	<!-- The icon -->
+    
 	<s:Group>
-		<s:Path x="-917.55" y="-427.05" data="M933.75 438.15 947.3 438.15Q948.45 438.15 949.25 438.95 950.05 439.75 950.05 440.85L950.05 457.5Q950.05 458.6 949.25 459.4 948.45 460.2 947.3 460.2L933.75 460.2Q932.65 460.2 931.85 459.4 931.05 458.65 931.05 457.5L931.05 440.85Q931.05 439.75 931.85 438.95 932.65 438.15 933.75 438.15M942.65 442.55 946.65 446.5Q947.45 447.35 948.05 447.1 948.65 446.85 948.65 445.65L948.65 443.4Q948.65 442.2 947.85 441.35 947 440.5 945.8 440.5L943.5 440.5Q942.35 440.5 942.1 441.1 941.85 441.75 942.65 442.55">
+		<s:Path data="M44 28 10.5156 28C8.95654 28 7.0166 26.9111 6.2041 25.5806L0.609375 16.4194C-0.203125 15.0889 -0.203125 12.9111 0.609375 11.5806L6.2041 2.41943C7.0166 1.08887 8.95654 0 10.5156 0L44 0 44 28Z">
 			<s:fill>
-				<s:SolidColor color="#FFFFFF"/>
-			</s:fill>
-		</s:Path>
-		<s:Path x="-917.55" y="-427.05" data="M946.7 450.7 934.05 450.7 934.05 448.5 946.7 448.5 946.7 450.7">
-			<s:fill>
-				<s:SolidColor color="#666666"/>
-			</s:fill>
-		</s:Path>
-		<s:Path x="-917.55" y="-427.05" data="M946.7 456 934.05 456 934.05 453.85 946.7 453.85 946.7 456">
-			<s:fill>
-				<s:SolidColor color="#666666"/>
+				<s:SolidColor color="#025555"/>
 			</s:fill>
 		</s:Path>
 	</s:Group>
-    
+	
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
     <s:Label id="labelDisplay"
              textAlign="center"
              maxDisplayedLines="1"
-             horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
-             left="10" right="10" top="2" bottom="2">
+             horizontalCenter="2" verticalCenter="1" verticalAlign="middle"
+			 fontSize="13" color="#FFFFFF" fontFamily="MyriadPro" fontWeight="bold">
     </s:Label>
     
 </s:SparkButtonSkin>

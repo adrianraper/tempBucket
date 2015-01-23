@@ -6,8 +6,7 @@
 		xmlns:recorder="com.clarityenglish.bento.view.recorder.*"
 		xmlns:ui="com.clarityenglish.activereading.view.exercise.ui.*"
 		xmlns:exercise="skins.activereading.assets.exercise.*"
-		xmlns:home="skins.activereading.assets.home.*"
-		creationComplete="onCreationComplete(event)">
+		xmlns:home="skins.activereading.assets.home.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.activereading.view.exercise.ExerciseView")]
@@ -15,18 +14,6 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.XMLListCollection;
-			import mx.events.FlexEvent;
-			
-			protected function onCreationComplete(event:FlexEvent):void
-			{
-				// TODO Auto-generated method stub
-				if (hostComponent.isPlatformiPad) {
-					rollOutHGroup.right = 265;
-				} else {
-					rollOutHGroup.right = 294;
-				}
-			}
-			
 		]]>
 	</fx:Script>
 	
@@ -91,28 +78,6 @@
 		<s:Button id="feedbackButton" visible="false" includeInLayout="false" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
 		<s:Button id="startAgainButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="recorderButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
-	</s:HGroup>
-	
-	<!--Roll out text-->
-	<s:HGroup id="rollOutHGroup" top="190" gap="-6" visible="{hostComponent.hasVideoScript}">
-		<s:VGroup paddingTop="10" width="50">
-			<s:Button id="readButton" buttonMode="true" useHandCursor="true" />
-		</s:VGroup>
-		<s:Group id="rollOutTextGroup" width="0" height="450">
-			<s:Rect width="100%" height="100%" filters="{[dropShadowFilter]}" bottomLeftRadiusX="8" bottomLeftRadiusY="8" bottomRightRadiusX="8" bottomRightRadiusY="8" topLeftRadiusX="8" topLeftRadiusY="8">
-				<s:fill>
-					<s:SolidColor color="#FFFFFF" />
-				</s:fill>
-			</s:Rect>
-			<s:Rect width="100%" height="28" top="10">
-				<s:fill>
-					<s:SolidColor color="#025555" />
-				</s:fill>
-			</s:Rect>
-			<s:Scroller width="85%" height="85%" verticalCenter="20" horizontalCenter="0">
-				<s:RichEditableText id="rollOutRichEditableText" editable="false" selectable="false" verticalAlign="middle"/>
-			</s:Scroller>
-		</s:Group>
 	</s:HGroup>
 	
 	<!--Header-->

@@ -20,10 +20,6 @@
 			protected function onCreationComplete(event:FlexEvent):void {
 				channelList.visible = false;
 				
-				videoPlayer.stop();
-				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
-				stage.addEventListener(MouseEvent.CLICK, onStageClick);
-				
 				videoList.selectedIndex = 0;
 				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 				
@@ -31,16 +27,6 @@
 					videoList.visible = true;
 				} else {
 					videoList.visible = false;
-				}
-			}
-			
-			protected function onStageClick(event:MouseEvent):void {
-				var component:Object = event.target;
-				var componentArray:Array = component.toString().split(".");
-				var componentID:String = componentArray[componentArray.length - 1];
-				if (component is Button && componentID != "readButton") {
-					videoList.selectedItem = null;
-					videoPlayer.visible = false;
 				}
 			}
 			
@@ -53,34 +39,11 @@
 					hostComponent.autoPlay = false;
 				}
 			}
-			
-			protected function onVideoListIndexChange(event:Event):void {
-				videoPlayer.createStageWebView();
-				videoPlayer.visible = true; 
-			}
-			
-			protected function onPlaceholderClick(event:MouseEvent = null):void {
-				// For now the default index is 0, but latter we will get index from widgetlist which is user prefered.
-				videoList.selectedIndex = 0;
-				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
-				// Manually set the focus here, for we manually change the video list index.
-				focusManager.setFocus(videoList);
-			}
 		]]>
 	</fx:Script>
-	
-	<!--Video background-->
-	<!--s:Group left="84" top="20" width="240" height="320">
-		<s:Rect width="100%" height="100%" filters="{[dropShadowFilter]}">
-			<s:fill>
-				<s:SolidColor color="#FFFFFF" />
-			</s:fill>
-		</s:Rect>
-		<s:SWFLoader source="@Embed(source='skins/activereading/assets/loading.swf')" verticalCenter="0" horizontalCenter="0" />
-	</s:Group-->	
-	
+
 	<!-- The video players -->
-	<players:WebViewVideoPlayer id="videoPlayer" left="42" top="10" width="245" height="325" placeholderSource="{hostComponent.placeholderSource}"/>
+	<players:WebViewVideoPlayer id="videoPlayer" left="42" top="10" width="245" height="325" placeholderSource="{hostComponent.placeholderSource}" visible="{videoList.selectedItem != null}"/>
 	<!--players:OSMFVideoPlayer id="videoPlayer" left="0" width="290" height="400" /-->
 	
 	<!-- Placeholder image -->
@@ -92,7 +55,27 @@
 			<s:HorizontalLayout />
 		</s:layout>
 	</s:List>
-	<s:Button id="scriptButton" left="411" top="172" width="50" height="45" />
+
+	<s:HGroup id="rollOutHGroup" right="155" top="30" gap="-6">
+		<s:VGroup paddingTop="10" width="50">
+			<s:Button id="scriptButton" buttonMode="true" useHandCursor="true" label="Read" />
+		</s:VGroup>
+		<s:Group id="rollOutTextGroup" width="0" height="450">
+			<s:Rect width="100%" height="100%" filters="{[dropShadowFilter]}" bottomLeftRadiusX="8" bottomLeftRadiusY="8" bottomRightRadiusX="8" bottomRightRadiusY="8" topLeftRadiusX="8" topLeftRadiusY="8">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF" />
+				</s:fill>
+			</s:Rect>
+			<s:Rect width="100%" height="28" top="10">
+				<s:fill>
+					<s:SolidColor color="#025555" />
+				</s:fill>
+			</s:Rect>
+			<s:Scroller width="85%" height="85%" verticalCenter="20" horizontalCenter="0">
+				<s:RichEditableText id="rollOutRichEditableText" editable="false" selectable="false" verticalAlign="middle"/>
+			</s:Scroller>
+		</s:Group>
+	</s:HGroup>
 	
 	<!-- Video list -->
 	<s:List id="videoList" top="4" right="-69" width="64" height="100%" horizontalScrollPolicy="off" minHeight="0" minWidth="0" borderVisible="false" contentBackgroundAlpha="0">

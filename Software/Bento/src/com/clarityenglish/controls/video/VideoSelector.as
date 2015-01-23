@@ -8,8 +8,10 @@ package com.clarityenglish.controls.video {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	
-	import mx.collections.IList;
+
+import flashx.textLayout.elements.TextFlow;
+
+import mx.collections.IList;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -17,12 +19,16 @@ package com.clarityenglish.controls.video {
 	import org.osmf.events.TimeEvent;
 	
 	import spark.components.Button;
-	import spark.components.Image;
+import spark.components.Group;
+import spark.components.HGroup;
+import spark.components.Image;
 	import spark.components.List;
-	import spark.components.supportClasses.SkinnableComponent;
+import spark.components.RichEditableText;
+import spark.components.supportClasses.SkinnableComponent;
 	import spark.events.IndexChangeEvent;
-	
-	[Event(name="exerciseSelected", type="com.clarityenglish.bento.events.ExerciseEvent")]
+import spark.utils.TextFlowUtil;
+
+[Event(name="exerciseSelected", type="com.clarityenglish.bento.events.ExerciseEvent")]
 	[Event(name="videoScore", type="com.clarityenglish.controls.video.events.VideoScoreEvent")]
 	public class VideoSelector extends SkinnableComponent {
 		
@@ -42,6 +48,12 @@ package com.clarityenglish.controls.video {
 		
 		[SkinPart]
 		public var scriptButton:Button;
+
+		[SkinPart]
+		public var rollOutTextGroup:Group;
+
+		[SkinPart]
+		public var rollOutRichEditableText:RichEditableText;
 		
 		public var href:Href;
 		
@@ -67,6 +79,7 @@ package com.clarityenglish.controls.video {
 		protected var _videoChanged:Boolean;		
 		
 		private var currentVideoStartTime:Date;
+		private var isRollOutTextOpen:Boolean;
 		
 		public function VideoSelector() {
 			super();
@@ -215,9 +228,12 @@ package com.clarityenglish.controls.video {
 		
 		protected function onVideoSelected(event:Event):void {
 			_videoChanged = true;
-			
+
 			// Show the script button if there is a @scriptHref attribute
-			scriptButton.visible = (videoList.selectedItem && videoList.selectedItem.attribute("scriptHref").length() > 0);
+			scriptButton.visible = (videoList.selectedItem && (videoList.selectedItem.attribute("scriptHref").length() > 0 || videoList.selectedItem.script.length() > 0));
+			if (videoList.selectedItems && videoList.selectedItem.script.length() > 0) {
+				stage.addEventListener(MouseEvent.CLICK, onStageClick);
+			}
 			
 			invalidateProperties();
 		}
@@ -285,8 +301,40 @@ package com.clarityenglish.controls.video {
 		}
 		
 		protected function onScriptButtonClicked(event:MouseEvent):void {
-			if (videoList.selectedItem && videoList.selectedItem.attribute("scriptHref").length() > 0)
+			if (videoList.selectedItem && videoList.selectedItem.attribute("scriptHref").length() > 0) {
 				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, videoList.selectedItem.@scriptHref, videoList.selectedItem, "scriptHref"));
+			} else if (videoList.selectedItem.script.length() > 0) { //gh#1164
+				if (!isRollOutTextOpen) {
+					rollOutTextGroup.width = 500;
+					rollOutTextGroup.visible = true;
+					var rollOutTextString:String = videoList.selectedItem.script;
+					var textFlow:TextFlow = TextFlowUtil.importFromString(rollOutTextString);
+					rollOutRichEditableText.textFlow = textFlow;
+					isRollOutTextOpen = true;
+				} else {
+					rollOutTextGroup.width = 0;
+					rollOutTextGroup.visible = false;
+					isRollOutTextOpen = false;
+				}
+			}
+		}
+
+		// gh#1164
+		protected function onStageClick(event:MouseEvent):void {
+			var component:Object = event.target;
+
+			while(component) {
+				if (component is VideoSelector) { // detect if user click on window shade
+					break;
+				}
+				component = component.parent;
+			}
+
+			if (!(component is VideoSelector)) {
+				rollOutTextGroup.width = 0;
+				rollOutTextGroup.visible = false;
+				isRollOutTextOpen = false;
+			}
 		}
 		
 	}
