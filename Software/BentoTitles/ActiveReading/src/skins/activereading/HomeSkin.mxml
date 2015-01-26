@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" 
-		xmlns:recorder="com.clarityenglish.bento.view.recorder.*" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:recorder="com.clarityenglish.bento.view.recorder.*" 
 		xmlns:homeui="com.clarityenglish.activereading.view.home.ui.*"
-		creationComplete="onCreationComplete(event)" 
-		xmlns:home="skins.activereading.assets.home.*"
-		xmlns:login="skins.activereading.assets.login.*" 
-		xmlns:assets="skins.assets.*"
-		initialize="onInitialize(event)">
+		creationComplete="onCreationComplete(event)" xmlns:home="skins.activereading.assets.home.*" initialize="onInitialize(event)">
 	
 	<!-- host component -->	
 	<fx:Metadata>
@@ -47,7 +42,7 @@
 				return colors[index];
 			}
 			
-			public function getOutLineStrokeColor(index:Number):Number {
+			public function getOutLineStrockColor(index:Number):Number {
 				var colors:Array = hostComponent.getStyle("outlineColors");
 				return colors[index]
 			}
@@ -123,10 +118,10 @@
 			protected function setTitleBarColor():void {
 				// We set title bar new gradient here for remaining time for old gradient title bar fading out
 				// If we set gradient inside tag, the color will change immediately when the courseIndex change, so we never can see the old gradient fade out
-				unitTitleBarStrokeColor.color = getOutLineStrokeColor(hostComponent.courseIndex);
-				exerciseTopBarStrokeColor.color = getOutLineStrokeColor(hostComponent.courseIndex);
-				exerciseBottomBarStrokeColor.color = getOutLineStrokeColor(hostComponent.courseIndex);
-				exerciseBackgroundStrokeColor.color = getOutLineStrokeColor(hostComponent.courseIndex);
+				unitTitleBarStrockColor.color = getOutLineStrockColor(hostComponent.courseIndex);
+				exerciseTopBarStrockColor.color = getOutLineStrockColor(hostComponent.courseIndex);
+				exerciseBottomBarStrockColor.color = getOutLineStrockColor(hostComponent.courseIndex);
+				exerciseBackgroundStrockColor.color = getOutLineStrockColor(hostComponent.courseIndex);
 			}
 			
 			protected function onCreationComplete(event:FlexEvent):void {
@@ -134,7 +129,7 @@
 				if (!courseSelector.level) {
 					var downMove:Move = new Move();
 					downMove.yFrom = 0;
-					downMove.yTo = instructionGroup.y;
+					downMove.yTo = 150;
 					downMove.duration = 300;
 					downMove.play([instructionGroup]);
 				} else {
@@ -155,7 +150,7 @@
 						hostComponent.isFirstClickCurrentUnitList = false;
 						
 						triangleGroup.alpha = 1;
-						triangleReferenceGroup.y = unitList.selectedIndex * 39 + 65;
+						triangleReferenceGroup.y = unitList.selectedIndex * 37 + 65;
 						
 						exerciseGroup.alpha = 1;
 						if (unitList.selectedIndex < 7) {
@@ -182,20 +177,27 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<!-- Background (letters and lines) -->
-	<login:loginbg verticalCenter="0" horizontalCenter="0" />
-	<!-- Normally clip an image like this, but these lines scale nicely -->
-	<s:BitmapImage width="100%" verticalCenter="150" source="@Embed(source='/skins/activereading/assets/login/loginlines.png')" fillMode="scale" />
-	
-	<!-- Student name -->
-	<s:Label left="150" top="80" text="{hostComponent.userNameCaption}" fontSize="13" color="0x000000" />
-	
-	<!--Book-->
-	<s:BitmapImage bottom="0" right="-120" source="@Embed(source='/skins/activereading/assets/login/loginbook.png')" />
-	
 	<!--Rotation Circle-->
 	<home:menucircle left="0" verticalCenter="0" />
 	<homeui:ARCourseSelector id="courseSelector" left="-30" verticalCenter="-30" height="450"/>
+
+	<!--Footer-->
+	<s:Group width="750" height="30" bottom="50" right="0">
+		<s:Rect width="100%" height="100%" radiusX="14" radiusY="14">
+			<s:fill>
+				<s:LinearGradient>
+					<s:GradientEntry color="#D4D4D4" alpha="1"  />
+					<s:GradientEntry color="#D4D4D4" alpha="0"  />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		<s:HGroup height="100%" left="10" verticalAlign="middle" gap="5">
+			<s:Label id="versionLabel" color="#333333" fontSize="11" />
+			<s:Label id="copyrightLabel" color="#333333" fontSize="11" />
+			<s:Spacer width="20" />
+			<s:SWFLoader source="@Embed(source='/skins/activereading/assets/home/menuClarityenglishLogo.png')" />
+		</s:HGroup>
+	</s:Group>
 	
 	<!--Instruction-->
 	<s:Group id="instructionGroup" left="450" verticalCenter="0">
@@ -205,7 +207,7 @@
 	
 	<!--unit list-->
 	<s:Group left="300" verticalCenter="10" height="400" width="267">
-		<s:List id="unitList" visible="false" width="260" top="38" horizontalCenter="6" contentBackgroundAlpha="1" borderVisible="true" borderColor="{getOutLineStrokeColor(hostComponent.courseIndex)}">
+		<s:List id="unitList" visible="false" width="260" top="38" horizontalCenter="6" contentBackgroundAlpha="1" borderVisible="true" borderColor="{getOutLineStrockColor(hostComponent.courseIndex)}">
 			<s:layout>
 				<s:VerticalLayout gap="0" paddingTop="15" paddingLeft="5"/> 
 			</s:layout>
@@ -319,7 +321,7 @@
 									</s:LinearGradient>
 								</s:fill>
 								<s:stroke>
-									<s:SolidColorStroke color="{outerDocument.getOutLineStrokeColor(data.parent().childIndex())}" weight="1" />
+									<s:SolidColorStroke color="{outerDocument.getOutLineStrockColor(data.parent().childIndex())}" weight="1" />
 								</s:stroke>
 							</s:Rect>
 							
@@ -368,7 +370,7 @@
 		
 		<!--unit list title bar-->
 		<s:Group id="levelTitleGroup" alpha="0" top="0" horizontalCenter="0" visible="{courseSelector.level != null}">
-			<s:Path filters="{[dropShadowFilter]}" x="0" winding="nonZero" data="M26.4695 44.2207C24.9104 44.2207 22.7058 43.3467 21.5701 42.2793L0.82106 22.7681C-0.314682 21.7002 -0.265854 20.0073 0.929459 19.0068L21.4617 1.81934C22.657 0.818848 24.9104 0 26.4695 0L275.676 0C277.236 0 279.485 0.82373 280.675 1.83105L285.996
+			<s:Path filters="{[dropShadowFilter]}" x="-0.000259399" winding="nonZero" data="M26.4695 44.2207C24.9104 44.2207 22.7058 43.3467 21.5701 42.2793L0.82106 22.7681C-0.314682 21.7002 -0.265854 20.0073 0.929459 19.0068L21.4617 1.81934C22.657 0.818848 24.9104 0 26.4695 0L275.676 0C277.236 0 279.485 0.82373 280.675 1.83105L285.996
 					6.33301C287.187 7.34033 288.16 9.43945 288.16 10.9985L288.16 33.2217C288.16 34.7813 287.187 36.8809 285.996 37.8877L280.675 42.3896C279.485 43.3965 277.236 44.2207 275.676 44.2207L26.4695 44.2207Z">
 				<s:fill>
 					<s:LinearGradient rotation="270">
@@ -380,10 +382,10 @@
 					</s:LinearGradient>
 				</s:fill>
 				<s:stroke>
-					<s:SolidColorStroke id="unitTitleBarStrokeColor" />
+					<s:SolidColorStroke id="unitTitleBarStrockColor" />
 				</s:stroke>
 			</s:Path>
-			<s:Label id="levelTitleGroupLabel" color="{getOutLineStrokeColor(hostComponent.courseIndex)}" fontSize="19" left="40" top="15" />
+			<s:Label id="levelTitleGroupLabel" color="{getOutLineStrockColor(hostComponent.courseIndex)}" fontSize="19" left="40" top="15" />
 		</s:Group>
 	</s:Group>	
 	
@@ -401,7 +403,7 @@
 					</s:LinearGradient>
 				</s:fill>
 				<s:stroke>
-					<s:SolidColorStroke color="{getOutLineStrokeColor(hostComponent.courseIndex)}" />
+					<s:SolidColorStroke color="{getOutLineStrockColor(hostComponent.courseIndex)}" />
 				</s:stroke>
 			</s:Path>
 		</s:Group>	
@@ -422,7 +424,7 @@
 					</s:LinearGradient>
 				</s:fill>
 				<s:stroke>
-					<s:SolidColorStroke id="exerciseTopBarStrokeColor" />
+					<s:SolidColorStroke id="exerciseTopBarStrockColor" />
 				</s:stroke>
 			</s:Path>
 			
@@ -438,7 +440,7 @@
 						</s:LinearGradient>
 					</s:fill>
 					<s:stroke>
-						<s:SolidColorStroke id="exerciseBackgroundStrokeColor" />
+						<s:SolidColorStroke id="exerciseBackgroundStrockColor" />
 					</s:stroke>
 				</s:Rect>
 			</s:VGroup>
@@ -455,13 +457,13 @@
 					</s:LinearGradient>
 				</s:fill>
 				<s:stroke>
-					<s:SolidColorStroke id="exerciseBottomBarStrokeColor" />
+					<s:SolidColorStroke id="exerciseBottomBarStrockColor" />
 				</s:stroke>
 			</s:Path>				
 		</s:VGroup>
 
 		<s:VGroup top="0" width="314" horizontalCenter="0" horizontalAlign="center">
-			<s:Label id="exerciseListLabel" width="190" fontSize="17" paddingTop="13" paddingBottom="13" horizontalCenter="0" textAlign="center" color="{getOutLineStrokeColor(hostComponent.courseIndex)}" />
+			<s:Label id="exerciseListLabel" width="190" fontSize="17" paddingTop="13" paddingBottom="13" horizontalCenter="0" textAlign="center" color="{getOutLineStrockColor(hostComponent.courseIndex)}" />
 			<s:List id="exerciseList" width="314" height="{hostComponent.exerciseXMLListCollection.length * 31}" horizontalCenter="0" verticalCenter="-10" labelField="@caption" contentBackgroundAlpha="0" borderVisible="false">
 				<s:layout>
 					<s:VerticalLayout gap="1" paddingLeft="18" paddingRight="18" />
@@ -530,6 +532,10 @@
 								]]>
 						</fx:Script>
 
+							<fx:Declarations>
+								<s:DropShadowFilter id="dropShadowFilter" angle="100" distance="1" alpha="0.4"/>
+							</fx:Declarations>
+
 							<s:states>
 								<s:State name="normal" />
 								<s:State name="hovered" />
@@ -571,21 +577,5 @@
 			</s:VGroup>
 		</s:Group>
 	</s:Group>
-	
-	<!--Footer-->
-	<s:Group bottom="10" left="10">
-		<s:Rect width="100%" height="100%" radiusX="14" radiusY="14">
-			<s:fill>
-				<s:LinearGradient>
-					<s:GradientEntry color="#D4D4D4" alpha="1"  />
-					<s:GradientEntry color="#D4D4D4" alpha="0"  />
-				</s:LinearGradient>
-			</s:fill>
-		</s:Rect>
-		<s:HGroup left="4" verticalAlign="middle" gap="10" paddingTop="4" paddingBottom="4">
-			<assets:loginlogoCE />
-			<s:Label id="versionLabel" color="#333333" fontSize="11" />
-			<s:Label id="copyrightLabel" color="#333333" fontSize="11" />
-		</s:HGroup>
-	</s:Group>
+
 </s:Skin>

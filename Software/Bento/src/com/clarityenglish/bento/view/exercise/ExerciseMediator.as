@@ -11,8 +11,10 @@
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.googlecode.bindagetools.Bind;
-	
-	import org.puremvc.as3.interfaces.IMediator;
+
+import mx.core.FlexGlobals;
+
+import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.observer.Notification;
 	
@@ -238,6 +240,7 @@
 		}
 		
 		private function onNodeSelect(node:XML):void {
+			sendNotification(BBNotifications.CLOSE_ALL_POPUPS, FlexGlobals.topLevelApplication); // gh#1163
 			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, node);
 		}
 		
