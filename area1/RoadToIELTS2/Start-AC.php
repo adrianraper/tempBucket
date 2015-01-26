@@ -14,7 +14,7 @@
 	// For this product
 	$productCode = 52; // RoadToIELTS 2
 	$swfName = 'RoadToIELTS.swf';
-	$startControl = '/Software/BentoTitles/IELTS/bin-release/';
+	$startControl = '/Software/BentoTitles/IELTS/bin-debug/';
 	$version = '1107';
 	$coordsMinWidth = '990';
 	$coordsMaxWidth = '1200';

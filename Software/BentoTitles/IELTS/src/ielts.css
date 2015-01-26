@@ -49,8 +49,8 @@ global {
 	writingIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconBare');
 	
 	readingColor: #00A2C8;
-	readingCompareEveryoneColor: #004657;
-	readingCompareMyColor: #303030;
+	readingCompareEveryoneColor: #303030;
+	readingCompareMyColor: #004657;
 	readingColorDark: #005063;
 	readingIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall');
 	readingIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconBare');

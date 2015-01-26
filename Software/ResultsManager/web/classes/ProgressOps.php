@@ -34,38 +34,53 @@ class ProgressOps {
 	/**
 	 * This method gets all users' progress records at the summary level
 	 */
-	function getEveryoneSummary($productCode) {
+	function getEveryoneSummary($productCode, $country = 'Worldwide') {
 		// For want of anywhere better to put it for the moment, this is the SQL to populate the cache table
 		// This is NOT correct. You only want to average scores that are >=0 to avoid presentation exercises,
 		// but you want to average all the durations. However, we mostly don't use duration so don't over worry about it.
 		// Durations can be ridiculous - what is reasonable for one exercise? 1 hour? 3600 seconds
 		/*
-		SET @productCode = 53;
+		SET @productCode = 52;
+		-- First worldwide (all) average
 		INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_UnitId, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
 		SELECT @productCode, F_CourseID, null, AVG(F_Score) as AverageScore, AVG(if(F_Duration>3600,3600,F_Duration)) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide' 
 		FROM T_Score
 		WHERE F_ProductCode = @productCode
 		AND F_Score>=0
 		GROUP BY F_CourseID;
+		-- Then each country in turn
+		SET @country = 'Hong Kong';
+		SET @country = 'India';
+		INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_UnitId, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
+		SELECT @productCode, s.F_CourseID, null, AVG(s.F_Score) as AverageScore, AVG(if(s.F_Duration>3600,3600,s.F_Duration)) as AverageDuration, COUNT(s.F_UserID) as Count, now(), @country 
+		FROM T_Score s, T_User u
+		WHERE s.F_ProductCode = @productCode
+		AND s.F_Score>=0
+		AND u.F_UserID = s.F_UserID
+		AND u.F_Country = @country
+		GROUP BY F_CourseID;
 		*/
 		
 		// Work off cached results
 		// gh#1014 Only take the latest datestamped result
+		// gh#1166
 		$sql = 	<<<EOD
-			SELECT sc.F_CourseID as CourseID, sc.F_AverageScore as AverageScore, sc.F_AverageDuration as AverageDuration, sc.F_Count as Count
+			SELECT sc.F_CourseID as CourseID, sc.F_AverageScore as AverageScore, sc.F_AverageDuration as AverageDuration, sc.F_Count as Count, sc.F_Country as Country
 			FROM T_ScoreCache sc
 			INNER JOIN(
 			    SELECT F_CourseID as id, MAX(F_DateStamp) as latest
 			    FROM T_ScoreCache
 			    WHERE F_ProductCode = ?
+			    AND F_Country = ?
 			    GROUP BY F_CourseID
 			) i ON sc.F_CourseID = i.id AND sc.F_DateStamp = i.latest
 			WHERE sc.F_ProductCode = ?
 			AND sc.F_UnitID is null
+			AND sc.F_Country = ?
 			GROUP BY sc.F_CourseID
 			ORDER BY sc.F_CourseID;
 EOD;
-		$bindingParams = array($productCode, $productCode);
+		$bindingParams = array($productCode, $country, $productCode, $country);
 		$rs = $this->db->GetAssoc($sql, $bindingParams);
 		return $rs;
 	}

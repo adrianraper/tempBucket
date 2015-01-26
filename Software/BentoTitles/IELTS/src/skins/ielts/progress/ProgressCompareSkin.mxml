@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:progress="skins.ielts.assets.progress.*" xmlns:text="com.anychart.axesPlot.axes.text.*">
+		xmlns:mx="library://ns.adobe.com/flex/mx" 
+		xmlns:progress="skins.ielts.assets.progress.*" 
+		xmlns:text="com.anychart.axesPlot.axes.text.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.progress.components.ProgressCompareView")]
@@ -11,8 +13,22 @@
 		<s:SolidColorStroke color="0x4D4D4D" weight="3" id="horizontalAxisStroke" />
 	</fx:Declarations>
 	
+	<fx:Style>
+		.labelStyle {
+			labelPosition: inside;
+			labelAlign: top;
+			fontWeight: normal;
+			fontSize: 14;
+			color: white;
+			paddingTop: 10;
+			paddingRight: 10;
+		}
+	</fx:Style>
 	<fx:Script>
 		<![CDATA[
+			import flash.globalization.LocaleID;
+			import flash.globalization.NumberFormatter;
+			
 			import mx.charts.ChartItem;
 			import mx.charts.chartClasses.Series;
 			import mx.charts.events.ChartItemEvent;
@@ -22,14 +38,6 @@
 			import mx.graphics.IFill;
 			import mx.graphics.SolidColor;
 			
-			private function myAverageScoreFill(element:ChartItem, index:Number):IFill {
-				return new SolidColor(getStyle(element.item.@["class"] + "Color"));
-			}
-			
-			private function everyoneAverageScoreFill(element:ChartItem, index:Number):IFill {
-				return new SolidColor(getStyle(element.item.@["class"] + "ColorDark"));
-			}
-			
 			public function percentageLabel(item:Object, prevValue:Object, axis:LinearAxis):String {
 				return item + "%";
 			}
@@ -37,9 +45,18 @@
 			public function captionLabel(item:Object, prevValue:Object, axis:CategoryAxis, categoryItem:Object):String {
 				return categoryItem.@caption;
 			}
+			
+			private function setLabel(element:ChartItem, series:Series):String {
+				var dataPoint:XML = element.item as XML;
+				var count:int = dataPoint.@everyoneCount;
+				var nf:NumberFormatter = new NumberFormatter(LocaleID.DEFAULT);
+				nf.groupingPattern = '3;*';
+				nf.fractionalDigits = 0;
+				var userSingularOrPlural:String = (count > 1) ? hostComponent.getCopyProvider().getCopyForId("pluralUsers") : hostComponent.getCopyProvider().getCopyForId("singularUser");
+				return hostComponent.getCopyProvider().getCopyForId("compareBasedOnUsers", {count: nf.formatInt(count), singularOrPlural: userSingularOrPlural});
+			}
 		]]>
 	</fx:Script>
-	
 	<fx:Declarations>
 		<s:SolidColorStroke id="blankStroke" color="#00ff00" weight="0" alpha="0" />
 	</fx:Declarations>
@@ -48,23 +65,26 @@
 		<s:State name="disabled" />
 		<s:State name="normal" />
 	</s:states>
-		
-	<s:Label id="compareInstructionLabel" left="20" top="60" />
 	
 	<!--legend-->
-	<s:HGroup top="50" right="100" gap="30">
-		<s:HGroup gap="10">
-			<progress:myscore />
-			<s:Label id="myScoreLegendLabel" paddingTop="5" fontSize="13" color="0x333333" />
+	<s:HGroup top="10" left="20" gap="50" verticalAlign="middle">
+		<s:HGroup gap="10" verticalAlign="middle">
+			<s:Label id="compareInstructionLabel"  />
+			<s:DropDownList id="countrySelection" width="200"/>
 		</s:HGroup>
-		<s:HGroup gap="10">
-			<progress:everyonescore />
-			<s:Label id="everyoneScoreLegendLabel" paddingTop="5" fontSize="13" color="0x333333" />
-		</s:HGroup>
+		<s:VGroup gap="10">
+			<s:HGroup gap="10">
+				<progress:myscoreBlack />
+				<s:Label id="myScoreLegendLabel" paddingTop="5" fontSize="13" color="0x333333" />
+			</s:HGroup>
+			<s:HGroup gap="10">
+				<progress:everyonescoreBlack />
+				<s:Label id="everyoneScoreLegendLabel" paddingTop="5" fontSize="13" color="0x333333" />
+			</s:HGroup>
+		</s:VGroup>
 	</s:HGroup>
 	
-	<!--s:Label id="chartCaptionLabel" textAlign="center" fontSize="13" left="0" right="0" top="105" /-->
-	<mx:ColumnChart id="compareChart" left="20" right="60" top="130" bottom="140" seriesFilters="[]">
+	<mx:ColumnChart id="compareChart" left="20" right="60" top="80" bottom="140" seriesFilters="[]" showLabelVertically="true" extendLabelToEnd="true">
 		<mx:horizontalAxis>
 			<mx:CategoryAxis id="horizontalAxis" categoryField="@class" labelFunction="captionLabel" />
 		</mx:horizontalAxis>
@@ -73,34 +93,22 @@
 		</mx:verticalAxis>
 		
 		<mx:horizontalAxisRenderers>
-			<mx:AxisRenderer axis="{horizontalAxis}" fontSize="16" color="0x572300" fontWeight="bold" axisStroke="{horizontalAxisStroke}" tickStroke="{blankStroke}" placement="bottom">
+			<mx:AxisRenderer axis="{horizontalAxis}" axisStroke="{horizontalAxisStroke}" tickStroke="{blankStroke}" 
+							 placement="bottom" fontSize="16" color="0x572300" fontWeight="bold" >
 				<mx:labelRenderer>
 					<fx:Component>
-						<mx:Label paddingLeft="25" color="{labelColor}" >
+						<mx:Label color="{labelColor}" >
 							<fx:Script>
 								<![CDATA[
 									[Bindable]
 									private var labelColor:uint;
 									
 									override public function set data(value:Object):void {
-										if(value == null)
+										if (value == null)
 											return;
 										
 										text = value.text;
-										switch(value.text){
-											case "Reading":
-												labelColor = 0x004657;
-												break;
-											case "Listening":
-												labelColor = 0x572300;
-												break;
-											case "Speaking":
-												labelColor = 0x330F28;
-												break;
-											case "Writing":
-												labelColor = 0x2B3B13;
-												break;
-										}
+										labelColor = getStyle(value.text.toLowerCase() + "ColorDark")
 									}
 								]]>
 							</fx:Script>
@@ -119,67 +127,72 @@
 		</mx:annotationElements>
 		
 		<mx:series>
-			<mx:ColumnSeries id="myScoreColumnSeries" xField="@class" yField="@myAverageScore" displayName="My scores" fillFunction="myAverageScoreFill">
+			<mx:ColumnSeries id="myScoreColumnSeries" xField="@class" yField="@myAverageScore" >
 				<mx:itemRenderer>
 					<fx:Component>
 						<s:ItemRenderer>
 							<fx:Script>
 								<![CDATA[
+									import mx.charts.series.items.ColumnSeriesItem;
+									private var _chartItem:ColumnSeriesItem;
+									override public function get data():Object {
+										return _chartItem;
+									}
 									override public function set data(value:Object):void {
-										super.data = value;
+										_chartItem = value as ColumnSeriesItem; 
+										invalidateDisplayList();
+									}
+									override protected function updateDisplayList(unscaledWidth:Number,unscaledHeight:Number):void {
+										super.updateDisplayList(unscaledWidth, unscaledHeight);
+										var g:Graphics = graphics;
+										g.clear();  
+										g.beginFill(getStyle(_chartItem.xValue + "Color"));
+										g.drawRect(0, 0, unscaledWidth, unscaledHeight);
+										g.endFill();
 										
-										if (data) {
-											myRectSolidColor.color = getStyle(data.xValue + "CompareMyColor");
-										}
+										myLabel.text = _chartItem.yValue + '%';
 									}
 								]]>
 							</fx:Script>
-							
-							<s:HGroup paddingBottom="0" paddingLeft="45" gap="-15">
-								<s:VGroup horizontalAlign="center" paddingTop="-40">
-									<progress:myscore />
-									<s:Label text="{data.yValue + '%'}" fontSize="15" fontWeight="bold"/>
-								</s:VGroup>
-								
-								<s:Rect id="myColumnRect" width="40" height="{height}" topLeftRadiusX="3" topRightRadiusX="3" topLeftRadiusY="3" topRightRadiusY="3">
-									<s:fill>
-										<s:SolidColor id="myRectSolidColor" alpha="0.7" />
-									</s:fill>
-								</s:Rect>
-							</s:HGroup>
+							<s:VGroup horizontalAlign="center" left="0" right="0" top="-44" gap="5">
+								<progress:myscoreBlack id="myScoreIcon"/>
+								<s:Label id="myLabel" width="100%" color="0x000000" textAlign="center" fontSize="15" fontWeight="bold" />
+							</s:VGroup>
 						</s:ItemRenderer>
 					</fx:Component>
 				</mx:itemRenderer>
 			</mx:ColumnSeries>
-			<mx:ColumnSeries id="everyScoreColumnSeries" xField="@class" yField="@everyoneAverageScore" displayName="Everyone's scores">
+			<mx:ColumnSeries id="everyScoreColumnSeries" xField="@class" yField="@everyoneAverageScore"  styleName="labelStyle" labelFunction="setLabel" >
 				<mx:itemRenderer>
 					<fx:Component>
-						<s:ItemRenderer autoDrawBackground="false">
+						<s:ItemRenderer>
 							<fx:Script>
 								<![CDATA[
-									
+									import mx.charts.series.items.ColumnSeriesItem;
+									private var _chartItem:ColumnSeriesItem;
+									override public function get data():Object {
+										return _chartItem;
+									}
 									override public function set data(value:Object):void {
-										super.data = value;
+										_chartItem = value as ColumnSeriesItem; 
+										invalidateDisplayList();
+									}
+									override protected function updateDisplayList(unscaledWidth:Number,unscaledHeight:Number):void {
+										super.updateDisplayList(unscaledWidth, unscaledHeight);
+										var g:Graphics = graphics;
+										g.clear();  
+										g.beginFill(getStyle(_chartItem.xValue + "ColorDark"));
+										g.drawRect(0, 0, unscaledWidth, unscaledHeight);
+										g.endFill();
 										
-										if (data) {
-											everyoneRectSolidColor.color = getStyle(data.xValue + "CompareEveryoneColor");
-										}
+										everyoneLabel.text = _chartItem.yValue + '%';
 									}
 								]]>
 							</fx:Script>
-							
-							<s:HGroup paddingBottom="0" gap="-15">
-								<s:Rect id="everyoneColumnRect" width="40" height="{height}" topLeftRadiusX="3" topLeftRadiusY="3" topRightRadiusX="3" topRightRadiusY="3" >
-									<s:fill>
-										<s:SolidColor id="everyoneRectSolidColor" alpha="0.7" />
-									</s:fill>
-								</s:Rect>
-								
-								<s:VGroup horizontalAlign="center" paddingTop="-45">
-									<progress:everyonescore />
-									<s:Label text="{data.yNumber + '%'}" fontSize="15" fontWeight="bold"/>
-								</s:VGroup>
-							</s:HGroup>
+							<s:VGroup horizontalAlign="center" left="0" right="0" top="-44" gap="5">
+								<progress:everyonescoreBlack id="everyoneScoreIcon"/>
+								<s:Label id="everyoneLabel" width="100%" color="0x000000" textAlign="center" fontSize="15" fontWeight="bold" />
+							</s:VGroup>
 						</s:ItemRenderer>
 					</fx:Component>
 				</mx:itemRenderer>
