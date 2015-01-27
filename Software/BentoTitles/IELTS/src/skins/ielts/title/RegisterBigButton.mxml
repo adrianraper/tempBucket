@@ -171,13 +171,7 @@
 	
 	<!-- layer 9: IELTS course button specific stuff -->
 	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/register_big.png')" right="-1" />
-	<!--s:VGroup width="100%" paddingTop="20" paddingLeft="20">
-	<s:RichText text="Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!" color="0xFFFFFF" fontWeight="bold" lineHeight="24" left="20" top="25" fontSize="18" width="50%" />
-	<s:RichText text="- 11 videos of British Council experts giving IELTS advice" color="0xFFFFFF"  left="20" top="25" width="100%" />
-	<s:RichText text="- Mock test papers with model answers" color="0xFFFFFF"  left="20" top="25" width="100%" />
-	<s:RichText text="- 30 hours of interactive practice activities" color="0xFFFFFF"  left="20" top="25" width="100%" />
-	</s:VGroup-->
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" left="20" top="158" />
+	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" left="20" top="158" />
 	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/register_button.png')" left="134" top="153" />
 
 </s:SparkButtonSkin>

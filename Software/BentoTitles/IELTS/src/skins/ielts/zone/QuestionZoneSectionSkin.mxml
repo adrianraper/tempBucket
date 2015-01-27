@@ -20,10 +20,6 @@
 				if (downloadButton) downloadButton.setStyle('chromeColor', getStyle(hostComponent.courseClass + 'Color'));
 				if (videoButton) videoButton.setStyle('chromeColor', getStyle(hostComponent.courseClass + 'Color'));
 			}
-			private function isTestDrive():Boolean {
-				return (hostComponent.productVersion == IELTSApplication.TEST_DRIVE);
-			}
-
 		]]>
 	</fx:Script>
 	
@@ -59,7 +55,7 @@
 		<s:Button id="videoButton" color="#FFFFFF" width="150" buttonMode="true" useHandCursor="true" />
 	</s:HGroup>
 	<!-- gh#1161 -->
-	<s:Group top="380" horizontalCenter="0" includeInLayout="{isTestDrive()}" visible="{isTestDrive()}" >
+	<s:Group top="380" horizontalCenter="0" includeInLayout="{hostComponent.isTestDrive}" visible="{hostComponent.isTestDrive}" >
 		<ui:InfoLabel caption="{hostComponent.viewCopyProvider.getCopyForId('justEBookInTestDrive')}" />
 	</s:Group> 
 

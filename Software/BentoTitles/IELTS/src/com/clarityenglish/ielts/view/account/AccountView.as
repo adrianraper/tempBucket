@@ -123,16 +123,16 @@ package com.clarityenglish.ielts.view.account {
 		public var IELTSAppsLabel:Label;
 		
 		[SkinPart]
-		public var registerInfoRichText:RichText;
+		public var registerInfoRichText:Label;
 		
 		[SkinPart]
-		public var videoRichText:RichText;
+		public var videoRichText:Label;
 		
 		[SkinPart]
-		public var mockTestRichText:RichText;
+		public var mockTestRichText:Label;
 		
 		[SkinPart]
-		public var hourRichText:RichText;
+		public var hourRichText:Label;
 
 		public var updateUser:Signal = new Signal(Object);
 		public var register:Signal = new Signal();
@@ -254,26 +254,30 @@ package com.clarityenglish.ielts.view.account {
 			
 			if (registerInfoRichText) {
 				var registerInfoString:String = this.copyProvider.getCopyForId("registerInfoButton");
-				var registerInfoFlow:TextFlow = TextFlowUtil.importFromString(registerInfoString);
-				registerInfoRichText.textFlow = registerInfoFlow;
+				//var registerInfoFlow:TextFlow = TextFlowUtil.importFromString(registerInfoString);
+				//registerInfoRichText.textFlow = registerInfoFlow;
+				registerInfoRichText.text = registerInfoString;
 			}
 			
 			if (hourRichText) {
 				var hourString:String = this.copyProvider.getCopyForId("hourRichText");
-				var hourFlow:TextFlow = TextFlowUtil.importFromString(hourString);
-				hourRichText.textFlow = hourFlow;
+				//var hourFlow:TextFlow = TextFlowUtil.importFromString(hourString);
+				//hourRichText.textFlow = hourFlow;
+				hourRichText.text = hourString;
 			}
 			
 			if (videoRichText) {
 				var videoString:String = this.copyProvider.getCopyForId("videoRichText");
-				var videoFlow:TextFlow = TextFlowUtil.importFromString(videoString);
-				videoRichText.textFlow = videoFlow;
+				//var videoFlow:TextFlow = TextFlowUtil.importFromString(videoString);
+				//videoRichText.textFlow = videoFlow;
+				videoRichText.text = videoString;
 			}
 			
 			if (mockTestRichText) {
 				var mockTestString:String = this.copyProvider.getCopyForId("mockTestRichText");
-				var mockTestFlow:TextFlow = TextFlowUtil.importFromString(mockTestString);
-				mockTestRichText.textFlow = mockTestFlow;
+				//var mockTestFlow:TextFlow = TextFlowUtil.importFromString(mockTestString);
+				//mockTestRichText.textFlow = mockTestFlow;
+				mockTestRichText.text = mockTestString;
 			}
 		}
 		

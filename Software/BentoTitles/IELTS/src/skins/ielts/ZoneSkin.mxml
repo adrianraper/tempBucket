@@ -4,6 +4,7 @@
 		xmlns:zone="skins.ielts.assets.zone.*"
 		initialize="onInitialize(event)"
 		creationComplete="onCreationComplete(event)"
+		xmlns:title="com.clarityenglish.ielts.view.title.*"
 		xmlns:courseselector="com.clarityenglish.ielts.view.zone.courseselector.*">
 	<!-- host component -->
 	<fx:Metadata>
@@ -53,7 +54,7 @@
 	<courseselector:CourseSelector id="courseSelector" course="{hostComponent.course}" left="0" top="100" tabletMode="true" />
 
 	<!-- gh#1161 -->
-	<s:Label text="This is test drive" fontSize="18" fontWeight="bold" bottom="10" left="10" />
+	<title:InforButton id="topInforButton" richTextFlow="{hostComponent.inforButtonTextFlow}" left="30" top="560" buttonMode="true" useHandCursor="true" includeIn="testDrive"  />
 
 	<zone:ZonesChrome top="70" right="10" />
 	<zone:ZonesBars top="70" right="10" />

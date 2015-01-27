@@ -8,7 +8,8 @@
 		xmlns:progress="com.clarityenglish.bento.view.progress.*"
 		xmlns:account="com.clarityenglish.ielts.view.account.*"
 		xmlns:support="com.clarityenglish.ielts.view.support.*"
-		xmlns:exercise="com.clarityenglish.bento.view.exercise.*" xmlns:title="com.clarityenglish.ielts.view.title.*">
+		xmlns:exercise="com.clarityenglish.bento.view.exercise.*" 
+		xmlns:title="com.clarityenglish.ielts.view.title.*">
 
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]

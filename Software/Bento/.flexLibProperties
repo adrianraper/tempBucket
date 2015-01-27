@@ -172,7 +172,6 @@
     <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.events.MarkingButtonEvent"/>
     <classEntry path="com.clarityenglish.controls.video.providers.YouTubeProvider"/>
     <classEntry path="com.clarityenglish.controls.video.IVideoHTMLProvider"/>
-    <classEntry path="com.clarityenglish.controls.video.players.HTMLVideoPlayer"/>
     <classEntry path="com.clarityenglish.bento.form.TextFormItemHandler"/>
   </includeClasses>
   <includeResources>

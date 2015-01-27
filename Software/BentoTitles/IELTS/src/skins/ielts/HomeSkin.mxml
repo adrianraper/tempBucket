@@ -3,7 +3,8 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:anychart="com.anychart.*" 
-		xmlns:ui="com.clarityenglish.ielts.view.home.ui.*">
+		xmlns:ui="com.clarityenglish.ielts.view.home.ui.*"
+		xmlns:title="com.clarityenglish.ielts.view.title.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.home.HomeView")]
@@ -57,7 +58,7 @@
 					 width="80%" lineHeight="18" 
 					 visible="{(!hostComponent.isDemo())}"
 					 includeInLayout="{(!hostComponent.isDemo())}"/>				
-		</s:VGroup>		
+		</s:VGroup>
 	</s:VGroup>
 	<s:VGroup width="100%">
 		<s:VGroup width="100%" paddingTop="{(hostComponent.isFullVersion()) ? 20 : 70}">
@@ -70,7 +71,7 @@
 			<s:Button id="writingCourseButton" width="100%" buttonMode="true" useHandCursor="true" />
 		</s:VGroup>
 		<s:VGroup width="100%" includeIn="testDrive" paddingTop="6">
-			<s:Button id="registerInfoButton" width="100%" useHandCursor="true"  />
+			<s:Button id="registerInfoButton" width="100%" useHandCursor="true" buttonMode="true" />
 		</s:VGroup>
 		<!--gh#383-->
 		<s:HGroup paddingTop="10" includeIn="lastMinute">

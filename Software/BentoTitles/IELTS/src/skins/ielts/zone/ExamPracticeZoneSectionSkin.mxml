@@ -113,10 +113,6 @@
 								return (owner as List).dataProvider.getItemIndex(data) + 1;
 							}
 							
-							private function isTestDrive():Boolean {
-								return (outerDocument.hostComponent.productVersion == IELTSApplication.TEST_DRIVE);
-							}
-
 							override public function set data(value:Object):void {
 								super.data = value;
 								
@@ -140,9 +136,14 @@
 										testDriveInformation.includeInLayout = testDriveInformation.visible = false;
 									} else {
 										// gh#1161
-										if (isTestDrive()) {
+										if (outerDocument.hostComponent.isTestDrive) {
 											practiceLabel.text = '';
 											testDriveInformation.includeInLayout = testDriveInformation.visible = true;
+											if (courseClass == 'reading') {
+												testDriveInfo.caption = outerDocument.hostComponent.getCopyProvider().getCopyForId('exampleInReadingTest1');
+											} else {
+												testDriveInfo.caption = outerDocument.hostComponent.getCopyProvider().getCopyForId('exampleInReading');
+											}
 										} else {
 											practiceLabel.text = outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailblePracticeTest");
 										}
@@ -184,8 +185,8 @@
 					<s:SWFLoader id="swfLoader" />
 					<s:Label id="practiceLabel" top="268" horizontalCenter="0" fontSize="16" />
 					<!-- gh#1161 -->
-					<s:Group id="testDriveInformation" top="250" horizontalCenter="0" includeInLayout="{isTestDrive()}" visible="{isTestDrive()}" >
-						<ui:InfoLabel caption="{outerDocument.hostComponent.getCopyProvider().getCopyForId('exampleInReading')}"  />
+					<s:Group id="testDriveInformation" top="252" horizontalCenter="0" includeInLayout="{outerDocument.hostComponent.isTestDrive}" visible="{outerDocument.hostComponent.isTestDrive}" >
+						<ui:InfoLabel id="testDriveInfo" />
 					</s:Group> 
 
 					<s:HGroup top="295" gap="10" horizontalCenter="0">

@@ -18,7 +18,6 @@ package com.clarityenglish.ielts.view.title
 		}
 		
 		public function set richTextFlow(value:TextFlow):void {
-			trace("rich text flow");
 			_richTextFlow = value;
 		}
 	}

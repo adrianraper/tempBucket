@@ -49,8 +49,8 @@
 						<s:p><s:span fontWeight="bold" id="supportCaptionSpan1"/></s:p>
 						<s:p><s:span id="paragraphContentSpan1"/></s:p>
 					</s:RichText>
-					<s:Button id="registerInfoButton" width="95%" includeIn="testDrive" useHandCursor="true"/>
-					<s:Button id="buyInfoButton" width="95%" includeIn="testDrive" useHandCursor="true"/>
+					<s:Button id="registerInfoButton" width="95%" includeIn="testDrive" useHandCursor="true" buttonMode="true"/>
+					<s:Button id="buyInfoButton" width="95%" includeIn="testDrive" useHandCursor="true" buttonMode="true"/>
 	 				<s:Label id="userManualLabel" textDecoration="underline" color="0X2B3990" excludeFrom="testDrive" useHandCursor="true" buttonMode="true"/>
 					
 					<s:RichText width="650" paddingLeft="0" paddingTop="10" excludeFrom="testDrive">

@@ -10,8 +10,10 @@ package com.clarityenglish.ielts.view.home {
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.MouseEvent;
-	import flash.net.navigateToURL;
 	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
+	
+	import flashx.textLayout.elements.TextFlow;
 	
 	import mx.controls.SWFLoader;
 	import mx.formatters.DateFormatter;
@@ -24,6 +26,7 @@ package com.clarityenglish.ielts.view.home {
 	
 	import spark.components.Button;
 	import spark.components.Label;
+	import spark.utils.TextFlowUtil;
 	
 	public class HomeView extends BentoView {
 		

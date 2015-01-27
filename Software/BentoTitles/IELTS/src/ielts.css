@@ -201,6 +201,9 @@ homeui|CourseBarRenderer {
 home|HomeView s|Button#findMoreButton {
 	skinClass: ClassReference("skins.ielts.home.FindMoreButtonSkin");
 }
+home|HomeView InforButton#topInforButton {
+	skinClass: ClassReference("skins.ielts.title.InforButtonSkin");
+}
 
 /* Zone view styles */
 zone|ZoneView {

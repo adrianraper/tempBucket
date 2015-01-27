@@ -222,14 +222,17 @@
 		</s:HGroup>		
 	</s:VGroup>
 	</s:HGroup>
-	<s:Group width="100%" includeIn="testDrive">
-			<s:Button id="registerInfoButton" width="100%" useHandCursor="true" />
-			<s:VGroup width="100%" paddingTop="20" paddingLeft="20">
-				<s:RichText id="registerInfoRichText" color="0xFFFFFF" fontWeight="bold" lineHeight="24" left="20" top="25" fontSize="18" width="50%" />
-				<s:RichText id="videoRichText" color="0xFFFFFF"  left="20" top="25" width="100%" />
-				<s:RichText id="mockTestRichText" color="0xFFFFFF"  left="20" top="25" width="100%" />
-				<s:RichText id="hourRichText" color="0xFFFFFF"  left="20" top="25" width="100%" />
+	<s:Group width="100%" includeIn="testDrive" >
+		<s:Button id="registerInfoButton" width="100%" useHandCursor="true" buttonMode="true" />
+		<!-- Need this extra group to get the mouse to NOT react to the labels -->
+		<s:Group width="100%" mouseChildren="false" mouseEnabled="false">
+			<s:VGroup width="100%" paddingTop="20" paddingLeft="20" >
+				<s:Label id="registerInfoRichText" color="0xFFFFFF" fontWeight="bold" lineHeight="24" fontSize="18" width="50%" />
+				<s:Label id="videoRichText" color="0xFFFFFF" width="50%" enabled="false" mouseEnabled="false"/>
+				<s:Label id="mockTestRichText" color="0xFFFFFF" width="50%" enabled="false" mouseEnabled="false"/>
+				<s:Label id="hourRichText" color="0xFFFFFF" width="50%" enabled="false" mouseEnabled="false"/>
 			</s:VGroup>		
+		</s:Group>
 	</s:Group>
 
 </s:Skin>

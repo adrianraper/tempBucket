@@ -24,9 +24,6 @@
 				popupWatcher = new DisabledPopupWatcher(videoSelector.videoList, hostComponent.viewCopyProvider, hostComponent.productVersion);
 			}
 			
-			private function isTestDrive():Boolean {
-				return (hostComponent.productVersion == IELTSApplication.TEST_DRIVE);
-			}
 		]]>
 	</fx:Script>
 	
@@ -66,7 +63,7 @@
 						 />
 
 	<!-- gh#1161 -->
-	<s:Group top="350" horizontalCenter="0" includeInLayout="{isTestDrive()}" visible="{isTestDrive()}" >
+	<s:Group top="350" horizontalCenter="0" includeInLayout="{hostComponent.isTestDrive}" visible="{hostComponent.isTestDrive}" >
 		<ui1:InfoLabel caption="{hostComponent.viewCopyProvider.getCopyForId('exampleInSpeaking')}" captionWidth="400" includeIn="reading,listening"/>
 	</s:Group> 
 	

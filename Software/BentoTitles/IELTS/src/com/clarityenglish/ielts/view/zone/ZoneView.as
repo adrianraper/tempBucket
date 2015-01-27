@@ -5,6 +5,7 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
+	import com.clarityenglish.ielts.view.title.InforButton;
 	import com.clarityenglish.ielts.view.zone.courseselector.CourseSelector;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -12,6 +13,8 @@ package com.clarityenglish.ielts.view.zone {
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
+	
+	import flashx.textLayout.elements.TextFlow;
 	
 	import mx.core.ISelectableList;
 	import mx.formatters.DateFormatter;
@@ -23,6 +26,7 @@ package com.clarityenglish.ielts.view.zone {
 	import spark.components.Label;
 	import spark.components.NavigatorContent;
 	import spark.components.ViewNavigator;
+	import spark.utils.TextFlowUtil;
 	
 	public class ZoneView extends BentoView {
 		
@@ -50,12 +54,18 @@ package com.clarityenglish.ielts.view.zone {
 		[SkinPart]
 		public var longRateButton:Button;
 		
+		[SkinPart]
+		public var topInforButton:InforButton;
+		
 		[Bindable]
 		public var user:User;
 		
 		[Bindable]
 		public var dateFormatter:DateFormatter;
 		
+		[Bindable]
+		public var inforButtonTextFlow:TextFlow;
+
 		// #486
 		private static var lastSelectedSectionIdx:int = -1
 		
@@ -82,7 +92,11 @@ package com.clarityenglish.ielts.view.zone {
 		public var courseSelect:Signal = new Signal(XML);
 		public var videoSelected:Signal = new Signal(Href, String);
 		public var videoPlayerStateChange:Signal = new Signal(MediaPlayerStateChangeEvent);
-		
+
+		public var register:Signal = new Signal();
+		public var upgrade:Signal = new Signal();
+		public var buy:Signal = new Signal();
+
 		/**
 		 * This can be called from outside the view to make the view display a different course
 		 * 
@@ -221,6 +235,9 @@ package com.clarityenglish.ielts.view.zone {
 					longRateButton.label = copyProvider.getCopyForId("longRateButton");
 					longRateButton.addEventListener(MouseEvent.CLICK, onRateButtonClick);
 					break;
+				case topInforButton:
+					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
+					break;
 			}
 		}
 		
@@ -274,6 +291,7 @@ package com.clarityenglish.ielts.view.zone {
 					}
 				}
 			}
+			inforButtonTextFlow = TextFlowUtil.importFromString(copyProvider.getCopyForId("infoReadingText"));
 		}
 		
 		protected function onCourseSelectorClick(event:Event):void {
@@ -318,7 +336,11 @@ package com.clarityenglish.ielts.view.zone {
 			var urlRequest:URLRequest = new URLRequest(urlString);
 			navigateToURL(urlRequest, "_blank");
 		}
-		
+
+		// #337
+		private function onRequestInfoClick(event:MouseEvent):void {
+			upgrade.dispatch();
+		}
 	}
 	
 }

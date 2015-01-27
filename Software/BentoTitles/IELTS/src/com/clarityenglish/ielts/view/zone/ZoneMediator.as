@@ -68,6 +68,10 @@
 			
 			// listen for these signals
 			view.courseSelect.add(onCourseSelected);
+			view.upgrade.add(onUpgradeIELTS); 
+			view.register.add(onRegisterIELTS);
+			view.buy.add(onBuyIELTS);
+
 			
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
@@ -129,6 +133,28 @@
 			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
 			dataProxy.set("currentCourseClass", course.@["class"].toString());
 		}
+
+		private function onUpgradeIELTS():void {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var buyPage:String = (configProxy.getConfig().upgradeURL) ? configProxy.getConfig().upgradeURL : "www.ieltspractice.com";
+			sendNotification(IELTSNotifications.IELTS_REGISTER, buyPage);
+		}
 		
+		private function onRegisterIELTS():void {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var registerPage:String = (configProxy.getConfig().registerURL) ? configProxy.getConfig().registerURL : "www.takeielts.org";
+			sendNotification(IELTSNotifications.IELTS_REGISTER, registerPage);
+		}
+		
+		private function onBuyIELTS():void {
+			// #337 Did you come from a candidate specific site?
+			// Remove the pop-up window, always go to one page as indicated by config
+			//if (view.candidateOnlyInfo) {
+			//}
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var buyPage:String = (configProxy.getConfig().pricesURL) ? configProxy.getConfig().pricesURL : "www.clarityenglish.com";
+			sendNotification(IELTSNotifications.IELTS_REGISTER, buyPage);
+		}
+
 	}
 }
