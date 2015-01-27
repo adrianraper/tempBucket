@@ -36,6 +36,13 @@
                 ]]>
 			</lit>
 			<lit name="helpURL">http://www.clarityenglish.com/Content/ActiveReading10-NAmerican/help/ActiveReadingHelp.pdf</lit>
+			
+			<lit name="Elementary">Elementary</lit>
+			<lit name="Preintermediate">Pre-Intermediate</lit>
+			<lit name="Intermediate">Intermediate</lit>
+			<lit name="Upperintermediate">Upper Intermediate</lit>
+			<lit name="Preadvanced">Pre-Advanced</lit>
+			<lit name="Advanced">Advanced</lit>
 		</group>
 	</language>
 </literals>
