@@ -80,7 +80,7 @@
 	<s:Label id="labelDisplay"
 			 verticalAlign="middle"
 			 maxDisplayedLines="1"
-			 left="15" verticalCenter="3" fontSize="14"
+			 left="15" verticalCenter="0" fontSize="14"
 			 color="{getLabelColor(hostComponent.courseIndex)}">
 	</s:Label>
 </s:Skin>

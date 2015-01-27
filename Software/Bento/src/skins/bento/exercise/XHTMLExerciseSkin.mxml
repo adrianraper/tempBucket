@@ -118,7 +118,7 @@
 						<!-- <s:BitmapImage left="150" top="200" source="/6.gif" /> -->
 					</s:Group>
 					
-					<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="15" left="15" right="15" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
+					<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="15" left="15" right="0" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
 						<components:XHTMLRichText id="bodyRichText" visible="false" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, /*DictionaryBehaviour,*/ RecorderButtonBehaviour]}" />
 					</s:Scroller>
 				</s:Group>				

@@ -351,7 +351,7 @@
 								<s:Label id="numberLabel" verticalCenter="0" horizontalCenter="0" text="{Number(data.childIndex()) + 1}" color="#FFFFFF" fontSize="14" />
 							</s:Group>
 							
-							<s:Label id="caption" text="{data.@caption}" color="#333333" top="15" left="35" fontSize="14" />
+							<s:Label id="caption" text="{data.@caption}" color="#333333" top="13" left="35" fontSize="14" />
 							
 							<!--Demo label in unit list-->
 							<s:Group id="demoGroup" right="6" top="10" width="45" height="20" visible="false">
