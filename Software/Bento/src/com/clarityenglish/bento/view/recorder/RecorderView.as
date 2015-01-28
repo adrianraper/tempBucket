@@ -22,7 +22,7 @@ package com.clarityenglish.bento.view.recorder {
 		[SkinPart(required="true")]
 		public var progressLabel:Label;
 		
-		[SkinPart]
+		[SkinPart(required="true")]
 		public var progressBar:ProgressBar;
 		
 		public function RecorderView() {
