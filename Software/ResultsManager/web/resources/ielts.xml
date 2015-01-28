@@ -95,9 +95,9 @@
 			<lit name="ipadRateLink"><![CDATA[https://itunes.apple.com/us/app/road-to-ielts/id560055517?mt=8&ign-mpt=uo%3D4]]></lit>
 			<lit name="androidRateLink"><![CDATA[https://play.google.com/store/apps/details?id=air.com.clarityenglish.ielts.app]]></lit>
 			<lit name="registerInfoButton">Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
-			<lit name="noProgressText">Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
+			<lit name="noProgressText">Welcome to Road to IELTS. Click on a skill to get started.</lit>
 			<lit name="colorBarIntroLabel">The color bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
-			<lit name="infoReadingText"> <![CDATA[<p>Succeed in IELTS.</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
+			<lit name="infoReadingText"> <![CDATA[<p>Get the band score you need.</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
 			<lit name="infoListeningText"><![CDATA[<p>Improve your band scores.</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
 			<lit name="infoSpeakingText"><![CDATA[<p>Need more practice?</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
 			<lit name="infoWritingText"><![CDATA[<p>Worried about your band scores?</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
@@ -170,7 +170,7 @@
 			<lit name="notAvailbleDemo">Not available in this demo.</lit>
 			<lit name="notAvailblePracticeTest">This practice test is not in this version.</lit>
 			<lit name="notAvailble">Not available in the current version. Click above to upgrade.</lit>
-			<lit name="compareInstructionLabel">Compare your score with people in:</lit>
+			<lit name="compareInstructionLabel">Compare your score with other people:</lit>
 			<lit name="chartCaptionLabel">Average score %</lit>
 			<lit name="analysisInstructionLabel1">This shows how you have spent your time</lit>
 			<lit name="analysisInstructionLabel2">Time spent on each skill</lit>
@@ -203,7 +203,7 @@
 			<lit name="minuteLabel">Minute:</lit>
 			<lit name="dateFormatLabel">{day} {month} {year}</lit>
 			<lit name="myScoreLegendLabel">Your average score</lit>
-			<lit name="everyoneScoreLegendLabel">{country} average score</lit>  
+			<lit name="everyoneScoreLegendLabel">Average score: {country}</lit>  
 			<lit name="worldwide">Worldwide</lit>  
 			<lit name="compareBasedOnUsers">based on {count} {singularOrPlural}</lit>  
 			<lit name="singularUser">user</lit>  
@@ -350,7 +350,7 @@
 					<p><span fontWeight="bold">Upgrade?</span><br/>If you would like to enquire about purchasing the full version of Road to IELTS, please contact Clarity.</p>					
 				 ]]>
 			</lit>
-			<lit name="testDriveSpan">This Test Drive version of Road to IELTS is much smaller than:</lit>
+			<lit name="testDriveSpan">This Test Drive version of Road to IELTS gives you all the IELTS basics.</lit>
 			<lit name="userManualLabel">Click here for a detailed user manual.</lit>
 			<lit name="exerciseBackToMenuButton">Back to Menu</lit>
 			<lit name="exerciseStartAgainButton">Start again</lit>
@@ -373,9 +373,9 @@
 			<lit name="upgradeLabel">Thinking of upgrading to the</lit>
 			<lit name="fullVersionLabel">full version?</lit>
 			<lit name="moreButton">To find out more</lit>
-			<lit name="moreURL"><![CDATA[http://www.ieltspractice.com/]]></lit>
+			<lit name="moreURL"><![CDATA[http://www.ieltspractice.com/package.php?utm_source=ROW&utm_medium=Btn-findoutmore&utm_campaign=RTI-TD]]></lit>
 			<lit name="forgotPasswordButton">Forgot your password?</lit>
-			<lit name="forgotPasswordLink"><![CDATA[http://{domain}/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
+			<lit name="forgotPasswordLink"><![CDATA[http://www.clarityenglish.com/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
 			<lit name="candidatesCaptionLabel">Advice from Candidates</lit>
 			<lit name="candidatesVideoTitleFixedLabel">Advice from candidates on...</lit>
 			<lit name="candidatesVideoTitle0">“How to prepare”</lit>
@@ -394,10 +394,10 @@
 			<lit name="candidatesVideoDescription5">Watch candidates discussing the IELTS Listening test. Find out how to make listening practice more fun.</lit>
 			<lit name="candidatesVideoPlayLabel">Click here to watch the {videoTitle} video.</lit>
 			
-			<lit name="exampleInSpeaking">Look at speaking or writing for examples.</lit>
-			<lit name="exampleInReading">Look at reading for an example.</lit>
-			<lit name="exampleInReadingTest1">Look at test 1 for an example.</lit>
-			<lit name="justEBookInTestDrive">Just the eBook is in Test Drive.</lit>
+			<lit name="exampleInSpeaking">Click Speaking or Writing for an example.</lit>
+			<lit name="exampleInReading">Click Reading for an example.</lit>
+			<lit name="exampleInReadingTest1">Only Test 1 is in this version.</lit>
+			<lit name="justEBookInTestDrive">PDF and video are not in this version.</lit>
 			<lit name="countryList">Afghanistan|Aland Islands|Albania|Algeria|American Samoa|Andorra|Angola|Anguilla|Antarctica|Antigua and Barbuda|Argentina|Armenia|Aruba|Australia|Austria|Azerbaijan|Bahamas|Bahrain|Bangladesh|Barbados|Belarus|Belgium|Belize|Benin|Bermuda|Bhutan|Bolivia|Bosnia and Herzegovina|Botswana|Bouvet Island|Brazil|British Indian Ocean Territory|Brunei|Bulgaria|Burkina Faso|Burundi|Cambodia|Cameroon|Canada|Cape Verde|Cayman Islands|Central African Republic|Chad|Chile|China|Christmas Island|Cocos (Keeling) Islands|Colombia|Comoros|Congo|Congo, Democratic Republic|Cook Islands|Costa Rica|Cote D'Ivoire|Croatia|Cuba|Cyprus|Czech Republic|Denmark|Djibouti|Dominica|Dominican Republic|Ecuador|Egypt|El Salvador|Equatorial Guinea|Eritrea|Estonia|Ethiopia|Falkland Islands|Faroe Islands|Fiji|Finland|France|French Guiana|French Polynesia|French Southern Territories|Gabon|Gambia|Georgia|Germany|Ghana|Gibraltar|Greece|Greenland|Grenada|Guadeloupe|Guam|Guatemala|Guernsey|Guinea|Guinea-Bissau|Guyana|Haiti|Heard Island|Honduras|Hong Kong|Hungary|Iceland|India|Indonesia|Iran|Iraq|Ireland|Isle Of Man|Israel|Italy|Jamaica|Japan|Jersey|Jordan|Kazakhstan|Kenya|Kiribati|Korea, North|Korea, South|Kuwait|Kyrgyzstan|Laos|Latvia|Lebanon|Lesotho|Liberia|Libya|Liechtenstein|Lithuania|Luxembourg|Macao|Macedonia|Madagascar|Malawi|Malaysia|Maldives|Mali|Malta|Marshall Islands|Martinique|Mauritania|Mauritius|Mayotte|Mexico|Micronesia|Moldova|Monaco|Mongolia|Montenegro|Montserrat|Morocco|Mozambique|Myanmar|Namibia|Nauru|Nepal|Netherlands|Netherlands Antilles|New Caledonia|New Zealand|Nicaragua|Niger|Nigeria|Niue|Norfolk Island|Northern Mariana Islands|Norway|Oman|Pakistan|Palau|Palestine|Panama|Papua New Guinea|Paraguay|Peru|Philippines|Pitcairn Islands|Poland|Portugal|Puerto Rico|Qatar|Reunion|Romania|Russia|Rwanda|Saint Barthelemy|Saint Helena|Saint Kitts and Nevis|Saint Lucia|Saint Martin|Saint Pierre and Miquelon|Saint Vincent and The Grenadines|Samoa|San Marino|Sao Tome and Principe|Saudi Arabia|Senegal|Serbia|Seychelles|Sierra Leone|Singapore|Slovakia|Slovenia|Solomon Islands|Somalia|South Africa|The South Sandwich Islands|Spain|Sri Lanka|Sudan|Suriname|Svalbard and Jan Mayen|Swaziland|Sweden|Switzerland|Syria|Taiwan|Tajikistan|Tanzania|Thailand|Timor-Leste|Togo|Tokelau|Tonga|Trinidad and Tobago|Tunisia|Turkey|Turkmenistan|Turks and Caicos Islands|Tuvalu|Uganda|Ukraine|United Arab Emirates|United Kingdom|United States|Uruguay|Uzbekistan|Vanuatu|Vatican City|Venezuela|Vietnam|Virgin Islands, British|Virgin Islands, U.S.|Wallis and Futuna|Western Sahara|Yemen|Zambia|Zimbabwe</lit>
 		</group>
 	</language>

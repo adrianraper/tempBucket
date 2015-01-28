@@ -155,6 +155,9 @@ progress|ProgressView {
 	right: 20;
 	skinClass: ClassReference("skins.ieltsair.ProgressSkin");
 }
+progresscomponents|ProgressCompareView {
+	skinClass: ClassReference("skins.ieltsair.progress.ProgressCompareSkin");
+}
 
 /* Account view styles */
 account|AccountView {

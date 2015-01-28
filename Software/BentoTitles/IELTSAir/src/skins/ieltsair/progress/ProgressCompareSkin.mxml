@@ -51,8 +51,23 @@
 			public function captionLabel(item:Object, prevValue:Object, axis:CategoryAxis, categoryItem:Object):String {
 				return categoryItem.@caption;
 			}
+
+			// gh#1161 TODO: I can't get this to reliably display vertically in the column. It would go horizontal if the text is short
+			// But sometimes go horizontal anyway and cut off the bottom of the line.
 			
-			// gh#1161 See browser skin
+			// <mx:ColumnChart id="compareChart" showLabelVertically="true" extendLabelToEnd="false">
+			// <mx:ColumnSeries id="everyScoreColumnSeries" xField="@class" yField="@everyoneAverageScore" styleName="labelStyle" labelFunction="setLabel" >
+			/*
+			private function setLabel(element:ChartItem, series:Series):String {
+				var dataPoint:XML = element.item as XML;
+				var count:int = dataPoint.@everyoneCount;
+				var nf:NumberFormatter = new NumberFormatter(LocaleID.DEFAULT);
+				nf.groupingPattern = '3;*';
+				nf.fractionalDigits = 0;
+				var userSingularOrPlural:String = (count > 1) ? hostComponent.getCopyProvider().getCopyForId("pluralUsers") : hostComponent.getCopyProvider().getCopyForId("singularUser");
+				return hostComponent.getCopyProvider().getCopyForId("compareBasedOnUsers", {count: nf.formatInt(count), singularOrPlural: userSingularOrPlural});
+			}
+			*/
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -68,7 +83,7 @@
 	<s:HGroup top="10" right="20" gap="50" verticalAlign="middle">
 		<s:HGroup gap="10" verticalAlign="middle">
 			<s:Label id="compareInstructionLabel"  />
-			<s:DropDownList id="countrySelection" width="200"/>
+			<components:SpinnerDropDownList id="countrySelection" width="200"/>
 		</s:HGroup>
 		<s:VGroup gap="10">
 			<s:HGroup gap="10">
@@ -82,7 +97,7 @@
 		</s:VGroup>
 	</s:HGroup>
 	
-	<mx:ColumnChart id="compareChart" left="20" right="60" top="80" bottom="140" seriesFilters="[]">
+	<mx:ColumnChart id="compareChart" left="20" right="60" top="80" bottom="140" seriesFilters="[]" showLabelVertically="true" extendLabelToEnd="false">
 		<mx:horizontalAxis>
 			<mx:CategoryAxis id="horizontalAxis" categoryField="@class" labelFunction="captionLabel" />
 		</mx:horizontalAxis>
@@ -160,7 +175,7 @@
 					</fx:Component>
 				</mx:itemRenderer>
 			</mx:ColumnSeries>
-			<mx:ColumnSeries id="everyScoreColumnSeries" xField="@class" yField="@everyoneAverageScore" >
+			<mx:ColumnSeries id="everyScoreColumnSeries" xField="@class" yField="@everyoneAverageScore"  >
 				<mx:itemRenderer>
 					<fx:Component>
 						<s:ItemRenderer>

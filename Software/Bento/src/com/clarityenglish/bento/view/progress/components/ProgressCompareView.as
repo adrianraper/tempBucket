@@ -1,6 +1,8 @@
 package com.clarityenglish.bento.view.progress.components {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
+	import com.clarityenglish.components.SpinnerDropDownList;
+	import com.clarityenglish.textLayout.elements.SelectElement;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -17,6 +19,7 @@ package com.clarityenglish.bento.view.progress.components {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.DropDownList;
+	import spark.components.Group;
 	import spark.components.Label;
 	import spark.events.IndexChangeEvent;
 	import spark.events.ListEvent;
@@ -53,10 +56,12 @@ package com.clarityenglish.bento.view.progress.components {
 		// gh#1166
 		[SkinPart]
 		public var countrySelection:DropDownList;
+		
 		public var countryDataProvider:ArrayCollection;
 		public var country:String;
 		public var userCountry:String;
 		public var countrySelect:Signal = new Signal(String);
+		private var _isPlatformTablet:Boolean;
 		
 		private var _everyoneCourseSummaries:Object;
 		private var _everyoneCourseSummariesChanged:Boolean;
@@ -68,9 +73,17 @@ package com.clarityenglish.bento.view.progress.components {
 		}
 		
 		// gh#1166
-		[Bindable]
 		public function getCopyProvider():CopyProvider {
 			return copyProvider;
+		}
+		
+		[Bindable]
+		public function get isPlatformTablet():Boolean {
+			return _isPlatformTablet;
+		}
+		
+		public function set isPlatformTablet(value:Boolean):void {
+			_isPlatformTablet = value;
 		}
 		
 		protected override function onViewCreationComplete():void {
@@ -87,28 +100,22 @@ package com.clarityenglish.bento.view.progress.components {
 				initialList += userCountry + '|';
 			var countryList:String = initialList + copyProvider.getCopyForId("countryList");
 			countryDataProvider = new ArrayCollection(countryList.split('|'));
-			countrySelection.dataProvider = countryDataProvider;
-			countrySelection.selectedIndex = 0;
+
+			if (countrySelection) countrySelection.dataProvider = countryDataProvider;
+			if (countrySelection) countrySelection.selectedIndex = 0;
 			var currentDataItem:Object = countrySelection.selectedItem;
 			countrySelect.dispatch(currentDataItem as String);
+			countrySelection.addEventListener(Event.CHANGE, onCountrySelect)
+			//countrySelection.addEventListener(MouseEvent.CLICK, onCountrySelect);
 		}
 		
 		// gh#1166
-		protected override function partAdded(partName:String, instance:Object):void {
-			super.partAdded(partName, instance);
-			
-			switch (instance) {
-				case countrySelection:
-					countrySelection.addEventListener(Event.CHANGE, onCountrySelect);
-					break;
-				default:
+		protected function onCountrySelect(event:Event):void {
+			if (countrySelection.selectedItem) {
+				var currentDataItem:Object = countrySelection.selectedItem;
+				country = currentDataItem as String;
+				countrySelect.dispatch(country);
 			}
-		}
-
-		protected function onCountrySelect(event:IndexChangeEvent):void {
-			var currentDataItem:Object = event.currentTarget.selectedItem;
-			country = currentDataItem as String;
-			countrySelect.dispatch(country);
 		}
 		
 		protected override function commitProperties():void {

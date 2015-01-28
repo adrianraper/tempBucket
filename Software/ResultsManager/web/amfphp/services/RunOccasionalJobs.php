@@ -5,7 +5,7 @@
 
 /*
  * Occasional jobs include 
- * averaging scores per country
+ *   averaging scores per country
  */
 set_time_limit(6000);
 
@@ -36,34 +36,30 @@ if (isset($_SERVER["SERVER_NAME"])) {
 	$newLine = "\n";
 }
 
-function addDaysToTimestamp($timestamp, $days) {
-	//return date("Y-m-d", $timestamp + ($days * 86400));
-	return $timestamp + ($days * 86400);
-}
-
-// Maybe I will want to be able to pass an array of triggers to this as well as getting all of them
 function runOccasionalJobs($period) {
 	global $thisService;
 	global $newLine;
 	
-	if ($period == 'yearly') {
-		
-	}
-	if ($period == 'monthly') {
-		$productCodes = array(52,53);
-		$from = new DateTime();
-		$fromDate = $from->sub(new DateInterval('P1Y'))->format('Y-m-d');
-		$toDate = null;
-		$rc = $thisService->dailyJobOps->averageCountryScores($productCodes, $fromDate, $toDate);
-		$now = new DateTime();
-		$today = $now->format('Y-m-d');
-		echo "Added average scores to the cache $today $rc $newLine";
-	}
-	if ($period == 'weekly') {
-		
-	}
-	if ($period == 'oneoff') {
-		
+	switch ($period) {
+		case 'yearly':
+		case 'weekly':
+		case 'oneoff':
+			break;
+		case 'monthly':
+			/*
+			 * This averages all scores for a title in all countries and populates T_ScoreCache
+			 */
+			$productCodes = array(52,53);
+			$from = new DateTime();
+			// The default is to take the last year's data
+			$fromDate = $from->sub(new DateInterval('P1Y'))->format('Y-m-d');
+			$toDate = null;
+			$rc = $thisService->dailyJobOps->averageCountryScores($productCodes, $fromDate, $toDate);
+			$now = new DateTime();
+			$today = $now->format('Y-m-d');
+			echo "Added average scores to the cache $today $rc $newLine";
+			break;
+		default:
 	}	
 }
 
@@ -79,7 +75,7 @@ if ($oneoff) {
 		runOccasionalJobs("yearly");
 	}
 	// Is today the first of the month?
-	if (date("j")==27) {
+	if (date("j")==1) {
 		runOccasionalJobs("monthly");
 	}
 	// Is today Monday (considered first day of the week by Clarity for everyone - apologies to UAE)
