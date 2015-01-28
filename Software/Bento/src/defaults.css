@@ -43,6 +43,11 @@
 	advancedAntiAliasing: true;
 }
 
+/** gh#1162 */
+mx|BarChart, mx|ColumnChart, mx|LineChart, mx|PieChart {
+	fontFamily: Arial;
+}
+
 global {
 	correctIcon: Embed(source="skins/assets/correctIcon.swf");
 	correctIconWidth: 16;
