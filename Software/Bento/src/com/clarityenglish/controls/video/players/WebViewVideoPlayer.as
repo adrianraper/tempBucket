@@ -7,8 +7,9 @@ package com.clarityenglish.controls.video.players {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.media.StageWebView;
-	
-	import mx.events.FlexEvent;
+import flash.system.Capabilities;
+
+import mx.events.FlexEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -68,23 +69,42 @@ package com.clarityenglish.controls.video.players {
 		}
 
 		private function get link():String {
+			trace("stageWebView.viewPort.width: "+stageWebView.viewPort.width);
 			var sourceHtml:String = "";
 			sourceHtml += "<!DOCTYPE html>";
 			sourceHtml += "<html>";
 			sourceHtml += "<head>";
-			sourceHtml += "	<meta name='viewport' content='width=240px, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi' />";
+			sourceHtml += "	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi' />";
 			sourceHtml += " <style type='text/css'>";
 			sourceHtml += "		video::-webkit-media-controls-fullscreen-button {display: none;}";
 			sourceHtml += "	</style>";
 			sourceHtml += "</head>";
 			sourceHtml += "<body style='margin:0;padding:0;border:0;overflow:hidden;'>";
-			sourceHtml += "	<video width='240' height='320' controls poster='" + placeholderSource + "'>";
+			sourceHtml += "	<video width='" + getVideoWidth() + "'";
+			sourceHtml += "			height='"+ getVideoHeight() + "'";
+			sourceHtml += "			controls poster='" + placeholderSource + "'>";
 			sourceHtml += "			<source src='" + source + "' type='video/mp4' >";
 			sourceHtml += "	</video>";
 			sourceHtml += "</body>";
 			sourceHtml += "</html>";
 
 			return sourceHtml;
+		}
+
+		private function getVideoWidth():Number {
+			if (Capabilities.os.indexOf("iPad") > -1) {
+				return stageWebView.viewPort.width / dpiScaleFactor;
+			} else {
+				return stageWebView.viewPort.width;
+			}
+		}
+
+		private function getVideoHeight():Number {
+			if (Capabilities.os.indexOf("iPad") > -1) {
+				return stageWebView.viewPort.height / dpiScaleFactor;
+			} else {
+				return stageWebView.viewPort.height;
+			}
 		}
 		
 		private function get isHtml():Boolean {
@@ -144,6 +164,7 @@ package com.clarityenglish.controls.video.players {
 			if (!stageWebView) {
 				// #443 - since StageWebView is native we need to apply the Retina dpi scaling manually
 				dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
+				trace("dpiScaleFactor: "+dpiScaleFactor);
 				stageWebView = new StageWebView();
 			}
 		}

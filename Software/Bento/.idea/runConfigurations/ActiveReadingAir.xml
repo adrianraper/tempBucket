@@ -4,14 +4,14 @@
     <option name="IOSSimulatorSdkPath" value="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.0.sdk" />
     <option name="adlOptions" value="" />
     <option name="airProgramParameters" value="" />
-    <option name="appDescriptorForEmulator" value="Android" />
+    <option name="appDescriptorForEmulator" value="IOS" />
     <option name="debugTransport" value="USB" />
     <option name="debuggerSdkRaw" value="BC SDK" />
-    <option name="emulator" value="iPad" />
+    <option name="emulator" value="OtherAndroidDevice" />
     <option name="emulatorAdlOptions" value="" />
     <option name="fastPackaging" value="true" />
-    <option name="fullScreenHeight" value="1280" />
-    <option name="fullScreenWidth" value="800" />
+    <option name="fullScreenHeight" value="2048" />
+    <option name="fullScreenWidth" value="1536" />
     <option name="launchUrl" value="false" />
     <option name="launcherParameters">
       <LauncherParameters>
@@ -21,15 +21,15 @@
         <option name="playerPath" value="/Applications/Flash Player Debugger.app" />
       </LauncherParameters>
     </option>
-    <option name="mobileRunTarget" value="Emulator" />
+    <option name="mobileRunTarget" value="AndroidDevice" />
     <option name="moduleName" value="ActiveReadingAir" />
     <option name="overriddenMainClass" value="" />
     <option name="overriddenOutputFileName" value="" />
     <option name="overrideMainClass" value="false" />
     <option name="runTrusted" value="true" />
-    <option name="screenDpi" value="149" />
-    <option name="screenHeight" value="1280" />
-    <option name="screenWidth" value="800" />
+    <option name="screenDpi" value="288" />
+    <option name="screenHeight" value="2048" />
+    <option name="screenWidth" value="1536" />
     <option name="url" value="http://" />
     <option name="usbDebugPort" value="7936" />
     <RunnerSettings RunnerId="FlexDebugRunner" />
