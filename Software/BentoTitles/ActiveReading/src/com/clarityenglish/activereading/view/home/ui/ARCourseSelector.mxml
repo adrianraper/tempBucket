@@ -147,7 +147,7 @@
 				if (_dataProvider) {
 					courseXMLList =  new XMLList(_dataProvider.course);
 					for each (var courseXML:XML in courseXMLList) {
-						if (courseXML.hasOwnProperty("@enabledFlag") && (Number(courseXML.@enabledFlag.toString()) & 8)) {
+						if (courseXML.attribute("enabledFlag").length() > 0 && (Number(courseXML.@enabledFlag.toString()) & 8)) {
 							switch (courseXML.@caption.toString()) {
 								case "Elementary":
 									elementary.enabled = false;

@@ -40,7 +40,7 @@ package com.clarityenglish.bento.controller {
 			var matchingExerciseNodes:XMLList = bentoProxy.menuXHTML..exercise.(@href == href.filename);
 			var pdfNode:XML = matchingExerciseNodes[0];
 			
-			if (pdfNode && pdfNode.(hasOwnProperty("@id"))) {
+			if (pdfNode && pdfNode.attribute("id").length() > 0) {
 				var eid:String = pdfNode.@id;
 				var uid:String = pdfNode.parent().@id;			
 				var cid:String = pdfNode.parent().parent().@id;			

@@ -240,9 +240,9 @@
 											caption.setStyle("color", 0x333333);
 										}
 										
-										if (data.hasOwnProperty("@enabledFlag") && (data.@enabledFlag.toString() & 8)) {
+										if (data.attribute("enabledFlag").length() > 0 && (data.@enabledFlag.toString() & 8)) {
 											unitItemGroup.enabled = false;	
-										} else if (data.hasOwnProperty("@enabledFlag") && (data.@enabledFlag.toString() & 4)) {
+										} else if (data.attribute("enabledFlag").length() > 0 && (data.@enabledFlag.toString() & 4)) {
 											demoGroup.visible = true;
 										} else {
 											demoGroup.visible = false;
@@ -543,8 +543,8 @@
 							</s:states>
 
 							<s:Group id="exButtonGroup" alpha="0">
-								<homeui:MenuButton id="exerciseUnopenedMenuButton" width="276" height="30" courseIndex="{data.parent().parent().childIndex()}" label="{data.@caption}" visible="{!data.hasOwnProperty('@done')}" enabled="{Exercise.exerciseEnabledInMenu(data as XML)}" />
-								<homeui:MenuButton id="exerciseOpenedMenuButton" width="276" height="30" courseIndex="{data.parent().parent().childIndex()}" label="{data.@caption}" visible="{data.hasOwnProperty('@done')}" enabled="{Exercise.exerciseEnabledInMenu(data as XML)}" />
+								<homeui:MenuButton id="exerciseUnopenedMenuButton" width="276" height="30" courseIndex="{data.parent().parent().childIndex()}" label="{data.@caption}" visible="{!data.attribute('done').length() > 0}" enabled="{Exercise.exerciseEnabledInMenu(data as XML)}" />
+								<homeui:MenuButton id="exerciseOpenedMenuButton" width="276" height="30" courseIndex="{data.parent().parent().childIndex()}" label="{data.@caption}" visible="{data.attribute('done').length() > 0}" enabled="{Exercise.exerciseEnabledInMenu(data as XML)}" />
 							</s:Group>
 						</s:ItemRenderer>
 					</fx:Component>

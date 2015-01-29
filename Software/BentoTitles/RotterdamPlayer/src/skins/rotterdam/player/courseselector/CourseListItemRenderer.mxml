@@ -11,7 +11,7 @@
 			public override function set data(value:Object):void {
 				super.data = value;
 				// gh#91
-				if (data) this.enabled = !data.hasOwnProperty("@enabledFlag") || (data.@enabledFlag > 0);
+				if (data) this.enabled = !(data.attribute("enabledFlag").length() > 0) || (data.@enabledFlag > 0);
 			}
 			
 			protected function onItemGroupClick(event:MouseEvent):void {
@@ -47,7 +47,7 @@
 		<s:Path data="M 4 0 L 20 0 L 0 20 L 0 4 Q 0 0 4 0 Z">
 			<s:fill>
 				<s:LinearGradient rotation="45" scaleX="50" x="0" y="0">
-					<s:GradientEntry color="0XFFC700" />
+					<s:GradientEntry color="0xFFC700" />
 					<s:GradientEntry color="0xD19026"/>
 				</s:LinearGradient>
 			</s:fill>

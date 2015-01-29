@@ -166,7 +166,7 @@ package com.clarityenglish.activereading.view.progress {
 					var unitXML:XML = menu.course.(@["class"] == courseClass).unit[i]
 					var totalExercisePerUnit:Number = unitXML.exercise.length();
 					for (var j:Number = 0; j < totalExercisePerUnit; j++) {
-						if (unitXML.exercise[j].hasOwnProperty("@done")) {
+						if (unitXML.exercise[j].attribute("done").length() > 0) {
 							exerciseAmount++;
 						}
 					}

@@ -122,7 +122,7 @@
 													super.data = value;
 													
 													if (data) {
-														if (data.hasOwnProperty("@done") && Number(data.@done) > 0) {
+														if (data.attribute("done").length() > 0 && Number(data.@done) > 0) {
 															doneCircle.visible = true;
 															undoneCircle.visible = false;
 															var courseClass:String = data.parent().parent().@["class"];

@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*"
-		xmlns:skins="skins.ielts.progress.*" xmlns:progress="skins.rotterdam.player.assets.progress.*">
+		xmlns:progress="skins.rotterdam.player.assets.progress.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.progress.components.ProgressCoverageView")]
@@ -83,7 +83,7 @@
 									<![CDATA[
 										[Bindable("dataChange")]
 										protected function get isDone():Boolean {
-											return data && data.hasOwnProperty("@done") && new Number(data.attribute("done")) > 0;
+											return data && data.attribute("done").length() > 0 && new Number(data.attribute("done")) > 0;
 										}
 									]]>
 								</fx:Script>
@@ -108,7 +108,7 @@
 									<![CDATA[
 										[Bindable("dataChange")]
 										protected function get isDone():Boolean {
-											return data && data.hasOwnProperty("@done") && new Number(data.attribute("done")) > 0;
+											return data && data.attribute("done").length() > 0 && new Number(data.attribute("done")) > 0;
 										}
 									]]>
 								</fx:Script>

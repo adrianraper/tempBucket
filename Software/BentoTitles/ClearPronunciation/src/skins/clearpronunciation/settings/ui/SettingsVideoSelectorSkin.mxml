@@ -157,7 +157,7 @@
 								}
 								
 								// #213
-								enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
+								enabled = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8));
 							}
 						]]>
 					</fx:Script>

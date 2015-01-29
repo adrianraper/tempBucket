@@ -50,7 +50,7 @@
 									public override function set data(value:Object):void {
 										// gh#151
 										super.data = value;
-										if (data) this.enabled = !(data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8);
+										if (data) this.enabled = !(data.attribute("enabledFlag").length() > 0 && data.@enabledFlag & 8);
 										captionLabel.text = ((data) ? data.@caption : "").toString();
 									}
 								]]>
