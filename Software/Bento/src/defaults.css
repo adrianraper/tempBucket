@@ -49,11 +49,11 @@ mx|BarChart, mx|ColumnChart, mx|LineChart, mx|PieChart {
 }
 
 global {
-	correctIcon: Embed(source="skins/assets/correctIcon.swf");
+	correctIcon: Embed(source="skins/assets/correctIcon.png");
 	correctIconWidth: 16;
 	correctIconHeight: 16;
 	
-	incorrectIcon: Embed(source="skins/assets/incorrectIcon.swf");
+	incorrectIcon: Embed(source="skins/assets/incorrectIcon.png");
 	incorrectIconWidth: 16;
 	incorrectIconHeight: 17;
 	

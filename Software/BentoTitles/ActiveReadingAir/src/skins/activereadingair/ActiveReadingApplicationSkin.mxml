@@ -36,7 +36,8 @@
 	<!-- Body -->
 	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0">
 		<s:Group verticalCenter="-50" horizontalCenter="0">
-			<s:SWFLoader source="@Embed(source='skins/activereading/assets/loading.swf')" includeIn="loading" horizontalAlign="center" />
+			<!--s:SWFLoader source="@Embed(source='skins/activereading/assets/loading.swf')" includeIn="loading" horizontalAlign="center" /-->
+			<s:BusyIndicator includeIn="loading" horizontalCenter="0"/>
 		</s:Group>
 		<login:LoginView id="loginView" width="100%" height="100%" includeIn="login" />
 		<title:TitleView id="titleView" width="100%" height="100%" includeIn="title" />
