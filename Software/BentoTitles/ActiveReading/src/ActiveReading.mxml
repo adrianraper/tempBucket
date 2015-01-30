@@ -43,7 +43,7 @@
 			import com.clarityenglish.activereading.ActiveReadingApplicationFacade;
 
 			protected function onInitialize(event:FlexEvent):void {
-				versionNumber = "10.0.12";
+				versionNumber = "10.0.14";
 
 				facade = ActiveReadingApplicationFacade.getInstance();
 			}
