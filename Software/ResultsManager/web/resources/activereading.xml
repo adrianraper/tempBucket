@@ -18,7 +18,7 @@
 			<lit name="readButton">Read</lit>
 
 			<!-- Help -->
-			<lit name="helpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/AR_Help_doc_full.pdf</lit>
+			<lit name="helpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/ActiveReadingHelp.pdf</lit>
 			<lit name="recorderHelpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/AR_Help_doc_recorder.pdf</lit>
 			
 			<!-- Log out page -->

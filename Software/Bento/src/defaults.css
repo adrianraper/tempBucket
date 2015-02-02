@@ -16,7 +16,7 @@
 @namespace recorder "com.clarityenglish.bento.view.recorder.*";
 
 /** gh#1162 */
-@font-face {
+/*@font-face {
 	src: url("skins/assets/verdana.ttf");
 	fontFamily: Verdana;
 	fontStyle: normal;
@@ -41,12 +41,12 @@
 	fontWeight: normal;
 	embedAsCFF: true;
 	advancedAntiAliasing: true;
-}
+}*/
 
 /** gh#1162 */
-mx|BarChart, mx|ColumnChart, mx|LineChart, mx|PieChart {
+/*mx|BarChart, mx|ColumnChart, mx|LineChart, mx|PieChart {
 	fontFamily: Arial;
-}
+}*/
 
 global {
 	correctIcon: Embed(source="skins/assets/correctIcon.png");

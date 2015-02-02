@@ -60,7 +60,7 @@
 	<s:Label id="labelDisplay"
 			 verticalAlign="middle"
 			 maxDisplayedLines="1"
-			 left="15" verticalCenter="0" fontSize="14"
+			 left="15" verticalCenter="2" fontSize="14"
 			 color="#333333">
 	</s:Label>
 </s:Skin>
