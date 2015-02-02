@@ -737,5 +737,78 @@ SQL;
 		}
 		return $emailArray;
 	}
+	// gh#1166
+	function averageCountryScores($productCodes, $fromDate=null, $toDate=null) {
+		// For each product code do worldwide
+		foreach ($productCodes as $productCode) {
+			$sql = <<<SQL
+				INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_UnitId, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
+				SELECT F_ProductCode, F_CourseID, null, AVG(F_Score) as AverageScore, AVG(if(F_Duration>3600,3600,F_Duration)) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide' 
+				FROM T_Score
+				WHERE F_ProductCode = ?
+				AND F_Score>=0
+SQL;
+			$bindingParams = array($productCode);
+			if ($fromDate) {
+				$sql .= ' AND F_DateStamp >= ? ';
+				$bindingParams[] = $fromDate;
+			}
+			if ($toDate) {
+				$sql .= ' AND F_DateStamp <= ? ';
+				$bindingParams[] = $toDate;
+			}
+			$sql .= ' GROUP BY F_CourseID ';
+			
+			//$rc = $this->db->Execute($sql, $bindingParams);
+			AbstractService::$debugLog->notice("Added score cache for worldwide.");
+		}
+						
+		// Then loop through each country that we know about (ignoring a list of known bad eggs)
+		$sql = <<<SQL
+			SELECT distinct(F_Country) 
+			FROM T_User u, T_Membership m
+			WHERE u.F_UserID = m.F_UserID
+			AND m.F_RootID NOT IN (19278,14781,14252,13770,13577,12923)
+			AND F_Country NOT IN ('undefined', '', '02', '01', 'global')
+			GROUP BY F_Country
+			ORDER BY F_Country asc;
+SQL;
+		$bindingParams = array();
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs->RecordCount() > 0) {
+			while ($dbObj = $rs->FetchNextObj()) {
+					
+				$country = $dbObj->F_Country;
+				// For each product code do this country
+				foreach ($productCodes as $productCode) {
+					$sql = <<<SQL
+						INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_UnitId, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
+						SELECT F_ProductCode, s.F_CourseID, null, AVG(s.F_Score) as AverageScore, AVG(if(s.F_Duration>3600,3600,s.F_Duration)) as AverageDuration, COUNT(s.F_UserID) as Count, now(), F_Country 
+						FROM T_Score s, T_User u
+						WHERE s.F_ProductCode = ?
+						AND s.F_Score>=0
+						AND u.F_UserID = s.F_UserID
+						AND u.F_Country = ?
+SQL;
+					$bindingParams = array($productCode, $country);
+					if ($fromDate) {
+						$sql .= ' AND F_DateStamp >= ? ';
+						$bindingParams[] = $fromDate;
+					}
+					if ($toDate) {
+						$sql .= ' AND F_DateStamp <= ? ';
+						$bindingParams[] = $toDate;
+					}
+					$sql .= ' GROUP BY F_CourseID ';
+					
+					$rc = $this->db->Execute($sql, $bindingParams);
+					AbstractService::$debugLog->notice("Added score cache for $country.");
+				}
+			}
+		}
+		if ($rc == false)
+			return $this->db->ErrorMsg();
+		return true; 		
+	}
 	
 }
