@@ -109,7 +109,11 @@ class TB6weeksService extends AbstractService {
 					case 'unsubscribe':
 						$returnData = $this->unsubscribe($stubUser, $productCode);
 						break;
-						
+
+					case 'correct1170Markup':
+						$returnData = $this->correct1170Markup($exercise);
+						break;
+
 					case 'getQuestions':
 						$rc = $this->checkAccount($prefix, $productCode);
 						$returnData = ($rc) ? $this->getQuestions($exercise) : $rc;
@@ -320,9 +324,27 @@ class TB6weeksService extends AbstractService {
 		return $data->saveXML();
 
 	}
-	
+
 	/**
-	 * 
+	 * Utility function to help an editor mark up a question bank
+	 * The editor manually goes through each question adding placementTest="true" to any question that are
+	 * good to use in testing.
+	 * The editor adds this to the <div> that holds the English version of the question
+	 * 	<div class="question" id="b3" placementTest="true">
+	 * 		<div class="question-text">
+	 * 			The bus <input id="q28"/> (leave) every ten minutes, so don't worry about being late.
+	 * 		</div>
+	 * 	</div>
+	 * But we really need this attribute to go on the associated <GapFillQuestion> tag.
+	 * This function will 'clean' the files the editor has marked up.
+	 */
+	public function correct1170Markup($exercise) {
+		$data = $this->testOps->correct1170Markup($exercise);
+		return $data->saveXML();
+	}
+
+	/**
+	 *
 	 * This will mark the placement test and register the user for their subscription.
 	 * 
 	 * @param pair/value string $answers

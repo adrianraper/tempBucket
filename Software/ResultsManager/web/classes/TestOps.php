@@ -108,7 +108,10 @@ class TestOps {
 	        
 	        // Set the namespace so that xpath can work
 			$xmlXPath->registerNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
-			
+
+			// gh#1170 The placementTest attribute shifts to being on the question tag, so switch all this selection round
+			// gh#1030 Pick x questions at random from the bank
+			/*
 			// Get all the question nodes and pick x at random
 			$query = "//xmlns:div[@class='question'][@placementTest='true']";
 			$matchingNodes = $xmlXPath->query($query);
@@ -123,64 +126,93 @@ class TestOps {
 				$debug->appendChild($debugNode);
 				$numQuestionsToUse = $maxQuestions;
 			}
-			
-			// gh#1030 Pick x questions at random from the bank
+	            // Find the matching answer model for this question
+				$questionId = $matchingNodes->item($useThese[$i])->getAttribute('id');
+				$modelQuery = '//xmlns:questions/*[@block="' . $questionId . '"]';
+				$questionModel = $xmlXPath->query($modelQuery)->item(0);
+			*/
+			// Get all the question nodes and pick x at random
+			$query = '//xmlns:questions/*[@block][not(@placementTest) or @placementTest!="false"]';
+			$modelNodes = $xmlXPath->query($query);
+			$maxQuestions = $modelNodes->length;
+
+			/*
+			$ignoreQuery = '//xmlns:questions/*[@placementTest="false"]';
+			$ignoreNodes = $xmlXPath->query($ignoreQuery);
+			$ignoreQuestions = $ignoreNodes->length;
+			$maxQuestions -= $ignoreQuestions;
+			*/
+			// How to alert if there weren't enough questions to satisfy the number we want? Unlikely, but...
+			if ($maxQuestions < 1) {
+				$debugNode = $data->createElement('lostQuestions', $numQuestionsToUse);
+				$debug->appendChild($debugNode);
+				continue;
+			} else if ($maxQuestions < $numQuestionsToUse) {
+				$debugNode = $data->createElement('lostQuestions', $numQuestionsToUse - $maxQuestions);
+				$debug->appendChild($debugNode);
+				$numQuestionsToUse = $maxQuestions;
+			}
 			if ($numQuestionsToUse == 1) {
 				// Note that array_rand doesn't return an array if you have a single item
 				$useThese = array(array_rand(range(0, $maxQuestions-1), $numQuestionsToUse));
 			} else {
 				$useThese = array_rand(range(0, $maxQuestions-1), $numQuestionsToUse);
 			}
-			for ($i = 0; $i < $numQuestionsToUse; $i++) {
 
-	            // Find the matching answer model for this question
-				$questionId = $matchingNodes->item($useThese[$i])->getAttribute('id');
-				$modelQuery = '//xmlns:questions/*[@block="' . $questionId . '"]';
-				$questionModel = $xmlXPath->query($modelQuery)->item(0);
-				
-				// Generate new ids for the new document to ensure uniqueness
-				$newQuestionId++;
-				$matchingNodes->item($useThese[$i])->setAttribute('id', 'b'.$newQuestionId);
-				$questionModel->setAttribute('block', 'b'.$newQuestionId);
-				
-				// Add the group attribute so that you can figure out complex marking later
-				$questionModel->setAttribute('scoreBand', $qbGroup);
-				
-				//$debugNode = $data->createElement('changingQId', $questionId);
-				//$debugNode->setAttribute('newId', 'b'.$newQuestionId);
-				//$debug->appendChild($debugNode);
-				
-				// MC or GF have different handling for source nodes
-				$optionsQuery = "//xmlns:div[@class='question'][@id='" .'b'.$newQuestionId. "']//xmlns:a";
-				$options = $xmlXPath->query($optionsQuery);
-				$debugNode = $data->createElement('findQuery', $optionsQuery);
-				$debugNode->setAttribute('found', $options->length);
-				foreach ($options as $option) {
-					$existingId = $option->getAttribute('id');
-					$newSourceId++;
-					$option->setAttribute('id', 'q'.$newSourceId);
-					
-					$modelAnswerQuery = '//xmlns:questions/*[@block="' . 'b'.$newQuestionId . '"]/xmlns:answer';
-					$modelAnswers = $xmlXPath->query($modelAnswerQuery);
-					foreach ($modelAnswers as $modelAnswer) {
-						if ($modelAnswer->getAttribute('source') == $existingId)
-							$modelAnswer->setAttribute('source', 'q'.$newSourceId);
+			for ($i = 0; $i < $numQuestionsToUse; $i++) {
+				if ($modelNodes->item($useThese[$i])->getAttribute('placementTest') != 'false') {
+					// Find the matching content for this question
+					$questionId = $modelNodes->item($useThese[$i])->getAttribute('block');
+					$contentQuery = '//xmlns:div[@class="question"][@id="' . $questionId . '"]';
+					$questionContentNodes = $xmlXPath->query($contentQuery);
+					if (!$questionContentNodes)
+						continue;
+					$questionContent = $questionContentNodes->item(0);
+
+					// Generate new ids for the new document to ensure uniqueness
+					$newQuestionId++;
+					$modelNodes->item($useThese[$i])->setAttribute('block', 'b' . $newQuestionId);
+					$questionContent->setAttribute('id', $newQuestionId);
+
+					// Add the group attribute so that you can figure out complex marking later
+					$modelNodes->item($useThese[$i])->setAttribute('scoreBand', $qbGroup);
+
+					//$debugNode = $data->createElement('changingQId', $questionId);
+					//$debugNode->setAttribute('newId', 'b'.$newQuestionId);
+					//$debug->appendChild($debugNode);
+
+					// MC or GF have different handling for source nodes
+					$optionsQuery = "//xmlns:div[@class='question'][@id='" . 'b' . $newQuestionId . "']//xmlns:a";
+					$options = $xmlXPath->query($optionsQuery);
+					$debugNode = $data->createElement('findQuery', $optionsQuery);
+					$debugNode->setAttribute('found', $options->length);
+					foreach ($options as $option) {
+						$existingId = $option->getAttribute('id');
+						$newSourceId++;
+						$option->setAttribute('id', 'q' . $newSourceId);
+
+						$modelAnswerQuery = '//xmlns:questions/*[@block="' . 'b' . $newQuestionId . '"]/xmlns:answer';
+						$modelAnswers = $xmlXPath->query($modelAnswerQuery);
+						foreach ($modelAnswers as $modelAnswer) {
+							if ($modelAnswer->getAttribute('source') == $existingId)
+								$modelAnswer->setAttribute('source', 'q' . $newSourceId);
+						}
 					}
+
+					$optionsQuery = "//xmlns:div[@class='question'][@id='" . 'b' . $newQuestionId . "']//xmlns:input";
+					$options = $xmlXPath->query($optionsQuery);
+					foreach ($options as $option) {
+						//$existingId = $gfOption->getAttribute('id');
+						$newSourceId++;
+						$option->setAttribute('id', 'q' . $newSourceId);
+						$modelNodes->item($useThese[$i])->setAttribute('source', 'q' . $newSourceId);
+					}
+
+					// Add the modified nodes to the new document
+					$question = $data->importNode($questionContent, true);
+					$questions->appendChild($question);
+					$answerData .= $modelNodes->item($useThese[$i])->ownerDocument->saveXML($modelNodes->item($useThese[$i]));
 				}
-				
-				$optionsQuery = "//xmlns:div[@class='question'][@id='" .'b'.$newQuestionId. "']//xmlns:input";
-				$options = $xmlXPath->query($optionsQuery);
-				foreach ($options as $option) {
-					//$existingId = $gfOption->getAttribute('id');
-					$newSourceId++;
-					$option->setAttribute('id', 'q'.$newSourceId);
-					$questionModel->setAttribute('source', 'q'.$newSourceId);
-				}
-				
-				// Add the modified nodes to the new document
-	            $question = $data->importNode($matchingNodes->item($useThese[$i]), true);
-	            $questions->appendChild($question);
-	            $answerData .= $questionModel->ownerDocument->saveXML($questionModel); 
 			}
 		}
 			
@@ -369,6 +401,91 @@ class TestOps {
 	}
 	function encodeSafeChars($text) {
 		return strtr($text, '+/=', '-_~');
+	}
+
+	// gh#1170 Correction process for an editor to mark up questions
+	public function correct1170Markup($exercise) {
+
+		// Get the test definition
+		$testTemplate = '../../'.$GLOBALS['data_dir'].'/TB6weeks/'.$exercise;
+		if (!file_exists($testTemplate))
+			throw new Exception($testTemplate." file not found from ".$GLOBALS['data_dir']);
+
+		// initialise
+		$data = new DOMDocument();
+		$debug = $data->appendChild($data->createElement('debug'));
+
+		$template = new DOMDocument();
+		$template->load($testTemplate);
+		$templateXPath = new DOMXpath($template);
+
+		// Set the namespace so that xpath can work
+		$templateXPath->registerNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
+
+		// Now pick the allocated x questions from each question bank
+		$qbNodes = $templateXPath->query("//xmlns:questionBank");
+		foreach ($qbNodes as $qb) {
+
+			$questionBankFile = '../../'.$GLOBALS['data_dir'].'/TB6weeks/'.$qb->getAttribute('href');
+
+			if (!file_exists($questionBankFile))
+				throw new Exception($questionBankFile." file not found");
+
+			$xml = new DOMDocument();
+			$xml->load($questionBankFile);
+			$xmlXPath = new DOMXpath($xml);
+
+			// Set the namespace so that xpath can work
+			$xmlXPath->registerNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
+
+			// Get all the question nodes that the editor has marked as being good for use in testing
+			// Negate them so we know which ones we should ignore
+			// Does this markup follow negative or positive settings?
+			$query = "//xmlns:div[@class='question'][@placementTest='false']";
+			$matchingNodes = $xmlXPath->query($query);
+			$negativeMarkup = $matchingNodes->length > 0;
+
+			$query = "//xmlns:div[@class='question']";
+			$matchingNodes = $xmlXPath->query($query);
+			$changeCount = 0;
+			foreach ($matchingNodes as $matchingNode) {
+
+				$isIndependent = $matchingNode->getAttribute('placementTest');
+				if ($negativeMarkup) {
+					// Look for any questions that are marked and mark their models
+					if ($isIndependent == 'false') {
+						// Find the matching answer model for this question
+						$questionId = $matchingNode->getAttribute('id');
+						$modelQuery = '//xmlns:questions/*[@block="' . $questionId . '"]';
+						$questionModel = $xmlXPath->query($modelQuery)->item(0);
+						if ($questionModel)
+							$questionModel->setAttribute('placementTest', 'false');
+						$changeCount++;
+					}
+				} else {
+					if (!$isIndependent) {
+						// Find the matching answer model for this question
+						$questionId = $matchingNode->getAttribute('id');
+						$modelQuery = '//xmlns:questions/*[@block="' . $questionId . '"]';
+						$questionModel = $xmlXPath->query($modelQuery)->item(0);
+						if ($questionModel)
+							$questionModel->setAttribute('placementTest', 'false');
+						$changeCount++;
+					}
+				}
+				$matchingNode->removeAttribute('placementTest');
+			}
+			$debugNode = $data->createElement('file', $questionBankFile);
+			$debugNode->setAttribute('changes', $changeCount);
+			$debugNode->setAttribute('negativeMarkup', $negativeMarkup);
+			$debug->appendChild($debugNode);
+
+			// Save the modified file
+			$xml->save($questionBankFile);
+		}
+
+		// Return the data
+		return $data;
 	}
 
 }
