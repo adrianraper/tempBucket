@@ -111,37 +111,11 @@ class TestOps {
 
 			// gh#1170 The placementTest attribute shifts to being on the question tag, so switch all this selection round
 			// gh#1030 Pick x questions at random from the bank
-			/*
-			// Get all the question nodes and pick x at random
-			$query = "//xmlns:div[@class='question'][@placementTest='true']";
-			$matchingNodes = $xmlXPath->query($query);
-			$maxQuestions = $matchingNodes->length;
-			// How to alert if there weren't enough questions to satisfy the number we want? Unlikely, but...
-			if ($maxQuestions < 1) {
-				$debugNode = $data->createElement('lostQuestions', $numQuestionsToUse);
-				$debug->appendChild($debugNode);
-				continue;
-			} else if ($maxQuestions < $numQuestionsToUse) {
-				$debugNode = $data->createElement('lostQuestions', $numQuestionsToUse - $maxQuestions);
-				$debug->appendChild($debugNode);
-				$numQuestionsToUse = $maxQuestions;
-			}
-	            // Find the matching answer model for this question
-				$questionId = $matchingNodes->item($useThese[$i])->getAttribute('id');
-				$modelQuery = '//xmlns:questions/*[@block="' . $questionId . '"]';
-				$questionModel = $xmlXPath->query($modelQuery)->item(0);
-			*/
-			// Get all the question nodes and pick x at random
+			// Get all the valid question nodes and pick x at random
 			$query = '//xmlns:questions/*[@block][not(@placementTest) or @placementTest!="false"]';
 			$modelNodes = $xmlXPath->query($query);
 			$maxQuestions = $modelNodes->length;
 
-			/*
-			$ignoreQuery = '//xmlns:questions/*[@placementTest="false"]';
-			$ignoreNodes = $xmlXPath->query($ignoreQuery);
-			$ignoreQuestions = $ignoreNodes->length;
-			$maxQuestions -= $ignoreQuestions;
-			*/
 			// How to alert if there weren't enough questions to satisfy the number we want? Unlikely, but...
 			if ($maxQuestions < 1) {
 				$debugNode = $data->createElement('lostQuestions', $numQuestionsToUse);

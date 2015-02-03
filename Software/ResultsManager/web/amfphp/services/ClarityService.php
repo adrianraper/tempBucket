@@ -121,10 +121,13 @@ class ClarityService extends AbstractService {
 		if ($dbHost)
 			$this->initDbHost($dbHost);
 		
+		// gh#1118 Allow super user to login
 		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
 								 User::USER_TYPE_ADMINISTRATOR,
 								 User::USER_TYPE_AUTHOR,
-								 User::USER_TYPE_REPORTER);
+								 User::USER_TYPE_REPORTER,
+								 User::USER_TYPE_DMS,
+								 User::USER_TYPE_DMS_VIEWER);
 								 
 		$loginObj = $this->loginOps->login($username, $password, $allowedUserTypes, $rootID, 2);
 		

@@ -13,10 +13,13 @@ class Group extends Manageable {
 	var $enableMyGroups;
 	
 	var $manageables = array();
-	
-	/*
-	 * Concatenate the parameter array onto our current array
-	 */
+
+    // gh#1118
+    const SELF_REGISTER_GROUP_NAME = ' self registered';
+
+    /*
+     * Concatenate the parameter array onto our current array
+     */
 	function addManageables($m) {
 		$this->manageables = array_merge($m, $this->manageables);
 	}

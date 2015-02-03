@@ -300,8 +300,9 @@ class TB6weeksService extends AbstractService {
 		// gh#315 If no account and you didn't throw an exception, just means we can't find it from partial parameters
 		if (!$account)
 			throw new Exception('Your account is not setup for TB6weeks');
-			
-		$group = $this->manageableOps->getGroup($this->manageableOps->getGroupIdForUserId($account->getAdminUserID()));
+
+        // gh#1118
+		$group = $this->manageableOps->getGroupForTB6weeks($account, $productCode);
 		
 		// Set some session variables that other calls will use
 		Session::set('rootID', $account->id);

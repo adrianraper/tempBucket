@@ -447,8 +447,32 @@ EOD;
 		
 		switch ($rs->RecordCount()) {
 			case 0:
-				// Invalid login
-				return false;
+				// Invalid login to regular account
+				// gh#1118 - But are you a super user and did you specify the account?
+				if ($rootID) {
+					$loginObj = $this->login($username, $password, array(User::USER_TYPE_DMS, User::USER_TYPE_DMS_VIEWER), null);
+					if (!$loginObj)
+						return false;
+						
+					// Graft the originally requested root onto the returning data
+					$loginObj->F_RootID = $rootID;
+					// Get the top level group for that root
+					$account = $this->manageableOps->getAccountRoot($rootID);
+					$topGroupID = $this->manageableOps->getGroupIdForUserId($account->getAdminUserID());
+					$loginObj->F_GroupID = $topGroupID;
+					// And pretend that RM is not AA
+					$loginObj->F_LicenceType = 1;
+					
+					// Authenticate the user with the session
+					$sessionName = (string)$loginObj->F_UserID.$loginObj->F_UserName;
+					Authenticate::login($sessionName, $loginObj->F_UserType);
+					Session::set('userID', $loginObj->F_UserID);
+					Session::set('userType', $loginObj->F_UserType);
+					return $loginObj;
+						
+				} else {
+					return false;
+				}
 			case 1:
 				// Valid login
 				$loginObj = $rs->FetchNextObj();

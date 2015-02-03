@@ -1474,6 +1474,22 @@ EOD;
 
 		return null;
 	}
+    /**
+     * This returns the group that matches a productCode (as a name) in an account. Will be used by TB6weeks.
+     * If the group doesn't exist, it is created.
+     * gh#1118
+     */
+    function getGroupForTB6weeks(Account $account, $productCode) {
+        $parentGroup = $this->getGroup($this->getGroupIdForUserId($account->getAdminUserID()));
+        $group = $this->getGroupInParent($productCode.Group::SELF_REGISTER_GROUP_NAME, $parentGroup);
+
+        if (!$group) {
+            $group = new Group();
+            $group->name = $productCode.Group::SELF_REGISTER_GROUP_NAME;
+            $this->addGroup($group, $parentGroup, false);
+        }
+        return $group;
+    }
 	/**
 	 * This returns the root ID that a given user belongs to.
 	 */
@@ -1509,7 +1525,31 @@ EOD;
 		}
 		return $group;
 	}
-	/**
+    /**
+     * Get group by name within another group. No need to have any members.
+     * gh#1118
+     */
+    function getGroupInParent($groupName, Group $parentGroup) {
+        $sql = <<<EOD
+			   SELECT *
+			   FROM T_Groupstructure g
+			   WHERE g.F_GroupName = ?
+			   AND g.F_GroupParent = ?
+EOD;
+        $rs = $this->db->Execute($sql, array($groupName, $parentGroup->id));
+        $group = new Group();
+
+        // Not sure if this is right, but if you find more than one group with a matching name
+        // just return the first.
+        if ($rs->RecordCount() >= 1) {
+            $obj = $rs->FetchNextObj();
+            $group->fromDatabaseObj($obj);
+        } else {
+            $group = false;
+        }
+        return $group;
+    }
+    /**
 	 * Similar function to get by name. You have to know a rootID, and there has to be at least one user in the group.
 	 */
 	function getGroupByName($groupName, $rootID) {
