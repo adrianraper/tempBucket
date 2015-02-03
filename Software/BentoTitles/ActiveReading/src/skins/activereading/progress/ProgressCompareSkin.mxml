@@ -117,7 +117,7 @@
 		</s:fill>
 	</s:Rect>
 	<s:Label id="chartCaptionLabel" textAlign="center" fontSize="14" left="0" right="0" top="105" />
-	<mx:BarChart id="compareChart" left="20" right="45" top="130" bottom="70" bottom.normalOnline="120" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="200">
+	<mx:BarChart id="compareChart" left="20" right="45" top="130" bottom="20" bottom.normalOnline="120" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="200">
 		<mx:horizontalAxis>
 			<mx:LinearAxis id="horizontalAxis" minimum="0" maximum="100" labelFunction="percentageLabel" />
 		</mx:horizontalAxis>
@@ -159,7 +159,7 @@
 	</mx:BarChart>
 	
 	<!--histogram chart bottom line-->
-	<s:Rect left="220" right="45" bottom="70" bottom.normalOnline="120" height="1">
+	<s:Rect left="220" right="45" bottom="20" bottom.normalOnline="120" height="1">
 		<s:fill>
 			<s:SolidColor color="#B3B3B3" />
 		</s:fill>

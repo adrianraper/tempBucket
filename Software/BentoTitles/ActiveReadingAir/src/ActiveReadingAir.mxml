@@ -93,11 +93,32 @@
 		@namespace s "library://ns.adobe.com/flex/spark";
 		@namespace mx "library://ns.adobe.com/flex/mx";
 		@namespace activereading "com.clarityenglish.activereading.*";
-		
-		global {
+
+		@font-face {
+			src: url("skins/assets/verdana.ttf");
 			fontFamily: Verdana;
-			fontLookup: embeddedCFF;
-			fontAntiAliasType: advanced;
+			fontStyle: normal;
+			fontWeight: normal;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+
+		@font-face {
+			src: url("skins/assets/verdanab.ttf");
+			fontFamily: Verdana;
+			fontStyle: normal;
+			fontWeight: bold;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+
+		@font-face {
+			src: url("skins/assets/verdanai.ttf");
+			fontFamily: Verdana;
+			fontStyle: italic;
+			fontWeight: normal;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
 		}
 		
 		@font-face {
@@ -115,6 +136,16 @@
 			fontWeight: bold;
 			embedAsCFF: true;
 			advancedAntiAliasing: true;
+		}
+
+		global {
+			fontFamily: Verdana;
+			fontLookup: embeddedCFF;
+			fontAntiAliasType: advanced;
+		}
+
+		mx|BarChart, mx|ColumnChart, mx|LineChart, mx|PieChart {
+			fontFamily: Arial;
 		}
 	</fx:Style>
 	

@@ -161,7 +161,7 @@
 	
 	<ui:ProgressBarRenderer id="progressBar" top="75" left="45" right="45" />
 	
-	<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="45" right="45" top="130" bottom="60" rowHeight="30">
+	<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="45" right="45" top="130" bottom="20" rowHeight="30">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn id="scoreGridC1" dataField="@unitCaption" sortCompareFunction="sortUnits" width="{(width - 94) * 0.25}" />

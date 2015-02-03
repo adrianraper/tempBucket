@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
     	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
 		alpha.disabled="0.5" xmlns:ui="com.clarityenglish.bento.view.progress.ui.*">
-	
+
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.activereading.view.progress.ProgressCoverageView")]
 	</fx:Metadata>
@@ -84,7 +84,7 @@
 		<s:Label id="notCompleteLabel" fontSize="13"/>
 	</s:HGroup>
 			 
-	<s:Scroller left="45" right="0" top="150" bottom="70">
+	<s:Scroller left="45" right="0" top="150" bottom="10">
 		<s:DataGroup id="coverageDataGroup" dataProvider="{hostComponent.unitListCollection}" width="100%" height="100%" minWidth="0" minHeight="0">
 			<s:layout>
 				<s:VerticalLayout paddingTop="15" gap="16" />
