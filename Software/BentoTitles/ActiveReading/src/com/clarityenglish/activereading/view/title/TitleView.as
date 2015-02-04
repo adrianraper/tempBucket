@@ -72,8 +72,6 @@ package com.clarityenglish.activereading.view.title {
 		public static var courseCode:String;
 		
 		private var _selectedNode:XML;
-		private var _isBackFromExercise:Boolean;
-		private var courseCaptionChange:Boolean;
 		private var _isDirectStartCourse:Boolean;
 		private var _directCourse:XML;
 		private var _isDirectStartUnit:Boolean;
@@ -81,7 +79,6 @@ package com.clarityenglish.activereading.view.title {
 		private var _isDirectStartEx:Boolean;
 		private var _directExercise:XML;
 		private var _isDirectLogout:Boolean;
-		private var _isDirectStartProgress:Boolean;
 
 		public var backToMenu:Signal = new Signal();
 		public var logout:Signal = new Signal();	

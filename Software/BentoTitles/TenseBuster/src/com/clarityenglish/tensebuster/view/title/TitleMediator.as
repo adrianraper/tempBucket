@@ -72,10 +72,21 @@
 						view.isDirectStartCourse = true;
 					}
 				}
-				
-			}
+                // gh#1080 direct start to progress screen
+                // gh#1156 otherwise reset to menu
+                if (directStart.state && directStart.state == 'progress') {
+                    view.callLater(setTabState, [1]);
+                } else {
+                    view.callLater(setTabState, [0]);
+                }
+            }
 		}
-		
+
+        // gh#1080
+        private function setTabState(index:uint):void {
+            view.sectionNavigator.selectedIndex = index;
+        }
+
 		public override function onRemove():void {
 			super.onRemove();
 			

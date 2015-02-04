@@ -4,7 +4,9 @@ Proxy - PureMVC
 package com.clarityenglish.common.model {
 	
 	import com.clarityenglish.bento.BBNotifications;
-	import com.clarityenglish.bento.model.SCORMProxy;
+import com.clarityenglish.bento.model.BentoProxy;
+import com.clarityenglish.bento.model.DataProxy;
+import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.vo.config.BentoError;
@@ -451,7 +453,18 @@ package com.clarityenglish.common.model {
 			// and from the ApplicationMediator state machine to see what notifications to send for screens to display
 			if (config.courseID)
 				directStartObject.courseID = config.courseID;
-			
+
+            // gh#1080
+            if (directStartObject.courseID) {
+                var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
+                var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+                if (bentoProxy.menuXHTML) {
+                    var course:XML = bentoProxy.menuXHTML.getElementById(directStartObject.courseID);
+                    var courseClass:String = course.(@id == directStartObject.courseID).@["class"].toString();
+                    dataProxy.set("currentCourseClass", courseClass);
+                }
+            }
+
 			return directStartObject;
 		}
 		// gh#853

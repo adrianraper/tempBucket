@@ -28,7 +28,10 @@ package com.clarityenglish.tensebuster.view.title {
 	import spark.components.mediaClasses.VolumeBar;
 	import spark.events.IndexChangeEvent;
 	import spark.transitions.ViewTransitionBase;
-	
+
+    [SkinState("home")]
+    [SkinState("progress")]
+    [SkinState("exercise")]
 	public class TitleView extends BentoView {
 		
 		[SkinPart]
@@ -83,7 +86,6 @@ package com.clarityenglish.tensebuster.view.title {
 		private var _unitUID:String;
 		private var _unitCaption:String;
 		private var _exerciseCaption:String;
-		private var _isBackFromExercise:Boolean;
 		private var courseCaptionChange:Boolean;
 		private var _androidSize:String;
 		private var _isDirectStartCourse:Boolean;
@@ -229,34 +231,6 @@ package com.clarityenglish.tensebuster.view.title {
 				unitCaption = _directExercise.parent().@caption;
 				courseCaption = _directExercise.parent().parent().@caption;
 			}
-		}
-		
-		protected override function commitProperties():void {
-			super.commitProperties();
-		}
-		
-		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
-			super.updateDisplayList(unscaledWidth, unscaledHeight);
-			
-			/*if (currentState == "unit") {
-				callLater(function():void {
-					coursePath.visible = true;
-					unitPath.visible = false;
-					exercisePath.visible = false;
-				});
-			} else if (currentState == "zone") {
-				callLater(function():void {
-					coursePath.visible = true;
-					unitPath.visible = true;
-					exercisePath.visible = false;
-				});
-			} else if (currentState == "exercise") {
-				callLater(function():void {
-					coursePath.visible = true;
-					unitPath.visible = true;
-					exercisePath.visible = true;
-				});
-			}*/
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
