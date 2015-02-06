@@ -16,8 +16,8 @@
 	$swfName = 'ClearPronunciation.swf';
 	$startControl = '/Software/BentoTitles/ClearPronunciation/bin-debug/';
 	$version = '12';
-	$coordsMinWidth = '990';
-	$coordsMaxWidth = null;
+	$coordsMinWidth = '1100';
+	$coordsMaxWidth = '1100';
 	$coordsMinHeight = '760';
 	$coordsMaxHeight = null;
 	$locationFile = "config.xml";

@@ -5,7 +5,7 @@
 @namespace title "com.clarityenglish.clearpronunciation.view.title.*";
 @namespace video "com.clarityenglish.controls.video.*";
 @namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
-@namespace login "com.clarityenglish.rotterdam.view.login.*";
+@namespace login "com.clarityenglish.bento.view.login.*";
 @namespace settings "com.clarityenglish.clearpronunciation.view.settings.*";
 @namespace home "com.clarityenglish.clearpronunciation.view.home.*";
 @namespace course "com.clarityenglish.clearpronunciation.view.course.*";
@@ -15,7 +15,7 @@
 @namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 
 clearpronunciation|ClearPronunciationApplication {
-	skinClass: ClassReference("skins.clearpronunciation.ClearPronunciationApplicationSkin");
+	skinClass: ClassReference("skins.clearpronunciationair.ClearPronunciationAirSkin");
 }
 
 components|XHTMLExerciseView s|TextInput {
@@ -34,6 +34,16 @@ s|TextInput {
 	paddingRight: 10;
 }
 
+login|LoginView s|TextInput {
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 1;
+	paddingLeft: 10;
+	paddingRight: 10;
+	fontSize: 14;
+	showPromptWhenFocused: false;
+}
+
 s|List {
 	verticalScrollPolicy: off;
 	horizontalScrollPolicy: off;
@@ -43,11 +53,11 @@ s|List {
 	video|VideoSelector {
 		skinClass: ClassReference("skins.clearpronunciationair.controls.video.IOSVideoSelectorSkin");
 	}
-	
+
 	home|HomeView video|VideoSelector {
 		skinClass: ClassReference("skins.clearpronunciationair.home.ui.IOSHomeVideoSelectorSkin");
 	}
-	
+
 	settings|SettingsView video|VideoSelector {
 		skinClass: ClassReference("skins.clearpronunciationair.settings.ui.IOSSettingsVideoSelectorSkin");
 	}

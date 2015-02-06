@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		xmlns:login="com.clarityenglish.rotterdam.view.login.*"
+		xmlns:login="com.clarityenglish.bento.view.login.*"
 		xmlns:login1="skins.clearpronunciation.assets.login.*"
 		xmlns:title="com.clarityenglish.clearpronunciation.view.title.*"
 		xmlns:credits="com.clarityenglish.bento.view.credits.*"
@@ -26,7 +26,8 @@
 	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0" bottom.title="44">
 		<!--s:BusyIndicator includeIn="loading" verticalCenter="0" horizontalCenter="0" /--> <!-- TODO: just used the mobile one for speediness for the moment -->
 		<s:Group verticalCenter="-50" horizontalCenter="0">
-			<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/cpPreloader.swf')" scaleX="0.6" scaleY="0.6" includeIn="loading" horizontalAlign="center" />
+			<!--s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/cpPreloader.swf')" scaleX="0.6" scaleY="0.6" includeIn="loading" horizontalAlign="center" /-->
+			<s:BusyIndicator includeIn="loading" horizontalCenter="0"/>
 		</s:Group>
 		<login:LoginView id="loginView" width="100%" height="100%" includeIn="login" />
 		<title:TitleView id="titleView" width="100%" height="100%" includeIn="title" />
