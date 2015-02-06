@@ -43,8 +43,8 @@ function runOccasionalJobs($period) {
 	switch ($period) {
 		case 'yearly':
 		case 'weekly':
-		case 'oneoff':
 			break;
+		case 'oneoff':
 		case 'monthly':
 			/*
 			 * This averages all scores for a title in all countries and populates T_ScoreCache
@@ -64,11 +64,16 @@ function runOccasionalJobs($period) {
 }
 
 // Action
-$oneoff = false;
+$oneoff = true;
 
 // If you are running a one-off job, don't trigger the other regular actions
 if ($oneoff) {
-	runOccasionalJobs("oneoff");
+	// Extra date check to ensure one-off is intentional
+	if (date("j")==5 && date("n")==2) {
+		runOccasionalJobs("oneoff");
+	} else {
+	 	echo "Set the date in RunOccasionalJobs to enable one-off run";
+	}
 } else {
 	// Is today the first of the year?
 	if (date("j")==1 && date("n")==1) {
