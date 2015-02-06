@@ -323,7 +323,7 @@ echo $GLOBALS['db'].$newLine;
 // If you want to run specific triggers for specific days (to catch up for days when this was not run for instance)
 $testingTriggers = "";
 //$testingTriggers .= "subscription reminders";
-//$testingTriggers .= "usage stats";
+$testingTriggers .= "usage stats";
 //$testingTriggers .= "support";
 //$testingTriggers .= "quotations";
 //$testingTriggers .= "trial reminders";

@@ -1,6 +1,6 @@
 {* Name: TB6weeks welcome *}
 {* Description: Email sent to subscriber to TB6weeks *}
-{* Parameters: $user, $ClarityLevel, $programLink, $dateDiff, $server *}
+{* Parameters: $user, $ClarityLevel, $programBase, $startProgram, $startProgress, $dateDiff, $server *}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -53,7 +53,7 @@
 {assign var='dateInterval' value="`$weekMultiplier` `$dateIntUnit`"}
 <p>Week {$smarty.foreach.unit.iteration} (starts {if $smarty.foreach.unit.iteration==1}today{else}{$dateInterval|strtotime|date_format:'%Y-%m-%d'}{/if}) {$unitName}</p>
 {/foreach}
-<a href="{$programLink}">Start Week 1 now</a>
+<a href="{$programBase}{$startProgram}">Start Week 1 now</a>
 
 <p>Or up your Tense Buster by logging in to Tense Buster through your library as <strong>{$user->email}</strong></p>
 <p>Password: <strong>{$user->password}</strong></p>

@@ -1,6 +1,6 @@
 {* Name: TB6weeks new unit available *}
 {* Description: Email sent to subscriber to TB6weeks *}
-{* Parameters: $user, $level, $programLink, $dateDiff, $weekX, $server *}
+{* Parameters: $user, $level, $programBase, $startProgram, $startProgress, $dateDiff, $weekX, $server *}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -52,20 +52,21 @@
 <p>Week {$smarty.foreach.unit.iteration} {$unitName}</p>
 {/foreach}
 <p>Now you have completed, do you want to try a different level?</p>
-<p>Or you can simply login to <a href="{$programLink}">Tense Buster</a> and try any of the content.</p>
+<p>Or you can simply login to <a href="{$programBase}{$startProgram}">Tense Buster</a> and try any of the content.</p>
 
 {else}
 <p>These are the 6 grammar units you are working through</p>
 
 {foreach from=$unitNames name=unit item=unitName}
-{math equation='(x - y) * z' x=$smarty.foreach.unit.iteration+1 y=$weekX z=$dateIntValue "assign='weekMultiplier'}
+{math equation='(x - y) * z' x=$smarty.foreach.unit.iteration+1 y=$weekX z=$dateIntValue assign='weekMultiplier'}
 {assign var='dateInterval' value="`$weekMultiplier` `$dateIntUnit`"}
 
 <p>Week {$smarty.foreach.unit.iteration} ({if $smarty.foreach.unit.iteration<$weekX}done{elseif $smarty.foreach.unit.iteration==$weekX}starts today{else}start {$dateInterval|strtotime|date_format:'%Y-%m-%d'}{/if}) {$unitName}</p>
 {/foreach}
 
-<a href="{$programLink}">Start week {$weekX} now</a>
+<a href="{$programBase}{$startProgram}">Start week {$weekX} now</a>
 {/if}
+<p>Check your progress <a href="{$programBase}{$startProgress}">here</a></p>
 <p>Up your Tense Buster by logging in to Tense Buster through your library as <strong>{$user->email}</strong></p>
 <p>Password: <strong>{$user->password}</strong></p>
 

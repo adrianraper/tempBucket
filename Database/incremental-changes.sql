@@ -1133,3 +1133,17 @@ INSERT INTO `T_ProductVersion` VALUES
 -- gh#1090 Option to block personal tracking from AA
 ALTER TABLE T_Accounts ADD COLUMN F_LoginModifier SMALLINT NULL DEFAULT NULL;
 
+-- General writing
+DELETE FROM T_ProductLanguage WHERE F_ProductCode = 61;
+INSERT INTO T_ProductLanguage VALUES 
+(61,'EN','GeneralWriting-International');
+
+DELETE FROM T_Product WHERE F_ProductCode = 61;
+INSERT INTO `T_Product` VALUES
+(61,'General Writing',NULL,2);
+
+DELETE FROM T_ProductVersion WHERE F_ProductCode = 61;
+INSERT INTO `T_ProductVersion` VALUES 
+(61,'DEMO'),
+(61,'FV');
+

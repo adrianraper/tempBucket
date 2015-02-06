@@ -717,13 +717,16 @@ SQL;
 						$tbProductCode = $this->subscriptionOps->relatedProducts($productCode);
 						$this->memoryOps->set('directStart', $newBookmark, $tbProductCode, $user->userID);
 						
-						$parameters = 'prefix='.$account->prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
 						$crypt = new Crypt();
+						$programBase = 'http://'.$this->server.'/area1/TenseBuster10/Start.php';
+						$parameters = 'prefix='.$account->prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
 						$argList = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
-						$startProgram = 'http://'.$this->server.'/area1/TenseBuster10/Start.php'.$argList;
-						
+                        $startProgram = $argList;
+                        $parameters .= '&startingPoint=state:progress';
+                        $startProgress = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
+
 						$toEmail = $user->email;
-						$emailData = array("user" => $user, "level" => $level, "programLink" => $startProgram, "dateDiff" => $f, "weekX" => $unitsAdded+1, "server" => $this->server);
+						$emailData = array("user" => $user, "level" => $level, "programBase" => $programBase, "startProgram" => $startProgram, "startProgress=" => $startProgress, "dateDiff" => $f, "weekX" => $unitsAdded+1, "server" => $this->server);
 						$thisEmail = array("to" => $toEmail, "data" => $emailData);
 						$emailArray[] = $thisEmail;
 						AbstractService::$debugLog->info("update user ".$user->email." to week $unitsAdded");
