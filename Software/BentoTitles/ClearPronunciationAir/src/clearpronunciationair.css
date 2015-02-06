@@ -52,14 +52,14 @@ s|List {
 @media (os-platform: "IOS") {
 	video|VideoSelector {
 		skinClass: ClassReference("skins.clearpronunciationair.controls.video.IOSVideoSelectorSkin");
+		videoPlayerWidth: 320;
+		videoPlayerHeight: 240;
 	}
 
 	home|HomeView video|VideoSelector {
-		skinClass: ClassReference("skins.clearpronunciationair.home.ui.IOSHomeVideoSelectorSkin");
-	}
-
-	settings|SettingsView video|VideoSelector {
-		skinClass: ClassReference("skins.clearpronunciationair.settings.ui.IOSSettingsVideoSelectorSkin");
+		skinClass: ClassReference("skins.clearpronunciationair.controls.video.IOSVideoSelectorSkin");
+		videoPlayerWidth: 640;
+		videoPlayerHeight: 360;
 	}
 }
 

@@ -1,8 +1,5 @@
 package com.clarityenglish.controls.video.players {
 	import com.clarityenglish.controls.video.IVideoPlayer;
-	import com.googlecode.bindagetools.converters.nullToValue;
-	
-	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -21,8 +18,8 @@ import mx.events.FlexEvent;
 	public class WebViewVideoPlayer extends Group implements IVideoPlayer {
 		
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
-		
-		private static var stageWebView:StageWebView;
+		// remove static for there maybe two videos in same page.
+		private var stageWebView:StageWebView;
 		
 		private var _source:Object;
 		private var _sourceChanged:Boolean;
@@ -32,7 +29,8 @@ import mx.events.FlexEvent;
 		
 		public function WebViewVideoPlayer() {
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
-			addEventListener(FlexEvent.HIDE, onRemovedFromStage, false, 0, true);
+			addEventListener(FlexEvent.HIDE, onHide, false, 0, true);
+			addEventListener(FlexEvent.SHOW, onShow, false, 0, true);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
 			
 			if (!StageWebView)
@@ -69,20 +67,20 @@ import mx.events.FlexEvent;
 		}
 
 		private function get link():String {
-			trace("stageWebView.viewPort.width: "+stageWebView.viewPort.width);
 			var sourceHtml:String = "";
 			sourceHtml += "<!DOCTYPE html>";
 			sourceHtml += "<html>";
 			sourceHtml += "<head>";
-			sourceHtml += "	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi' />";
+			sourceHtml += "	<meta name='viewport' content='width=" + getVideoWidth() + ", height=" + getVideoHeight() + ",";
+			sourceHtml += "		  initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi' />"
 			sourceHtml += " <style type='text/css'>";
 			sourceHtml += "		video::-webkit-media-controls-fullscreen-button {display: none;}";
 			sourceHtml += "	</style>";
 			sourceHtml += "</head>";
 			sourceHtml += "<body style='margin:0;padding:0;border:0;overflow:hidden;'>";
-			sourceHtml += "	<video width='" + getVideoWidth() + "'";
+			sourceHtml += "	<video id='myVideo' width='" + getVideoWidth() + "'";
 			sourceHtml += "			height='"+ getVideoHeight() + "'";
-			sourceHtml += "			controls poster='" + placeholderSource + "'>";
+			sourceHtml += "			controls poster='" + placeholderSource + "'  preload='auto'>";
 			sourceHtml += "			<source src='" + source + "' type='video/mp4' >";
 			sourceHtml += "	</video>";
 			sourceHtml += "</body>";
@@ -164,7 +162,6 @@ import mx.events.FlexEvent;
 			if (!stageWebView) {
 				// #443 - since StageWebView is native we need to apply the Retina dpi scaling manually
 				dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
-				trace("dpiScaleFactor: "+dpiScaleFactor);
 				stageWebView = new StageWebView();
 			}
 		}
@@ -173,7 +170,7 @@ import mx.events.FlexEvent;
 			super.commitProperties();
 			
 			if (stageWebView)
-				stageWebView.stage = (visible) ? stage : null;
+				stageWebView.stage = stage;
 		}
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
@@ -225,7 +222,8 @@ import mx.events.FlexEvent;
 		
 		protected function onRemovedFromStage(event:Event):void {
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
-			removeEventListener(FlexEvent.HIDE, onRemovedFromStage);
+			removeEventListener(FlexEvent.HIDE, onHide);
+			removeEventListener(FlexEvent.SHOW, onShow);
 			removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 			
 			if (stageWebView) {
@@ -234,6 +232,14 @@ import mx.events.FlexEvent;
 				stageWebView.dispose();
 				stageWebView = null;
 			}
+		}
+
+		protected function onHide(evnet:Event):void {
+			stageWebView.viewPort = null;
+		}
+
+		protected function onShow(event:Event):void {
+			invalidateDisplayList();
 		}
 		
 		protected function onEnterFrame(event:Event):void {
