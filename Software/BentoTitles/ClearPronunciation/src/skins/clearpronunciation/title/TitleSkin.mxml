@@ -52,14 +52,6 @@
 	<home:homeBgBubbles verticalCenter="-100" left="500" scaleX="1" scaleY="1" />
 	<home:homeBgBubbles bottom="0" left="200" scaleX="2" scaleY="2" />
 	
-	<!-- CP1 logo -->
-	<s:BitmapImage left="0" top="0" source="@Embed(source='/skins/clearpronunciation/assets/home/homeLogo.png')" includeIn="home" />
-	
-	<!-- footer (sits on top of application skin footer) -->
-	<s:Group left="0" bottom="0" width="100%">
-		<s:BitmapImage left="0" bottom="0" source="@Embed(source='/skins/clearpronunciation/assets/home/homeGirl.png')" includeIn="home" />
-	</s:Group>
-	
 	<ui:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0">
 		<s:ViewNavigator id="myCoursesViewNavigator" firstView="com.clarityenglish.clearpronunciation.view.home.HomeView" left="0" right="0" height="100%" />
 		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.clearpronunciation.view.progress.ProgressView" left="0" right="0" height="100%" />
@@ -82,4 +74,7 @@
 	</s:Group>
 	
 	<s:Button id="backButton" top="12" right="10" useHandCursor="true" buttonMode="true" includeIn="progress" />
+
+	<!-- CP1 logo -->
+	<s:BitmapImage left="0" top="0" source="@Embed(source='/skins/clearpronunciation/assets/home/homeLogo.png')" includeIn="home" />
 </s:Skin>

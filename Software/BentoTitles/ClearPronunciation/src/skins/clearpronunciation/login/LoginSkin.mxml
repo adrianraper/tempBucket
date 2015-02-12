@@ -80,7 +80,7 @@
 	<s:BitmapImage left="0" top="0" source="@Embed(source='/skins/clearpronunciation/assets/login/loginLogo.png')" />
 
 	<s:BitmapImage left="200" bottom="40" width="100%" fillMode="repeat" source="@Embed(source='/skins/clearpronunciation/assets/login/waveformFull.png')" />
-	<s:BitmapImage left="0" bottom="0" source="@Embed(source='/skins/clearpronunciation/assets/login/loginGirl.png')" />
+	<s:BitmapImage left="0" bottom="30" source="@Embed(source='/skins/clearpronunciation/assets/login/loginGirl.png')" />
 
 	<s:Label text="{hostComponent.getCopyProvider().getCopyForId('licencedToName', {name: hostComponent.licenceeName})}" includeInLayout="{hostComponent.licenceeName!=''}" visible="{hostComponent.licenceeName!=''}"
 			 right="14" top="14" fontSize="13" color="0xFFFFFF" />
