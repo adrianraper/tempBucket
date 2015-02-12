@@ -52,9 +52,6 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 		
 		protected override function onAddedToStage(event:Event):void {
 			super.onAddedToStage(event);
-			
-			// gh#1099
-			stage.addEventListener(MouseEvent.CLICK, onStageClick);
 		}
 
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -117,21 +114,6 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 			
 			// Use the generic sendNotification signal so we don't need to override the mediator just for the sake of this
 			sendNotification.dispatch(ClearPronunciationNotifications.YOUWILL_SHOW, prefix + exerciseIndex);
-		}
-		
-		// gh#1099
-		protected function onStageClick(event:MouseEvent):void {
-			var component:Object = event.target;
-			while(component) {
-				if (component is WindowShadeSkin) {
-					break;
-				}
-				component = component.parent;
-			}
-			
-			if (!(component is WindowShadeSkin)) {
-				windowShade.close();
-			}
 		}
 	}
 }

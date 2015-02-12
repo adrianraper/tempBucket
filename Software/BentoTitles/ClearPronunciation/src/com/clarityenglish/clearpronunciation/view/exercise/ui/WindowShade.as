@@ -4,8 +4,10 @@ package com.clarityenglish.clearpronunciation.view.exercise.ui {
 	import flash.events.MouseEvent;
 	
 	import mx.events.SandboxMouseEvent;
-	
-	import spark.components.Button;
+
+import skins.clearpronunciation.exercise.ui.WindowShadeSkin;
+
+import spark.components.Button;
 	import spark.components.SkinnableContainer;
 	import spark.effects.Animate;
 	import spark.effects.animation.MotionPath;
@@ -44,6 +46,9 @@ package com.clarityenglish.clearpronunciation.view.exercise.ui {
 			animation = new Animate();
 			animation.motionPaths = new Vector.<MotionPath>();
 			animation.motionPaths.push(animationPath);
+
+			// gh#1099
+			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
 		}
 		
 		[Bindable]
@@ -69,6 +74,29 @@ package com.clarityenglish.clearpronunciation.view.exercise.ui {
 					animation.target = contentGroup;
 					contentGroup.addEventListener(ElementExistenceEvent.ELEMENT_ADD, onElementAdd);
 					break;
+			}
+		}
+
+		protected function onAddedToStage(event:Event):void {
+			stage.addEventListener(MouseEvent.MOUSE_DOWN, onStageMouseDown);
+		}
+
+		// gh#1099
+		private function onStageMouseDown(event:Event):void {
+			var component:Object = event.target;
+			var isWindowOpen:Boolean;
+
+			while(component.parent) {
+				if (component is WindowShadeSkin ) {
+					isWindowOpen = true;
+					break;
+				}
+				component = component.parent;
+			}
+
+			if (!isWindowOpen) {
+				trace("close window");
+				close();
 			}
 		}
 		

@@ -28,16 +28,13 @@ import mx.events.FlexEvent;
 		private var dpiScaleFactor:Number = 1;
 		
 		public function WebViewVideoPlayer() {
-			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
-			addEventListener(FlexEvent.HIDE, onHide, false, 0, true);
-			addEventListener(FlexEvent.SHOW, onShow, false, 0, true);
-			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
-			
 			if (!StageWebView)
 				throw new Error("This component can only be used in an AIR application");
 			
 			if (!StageWebView.isSupported)
 				throw new Error("StageWebView is not supported in this environment");
+
+			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
 		}
 		
 		public function get source():Object {
@@ -156,7 +153,7 @@ import mx.events.FlexEvent;
 			invalidateProperties();
 		}
 		
-		protected override function createChildren():void {
+		/*protected override function createChildren():void {
 			super.createChildren();
 			
 			if (!stageWebView) {
@@ -164,13 +161,13 @@ import mx.events.FlexEvent;
 				dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
 				stageWebView = new StageWebView();
 			}
-		}
+		}*/
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
-			
+
 			if (stageWebView)
-				stageWebView.stage = stage;
+				stageWebView.stage = (visible) ? stage : null;
 		}
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
@@ -214,9 +211,23 @@ import mx.events.FlexEvent;
 		}
 		
 		protected function onAddedToStage(event:Event):void {
+			addEventListener(FlexEvent.HIDE, onHide, false, 0, true);
+			addEventListener(FlexEvent.SHOW, onShow, false, 0, true);
+			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
+
+			// Create the StageWebView
+			if (!stageWebView) {
+				dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
+				stageWebView = new StageWebView();
+			}
+
 			// Make sure that commitProperties runs when the component is added to the stage so that stageWebView.stage can be set
 			invalidateProperties();
-			
+
+			// for some video selector that only stageWebView is removed from stage, the video selector doesn't recreate again and the source is still remained.
+			if (source) {
+				play();
+			}
 			//addEventListener(Event.ENTER_FRAME, onEnterFrame, false, 0, true);
 		}
 		
@@ -235,11 +246,17 @@ import mx.events.FlexEvent;
 		}
 
 		protected function onHide(evnet:Event):void {
-			stageWebView.viewPort = null;
+			if (stageWebView) {
+				stageWebView.reload();
+				stageWebView.viewPort = null;
+			}
 		}
 
 		protected function onShow(event:Event):void {
-			invalidateDisplayList();
+			if (stageWebView) {
+				invalidateProperties();
+				invalidateDisplayList();
+			}
 		}
 		
 		protected function onEnterFrame(event:Event):void {

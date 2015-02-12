@@ -13,8 +13,8 @@
 	<channel name='rackspace' caption='Rack'>
 		<streamingMedia>http://c284790.r90.stream.cf1.rackcdn.com/</streamingMedia>
 	</channel>  
-	<channel name='aws' caption='AWS'>
-		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
+	<channel name='aws-streaming' caption='AWS'>
+		<streamingMedia>https://s3-ap-southeast-1.amazonaws.com/clarity-video-streaming/</streamingMedia>
 	</channel>
 	
 	<sharedMedia />

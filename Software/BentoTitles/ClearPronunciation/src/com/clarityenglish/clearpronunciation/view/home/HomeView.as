@@ -2,7 +2,8 @@ package com.clarityenglish.clearpronunciation.view.home {
 	import com.clarityenglish.bento.events.ExerciseEvent;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.controls.video.VideoSelector;
-	import com.clarityenglish.textLayout.vo.XHTML;
+import com.clarityenglish.controls.video.players.WebViewVideoPlayer;
+import com.clarityenglish.textLayout.vo.XHTML;
 	import com.googlecode.bindagetools.Bind;
 	
 	import flash.events.Event;
@@ -50,6 +51,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 		public var mediaFolder:String;
 		
 		private var _selectedNode:XML;
+		private var introductionCourse:XML;
 		
 		public var nodeSelect:Signal = new Signal(XML);
 		
@@ -68,30 +70,12 @@ package com.clarityenglish.clearpronunciation.view.home {
 			
 			// Populate the course list
 			courses = new XMLListCollection(xhtml..menu.(@id == productCode).course);
-		}
-		
-		protected override function commitProperties():void {
-			super.commitProperties();
-			
-			// Configure the introduction (TODO: this only needs to happen once... should I do it elsewhere?)
-			var introductionCourse:XML = _xhtml..course.(@["class"] == "introduction")[0];
-			if (introductionCourse) {
-				if (introductionVideoSelector) {
-					introductionVideoSelector.href = href;
-					introductionVideoSelector.channelCollection = channelCollection;
-					introductionVideoSelector.videoCollection = new XMLListCollection(new XMLList(<item href={introductionCourse.@videoHref} />));
-					introductionVideoSelector.placeholderSource = href.rootPath + "/" + introductionCourse.@videoPoster;
-				}
-				
-				if (introductionList) {
-					introductionList.dataProvider = new XMLListCollection(introductionCourse.unit.exercise);
-				}
-			}
+			introductionCourse = _xhtml..course.(@["class"] == "introduction")[0];
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
-			
+
 			switch (instance) {
 				case introductionTutorialLabel:
 					introductionTutorialLabel.text = copyProvider.getCopyForId("introductionTutorialLabel");
@@ -133,14 +117,25 @@ package com.clarityenglish.clearpronunciation.view.home {
 					break;
 				case introductionList:
 					introductionList.addEventListener(IndexChangeEvent.CHANGE, onNodeSelect);
+					introductionList.dataProvider = new XMLListCollection(introductionCourse.unit.exercise);
+					break;
+				case introductionVideoSelector:
+					introductionVideoSelector.href = href;
+					introductionVideoSelector.channelCollection = channelCollection;
+					introductionVideoSelector.videoCollection = new XMLListCollection(new XMLList(<item href={introductionCourse.@videoHref} />));
+					introductionVideoSelector.placeholderSource = href.rootPath + "/" + introductionCourse.@videoPoster;
 					break;
 			}
 		}
 		
 		protected function onNodeSelect(e:Event):void {
 			// gh#1116
-			if (e.target.selectedItem)
+			if (e.target.selectedItem) {
 				nodeSelect.dispatch(e.target.selectedItem);
+			}
+
+
+
 		}
 		
 		protected override function getCurrentSkinState():String {
