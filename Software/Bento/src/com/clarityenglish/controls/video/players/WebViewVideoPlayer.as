@@ -67,7 +67,6 @@ package com.clarityenglish.controls.video.players {
 		}
 		
 		private function get link():String {
-			trace("placeholderSource: "+placeholderSource);
 			var sourceHtml:String = "";
 			sourceHtml += "<!DOCTYPE html>";
 			sourceHtml += "<html>";

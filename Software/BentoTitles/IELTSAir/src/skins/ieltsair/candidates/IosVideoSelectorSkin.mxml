@@ -67,12 +67,13 @@
 				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription0");
 				videoListCaptionLabel.text = hostComponent.copyProvider.getCopyForId("videoListCaptionLabel");
 				
-				Bind.fromProperty(hostComponent, "videoCollection").toFunction(function():void {
+				Bind.fromProperty(videoList, "dataProvider").toFunction(function():void {
 					callLater(
 						function():void {
 							if (hostComponent.videoCollection) {
 								videoList.selectedIndex = 0;
 								videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+								videoPlayer.placeholderSource = hostComponent.href.rootPath + "/" + hostComponent.videoCollection.getItemAt(0).attribute("poster");
 							}
 						}
 					);		
@@ -102,7 +103,7 @@
 			}
 			
 			protected function onVideoListIndexChange(event:Event):void {
-				videoPlayer.createStageWebView();
+				//videoPlayer.createStageWebView();
 				videoPlayer.visible = true;
 				openingScreenGroup.visible = false;
 				//videoPlayButton.visible = false;
@@ -124,6 +125,8 @@
 				} else {
 					nextVideoButton.enabled = true;
 				}
+				
+				videoPlayer.placeholderSource = hostComponent.href.rootPath + "/" + hostComponent.videoCollection.getItemAt(videoListIndex).attribute("poster");
 			}
 			
 			protected function onSlideEnd(event:EffectEvent):void
@@ -149,6 +152,7 @@
 				
 				videoList.selectedIndex = videoListIndex;
 				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+				videoPlayer.placeholderSource = hostComponent.href.rootPath + "/" + hostComponent.videoCollection.getItemAt(videoListIndex).attribute("poster");
 			}
 			
 			protected function onSlideStart(event:EffectEvent):void
