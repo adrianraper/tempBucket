@@ -39,6 +39,7 @@
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.ielts.view.candidates.ui.CandidatesChannelListRenderer;
+			import com.googlecode.bindagetools.Bind;
 			
 			import mx.effects.Tween;
 			import mx.events.EffectEvent;
@@ -61,9 +62,21 @@
 				
 				number1Red.visible = true;
 				openingScreenGroup.left = width/2 - 320;
+				openingScreenGroup.visible = false;
 				
 				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription0");
 				videoListCaptionLabel.text = hostComponent.copyProvider.getCopyForId("videoListCaptionLabel");
+				
+				Bind.fromProperty(hostComponent, "videoCollection").toFunction(function():void {
+					callLater(
+						function():void {
+							if (hostComponent.videoCollection) {
+								videoList.selectedIndex = 0;
+								videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+							}
+						}
+					);		
+				});
 			}
 			
 			protected function previousVideoButtonClick(event:MouseEvent):void
@@ -92,7 +105,7 @@
 				videoPlayer.createStageWebView();
 				videoPlayer.visible = true;
 				openingScreenGroup.visible = false;
-				videoPlayButton.visible = false;
+				//videoPlayButton.visible = false;
 				videoListIndex = videoList.selectedIndex;
 				candidatesVideoTitleLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex);
 				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription" + videoListIndex);
@@ -106,7 +119,7 @@
 					previousVideoButton.enabled = true;
 				}
 				
-				if (videoList.selectedIndex ==  videoList.dataProvider.length - 1) {
+				if (videoList.selectedIndex ==  hostComponent.videoCollection.length - 1) {
 					nextVideoButton.enabled = false;
 				} else {
 					nextVideoButton.enabled = true;
@@ -116,10 +129,11 @@
 			protected function onSlideEnd(event:EffectEvent):void
 			{
 				// TODO Auto-generated method stub
-				videoPlayButton.label = "Click here to watch the " + hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex) +  " video.";
+				//videoPlayButton.label = "Click here to watch the " + hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex) +  " video.";
 				candidatesVideoTitleLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex);
 				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription" + videoListIndex);
-				videoPlayButton.visible = true;
+				//videoPlayButton.visible = true;
+				openingScreenGroup.visible = false;
 				
 				if (videoListIndex == 0) {
 					previousVideoButton.enabled = false;
@@ -132,12 +146,15 @@
 				} else {
 					nextVideoButton.enabled = true;
 				}
+				
+				videoList.selectedIndex = videoListIndex;
+				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 			}
 			
 			protected function onSlideStart(event:EffectEvent):void
 			{
 				// TODO Auto-generated method stub
-				videoPlayButton.visible = false;
+				//videoPlayButton.visible = false;
 				openingScreenGroup.visible = true;
 				videoPlayer.visible = false;
 				
@@ -185,7 +202,7 @@
 				videoListGroupExpand.play();
 				
 				openingScreenGroup.visible = true;
-				videoPlayButton.visible = true;
+				//videoPlayButton.visible = true;
 				videoPlayer.visible = false;
 				videoListExpandButton.visible = false;
 				previousVideoButton.visible = false;
@@ -237,11 +254,11 @@
 		
 		<s:Group>
 			<!-- The video players -->
-			<players:WebViewVideoPlayer id="videoPlayer" width="640" height="360" visible="{videoList.selectedIndex != -1}" />
+			<players:WebViewVideoPlayer id="videoPlayer" width="640" height="360" visible="{videoList.selectedIndex != -1}" placeholderSource="{hostComponent.placeholderSource}" />
 			<!--players:OSMFVideoPlayer id="videoPlayer" width="640" height="360" /-->
 			
 			<!-- Placeholder image -->
-			<s:Image id="placeholderImage" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" />
+			<!--s:Image id="placeholderImage" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" /-->
 		</s:Group>
 		
 		<s:VGroup paddingTop="130">
@@ -277,14 +294,14 @@
 		
 		<s:Label id="videoListCaptionLabel" top="50" horizontalCenter="0" color="#FFFFFF" fontSize="13" />
 		<!-- Video list -->
-		<s:List id="videoList" left="0" top="70" verticalScrollPolicy="off" minHeight="0" minWidth="0" itemRenderer="com.clarityenglish.ieltsair.view.candidates.VideoListItemRenderer">
+		<s:List id="videoList" left="0" top="70" verticalScrollPolicy="off" minHeight="0" minWidth="0" itemRenderer="com.clarityenglish.ieltsair.view.candidates.VideoListItemRenderer" requireSelection="true" selectedIndex="0">
 			<s:layout>
 				<s:VerticalLayout gap="5" />
 			</s:layout>
 		</s:List>
 	</s:Group>
 	
-	<s:Button id="videoPlayButton" click="onPlayButtonClick(event)" horizontalCenter="0" verticalCenter="-35" label="Click here to watch the {hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)} video." buttonMode="true" useHandCursor="true" />
+	<!--s:Button id="videoPlayButton" click="onPlayButtonClick(event)" horizontalCenter="0" verticalCenter="-35" label="Click here to watch the {hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)} video." buttonMode="true" useHandCursor="true" /-->
 	
 	<s:Group width="100%" height="100%" visible="{videoList.dataProvider == null}">
 		<s:Rect width="100%" height="100%">

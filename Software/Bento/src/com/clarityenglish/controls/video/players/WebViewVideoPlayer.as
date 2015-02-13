@@ -5,6 +5,7 @@ package com.clarityenglish.controls.video.players {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.media.StageWebView;
+	import flash.system.Capabilities;
 	
 	import mx.events.FlexEvent;
 	import mx.logging.ILogger;
@@ -23,13 +24,14 @@ package com.clarityenglish.controls.video.players {
 		
 		private var _source:Object;
 		private var _sourceChanged:Boolean;
+		private var _placeholderSource:String;
 		
 		private var dpiScaleFactor:Number = 1;
 		
 		public function WebViewVideoPlayer() {
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
-			addEventListener(FlexEvent.HIDE, onRemovedFromStage, false, 0, true);
-			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
+			/*addEventListener(FlexEvent.HIDE, onRemovedFromStage, false, 0, true);
+			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);*/
 			
 			if (!StageWebView)
 				throw new Error("This component can only be used in an AIR application");
@@ -53,6 +55,54 @@ package com.clarityenglish.controls.video.players {
 				addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
 				addEventListener(FlexEvent.HIDE, onRemovedFromStage, false, 0, true);
 				addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
+			}
+		}
+		
+		public function get placeholderSource():String {
+			return _placeholderSource;
+		}
+		
+		public function set placeholderSource(value:String):void {
+			_placeholderSource = value;
+		}
+		
+		private function get link():String {
+			trace("placeholderSource: "+placeholderSource);
+			var sourceHtml:String = "";
+			sourceHtml += "<!DOCTYPE html>";
+			sourceHtml += "<html>";
+			sourceHtml += "<head>";
+			sourceHtml += "	<meta name='viewport' content='width=" + getVideoWidth() + ", height=" + getVideoHeight() + ",";
+			sourceHtml += "		  initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi' />"
+			sourceHtml += " <style type='text/css'>";
+			sourceHtml += "		video::-webkit-media-controls-fullscreen-button {display:none;}";
+			sourceHtml += "	</style>";
+			sourceHtml += "</head>";
+			sourceHtml += "<body style='margin:0;padding:0;border:0;overflow:hidden;'>";
+			sourceHtml += "	<video id='myVideo' width='" + getVideoWidth() + "'";
+			sourceHtml += "		    height='" + getVideoHeight() + "'";
+			sourceHtml += "			controls poster='" + placeholderSource + "' preload='auto'>";
+			sourceHtml += "			<source src='" + source + "' type='video/mp4' >";
+			sourceHtml += "	</video>";
+			sourceHtml += "</body>";
+			sourceHtml += "</html>";
+			
+			return sourceHtml;
+		}
+		
+		private function getVideoWidth():Number {
+			if (Capabilities.os.indexOf("iPad") > -1) {
+				return stageWebView.viewPort.width / dpiScaleFactor;
+			} else {
+				return stageWebView.viewPort.width;
+			}
+		}
+		
+		private function getVideoHeight():Number {
+			if (Capabilities.os.indexOf("iPad") > -1) {
+				return stageWebView.viewPort.height / dpiScaleFactor;
+			} else {
+				return stageWebView.viewPort.height;
 			}
 		}
 		
@@ -107,7 +157,7 @@ package com.clarityenglish.controls.video.players {
 			invalidateProperties();
 		}
 		
-		protected override function createChildren():void {
+		/*protected override function createChildren():void {
 			super.createChildren();
 			
 			if (!stageWebView) {
@@ -115,7 +165,7 @@ package com.clarityenglish.controls.video.players {
 				dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
 				stageWebView = new StageWebView();
 			}
-		}
+		}*/
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
@@ -147,7 +197,7 @@ package com.clarityenglish.controls.video.players {
 						} else {
 							if (source.toString()) {
 								log.debug("loading url {0}", source.toString());
-								stageWebView.loadURL(source.toString());
+								stageWebView.loadString(link);
 							}
 						}
 					}
@@ -165,15 +215,30 @@ package com.clarityenglish.controls.video.players {
 		}
 		
 		protected function onAddedToStage(event:Event):void {
+			addEventListener(FlexEvent.HIDE, onHide, false, 0, true);
+			addEventListener(FlexEvent.SHOW, onShow, false, 0, true);
+			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
+			//addEventListener(Event.ENTER_FRAME, onEnterFrame, false, 0, true);
+			
+			// Create the StageWebView
+			if (!stageWebView) {
+				dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
+				stageWebView = new StageWebView();
+			}
+			
 			// Make sure that commitProperties runs when the component is added to the stage so that stageWebView.stage can be set
 			invalidateProperties();
 			
-			addEventListener(Event.ENTER_FRAME, onEnterFrame, false, 0, true);
+			if (source) {
+				play();
+			}
+			
 		}
 		
 		protected function onRemovedFromStage(event:Event):void {
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
-			removeEventListener(FlexEvent.HIDE, onRemovedFromStage);
+			removeEventListener(FlexEvent.HIDE, onHide);
+			removeEventListener(FlexEvent.SHOW, onShow);
 			removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 			
 			if (stageWebView) {
@@ -181,6 +246,20 @@ package com.clarityenglish.controls.video.players {
 				stageWebView.viewPort = null;
 				stageWebView.dispose();
 				stageWebView = null;
+			}
+		}
+		
+		protected function onHide(event:Event):void {
+			if (stageWebView) {
+				stageWebView.reload();
+				stageWebView.viewPort = null;
+			}
+		}
+		
+		protected function onShow(event:Event):void {
+			if (stageWebView) {
+				invalidateProperties();
+				invalidateDisplayList();
 			}
 		}
 		

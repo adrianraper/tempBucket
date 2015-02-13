@@ -14,6 +14,7 @@ package com.clarityenglish.ielts.view.zone {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Label;
+	import spark.events.IndexChangeEvent;
 	
 	public class AdviceZoneSectionView extends AbstractZoneSectionView {
 		
@@ -49,6 +50,7 @@ package com.clarityenglish.ielts.view.zone {
 			videoSelector.hrefToUidFunction = hrefToUidFunction;
 			videoSelector.channelCollection = channelCollection;
 			videoSelector.videoCollection = new XMLListCollection(_course.unit.(@["class"] == "advice-zone").exercise);
+			videoSelector.placeholderSource = href.rootPath + "/" + (_course.unit.(@["class"] == "advice-zone").exercise[0].attribute("poster"));
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
