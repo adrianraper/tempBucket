@@ -51,11 +51,11 @@
 		</s:Rect>	
 	
 		<s:Label id="analyseInstructionLabel" top="80" left="50" fontSize="13" />
-		
-		<s:HGroup width="100%" height="100%" gap="100">
-			<s:Scroller left="0" width="35%">
+
+		<s:HGroup width="100%" height="80%" gap="100">
+			<s:Scroller left="0" width="35%" height="100%">
 				<s:VGroup width="100%" height="100%">
-					<s:DataGroup id="durationDataGroup" dataProvider="{hostComponent.unitListCollection}" width="100%" height="100%">
+					<s:DataGroup id="durationDataGroup" dataProvider="{hostComponent.unitListCollection}" width="100%">
 						<s:layout>
 							<s:VerticalLayout gap="4"/>
 						</s:layout>
@@ -170,7 +170,7 @@
 				</s:VGroup>
 				<s:Button id="circleWedgeInstructionLabel" top="270" horizontalCenter="0" fontSize="13" fontWeight="normal" />
 			</s:Group>		
-		</s:HGroup>	
+		</s:HGroup>
 	</s:VGroup>	
 
 </s:Skin>
