@@ -82,7 +82,7 @@ SQL;
 		if ($rs->RecordCount() > $numProductCodes) {
 			throw $this->copyOps->getExceptionForId("errorMultipleProductCodeInRoot", array("productCode" => $productCode));
 		} else if ($rs->RecordCount() == 0) {
-			throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array("productCode" => $productCode, "rootID" => $rootID, "prefix" => $prefix));
+			throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array("productCode" => $productCode, "rootID" => $rootID));
 		} 
 		
 		// Create the account object (just use the first record if multiple ones as they will all be the same account details)
@@ -1031,6 +1031,8 @@ EOD;
 		// now get the account (just one)
 		if ($rootID)
 			return array_shift($this->getAccounts(array($rootID)));
+
+        return null;
 	}
 	
 	/**
@@ -1046,9 +1048,10 @@ EOD;
 				WHERE l.F_Key = 'IPrange'
 EOD;
 		// gh#723
-		/*if ($productCode)
-			$sql .= " AND l.F_ProductCode in ($productCode)";*/
-			
+        // gh#1176 add this link to product code back again
+		if ($productCode)
+            $sql .= " AND (l.F_ProductCode in ($productCode) OR l.F_ProductCode is null)";
+
 		$rs = $this->db->Execute($sql);
 		
 		$foundRoots = array();
