@@ -145,7 +145,8 @@ class TestOps {
 
 					// Generate new ids for the new document to ensure uniqueness
 					$newQuestionId++;
-					$modelNodes->item($useThese[$i])->setAttribute('block', 'b' . $newQuestionId);
+					//$modelNodes->item($useThese[$i])->setAttribute('block', 'b' . $newQuestionId);
+					$modelNodes->item($useThese[$i])->setAttribute('block', $newQuestionId);
 					$questionContent->setAttribute('id', $newQuestionId);
 
 					// Add the group attribute so that you can figure out complex marking later
@@ -202,19 +203,19 @@ class TestOps {
 	
 	public function checkAnswers($attempts, $answers, $score = null) {
 		/*
-			<MultipleChoiceQuestion block="q1">
+			<MultipleChoiceQuestion block="1">
 		      <answer source="a1" correct="true"/>
 		      <answer source="a2" correct="false"/>
 		      <answer source="a3" correct="false"/>
 		      <answer source="a4" correct="false"/>
 		    </MultipleChoiceQuestion>
-	        <GapFillQuestion source="q26" block="b1">
+	        <GapFillQuestion source="q26" block="2">
 		      <answer value="It's" correct="true"/>
 		      <answer value="It is" correct="true"/>
 		    </GapFillQuestion>
 		    
-		    <input class="MultipleChoiceQuestion" id="q1" value="a1" />
-		    <input class="GapFillQuestion" id="b1" value="It's" />
+		    <input class="MultipleChoiceQuestion" id="1" value="a1" />
+		    <input class="GapFillQuestion" id="2" value="It's" />
 		 */
 		
 		if (!$score)
@@ -228,19 +229,20 @@ class TestOps {
 		$answersXmlString = $this->decrypt($this->decodeSafeChars($answers));
 		$answersXml = simplexml_load_string('<answers>'.$answersXmlString.'</answers>');
 		$numQuestions = $answersXml->MultipleChoiceQuestion->count() + $answersXml->GapFillQuestion->count();
-		
+        AbstractService::$debugLog->info("numQuestions=".$numQuestions);
+
 		if ($numQuestions <= 0)
 			return json_encode(array('error' => 'no questions'));
 		
 		$attemptsXml = simplexml_load_string('<attempts>'.$attempts.'</attempts>');
 		$debug = '';
-		
+
 		foreach ($answersXml->MultipleChoiceQuestion as $mcq) {
 			$qId = $mcq['block'];
 			$scoreBand = $mcq['scoreBand'];
 			$potentialScore = $this->scoreMultiplier($scoreBand);
-			
-			$thisQuestionAttempts = $attemptsXml->xpath("//input[@id='$qId']");
+
+            $thisQuestionAttempts = $attemptsXml->xpath("//input[@id='$qId']");
 			// Has the user attempted to answer this question? 
 			if ($thisQuestionAttempts && count($thisQuestionAttempts) > 0) {
 				$attemptedAnswer = $thisQuestionAttempts[0]['value'];
@@ -258,7 +260,7 @@ class TestOps {
 			$qId = $gfq['block'];
 			$scoreBand = $gfq['scoreBand'];
 			$potentialScore = $this->scoreMultiplier($scoreBand);
-			
+
 			$thisQuestionAttempts = $attemptsXml->xpath("//input[@id='$qId']");
 			// Has the user attempted to answer this question? 
 			if ($thisQuestionAttempts && count($thisQuestionAttempts) > 0) {

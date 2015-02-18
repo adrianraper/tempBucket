@@ -160,13 +160,18 @@ class TB6weeksService extends AbstractService {
 			}
 			
 		} catch (Exception $e) {
-			$errorData = new DOMDocument();
-			$errors = $errorData->appendChild($errorData->createElement('errors'));
-			$error = $errors->appendChild($errorData->createElement('error'));
-			$error->setAttribute('message', $e->getMessage());
-			
-			echo $errorData->saveXML();
-			
+            // TODO Change isEmailValid to return xml as all the other functions do
+            if ($_REQUEST['operation']=='isEmailValid') {
+                echo json_encode($e->getMessage());
+            } else {
+                $errorData = new DOMDocument();
+                $errors = $errorData->appendChild($errorData->createElement('errors'));
+                $error = $errors->appendChild($errorData->createElement('error'));
+                $error->setAttribute('message', $e->getMessage());
+
+                echo $errorData->saveXML();
+            }
+
 		}
 		flush();
 		exit();
@@ -192,7 +197,7 @@ class TB6weeksService extends AbstractService {
 	}
 	
 	/**
-	 * Unsubscribe a user. Means totally remove them.
+	 * Unsubscribe a user. Remove their subscription records and then anonymise them as a user.
 	 * 
 	 * @param string $email
 	 */
@@ -211,6 +216,8 @@ class TB6weeksService extends AbstractService {
 				Session::set('rootID', $account->id);
 				
 				$rc = $this->subscriptionOps->removeProductSubscription($user, $productCode);
+                if ($rc == 'done')
+                    $this->manageableOps->anonymizeUser($user);
 				
 			} else {
 				$rc = 'wrong password';
@@ -251,22 +258,22 @@ class TB6weeksService extends AbstractService {
 					$rc = $this->subscriptionOps->changeProductSubscription($productCode, $level, $bookmark, $this->dateDiff);
 					
 					if ($rc == 'success') {
-						// TODO: where to get the start page URL from?
-						$parameters = 'prefix='.$account->prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
-						$crypt = new Crypt();
-						$cryptKey = $crypt->key;
-						$argList = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
-						$startProgram = 'http://'.$this->server.'/area1/TenseBuster10/Start.php'.$argList;
-												
+                        $crypt = new Crypt();
+                        $programBase = 'http://'.$this->server.'/area1/TenseBuster10/Start.php';
+                        $parameters = 'prefix='.$account->prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
+                        $startProgram = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
+                        $parameters .= '&startingPoint=state:progress';
+                        $startProgress = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
+
 						// Trigger a welcome email
-						$templateID = 'user/TB6weeksWelcome';
-						$emailData = array("user" => $user, "level" => $level, "programLink" => $startProgram, "dateDiff" => $this->dateDiff);
+						$templateID = 'user/TB6weeksNewUnit';
+						$emailData = array("user" => $user, "level" => $level, "programBase" => $programBase, "startProgram" => $startProgram, "startProgress" => $startProgress, "dateDiff" => $this->dateDiff, "weekX" => 1, "server" => $this->server, "prefix" => $account->prefix);
 						$thisEmail = array("to" => $user->email, "data" => $emailData);
 						$emailArray[] = $thisEmail;
 						
 						$this->emailOps->sendEmails("", $templateID, $emailArray);
 						
-						AbstractService::$debugLog->info("change level: email=".$user->email.' to='.$level);
+						//AbstractService::$debugLog->info("change level: email=".$user->email.' to='.$level);
 					}
 				} else {
 					$rc = 'no existing subscription';
@@ -360,17 +367,17 @@ class TB6weeksService extends AbstractService {
 		
 		// Is this an existing user, or do we need to register a new one?
 		$user = $this->manageableOps->getOrAddUser($stubUser, $rootId, $groupId);
-		AbstractService::$debugLog->info("user: id=".$user->userID." name=".$user->name.' email='.$user->email);
+		AbstractService::$debugLog->info("your user: id=".$user->userID." name=".$user->name.' email='.$user->email);
 		Session::set('userID', $user->userID);
 		
 		$score = $this->testOps->checkAnswers($attempts, $answers);
-		//AbstractService::$debugLog->info("score: %=".$score->score." raw=".$score->scoreCoorect);
-		
+
 		// Work out the TB6weeks settings for direct start and save for the user
 		$CEFLevel = $this->testOps->getCEFLevel($score);
 		$ClarityLevel = $this->testOps->getClarityLevel($score);
 		$bookmark = $this->subscriptionOps->getDirectStart($ClarityLevel, 0);
-		
+		AbstractService::$debugLog->info("score: %=".$score->score." raw=".$score->scoreCorrect." level=$ClarityLevel");
+
 		// reset our memory class now that we have the user details
 		$this->memoryOps = new MemoryOps($this->db);
 		$now = new DateTime();
@@ -382,17 +389,17 @@ class TB6weeksService extends AbstractService {
 		
 		// The bookmark (which controls direct start), is written to Tense Buster memory, not TB6weeks.
 		$rc = $this->memoryOps->set('directStart', $bookmark, $this->subscriptionOps->relatedProducts($productCode));
-		
-		$parameters = 'prefix='.$prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
-		$crypt = new Crypt();
-		$argList = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
-		AbstractService::$debugLog->info("parameters=".$parameters);
-		AbstractService::$debugLog->info("encrypted=".$crypt->encrypt($parameters));
-		$startProgram = 'http://'.$this->server.'/area1/TenseBuster10/Start.php'.$argList;
-		
-		// Trigger a welcome email
-		$templateID = 'user/TB6weeksWelcome';
-		$emailData = array("user" => $user, "level" => $ClarityLevel, "programLink" => $startProgram, "dateDiff" => $this->dateDiff, "server" => $this->server);
+
+        $crypt = new Crypt();
+        $programBase = 'http://'.$this->server.'/area1/TenseBuster10/Start.php';
+        $parameters = 'prefix='.$prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
+        $startProgram = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
+        $parameters .= '&startingPoint=state:progress';
+        $startProgress = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
+
+        // Trigger a welcome email
+        $templateID = 'user/TB6weeksNewUnit';
+        $emailData = array("user" => $user, "level" => $ClarityLevel, "programBase" => $programBase, "startProgram" => $startProgram, "startProgress" => $startProgress, "dateDiff" => $this->dateDiff, "weekX" => 1, "server" => $this->server, "prefix" => $prefix);
 		$thisEmail = array("to" => $user->email, "data" => $emailData);
 		$emailArray[] = $thisEmail;
 		

@@ -1,0 +1,312 @@
+http://dock.projectbench/Software/ResultsManager/web/amfphp/services/TB6weeksService.php?operation=getQuestions&exercise=1193901049540.xml&prefix=clarity&productCode=59
+
+<test>
+	<questions>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" id="b1" placementTest="true"> 
+			<div class="question-text"> 'Sophie isn't very good-looking.'
+				<br /> 'Yes ...! She's my sister!'
+				<list class="answerList"> 
+					<li>
+						<a id="q1">she's</a>
+					</li> 
+					<li>
+						<a id="q2">she isn't</a>
+					</li> 
+					<li>
+						<a id="q3">is</a>
+					</li> 
+					<li>
+						<a id="q4">she is</a>
+					</li> 
+				</list> 
+			</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b2"> 
+			<div class="question-text"> We are living with my parents because we&#xA0;
+				<input id="q5" />&#xA0;
+				<span class="blue">(not / have)</span>&#xA0;a house yet.</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b3"> 
+			<div class="question-text"> 'The film lasts ... hour and a half.'
+				<br /> 'Oh! That's very short.'
+				<list class="answerList"> 
+					<li>
+						<a id="q7">a</a>
+					</li> 
+					<li>
+						<a id="q8">an</a>
+					</li> 
+					<li>
+						<a id="q9">the</a>
+					</li> 
+					<li>
+						<a id="q10">---</a>
+					</li> 
+				</list> 
+			</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b4"> 
+			<div class="question-text"> In Antarctica, there aren't ..., only snow and ice.
+				<list class="answerList"> 
+					<li>
+						<a id="q11">a tree</a>
+					</li> 
+					<li>
+						<a id="q12">some trees</a>
+					</li> 
+					<li>
+						<a id="q13">any trees</a>
+					</li> 
+					<li>
+						<a id="q14">any tree</a>
+					</li> 
+				</list> 
+			</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b5"> 
+			<div class="question-text"> There's nothing on TV. Have you got&#xA0;
+				<input id="q16" />&#xA0;DVDs?</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b6"> 
+			<div class="question-text"> Len ... very well for work. He doesn't have to because he works at home.
+				<list class="answerList"> 
+					<li>
+						<a id="q17">doesn't dress</a>
+					</li> 
+					<li>
+						<a id="q18">don't dress</a>
+					</li> 
+					<li>
+						<a id="q19">doesn't dresses</a>
+					</li> 
+					<li>
+						<a id="q20">isn't dressing</a>
+					</li> 
+				</list> 
+			</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b7"> 
+			<div class="question-text"> Karen always&#xA0;
+				<input id="q22" />&#xA0;
+				<span class="blue">(hurry)</span>&#xA0;past the butcher's shop. She hates the smell of meat.</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b8"> 
+			<div class="question-text"> I found &#xA3;50 on the street yesterday. I think that's the ... thing that's ever happened to me.
+				<list class="answerList"> 
+					<li>
+						<a id="q23">luckiest</a>
+					</li> 
+					<li>
+						<a id="q24">luckest</a>
+					</li> 
+					<li>
+						<a id="q25">best luck</a>
+					</li> 
+					<li>
+						<a id="q26">luckyest</a>
+					</li> 
+				</list> 
+			</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b9"> 
+			<div class="question-text"> I've never driven this far before. The&#xA0;
+				<input id="q28" />&#xA0;
+				<span class="blue">(far)</span>&#xA0;I've ever driven is about 100 miles.</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b10"> 
+			<div class="question-text"> 'Why ... so quickly?'
+				<br /> 'I'm hungry!'
+				<list class="answerList"> 
+					<li>
+						<a id="q29">do you eating</a>
+					</li> 
+					<li>
+						<a id="q30">are you eatting</a>
+					</li> 
+					<li>
+						<a id="q31">you are eating</a>
+					</li> 
+					<li>
+						<a id="q32">are you eating</a>
+					</li> 
+				</list> 
+			</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b11"> 
+			<div class="question-text"> Shakespeare's plays ... into over 50 languages.
+				<list class="answerList"> 
+					<li>
+						<a id="q33">are translating</a>
+					</li> 
+					<li>
+						<a id="q34">have been translating</a>
+					</li> 
+					<li>
+						<a id="q35">have been translated</a>
+					</li> 
+					<li>
+						<a id="q36">have translated</a>
+					</li> 
+				</list> 
+			</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b12"> 
+			<div class="question-text"> 'Elinor doesn't like music,&#xA0;
+				<input id="q38" />?'
+				<br /> 'No, she prefers sport to music.'</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b13"> 
+			<div class="question-text"> We tried ... them, but they were just too good.
+				<list class="answerList"> 
+					<li>
+						<a id="q39">as hard as</a>
+					</li> 
+					<li>
+						<a id="q40">as hardly as</a>
+					</li> 
+					<li>
+						<a id="q41">as hard like</a>
+					</li> 
+					<li>
+						<a id="q42">as hard that</a>
+					</li> 
+				</list> 
+			</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b14"> 
+			<div class="question-text"> The woman ... dinner in our school is really friendly.
+				<list class="answerList"> 
+					<li>
+						<a id="q43">serves</a>
+					</li> 
+					<li>
+						<a id="q44">whom serves</a>
+					</li> 
+					<li>
+						<a id="q45">that serves</a>
+					</li> 
+					<li>
+						<a id="q46">that she serves</a>
+					</li> 
+				</list> 
+			</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b15"> 
+			<div class="question-text"> If you ... metal, it ... .
+				<list class="answerList"> 
+					<li>
+						<a id="q47">will heat / expands</a>
+					</li> 
+					<li>
+						<a id="q48">heat / is expanding</a>
+					</li> 
+					<li>
+						<a id="q49">heat / expands</a>
+					</li> 
+					<li>
+						<a id="q50">will heat / will expand</a>
+					</li> 
+				</list> 
+			</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b16"> 
+			<div class="question-text"> I wish I&#xA0;
+				<input id="q51" />&#xA0;
+				<span class="blue">(have)</span>&#xA0;a bigger breakfast. I'm hungry now and it's only ten o'clock.</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b17"> 
+			<div class="question-text"> Look, I ... put the keys in the drawer. It's not my fault if someone has moved them.
+				<list class="answerList"> 
+					<li>
+						<a id="q53">definitely</a>
+					</li> 
+					<li>
+						<a id="q54">definitly</a>
+					</li> 
+					<li>
+						<a id="q55">definite</a>
+					</li> 
+					<li>
+						<a id="q56">definately</a>
+					</li> 
+				</list> 
+			</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b18"> 
+			<div class="question-text"> Can you speak a bit more q
+				<input id="q58" />&#xA0;please? I'm not deaf.</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b19"> 
+			<div class="question-text"> 'Hey, Arnold. Are you ready?'
+				<br /> 'I haven't finished unpacking ... . You go ahead. I'll meet you by the pool.'
+				<list class="answerList"> 
+					<li>
+						<a id="q59">yet</a>
+					</li> 
+					<li>
+						<a id="q60">already</a>
+					</li> 
+					<li>
+						<a id="q61">so far</a>
+					</li> 
+					<li>
+						<a id="q62">almost</a>
+					</li> 
+				</list> 
+			</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b20"> 
+			<div class="question-text"> Bill Drakes&#xA0;
+				<input id="q63" />&#xA0;
+				<span class="blue">(resign)</span>! Who'll be the new boss I wonder?</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b21"> 
+			<div class="question-text"> 'You ought to do more exercise.'
+				<br /> The doctor said I ... more exercise.
+				<list class="answerList"> 
+					<li>
+						<a id="q65">should have done</a>
+					</li> 
+					<li>
+						<a id="q66">oughted to do</a>
+					</li> 
+					<li>
+						<a id="q67">ought to have done</a>
+					</li> 
+					<li>
+						<a id="q68">ought to do</a>
+					</li> 
+				</list> 
+			</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b22"> 
+			<div class="question-text"> The police are determined to stamp&#xA0;
+				<input id="q70" />&#xA0;racial discrimination in the force.</div> 
+		</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="question" placementTest="true" id="b23"> 
+			<div class="question-text"> There was ... knock on ... door. I wondered who it could be.
+				<list class="answerList"> 
+					<li>
+						<a id="q71">the / the</a>
+					</li> 
+					<li>
+						<a id="q72">a / a</a>
+					</li> 
+					<li>
+						<a id="q73">the / a</a>
+					</li> 
+					<li>
+						<a id="q74">a / the</a>
+					</li> 
+				</list> 
+			</div> 
+		</div>
+	</questions>
+	<config>
+		<![CDATA[tHYTzDM5T3FYVaOs-O5Uo10BUf5a42XPBe25WiWNt23-noLsCbE4R-IEVoO1G7TmwyVKle3nGKSidA5q24Hnplm015ur0sWIAe4pkvKXJhUocPH6xyUcwq8dYdPtBRKhOZ3rmch-s83kPDIn9E4ix2V4WTnYdUTzkBTVjPzGxz3khNfuXARniC7MPu2al0Q2tlHzLyt3hBHRlTAUT4utoNSmT8kIU8PuuCfoHLDzr6fxjsIjUihAyX8A5dCwVE0gpegyUymUi_QX9_twwIy5lY2ngZRj9vMjjrPk8mN3mGvD_AYhqw-FIW54S-Uuvr5kOsQtqK9JlER4PjCeU20a4fM7I1KvEFyPE_nkhB3jA8CdoIRiaF9Sa6aLFI_Kx-Rzitg6FVHO_hvhm70Y0YtCZ2VWeryh_0FmzhOTUaqA8ZMDEMQ_AmkoDPXg74z5IoVA3DFKZb2w-R8DGs_UTsmBwSVYlABwGg_nkHym7Hw3waTHii-9r6TAwsbfkrNW6kN9XyvyvbYC3Z1ptbdHdGnnb4fNavQzEPM6w46Gsb_88vIPcx1-UM99WXRnk0xM4jYi2NwI4csJF727lxOxxIaprUlt1ZLa20Sn5MkIDvgXZTddjtWAFmZ2xR2WSq9y0doo2AgIyvx36FIC6gs-lLx1Ih0lE9588-ffdxHTZ47oaYLZjBCwsswXtqbyb6DPEc_ukq9r73VVGJ6qFEAHHHKmYciX3voskg-TDpr-Peo615oKtMLn6HBGuXNJzReg1dKACYHsK9mF1iTm1sUJvJ_yeGqhOhBMQStbXJiOSasiRGFbb5doR-6lyGVO8ieZOzqv4SXyeNmxCjnqkUy0kwxC5sDN7e5o4Rh5Yc9RgtwuxpW8OZP800mjB7aUEpvXShjCFPcQZNlJoGwg3cHO-teDdJzuVSoZqM0gs8t21koUiumdwxMAgNbPpu5VngocKHy3rXcjidPzE_UCAJM5P1OKZWOZkJwhoBcj8HCdVo_iDCb8-KrKHkdxQzzF1AERe66uiVxKMvmmLnj5Crobg1BomSImt2vycTrM-MZj2I-pjaqc5zRxUDMip_QFbEetSKUA3EWda3s3_xvELgAMSF_PKlknsWb8r3gcDDITa0NjShckWyM91Cco45LkuMJfGhdGzWGcTgkjCwP1usImRbhDly_lTRy33rRo9QOhIM9ML_umanCoAdFnVsLAf76V4GxqX6QZC2VkJeXo1pfBYMR4cxvLgoMEWuECKUJJUN7EQaMU74dx07hWHVRhiplIACqQJgKCPhVby18AcoolVj27q-dbR4G_SchAY-ssij4l5zQBtSW-aXzZhwIz7XG4Txl7R7RpKl_GdWGaLFuxus1b94_p6jbQd1Xy4yZdvI4Ihyyb4BOm_NTDZ8UR5os7h_-171RFGG0X7ycZ6-8FuH3SVgrMSPdUUTRPt7u6IPPDLyZLIEKs9tGAjsc-xzzTxcFk_4zlgMH926ykOG5ibzFYNAp4zFXZTQYQi6fCuHzR81kpA7D4WOHl65V_tRksB5WDYecUcxJ6fCYij9lA4wBpCfi6eB4GpBzJbTF0b-8SWxmRtM9DQQCxEohfTh7ZNSe-P_sMM9lRL22celVOJ3Gw5CHQCJeCyOEwV9nwcAD1E4NDDScQOR_4FBW8NuF6wDFIQrfSbN_VI9nPZl1aT7HMFP4I44Q4vlPh8LFSTpgo8PQFAIHqqP66-Ec5Jbk6TvN-iCUYR42xVNaQHkI6-2uVOH5V4yHAodGWjG5MANzmtWjkAfGqMB66De3gOyGCdwi-7aQZz4HH_ZIHDI2rQLY9QKjSEr5TVFY0CBr2G8YmukwRwh1iqJaZ_VjlhHdFATJ7BLpg5HPqQozUoXZTHXINkx8cngwuykeC4QcCn_5Wa8ODK6h_LCS8Iqqg9PIXrrTDsnMGd1y0lalSiZ_ilgSBD8KXxWPnOqhcrhyMDmXzQ9jgaP3Y_GuCpiRL924KxCJ4Wn071rWfSf3-OatJm7d-KduPnjeRCywBusLFZQIEBi_a-h7xz7V4UsJbVBhouYQ3cdVFaTfAgewYuDhcS4s9A5XRTsDlsWawphTGFM2HdATi-7xuR_-yhMjUSHCKUKF6o-r6wxaLc0vsMT0zMHODwUW9UWMkoYjDVyXZJD69d6IeVxWDsQvp0WJJ4tW_qHnq4FzBxd3kg-FIHxvnEdZ05HBFP-SQBE72-E1bqBcSEWPLbrcP8i1YueOmWZHML7rJGdvCWVgYU7NIk_n57ixp7d7F2TagQd-U6j2cqO2DVzJeBTRn-0TJmKrWaAfmRk7rD5QEGgBAtRwnd_13wrJkss2G5maHnW4mHVPPlcXBrULYUVoWETyo8_jHDbVueRzEE5D8Fdz22A_yvJxrhgfFUmTyd54379TI3OfVlGOeK786m-hE8PnMK1gNtJeCi-2_0H1IcD59hefSyGGhXeGlEBqh3KZVLfM6CVjD14G6d76DroArP-kKVP3URmBBJUHn8IIGlg0qEZgNvlJriltNAA30wuAxsBDU6UMNKts50FiKav1xlu4oZ6k5ryud1XHI3v6ca2Dl6Fa6dAA2Vn6rgtKOkHsFnn2M2E3YSFdhnoVE68qMqTNDCWdk9yMpOtHL2-jVPttsMf-Z9-RJWK4IqvQzs5y5T7PZMecl32jmYIrhDimR4h1md_rfbnGssBPlW9FBnVoIVYMl-jRY-2xYruOXEZFEJbimM0H8wEl-G9Dw7sp5onT5ZNdt1RQ2IIlVtrb9pROzp9Fov-Jlj7mowElEphcfoyJ5_PTw8E4BaM1UnZKyIc7Dk3T8GkJoE93_d_vV1fsAG2y_P7MLmiBkeAfuuOUd_InXE67SXFmlyMvZ5nOhtaRfsRA8ERyHMNz1KneYXvDfTbsAguxsy6UwiPte6hE4OppCaqQPyeidSWfV4Z5GU7XpmISvvCKP_mDJZh9SSelNS-yMYIY-z-UAis6ISeoDRtTQPt5H8Vm4-Wvw9xqMRWta5Ddy2938lNZEmA7klkY2zHGPDM7DoFZK_3yzN4AGBvUgXNvL55tEafZONx3uZlVxsYnheKS1K9gliKMbv701m2xFlzDqS1N-7Ld5loTbuPYl1NXBdfPszEX09am92wRSDT0oH-nmQ2OluWrOd_aOG3vlx2VAHQSyjOCt_YI-xYJ29b-xJBUk_guNIIncLZhvtldnoI_wplS6r6E0Q1DaaSAvJ_KvyTjWU-PWsvRC-dH34hP3emdlTil90h95vMKvysc1ZzIsN2CrrVv7qXHNlWlArnoT9doymuGYDU_cLyqyOXRuBkWiuOjb-vjRSneR4ii_kV7Zd7XobIhuCM7Uq-fMQC8vRCdEmIMZ-ipuVnZYjXaMZKHqotdaEmm4jIYJJNJzbr7pGvRul-RoaarMMjYH5GyDZfWbY-Nyr4KM1G9oagTgcc5eJe65ubHOwx2whIGIX-PzcMTJkoMLcnfHrevvrUUITzyEAmvR2S_1d2pjDQpoG3qeRE43rE9xkuziSqjIfkUyj0zD11btdhmMJOU4nE9rgYIY3D4-OgdSjsRzO5NvwLETqXUUzvJ8obuUHmh3_WlcyrbVF75NJpYstdY_czB3gD0MpsSR6KYeEgia_tIP9JCBUTvCKtOPCqERLsiV4s00F2ZfBiuimio1Y8WIYAE3pC3NvUqJzHiyX1Qj1hLbeSFU_duJ41_jCqWECxm5j_k6xCQp_Cr-LoDhBoLYqkiNc000CHn9fcF4ECedftl0kyA4j944oEegnQGbFyz1k-Uu_OLNP_x7jj-LGg4bEuvek-7AQr-wOdI5Jz2Zti8APZJ8knq3FnmYgNcxGNnCTNy8gZ8XtbIGC77ggv-bEZok6y4fvo1sskWnrb92V-K4HSHF1ddzg88PvP40nMv6GC7JLYeR0xknNOykv3qkfkknN_JXZDhw9oP2diYyQduLUbUJLJnRVo4u_HGKSW5dgfV_og4ZLASFrNJC2AewaZ3zYASopJGw__sNk8LBmdRtPUzCf0ZNl33K7sE_uy_T_-KTrfhWoyQ8b8R4P0zUviGRJFRLVkX6DbkJrxvanD-FpVa7jIh5B_bVyE8v90mfrFgLHnNt6S4L9chKX9Mtx_x3Tet0TMn4sEMvADoaFwuNiaAn-9yjDpi0_zfTtsL4hkhwOmrGSvC9m2DiMibEMOSZmcAYi1RgfF4mNs8vHW4JE0oPY8HRZH5OP8VH6F6YvxIEepEotHvOxWseEshsHZSOv9hG9ooJUe7fuEM5tutpa8uH42dXhRq5MCzINXZkOySSmuUJyJ_j-rG-mf3r_-inScb6AidQkkgV_hXHb2p3WIV7ECTzTbPbWN9M3PjpxzzKXxoWymc2QrbrqSV2JCIvFwm1Axu7P6iQksaK3Or1tSKqGMJF6UPZFHlZPQV0wfSRS5ExXIXIcyzndigPWQYnKj06U5U7wW_GYCg_Qt8MW1BmOlx_wtHnaLHpgksfKMdJcol4oIlaDjszuH7Yu4xxX9_gIHYMHkEVlRv-pcN-zaE_KkG0jZONmnC78JPzSQNZztUb6vw1NyR_KSn1vH9ytp6EMRCwhhq046-OH3uFdL_J3YMfEF42n-BPCLy9t5BMIpU7_rpX1kca4MtNpm8g1Chb96PjDQYujt6cN8Dvo_14rtktmkEgDGK4R020hvHluJQm31rORs7V-3YNhUsxyse7lza1tAU_l0da-yM1DLheYjqTuzvH6Bq6-jS5PEicvkRIdpvEBpTMZKj8JSsW6M_sLsvGKnwPkH9z0tZGLvp3ShHkmpuF5HmX_guwXLA_J2JnjVK7VW1IJR35-lSWEvDg_2GMZEuVV1G69leF2gXPg2P58Ym8YXGVoJysyRQ5ry0DAWEYWU3n4APPF33rNxYwRXSFAT7Yi13Jq2bCc48MakCQ3hmBwEsUmuXHcrDwiYAhauRwSqsmfvXJGcxXevh5P7e4WMATTTYYL3GKRDxeDIhzmbLOjD1fnidyqz_NSWzqjZdUZ2QfYn1p4J0tAgu6brj29IDHkcjT_62wpJF6zIlge4yYJ-rFokazaoiQNHZw5gCzwo0RiCYvy9r1-qiOxgcUaKx1NGLwD165GxQPQNotJL0UwGEaDO5FemFXvcFF4sgwTn7GwkAjLq28R58ESfztksM7kmY5SCQef_DkzkNC3zeQyfNNObjjad6Jf3QbB1-g-imtJ2_BUVVX-UScjZ8G1qjWa3C6MrLzpZTM_bVpxrtd1gjq7Y0FhCaQfDJ6JyBdpJgcdQqMSMzdk9YHF_fOMSYwj_lo2o-Vuu1MCM0mmTaJMQXmMvbgHC7vWNOKpSD_gQPXgO2gd-Sthzya1604SNLJJEU5Xda3YWHLh_NIIsHKTNPND6C7rmsnAn_JbWrzw-f6vwS522BGTp1zG_wafcMWvv3jqsF_mFtQ8jFlvCRtSwjMKj2qI4vjp5HSCtm2kSZg3bk6AlbQoyxWkMqxm5w8OAhz3tKGpCM3mAiJNT0VrpsYppo8inr2RiV8iu6bHBdxWyj2Y4pnic_sZlfaXnvtlCpO1edFlM7bWfFzOA1PDJgSPzDJD4uXd9qSbDJ9KC9_AGHRFXfrISmDKt0ulSjKuDnoUlDArBV0Cy26crwaYwiZvuqbGps_5WKn61IFrRQ6ZShamFbVkpqPzauFlyd4elZavCgRCvOmksxvMNdIqO5w_VU9TnJTn1l_KmS1YA_BRS3DVXiy-tvxpNn75mBPL7WSdRBOagi4c4LnBaJTVm7nQ3c-qHtrl-vG_k4xZX28-sM0pgDgP9o_Gz-Vle8T6EiKJwY_MZ7o1LcFoFNZJNb7khV6QbHWBvxaUyCGR4nS_m-is8L_dM1O4VevkFIjuviJP6HzFKnpi9bwVBNzjoEKzNysT_lFrpTWPaVx-T7OioSDlVRm30aRB5nFFDxO6P9QTZGBTSu7y6zRxS2iMmiLznt6D8Nfv0-FbUOJ_CQT40vvIFWqqs7nNiC9PYNTf4LoamFFzKj5imEBhXzsfiv0IeE-eSnRETw9QsSDgdYp0rlMxN8OsChaB6eFGmmlqatS7srJUQsbRcm8SVpA4kiyvKyrxDKbTVHkCNWl1-t4Qnw1EXXXt_oMf60A3OjicSUWhlQG1nitNYpVt8CfJM0RrRB0cDPfvoZvc4KZu1HDXc2nS9WZJ-7qgPtbV5jAZODTguMkUfghJqL9uHuWarYoJ8t8VF1zVs_H9ocX5BGlxA4lVwfSTiIO5gYzfjSOFQ4CmKaPGr_ZcymCb7qdrwywVBXkCnry2spUFK8-v8DwUp8YkYKqZSpluAEk56P_AqxELyz_vxutaE-DUVpagluaul0-H-FegTXamjdVLRPhWFKhUHgfuWalsm8JEMUoVVVt_-uOPLZIVgFxoKyKrwpwl97-cV9s5VD2y9hERk5kFWKXkHOCdoFFzp0Fkb5pLAoK9QKHqrEZHYL41GpqC0FPtC4-smC1PsomA3drtrI1swiDjxxSpctdtFegoHeiYE_EIdZ2hQ4dJXPqj-IeUVZPnVMQ7PA6UuvH]]>
+	</config>
+	<debug>
+		<lostQuestions>1</lostQuestions>
+		<lostQuestions>1</lostQuestions>
+	</debug>
+</test>

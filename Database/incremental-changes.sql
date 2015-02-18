@@ -1053,6 +1053,7 @@ INSERT INTO `T_ProductVersion` VALUES
 
 -- gh#1014 Weekly (or occasional) update for worldwide unit summaries
 ALTER TABLE T_ScoreCache ADD COLUMN `F_UnitID` bigint(20) DEFAULT NULL AFTER `F_CourseID`;
+ALTER TABLE T_ScoreCache ADD COLUMN `F_TotalDuration` bigint(20) DEFAULT NULL AFTER `F_AverageDuration`;
 
 -- Clear Pronunciation V10
 DELETE FROM T_ProductLanguage WHERE F_ProductCode in (57,58);

@@ -720,13 +720,12 @@ SQL;
 						$crypt = new Crypt();
 						$programBase = 'http://'.$this->server.'/area1/TenseBuster10/Start.php';
 						$parameters = 'prefix='.$account->prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
-						$argList = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
-                        $startProgram = $argList;
+                        $startProgram = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
                         $parameters .= '&startingPoint=state:progress';
                         $startProgress = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
 
 						$toEmail = $user->email;
-						$emailData = array("user" => $user, "level" => $level, "programBase" => $programBase, "startProgram" => $startProgram, "startProgress=" => $startProgress, "dateDiff" => $f, "weekX" => $unitsAdded+1, "server" => $this->server);
+						$emailData = array("user" => $user, "level" => $level, "programBase" => $programBase, "startProgram" => $startProgram, "startProgress" => $startProgress, "dateDiff" => $f, "weekX" => $unitsAdded+1, "server" => $this->server, "prefix" => $account->prefix);
 						$thisEmail = array("to" => $toEmail, "data" => $emailData);
 						$emailArray[] = $thisEmail;
 						AbstractService::$debugLog->info("update user ".$user->email." to week $unitsAdded");

@@ -706,22 +706,12 @@ EOD;
 			$status = 'done';
 					
 			// Does this user have other subscriptions?
-			/*
 			$rs = $this->memoryOps->getAllKeys('subscription');
 			if ($rs) {
-				if ($rs->recordCount() > 1) {
+				if ($rs->recordCount() > 0)
 					$status = 'other records';
-				} else {
-					
-					// Has the user done anything else besides this subscription?
-					//$rc = $this->manageableOps->deleteManageables(array($user));
-					$status = 'done';
-				}
-			} else {
-				$status = 'unexpected error, no subscriptions at all';
 			}
-			*/
-		}				
+		}
 		return $status;
 	}
 

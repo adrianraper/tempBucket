@@ -30,7 +30,8 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getOrAddUser","studentID":"xx999-21407-00020","name":"xxD\u00e2v\u00efd V\u00e2h\u00e9y\u00f6","email":"dosh.10@noodles.hk","dbHost":"200","productCode":52,"expiryDate":"2013-03-07 23:59:59","prefix":"GLOBAL","rootID":"14030","groupID":"22155","loginOption":"2","country":"UK","city":"British Council ORS","adminPassword":"clarity88","registerMethod":"ORS-portal"}';
 	//$inputData = '{"method":"forgotPassword","studentID":"5216-8965-3456","dbHost":102,"loginOption":2}';
 	//$inputData = '{"method":"getUser","email":"dandy@email.com","loginOption":128,"licenceType":5}';
-	$postInformation= json_decode($inputData, true);	
+    //$inputData = '{"method":"getSubscription","email":"dundy@email","password":"asdf","productCode":59,"prefix":"Clarity","dbHost":2,"loginOption":128}';
+    $postInformation= json_decode($inputData, true);
 	if (!$postInformation) 
 		// TODO. Ready for PHP 5.3
 		//throw new Exception("Error decoding data: ".json_last_error().': '.$inputData);
@@ -182,8 +183,9 @@ try {
 			
 		// The following confirms the user details, including password, and returns the user
 		case 'signInUser':
+        case 'getSubscription':
 			$user = $loginService->getUser($apiInformation);
-			
+
 			if ($user==false) {
 				// Return the key information you used to search
 				switch ($apiInformation->loginOption) {
@@ -203,8 +205,32 @@ try {
 			}
 			if ($apiInformation->password != $user->password) 
 				returnError(253);
-			
-			break;
+
+            // gh#1171 and their subscription if they have one
+            if ($apiInformation->productCode) {
+
+                // See if this user has a subscription
+                $loginService->memoryOps = new MemoryOps($loginService->db);
+                $subscription = $loginService->memoryOps->get('subscription', $apiInformation->productCode, $user->userID);
+                $level = $loginService->memoryOps->get('level', $apiInformation->productCode, $user->userID);
+                if ($subscription) {
+                    if ($subscription['valid']) {
+                        $startDate = new DateTime($subscription['startDate']);
+                        $frequency = DateInterval::createFromDateString($subscription['frequency']);
+                        $week = 1;
+                        $today = new DateTime();
+                        while ($startDate->add($frequency) < $today) {
+                            if ($week > 99)
+                                break; // Just in case...
+                            $week++;
+                        }
+                        $subscription['ClarityLevel'] = $level;
+                        $subscription['week'] = $week;
+                    }
+                }
+            }
+
+            break;
 			
 		case 'getOrAddUser':
 		case 'getOrAddUserAutoGroup':
@@ -315,6 +341,7 @@ try {
 			returnError(1, 'Invalid method '.$apiInformation->method);
 	}
 
+
 	// Send back data.
 	// It might be better to only send back limited account data
 	// BUG: No, I need lots of data for working out if titles are not expired etc
@@ -323,8 +350,14 @@ try {
 	if (!isset($group) || !$group)
 		$group = new Group();
 		
-	$returnInfo = array('user' => $user, 'account' => $account, 'group' => $group); 
-	
+	$returnInfo = array('user' => $user, 'account' => $account, 'group' => $group);
+
+    // gh#1171
+    if ($apiInformation->encryptData)
+        $returnInfo['encryptedData'] = $apiInformation->toEncryptedString();
+    if ($subscription)
+        $returnInfo['subscription'] = $subscription;
+
 	echo json_encode($returnInfo);
 	
 } catch (Exception $e) {

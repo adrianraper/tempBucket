@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../BritishCouncil/LearnEnglish/Malaysia/Malaysia.iml" filepath="$PROJECT_DIR$/../BritishCouncil/LearnEnglish/Malaysia/Malaysia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../TenseBuster/6weeks/Nicole's TB6weeks.iml" filepath="$PROJECT_DIR$/../TenseBuster/6weeks/Nicole's TB6weeks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TB6weeks.iml" filepath="$PROJECT_DIR$/.idea/TB6weeks.iml" />
+    </modules>
+  </component>
+</project>

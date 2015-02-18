@@ -29,6 +29,8 @@ require_once(dirname(__FILE__)."/../../classes/MemoryOps.php");
 
 require_once(dirname(__FILE__)."/AbstractService.php");
 
+require_once($GLOBALS['common_dir'].'/encryptURL.php');
+
 class LoginService extends AbstractService {
 	
 	var $db;

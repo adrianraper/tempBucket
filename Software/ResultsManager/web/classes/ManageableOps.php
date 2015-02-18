@@ -2223,5 +2223,23 @@ EOD;
 		
 		return $users[0];
 	}
+
+    /**
+     * Anonymize a user without removing them
+     *
+     */
+    public function anonymizeUser($user) {
+        $user->email = $this->anonymized($user->email, 'e');
+        $user->name = $this->anonymized($user->name, 'n');
+        $user->studentID = $this->anonymized($user->studentID, 'i');
+        return $this->updateUsers(array($user));
+    }
+    public function anonymized($data, $type = null) {
+        $base = new DateTime();
+        $buildString = $base->getTimestamp().mt_rand();
+        if ($type)
+            $buildString = $type.$buildString;
+        return $buildString;
+    }
 }
 

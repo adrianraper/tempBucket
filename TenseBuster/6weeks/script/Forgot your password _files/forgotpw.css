@@ -1,0 +1,294 @@
+@charset "utf-8";
+/* CSS Document */
+html,
+body {
+	margin:0;
+	padding:0;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	background-color:#FFFFFF;
+	height:100%;
+	background-color:#FFFFFF;
+}
+
+.clear {
+	clear:both;
+	margin:0;
+	padding:0;
+}
+
+*:focus {
+    outline: 0;
+}
+
+
+#container_position {
+	min-height:100%;
+	position:relative;
+}
+
+#container {
+	width:1196px;
+	margin:0 auto;
+	padding-bottom:202px;
+
+}
+
+
+#bigbox {
+	width:1196px;
+	background-repeat:no-repeat;
+	background-position:top;
+	
+
+}
+
+#clearbox_center {
+	margin:0 auto;
+	padding:136px 0 0 0;
+	width:800px;
+	height: 380px;
+}
+
+#clearbox {
+	margin:0;
+	padding:0;
+}
+
+#clearbox form {
+	margin:0;
+	padding:0;
+}
+
+#clearbox #top {
+	background:url(../images/support/forgotpw/box_top.png) no-repeat;
+	height:9px;
+}
+
+#clearbox #mid {
+	background:url(../images/support/forgotpw/box_mid.png) repeat-y;
+	padding:26px 0 0 0;
+	position: relative;
+	height: 212px;
+
+}
+
+#clearbox #btm {
+	background:url(../images/support/forgotpw/box_btm.png) no-repeat;
+	height:12px;
+	clear:both;
+}
+
+#clearbox #mid #left {
+	width:331px;
+	float:left;
+	padding:0 0 0 67px;
+	margin:0;
+}
+
+
+
+#clearbox #mid #right {
+	width:402px;
+	float:right;
+	padding:0;
+	
+}
+
+#clearbox #emailbox {
+	margin:0;
+	padding:0;
+	background:url(../images/support/forgotpw/field.jpg) no-repeat;
+	width:314px;
+	height:39px;
+	padding:0 0 0 8px;
+}
+
+.emailfield {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:16px;
+	width:306px;
+	border:0;
+	margin: 8px 0 0 0;
+}
+
+.emailfield input:focus {
+	outline:0;
+}
+
+#clearbox h1 {
+	margin:0;
+	padding:0;
+	font-size: 26px;
+}
+
+#clearbox p.title {
+	margin:0;
+	padding:15px 0 5px 0;
+	font-weight: bold;
+}
+
+#clearbox p.text {
+	margin:0;
+	padding:0;
+	width: 310px;
+	line-height: 18px;
+}
+
+#clearbox p.para {
+	margin:0 0 10px 0;
+	padding:0;
+	line-height: 18px;
+	width: 320px;
+}
+
+
+
+/* -- Form actions --*/
+.form_waiting {
+	background:url(../images/support/forgotpw/ico_waiting.gif) no-repeat;
+	padding:0 0 0 22px;
+	line-height:28px;
+	margin: 0;
+}
+
+.form_ok {
+	background:url(../images/support/forgotpw/ico_tick.gif) no-repeat;
+	color:#2B8E3F;
+	line-height:28px;
+	padding: 0 0 0 22px;
+		margin: 0;
+}
+
+.form_oops {
+	background:url(../images/support/forgotpw/ico_fail.gif) no-repeat;
+	color:#DD1A28;
+	line-height:28px;
+	padding: 0 0 0 22px;
+		margin: 0;
+}
+
+
+#supportline {
+	margin:0;
+	padding:10px 0;
+	text-align:center;
+	line-height: 25px;
+}
+
+#supportline a {
+	text-decoration:none;
+}
+
+.btn_submit {
+	width:133px;
+	height:67px;
+	margin: 0;
+	padding:0;
+	line-height:67px;
+	font-size:16px;
+	position:absolute;
+	bottom:-12px;
+	right:163px;
+	cursor:pointer;
+	border:0;
+}
+
+#footerbox {
+	margin:0;
+	padding:0;
+	bottom:0;
+	position:absolute;
+	width:100%;
+	height:202px;
+
+
+}
+
+#footerbox #programicon {
+	height:162px;
+	background-position:right;
+	background-repeat:no-repeat;
+	width:1196px;
+	margin:0 auto;
+}
+
+
+#footerbox #logoline {
+	margin:0;
+	padding:0;
+	height:40px;
+}
+
+#footerbox #logoline #logobox {
+	width:1196px;
+	margin:0 auto;
+	padding:0;
+	background-position:left;
+	background-repeat:no-repeat;
+	height:40px;
+	
+}
+
+/* Theme color */
+body.grey {
+	color:#333333;
+}
+
+body.grey .btn_submit {
+	background-image:url(../images/support/forgotpw/grey/btn_emailme.jpg);	
+	color:#FFFFFF;
+}
+
+body.grey .btn_submit:hover {
+	background-image:url(../images/support/forgotpw/grey/btn_emailme_on.jpg);	
+}
+
+body.grey #supportline a {
+	color:#006FEE;
+}
+
+body.grey #logoline {
+	background-color:#333333;
+}
+
+
+
+/* Program background & logo */
+#ccb #bigbox {
+	background-image:url(../images/support/forgotpw/ccb/bg.jpg);
+}
+
+#ccb #programicon {
+	background-image:url(../images/support/forgotpw/ccb/logo.jpg);
+}
+
+#tb #bigbox {
+    background-image:url(../images/support/forgotpw/tb/bg.jpg);
+}
+
+#tb #programicon {
+    background-image:url(../images/support/forgotpw/tb/logo.jpg);
+}
+
+#rti #bigbox {
+    background-image:url(../images/support/forgotpw/rti/bg.jpg);
+}
+#rti #programicon {
+    background-image:url(../images/support/forgotpw/rti/logo.jpg);
+}
+#ar #bigbox {
+    background-image:url(../images/support/forgotpw/ar/bg.jpg);
+}
+#ar #programicon {
+    background-image:url(../images/support/forgotpw/ar/logo.jpg);
+}
+#cp1 #bigbox {
+    background-image:url(../images/support/forgotpw/cp1/bg.jpg);
+}
+#cp1 #programicon {
+    background-image:url(../images/support/forgotpw/cp1/logo.jpg);
+}
+body.grey #logobox {
+	background-image:url(../images/support/forgotpw/grey/logo_ce.jpg);
+}
