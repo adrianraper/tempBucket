@@ -1086,13 +1086,22 @@ EOD;
 				//NetDebug::trace("this folder is ".$folder);
 				//NetDebug::trace("this product is code=".$titleObj->F_ProductCode);
 				//NetDebug::trace("this lang is code=".$titleObj->F_LanguageCode);
-				if (intval($titleObj->F_ProductCode) > 1000) {
+				// gh#1179
+				//if (intval($titleObj->F_ProductCode) > 1000) {
+				$pid = intval($titleObj->F_ProductCode);
+				switch (true) {
+				case ($pid < 51):
+					$courseType = 'orchid';	
+					$titleObj->indexFile = "course.xml";
+					break;
+				case ($pid > 1000):
 					// case-sensitive
 					$titleObj->indexFile = "Emu.xml";
 					$courseType = 'emu';	
-				// For Road to IELTS 2
-				} else if ((intval($titleObj->F_ProductCode) == 52) || 
-							(intval($titleObj->F_ProductCode) == 53)) {
+					break;
+					
+				case ($pid == 52):
+				case ($pid == 53):
 					$courseType = 'bento';	
 					switch ($titleObj->F_ProductVersion) {
 						case 'R2ILM':
@@ -1113,34 +1122,32 @@ EOD;
 						default:
 							$productVersionName = 'x';
 					}
-					if (intval($titleObj->F_ProductCode) == 52) {
+					if ($pid == 52) {
 						$version = "Academic";
 					} else {
 						$version = "GeneralTraining";
 					}					
 					$titleObj->indexFile = "menu-$version-$productVersionName.xml";
-					
-				} else if (intval($titleObj->F_ProductCode) == 54) {
+					break;					
+				case ($pid == 54):
 					$courseType = 'rotterdam';	
 					$titleObj->indexFile = "courses.xml";
-				 
-				} else if (intval($titleObj->F_ProductCode) == 55) { 
-					$courseType = 'bento';
-					$titleObj->indexFile = "menu-FullVersion.xml";
-				} else if (intval($titleObj->F_ProductCode) == 56) { 
-					$courseType = 'bento';
-					$titleObj->indexFile = "menu-FullVersion.xml";
-				} else if (intval($titleObj->F_ProductCode) == 57) { 
+				 	break;
+				case ($pid == 57): 
 					$courseType = 'bento';
 					$titleObj->indexFile = "menu-Sounds-FullVersion.xml";
-				} else if (intval($titleObj->F_ProductCode) == 58) { 
+					break;
+				case ($pid == 58): 
 					$courseType = 'bento';
 					$titleObj->indexFile = "menu-Speech-FullVersion.xml";
-				} else {
-					$courseType = 'orchid';	
-					$titleObj->indexFile = "course.xml";
+					break;
+				default:
+					$courseType = 'bento';
+					$titleObj->indexFile = "menu-FullVersion.xml";
+					break;
 				}
-
+				//AbstractService::$debugLog->err("$pid menu is ".$folder."/".$titleObj->indexFile. " is $courseType");
+				
 				// Build the title object (if the course.xml file doesn't exist then just skip it. However, if we are in $forDMS
 				// mode then this is DMS and we want to display everything, even if course.xml doesn't exist.
 				//NetDebug::trace("get content from =".$folder."/".$titleObj->indexFile);
@@ -1236,7 +1243,8 @@ EOD;
 
 			$course->units = $this->_buildBentoUnits($courseXML, $course, $generateMaps, $courseType);
 			//gh#23
-			$course->totalUnits = count($course-> units);
+			$course->totalUnits = count($course->units);
+			//AbstractService::$debugLog->err($course->name." has units ".$course->totalUnits);
 				
 			if ($course->id != null) { // Ticket #104 - don't add content with missing id
 				if ($generateMaps) {
@@ -1548,7 +1556,8 @@ EOD;
 
 				$unit->exercises = $this->_buildExercises($unitXML, $unit, $generateMaps, $courseType, $groupXML);
 				//gh#23
-				$unit->totalExercises = count($unit-> exercises);		
+				$unit->totalExercises = count($unit->exercises);
+				//AbstractService::$debugLog->err($unit->name." has exercises ".$unit->totalExercises);		
 				
 				if ($unit->id != null) { // Ticket #104 - don't add content with missing id
 					if ($generateMaps) {
@@ -1629,6 +1638,7 @@ EOD;
 				} else {
 					$exercise->filename = $exerciseXML->getAttribute("fileName");
 				}
+				//AbstractService::$debugLog->err("exercise=".$exercise->filename);
 
 				if ($exercise->id != null) { // Ticket #104 - don't add content with missing id
 					if ($generateMaps) {
