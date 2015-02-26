@@ -21,7 +21,7 @@
 	if (empty($bank)) echo 'bank is empty';
 	if (!isset($xml->product->bank)) echo 'bank is not isset';
 */
-
+/*
 	$_REQUEST['prefix'] = 'clarity';
 	$_REQUEST['productCode'] = '59';
 	$_REQUEST['user'] = 'userEmail=dandy%40email&userName=asfsadf&password=password&confirmPassword=password';
@@ -38,7 +38,29 @@
 	$_REQUEST['operation'] = 'getQuestions';
 	
 	require_once(dirname(__FILE__)."/TB6weeksService.php");
+*/
+function updateUrl($url) {
+    if (stristr($_SERVER['HTTP_HOST'], 'dock.projectbench') !== false) {
+        $baseDomain = 'http://dock.contentbench';
+    } else {
+        $baseDomain = 'http://www.clarityenglish.com';
+    }
+    return preg_replace('/http(s?):\/\/[\w\.]*(:\d+)?/i', $baseDomain, $url);
+}
 
+function test($original, $expected) {
+    $updated = updateUrl($original);
+    if ($updated !== $expected) echo "Expected $expected, got $updated<br/>";
+}
+
+test(
+    "http://www.clarityenglish.com.erm.lib.mcu.edu.tw:81/Content/TenseBuster10-NAmerican",
+    "http://www.clarityenglish.com/Content/TenseBuster10-NAmerican"
+);
+test(
+    "https://clarityenglish.com.erm.lib.mcu.edu.tw:81/Content/TenseBuster10-NAmerican/",
+    "http://www.clarityenglish.com/Content/TenseBuster10-NAmerican/"
+);
 /*
 	require_once(dirname(__FILE__)."/MinimalService.php");
 	$dummy = new MinimalService();

@@ -100,10 +100,17 @@ class BentoService extends AbstractService {
 		    (substr($href->filename, -strlen('.xml')) != '.xml') || // If the filename doesn't end with .xml then disallow
 		    (strpos($href->getUrl(), ".."))) // If there is any directory traversal in the full url then disallow
 			return parent::xhtmlLoad($href);
-		
+
+        // gh#1172
+        $href->currentDir = $this->updateUrl($href->currentDir);
 		return XmlUtils::buildXml($href, $this->db, $this);
 	}
-	
+
+    // gh#1172
+    // TODO this is just a hack to stop ezproxy servers not reading content xml files
+    private function updateUrl($url) {
+        return preg_replace('/http(s?):\/\/[\w\.]*(:\d+)?/i', "http://www.clarityenglish.com", $url);
+    }
 	/**
 	 *
 	 * This call finds the relevant account, keyed on rootID [or prefix].
