@@ -102,7 +102,10 @@ class BentoService extends AbstractService {
 			return parent::xhtmlLoad($href);
 
         // gh#1172
-        $href->currentDir = $this->updateUrl($href->currentDir);
+        $updatedURL = $this->updateUrl($href->currentDir);
+        if ($updatedURL != $href->currentDir)
+            AbstractService::$debugLog->notice("changed this domain ".$href->currentDir);
+        $href->currentDir = $updatedURL;
 		return XmlUtils::buildXml($href, $this->db, $this);
 	}
 
