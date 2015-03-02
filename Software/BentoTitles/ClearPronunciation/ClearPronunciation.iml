@@ -8,9 +8,6 @@
             <entry module-name="Bento" build-configuration-name="Bento">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="8f8b9743-f51c-4416-8632-aff88fc6c7b4">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-name="Mobile components" library-level="project">
               <dependency linkage="Merged" />
             </entry>
@@ -18,6 +15,9 @@
               <dependency linkage="Merged" />
             </entry>
             <entry module-name="OSMF" build-configuration-name="OSMF">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="95dace61-6209-4182-afd6-3d06b46b260b">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -34,13 +34,13 @@
             <entry module-name="Bento" build-configuration-name="Bento">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="f643295b-c10c-4bd6-8d64-816ede5a850b">
-              <dependency linkage="Merged" />
-            </entry>
             <entry module-name="textLayout" build-configuration-name="textLayout">
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="MX components" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="0f921a30-eb60-4bfc-b5a9-9fdc2bf44dc9">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -68,28 +68,28 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="Mobile components" level="project" />
     <orderEntry type="module" module-name="Bento" exported="" />
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="8f8b9743-f51c-4416-8632-aff88fc6c7b4" />
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/skins/clearpronunciation/assets/CPPreloader.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="module" module-name="textLayout" exported="" />
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="f643295b-c10c-4bd6-8d64-816ede5a850b" />
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/skins/clearpronunciation/assets/CPPreloader.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="library" exported="" name="MX components" level="project" />
     <orderEntry type="module" module-name="OSMF" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="95dace61-6209-4182-afd6-3d06b46b260b" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/skins/clearpronunciation/assets/commonPreloader.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="0f921a30-eb60-4bfc-b5a9-9fdc2bf44dc9" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/skins/clearpronunciation/assets/commonPreloader.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
