@@ -277,7 +277,7 @@
 				<!-- Alfred can replace this with something pretty -->
 				<s:Label id="loadingLabel" color="0xFFFFFF" fontSize="12.6" verticalCenter="30" horizontalCenter="4" alpha="0.7" includeIn="ready" />
 				<s:Label color="0xFFFFFF" fontSize="12.6" verticalCenter="30" horizontalCenter="4" alpha="0.7" includeIn="bufferingStates" />
-				<s:SWFLoader source="@Embed(source='/skins/clearpronunciation/assets/loading.swf')" scaleX="0.5" scaleY="0.5" verticalCenter="-10" horizontalCenter="0"  />
+				<s:SWFLoader source="@Embed(source='/skins/clearpronunciation/assets/loading.swf')" verticalCenter="-10" horizontalCenter="0"  />
 			</s:Group>
 			
 			<!-- error -->
