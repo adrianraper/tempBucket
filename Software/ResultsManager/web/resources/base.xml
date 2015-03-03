@@ -237,4 +237,9 @@
 		<group name="group">
 		</group>
 	</language>
+
+    <language name="North American" code="NAMEN" mediaFolder="NAMEN">
+        <group name="group">
+        </group>
+    </language>
 </literals>

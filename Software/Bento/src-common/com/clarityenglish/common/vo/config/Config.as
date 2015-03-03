@@ -210,14 +210,11 @@ package com.clarityenglish.common.vo.config {
 				_rootID = value;
 			}
 		}
-		
+
 		public function set languageCode(value:String):void {
-			if (!_languageCode) {
-				CopyProxy.languageCode = value;
-				_languageCode = value;
-			} else {
-				_languageCode = value;
-			}
+			// gh#1182
+			CopyProxy.languageCode = value;
+			_languageCode = value;
 		}
 		
 		public function get languageCode():String {
@@ -451,7 +448,6 @@ package com.clarityenglish.common.vo.config {
 			if (xml..language.toString()) {
 				this.language = xml..language.toString();
 				this.languageCode = xml..language.toString();
-				//trace("language: "+this.language);
 			}
 			
 			// To handle the amfphp gateway
@@ -618,7 +614,7 @@ package com.clarityenglish.common.vo.config {
 			// gh#11 thisTitle.language changed to thisTitle.productVersion due to Alice local database add F_ProductVersion column			
 			// The account holds the languageCode - which in Bento terms is productVersion
 			// #524
-			
+			trace("title language code: "+thisTitle.languageCode);
 			if (thisTitle.languageCode) 
 				this.languageCode = thisTitle.languageCode;
 			if (thisTitle.productVersion) 
@@ -632,14 +628,14 @@ package com.clarityenglish.common.vo.config {
 			
 			// gh#886
 			// gh#1090
-			/*
+
 			for (var i:Number = 0; i < this.account.licenceAttributes.length; i++) {
 				if (this.account.licenceAttributes[i]['licenceKey'] == 'noLogin') {
 					this._noLogin = this.account.licenceAttributes[i]['licenceValue'];
 				}
 			}
-			*/
-			this._noLogin = (thisTitle.loginModifier & Title.LOGIN_BLOCKED);
+
+			//this._noLogin = (thisTitle.loginModifier & Title.LOGIN_BLOCKED);
 			
 			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
 			// and comes from a mix of T_ProductLanguage and T_Accounts. 

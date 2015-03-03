@@ -45,4 +45,12 @@
 			<lit name="Advanced">Advanced</lit>
 		</group>
 	</language>
+
+	<language name="North American" code="NAMEN" mediaFolder="NAMEN">
+		<group name="group">
+			<lit name="anonymousCaption">Just practice</lit>
+			<lit name="exerciseMarkingButton">Scoring</lit>
+			<lit name="progressNavBarAnalyse">Analyze</lit>
+		</group>
+	</language>
 </literals>

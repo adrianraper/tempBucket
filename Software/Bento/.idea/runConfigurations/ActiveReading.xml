@@ -30,7 +30,7 @@
     <option name="screenDpi" value="0" />
     <option name="screenHeight" value="0" />
     <option name="screenWidth" value="0" />
-    <option name="url" value="http://dock.projectbench/area1/ActiveReading/Start.php?prefix=Clarity&amp;email=dandy@email&amp;password=password&amp;startingPoint=state:progress" />
+    <option name="url" value="http://dock.projectbench/area1/ActiveReadingV10/Start.php?prefix=Clarity" />
     <option name="usbDebugPort" value="7936" />
     <RunnerSettings RunnerId="FlexDebugRunner" />
     <RunnerSettings RunnerId="FlexRunner" />
