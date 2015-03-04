@@ -385,10 +385,10 @@ package com.clarityenglish.bento.view.login {
 			} else {
 				replaceObj = {loginDetail:copyProvider.getCopyForId("nameLoginDetail")};
 			}
-			loginKeyCaption = copyProvider.getCopyForId("yourLoginDetail", replaceObj);	
+			loginKeyCaption = " " + copyProvider.getCopyForId("yourLoginDetail", replaceObj); // Adding a space here to nudge the prompt right
 			
 			// gh#100
-			passwordCaption = copyProvider.getCopyForId("passwordLabel");
+			passwordCaption = " " + copyProvider.getCopyForId("passwordLabel");
 			
 			// gh#487
 			forgotPasswordCaption = copyProvider.getCopyForId("forgotPasswordLabel");

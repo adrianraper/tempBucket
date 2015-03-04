@@ -109,9 +109,9 @@
 					</s:stroke>
 				</s:Line>
 				<s:Rect height="5" /> <!-- this is a spacer -->
-				<s:TextInput id="loginKeyInput" prompt="{hostComponent.loginKeyCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+				<s:TextInput id="loginKeyInput" prompt="{hostComponent.loginKeyCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false" textIndent="5"/>
 				<s:VGroup visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" gap="10" >
-					<s:TextInput id="passwordInput" displayAsPassword="true" prompt="{hostComponent.passwordCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+					<s:TextInput id="passwordInput" displayAsPassword="true" prompt="{hostComponent.passwordCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false" textIndent="5"/>
 					<s:HGroup width="100%" horizontalAlign="right">
 						<s:Button id="forgotPasswordButton" label="{hostComponent.forgotPasswordCaption}" useHandCursor="true" buttonMode="true"/>
 					</s:HGroup>

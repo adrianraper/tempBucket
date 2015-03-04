@@ -32,6 +32,8 @@ package com.clarityenglish.clearpronunciation.view.home {
 			view.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
 			
 			view.mediaFolder = new Href(Href.XHTML, "media/", configProxy.getConfig().paths.content).url;
+
+			view.isPlatformTablet = configProxy.isPlatformTablet();
 			
 			// Bind the selected node to the view to keep them in sync
 			Bind.fromProperty(bentoProxy, "selectedNode").toProperty(view, "selectedNode");

@@ -8,11 +8,25 @@
 		xmlns:title="skins.clearpronunciation.assets.title.*"
 		xmlns:flexlayouts="org.flexlayouts.layouts.*"
 		enabled="{hostComponent.enabled}"
-		width="100%" height="100%">
+		width="100%" height="100%" creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.home.HomeView")]
 	</fx:Metadata>
+
+	<fx:Script>
+		<![CDATA[
+		import mx.events.FlexEvent;
+
+		protected function onCreationComplete(event:FlexEvent):void {
+			if (hostComponent.isPlatformTablet) {
+				footerBitmapImage.bottom = 0;
+			} else {
+				footerBitmapImage.bottom = 45;
+			}
+		}
+		]]>
+	</fx:Script>
 	
 	<!-- states -->
 	<s:states>
@@ -36,7 +50,10 @@
 		<home:homeInstructionArrow  />
 		<s:Label id="homeInstructionLabel" top="28" left="110" width="300" fontWeight="bold" fontSize="25" color="#333333" />
 	</s:Group>
-	
+
+	<!-- footer (sits on top of application skin footer) -->
+	<s:BitmapImage id="footerBitmapImage" left="0" source="@Embed(source='/skins/clearpronunciation/assets/home/homeGirl.png')" />
+
 	<!-- The course list -->
 	<!-- gh#1123 -->
 	<s:List id="courseList" dataProvider="{hostComponent.courses}" labelField="@caption" width="205" left="70" verticalCenter="-30" borderVisible="false" contentBackgroundAlpha="0">
@@ -63,7 +80,7 @@
 		</s:itemRenderer>
 	</s:List>
 	
-	<s:Group verticalCenter="40" width="640" height="600" left="350" includeIn="introduction">
+	<s:Group verticalCenter="40" width="640" height="540" left="350" includeIn="introduction">
 		<video:VideoSelector id="introductionVideoSelector" width="640" height="360" horizontalCenter="0" />
 		
 		<s:Rect top="360" width="90%" height="88" horizontalCenter="0" bottomLeftRadiusX="10" bottomLeftRadiusY="10" bottomRightRadiusX="10" bottomRightRadiusY="10">
@@ -72,7 +89,7 @@
 			</s:fill>
 		</s:Rect>
 		<s:Label id="introductionTutorialLabel" top="370" left="70" fontFamily="Mgbold" fontWeight="bold" fontSize="20" color="#FFFFFF" />
-		<s:List id="introductionList" width="540" height="35" horizontalCenter="0" verticalCenter="120" labelField="@caption" borderVisible="false" useVirtualLayout="false" contentBackgroundAlpha="0">
+		<s:List id="introductionList" width="540" height="35" horizontalCenter="0" verticalCenter="145" labelField="@caption" borderVisible="false" useVirtualLayout="false" contentBackgroundAlpha="0">
 			<s:layout>
 				<s:HorizontalLayout gap="10" />
 			</s:layout>
@@ -120,13 +137,10 @@
 	</s:Group>
 	
 	<!-- The unit/exercise list (this covers all other courses) top="60" -->
-	<s:List id="unitList" left="375" verticalCenter="40" width="630" height="600" borderVisible="false" useVirtualLayout="true" contentBackgroundAlpha="0" excludeFrom="introduction">
+	<s:List id="unitList" left="375" verticalCenter="10" width="630" height="600" borderVisible="false" useVirtualLayout="true" contentBackgroundAlpha="0" excludeFrom="introduction">
 		<s:layout >
 			<flexlayouts:AccordianListLayout columnWidth="305" collapsedElementHeight="55" expandedElementHeight="200" verticalGap="10" />
 		</s:layout>
 	</s:List>
-
-	<!-- footer (sits on top of application skin footer) -->
-	<s:BitmapImage left="0" bottom="20" source="@Embed(source='/skins/clearpronunciation/assets/home/homeGirl.png')" />
 
 </s:Skin>

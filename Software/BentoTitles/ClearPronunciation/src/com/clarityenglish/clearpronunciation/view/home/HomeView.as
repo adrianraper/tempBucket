@@ -45,6 +45,9 @@ import com.clarityenglish.textLayout.vo.XHTML;
 		
 		[Bindable]
 		public var courses:ListCollectionView;
+
+		[Bindable]
+		public var isPlatformTablet:Boolean;
 		
 		public var channelCollection:ArrayCollection;
 		
@@ -52,7 +55,7 @@ import com.clarityenglish.textLayout.vo.XHTML;
 		
 		private var _selectedNode:XML;
 		private var introductionCourse:XML;
-		
+
 		public var nodeSelect:Signal = new Signal(XML);
 		
 		public function set selectedNode(value:XML):void {
@@ -133,9 +136,6 @@ import com.clarityenglish.textLayout.vo.XHTML;
 			if (e.target.selectedItem) {
 				nodeSelect.dispatch(e.target.selectedItem);
 			}
-
-
-
 		}
 		
 		protected override function getCurrentSkinState():String {

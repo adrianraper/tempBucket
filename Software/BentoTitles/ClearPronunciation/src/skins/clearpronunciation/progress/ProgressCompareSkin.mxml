@@ -85,7 +85,7 @@
 		</s:Group>
 	</s:VGroup>
 	
-	<mx:BarChart id="compareChart" left="20" right="20" top="150" bottom="40" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="250">
+	<mx:BarChart id="compareChart" left="20" right="20" top="150" bottom="50" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="250">
 		<mx:horizontalAxis>
 			<mx:LinearAxis id="horizontalAxis" minimum="0" maximum="100" labelFunction="percentageLabel" />
 		</mx:horizontalAxis>
@@ -181,7 +181,7 @@
 	</mx:BarChart>
 	
 	<!--histogram chart bottom line-->
-	<s:Rect left="270" right="20" bottom="40" height="1">
+	<s:Rect left="270" right="20" bottom="50" height="1">
 		<s:fill>
 			<s:SolidColor color="#B3B3B3" />
 		</s:fill>
