@@ -33,7 +33,7 @@
     </s:states>
 	
 	<s:VGroup left="20" right="20" top="20" bottom="0" gap="15">
-		<ui:ProgressCourseButtonBar id="progressCourseButtonBar" height="40">
+		<ui:ProgressCourseButtonBar id="progressCourseButtonBar" height="50">
 			<ui:layout>
 				<s:ButtonBarHorizontalLayout gap="35" />
 			</ui:layout>

@@ -67,7 +67,12 @@
         <s:State name="downAndSelected" stateGroups="downStates, selectedStates" />
         <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
     </s:states>
-    
+
+    <s:Rect width="100%" height="100%">
+        <s:fill>
+            <s:SolidColor color="#FFFFFF" alpha="0"/>
+        </s:fill>
+    </s:Rect>
 	<s:HGroup gap="8" verticalCenter="0" horizontalCenter="0" verticalAlign="middle">
 		<s:SWFLoader source="@Embed(source='/skins/clearpronunciation/assets/progress/progressTabBarIcon.png')" />
 		<!-- layer 8: icon and text -->
