@@ -32,7 +32,7 @@
                    xmlns:s="library://ns.adobe.com/flex/spark" 
                    xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
                    minWidth="21" minHeight="21" 
-                   alpha.disabledStates="0.5" xmlns:exercise="skins.activereading.assets.exercise.*">
+                   xmlns:exercise="skins.activereading.assets.exercise.*">
 	<fx:Metadata>[HostComponent("spark.components.ButtonBarButton")]</fx:Metadata>
     
     <!-- host component -->
@@ -51,8 +51,8 @@
     <s:Rect width="100%" height="45">
 		<s:fill>
 			<s:LinearGradient rotation="90">
-				<s:GradientEntry color.over="#458C8C" color.down="#458C8C" color.selectedStates="#2A6161" alpha.up="0" />
-				<s:GradientEntry color.over="#165C5C" color.down="#165C5C" color.selectedStates="#104D4D" alpha.up="0" />
+				<s:GradientEntry color.over="#458C8C" color.down="#458C8C" color.selectedStates="#2A6161" color.disabled="#515E5D" alpha.up="0" />
+				<s:GradientEntry color.over="#165C5C" color.down="#165C5C" color.selectedStates="#104D4D" color.disabled="#515E5D" alpha.up="0" />
 			</s:LinearGradient>
 		</s:fill>
 		<s:stroke>

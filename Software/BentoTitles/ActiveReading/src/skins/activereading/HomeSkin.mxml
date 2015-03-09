@@ -41,12 +41,7 @@
 
 			public var exListAlphaArray:Array = [];
 			private var unitListRendererArray:Array = [];
-			
-			public function getDemoLabelColor(index:Number):Number {
-				var colors:Array = hostComponent.getStyle("unitListButtonLabelColors");
-				return colors[index];
-			}
-			
+
 			public function getOutlineStrokeColour(index:Number):Number {
 				var colors:Array = hostComponent.getStyle("outlineColors");
 				return colors[index]
@@ -215,8 +210,10 @@
 						</fx:Metadata>
 						
 						<fx:Script>
-							<![CDATA[								
-								import mx.events.FlexEvent;
+							<![CDATA[
+							import com.clarityenglish.bento.BentoApplication;
+
+							import mx.events.FlexEvent;
 								
 								import spark.components.List;
 								
@@ -234,14 +231,17 @@
 										} else {
 											caption.setStyle("color", 0x333333);
 										}
-										
+
 										if (data.attribute("enabledFlag").length() > 0 && (data.@enabledFlag.toString() & 8)) {
-											unitItemGroup.enabled = false;	
-										} else if (data.attribute("enabledFlag").length() > 0 && (data.@enabledFlag.toString() & 4)) {
+											unitItemGroup.enabled = false;
+										} else {
+											unitItemGroup.enabled = true;
+										}
+
+									 	if (data.attribute("enabledFlag").length() > 0 && (data.@enabledFlag.toString() & 4)) {
 											demoGroup.visible = true;
 										} else {
 											demoGroup.visible = false;
-											unitItemGroup.enabled = true;
 										}
 									}
 								}
@@ -275,7 +275,7 @@
 									var colors:Array = outerDocument.hostComponent.getStyle("homeButtonBottomMidOverColors");
 									return colors[data.parent().childIndex()];
 								}
-								
+
 								public function getUnitListButtonLabelColor(data:Object):Number {
 									var colors:Array = outerDocument.hostComponent.getStyle("homeButtonLabelColors");
 									return colors[data.parent().childIndex()];
@@ -352,7 +352,7 @@
 							<s:Group id="demoGroup" right="6" top="10" width="45" height="20" visible="false">
 								<s:Rect width="100%" height="100%" radiusX="5" radiusY="5">
 									<s:fill>
-										<s:SolidColor color="{getUnitListButtonLabelColor(data)}" />
+										<s:SolidColor color="{outerDocument.getOutlineStrokeColour(data.parent().childIndex())}" />
 									</s:fill>
 								</s:Rect>
 								<s:Label text="Demo" color="#FFFFFF" horizontalCenter="1" verticalCenter="1" />
@@ -544,10 +544,10 @@
 		</s:VGroup>
 
 		<!--Demo Tooltip-->
-		<s:Group id="demoTooltipGroup" width="163" height="70" right="-50" top="360" visible="false">
+		<s:Group id="demoTooltipGroup" width="173" height="70" right="-50" top="360" visible="false">
 			<s:Rect width="100%" height="100%" radiusX="10" radiusY="10">
 				<s:fill>
-					<s:SolidColor color="#888A8C"/>
+					<s:SolidColor color="#591117"/>
 				</s:fill>
 			</s:Rect>
 			<s:VGroup top="12" bottom="10" left="9" gap="4">
@@ -557,7 +557,7 @@
 						<s:Group width="45" height="20">
 							<s:Rect width="100%" height="100%" radiusX="5" radiusY="5">
 								<s:fill>
-									<s:SolidColor color="{getDemoLabelColor(hostComponent.courseIndex)}" />
+									<s:SolidColor color="{getOutlineStrokeColour(hostComponent.courseIndex)}" />
 								</s:fill>
 							</s:Rect>
 							<s:Label text="Demo" color="#FFFFFF" horizontalCenter="1" verticalCenter="1" />
@@ -579,8 +579,8 @@
 				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>
-		<s:HGroup left="4" verticalAlign="middle" gap="10" paddingTop="4" paddingBottom="4">
-			<assets:loginlogoCE />
+		<s:HGroup left="10" verticalAlign="middle" gap="10" paddingTop="4" paddingBottom="4">
+			<assets:loginlogoCE scaleX="0.45" scaleY="0.45" />
 			<s:Label id="versionLabel" color="#333333" fontSize="11" />
 			<s:Label id="copyrightLabel" color="#333333" fontSize="11" />
 		</s:HGroup>

@@ -42,23 +42,21 @@
 	<s:Button id="logoutButton" right="20" top="0" buttonMode="true" useHandCursor="true" excludeFrom="exercise"/>
 	
 	<!--Demo version label-->
-	<s:Group id="demoGroup" width="208" height="29" right="20" top="0" visible="{hostComponent.productVersion == BentoApplication.DEMO}">
+	<s:Group id="demoGroup" width="130" height="60" left="5" top="0" visible="{hostComponent.productVersion == BentoApplication.DEMO}" includeIn="home">
 		<s:Rect width="100%" height="100%" bottomLeftRadiusX="10" bottomRightRadiusX="10">
 			<s:fill>
-				<s:SolidColor color="#591117" />
+				<s:SolidColor color="#591117" alpha="0.6" />
 			</s:fill>
 		</s:Rect>
-		<s:HGroup top="10" left="10" gap="7">
+		<s:Rect width="120" height="55" horizontalCenter="0" bottomLeftRadiusX="10" bottomRightRadiusX="10">
+			<s:fill>
+				<s:SolidColor color="#591117" alpha="0.9" />
+			</s:fill>
+		</s:Rect>
+		<s:VGroup width="100%" horizontalCenter="0" horizontalAlign="center" top="10" gap="7">
 			<s:Label id="topLeftDemoLabel" fontSize="14" color="#FFFFFF" fontWeight="bold" />
-			<s:VGroup paddingTop="-2">
-				<s:Line yFrom="0" yTo="13">
-					<s:stroke>
-						<s:SolidColorStroke color="#FFFFFF" />
-					</s:stroke>
-				</s:Line>
-			</s:VGroup>
-			<s:Label id="topRightDemoLabel" fontSize="13" color="#FFFFFF" />
-		</s:HGroup>
+			<s:Label id="topRightDemoLabel" fontSize="12" color="#FFFFFF" />
+		</s:VGroup>
 	</s:Group>
 	
 	<!--s:Button id="backToMenuButton" right="60" top="35" color="0x000000" fontWeight="bold" fontSize="13" includeIn="exercise" buttonMode="true" useHandCursor="true"/-->	

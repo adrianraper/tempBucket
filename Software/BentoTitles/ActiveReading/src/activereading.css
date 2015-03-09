@@ -36,6 +36,8 @@ global {
 	homeNumberTagBottomMidColors: #F05B67, #ED671F, #E08800, #597050, #3A7E9A, #7260A6;
 	
 	homeButtonLabelColors: #B51223, A13300, #723600, #30541C, #0D5673, #4A3191;
+
+	disabledButtonColors: #EDBFBE, #DDC4B3, #E0D5C6, #C0DDC4, #B7CBCE, #BBADC9;
 	
 	textBackgroundColor: #FBDBDE, #FCD0BD, #FFDFB4, #DBECCA, #CFECF6, #DDD2E8;
 	progressAnalysisTextColors: #C63D47, #E96024, #D78D28, #47613D, #1E7496, #442E88;

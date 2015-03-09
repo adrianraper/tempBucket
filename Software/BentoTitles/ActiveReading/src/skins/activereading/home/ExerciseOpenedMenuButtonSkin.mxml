@@ -52,6 +52,11 @@
 				var colors:Array = getStyle("homeButtonLabelColors");
 				return colors[index];
 			}
+
+			public function getDisabledColor(index:Number):Number {
+				var colors:Array = getStyle("disabledButtonColors");
+				return colors[index];
+			}
 		]]>
 	</fx:Script>
 	
@@ -66,10 +71,10 @@
 	<s:Rect id="donePath" left="2" height="100%" width="100%" radiusX="6" radiusY="6" filters="{[dropShadowFilter]}">
 		<s:fill>			
 			<s:LinearGradient rotation="270">
-				<s:GradientEntry ratio="0" color="{getTopColor(hostComponent.courseIndex)}" color.down="{getTopOverColor(hostComponent.courseIndex)}" color.over="{getTopOverColor(hostComponent.courseIndex)}"/>
-				<s:GradientEntry ratio="0.3" color="{getTopMidColor(hostComponent.courseIndex)}" color.down="{getTopMidOverColor(hostComponent.courseIndex)}" color.over="{getTopMidOverColor(hostComponent.courseIndex)}"/>
-				<s:GradientEntry ratio="0.8" color="{getBottomMidColor(hostComponent.courseIndex)}" color.down="{getBottomMidOverColor(hostComponent.courseIndex)}" color.over="{getBottomMidOverColor(hostComponent.courseIndex)}"/>
-				<s:GradientEntry ratio="0.9" color="{getTopMidColor(hostComponent.courseIndex)}" color.down="{getTopMidOverColor(hostComponent.courseIndex)}" color.over="{getTopMidOverColor(hostComponent.courseIndex)}"/>
+				<s:GradientEntry ratio="0" color="{getTopColor(hostComponent.courseIndex)}" color.down="{getTopOverColor(hostComponent.courseIndex)}" color.over="{getTopOverColor(hostComponent.courseIndex)}" color.disabled="{getDisabledColor(hostComponent.courseIndex)}"/>
+				<s:GradientEntry ratio="0.3" color="{getTopMidColor(hostComponent.courseIndex)}" color.down="{getTopMidOverColor(hostComponent.courseIndex)}" color.over="{getTopMidOverColor(hostComponent.courseIndex)}" color.disabled="{getDisabledColor(hostComponent.courseIndex)}"/>
+				<s:GradientEntry ratio="0.8" color="{getBottomMidColor(hostComponent.courseIndex)}" color.down="{getBottomMidOverColor(hostComponent.courseIndex)}" color.over="{getBottomMidOverColor(hostComponent.courseIndex)}" color.disabled="{getDisabledColor(hostComponent.courseIndex)}"/>
+				<s:GradientEntry ratio="0.9" color="{getTopMidColor(hostComponent.courseIndex)}" color.down="{getTopMidOverColor(hostComponent.courseIndex)}" color.over="{getTopMidOverColor(hostComponent.courseIndex)}" color.disabled="{getDisabledColor(hostComponent.courseIndex)}"/>
 			</s:LinearGradient>
 		</s:fill>
 		<s:stroke>

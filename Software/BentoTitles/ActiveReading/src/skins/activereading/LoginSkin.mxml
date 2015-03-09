@@ -66,12 +66,12 @@
 	<s:BitmapImage width="100%" verticalCenter="150" source="@Embed(source='/skins/activereading/assets/login/loginlines.png')" fillMode="scale" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}" />
 
 	<!--Book-->
-	<s:BitmapImage bottom="0" right="-120" source="@Embed(source='/skins/activereading/assets/login/loginbook.png')" />
+	<s:BitmapImage bottom="0" right="-120" source="@Embed(source='/skins/activereading/assets/login/loginbook.png')" scaleX="0.97" scaleY="0.97" />
 
 	<!--Girl and demo button-->
 	<s:VGroup bottom="0" right="50" horizontalAlign="center" gap="20">
 		<!-- <s:Button id="demoButton1" label="{hostComponent.demoButtonCaption} " useHandCursor="true" buttonMode="true" /> -->
-		<s:BitmapImage source="@Embed(source='/skins/activereading/assets/login/logingirl.png')" />
+		<s:BitmapImage source="@Embed(source='/skins/activereading/assets/login/logingirl.png')" scaleX="0.97" scaleY="0.97" />
 	</s:VGroup>
 	
 	<!--Header-->
@@ -81,7 +81,7 @@
 		</s:source>
 	</s:BitmapImage>
 	<title:titlelogoAR right="{width * 0.17}" top="20" scaleX="1.8" scaleY="1.8" />
-	<s:Label text="{hostComponent.getCopyProvider().getCopyForId('licencedToName', {name: hostComponent.licenceeName})}" left="14" top="14" fontSize="13" color="0xFFFFFF" />
+	<s:Label id="licenceLabel" text="{hostComponent.getCopyProvider().getCopyForId('licencedToName', {name: hostComponent.licenceeName})}" left="14" top="14" fontSize="13" color="0xFFFFFF" visible="{!hostComponent.noAccount}" />
 
 	<!-- branding -->
 	<s:BitmapImage id="brandingImage1" visible="{hostComponent.branding}" includeInLayout="{hostComponent.branding}"/>
