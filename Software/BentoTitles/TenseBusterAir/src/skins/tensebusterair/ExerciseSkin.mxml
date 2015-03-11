@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:view="com.clarityenglish.bento.view.*"
-		xmlns:recorder="com.clarityenglish.bento.view.recorder.*" xmlns:exercise="skins.tensebuster.assets.exercise.*" creationComplete="onCreationComplete(event)" xmlns:android="skins.tensebusterair.assets.android.*">
+		xmlns:recorder="com.clarityenglish.bento.view.recorder.*" xmlns:exercise="skins.tensebuster.assets.exercise.*" xmlns:android="skins.tensebusterair.assets.android.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.exercise.ExerciseView")]
@@ -11,19 +11,6 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.core.FlexGlobals;
-			import mx.events.FlexEvent;
-			
-			protected function onCreationComplete(event:FlexEvent):void
-			{
-				// TODO Auto-generated method stub
-				if (FlexGlobals.topLevelApplication.stage.stageWidth >= 1280) {
-					tenInchesBg.visible = true;
-					sevenInchesBg.visible = false;
-				} else {
-					tenInchesBg.visible = false;
-					sevenInchesBg.visible = true;
-				}
-			}
 		]]>
 	</fx:Script>
 	
@@ -39,10 +26,7 @@
 		<s:State name="exercise" />
 		<s:State name="other" />
 	</s:states>
-	
-	<!--background-->
-	<s:BitmapImage id="tenInchesBg" bottom="0" width="100%" source="@Embed(source='/skins/tensebusterair/assets/android/tenInches/hexagonBg.png')" fillMode="repeat" visible="false" />
-	<s:BitmapImage id="sevenInchesBg" bottom="0" width="100%" source="@Embed(source='/skins/tensebusterair/assets/android/sevenInches/hexagonBg.png')" fillMode="repeat" visible="false" />
+
 	<s:Group horizontalCenter="0" height="100%" filters="{[dropShadowFilter]}">
 		<s:HGroup top="10" gap="-1">
 			<android:exTriangle />
@@ -97,8 +81,8 @@
 		
 		<!-- Top Right buttons -->
 		<s:HGroup right="0" top="59" includeIn="exercise" gap="0">
-			<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontSize="12" buttonMode="true" useHandCursor="true" />
-			<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
+			<s:Button id="markingButton" color="0xFFFFFF" fontSize="12" buttonMode="true" useHandCursor="true" />
+			<s:Button id="startAgainButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 			<s:Button id="recorderButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 			<s:Button id="ruleButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" visible="{hostComponent.ruleLink != null}" />
 			<s:Button id="printButton" visible="{hostComponent.hasPrintStylesheet}" color="0xFFFFFF" fontWeight="bold" buttonMode="true" fontSize="12" useHandCursor="true"/>

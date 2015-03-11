@@ -75,6 +75,9 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		[SkinPart]
 		public var topRightDemoLabel:Label;
+
+		[SkinPart]
+		public var progressViewNavigator:ViewNavigator;
 		
 		[Bindable]
 		public static var courseCode:String;
@@ -87,7 +90,6 @@ package com.clarityenglish.tensebuster.view.title {
 		private var _unitCaption:String;
 		private var _exerciseCaption:String;
 		private var courseCaptionChange:Boolean;
-		private var _androidSize:String;
 		private var _isDirectStartCourse:Boolean;
 		private var _directCourse:XML;
 		private var _isDirectStartUnit:Boolean;
@@ -152,15 +154,6 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		public function set exerciseCaption(value:String):void {
 			_exerciseCaption = value;
-		}
-		
-		public function set androidSize(value:String):void {
-			_androidSize = value;
-		}
-		
-		[Bindable]
-		public function get androidSize():String {
-			return _androidSize;
 		}
 		
 		public function set isDirectStartCourse(value:Boolean):void {
@@ -275,6 +268,10 @@ package com.clarityenglish.tensebuster.view.title {
 				case topRightDemoLabel:
 					topRightDemoLabel.text = copyProvider.getCopyForId("topRightDemoLabel");
 					break;
+				// gh#1090 To hide progress tab for pure AA login
+				case progressViewNavigator:
+					instance.enabled = !config.noLogin;
+					break;
 			}
 
 		}
@@ -284,11 +281,6 @@ package com.clarityenglish.tensebuster.view.title {
 		}
 		
 		protected override function getCurrentSkinState():String {
-			//For android
-			if (_androidSize) {
-				return currentState + _androidSize;
-			}
-			
 			return currentState;
 		}
 		

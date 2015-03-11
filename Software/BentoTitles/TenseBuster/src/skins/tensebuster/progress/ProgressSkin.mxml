@@ -17,6 +17,7 @@
     <s:states>
         <s:State name="normal" />
         <s:State name="disabled" />
+		<s:State name="anonymous" />
 		
 		<s:State name="coverage" stateGroups="normalStates,coverageStates"/>
 		<s:State name="compare" stateGroups="normalStates,compareStates"/>
@@ -24,18 +25,16 @@
 		<s:State name="score" stateGroups="normalStates,scoreStates"/>
 		<s:State name="certificate" stateGroups="normalStates, certificateStates"/>
     </s:states>
-	
+
 	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/hexagonBg.png')" left="0" bottom="0"/>
 	
-	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/title/header.png')" top="-60"/>
-	
 	<s:HGroup width="100%" paddingLeft="65" top="55">
-		<s:ButtonBar id="progressNavBar"/>			
+		<s:ButtonBar id="progressNavBar" enabled.anonymous="false"/>
 	</s:HGroup>
 	
 	<s:Group width="100%" height="100%" filters="{[dropShadowFilter]}">
 		<!--rectangle panel-->
-		<s:Rect left="29" right="29" bottom="15" top="120">
+		<s:Rect left="29" right="29" bottom="0" top="120">
 			<s:fill>
 				<s:LinearGradient rotation="90">
 					<s:GradientEntry color="0xFFFFFF" ratio="0"/>
@@ -47,9 +46,9 @@
 		<!--top panel-->	
 		<exercise:topPanel top="90" right="28" left="28" />
 	</s:Group>
-	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/progress/progressFooter.png')" bottom="10" left="28" excludeFrom="[compare, score, certificate]" />
-	
-	<s:HGroup width="100%" height="100%" top="110" left="15" bottom="50" right="15">
+	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/progress/progressFooter.png')" bottom="0" left="28" excludeFrom="[compare, score, certificate]" />
+
+	<s:HGroup width="100%" height="100%" top="110" left="15" bottom="0" right="15">
 		<s:Group width="100%" height="100%">
 			<s:Group width="100%" height="100%" includeIn="normalStates">
 				<components:ProgressCoverageView id="progressCoverageView" width="100%" height="100%" includeIn="coverage" />
@@ -60,4 +59,25 @@
 			</s:Group>
 		</s:Group>
 	</s:HGroup>
+
+	<!--Anonymouse login-->
+	<s:Group horizontalCenter="0" verticalCenter="0" includeIn="anonymous">
+		<s:Rect left="0" right="0" top="0" bottom="0" radiusX="7" radiusY="7">
+			<s:fill>
+				<s:SolidColor color="0x808080" />
+			</s:fill>
+		</s:Rect>
+		<s:Label id="labelDisplay"
+				 horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
+				 left="10" right="10" top="4" bottom="4"
+				 color="0xFFFFFF" fontSize="14" text="You are anonymous. To keep track of your progress, sign in next time.">
+		</s:Label>
+	</s:Group>
+
+	<!--Footer-->
+	<s:Rect width="100%" height="10" bottom="0">
+		<s:fill>
+			<s:SolidColor color="0xEA2133" />
+		</s:fill>
+	</s:Rect>
 </s:Skin>

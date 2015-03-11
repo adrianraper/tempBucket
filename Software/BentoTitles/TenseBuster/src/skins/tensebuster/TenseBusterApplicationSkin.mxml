@@ -60,26 +60,4 @@
 	    <nonetwork:NoNetworkView id="noNetworkView" verticalCenter="0" horizontalCenter="0" includeIn="nonetwork" />
 	</s:Group>
 	
-	<!-- Footer --> 
-	<s:Group horizontalCenter="0" height="37" bottom="0">
-		<!--s:Rect left="0" right="0" top="0" bottom="0">
-			<s:fill>
-				<s:SolidColor color="#333333" />
-			</s:fill>
-		</s:Rect-->
-		<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/TB-footer.png')" />
-		<s:HGroup right="10" top="12">
-			<s:Label id="versionLabel" text="v{hostComponent.versionNumber}" color="#FFFFFF" fontSize="12" paddingTop="6" />
-			<s:Label id="copyrightLabel" text="© Clarity Language Consultants Ltd, 1993-2014. All rights reserved." color="#FFFFFF" fontSize="12" paddingTop="6" />
-			<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/clarityenglishLogo.png')" />
-		</s:HGroup>		
-	</s:Group>
-	
-	<!-- gh#441 why is this used, doesn't creditsview take care of it? -->
-	<!--s:Scroller top="560" bottom="30" horizontalCenter="0" width="720" visible="{hostComponent.currentState == 'credits'}">
-		<s:Group>
-			<s:RichText id="creditsRichText" horizontalCenter="0" textAlign="center" fontSize="12" color="0x333333" />
-		</s:Group>
-	</s:Scroller-->
-	
 </s:Skin>

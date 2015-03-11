@@ -19,7 +19,7 @@
 	$coordsMinWidth = '990';
 	$coordsMaxWidth = '990';
 	$coordsMinHeight = '760';
-	$coordsMaxHeight = '970';
+	$coordsMaxHeight = null;
 	$locationFile = "config.xml";
 	
 	// Picking up IP and referrer for security checking

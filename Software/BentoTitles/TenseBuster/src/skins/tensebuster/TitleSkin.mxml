@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:recorder="com.clarityenglish.bento.view.recorder.*" xmlns:exercise="skins.tensebuster.assets.exercise.*">
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:recorder="com.clarityenglish.bento.view.recorder.*"
+		xmlns:exercise="skins.tensebuster.assets.exercise.*" xmlns:assetstb="skins.tensebuster.assets.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.title.TitleView")]
@@ -37,7 +38,10 @@
 	
 	<s:Button id="helpButton" right="120" top="37" buttonMode="true" useHandCursor="true" excludeFrom="exercise"/>
 	<s:Button id="logoutButton" right="21" top="37" buttonMode="true" useHandCursor="true" excludeFrom="exercise"/>
-	
+
+	<!--tense buster brand header-->
+	<assetstb:header top="29" excludeFrom="exercise" />
+
 	<!--Demo version label-->
 	<s:Group id="demoGroup" width="208" height="29" right="20" top="0" visible="{hostComponent.productVersion == BentoApplication.DEMO}">
 		<s:Rect width="100%" height="100%" bottomLeftRadiusX="10" bottomRightRadiusX="10">

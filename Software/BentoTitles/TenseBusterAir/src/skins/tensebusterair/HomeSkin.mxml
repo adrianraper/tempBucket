@@ -183,7 +183,7 @@
 			protected function onCreationComplete(event:FlexEvent):void {
 				// TB initial start
 				if (courseSelector.level) {
-					instructioGroup.visible = false;
+					instructionGroup.visible = false;
 					hostComponent.isInitialSelect = false;
 					
 					levelTitleGroupLabel.text = hostComponent.course.@caption;
@@ -238,68 +238,71 @@
 	<courseselector:TBCourseSelector id="courseSelector" left="-30" verticalCenter="-110" width="30%"/>
 	<s:SWFLoader id="homeInitialBg" source="@Embed(source='/skins/tensebusterair/assets/home/homeInitialBg.png')" right="0" bottom="-50" visible="{courseSelector.level == null}" />
 	<home:homeBg right="0" visible="{courseSelector.level != null}" bottom="50" />
+	<!-- Student name -->
+	<s:Label left="40" top="90" text="{hostComponent.userNameCaption}" fontSize="13" color="0x000000" />
 	
 	<!--Instruction-->
-	<s:Group id="instructioGroup">
+	<s:Group id="instructionGroup">
 		<!--s:Label id="instructionLabel" width="480" left="440" fontSize="24" color="#DB0000" fontFamily="Segoe Print" /-->
 		<home:instruction left="410" />
 		<home:instructionArrow top="50" left="230" />
 	</s:Group>	
 	
 	<!--unit list title bar-->
-	<s:List id="unitList" visible="false" width="257" top="275" left="275" contentBackgroundAlpha="1" contentBackgroundColor="{getUnitListBackgroundColor(hostComponent.courseIndex)}" borderVisible="false">
-		<s:layout>
-			<s:VerticalLayout gap="1" paddingBottom="5" paddingTop="8" paddingLeft="4" paddingRight="4" /> 
-		</s:layout>
-		<s:itemRenderer>
-			<fx:Component>				
-				<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
-					
-					<fx:Metadata>
-						[Event( name="selectionEvent", type="flash.events.Event" )]
-					</fx:Metadata>
-					
-					<fx:Script>
+	<s:Group height="200" verticalCenter="-250">
+		<s:List id="unitList" visible="false" width="257" top="275" left="275" contentBackgroundAlpha="1" contentBackgroundColor="{getUnitListBackgroundColor(hostComponent.courseIndex)}" borderVisible="false">
+			<s:layout>
+				<s:VerticalLayout gap="1" paddingBottom="5" paddingTop="8" paddingLeft="4" paddingRight="4" />
+			</s:layout>
+			<s:itemRenderer>
+				<fx:Component>
+					<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
+
+						<fx:Metadata>
+							[Event( name="selectionEvent", type="flash.events.Event" )]
+						</fx:Metadata>
+
+						<fx:Script>
 						<![CDATA[
 							import mx.events.FlexEvent;
-							
+
 							[Bindable]
 							public var unitButtonColor:uint;
-							
+
 							[Bindable]
 							public var unitButtonTopOverColor:uint;
-							
+
 							[Bindable]
 							public var unitButtonBottomOverColor:uint;
-							
+
 							[Bindable]
 							public var unitButtonProgressTopColor:uint;
-							
+
 							[Bindable]
 							public var unitButtonProgressTopOverColor:uint;
-							
+
 							[Bindable]
 							public var unitButtonProgressBottomColor:uint;
-							
+
 							[Bindable]
 							public var unitButtonProgressBottomOverColor:uint;
-							
+
 							[Bindable]
 							public var labelColor:uint;
-							
+
 							public override function set data(value:Object):void {
 								super.data = value;
-								
+
 								if (data) {
 									overallProgressPath.percentWidth = data.@coverage;
-									
+
 									// Because the last button in unit list has bottom rounded corner, so we need to find the last button
 									if (outerDocument.hostComponent.course.unit.(@caption == data.@caption).childIndex() == (outerDocument.hostComponent.course.unit.length() - 1)) {
 										backgroundRect.bottomLeftRadiusX = 5;
 										backgroundRect.bottomLeftRadiusY = 5;
 										backgroundRect.bottomRightRadiusX = 5;
 										backgroundRect.bottomRightRadiusY = 5;
-										
+
 										overallProgressPath.bottomLeftRadiusX = 5;
 										overallProgressPath.bottomLeftRadiusY = 5;
 										if (data.@coverage == 100) {
@@ -311,13 +314,13 @@
 										backgroundRect.bottomLeftRadiusY = 0;
 										backgroundRect.bottomRightRadiusX = 0;
 										backgroundRect.bottomRightRadiusY = 0;
-										
+
 										overallProgressPath.bottomLeftRadiusX = 0;
 										overallProgressPath.bottomLeftRadiusY = 0;
 										overallProgressPath.bottomRightRadiusX = 0;
 										overallProgressPath.bottomRightRadiusY = 0;
 									}
-									
+
 									unitButtonColor = getUnitButtonColor(outerDocument.hostComponent.courseIndex);
 									unitButtonTopOverColor = getUnitButtonTopOverColor(outerDocument.hostComponent.courseIndex);
 									unitButtonBottomOverColor = getUnitButtonBottomOverColor(outerDocument.hostComponent.courseIndex);
@@ -326,100 +329,101 @@
 									unitButtonProgressBottomColor = getUnitButtonProgressBottomColor(outerDocument.hostComponent.courseIndex);
 									unitButtonProgressBottomOverColor = getUnitButtonProgressBottomOverColor(outerDocument.hostComponent.courseIndex);
 									labelColor = getUnitListButtonLabelColor(outerDocument.hostComponent.courseIndex);
-									
+
 									if (data.attribute("enabledFlag").length() > 0 && (data.@enabledFlag.toString() & 8)) {
-										unitItemGroup.enabled = false;	
+										unitItemGroup.enabled = false;
 									} else if (data.attribute("enabledFlag").length() > 0 && (data.@enabledFlag.toString() & 4)) {
 										demoGroup.visible = true;
 									} else {
 										demoGroup.visible = false;
 										unitItemGroup.enabled = true;
 									}
-								}	
+								}
 							}
-							
+
 							public function getUnitButtonProgressTopColor(index:Number):Number {
 								var colors:Array = outerDocument.hostComponent.getStyle("unitButtonProgressTopColors");
 								return colors[index];
 							}
-							
+
 							public function getUnitButtonProgressBottomColor(index:Number):Number {
 								var colors:Array = outerDocument.hostComponent.getStyle("unitButtonProgressBottomColors");
 								return colors[index];
 							}
-							
-								public function getUnitButtonProgressTopOverColor(index:Number):Number {
-									var colors:Array = outerDocument.hostComponent.getStyle("unitButtonProgressTopOverColors");
-									return colors[index];
-								}
-								public function getUnitButtonProgressBottomOverColor(index:Number):Number {
-									var colors:Array = outerDocument.hostComponent.getStyle("unitButtonProgressBottomOverColors");
-									return colors[index];
-								}
+
+							public function getUnitButtonProgressTopOverColor(index:Number):Number {
+								var colors:Array = outerDocument.hostComponent.getStyle("unitButtonProgressTopOverColors");
+								return colors[index];
+							}
+							public function getUnitButtonProgressBottomOverColor(index:Number):Number {
+								var colors:Array = outerDocument.hostComponent.getStyle("unitButtonProgressBottomOverColors");
+								return colors[index];
+							}
 							public function getUnitButtonColor(index:Number):Number {
 								var colors:Array = outerDocument.hostComponent.getStyle("unitListButtonBackgroundColors");
 								return colors[index];
 							}
-							
+
 							public function getUnitButtonTopOverColor(index:Number):Number {
 								var colors:Array = outerDocument.hostComponent.getStyle("unitButtonTopOverColors");
 								return colors[index];
 							}
-							
+
 							public function getUnitButtonBottomOverColor(index:Number):Number {
 								var colors:Array = outerDocument.hostComponent.getStyle("unitButtonBottomOverColors");
 								return colors[index];
 							}
-							
+
 							public function getUnitListButtonLabelColor(index:Number):Number {
 								var colors:Array = outerDocument.hostComponent.getStyle("unitListButtonLabelColors");
 								return colors[index];
 							}
-							
-						]]>
+
+							]]>
 					</fx:Script>
-					
-					<s:states>
-						<s:State name="normal" />
-						<s:State name="hovered" />
-						<s:State name="selected" />    
-					</s:states>
-					
-					<s:Group id="unitItemGroup" enabled="true">
-						<s:Rect id="backgroundRect" width="247" height="38">
-							<s:fill>
-								<s:LinearGradient rotation="90">
-									<s:GradientEntry id="backgroundRectTopColor" color="{unitButtonColor}" color.selected="{unitButtonTopOverColor}" color.hovered="{unitButtonTopOverColor}"/>
-									<s:GradientEntry id="backgroundRectBottomColor" color="{unitButtonColor}" color.selected="{unitButtonBottomOverColor}" color.hovered="{unitButtonBottomOverColor}"/>
-								</s:LinearGradient>
-							</s:fill>
-						</s:Rect>
-						
-						<s:Rect id="overallProgressPath" height="38" maxWidth="247">
-							<s:fill>
-								<s:LinearGradient rotation="90">
-									<s:GradientEntry color="{unitButtonProgressTopColor}" color.hovered="{unitButtonProgressTopOverColor}" color.selected="{unitButtonProgressTopOverColor}" />
-									<s:GradientEntry color="{unitButtonProgressBottomColor}" color.hovered="{unitButtonProgressBottomOverColor}" color.selected="{unitButtonProgressBottomOverColor}" />
-								</s:LinearGradient>
-							</s:fill>
-						</s:Rect>
-						
-						<s:Label id="caption" text="{data.@caption}" color="{labelColor}" top="15" left="18" fontSize="17" />
-						
-						<!--Demo label in unit list-->
-						<s:Group id="demoGroup" right="6" top="10" width="45" height="20" visible="false">
-							<s:Rect width="100%" height="100%" radiusX="5" radiusY="5">
+
+						<s:states>
+							<s:State name="normal" />
+							<s:State name="hovered" />
+							<s:State name="selected" />
+						</s:states>
+
+						<s:Group id="unitItemGroup" enabled="true">
+							<s:Rect id="backgroundRect" width="247" height="38">
 								<s:fill>
-									<s:SolidColor color="{labelColor}" />
+									<s:LinearGradient rotation="90">
+										<s:GradientEntry id="backgroundRectTopColor" color="{unitButtonColor}" color.selected="{unitButtonTopOverColor}" color.hovered="{unitButtonTopOverColor}"/>
+										<s:GradientEntry id="backgroundRectBottomColor" color="{unitButtonColor}" color.selected="{unitButtonBottomOverColor}" color.hovered="{unitButtonBottomOverColor}"/>
+									</s:LinearGradient>
 								</s:fill>
 							</s:Rect>
-							<s:Label text="Demo" fontSize="12" color="#FFFFFF" horizontalCenter="1" verticalCenter="1" />
+
+							<s:Rect id="overallProgressPath" height="38" maxWidth="247">
+								<s:fill>
+									<s:LinearGradient rotation="90">
+										<s:GradientEntry color="{unitButtonProgressTopColor}" color.hovered="{unitButtonProgressTopOverColor}" color.selected="{unitButtonProgressTopOverColor}" />
+										<s:GradientEntry color="{unitButtonProgressBottomColor}" color.hovered="{unitButtonProgressBottomOverColor}" color.selected="{unitButtonProgressBottomOverColor}" />
+									</s:LinearGradient>
+								</s:fill>
+							</s:Rect>
+
+							<s:Label id="caption" text="{data.@caption}" color="{labelColor}" top="15" left="18" fontSize="17" />
+
+							<!--Demo label in unit list-->
+							<s:Group id="demoGroup" right="6" top="10" width="45" height="20" visible="false">
+								<s:Rect width="100%" height="100%" radiusX="5" radiusY="5">
+									<s:fill>
+										<s:SolidColor color="{labelColor}" />
+									</s:fill>
+								</s:Rect>
+								<s:Label text="Demo" fontSize="12" color="#FFFFFF" horizontalCenter="1" verticalCenter="1" />
+							</s:Group>
 						</s:Group>
-					</s:Group>		
-				</s:ItemRenderer>
-			</fx:Component>
-		</s:itemRenderer>
-	</s:List>
+					</s:ItemRenderer>
+				</fx:Component>
+			</s:itemRenderer>
+		</s:List>
+	</s:Group>
 	
 	<!--unit list title bar-->
 	<s:Group id="levelTitleGroup" alpha="0" verticalCenter="-95" left="250" visible="{courseSelector.level != null}">
@@ -437,7 +441,7 @@
 	</s:Group>
 	
 	<!--exercise list triangle pointer-->
-	<s:Group id="triangleGroup" horizontalCenter="68" verticalCenter="80" height="400" alpha="0" visible="{exerciseList.dataProvider.length > 0}">
+	<s:Group id="triangleGroup" left="580" verticalCenter="80" height="400" alpha="0" visible="{exerciseList.dataProvider.length > 0}">
 		<s:Group id="triangleReferenceGroup">
 			<s:Path id="trianglePath" x="-0.00012207" y="3.05176e-005" winding="nonZero" data="M16.0587 30.2671C16.0587 31.8266 15.1564 32.1997 14.0548 31.0981L0.826782 17.8696C-0.275757 16.7675 -0.275757 14.9638 0.826782 13.8613L14.0548 0.633759C15.1564 -0.468781 16.0587 -0.0952454 16.0587 1.46384L16.0587 30.2671Z">
 				<s:fill>
@@ -448,7 +452,7 @@
 	</s:Group>
 	
 	<!--exercise list-->
-	<s:Group id="exerciseGroup" horizontalCenter="230" verticalCenter="0" height="{exerciseList.dataProvider.length * 31 + 40}" alpha="0">			
+	<s:Group id="exerciseGroup" left="590" verticalCenter="0" height="{exerciseList.dataProvider.length * 31 + 40}" alpha="0">
 		<s:VGroup verticalCenter="90" horizontalCenter="0" gap="0" filters="{[dropShadowFilter]}">
 			<s:Path visible="{exerciseList.dataProvider.length > 0}" winding="nonZero" filters="{[dropShadowFilter]}" data="M6.03369 14.666C4.47461 14.666 2.47949 14.0566 1.59961 13.3115 0.719727 12.5664 0 10.6816 0 9.12256L0 5.5415C0 3.98242 0.719727 2.09814 1.59961 1.35352 2.47949 0.608887 4.47461 0 6.03369 0L311.915 0C313.475 0 315.47 0.608887 316.35 1.35352 317.229
 					2.09814 317.949 3.98242 317.949 5.5415L317.949 9.12256C317.949 10.6816 317.229 12.5664 316.35 13.3115 315.47 14.0566 313.475 14.666 311.915 14.666L6.03369 14.666Z">
@@ -565,8 +569,5 @@
 				<s:Label id="demoTooltipLabel2" width="95%" color="#FFFFFF" fontSize="14" lineHeight="18" />
 			</s:VGroup>
 		</s:Group>
-	</s:Group>	
-	
-	<!--tense buster brand header-->
-	<home:header top="10" />
+	</s:Group>
 </s:Skin>

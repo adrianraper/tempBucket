@@ -152,9 +152,6 @@ global {
 	helpIcon8: Embed("skins/tensebuster/assets/help/numberIcon/number8.png");
 	helpIcon9: Embed("skins/tensebuster/assets/help/numberIcon/number9.png");
 	helpIcon10: Embed("skins/tensebuster/assets/help/numberIcon/number10.png");
-	
-	aboutTBPic: Embed("skins/tensebuster/assets/help/aboutTBPic.png");
-	
 }
 
 login|LoginView  {
@@ -163,6 +160,26 @@ login|LoginView  {
 
 login|LoginView s|Button {
 	skinClass: ClassReference("skins.tensebuster.login.LoginButtonSkin");
+}
+
+login|LoginView s|SkinnableContainer {
+	skinClass: ClassReference("skins.tensebuster.login.SignInContainerSkin");
+}
+
+login|LoginView s|SkinnableContainer#anonymousGroup {
+	skinClass: ClassReference("skins.tensebuster.login.AnonymousContainerSkin");
+}
+
+login|LoginView s|Button {
+	skinClass: ClassReference("skins.tensebuster.login.LoginButtonSkin");
+}
+
+login|LoginView s|TextInput {
+	skinClass: ClassReference("skins.tensebuster.login.TextInputSkin");
+}
+
+login|LoginView s|Button#newUserButton, s|Button#forgotPasswordButton {
+	skinClass: ClassReference("skins.tensebuster.login.LoginForgotPasswordButton");
 }
 
 error|ErrorView {

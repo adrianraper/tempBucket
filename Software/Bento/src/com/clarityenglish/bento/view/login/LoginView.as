@@ -401,14 +401,14 @@ package com.clarityenglish.bento.view.login {
 			anonymousStartButtonCaption = copyProvider.getCopyForId("anonymousButtonCaption");		
 
 			if (selfRegister & Config.SELF_REGISTER_NAME)
-				selfRegisterNameCaption = copyProvider.getCopyForId("nameLoginDetail");
+				selfRegisterNameCaption = " " + copyProvider.getCopyForId("nameLoginDetail");
 			if (selfRegister & Config.SELF_REGISTER_ID)
-				selfRegisterIdCaption = copyProvider.getCopyForId("IDLoginDetail");
+				selfRegisterIdCaption = " " + copyProvider.getCopyForId("IDLoginDetail");
 			if (selfRegister & Config.SELF_REGISTER_EMAIL)
-				selfRegisterEmailCaption = copyProvider.getCopyForId("emailLoginDetail");
+				selfRegisterEmailCaption = " " + copyProvider.getCopyForId("emailLoginDetail");
 			if (verified) {
-				selfRegisterPasswordCaption = copyProvider.getCopyForId("passwordLabel");
-				confirmPasswordCaption = copyProvider.getCopyForId("confirmPasswordCaption");
+				selfRegisterPasswordCaption = " " + copyProvider.getCopyForId("passwordLabel");
+				confirmPasswordCaption = " " + copyProvider.getCopyForId("confirmPasswordCaption");
 			}
 			if (selfRegister) {
 				newUserButtonCaption = copyProvider.getCopyForId("newUserButtonCaption");		
@@ -446,6 +446,7 @@ package com.clarityenglish.bento.view.login {
 				allowSelfRegister = (selfRegister > 0) ? true : false;
 				
 				// Is login allowed
+				trace("no login? "+noLogin);
 				allowLogin = (noLogin) ? false : true;
 				
 				// Is anonymous access allowed?

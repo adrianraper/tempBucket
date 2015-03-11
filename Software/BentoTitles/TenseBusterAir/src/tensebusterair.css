@@ -5,7 +5,7 @@
 @namespace tensebuster "com.clarityenglish.tensebuster.*";
 @namespace title "com.clarityenglish.tensebuster.view.title.*";
 @namespace titleui "com.clarityenglish.tensebuster.view.title.ui.*";
-@namespace login "com.clarityenglish.tensebuster.view.login.*";
+@namespace login "com.clarityenglish.bento.view.login.*";
 @namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 @namespace progresstb "com.clarityenglish.tensebuster.view.progress.*";
@@ -32,13 +32,6 @@ s|List {
 	contentBackgroundAlpha: 0;
 }
 
-components|XHTMLExerciseView s|TextInput {
-	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
-	contentBackgroundColor: #FFFFFF;
-	contentBackgroundAlpha: 0;
-	paddingLeft: 0;
-	paddingRight: 0;
-}
 
 s|TextInput {
 	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
@@ -48,87 +41,31 @@ s|TextInput {
 	paddingRight: 10;
 }
 
+components|XHTMLExerciseView s|TextInput {
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 0;
+	paddingLeft: 0;
+	paddingRight: 0;
+}
+
+login|LoginView s|TextInput {
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 1;
+	paddingLeft: 10;
+	paddingRight: 10;
+	fontSize: 14;
+	showPromptWhenFocused: false;
+}
+
 tensebuster|TenseBusterApplication {
 	skinClass: ClassReference("skins.tensebusterair.TenseBusterApplicationSkin");
 }
 
-/*tensebuster|TenseBusterApplication s|ActionBar {
-	chromeColor: #067EBC;
-	defaultButtonAppearance: beveled;
-}
-
-tensebuster|TenseBusterApplication s|ActionBar {*/
-	/* #484 */
-	/*skinClass: ClassReference("skins.air.PaddableActionBarSkin");
-	buttonSpacing: 5;
-}
-
-tensebuster|TenseBusterApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#startAgainButton,
-tensebuster|TenseBusterApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#backButton,
-tensebuster|TenseBusterApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#forwardButton {
-	skinClass: ClassReference("spark.skins.mobile.BeveledActionButtonSkin");
-}*/
-
 /* No network styles (#472) */
 nonetwork|NoNetworkView {
 	skinClass: ClassReference("skins.tensebusterair.NoNetworkSkin");
-}
-
-@media(os-platform:"Android") {
-	/* Login view styles */
-	login|LoginView {
-		skinClass: ClassReference("skins.tensebusterair.LoginAndroidSkin");
-	}
-	
-	home|HomeView {
-		skinClass: ClassReference("skins.tensebusterair.HomeAndroidSkin");
-	}
-	
-	/* Title view styles */
-	title|TitleView {
-		skinClass: ClassReference("skins.tensebusterair.TitleAndroidSkin");
-	}
-	
-	title|TitleView titleui|SizedTabbedViewNavigator {
-		skinClass: ClassReference("skins.tensebusterair.title.SizedTabbedViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
-	}
-	
-	title|TitleView titleui|SizedTabbedViewNavigator#tabBar{
-		skinClass: ClassReference("skins.tensebusterair.title.SizedTabbedViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
-	}
-	
-	title|TitleView titleui|SizedButton#sizedHelpButton {
-		skinClass: ClassReference("skins.tensebusterair.title.SizedHelpButtonSkin");
-	}
-	
-	title|TitleView titleui|SizedButton#sizedLogoutButton {
-		skinClass: ClassReference("skins.tensebusterair.title.SizedLogoutButtonSkin");
-	}
-}
-
-@media(os-platform:"IOS") {
-	/* Login view styles */
-	login|LoginView {
-		skinClass: ClassReference("skins.tensebusterair.LoginSkin");
-	}
-	
-	home|HomeView {
-		skinClass: ClassReference("skins.tensebusterair.HomeSkin");
-	}
-	
-	/* Title view styles */
-	title|TitleView {
-		skinClass: ClassReference("skins.tensebusterair.TitleSkin");
-	}
-	
-	title|TitleView s|TabbedViewNavigator {
-		width: 510;
-		skinClass: ClassReference("skins.tensebusterair.title.TabbedViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
-	}
-	
-	title|TitleView s|TabbedViewNavigator #tabBar {
-		skinClass: ClassReference("skins.tensebusterair.title.NavigatorTabBarSkin");
-	}
 }
 
 login|LoginView s|Button#demoENButton {
@@ -137,6 +74,23 @@ login|LoginView s|Button#demoENButton {
 
 login|LoginView s|Button#demoNAMENButton {
 	skinClass: ClassReference("skins.tensebusterair.login.DemoNAMENButtonSkin");
+}
+	
+home|HomeView {
+	skinClass: ClassReference("skins.tensebusterair.HomeSkin");
+}
+
+/* Title view styles */
+title|TitleView {
+	skinClass: ClassReference("skins.tensebusterair.TitleSkin");
+}
+
+title|TitleView s|TabbedViewNavigator {
+	skinClass: ClassReference("skins.tensebusterair.title.TabbedViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
+}
+
+title|TitleView s|TabbedViewNavigator #tabBar {
+	skinClass: ClassReference("skins.tensebusterair.title.NavigatorTabBarSkin");
 }
 
 title|TitleView s|ViewNavigator {
@@ -166,18 +120,6 @@ progresstb|ProgressView {
 progresstb|ProgressCertificateView {
 	skinClass: ClassReference("skins.tensebusterair.progress.ProgressCertificateSkin");
 }
-
-/*progresscomponents|ProgressScoreView {
-	skinClass: ClassReference("skins.tensebusterair.progress.ProgressScoreSkin");
-}*/
-
-/*help|HelpView {
-	skinClass: ClassReference("skins.tensebusterair.HelpSkin");
-}
-
-help|HelpView s|ButtonBarButton#helpListButtonBarButton {
-	skinClass: ClassReference("skins.tensebusterair.help.HelpListButtonBarButtonSkin");
-}*/
 
 s|Scroller s|VScrollBar {
 	skinClass: ClassReference("spark.skins.mobile.VScrollBarSkin");

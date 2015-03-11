@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:recorder="com.clarityenglish.bento.view.recorder.*" xmlns:exercise="skins.tensebuster.assets.exercise.*" xmlns:home="skins.tensebuster.assets.home.*" xmlns:assets="skins.tensebusterair.assets.*">
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:recorder="com.clarityenglish.bento.view.recorder.*"
+		xmlns:exercise="skins.tensebuster.assets.exercise.*" xmlns:home="skins.tensebuster.assets.home.*"
+		xmlns:assets="skins.tensebuster.assets.*"
+		creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.title.TitleView")]
@@ -10,6 +13,28 @@
 		<![CDATA[
 			import com.clarityenglish.bento.BentoApplication;
 			import com.clarityenglish.tensebuster.view.title.TitleView;
+
+			import mx.core.FlexGlobals;
+
+			import mx.events.FlexEvent;
+
+			protected function onCreationComplete(event:FlexEvent):void {
+				buttonHGroup.width = FlexGlobals.topLevelApplication.width * 0.5;
+				buttonHGroup.horizontalCenter = FlexGlobals.topLevelApplication.width * 0.25;
+				sectionNavigator.tabBar.width = FlexGlobals.topLevelApplication.width * 0.5;
+
+				if (FlexGlobals.topLevelApplication.width  >= 1280) {
+					header.visible = false;
+					header.includeInLayout = false;
+					longHeader.visible = true;
+					longHeader.includeInLayout = true;
+				} else {
+					header.visible = true;
+					header.includeInLayout = true;
+					longHeader.visible = false;
+					longHeader.includeInLayout = false;
+				}
+			}
 		]]>
 	</fx:Script>
 	
@@ -26,9 +51,12 @@
 		<s:State name="profile" />
 		<s:State name="help" />
 	</s:states>
-	
+
+	<!--Background-->
+	<s:BitmapImage source="@Embed(source='/skins/tensebusterair/assets/hexagonBg.png')" bottom="-50" width="100%" fillMode="repeat" excludeFrom="home" />
+
 	<!--s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/hexagonBg.png')" /-->
-	<assets:logo top="27" right="15" excludeFrom="[exercise, progress, help]" />
+	<assets:logo top="27" right="15" excludeFrom="exercise"/>
 	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
 		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.tensebuster.view.home.HomeView" label="Menu"  left="0" right="0" height="100%" />
@@ -36,10 +64,16 @@
 		<!--s:ViewNavigator id="profileViewNavigator" firstView="com.clarityenglish.tensebuster.view.profile.ProfileView" label="My Profile" left="0" right="0" height="100%" /-->
 		<!--s:ViewNavigator id="helpViewNavigator" firstView="com.clarityenglish.tensebuster.view.help.HelpView" label="Help" left="0" right="0" height="100%" /-->
 	</s:TabbedViewNavigator>
-	
-	<s:Button id="helpButton" width="273" height="54" horizontalCenter="143" bottom="0" buttonMode="true" useHandCursor="true" excludeFrom="exercise"/>
-	<s:Button id="logoutButton" bottom="0" right="11" fontWeight="normal" buttonMode="true" useHandCursor="true" excludeFrom="exercise" />
-	
+
+	<s:HGroup id="buttonHGroup" bottom="-1" gap="1">
+		<s:Button id="helpButton" width="49%" buttonMode="true" useHandCursor="true" excludeFrom="exercise"/>
+		<s:Button id="logoutButton" width="49%" fontWeight="normal" buttonMode="true" useHandCursor="true" excludeFrom="exercise" />
+	</s:HGroup>
+
+	<!--tense buster brand header-->
+	<assets:header id="header" top="10" visible="false" includeInLayout="false" excludeFrom="exercise" />
+	<assets:longHeader id="longHeader" top="10" visible="false" includeInLayout="false" excludeFrom="exercise" />
+
 	<!--Demo version label-->
 	<s:Group width="250" height="40" right="140" right.exercise="30" top="0">
 		<s:Rect width="100%" height="100%" bottomLeftRadiusX="10" bottomRightRadiusX="10" visible="{hostComponent.productVersion == BentoApplication.DEMO}">
@@ -60,7 +94,7 @@
 		</s:HGroup>
 	</s:Group>
 	
-	<s:Group top="20" left="60" visible="{hostComponent.currentState == 'exercise'}">
+	<s:Group top="20" left="{FlexGlobals.topLevelApplication.width * 0.5 - 450}" visible="{hostComponent.currentState == 'exercise'}">
 		<s:HGroup verticalAlign="middle">
 			<s:HGroup verticalAlign="middle" id="coursePath">
 				<s:Group>

@@ -13,7 +13,6 @@
 			<lit name="loadingLabel">loading...</lit>
 
 			<!-- Not currently used by TB. Delete?-->
-			<lit name="welcomeLabel">Welcome, {fullname}.</lit>
 			<lit name="overallCoverage"> - overall coverage</lit>
 			
 			<!-- Dialog box -->

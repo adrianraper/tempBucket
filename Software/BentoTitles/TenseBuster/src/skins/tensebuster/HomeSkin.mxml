@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" 
-		xmlns:icon="skins.tensebuster.assets.icon.*" 
-		xmlns:recorder="com.clarityenglish.bento.view.recorder.*" 
-		xmlns:courseselector="com.clarityenglish.tensebuster.view.home.courseselector.*" 
-		xmlns:home="skins.tensebuster.assets.home.*" 
-		xmlns:ui="com.clarityenglish.tensebuster.view.home.ui.*"
-		creationComplete="onCreationComplete(event)" >
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:icon="skins.tensebuster.assets.icon.*"
+		xmlns:recorder="com.clarityenglish.bento.view.recorder.*"
+		xmlns:courseselector="com.clarityenglish.tensebuster.view.home.courseselector.*"
+		xmlns:home="skins.tensebuster.assets.home.*"
+		xmlns:ui="com.clarityenglish.tensebuster.view.home.ui.*" xmlns:assets="skins.assets.*"
+		creationComplete="onCreationComplete(event)">
 	
 	<s:transitions>
 		<s:Transition>
@@ -254,24 +254,24 @@
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="#FFEDED" alpha="0" ratio="0" />
-				<s:GradientEntry color="#FFEDED" alpha="0.8" ratio="0.09" />
+				<s:GradientEntry color="#FFEDED" alpha="0.8" ratio="0.25" />
 				<s:GradientEntry color="#FFEDED" alpha="1" ratio="0.5" />
-				<s:GradientEntry color="#FFEDED" alpha="0.8" ratio="0.95" />
-				<s:GradientEntry color="#FFEDED" alpha="0" ratio="1" />
+				<s:GradientEntry color="#FFEDED" alpha="0.8" ratio="1" />
 			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
 	
-	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/home/homeBg.png')" right="0" visible="{courseSelector.level != null}" top="80" />
-	<s:SWFLoader id="homeInitialBg" source="@Embed(source='/skins/tensebuster/assets/home/homeInitialBg.png')" left="0" bottom="20" visible="{courseSelector.level == null}" />
-	<s:Label text="{hostComponent.accountName}" visible="{isTracked}" includeInLayout="{isTracked}" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/home/homeBg.png')" right="0" visible="{courseSelector.level != null}" verticalCenter="-60" />
+	<s:SWFLoader id="homeInitialBg" source="@Embed(source='/skins/tensebuster/assets/home/homeInitialBg.png')" left="0" bottom="-10" visible="{courseSelector.level == null}" />
+	<!-- Student name -->
+	<s:Label left="40" top="30" text="{hostComponent.userNameCaption}" fontSize="13" color="0x000000" />
 	
 	<!--Rotation Circle-->
 	<home:circleBg left="0" verticalCenter="-100" />
 	<courseselector:TBCourseSelector id="courseSelector" left="-30" verticalCenter="-130" height="450"/>
 	
 	<!--Instruction-->
-	<s:Group id="instructionGroup" top="150">
+	<s:Group id="instructionGroup" verticalCenter="-220">
 		<home:instruction left="410" />
 		<home:instructionArrow left="230" top="50" />
 	</s:Group>	
@@ -643,7 +643,14 @@
 			</s:VGroup>
 		</s:Group>
 	</s:Group>
-	
-	<!--tense buster brand header-->
-	<home:header top="-50" />
+
+	<!--Footer-->
+	<s:Group bottom="10" left="10">
+		<s:HGroup left="10" verticalAlign="middle" gap="10" paddingTop="4" paddingBottom="4">
+			<assets:loginlogoCE scaleX="0.45" scaleY="0.45" />
+			<s:Label id="versionLabel" color="#333333" fontSize="11" />
+			<s:Label id="copyrightLabel" color="#333333" fontSize="11" />
+		</s:HGroup>
+	</s:Group>
+
 </s:Skin>

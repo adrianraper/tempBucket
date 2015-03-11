@@ -40,7 +40,7 @@ use the ButtonBarLastButtonSkin, ButtonBarFirstButtonSkin and ButtonBarMiddleBut
 		[HostComponent("spark.components.ButtonBar")]
 		]]>
 	</fx:Metadata>
-	
+
 	<s:states>
 		<s:State name="normal" />
 		<s:State name="disabled" />
@@ -79,7 +79,7 @@ use the ButtonBarLastButtonSkin, ButtonBarFirstButtonSkin and ButtonBarMiddleBut
 	<!--- @copy spark.components.SkinnableDataContainer#dataGroup -->
 	<s:DataGroup id="dataGroup" width="100%" height="100%">
 		<s:layout>
-			<s:ButtonBarHorizontalLayout gap="-3"/>
+			<s:TileLayout horizontalGap="0" requestedColumnCount="2" requestedRowCount="1" columnWidth="{width * 0.49}" />
 		</s:layout>
 	</s:DataGroup>
 	

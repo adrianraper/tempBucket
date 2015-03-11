@@ -53,17 +53,17 @@ limitations under the License.
 		<s:State name="downAndSelected" stateGroups="downStates, selectedStates" />
 		<s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
 	</s:states>
-	
-	<s:VGroup gap="-1" filters="{[dropShadowFilter]}">
-		<s:Path winding="nonZero" data="M273.373 0 0 0 0 16.9355 0 29.3359 273.373 29.3359 273.373 16.9355 273.373 0Z">
+
+	<s:VGroup width="100%" height="100%" gap="-1" filters="{[dropShadowFilter]}">
+		<s:Rect width="100%" height="30">
 			<s:fill>
 				<s:LinearGradient rotation="90">
 					<s:GradientEntry color="#FFFFFF" color.down="#FDF2EC" color.over="#FDF2EC" color.selectedStates="#FDF2EC" />
 					<s:GradientEntry color="#DCDCDC" color.down="#DB2E21" color.over="#DB2E21" color.selectedStates="#DB2E21" />
 				</s:LinearGradient>
 			</s:fill>
-		</s:Path>
-		<s:Rect width="273.373" height="24.5615">
+		</s:Rect>
+		<s:Rect width="100%" height="24">
 			<s:fill>
 				<s:LinearGradient rotation="90">
 					<s:GradientEntry color="#C8C8C8" color.down="#B60F2C" color.over="#B60F2C" color.selectedStates="#B60F2C" />

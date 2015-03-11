@@ -49,15 +49,6 @@ package com.clarityenglish.tensebuster.view.progress
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
 		}
 		
-		[Bindable]
-		public function get androidSize():String {
-			return _androidSize;
-		}
-		
-		public function set androidSize(value:String):void {
-			_androidSize = value;
-		}
-		
 		public function getCopyProvider():CopyProvider {
 			return copyProvider;
 		}
@@ -93,6 +84,10 @@ package com.clarityenglish.tensebuster.view.progress
 		 * The state comes from the selection in the progress bar, plus _demo if we are in a demo version 
 		 */
 		protected override function getCurrentSkinState():String {
+			// gh#1090
+			if (isAnonymousUser)
+				return "anonymous";
+
 			var state:String = (!progressNavBar || !progressNavBar.selectedItem) ? "coverage" : progressNavBar.selectedItem.data;
 			return state;
 		}

@@ -10,8 +10,10 @@
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.tensebuster.TenseBusterNotifications;
 	import com.clarityenglish.tensebuster.controller.TenseBusterStartupCommand;
-	
-	import org.puremvc.as3.interfaces.IMediator;
+
+import mx.utils.ObjectUtil;
+
+import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.observer.Notification;
 	
@@ -40,13 +42,9 @@
 			view.logout.add(onLogout);
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			if (configProxy.isPlatformAndroid()) {
-				view.androidSize = configProxy.getAndroidSize();
-			}
-			
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			var directStart:Object = configProxy.getDirectStart();
-			if (directStart) {
+			if (ObjectUtil.getClassInfo(directStart).properties.length > 0) {
 				// gh#853 If you have been passed invalid ids, you will not have valid objects now
 				if (configProxy.getDirectStart().exerciseID) {
 					view.directExercise = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);

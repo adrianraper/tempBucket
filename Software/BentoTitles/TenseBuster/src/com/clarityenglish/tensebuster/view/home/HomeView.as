@@ -77,13 +77,20 @@ package com.clarityenglish.tensebuster.view.home {
 		
 		[SkinPart]
 		public var demoTooltipLabel2:Label;
-		
+
+		[SkinPart]
+		public var versionLabel:Label;
+
+		[SkinPart]
+		public var copyrightLabel:Label;
+
 		public var courseSelect:Signal = new Signal(XML);
 		public var unitSelect:Signal = new Signal(XML);
 		public var exerciseSelect:Signal = new Signal(XML);
-		
+
+		// gh#1090
 		[Bindable]
-		public var accountName:String;
+		public var userNameCaption:String;
 		
 		// gh#757
 		private var _course:XML;
@@ -94,7 +101,6 @@ package com.clarityenglish.tensebuster.view.home {
 		private var _courseIndex:Number;
 		private var _isBackToHome:Boolean;
 		private var _isInitialSelect:Boolean =  true;
-		private var _androidSize:String;
 		private var _isCourseSelectorClick:Boolean
 		private var _isUnitListClick:Boolean;
 		private var _isDirectStart:Boolean;
@@ -170,10 +176,6 @@ package com.clarityenglish.tensebuster.view.home {
 			_isUnitListClick = value;
 		}
 		
-		public function set androidSize(value:String):void {
-			_androidSize = value;
-		}
-		
 		public function set isDirectStart(value:Boolean):void {
 			_isDirectStart = value;
 		}
@@ -212,10 +214,6 @@ package com.clarityenglish.tensebuster.view.home {
 				downMove.duration = 300;
 				downMove.play([instructionGroup]);
 			}
-			
-			// gh#1090 Allow username on home screen
-			if (config.signInAs == Title.SIGNIN_TRACKING)
-				accountName = copyProvider.getCopyForId("accountNameLabel", {name:config.username});
 		}
 
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
@@ -264,12 +262,21 @@ package com.clarityenglish.tensebuster.view.home {
 				case demoTooltipLabel2:
 					demoTooltipLabel2.text = copyProvider.getCopyForId("demoTooltipLabel2");
 					break;
+				case versionLabel:
+					versionLabel.text = copyProvider.getCopyForId("versionLabel", {versionNumber: FlexGlobals.topLevelApplication.versionNumber});
+					break;
+				case copyrightLabel:
+					copyrightLabel.text = copyProvider.getCopyForId("copyright");
+					break;
 			}
 		}
 		
 		protected override function commitProperties():void {			
 			super.commitProperties();
-			
+
+			trace("config username: "+config.username);
+			userNameCaption = copyProvider.getCopyForId('welcomeLabel', {name: config.username});
+
 			// for re-login
 			if (!course && !unit) {
 				courseSelector.level = null;
@@ -307,11 +314,7 @@ package com.clarityenglish.tensebuster.view.home {
 		}
 		
 		override protected function getCurrentSkinState():String {
-			if (_androidSize) {
-				return super.getCurrentSkinState() + _androidSize;
-			} else {
 				return super.getCurrentSkinState();
-			}
 		}
 		
 		protected function onCourseSelectorClick(event:Event):void {
@@ -323,6 +326,7 @@ package com.clarityenglish.tensebuster.view.home {
 						courseSelect.dispatch(menu.course.(@["class"] == "elementary")[0]);
 						break;
 					case "lowerInterSelected":
+						trace("class: "+menu.course);
 						courseSelect.dispatch(menu.course.(@["class"] == "lowerintermediate")[0]);
 						break;
 					case "intermediateSelected":

@@ -40,11 +40,6 @@ package com.clarityenglish.tensebuster.view.progress
 			// gh#333 If reloadMenuXHTMLOnProgress is true then reload the menu xhtml
 			if (reloadMenuXHTMLOnProgress)
 				facade.sendNotification(BBNotifications.MENU_XHTML_RELOAD);
-			
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			if (configProxy.isPlatformAndroid()) {
-				view.androidSize = configProxy.getAndroidSize();
-			}
 		}
 		
 	}

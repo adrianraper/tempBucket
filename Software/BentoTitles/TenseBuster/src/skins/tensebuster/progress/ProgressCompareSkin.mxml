@@ -130,10 +130,17 @@
 			<mx:AxisRenderer axis="{horizontalAxis}" fontSize="13" showLine="false" tickStroke="{blankStroke}" placement="top" />
 		</mx:horizontalAxisRenderers>
 		<mx:verticalAxisRenderers>
-			<mx:AxisRenderer axis="{verticalAxis}" fontSize="13" tickStroke="{blankStroke}"  labelGap="20" fontWeight="bold">
+			<mx:AxisRenderer axis="{verticalAxis}" fontSize="13" tickStroke="{blankStroke}" labelGap="20">
 				<mx:axisStroke>
 					<mx:SolidColorStroke color="#B3B3B3" weight="1"/>
 				</mx:axisStroke>
+				<mx:labelRenderer>
+					<fx:Component>
+						<s:ItemRenderer>
+							<s:Label id="unitLabel" text="{data.text}" verticalCenter="0" fontSize="13" color="#333333" />
+						</s:ItemRenderer>
+					</fx:Component>
+				</mx:labelRenderer>
 			</mx:AxisRenderer>
 		</mx:verticalAxisRenderers>
 		

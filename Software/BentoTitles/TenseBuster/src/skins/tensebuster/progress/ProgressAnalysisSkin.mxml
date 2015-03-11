@@ -40,13 +40,13 @@
 	
 	<s:Label id="analyseInstructionLabel" top="80" left="50" fontSize="13" />
 
-	<ui1:StackedCircleWedgeChart id="stackedChart" top="120" height="35" right="40" right.normal10Inches="140" />
-	<s:Path right="100" right.normal10Inches="200" top="120" winding="nonZero" data="M381.42 0 0 0C0 105.326 85.3853 190.71 190.71 190.71 296.037 190.71 381.42 105.326 381.42 0Z">
+	<ui1:StackedCircleWedgeChart id="stackedChart" top="120" height="35" right="40" />
+	<s:Path right="100" top="120" winding="nonZero" data="M381.42 0 0 0C0 105.326 85.3853 190.71 190.71 190.71 296.037 190.71 381.42 105.326 381.42 0Z">
 		<s:fill>
 			<s:SolidColor color="#FFFFFF"/>
 		</s:fill>
 	</s:Path>
-	<s:Group right="190" right.normal10Inches="290" top="160" width="200" id="circleWedgeTimeGroup">
+	<s:Group right="190" top="160" width="200" id="circleWedgeTimeGroup">
 		<s:VGroup id="timeWedgeVGroup" horizontalAlign="center" horizontalCenter="0" gap="10">
 			<s:Label id="circleWedgeCourseLabel" fontSize="14" />
 			<s:HGroup>
@@ -180,7 +180,7 @@
 				</s:itemRenderer>
 			</s:DataGroup>
 			<s:VGroup left="20" paddingTop="-10" horizontalAlign="right">
-				<s:Rect width="305" width.normal10Inches="416" height="2">
+				<s:Rect width="305" height="2">
 					<s:fill>
 						<s:SolidColor id="boundaryLineSolidColor" />
 					</s:fill>

@@ -1,6 +1,8 @@
 package skins.tensebusterair.title
 {
-	import spark.components.ButtonBar;
+import mx.core.FlexGlobals;
+
+import spark.components.ButtonBar;
 	import spark.components.Group;
 	import spark.components.TabbedViewNavigator;
 	import spark.components.supportClasses.ButtonBarBase;
@@ -139,7 +141,7 @@ package skins.tensebusterair.title
 			{
 				tabBarHeight = Math.min(tabBar.getPreferredBoundsHeight(), unscaledHeight);
 				tabBar.setLayoutBoundsSize(getStyle("width"), tabBarHeight);
-				tabBar.setLayoutBoundsPosition(11, unscaledHeight - tabBarHeight);
+				tabBar.setLayoutBoundsPosition(FlexGlobals.topLevelApplication.width * 0.01, unscaledHeight - tabBarHeight);
 				tabBarHeight = tabBar.getLayoutBoundsHeight(); 
 				
 				// backgroundAlpha is not a declared style on ButtonBar

@@ -42,10 +42,6 @@
 			view.exerciseSelect.add(onExerciseSelected);
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			if (configProxy.isPlatformAndroid()) {
-				view.androidSize = configProxy.getAndroidSize();
-			}
-			
 			if (ObjectUtil.getClassInfo(configProxy.getDirectStart()).properties.length > 0) {
 				var directStart:Object = configProxy.getDirectStart();
 				if (directStart.courseID) { 

@@ -186,8 +186,8 @@ package com.clarityenglish.tensebuster.view.progress
 						isNoData = false;
 					}
 				}
-				verticalAxis.dataProvider = compareChart.dataProvider = new XMLListCollection(xml.unit);
-				
+				verticalAxis.dataProvider = compareChart.dataProvider = new XMLListCollection(xml.unit).toArray().reverse();
+
 				if (isNoData) {
 					compareEmptyScoreLabel.visible = true;					
 				} else {
@@ -201,7 +201,7 @@ package com.clarityenglish.tensebuster.view.progress
 				everyoneAvgScoreColor1.color = getStyle(courseClass.charAt(0) + "OtherBarColor1");
 				everyonelegendGradientColor1.color = getStyle(courseClass.charAt(0) + "OtherBarColor1");
 				everyoneAvgScoreColor2.color = getStyle(courseClass.charAt(0) + "OtherBarColor2");
-				everyonelegendGradientColor2.color = getStyle(courseClass.charAt(0) + "OtherBarColor2");					
+				everyonelegendGradientColor2.color = getStyle(courseClass.charAt(0) + "OtherBarColor2");
 				//drawLegend();
 				
 				_courseChanged = false;
@@ -226,7 +226,7 @@ package com.clarityenglish.tensebuster.view.progress
 				return super.getCurrentSkinState() + "Online";
 			} else {
 				return super.getCurrentSkinState();
-			}			
+			}
 		}
 		
 		/**
