@@ -234,6 +234,14 @@
 		</group>
 	</language>
 
+    <language name="North American" code="NAMEN" mediaFolder="NAMEN">
+        <group name="group">
+            <lit name="anonymousCaption">Just practice</lit>
+            <lit name="exerciseMarkingButton">Scoring</lit>
+            <lit name="progressNavBarAnalyse">Analyze</lit>
+        </group>
+    </language>
+    
 	<language name="Simplified Chinese" code="ZH" mediaFolder="ZH">
 		<group name="group">
 		</group>
