@@ -2,7 +2,8 @@ package com.clarityenglish.tensebuster.view.progress
 {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
-	import com.clarityenglish.bento.view.base.BentoMediator;
+import com.clarityenglish.bento.model.DataProxy;
+import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
@@ -32,6 +33,12 @@ package com.clarityenglish.tensebuster.view.progress
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
+
+			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
+			if (bentoProxy.selectedCourseNode) {
+				var currentCourseClass:String = bentoProxy.selectedCourseNode.@["class"];
+				dataProxy.set("currentCourseClass", currentCourseClass);
+			}
 			
 			// Inject whether this is an anonymous user or not
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
