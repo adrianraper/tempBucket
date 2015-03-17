@@ -32,7 +32,9 @@
 						IPLoginBg.visible = false;
 						loginBg.visible = true;
 					}
-				}									
+				}
+				
+				setStyle("fontFamily", "Helvatica");
 			}
 			
 			protected function onForgotPasswordClick(event:MouseEvent):void

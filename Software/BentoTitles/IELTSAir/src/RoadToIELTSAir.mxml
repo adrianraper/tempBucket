@@ -19,6 +19,8 @@
 			import com.clarityenglish.textLayout.conversion.XHTMLImporter;
 			import com.clarityenglish.textLayout.elements.SelectElement;
 			import com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator;
+			import com.newgonzo.web.css.properties.css3.fonts.FontFamilyManager;
+			import com.newgonzo.web.css.properties.css3.fonts.FontStyleManager;
 			
 			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
@@ -31,13 +33,13 @@
 			
 			// TODO: This is duplicated in IELTS and Rotterdam!!  Refactor!!
 			protected function onInitialize(event:FlexEvent):void {
-				// Determine what platform we are running on
+				// Determine what platform we are running onR
 				var platform:String = Capabilities.version.split(" ")[0];
 				var language:String = Capabilities.language;
 
 				if (language != "en" && language != "zh-CN") {
 					language = "en";
-				}
+				}	
 				
 				switch (platform) {
 					case "IOS":
@@ -49,6 +51,9 @@
 						// Set the Android config xml file as well as getting the prefix, product code and font size from the iOS settings
 						FlexGlobals.topLevelApplication.parameters.configFile = "android-config-" + language + ".xml";
 						XHTMLImporter.media = "android";
+						if (language != "en" ) {
+							FlexGlobals.topLevelApplication.setStyle("fontFamily", "ChineseFont");
+						}
 						break
 					default:
 						throw new Error("Unsupported platform - " + Capabilities.version);
@@ -120,8 +125,25 @@
 	</fx:Script>
 	
 	<fx:Style>
+		@font-face {
+			src: url("/skins/ielts/assets/SimSun.ttf");			
+			fontFamily: ChineseFont;
+			fontStyle: normal;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+		
+		@font-face {
+			src: url("/skins/ielts/assets/SimSunBold.ttf");			
+			fontFamily: ChineseFont;
+			fontStyle: normal;
+			fontWeight: bold;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+		
 		global {
-			fontFamily: Helvetica;
+			fontFamily: Helvatica;
 			fontSize: 13;
 		}
 	</fx:Style>

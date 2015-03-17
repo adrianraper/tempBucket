@@ -16,6 +16,7 @@ package com.clarityenglish.ielts.view.account {
 	import mx.controls.Alert;
 	import mx.controls.DateField;
 	import mx.controls.SWFLoader;
+	import mx.core.FlexGlobals;
 	import mx.events.CalendarLayoutChangeEvent;
 	
 	import org.davekeen.util.ArrayUtils;
@@ -403,6 +404,12 @@ package com.clarityenglish.ielts.view.account {
 			if (languageDropDownList.selectedItem) {
 				var languageCode:String = languageDropDownList.selectedItem.data;
 				languageChange.dispatch(languageCode);
+				
+				if (languageCode == "EN") {
+					FlexGlobals.topLevelApplication.setStyle("fontFamily", "Helvatica");
+				} else {
+					FlexGlobals.topLevelApplication.setStyle("fontFamily", "ChineseFont"); 
+				}
 				
 				// gh#163
 				isDirty = true;
