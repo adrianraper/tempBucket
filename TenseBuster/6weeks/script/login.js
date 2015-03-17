@@ -10,13 +10,14 @@ $(document).ready(function() {
 
     console.log("running login.js");
     if (!prefix) {
-        $(".get-your-level").html("You must start from your library page to take a placement test.");
+        window.location = "http://www.clarityenglish.com/TenseBuster/6weeks/no-prefix.html";
+        return false;
     } else {
         // Pass the prefix through to the placement test page
         $(".get-your-level a[href]").attr("href", "start.php?prefix=" + prefix);
         $("#changeLevel").attr("href", "change-my-level.php?prefix=" + prefix);
         $("#unsubscribe").attr("href", "unsubscribe.php?prefix=" + prefix);
-        $("a.forgot").attr("href", "http://www.clarityenglish.com/support/forgotPassword.php?productCode=" + titleProductCode + "&loginOption=128");
+        $("a.forgot").attr("href", "http://www.clarityenglish.com/support/forgotPassword.php?productCode=" + productCode + "&loginOption=128");
     }
 
     $("#loginForm").validate({
@@ -68,16 +69,19 @@ $(document).ready(function() {
         },
         messages: {
             userEmail: {
-                required: "Please type your email.",
-                email: "That doesn't seem to be an email, please check it.",
-                remote: "This email doesn't exist in this account."
+                required: "Please enter your email address.",
+                email: "Incorrect email address format.",
+                remote: "That email is not registered."
             },
             password: {
-                required: "Please type your password."
+                required: "Please enter your password."
             }
         },
         submitHandler: function(form) {
-            getUser();
+ 		
+			$("#loadingMsg").show();
+			$("#signIn").hide();
+ getUser();
             return false;
         }
     });
@@ -114,7 +118,7 @@ $(document).ready(function() {
                             var message = 'That email is not registered.';
                             break;
                         case 253:
-                            var message = 'The email or password you typed is incorrect.';
+                            var message = 'Incorrect email or password.';
                             break;
                         default:
                             message = data.message;
@@ -122,12 +126,14 @@ $(document).ready(function() {
                     console.log('Error: ' + data.error + ' ' + message);
                     $("#errorMessage").text(message);
                     $(".button-below-msg-box").show();
+			$("#loadingMsg").hide();
+			$("#signIn").show();
 
                 } else if (data.user) {
                     $(".button-below-msg-box").hide();
                     //var password = data.user.password;
                     //var email = data.user.email;
-                    var programURL = "/area1/TenseBuster10/Start.php";
+                    var programURL = "/area1/TenseBuster/Start.php";
                     if (data.encryptedData)
                         programURL += "?data=" + data.encryptedData;
                     window.location = programURL;

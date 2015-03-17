@@ -13,7 +13,7 @@ $(document).ready(function() {
     } else {
         // Pass the prefix through to the home page
         $("#level-change-three a[href]").attr("href", "index.php?prefix=" + prefix);
-        $("a.forgot").attr("href", "http://www.clarityenglish.com/support/forgotPassword.php?productCode=" + titleProductCode + "&loginOption=128");
+        $("a.forgot").attr("href", "http://www.clarityenglish.com/support/forgotPassword.php?productCode=" + productCode + "&loginOption=128");
     }
     $("#userEmail").val(getURLParameter('email'));
 
@@ -65,15 +65,18 @@ $(document).ready(function() {
         },
         messages: {
             userEmail: {
-                required: "Please type your email.",
-                email: "That doesn't seem to be an email, please check it.",
-                remote: "This email doesn't have a subscription in this account."
+                required: "Please enter your email address.",
+                email: "Incorrect email address format.",
+                remote: "That email address has not been registered."
             },
             password: {
-                required: "Please type your password."
+                required: "Please enter your password."
             }
         },
         submitHandler: function(form) {
+            $("#signIn").hide();
+            $("#loadingMsg").show();
+
             checkSubscription();
             return false;
         }
@@ -94,6 +97,7 @@ $(document).ready(function() {
     });
 
     gotoConfirmation = function() {
+        $("#loadingMsg").hide();
         $(".page").removeClass().addClass("page");
         $(".page#level-change-three").hide();
 
@@ -143,6 +147,8 @@ $(document).ready(function() {
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log('Error: ' + errorThrown);
                 $("#errorMessage").text('Error: ' + errorThrown);
+                $("#signIn").show();
+                $("#loadingMsg").hide();
             },
             success: function (data) {
 
@@ -153,7 +159,7 @@ $(document).ready(function() {
                             var message = 'That email is not registered.';
                             break;
                         case 253:
-                            message = 'The email or password you typed is incorrect.';
+                            message = 'Incorrect email or password.';
                             break;
                         default:
                             message = data.message;
@@ -161,11 +167,17 @@ $(document).ready(function() {
                     console.log('Error: ' + data.error + ' ' + message);
                     $("#errorMessage").text(message);
                     $(".button-below-msg-box").show();
+                    $("#signIn").show();
+                    $("#loadingMsg").hide();
 
                 } else if (data.user) {
                     if (data.subscription) {
                         console.log("got subscription for " + userEmail + " " + data.subscription.ClarityLevel);
-                        $("#weekMessage").text("week " + data.subscription.week);
+                        if (data.subscription.week > 6) {
+                            $("#weekMessage").text("completed");
+                        } else {
+                            $("#weekMessage").text("Week " + data.subscription.week);
+                        }
                         switch (data.subscription.ClarityLevel) {
                             case 'ELE':
                                 var titleName = 'Elementary';
@@ -192,6 +204,7 @@ $(document).ready(function() {
                     } else {
                         console.log('No existing subscription');
                         $("#errorMessage").text("You don't have a subscription, please register.");
+                        $("#loadingMsg").hide();
                     }
                 }
             }

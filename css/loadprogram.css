@@ -3,35 +3,47 @@
 
 html{-webkit-text-size-adjust:none;} 
 
+
 body {
-	margin:0 0 0 0;
+	margin: 10px 0 0 0;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:11px;
 	text-align:center;
-	background-color:#F5F5F5;
+
 }
 
 #altContent {
-	margin:0 0 0 0;
+	margin:40px 0 0 0;
 	padding:0;
-	text-align:left;
+	text-align: center;
 }
+
 
 #load_program_resize {
 	margin:0;
 	padding:0;
 }
 
+
 #load_program_original {
-	overflow:auto scroll;
 	display:block;
-	height:640px;
+	height: 640px;
 	width:760px;
-	position:absolute;
-	left:50%;
-	top:50%;
-	margin:-320px 0 0 -380px;
+	margin:0 auto;
+	margin:0 auto;
+	padding: 0;
+	
 }
+
+#load_program_original_protea {
+	display:block;
+	height: 600px;
+	width:800px;
+	margin:0 auto;
+	margin:0 auto;
+	padding: 0;
+}
+
 /* Powerpoint */
 #note_line {
 	text-align:center;

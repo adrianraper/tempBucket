@@ -259,7 +259,7 @@ class TB6weeksService extends AbstractService {
 					
 					if ($rc == 'success') {
                         $crypt = new Crypt();
-                        $programBase = 'http://'.$this->server.'/area1/TenseBuster10/Start.php';
+                        $programBase = 'http://'.$this->server.'/area1/TenseBuster/Start.php';
                         $parameters = 'prefix='.$account->prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
                         $startProgram = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
                         $parameters .= '&startingPoint=state:progress';
@@ -391,7 +391,7 @@ class TB6weeksService extends AbstractService {
 		$rc = $this->memoryOps->set('directStart', $bookmark, $this->subscriptionOps->relatedProducts($productCode));
 
         $crypt = new Crypt();
-        $programBase = 'http://'.$this->server.'/area1/TenseBuster10/Start.php';
+        $programBase = 'http://'.$this->server.'/area1/TenseBuster/Start.php';
         $parameters = 'prefix='.$prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
         $startProgram = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
         $parameters .= '&startingPoint=state:progress';

@@ -13,7 +13,7 @@ $(document).ready(function() {
     } else {
         // Pass the prefix through to the home page
         $("#unsubscribe-two a[href]").attr("href", "index.php?prefix=" + prefix);
-        $("a.forgot").attr("href", "http://www.clarityenglish.com/support/forgotPassword.php?productCode=" + titleProductCode + "&loginOption=128");
+        $("a.forgot").attr("href", "http://www.clarityenglish.com/support/forgotPassword.php?productCode=" + productCode + "&loginOption=128");
     }
     $("#userEmail").val(getURLParameter('email'));
 
@@ -65,21 +65,24 @@ $(document).ready(function() {
         },
         messages: {
             userEmail: {
-                required: "Please type your email.",
-                email: "That doesn't seem to be an email, please check it.",
-                remote: "This email doesn't have a subscription in this account."
+                required: "Please enter your email address.",
+                email: "Incorrect email address format.",
+                remote: "That email address has not been registered."
             },
             password: {
-                required: "Please type your password."
+                required: "Please enter your password."
             }
         },
         submitHandler: function(form) {
+            $("#signIn").hide();
+            $("#loadingMsg").show();
             unsubscribe();
             return false;
         }
     });
 
     gotoConfirmation = function() {
+        $("#loadingMsg").hide();
         $(".page").removeClass().addClass("page");
 
         $(".page#unsubscribe-one").addClass("fadeOut").fadeOut();
@@ -98,13 +101,15 @@ $(document).ready(function() {
             dataType: "json",
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log('Error: ' + errorThrown);
+                $("#signIn").show();
+                $("#loadingMsg").hide();
             },
             success: function (data) {
                 console.log('Return of unsubscribe is ' + data);
                 switch (data) {
                     case "wrong password":
                     case "no such user":
-                        var message = "The email or password that you typed is wrong.";
+                        var message = "Incorrect email or password.";
                         break;
                     case "done":
                         message = false;
@@ -114,6 +119,8 @@ $(document).ready(function() {
                 if (message) {
                     $("#errorMessage").text(message);
                     $(".button-below-msg-box").show();
+                    $("#signIn").show();
+                    $("#loadingMsg").hide();
                 } else {
                     gotoConfirmation();
                 }

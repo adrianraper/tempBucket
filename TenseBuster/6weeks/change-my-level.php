@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Improve your grammar in 6 weeks | Change my level</title>
+<title>Change my level | Improve your grammar in 6 weeks</title>
+<link rel="icon" type="image/png" href="images/favicon.png" />
 <link rel="stylesheet" type="text/css" href="css/home.css"/>
 <link rel="stylesheet" type="text/css" href="css/colorbox.css"/>
 
@@ -21,13 +22,13 @@
     
     <div id="header-box">
 	<div id="header">
-    	<img src="images/banner-TB.jpg" alt="Improve your grammar in 6 weeks!" width="638" height="191" border="0"/>
-  <div id="menu-box">
+    	<a href="index.php?prefix=<?php echo $_GET["prefix"];?>"><img src="images/banner-TB.jpg" alt="Improve your grammar in 6 weeks!" width="638" height="191" border="0"/></a>
+<div id="menu-box">
         
             <div class="menu general">
             	<div class="arrow on"></div>            	
                 <div class="title">
-                	Change my level
+                	My subscription
               </div>
             </div>
        
@@ -42,25 +43,32 @@
        		<div class="page" id="level-change-one">
 
                 <form id="loginForm">
-                    <div class="title">Change your level in Tense Buster.</div>
-                    <div class="txt">(You can change again at any time)</div>
-                    <div class="box-details">
+                    <div class="title">Change my level in Tense Buster</div>
+                    <div class="txt">(You can do this again at any time.)</div>
+                    <div class="box-details" style="width:350px">
                         <div class="col top" >
                             <label for="userEmail" class="name">Email</label><br/>
                             <input class="field" id="userEmail" name="userEmail" type="text"/>
                         </div>
                         <div class="col bottom">
-                            <label for="password" class="name">Password</label>
+                            <label for="password" class="name">Password</label><br />
                             <input class="field" id="password" name="password" type="password"/>
                         </div>
 
-                        <a class="forgot" href="http://www.clarityenglish.com/support/forgotPassword.php" target="_blank">Forgot your password?</a>
+                       
                     </div>
 
-                    <input id="signIn" class="button general" value="Go" type="submit" />
+					<div id="login-single-button-area">
+                        <input id="signIn" class="button go left" value="Go" type="submit" />
+               
+                        
+                         <input id="loadingMsg" class="button loading left" value="Please wait" type="submit" style="margin:0 auto; display:none;"  />
+                        
+                        <a class="forgot left" href="http://www.clarityenglish.com/support/forgotPassword.php" target="_blank">Forgot your password?</a>
+                    </div>
 
-                    <div class="button-below-msg-box">
-                        <img src="images/ico_fail.png"/>&nbsp;<span id="errorMessage">xx</span>
+                    <div class="button-below-msg-box" style="margin:15px 0 0 0;">
+                       <span id="errorMessage">xx</span>
                     </div>
                     <div class="clear"></div>
                 </form>
@@ -83,7 +91,7 @@
                                     <span id="iconADV"></span>
                                 </div>
                             </div>
-                            <div class="title" id="weekMessage"></div>
+                            <div class="week" id="weekMessage"></div>
                         </div>
                     </div>
 
@@ -106,7 +114,7 @@
                
                  
                
-               <div class="remarks"><strong>Warning:</strong> By changing your level, your 6-week course will start from week 1 again.</div>
+               <div class="remarks"><strong>Warning:</strong> By changing your level, your 6-week grammar course will start from week 1 again.</div>
                <div class="clear"></div>
 
 
@@ -122,14 +130,13 @@
                     
                     <div class="txtbox">An email has been sent to <span id="sentEmail">you</span>.<br /> Check your email and click to start learning.</div>
                     
-                     <div class="txtbox">If you do not have the email in 5 mintues, please:<br />
-                     1. Check your spam folder, and then...<br />
-                     2. Email support@claritysupport.com
-                     
-                     </div>
+                     <div class="txtbox">If you have not received an email from us in 5 minutes, please:<br/>
+                        1. Check your spam folder.<br />
+        2. If you still can't find the email, email <a href="mailto:support@clarityenglish.com?subject=Tense Buster grammar courses - No reminder emails">support@clarityenglish.com</a>.
+                    </div>
                      
                      <div class="button-page-box">
-                     	 <a class="button register" href="index.php">Sign in</a>
+                     	 <a class="button register" href="index.php">Back to home and Log in</a>
                     </div>
                      
                 </div>

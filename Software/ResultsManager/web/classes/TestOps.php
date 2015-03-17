@@ -134,6 +134,7 @@ class TestOps {
 			}
 
 			for ($i = 0; $i < $numQuestionsToUse; $i++) {
+                // TODO I think this check is obsolete since already filtered against this attribute...
 				if ($modelNodes->item($useThese[$i])->getAttribute('placementTest') != 'false') {
 					// Find the matching content for this question
 					$questionId = $modelNodes->item($useThese[$i])->getAttribute('block');
@@ -142,6 +143,38 @@ class TestOps {
 					if (!$questionContentNodes)
 						continue;
 					$questionContent = $questionContentNodes->item(0);
+
+                    // If this is a gapfill, set the length of the input to roughly the length of the answer
+                    $inputQuery = '//xmlns:div[@class="question"][@id="' . $questionId . '"]//xmlns:input';
+                    $inputNodes = $xmlXPath->query($inputQuery);
+                    if ($inputNodes) {
+                        $inputTag = $inputNodes->item(0);
+                        if ($inputTag) {
+                            $answerQuery = '//xmlns:questions/*[@block="' . $questionId . '"]//xmlns:answer';
+                            $answerNodes = $xmlXPath->query($answerQuery);
+                            $maxAnswerSize = 0;
+                            if ($answerNodes) {
+                                foreach ($answerNodes as $answerNode) {
+                                    $thisAnswerSize = strlen($answerNode->getAttribute('value'));
+                                    $maxAnswerSize = ($thisAnswerSize > $maxAnswerSize) ? $thisAnswerSize : $maxAnswerSize;
+                                }
+                            }
+                            // Reduce by 2 for a browser, but this is too short for iPad
+                            // Switch to width rather than size?
+                            //$inputTag->setAttribute('size', $maxAnswerSize);
+                            // 4 is a reasonable smallest answer. It is a rather long in a browser but OK in iPad.
+                            // But using width ends up doubled necessary width by the time you get to 10.
+                            if ($maxAnswerSize <= 4) {
+                                $useWidth = 4;
+                            } else
+                            if ($maxAnswerSize <= 10) {
+                                $useWidth = $maxAnswerSize * 2 / 3;
+                            } else {
+                                $useWidth = $maxAnswerSize / 2;
+                            }
+                            $inputTag->setAttribute('style', 'width: '.$useWidth.'em;');
+                        }
+                    }
 
 					// Generate new ids for the new document to ensure uniqueness
 					$newQuestionId++;
@@ -159,8 +192,8 @@ class TestOps {
 					// MC or GF have different handling for source nodes
 					$optionsQuery = "//xmlns:div[@class='question'][@id='" . 'b' . $newQuestionId . "']//xmlns:a";
 					$options = $xmlXPath->query($optionsQuery);
-					$debugNode = $data->createElement('findQuery', $optionsQuery);
-					$debugNode->setAttribute('found', $options->length);
+					//$debugNode = $data->createElement('findQuery', $optionsQuery);
+					//$debugNode->setAttribute('found', $options->length);
 					foreach ($options as $option) {
 						$existingId = $option->getAttribute('id');
 						$newSourceId++;

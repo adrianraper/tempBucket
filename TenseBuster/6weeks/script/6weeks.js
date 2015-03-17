@@ -11,19 +11,55 @@ $(document).ready(function() {
 
     console.log("load 6weeks.js");
 
+
     if (!prefix) {
-        $("#level-test").html("You must start from your library page to take the level test.");
+        window.location = "http://www.clarityenglish.com/TenseBuster/6weeks/no-prefix.html";
+        return false;
     } else {
         // Pass the prefix through to the home page
         $("#results a[href]").attr("href", "index.php?prefix=" + prefix);
-        $("a.forgot").attr("href", "http://www.clarityenglish.com/support/forgotPassword.php?productCode=" + titleProductCode + "&loginOption=128");
+        $("a.forgot").attr("href", "http://www.clarityenglish.com/support/forgotPassword.php?productCode=" + productCode + "&loginOption=128");
     }
 
     //Start page
     $(".page#level-test").addClass("slideRight").show();
-    $("#forgotPasswordLink").hide();
+
+
+	
+	
+	   $(window).scroll(function(){
+            
+                if($(window).scrollTop() + $(window).height() >= $(document).height()-48)
+                {
+					$("#leveltest-complete-bar").removeClass("scroll");
+				$("#leveltest-complete-bar").addClass("slideUp");
+		
+          
+        		}else{
+					$("#leveltest-complete-bar").addClass("scroll");
+					$("#leveltest-complete-bar").removeClass("slideUp");
+
+				}
+			});
+	
+	
+	
+    $("#forgot").hide();
 
     $("#btn-go-to-register").click(function() {
+											
+		if ($("#lcb-total-done").html() == "0"){
+	
+			    $.colorbox({
+                href: "#inline-zero-warning",
+                inline: true,
+                width: "524px",
+                height: "215px",
+                scrolling: false,
+                closeButton: false
+            });
+			return;
+		}
 
         $("#menu-register").find(".step").removeClass().addClass("step select");
         $("#menu-register").find(".arrow").removeClass().addClass("arrow select");
@@ -40,7 +76,8 @@ $(document).ready(function() {
         $(".page#level-test").addClass("fadeOut").fadeOut();
         $(".page#register").removeClass().addClass("page slideRight").show();
 
-        $("#leveltest-complete-bar").hide();
+        $("#leveltest-complete-bar-box").hide();
+		$("#btn-go-to-register").hide();
         $("#holder").removeClass();
 
     });
@@ -68,7 +105,7 @@ $(document).ready(function() {
         $(".page#register").addClass("fadeOut").fadeOut();
         $(".page#results").removeClass().addClass("page slideRight").show();
 
-        $("#leveltest-complete-bar").hide();
+      $("#leveltest-complete-bar-box").hide();
         parent.$.colorbox.close();
         return false;
 
@@ -82,10 +119,10 @@ $(document).ready(function() {
         $("label[for='confirmPassword']").prop('disabled', exists);
         if (exists) {
             $("label[for='password']").text('You already have an account, what is your password?');
-            $("#forgotPasswordLink").show();
+            $("#forgot").show();
         } else {
             $("label[for='password']").text('What password do you want to use?');
-            $("#forgotPasswordLink").hide();
+            $("#forgot").hide();
         }
         existingUser = exists;
     };
@@ -140,18 +177,24 @@ $(document).ready(function() {
         },
         messages: {
             userEmail: {
-                required: "Please type your email.",
-                email: "That doesn't seem to be an email, please check it.",
-                remote: "This email is already linked to a different account."
+                required: "Please enter your email address.",
+                email: "Incorrect email address format.",
+                remote: "That email is already linked to a different account."
             },
             password: {
-                required: "Please type your password."
+                required: "Please enter your password."
             },
             confirmPassword: {
                 equalTo: "The two passwords must be the same."
             }
         },
         submitHandler: function(form) {
+
+            // Feedback that the registration is happening
+            console.log('want to hide the register button');
+            $("#signIn").hide();
+            $("#loadingMsg").show();
+
             userEmail = $("#userEmail").val();
             password = $("#password").val();
 
@@ -184,6 +227,9 @@ $(document).ready(function() {
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log('Error: ' + errorThrown);
                 $("#errorMessage").text('Error: ' + errorThrown);
+                $(".button-below-msg-box").show();
+                $("#loadingMsg").hide();
+                $("#signIn").show();
             },
             success: function (data) {
 
@@ -194,7 +240,7 @@ $(document).ready(function() {
                             var message = 'That email is not registered.';
                             break;
                         case 253:
-                            message = 'The email or password you typed is incorrect.';
+                            message = 'Incorrect email or password.';
                             break;
                         default:
                             message = data.message;
@@ -202,6 +248,8 @@ $(document).ready(function() {
                     console.log('Error: ' + data.error + ' ' + message);
                     $("#errorMessage").text(message);
                     $(".button-below-msg-box").show();
+                    $("#loadingMsg").hide();
+                    $("#signIn").show();
 
                 } else if (data.user) {
                     // If there IS a subscription too, you can pass the details to the warning
@@ -225,7 +273,7 @@ $(document).ready(function() {
                                 titleName = 'Advanced';
                                 break;
                         }
-                        $("#inline-level-reset #ClarityLevelMessage").text(titleName);
+                        $("#inline-level-reset #ClarityLevelMessagePopUp").text(titleName);
 
                     }
                     checkSubscription();
@@ -245,7 +293,8 @@ $(document).ready(function() {
                 width: "524px",
                 height: "215px",
                 scrolling: false,
-                closeButton: false
+                closeButton: false,
+				overlayClose: false
             });
         } else {
             submitTestData();
@@ -276,6 +325,10 @@ $(document).ready(function() {
             dataType: "json",
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log('Error: ' + errorThrown);
+                $("#errorMessage").text('Error: ' + errorThrown);
+                $(".button-below-msg-box").show();
+                $("#loadingMsg").hide();
+                $("#signIn").show();
             },
             success: function (data) {
                 //var resultsData = jQuery.parseJSON(data);
@@ -298,10 +351,13 @@ $(document).ready(function() {
                         titleName = 'Advanced';
                         break;
                 }
+	
                 $("#ClarityLevelMessage").text(titleName);
+
                 $("#icon"+data.ClarityLevel).removeClass().addClass("current");
                 //$("a#programUrl").attr("href", data.startProgram);
                 showResult();
+                $("#loadingMsg").hide();
             }
         });
     };
@@ -320,77 +376,118 @@ $(document).ready(function() {
             },
             success: function (xml) {
                 console.log('Read file successfully');
+				$("#btn-go-to-register").show();
+				$("#leveltest-complete-bar").show();
 
                 // Any errors sent back?
+                var noErrors = true;
                 $(xml).find("error").each(function () {
                     var message = $(this).attr("message");
                     console.log('Error: ' + message);
-                    $("#testPlaceholder").append(message);
+                    if (message.toLowerCase().indexOf('no account matches the prefix') >= 0)
+                        window.location = "http://www.clarityenglish.com/TenseBuster/6weeks/no-prefix.html";
+                    $("#loadingText").html(message);
+                    noErrors = false;
                 });
 
-                $("#testPlaceholder").html("");
-                // Parse the xml file and get data
-                var questionNumber = 1;
-                $(xml).find(".question").each(function () {
-                    // What is the id of this question?
-                    var questionID = $(this).attr("id");
+                if (noErrors) {
+                    $("#testPlaceholder").html("");
+                    // Parse the xml file and get data
+                    var questionNumber = 1;
+                    $(xml).find(".question").each(function () {
+                        // What is the id of this question?
+                        var questionID = $(this).attr("id");
 
-                    // If any input doesn't have a type set, make it explicitly text
-                    $(this).find("input:not([type])").attr("type", "text");
+                        // If any input doesn't have a type set, make it explicitly text
+                        $(this).find("input:not([type])").attr("type", "text");
 
-                    // Gapfill needs to change the input id to be the question id
-                    $(this).find("input[id]").attr("id", questionID);
+                        // Gapfill needs to change the input id to be the question id
+                        $(this).find("input[id]").attr("id", questionID);
 
-                    // multiple choice needs to have the list <a> nodes turned into radio buttons
-                    /*
-                     *<div class="question" id="q1">
-                     * Sorry to ... like this, but there's a problem.
-                     * <list class="answerList">
-                     *	<li><a id="a1">barge in</a></li>
-                     *	<li><a id="a2">barge on</a></li>
-                     * </list>
-                     */
-                    /*
-                     * Sorry to ... like this, but there's a problem.
-                     * <list class="answerList">
-                     *	<li><input type="radio" id="a1" name="q1" value="a1">barge in</input></li>
-                     *	<li><input type="radio" id="a2" name="q1" value="a2">barge on</input></li>
-                     * </list>
-                     */
-                    $(this).find("li a").each(function() {
-                        $(this).replaceWith("<input type='radio' value='" + $(this).attr('id') + "' name='" + questionID + "'>" + $(this).html() + "</input>");
+                        // multiple choice needs to have the list <a> nodes turned into radio buttons
+                        /*
+                         *<div class="question" id="q1">
+                         * Sorry to ... like this, but there's a problem.
+                         * <list class="answerList">
+                         *	<li><a id="a1">barge in</a></li>
+                         *	<li><a id="a2">barge on</a></li>
+                         * </list>
+                         */
+                        /*
+                         * Sorry to ... like this, but there's a problem.
+                         * <list class="answerList">
+                         *	<li><input type="radio" id="a1" name="q1" value="a1">barge in</input></li>
+                         *	<li><input type="radio" id="a2" name="q1" value="a2">barge on</input></li>
+                         * </list>
+                         */
+                        //alert($(this).html());
+                        //$(this).find("li a").each(function() {
+                        $(this).find("li a").each(function () {
+                            var newInput = "<label><input type='radio' value='" + $(this).attr('id') + "' name='" + questionID + "'><span class='label-name'>" + $(this).html() + "</span></input></label>"
+                            $(this).parent().html(newInput);
+                            //$(this).replaceWith();
+                        });
+
+                        // Add a question number
+                        //alert($(this).html());
+                        //$(this).prepend("<div class='question-number'>" + questionNumber + "</div>");
+                        $(this).html("<div class='question-number'>" + questionNumber + "</div>" + $(this).html());
+                        questionNumber++;
+
+                        //alert($(this).html());
+
+                        // An outer div for styling purposes
+                        $("#testPlaceholder").append("<div class='question'>" + $(this).html() + "</div>");
                     });
 
-                    // Add a question number
-                    $(this).prepend("<div class='question-number'>" + questionNumber++ + "</div>");
+                    // To add an event handler to all inputs to control the leveltest-complete-bar
+                    $("input[type=text]").change(function () {
+                        // If the question id was in a parent of the input...
+                        // var qid = $(this).closest(".question").attr("id");
+                        var qid = $(this).attr("id");
+                        if ($(this).val() != '') {
+                            $("#lcb-" + qid).addClass("on");
+                        } else {
+                            $("#lcb-" + qid).removeClass("on");
+                        }
+                        countAnsweredQuestions();
+                    });
+                    $("input[type=radio]").change(function () {
+                        var qid = $(this).attr("name");
+                        $("#lcb-" + qid).addClass("on"); // (you can't completely deselect an m/c once selected)
+                        countAnsweredQuestions();
+                    });
 
-                    // An outer div for styling purposes
-                    $("#testPlaceholder").append("<div class='question'>" + $(this).html() + "</div>");
-                });
-
-                // To add an event handler to all inputs to control the leveltest-complete-bar
-                $("input[type=text]").change(function() {
-                    // If the question id was in a parent of the input...
-                    // var qid = $(this).closest(".question").attr("id");
-                    var qid = $(this).attr("id");
-                    if ($(this).val() != '') {
-                        $("#lcb-" + qid).addClass("on");
-                    } else {
-                        $("#lcb-" + qid).removeClass("on");
-                    }
-                });
-                $("input[type=radio]").change(function() {
-                    var qid = $(this).attr("name");
-                    $("#lcb-" + qid).addClass("on"); // (you can't completely deselect an m/c once selected)
-                });
-
-                // save the checksum code
-                $("#codeHolder").text($(xml).find("config").text());
+                    // save the checksum code
+                    $("#codeHolder").text($(xml).find("config").text());
+                }
             }
         });
     };
 
     getQuestions();
+
+    countAnsweredQuestions = function() {
+        var done = 0;
+        $("input[type=text]").each(function(index) {
+            if ($(this).val() != '') {
+                done++;
+            };
+        });
+        done = done + $("input[type=radio]:checked").length;
+        if (done == 25) {
+            $("#lcb-total-done").text('all the');
+        } else {
+            $("#lcb-total-done").text(done + ' of 25');
+        }
+        /*
+        if (done == 1) {
+            $("#lcb-total-plural").text('');
+        } else {
+            $("#lcb-total-plural").text('s');
+        }
+        */
+    };
 
     //iFrame colorbox
     $(".iframe-small").colorbox({

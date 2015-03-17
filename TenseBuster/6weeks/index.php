@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Improve your grammar in 6 weeks | Home</title>
+    <title>Home | Improve your grammar in 6 weeks</title>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="stylesheet" type="text/css" href="css/home.css"/>
     <link rel="stylesheet" type="text/css" href="css/colorbox.css"/>
     <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
@@ -24,7 +25,7 @@
         <div id="header">
             <img src="images/banner-TB.jpg" alt="Improve your grammar in 6 weeks!" width="638" height="191" border="0"/>
 
-            <div id="menu-box">
+      <div id="menu-box">
                 <div class="menu select level-test">
                     <div class="arrow on"></div>
                     <div class="num">1</div>
@@ -53,7 +54,7 @@
                 </div>
             </div>
         </div>
-    </div>
+  </div>
 
     <div id="container-index">
         <div id="content">
@@ -70,38 +71,48 @@
             <div class="box">
                 <div class="innerbox">
                     <div id="return-user" class="title-rotate">Registered already?<br/>
-                        Log-in here!
+                        Sign-in here!
                     </div>
                     <form id="loginForm">
                         <div class="box-details">
                             <div class="col top" >
-                                <label for="userEmail" class="name">Email</label><br/>
+                                <label for="userEmail" class="name home">Email</label><label for="userEmail" class="error home"></label><br />
                                 <input class="field" id="userEmail" name="userEmail" type="text"/>
                             </div>
                             <div class="col bottom">
-                                <label for="password" class="name">Password</label>
+                                <label for="password" class="name home">Password</label><label for="password" class="error home"></label><br />
                                 <input class="field" id="password" name="password" type="password"/>
                             </div>
 
-                            <a class="forgot" href="http://www.clarityenglish.com/support/forgotPassword.php" target="_blank">Forgot your password?</a>
                         </div>
 
-                        <input id="signIn" class="button general" value="Sign in" type="submit" />
-
-                        <div class="button-below-msg-box">
-                            <img src="images/ico_fail.png"/>&nbsp;<span id="errorMessage">xx</span>
-                        </div>
-                        <div class="clear"></div>
+                        <div class="but-area">
+                          <input id="signIn" class="button signin" value="Sign in" type="submit" style="margin:0 auto;" />
+                      		<input id="loadingMsg" class="button loading" value="Please wait" type="submit" style="margin:0 auto; display:none;"  />
+                                
+                        <div class="button-below-msg-box"  style="padding-top:8px;">
+                        	<div class="error home" id="errorMessage"></div>
+                               
+                       </div>
+                        
+                      </div>
+                      <a class="forgot home" href="http://www.clarityenglish.com/support/forgotPassword.php" target="_blank">Forgot your password?</a>
+                        
+                        
+                        
+                        
+                      <div class="clear"></div>
                     </form>
-                    <div id="links-function">|&nbsp;<a id="changeLevel">Change my level</a>&nbsp;|&nbsp;
-                        <a id="unsubscribe">Unsubscribe here</a>&nbsp;|
+                    <div id="links-function">|&nbsp;<a id="changeLevel">Change my level</a>&nbsp;|&nbsp;<a id="unsubscribe">Unsubscribe</a>&nbsp;|
                     </div>
                 </div>
             <div class="clear"></div>
         </div>
+        
+        	<div class="clear"></div>
     </div>
 </div>
-<div class="clear"></div>
+</div>
 
 <div id="footer-box">
 
@@ -113,26 +124,27 @@
             <div id="bubble">
                 <div id="txtbox"><strong>Now on<Br/><span>Tablet</span></strong></div>
             </div>
-            <div id="topic">Download the <strong>Tense Buster Apps</strong> and study on the go!</div>
+            <div id="topic">Download the <strong>Tense Buster app</strong> and study on the go!</div>
 
-            <a href="https://itunes.apple.com/ae/app/tense-buster/id696619890?mt=8" target="_blank"><img
-                    src="images/apple-app.png" id="apple"/></a>
-            <a href="https://play.google.com/store/apps/details?id=air.com.clarityenglish.tensebuster.app&hl=en"
-               target="_blank"><img src="images/google-play.png" id="googleplay"/></a>
-            <a href="http://www.clarityenglish.com/downloads/apk/TenseBuster.php?utm_campaign=APP-APK&utm_source=TB-6wk&utm_medium=TB-6wk-home"
-               target="_blank"><img src="images/android-app.png" id="apk"/></a>
+               <a href="https://itunes.apple.com/ae/app/tense-buster/id696619890?mt=8" target="_blank"><img src="images/apple-app.png" id="apple"/></a>
+               <a href="https://play.google.com/store/apps/details?id=air.com.clarityenglish.tensebuster.app&hl=en" target="_blank"><img src="images/google-play.png" id="googleplay"/></a>
+               <a href="http://www.clarityenglish.com/downloads/apk/TenseBuster.php?utm_campaign=APP-APK&utm_source=TB-6wk&utm_medium=TB-6wk-home" target="_blank"><img src="images/android-app.png" id="apk"/></a>             </div>
         </div>
-    </div>
-</div>
-
-<div id="footerline" class="bg-grey">
+        
+        
+        <div id="footerline" class="bg-grey">
     <div class="box">
         <a href="http://www.ClarityEnglish.com" target="_blank" id="website">www.ClarityEnglish.com</a>
         <a href="http://www.ClarityEnglish.com" target="_blank"><img src="images/clarityenglish.jpg" border="0"/></a>
         <div class="clear"></div>
     </div>
 </div>
-</div>
+        
+    </div>
+    
+
+
+
 
 </body>
 </html>

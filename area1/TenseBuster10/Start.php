@@ -40,6 +40,28 @@
 
 	<link rel="stylesheet" type="text/css" href="/Software/Common/ielts.css" />
 
+    <!-- mobile detection as can't run on that! -->
+    <script type="javascript">
+        var ua = navigator.userAgent.toLowerCase();
+        var isAndroid = ua.indexOf("android") > -1;
+        if(isAndroid) {
+            // Redirect to Google Play Store
+            window.location = 'https://itunes.apple.com/ae/app/tense-buster/id696619890?mt=8';
+        }
+
+        // For use within normal web clients
+        var isiPad = navigator.userAgent.match(/iPad/i) != null;
+
+        // For use within iPad developer UIWebView
+        // Thanks to Andrew Hedges!
+        var isiPad = /iPad/i.test(ua) || /iPhone OS 3_1_2/i.test(ua) || /iPhone OS 3_2_2/i.test(ua);
+
+        if(isiPad) {
+            // Redirect to Apple Store
+            window.location = 'https://itunes.apple.com/ae/app/tense-buster/id696619890?mt=8';
+        }
+    </script>
+
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
