@@ -406,7 +406,7 @@ package com.clarityenglish.ielts.view.account {
 				languageChange.dispatch(languageCode);
 				
 				if (languageCode == "EN") {
-					FlexGlobals.topLevelApplication.setStyle("fontFamily", "Helvatica");
+					FlexGlobals.topLevelApplication.setStyle("fontFamily", "Helvetica");
 				} else {
 					FlexGlobals.topLevelApplication.setStyle("fontFamily", "ChineseFont"); 
 				}
