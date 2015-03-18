@@ -117,7 +117,7 @@ package com.clarityenglish.ielts.view {
 						} else {
 							// gh#877
 							var unit:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID).parent();
-							if (!directStart.scorm || !unit.exercise.(@id == directStart.exerciseID).hasOwnProperty("@group")) {
+							if (!directStart.scorm || unit.exercise.(@id == directStart.exerciseID).attribute("group").length() <= 0) {
 								sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
 							} else {
 								var groupID:Number = unit.exercise.(@id == directStart.exerciseID).@group;

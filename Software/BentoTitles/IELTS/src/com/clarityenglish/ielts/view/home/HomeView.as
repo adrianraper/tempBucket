@@ -152,16 +152,16 @@ package com.clarityenglish.ielts.view.home {
 			for each (var course:XML in menu.course) {
 				switch (course.@["class"].toString()) {
 					case "reading":
-						if (readingCourseButton) readingCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						if (readingCourseButton) readingCourseButton.enabled = !(course.attribute("enabledFlag").length() > 0 && (Number(course.@enabledFlag.toString()) & 8));
 						break;
 					case "listening":
-						if (listeningCourseButton) listeningCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						if (listeningCourseButton) listeningCourseButton.enabled = !(course.attribute("enabledFlag").length() > 0 && (Number(course.@enabledFlag.toString()) & 8));
 						break;
 					case "speaking":
-						if (speakingCourseButton) speakingCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						if (speakingCourseButton) speakingCourseButton.enabled = !(course.attribute("enabledFlag").length() > 0 && (Number(course.@enabledFlag.toString()) & 8));
 						break;
 					case "writing":
-						if (writingCourseButton) writingCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						if (writingCourseButton) writingCourseButton.enabled = !(course.attribute("enabledFlag").length() > 0 && (Number(course.@enabledFlag.toString()) & 8));
 						break;
 				}
 			}

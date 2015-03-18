@@ -71,7 +71,7 @@ package skins.ielts.zone.ui {
 					difficultyRenderer.data = _difficultyExerciseFunction(data);
 				
 				// TODO: Make sure that this doesn't crash iOS
-				enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
+				enabled = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8));
 			}
 			
 			if (_courseClassChanged) {

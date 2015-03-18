@@ -32,7 +32,7 @@ package com.clarityenglish.common.controller {
 				exercise.appendChild(<score score={score.score} duration={score.duration} datetime={score.dateStamp} />);
 				
 				// 2. Increment the @done attribute of the <exercise>
-				exercise.@done = (exercise.hasOwnProperty("@done")) ? exercise.@done + 1 : 1;
+				exercise.@done = (exercise.attribute("done").length() > 0) ? exercise.@done + 1 : 1;
 				
 				// 3. Rerun the ProgressCourseSummaryTransform on the client to update the summary data
 				// TODO: I would have thought that this wouldn't work because of namespacing differences, but actually it seems to work fine

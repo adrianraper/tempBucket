@@ -40,7 +40,7 @@ package com.clarityenglish.controls.video.loaders {
 			
 			// If any channel has a @name attribute, then search for the channel name; otherwise just select the first entry
 			// TODO: This was originally in Alice's code, but I'm not sure if it is necessary?
-			var channel:XML = dynamicList.channel.hasOwnProperty("@name") ? dynamicList.channel.(@name == channelObject.name)[0] : dynamicList.channel[0];
+			var channel:XML = dynamicList.channel.attribute("name").length() > 0 ? dynamicList.channel.(@name == channelObject.name)[0] : dynamicList.channel[0];
 			var protocol:String = (channel) ? channel.@protocol.toString() : "";
 			
 			var host:String = (channel) ? channel.host.toString() : "";

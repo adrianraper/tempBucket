@@ -300,7 +300,7 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 			if (!answerOrString) {
 				// If the dropped node doesn't match any of the source nodes then we need to make a new answer with the droppedNode as the source.
 				// In case the dropped node doesn't have an id then we auto-generate one and add it to the XHTML.
-				if (!inputElement.droppedNode.hasOwnProperty("@id"))
+				if (!inputElement.droppedNode.attribute("id").length() > 0)
 					inputElement.droppedNode.@id = "auto-" + UIDUtil.createUID();
 				
 				// Create a NodeAnswer pointing to the dropped node with a score of 0

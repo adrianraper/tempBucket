@@ -128,7 +128,7 @@ package com.clarityenglish.bento.vo.content {
 			
 			// enabledFlag is binary based for backwards compatability
 			// You can link to an exercise if - it is not disabled and it has navigate on.
-			return (!exerciseNode.hasOwnProperty("@enabledFlag") || ((exerciseNode.@enabledFlag & Exercise.EF_NAVIGATE_ON) == Exercise.EF_NAVIGATE_ON &&
+			return (exerciseNode.attribute("enabledFlag").length() <= 0 || ((exerciseNode.@enabledFlag & Exercise.EF_NAVIGATE_ON) == Exercise.EF_NAVIGATE_ON &&
 																	!((exerciseNode.@enabledFlag & Exercise.EF_DISABLED) == Exercise.EF_DISABLED)));
 		}
 		
@@ -147,7 +147,7 @@ package com.clarityenglish.bento.vo.content {
 			// enabledFlag is binary based for backwards compatability
 			// You can see an exercise on the menu - if it is menuOn and not displayOff.
 			// If it is disabled, you will see it differently and not be able to click it.
-			return (!exerciseNode.hasOwnProperty("@enabledFlag") || ((exerciseNode.@enabledFlag & Exercise.EF_MENU_ON) == Exercise.EF_MENU_ON &&
+			return (exerciseNode.attribute("enabledFlag").length() <= 0 || ((exerciseNode.@enabledFlag & Exercise.EF_MENU_ON) == Exercise.EF_MENU_ON &&
 																	!((exerciseNode.@enabledFlag & Exercise.EF_DISPLAY_OFF) == Exercise.EF_DISPLAY_OFF)));
 		}
 		
@@ -163,7 +163,7 @@ package com.clarityenglish.bento.vo.content {
 				return false;
 			
 			// enabledFlag is binary based for backwards compatability
-			return (!exerciseNode.hasOwnProperty("@enabledFlag") || !((exerciseNode.@enabledFlag & Exercise.EF_DISABLED)==Exercise.EF_DISABLED));
+			return (exerciseNode.attribute("enabledFlag").length() <= 0 || !((exerciseNode.@enabledFlag & Exercise.EF_DISABLED)==Exercise.EF_DISABLED));
 
 		}
 		

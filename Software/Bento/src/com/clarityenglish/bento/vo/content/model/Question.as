@@ -44,7 +44,7 @@ package com.clarityenglish.bento.vo.content.model {
 		}
 		
 		public function get unmatchedFeedbackSource():String {
-			return xml.hasOwnProperty("@unmatchedFeedbackSource") ? xml.@unmatchedFeedbackSource : null; 
+			return xml.attribute("unmatchedFeedbackSource").length() > 0 ? xml.@unmatchedFeedbackSource : null; 
 		}
 		
 		public function get answers():Vector.<Answer> {

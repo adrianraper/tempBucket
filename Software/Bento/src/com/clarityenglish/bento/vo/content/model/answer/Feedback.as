@@ -17,7 +17,7 @@ package com.clarityenglish.bento.vo.content.model.answer {
 		
 		public function get title():String {
 			// gh#347
-			return (xml.hasOwnProperty("@title")) ? xml.@title : "Feedback";
+			return (xml.attribute("title").length() > 0) ? xml.@title : "Feedback";
 		}
 		
 		public function get width():Number {
@@ -34,7 +34,7 @@ package com.clarityenglish.bento.vo.content.model.answer {
 		 * @return 
 		 */
 		public function get min():Number {
-			if (!xml.hasOwnProperty("@min")) return 0;
+			if (xml.attribute("min").length() <= 0) return 0;
 			
 			var percentString:String = xml.@min.toString();
 			return new Number(percentString.substr(0, percentString.length - 1));

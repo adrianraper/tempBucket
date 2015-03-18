@@ -143,7 +143,7 @@
 		}
 		
 		global {
-			fontFamily: Helvatica;
+			fontFamily: Helvetica;
 			fontSize: 13;
 		}
 	</fx:Style>

@@ -549,7 +549,7 @@ package com.clarityenglish.textLayout.conversion {
 			var inlineGraphicElement:InlineGraphicElement = super.createInlineGraphicFromXML(xmlToParse);
 			
 			// TLF uses 'source' for the attribute, but allow 'src' too to match HTML better
-			if (xmlToParse.hasOwnProperty("@src")) inlineGraphicElement.source = updateWithRootPath(xmlToParse.@src.toString());
+			if (xmlToParse.attribute("src").length() > 0) inlineGraphicElement.source = updateWithRootPath(xmlToParse.@src.toString());
 			
 			// Inject any CSS properties into the element
 			var style:CSSComputedStyle = _css.style(xmlToParse);
@@ -571,8 +571,8 @@ package com.clarityenglish.textLayout.conversion {
 			var inputElement:InputElement = new InputElement();
 			
 			// Inject XML properties into the element
-			if (xmlToParse.hasOwnProperty("@value")) inputElement.value = xmlToParse.@value.toString();
-			if (xmlToParse.hasOwnProperty("@type")) inputElement.type = xmlToParse.@type.toString();
+			if (xmlToParse.attribute("value").length() > 0) inputElement.value = xmlToParse.@value.toString();
+			if (xmlToParse.attribute("type").length() > 0) inputElement.type = xmlToParse.@type.toString();
 			
 			// Inject any CSS properties into the element
 			var style:CSSComputedStyle = _css.style(xmlToParse);
@@ -605,11 +605,11 @@ package com.clarityenglish.textLayout.conversion {
 			var videoElement:VideoElement = new VideoElement();
 			
 			// Inject XML properties into the element
-			if (xmlToParse.hasOwnProperty("@src")) videoElement.src = updateWithRootPath(xmlToParse.@src.toString());
-			if (xmlToParse.hasOwnProperty("@width")) videoElement.width = xmlToParse.@width.toString();
-			if (xmlToParse.hasOwnProperty("@height")) videoElement.height = xmlToParse.@height.toString();
-			if (xmlToParse.hasOwnProperty("@autoPlay")) videoElement.autoPlay = (xmlToParse.@autoPlay.toString().toLowerCase() == "true");
-			if (xmlToParse.hasOwnProperty("@fullScreenDisabled")) videoElement.fullScreenDisabled = (xmlToParse.@fullScreenDisabled.toString().toLowerCase() == "true");
+			if (xmlToParse.attribute("src").length() > 0) videoElement.src = updateWithRootPath(xmlToParse.@src.toString());
+			if (xmlToParse.attribute("width").length() > 0) videoElement.width = xmlToParse.@width.toString();
+			if (xmlToParse.attribute("height").length() > 0) videoElement.height = xmlToParse.@height.toString();
+			if (xmlToParse.attribute("autoPlay").length() > 0) videoElement.autoPlay = (xmlToParse.@autoPlay.toString().toLowerCase() == "true");
+			if (xmlToParse.attribute("fullScreenDisabled").length() > 0) videoElement.fullScreenDisabled = (xmlToParse.@fullScreenDisabled.toString().toLowerCase() == "true");
 			
 			// Inject any CSS properties into the element
 			var style:CSSComputedStyle = _css.style(xmlToParse);
@@ -626,11 +626,11 @@ package com.clarityenglish.textLayout.conversion {
 			var audioElement:AudioElement = new AudioElement();
 			
 			// Inject XML properties into the element
-			if (xmlToParse.hasOwnProperty("@src")) audioElement.src = updateWithRootPath(xmlToParse.@src.toString());
-			if (xmlToParse.hasOwnProperty("@controls")) audioElement.controls = xmlToParse.@controls.toString();
-			if (xmlToParse.hasOwnProperty("@autoPlay")) audioElement.autoplay = xmlToParse.@autoPlay.toString();
+			if (xmlToParse.attribute("src").length() > 0) audioElement.src = updateWithRootPath(xmlToParse.@src.toString());
+			if (xmlToParse.attribute("controls").length() > 0) audioElement.controls = xmlToParse.@controls.toString();
+			if (xmlToParse.attribute("autoPlay").length() > 0) audioElement.autoplay = xmlToParse.@autoPlay.toString();
 			// gh#348
-			if (xmlToParse.hasOwnProperty("@type")) audioElement.type = xmlToParse.@type.toString();
+			if (xmlToParse.attribute("type").length() > 0) audioElement.type = xmlToParse.@type.toString();
 			
 			addToFlowElementXmlMap(xmlToParse, audioElement);
 			

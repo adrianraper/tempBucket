@@ -27,11 +27,11 @@ package com.clarityenglish.bento.vo.content.model.answer {
 		
 		public function get score():int {
 			// The @score attribute takes priority, if it exists
-			if (xml.hasOwnProperty("@score"))
+			if (xml.attribute("score").length() > 0)
 				return xml.@score;
 			
 			// Otherwise if @correct is true, then the score is +1
-			if (xml.hasOwnProperty("@correct"))
+			if (xml.attribute("correct").length() > 0)
 				if (xml.@correct == "true")
 					return 1;
 			
@@ -52,11 +52,11 @@ package com.clarityenglish.bento.vo.content.model.answer {
 				return INCORRECT;
 			
 			// If score is 0 then the marking class can be either neutral or incorrect based on the value of @correct
-			return (xml.hasOwnProperty("@correct") && xml.@correct == "neutral") ? NEUTRAL : INCORRECT;
+			return (xml.attribute("correct").length() > 0 && xml.@correct == "neutral") ? NEUTRAL : INCORRECT;
 		}
 		
 		public function get synonymGroup():String {
-			return (xml.hasOwnProperty("@synonymGroup")) ? xml.@synonymGroup.toString() : null;
+			return (xml.attribute("synonymGroup").length() > 0) ? xml.@synonymGroup.toString() : null;
 		}
 		
 		public function get feedback():Feedback {

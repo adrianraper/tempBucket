@@ -165,9 +165,9 @@ package com.clarityenglish.textLayout.vo {
 		 */
 		flash_proxy override function hasProperty(name:*):Boolean {
 			if (flash_proxy::isAttribute(name)) {
-				return _xml.hasOwnProperty("@" + String(name));
+				return _xml.attribute("" + String(name)).length() > 0;
 			} else {
-				return _xml.hasOwnProperty(String(name));
+				return _xml.attribute(String(name)).length() > 0;
 			}
 		}
 		
@@ -299,7 +299,7 @@ package com.clarityenglish.textLayout.vo {
 		 */
 		[Bindable(event="xmlChange")]
 		public function getElementById(id:String):XML {
-			var nodes:XMLList = _xml..*.(hasOwnProperty("@id") && @id == id);
+			var nodes:XMLList = _xml..*.(attribute("id").length() > 0 && @id == id);
 			return (nodes.length() > 0) ? nodes[0] : null;
 		}
 		

@@ -34,7 +34,7 @@
 					}
 				}
 				
-				setStyle("fontFamily", "Helvatica");
+				setStyle("fontFamily", "Helvetica");
 			}
 			
 			protected function onForgotPasswordClick(event:MouseEvent):void

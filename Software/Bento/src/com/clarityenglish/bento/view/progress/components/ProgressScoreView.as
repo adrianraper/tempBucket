@@ -104,7 +104,7 @@ package com.clarityenglish.bento.view.progress.components {
 						score.@caption = score.parent().@caption;
 						
 						// Caption is different from PracticeZone and others
-						if (score.parent().hasOwnProperty("@group")) {
+						if (score.parent().attribute("group").length() > 0) {
 							score.@unitCaption = menu.course.(@["class"] == courseClass).groups.group.(@id == score.parent().@group).@caption;
 						} else {
 							score.@unitCaption = score.parent().parent().@caption;

@@ -93,12 +93,12 @@ package com.clarityenglish.ielts.view.zone {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			list.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice").exercise);
+			list.dataProvider = new XMLListCollection(_course.unit.(attribute["class"] == "exam-practice").exercise);
 			
 			// get the exercise index in order to scroll to certain page when open the direct link
 			if (isDirectLinkStart) {
 				if (exerciseID) {
-					pageToScroll = _course.unit.(@["class"] == "exam-practice").exercise.(@id == exerciseID).childIndex();
+					pageToScroll = _course.unit.(attribute["class"] == "exam-practice").exercise.(attribute["id"] == exerciseID).childIndex();
 				}
 			}
 			

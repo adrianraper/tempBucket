@@ -14,7 +14,7 @@
 	
 	<s:Scroller left="40" right="0" top="140" bottom="120">
 		<s:Group left="0" right="0" top="0" bottom="0">
-			<s:RichText id="creditsRichText" left="0" right="0" top="0" fontFamily="Helvatica"/>
+			<s:RichText id="creditsRichText" left="0" right="0" top="0" fontFamily="Helvetica"/>
 		</s:Group>
 	</s:Scroller>
 	

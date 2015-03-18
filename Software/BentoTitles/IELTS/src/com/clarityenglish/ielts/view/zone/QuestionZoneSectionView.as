@@ -76,13 +76,13 @@ package com.clarityenglish.ielts.view.zone {
 			
 			for each (var questionZoneNode:XML in _course.unit.(@["class"] == "question-zone").exercise) {
 				if (questionZoneNode.@href.indexOf(".xml") > 0) {
-					readButton.enabled = !(questionZoneNode.hasOwnProperty("@enabledFlag") && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
+					readButton.enabled = !(questionZoneNode.attribute("enabledFlag").length() > 0 && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
 				}
 				if (questionZoneNode.@href.indexOf(".pdf") > 0) { 
-					downloadButton.enabled = !(questionZoneNode.hasOwnProperty("@enabledFlag") && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
+					downloadButton.enabled = !(questionZoneNode.attribute("enabledFlag").length() > 0 && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
 				}
 				if (questionZoneNode.@href.indexOf(".rss") > 0) { 
-					videoButton.enabled = !(questionZoneNode.hasOwnProperty("@enabledFlag") && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
+					videoButton.enabled = !(questionZoneNode.attribute("enabledFlag").length() > 0 && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
 				}
 			}
 			/*
