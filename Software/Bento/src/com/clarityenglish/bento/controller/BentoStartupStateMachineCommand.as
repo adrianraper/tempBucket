@@ -26,9 +26,10 @@ package com.clarityenglish.bento.controller {
                     <state name={BBStates.STATE_LOAD_ACCOUNT} entering={CommonNotifications.ACCOUNT_LOAD}>
 					    <transition action={CommonNotifications.ACCOUNT_LOADED} target={BBStates.STATE_LOGIN} />
 					    <transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
-					</state>              
+					</state>
 														
 					<state name={BBStates.STATE_LOGIN}>
+						<transition action={CommonNotifications.ACCOUNT_RELOAD} target={BBStates.STATE_LOAD_ACCOUNT} />
 						<transition action={CommonNotifications.LOGGED_IN} target={BBStates.STATE_LOAD_MENU} />
 						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>
@@ -45,7 +46,8 @@ package com.clarityenglish.bento.controller {
 					</state>
 			
 					<state name={BBStates.STATE_TITLE}>
-						<transition action={CommonNotifications.LOGGED_OUT} target={BBStates.STATE_CREDITS} />
+						<transition action={CommonNotifications.LOGGED_OUT} target={BBStates.STATE_LOAD_ACCOUNT} />
+						<transition action={CommonNotifications.EXITED} target={BBStates.STATE_CREDITS} />
 						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>
 					
@@ -79,11 +81,11 @@ package com.clarityenglish.bento.controller {
 			//}
 			
 			// #377 - when disableAutoTimeout is on we want to go back to the login screen instead of the credits screen
-			if (configProxy.getConfig().disableAutoTimeout) {
+			/*if (configProxy.getConfig().disableAutoTimeout) {
 				for each (var creditTransition:XML in fsm..transition.(@target == BBStates.STATE_CREDITS)) {
 					creditTransition.@target = BBStates.STATE_LOAD_ACCOUNT; 
 				}
-			}
+			}*/
 			
 			// Kick off the state machine
 			var fsmInjector:FSMInjector = new FSMInjector(fsm);

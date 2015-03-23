@@ -127,8 +127,16 @@ class BentoService extends AbstractService {
 		
 		// gh#659 productCodes is null or not can distinguish whether this is ipad or online version login
 		if (isset($config['ip'])) {
-			foreach ($account->titles as $thisTitle) {
-				array_push($account->IPMatchedProductCodes, $thisTitle->productCode);
+			foreach ($account->licenceAttributes as $thisLicenceAttribute) {
+				if ($thisLicenceAttribute['licenceKey'] == 'IPrange') {
+					if ($thisLicenceAttribute['productCode'] != '') {
+						array_push($account->IPMatchedProductCodes, $thisLicenceAttribute['productCode']);
+					} else { // Sometimes the product code column is empty, so we need to add product code from title
+						foreach ($account->titles as $thisTitle)
+							array_push($account->IPMatchedProductCodes, $thisTitle->productCode);
+						break;
+					}
+				}
 			}
 		}
 		

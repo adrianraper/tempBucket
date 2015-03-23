@@ -1,7 +1,7 @@
 /* CSS file */
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
-@namespace login "com.clarityenglish.ielts.view.login.*";
+@namespace login "com.clarityenglish.bento.view.login.*";
 @namespace credits "com.clarityenglish.bento.view.credits.*";
 @namespace title "com.clarityenglish.ielts.view.title.*";
 @namespace zone "com.clarityenglish.ielts.view.zone.*";
@@ -100,27 +100,47 @@ login|LoginView {
 }
 
 login|LoginView s|TextInput {
-	skinClass: ClassReference("spark.skins.spark.TextInputSkin");
+	skinClass: ClassReference("skins.ielts.login.TextInputSkin");
 	borderVisible: true;
 	borderColor: #E6E6E6; 
 	contentBackgroundColor: #FFFFFF;
+}
+
+login|LoginView s|SkinnableContainer#trackingGroup,#registerGroup {
+	skinClass: ClassReference("skins.ielts.login.SignInContainerSkin");
+}
+
+login|LoginView s|SkinnableContainer#anonymousGroup {
+	skinClass: ClassReference("skins.ielts.login.AnonymousContainerSkin");
 }
 
 login|LoginView s|Button {
 	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
 }
 
-login|LoginView #testDriveGeneralButton {
+login|LoginView s|ButtonBar {
+	skinClass: ClassReference("skins.ielts.login.LoginButtonBarSkin");
+}
+
+/*login|LoginView #testDriveGeneralButton {
 	skinClass: ClassReference("skins.ielts.login.TestDriveButtonSkin");
 }
 
 login|LoginView #testDriveAcademicButton {
 	skinClass: ClassReference("skins.ielts.login.TestDriveButtonSkin");
+}*/
+
+login|LoginView s|Button#forgotPasswordButton {
+	skinClass: ClassReference("skins.ielts.login.LoginForgotPasswordButton");
 }
 
-login|LoginView #accountMoreButton {
-	skinClass: ClassReference("skins.ielts.login.AccountMoreButtonSkin");
+login|LoginView s|Button#newUserButton {
+	skinClass: ClassReference("skins.ielts.login.LoginForgotPasswordButton");
 }
+
+/*login|LoginView #accountMoreButton {
+	skinClass: ClassReference("skins.ielts.login.AccountMoreButtonSkin");
+}*/
 
 /* Title view styles */
 title|TitleView {

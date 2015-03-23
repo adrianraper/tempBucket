@@ -424,10 +424,13 @@ SQL;
 					$relevantAttributes[] = $detail;
 				} else {
 					$codes = explode(',',$detail['productCode']);
-					foreach ($codes as $code) {
-						if ($code==$productCode) {
-							$relevantAttributes[] = $detail;
-							break;
+					$productCodes = explode(',',$productCode);
+					foreach ( $codes as $code ) {
+						foreach ( $productCodes as $theProductCode ) {
+							if ($code == $theProductCode) {
+								$relevantAttributes [] = $detail;
+								break;
+							}
 						}
 					}
 				}
@@ -1059,8 +1062,9 @@ EOD;
 			while ($rsObj = $rs->FetchNextObj()) {
 				// now simple check to see if the passed ip is in this range
 				if ($this->isIPInRange($ip, $rsObj->ranges))
-					$foundRoots[] = $rsObj->rootID;
+					$foundRoots[] = $rsObj->rootID;	
 			}
+			$foundRoots = array_unique($foundRoots);
 		}
 		
 		switch (count($foundRoots)) {

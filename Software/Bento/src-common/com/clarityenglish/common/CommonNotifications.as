@@ -50,12 +50,15 @@
 		public static const TRACE_ERROR:String = "trace_error";
 		
 		public static const EXIT:String = "exit";
+		public static const EXITED:String = "exited";
 		
 		public static const PERFORMANCE_LOG:String = "performance_log";
 		
 		public static const GESTURE_SWIPE_LEFT:String = "gesture_swipe_left";
 		public static const GESTURE_SWIPE_RIGHT:String = "gesture_swipe_right";
 		
+		// gh#1067
+		public static const WRITE_MEMORY:String = "write_memory";
 	}
 	
 }

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<literals progam="IELTS" version="2.0">
+	<language name="English International" code="EN" mediaFolder="EN">
+		<group name="group">
+            <lit name="applicationVersion">Version {version}</lit>
+            
+            <!-- Errors -->
+            <lit name="errorUnknown" code="100">Unknown error</lit>
+            
+            <lit name="errorNoSuchUser" code="200">Your {loginKeyField} is not registered. Please contact your administrator.</lit>
+            <lit name="errorNoProductCode" code="201">No product code sent.</lit>
+            <lit name="errorNoPrefixOrRoot" code="202">No account details found.</lit>
+            <lit name="errorNoPrefixForRoot" code="203">No account matches the prefix {prefix}. Please check your URL.</lit>
+            <lit name="errorMultipleProductCodeInRoot" code="204">Duplicated titles in this account. (productCode={productCode})</lit>
+            <lit name="errorNoProductCodeInRoot" code="205">Your account does not have access to this title. (product code={productCode} root={rootID})</lit>
+            <lit name="errorWrongPassword" code="206">Your {loginKeyField} or password is not correct. Please try again.</lit>
+            <lit name="errorUserExpired" code="207">Your user account expired on {expiryDate}. Please contact your administrator.</lit>
+            <lit name="errorDuplicateUsers" code="208">More than one user matches this {loginKeyField}. Please contact your administrator.</lit>
+            <lit name="errorNoAnonymousUser" code="209">No anonymous user registered.</lit>
+            <lit name="errorNoSuchGroup" code="210">No such group exists. Please contact your administrator.</lit>
+            <lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
+            <lit name="errorGetInstanceId" code="212">Can't get the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
+            <lit name="errorFailedInstanceCheck" code="213">Someone else has signed in with your details. Please try again. ({instanceID})</lit>
+            <lit name="errorInvalidLoginOption" code="214">This account has not set the sign in options. ({loginOption})</lit>
+            <lit name="errorLoginKeyEmpty" code="215">The {loginKeyField} can't be empty.</lit>
+            <lit name="errorTitleBlockedByHiddenContent" code="216">Your group has been blocked from using this program. Please contact your teacher or administrator for help.</lit>
+            <lit name="errorDuplicateUser" code="217">Sorry, this {loginKeyField} has already been used. Please try again.</lit>
+            <lit name="errorWrongUserType" code="218">Sorry, you don't have permission to run this program. (Type is {userType})</lit>
+            
+            <lit name="errorLicenceHasntStartedYet" code="300">Your account hasn't started yet. Please contact your administrator.</lit>
+            <lit name="errorLicenceExpired" code="301">Your account expired on {expiryDate}. Please contact your administrator.</lit>
+            <lit name="errorCantClearLicences" code="302">Unable to clear old licences.</lit>
+            <lit name="errorTrackingLicenceFull" code="303">This licence is full, please contact your administrator.</lit>
+            <lit name="errorConcurrentLicenceFull" code="304">This licence is full, please try again later.</lit>
+            <lit name="errorReadingLicenceControlTable" code="305">Error reading licence control table. Please contact support@clarityenglish.com.</lit>
+            <lit name="errorUnrecognisedLicenceType" code="306">The licence type {licenceType} is not recognised. Please contact support@clarityenglish.com.</lit>
+            <lit name="errorCantFindLicence" code="307">Error, can't find this licence {licenceID}. Please contact support@clarityenglish.com.</lit>
+            <lit name="errorCantUpdateLicence" code="308">Error, can't update this licence {licenceID}. Please contact your support@clarityenglish.com.</lit>
+            <lit name="errorCantDeleteLicence" code="309">Error, can't delete this licence {licenceID}. Please contact your support@clarityenglish.com.</lit>
+            <lit name="errorCantAllocateLicenceNumber" code="310">Error, can't allocate a licence number.</lit>
+            <lit name="errorIPDoesntMatch" code="311">This licence can only run from certain computers. Your IP is {ip}.</lit>
+            <lit name="errorRUDoesntMatch" code="312">This licence can only run from certain websites. You came from {referrer}.</lit>
+            <lit name="errorIPandRUDontMatch" code="313">This licence can only run from certain computers or websites. You came from {referrer} with {ip}.</lit>
+            <lit name="errorCantLoadEveryoneSummary" code="314">Unable to load data for everyone's summary.</lit>
+            
+            <lit name="errorMultipleExerciseWithSameId" code="400">The menu xml has more than one exercise node with id={exerciseID}.</lit>
+            <lit name="errorCantFindAutoIncrementSessionId" code="401">Database can't find auto-increment session id.</lit>
+            <lit name="errorParsingExercise" code="402">Unable to read exercise {filename} ({message}). Please contact support@clarityenglish.com with the file name.</lit>
+            <lit name="errorParsingExerciseDetection1">Error parsing exercise detection {filename} ({message1} {message2})}.</lit>
+            <lit name="errorMultipleExerciseWithSameHref" code="403">Found multiple exercise nodes in the menu.xml matching {href}.</lit>
+            <lit name="errorCantFindExerciseWithHref" code="404">Unable to find any exercise nodes in the menu.xml matching {href}.</lit>
+            <lit name="errorNoExerciseWithId" code="405">The menu.xml has no exercise node with id={exerciseID}.</lit>
+            
+            <lit name="errorDatabaseReading" code="500">Error reading from the database. Please contact support@clarityenglish.com.</lit>
+            <lit name="errorDatabaseWriting" code="501">Error writing to the database. Please contact support@clarityenglish.com.</lit>
+
+            <lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
+            <lit name="errorVideoLoad" code="602">This URL isn't recognised as a compatible video source. Click 'share' under a YouTube video and copy the URL, something like http://youtu.be/oSn3i4vsGeY. Vimeo can be copied direct from the URL.</lit>
+            <lit name="contentBlockedWarning" code="603">This device can't link to the content for this item. Please try to access the course from a computer browser.</lit>
+            
+            <lit name="errorSavingCourse" code="700">Error saving this course. Please contact support@clarityenglish.com. ({reason})</lit>
+            <lit name="errorSecurity" code="701">Security error.</lit>
+            <lit name="errorCourseDoesNotExist" code="702">This course does not exist.</lit>
+            <lit name="errorSavingCourseDates" code="703">There is something wrong with the publishing settings for this course. Please check.</lit>
+            <lit name="errorConcurrentCourseAccess" code="704">Somebody is already editing this course. Please try again later.</lit>
+            
+            <lit name="errorUploadNotAuthenticated" code="705">This upload was not authenticated. Please contact support@clarityenglish.com.</lit>
+            <lit name="errorUploadNoPOST" code="706">No data was found attached to this upload. Please contact support@clarityenglish.com.</lit>
+            <lit name="errorExceedMaxFileSize" code="707">Your file is too big, please upload a file less than {sizeLimit}.</lit>
+            
+            <lit name="errorSingleVideoIOS" code="708">Only a single video per unit is currently supported on iOS.</lit>
+            <lit name="errorSavingCourseToDb" code="888">Your course has been saved, but a problem with the database means the publishing details and settings have not. Please try again in a minute. If the problem persists, please contact support@clarityenglish.com and tell us the course you were editing and the date/time.</lit>
+            
+            <lit name="supportEmail">support@clarityenglish.com</lit>
+            <lit name="problemLabel"></lit> <!-- "Sorry, there is a problem" is hardcoded in ShowErrorCommand -->
+            
+            <lit name="stdErrorTitle">Sorry, there is a problem...</lit>
+            
+            <!-- Loading -->
+            <lit name="loadingLabel">loading...</lit>
+            
+            <!-- Login -->
+            <lit name="loginButton">Sign in</lit>
+            <lit name="passwordLabel">Password</lit>
+            <lit name="yourLoginDetail">{loginDetail}</lit>
+            <lit name="nameLoginDetail">Name</lit>
+            <lit name="IDLoginDetail">ID</lit>
+            <lit name="emailLoginDetail">Email</lit>
+            <lit name="nameKeyfield">name</lit>
+            <lit name="IDKeyfield">ID</lit>
+            <lit name="emailKeyfield">email</lit>
+            <lit name="yourID">Your id:</lit>
+            <lit name="yourEmail">Your email:</lit>
+            <lit name="welcomeLabel">Account: {name}</lit>
+            <lit name="licencedToName">Licensed to {name}</lit>
+            <lit name="forgotPasswordLabel">Forgot your password?</lit>
+            <lit name="forgotPasswordLink"><![CDATA[http://www.clarityenglish.com/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
+            <lit name="loginCaption">Sign in with your Clarity account</lit>
+            <lit name="anonymousCaption">Just practise</lit>
+            <lit name="loginDetail">Signing in will save your progress.</lit>
+            <lit name="newUserButtonCaption">Create an account</lit>
+            <lit name="addUserButtonCaption">Start</lit>
+            <lit name="cancelButtonCaption">Cancel</lit>
+            <lit name="anonymousButtonCaption">Start</lit>
+            <lit name="selfRegisterCaption">Create your account</lit>
+            <lit name="selfRegisterNameCaption">Name</lit>
+            <lit name="selfRegisterIDCaption">ID</lit>
+            <lit name="selfRegisterEmailCaption">Email</lit>
+            <lit name="selfRegisterPasswordCaption">Password</lit>
+            <lit name="confirmPasswordCaption">Confirm password</lit>
+            <lit name="demoButtonCaption">Demo</lit>
+            <lit name="accountName">You are signed in as: {name}</lit>
+            <lit name="orCaption">OR</lit>
+            
+            <!-- General screen literals -->
+            <lit name="myProgress">My progress</lit>
+            <lit name="myProfile">My profile</lit>
+            <lit name="help">Help</lit>
+            <lit name="credits">Credits</lit>
+            <lit name="more">More</lit>
+            <lit name="Home">Home</lit>
+            <lit name="recorderButton">Recorder</lit>
+            <lit name="Back">Back</lit>
+            <lit name="Next">Forward</lit>
+            <lit name="LogOut">Log out</lit>
+            <lit name="updateError">The two new passwords you typed must be the same.</lit>
+            <lit name="updateFail">Sorry, these details can't be updated.</lit>
+            <lit name="updateSuccess">Your details have been saved.</lit>
+            <lit name="registeredNameLabel">Registered name:</lit>
+            <lit name="emailLabel">Email:</lit>
+            <lit name="accountStartDateLabel">Account start date:</lit>
+            <lit name="accountExpiryDateLabel">Account expiry date:</lit>
+            <lit name="saveChangesButton">Save changes</lit>
+            <lit name="currentPwdLabel">Current password:</lit>
+            <lit name="newPwdLabel">New password:</lit>
+            <lit name="confirmPwdLabel">Confirm password:</lit>
+            <lit name="accountLanguageLabel">Language:</lit>
+            <lit name="exerciseBackToMenuButton">Menu</lit>
+            <lit name="exerciseStartAgainButton">Start again</lit>
+            <lit name="exerciseBackButton">Back</lit>
+            <lit name="exerciseForwardButton">Forward</lit>
+            <lit name="exerciseFeedbackButton">Feedback</lit>
+            <lit name="exerciseMarkingButton">Marking</lit>
+            <lit name="exerciseLogOutButton">Log out</lit>
+            <lit name="overallScoreLabel">You scored {score}%</lit>
+            <lit name="correctLabel">Correct: {correct}</lit> 
+            <lit name="wrongLabel">Wrong: {wrong}</lit> 
+            <lit name="missedLabel">Skipped: {missed}</lit> 
+            <lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
+            
+            <lit name="footerLabel"> © Clarity Language Consultants Ltd, 2013-14. All rights reserved.</lit>
+            <lit name="printButton">Print</lit>
+            <lit name="noButton">No</lit>
+            <lit name="yesButton">Yes</lit>
+            <lit name="closeButton">OK</lit>
+
+            <!-- Demo Label -->
+            <lit name="topLeftDemoLabel">DEMO COPY</lit>
+            <lit name="topRightDemoLabel">Evaluation only</lit>
+            <lit name="demoTooltipLabel1">Please look for</lit>
+            <lit name="demoTooltipLabel2">to see the material in this demo.</lit>
+
+            <!-- Footer -->
+            <lit name="copyright">© Clarity Language Consultants Ltd, 1993-2015. All rights reserved.</lit>
+            <lit name="versionLabel">v{versionNumber}</lit>
+
+            <!--  Progress literals -->
+            <lit name="analysisInstructionLabel1">This shows how you spent your time</lit>
+            <lit name="analysisInstructionLabel2">Time spent on each unit</lit>
+            <lit name="courseDurationRenderLabel">You have spent</lit>
+            <lit name="courseDurationRenderTime">{time}</lit>
+            <lit name="coverageLabel">coverage</lit>
+            <lit name="analysisLabel">analysis</lit>
+            <lit name="progressNavBarCoverage">My coverage</lit>
+            <lit name="progressNavBarCompare">Compare</lit>
+            <lit name="progressNavBarAnalyse">Analyse</lit>
+            <lit name="progressNavBarScores">My scores</lit>
+            <lit name="progressNavBarCertificate">My certificate</lit>
+            <lit name="progressAnonymousLabel">You logged in anonymously, so your progress will not be saved.</lit>
+            <lit name="progressBarCoverage">{course} - overall coverage</lit>
+            <lit name="coverageInstructionLabel">The chart below shows how many exercises you have completed in each unit.</lit>
+            <lit name="completeLabel">Started</lit>
+            <lit name="notCompleteLabel">Not started</lit>
+            <lit name="chartCaptionLabel">Average score %</lit>
+            <lit name="compareInstructionLabel">Compare your average score to other learners.</lit>
+            <lit name="mylegendLabel">My scores</lit>
+            <lit name="everyonelegendLabel">Everyone's scores</lit>
+            <lit name="compareEmptyScoreLabel">You must first complete an exercise to see this chart.</lit>
+            <lit name="analyseInstructionLabel">This shows how you spent your time on exercise in {course}:</lit>
+            <lit name="minLabel">min(s)</lit>
+            <lit name="totalLabel">Total:</lit>
+            <lit name="totalTimeLabel">Total time you have spent</lit>
+            <lit name="circleWedgeInstructionLabel">Shows only the units you have started.</lit>
+            <lit name="progressBarScore">{course} - Average score</lit>
+            <lit name="scoreGridC1">Unit</lit>
+            <lit name="scoreGridC2">Exercise</lit>
+            <lit name="scoreGridC3">Score %</lit>
+            <lit name="scoreGridC4">Time spent</lit>
+            <lit name="scoreGridC5">Date</lit>
+            <lit name="ScoreEmptyScoreLabelButton">You must first complete an exercise to see data in this table.</lit>
+            
+            <!-- Progress certificate -->
+            <lit name="notCompleteString">
+             <![CDATA[
+                <p>You have not completed <span fontWeight="bold" fontSize="16">{courseCaption}</span> yet, so you cannot receive a certificate.</p>
+                <p>So far you have completed <span fontWeight="bold" fontSize="16">{exerciseAmount} of {totalExercise} exercises</span> and your average score is <span fontWeight="bold" fontSize="16">{aveScor}%.</span></p>
+                <p>Go to <span fontWeight="bold" fontSize="16">My Coverage</span> to see which exercises you have not completed so that</p>
+                <p>you can finish the whole level.</p> 
+             ]]>
+            </lit>
+            <lit name="completeString">
+                <![CDATA[
+                <p>This is to certify that this learner has completed this level</p>
+                <p>with an average score of <span fontWeight="bold" fontSize="20">{aveScore}%.</span></p>
+                ]]>
+            </lit>
+            <lit name="nameTextLabel">Name:</lit>
+            <lit name="courseTextLabel">Course:</lit>
+            <lit name="dateTextLabel">Date:</lit>
+            
+            <!-- Marking and feedback -->
+            <lit name="tryAgainButton">Try again</lit>
+            <lit name="seeAnswersButton">See answers</lit>
+            <lit name="moveForwardButton">Forward</lit>
+            <lit name="loseAnswerWarning1">Are you sure you want to leave this exercise?</lit>
+            <lit name="loseAnswerWarning2">(You will lose your work in this exercise.)</lit>
+            <lit name="loseChangesWarning">Your changes have not been saved. Are you sure you want to continue?</lit>
+            <lit name="loseRecordingWarning">You will lose any unsaved recording you have made. Are you sure you want to continue?</lit>
+            <lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>
+            <lit name="feedbackClickAnswersMsg">Click on any answer to see feedback.</lit>          
+            <lit name="correctFeedbackTitle">Well done!</lit>
+            <lit name="incorrectFeedbackTitle">Sorry...</lit>
+            <lit name="neutralFeedbackTitle"></lit>
+            <lit name="generalFeedbackTitle"></lit>
+            
+		</group>
+	</language>
+
+	<language name="Simplified Chinese" code="ZH" mediaFolder="ZH">
+		<group name="group">
+		</group>
+	</language>
+	
+	<language name="Japanese" code="JP" mediaFolder="JP">
+		<group name="group">
+		</group>
+	</language>
+	
+	<language name="North American" code="NAMEN" mediaFolder="NAMEN">
+        <group name="group">
+        </group>
+    </language>
+</literals>

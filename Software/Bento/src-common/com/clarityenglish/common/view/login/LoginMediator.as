@@ -2,18 +2,22 @@
  Mediator - PureMVC
  */
 package com.clarityenglish.common.view.login {
+	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.view.login.LoginView;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
-	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
+	
+	import mx.core.FlexGlobals;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -27,8 +31,8 @@ package com.clarityenglish.common.view.login {
 			super(mediatorName, viewComponent);
 		}
 		
-		private function get view():LoginComponent {
-			return viewComponent as LoginComponent;
+		private function get view():LoginView {
+			return viewComponent as LoginView;
 		}
 		
 		/**
@@ -41,11 +45,15 @@ package com.clarityenglish.common.view.login {
 			view.addEventListener(LoginEvent.ADD_USER, onAddUser);
 			
 			view.getTestDrive().add(onTestDrive);
+			view.startDemo.add(onStartDemo);
 			
 			// Inject some data to the login view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			view.setLicencee(configProxy.getAccount().name);
-
+			// gh#1090
+			view.licenceeName = configProxy.getAccount().name;
+			
+			// gh#1090 Not generally needed. If a specific view wants it, it can get it direct from view.config.platform
+			/*
 			// get the login platform
 			if (configProxy.isPlatformTablet()) {
 				view.setPlatformTablet(true);
@@ -57,33 +65,48 @@ package com.clarityenglish.common.view.login {
 			} else {
 				view.setPlatformTablet(false);
 			}
+			*/
 			
-			//trace("the product version in LoginM is "+ configProxy.getProductVersion());
-			view.setProductVersion(configProxy.getProductVersion());
-			view.setProductCode(configProxy.getProductCode());
+			// gh#224
+			//view.setBranding(configProxy.getConfig().customisation);
+			view.branding = configProxy.getBranding('login');
 			
-			// gh#659 using IPMatchedProductCodes length to distinguish the login from tablet through IPRange
-			if (configProxy.getAccount().IPMatchedProductCodes) {
-				if (configProxy.getAccount().IPMatchedProductCodes.length > 0) {
-					view.setHasMatchedIPrange(true);
-					view.setIPMatchedProductCodes(configProxy.getAccount().IPMatchedProductCodes);
-				}
-			}else {
-				view.setHasMatchedIPrange(false); 
+			view.productVersion = configProxy.getProductVersion();
+			view.productCode = configProxy.getProductCode();
+			
+			// gh#659 using productCodes to distinguish the ipad login and online login
+			// And using productCodes length to distinguish an account has IPrange setting.
+			/*
+			if (configProxy.getAccount().IPMatchedProductCodes.length > 0){
+				view.setHasMatchedIPrange(true);
+				view.setIPMatchedProductCodes(configProxy.getAccount().IPMatchedProductCodes);
+			} else {
+				view.setHasMatchedIPrange(false);
 			}
+			*/
 			
 			// #341
-			view.setLoginOption(configProxy.getLoginOption()); // gh#44
-			view.setSelfRegister(configProxy.getAccount().selfRegister);
-			view.setVerified(configProxy.getAccount().verified);
-			view.setLicenceType(configProxy.getLicenceType());
-
+			view.loginOption = configProxy.getLoginOption(); // gh#44
+			view.selfRegister = configProxy.getAccount().selfRegister;
+			view.verified = (configProxy.getAccount().verified == Config.LOGIN_REQUIRE_PASSWORD);
+			view.licenceType = configProxy.getLicenceType();
+			
 			// #41
-			var noAccount:Boolean = !(configProxy.getRootID());
-			view.setNoAccount(noAccount);
+			view.noAccount = !(configProxy.getRootID());
+			if (!view.noAccount) {
+				view.ipMatchedProductCodes = configProxy.getAccount().IPMatchedProductCodes.length > 1 ? configProxy.getAccount().IPMatchedProductCodes : null;
+			}	
 			
 			// gh#886
-			view.setNoLogin(configProxy.getConfig().noLogin);
+			view.noLogin = configProxy.getConfig().noLogin;
+			
+			// gh#1090
+			view.clearData();
+			view.setState("normal");
+			
+			view.isPlatformTablet = configProxy.isPlatformTablet();
+			view.isPlatformipad = configProxy.isPlatformiPad();
+			view.isPlatformAndroid = configProxy.isPlatformTablet();
 		}
         
 		override public function onRemove():void {
@@ -131,21 +154,11 @@ package com.clarityenglish.common.view.login {
 					view.clearData();
 					break;
 				
+				// gh#1090 no longer used
+				/*
 				case CommonNotifications.CONFIRM_NEW_USER:
 					view.setState("register");
 					break;
-				
-				case CommonNotifications.INVALID_LOGIN:
-					// If we catch this notification here, I want to handle it on the loginView
-					// So I need to reimplement view.showInvalidLogin, and also stop the notification
-					// from going on to be caught be IELTSApplicationMediator.
-					//trace("caught login error in login mediator");
-					
-					// AR Clear anything that is in the fields out - relevant to returning to this screen on logout
-					view.clearData();
-						
-					break;
-				
 				case CommonNotifications.ADDED_USER:
 					// #341
 					// Check if successful. If yes, then just login that user
@@ -156,8 +169,20 @@ package com.clarityenglish.common.view.login {
 					} else {
 						//trace("error from add new user");
 						// Need to pass the error in. Perhaps the error is flagged as a popup just like wrong password in login.
-						view.setState("registerError");
+						view.setState("error");
 					}
+					break;
+				*/
+				
+				case CommonNotifications.INVALID_LOGIN:
+					// If we catch this notification here, I want to handle it on the loginView
+					// So I need to reimplement view.showInvalidLogin, and also stop the notification
+					// from going on to be caught be IELTSApplicationMediator.
+					//trace("caught login error in login mediator");
+					
+					// AR Clear anything that is in the fields out - relevant to returning to this screen on logout
+					view.clearData();
+						
 					break;
 				
 				default:
@@ -175,9 +200,18 @@ package com.clarityenglish.common.view.login {
 		
 		// gh#41 Make sure that we know which productCode they want to run
 		private function onTestDrive(productCode:String):void {
-			//trace("the productcode in test drive is "+ productCode);
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			configProxy.getConfig().productCode = productCode;			
+		}
+		
+		// gh#1090
+		private function onStartDemo(prefix:String, productCode:String):void {
+			//FlexGlobals.topLevelApplication.parameters.prefix = 'Demo';
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			configProxy.reset();
+			configProxy.getConfig().retainedParameters["prefix"] = prefix;
+			configProxy.getConfig().retainedParameters["productCode"] = productCode;
+			sendNotification(CommonNotifications.ACCOUNT_RELOAD);
 		}
 		
 	}

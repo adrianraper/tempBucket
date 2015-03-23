@@ -20,17 +20,17 @@
 			
 			protected function onCreationComplete(event:FlexEvent):void
 			{
-				// TODO Auto-generated method stub
 				Bind.fromProperty(hostComponent, "videoCollection").toFunction(function():void {
 					callLater(
 						function():void {
 							videoList.selectedIndex = 0;
 							videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+							videoPlayer.placeholderSource = hostComponent.href.rootPath + "/" + hostComponent.videoCollection.getItemAt(videoList.selectedIndex).attribute("poster");
+							trace("video item: "+hostComponent.videoCollection.getItemAt(videoList.selectedIndex));
 						}	
 					);			
 				});
 			}
-			
 		]]>
 	</fx:Script>
 	

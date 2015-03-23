@@ -18,19 +18,62 @@ class CopyOps {
 	 * in the concrete Service file (e.g. ClarityService, DMSService, IELTSService).
 	 */
 	private function getFilename() {
-	    // gh#20 add language code in one file
-	    //$filename = dirname(__FILE__).$GLOBALS['interface_dir']."resources/".strtolower((Session::is_set('languageCode')) ? Session::get('languageCode') : "EN")."/".AbstractService::$title.".xml";
 	    return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".AbstractService::$title.".xml";
 	}
+
+	private function getBaseFilename() {
+	    return dirname(__FILE__).$GLOBALS['interface_dir']."resources/base.xml";
+	}
 	
-	private function getXPath() {
+	/**
+     * gh#513 This is the only function to read the file(s), returns xml string
+     * gh#1050 Base literals are taken from base.xml, and then nodes are overlaid from the specific literals file
+     */
+	protected function getXMLFromFile() {
+		if (!file_exists($this->getFilename()))
+			throw new Exception($this->getFilename()." file not found");
+		
+		$xml = new DOMDocument();
+		$xml->load($this->getBaseFilename());
+        $xmlXPath = new DOMXpath($xml);
+
+        $overlay = new DOMDocument();
+        $overlay->load($this->getFilename());
+        $overlayXPath = new DOMXPath($overlay);
+
+        // Go through the $overlay, replacing or creating elements in $xml
+        /** @var \DOMNode $node */
+        foreach ($overlay->getElementsByTagName("lit") as $node) {
+            // For each literal construct its xpath
+            $language = $node->parentNode->parentNode->attributes->getNamedItem('name')->nodeValue;
+            $group = $node->parentNode->attributes->getNamedItem('name')->nodeValue;
+            $literal = $node->attributes->getNamedItem('name')->nodeValue;
+            $parentPath = "/literals/language[@name='$language']/group[@name='$group']";
+            $literalPath = $parentPath."/lit[@name='$literal']";
+
+            // Import the node into the original document
+            $importedNode = $xml->importNode($node, true);
+
+            // Now use the xpath to locate the matching node in the base
+            $matchingNodes = $xmlXPath->query($literalPath);
+            if ($matchingNodes->length == 0) {
+                // The node doesn't exist so add it to the parent
+                $xmlXPath->query($parentPath)->item(0)->appendChild($importedNode);
+            } else {
+                // The node exists, so replace it
+                $oldNode = $matchingNodes->item(0);
+                $oldNode->parentNode->replaceChild($importedNode, $oldNode);
+            }
+        }
+
+		return $xml->saveXML();
+	}
+	
+	protected function getXPath($code = null) {
 		if (!$this->xpath) {
-			// AR added this check too. If the file doesn't exist return false
-			if (!file_exists($this->getFilename()))
-				throw new Exception($this->getFilename()." file not found");
 			
 			$doc = new DOMDocument();
-			$doc->load($this->getFilename());
+			$doc->loadXML($this->getXMLFromFile($code));
 			
 			$this->xpath = new DOMxpath($doc);
 		}
@@ -42,22 +85,13 @@ class CopyOps {
 	 * Read and return the XML literals document as a string
 	 * gh#39 pass language code
 	 */
-	function getCopy($code = null) {
+	public function getCopy($code = null) {
 		// gh#39
 		//if ($code) Session::set('languageCode', $code);
 		if ($code) Session::set('language', $code);
 		
-		// If the file doesn't exist return false
-		if (!file_exists($this->getFilename()))
-			throw new Exception($this->getFilename()." not found");
-		
-		// Read the file
-		$contents = file_get_contents($this->getFilename($code));
-		
-		// Return the file as a string to be converted to XML on the client
-		//issue:#20
-		//return utf8_decode($contents);
-		return $contents;
+		// gh#513
+		return $this->getXMLFromFile($code);
 	}
 	
 	/**

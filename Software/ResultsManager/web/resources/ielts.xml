@@ -57,8 +57,10 @@
 			
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
 			
+			<lit name="demoButton1">Academic</lit>
+			<lit name="demoButton2">General Training</lit>
 			<lit name="accountMoreButton">To find out how to get an account, tap here.</lit>
-			<lit name="testDriveLabel">Try the FREE Test Drive Version</lit>
+			<lit name="demoButtonCaption">Try the FREE Test Drive Version</lit>
 			<lit name="printButton">Print</lit>
 			<lit name="noButton">No</lit>
 			<lit name="yesButton">Yes</lit>
@@ -67,14 +69,16 @@
 			<lit name="problemLabel">Sorry, there is a problem:</lit>
 			<lit name="loginIDLabel">You need to have already registered your email with your school or with the British Council to log in.</lit>
 			<lit name="loginDetailLabel">Please type your details and click {loginText}.</lit>
-			<lit name="loginDetailLabelCT">Create an account (and save your scores).</lit>
-            <lit name="CTDetailLabel">Just practise.</lit>
-            <lit name="CTOption1Label">Option 1</lit>
-            <lit name="CTOption2Label">Option 2</lit>
-            <lit name="LTOption1Label">Get started</lit>
-            <lit name="RegisterOption1Label">Your details</lit>
-            <lit name="CTLoginButton">Start</lit>
-            <lit name="CTStartButton">Start</lit>
+            <lit name="loginDetailLabelCT">
+                 <![CDATA[If you want to keep a record of your progress, fill in your {loginDetail} and password, and then click {loginText}.]]>
+            </lit>
+			<lit name="CTDetailLabel">If you just want to practise with Road to IELTS, click {loginText}.</lit>
+			<lit name="CTOption1Label">Option 1: Progress Tracking</lit>
+			<lit name="CTOption2Label">Option 2: Anonymous</lit>
+			<lit name="LTOption1Label">Get started</lit>
+			<lit name="RegisterOption1Label">Your details</lit>
+			<lit name="CTLoginButton">Register or log in</lit>
+			<lit name="CTStartButton">Start program</lit>
 			<lit name="registerDetailLabel">Please type your details to register.</lit>
 			<lit name="LMLabel">Road to IELTS - Last Minute</lit>
 			<lit name="LMTextLabel">Special last minute practice only for British Council IELTS candidates!</lit>
@@ -95,9 +99,9 @@
 			<lit name="ipadRateLink"><![CDATA[https://itunes.apple.com/us/app/road-to-ielts/id560055517?mt=8&ign-mpt=uo%3D4]]></lit>
 			<lit name="androidRateLink"><![CDATA[https://play.google.com/store/apps/details?id=air.com.clarityenglish.ielts.app]]></lit>
 			<lit name="registerInfoButton">Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
-			<lit name="noProgressText">Welcome to Road to IELTS. Click on a skill to get started.</lit>
-			<lit name="colorBarIntroLabel">The color bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
-			<lit name="infoReadingText"> <![CDATA[<p>Get the band score you need.</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
+			<lit name="noProgressText">Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
+			<lit name="colorBarIntroLabel">The colour bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
+			<lit name="infoReadingText"> <![CDATA[<p>Succeed in IELTS.</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
 			<lit name="infoListeningText"><![CDATA[<p>Improve your band scores.</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
 			<lit name="infoSpeakingText"><![CDATA[<p>Need more practice?</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
 			<lit name="infoWritingText"><![CDATA[<p>Worried about your band scores?</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
@@ -170,7 +174,7 @@
 			<lit name="notAvailbleDemo">Not available in this demo.</lit>
 			<lit name="notAvailblePracticeTest">This practice test is not in this version.</lit>
 			<lit name="notAvailble">Not available in the current version. Click above to upgrade.</lit>
-			<lit name="compareInstructionLabel">Compare your score with other people:</lit>
+			<lit name="compareInstructionLabel">Compare your score with people in:</lit>
 			<lit name="chartCaptionLabel">Average score %</lit>
 			<lit name="analysisInstructionLabel1">This shows how you have spent your time</lit>
 			<lit name="analysisInstructionLabel2">Time spent on each skill</lit>
@@ -203,7 +207,7 @@
 			<lit name="minuteLabel">Minute:</lit>
 			<lit name="dateFormatLabel">{day} {month} {year}</lit>
 			<lit name="myScoreLegendLabel">Your average score</lit>
-			<lit name="everyoneScoreLegendLabel">Average score: {country}</lit>  
+			<lit name="everyoneScoreLegendLabel">{country} average score</lit>  
 			<lit name="worldwide">Worldwide</lit>  
 			<lit name="compareBasedOnUsers">based on {count} {singularOrPlural}</lit>  
 			<lit name="singularUser">user</lit>  
@@ -335,7 +339,7 @@
 			</lit>
             <lit name="clarityRichText">
 			    <![CDATA[
-					<p><span fontWeight="bold">Clarity Language Consultants Ltd</span><br/>PO Box 163, Sai Kung, Hong Kong<br/>Tel: +852 2701 1787<br/>Fax: +852 2791 6484<br/></p>					
+					<p><span fontWeight="bold">Clarity Language Consultants Ltd</span><br/>PO Box 163, Sai Kung, Hong Kong<br/>Tel: +852 2791 1787<br/>Fax: +852 2791 6484<br/></p>					
 				 ]]>
 			</lit>			
 			<lit name="contactUsContent2">
@@ -350,7 +354,7 @@
 					<p><span fontWeight="bold">Upgrade?</span><br/>If you would like to enquire about purchasing the full version of Road to IELTS, please contact Clarity.</p>					
 				 ]]>
 			</lit>
-			<lit name="testDriveSpan">This Test Drive version of Road to IELTS gives you all the IELTS basics.</lit>
+			<lit name="testDriveSpan">This Test Drive version of Road to IELTS is much smaller than:</lit>
 			<lit name="userManualLabel">Click here for a detailed user manual.</lit>
 			<lit name="exerciseBackToMenuButton">Back to Menu</lit>
 			<lit name="exerciseStartAgainButton">Start again</lit>
@@ -394,10 +398,10 @@
 			<lit name="candidatesVideoDescription5">Watch candidates discussing the IELTS Listening test. Find out how to make listening practice more fun.</lit>
 			<lit name="candidatesVideoPlayLabel">Click here to watch the {videoTitle} video.</lit>
 			
-			<lit name="exampleInSpeaking">Click Speaking or Writing for an example.</lit>
-			<lit name="exampleInReading">Click Reading for an example.</lit>
-			<lit name="exampleInReadingTest1">Only test 1 is in this version.</lit>
-			<lit name="justEBookInTestDrive">PDF and video are not in this version.</lit>
+			<lit name="exampleInSpeaking">Look at speaking or writing for examples.</lit>
+			<lit name="exampleInReading">Look at reading for an example.</lit>
+			<lit name="exampleInReadingTest1">Look at test 1 for an example.</lit>
+			<lit name="justEBookInTestDrive">Just the eBook is in Test Drive.</lit>
 			<lit name="countryList">Afghanistan|Aland Islands|Albania|Algeria|American Samoa|Andorra|Angola|Anguilla|Antarctica|Antigua and Barbuda|Argentina|Armenia|Aruba|Australia|Austria|Azerbaijan|Bahamas|Bahrain|Bangladesh|Barbados|Belarus|Belgium|Belize|Benin|Bermuda|Bhutan|Bolivia|Bosnia and Herzegovina|Botswana|Bouvet Island|Brazil|British Indian Ocean Territory|Brunei|Bulgaria|Burkina Faso|Burundi|Cambodia|Cameroon|Canada|Cape Verde|Cayman Islands|Central African Republic|Chad|Chile|China|Christmas Island|Cocos (Keeling) Islands|Colombia|Comoros|Congo|Congo, Democratic Republic|Cook Islands|Costa Rica|Cote D'Ivoire|Croatia|Cuba|Cyprus|Czech Republic|Denmark|Djibouti|Dominica|Dominican Republic|Ecuador|Egypt|El Salvador|Equatorial Guinea|Eritrea|Estonia|Ethiopia|Falkland Islands|Faroe Islands|Fiji|Finland|France|French Guiana|French Polynesia|French Southern Territories|Gabon|Gambia|Georgia|Germany|Ghana|Gibraltar|Greece|Greenland|Grenada|Guadeloupe|Guam|Guatemala|Guernsey|Guinea|Guinea-Bissau|Guyana|Haiti|Heard Island|Honduras|Hong Kong|Hungary|Iceland|India|Indonesia|Iran|Iraq|Ireland|Isle Of Man|Israel|Italy|Jamaica|Japan|Jersey|Jordan|Kazakhstan|Kenya|Kiribati|Korea, North|Korea, South|Kuwait|Kyrgyzstan|Laos|Latvia|Lebanon|Lesotho|Liberia|Libya|Liechtenstein|Lithuania|Luxembourg|Macao|Macedonia|Madagascar|Malawi|Malaysia|Maldives|Mali|Malta|Marshall Islands|Martinique|Mauritania|Mauritius|Mayotte|Mexico|Micronesia|Moldova|Monaco|Mongolia|Montenegro|Montserrat|Morocco|Mozambique|Myanmar|Namibia|Nauru|Nepal|Netherlands|Netherlands Antilles|New Caledonia|New Zealand|Nicaragua|Niger|Nigeria|Niue|Norfolk Island|Northern Mariana Islands|Norway|Oman|Pakistan|Palau|Palestine|Panama|Papua New Guinea|Paraguay|Peru|Philippines|Pitcairn Islands|Poland|Portugal|Puerto Rico|Qatar|Reunion|Romania|Russia|Rwanda|Saint Barthelemy|Saint Helena|Saint Kitts and Nevis|Saint Lucia|Saint Martin|Saint Pierre and Miquelon|Saint Vincent and The Grenadines|Samoa|San Marino|Sao Tome and Principe|Saudi Arabia|Senegal|Serbia|Seychelles|Sierra Leone|Singapore|Slovakia|Slovenia|Solomon Islands|Somalia|South Africa|The South Sandwich Islands|Spain|Sri Lanka|Sudan|Suriname|Svalbard and Jan Mayen|Swaziland|Sweden|Switzerland|Syria|Taiwan|Tajikistan|Tanzania|Thailand|Timor-Leste|Togo|Tokelau|Tonga|Trinidad and Tobago|Tunisia|Turkey|Turkmenistan|Turks and Caicos Islands|Tuvalu|Uganda|Ukraine|United Arab Emirates|United Kingdom|United States|Uruguay|Uzbekistan|Vanuatu|Vatican City|Venezuela|Vietnam|Virgin Islands, British|Virgin Islands, U.S.|Wallis and Futuna|Western Sahara|Yemen|Zambia|Zimbabwe</lit>
 		</group>
 	</language>
@@ -450,7 +454,7 @@
 			<lit name="contactUsContent1">
 			    <![CDATA[
 				    <p><span fontWeight="bold">技术问题</span><br/>Clarity愿帮助您解决任何技术难题。请描述您遇到的难题，将您登陆本课程时的网页地址或网站，一起发送至
-					<a href="emailto:{supportEmail}">{supportEmail}</a>。<br/>Clarity Language Consultants Ltd<br/>PO Box 163, Sai Kung, Hong Kong<br/>Tel: +852 2701 1787<br/>Fax: +852 2791 6484<br/>					
+					<a href="emailto:{supportEmail}">{supportEmail}</a>。<br/>Clarity Language Consultants Ltd<br/>PO Box 163, Sai Kung, Hong Kong<br/>Tel: +852 2791 1787<br/>Fax: +852 2791 6484<br/>					
 					</p>
 			    ]]>
 			</lit>
@@ -486,7 +490,7 @@
 					<a href="emailto:{supportEmail}">{supportEmail}</a>にメールをお送りください。<br/>
 					Clarity Language Consultants Ltd<br/>
 					PO Box 163, Sai Kung, Hong Kong<br/>
-					Tel: +852 2701 1787<br/>
+					Tel: +852 2791 1787<br/>
 					Fax: +852 2791 6484<br/>
 					</p>
 			    ]]>

@@ -38,12 +38,6 @@ components|XHTMLExerciseView s|TextInput {
 	paddingRight: 0;
 }
 
-/*@media (os-platform: "Android") {
-	video|VideoSelector {
-		skinClass: ClassReference("skins.ieltsair.controls.video.WebViewVideoSelectorSkin");
-	}
-}*/
-
 @media (os-platform: "IOS") {
 	video|VideoSelector {
 		skinClass: ClassReference("skins.ieltsair.controls.video.WebViewVideoSelectorSkin");
@@ -76,29 +70,18 @@ nonetwork|NoNetworkView {
 	skinClass: ClassReference("skins.ieltsair.NoNetworkSkin");
 }
 
-/* Login view styles */
-login|LoginView {
-	skinClass: ClassReference("skins.ieltsair.LoginSkin");
-}
-
-login|LoginView s|Button#loginButton {
-	skinClass: ClassReference("skins.ieltsair.login.RegisterLoginButtonSkin");
-}
-
 login|LoginView s|TextInput {
-	skinClass: ClassReference("spark.skins.mobile.TextInputSkin");
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 1;
+	paddingLeft: 10;
+	paddingRight: 10;
+	fontSize: 14;
+	showPromptWhenFocused: false;
 }
 
-login|LoginView s|Button {
-	chromeColor: #2793CE;
-}
-
-login|LoginView s|ButtonBar#IPLoginButtonBar {
-	skinClass: ClassReference("skins.ieltsair.login.IPLoginButtonBarSkin");
-}
-
-login|LoginView s|Button#normalLoginForgotPasswordButton {
-	skinClass: ClassReference("skins.ieltsair.login.ForgotPasswordButtonSkin");
+login|LoginView s|Button#demoButton1, #demoButton2 {
+	skinClass: ClassReference("skins.ieltsair.login.TestDriveButtonSkin");
 }
 
 /* Title view styles */

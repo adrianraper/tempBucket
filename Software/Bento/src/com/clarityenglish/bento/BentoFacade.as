@@ -88,7 +88,7 @@
 			registerCommand(CommonNotifications.ACCOUNT_LOAD, AccountLoadCommand);
 			
 			// gh#21
-			//registerCommand(CommonNotifications.ACCOUNT_RELOAD, AccountReloadCommand);
+			//registerCommand(CommonNotifications.ACCOUNT_RELOAD, AccountLoadCommand);
 			
 			// Map built in commands
 			registerCommand(BBNotifications.BENTO_RESET, BentoResetCommand);

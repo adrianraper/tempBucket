@@ -3,11 +3,14 @@ Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
+	import com.clarityenglish.common.events.MemoryEvent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
+	import com.clarityenglish.common.vo.content.Bookmark;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.User;
@@ -17,6 +20,7 @@ package com.clarityenglish.common.model {
 	import flash.net.SharedObject;
 	import flash.utils.Timer;
 	
+	import mx.core.FlexGlobals;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	import mx.rpc.Fault;
@@ -43,7 +47,9 @@ package com.clarityenglish.common.model {
 		private var _user:User;
 		private var _group:Group;
 		private var _groupTrees:Array;
-		//private var _licence:Licence;
+		
+		// gh#1067
+		//private var _memory:Memory;
 
 		private var licenceTimer:Timer;
 
@@ -67,9 +73,20 @@ package com.clarityenglish.common.model {
 			return _groupTrees;
 		}
 		
+		// gh#1067
+		/*
+		public function get memory():Memory {
+			return _memory;
+		}
+		public function set memory(value:Memory):void {
+			if (value != _memory)
+				_memory = value;
+		}
+		*/
+		
 		// #341
 		//public function login(key:String, password:String):void {
-		public function login(user:User, loginOption:Number, verified:Boolean = true):void {
+		public function login(user:User, loginOption:Number, verified:Boolean = true, demoVersion:String = null):void {
 			// getAccountSettings will already have established rootID and productCode
 			// The parameters you pass are controlled by loginOption
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -82,9 +99,9 @@ package com.clarityenglish.common.model {
 			if (user == null) {
 		        loginObj = null;
 			} else if (loginOption & Config.LOGIN_BY_NAME || loginOption & Config.LOGIN_BY_NAME_AND_ID) {
-				loginObj = { username: user.name, password: user.password};
+				loginObj = { username: user.name, password: user.password };
 			} else if (loginOption & Config.LOGIN_BY_ID) {
-				loginObj = { studentID: user.studentID, password: user.password};
+				loginObj = { studentID: user.studentID, password: user.password };
 			} else if (loginOption & Config.LOGIN_BY_EMAIL) {
 				loginObj = { email: user.email, password: user.password };
 			} else {
@@ -104,16 +121,18 @@ package com.clarityenglish.common.model {
 			// gh#100 as does CT
 			// gh#165
 			// gh#886
-			//if (user) {
-				if (((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) || 
-					(configProxy.getLicenceType() == Title.LICENCE_TYPE_CT) ||
-					(configProxy.getLicenceType() == Title.LICENCE_TYPE_AA && configProxy.getConfig().noLogin == false) ||
-					(loginOption & Config.LOGIN_BY_ANONYMOUS)) &&
-					(!user.name || user.name=='') &&
-					(!user.studentID || user.studentID=='') &&
-					(!user.email || user.email==''))
-					loginObj = null;
-			//}
+			// gh#1090 No it doesn't
+			/*
+			if (((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) || 
+				(configProxy.getLicenceType() == Title.LICENCE_TYPE_CT) ||
+				(configProxy.getLicenceType() == Title.LICENCE_TYPE_AA && configProxy.getConfig().noLogin == true) ||
+				(loginOption & Config.LOGIN_BY_ANONYMOUS)) &&
+				(!user.name || user.name=='') &&
+				(!user.studentID || user.studentID=='') &&
+				(!user.email || user.email==''))
+			*/
+			if (configProxy.getConfig().signInAs == Title.SIGNIN_ANONYMOUS)
+				loginObj = null;
 			
 			// #307 Add rootID and productCode
 			// #341 Add verified to allow no password
@@ -135,10 +154,23 @@ package com.clarityenglish.common.model {
 				} else if (user == null) {
 					// TODO: Test Drive: how to set these settings nicely??
 					// and how to offer them a choice of different titles??
-					loginOption = Config.LOGIN_BY_ANONYMOUS;				
+					// gh#1090
+					//loginOption = Config.LOGIN_BY_ANONYMOUS;
+					configProxy.getConfig().signInAs = Title.SIGNIN_ANONYMOUS;
 					rootID = new Array(2);
-					rootID[0] = 14031;
-					rootID[1] = 0;
+					if (demoVersion == "NAMEN") {
+						// for Noth American Demo
+						rootID[0] = 13456;
+						rootID[1] = 0;
+					} else if (demoVersion == "EN") {
+						// for international Demo
+						rootID[0] = 10103;
+						rootID[1] = 0;					
+					} else { 
+						// for test drive
+						rootID[0] = 14031;
+						rootID[1] = 0;
+					}
 					//#gh41
 					//configProxy.getConfig().productCode = '52';
 					loginObj = null;
@@ -148,6 +180,9 @@ package com.clarityenglish.common.model {
 			// gh#165 This call requires licence!
 			configProxy.getConfig().licence.licenceType = configProxy.getLicenceType();
 			
+			// gh#1067 TODO please tidy this duplication up
+			configProxy.getConfig().licence.signInAs = configProxy.getConfig().signInAs;
+			
 			// gh#39 You might not know an exact productCode, in which case we have to send comma delimited list
 			// gh#36 Also need dbHost if this is the first call
 			var params:Array = [ loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, rootID, configProxy.getProductCode(), configProxy.getConfig().dbHost ];
@@ -155,8 +190,10 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function logout():void {
+			// gh#970 Is this a logout from a pure AA?
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			var params:Array = [ configProxy.getConfig().licence, configProxy.getConfig().sessionID ];
+			var justAnonymous:Boolean = configProxy.isAccountJustAnonymous();
+			var params:Array = [ configProxy.getConfig().licence, configProxy.getConfig().sessionID, justAnonymous ];
 			new RemoteDelegate("logout", params, this).execute();
 			
 			// Stop the licence update timer
@@ -226,10 +263,7 @@ package com.clarityenglish.common.model {
 		 */
 		public function addUser(user:User, loginOption:Number):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			// gh#723 when add user, we read the product code here and store the user login profile
-			if (configProxy.getProductCode()) {
-				user.moduleType = Number(configProxy.getProductCode());
-			}
+			
 			var params:Array = [ user, loginOption, configProxy.getRootID(), configProxy.getConfig().group ];
 			new RemoteDelegate("addUser", params, this).execute();
 		}
@@ -271,10 +305,11 @@ package com.clarityenglish.common.model {
 					if (data) {
 						// Just go back into login for this user now
 						configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-						login(data as User, configProxy.getAccount().loginOption);
+						var verified:Boolean = (configProxy.getAccount().verified == 1) ? true : false;
+						login(data as User, configProxy.getAccount().loginOption, verified);
 						
 					} else {
-						sendNotification(CommonNotifications.ADD_USER_FAILED);						
+						sendNotification(CommonNotifications.ADD_USER_FAILED);					
 					}
 					break;
 				
@@ -296,21 +331,15 @@ package com.clarityenglish.common.model {
 						
 						// Store a user config object in a shared object if rememberLogin is turned on #385
 						if (configProxy.getConfig().rememberLogin) {
-							var loginSharedObject:SharedObject = SharedObject.getLocal("login");
 							if (!_user.isAnonymous()) {
+								var loginSharedObject:SharedObject = SharedObject.getLocal("login");
 								loginSharedObject.data["user"] = new User({ name: _user.name, studentID: _user.studentID, password: _user.password, email: _user.email });
 								loginSharedObject.flush();
-							}							
+							}		
 						}
 						
-						// gh#612 If this user already saved a set of preferences, load them up now
-						if (!user.isAnonymous()) {
-							var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
-							if (settingsSharedObject.data["preferences.languageCode." + user.userID]) {
-								var languageCode:String = settingsSharedObject.data["preferences.languageCode." + user.userID];
-								sendNotification(BBNotifications.LANGUAGE_CHANGE, languageCode);
-							}
-						}
+						// gh#1067 Update our user details held in config
+						configProxy.getConfig().mergeUser(_user);
 						
 						// gh#21 If login changed the account 
 						// save what we now know about the account in Config
@@ -328,6 +357,17 @@ package com.clarityenglish.common.model {
 							var authenticated:Boolean = configProxy.checkAuthentication();
 						}
 						
+						// gh#1040, gh#1067
+						var memory:Object = data.memory;
+						
+						// Is there a startingPoint set?
+						if (memory && memory.directStart) {
+							config = configProxy.getConfig();
+							var bookmark:Bookmark = new Bookmark(memory.directStart);
+							config.courseID = bookmark.course;
+							config.startingPoint = bookmark.startingPoint;
+						}
+								
 						// Carry on with the process
 						sendNotification(CommonNotifications.LOGGED_IN, data);
 						
@@ -360,7 +400,13 @@ package com.clarityenglish.common.model {
 					break;
 				
 				case "logout":
-					sendNotification(CommonNotifications.LOGGED_OUT);
+					// gh#790 You can't use configProxy as it will have been initialised
+					// So can you get logout to send back the justAnonymous flag?
+					if (data && data.justAnonymous) {
+						sendNotification(CommonNotifications.EXITED);
+					} else {
+						sendNotification(CommonNotifications.LOGGED_OUT);
+					}
 					break;
 				
 				default:
@@ -380,22 +426,25 @@ package com.clarityenglish.common.model {
 					// #445 Any error other than user not found is simply reported
 					var thisError:BentoError = BentoError.create(fault);
 					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoSuchUser")) {
+						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 						
 						// #341 For network, if you don't find the user, offer to add them
 						// gh#100 and for CT too (so long as selfRegister is set)
 						// gh#100 and for LT/TT too surely!
-						// gh#886 AA add new user
-						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+						// gh#837 not allowed self-register in C-Builder
+						// gh#1090 Bin all this, hopefully the 'create account' is clear enough
+						/*
 						if ((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK ||
 							configProxy.getLicenceType() == Title.LICENCE_TYPE_CT ||
 							configProxy.getLicenceType() == Title.LICENCE_TYPE_LT ||
 							configProxy.getLicenceType() == Title.LICENCE_TYPE_TT ||
-							(configProxy.getLicenceType() == Title.LICENCE_TYPE_AA && configProxy.getConfig().noLogin != true)) &&
-							configProxy.getAccount().selfRegister > 0) {
+						    (configProxy.getLicenceType() == Title.LICENCE_TYPE_AA && configProxy.getConfig().noLogin != true)) &&
+							configProxy.getAccount().selfRegister > 0 &&
+							(FlexGlobals.topLevelApplication.name as String).indexOf("Builder") < 0) {
 							sendNotification(CommonNotifications.CONFIRM_NEW_USER);
-							
+						*/
 						// For SCORM, if the user doesn't exist, automatically add them
-						} else if (configProxy.getConfig().scorm) {
+						if (configProxy.getConfig().scorm) {
 							var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 							var configUser:User = new User({name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID});
 							var loginOption:uint = configProxy.getAccount().loginOption;
@@ -407,11 +456,6 @@ package com.clarityenglish.common.model {
 						} else {
 							sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault, false)); // GH #3
 						}
-						
-					// gh#622 add cookie checking code
-					} else if (thisError.errorNumber == copyProxy.getCodeForId("errorCookiesBlocked")) {
-							sendNotification(CommonNotifications.BENTO_ERROR, thisError);
-						
 					} else {
 						sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault, false)); // GH #3
 					}
@@ -419,8 +463,9 @@ package com.clarityenglish.common.model {
 					break;
 				
 				case "addUser":
-					sendNotification(CommonNotifications.ADD_USER_FAILED, BentoError.create(fault));
+					sendNotification(CommonNotifications.ADD_USER_FAILED, BentoError.create(fault, false));
 					break;
+				
 				case "updateLicence":
 					sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault));
 					// Stop the licence update timer

@@ -2,6 +2,7 @@ package com.clarityenglish.common.vo.config {
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
 	
@@ -15,6 +16,7 @@ package com.clarityenglish.common.vo.config {
 	
 	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.StringUtils;
+	import org.davekeen.util.XmlUtils;
 	
 	/**
 	 * This holds configuration information that comes from any source.
@@ -30,7 +32,8 @@ package com.clarityenglish.common.vo.config {
 		public static const LOGIN_BY_NAME:uint = 1;
 		public static const LOGIN_BY_ID:uint = 2;
 		public static const LOGIN_BY_NAME_AND_ID:uint = 4;
-		public static const LOGIN_BY_ANONYMOUS:uint = 8;
+		// gh#1090
+		//public static const LOGIN_BY_ANONYMOUS:uint = 8;
 		public static const LOGIN_BY_EMAIL:uint = 128;
 		
 		// #341 These values are from compatability with Orchid and RM
@@ -128,12 +131,18 @@ package com.clarityenglish.common.vo.config {
 		// gh#21	
 		public var loginOption:Number;
 		
+		// gh#1090
+		public var signInAs:uint = Title.SIGNIN_TRACKING;
+		
 		// #410
 		public var checkNetworkAvailabilityUrl:String;
 		public var checkNetworkAvailabilityInterval:uint;
 		public var checkNetworkAvailabilityReconnectInterval:uint;
 		
-
+		// gh#914
+		public var uploadMaxFilesize:String = 'unknown';
+		public var uploadMaxBytes:Number = 0;
+		
 		// For performance logging
 		public var appLaunchTime:Number;
 
@@ -149,12 +158,21 @@ package com.clarityenglish.common.vo.config {
 		// gh#659
 		public var xmlCourseFile:String;
 		
+		// gh#476
+		public var useCacheBuster:Boolean;
+		
 		// gh#234
-		public var platform:String;
+		public var platform:String = 'browser';
 		
-		// gh#886
-		private var _noLogin:String;
+		// gh#224
+		public var customisation:XML;
 		
+		// gh#886, gh#1090
+		private var _noLogin:Boolean;
+
+		// gh#1160, gh#1090 change from null to {]
+		public var retainedParameters:Object = {};
+
 		/**
 		 * Developer option
 		 */
@@ -167,6 +185,11 @@ package com.clarityenglish.common.vo.config {
 			this.channels = [];
 			this.scorm = false;
 			this.illustrationCloseFlag = true;
+			// gh#476
+			this.useCacheBuster = false;
+			
+			// gh#1090
+			this.rootID = 0;
 		}
 		
 		/**
@@ -187,12 +210,11 @@ package com.clarityenglish.common.vo.config {
 				_rootID = value;
 			}
 		}
-		
+
 		public function set languageCode(value:String):void {
-			if (!_languageCode) {
-				CopyProxy.languageCode = value;
-				_languageCode = value;
-			}			
+			// gh#1182
+			CopyProxy.languageCode = value;
+			_languageCode = value;
 		}
 		
 		public function get languageCode():String {
@@ -210,12 +232,12 @@ package com.clarityenglish.common.vo.config {
 		}
 		
 		public function get noLogin():Boolean {
-			if (_noLogin == "true") {
-				return true;
-			} else {
-				return false;
-			}
-			
+			return _noLogin;
+		}
+		
+		// gh#1090
+		public function set noLogin(value:Boolean):void {
+			_noLogin = value;
 		}
 		
 		/**
@@ -285,7 +307,18 @@ package com.clarityenglish.common.vo.config {
 				var timeStamp:Date = new Date();
 				this.instanceID = timeStamp.getTime().toString();
 			}
-				
+
+			// gh#1160
+			// gh#1160 If you started with passed parameters, clear [most of] them out now for a restart
+			this.retainedParameters = {};
+			for (var property:String in parameters) {
+				switch (property) {
+					case 'dbHost':
+					case 'prefix':
+						this.retainedParameters[property] = parameters[property];
+						break;
+				}
+			}
 		}
 		/**
 		 * Do any substitutions that you can for the menu filename
@@ -306,6 +339,12 @@ package com.clarityenglish.common.vo.config {
 					case '53':
 						replace = "GeneralTraining";
 						break;
+					case '57':
+						replace= "Sounds";
+						break;
+					case '58':
+						replace= "Speech";
+						break;
 					default:
 						replace = "";
 				}
@@ -322,6 +361,7 @@ package com.clarityenglish.common.vo.config {
 						break;
 					case 'R2IFV':
 					case 'R2IHU':
+					case 'FV':
 						replace = "FullVersion";
 						break;
 					// gh#166
@@ -329,7 +369,7 @@ package com.clarityenglish.common.vo.config {
 						replace = "Demo";
 						break;
 					default:
-						replace = "";
+						replace = "FullVersion";
 				}
 				paths.menuFilename = paths.menuFilename.replace("{productVersion}", replace);
 			}
@@ -386,6 +426,7 @@ package com.clarityenglish.common.vo.config {
 				this.paths.menuFilename = "menu.xml";
 			}
 			
+			// Alice: automatic multiple channel
 			for each (var channel:XML in xml..channel){			
 				var channelObject:ChannelObject = new ChannelObject();
 				channelObject.name = channel.@name.toString();
@@ -397,7 +438,6 @@ package com.clarityenglish.common.vo.config {
 			// #335
 			if (xml..streamingMedia.toString()) this.paths.streamingMedia = xml..streamingMedia.toString();
 
-			// I think this node is deprecated
 			if (xml..mediaChannel.toString()) {
 				this.mediaChannel = xml..mediaChannel.toString();
 			}else {
@@ -413,7 +453,6 @@ package com.clarityenglish.common.vo.config {
 			if (xml..language.toString()) {
 				this.language = xml..language.toString();
 				this.languageCode = xml..language.toString();
-				//trace("language: "+this.language);
 			}
 			
 			// To handle the amfphp gateway
@@ -477,6 +516,10 @@ package com.clarityenglish.common.vo.config {
 			if (xml..loginOption.toString())
 				this.loginOption = Number(xml..loginOption.toString());
 			
+			// gh#476
+			if (xml..useCacheBuster.toString() == "true")
+				this.useCacheBuster = true;
+
 			// For help with testing
 			if (xml..id.toString()) {
 				this.configID = xml..id.toString();
@@ -489,11 +532,14 @@ package com.clarityenglish.common.vo.config {
 			if (xml..referrer.toString()) {
 				this.referrer = xml..referrer.toString();
 			}
-			//trace("config.xml has id=" + this.configID);
 			
 			// gh#234
 			if (xml..platform.toString())
 				this.platform = xml..platform.toString();
+			
+			// gh#224
+			if (xml..customisation)
+				this.customisation = xml..customisation[0];
 		}
 		
 		/**
@@ -510,6 +556,7 @@ package com.clarityenglish.common.vo.config {
 		 * 	  licenceAttributes[IP, referrerURL, limitCourses, allowedCourses, action, ]
 		 */
 		public function mergeAccountData(data:Object):void {
+			
 			// You might come back with an error rather than valid data
 			if (data.error && data.error.errorNumber > 0) {
 				// Accept any error number coming back. You can handle the details later.
@@ -529,6 +576,26 @@ package com.clarityenglish.common.vo.config {
 			if (data.config && data.config.ip)
 				this.ip = data.config.ip;
 			
+			// gh#914
+			if (data.config && data.config.uploadMaxFilesize) {
+				var rawMaxFilesize:String = data.config.uploadMaxFilesize;
+				var unitPattern:RegExp = /^([0-9]+)([gmk]?)/i;
+				var results:Array = rawMaxFilesize.match(unitPattern);
+				var maxBytes:Number = (results[1]) ? results[1] : 0;
+				if (results.length > 2) {
+					switch(results[2].toLowerCase()) {
+						case 'g':
+							maxBytes *= 1024;
+						case 'm':
+							maxBytes *= 1024;
+						case 'k':
+							maxBytes *= 1024;
+					}
+				}
+				this.uploadMaxFilesize = rawMaxFilesize;
+				this.uploadMaxBytes = maxBytes;
+			}
+					
 			// Grab the account and title into our classes
 			if (data.account)
 				this.account = data.account as Account;
@@ -547,14 +614,6 @@ package com.clarityenglish.common.vo.config {
 				this.error.errorContext = 'More than one title matched the product code';
 			}
 			
-			// gh#886
-			for (var i:Number = 0; i < this.account.licenceAttributes.length; i++) {
-				if (this.account.licenceAttributes[i]['licenceKey'] == 'noLogin') {
-					this._noLogin = this.account.licenceAttributes[i]['licenceValue'];
-				}
-					
-			}
-			
 			var thisTitle:Title = this.account.getTitle();
 			
 			// gh#11 thisTitle.language changed to thisTitle.productVersion due to Alice local database add F_ProductVersion column			
@@ -570,6 +629,17 @@ package com.clarityenglish.common.vo.config {
 			// gh#20
 			/*if(thisTitle.languageCode)
 				this.language = thisTitle.languageCode;*/
+			
+			// gh#886
+			// gh#1090
+
+			for (var i:Number = 0; i < this.account.licenceAttributes.length; i++) {
+				if (this.account.licenceAttributes[i]['licenceKey'] == 'noLogin') {
+					this._noLogin = this.account.licenceAttributes[i]['licenceValue'];
+				}
+			}
+
+			//this._noLogin = (thisTitle.loginModifier & Title.LOGIN_BLOCKED);
 			
 			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
 			// and comes from a mix of T_ProductLanguage and T_Accounts. 
@@ -589,25 +659,14 @@ package com.clarityenglish.common.vo.config {
 			
 			// See if you can now do any substitutions on the menu filename
 			buildMenuFilename();
-
+			
 			// You can now adjust the sharedMedia path as necessary
 			// Remember that it might look like 
 			// sharedMedia={contentPath}/sharedMedia
-			// gh#599
-			var substitutions:Object = {contentPath: this.paths.content,
-										productVersion: this.productVersion,
-										languageCode: this.languageCode,
-										prefix: data.prefix};
-
-			this.paths.sharedMedia = StringUtils.substitute(this.paths.sharedMedia, substitutions);
-			this.paths.streamingMedia = StringUtils.substitute(this.paths.streamingMedia, substitutions);
-			this.paths.brandingMedia = StringUtils.substitute(this.paths.brandingMedia, substitutions);
-
-			// gh#599 Need to update the channel information now we know contentPaths
-			for each (var channelObject:ChannelObject in channels){			
-				channelObject.streamingMedia = StringUtils.substitute(channelObject.streamingMedia, substitutions);
-			}
-			
+			this.paths.sharedMedia = this.paths.sharedMedia.toString().split('{contentPath}').join(this.paths.content);
+			// gh#224
+			this.paths.brandingMedia = this.paths.brandingMedia.toString().split('{prefix}').join(account.prefix);
+		
 			// gh#356 If there is a local channel available tested if it is accessible
 			localStreamingMedia = getLicenceAttribute('localStreamingMedia');
 			if (localStreamingMedia) {
@@ -619,8 +678,24 @@ package com.clarityenglish.common.vo.config {
 			
 			// Whilst the title/account holds most licence info, it is nice to keep it in one class
 			this.licence = data.licence as Licence;
+			
+			// gh#224
+			var customisationFromDB:String = this.getLicenceAttribute('customisation');
+			if (customisationFromDB)
+				// this.customisation = XmlUtils.mergeXML(this.account.licenceAttributes.customisation, data.customisation);
+				this.customisation = new XML(customisationFromDB);
 		}
 
+		/**
+		 * Update the user details you are holding when you come back from login
+		 * 
+		 */
+		public function mergeUser(user:User) {
+			this.username = user.name;
+			this.studentID = user.studentID;
+			this.email = user.email;
+			this.userID = user.id;
+		}
 		/**
 		 * Check for all the errors that you might know about now
 		 * Move this into ConfigProxy so you can do better handling of the error.
@@ -633,22 +708,12 @@ package com.clarityenglish.common.vo.config {
 		
 		/**
 		 * #530
-		 * This looks up a specific entry in the licence attribues
+		 * This looks up a specific entry in the licence attributes
 		 */
 		public function get subRoots():String {
-			
-			// gh#21			if (this.account) {
-				if (this.account.licenceAttributes) {
-					for each (var lA:Object in this.account.licenceAttributes) {
-						if (lA.licenceKey.toLowerCase() == 'subroots')
-							return lA.licenceValue;
-					}
-				}
-			}
-			return null;
+			return getLicenceAttribute('subRoots');
 		}
-		/*
-		 * This is a more general version of the above
+		/**
 		 * gh#356
 		 */
 		public function getLicenceAttribute(attr:String):String {
@@ -791,9 +856,13 @@ package com.clarityenglish.common.vo.config {
 			// BUG, this list might have spaces which stop the matching
 			var thisIPArray:Array = thisIPList.split(",");
 			for each (var thisIP:String in thisIPArray) {
+				// gh#902
+				thisIP = StringUtils.trim(thisIP);
 				var ipRangeArray:Array = range.split(",");
 				
 				for (var t:String in ipRangeArray) {
+					// gh#902
+					ipRangeArray[t] = StringUtils.trim(ipRangeArray[t] as String);
 					// first, is there an exact match?
 					if (thisIP == ipRangeArray[t])
 						return true;

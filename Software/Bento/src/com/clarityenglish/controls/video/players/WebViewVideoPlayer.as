@@ -58,6 +58,7 @@ package com.clarityenglish.controls.video.players {
 			}
 		}
 		
+		
 		public function get placeholderSource():String {
 			return _placeholderSource;
 		}
@@ -66,8 +67,9 @@ package com.clarityenglish.controls.video.players {
 			_placeholderSource = value;
 		}
 		
-		private function get link():String {
+		private function get link():String {	
 			var sourceHtml:String = "";
+			
 			sourceHtml += "<!DOCTYPE html>";
 			sourceHtml += "<html>";
 			sourceHtml += "<head>";
@@ -90,19 +92,28 @@ package com.clarityenglish.controls.video.players {
 		}
 		
 		private function getVideoWidth():Number {
-			if (Capabilities.os.indexOf("iPad") > -1) {
-				return stageWebView.viewPort.width / dpiScaleFactor;
+			if (stageWebView.viewPort) {
+				if (Capabilities.os.indexOf("iPad") > -1) {
+					return stageWebView.viewPort.width / dpiScaleFactor;
+				} else {
+					return stageWebView.viewPort.width;
+					
+				}
 			} else {
-				return stageWebView.viewPort.width;
+				return null;
 			}
 		}
 		
 		private function getVideoHeight():Number {
-			if (Capabilities.os.indexOf("iPad") > -1) {
-				return stageWebView.viewPort.height / dpiScaleFactor;
+			if (stageWebView.viewPort) {
+				if (Capabilities.os.indexOf("iPad") > -1) {
+					return stageWebView.viewPort.height / dpiScaleFactor;
+				} else {
+					return stageWebView.viewPort.height;
+				}
 			} else {
-				return stageWebView.viewPort.height;
-			}
+				return null;
+			}	
 		}
 		
 		private function get isHtml():Boolean {
@@ -169,8 +180,10 @@ package com.clarityenglish.controls.video.players {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (stageWebView)
+			if (stageWebView) {
 				stageWebView.stage = (visible) ? stage : null;
+			}
+				
 		}
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
@@ -196,6 +209,7 @@ package com.clarityenglish.controls.video.players {
 						} else {
 							if (source.toString()) {
 								log.debug("loading url {0}", source.toString());
+								stageWebView.addEventListener(Event.COMPLETE, onLoadStringComplete);
 								stageWebView.loadString(link);
 							}
 						}
@@ -204,6 +218,11 @@ package com.clarityenglish.controls.video.players {
 					stop();
 				}
 			});
+		}
+		
+		protected function onLoadStringComplete(event:Event):void {
+			trace("on load string complete");
+			this.visible = true;
 		}
 		
 		public function stop():void {
@@ -252,6 +271,7 @@ package com.clarityenglish.controls.video.players {
 			if (stageWebView) {
 				stageWebView.reload();
 				stageWebView.viewPort = null;
+				stageWebView.removeEventListener(Event.COMPLETE, onLoadStringComplete);
 			}
 		}
 		

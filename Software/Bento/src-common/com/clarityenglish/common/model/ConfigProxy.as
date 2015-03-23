@@ -4,12 +4,15 @@ Proxy - PureMVC
 package com.clarityenglish.common.model {
 	
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.bento.model.DataProxy;
 	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
+	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
@@ -48,6 +51,9 @@ package com.clarityenglish.common.model {
 		private var config:Config;
 		
 		private var _dateFormatter:DateFormatter;
+		
+		// gh#853
+		private var _directStartOverride:Boolean = false;
 
 		/**
 		 * Configuration information comes from three sources
@@ -88,7 +94,17 @@ package com.clarityenglish.common.model {
 			config.paths.menuFilename = config.configFilename;
 			var timeStamp:Date = new Date();
 			config.instanceID = timeStamp.getTime().toString();
+
+			// gh#1160
+			config.userID = config.username = config.email = config.studentID = config.password = config.startingPoint = config.sessionID = null;
+			config.group = new Group();
 			
+			// gh#1090
+			config.retainedParameters = {};
+			config.prefix = "";
+			config.noLogin = false;
+
+			_directStartOverride = false;
 		}
 		
 		/**
@@ -99,7 +115,15 @@ package com.clarityenglish.common.model {
 			/**
 			 *  Use what is passed from start page or command line
 			 */
-			config.mergeParameters(FlexGlobals.topLevelApplication.parameters);
+			// gh#1160 If we have already used these, just keep those that are retainable.
+			// gh#1090 config.retainedParameters cannot tell the object is empty or not.
+			if (config.retainedParameters["prefix"]) {
+				var parameters:Object = config.retainedParameters;
+			} else {
+				parameters = FlexGlobals.topLevelApplication.parameters;
+			}
+			config.mergeParameters(parameters);
+			
 			// #336 SCORM
 			// The SCORM initialisation might fail and raise an exception. Don't bother going on...
 			var rc:Boolean = true;
@@ -152,11 +176,12 @@ package com.clarityenglish.common.model {
 			var dummyTitle:Title = new Title();
 			dummyTitle.licenceType = Title.LICENCE_TYPE_LT;
 			config.account.titles = new Array(dummyTitle);
-			config.account.name = 'x';
+			config.account.name = '';
 			config.account.verified = 1;
 			config.account.selfRegister = 0;
 			config.account.loginOption = config.loginOption;
 			// trace("loginOption in ConfigProxy getAccountSettings is "+config.account.loginOption);
+			config.account.IPMatchedProductCodes = new Array();
 			config.licence = new Licence();
 			// gh#165
 			// config.licence.licenceType = Title.LICENCE_TYPE_LT;
@@ -226,6 +251,14 @@ package com.clarityenglish.common.model {
 			return (config.platform.toLowerCase().indexOf('android') >= 0);
 		}
 		
+		public function getAndroidSize():String {
+			if (FlexGlobals.topLevelApplication.stage.stageWidth >= 1280) {
+				return "10Inches";
+			} else {
+				return "7Inches";
+			}
+		}
+		
 		// Then methods to get parts of the configuration data
 		public function getMenuFilename():String {
 			//return "menu-Academic-LastMinute.xml";
@@ -278,6 +311,9 @@ package com.clarityenglish.common.model {
 			return config.rootID;
 		}
 		
+		// gh#660 get randomized test question total number
+		// gh#1030 remove
+		
 		public function getConfig():Config {
 			return config;
 		}
@@ -291,6 +327,12 @@ package com.clarityenglish.common.model {
 			return config.otherParameters;
 		}
 		
+		// gh#224 get the branding for a particular section
+		public function getBranding(section:String):XML {
+			if (config.customisation && config.customisation.child(section))
+				return config.customisation.child(section)[0];
+			return null;
+		}
 		/**
 		 * Direct login is implemented here. If a LoginEvent is returned then the application should log straight in without showing a login screen.
 		 * 
@@ -298,7 +340,7 @@ package com.clarityenglish.common.model {
 		 */
 		public function getDirectLogin():LoginEvent {
 			var loginOption:uint = getAccount() ? getAccount().loginOption : null;
-			var verified:Boolean = getAccount() ? ((getAccount().verified == 1) ? true : false) : false;
+			var verified:Boolean = getAccount() ? ((getAccount().verified == Config.LOGIN_REQUIRE_PASSWORD) ? true : false) : false;
 			
 			var configUser:User;
 			
@@ -353,11 +395,13 @@ package com.clarityenglish.common.model {
 			// Anonymous login
 			if (this.getLicenceType() == Title.LICENCE_TYPE_AA) { // gh#165
 				// gh#300 Builder doesn't allow anonymous login
-				if (config.remoteService.toLowerCase().indexOf("builder") < 0 && this.getConfig().noLogin == true)
+				// gh#1090 An AA licence which blocks login just starts from here
+				if (config.remoteService.toLowerCase().indexOf("builder") < 0 && this.getConfig().noLogin == true) {
+					config.signInAs = Title.SIGNIN_ANONYMOUS;
 					return new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified);
+				}
 			}
 				
-			
 			// #336 SCORM probably needs to be checked here
 			if (config.scorm) {
 				//trace("scorm");
@@ -378,9 +422,13 @@ package com.clarityenglish.common.model {
 		public function getDirectStart():Object {
 			var directStartObject:Object = new Object();
 			
-			if (Config.DEVELOPER.name == "DK") {
+			if (_directStartOverride)
+				return directStartObject;
+			
+			if (Config.DEVELOPER.name == "DKweb") {
 				//return { courseID: "1287130400000" };
-				//return { exerciseID: "1151344172674" };
+				//return { exerciseID: "2287130110007" };
+				return { exerciseID: "2287130110005" };
 			}
 			
 			if (Config.DEVELOPER.name == "AR") {
@@ -389,7 +437,6 @@ package com.clarityenglish.common.model {
 			}
 			
 			// #336 SCORM needs to be checked here
-			// TODO: This is overriden by the next line so could be removed?
 			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 			if (config.scorm) {
 				// gh#858
@@ -412,8 +459,35 @@ package com.clarityenglish.common.model {
 			// and from the ApplicationMediator state machine to see what notifications to send for screens to display
 			if (config.courseID)
 				directStartObject.courseID = config.courseID;
-			
+
+            // gh#1080
+            if (directStartObject.courseID) {
+                var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
+                var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+                if (bentoProxy.menuXHTML) {
+                    var course:XML = bentoProxy.menuXHTML.getElementById(directStartObject.courseID);
+                    var courseClass:String = course.(@id == directStartObject.courseID).@["class"].toString();
+                    dataProxy.set("currentCourseClass", courseClass);
+                }
+            }
+
 			return directStartObject;
+		}
+		// gh#853
+		public function clearDirectStart():void {
+			//config.courseID = null;
+			//config.startingPoint = null;
+			_directStartOverride = true;
+		}
+
+		// gh#790 Is this account a pure AA - so will avoid login
+		public function isAccountJustAnonymous():Boolean {
+			if (this.getLicenceType() == Title.LICENCE_TYPE_AA) {
+				if (config.remoteService.toLowerCase().indexOf("builder") < 0 && this.getConfig().noLogin == true) {
+					return true;
+				}
+			}
+			return false;
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
@@ -487,23 +561,17 @@ package com.clarityenglish.common.model {
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			var thisError:BentoError = BentoError.create(fault);
 			
-			// gh#622 add cookie checking code
-			if (thisError.errorNumber == copyProxy.getCodeForId("errorCookiesBlocked")) {
-				sendNotification(CommonNotifications.BENTO_ERROR, thisError);
-				
-			} else {
-				switch (operation) {
-					// gh#315
-					case "getIPMatch":
-						if (thisError.errorNumber == copyProxy.getCodeForId("errorNoPrefixOrRoot")) {
-							this.createDummyAccount();
-							break;
-						}
-	
-					case "getAccountSettings":
-						sendNotification(CommonNotifications.CONFIG_ERROR, thisError);
+			switch (operation) {
+				// gh#315
+				case "getIPMatch":
+					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoPrefixOrRoot")) {
+						this.createDummyAccount();
 						break;
-				}
+					}
+
+				case "getAccountSettings":
+					sendNotification(CommonNotifications.CONFIG_ERROR, thisError);
+					break;
 			}
 			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
 			

@@ -1,28 +1,52 @@
 package com.clarityenglish.textLayout.elements {
+	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingOverlayEvent;
+	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.events.FocusEvent;
 	import flash.events.MouseEvent;
+	import flash.events.SoftKeyboardEvent;
+	import flash.events.SoftKeyboardTrigger;
+	import flash.filters.DisplacementMapFilter;
+	import flash.geom.Matrix;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	
 	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.elements.FlowElement;
+	import flashx.textLayout.elements.FlowLeafElement;
 	import flashx.textLayout.elements.SpanElement;
 	import flashx.textLayout.events.ModelChange;
 	import flashx.textLayout.tlf_internal;
 	
+	import mx.core.DragSource;
+	import mx.core.FlexGlobals;
 	import mx.core.IUIComponent;
+	import mx.core.ScrollPolicy;
+	import mx.core.UIComponent;
+	import mx.core.mx_internal;
 	import mx.events.DragEvent;
 	import mx.events.FlexEvent;
+	import mx.graphics.BitmapFillMode;
 	import mx.managers.DragManager;
-	import mx.utils.StringUtil;
+	import mx.managers.FocusManager;
+import mx.managers.IFocusManagerComponent;
+import mx.utils.StringUtil;
+	
+	import org.davekeen.util.PointUtil;
 	
 	import spark.components.Button;
+	import spark.components.Group;
+	import spark.components.Image;
+	import spark.components.RichText;
 	import spark.components.Scroller;
 	import spark.components.TextInput;
 	
@@ -64,6 +88,14 @@ package com.clarityenglish.textLayout.elements {
 		private var _droppedFlowElement:FlowElement;
 		
 		private var disableValueCommitEvent:Boolean;
+		
+		// gh#407 hold the longest answer, only useful for errorCorrection
+		private var _longestAnswer:String;
+		
+		// gh#712
+		private var scrollerMemento:Object;
+		private var scroller:Scroller
+		private var dragImage:Image;
 		
 		public function InputElement() {
 			super();
@@ -124,6 +156,14 @@ package com.clarityenglish.textLayout.elements {
 			_gapAfterPadding = value;
 		}
 		
+		// gh#407 hold the longest answer, only useful for errorCorrection
+		public function set longestAnswer(value:String):void {
+			_longestAnswer = value;
+		}
+		public function get longestAnswer():String {
+			return _longestAnswer;
+		}
+		
 		public function set gapText(value:String):void {
 			_gapText = value;
 			
@@ -180,7 +220,7 @@ package com.clarityenglish.textLayout.elements {
 		}
 		
 		public function set showHint(value:Boolean):void {
-				_showHint = value;
+			_showHint = value;
 		}
 		
 		public function createComponent():void {
@@ -192,9 +232,13 @@ package com.clarityenglish.textLayout.elements {
 				case TYPE_TEXT:
 					component = new TextInput();
 					
+					// gh#709
+					component.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_ACTIVATE, softKeyboardActivateHandler);
+					component.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_DEACTIVATE, softKeyboardDeactivateHandler);
+					
 					// If the user presses <enter> whilst in the textinput go to the next element in the focus cycle group
 					component.addEventListener(FlexEvent.ENTER, onEnter);
-					
+
 					// Duplicate some events on the event mirror so other things can listen to the FlowElement
 					component.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!disableValueCommitEvent)
@@ -202,16 +246,23 @@ package com.clarityenglish.textLayout.elements {
 					});
 					
 					// Duplicate some events on the event mirror so other things can listen to the FlowElement
-					component.addEventListener(FocusEvent.FOCUS_OUT, function(e:Event):void {
+					component.addEventListener(FocusEvent.FOCUS_OUT, function(e:FocusEvent):void {
+						// gh#681
+						if ((e.relatedObject is Button) && scroller) {							
+							if ((e.relatedObject as Button).label == "Marking" || (e.relatedObject as Button).label == "Scoring") {
+								scroller.bottom = 0;
+							}								
+						}						
+
 						if (!disableValueCommitEvent){
 							getEventMirror().dispatchEvent(e.clone());
 						}
-							
+						
 					});
 					break;
 				case TYPE_DROPTARGET:
 					component = new TextInput();
-					
+				
 					// It is not possible to type into a drop target or select any text within it
 					(component as TextInput).editable = (component as TextInput).selectable = false;
 					
@@ -221,6 +272,11 @@ package com.clarityenglish.textLayout.elements {
 					component.addEventListener(DragEvent.DRAG_ENTER, onDragEnter);
 					component.addEventListener(DragEvent.DRAG_DROP, onDragDrop);
 					component.addEventListener(DragEvent.DRAG_COMPLETE, onDragComplete);
+					// gh#712
+					component.addEventListener(DragEvent.DRAG_EXIT, onDragExit);
+					component.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+					// For android, if we put all the code for MouseMove to MouseDown, it works pretty well
+					//component.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
 					break;
 				case TYPE_BUTTON:
 					throw new Error("Button type not yet implemented");
@@ -230,55 +286,242 @@ package com.clarityenglish.textLayout.elements {
 			updateComponentFromValue();
 		}
 		
-		private function onEnter(event:FlexEvent):void {
-			var nextComponent:DisplayObject = event.target.focusManager.getNextFocusManagerComponent();
-			event.target.focusManager.setFocus(nextComponent);
+		private function softKeyboardActivateHandler(event:SoftKeyboardEvent):void {
+			var displayObject:DisplayObject = event.target as DisplayObject;
 			
-			// #187 - if the focused element is offscreen then scroll it into view
+			var textInput:TextInput = displayObject as TextInput;
 			
-			// First find the parent scroller
-			var displayObject:DisplayObject = nextComponent;
-			while (!(displayObject is Scroller) && displayObject.parent)
+			while (!(displayObject is Scroller) && displayObject.parent) {
 				displayObject = displayObject.parent;
+			}
 			
 			if (!displayObject || displayObject is Stage)
 				return;
+			scroller = displayObject as Scroller;
 			
-			var scroller:Scroller = displayObject as Scroller;
+			// this value may only suit for IPad
+			scroller.bottom = FlexGlobals.topLevelApplication.height / 2 - 80;
+		}
+		
+		// gh#708
+		private function softKeyboardDeactivateHandler(event:SoftKeyboardEvent):void {
+			var displayObject:DisplayObject = event.target as DisplayObject;
 			
-			// If the scroller has no scrollbar then there is nothing to do
-			if (!scroller.verticalScrollBar)
+			while (!(displayObject is Scroller) && displayObject.parent) {
+				displayObject = displayObject.parent;
+			}
+			
+			if (!displayObject || displayObject is Stage)
 				return;
-			
-			// Get the component's y position by summing y positions up the hierarchy
-			var focusTopEdge:int = nextComponent.y;
-			var thisItem:DisplayObjectContainer = nextComponent.parent;
-			while (thisItem !== scroller) {
-				focusTopEdge += thisItem.y;
-				thisItem = thisItem.parent;
+			scroller = displayObject as Scroller;
+			if (event.triggerType == SoftKeyboardTrigger.USER_TRIGGERED || event.relatedObject == null) {
+				scroller.bottom = 0; 
 			}
-			
-			var focusBottomEdge:int = focusTopEdge + nextComponent.height;
-			var scrollbarRange:int = scroller.verticalScrollBar.maxHeight;
-			var visibleWindowHeight:int = scroller.height;
-			var lastVisibleY:int = visibleWindowHeight + scroller.viewport.verticalScrollPosition;
-			
-			if (focusTopEdge == scroller.viewport.verticalScrollPosition) {
-				// Do nothing
-			} else if (focusTopEdge != 0) {
-				// If the component is out of view then scroll it into view
-				var newPos:int = Math.min(scrollbarRange, scroller.viewport.verticalScrollPosition + (focusBottomEdge - lastVisibleY));
-				scroller.viewport.verticalScrollPosition = newPos;
-			}
+		}
+		
+		private function onEnter(event:FlexEvent):void {
+			if (scroller) {
+				// gh#709 when click enter, the focus will not jump to the next component but deactivated on gap fill and focus on scroller.
+				var focusManager:FocusManager = event.target.focusManager;
+				FocusManager(focusManager).mx_internal::lastFocus =  scroller;
+			} else {
+				var nextComponent:DisplayObject = event.target.focusManager.getNextFocusManagerComponent();
+				// gh#979 If nextComponent is Button, it is back button. navigating to ExerciseView marking button
+				if (nextComponent is Button) {
+					//while (!(nextComponent is ExerciseView)) {
+						nextComponent = nextComponent.parent;
+					//}
+					// gh#1157 nextComponent = (nextComponent as ExerciseView).markingButton;
+				}
+				if (nextComponent is IFocusManagerComponent) {
+					event.target.focusManager.setFocus(nextComponent);	
+				} else {
+					event.target.focusManager.hideFocus();
+				}
+						
+								
+				// #187 - if the focused element is offscreen then scroll it into view				
+				// First find the parent scroller
+				var displayObject:DisplayObject = nextComponent;
+				while (!(displayObject is Scroller) && displayObject.parent)
+					displayObject = displayObject.parent;
+				
+				if (!displayObject || displayObject is Stage)
+					return;
+				
+				var scroller:Scroller = displayObject as Scroller;
+				
+				// If the scroller has no scrollbar then there is nothing to do
+				if (!scroller.verticalScrollBar)
+					return;
+				
+				// Get the component's y position by summing y positions up the hierarchy
+				/*var focusTopEdge:int = nextComponent.y;
+				var thisItem:DisplayObjectContainer = nextComponent.parent;
+				while (thisItem !== scroller) {
+					focusTopEdge += thisItem.y;
+					thisItem = thisItem.parent;
+				}
+				
+				var focusBottomEdge:int = focusTopEdge + nextComponent.height;
+				var scrollbarRange:int = scroller.verticalScrollBar.maxHeight;
+				var visibleWindowHeight:int = scroller.height;
+				var lastVisibleY:int = visibleWindowHeight + scroller.viewport.verticalScrollPosition;
+				
+				if (focusTopEdge == scroller.viewport.verticalScrollPosition) {
+					// Do nothing
+				} else if (focusTopEdge != 0) {
+					// If the component is out of view then scroll it into view
+					var newPos:int = Math.min(scrollbarRange, scroller.viewport.verticalScrollPosition + (focusBottomEdge - lastVisibleY));
+					scroller.viewport.verticalScrollPosition = newPos;
+				}*/
+			}			
 		}
 		
 		private function onDragEnter(event:DragEvent):void {
 			var dropTarget:IUIComponent = IUIComponent(event.currentTarget);
 			DragManager.acceptDragDrop(dropTarget);
+		
+			// gh#712.1
+			/*var dropTextInput:TextInput = TextInput(event.currentTarget);
+			dropTextInput.setStyle("contentBackgroundColor", 0xF2F2F2);
+			dropTextInput.setStyle("contentBackgroundAlpha", 1);*/
 			
 			// If we are dragging to ourselves don't show the green icon, but still allow it (so we can catch it in onDragComplete)
 			DragManager.showFeedback((dropTarget !== event.dragInitiator) ? DragManager.COPY : DragManager.NONE);
 		}
+		
+		// gh#712.2
+		private function onDragExit(event:DragEvent):void {
+			/*var dropTextInput:TextInput = TextInput(event.currentTarget);
+			dropTextInput.setStyle("contentBackgroundColor", 0xFFFFFF);
+			dropTextInput.setStyle("contentBackgroundAlpha", 0);*/
+		}
+		
+		// gh#712 store the scroller policy and prepare dragImage here
+		private function onMouseDown(event:MouseEvent):void {
+			if (_droppedNode) {				
+				var displayObject:DisplayObject = DisplayObject(event.currentTarget);				
+				while (!(displayObject is Scroller) && displayObject.parent) {
+					displayObject = displayObject.parent;
+				}					
+				
+				if (!displayObject || displayObject is Stage)
+					return;
+				
+				scroller = displayObject as Scroller;			
+				
+				if (scroller) {
+					scrollerMemento = { verticalScrollPolicy: scroller.getStyle("verticalScrollPolicy"), horizontalScrollPolicy: scroller.getStyle("horizontalScrollPolicy") };
+					scroller.setStyle("horizontalScrollPolicy", ScrollPolicy.OFF);
+					scroller.setStyle("verticalScrollPolicy", ScrollPolicy.OFF);
+					
+					scroller.stage.addEventListener(MouseEvent.MOUSE_UP, onDragFinished);
+					scroller.stage.addEventListener(MouseEvent.RELEASE_OUTSIDE, onDragFinished);
+					
+					
+					if (!dragImage) {
+						dragImage = new Image();
+						dragImage.fillMode = BitmapFillMode.CLIP; // This ensures that the Image component doesn't try to scale
+						dragImage.visible = false;
+						
+						// We need to wrap it in an MX component otherwise the DragManager complains
+						var wrapper:UIComponent = new UIComponent();
+						wrapper.addChild(dragImage);
+						
+						// #376 (helps a bit)
+						dragImage.cacheAsBitmap = wrapper.cacheAsBitmap = true;
+						// gh#712 alice: get scoller's parent which is group
+						(displayObject.parent as spark.components.Group).addElement(wrapper);			
+					}
+				}
+				
+				var dragInitiator:IUIComponent = IUIComponent(event.currentTarget);
+				var ds:DragSource = new DragSource();
+				ds.addData(this.text, "text");
+				ds.addData(_droppedNode, "node");
+				ds.addData(_droppedFlowElement, "flowElement");
+				
+				if (dragImage) {								
+					DragManager.doDrag(dragInitiator, ds, event, dragImage, 0, 0, 0.8);
+					if (DragManager.isDragging) {
+						// First get the bounds of the draggable flow leaf element
+						var elementBounds:Rectangle = TLFUtil.getFlowElementBounds(this);
+						// gh#450 tweak the x, y and height so that the bitmap snapped for a drag contains the text correctly
+						elementBounds.x += -2;
+						elementBounds.y += -1;
+						elementBounds.height += 1;
+						
+						// Convert the element bounds from their original coordinate space to the container coordinate space
+						var containingBlock:RenderFlow = this.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
+						elementBounds = PointUtil.convertRectangleCoordinateSpace(elementBounds, containingBlock, scroller);
+						
+						// Position the dragImage so that it is centered horizontally, and vertically is above the mouse
+						var containerPoint:Point = (dragInitiator as UIComponent).globalToContent(new Point(event.stageX, event.stageY));
+						dragImage.x = containerPoint.x - elementBounds.width / 2;
+						dragImage.y = containerPoint.y - elementBounds.height / 2;
+						
+						// Determine translation matrix and clip rectangle to capture the draggable element as bitmap data
+						var translationMatrix:Matrix = new Matrix();
+						translationMatrix.translate(-elementBounds.x, -elementBounds.y);
+						var clipRect:Rectangle = new Rectangle(0, 0, elementBounds.width, elementBounds.height);
+						
+						// Capture the draggable element into a BitmapData, draw it into the dragImage and make the dragImage visible
+						var bitmapData:BitmapData = new BitmapData(elementBounds.width, elementBounds.height);
+						// gh#712 alice: confused about how could bitmapData draw if souce=scroller
+						bitmapData.draw(scroller, translationMatrix, null, null, clipRect, true);
+						dragImage.source = bitmapData;
+						dragImage.width = elementBounds.width;
+						dragImage.height = elementBounds.height;
+						dragImage.visible = true;
+					}
+				}
+			}	
+		}
+		
+		// gh#712
+		/*private function onMouseMove(event:MouseEvent):void {
+			if (_droppedNode) {				
+				var dragInitiator:IUIComponent = IUIComponent(event.currentTarget);
+				var ds:DragSource = new DragSource();
+				ds.addData(this.text, "text");
+				ds.addData(_droppedNode, "node");
+				ds.addData(_droppedFlowElement, "flowElement");
+				if (dragImage) {								
+					DragManager.doDrag(dragInitiator, ds, event, dragImage, 0, 0, 0.8);
+					if (DragManager.isDragging) {
+						// First get the bounds of the draggable flow leaf element
+						var elementBounds:Rectangle = TLFUtil.getFlowElementBounds(this);
+						// gh#450 tweak the x, y and height so that the bitmap snapped for a drag contains the text correctly
+						elementBounds.x += -2;
+						elementBounds.y += -1;
+						elementBounds.height += 1;
+						// Convert the element bounds from their original coordinate space to the container coordinate space
+						var containingBlock:RenderFlow = this.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
+						elementBounds = PointUtil.convertRectangleCoordinateSpace(elementBounds, containingBlock, scroller);
+						
+						// Position the dragImage so that it is centered horizontally, and vertically is above the mouse
+						var containerPoint:Point = (dragInitiator as UIComponent).globalToContent(new Point(event.stageX, event.stageY));
+						dragImage.x = containerPoint.x - elementBounds.width / 2;
+						dragImage.y = containerPoint.y - elementBounds.height / 2;
+						
+						// Determine translation matrix and clip rectangle to capture the draggable element as bitmap data
+						var translationMatrix:Matrix = new Matrix();
+						translationMatrix.translate(-elementBounds.x, -elementBounds.y);
+						var clipRect:Rectangle = new Rectangle(0, 0, elementBounds.width, elementBounds.height);
+						
+						// Capture the draggable element into a BitmapData, draw it into the dragImage and make the dragImage visible
+						var bitmapData:BitmapData = new BitmapData(elementBounds.width, elementBounds.height);
+						// gh#712 alice: confused about how could bitmapData draw if souce=scroller
+						bitmapData.draw(scroller, translationMatrix, null, null, clipRect, true);
+						dragImage.source = bitmapData;
+						dragImage.width = elementBounds.width;
+						dragImage.height = elementBounds.height;
+						dragImage.visible = true;
+					}
+				}
+			}		
+		}*/
 		
 		protected function onDragDrop(event:DragEvent):void {
 			dragDrop(event.dragSource.dataForFormat("node") as XML, event.dragSource.dataForFormat("flowElement") as FlowElement, event.dragSource.dataForFormat("text").toString());
@@ -317,11 +560,14 @@ package com.clarityenglish.textLayout.elements {
 				super.text = value;
 				
 				// #170 - put in an extra space at the end of the previous element in order to force word-wrap.  Very hacky!
+				// gh#472 and causes all drops to shift a bit right so alignment looks bad. Remove and live with the original bug. 
+				/*
 				var previousSibling:FlowElement = getPreviousSibling();
 				if (previousSibling is SpanElement) {
-					var spanElement:SpanElement = previousSibling as SpanElement;
-					if (spanElement.text.substr(spanElement.text.length - 1, 1) != " ") spanElement.text += " ";
+				var spanElement:SpanElement = previousSibling as SpanElement;
+				if (spanElement.text.substr(spanElement.text.length - 1, 1) != " ") spanElement.text += " ";
 				}
+				*/
 			}
 		}
 		
@@ -351,6 +597,23 @@ package com.clarityenglish.textLayout.elements {
 			value = "";
 			(component as TextInput).text = "";
 			getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_UNMARKED, this));
+			
+			// gh#474 - dispatch a focus out event so that AnswerableBehaviour can remove the answer from the selectedAnswerMap
+			getEventMirror().dispatchEvent(new FocusEvent(FocusEvent.FOCUS_OUT));
+		}
+		
+		// gh#712 
+		protected function onDragFinished(event:MouseEvent):void {
+			if (scroller) {
+				scroller.stage.removeEventListener(MouseEvent.MOUSE_UP, onDragFinished);
+				scroller.stage.removeEventListener(MouseEvent.RELEASE_OUTSIDE, onDragFinished);
+				
+				if (scroller && scrollerMemento) {
+					scroller.setStyle("horizontalScrollPolicy", scrollerMemento.horizontalScrollPolicy);
+					scroller.setStyle("verticalScrollPolicy", scrollerMemento.verticalScrollPolicy);
+					scrollerMemento = null;
+				}
+			}
 		}
 		
 		private function updateComponentFromValue():void {
@@ -368,7 +631,7 @@ package com.clarityenglish.textLayout.elements {
 				}
 			}
 		}
-	
+		
 	}
-
+	
 }

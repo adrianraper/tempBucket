@@ -20,6 +20,11 @@
 		public static const LICENCE_TYPE_TT:int = 6;
 		public static const LICENCE_TYPE_CT:int = 7;
 		
+		// gh#1090
+		public static const SIGNIN_TRACKING:uint = 1;
+		public static const SIGNIN_ANONYMOUS:uint = 2;
+		public static const LOGIN_BLOCKED:uint = 1;
+		
 		public static function getLicenceTypeText(licenceType:int):String {
 			switch (licenceType) {
 				case LICENCE_TYPE_AA:
@@ -90,6 +95,9 @@
 		public var deliveryFrequency:Number;
 		
 		public var checksum:String;
+		
+		// gh#1090
+		public var loginModifier:uint;
 		
 		public function Title() {
 			courses = new Array();

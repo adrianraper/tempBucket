@@ -1,4 +1,4 @@
-﻿package com.clarityenglish.common.events {
+package com.clarityenglish.common.events {
 	import com.clarityenglish.common.vo.manageable.User;
 	
 	import flash.events.Event;
@@ -20,8 +20,10 @@
 		public var user:User;
 		public var loginOption:Number;
 		public var verified:Boolean;
+		public var demoVersion:String;
+		public var selectedProductCode:String;
 		
-		public function LoginEvent(type:String, userObject:Object, loginOption:uint, verified:Boolean = true, bubbles:Boolean = false, cancelable:Boolean = false) { 
+		public function LoginEvent(type:String, userObject:Object, loginOption:uint, verified:Boolean = true, selectedProductCode:String = null, bubbles:Boolean = false, cancelable:Boolean = false) {
 			super(type, bubbles, cancelable);
 			
 			//this.name = username;
@@ -31,15 +33,17 @@
 				this.user = new User(userObject);
 			this.loginOption = loginOption;
 			this.verified = verified;
+			this.demoVersion = demoVersion;
+			this.selectedProductCode = selectedProductCode;
 		} 
 		
 		public override function clone():Event { 
 			//return new LoginEvent(type, username, password, bubbles, cancelable);
-			return new LoginEvent(type, user, loginOption, verified, bubbles, cancelable);
+			return new LoginEvent(type, user, loginOption, verified, selectedProductCode, bubbles, cancelable);
 		} 
 		
 		public override function toString():String { 
-			return formatToString("LoginEvent", "type", "user", "loginOption", "verified", "bubbles", "cancelable", "eventPhase"); 
+			return formatToString("LoginEvent", "type", "user", "loginOption", "verified", "selectedProductCode", "demoVersion", "bubbles", "cancelable", "eventPhase"); 
 		}
 		
 	}

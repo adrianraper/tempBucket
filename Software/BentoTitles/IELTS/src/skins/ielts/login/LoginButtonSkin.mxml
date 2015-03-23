@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
 
-    ADOBE SYSTEMS INCORPORATED
-    Copyright 2008 Adobe Systems Incorporated
-    All Rights Reserved.
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
 
-    NOTICE: Adobe permits you to use, modify, and distribute this file
-    in accordance with the terms of the license agreement accompanying it.
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
 
 -->
+
 
 <!--- The default skin class for the Spark Button component.  
 
@@ -23,7 +31,7 @@
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
              xmlns:s="library://ns.adobe.com/flex/spark" 
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-             minWidth="50" minHeight="30" 
+             minWidth="21" minHeight="21" 
              alpha.disabled="0.5">
      
     <fx:Metadata>
@@ -35,6 +43,10 @@
         ]]>
     </fx:Metadata>
     
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.6" distance="0" angle="180" knockout="false"/>
+	</fx:Declarations>
+	
     <!-- states -->
     <s:states>
         <s:State name="up" />
@@ -43,136 +55,22 @@
         <s:State name="disabled" />
     </s:states>
     
-    <!-- layer 1: shadow -->
-    <!--- @private -->
-    <s:Rect id="shadow" left="-1" right="-1" top="-1" bottom="-1" radiusX="4">
-        <s:fill>
-            <s:LinearGradient rotation="90">
-                <s:GradientEntry color="0x000000" 
-                                 color.down="0xFFFFFF"
-                                 alpha="0.01"
-                                 alpha.down="0" />
-                <s:GradientEntry color="0x000000" 
-                                 color.down="0xFFFFFF" 
-                                 alpha="0.07"
-                                 alpha.down="0.5" />
-            </s:LinearGradient>
-        </s:fill>
-    </s:Rect>
-    
-    <!-- layer 2: fill -->
-    <!--- @private -->
-    <s:Rect id="fill" left="0" right="0" top="0" bottom="0" radiusX="4" radiusY="4">
-        <s:fill>
-            <s:LinearGradient rotation="90">
-                <s:GradientEntry color="0x2C9AD5" ratio="0.33" />
-
-                <s:GradientEntry color="0x0C436B" ratio="0.66" />
-								 
-            </s:LinearGradient>
-        </s:fill>
-    </s:Rect>
-
-    <!-- layer 3: fill lowlight -->
-    <!--- @private -->
-    <s:Rect id="lowlight" left="0" right="0" top="0" bottom="0" radiusX="4">
-        <s:fill>
-            <s:LinearGradient rotation="90">
-                <s:GradientEntry color="0x2C9AD5"							 
-								 ratio="0.0" 
-								 alpha="0.1" 
-								 alpha.over="0.99" 
-								 alpha.down="0.12" 
-								 />
-				<s:GradientEntry color="0x0C436B"
-								 ratio="0.48"
-								 alpha="0.33"
-								 alpha.over="0.22"
-								 alpha.down="0.12" />
-
-            </s:LinearGradient>
-        </s:fill>
-    </s:Rect>
-    
-    <!-- layer 4: fill highlight -->
-    <!--- @private -->
-    <s:Rect id="highlight" left="0" right="0" top="0" bottom="0" radiusX="4">
-        <s:fill>
-            <s:LinearGradient rotation="90">
-					<s:GradientEntry color="0x2C9AD5"							 
-									 ratio="0.0" 
-									 alpha="0.1" 
-									 alpha.over="0.99" 
-									 alpha.down="0.12" 
-									 />
-					<s:GradientEntry color="0x0C436B"
-									 ratio="0.48"
-									 alpha="0.33"
-									 alpha.over="0.22"
-									 alpha.down="0.12" />
-
-            </s:LinearGradient>
-        </s:fill>
-    </s:Rect>
-    
-    <!-- layer 5: highlight stroke (all states except down) -->
-    <!--- @private -->
-    <s:Rect id="highlightStroke" left="0" right="0" top="0" bottom="0" radiusX="4" excludeFrom="down">
-        <s:stroke>
-            <s:LinearGradientStroke rotation="90" weight="1">
-                <s:GradientEntry color="0xFFFFFF" alpha.over="0.22" />
-                <s:GradientEntry color="0xD8D8D8" alpha.over="0.22" />
-            </s:LinearGradientStroke>
-        </s:stroke>
-    </s:Rect>
-    
-    <!-- layer 6: highlight stroke (down state only) -->
-    <!--- @private -->
-    <s:Rect id="hldownstroke1" left="0" right="0" top="0" bottom="0" radiusX="4" includeIn="down">
-        <s:stroke>
-            <s:LinearGradientStroke rotation="90" weight="1">
-                <s:GradientEntry color="0x000000" alpha="0.25" ratio="0.0" />
-                <s:GradientEntry color="0x000000" alpha="0.25" ratio="0.001" />
-                <s:GradientEntry color="0x000000" alpha="0.07" ratio="0.0011" />
-                <s:GradientEntry color="0x000000" alpha="0.07" ratio="0.965" />
-                <s:GradientEntry color="0x000000" alpha="0.00" ratio="0.9651" />
-            </s:LinearGradientStroke>
-        </s:stroke>
-    </s:Rect>
-    <!--- @private -->
-    <s:Rect id="hldownstroke2" left="0" right="0" top="0" bottom="0" radiusX="4" includeIn="down">
-        <s:stroke>
-            <s:LinearGradientStroke rotation="90" weight="1">
-                <s:GradientEntry color="0x000000" alpha="0.09" ratio="0.0" />
-                <s:GradientEntry color="0x000000" alpha="0.00" ratio="0.0001" />
-            </s:LinearGradientStroke>
-        </s:stroke>
-    </s:Rect>
-
-    <!-- layer 7: border - put on top of the fill so it doesn't disappear when scale is less than 1 -->
-    <!--- @private -->
-    <s:Rect id="border" left="0" right="0" top="0" bottom="0" width="69" height="20" radiusX="4">
-        <s:stroke>
-            <s:LinearGradientStroke rotation="90" weight="1">
-                <s:GradientEntry color="0x0066A6" 
-                                 alpha="0.5625"
-                                 alpha.down="0.6375" />
-                <s:GradientEntry color="0x00426B" 
-                                 alpha="0.75" 
-                                 alpha.down="0.85" />
-            </s:LinearGradientStroke>
-        </s:stroke>
-    </s:Rect>
-    
+    <s:Rect width="100" height="50" topLeftRadiusX="5" topLeftRadiusY="5" topRightRadiusX="5" topRightRadiusY="5" filters="{[dropShadowFilter]}">
+		<s:fill>
+			<s:LinearGradient rotation="-90">
+				<s:GradientEntry color="#005282" color.over="#006AAB" color.down="#006AAB" />
+				<s:GradientEntry color="#41AEE0" color.over="#4FB8E8" color.down="#4FB8E8" />
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
-    <s:Label id="labelDisplay" 
-			 color="0xFFFFFF" 
-			 fontSize="12.6"
+    <s:Label id="labelDisplay"
              textAlign="center"
              maxDisplayedLines="1"
              horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
-			 width="98" height="20">
+             left="10" right="10" top="2" bottom="2"
+			 color="0xFFFFFF">
     </s:Label>
     
 </s:SparkButtonSkin>
