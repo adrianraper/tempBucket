@@ -282,9 +282,22 @@ class BentoService extends AbstractService {
 			($licence->licenceType == Title::LICENCE_TYPE_CT && $loginObj == NULL) ||
 			($loginOption & User::LOGIN_BY_ANONYMOUS && $loginObj == NULL)) {
 		*/
-		if ($licence->signInAs == Title::SIGNIN_ANONYMOUS) {
+		// Protect older Bento titles that don't send this property
+		if (!isset($licence->signInAs) || $licence->signInAs == NULL) {
+			AbstractService::$debugLog->notice ("licence->signInAs not sent or null");
+			if ($licence->licenceType == Title::LICENCE_TYPE_AA ||
+				($licence->licenceType == Title::LICENCE_TYPE_NETWORK && $loginObj == NULL) ||
+				($licence->licenceType == Title::LICENCE_TYPE_CT && $loginObj == NULL) ||
+				($loginOption & User::LOGIN_BY_ANONYMOUS && $loginObj == NULL)) {
+				$userObj = $this->loginOps->anonymousUser($rootID);
+			} else {
+				$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $verified, $allowedUserTypes, $rootID, $productCode);
+			}
+		} elseif ($licence->signInAs == Title::SIGNIN_ANONYMOUS) {
+			AbstractService::$debugLog->notice ("licence->signInAs=" . $licence->signInAs);
 			$userObj = $this->loginOps->anonymousUser($rootID);
 		} else {
+			AbstractService::$debugLog->notice ("licence->signInAs=" . $licence->signInAs);
 			// Confirm that the user details are correct
 			$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $verified, $allowedUserTypes, $rootID, $productCode);
 		}

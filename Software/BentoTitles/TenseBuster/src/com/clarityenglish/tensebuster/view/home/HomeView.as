@@ -271,11 +271,17 @@ package com.clarityenglish.tensebuster.view.home {
 			}
 		}
 		
-		protected override function commitProperties():void {			
+		protected override function commitProperties():void {
 			super.commitProperties();
 
-			trace("config username: "+config.username);
-			userNameCaption = copyProvider.getCopyForId('welcomeLabel', {name: config.username});
+			// gh#1194
+			userNameCaption = '';
+			if (config.username == null || config.username == '') {
+				if (config.email)
+					userNameCaption = copyProvider.getCopyForId('welcomeLabel', {name: config.email});
+			} else if (config.username.toLowerCase() != 'anonymous') {
+				userNameCaption = copyProvider.getCopyForId('welcomeLabel', {name: config.username});
+			}
 
 			// for re-login
 			if (!course && !unit) {

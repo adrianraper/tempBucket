@@ -263,9 +263,18 @@
 	
 	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/home/homeBg.png')" right="0" visible="{courseSelector.level != null}" verticalCenter="-60" />
 	<s:SWFLoader id="homeInitialBg" source="@Embed(source='/skins/tensebuster/assets/home/homeInitialBg.png')" left="0" bottom="-10" visible="{courseSelector.level == null}" />
-	<!-- Student name -->
-	<s:Label left="40" top="30" text="{hostComponent.userNameCaption}" fontSize="13" color="0x000000" />
-	
+
+	<!-- Student name gh#1194-->
+	<s:Group top="0" right="24" height="28" visible="{hostComponent.userNameCaption != ''}" includeInLayout="{hostComponent.userNameCaption != ''}">
+		<s:Rect height="100%" width="100%" radiusX="14" radiusY="14">
+			<s:fill>
+				<s:SolidColor color="#e3e3e3" />
+			</s:fill>
+		</s:Rect>
+		<home:userIcon top="6" left="16" />
+		<s:Label paddingLeft="38" paddingRight="16" right="0" top="9" text="{hostComponent.userNameCaption}" fontSize="12" color="0x333333" fontFamily="Helvetica"/>
+	</s:Group>
+
 	<!--Rotation Circle-->
 	<home:circleBg left="0" verticalCenter="-100" />
 	<courseselector:TBCourseSelector id="courseSelector" left="-30" verticalCenter="-130" height="450"/>
@@ -598,10 +607,6 @@
 								
 							]]>
 						</fx:Script>
-						
-						<fx:Declarations>
-							<s:DropShadowFilter id="dropShadowFilter" angle="100" distance="1" alpha="0.4"/>
-						</fx:Declarations>
 						
 						<s:states>
 							<s:State name="normal" />

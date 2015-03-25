@@ -4,7 +4,9 @@
 		<group name="group">	
 			<lit name="loginInputTitle">Tense Buster</lit>
 			<lit name="applicationVersion">Version {version}</lit>
-			
+
+			<!-- Menu screen gh#1194 -->
+			<lit name="welcomeLabel">{name}</lit>
 
 			<!-- Is this one for My progress? -->
 			<lit name="errorCantLoadEveryoneSummary" code="314">Unable to load data for everyone's summary.</lit>
