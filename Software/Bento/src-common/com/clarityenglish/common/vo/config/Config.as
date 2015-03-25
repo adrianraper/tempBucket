@@ -306,7 +306,7 @@ package com.clarityenglish.common.vo.config {
 			// gh#1160
 			// gh#1160 If you started with passed parameters, clear [most of] them out now for a restart
 			this.retainedParameters = {};
-			for (var property:String in parameters) {
+			for (property in parameters) {
 				switch (property) {
 					case 'dbHost':
 					case 'prefix':
@@ -628,14 +628,14 @@ package com.clarityenglish.common.vo.config {
 			
 			// gh#886
 			// gh#1090
-
+			/*
 			for (var i:Number = 0; i < this.account.licenceAttributes.length; i++) {
 				if (this.account.licenceAttributes[i]['licenceKey'] == 'noLogin') {
 					this._noLogin = this.account.licenceAttributes[i]['licenceValue'];
 				}
 			}
-
-			//this._noLogin = (thisTitle.loginModifier & Title.LOGIN_BLOCKED);
+			*/
+			this._noLogin = (thisTitle.loginModifier & Title.LOGIN_BLOCKED);
 			
 			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
 			// and comes from a mix of T_ProductLanguage and T_Accounts. 

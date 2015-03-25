@@ -42,7 +42,8 @@
             <lit name="errorRUDoesntMatch" code="312">This licence can only run from certain websites. You came from {referrer}.</lit>
             <lit name="errorIPandRUDontMatch" code="313">This licence can only run from certain computers or websites. You came from {referrer} with {ip}.</lit>
             <lit name="errorCantLoadEveryoneSummary" code="314">Unable to load data for everyone's summary.</lit>
-            
+            <lit name="errorMultipleIPMatches" code="315">More than one account matches the IP you are using ({ip}). Please contact your administrator or support@clarityenglish.com.</lit>
+
             <lit name="errorMultipleExerciseWithSameId" code="400">The menu xml has more than one exercise node with id={exerciseID}.</lit>
             <lit name="errorCantFindAutoIncrementSessionId" code="401">Database can't find auto-increment session id.</lit>
             <lit name="errorParsingExercise" code="402">Unable to read exercise {filename} ({message}). Please contact support@clarityenglish.com with the file name.</lit>

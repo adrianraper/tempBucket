@@ -174,7 +174,8 @@ package com.clarityenglish.common.view.login {
 					//trace("caught login error in login mediator");
 					
 					// AR Clear anything that is in the fields out - relevant to returning to this screen on logout
-					view.clearData();
+					//view.clearData();
+					view.clearPassword();
 						
 					break;
 				

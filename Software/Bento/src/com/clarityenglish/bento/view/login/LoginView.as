@@ -547,6 +547,10 @@ package com.clarityenglish.bento.view.login {
 			if (selfRegisterPassword) selfRegisterPassword.text = "";
 			if (confirmPassword) confirmPassword.text = "";
 		}
+		// This clears just the password - perhaps after an invalid login attempt
+		public function clearPassword():void {
+			if (passwordInput) passwordInput.text = "";
+		}
 		
 		// Temporary - until Alice removes getTestDrive from the LoginMediator and interface
 		public function getTestDrive():Signal {

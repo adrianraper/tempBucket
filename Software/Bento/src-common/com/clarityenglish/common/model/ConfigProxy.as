@@ -555,19 +555,25 @@ import com.clarityenglish.bento.model.SCORMProxy;
 		public function onDelegateFault(operation:String, fault:Fault):void {
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			var thisError:BentoError = BentoError.create(fault);
-			
+
+			// gh#1193
+			sendNotification(CommonNotifications.CONFIG_ERROR, thisError);
+			/*
 			switch (operation) {
 				// gh#315
 				case "getIPMatch":
 					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoPrefixOrRoot")) {
 						this.createDummyAccount();
 						break;
+					} else if (thisError.errorNumber == copyProxy.getCodeForId("errorMultipleIPMatches")) {
+						sendNotification(CommonNotifications.CONFIG_ERROR, thisError);
 					}
-
+					break;
 				case "getAccountSettings":
 					sendNotification(CommonNotifications.CONFIG_ERROR, thisError);
 					break;
 			}
+			*/
 			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
 			
 			// Performance logging
