@@ -7,7 +7,8 @@
             
 			<lit name="creditLabel">We hope you liked using Clear Pronunciation 1 - Sounds.</lit>
 			<lit name="phonemicChartURL"><![CDATA[http://www.clarityenglish.com/Content/ClearPronunciation-International/sharedMedia/phonemicChart.pdf]]></lit>
-			<lit name="recorderHelpURL"><![CDATA[http://www.clarityenglish.com/Software/ClearPronunciation/Help/help.htm]]></lit>
+			<lit name="helpURL"><![CDATA[http://www.clarityenglish.com/Content/ClearPronunciation10-International/help/ClearPronunciationSoundsHelp.pdf]]></lit>
+			<lit name="recorderHelpURL"><![CDATA[http://www.clarityenglish.com/Content/ClearPronunciation10-International/help/ClearPronunciationSoundsHelp.pdf]]></lit>
 			<lit name="warningWindowCaption">Sorry</lit>
             <lit name="homeInstructionLabel">Choose the section you want to view.</lit>
 			
