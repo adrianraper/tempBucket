@@ -35,36 +35,35 @@ login|LoginView {
 	skinClass: ClassReference("skins.rotterdam.builder.login.LoginSkin");
 }
 
-login|LoginView s|Button#loginButton {
+login|LoginView s|Button {
 	skinClass: ClassReference("skins.rotterdam.login.LoginButtonSkin");
 }
-login|LoginView s|Button#forgotPassword_btn {
+
+login|LoginView s|Button#newUserButton, s|Button#forgotPasswordButton {
 	skinClass: ClassReference("skins.rotterdam.login.ForgotPasswordButtonSkin");
 }
-login|LoginView s|Button#freeCourseButton {
-	skinClass: ClassReference("skins.rotterdam.builder.login.FreeCourseButtonSkin");
-}
 
-/*login|LoginView s|TextInput {
-	skinClass: ClassReference("spark.skins.spark.TextInputSkin");
-	borderVisible: true;
-	borderColor: #C8C8C8;
-	contentBackgroundColor: #FFFFFF;
-}*/
+login|LoginView s|SkinnableContainer {
+	skinClass: ClassReference("skins.rotterdam.login.SignInContainerSkin");
+}
 
 login|LoginView s|TextInput {
 	skinClass: ClassReference("skins.rotterdam.login.LoginTextInputSkin");
 	cornerRadius: 5;
 }
+login|LoginView s|Button#freeCourseButton {
+	skinClass: ClassReference("skins.rotterdam.builder.login.FreeCourseButtonSkin");
+}
 
 title|TitleView {
 	skinClass: ClassReference("skins.rotterdam.builder.title.TitleSkin");
 }
-
 title|TitleView s|TabbedViewNavigator {
 	skinClass: ClassReference("skins.rotterdam.title.WebTabbedViewNavigatorSkin");
 }
-
+title|TitleView s|ButtonBar {
+    skinClass: ClassReference("skins.rotterdam.title.ui.TabBarSkin");
+}
 title|TitleView s|Button#logoutButton {
 	skinClass: ClassReference("skins.rotterdam.title.ui.LogOutButtonSkin");
 }

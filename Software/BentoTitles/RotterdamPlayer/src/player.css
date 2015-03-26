@@ -43,14 +43,9 @@ login|LoginView s|SkinnableContainer {
 	skinClass: ClassReference("skins.rotterdam.login.SignInContainerSkin");
 }
 
-/*
-login|LoginView s|Label {
-	skinClass: ClassReference("spark.skins.spark.TextInputSkin");
-	borderVisible: true;
-	borderColor: #C8C8C8;
-	contentBackgroundColor: #FFFFFF;
+login|LoginView s|SkinnableContainer#anonymousGroup {
+	skinClass: ClassReference("skins.rotterdam.login.AnonymousContainerSkin");
 }
-*/
 login|LoginView s|TextInput {
 	skinClass: ClassReference("skins.rotterdam.login.LoginTextInputSkin");
 	cornerRadius: 5;
@@ -59,19 +54,23 @@ login|LoginView s|TextInput {
 title|TitleView {
 	skinClass: ClassReference("skins.rotterdam.player.title.TitleSkin");
 }
-
 title|TitleView s|TabbedViewNavigator {
-	skinClass: ClassReference("skins.rotterdam.title.WebTabbedViewNavigatorSkin");
+    skinClass: ClassReference("skins.rotterdam.title.WebTabbedViewNavigatorSkin");
 }
-
+/*
+ TODO I do not understand why I can't do title|TitleView s|ButtonBar to reference the component
+ but if I do then I do NOT link to this skin. Also the buttons in the skin have an overlay of orange?
+ */
+title|TitleView #tabBar {
+    skinClass: ClassReference("skins.rotterdam.title.ui.TabBarSkin");
+}
 title|TitleView s|Button#logoutButton {
-	skinClass: 	ClassReference("skins.rotterdam.title.ui.LogOutButtonSkin");
+    skinClass: ClassReference("skins.rotterdam.title.ui.LogOutButtonSkin");
 }
 
 courseselector|CourseSelectorView {
 	skinClass: ClassReference("skins.rotterdam.player.courseselector.CourseSelectorSkin");
 }
-
 courseselector|CourseSelectorView s|List#courseList s|VScrollBar {
 	skinClass:ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
 }

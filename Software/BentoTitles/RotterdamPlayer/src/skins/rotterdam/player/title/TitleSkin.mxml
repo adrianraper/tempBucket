@@ -19,35 +19,31 @@
 	</s:states>
 
 	<s:Group left="0" right="0" top="0">
-		<s:Rect left="0" right="0" top="0" bottom="0" height="40">
+		<s:Rect left="0" right="0" top="0" height="45">
 			<s:fill>
-				<s:LinearGradient x="55.0005" y="45" scaleX="44.9995" rotation="-90">
+				<s:LinearGradient x="55" y="45" scaleX="45" rotation="-90">
 					<s:GradientEntry color="#333333" ratio="0"/>
 					<s:GradientEntry color="#595959" ratio="1"/>
 				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>
-		<s:SWFLoader source="@Embed(source='/skins/rotterdam/player/assets/title/ccb_logo.png')" left="35" top="8"/>
-		<s:Label text="Clarity Course Player" color="0xFFFFFF" fontWeight="bold" fontSize="15" left="70" top="15"/>
-
-		<s:Button id="logoutButton" right="10" top="4" useHandCursor="true" buttonMode="true"/>
-
-		<s:Rect left="0" right="0" top="40" bottom="0" height="45">
-			<s:fill>
-				<s:LinearGradient x="55.0005" y="45" scaleX="44.9995" rotation="-90">
-					<s:GradientEntry color="#E6E6E6" ratio="0"/>
-					<s:GradientEntry color="#FFFFFF" ratio="1"/>
-				</s:LinearGradient>
-			</s:fill>
-		</s:Rect>
+		<s:HGroup right="120" verticalCenter="0" verticalAlign="middle">
+			<s:SWFLoader source="@Embed(source='/skins/rotterdam/player/assets/title/ccb_logo.png')"
+						 includeIn="course_selector"/>
+			<s:Label id="productTitle" color="0xFFFFFF" fontWeight="bold" fontSize="15"
+					 includeIn="course_selector"/>
+		</s:HGroup>
 	</s:Group>
 
-	<components:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="40" bottom="30">
+	<components:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0">
 		<s:ViewNavigator id="myCoursesViewNavigator"
 						 firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0"
 						 right="0" height="100%"/>
 		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.bento.view.progress.ProgressView"
 						 left="0" right="0" height="100%" excludeFrom="course_selector"/>
 	</components:CancelableTabbedViewNavigator>
+
+	<!-- This needs to go 'on top' of the view navigator to be picked up -->
+	<s:Button id="logoutButton" right="10" top="6" useHandCursor="true" buttonMode="true" includeIn="course_selector"/>
 
 </s:Skin>

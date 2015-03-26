@@ -11,11 +11,25 @@
 	
 	<fx:Style>
 		@namespace s "library://ns.adobe.com/flex/spark";
-		
-		/*global {
+
+		@font-face {
+			src: url("skins/rotterdam/player/assets/HelveticaNeueLTStd-Roman.otf");
 			fontFamily: Helvetica;
-			fontSize: 13;
-		}*/
+			fontStyle: normal;
+			fontWeight: normal;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+
+		@font-face {
+			src: url("skins/rotterdam/player/assets/HelveticaNeueLTStd-Bd.otf");
+			fontFamily: Helvetica;
+			fontStyle: normal;
+			fontWeight: bold;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+
 	</fx:Style>
 	
 	<fx:Style source="player.css" />

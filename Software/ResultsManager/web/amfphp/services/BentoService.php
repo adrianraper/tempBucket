@@ -106,18 +106,22 @@ class BentoService extends AbstractService {
 			return parent::xhtmlLoad($href);
 
         // gh#1172
+		/*
         $updatedURL = $this->updateUrl($href->currentDir);
         if ($updatedURL != $href->currentDir)
             AbstractService::$debugLog->notice("changed this domain ".$href->currentDir." to $updatedURL");
         $href->currentDir = $updatedURL;
+		*/
 		return XmlUtils::buildXml($href, $this->db, $this);
 	}
 
     // gh#1172
     // TODO this is just a hack to stop ezproxy servers not reading content xml files
-    private function updateUrl($url) {
-        return preg_replace('/http(s?):\/\/[\w\.-]*(:\d+)?/i', "http://www.clarityenglish.com", $url);
-    }
+	private function updateUrl($url) {
+		// For working with CBuilder locally
+		return $url;
+		// return preg_replace('/http(s?):\/\/[\w\.-]*(:\d+)?/i', "http://www.clarityenglish.com", $url);
+	}
 	/**
 	 *
 	 * This call finds the relevant account, keyed on rootID [or prefix].

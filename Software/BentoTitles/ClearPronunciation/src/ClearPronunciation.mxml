@@ -58,6 +58,22 @@
 			embedAsCFF: true;
 			advancedAntiAliasing: true;
 		}
+		@font-face {
+			src: url("skins/assets/HelveticaNeueLTStd-Bd.otf");
+			fontFamily: Helvetica;
+			fontStyle: normal;
+			fontWeight: bold;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+
+		global {
+			fontFamily: Helvetica;
+			fontLookup: embeddedCFF;
+			fontAntiAliasType: advanced;
+			color: #333333;
+		}
+
 	</fx:Style>
 	
 	<fx:Script>
