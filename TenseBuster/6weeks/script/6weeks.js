@@ -48,7 +48,7 @@ $(document).ready(function() {
 
     $("#btn-go-to-register").click(function() {
 											
-		if ($("#lcb-total-done").html() == "0"){
+		if ($("#lcb-total-done").html() == "0 of 25"){
 	
 			    $.colorbox({
                 href: "#inline-zero-warning",

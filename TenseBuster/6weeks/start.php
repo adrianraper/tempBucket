@@ -235,7 +235,7 @@
     <div style="height: 45px; width:100%;" id="leveltest-complete-bar-box">
         <div id="leveltest-complete-bar"  style="display:none;">
             <div id="widthbox">
-                <div class="title">Completed <span id="lcb-total-done">0</span> questions:</div>
+                <div class="title">Completed <span id="lcb-total-done">0 of 25</span> questions:</div>
                 <div class="content">
                     <span id="lcb-1" class="num">1</span>
                     <span id="lcb-2" class="num">2</span>

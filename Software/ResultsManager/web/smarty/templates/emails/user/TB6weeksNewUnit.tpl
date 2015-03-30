@@ -48,13 +48,13 @@
 <body style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 1em; background-color:#F1F1F1;">
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#F1F1F1" style="font-size:12px; min-width:600px; font-family:Arial, Helvetica, sans-serif;" background="http://www.clarityenglish.com/TenseBuster/6weeks/images/email/bg.jpg">
   <tr>
-    <td colspan="3"><img src="http://www.clarityenglish.com/TenseBuster/6weeks/images/email/banner.jpg" alt="Tense Buster 6 week" width="600" height="193" border="0" style="margin:0; font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 1.2em;"/></td>
+    <td colspan="3"><a href="http://{$server}/TenseBuster/6weeks/index.php?prefix={$prefix}&email={$user->email}" target="_blank"><img src="http://www.clarityenglish.com/TenseBuster/6weeks/images/email/banner.jpg" alt="Improve your grammar in 6 weeks" width="600" height="193" border="0" style="margin:0; font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 1.2em;"/></a></td>
   </tr>
   <tr>
     <td colspan="3" background="http://www.clarityenglish.com/TenseBuster/6weeks/images/email/bg.jpg">
 	  <div style="padding:0 48px;">
            <div style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 1.2em; padding:15px 0; color:#000000; line-height:18px;">Dear {$user->name}</div>
-            <div style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 1.2em; padding:15px 0; line-height:18px; color:#E22634; font-weight:bold;">Your English Level is...</div>
+            <div style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 1.2em; padding:15px 0; line-height:18px; color:#E22634;">Your English Level is...</div>
       </div>
     </td>
   </tr>
@@ -63,7 +63,7 @@
         <table width="600" border="0" cellspacing="0" cellpadding="0" height="73" style="font-size:12px; min-width:600px;">
           <tr>
             <td width="48" style="font-family: Arial, Verdana,  Helvetica, sans-serif;color:#000000; line-height:73px;"></td>
-            <td width="128" style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 1.6em;  color:#E22634;" valign="middle">{$levelDescription}</td>
+            <td width="128" style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 1.6em;  font-weight:700; color:#E22634;" valign="middle">{$levelDescription}</td>
             <td width="411"><img src="http://www.clarityenglish.com/TenseBuster/6weeks/images/email/{$level}.jpg" /></td>
             <td width="13" style="font-family: Arial, Verdana,  Helvetica, sans-serif; color:#000000; line-height:73px;"></td>
           </tr>
@@ -77,13 +77,13 @@
             <tr>
                 <td width="13" rowspan="10"></td>
                 <td width="346" height="60" bgcolor="#FFFFFF" valign="middle">
-                    <div style="padding:0 0 0 34px; color:#E5404E; font-size:1.2em; font-weight:700;">
+                    <div style="padding:0 0 0 34px; color:#E5404E; font-size:1.2em;">
                         {if $weekX>6}These are the six grammar units you have finished:
                         {else}Here are your six grammar units:
                         {/if}
                     </div>
                 </td>
-                <td width="241" rowspan="10"><img src="http://www.clarityenglish.com/TenseBuster/6weeks/images/email/girl.jpg" width="241" height="284" /></td>
+                <td width="241" rowspan="10" background="http://www.clarityenglish.com/TenseBuster/6weeks/images/email/girl.jpg"></td>
             </tr>
             <tr>
                 <td height="15" bgcolor="#FCE8E9"></td>
@@ -97,9 +97,9 @@
                         {if $smarty.foreach.unit.iteration==$weekX}background="http://www.clarityenglish.com/TenseBuster/6weeks/images/email/bg-week.jpg" {/if}
                         style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size:12px;">
                     <tr>
-                        <td width="28"></td>
-                        <td width="115" style="font-size:1.2em; {if $smarty.foreach.unit.iteration==$weekX}color:#E5404E{else}color:#999999{/if}; font-weight:700;">{$smarty.foreach.unit.iteration} ({if $smarty.foreach.unit.iteration<$weekX}done{elseif $smarty.foreach.unit.iteration==$weekX}starts today{else}start {$dateInterval|strtotime|date_format:'%d/%m'}{/if})</td>
-                        <td width="174" style="font-size:1.2em; {if $smarty.foreach.unit.iteration==$weekX}color:#000000{else}color:#999999{/if}; font-weight:700;">{$unitName}</td>
+                        <td width="18"></td>
+                        <td width="125" style="font-size:1em; {if $smarty.foreach.unit.iteration==$weekX}color:#E5404E; font-weight:bold;{else}color:#999999;{/if}">{$smarty.foreach.unit.iteration} ({if $smarty.foreach.unit.iteration<$weekX}done{elseif $smarty.foreach.unit.iteration==$weekX}starts today{else}starts {$dateInterval|strtotime|date_format:'%d/%m'}{/if})</td>
+                        <td width="174" style="font-size:1em; {if $smarty.foreach.unit.iteration==$weekX}color:#000000; font-weight:bold;{else}color:#999999;{/if}">{$unitName}</td>
                     </tr>
                 </table>
               </td>
@@ -110,7 +110,7 @@
             </tr>
             <tr>
                 <td height="29" bgcolor="#FFFFFF" valign="middle">
-    	            <div style="padding:0 0 0 34px; color:#333333; font-size:1.2em;">Click to check your scores! <a href="{$programBase}{$startProgress}" style="color:#333333; font-weight:bold;">My Progress</a></div>
+                    <div style="padding:0 0 0 34px; color:#333333; font-size:1.2em;">Click <a href="{$programBase}{$startProgress}" style="color:#333333; font-weight:bold;">My Progress</a> to check your scores!</div>
                 </td>
             </tr>
         </table>
@@ -151,7 +151,7 @@
                 <td height="30" colspan="5"></td>
               </tr>
           	  <tr>
-            	<td height="30" colspan="5" style="color:#333333; font-size:1.2em;">Download the <strong>Tense Buster Apps </strong>and study on the go!</td>
+            	<td height="30" colspan="5" style="color:#333333; font-size:1.2em;">Download the <strong>Tense Buster app </strong>and study on the go!</td>
               </tr>
               <tr>
                 <td width="112"><a href="https://itunes.apple.com/ae/app/tense-buster/id696619890?mt=8" target="_blank"><img src="http://www.clarityenglish.com/TenseBuster/6weeks/images/email/apple-app.png" alt="Apple App" border="0"/></a></td>
@@ -172,7 +172,7 @@
     	 <div style="padding:0 48px;">
     			<div style="padding:25px 0 20px 0; color:#333333; font-size:1.2em;">Enjoy your practice!</div>
                 <div style="padding:0 0 5px 0; color:#333333; font-size:1.2em;">Best Wishes</div>
-                <div style="padding:0; color:#333333; font-size:1.2em;"><img src="http://www.clarityenglish.com/TenseBuster/6weeks/images/email/ClarityEnglish.png" /></div>
+                <div style="padding:0; color:#333333; font-size:1.2em;"><img src="http://www.clarityenglish.com/TenseBuster/6weeks/images/email/ClarityEnglish.png" alt="ClarityEnglish" /></div>
           </div>
     </td>
     </tr>

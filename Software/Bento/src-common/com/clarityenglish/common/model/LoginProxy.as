@@ -364,8 +364,14 @@ package com.clarityenglish.common.model {
 						if (memory && memory.directStart) {
 							config = configProxy.getConfig();
 							var bookmark:Bookmark = new Bookmark(memory.directStart);
-							config.courseID = bookmark.course;
-							config.startingPoint = bookmark.startingPoint;
+							// gh#1080
+							if (!config.courseID)
+								config.courseID = bookmark.course;
+							if (config.startingPoint) {
+								config.startingPoint += ',' + bookmark.startingPoint;
+							} else {
+								config.startingPoint = bookmark.startingPoint;
+							}
 						}
 								
 						// Carry on with the process

@@ -45,7 +45,7 @@ class TB6weeksService extends AbstractService {
 	// var $productCode = 59;
 	var $dbHost = 2;
 	var $server;
-	var $dateDiff = '2 days';
+	var $dateDiff = '7 days';
 	
 	function __construct() {
 		parent::__construct();

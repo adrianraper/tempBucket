@@ -77,7 +77,7 @@
                         <div class="box-details">
                             <div class="col top" >
                                 <label for="userEmail" class="name home">Email</label><label for="userEmail" class="error home"></label><br />
-                                <input class="field" id="userEmail" name="userEmail" type="text"/>
+                                <input class="field" id="userEmail" name="userEmail" type="text" value="<?php echo $_GET['email']; ?>" />
                             </div>
                             <div class="col bottom">
                                 <label for="password" class="name home">Password</label><label for="password" class="error home"></label><br />
