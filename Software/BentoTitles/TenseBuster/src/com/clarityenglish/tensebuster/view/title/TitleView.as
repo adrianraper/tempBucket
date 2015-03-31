@@ -221,8 +221,11 @@ package com.clarityenglish.tensebuster.view.title {
 			}
 			
 			if (_isDirectStartEx) {
-				unitCaption = _directExercise.parent().@caption;
-				courseCaption = _directExercise.parent().parent().@caption;
+				// gh#604 Unrelated, but tidy up syntax
+				var thisUnit:XML = _directExercise.parent();
+				var thisCourse:XML = thisUnit.parent();
+				unitCaption = thisUnit.@caption;
+				courseCaption = thisCourse.@caption;
 			}
 		}
 		

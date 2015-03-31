@@ -13,8 +13,8 @@
 	<language>EN</language>
 	<contentPath>http://192.168.8.82/Content/</contentPath>
 	
-	<remoteDomain>http://192.168.8.82/</remoteDomain>
-	<remoteGateway>http://192.168.8.82/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteDomain>http://192.168.8.52/</remoteDomain>
+	<remoteGateway>http://192.168.8.52/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>TenseBusterService</remoteService>
 	
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>

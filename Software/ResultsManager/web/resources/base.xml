@@ -189,7 +189,7 @@
             <lit name="minLabel">min(s)</lit>
             <lit name="totalLabel">Total:</lit>
             <lit name="totalTimeLabel">Total time you have spent</lit>
-            <lit name="circleWedgeInstructionLabel">Units you have not done are not shown in the chart above.</lit>
+            <lit name="circleWedgeInstructionLabel">Shows only the units you have started.</lit>
             <lit name="progressBarScore">{course} - Average score</lit>
             <lit name="scoreGridC1">Unit</lit>
             <lit name="scoreGridC2">Exercise</lit>
@@ -210,7 +210,7 @@
             <lit name="completeString">
                 <![CDATA[
                 <p>This is to certify that this learner has completed this level</p>
-                <p>and has achieved an average score of <span fontWeight="bold" fontSize="20">{aveScore}%.</span></p>
+                <p>with an average score of <span fontWeight="bold" fontSize="20">{aveScore}%.</span></p>
                 ]]>
             </lit>
             <lit name="nameTextLabel">Name:</lit>
@@ -253,8 +253,4 @@
 		</group>
 	</language>
 
-    <language name="North American" code="NAMEN" mediaFolder="NAMEN">
-        <group name="group">
-        </group>
-    </language>
 </literals>

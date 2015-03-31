@@ -227,11 +227,14 @@ EOD;
 				AND s.F_Duration > 15
 EOD;
 		} else {
+			// gh#604 Teacher records in session will now include root, so ignore them here
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed 
-				FROM T_Session s
+				FROM T_Session s, T_User u
 				WHERE s.F_StartDateStamp >= ?
 				AND s.F_Duration > 15
+				AND s.F_UserID = u.F_UserID
+				AND u.F_UserType = 0
 EOD;
 		}
 		
@@ -298,6 +301,11 @@ EOD;
 	 * @param Licence $licence
 	 */
 	function updateLicence($licence) {
+
+		// gh#604 Teacher records with licence=0 do not need updating
+		if ($licence->id <= 0)
+			return false;
+
 		// gh#815
 		//$dateNow = date('Y-m-d H:i:s');
 		$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));

@@ -98,9 +98,9 @@ EOD;
 		switch ($rs->RecordCount()) {
 			case 0:
 				// Whilst testing tablet login, tell me about all logins
-				$logMessage = "login $keyValue no such user";
-				if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
-				AbstractService::$debugLog->info($logMessage);
+				//$logMessage = "login $keyValue no such user";
+				//if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
+				//AbstractService::$debugLog->info($logMessage);
 				// Invalid login
 				throw $this->copyOps->getExceptionForId("errorNoSuchUser", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 				break;
@@ -135,8 +135,8 @@ EOD;
 				// So first of all see if you can figure out some rules for picking one of the multiple users
 				
 				// Do some logging to check this, especially with tablets
-				$logMessage = "login $keyValue has ".$rs->RecordCount()." matches";
-				AbstractService::$debugLog->info($logMessage);
+				//$logMessage = "login $keyValue has ".$rs->RecordCount()." matches";
+				//AbstractService::$debugLog->info($logMessage);
 				
 				// 1. Does the password match just one of them?
 				$matches = 0;
@@ -149,8 +149,8 @@ EOD;
 					}
 				}
 				if ($matches == 1) {
-					$logMessage = "use password to match ".$dbLoginObj->F_UserID;
-					AbstractService::$debugLog->info($logMessage);
+					//$logMessage = "use password to match ".$dbLoginObj->F_UserID;
+					//AbstractService::$debugLog->info($logMessage);
 					continue;
 				}
 
@@ -198,8 +198,8 @@ EOD;
 				$rs1->MoveFirst();
 				while ($accountObj = $rs1->FetchNextObj()) {
 					
-					$logMessage = "root ".$accountObj->rootID." is a ".$accountObj->productVersion;
-					AbstractService::$debugLog->info($logMessage);
+					//$logMessage = "root ".$accountObj->rootID." is a ".$accountObj->productVersion;
+					//AbstractService::$debugLog->info($logMessage);
 					
 					if ($accountObj->productVersion && stristr($accountObj->productVersion, 'HU')) {
 						
@@ -253,9 +253,9 @@ EOD;
 		// #341 Only check password if you have set this to be the case 
 		if ($verified) {
 			if ($password != $dbLoginObj->F_Password) {
-				$logMessage = "login $keyValue wrong password, they typed $password, should be ".$dbLoginObj->F_Password;
-				if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
-				AbstractService::$debugLog->info($logMessage);
+				//$logMessage = "login $keyValue wrong password, they typed $password, should be ".$dbLoginObj->F_Password;
+				//if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
+				//AbstractService::$debugLog->info($logMessage);
 				throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 			}
 		}
@@ -272,15 +272,15 @@ EOD;
 				(strtotime($dbLoginObj->F_ExpiryDate) > 0) && 
 				(strtotime($dbLoginObj->F_ExpiryDate) < strtotime(date("Y-m-d")))) {
 			
-				$logMessage = "login $keyValue but expired on ".$dbLoginObj->F_ExpiryDate;
-				if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.= '-tablet-';
-				AbstractService::$debugLog->info($logMessage);
+				//$logMessage = "login $keyValue but expired on ".$dbLoginObj->F_ExpiryDate;
+				//if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.= '-tablet-';
+				//AbstractService::$debugLog->info($logMessage);
 				throw $this->copyOps->getExceptionForId("errorUserExpired", array("expiryDate" => date("d M Y", strtotime($dbLoginObj->F_ExpiryDate))));
 		}
 		
-		$logMessage = "login $keyValue success";
-		if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
-		AbstractService::$debugLog->info($logMessage);
+		//$logMessage = "login $keyValue success";
+		//if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
+		//AbstractService::$debugLog->info($logMessage);
 		
 		// Authenticate the user with the session
 		// gh#1140 In case name is null

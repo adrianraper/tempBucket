@@ -3,7 +3,11 @@ class ProgressOps {
 
 	var $db;
 	var $menu;
-	
+
+	// gh#604
+	const LICENCE_UPDATE_CUTOFF = 900; // 15 * 60;
+	const MINIMUM_DURATION = 15; // seconds
+
 	function ProgressOps($db) {
 		$this->db = $db;
 		$this->copyOps = new CopyOps();
@@ -123,12 +127,20 @@ SQL;
 	/**
 	 * This method is called to insert a session record when a user starts a program
 	 */
-	function startSession($user, $rootID, $productCode, $dateNow = null) {
-		// For teachers we will set rootID to -1 in the session record, so, are you a teacher?
-		// Or more specifically are you NOT a student
-		if (!$user->userType == 0)
-			$rootID = -1;
-		
+	function startSession($user, $rootId, $productCode, $dateNow = null) {
+
+		// gh#604 You might start with user as a plain userId
+		if ($user instanceof User) {
+			// For teachers we will set rootID to -1 in the session record, so, are you a teacher?
+			// Or more specifically are you NOT a student
+			// gh#604 Include all users in session records tied to a root
+			//if (!$user->userType == 0)
+			//	$rootID = -1;
+			$userId = $user->userID;
+		} else {
+			$userId = $user;
+		}
+
 		// Check that the date is valid
 		// #321
 		//$dateStampNow = strtotime($dateNow);
@@ -136,10 +148,10 @@ SQL;
 		// gh#815
 			//$dateStampNow = time();
 			//$dateNow = date('Y-m-d H:i:s',$dateStampNow);
+		// gh#604 use constant
 		$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
 		$dateNow = $dateStampNow->format('Y-m-d H:i:s');
-		//$dateSoon = date('Y-m-d H:i:s',strtotime("+15 seconds", $dateStampNow));
-		$dateSoon = $dateStampNow->modify('+15 seconds')->format('Y-m-d H:i:s');
+		$dateSoon = $dateStampNow->modify('+'.self::MINIMUM_DURATION.' seconds')->format('Y-m-d H:i:s');
 		
 		// CourseID is in the db for backwards compatability, but no longer used. All sessions are across one title.
 		// StartDateStamp is usually sent so that we can record a user's local time. It might be better to send a time-zone if we could.
@@ -147,16 +159,16 @@ SQL;
 		// When you start a session, the minimum duration is 15 seconds.
 		$sql = <<<SQL
 			INSERT INTO T_Session (F_UserID, F_StartDateStamp, F_EndDateStamp, F_Duration, F_RootID, F_ProductCode)
-			VALUES (?, ?, ?, 15, ?, ?)
+			VALUES (?, ?, ?, ?, ?, ?)
 SQL;
 
 		// We want to return the newly created F_SessionID (or the SQL error)
-		$bindingParams = array($user->userID, $dateNow, $dateSoon, $rootID, $productCode);
+		$bindingParams = array($userId, $dateNow, $dateSoon, self::MINIMUM_DURATION, $rootId, $productCode);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		if ($rs) {
-			$sessionID = $this->db->Insert_ID();
-			if ($sessionID) {
-				return $sessionID;
+			$sessionId = $this->db->Insert_ID();
+			if ($sessionId) {
+				return $sessionId;
 			} else {
 				// The database probably doesn't support the Insert_ID function
 				throw $this->copyOps->getExceptionForId("errorCantFindAutoIncrementSessionId");
@@ -172,7 +184,7 @@ SQL;
 	 * Remember that scores are written with client time (so you can see what time a student did their homework)
 	 * but sessions are written with server time so that they are accurate.
 	 */
-	function updateSession($sessionID, $dateNow = null) {
+	function updateSession($sessionId, $dateNow = null) {
 		// Check that the date is valid
 		// #321
 		//$dateStampNow = strtotime($dateNow);
@@ -181,7 +193,26 @@ SQL;
 		// gh#815
 		$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
 		$dateNow = $dateStampNow->format('Y-m-d H:i:s');
-					
+
+		// gh#604 Is the session record out of date?
+		$sql = <<<EOD
+				SELECT s.F_EndDateStamp as lastDate FROM T_Session s
+				WHERE F_SessionID=?
+EOD;
+		$bindingParams = array($sessionId);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs) {
+			$lastUpdateAt = new DateTime($rs->FetchNextObj()->lastDate, new DateTimeZone(TIMEZONE));
+			$interval = $dateStampNow->getTimestamp() - $lastUpdateAt->getTimestamp();
+			if ($interval > (self::LICENCE_UPDATE_CUTOFF)) {
+				AbstractService::$debugLog->info("obsolete session record $sessionId last updated at: ".$lastUpdateAt->format('Y-m-d H:i:s').", $interval seconds ago");
+				$rootId = Session::get('rootID');
+				$productCode = Session::get('productCode');
+				$userId = Session::get('userID');
+				return $this->startSession($userId, $rootId, $productCode);
+			}
+		}
+
 		// Calculate F_Duration as well as setting F_EndDateStamp
 		// We can either do it one call, with different SQL for different databases, or
 		// do two calls and make it common.
@@ -207,9 +238,10 @@ EOD;
 				WHERE F_SessionID=?
 EOD;
 		}
-		$bindingParams = array($dateNow, $dateNow, $sessionID);
-		$rs = $this->db->Execute($sql, $bindingParams);
-		return $rs;
+		$bindingParams = array($dateNow, $dateNow, $sessionId);
+		$this->db->Execute($sql, $bindingParams);
+
+		return $sessionId;
 	}
 	
 	/**
@@ -217,7 +249,7 @@ EOD;
 	 */
 	function insertScore($score, $user) {
 		// For teachers we will set score to -1 in the score record, so, are you a teacher?
-		if (!$user->userType==0)
+		if (!$user->userType == 0)
 			$score->score = -1;
 		
 		// Write anonymous records to an ancilliary table that will not slow down reporting

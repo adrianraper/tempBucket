@@ -446,7 +446,7 @@ package com.clarityenglish.bento.view.login {
 				allowSelfRegister = (selfRegister > 0) ? true : false;
 				
 				// Is login allowed
-				trace("no login? "+noLogin);
+				//trace("no login? "+noLogin);
 				allowLogin = (noLogin) ? false : true;
 				
 				// Is anonymous access allowed?

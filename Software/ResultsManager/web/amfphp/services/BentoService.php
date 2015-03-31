@@ -284,7 +284,7 @@ class BentoService extends AbstractService {
 		*/
 		// Protect older Bento titles that don't send this property
 		if (!isset($licence->signInAs) || $licence->signInAs == NULL) {
-			AbstractService::$debugLog->notice ("licence->signInAs not sent or null");
+			//AbstractService::$debugLog->notice ("licence->signInAs not sent or null");
 			if ($licence->licenceType == Title::LICENCE_TYPE_AA ||
 				($licence->licenceType == Title::LICENCE_TYPE_NETWORK && $loginObj == NULL) ||
 				($licence->licenceType == Title::LICENCE_TYPE_CT && $loginObj == NULL) ||
@@ -294,10 +294,10 @@ class BentoService extends AbstractService {
 				$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $verified, $allowedUserTypes, $rootID, $productCode);
 			}
 		} elseif ($licence->signInAs == Title::SIGNIN_ANONYMOUS) {
-			AbstractService::$debugLog->notice ("licence->signInAs=" . $licence->signInAs);
+			//AbstractService::$debugLog->notice ("licence->signInAs=" . $licence->signInAs);
 			$userObj = $this->loginOps->anonymousUser($rootID);
 		} else {
-			AbstractService::$debugLog->notice ("licence->signInAs=" . $licence->signInAs);
+			//AbstractService::$debugLog->notice ("licence->signInAs=" . $licence->signInAs);
 			// Confirm that the user details are correct
 			$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $verified, $allowedUserTypes, $rootID, $productCode);
 		}
@@ -445,13 +445,13 @@ class BentoService extends AbstractService {
 		return true;
 	}
 	 	
-	public function logout($licence, $sessionID = null, $justAnonymous = null) {
+	public function logout($licence, $sessionId = null, $justAnonymous = null) {
 		// Clear the licence
 		$rs = $this->licenceOps->dropLicenceSlot($licence);
 
 		// Update the session record
-		if ($sessionID)
-			$this->updateSession($sessionID);
+		if ($sessionId)
+			$this->updateSession($sessionId);
 		
 		// Clear php session and authentication
 		$this->loginOps->logout();
@@ -482,10 +482,10 @@ class BentoService extends AbstractService {
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param dateNow - used to get client time
 	 */
-	public function startSession($user, $rootID, $productCode, $dateNow = null) {
+	public function startSession($user, $rootId, $productCode, $dateNow = null) {
 		// A successful session start will return a new ID
-		$sessionID = $this->progressOps->startSession($user, $rootID, $productCode, $dateNow);
-		return array("sessionID" => $sessionID);
+		$sessionId = $this->progressOps->startSession($user, $rootId, $productCode, $dateNow);
+		return array("sessionId" => $sessionId);
 	}
 	
 	/**
@@ -496,9 +496,11 @@ class BentoService extends AbstractService {
 	 *  	maybe we can use $userID and $rootID from session variables
 	 *  @param dateNow - used to get client time
 	 */
-	public function updateSession($sessionID, $dateNow = null) {
+	public function updateSession($sessionId, $dateNow = null) {
 		// A successful session stop will not generate an error
-		$this->progressOps->updateSession($sessionID, $dateNow);
+		// gh#604 return number of impacted records
+		$sessionId = $this->progressOps->updateSession($sessionId, $dateNow);
+		return array("sessionId" => $sessionId);
 	}
 	
 	/**
@@ -520,9 +522,18 @@ class BentoService extends AbstractService {
 	 *  
 	 *  @param Licence $licence - dummy object for the licence
 	 */
-	public function updateLicence($licence) {
-		// A successful licence update will not generate an error
-		$this->licenceOps->updateLicence($licence);
+	public function updateLicence($licence, $sessionID = null) {
+
+		// gh#604 Update the licence if applicable
+		if ($licence)
+			// A successful licence update will not generate an error
+			$this->licenceOps->updateLicence($licence);
+
+		// Update the session record
+		if ($sessionID)
+			return $this->updateSession($sessionID);
+
+		return false;
 	}
 	
 	/**

@@ -686,7 +686,7 @@ package com.clarityenglish.common.vo.config {
 		 * Update the user details you are holding when you come back from login
 		 * 
 		 */
-		public function mergeUser(user:User) {
+		public function mergeUser(user:User):void {
 			this.username = user.name;
 			this.studentID = user.studentID;
 			this.email = user.email;

@@ -110,8 +110,10 @@ package com.clarityenglish.common.model {
 			switch (operation) {
 				case "startSession":
 					if (data) {
-						configProxy.getConfig().sessionID = data.sessionID;
+						configProxy.getConfig().sessionID = data.sessionId;
 						sendNotification(BBNotifications.SESSION_STARTED, data);
+						trace('started session sessionId={0}', data.sessionId);
+
 					} else {
 						// Can't write to the database
 						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorDatabaseWriting"));

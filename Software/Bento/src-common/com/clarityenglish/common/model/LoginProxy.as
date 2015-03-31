@@ -190,15 +190,15 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function logout():void {
+			// Stop the licence update timer
+			if (licenceTimer) licenceTimer.stop();
+
 			// gh#970 Is this a logout from a pure AA?
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var justAnonymous:Boolean = configProxy.isAccountJustAnonymous();
 			var params:Array = [ configProxy.getConfig().licence, configProxy.getConfig().sessionID, justAnonymous ];
 			new RemoteDelegate("logout", params, this).execute();
-			
-			// Stop the licence update timer
-			if (licenceTimer) licenceTimer.stop();
-			
+
 			// #336 Logout triggers SCORM termination
 			if (configProxy.getConfig().scorm) {
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
@@ -295,6 +295,19 @@ package com.clarityenglish.common.model {
 					break;
 				
 				case "updateLicence":
+					// gh#604 You might have a new sessionId now
+					if (data) {
+						configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+						trace('back to updateLicence with data sessionId={0}, config.sessionID={1}', data.sessionId, configProxy.getConfig().sessionID);
+						if (data.sessionId as String != configProxy.getConfig().sessionID) {
+							// Sanity check
+							if (data.sessionId > configProxy.getConfig().sessionID) {
+								configProxy.getConfig().sessionID = data.sessionId as String;
+							} else {
+								trace('The new session id seems wrong: {0}', data.sessionId);
+							}
+						}
+					}
 					break;
 				
 				case "updateUser":
@@ -386,6 +399,8 @@ package com.clarityenglish.common.model {
 						
 						// Create a timer that will be fired off every minute to update the licence
 						// Only needs to be done for concurrent licence control learners
+						// gh#604 Make all sessions update the licence/session records if they have them
+						/*
 						if (_user.userType==User.USER_TYPE_STUDENT && 
 							(configProxy.getLicenceType() == Title.LICENCE_TYPE_AA || 
 							configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK || 
@@ -399,6 +414,11 @@ package com.clarityenglish.common.model {
 							licenceTimer.addEventListener(TimerEvent.TIMER, licenceTimerHandler);
 							licenceTimer.start();
 						}
+						*/
+						licenceTimer = new Timer(LICENCE_UPDATE_DELAY, 0)
+						licenceTimer.addEventListener(TimerEvent.TIMER, licenceTimerHandler);
+						licenceTimer.start();
+
 					} else {
 						// Invalid login. But a no such user error will go to onDelegateFail not here.
 						sendNotification(CommonNotifications.INVALID_LOGIN);
@@ -473,10 +493,14 @@ package com.clarityenglish.common.model {
 					break;
 				
 				case "updateLicence":
+					trace('back to updateLicence with error');
+
+					// gh#604 Just ignore a failed update
+					/*
 					sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault));
 					// Stop the licence update timer
 					if (licenceTimer) licenceTimer.stop();
-
+					*/
 					break;
 				case "updateUser":
 					sendNotification(CommonNotifications.UPDATE_FAILED);
@@ -497,9 +521,10 @@ package com.clarityenglish.common.model {
 		 */
 		private function licenceTimerHandler(event:TimerEvent):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			
-			log.info("fire the timer to update licence {0}", configProxy.getConfig().licence.id);
-			var params:Array = [ configProxy.getConfig().licence ];
+
+			// gh#604 Pass session as well as licence
+			//log.info("fire the timer to update licence {0} and session {1}", configProxy.getConfig().licence.id, configProxy.getConfig().sessionID);
+			var params:Array = [ configProxy.getConfig().licence, configProxy.getConfig().sessionID ];
 			new RemoteDelegate("updateLicence", params, this).execute();
 		}
 		
