@@ -13,8 +13,12 @@ package com.clarityenglish.bento.vo.content.transform {
 				for each (var unit:XML in course..unit) {
 					var unitStats:Stats = new Stats();
 					
-					for each (var exercise:XML in unit..exercise)
-						unitStats.add(getExerciseStats(exercise));
+					for each (var exercise:XML in unit..exercise) {
+						// gh#936
+						if (!(exercise.attribute("enabledFlag").length() > 0 && (Number(exercise.attribute("enabledFlag").toString()) & 8))) {
+							unitStats.add(getExerciseStats(exercise));
+						}
+					}	
 					
 					unitStats.writeToNode(unit);
 					courseStats.add(unitStats);
