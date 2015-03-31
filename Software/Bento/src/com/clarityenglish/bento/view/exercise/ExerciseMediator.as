@@ -123,6 +123,7 @@ import org.puremvc.as3.interfaces.IMediator;
 					// #108, #171
 					view.isMarked = getExerciseProxy(exercise).exerciseMarked;
 					view.noMarking = exercise.hasNoMarking();
+					view.hasQuestions = exercise.hasQuestions();
 					
 					// #123
 					view.hasPrintStylesheet = exercise.hasPrintStylesheet();

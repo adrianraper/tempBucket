@@ -63,6 +63,9 @@ package com.clarityenglish.bento.view.exercise {
 		
 		[Bindable]
 		public var noMarking:Boolean;
+
+		[Bindable]
+		public var hasQuestions:Boolean;
 			
 		[Bindable]
 		public var hasPrintStylesheet:Boolean;
@@ -209,6 +212,8 @@ package com.clarityenglish.bento.view.exercise {
 				case startAgainButton:
 					startAgainButton.addEventListener(MouseEvent.CLICK, function():void { startAgain.dispatch(); } );
 					startAgainButton.label = copyProvider.getCopyForId("exerciseStartAgainButton");
+					// When you first open exercise, buttons have not been initialized in configureButtonVisibility
+					startAgainButton.visible = startAgainButton.includeInLayout = hasQuestions && !noMarking;
 					break;
 				case feedbackButton:
 					feedbackButton.addEventListener(MouseEvent.CLICK, function():void {
@@ -223,6 +228,8 @@ package com.clarityenglish.bento.view.exercise {
 				case markingButton:
 					markingButton.addEventListener(MouseEvent.CLICK, function():void { showMarking.dispatch(); } );
 					markingButton.label = copyProvider.getCopyForId("exerciseMarkingButton");
+					// When you first open exercise, buttons have not been initialized in configureButtonVisibility
+					markingButton.visible = markingButton.includeInLayout = !isMarked && hasQuestions && !noMarking;
 					break;
 				case forwardButton:
 					forwardButton.addEventListener(MouseEvent.CLICK, function():void { nextExercise.dispatch(); } );

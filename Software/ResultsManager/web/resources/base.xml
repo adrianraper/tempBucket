@@ -97,7 +97,7 @@
             <lit name="forgotPasswordLabel">Forgot your password?</lit>
             <lit name="forgotPasswordLink"><![CDATA[http://www.clarityenglish.com/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
             <lit name="loginCaption">Sign in with your Clarity account</lit>
-            <lit name="anonymousCaption">Just practice</lit>
+            <lit name="anonymousCaption">Just practise</lit>
             <lit name="loginDetail">Signing in will save your progress.</lit>
             <lit name="newUserButtonCaption">Create an account</lit>
             <lit name="addUserButtonCaption">Start</lit>

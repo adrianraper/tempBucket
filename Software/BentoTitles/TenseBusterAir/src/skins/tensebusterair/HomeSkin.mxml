@@ -238,8 +238,17 @@
 	<courseselector:TBCourseSelector id="courseSelector" left="-30" verticalCenter="-110" width="30%"/>
 	<s:SWFLoader id="homeInitialBg" source="@Embed(source='/skins/tensebusterair/assets/home/homeInitialBg.png')" right="0" bottom="-50" visible="{courseSelector.level == null}" />
 	<home:homeBg right="0" visible="{courseSelector.level != null}" bottom="50" />
-	<!-- Student name -->
-	<s:Label left="40" top="90" text="{hostComponent.userNameCaption}" fontSize="13" color="0x000000" />
+
+	<!-- Student name gh#1194-->
+	<s:Group top="65" right="20" height="28" visible="{hostComponent.userNameCaption != ''}" includeInLayout="{hostComponent.userNameCaption != ''}">
+		<s:Rect height="100%" width="100%" radiusX="14" radiusY="14">
+			<s:fill>
+				<s:SolidColor color="#e3e3e3" />
+			</s:fill>
+		</s:Rect>
+		<home:userIcon top="6" left="16" />
+		<s:Label paddingLeft="38" paddingRight="16" right="0" top="9" text="{hostComponent.userNameCaption}" fontSize="12" color="0x333333" fontFamily="Helvetica"/>
+	</s:Group>
 	
 	<!--Instruction-->
 	<s:Group id="instructionGroup">
