@@ -380,6 +380,8 @@ package com.clarityenglish.common.model {
 						
 						// Create a timer that will be fired off every minute to update the licence
 						// Only needs to be done for concurrent licence control learners
+						// gh#604 Make all sessions update the licence/session records if they have them
+						/*
 						if (_user.userType==User.USER_TYPE_STUDENT && 
 							(configProxy.getLicenceType() == Title.LICENCE_TYPE_AA || 
 							configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK || 
@@ -388,11 +390,15 @@ package com.clarityenglish.common.model {
 							// An error check
 							if (configProxy.getConfig().licence.id <= 0)
 								sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorCantAllocateLicenceNumber"));
-							
+						
 							licenceTimer = new Timer(LICENCE_UPDATE_DELAY, 0)
 							licenceTimer.addEventListener(TimerEvent.TIMER, licenceTimerHandler);
 							licenceTimer.start();
 						}
+						*/
+						licenceTimer = new Timer(LICENCE_UPDATE_DELAY, 0)
+						licenceTimer.addEventListener(TimerEvent.TIMER, licenceTimerHandler);
+						licenceTimer.start();
 					} else {
 						// Invalid login. But a no such user error will go to onDelegateFail not here.
 						sendNotification(CommonNotifications.INVALID_LOGIN);
@@ -492,8 +498,9 @@ package com.clarityenglish.common.model {
 		private function licenceTimerHandler(event:TimerEvent):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
-			log.info("fire the timer to update licence {0}", configProxy.getConfig().licence.id);
-			var params:Array = [ configProxy.getConfig().licence ];
+			// gh#604 Pass sessionID as well
+			//log.info("fire the timer to update licence {0}", configProxy.getConfig().licence.id);
+			var params:Array = [ configProxy.getConfig().licence, configProxy.getConfig().sessionID ];
 			new RemoteDelegate("updateLicence", params, this).execute();
 		}
 		
