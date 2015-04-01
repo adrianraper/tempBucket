@@ -68,6 +68,7 @@ class TB6weeksService extends AbstractService {
 		$this->testOps = new TestOps($this->db);
 		$this->subscriptionOps = new SubscriptionOps($this->db);
 		$this->memoryOps = new MemoryOps($this->db);
+		$this->accountOps = new AccountOps($this->db);
 		
 		// This is a back end service adding users, so doesn't use authentication
 		AuthenticationOps::$useAuthentication = false;
@@ -258,9 +259,23 @@ class TB6weeksService extends AbstractService {
 					$rc = $this->subscriptionOps->changeProductSubscription($productCode, $level, $bookmark, $this->dateDiff);
 					
 					if ($rc == 'success') {
+
+						// gh#1202 If the account is using an RUrange, pass that as well
+						$licenceAttributes = $this->accountOps->getAccountLicenceDetails($account->id, null, $productCode);
+						foreach ($licenceAttributes as $lA) {
+							if ($lA['licenceKey'] == 'RUrange') {
+								$ranges = explode(',', $lA['licenceValue']);
+								$RUrange= $ranges[0];
+								break;
+							}
+						}
+
                         $crypt = new Crypt();
                         $programBase = 'http://'.$this->server.'/area1/TenseBuster/Start.php';
                         $parameters = 'prefix='.$account->prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
+						if ($RUrange)
+							$parameters .= '&RUrange='.$RUrange;
+						//AbstractService::$debugLog->info("change level email parameters=".$parameters);
                         $startProgram = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
                         $parameters .= '&startingPoint=state:progress';
                         $startProgress = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
@@ -272,8 +287,6 @@ class TB6weeksService extends AbstractService {
 						$emailArray[] = $thisEmail;
 						
 						$this->emailOps->sendEmails("", $templateID, $emailArray);
-						
-						//AbstractService::$debugLog->info("change level: email=".$user->email.' to='.$level);
 					}
 				} else {
 					$rc = 'no existing subscription';
@@ -367,7 +380,7 @@ class TB6weeksService extends AbstractService {
 		
 		// Is this an existing user, or do we need to register a new one?
 		$user = $this->manageableOps->getOrAddUser($stubUser, $rootId, $groupId);
-		AbstractService::$debugLog->info("your user: id=".$user->userID." name=".$user->name.' email='.$user->email);
+		AbstractService::$debugLog->info("add/get user: id=".$user->userID." name=".$user->name.' email='.$user->email);
 		Session::set('userID', $user->userID);
 		
 		$score = $this->testOps->checkAnswers($attempts, $answers);
@@ -376,7 +389,6 @@ class TB6weeksService extends AbstractService {
 		$CEFLevel = $this->testOps->getCEFLevel($score);
 		$ClarityLevel = $this->testOps->getClarityLevel($score);
 		$bookmark = $this->subscriptionOps->getDirectStart($ClarityLevel, 0);
-		AbstractService::$debugLog->info("score: %=".$score->score." raw=".$score->scoreCorrect." level=$ClarityLevel");
 
 		// reset our memory class now that we have the user details
 		$this->memoryOps = new MemoryOps($this->db);
@@ -390,10 +402,23 @@ class TB6weeksService extends AbstractService {
 		// The bookmark (which controls direct start), is written to Tense Buster memory, not TB6weeks.
 		$rc = $this->memoryOps->set('directStart', $bookmark, $this->subscriptionOps->relatedProducts($productCode));
 
+		// gh#1202 If the account is using an RUrange, pass that as well
+		$licenceAttributes = $this->accountOps->getAccountLicenceDetails($rootId, null, $productCode);
+		foreach ($licenceAttributes as $lA) {
+			if ($lA['licenceKey'] == 'RUrange') {
+				$ranges = explode(',', $lA['licenceValue']);
+				$RUrange= $ranges[0];
+				break;
+			}
+		}
+
         $crypt = new Crypt();
         $programBase = 'http://'.$this->server.'/area1/TenseBuster/Start.php';
         $parameters = 'prefix='.$prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
-        $startProgram = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
+		if ($RUrange)
+			$parameters .= '&RUrange='.$RUrange;
+
+		$startProgram = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
         $parameters .= '&startingPoint=state:progress';
         $startProgress = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
 
@@ -408,7 +433,6 @@ class TB6weeksService extends AbstractService {
 		// Send back the CEF level and a direct start link (based on user details)
 		$debug='';
 		return json_encode(array('debug' => $debug, 'startProgram' => $startProgram, 'ClarityLevel' => $ClarityLevel, 'score' => $score->score, 'correct' => $score->scoreCorrect, 'skipped' => $score->scoreMissed, 'wrong' => $score->scoreWrong));
-		
 	}
 	/**
 	 * If you are given user details in a name value string turn into a User object
