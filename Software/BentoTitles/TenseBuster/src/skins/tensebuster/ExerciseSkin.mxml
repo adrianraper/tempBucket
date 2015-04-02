@@ -66,12 +66,15 @@
 	
 	<!-- Top Left buttons -->
 	<s:HGroup left="60" top="16" includeIn="exercise" gap="0">
+		<!-- gh#967 -->
+		<s:Button id="backToMenuButton" color="0xFFFFFF" fontSize="12" buttonMode="true" useHandCursor="true" />
+		<s:Spacer width="1" />
 		<s:Button id="backButton" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}" visible="{!hostComponent.isDirectStartEx}"/>
 		<s:Button id="forwardButton" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
 		<s:Button id="feedbackButton" visible="false" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
-	</s:HGroup>	
-	
-	<!-- Top Right buttons -->
+	</s:HGroup>
+
+<!-- Top Right buttons -->
 	<s:HGroup right="60" top="16" includeIn="exercise" gap="0">
 		<s:Button id="markingButton"  color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
 		<s:Button id="startAgainButton" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
