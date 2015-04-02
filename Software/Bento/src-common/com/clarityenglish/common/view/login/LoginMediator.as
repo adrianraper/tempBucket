@@ -93,6 +93,9 @@ package com.clarityenglish.common.view.login {
 			
 			// #41
 			view.noAccount = !(configProxy.getRootID());
+			if (!view.noAccount) {
+				view.ipMatchedProductCodes = configProxy.getAccount().IPMatchedProductCodes.length > 1 ? configProxy.getAccount().IPMatchedProductCodes : null;
+			}	
 			
 			// gh#886
 			view.noLogin = configProxy.getConfig().noLogin;
@@ -100,6 +103,10 @@ package com.clarityenglish.common.view.login {
 			// gh#1090
 			view.clearData();
 			view.setState("normal");
+			
+			view.isPlatformTablet = configProxy.isPlatformTablet();
+			view.isPlatformipad = configProxy.isPlatformiPad();
+			view.isPlatformAndroid = configProxy.isPlatformTablet();
 		}
         
 		override public function onRemove():void {
@@ -200,9 +207,11 @@ package com.clarityenglish.common.view.login {
 		
 		// gh#1090
 		private function onStartDemo(prefix:String, productCode:String):void {
-			FlexGlobals.topLevelApplication.parameters.prefix = 'DEMO';
+			//FlexGlobals.topLevelApplication.parameters.prefix = 'Demo';
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			configProxy.reset();
+			configProxy.getConfig().retainedParameters["prefix"] = prefix;
+			configProxy.getConfig().retainedParameters["productCode"] = productCode;
 			sendNotification(CommonNotifications.ACCOUNT_RELOAD);
 		}
 		

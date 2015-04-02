@@ -45,14 +45,16 @@
 			if (ObjectUtil.getClassInfo(configProxy.getDirectStart()).properties.length > 0) {
 				var directStart:Object = configProxy.getDirectStart();
 				if (directStart.courseID) { 
-					view.directCourseID = directStart.courseID
+					view.directCourseID = directStart.courseID;
 					// gh#853
 					view.isDirectStart = true;
 				}
-				if (directStart.unitID) { 
+				if (directStart.unitID) {
 					view.directUnitID = directStart.unitID;
 					view.isDirectStart = true;
 				}
+			} else {
+				view.isDirectStart = false;
 			}
 		}
 		

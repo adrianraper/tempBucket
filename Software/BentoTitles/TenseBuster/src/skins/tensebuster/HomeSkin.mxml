@@ -7,7 +7,7 @@
 		xmlns:courseselector="com.clarityenglish.tensebuster.view.home.courseselector.*"
 		xmlns:home="skins.tensebuster.assets.home.*"
 		xmlns:ui="com.clarityenglish.tensebuster.view.home.ui.*" xmlns:assets="skins.assets.*"
-		creationComplete="onCreationComplete(event)">
+		initialize="onInitialize(event)">
 	
 	<s:transitions>
 		<s:Transition>
@@ -43,46 +43,45 @@
 			import spark.effects.CrossFade;
 			import spark.effects.Scale;
 			import spark.events.RendererExistenceEvent;
-			
-			public var isFirstClickCurrentUnitList:Boolean = true;
+
 			public var isAnimationPlayed:Boolean;
 			private var isUnitListClicked:Boolean;
 			public var exListAlphaArray:Array = [];
 			private var unitListRendererArray:Array = [];
 			
-			public function getTitleBarTopColor(index:Number):Number {		
+			public function getTitleBarTopColor(index:Number):uint {
 				var colors:Array = hostComponent.getStyle("levelTitleBarTopColors");
-				return colors[index];
+				return uint(colors[index]);
 			}
 			
-			public function getTitleBarMidColor(index:Number):Number {
+			public function getTitleBarMidColor(index:Number):uint {
 				var colors:Array = hostComponent.getStyle("levelTitleBarMidColors");
-				return colors[index];
+				return uint(colors[index]);
 			}
 			
-			public function getTitleBarBottomColor(index:Number):Number {
+			public function getTitleBarBottomColor(index:Number):uint {
 				var colors:Array = hostComponent.getStyle("levelTitleBarBottomColors");
-				return colors[index];
+				return uint(colors[index]);
 			}
 			
-			public function getUnitListBackgroundColor(index:Number):Number {
+			public function getUnitListBackgroundColor(index:Number):uint {
 				var colors:Array = hostComponent.getStyle("unitListBackgroundColors");
-				return colors[index];
+				return uint(colors[index]);
 			}
 			
-			public function getExerciseListBackgroundColor(index:Number):Number {
+			public function getExerciseListBackgroundColor(index:Number):uint {
 				var colors:Array = hostComponent.getStyle("exerciseListBackgroundColors");
-				return colors[index];
+				return uint(colors[index]);
 			}
 			
-			public function getTriangleColor(index:Number):Number {
+			public function getTriangleColor(index:Number):uint {
 				var colors:Array = hostComponent.getStyle("exerciseListBackgroundColors");
-				return colors[index];
+				return uint(colors[index]);
 			}
 			
-			public function getDemoLabelColor(index:Number):Number {
+			public function getDemoLabelColor(index:Number):uint {
 				var colors:Array = hostComponent.getStyle("unitListButtonLabelColors");
-				return colors[index];
+				return uint(colors[index]);
 			}
 			
 			protected function onCourseSelectorSelect(event:Event):void {
@@ -116,7 +115,6 @@
 			protected function onAnimationCompleted(event:Event):void {
 				if (!hostComponent.isBackToHome) {
 					levelTitleGroupLabel.text = hostComponent.course.@caption;
-					setTitleBarColor();
 					
 					var	fadeIn:mx.effects.Fade = new Fade();
 					fadeIn.alphaFrom = 0.0;
@@ -146,7 +144,7 @@
 				// quick switch level when exercise list doesn't show up totally will cause the exericse list animation won't execute in the next level
 				// So here I reset initial value to the related component. 
 				// If we put in onCourseSelectorSelect, isFirstClickCurrentUnitList won't be true for onExerciseListResizeEnd is executed later than onCourseSelectorSelect
-				isFirstClickCurrentUnitList = true;
+				hostComponent.isFirstClickCurrentUnitList = true;
 				isAnimationPlayed = false;
 				exListAlphaArray = [];
 				triangleGroup.alpha = 0;
@@ -160,7 +158,7 @@
 				exerciseList.visible = true;
 				demoTooltipGroup.visible = false;
 				
-				if (isFirstClickCurrentUnitList && !isAnimationPlayed) {
+				if (hostComponent.isFirstClickCurrentUnitList && !isAnimationPlayed) {
 					var scale:Scale = new Scale();
 					scale.scaleYFrom = 0;
 					scale.scaleYTo = 1;
@@ -183,60 +181,15 @@
 			protected function onScaleEnd(event:Event):void {
 				// for the item on exercise list, when you first click unit with 6 exercises, and then click another with 11,
 				// the first 6 items has played fade in already and won't play again, but we also don't want the rest 5 items played fade in. So we use isFirstClickUnitList to avoid playing
-				isFirstClickCurrentUnitList = false;
+				hostComponent.isFirstClickCurrentUnitList = false;
 			}
-			
-			protected function setTitleBarColor():void {
-				// We set title bar new gradient here for remaining time for old gradient title bar fading out
-				// If we set gradient inside tag, the color will change immediately when the courseIndex change, so we never can see the old gradient fade out
-				unitTitleBarTopColor.color = getTitleBarTopColor(hostComponent.courseIndex);
-				unitTitleBarMidColor.color = getTitleBarMidColor(hostComponent.courseIndex);
-				unitTitleBarBottomColor.color = getTitleBarBottomColor(hostComponent.courseIndex);
-				
-				topExerciseTitleBarTopColor.color = getTitleBarTopColor(hostComponent.courseIndex);
-				topExerciseTitleBarMidColor.color = getTitleBarMidColor(hostComponent.courseIndex);
-				topExerciseTitleBarBottomColor.color = getTitleBarBottomColor(hostComponent.courseIndex);
-				bottomExerciseTitleBarTopColor.color = getTitleBarTopColor(hostComponent.courseIndex);
-				bottomExerciseTitleBarMidColor.color = getTitleBarMidColor(hostComponent.courseIndex);
-				bottomExerciseTitleBarBottomColor.color = getTitleBarBottomColor(hostComponent.courseIndex);
-			}
-			
-			protected function onCreationComplete(event:FlexEvent):void {
+
+			protected function onInitialize(event:FlexEvent):void {
 				courseSelector.addEventListener("courseSelectorClicked", onCourseSelectorSelect, false, 0, true);
-				courseSelector.addEventListener("animationCompleted", onAnimationCompleted, false, 0, true);				
+				courseSelector.addEventListener("animationCompleted", onAnimationCompleted, false, 0, true);
 				unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
-				
-				// !courseSelector.level use to judge the initial situation
-				if (!courseSelector.level) {
-					var downMove:Move = new Move();
-					downMove.yFrom = 0;
-					downMove.yTo = 150;
-					downMove.duration = 300;
-					downMove.play([instructionGroup]);
-				} else {
-					//hostComponent.isBackToHome = true;
-					instructionGroup.visible = false;
-					hostComponent.isInitialSelect = false;
-					
-					levelTitleGroupLabel.text = hostComponent.course.@caption;
-					levelTitleGroup.alpha = 1;
-					setTitleBarColor();
-					
-					unitList.height = unitList.dataProvider.length * 39 + 13;
-					unitList.visible = true;
-					unitList.alpha = 1;
-					
-					if (hostComponent.unit) {
-						unitList.selectedIndex = hostComponent.course.unit.(@id == hostComponent.unit.@id).childIndex();
-						isFirstClickCurrentUnitList = false;
-						
-						triangleGroup.alpha = 1;
-						triangleReferenceGroup.y = 50 + unitList.selectedIndex * 39;	
-						
-						exerciseGroup.alpha = 1;
-					}
-				}
 			}
+
 			protected function isTracked():Boolean {
 				return (hostComponent.config.signInAs == Title.SIGNIN_TRACKING);
 			}
@@ -471,9 +424,9 @@
 					6.33301C287.187 7.34033 288.16 9.43945 288.16 10.9985L288.16 33.2217C288.16 34.7813 287.187 36.8809 285.996 37.8877L280.675 42.3896C279.485 43.3965 277.236 44.2207 275.676 44.2207L26.4695 44.2207Z">
 				<s:fill>
 					<s:LinearGradient rotation="90">
-						<s:GradientEntry id="unitTitleBarTopColor" ratio="0"  />
-						<s:GradientEntry id="unitTitleBarMidColor" ratio="0.5" />
-						<s:GradientEntry id="unitTitleBarBottomColor" ratio="1" />
+						<s:GradientEntry id="unitTitleBarTopColor" color="{getTitleBarTopColor(hostComponent.courseIndex)}" ratio="0"  />
+						<s:GradientEntry id="unitTitleBarMidColor" color="{getTitleBarMidColor(hostComponent.courseIndex)}" ratio="0.5" />
+						<s:GradientEntry id="unitTitleBarBottomColor" color="{getTitleBarBottomColor(hostComponent.courseIndex)}" ratio="1" />
 					</s:LinearGradient>
 				</s:fill>
 			</s:Path>
@@ -500,9 +453,9 @@
 					2.09814 317.949 3.98242 317.949 5.5415L317.949 9.12256C317.949 10.6816 317.229 12.5664 316.35 13.3115 315.47 14.0566 313.475 14.666 311.915 14.666L6.03369 14.666Z">
 				<s:fill>
 					<s:LinearGradient rotation="90">
-						<s:GradientEntry id="topExerciseTitleBarTopColor" />
-						<s:GradientEntry id="topExerciseTitleBarMidColor" />
-						<s:GradientEntry id="topExerciseTitleBarBottomColor" />
+						<s:GradientEntry id="topExerciseTitleBarTopColor" color="{getTitleBarTopColor(hostComponent.courseIndex)}" />
+						<s:GradientEntry id="topExerciseTitleBarMidColor" color="{getTitleBarMidColor(hostComponent.courseIndex)}" />
+						<s:GradientEntry id="topExerciseTitleBarBottomColor" color="{getTitleBarBottomColor(hostComponent.courseIndex)}" />
 					</s:LinearGradient>
 				</s:fill>
 			</s:Path>
@@ -519,9 +472,9 @@
 					2.09814 317.949 3.98242 317.949 5.5415L317.949 9.12256C317.949 10.6816 317.229 12.5664 316.35 13.3115 315.47 14.0566 313.475 14.666 311.915 14.666L6.03369 14.666Z">
 				<s:fill>
 					<s:LinearGradient rotation="90">
-						<s:GradientEntry id="bottomExerciseTitleBarTopColor" />
-						<s:GradientEntry id="bottomExerciseTitleBarMidColor" />
-						<s:GradientEntry id="bottomExerciseTitleBarBottomColor" />
+						<s:GradientEntry id="bottomExerciseTitleBarTopColor" color="{getTitleBarTopColor(hostComponent.courseIndex)}" />
+						<s:GradientEntry id="bottomExerciseTitleBarMidColor" color="{getTitleBarMidColor(hostComponent.courseIndex)}"/>
+						<s:GradientEntry id="bottomExerciseTitleBarBottomColor" color="{getTitleBarBottomColor(hostComponent.courseIndex)}" />
 					</s:LinearGradient>
 				</s:fill>
 			</s:Path>				
@@ -573,7 +526,7 @@
 											outerDocument.exListAlphaArray[getSequenceNumber(data)] = 0;
 										}
 										// we add one by one fade in for item in exercise list here 
-										if (outerDocument.isFirstClickCurrentUnitList && (outerDocument.exListAlphaArray.length == 2 || outerDocument.exListAlphaArray[getSequenceNumber(data)] == 0)) {
+										if (outerDocument.hostComponent.isFirstClickCurrentUnitList && (outerDocument.exListAlphaArray.length == 2 || outerDocument.exListAlphaArray[getSequenceNumber(data)] == 0)) {
 											var total:Number = outerDocument.exerciseList.dataProvider.length;
 											if ( total % 2 == 0) {
 												if (getSequenceNumber(data) <= total / 2) {

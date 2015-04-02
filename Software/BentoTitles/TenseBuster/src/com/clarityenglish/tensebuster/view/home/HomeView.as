@@ -13,7 +13,7 @@ package com.clarityenglish.tensebuster.view.home {
 	import flashx.textLayout.container.ScrollPolicy;
 	
 	import mx.collections.XMLListCollection;
-	import mx.core.FlexGlobals;
+import mx.core.FlexGlobals;
 	import mx.effects.Fade;
 	import mx.effects.Move;
 	import mx.effects.Parallel;
@@ -29,7 +29,7 @@ package com.clarityenglish.tensebuster.view.home {
 	
 	import spark.components.Button;
 	import spark.components.Group;
-	import spark.components.Label;
+import spark.components.Label;
 	import spark.components.List;
 	import spark.components.VGroup;
 	import spark.primitives.Path;
@@ -53,6 +53,9 @@ package com.clarityenglish.tensebuster.view.home {
 		
 		[SkinPart]
 		public var levelTitleGroup:Group;
+
+		[SkinPart]
+		public var levelTitleGroupLabel:Label;
 		
 		[SkinPart]
 		public var trianglePath:Path;
@@ -91,6 +94,9 @@ package com.clarityenglish.tensebuster.view.home {
 		// gh#1090
 		[Bindable]
 		public var userNameCaption:String;
+
+		[Bindable]
+		public var isFirstClickCurrentUnitList:Boolean = true;
 		
 		// gh#757
 		private var _course:XML;
@@ -205,7 +211,7 @@ package com.clarityenglish.tensebuster.view.home {
 		
 		override protected function onViewCreationComplete():void {
 			super.onViewCreationComplete();
-			
+
 			if (!courseSelector.level) {
 				instructionGroup.visible = true;
 				var downMove:Move = new Move();
@@ -213,6 +219,26 @@ package com.clarityenglish.tensebuster.view.home {
 				downMove.yTo = 160;
 				downMove.duration = 300;
 				downMove.play([instructionGroup]);
+			} else {
+				instructionGroup.visible = false;
+				isInitialSelect = false;
+
+				levelTitleGroupLabel.text = course.@caption;
+				levelTitleGroup.alpha = 1;
+
+				unitList.height = unitList.dataProvider.length * 39 + 13;
+				unitList.visible = true;
+				unitList.alpha = 1;
+
+				if (unit) {
+					unitList.selectedIndex = course.unit.(@id == unit.@id).childIndex();
+					isFirstClickCurrentUnitList = false;
+
+					triangleGroup.alpha = 1;
+					triangleReferenceGroup.y = 50 + unitList.selectedIndex * 39;
+
+					exerciseGroup.alpha = 1;
+				}
 			}
 		}
 
@@ -221,6 +247,8 @@ package com.clarityenglish.tensebuster.view.home {
 			
 			if (courseSelector)
 				courseSelector.dataProvider = menu;
+
+			//trace("menu: "+menu);
 			
 			if (isDirectStart) {
 				courseSelector.isDirectStart = true;
@@ -228,6 +256,8 @@ package com.clarityenglish.tensebuster.view.home {
 				if (directUnitID) {
 					unit = course.unit.(@id == directUnitID)[0];
 				}
+			} else {
+				courseSelector.isDirectStart = false;
 			}
 		}
 		
@@ -405,6 +435,10 @@ package com.clarityenglish.tensebuster.view.home {
 				demoTooltipGroup.top = pt.y;
 				demoTooltipGroup.visible = true;
 			}
+		}
+
+		public function setTitleBarColor():void {
+
 		}
 	}
 }

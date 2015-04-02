@@ -98,6 +98,16 @@ import com.clarityenglish.bento.model.SCORMProxy;
 			// gh#1160
 			config.userID = config.username = config.email = config.studentID = config.password = config.startingPoint = config.sessionID = null;
 			config.group = new Group();
+			
+			// gh#1090
+			config.retainedParameters = {};
+			config.prefix = "";
+			config.noLogin = false;
+			config.isReloadAccount = false;
+
+			// #584
+			config.startingPoint = '';
+			config.courseID = '';
 
 			_directStartOverride = false;
 		}
@@ -111,13 +121,14 @@ import com.clarityenglish.bento.model.SCORMProxy;
 			 *  Use what is passed from start page or command line
 			 */
 			// gh#1160 If we have already used these, just keep those that are retainable.
-			if (config.retainedParameters) {
+			// gh#1090 config.retainedParameters cannot tell the object is empty or not.
+			if (config.retainedParameters["prefix"]) {
 				var parameters:Object = config.retainedParameters;
 			} else {
 				parameters = FlexGlobals.topLevelApplication.parameters;
 			}
 			config.mergeParameters(parameters);
-
+			
 			// #336 SCORM
 			// The SCORM initialisation might fail and raise an exception. Don't bother going on...
 			var rc:Boolean = true;
@@ -464,7 +475,6 @@ import com.clarityenglish.bento.model.SCORMProxy;
                     dataProxy.set("currentCourseClass", courseClass);
                 }
             }
-
 			return directStartObject;
 		}
 		// gh#853
@@ -476,9 +486,16 @@ import com.clarityenglish.bento.model.SCORMProxy;
 
 		// gh#790 Is this account a pure AA - so will avoid login
 		public function isAccountJustAnonymous():Boolean {
-			if (this.getLicenceType() == Title.LICENCE_TYPE_AA) {
-				if (config.remoteService.toLowerCase().indexOf("builder") < 0 && this.getConfig().noLogin == true) {
-					return true;
+			if (this.getLicenceType() == Title.LICENCE_TYPE_AA &&  this.getConfig().noLogin == true) {
+				if (!isPlatformTablet()) {
+					if (config.remoteService.toLowerCase().indexOf("builder") < 0) {
+						return true;
+					}
+				} else {
+					// gh#1090
+					if (!config.isReloadAccount) {
+						return true
+					}
 				}
 			}
 			return false;
@@ -555,25 +572,19 @@ import com.clarityenglish.bento.model.SCORMProxy;
 		public function onDelegateFault(operation:String, fault:Fault):void {
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			var thisError:BentoError = BentoError.create(fault);
-
-			// gh#1193
-			sendNotification(CommonNotifications.CONFIG_ERROR, thisError);
-			/*
+			
 			switch (operation) {
 				// gh#315
 				case "getIPMatch":
 					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoPrefixOrRoot")) {
 						this.createDummyAccount();
 						break;
-					} else if (thisError.errorNumber == copyProxy.getCodeForId("errorMultipleIPMatches")) {
-						sendNotification(CommonNotifications.CONFIG_ERROR, thisError);
 					}
-					break;
+
 				case "getAccountSettings":
 					sendNotification(CommonNotifications.CONFIG_ERROR, thisError);
 					break;
 			}
-			*/
 			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
 			
 			// Performance logging

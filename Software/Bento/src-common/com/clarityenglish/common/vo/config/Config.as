@@ -170,8 +170,9 @@ package com.clarityenglish.common.vo.config {
 		// gh#886, gh#1090
 		private var _noLogin:Boolean;
 
-		// gh#1160
-		public var retainedParameters:Object = null;
+		// gh#1160, gh#1090 change from null to {}
+		public var retainedParameters:Object = {};
+		public var isReloadAccount:Boolean;
 
 		/**
 		 * Developer option
@@ -233,6 +234,11 @@ package com.clarityenglish.common.vo.config {
 		
 		public function get noLogin():Boolean {
 			return _noLogin;
+		}
+		
+		// gh#1090
+		public function set noLogin(value:Boolean):void {
+			_noLogin = value;
 		}
 		
 		/**
@@ -614,7 +620,6 @@ package com.clarityenglish.common.vo.config {
 			// gh#11 thisTitle.language changed to thisTitle.productVersion due to Alice local database add F_ProductVersion column			
 			// The account holds the languageCode - which in Bento terms is productVersion
 			// #524
-			trace("title language code: "+thisTitle.languageCode);
 			if (thisTitle.languageCode) 
 				this.languageCode = thisTitle.languageCode;
 			if (thisTitle.productVersion) 
@@ -628,13 +633,13 @@ package com.clarityenglish.common.vo.config {
 			
 			// gh#886
 			// gh#1090
-			/*
-			for (var i:Number = 0; i < this.account.licenceAttributes.length; i++) {
+
+			/*for (var i:Number = 0; i < this.account.licenceAttributes.length; i++) {
 				if (this.account.licenceAttributes[i]['licenceKey'] == 'noLogin') {
 					this._noLogin = this.account.licenceAttributes[i]['licenceValue'];
 				}
-			}
-			*/
+			}*/
+
 			this._noLogin = (thisTitle.loginModifier & Title.LOGIN_BLOCKED);
 			
 			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
@@ -674,7 +679,7 @@ package com.clarityenglish.common.vo.config {
 			
 			// Whilst the title/account holds most licence info, it is nice to keep it in one class
 			this.licence = data.licence as Licence;
-			
+
 			// gh#224
 			var customisationFromDB:String = this.getLicenceAttribute('customisation');
 			if (customisationFromDB)

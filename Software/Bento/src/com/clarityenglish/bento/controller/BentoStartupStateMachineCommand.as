@@ -26,12 +26,17 @@ package com.clarityenglish.bento.controller {
                     <state name={BBStates.STATE_LOAD_ACCOUNT} entering={CommonNotifications.ACCOUNT_LOAD}>
 					    <transition action={CommonNotifications.ACCOUNT_LOADED} target={BBStates.STATE_LOGIN} />
 					    <transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
-					</state>              
-														
+					</state>
+
+					<state name={BBStates.STATE_RELOAD_ACCOUNT}>
+						<transition action={CommonNotifications.ACCOUNT_LOADED} target={BBStates.STATE_LOGIN} />
+						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
+					</state>
+
 					<state name={BBStates.STATE_LOGIN}>
+						<transition action={CommonNotifications.ACCOUNT_RELOAD} target={BBStates.STATE_RELOAD_ACCOUNT} />
 						<transition action={CommonNotifications.LOGGED_IN} target={BBStates.STATE_LOAD_MENU} />
 						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
-						<transition action={CommonNotifications.ACCOUNT_RELOAD} target={BBStates.STATE_LOAD_ACCOUNT} />
 					</state>
 
 					<state name={BBStates.STATE_LOAD_MENU} entering={BBNotifications.MENU_XHTML_LOAD}>

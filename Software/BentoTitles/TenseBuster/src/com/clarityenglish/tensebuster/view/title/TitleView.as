@@ -218,6 +218,7 @@ package com.clarityenglish.tensebuster.view.title {
 			if (_isDirectStartUnit) {
 				unitCaption = _directUnit.@caption;
 				courseCaption = _directUnit.parent().@caption;
+				_isDirectStartUnit = false;
 			}
 			
 			if (_isDirectStartEx) {

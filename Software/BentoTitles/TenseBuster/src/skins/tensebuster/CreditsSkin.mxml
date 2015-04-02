@@ -15,9 +15,10 @@
         <s:State name="normal" />
         <s:State name="disabled" />
     </s:states>
-    
-	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/hexagonBg.png')" bottom="0" />
+
+	<s:BitmapImage source="@Embed(source='/skins/tensebuster/assets/hexagonBg.png')" bottom="0" width="100%" fillMode="scale" />
 	<home:header top="15" />
-	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/credits/creditBg.png')" bottom="0" />
 	<credits:thankYou top="200" left="80" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/login/loginFooterLT.png')" bottom="0" left="0" />
+	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/login/loginFooterRT.png')" bottom="0" right="0"/>
 </s:Skin>
