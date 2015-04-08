@@ -158,6 +158,11 @@ package com.clarityenglish.bento.view.login {
 		// gh#224
 		private var _licenceeName:String;
 		private var _branding:XML;
+		private var _isPlatformTablet:Boolean;
+		private var _isPlatformAndroid:Boolean;
+		private var _isPlatformipad:Boolean;
+		private var _ipMatchedProductCodes:Array;
+		protected var isIPMatchedProductCodesChange:Boolean;
 		public static var brandingImageIndex:uint = 1;
 		
 		// gh#41
@@ -171,6 +176,8 @@ package com.clarityenglish.bento.view.login {
 		public var allowAnonymous:Boolean = false;
 		[Bindable]
 		public var allowLogin:Boolean = true;
+		[Bindable]
+		protected var selectedProductCode:String;
 
 		public var startDemo:Signal = new Signal(String);
 		
@@ -250,6 +257,49 @@ package com.clarityenglish.bento.view.login {
 		}
 		public function get branding():XML {
 			return _branding;
+		}
+
+		public function set isPlatformTablet(value:Boolean):void {
+			if (_isPlatformTablet != value)
+				_isPlatformTablet = value;
+		}
+
+		[Bindable]
+		public function get isPlatformTablet():Boolean {
+			return _isPlatformTablet;
+		}
+
+		public function set isPlatformipad(value:Boolean):void {
+			if (_isPlatformipad != value)
+				_isPlatformipad = value;
+		}
+
+		[Bindable]
+		public function get isPlatformipad():Boolean {
+			return _isPlatformipad;
+		}
+
+		public function set isPlatformAndroid(value:Boolean):void {
+			if (_isPlatformAndroid != value)
+				_isPlatformAndroid = value;
+		}
+
+		[Bindable]
+		public function get isPlatformAndroid():Boolean {
+			return _isPlatformAndroid;
+		}
+
+		public function set ipMatchedProductCodes(value:Array):void {
+			if (String(_ipMatchedProductCodes) != String(value)) {
+				_ipMatchedProductCodes = value;
+				isIPMatchedProductCodesChange = true;
+				invalidateProperties();
+			}
+		}
+
+		[Bindable]
+		public function get ipMatchedProductCodes():Array {
+			return _ipMatchedProductCodes;
 		}
 		
 		override protected function onViewCreationComplete():void {
@@ -385,10 +435,10 @@ package com.clarityenglish.bento.view.login {
 			} else {
 				replaceObj = {loginDetail:copyProvider.getCopyForId("nameLoginDetail")};
 			}
-			loginKeyCaption = " " + copyProvider.getCopyForId("yourLoginDetail", replaceObj); // Adding a space here to nudge the prompt right
+			loginKeyCaption = copyProvider.getCopyForId("yourLoginDetail", replaceObj); // Adding a space here to nudge the prompt right
 			
 			// gh#100
-			passwordCaption = " " + copyProvider.getCopyForId("passwordLabel");
+			passwordCaption = copyProvider.getCopyForId("passwordLabel");
 			
 			// gh#487
 			forgotPasswordCaption = copyProvider.getCopyForId("forgotPasswordLabel");
@@ -401,14 +451,14 @@ package com.clarityenglish.bento.view.login {
 			anonymousStartButtonCaption = copyProvider.getCopyForId("anonymousButtonCaption");		
 
 			if (selfRegister & Config.SELF_REGISTER_NAME)
-				selfRegisterNameCaption = " " + copyProvider.getCopyForId("nameLoginDetail");
+				selfRegisterNameCaption = copyProvider.getCopyForId("nameLoginDetail");
 			if (selfRegister & Config.SELF_REGISTER_ID)
-				selfRegisterIdCaption = " " + copyProvider.getCopyForId("IDLoginDetail");
+				selfRegisterIdCaption = copyProvider.getCopyForId("IDLoginDetail");
 			if (selfRegister & Config.SELF_REGISTER_EMAIL)
-				selfRegisterEmailCaption = " " + copyProvider.getCopyForId("emailLoginDetail");
+				selfRegisterEmailCaption = copyProvider.getCopyForId("emailLoginDetail");
 			if (verified) {
-				selfRegisterPasswordCaption = " " + copyProvider.getCopyForId("passwordLabel");
-				confirmPasswordCaption = " " + copyProvider.getCopyForId("confirmPasswordCaption");
+				selfRegisterPasswordCaption = copyProvider.getCopyForId("passwordLabel");
+				confirmPasswordCaption = copyProvider.getCopyForId("confirmPasswordCaption");
 			}
 			if (selfRegister) {
 				newUserButtonCaption = copyProvider.getCopyForId("newUserButtonCaption");		
@@ -417,6 +467,8 @@ package com.clarityenglish.bento.view.login {
 				selfRegisterCaption = copyProvider.getCopyForId("selfRegisterCaption");
 			}
 			demoButtonCaption = copyProvider.getCopyForId("demoButtonCaption");
+			demoButton1.label = copyProvider.getCopyForId("demoButton1");
+			demoButton2.label = copyProvider.getCopyForId("demoButton2");
 
 		}
 		
@@ -446,7 +498,6 @@ package com.clarityenglish.bento.view.login {
 				allowSelfRegister = (selfRegister > 0) ? true : false;
 				
 				// Is login allowed
-				//trace("no login? "+noLogin);
 				allowLogin = (noLogin) ? false : true;
 				
 				// Is anonymous access allowed?
@@ -481,14 +532,14 @@ package com.clarityenglish.bento.view.login {
 				case loginButton:
 					config.signInAs = Title.SIGNIN_TRACKING;
 					user = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
-					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
-					break;
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified, selectedProductCode));
+					break; 
 				
 				case anonymousStartButton:
 					user = new User();
 					// gh#1090
 					config.signInAs = Title.SIGNIN_ANONYMOUS;
-					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified, selectedProductCode));
 					break;
 
 				case newUserButton:
@@ -556,10 +607,14 @@ package com.clarityenglish.bento.view.login {
 		public function getTestDrive():Signal {
 			return new Signal();
 		}
-		
+
 		// gh#1090 Restart the application to run a demo
 		public function onStartDemo(target:Button):void {
-			var demoPrefix:String = "DEMO";
+			if (target == demoButton1) {
+				var demoPrefix:String = "DEMO";
+			} else {
+				demoPrefix = "DEMON"
+			}
 			startDemo.dispatch(demoPrefix, productCode);
 		}
 		
