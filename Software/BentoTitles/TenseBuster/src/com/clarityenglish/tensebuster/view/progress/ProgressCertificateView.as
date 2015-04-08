@@ -173,7 +173,8 @@ package com.clarityenglish.tensebuster.view.progress
 				oopsVGroup.visible = false;
 				certificateGroup.visible = false;
 				printGroup.visible = false;
-				if (coverage < 10) {
+				trace("coverage: "+coverage);
+				if (coverage < 100) {
 					oopsVGroup.visible = true;
 					certificateFooter.visible = true;
 					var courseCaption:String = menu.course.(@["class"] == courseClass).@caption;

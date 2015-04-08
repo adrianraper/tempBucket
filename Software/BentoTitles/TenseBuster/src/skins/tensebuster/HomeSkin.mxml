@@ -218,7 +218,7 @@
 	<s:SWFLoader id="homeInitialBg" source="@Embed(source='/skins/tensebuster/assets/home/homeInitialBg.png')" left="0" bottom="-10" visible="{courseSelector.level == null}" />
 
 	<!-- Student name gh#1194-->
-	<s:Group top="0" right="24" height="28" visible="{hostComponent.userNameCaption != ''}" includeInLayout="{hostComponent.userNameCaption != ''}">
+	<s:Group top="10" right="34" height="28" visible="{hostComponent.userNameCaption != ''}" includeInLayout="{hostComponent.userNameCaption != ''}">
 		<s:Rect height="100%" width="100%" radiusX="14" radiusY="14">
 			<s:fill>
 				<s:SolidColor color="#e3e3e3" />

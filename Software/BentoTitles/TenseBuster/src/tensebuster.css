@@ -175,7 +175,7 @@ login|LoginView s|Button {
 }
 
 login|LoginView s|TextInput {
-	skinClass: ClassReference("skins.tensebuster.login.TextInputSkin");
+	skinClass: ClassReference("skins.bento.TextInputSkin");
 }
 
 login|LoginView s|Button#newUserButton, s|Button#forgotPasswordButton {
