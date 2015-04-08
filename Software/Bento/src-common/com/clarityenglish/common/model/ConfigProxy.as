@@ -486,7 +486,7 @@ import com.clarityenglish.bento.model.SCORMProxy;
 
 		// gh#790 Is this account a pure AA - so will avoid login
 		public function isAccountJustAnonymous():Boolean {
-			if (this.getLicenceType() == Title.LICENCE_TYPE_AA &&  this.getConfig().noLogin == true) {
+			if (this.getLicenceType() == Title.LICENCE_TYPE_AA && this.getConfig().noLogin == true) {
 				if (!isPlatformTablet()) {
 					if (config.remoteService.toLowerCase().indexOf("builder") < 0) {
 						return true;
@@ -497,6 +497,8 @@ import com.clarityenglish.bento.model.SCORMProxy;
 						return true
 					}
 				}
+			} else if (config.scorm) { // gh#1204 if it is SCORM object log out to credit page.
+				return true;
 			}
 			return false;
 		}
