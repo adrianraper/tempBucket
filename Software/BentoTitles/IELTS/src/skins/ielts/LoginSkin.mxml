@@ -162,5 +162,7 @@
 	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/login/login_graphic.png')" top="160" horizontalCenter="250"/>
 	
 	<!--Rate Button-->
-	<s:Button id="longRateButton" right="50" top="70" buttonMode="true" useHandCursor="true" visible="{hostComponent.isPlatformTablet}" includeInLayout="{hostComponent.isPlatformTablet}" /> 
+	<s:Button id="longRateButton" right="50" top="70" buttonMode="true" useHandCursor="true" visible="{hostComponent.isPlatformTablet}" includeInLayout="{hostComponent.isPlatformTablet}" />
+	
+	<s:Label id="versionLabel" color="#AAAAAA" right="20" bottom="20"/>
 </s:Skin>

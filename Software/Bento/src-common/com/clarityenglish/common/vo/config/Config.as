@@ -170,8 +170,9 @@ package com.clarityenglish.common.vo.config {
 		// gh#886, gh#1090
 		private var _noLogin:Boolean;
 
-		// gh#1160, gh#1090 change from null to {]
+		// gh#1160, gh#1090 change from null to {}
 		public var retainedParameters:Object = {};
+		public var isReloadAccount:Boolean;
 
 		/**
 		 * Developer option
@@ -633,13 +634,13 @@ package com.clarityenglish.common.vo.config {
 			// gh#886
 			// gh#1090
 
-			for (var i:Number = 0; i < this.account.licenceAttributes.length; i++) {
+			/*for (var i:Number = 0; i < this.account.licenceAttributes.length; i++) {
 				if (this.account.licenceAttributes[i]['licenceKey'] == 'noLogin') {
 					this._noLogin = this.account.licenceAttributes[i]['licenceValue'];
 				}
-			}
+			}*/
 
-			//this._noLogin = (thisTitle.loginModifier & Title.LOGIN_BLOCKED);
+			this._noLogin = (thisTitle.loginModifier & Title.LOGIN_BLOCKED);
 			
 			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
 			// and comes from a mix of T_ProductLanguage and T_Accounts. 
@@ -690,7 +691,7 @@ package com.clarityenglish.common.vo.config {
 		 * Update the user details you are holding when you come back from login
 		 * 
 		 */
-		public function mergeUser(user:User) {
+		public function mergeUser(user:User):void {
 			this.username = user.name;
 			this.studentID = user.studentID;
 			this.email = user.email;

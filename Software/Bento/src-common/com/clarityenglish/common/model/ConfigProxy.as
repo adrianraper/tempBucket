@@ -103,6 +103,11 @@ package com.clarityenglish.common.model {
 			config.retainedParameters = {};
 			config.prefix = "";
 			config.noLogin = false;
+			config.isReloadAccount = false;
+
+			// #584
+			config.startingPoint = '';
+			config.courseID = '';
 
 			_directStartOverride = false;
 		}
@@ -470,7 +475,6 @@ package com.clarityenglish.common.model {
                     dataProxy.set("currentCourseClass", courseClass);
                 }
             }
-
 			return directStartObject;
 		}
 		// gh#853
@@ -482,10 +486,19 @@ package com.clarityenglish.common.model {
 
 		// gh#790 Is this account a pure AA - so will avoid login
 		public function isAccountJustAnonymous():Boolean {
-			if (this.getLicenceType() == Title.LICENCE_TYPE_AA) {
-				if (config.remoteService.toLowerCase().indexOf("builder") < 0 && this.getConfig().noLogin == true) {
-					return true;
+			if (this.getLicenceType() == Title.LICENCE_TYPE_AA && this.getConfig().noLogin == true) {
+				if (!isPlatformTablet()) {
+					if (config.remoteService.toLowerCase().indexOf("builder") < 0) {
+						return true;
+					}
+				} else {
+					// gh#1090
+					if (!config.isReloadAccount) {
+						return true
+					}
 				}
+			} else if (config.scorm) { // gh#1204 if it is SCORM object log out to credit page.
+				return true;
 			}
 			return false;
 		}

@@ -3,6 +3,7 @@
 	import com.clarityenglish.bento.view.*;
 	import com.clarityenglish.bento.view.credits.CreditsMediator;
 	import com.clarityenglish.bento.view.credits.CreditsView;
+	import com.clarityenglish.bento.view.login.LoginView;
 	import com.clarityenglish.bento.view.marking.MarkingMediator;
 	import com.clarityenglish.bento.view.marking.MarkingView;
 	import com.clarityenglish.bento.view.nonetwork.NoNetworkMediator;
@@ -27,6 +28,7 @@
 	import com.clarityenglish.common.controller.*;
 	import com.clarityenglish.common.view.error.ErrorMediator;
 	import com.clarityenglish.common.view.error.ErrorView;
+	import com.clarityenglish.common.view.login.LoginMediator;
 	
 	import flash.utils.Dictionary;
 	
@@ -74,6 +76,9 @@
 			mapView(CreditsView, CreditsMediator);
 			mapView(NoNetworkView, NoNetworkMediator);
 			
+			// gh#1090
+			mapView(LoginView, LoginMediator);
+			
 			mapView(ProgressView, ProgressMediator);
 			mapView(ProgressScoreView, ProgressScoreMediator);
 			mapView(ProgressCompareView, ProgressCompareMediator);
@@ -88,7 +93,7 @@
 			registerCommand(CommonNotifications.ACCOUNT_LOAD, AccountLoadCommand);
 			
 			// gh#21
-			//registerCommand(CommonNotifications.ACCOUNT_RELOAD, AccountLoadCommand);
+			registerCommand(CommonNotifications.ACCOUNT_RELOAD, AccountReloadCommand);
 			
 			// Map built in commands
 			registerCommand(BBNotifications.BENTO_RESET, BentoResetCommand);

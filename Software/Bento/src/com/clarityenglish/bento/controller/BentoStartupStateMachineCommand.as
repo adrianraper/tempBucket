@@ -27,9 +27,14 @@ package com.clarityenglish.bento.controller {
 					    <transition action={CommonNotifications.ACCOUNT_LOADED} target={BBStates.STATE_LOGIN} />
 					    <transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>
-														
+
+					<state name={BBStates.STATE_RELOAD_ACCOUNT}>
+						<transition action={CommonNotifications.ACCOUNT_LOADED} target={BBStates.STATE_LOGIN} />
+						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
+					</state>
+
 					<state name={BBStates.STATE_LOGIN}>
-						<transition action={CommonNotifications.ACCOUNT_RELOAD} target={BBStates.STATE_LOAD_ACCOUNT} />
+						<transition action={CommonNotifications.ACCOUNT_RELOAD} target={BBStates.STATE_RELOAD_ACCOUNT} />
 						<transition action={CommonNotifications.LOGGED_IN} target={BBStates.STATE_LOAD_MENU} />
 						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>
@@ -62,11 +67,10 @@ package com.clarityenglish.bento.controller {
 			
 			// #297 - if we are using direct login then we want to add a transition to go the credits on a failed login
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			
 			if (configProxy.getDirectLogin()) {
 				var loginXML:XML = (fsm..state.(@name == BBStates.STATE_LOGIN))[0];
-				//loginXML.appendChild(<transition action={CommonNotifications.INVALID_LOGIN} target={BBStates.STATE_CREDITS} />);
-				//loginXML.appendChild(<transition action={CommonNotifications.INVALID_DATA} target={BBStates.STATE_CREDITS} />);
+				loginXML.appendChild(<transition action={CommonNotifications.INVALID_LOGIN} target={BBStates.STATE_CREDITS} />);
+				loginXML.appendChild(<transition action={CommonNotifications.INVALID_DATA} target={BBStates.STATE_CREDITS} />);
 			}
 			
 			// #322
@@ -81,11 +85,14 @@ package com.clarityenglish.bento.controller {
 			//}
 			
 			// #377 - when disableAutoTimeout is on we want to go back to the login screen instead of the credits screen
-			/*if (configProxy.getConfig().disableAutoTimeout) {
+			// #790 In fact we will do this in browser as well as tablet now. But errors (like config error) should go to an error screen
+			/*
+			if (configProxy.getConfig().disableAutoTimeout) {
 				for each (var creditTransition:XML in fsm..transition.(@target == BBStates.STATE_CREDITS)) {
 					creditTransition.@target = BBStates.STATE_LOAD_ACCOUNT; 
 				}
-			}*/
+			}
+			*/
 			
 			// Kick off the state machine
 			var fsmInjector:FSMInjector = new FSMInjector(fsm);

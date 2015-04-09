@@ -77,6 +77,8 @@ package com.clarityenglish.bento.vo.content.transform {
 						}
 					}
 				}
+				// gh#584
+				directStart = null;
 			}
 		}
 	}
