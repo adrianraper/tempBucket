@@ -718,7 +718,7 @@ SQL;
 						$this->memoryOps->set('directStart', $newBookmark, $tbProductCode, $user->userID);
 						
 						$crypt = new Crypt();
-						$programBase = 'http://'.$this->server.'/area1/TenseBuster10/Start.php';
+						$programBase = 'http://'.$this->server.'/area1/TenseBuster/Start.php';
 						$parameters = 'prefix='.$account->prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
                         $startProgram = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
                         $parameters .= '&startingPoint=state:progress';
