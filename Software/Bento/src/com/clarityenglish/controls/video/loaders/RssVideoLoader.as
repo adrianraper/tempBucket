@@ -67,7 +67,8 @@ package com.clarityenglish.controls.video.loaders {
 					break;
 				case "http":
 				case "progressive-download":
-				case "http-streaming":				
+				case "http-streaming":
+					videoPlayer.visible = true;
 					videoPlayer.source = host + channel.item[0].streamName.toString();
 					//trace("video source is "+ videoPlayer.source);
 					videoPlayer.play();

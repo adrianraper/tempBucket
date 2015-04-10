@@ -73,7 +73,6 @@
 					callLater(
 						function():void {
 							if (hostComponent.videoCollection) {
-								videoList.selectedIndex = 0;
 								videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 								videoPlayer.placeholderSource = hostComponent.href.rootPath + "/" + hostComponent.videoCollection.getItemAt(0).attribute("poster");
 							}
@@ -131,7 +130,6 @@
 			
 			protected function onSlideEnd(event:EffectEvent):void
 			{
-				// TODO Auto-generated method stub
 				//videoPlayButton.label = "Click here to watch the " + hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex) +  " video.";
 				candidatesVideoTitleLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex);
 				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription" + videoListIndex);
@@ -161,7 +159,6 @@
 				busyIndicator.visible = false;
 				openingScreenGroup.visible = true;
 				videoPlayer.visible = false;
-				
 				previousVideoButton.enabled = false;				
 				nextVideoButton.enabled = false;
 			}
@@ -263,7 +260,8 @@
 		
 		<s:Group>
 			<!-- The video players -->
-			<players:WebViewVideoPlayer id="videoPlayer" width="640" height="360" placeholderSource="{hostComponent.placeholderSource}" visible="false"/>
+			<!-- Cannot bind visible with video list selection for the player will keep flashing on screen-->
+			<players:WebViewVideoPlayer id="videoPlayer" width="640" height="360" placeholderSource="{hostComponent.placeholderSource}" />
 			<!--players:OSMFVideoPlayer id="videoPlayer" width="640" height="360" /-->
 			
 			<!-- Placeholder image -->

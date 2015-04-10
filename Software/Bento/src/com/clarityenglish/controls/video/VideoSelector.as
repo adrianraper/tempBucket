@@ -214,6 +214,7 @@ package com.clarityenglish.controls.video {
 				case videoList:
 					videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoSelected);
 					videoList.visible = videoList.includeInLayout = _showSelector;
+					videoList.requireSelection = true;
 					break;
 				case scriptButton:
 					scriptButton.addEventListener(MouseEvent.CLICK, onScriptButtonClicked);
