@@ -295,16 +295,16 @@ package com.clarityenglish.common.model {
 					break;
 				
 				case "updateLicence":
-					// gh#604 You might have a new sessionId now
+					// gh#604 You might have a new sessionID now
 					if (data) {
 						configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-						trace('back to updateLicence with data sessionId={0}, config.sessionID={1}', data.sessionId, configProxy.getConfig().sessionID);
-						if (data.sessionId as String != configProxy.getConfig().sessionID) {
+						//trace('back to updateLicence with data sessionID={0}, config.sessionID={1}', data.sessionID, configProxy.getConfig().sessionID);
+						if (data.sessionID as String != configProxy.getConfig().sessionID) {
 							// Sanity check
-							if (data.sessionId > configProxy.getConfig().sessionID) {
-								configProxy.getConfig().sessionID = data.sessionId as String;
+							if (data.sessionID > configProxy.getConfig().sessionID) {
+								configProxy.getConfig().sessionID = data.sessionID as String;
 							} else {
-								trace('The new session id seems wrong: {0}', data.sessionId);
+								trace('The new session id seems wrong: {0}', data.sessionID);
 							}
 						}
 					}
@@ -493,7 +493,7 @@ package com.clarityenglish.common.model {
 					break;
 				
 				case "updateLicence":
-					trace('back to updateLicence with error');
+					//trace('back to updateLicence with error');
 
 					// gh#604 Just ignore a failed update
 					/*

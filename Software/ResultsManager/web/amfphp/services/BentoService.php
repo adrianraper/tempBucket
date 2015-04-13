@@ -485,7 +485,7 @@ class BentoService extends AbstractService {
 	public function startSession($user, $rootId, $productCode, $dateNow = null) {
 		// A successful session start will return a new ID
 		$sessionId = $this->progressOps->startSession($user, $rootId, $productCode, $dateNow);
-		return array("sessionId" => $sessionId);
+		return array("sessionID" => $sessionId);
 	}
 	
 	/**
@@ -500,7 +500,7 @@ class BentoService extends AbstractService {
 		// A successful session stop will not generate an error
 		// gh#604 return number of impacted records
 		$sessionId = $this->progressOps->updateSession($sessionId, $dateNow);
-		return array("sessionId" => $sessionId);
+		return array("sessionID" => $sessionId);
 	}
 	
 	/**
@@ -512,8 +512,8 @@ class BentoService extends AbstractService {
 	 *  	maybe we can use $userID and $rootID from session variables
 	 *  @param dateNow - used to get client time
 	 */
-	public function stopSession($sessionID, $dateNow) {
-		return $this->updateSession($sessionID, $dateNow);
+	public function stopSession($sessionId, $dateNow) {
+		return $this->updateSession($sessionId, $dateNow);
 	}
 	
 	/**
@@ -522,7 +522,7 @@ class BentoService extends AbstractService {
 	 *  
 	 *  @param Licence $licence - dummy object for the licence
 	 */
-	public function updateLicence($licence, $sessionID = null) {
+	public function updateLicence($licence, $sessionId = null) {
 
 		// gh#604 Update the licence if applicable
 		if ($licence)
@@ -530,8 +530,8 @@ class BentoService extends AbstractService {
 			$this->licenceOps->updateLicence($licence);
 
 		// Update the session record
-		if ($sessionID)
-			return $this->updateSession($sessionID);
+		if ($sessionId)
+			return $this->updateSession($sessionId);
 
 		return false;
 	}
@@ -542,11 +542,11 @@ class BentoService extends AbstractService {
 	 *  
 	 *  @param userID - these are all self-explanatory
 	 */
-	public function getInstanceID($userID, $productCode) {
+	public function getInstanceID($userId, $productCode) {
 		// #319 Instance ID per productCode
-		$instanceID = $this->loginOps->getInstanceID($userID, $productCode);
+		$instanceId = $this->loginOps->getInstanceID($userId, $productCode);
 		
-		return array("instanceID" => $instanceID);
+		return array("instanceID" => $instanceId);
 	}
 	
 	/**
@@ -556,7 +556,7 @@ class BentoService extends AbstractService {
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param dateNow - used to get client time
 	 */
-	public function writeScore($user, $sessionID, $dateNow, $scoreObj) {
+	public function writeScore($user, $sessionId, $dateNow, $scoreObj) {
 		// Manipulate the score object from Bento into PHP format
 		// TODO Surely we should be trying to keep the format and names the same!
 		$score = new Score();
@@ -576,14 +576,14 @@ class BentoService extends AbstractService {
 		$score->duration = $scoreObj['duration'];
 		
 		$score->dateStamp = $dateNow;
-		$score->sessionID = $sessionID;
+		$score->sessionID = $sessionId;
 		$score->userID = $user->userID;
 		
 		// Write the score record
 		$score = $this->progressOps->insertScore($score, $user);
 		
 		// and update the session
-		$this->updateSession($sessionID);
+		$this->updateSession($sessionId);
 		
 		return $score;
 	}

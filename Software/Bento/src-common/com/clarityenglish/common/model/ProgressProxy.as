@@ -110,9 +110,9 @@ package com.clarityenglish.common.model {
 			switch (operation) {
 				case "startSession":
 					if (data) {
-						configProxy.getConfig().sessionID = data.sessionId;
+						configProxy.getConfig().sessionID = data.sessionID;
 						sendNotification(BBNotifications.SESSION_STARTED, data);
-						trace('started session sessionId={0}', data.sessionId);
+						//trace('started session sessionID={0}', data.sessionID);
 
 					} else {
 						// Can't write to the database
