@@ -81,10 +81,10 @@
 	
 	<!--legend-->
 	<s:HGroup top="10" right="20" gap="50" verticalAlign="middle">
-		<s:HGroup gap="10" verticalAlign="middle" visible="false">
+		<s:VGroup gap="10" verticalAlign="middle" horizontalAlign="right">
 			<s:Label id="compareInstructionLabel"  />
 			<components:SpinnerDropDownList id="countrySelection" width="200"/>
-		</s:HGroup>
+		</s:VGroup>
 		<s:VGroup gap="10">
 			<s:HGroup gap="10">
 				<progress:myscoreBlack />
