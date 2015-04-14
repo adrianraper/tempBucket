@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/../BentoTitles/ClearPronunciation/ClearPronunciation.iml" filepath="$PROJECT_DIR$/../BentoTitles/ClearPronunciation/ClearPronunciation.iml" group="ClearPronunciation" />
       <module fileurl="file://$PROJECT_DIR$/../BentoTitles/ClearPronunciationAir/ClearPronunciationAir.iml" filepath="$PROJECT_DIR$/../BentoTitles/ClearPronunciationAir/ClearPronunciationAir.iml" group="ClearPronunciation" />
       <module fileurl="file://$PROJECT_DIR$/../Common/OSMF/OSMF.iml" filepath="$PROJECT_DIR$/../Common/OSMF/OSMF.iml" group="Core" />
+      <module fileurl="file://$PROJECT_DIR$/../BentoTitles/ResultsManager/ResultsManager.iml" filepath="$PROJECT_DIR$/../BentoTitles/ResultsManager/ResultsManager.iml" group="AdminTools" />
       <module fileurl="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/Rotterdam.iml" filepath="$PROJECT_DIR$/../BentoLibraries/Rotterdam/Rotterdam.iml" group="Rotterdam" />
       <module fileurl="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/RotterdamBuilder.iml" filepath="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/RotterdamBuilder.iml" group="Rotterdam" />
       <module fileurl="file://$PROJECT_DIR$/../BentoTitles/RotterdamPlayer/RotterdamPlayer.iml" filepath="$PROJECT_DIR$/../BentoTitles/RotterdamPlayer/RotterdamPlayer.iml" group="Rotterdam" />

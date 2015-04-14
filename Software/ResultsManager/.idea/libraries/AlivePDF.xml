@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="AlivePDF" type="flex">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/AlivePDF.swc!/" />
+      <root url="jar://$PROJECT_DIR$/libs/AnyChart51Flex.swc!/" />
+      <root url="jar://$PROJECT_DIR$/libs/arc90flexlib.swc!/" />
+      <root url="jar://$PROJECT_DIR$/libs/datavisualization.swc!/" />
+      <root url="jar://$PROJECT_DIR$/libs/datavisualization_rb.swc!/" />
+      <root url="jar://$PROJECT_DIR$/libs/PureMVC_AS3_2_0_4.swc!/" />
+      <root url="jar://$PROJECT_DIR$/libs/VAComboBox.swc!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

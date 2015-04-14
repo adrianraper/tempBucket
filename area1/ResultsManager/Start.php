@@ -48,7 +48,7 @@
 		// *********
 		// *********
 		
-		var startControl = webShare + "/Software/ResultsManager/web/";
+		var startControl = webShare + "/Software/BentoTitles/ResultsManager/bin-debug/";
 		var argList = "?version=3.7.2.653"
 		
 		// see whether variables have come from command line or, preferentially, session variables
