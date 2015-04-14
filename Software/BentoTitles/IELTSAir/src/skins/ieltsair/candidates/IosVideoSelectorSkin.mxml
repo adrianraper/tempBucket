@@ -261,7 +261,7 @@
 		<s:Group>
 			<!-- The video players -->
 			<!-- Cannot bind visible with video list selection for the player will keep flashing on screen-->
-			<players:WebViewVideoPlayer id="videoPlayer" width="640" height="360" placeholderSource="{hostComponent.placeholderSource}" />
+			<players:WebViewVideoPlayer id="videoPlayer" width="640" height="360" placeholderSource="{hostComponent.placeholderSource}" visible="false" />
 			<!--players:OSMFVideoPlayer id="videoPlayer" width="640" height="360" /-->
 			
 			<!-- Placeholder image -->
