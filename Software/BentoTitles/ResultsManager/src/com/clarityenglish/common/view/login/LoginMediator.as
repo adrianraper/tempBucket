@@ -103,7 +103,7 @@ package com.clarityenglish.common.view.login {
 			// screen they do not contain your details.
 			// Gives a manageables error!! So do it on copyloaded.
 			//loginView.clearData();
-			TraceUtils.myTrace("onLogin for " + e.username);
+			// TraceUtils.myTrace("onLogin for " + e.username);
 			sendNotification(CommonNotifications.LOGIN, e);
 		}
 

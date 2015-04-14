@@ -234,25 +234,25 @@
 				
 				// Everyone can see and change their own details (though not their expiry date)
 				// Be careful when doing (selectedItem as User) as this will crash if selectedItem is not user!
-				//TraceUtils.myTrace("selected.id=" + selectedItem.id + " selected.type=" + (selectedItem as User).userType + " your.id=" + Constants.userID + " your.type=" + Constants.userType);
+				//// TraceUtils.myTrace("selected.id=" + selectedItem.id + " selected.type=" + (selectedItem as User).userType + " your.id=" + Constants.userID + " your.type=" + Constants.userType);
 				// v3.4 Multi-group users
 				//if (selectedItem is User && Constants.userID == selectedItem.id) {
 				// Following is all about blocking details of users, if you are looking at a group just go ahead
 				if (selectedItem is User) {
 					if (Constants.userID == (selectedItem as User).userID) {
-						//TraceUtils.myTrace("you clicked on yourself, see details");
+						//// TraceUtils.myTrace("you clicked on yourself, see details");
 						detailsMenuItem.enabled = true;
 					} else {
 						// Reporters and authors can't see anyone else's details
 						// v3.4 No, authors are pretty powerful. Also, reporters should be able to see group details (for what its worth)
 						//if ((Constants.userType == User.USER_TYPE_REPORTER) || (Constants.userType == User.USER_TYPE_AUTHOR)) {
 						if ((Constants.userType == User.USER_TYPE_REPORTER)) {
-							//TraceUtils.myTrace("you are reporter, can't see user details");
+							//// TraceUtils.myTrace("you are reporter, can't see user details");
 							detailsMenuItem.enabled = false;
 						} else {
 							// No-one can see the admin details (except themselves)
 							if ((selectedItem as User).userType == User.USER_TYPE_ADMINISTRATOR) {
-								//TraceUtils.myTrace("no-one sees admin");
+								//// TraceUtils.myTrace("no-one sees admin");
 								detailsMenuItem.enabled = false;
 							} else {
 								// Teachers and authors can't get details on other teachers and authors (ticket #73)
@@ -260,7 +260,7 @@
 								if ((Constants.userType == User.USER_TYPE_TEACHER ||
 									 Constants.userType == User.USER_TYPE_AUTHOR) && ((selectedItem as User).userType == User.USER_TYPE_TEACHER ||
 																						(selectedItem as User).userType == User.USER_TYPE_AUTHOR)) {
-									//TraceUtils.myTrace("you are teacher/author, can't see another teacher/author");
+									//// TraceUtils.myTrace("you are teacher/author, can't see another teacher/author");
 									detailsMenuItem.enabled = false;
 								}
 							}
@@ -298,7 +298,7 @@
 					//deleteMenuItem.enabled = (selectedItem is Group || (selectedItem is User && Constants.userID != (selectedItem as User).userID));
 				}
 
-				//TraceUtils.myTrace("delete menu item is enabled=" + deleteMenuItem.enabled + " and visible=" + deleteMenuItem.visible);
+				//// TraceUtils.myTrace("delete menu item is enabled=" + deleteMenuItem.enabled + " and visible=" + deleteMenuItem.visible);
 				
 				// Things you can just do on groups
 				searchMenuItem.enabled = importMenuItem.enabled	= (selectedItem is Group);

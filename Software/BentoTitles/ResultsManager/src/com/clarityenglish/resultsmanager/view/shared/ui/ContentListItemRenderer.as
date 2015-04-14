@@ -32,6 +32,7 @@
 			// TODO If this image doesn't exist, use the default RM one - this is for generic titles that don't have an image (yet)
 			if (data is Title) {
 				image.source = Constants.HOST + Constants.LOGO_FOLDER + "/" + (data as Title).productCode + ".swf";
+				trace('image is from ' + image.source);
 				image.visible = true;
 			} else {
 				image.visible = false;

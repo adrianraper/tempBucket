@@ -23,15 +23,17 @@
                     //trace("LocalConnection.send() succeeded");
                     break;
                 case "error":
-                    trace("LocalConnection.send() failed");
+                    //trace("LocalConnection.send() failed");
                     break;
             }
         }
 		public static function myTrace(message:String, level:Number=0):void {
+			/*
 			var sendConn:LocalConnection = new LocalConnection();
 			sendConn.addEventListener(StatusEvent.STATUS, onStatus);
 			sendConn.send("_trace", "myTrace", message, level);
 			trace(message);
+			*/
 		}
 
 	}

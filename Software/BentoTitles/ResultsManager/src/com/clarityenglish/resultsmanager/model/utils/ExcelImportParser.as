@@ -57,7 +57,7 @@
 						//if (StringUtils.trim(header.toLowerCase()) == "group") {
 						if (headerToUserField(header) == "group") {
 							groupName = data[h];
-							TraceUtils.myTrace("import: group=" + data[h]);
+							// TraceUtils.myTrace("import: group=" + data[h]);
 						} else {
 							// How about translating userType from a number to string. Less likely to make mistakes?
 							// TODO I expect these are constants somewhere
@@ -84,7 +84,7 @@
 								// we need to step in at this point if we are going to use different formats from m/d/Y.
 								// I am confident that this is only used for import.
 								user[headerToUserField(header)] = data[h];
-								//TraceUtils.myTrace("import: " + headerToUserField(header) + "=" + data[h]);
+								//// TraceUtils.myTrace("import: " + headerToUserField(header) + "=" + data[h]);
 							}
 						}
 					}
@@ -98,7 +98,7 @@
 
 					if (groupName) {
 						// This user is in a group
-						TraceUtils.myTrace("import user into " + groupName);
+						// TraceUtils.myTrace("import user into " + groupName);
 						if (!groups[groupName]) {
 							// If the group doesn't exist (in this temporary array) create a new one
 							// It will only create a real group in the back end if necessary

@@ -98,7 +98,7 @@ package com.clarityenglish.dms.view.account {
 		 */
 		override public function handleNotification(note:INotification):void {
 			//MonsterDebugger.trace(this, note.getName());
-			//TraceUtils.myTrace("account mediator");
+			//// TraceUtils.myTrace("account mediator");
 			switch (note.getName()) {
 				case CommonNotifications.COPY_LOADED:
 					var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
@@ -111,7 +111,7 @@ package com.clarityenglish.dms.view.account {
 					break;
 				case DMSNotifications.ACCOUNTS_LOADED:
 					//MonsterDebugger.trace(this, note.getBody());
-					//TraceUtils.myTrace("accounts loaded with " + (note.getBody() as Array).length);
+					//// TraceUtils.myTrace("accounts loaded with " + (note.getBody() as Array).length);
 					accountView.setDataGridDataProvider(note.getBody());
 					break;
 				case DMSNotifications.ACCOUNT_DETAILS_LOADED:

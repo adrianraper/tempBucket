@@ -127,7 +127,7 @@ package com.clarityenglish.resultsmanager.view {
 					
 				// v3.6.0 If you are starting with directStart parameter, configure tabs
 				case RMNotifications.DIRECT_START:
-					TraceUtils.myTrace("appMediator.directStart=" + (note.getBody() as String));
+					// TraceUtils.myTrace("appMediator.directStart=" + (note.getBody() as String));
 					application.configureTabsForDirectStart(note.getBody() as String);
 					break;
 				default:

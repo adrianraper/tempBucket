@@ -134,7 +134,7 @@ package com.clarityenglish.resultsmanager.view.loginopts {
 					
 					// Set the options from the proxy
 					// Loop through all emails received
-					//TraceUtils.myTrace("loginOptsMediator.EMAILOPTS_LOADED");
+					//// TraceUtils.myTrace("loginOptsMediator.EMAILOPTS_LOADED");
 					var emailCount:uint = emailOptsProxy.getEmailCount();
 					for (var i:uint = 0; i < emailCount; i++) {
 						loginOptsView['email' + Number(i+1) + 'Address'].text = emailOptsProxy.getEmail(i);
@@ -190,13 +190,13 @@ package com.clarityenglish.resultsmanager.view.loginopts {
 									+ ((loginOptsView['email' + i + 'Type4'].selected) ? EmailOptsProxy.SUPPORT_NOTICES : 0)
 									+ ((loginOptsView['email' + i + 'Type5'].selected) ? EmailOptsProxy.UPGRADE_INFORMATION : 0)
 									+ ((loginOptsView['email' + i + 'Type6'].selected) ? EmailOptsProxy.PRODUCT_INFORMATION : 0);
-				//TraceUtils.myTrace('mediator.onEmailUpdate index=' + i + ' email=' + thisEmailItem.email + ' messageType=' + thisEmailItem.messageType);
+				//// TraceUtils.myTrace('mediator.onEmailUpdate index=' + i + ' email=' + thisEmailItem.email + ' messageType=' + thisEmailItem.messageType);
 				//if (thisEmailItem.email!='')
 				if (thisEmailItem.email) {
 					emailOptionsArray.push(thisEmailItem);
-					//TraceUtils.myTrace("keep this item then");
+					//// TraceUtils.myTrace("keep this item then");
 				} else {
-					//TraceUtils.myTrace("ignore this empty item");
+					//// TraceUtils.myTrace("ignore this empty item");
 				}
 			}			
 			sendNotification(RMNotifications.UPDATE_EMAIL_OPTS, emailOptionsArray);

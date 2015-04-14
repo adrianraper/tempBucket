@@ -31,7 +31,7 @@
 			name = content.name;
 			id = content.id;
 			contentType = ClassUtils.getClassAsString(content);
-			//TraceUtils.myTrace("made a new coverage called " + name + " type=" + contentType);
+			//// TraceUtils.myTrace("made a new coverage called " + name + " type=" + contentType);
 		}
 		
 		public function get completed():uint { return _completed; }
@@ -69,14 +69,14 @@
 					// this shouldn't be possible of course! but even so
 					everyonesCompleted = 0;
 					everyonesTotal = 0;
-					//TraceUtils.myTrace("setEveryonesCoverage for " + id + " to zero");
+					//// TraceUtils.myTrace("setEveryonesCoverage for " + id + " to zero");
 				} else {
 					everyonesCompleted = progress.completed;
 					// Everyones total comes from the single user total * the number of users
 					everyonesTotal = total * numberOfUsers;
 					//everyonesTotal = progress.total;
 					//everyonesPercent = (progress.completed / progress.total);
-					//TraceUtils.myTrace("setEveryonesCoverage for " + id + " to completed=" + everyonesCompleted + " of " + everyonesTotal + " for " + numberOfUsers + " people.");
+					//// TraceUtils.myTrace("setEveryonesCoverage for " + id + " to completed=" + everyonesCompleted + " of " + everyonesTotal + " for " + numberOfUsers + " people.");
 				}
 			} else {
 				return false

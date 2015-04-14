@@ -34,7 +34,7 @@ package com.clarityenglish.assets
 		}
 		// Getter and setter
 		public function set value(value:uint):void {
-			//TraceUtils.myTrace("setting value of ssd to " + value);
+			//// TraceUtils.myTrace("setting value of ssd to " + value);
 			_sessions = Math.floor(value);
 			redraw();
 		}

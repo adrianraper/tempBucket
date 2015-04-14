@@ -153,7 +153,7 @@ package com.clarityenglish.resultsmanager.view.management {
 					manageablesView.setExtraGroupsResults(note.getBody() as Array);
 					break;
 				case RMNotifications.XML_IMPORTED:
-					//TraceUtils.myTrace("manageablesMediator.setImportResults");
+					//// TraceUtils.myTrace("manageablesMediator.setImportResults");
 					manageablesView.setImportResults(note.getBody() as Array);
 					break;
 				case CommonNotifications.LOGGED_IN:
@@ -221,7 +221,7 @@ package com.clarityenglish.resultsmanager.view.management {
 		}
 		
 		private function onMoveManageables(e:ManageableEvent):void {
-			//TraceUtils.myTrace("manageablesMediator onMoveManageables"); 
+			//// TraceUtils.myTrace("manageablesMediator onMoveManageables");
 			sendNotification(RMNotifications.MOVE_MANAGEABLES, e);
 		}
 		
@@ -323,7 +323,7 @@ package com.clarityenglish.resultsmanager.view.management {
 		}
 		
 		private function onChange(e:Event):void {
-			//TraceUtils.myTrace("manageablesMediator send MANAGEABLE_SELECTED"); 
+			//// TraceUtils.myTrace("manageablesMediator send MANAGEABLE_SELECTED");
 			//MonsterDebugger.trace(this, "mediator.onChange");
 			//MonsterDebugger.trace(this, manageablesView.tree.selectedIndex);
 			sendNotification(RMNotifications.MANAGEABLE_SELECTED, manageablesView.getSelectedManageables());
@@ -362,7 +362,7 @@ class FilterDataDescriptor extends DefaultDataDescriptor {
 	 * @return
 	 */
 	override public function getChildren(node:Object, model:Object = null):ICollectionView {
-		//TraceUtils.myTrace("getChildren for " + node.name);
+		//// TraceUtils.myTrace("getChildren for " + node.name);
 		if (node is User) {
 			// A user never has any children
 			return null;
@@ -380,7 +380,7 @@ class FilterDataDescriptor extends DefaultDataDescriptor {
 						// Groups are never filtered
 						// v3.4 Except that I would like to hide groups that have no children
 						// This works but takes far too long for a school like Scipo
-						//TraceUtils.myTrace("group is " + child.name);
+						//// TraceUtils.myTrace("group is " + child.name);
 						//if (hasChildren(child)) {
 						// These don't work
 						//if ((child as Group).manageables.length>0) {
@@ -392,14 +392,14 @@ class FilterDataDescriptor extends DefaultDataDescriptor {
 						var user:User = child as User;
 						if (searchEvent.validateObject(user)) {
 							arrayCollection.addItem(user);
-							//TraceUtils.myTrace("found user=" + user.name);
+							//// TraceUtils.myTrace("found user=" + user.name);
 						}
 					}
 				}
 				// Putting this in seems to give an infinite loop
 				//if (arrayCollection.length==0 ) {
 				//	// I want to remove this node from the tree
-				//	TraceUtils.myTrace("empty node=" + node.name);
+				//	// TraceUtils.myTrace("empty node=" + node.name);
 				//	//removeChildAt(getParent(node);
 				//}
 			}

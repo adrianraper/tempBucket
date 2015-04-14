@@ -38,7 +38,7 @@ package com.clarityenglish.progressWidget.model {
 			var params:Array = [ ];
 			if (Application.application.parameters.rootID) params.push(new Number(Application.application.parameters.rootID));
 			if (Application.application.parameters.productCode) params.push(new Number(Application.application.parameters.productCode));
-			TraceUtils.myTrace("contentProxy for productCode=" + Application.application.parameters.productCode);
+			// TraceUtils.myTrace("contentProxy for productCode=" + Application.application.parameters.productCode);
 			new RemoteDelegate("getContent", params, this).execute();
 		}
 		
@@ -53,7 +53,7 @@ package com.clarityenglish.progressWidget.model {
 		public function onDelegateResult(operation:String, data:Object):void {
 			switch (operation) {
 				case "getContent":
-					TraceUtils.myTrace("contentProxy.getContent trigger CONTENT_LOADED");
+					// TraceUtils.myTrace("contentProxy.getContent trigger CONTENT_LOADED");
 					titles = data as Array;
 					// v3.1 Now you have the content object, you can play with it in the view
 					sendNotification(PWNotifications.CONTENT_LOADED, titles);

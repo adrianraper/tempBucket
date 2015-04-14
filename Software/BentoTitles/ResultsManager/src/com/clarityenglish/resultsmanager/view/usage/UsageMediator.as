@@ -94,9 +94,9 @@ package com.clarityenglish.resultsmanager.view.usage {
 		 * 
 		 * @param INotification a notification 
 		 */
-		TraceUtils.myTrace("UsageMediator");
+		// TraceUtils.myTrace("UsageMediator");
 		override public function handleNotification(note:INotification):void {
-			//TraceUtils.myTrace("UsageMediator.Notification." + note.getName());
+			//// TraceUtils.myTrace("UsageMediator.Notification." + note.getName());
 			switch (note.getName()) {
 				case RMNotifications.MANAGEABLES_LOADED:
 					// Get the user type counts from the ManageableProxy and set it in the view
@@ -120,10 +120,10 @@ package com.clarityenglish.resultsmanager.view.usage {
 					// AR Before you do anything with the courseUserCounts, you need to check if there
 					// is any data there. The SQL call returns an empty recordset if it finds nothing.
 					// This becomes an empty string in the mediator. (Not undefined or null).
-					//TraceUtils.myTrace("data.courseUserCounts.undefined=" + (data.courseUserCounts==undefined));
-					//TraceUtils.myTrace("data.courseUserCounts.null=" + (data.courseUserCounts==null));
-					//TraceUtils.myTrace("data.courseUserCounts.''=" + (data.courseUserCounts==""));
-					//TraceUtils.myTrace("data.courseUserCounts.length=" + data.courseUserCounts.length);
+					//// TraceUtils.myTrace("data.courseUserCounts.undefined=" + (data.courseUserCounts==undefined));
+					//// TraceUtils.myTrace("data.courseUserCounts.null=" + (data.courseUserCounts==null));
+					//// TraceUtils.myTrace("data.courseUserCounts.''=" + (data.courseUserCounts==""));
+					//// TraceUtils.myTrace("data.courseUserCounts.length=" + data.courseUserCounts.length);
 					
 					// v3.6 based on the data that comes back, we can work out which component views we want to display
 					// How to safely work out if the parts of the object that I am expecting exist?
@@ -131,19 +131,19 @@ package com.clarityenglish.resultsmanager.view.usage {
 						var toDate:Date = new Date(usageView.toDateField.selectedDate.setHours(23, 59, 59, 999));
 						var fromDate:Date = new Date(usageView.fromDateField.selectedDate.setHours(0, 0, 0, 0));
 						//if (data.sessionCounts['2010']) {
-						TraceUtils.myTrace("got sessionsStarted");
+						// TraceUtils.myTrace("got sessionsStarted");
 						usageView.show_session_count = true;
 						usageView.setSessionCounts(data.sessionCounts, fromDate, toDate);
 						
 						//} else {
-						//	TraceUtils.myTrace("not got sessionsStarted");
+						//	// TraceUtils.myTrace("not got sessionsStarted");
 						//	usageView.show_session_count = false;
 						//}
 					} else {
-						TraceUtils.myTrace("not got sessionsStarted");
+						// TraceUtils.myTrace("not got sessionsStarted");
 						usageView.show_session_count = false;
 					}
-					TraceUtils.myTrace("for title=" + selectedTitle.name);*/////////v3.7
+					// TraceUtils.myTrace("for title=" + selectedTitle.name);*/////////v3.7
 						
 					// AR Another problem is that if one course has had nothing happen, it will not exist 
 					// in data. But we certainly want to see it listed with 0s.
@@ -168,7 +168,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 							} else {
 								item.courseName = selectedTitle.getCourseById(item.courseID).name;
 							}
-							//TraceUtils.myTrace("usageMediator:item.courseID=" + item.courseID + " caption=" + item.courseName + " users=" + item.courseCount);
+							//// TraceUtils.myTrace("usageMediator:item.courseID=" + item.courseID + " caption=" + item.courseName + " users=" + item.courseCount);
 							if (item.courseCount > maxCount) {
 								maxCount = item.courseCount;
 							}
@@ -203,7 +203,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 								break;
 						}
 						*/
-						//TraceUtils.myTrace("usageMediator.data.length " + data.courseUserCounts.length + " value=" + singleValue + " max=" + maxValue);
+						//// TraceUtils.myTrace("usageMediator.data.length " + data.courseUserCounts.length + " value=" + singleValue + " max=" + maxValue);
 						//usageView.multipleCoursesInTitle((data.courseUserCounts.length > 1), singleValue, maxValue, data.courseUserCounts[0].courseName);
 						//usageView.multipleCoursesInTitle((data.courseUserCounts.length > 1));
 						
@@ -219,7 +219,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 						usageView.setCourseCounts(data.courseCounts, maxDuration, maxCount);
 					} else {
 						// Need to cope with no data and remove stuff from the screen
-						TraceUtils.myTrace("mediator, setting dp to null");
+						// TraceUtils.myTrace("mediator, setting dp to null");
 						usageView.setCourseCounts(null, 0, 0);
 					}
 					/*
@@ -227,7 +227,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 						// Add course names into the course time counts
 						for each (item in data.courseTimeCounts) {
 							item.courseName = selectedTitle.getCourseById(item.courseID).caption;
-							//TraceUtils.myTrace("usageMediator:item.courseID=" + item.courseID + " caption=" + item.courseName + " time=" + item.duration);
+							//// TraceUtils.myTrace("usageMediator:item.courseID=" + item.courseID + " caption=" + item.courseName + " time=" + item.duration);
 						}
 						
 						// Sort courseTimeCounts on courseID (based on the order in the content xml)
@@ -249,7 +249,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 					*/
 					
 					// Set the failed login counts in the view
-					//TraceUtils.myTrace("failed login, data.failedLoginCounts=" + data.failedLoginCounts);
+					//// TraceUtils.myTrace("failed login, data.failedLoginCounts=" + data.failedLoginCounts);
 					if (data.failedLoginCounts == new Object()) {
 						data.failedLoginCounts = new Array();
 					}
@@ -267,7 +267,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 					var licenceTypeEvent:LicenceTypeEvent = new LicenceTypeEvent(LicenceTypeEvent.LICENCE, usageView.userTypeCounts.AAlicence);
 					usageView.dispatchEvent(licenceTypeEvent);
 					
-					TraceUtils.myTrace("AAlicence=" + usageView.userTypeCounts.AAlicence + " as licenceType=" + selectedTitle.licenceType);
+					// TraceUtils.myTrace("AAlicence=" + usageView.userTypeCounts.AAlicence + " as licenceType=" + selectedTitle.licenceType);
 					//usageView.userTypeCounts.setExpiryDate(selectedTitle.expiryDate);
 					usageView.userTypeCounts.setExpiryDate(selectedTitle, data.licenceClearanceDate);
 					// v3.6 Or rather, we need a different view for LT
@@ -275,7 +275,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 					//if (selectedTitle.licenceType == Title.LICENCE_TYPE_LT ||
 					//	selectedTitle.licenceType == Title.LICENCE_TYPE_TT) {
 					if (!usageView.userTypeCounts.AAlicence) {
-						TraceUtils.myTrace("usageMediator: titleUserCounts=" + data.titleUserCounts + " of max=" + selectedTitle.maxStudents + " date=" + data.licenceClearanceDate);
+						// TraceUtils.myTrace("usageMediator: titleUserCounts=" + data.titleUserCounts + " of max=" + selectedTitle.maxStudents + " date=" + data.licenceClearanceDate);
 						//usageView.userTypeCounts.setStudentValues(data.titleUserCounts, selectedTitle.maxStudents);
 						//usageView.userTypeCounts.setStudentValues(data.titleUserCounts, selectedTitle);
 						usageView.userTypeCounts.setStudentValues(data.titleUserCounts, selectedTitle, data.licenceClearanceDate);
@@ -285,7 +285,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 						usageView.userTypeCounts.setAALicence(selectedTitle.maxStudents);
 					}
 					// Send more information about the account
-					TraceUtils.myTrace("set other info for " + selectedTitle.name);
+					// TraceUtils.myTrace("set other info for " + selectedTitle.name);
 					usageView.userTypeCounts.setTitleInformation(selectedTitle);*////////
                     
 					/*if (data.overLastYear == new Object()) {
@@ -305,7 +305,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 						var toFixDate:Date = new Date(toLastToday.setHours(23, 59, 59, 999));
 						var fromFixDate:Date = new Date(fromToday.setHours(0, 0, 0, 0));
 						//if (data.sessionCounts['2010']) {
-						TraceUtils.myTrace("got sessionsStarted");
+						// TraceUtils.myTrace("got sessionsStarted");
 						usageView.show_session_count = true;
 						
 						//v3.7.2.1  move overLastYear to session block
@@ -316,14 +316,14 @@ package com.clarityenglish.resultsmanager.view.usage {
 						
 					    //v3.7.2.1 move overLastYear to session block
 						//} else {
-						//	TraceUtils.myTrace("not got sessionsStarted");
+						//	// TraceUtils.myTrace("not got sessionsStarted");
 						//	usageView.show_session_count = false;
 						//}
 					} else {
-						TraceUtils.myTrace("not got sessionsStarted");
+						// TraceUtils.myTrace("not got sessionsStarted");
 						usageView.show_session_count = false;
 					}
-					TraceUtils.myTrace("for title=" + selectedTitle.name);
+					// TraceUtils.myTrace("for title=" + selectedTitle.name);
 					
 					usageView.userTypeCounts.AAlicence = (selectedTitle.licenceType == Title.LICENCE_TYPE_AA || 
 						selectedTitle.licenceType==Title.LICENCE_TYPE_NETWORK ||
@@ -333,7 +333,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 					var licenceTypeEvent:LicenceTypeEvent = new LicenceTypeEvent(LicenceTypeEvent.LICENCE, usageView.userTypeCounts.AAlicence);
 					usageView.dispatchEvent(licenceTypeEvent);
 					
-					TraceUtils.myTrace("AAlicence=" + usageView.userTypeCounts.AAlicence + " as licenceType=" + selectedTitle.licenceType);
+					// TraceUtils.myTrace("AAlicence=" + usageView.userTypeCounts.AAlicence + " as licenceType=" + selectedTitle.licenceType);
 					//usageView.userTypeCounts.setExpiryDate(selectedTitle.expiryDate);
 					usageView.userTypeCounts.setExpiryDate(selectedTitle, fixData.licenceClearanceDate);
 					// v3.6 Or rather, we need a different view for LT
@@ -341,7 +341,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 					//if (selectedTitle.licenceType == Title.LICENCE_TYPE_LT ||
 					//	selectedTitle.licenceType == Title.LICENCE_TYPE_TT) {
 					if (!usageView.userTypeCounts.AAlicence) {
-						TraceUtils.myTrace("usageMediator: titleUserCounts=" + fixData.titleUserCounts + " of max=" + selectedTitle.maxStudents + " date=" + fixData.licenceClearanceDate);
+						// TraceUtils.myTrace("usageMediator: titleUserCounts=" + fixData.titleUserCounts + " of max=" + selectedTitle.maxStudents + " date=" + fixData.licenceClearanceDate);
 						//usageView.userTypeCounts.setStudentValues(data.titleUserCounts, selectedTitle.maxStudents);
 						//usageView.userTypeCounts.setStudentValues(data.titleUserCounts, selectedTitle);
 						usageView.userTypeCounts.setStudentValues(fixData.titleUserCounts, selectedTitle, fixData.licenceClearanceDate);
@@ -351,7 +351,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 						usageView.userTypeCounts.setAALicence(selectedTitle.maxStudents);
 					}
 					// Send more information about the account
-					TraceUtils.myTrace("set other info for " + selectedTitle.name);
+					// TraceUtils.myTrace("set other info for " + selectedTitle.name);
 					usageView.userTypeCounts.setTitleInformation(selectedTitle);
 					
 					/*if (fixData.overLastYear == new Object()) {
@@ -372,8 +372,8 @@ package com.clarityenglish.resultsmanager.view.usage {
 		}
 		
 		private function onTitleChange(e:TitleEvent):void {
-			TraceUtils.myTrace("toFixDate is "+ e.toDate);
-			TraceUtils.myTrace("fromFixDate is "+ e.fromDate);
+			// TraceUtils.myTrace("toFixDate is "+ e.toDate);
+			// TraceUtils.myTrace("fromFixDate is "+ e.fromDate);
 			var usageProxy:UsageProxy = facade.retrieveProxy(UsageProxy.NAME) as UsageProxy;
 			usageProxy.getUsage(e.title, e.fromDate, e.toDate);
 			
@@ -382,8 +382,8 @@ package com.clarityenglish.resultsmanager.view.usage {
 			var toLastToday:Date = new Date();
 			var toFixDate:Date = new Date(toLastToday.setHours(23, 59, 59, 999));
 			var fromFixDate:Date = new Date(fromToday.setHours(0, 0, 0, 0));
-			TraceUtils.myTrace("toFixDate is "+ toFixDate);
-			TraceUtils.myTrace("fromFixDate is "+ fromFixDate);
+			// TraceUtils.myTrace("toFixDate is "+ toFixDate);
+			// TraceUtils.myTrace("fromFixDate is "+ fromFixDate);
 			usageProxy.getFixedUsage(e.title, fromFixDate, toFixDate);
 		}
 		
@@ -407,20 +407,20 @@ package com.clarityenglish.resultsmanager.view.usage {
 			for each (var course:Course in selectedTitle.courses) {
 				//sortedData.push(ArrayUtils.searchArrayForObject(data, course.id, "courseID"));
 				var checkedItem:Object = ArrayUtils.searchArrayForObject(data, course.id, "courseID");
-				//TraceUtils.myTrace("sortOnCourseID, title.id=" + course.id);
+				//// TraceUtils.myTrace("sortOnCourseID, title.id=" + course.id);
 				if (checkedItem != null) {
-					//TraceUtils.myTrace("found so copy id=" + checkedItem.courseID);
+					//// TraceUtils.myTrace("found so copy id=" + checkedItem.courseID);
 					sortedData.push(checkedItem);
 				} else {
 					emptyDataItem = new Object();
 					emptyDataItem.courseID = course.id;
 					//emptyDataItem.courseName = course.caption;
 					emptyDataItem.courseName = course.name;
-					TraceUtils.myTrace("empty data so add title id=" + emptyDataItem.courseID + " name=" + emptyDataItem.courseName);
+					// TraceUtils.myTrace("empty data so add title id=" + emptyDataItem.courseID + " name=" + emptyDataItem.courseName);
 					sortedData.push(emptyDataItem);
 				}
 			}
-			//TraceUtils.myTrace("finally data.length=" + sortedData.length);
+			//// TraceUtils.myTrace("finally data.length=" + sortedData.length);
 			return sortedData;
 		}
 		

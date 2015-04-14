@@ -22,7 +22,7 @@ package com.clarityenglish.resultsmanager.controller {
 			loginOptsProxy.setPasswordRequired(loginOpts.passwordRequiredOption);
 			
 			loginOptsProxy.setCanUnregisteredUsersLogin(loginOpts.unregisteredLearnersOption);
-			//TraceUtils.myTrace("UpdateLoginOptsCommand.loginOpts.unregisteredLearnersOption=" + loginOpts.unregisteredLearnersOption);
+			//// TraceUtils.myTrace("UpdateLoginOptsCommand.loginOpts.unregisteredLearnersOption=" + loginOpts.unregisteredLearnersOption);
 			for each (var selfRegisterObj:Object in loginOpts.selfRegisterArray)
 				loginOptsProxy.setRequiredSelfRegisterFields(selfRegisterObj.field, selfRegisterObj.enabled);
 			

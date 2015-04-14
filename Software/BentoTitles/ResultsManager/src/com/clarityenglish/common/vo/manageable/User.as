@@ -92,7 +92,7 @@
 		}
 		
 		public function get expiryDateAsDate():Date {
-			//TraceUtils.myTrace("user.as.expriyDate=" + expiryDate);
+			//// TraceUtils.myTrace("user.as.expriyDate=" + expiryDate);
 			return (expiryDate) ? DateUtils.ansiStringToDate(expiryDate) : null;
 		}
 		
@@ -119,7 +119,7 @@
 			rightNow.setMinutes(0);
 			rightNow.setSeconds(0);
 			rightNow.setMilliseconds(0);
-			//TraceUtils.myTrace("user.as.isExpired=" + DateUtils.ansiStringToDate(expiryDate).getTime() + " now=" + rightNow.getTime());
+			//// TraceUtils.myTrace("user.as.isExpired=" + DateUtils.ansiStringToDate(expiryDate).getTime() + " now=" + rightNow.getTime());
 			return (DateUtils.ansiStringToDate(expiryDate).getTime() < rightNow.getTime());
 		}
 		

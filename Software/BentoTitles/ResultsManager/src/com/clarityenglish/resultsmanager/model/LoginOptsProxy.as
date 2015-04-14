@@ -54,12 +54,12 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		public function getLoginOpts():void {
-			//TraceUtils.myTrace("proxy.getEmailOpts");
+			//// TraceUtils.myTrace("proxy.getEmailOpts");
 			new RemoteDelegate("getLoginOpts", [], this).execute();
 		}
 		
 		public function saveLoginOpts():void {
-			//TraceUtils.myTrace("proxy.saveLoginOpts loginOption=" + loginOption + " selfReg=" + selfRegister + " passReq=" + passwordRequired);
+			//// TraceUtils.myTrace("proxy.saveLoginOpts loginOption=" + loginOption + " selfReg=" + selfRegister + " passReq=" + passwordRequired);
 			new RemoteDelegate("setLoginOpts", [ loginOption, selfRegister, passwordRequired ], this).execute();
 		}
 		
@@ -82,7 +82,7 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		public function canUnregisteredUsersLogin():Boolean {
-			//TraceUtils.myTrace("proxy.canUnregisteredUsersLogin selfReg=" + selfRegister);
+			//// TraceUtils.myTrace("proxy.canUnregisteredUsersLogin selfReg=" + selfRegister);
 			return (selfRegister > 0);
 		}
 		
@@ -103,9 +103,9 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		public function setCanUnregisteredUsersLogin(canUnregisteredUsersLogin:Boolean):void {
-			//TraceUtils.myTrace("loginOptsProxy.setCanUnregisteredUsersLogin to " + canUnregisteredUsersLogin);
+			//// TraceUtils.myTrace("loginOptsProxy.setCanUnregisteredUsersLogin to " + canUnregisteredUsersLogin);
 			this.selfRegister = (canUnregisteredUsersLogin) ? 1 : 0;
-			//TraceUtils.myTrace("proxy.setCanUnregisteredUsersLogin selfReg=" + this.selfRegister);
+			//// TraceUtils.myTrace("proxy.setCanUnregisteredUsersLogin selfReg=" + this.selfRegister);
 		}
 		
 		public function setRequiredSelfRegisterFields(selfRegisterField:int, enabled:Boolean):void {

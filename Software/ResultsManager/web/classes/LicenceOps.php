@@ -218,26 +218,17 @@ EOD;
 	function countUsedLicences($rootID, $productCode, $licence) {
 		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
 		// v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
-		if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
 			$sql = <<<EOD
-				SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
+				SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed
 				FROM T_Session s, T_User u
 				WHERE s.F_UserID = u.F_UserID
 				AND s.F_StartDateStamp >= ?
 				AND s.F_Duration > 15
 EOD;
-		} else {
-			// gh#604 Teacher records in session will now include root, so ignore them here
-			$sql = <<<EOD
-				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed 
-				FROM T_Session s, T_User u
-				WHERE s.F_StartDateStamp >= ?
-				AND s.F_Duration > 15
-				AND s.F_UserID = u.F_UserID
-				AND u.F_UserType = 0
-EOD;
-		}
-		
+		// gh#604 Teacher records in session will now include root, so ignore them here
+		if ($licence->licenceType != Title::LICENCE_TYPE_TT)
+			$sql.= " AND u.F_UserType = 0";
+
 		// To allow old Road to IELTS to count with the new
 		if ($productCode == 52) {
 			$sql.= " AND s.F_ProductCode IN (?, 12)";
@@ -247,7 +238,7 @@ EOD;
 			$sql.= " AND s.F_ProductCode = ?";			
 		}
 			
-		if (stristr($rootID,',')!==FALSE) {
+		if (stristr($rootID,',') !== FALSE) {
 			$sql.= " AND s.F_RootID in ($rootID)";
 		} else if ($rootID=='*') {
 			// check all roots in that case - just for special cases, usually self-hosting

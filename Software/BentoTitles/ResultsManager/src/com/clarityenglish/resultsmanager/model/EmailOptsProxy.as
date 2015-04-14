@@ -34,25 +34,25 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		public function getEmailOpts():void {
-			//TraceUtils.myTrace("proxy.getEmailOpts");
+			//// TraceUtils.myTrace("proxy.getEmailOpts");
 			new RemoteDelegate("getEmailOpts", [], this).execute();
 		}
 		public function saveEmailOpts():void {
-			//TraceUtils.myTrace("proxy.saveEmailOpts " + emailOptionArray.toString());
+			//// TraceUtils.myTrace("proxy.saveEmailOpts " + emailOptionArray.toString());
 			new RemoteDelegate("setEmailOpts", [ emailOptionArray ], this).execute();
 		}
 		
 		// Public functions to get and set the data
 		public function getEmailCount():uint {
-			//TraceUtils.myTrace("getEmailCount=" + emailOptionArray.length);
+			//// TraceUtils.myTrace("getEmailCount=" + emailOptionArray.length);
 			return emailOptionArray.length;
 		}
 		public function getEmail(index:uint):String {
-			//TraceUtils.myTrace("proxy.getEmail for email(" +index+ ")=" + emailOptionArray[index].email);
+			//// TraceUtils.myTrace("proxy.getEmail for email(" +index+ ")=" + emailOptionArray[index].email);
 			return emailOptionArray[index].email;
 		}
 		public function setEmailItem(index:uint, email:String, messageType:uint):void {
-			//TraceUtils.myTrace("proxy.setEmailItem for email(" +index + ")=" + email);
+			//// TraceUtils.myTrace("proxy.setEmailItem for email(" +index + ")=" + email);
 			if (index >= emailOptionArray.length) {
 				emailOptionArray.push({ email:email, messageType:messageType });
 			} else {
@@ -66,38 +66,38 @@ package com.clarityenglish.resultsmanager.model {
 
 		public function getSubscriptionReminders(index:uint):Boolean {
 			var flagOn:Boolean = (emailOptionArray[index].messageType & SUBSCRIPTION_REMINDERS) == SUBSCRIPTION_REMINDERS;
-			//TraceUtils.myTrace("proxy.getSubscriptionReminders for email("+index+")=" + flagOn);
+			//// TraceUtils.myTrace("proxy.getSubscriptionReminders for email("+index+")=" + flagOn);
 			return flagOn;
 		}
 		public function getUsageStatistics(index:uint):Boolean {
 			var flagOn:Boolean = (emailOptionArray[index].messageType & USAGE_STATISTICS) ==USAGE_STATISTICS;
-			//TraceUtils.myTrace("proxy.getUsageStatistics for email("+index+")=" + flagOn);
+			//// TraceUtils.myTrace("proxy.getUsageStatistics for email("+index+")=" + flagOn);
 			return flagOn;
 		}
 		public function getServiceNotices(index:uint):Boolean {
 			var flagOn:Boolean = (emailOptionArray[index].messageType & SERVICE_NOTICES) == SERVICE_NOTICES;
-			//TraceUtils.myTrace("proxy.getServiceNoties for email("+index+")=" + flagOn);
+			//// TraceUtils.myTrace("proxy.getServiceNoties for email("+index+")=" + flagOn);
 			return flagOn;
 		}
 		public function getSupportNotices(index:uint):Boolean {
 			var flagOn:Boolean = (emailOptionArray[index].messageType & SUPPORT_NOTICES) == SUPPORT_NOTICES;
-			//TraceUtils.myTrace("proxy.getSupportNotices for email("+index+")=" + flagOn);
+			//// TraceUtils.myTrace("proxy.getSupportNotices for email("+index+")=" + flagOn);
 			return flagOn;
 		}
 		public function getUpgradeInformation(index:uint):Boolean {
 			var flagOn:Boolean = (emailOptionArray[index].messageType & UPGRADE_INFORMATION) == UPGRADE_INFORMATION;
-			//TraceUtils.myTrace("proxy.getUpgradeInformation for email("+index+")=" + flagOn);
+			//// TraceUtils.myTrace("proxy.getUpgradeInformation for email("+index+")=" + flagOn);
 			return flagOn;
 		}
 		public function getProductInformation(index:uint):Boolean {
 			var flagOn:Boolean = (emailOptionArray[index].messageType & PRODUCT_INFORMATION) == PRODUCT_INFORMATION;
-			//TraceUtils.myTrace("proxy.getProductInformation for email("+index+")=" + flagOn);
+			//// TraceUtils.myTrace("proxy.getProductInformation for email("+index+")=" + flagOn);
 			return flagOn;
 		}
 
 		/*
 		public function setSubscriptionReminders(index:uint, value:Boolean):void {
-			TraceUtils.myTrace("proxy.setSubscriptionReminders for email(" + index + ")=" + value);
+			// TraceUtils.myTrace("proxy.setSubscriptionReminders for email(" + index + ")=" + value);
 			if (value) {
 				emailOptionArray[index].messageType |= SUBSCRIPTION_REMINDERS;
 			} else {
@@ -112,7 +112,7 @@ package com.clarityenglish.resultsmanager.model {
 			switch (operation) {
 				case "getEmailOpts":
 					emailOptionArray = data as Array;
-					//TraceUtils.myTrace("got email[0] as " + emailOptionArray[0].messageType);
+					//// TraceUtils.myTrace("got email[0] as " + emailOptionArray[0].messageType);
 					sendNotification(RMNotifications.EMAILOPTS_LOADED, emailOptionArray);
 					break;
 				case "setEmailOpts":

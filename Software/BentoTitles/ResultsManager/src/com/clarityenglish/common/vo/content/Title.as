@@ -72,7 +72,7 @@
 		}
 		
 		public function addCourse(course:Course):void {
-			//TraceUtils.myTrace("title.as.addCourse code=" + productCode + " licenceStartDate=" + licenceStartDate);
+			//// TraceUtils.myTrace("title.as.addCourse code=" + productCode + " licenceStartDate=" + licenceStartDate);
 			courses.push(course);
 		}
 		
@@ -172,7 +172,7 @@
 			
 			// v3.4.2 And we do want to set the caption too. This will not trigger an extra dictionaries PHP call, so not expensive.
 			var products:Array = DictionarySingleton.getInstance().products;
-			//TraceUtils.myTrace("getting RM name from products dictionary=" + products[productCode].label);
+			//// TraceUtils.myTrace("getting RM name from products dictionary=" + products[productCode].label);
 			for each (var product:Object in products) {
 				if (product.data == productCode) {
 					title.name = product.label;
@@ -198,7 +198,7 @@
 		 * setting hidden groups (and will possibly have uses elsewhere too).
 		 */
 		override public function get id():String {
-			//TraceUtils.myTrace("title.as.getID code=" + productCode + " licenceStartDate=" + licenceStartDate);
+			//// TraceUtils.myTrace("title.as.getID code=" + productCode + " licenceStartDate=" + licenceStartDate);
 			return productCode.toString();
 		}
 		

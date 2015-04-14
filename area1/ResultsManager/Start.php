@@ -63,7 +63,8 @@
 			var jsPassword = swfobject.getQueryParamValue("password");
 		}
 		var flashvars = {
-			host: startControl, // THIS MUST INCLUDE THE TRAILING SLASH!
+			// gh#1190 No need to send host, retrieved by area1/ResultsManager/return_host.txt
+			//host: startControl,
 			username: jsUserName,
 			password: jsPassword,
 			rootID: swfobject.getQueryParamValue("rootID"),

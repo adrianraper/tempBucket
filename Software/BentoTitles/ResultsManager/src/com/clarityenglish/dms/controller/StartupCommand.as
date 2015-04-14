@@ -22,6 +22,7 @@ package com.clarityenglish.dms.controller {
 		
 		override public function execute(note:INotification):void {
 			// If the host is defined in the FlashVars then set it
+			// gh#1190 This will not be sent, let Constants sort it out
 			if (Application.application.parameters.host) Constants.HOST = Application.application.parameters.host;
 			
 			// If the sessionid is defined in the FlashVars then set it

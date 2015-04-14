@@ -28,32 +28,32 @@ package com.clarityenglish.progressWidget.model {
 		
 		public function getCoverage(trackables:Array, fromDate:Date, toDate:Date, userDetails:Object):void {
 			// We want to pull the product codes from the trackables array
-			//TraceUtils.myTrace("in scoresProxy for");
+			//// TraceUtils.myTrace("in scoresProxy for");
 			var titleIDs:Array = new Array();
 			for each (var title:Title in trackables) {
-				//TraceUtils.myTrace("product=" + title.productCode);
+				//// TraceUtils.myTrace("product=" + title.productCode);
 				titleIDs.push(title.productCode);
 			}
 			// I don't understand why I can't pass userDetails as an object. Charles seems to see it fine, but I can't read the properties in PWService.
-			TraceUtils.myTrace("progressProxy for " + titleIDs.toString() + " fromDate=" + DateUtils.dateToAnsiString(fromDate) + " toDate=" + DateUtils.dateToAnsiString(toDate));
+			// TraceUtils.myTrace("progressProxy for " + titleIDs.toString() + " fromDate=" + DateUtils.dateToAnsiString(fromDate) + " toDate=" + DateUtils.dateToAnsiString(toDate));
 			new RemoteDelegate("getCoverage", [ titleIDs, userDetails.userID, DateUtils.dateToAnsiString(fromDate), DateUtils.dateToAnsiString(toDate)], this).execute();
 		}
 		public function getEveryonesCoverage(trackables:Array, fromDate:Date, toDate:Date, userDetails:Object):void {
 			// We want to pull the product codes from the trackables array
-			//TraceUtils.myTrace("in scoresProxy for");
+			//// TraceUtils.myTrace("in scoresProxy for");
 			var titleIDs:Array = new Array();
 			for each (var title:Title in trackables) {
-				//TraceUtils.myTrace("product=" + title.productCode);
+				//// TraceUtils.myTrace("product=" + title.productCode);
 				titleIDs.push(title.productCode);
 			}
-			TraceUtils.myTrace("progressProxy for everyone " + titleIDs.toString() + " fromDate=" + DateUtils.dateToAnsiString(fromDate) + " toDate=" + DateUtils.dateToAnsiString(toDate) + " limit to " + userDetails.country);
+			// TraceUtils.myTrace("progressProxy for everyone " + titleIDs.toString() + " fromDate=" + DateUtils.dateToAnsiString(fromDate) + " toDate=" + DateUtils.dateToAnsiString(toDate) + " limit to " + userDetails.country);
 			new RemoteDelegate("getEveryonesCoverage", [ titleIDs, userDetails.userID, userDetails.rootID, userDetails.country, DateUtils.dateToAnsiString(fromDate), DateUtils.dateToAnsiString(toDate) ], this).execute();
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		
 		public function onDelegateResult(operation:String, data:Object):void{
-			TraceUtils.myTrace("progressProxy result for " + operation);
+			// TraceUtils.myTrace("progressProxy result for " + operation);
 			switch (operation) {
 				case "getCoverage":
 					sendNotification(PWNotifications.SCORES_LOADED, data);

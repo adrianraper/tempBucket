@@ -26,7 +26,7 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		public function getUsage(title:Title, fromDate:Date, toDate:Date):void {
-			TraceUtils.myTrace("usageProxy fromDate=" + DateUtils.dateToAnsiString(fromDate) + " toDate=" + DateUtils.dateToAnsiString(toDate));
+			// TraceUtils.myTrace("usageProxy fromDate=" + DateUtils.dateToAnsiString(fromDate) + " toDate=" + DateUtils.dateToAnsiString(toDate));
 			
 			// Ticket #95 - don't respect timezones so pass dates as an ANSI string
 			//new RemoteDelegate("getUsageForTitle", [ title, fromDate, toDate ], this).execute();

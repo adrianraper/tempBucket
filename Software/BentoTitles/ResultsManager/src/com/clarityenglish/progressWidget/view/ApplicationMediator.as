@@ -112,7 +112,7 @@ package com.clarityenglish.progressWidget.view {
 		 */
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
-			TraceUtils.myTrace("AppMediator.handleNotification." + note.getName());
+			// TraceUtils.myTrace("AppMediator.handleNotification." + note.getName());
 			//MonsterDebugger.trace(this, note);
 			
 			switch (note.getName()) {
@@ -143,7 +143,7 @@ package com.clarityenglish.progressWidget.view {
 					application.detailView.tree.dataProvider = note.getBody();
 					//application.switchView("detailView");
 					
-					TraceUtils.myTrace("PW.userID=" + Application.application.parameters.userID);
+					// TraceUtils.myTrace("PW.userID=" + Application.application.parameters.userID);
 					// Then requesting the progress data for each of these.
 					// Once this comes back (see below) - we will then merge and pass to the view
 					this.userDetails = new Object();
@@ -159,10 +159,10 @@ package com.clarityenglish.progressWidget.view {
 					
 				// Detail view is just for debugging, doesn't need it's own mediator, so handle events for it here
 				case PWNotifications.SCORES_LOADED:
-					//TraceUtils.myTrace("beginning of scores loaded");
+					//// TraceUtils.myTrace("beginning of scores loaded");
 					// Save in our content structure
 					this.progress = note.getBody() as Array;
-					//TraceUtils.myTrace("1=" + this.progress.length);
+					//// TraceUtils.myTrace("1=" + this.progress.length);
 					
 					// Now the scores for this title have come back, list them out for debug
 					application.detailView.listMyScores.dataProvider = this.progress;
@@ -171,7 +171,7 @@ package com.clarityenglish.progressWidget.view {
 					// This is driven by productCode to differentiate the thing we are reporting on from the supporting titles.
 					var coverageOutput:Array = mergeCoverageAndContent(Application.application.parameters.productCode);
 					//var coverageOutput:XML = mergeCoverageAndContent(Application.application.parameters.productCode);
-					//TraceUtils.myTrace("2=" + coverageOutput.length);
+					//// TraceUtils.myTrace("2=" + coverageOutput.length);
 					
 					// Give it to the detail view (debug)
 					application.detailView.simpleList.dataProvider = coverageOutput.map(formatCoverage);
@@ -179,7 +179,7 @@ package com.clarityenglish.progressWidget.view {
 					// make a more sophisticated data set, now that titles contains the stats objects
 					var progressData:XML = convertTitlesToXML(Application.application.parameters.productCode);
 					application.detailView.everyonesOutput.text = progressData.toXMLString();
-					//TraceUtils.myTrace("merged output=" + progressData.toXMLString());
+					//// TraceUtils.myTrace("merged output=" + progressData.toXMLString());
 					
 					// We can send this to the progress view now
 					application.progressView.setDataProvider(progressData);
@@ -196,10 +196,10 @@ package com.clarityenglish.progressWidget.view {
 					
 					var numberOfUsers:Array = new Array();
 					if ((note.getBody() as Array).length>0) {
-						//TraceUtils.myTrace("got everyones progress for " + (note.getBody() as Array)[0].users + " other users.");
+						//// TraceUtils.myTrace("got everyones progress for " + (note.getBody() as Array)[0].users + " other users.");
 						// The first records are a header - contains number of users. Then the rest are progress records.
 						while ((note.getBody() as Array)[0].users) {
-							TraceUtils.myTrace("number of users=" + (note.getBody() as Array)[0].users + " id=" + (note.getBody() as Array)[0].id);
+							// TraceUtils.myTrace("number of users=" + (note.getBody() as Array)[0].users + " id=" + (note.getBody() as Array)[0].id);
 							var temp:Object = (note.getBody() as Array).shift();
 							numberOfUsers[temp.id] = temp.users;
 						}
@@ -228,8 +228,8 @@ package com.clarityenglish.progressWidget.view {
 					var appData:Array = note.getBody() as Array;
 					this.userDetails.country = appData[0];
 					
-					TraceUtils.myTrace("country=" + appData[0]);
-					//TraceUtils.myTrace("duration=" + appData[1]);
+					// TraceUtils.myTrace("country=" + appData[0]);
+					//// TraceUtils.myTrace("duration=" + appData[1]);
 					switch (appData[1]) {
 						case 0: // always
 							var startDate:Date = new Date(2000, 0, 1);
@@ -253,7 +253,7 @@ package com.clarityenglish.progressWidget.view {
 							endDate = new Date();
 							break;
 					}
-					//TraceUtils.myTrace("appMediator.startDate=" + startDate.toDateString());
+					//// TraceUtils.myTrace("appMediator.startDate=" + startDate.toDateString());
 					progressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
 					progressProxy.getEveryonesCoverage(this.titles, startDate, endDate, this.userDetails);
 					break;
@@ -282,18 +282,18 @@ package com.clarityenglish.progressWidget.view {
 		 * even though my code above is (for now) the only thing to react to this notification.
 		 */
 		private function onChange(e:Event):void {
-			TraceUtils.myTrace("appMediator.onChange");
+			// TraceUtils.myTrace("appMediator.onChange");
 			sendNotification(PWNotifications.RELOAD_EVERYONES_SCORES, [application.comparisonView.countrySelection.selectedItem.label, 
 																		application.comparisonView.durationSelection.selectedItem.data]);
 			// Now go and get everyone's data, with new filtering
-			//TraceUtils.myTrace("event target=" + e.currentTarget);
-			//TraceUtils.myTrace("country=" + application.comparisonView.countrySelection.selectedItem.label);
-			//TraceUtils.myTrace("duration=" + application.comparisonView.durationSelection.selectedItem.data);
+			//// TraceUtils.myTrace("event target=" + e.currentTarget);
+			//// TraceUtils.myTrace("country=" + application.comparisonView.countrySelection.selectedItem.label);
+			//// TraceUtils.myTrace("duration=" + application.comparisonView.durationSelection.selectedItem.data);
 			//var progressProxy:ProgressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
 			//progressProxy.getEveryonesCoverage(this.titles, new Date(2000, 0, 1), new Date(), this.userDetails);
 		}
 		private function onRefresh(e:Event):void {
-			//TraceUtils.myTrace("appMediator.onRefresh");
+			//// TraceUtils.myTrace("appMediator.onRefresh");
 			MonsterDebugger.trace(this, "onRefresh");
 			sendNotification(PWNotifications.REFRESH);
 		}
@@ -319,21 +319,21 @@ package com.clarityenglish.progressWidget.view {
 			// This loops through all the content read from emu.xml and course.xml (if any).
 			// For each trackable item it attempts to get a coverage record, if the item has been done.
 			for each (var title:Title in titles) {
-				TraceUtils.myTrace("reportable.id=" + title.id);
+				// TraceUtils.myTrace("reportable.id=" + title.id);
 				// Is this the EMU title?
 				if (title.id == String(productCode)) {
 					//thisTitleCoverage = new Coverage(title);
 					for each (var course:Course in title.courses) {
-						//TraceUtils.myTrace("reportable.id=" + course.id);
+						//// TraceUtils.myTrace("reportable.id=" + course.id);
 						thisCourseCoverage = new Coverage(course);
 						for each (var unit:Unit in course.units) {
-							//TraceUtils.myTrace("reportable.id=" + unit.id);
+							//// TraceUtils.myTrace("reportable.id=" + unit.id);
 							// For EMU coverage, more than one trackable item means we report at item level
 							// Otherwise we move the item coverage up to the unit level.
 							if (unit.exercises.length>1) {
 								for each (var item:Exercise in unit.exercises) {
 									thisItemCoverage = new Coverage(item);
-									//TraceUtils.myTrace("item.reportable.id=" + item.id + " maxScore=" + item.maxScore);
+									//// TraceUtils.myTrace("item.reportable.id=" + item.id + " maxScore=" + item.maxScore);
 									thisItemCoverage.setCoverage(getCoverageForID(item.id, item.maxScore));
 									// attach the coverage object to the .stats property?
 									item.stats = thisItemCoverage;
@@ -342,7 +342,7 @@ package com.clarityenglish.progressWidget.view {
 							} else {
 								thisUnitCoverage = new Coverage(unit);
 								item = unit.exercises[0];
-								//TraceUtils.myTrace("unit.reportable.id=" + item.id + " maxScore=" + item.maxScore);
+								//// TraceUtils.myTrace("unit.reportable.id=" + item.id + " maxScore=" + item.maxScore);
 								thisUnitCoverage.setCoverage(getCoverageForID(item.id, item.maxScore));
 								unit.stats = thisUnitCoverage;
 								reportableIDs.push(thisUnitCoverage);
@@ -357,10 +357,10 @@ package com.clarityenglish.progressWidget.view {
 					// Summarise by bubbling up the exercise progress.
 					thisTitleCoverage = new Coverage(title);
 					for each (course in title.courses) {
-						//TraceUtils.myTrace("second loop reportable.id=" + course.id);
+						//// TraceUtils.myTrace("second loop reportable.id=" + course.id);
 						thisCourseCoverage = new Coverage(course);
 						for each (unit in course.units) {
-							//TraceUtils.myTrace("reportable.id=" + unit.id);
+							//// TraceUtils.myTrace("reportable.id=" + unit.id);
 							thisUnitCoverage = new Coverage(unit);
 							for each (item in unit.exercises) {
 								thisItemCoverage = new Coverage(item);
@@ -386,7 +386,7 @@ package com.clarityenglish.progressWidget.view {
 						//reportableIDs.push(thisCourseCoverage);
 					}
 					// attach the coverage object to the .stats property
-					//TraceUtils.myTrace("adding stats to title" + title.id);
+					//// TraceUtils.myTrace("adding stats to title" + title.id);
 					title.stats = thisTitleCoverage;
 					//reportableIDs.push(thisTitleCoverage);
 				}
@@ -402,7 +402,7 @@ package com.clarityenglish.progressWidget.view {
 						for each (unit in course.units) {
 							for each (item in unit.exercises) {
 								if (item.trackableID) {
-									//TraceUtils.myTrace("linked coverage test" + item.trackableID);
+									//// TraceUtils.myTrace("linked coverage test" + item.trackableID);
 									// We have found an item in the EMU that needs to pick up coverage from the 
 									// tracked ID in the rest of the titles.
 									// However, you don't want to simply replace the emu coverage with the linked one
@@ -410,7 +410,7 @@ package com.clarityenglish.progressWidget.view {
 									// So just copy the information.
 									//var sourceCoverage:Coverage = getLinkedCoverage(reportableIDs, item.trackableID);
 									var sourceCoverage:Coverage = getLinkedCoverage(titles, item.trackableID);
-									//TraceUtils.myTrace("got linked coverage=" + sourceCoverage.toString());
+									//// TraceUtils.myTrace("got linked coverage=" + sourceCoverage.toString());
 									if (unit.exercises.length > 1) {
 										// It replaces the item coverage because there are many exercises
 										//item.stats = sourceCoverage;
@@ -423,18 +423,18 @@ package com.clarityenglish.progressWidget.view {
 								}
 								// Either the item OR the unit has stats, never both
 								if (item.stats is Coverage) {
-									//TraceUtils.myTrace("item.stats.completed=" + Number(item.stats.completed));
+									//// TraceUtils.myTrace("item.stats.completed=" + Number(item.stats.completed));
 									summaryTotal += Number(item.stats.total);
 									summaryCompleted += Number(item.stats.completed);
 								}
 							}
 							if (unit.stats is Coverage) {
-								//TraceUtils.myTrace("unit.stats.completed=" + Number(unit.stats.completed));
+								//// TraceUtils.myTrace("unit.stats.completed=" + Number(unit.stats.completed));
 								summaryTotal += Number(unit.stats.total);
 								summaryCompleted += Number(unit.stats.completed);
 							}
 						}
-						//TraceUtils.myTrace("course.stats.completed=" + summaryCompleted);
+						//// TraceUtils.myTrace("course.stats.completed=" + summaryCompleted);
 						course.stats.total = summaryTotal;
 						course.stats.completed = summaryCompleted;
 					}
@@ -452,7 +452,7 @@ package com.clarityenglish.progressWidget.view {
 					break;
 				}
 			}
-			//TraceUtils.myTrace("no coverage for " + id + " so return completed=" + defaultMaxScore);
+			//// TraceUtils.myTrace("no coverage for " + id + " so return completed=" + defaultMaxScore);
 			return { completed:0, total:defaultMaxScore };
 		}
 		// Try it on the structure itself
@@ -461,26 +461,26 @@ package com.clarityenglish.progressWidget.view {
 				// v3.6 I am getting errors because title might not have added the stats object
 				// In fact, all content objects might not have it. I wonder why this used to work?
 				if (title.stats && title.stats.id == id) {
-					//TraceUtils.myTrace("got it, stats=" + (title.stats as Coverage).completed);
+					//// TraceUtils.myTrace("got it, stats=" + (title.stats as Coverage).completed);
 					return title.stats as Coverage;
 					break;
 				}
 				for each (var course:Course in title.courses) {
-					//TraceUtils.myTrace("getLinked for course=" + course.id);
+					//// TraceUtils.myTrace("getLinked for course=" + course.id);
 					//if (course.stats.id == id) {
 					if (course.stats && course.stats.id == id) {
 						return course.stats as Coverage;
 						break;
 					}
 					for each (var unit:Unit in course.units) {
-						//TraceUtils.myTrace("getLinked for unit=" + unit.id);
+						//// TraceUtils.myTrace("getLinked for unit=" + unit.id);
 						//if (unit.stats.id == id) {
 						if (unit.stats && unit.stats.id == id) {
 							return unit.stats as Coverage;
 							break;
 						}
 						for each (var item:Exercise in unit.exercises) {
-							//TraceUtils.myTrace("getLinked for item=" + item.id);
+							//// TraceUtils.myTrace("getLinked for item=" + item.id);
 							//if (item.stats.id == id) {
 							if (item.stats && item.stats.id == id) {
 								return item.stats as Coverage;
@@ -556,25 +556,25 @@ package com.clarityenglish.progressWidget.view {
 			// This loops through all the content read from emu.xml and course.xml (if any).
 			// For each trackable item it attempts to get a coverage record, if the item has been done.
 			for each (var title:Title in titles) {
-				//TraceUtils.myTrace("reportable.id=" + title.id);
+				//// TraceUtils.myTrace("reportable.id=" + title.id);
 				// Is this the EMU title?
 				if (title.id == String(productCode)) {
 					//thisTitleCoverage = new Coverage(title);
 					for each (var course:Course in title.courses) {
-						//TraceUtils.myTrace("reportable.id=" + course.id);
+						//// TraceUtils.myTrace("reportable.id=" + course.id);
 						//thisCourseCoverage = course.stats;
 						for each (var unit:Unit in course.units) {
-							//TraceUtils.myTrace("reportable.id=" + unit.id);
+							//// TraceUtils.myTrace("reportable.id=" + unit.id);
 							// For EMU coverage, more than one trackable item means we report at item level
 							// Otherwise we move the item coverage up to the unit level.
 							if (unit.exercises.length>1) {
 								for each (var item:Exercise in unit.exercises) {
 									thisItemCoverage = item.stats as Coverage;
-									//TraceUtils.myTrace("emu item work on =" + thisItemCoverage.toString());
+									//// TraceUtils.myTrace("emu item work on =" + thisItemCoverage.toString());
 									// To work out the averages, you need to know how many people have started this course
 									// TODO This figure is not accurate. If someone has only done AP in a course, we can't count them 
 									// (unless we make the AP have one unit in one course!), then we could map the AP course ID to the EMU course ID
-									//TraceUtils.myTrace("number of users for course " + course.id + "=" + numberOfUsers[course.id]);
+									//// TraceUtils.myTrace("number of users for course " + course.id + "=" + numberOfUsers[course.id]);
 									// NOTE. The total for everyone comes from item.total * number of users
 									thisItemCoverage.setEveryonesCoverage(getEveryonesCoverageForID(item.id, item.maxScore), numberOfUsers[course.id]);
 									// attach the coverage object to the .stats property?
@@ -584,8 +584,8 @@ package com.clarityenglish.progressWidget.view {
 							} else {
 								thisUnitCoverage = unit.stats as Coverage;
 								item = unit.exercises[0];
-								//TraceUtils.myTrace("emu unit work on =" + thisUnitCoverage.toString());
-								//TraceUtils.myTrace("number of users for course " + course.id + "=" + numberOfUsers[course.id]);
+								//// TraceUtils.myTrace("emu unit work on =" + thisUnitCoverage.toString());
+								//// TraceUtils.myTrace("number of users for course " + course.id + "=" + numberOfUsers[course.id]);
 								thisUnitCoverage.setEveryonesCoverage(getEveryonesCoverageForID(item.id, item.maxScore), numberOfUsers[course.id]);
 								//unit.stats = thisUnitCoverage;
 								//reportableIDs.push(thisUnitCoverage);
@@ -594,38 +594,38 @@ package com.clarityenglish.progressWidget.view {
 						// This is just empty, but will be filled later
 						//course.stats = thisCourseCoverage;
 					//for each (pushedCoverage in reportableIDs) {
-					//	TraceUtils.myTrace("w:reportableIDs=" + pushedCoverage.toString());
+					//	// TraceUtils.myTrace("w:reportableIDs=" + pushedCoverage.toString());
 					//}
 					}
-					//TraceUtils.myTrace("end loop, raptile=" + titles[0].courses[0].units[0].stats.toString());
+					//// TraceUtils.myTrace("end loop, raptile=" + titles[0].courses[0].units[0].stats.toString());
 					
 				} else {
 					// So this is a title from a licenced product (assume AP) in the EMU	
 					// Summarise by bubbling up the exercise progress.
 					thisTitleCoverage = new Coverage(title);
 					for each (course in title.courses) {
-						//TraceUtils.myTrace("reportable.id=" + course.id);
+						//// TraceUtils.myTrace("reportable.id=" + course.id);
 						thisCourseCoverage = course.stats as Coverage;
 						for each (unit in course.units) {
-							//TraceUtils.myTrace("reportable.id=" + unit.id);
+							//// TraceUtils.myTrace("reportable.id=" + unit.id);
 							thisUnitCoverage = unit.stats as Coverage;
 							for each (item in unit.exercises) {
 								thisItemCoverage = item.stats as Coverage;
 								// AP exercises send back .completed=1 and .total=1 for each exercise that has been done at least once
 								// And for exercises that I haven't done, the maxScore is 1
-								//TraceUtils.myTrace("number of users for course " + course.id + "=" + numberOfUsers[course.id]);
+								//// TraceUtils.myTrace("number of users for course " + course.id + "=" + numberOfUsers[course.id]);
 								thisItemCoverage.setEveryonesCoverage(getEveryonesCoverageForID(thisItemCoverage.id, 1), numberOfUsers[course.id]);
 								//thisItemCoverage.total++;
 								thisUnitCoverage.everyonesCompleted += thisItemCoverage.everyonesCompleted;
 								thisUnitCoverage.everyonesTotal += thisItemCoverage.everyonesTotal;
-								//TraceUtils.myTrace("everyone AP item:" + item.name + " everyonesCompleted=" + thisItemCoverage.everyonesCompleted);
+								//// TraceUtils.myTrace("everyone AP item:" + item.name + " everyonesCompleted=" + thisItemCoverage.everyonesCompleted);
 								// attach the coverage object to the .stats property
 								//item.stats = thisItemCoverage;
 								//reportableIDs.push(thisItemCoverage);
 							}
-							//TraceUtils.myTrace("everyone AP unit:" + unit.name + " everyonesCompleted=" + thisUnitCoverage.everyonesCompleted);
+							//// TraceUtils.myTrace("everyone AP unit:" + unit.name + " everyonesCompleted=" + thisUnitCoverage.everyonesCompleted);
 							//reportableIDs.push(thisUnitCoverage);
-							//TraceUtils.myTrace("everyone AP unit:" + thisUnitCoverage.toString());
+							//// TraceUtils.myTrace("everyone AP unit:" + thisUnitCoverage.toString());
 							thisCourseCoverage.everyonesCompleted += thisUnitCoverage.everyonesCompleted;
 							thisCourseCoverage.everyonesTotal += thisUnitCoverage.everyonesTotal;
 							// attach the coverage object to the .stats property
@@ -640,12 +640,12 @@ package com.clarityenglish.progressWidget.view {
 					// attach the coverage object to the .stats property
 					title.stats = thisTitleCoverage;
 					//reportableIDs.push(thisTitleCoverage);
-					//TraceUtils.myTrace("end loop, reptile=" + titles[0].courses[0].units[0].stats.toString());
+					//// TraceUtils.myTrace("end loop, reptile=" + titles[0].courses[0].units[0].stats.toString());
 				}
 			}
-			//TraceUtils.myTrace("end loop, roptile=" + titles[0].courses[0].units[0].stats.toString());
+			//// TraceUtils.myTrace("end loop, roptile=" + titles[0].courses[0].units[0].stats.toString());
 			//for each (var pushedCoverage:Coverage in reportableIDs) {
-			//	TraceUtils.myTrace("z:reportableIDs=" + pushedCoverage.toString());
+			//	// TraceUtils.myTrace("z:reportableIDs=" + pushedCoverage.toString());
 			//}
 			// Finally (because you don't really know what order the above all went in) we need to see if there are any
 			// items in the EMU that are tracking items in the other titles. Typically this is a unit in AP summarised to the EMU.
@@ -662,7 +662,7 @@ package com.clarityenglish.progressWidget.view {
 									// tracked ID in the rest of the titles.
 									//var sourceCoverage:Coverage = getLinkedCoverage(reportableIDs, item.trackableID);
 									var sourceCoverage:Coverage = getLinkedCoverage(titles, item.trackableID);
-									//TraceUtils.myTrace("got everyone linked coverage=" + sourceCoverage.toString());
+									//// TraceUtils.myTrace("got everyone linked coverage=" + sourceCoverage.toString());
 									if (unit.exercises.length > 1) {
 										// It replaces the item coverage because there are many exercises
 										// Just copy the numbers, don't actually put the AP coverage object into the emu
@@ -676,22 +676,22 @@ package com.clarityenglish.progressWidget.view {
 										//unit.stats.everyonesCompleted =  sourceCoverage.everyonesCompleted;
 										//unit.stats.everyonesTotal =  sourceCoverage.everyonesTotal;
 									}
-									//TraceUtils.myTrace("buss");
+									//// TraceUtils.myTrace("buss");
 								}
 								// Either the item OR the unit has stats, never both
 								if (item.stats is Coverage) {
-									//TraceUtils.myTrace("item.stats.completed=" + Number(item.stats.completed));
+									//// TraceUtils.myTrace("item.stats.completed=" + Number(item.stats.completed));
 									summaryTotal += Number(item.stats.everyonesTotal);
 									summaryCompleted += Number(item.stats.everyonesCompleted);
 								}
 							}
 							if (unit.stats is Coverage) {
-								//TraceUtils.myTrace("unit.stats.completed=" + Number(unit.stats.completed));
+								//// TraceUtils.myTrace("unit.stats.completed=" + Number(unit.stats.completed));
 								summaryTotal += Number(unit.stats.everyonesTotal);
 								summaryCompleted += Number(unit.stats.everyonesCompleted);
 							}
 						}
-						//TraceUtils.myTrace("course.stats.completed=" + summaryCompleted);
+						//// TraceUtils.myTrace("course.stats.completed=" + summaryCompleted);
 						course.stats.everyonesTotal = summaryTotal;
 						course.stats.everyonesCompleted = summaryCompleted;
 					}
@@ -709,7 +709,7 @@ package com.clarityenglish.progressWidget.view {
 					break;
 				}
 			}
-			//TraceUtils.myTrace("no coverage for " + id + " so return completed=" + defaultMaxScore);
+			//// TraceUtils.myTrace("no coverage for " + id + " so return completed=" + defaultMaxScore);
 			return { completed:0, total:defaultMaxScore };
 		}
 		

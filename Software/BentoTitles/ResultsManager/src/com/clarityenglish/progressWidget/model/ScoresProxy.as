@@ -28,31 +28,31 @@ package com.clarityenglish.progressWidget.model {
 		
 		public function getCoverage(trackables:Array, fromDate:Date, toDate:Date):void {
 			// We want to pull the product codes from the trackables array
-			//TraceUtils.myTrace("in scoresProxy for");
+			//// TraceUtils.myTrace("in scoresProxy for");
 			var titleIDs:Array = new Array();
 			for each (var title:Title in trackables) {
-				//TraceUtils.myTrace("product=" + title.productCode);
+				//// TraceUtils.myTrace("product=" + title.productCode);
 				titleIDs.push(title.productCode);
 			}
-			TraceUtils.myTrace("scoresProxy for " + titleIDs.toString() + " fromDate=" + DateUtils.dateToAnsiString(fromDate) + " toDate=" + DateUtils.dateToAnsiString(toDate));
+			// TraceUtils.myTrace("scoresProxy for " + titleIDs.toString() + " fromDate=" + DateUtils.dateToAnsiString(fromDate) + " toDate=" + DateUtils.dateToAnsiString(toDate));
 			new RemoteDelegate("getCoverage", [ titleIDs, DateUtils.dateToAnsiString(fromDate), DateUtils.dateToAnsiString(toDate) ], this).execute();
 		}
 		public function getEveryonesCoverage(trackables:Array, fromDate:Date, toDate:Date, country:String=null):void {
 			// We want to pull the product codes from the trackables array
-			//TraceUtils.myTrace("in scoresProxy for");
+			//// TraceUtils.myTrace("in scoresProxy for");
 			var titleIDs:Array = new Array();
 			for each (var title:Title in trackables) {
-				//TraceUtils.myTrace("product=" + title.productCode);
+				//// TraceUtils.myTrace("product=" + title.productCode);
 				titleIDs.push(title.productCode);
 			}
-			TraceUtils.myTrace("scoresProxy for everyone " + titleIDs.toString() + " fromDate=" + DateUtils.dateToAnsiString(fromDate) + " toDate=" + DateUtils.dateToAnsiString(toDate) + " limit to " + country);
+			// TraceUtils.myTrace("scoresProxy for everyone " + titleIDs.toString() + " fromDate=" + DateUtils.dateToAnsiString(fromDate) + " toDate=" + DateUtils.dateToAnsiString(toDate) + " limit to " + country);
 			new RemoteDelegate("getEveryonesCoverage", [ titleIDs, DateUtils.dateToAnsiString(fromDate), DateUtils.dateToAnsiString(toDate), country ], this).execute();
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		
 		public function onDelegateResult(operation:String, data:Object):void{
-			TraceUtils.myTrace("scoresProxy result for " + operation);
+			// TraceUtils.myTrace("scoresProxy result for " + operation);
 			switch (operation) {
 				case "getCoverage":
 					sendNotification(PWNotifications.SCORES_LOADED, data);

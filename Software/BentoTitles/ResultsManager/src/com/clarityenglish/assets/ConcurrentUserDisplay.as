@@ -33,7 +33,7 @@ package com.clarityenglish.assets
 		}
 		// Getter and setter
 		public function set value(value:uint):void {
-			//TraceUtils.myTrace("setting value of cud to " + value);
+			//// // TraceUtils.myTrace("setting value of cud to " + value);
 			_concurrentUsers = Math.floor(value);
 			redraw();
 		}
@@ -43,7 +43,7 @@ package com.clarityenglish.assets
 		
 		// Display functions
 		private function addImage(e:TimerEvent):void {
-			//TraceUtils.myTrace("add image " + (e.currentTarget as Timer).currentCount + " x=" + _image[(e.currentTarget as Timer).currentCount].x);
+			//// // TraceUtils.myTrace("add image " + (e.currentTarget as Timer).currentCount + " x=" + _image[(e.currentTarget as Timer).currentCount].x);
 			addChild(_image[(e.currentTarget as Timer).currentCount]);
 		}
 		private function redraw():void {
@@ -77,7 +77,7 @@ package com.clarityenglish.assets
 				imageSize = 16;
 				timerSpeed = 25;
 			}
-			//TraceUtils.myTrace("value=" + value + " sqrt=" + theSquare + " imagesize=" + imageSize);
+			//// // TraceUtils.myTrace("value=" + value + " sqrt=" + theSquare + " imagesize=" + imageSize);
 			var row:uint = 1;
 			var col:uint = 1;
 			// Array goes from 1 to make the currentCount of the Timer event match

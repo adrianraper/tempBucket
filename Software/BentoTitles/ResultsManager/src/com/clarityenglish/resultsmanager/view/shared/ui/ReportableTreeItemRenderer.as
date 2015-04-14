@@ -305,12 +305,12 @@
 							checkBox.selected = false;
 							if (checkBoxToolTips.offCheckBoxToolTip) {
 								checkBox.toolTip = checkBoxToolTips.offCheckBoxToolTip;
-								//TraceUtils.myTrace("setting tri.offToolTip=" + checkBoxToolTips.offCheckBoxToolTip);
+								//// TraceUtils.myTrace("setting tri.offToolTip=" + checkBoxToolTips.offCheckBoxToolTip);
 							}
 							if (ClassUtils.getClass(data) == Group) {
 								if (checkBoxToolTips.offGroupCheckBoxToolTip) {
 									checkBox.toolTip = checkBoxToolTips.offGroupCheckBoxToolTip;
-									//TraceUtils.myTrace("setting tri.offToolTip=" + checkBoxToolTips.offCheckBoxToolTip);
+									//// TraceUtils.myTrace("setting tri.offToolTip=" + checkBoxToolTips.offCheckBoxToolTip);
 								}							
 							}
 							break;
@@ -344,13 +344,13 @@
 					}
 					if (!checkBox.selected && checkBoxToolTips.offCheckBoxToolTip) {
 						checkBox.toolTip = checkBoxToolTips.offCheckBoxToolTip;
-						//TraceUtils.myTrace("setting offToolTip=" + checkBoxToolTips.offCheckBoxToolTip);
+						//// TraceUtils.myTrace("setting offToolTip=" + checkBoxToolTips.offCheckBoxToolTip);
 					}
 				}
 				// set a disabled tool tip - overrides others
 				// AR If I only pass a disabled tool tip - I see it on everything. I guess I have to clear out if I don't use it.
 				if (!checkBox.enabled && !checkBox.selected && checkBoxToolTips.disabledCheckBoxToolTip) {
-					//TraceUtils.myTrace(data.caption + " setting disabledToolTip=" + checkBoxToolTips.disabledCheckBoxToolTip);
+					//// TraceUtils.myTrace(data.caption + " setting disabledToolTip=" + checkBoxToolTips.disabledCheckBoxToolTip);
 					checkBox.toolTip = checkBoxToolTips.disabledCheckBoxToolTip;
 				}
 				
@@ -367,7 +367,7 @@
 		}
 		
 		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
-			//TraceUtils.myTrace("uDL width=" + unscaledWidth + " useLargeIcons=" + useLargeIcons);
+			//// TraceUtils.myTrace("uDL width=" + unscaledWidth + " useLargeIcons=" + useLargeIcons);
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
 			if (!data) return;

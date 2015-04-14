@@ -128,7 +128,7 @@ package com.clarityenglish.resultsmanager.view.management {
 		 * @param INotification a notification 
 		 */
 		override public function handleNotification(note:INotification):void {
-			//TraceUtils.myTrace("contentMediator:" + note.getName());
+			//// TraceUtils.myTrace("contentMediator:" + note.getName());
 			switch (note.getName()) {
 				//v3.4 Trigger getContent separately from the main proxy creation to try and asynch it a bit
 				// Well, this works but it still gets bundled into the same call.
@@ -143,11 +143,11 @@ package com.clarityenglish.resultsmanager.view.management {
 					contentView.userType = Constants.userType;
 					var data:Object = note.getBody();
 					var numUsers:Number = data.manageablesCount as Number;
-					TraceUtils.myTrace("contentMediator knows you have " + numUsers);
+					// TraceUtils.myTrace("contentMediator knows you have " + numUsers);
 					// Is it worth doing a delay?
 					// Could this be causing a session problem? yes, though no idea why
 					//if (numUsers < 500 || (data.noStudents as Boolean)) {
-						TraceUtils.myTrace("contentMediator no delay");
+						// TraceUtils.myTrace("contentMediator no delay");
 						notificationDelayContent(null);
 					//} else {
 					//	var littleDelay:Timer = new Timer(numUsers, 1);
@@ -171,7 +171,7 @@ package com.clarityenglish.resultsmanager.view.management {
 					contentView.tree.invalidateList();
 					break;
 				case RMNotifications.MANAGEABLE_SELECTED:
-					//TraceUtils.myTrace("contentMediator handling manageable_selected");
+					//// TraceUtils.myTrace("contentMediator handling manageable_selected");
 					//MonsterDebugger.trace(this, "ContentMediator.MANAGEABLE_SELECTED");
 					selectedManageables = note.getBody() as Array;
 					break;
@@ -245,7 +245,7 @@ package com.clarityenglish.resultsmanager.view.management {
 			} else {
 				selectedManageable = selectedManageables[0];
 			}
-			//TraceUtils.myTrace("selected manageable=" + (selectedManageable as Reportable).reportableLabel);
+			//// TraceUtils.myTrace("selected manageable=" + (selectedManageable as Reportable).reportableLabel);
 			// v3.4 At this point I want to see if we are dealing with editedContent. 
 			// If we are, then before I redraw the content tree I want to change the enabledFlags to match editedContent.
 			// Then I might also try and add extra rows in here.

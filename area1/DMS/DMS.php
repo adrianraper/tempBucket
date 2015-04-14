@@ -65,7 +65,7 @@
 		// *********
 		// *********
 		
-		var startControl = webShare + "/Software/ResultsManager/web/";
+		var startControl = webShare + "/Software/BentoTitles/ResultsManager/bin-debug/";
 		var argList = "?version=3.6.3.1";
 		
 		// see whether variables have come from command line or, preferentially, session variables
@@ -73,7 +73,7 @@
 		var jsPassword = swfobject.getQueryParamValue("password");
 		var jsdbHost = swfobject.getQueryParamValue("dbHost");;
 		var flashvars = {
-			host: startControl,
+			//host: startControl,
 			username: jsUserName,
 			password: jsPassword,
 			rootID: swfobject.getQueryParamValue("rootID"),

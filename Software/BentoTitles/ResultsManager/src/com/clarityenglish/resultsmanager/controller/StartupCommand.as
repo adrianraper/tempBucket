@@ -29,8 +29,9 @@ package com.clarityenglish.resultsmanager.controller {
 		
 		override public function execute(note:INotification):void {
 			// If the host is defined in the FlashVars then set it
+			// gh#1190 This will not be sent, let Constants sort it out
 			if (Application.application.parameters.host) Constants.HOST = Application.application.parameters.host;
-			
+
 			// If the sessionid is defined in the FlashVars then set it
 			if (Application.application.parameters.sessionid) Constants.SESSIONID = Application.application.parameters.sessionid;
 			
@@ -47,7 +48,7 @@ package com.clarityenglish.resultsmanager.controller {
 			
 			// Register the main mediator
 			facade.registerMediator(new ApplicationMediator(note.getBody() as ResultsManager));
-			//TraceUtils.myTrace("RM.StartUpCommand.4");
+			// TraceUtils.myTrace("RM.StartUpCommand.4");
 			
 			// If the username/password are defined as FlashVars then automate the login
 			var username:String = Application.application.parameters.username;
@@ -61,7 +62,7 @@ package com.clarityenglish.resultsmanager.controller {
 			// If directStart is defined, pick that up
 			var directStart:String = Application.application.parameters.directStart;
 			if (directStart) {
-				TraceUtils.myTrace("startupcommand, directStart=" + directStart);
+				// TraceUtils.myTrace("startupcommand, directStart=" + directStart);
 				sendNotification(RMNotifications.DIRECT_START, directStart);
 			}
 			

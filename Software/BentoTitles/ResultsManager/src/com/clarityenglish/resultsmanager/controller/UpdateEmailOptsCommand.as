@@ -15,7 +15,7 @@ package com.clarityenglish.resultsmanager.controller {
 		
 		override public function execute(note:INotification):void {
 			var emailOptsArray:Array = note.getBody() as Array;
-			//TraceUtils.myTrace("UpdateEmailOptsCommand with " + emailOptsArray.length + ' items');
+			//// TraceUtils.myTrace("UpdateEmailOptsCommand with " + emailOptsArray.length + ' items');
 			var emailOptsProxy:EmailOptsProxy = facade.retrieveProxy(EmailOptsProxy.NAME) as EmailOptsProxy;
 			
 			// Take data from the notification object and put into the proxy
@@ -23,7 +23,7 @@ package com.clarityenglish.resultsmanager.controller {
 
 			for (var i:uint = 0; i < emailOptsArray.length; i++ ) {
 				var emailItem:Object = emailOptsArray[i];
-				//TraceUtils.myTrace(i + ':' + emailItem.email + ':' + emailItem.messageType);
+				//// TraceUtils.myTrace(i + ':' + emailItem.email + ':' + emailItem.messageType);
 				emailOptsProxy.setEmailItem(i, emailItem.email, emailItem.messageType);
 			}
 				

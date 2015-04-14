@@ -15,7 +15,7 @@
 		
 		/** Making this false activates various debug and test friendly attributes in the application */
 		public static function get DEBUG_MODE():Boolean {
-			include "/../../../return_debug_mode.txt";
+			include "../../../../../../../area1/ResultsManager/return_debug_mode.txt";
 		}
 		
 		/** This is used to determine what to open when the user selected 'Open in Results Manager' in DMS.  This page must accept
@@ -36,7 +36,7 @@
 		public static function get HOST():String {
 			if (_host) return _host;
 			
-			include "/../../../return_test_host.txt";
+			include "../../../../../../../area1/ResultsManager/return_test_host.txt";
 		}
 		
 		public static function set HOST(h:String):void {

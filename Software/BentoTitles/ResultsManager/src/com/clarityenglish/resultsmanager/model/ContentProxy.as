@@ -69,7 +69,7 @@ package com.clarityenglish.resultsmanager.model {
 		
 		// v3.4 To help with refreshing the tree - go back to the original data and then pick up editedContent
 		public function refreshContentData():void {
-			//TraceUtils.myTrace("refreshContentData, _titles.length=" + _titles.length);
+			//// TraceUtils.myTrace("refreshContentData, _titles.length=" + _titles.length);
 			_titles = ObjectUtil.copy(_resetContent) as Array;
 			sendNotification(RMNotifications.CONTENT_LOADED, _titles);			
 		}
@@ -149,7 +149,7 @@ package com.clarityenglish.resultsmanager.model {
 		public function mapEditedContentForGroup(group:Group = null):void {
 			
 			//MonsterDebugger.trace(this, "reset dataProvider for group=" + group.name);
-			//TraceUtils.myTrace("reset dataProvider for group=" + group.name);
+			//// TraceUtils.myTrace("reset dataProvider for group=" + group.name);
 			// The algorithm to work out if a given uid is edited is to cascade down the groups, starting from the top.
 			// The top means the very top for the account, not just the top group you can see.
 			// If you find the uid for a group, then it is edited.
@@ -239,10 +239,10 @@ package com.clarityenglish.resultsmanager.model {
 				var sequenceDepth:uint = 1;
 				var foundSequence:uint = 0;
 				do {
-					//TraceUtils.myTrace("start loop " + sequenceDepth);
+					//// TraceUtils.myTrace("start loop " + sequenceDepth);
 					foundSequence = 0;
 					for each (record in editedContentRecords) {
-						//TraceUtils.myTrace("check-"+sequenceDepth+": UID " + record.editedContentUID + " seq=" + record.sequence);
+						//// TraceUtils.myTrace("check-"+sequenceDepth+": UID " + record.editedContentUID + " seq=" + record.sequence);
 						// Does this record refer to another record in the table? If so it must come later
 						if (record.sequence==sequenceDepth) {
 							var thisRelatedID:String = record.relatedUID;
@@ -250,7 +250,7 @@ package com.clarityenglish.resultsmanager.model {
 								if (thisRelatedID == relatedRecord.editedContentUID && relatedRecord.sequence>=sequenceDepth) {
 									// we found a match, so set the sequence to this iteration
 									record.sequence = sequenceDepth+1;
-									//TraceUtils.myTrace("matched-"+sequenceDepth+": related of " + thisRelatedID + " seq=" + record.sequence);
+									//// TraceUtils.myTrace("matched-"+sequenceDepth+": related of " + thisRelatedID + " seq=" + record.sequence);
 									foundSequence++;
 									break;
 								}
@@ -263,15 +263,15 @@ package com.clarityenglish.resultsmanager.model {
 			}	
 			// Then lets sort and trace
 			for each (groupID in allGroupList) {
-				//TraceUtils.myTrace("group=" + groupID);
+				//// TraceUtils.myTrace("group=" + groupID);
 				editedContentRecords = editedContent[groupID];
 				// Since some groups have no records, need to check if we really have an array before sorting it
 				if (editedContentRecords) {
-					//TraceUtils.myTrace("length.1=" + editedContentRecords.length);
+					//// TraceUtils.myTrace("length.1=" + editedContentRecords.length);
 					editedContentRecords.sortOn("sequence", Array.NUMERIC);
-					//TraceUtils.myTrace("length.2=" + editedContent[groupID2].length);
+					//// TraceUtils.myTrace("length.2=" + editedContent[groupID2].length);
 					for each (record in editedContentRecords) {
-						TraceUtils.myTrace("new: " + record.editedContentUID + " as " + record.sequence);
+						// TraceUtils.myTrace("new: " + record.editedContentUID + " as " + record.sequence);
 					}
 				}
 			}
@@ -279,27 +279,27 @@ package com.clarityenglish.resultsmanager.model {
 			// Go through the group tree
 			for each (var groupID:String in allGroupList) {
 				// Get the edited content for the given group id
-				TraceUtils.myTrace("checking edited content for " + groupID);
+				// TraceUtils.myTrace("checking edited content for " + groupID);
 				var editedContentRecords:Array = editedContent[groupID];
 				//MonsterDebugger.trace(this, "mapEditedContent");
 				//MonsterDebugger.trace(this, editedContentRecords);
 				//for (var UID:String in editedContentRecords) {
 				for each (var record:Object in editedContentRecords) {
-					TraceUtils.myTrace("record: " + record.editedContentUID + " as " + record.sequence);
+					// TraceUtils.myTrace("record: " + record.editedContentUID + " as " + record.sequence);
 					// First of all work out what is the mode for this editedContent
 					// v3.5 Note that MySQL returns all integer types from adodb as strings.
-					//TraceUtils.myTrace("ECC record, mode=" + record.mode);
+					//// TraceUtils.myTrace("ECC record, mode=" + record.mode);
 					// I'd prefer to do the type casting in PHP
 					//record.mode = parseInt(record.mode);
 					switch (record.mode) {
 						case Exercise.EDIT_MODE_EDITED:
 							// If it is editing then...
 							UID = record.editedContentUID;
-							TraceUtils.myTrace("edit, got " + UID);
+							// TraceUtils.myTrace("edit, got " + UID);
 							// Now I need to find the object reference by that UID. I can't find anything built in to do this, but I would have thought I should be able to.
 							mappedIds = UID.split(".");
 							thisTitle = ArrayUtils.searchArrayForObject(_titles, mappedIds[0], "id") as Title;
-							//TraceUtils.myTrace("edit, title " + thisTitle.name); // disabled by WZ, since thisTitle.name is not exist.
+							//// TraceUtils.myTrace("edit, title " + thisTitle.name); // disabled by WZ, since thisTitle.name is not exist.
 							//MonsterDebugger.trace(this, "got it for " + UID);
 							//MonsterDebugger.trace(this, thisTitle);
 							if (thisTitle && mappedIds[1]) {
@@ -309,28 +309,28 @@ package com.clarityenglish.resultsmanager.model {
 									if (thisUnit && mappedIds[3]) {
 										thisExercise = ArrayUtils.searchArrayForObject(thisUnit.children, mappedIds[3], "id") as Exercise;
 										thisExercise.enabledFlag |= Exercise.ENABLED_FLAG_EDITED;
-										TraceUtils.myTrace("Edited, so set eF of " + thisExercise.name + " to " + thisExercise.enabledFlag);
+										// TraceUtils.myTrace("Edited, so set eF of " + thisExercise.name + " to " + thisExercise.enabledFlag);
 										//thisExercise.name = "i changed you";
 										
 										// Now we want to see if the caption has changed, so look up the related UID in the Author Plus folder
 										relatedUID = record.relatedUID;
 										//MonsterDebugger.trace(this, relatedUID);
 										relatedMappedIds = relatedUID.split(".");
-										TraceUtils.myTrace("relatedMappedIds[0]=" + relatedMappedIds[0]);
+										// TraceUtils.myTrace("relatedMappedIds[0]=" + relatedMappedIds[0]);
 										relatedTitle = ArrayUtils.searchArrayForObject(_titles, relatedMappedIds[0], "id") as Title;
 										if (relatedTitle && mappedIds[1]) {
-											TraceUtils.myTrace("found related title " + relatedTitle.name);
+											// TraceUtils.myTrace("found related title " + relatedTitle.name);
 											relatedCourse = ArrayUtils.searchArrayForObject(relatedTitle.children, relatedMappedIds[1], "id") as Course;
 											if (relatedCourse) {
-												TraceUtils.myTrace("found related course " + relatedCourse.name);
+												// TraceUtils.myTrace("found related course " + relatedCourse.name);
 												// so this is the Author Plus course. We don't know which unit it is in, but we know the exerciseID so 
 												// just need to search them all
 												moveOuterLoop: for each (relatedUnit in relatedCourse.children) {
 													for each (relatedExercise in relatedUnit.children) {
-														TraceUtils.myTrace("looking at " + relatedUnit.name + " and ex=" + relatedExercise.name);
+														// TraceUtils.myTrace("looking at " + relatedUnit.name + " and ex=" + relatedExercise.name);
 														if (relatedExercise.id == thisExercise.id) {
 															thisExercise.name = relatedExercise.name;
-															TraceUtils.myTrace("found new name of " + relatedExercise.name);
+															// TraceUtils.myTrace("found new name of " + relatedExercise.name);
 															break moveOuterLoop;
 														}
 													}
@@ -363,7 +363,7 @@ package com.clarityenglish.resultsmanager.model {
 							
 							if (relatedTitle && relatedMappedIds[1]) {
 								relatedCourse = ArrayUtils.searchArrayForObject(relatedTitle.children, relatedMappedIds[1], "id") as Course;
-								TraceUtils.myTrace("ADD: found related course " + relatedCourse.name);
+								// TraceUtils.myTrace("ADD: found related course " + relatedCourse.name);
 								if (relatedCourse && relatedMappedIds[2]) {
 									relatedUnit = ArrayUtils.searchArrayForObject(relatedCourse.children, relatedMappedIds[2], "id") as Unit;
 									if (relatedUnit && relatedMappedIds[3]) {
@@ -474,7 +474,7 @@ package com.clarityenglish.resultsmanager.model {
 								if (relatedCourse && mappedIds[2]) {
 									relatedUnit = ArrayUtils.searchArrayForObject(relatedCourse.children, relatedMappedIds[2], "id") as Unit;
 									if (relatedUnit) {
-										TraceUtils.myTrace("Move: found related unit " + relatedUnit.name);
+										// TraceUtils.myTrace("Move: found related unit " + relatedUnit.name);
 										//MonsterDebugger.trace(this, "found related unit " + relatedUnit.name);
 										// Need to add this before/after the related exercise - or at the end of the unit if you don't find the related one
 										if (mappedIds[3]) {
@@ -551,7 +551,7 @@ package com.clarityenglish.resultsmanager.model {
 		//public function editInAuthorPlus(exercise:Exercise):void {
 		public function editInAuthorPlus(exerciseUID:String, caption:String):void {
 			//MonsterDebugger.trace(this, exerciseUID);
-			//TraceUtils.myTrace("editInAuthorPlus for " + exerciseUID);
+			//// TraceUtils.myTrace("editInAuthorPlus for " + exerciseUID);
 			
 			// First you have to see if this exercise already exists in the Author Plus editing folder
 			// In theory you can do this by looking at the enabledFlag to see if it is 'edited'
@@ -583,7 +583,7 @@ package com.clarityenglish.resultsmanager.model {
 				editOuterLoop: for each (var thisUnit:Unit in thisCourse.units) {
 					for each (var thisExercise:Exercise in thisUnit.exercises) {
 						if (thisExercise.id == mappedIds[3]) {
-							//TraceUtils.myTrace("I found the exercise");
+							//// TraceUtils.myTrace("I found the exercise");
 							break editOuterLoop;
 						}
 					}
@@ -596,7 +596,7 @@ package com.clarityenglish.resultsmanager.model {
 			//	var thisExercise:Exercise = ArrayUtils.searchArrayForObject(thisUnit.exercises, mappedIds[3], "id") as Exercise;
 			//}
 			if (thisExercise) {
-				//TraceUtils.myTrace("found exercise " + thisExercise.filename);
+				//// TraceUtils.myTrace("found exercise " + thisExercise.filename);
 			}
 			var myGroupID:String = Constants.groupID.toString();
 			
@@ -610,7 +610,7 @@ package com.clarityenglish.resultsmanager.model {
 			// v3.5 AR If you have inserted a new exercise and then want to edit it, the original is already in ap folder!
 			// So thisTitle.contentLocation should point at '../../../ap/' + Constants.prefix. Does it?
 			// Yes it does now, I had forgotten to save originalUID for inserted exercises.
-			TraceUtils.myTrace("I found thisTitle.contentLocation=" + thisTitle.contentLocation + " and exercise=" + thisExercise.id);
+			// TraceUtils.myTrace("I found thisTitle.contentLocation=" + thisTitle.contentLocation + " and exercise=" + thisExercise.id);
 			//var originalContentLocation:String = thisTitle.contentLocation + '/Courses/' + thisCourseID + '/Exercises/' + thisExerciseID + '.xml';
 			var originalContentLocation:String = thisTitle.contentLocation + '/Courses/' + thisCourseID + '/Exercises/' + thisExercise.filename;
 			// v3.5 But the folder must have the same name as the id, so it won't be called this.
@@ -620,7 +620,7 @@ package com.clarityenglish.resultsmanager.model {
 			// whilst I could read the file directly here, since I may well have to do a copy anyway I might as well do the whole thing in PHP
 			// This remote action will copy the file if it doesn't exist and add a record to T_HiddenContent
 			//MonsterDebugger.trace(this, "copy " + originalContentLocation + " to " + editedContentLocation + " for " + exerciseUID);
-			//TraceUtils.myTrace("copy " + originalContentLocation + " to " + editedContentLocation + " for " + exerciseUID);
+			//// TraceUtils.myTrace("copy " + originalContentLocation + " to " + editedContentLocation + " for " + exerciseUID);
 			//new RemoteDelegate("checkEditedContentExercise", [ originalContentLocation, editedContentLocation, myGroupID, thisExercise.toIDObject(), thisExercise.name ], this).execute();
 			//new RemoteDelegate("checkEditedContentExercise", [ originalContentLocation, editedContentLocation, myGroupID, exerciseUID, thisExercise.name ], this).execute();
 			//new RemoteDelegate("checkEditedContentExercise", [ originalContentLocation, editedContentLocation, myGroupID, exerciseUID, caption ], this).execute();
@@ -670,7 +670,7 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		// When you drag content around in the tree need to reflect this in the database
 		public function moveContent(editedUID:String, groupID:String, relatedUID:String, mode:String):void {
-			TraceUtils.myTrace("moving " + editedUID + " to " + relatedUID + " " + mode);
+			// TraceUtils.myTrace("moving " + editedUID + " to " + relatedUID + " " + mode);
 			switch (mode) {
 				case RMNotifications.MOVE_CONTENT_AFTER:
 					var editedContentMode:uint = Exercise.EDIT_MODE_MOVEDAFTER;
@@ -684,7 +684,7 @@ package com.clarityenglish.resultsmanager.model {
 			for each (var title:Title in _titles) {
 				if (title.productCode == editedUID.split(".")[0]) {
 					var thisTitle:Title = title;
-					TraceUtils.myTrace("found title " + thisTitle.productCode);
+					// TraceUtils.myTrace("found title " + thisTitle.productCode);
 					break;
 				}
 			}

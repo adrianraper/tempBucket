@@ -46,29 +46,29 @@ package com.clarityenglish.resultsmanager.model {
 		
 		public function getReport(forReportables:Array, forClass:String, onReportables:Array, opts:Object, template:String="standard"):void {
 			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
-			//TraceUtils.myTrace("reportProxy.getReport opts.detailedReport=" + opts.detailedReport);
+			//// TraceUtils.myTrace("reportProxy.getReport opts.detailedReport=" + opts.detailedReport);
 			
 			// Get the on reportable class
 			var onClass:String = ClassUtils.getClassAsString(onReportables[0]) as String;
 			//gh:#28
-			trace("onClass is "+onClass);
+			//trace("onClass is "+onClass);
 			
 			//gh:#28
 			// Get the for reportable class
 			//var forClass:String = ClassUtils.getClassAsString(forReportables[0]) as String;
 			var forClass:String = forClass;
-			trace("forClass is "+forClass);
+			//trace("forClass is "+forClass);
 			
 			// Create the report header. You can pretty much put what you want in here.
 			var headers:Object = new Object();
 			
 			// Make a string of all onReportable names. ie selected groups or users or content
 			// This pretty much works the same for both types of report.
-			//TraceUtils.myTrace("onReportables=" + onReportables.toString());
-			TraceUtils.myTrace("opts.includeStudentID=" + opts.includeStudentID);
+			//// TraceUtils.myTrace("onReportables=" + onReportables.toString());
+			// TraceUtils.myTrace("opts.includeStudentID=" + opts.includeStudentID);
 			headers.onReport = onReportables.map(
 					function(reportable:Reportable, index:int, array:Array):String { 
-						//TraceUtils.myTrace(reportable.reportableLabel);
+						//// TraceUtils.myTrace(reportable.reportableLabel);
 						// It would be nice to add in the studentID here (although it makes this function less neat)
 						// IF the onClass = User
 						// AND opts.includeStudentID is true
@@ -78,7 +78,7 @@ package com.clarityenglish.resultsmanager.model {
 							return reportable.reportableLabel; 
 						}
 					} ).join(", ");
-			TraceUtils.myTrace(onClass + ": headers.onReport=" + headers.onReport);
+			// TraceUtils.myTrace(onClass + ": headers.onReport=" + headers.onReport);
 			headers.onReportLabel = onClass + "(s)"; // Note that this is the name of the literal, it will be looked up later. No it won't!
 			
 			// Build up header for the forReports. This is reportClass based.
@@ -134,9 +134,9 @@ package com.clarityenglish.resultsmanager.model {
 				} else {
 					delete headers.courses;
 				}
-				TraceUtils.myTrace("headers.titles=" + headers.titles);
-				TraceUtils.myTrace("headers.courses=" + headers.courses);
-				TraceUtils.myTrace("headers.forReport=" + headers.forReport);
+				// TraceUtils.myTrace("headers.titles=" + headers.titles);
+				// TraceUtils.myTrace("headers.courses=" + headers.courses);
+				// TraceUtils.myTrace("headers.forReport=" + headers.forReport);
 			} else {
 				headers.forReportDetail = forReportables.map(function(reportable:Reportable, index:int, array:Array):String { 
 											return reportable.reportableLabel; } ).join(", ");
@@ -213,11 +213,11 @@ package com.clarityenglish.resultsmanager.model {
 		public function onDelegateResult(operation:String, data:Object):void {
 			switch (operation) {
 				case "getReport":
-					trace(data);
+					//trace(data);
 					sendNotification(RMNotifications.REPORT_GENERATED, data);
 					break;
 				default:
-					trace(data);
+					//trace(data);
 					//trace("Return from unknown operation " + operation);
 			}
 		}

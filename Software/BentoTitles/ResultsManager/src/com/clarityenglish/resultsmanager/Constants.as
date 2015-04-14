@@ -10,11 +10,11 @@
 		/**
 		 * The version of the software, used to tie bugs and version control together.
 		 */
-		public static var version:String = "3.7.2.990";
+		public static var version:String = "3.7.2.991";
 		
 		/** Making this false activates various debug and test friendly attributes in the application */
 		public static function get DEBUG_MODE():Boolean {
-			include "../../../../bin-debug/return_debug_mode.txt";
+			include "../../../../../../../area1/ResultsManager/return_debug_mode.txt";
 		}
 		
 		/** This is overridden by any passed parameter */
@@ -23,12 +23,13 @@
 		//public static var HOST:String = "http://192.168.8.11/Fixbench/Software/ResultsManager/";
 		//public static var HOST:String = "http://claritydata/Clarity/Software/ResultsManager/";
 		
-		private static var _host:String = "http://dock.projectbench/Software/ResultsManager/web/";
-		
+		//private static var _host:String = "http://dock.projectbench/Software/ResultsManager/web/";
+		private static var _host:String;
+
 		public static function get HOST():String {
 			if (_host) return _host;
 			
-			include "../../../../bin-debug/return_test_host.txt";
+			include "../../../../../../../area1/ResultsManager/return_test_host.txt";
 		}
 		
 		public static function set HOST(h:String):void {
@@ -38,8 +39,8 @@
 		public static var SESSIONID:String = "";
 		
 		public static function get AMFPHP_BASE():String {
-			//return HOST + "amfphp/";
-			return "http://dock.projectbench/Software/ResultsManager/web/amfphp/";
+			return HOST + "amfphp/";
+			//return "http://dock.projectbench/Software/ResultsManager/web/amfphp/";
 		}
 		
 		public static var UPLOAD_SCRIPT:String = "upload.php";

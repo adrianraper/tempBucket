@@ -61,7 +61,7 @@ package com.clarityenglish.resultsmanager.model {
 				fileReference.upload(request);
 				sendNotification(CommonNotifications.TRACE_NOTICE, copyProvider.getCopyForId("uploading"));
 			} catch (e:Error) {
-				trace(e.getStackTrace());
+				//trace(e.getStackTrace());
 				sendNotification(CommonNotifications.TRACE_ERROR, copyProvider.getCopyForId("uploadScriptError"));
 			}		
 		}
@@ -75,7 +75,7 @@ package com.clarityenglish.resultsmanager.model {
 				sendNotification(CommonNotifications.TRACE_NOTICE, copyProvider.getCopyForId("uploadComplete"));
 				sendNotification(completeNotification, completeBody, completeType);
 			} else {
-				trace(e);
+				//trace(e);
 				sendNotification(CommonNotifications.TRACE_ERROR, copyProvider.getCopyForId("uploadCompleteError"));
 			}
 		}
@@ -85,7 +85,7 @@ package com.clarityenglish.resultsmanager.model {
 		private function httpStatusHandler(e:HTTPStatusEvent):void { }
 		
 		private function ioErrorHandler(e:IOErrorEvent):void {
-			trace(e);
+			//trace(e);
 			sendNotification(CommonNotifications.TRACE_ERROR, copyProvider.getCopyForId("uploadIOError") + " [" + e.text + "]");
 		}
 		
@@ -95,7 +95,7 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		private function securityErrorHandler(e:SecurityErrorEvent):void {
-			trace(e);
+			//trace(e);
 			sendNotification(CommonNotifications.TRACE_ERROR, copyProvider.getCopyForId("uploadSecurityError"));
 		}
 		

@@ -1,5 +1,0 @@
-﻿//return "http://main.wz.com/area1/ResultsManager/Start.php?username=author&password=Sunshine";
-//	return "http://claritymain/area1/ResultsManager/Start.php";
-//	return "http://www.ClarityEnglish.com/area1/ResultsManager/Start.php";
-//return "http://aws2.ClarityEnglish.com/area1/ResultsManager/Start.php";
-return "http://dock.fixbench/area1/ResultsManager/Start.php";

@@ -154,7 +154,7 @@
 				
 				// and reset any content that has been edited
 				// TODO - I am sure this shoud be in some kind of loop, or that you can simply always reset.
-				//TraceUtils.myTrace("click to reset, eF=" + selectedItem.enabledFlag);
+				//// TraceUtils.myTrace("click to reset, eF=" + selectedItem.enabledFlag);
 				// v3.5 Work on it for exercises, units and courses
 				if (selectedItem is Exercise) {
 					resetContentMenuItem.enabled = ((selectedItem.enabledFlag & Exercise.ENABLED_FLAG_EDITED) == Exercise.ENABLED_FLAG_EDITED ||

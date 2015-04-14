@@ -41,11 +41,11 @@
 			import mx.controls.Alert;
 			
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
-			private var debugger:MonsterDebugger;
+			//private var debugger:MonsterDebugger;
 			private var copyProvider:CopyProvider;
 			
 			private function creationComplete():void {
-				debugger = new MonsterDebugger(this);
+				//debugger = new MonsterDebugger(this);
 
 				//TraceUtils.myTrace("RM started now");
 
@@ -95,7 +95,7 @@
 			 * visible to show/hide a tab so we can't use an MXML property bound to Constants.userType, but this method works fine.
 			 */
 			public function configureTabsForLoggedInUser():void {
-				TraceUtils.myTrace("logged in user is a " + Constants.userType);
+				//TraceUtils.myTrace("logged in user is a " + Constants.userType);
 				// This might run after directStart tabbing, so only remove tabs here.
 				// If you use logout, hopefully you will reset it all somewhere? No it doesn't.
 				if (Constants.userType == User.USER_TYPE_ADMINISTRATOR) {
@@ -149,7 +149,7 @@
 				// DONE. Sort this out later.
 				// Now picked up and saved from login
 				// v3.6.6 Concurrent Tracking licence should have User view as well, and network
-				TraceUtils.myTrace('your licence is ' + Constants.licenceType);
+				//TraceUtils.myTrace('your licence is ' + Constants.licenceType);
 				var allAAlicences:Boolean = true;
 				if (Constants.licenceType == Title.LICENCE_TYPE_LT ||
 					Constants.licenceType == Title.LICENCE_TYPE_CT ||
@@ -159,13 +159,13 @@
 				/*
 				for each (var title:Title in Titles) {
 					if (title.productCode == 2) {
-						TraceUtils.myTrace("RM licence type is " + title.licenceType);
+						//TraceUtils.myTrace("RM licence type is " + title.licenceType);
 						allAAlicences = (title.licenceType & Title.LICENCE_TYPE_AA) == Title.LICENCE_TYPE_AA;
 						break;
 					}
 				}
 				for each (var title:Title in Titles) {
-					TraceUtils.myTrace("checking " + title.name + " type=" + title.licenceType);
+					//TraceUtils.myTrace("checking " + title.name + " type=" + title.licenceType);
 					if (title.licenceType != Title.LICENCE_TYPE_AA) {
 						allAAlicences = false;
 						break;
@@ -174,13 +174,13 @@
 				*/
 				if (allAAlicences) {
 					if (mainStack.contains(managementView)) {
-						TraceUtils.myTrace("so hide management view");
+						//TraceUtils.myTrace("so hide management view");
 						mainStack.removeChild(managementView);
 					}
 					// v3.6 We will now show the Control Centre as part of the AA RM, but hide the access control part.
 					/*
 					if (mainStack.contains(loginOptsView)) {
-						TraceUtils.myTrace("and loginopts");
+						//TraceUtils.myTrace("and loginopts");
 						mainStack.removeChild(loginOptsView);
 					}
 					*/
@@ -198,23 +198,23 @@
 			public function configureTabsForDirectStart(directStart:String):void {
 				// Which tab do they want? If it is blocked by user type or title types, go to it
 				if (directStart.toLowerCase()=="usagestats") {
-					TraceUtils.myTrace("Direct start to usage ");
+					//TraceUtils.myTrace("Direct start to usage ");
 					if (!(mainStack.contains(usageView))) {
-						TraceUtils.myTrace("so add usage view");
+						//TraceUtils.myTrace("so add usage view");
 						mainStack.addChild(usageView);
 					}
 					if (mainStack.contains(managementView)) {
-						TraceUtils.myTrace("and hide management view");
+						//TraceUtils.myTrace("and hide management view");
 						mainStack.removeChild(managementView);
 					}
 					if (mainStack.contains(loginOptsView)) {
-						TraceUtils.myTrace("and loginopts");
+						//TraceUtils.myTrace("and loginopts");
 						mainStack.removeChild(loginOptsView);
 					}
 				} else if (directStart.toLowerCase()=="controlcentre") {
-					TraceUtils.myTrace("Direct start to control centre");
+					//TraceUtils.myTrace("Direct start to control centre");
 					if (!(mainStack.contains(loginOptsView))) {
-						TraceUtils.myTrace("so add loginOptsView");
+						//TraceUtils.myTrace("so add loginOptsView");
 						mainStack.addChild(loginOptsView);
 					}
 					// And how to make this the initially shown tab?

@@ -60,7 +60,7 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		public function addUser(user:User, parent:Group):void {
-			//TraceUtils.myTrace("addUser=" + user.toString());
+			//// TraceUtils.myTrace("addUser=" + user.toString());
 			new RemoteDelegate("addUser", [ user, parent ], this).execute();
 			// v3.4 There are three ways in which an author can appear in a group. This is one of them.
 			// If the user being added is an author, I want to initialise the group for Edited Content
@@ -79,7 +79,7 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		public function updateUsers(users:Array):void {
-			//TraceUtils.myTrace("updateUser=" + users[0].toString());
+			//// TraceUtils.myTrace("updateUser=" + users[0].toString());
 			new RemoteDelegate("updateUsers", [ users ], this).execute();
 			// v3.4 There are three ways in which an author can appear in a group. This is one of them.
 			// If the user being updated is changing to an author, I want to initialise the group for Edited Content
@@ -165,9 +165,9 @@ package com.clarityenglish.resultsmanager.model {
 		// v3.6.1 Allow moving and importing
 		//public function importManageables(groups:Array, users:Array, parentGroup:Group):void {
 		public function importManageables(groups:Array, users:Array, parentGroup:Group, moveExistingStudents:String = ManageableEvent.IMPORT_FROM_EXCEL_WITH_MOVE):void {
-			//TraceUtils.myTrace("first user is " + users[0].name + " parent is " + parentGroup.name);
+			//// TraceUtils.myTrace("first user is " + users[0].name + " parent is " + parentGroup.name);
 			//new RemoteDelegate("importManageables", [ groups, users, parentGroup ], this).execute();
-			//TraceUtils.myTrace("managableProxy with move=" + moveExistingStudents);
+			//// TraceUtils.myTrace("managableProxy with move=" + moveExistingStudents);
 			new RemoteDelegate("importManageables", [ groups, users, parentGroup, moveExistingStudents ], this).execute();
 		}
 		
@@ -222,7 +222,7 @@ package com.clarityenglish.resultsmanager.model {
 					results[userType]++;
 				}
 			}
-			//TraceUtils.myTrace("userType.results=" + results.toString());
+			//// TraceUtils.myTrace("userType.results=" + results.toString());
 			return results;
 		}
 		
