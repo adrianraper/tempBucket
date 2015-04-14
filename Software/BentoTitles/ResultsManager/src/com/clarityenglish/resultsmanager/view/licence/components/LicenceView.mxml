@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+		   xmlns:ui="com.clarityenglish.resultsmanager.view.licence.ui.*"
+		   xmlns:controls="org.davekeen.controls.*"
+		   implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.model.interfaces.CopyProvider;;
+		import com.clarityenglish.resultsmanager.view.licence.events.LicenceEvent;
+		import com.clarityenglish.resultsmanager.view.licence.events.LicenceShowTypeEvent;
+		import com.clarityenglish.resultsmanager.view.shared.events.TitleEvent;
+		import com.clarityenglish.resultsmanager.view.shared.interfaces.ICheckBoxRendererProvider;
+		import com.clarityenglish.resultsmanager.view.shared.ui.ReportableTreeItemRenderer;
+		import com.clarityenglish.common.vo.content.Title;
+		import com.clarityenglish.common.vo.manageable.Group;
+		import com.clarityenglish.common.vo.manageable.Manageable;
+		import com.clarityenglish.common.vo.manageable.User;
+		import flash.events.Event;
+		import mx.core.ClassFactory;
+		import org.davekeen.utils.DateUtils;
+		
+		private var copyProvider:CopyProvider;
+		
+		/**
+		 * Set any copy in this component and call setCopyProvider on any child components
+		 * 
+		 * @param	copyProvider An object implementing CopyProvider
+		 */
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+			
+			manageablesLabel.text = copyProvider.getCopyForId("manageables");
+			titlesLabel.text = copyProvider.getCopyForId("titles");
+			showAllButton.label = copyProvider.getCopyForId("showAll");
+			showSelectedButton.label = copyProvider.getCopyForId("showSelected");
+			showUnassignedButton.label = copyProvider.getCopyForId("showUnassigned");
+			helpTextArea.htmlText = copyProvider.getCopyForId("licenceManagementHelp");
+			
+			dkTreeControlBar.setCopyProvider(copyProvider);
+			licenceChart.setCopyProvider(copyProvider);
+		}
+		
+		/**
+		 * Set the dataprovider for the tree
+		 * 
+		 * @param	dataProvider
+		 */
+		public function setTreeDataProvider(dataProvider:Object):void {
+			licencesTree.dataProvider = dataProvider;
+			licencesTree.openItems = licencesTree.dataProvider;
+		}
+		
+		/**
+		 * The checkbox renderer provider for this tree is actually in the mediator for content, so it needs to be set within this view
+		 */
+		public function set checkBoxRendererProvider(checkBoxRendererProvider:ICheckBoxRendererProvider):void {
+			// Create a ReportableTreeItemRenderer (this does both content and manageables tree) and configure it to use checkboxes & tristate
+			var checkBoxToolTips:Object = new Object();
+			checkBoxToolTips.disabledCheckBoxToolTip = "Select a title to allocated licences for.";
+			checkBoxToolTips.offCheckBoxToolTip = "This user is not allocated to this title.";
+			checkBoxToolTips.offGroupCheckBoxToolTip = "None of the users in this group are allocated to this title.";
+			checkBoxToolTips.triCheckBoxToolTip = "Some of the users in this group are allocated to this title.";
+			checkBoxToolTips.onCheckBoxToolTip = "This user can use this title.";
+			checkBoxToolTips.onGroupCheckBoxToolTip = "All users in this group can use this title.";
+			licencesTree.itemRenderer = ReportableTreeItemRenderer.getRendererFactory(true, checkBoxRendererProvider, true, checkBoxToolTips);
+		}
+		
+		public function setLicenceFigures(assigned:uint, unassigned:uint):void {
+			currentState = "titleSelected";
+			
+			licenceChart.dataProvider = { assigned: assigned, unassigned: unassigned };
+		}
+		
+		private function onTitleChange(e:Event):void {
+			var selectedTitle:Title = titleList.selectedItem as Title;
+			
+			// Only enable show selected and show unassigned if a title is selected
+			showSelectedButton.enabled = showUnassignedButton.enabled = (selectedTitle != null);
+			
+			// Refresh the item renderers
+			licencesTree.invalidateList();
+			
+			// Fill in the LicenceInfo box using CopyProvider's substitution to fill in the variables
+			var replaceObj:Object = new Object();
+			//replaceObj.title = selectedTitle.caption;
+			replaceObj.title = selectedTitle.name;
+			replaceObj.maxStudents = selectedTitle.maxStudents;
+			replaceObj.maxAuthors = selectedTitle.maxAuthors;
+			replaceObj.maxReporters = selectedTitle.maxReporters;
+			replaceObj.maxTeachers = selectedTitle.maxTeachers;
+			
+			//replaceObj.expiryDate = new Date(selectedTitle.expiryDate).toDateString();
+			// Ticket #95 - ignore timezones
+			replaceObj.expiryDate = DateUtils.ansiStringToDate(selectedTitle.expiryDate).toDateString();
+			
+			licenceInfoTextArea.htmlText = copyProvider.getCopyForId("licenceInfo", replaceObj);
+			
+			dispatchEvent(new TitleEvent(TitleEvent.TITLE_CHANGE, selectedTitle, null, null, true));
+		}
+		
+		private function onShowTypeChange():void {
+			dispatchEvent(new LicenceShowTypeEvent(showTypeGroup.selectedValue as String));
+			
+			// Refresh the item renderers as the data descriptor has changed
+			licencesTree.refreshItemRenderers();
+		}
+		
+		]]>
+	</mx:Script>
+	<!-- Let the user manage the screen space 
+	<mx:HBox width="100%" height="100%"> 
+		<mx:VBox width="50%" height="100%">
+	-->
+	<mx:HDividedBox width="100%" height="100%" paddingLeft="4" paddingRight="4" paddingBottom="4">
+		<mx:VDividedBox width="50%" height="100%">
+			<mx:VBox width="100%" height="70%">
+				<mx:Label id="titlesLabel" styleName="subHeadingLabelBlack" />
+				<mx:List id="titleList"
+						 width="100%"
+						 height="100%"
+						 labelField="caption"
+						 itemRenderer="com.clarityenglish.resultsmanager.view.shared.ui.ContentListItemRenderer"
+						 change="onTitleChange(event)" />
+						<!-- labelField="caption" -->
+			</mx:VBox>
+			<mx:TextArea id="helpTextArea" condenseWhite="true" selectable="true" editable="false" width="100%" height="30%" />
+		</mx:VDividedBox>
+		<mx:VBox width="50%" height="100%" id="vbox">
+			<mx:VBox width="100%" height="70%">
+				<mx:Label id="manageablesLabel" styleName="subHeadingLabelBlack" />
+				<mx:HBox width="100%">
+					<mx:RadioButtonGroup id="showTypeGroup" change="onShowTypeChange()" />
+					<mx:RadioButton id="showAllButton" value="{LicenceShowTypeEvent.SHOW_ALL}" group="{showTypeGroup}" selected="true" color="0xFFFFFF" />
+					<mx:RadioButton id="showSelectedButton" enabled="false" value="{LicenceShowTypeEvent.SHOW_SELECTED}" group="{showTypeGroup}" color="0xFFFFFF" />
+					<mx:RadioButton id="showUnassignedButton" enabled="false" value="{LicenceShowTypeEvent.SHOW_UNASSIGNED}" group="{showTypeGroup}" color="0xFFFFFF" />
+				</mx:HBox>
+				<mx:VBox width="100%" height="100%" verticalGap="1">
+					<controls:DKTree id="licencesTree"
+									 width="100%"
+									 height="100%"
+									 labelField="name"
+									 selectable="false"
+									 retainVerticalScrollPosition="true" />
+					<controls:DKTreeControlBar id="dkTreeControlBar" width="100%" tree="{licencesTree}" />
+				</mx:VBox>
+			</mx:VBox>
+			<mx:TextArea id="licenceInfoTextArea" condenseWhite="true" selectable="true" editable="false" width="100%" height="30%" />
+		</mx:VBox>
+	</mx:HDividedBox>
+	
+	<mx:states>
+		<mx:State name="titleSelected">
+			<mx:AddChild relativeTo="{vbox}" position="lastChild" creationPolicy="all">
+				<ui:LicenceChart id="licenceChart" width="100%" height="30" />
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	
+	<mx:transitions>
+		<mx:Transition fromState="" toState="titleSelected">
+			<mx:Parallel targets="{[licencesTree, licenceChart, this]}">
+				<mx:Resize duration="400"/>
+			</mx:Parallel>
+		</mx:Transition>
+	</mx:transitions>
+	
+</mx:Canvas>

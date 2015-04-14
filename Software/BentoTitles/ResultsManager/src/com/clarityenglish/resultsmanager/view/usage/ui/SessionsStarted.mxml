@@ -1,0 +1,563 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+			xmlns:ns1="com.anychart.*"
+			horizontalScrollPolicy="off"
+			horizontalAlign="center"
+		   creationComplete="creationComplete()"
+			implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.anychart.AnyChart;
+		import com.anychart.mapPlot.controls.zoomPanel.Slider;
+		import com.anychart.viewController.ChartView;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.utils.NumberUtils;
+		import com.clarityenglish.utils.TraceUtils;
+		import com.gskinner.StringUtils;
+		
+		import flash.display.Sprite;
+		import flash.net.URLLoader;
+		import flash.utils.ByteArray;
+		
+		import mx.controls.HSlider;
+		import mx.events.SliderEvent;
+		import mx.utils.Base64Decoder;
+		
+		[Bindable]
+		public var dataProvider:Object;
+		
+	    [Bindable]
+		private var totalSessionCount:Number = 0;
+			
+	    [Bindable]
+		private var totalSessionArray:Array = [];
+		
+		// Hold the data for the chart
+		//private var _title:XML;
+		//private var _data:XML;
+		//private var _legendItems:XML;
+		//private var _mainSettings:XML;
+		//private var _dataPlotSettings:XML;
+		//private var _yaxisScale:XML;
+		//private var _chartStyles:XML;
+		//private var _chartSettings:XML;
+		//private var _axes:XML;
+		private var _fullChartXML:XML;
+		private var seriesColourName:Array;
+		private var monthNames:Array;
+	
+		private var copyProvider:CopyProvider;
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			//title = copyProvider.getCopyForId("courseUserCounts");
+			title = copyProvider.getCopyForId("barChartTitle");
+			//counterText.text = copyProvider.getCopyForId("timeConnection").toLocaleLowerCase();
+			this.copyProvider = copyProvider;
+		}
+		
+		private function creationComplete():void {
+			TraceUtils.myTrace("sessions creationComplete");
+			// For testing  - see workbench/AnyChart/Playing
+
+			// Initialise the chart settings that don't change
+			// the width of the columns is group_padding in bar_series
+			var _mainSettings:XML = <settings>
+								<animation enabled="True"/>
+								<context_menu save_as_image="true" version_info="false" print_chart="true" about_anychart="false" />
+								<xximage_export url="/Software/ResultsManager/AnyChart/PNGSaver.php" file_name="sessions_started" />
+							</settings>;
+			var _dataPlotSettings:XML = <data_plot_settings default_series_type = "Bar" enable_3d_mode = "true"
+									z_padding = "0.5" z_aspect = "1"
+									z_elevation="45" >
+									<bar_series point_padding="0" group_padding="1" style="filledGradient">
+										<tooltip_settings enabled="true">
+											<format>{"{%YValue}{numDecimals:0}"}</format>
+										</tooltip_settings>
+									</bar_series>
+								</data_plot_settings>;			
+			var _chartStyles:XML = <styles>
+						<bar_style name="filledGradient">
+							<fill type="Gradient" opacity="1">
+								<gradient>
+									<key position="0" color="Red"/>
+									<key position="1" color="Purple"/>
+								</gradient>
+							</fill>
+							<states>
+								<hover>
+									<fill type="Gradient" opacity="1">
+										<gradient>
+											<key position="0" color="LightColor(%Color)"/>
+											<key position="1" color="DarkColor(%Color)"/>
+										</gradient>
+									</fill>
+								</hover>
+							</states>
+						</bar_style>
+					</styles>;
+			
+			var _axes:XML = <axes>
+						<y_axis>
+							<title rotation="0">
+								<font family="Verdana" size="10" />
+								<text>Number</text>
+							</title>
+							<labels allow_overlap="True" show_first_label="True" show_last_label="True">
+								<font family="Verdana" size="10" />
+								<format>{ "{%Value}{numDecimals:0}" }</format>
+							</labels>
+							<major_tickmark enabled="true" />
+							<scale minimum="0" mode="Overlay"/>
+							<axis_markers>
+								<lines>
+									<line opacity="0">
+										<label enabled="True" position="Axis" rotation="0">
+											<font family="Verdana" size="10" color="Black" bold="False" />
+											<format>{ "{%Value}{numDecimals:0}" }</format>
+										</label>
+									</line>
+								</lines>
+							</axis_markers>
+						</y_axis>
+						<x_axis>
+							<title enabled="false">
+							</title>
+							<labels enabled="true" >
+								<font family="Verdana" size="10" />
+							</labels>
+						</x_axis>
+					</axes>;
+			var _title:XML = <title enabled="false">
+					</title>;
+			var _chartSettings:XML = <chart_settings>
+						<chart_background>
+							<border enabled="false"/>
+						</chart_background>
+						{_title}
+						<legend enabled="true" position="Bottom" ignore_auto_item="true">
+							<title enabled="false">
+							</title>
+							<columns_separator enabled="true"/>
+							<background>
+								<inside_margin left="10" right="10"/>
+							</background>
+							<items></items>
+						</legend>
+						{_axes}
+					</chart_settings>;
+					
+			// Full thing before any dynamic data
+			_fullChartXML = <anychart>
+				{_mainSettings}
+				<charts>
+					<chart plot_type="CategorizedVertical">
+						{_dataPlotSettings }
+						{_chartStyles}
+						{_chartSettings}
+						<data><note>nothing here</note></data>
+					</chart>
+				</charts>
+				</anychart>;
+				
+			//TraceUtils.myTrace("start title is " + _fullChartXML.charts.toXMLString());
+			//TraceUtils.myTrace("start title is " + _fullChartXML.charts.chart.chart_settings.title.toXMLString());
+			// colour schemes
+			seriesColourName = new Array();
+			seriesColourName[0] = 'Green';
+			seriesColourName[1] = 'Blue';
+			seriesColourName[2] = 'Yellow';
+			
+			// month names
+			monthNames = new Array();
+			monthNames.push({ name:"Jan", number:1 });
+			monthNames.push({ name:"Feb", number:2 });
+			monthNames.push({ name:"Mar", number:3 });
+			monthNames.push({ name:"Apr", number:4 });
+			monthNames.push({ name:"May", number:5 });
+			monthNames.push({ name:"Jun", number:6 });
+			monthNames.push({ name:"Jul", number:7 });
+			monthNames.push({ name:"Aug", number:8 });
+			monthNames.push({ name:"Sep", number:9 });
+			monthNames.push({ name:"Oct", number:10 });
+			monthNames.push({ name:"Nov", number:11 });
+			monthNames.push({ name:"Dec", number:12 });
+			//setChartDataProvider(new XML());
+		}	
+
+		// For saving the chart to an image
+		public function saveChartAsImage():ByteArray {
+			TraceUtils.myTrace("saveChartAsImage");
+			
+			var decoder:Base64Decoder=new Base64Decoder();
+			var chartByteArray:ByteArray;
+			decoder.decode(this.comparisonChart.getBase64PNG());
+			chartByteArray = decoder.toByteArray();
+			// If you want to check what you have saved, throw it into an image
+			//this.imgImagePreview.load(chartByteArray);
+			return chartByteArray;
+		}
+        
+			//v3.7.2.1 we add courseCount and timeCount from singleCourseCounts to here
+		//public function setChartDataProvider(data:XML):void {
+		public function setData(data:Object, startDate:Date, endDate:Date, courseCount:Number, timeCount:Number):void {
+			//TraceUtils.myTrace("sessions setData");
+
+			//TraceUtils.myTrace("chart is " + _fullChartXML.charts.chart.data.toXMLString());
+			// Start with fresh XML
+			var _data:XMLList = _fullChartXML.charts.chart.data;
+			_data.setChildren(new XMLList);
+			
+			var _legendItems:XMLList = _fullChartXML.charts.chart.chart_settings.legend.items;
+			_legendItems.setChildren(new XMLList);
+			
+			// a series for each year
+			var startYear:uint = startDate.fullYear;
+			var endYear:uint = endDate.fullYear;
+			var dataPoint:uint;
+			var emptyData:Array = new Array();
+			//for (var i:uint = startYear; i <= endYear; i++) {
+			//TraceUtils.myTrace("startYear to endYear=" + startYear + ", " + endYear);
+			// Can you switch it round so that the older data is at the back?
+			//for (var i:uint = 0; i <= endYear - startYear; i++) {
+			for (var i:int = endYear - startYear; i >=0; i--) {
+				//TraceUtils.myTrace("series i=" + i + ", label is " + String(i + startYear) + " and " + seriesColourName[i]);
+				//TraceUtils.myTrace("this series is " + String(i + startYear));
+				_data.appendChild(new XML(<series name={String(i + startYear)} color={seriesColourName[i]}></series>));
+				//<text>{"{%Icon} 2010"}</text>
+				// This just builds an empty array, nothing in it or linked to it yet
+				var emptyYear:Array = new Array();
+				for each (var month:Object in monthNames) {
+					emptyYear[month.number] = {month:month.name, value:0};
+				}
+				emptyData[i] = emptyYear;
+			}
+			
+			// Data for each series. The SQL will only return values for months that have something.
+			// Here we will pad with zeros
+			//TraceUtils.myTrace("sql data=" + data[2009][i].sessionCount + " for month=" + data[2009][i].month);
+			//var thisYear:uint = 0;
+			//TraceUtils.myTrace("sql data 2011 Jan=" + data[2011][0].sessionCount);
+			//TraceUtils.myTrace("sql data 2012 Jan=" + data[2012][0].sessionCount);
+			i = endYear - startYear;
+			//i = 0;
+			// This is giving really strange ordering of data. Charles shows 2010, 2011, 2012.
+			// But here I get it as 2012, 2010, 2011!
+			// It seems clumsy, but I need to build the year names and access them directly
+			var j:uint = endYear - startYear;
+			for (i = 0; i <= endYear - startYear; i++) {
+				var thisYear:String = String(i + startYear);
+				//TraceUtils.myTrace("myYear=" + thisYear + " Jan=" + data[thisYear][0].sessionCount);
+				for each (var dataMonth:Object in data[thisYear]) {
+				//for (var dataMonth:Object in data[thisYear]) {
+					//TraceUtils.myTrace("i=" + i + " sql data=" + dataYear[dataMonth].sessionCount + " for month=" + dataYear[dataMonth].month);
+					TraceUtils.myTrace("1.j=" + j + " sql data=" + dataMonth.sessionCount + " for month=" + dataMonth.month);
+					// v3.6 The SQL might return month as '01' rather than 1 - ie a string not a number. Which crashes this.
+					//var thisMonth:uint = parseInt(dataYear[dataMonth].month);
+					//emptyData[i][thisMonth].value = dataYear[dataMonth].sessionCount;
+					var thisMonth:uint = parseInt(dataMonth.month);
+					emptyData[j][thisMonth].value = dataMonth.sessionCount;
+					// accumulate the whole year usage times
+					totalSessionCount += Number(dataMonth.sessionCount);
+					TraceUtils.myTrace("totalSessionCount="+totalSessionCount);
+				}
+				totalSessionArray[j] = totalSessionCount;
+				totalSessionCount=0;
+				TraceUtils.myTrace("totalSessionArray="+totalSessionArray[j]);				
+				j--;
+				//thisYear--;				
+			}
+			
+			// the chart label is put here for getting the totalSession amount 
+			for(i = 0; i <= endYear - startYear; i++){
+				var iconName:String = "{%Icon} " + String(endYear-i);
+				TraceUtils.myTrace("iconName is "+iconName);
+				_legendItems.appendChild(new XML(<item>
+												   <icon type="SeriesIcon" series_type="Bar" color={seriesColourName[endYear - startYear-i]} />                                              
+												   <text>{iconName}, total: {totalSessionArray[i]}</text>
+												 </item>));
+			}			
+			//for each (var dataYear:Array in data) {
+			//for (var thisYear:int = 0; thisYear < endYear - startYear; thisYear++) {
+
+			// Check it all up
+			var maxValue:uint = 0;
+			for (i = 0; i <= endYear - startYear; i++) {
+			//for (i = endYear - startYear; i >=0 ; i--) {
+				for (j = 1; j <= 12; j++) {
+					//TraceUtils.myTrace("data for " + i + ", " + j +  "=" + emptyData[i][j].value);
+					// Just for axis testing
+					//if (emptyData[i][j].value == 119) emptyData[i][j].value = 99					
+					_data.series[i].appendChild(new XML(<point name={emptyData[i][j].month} y={emptyData[i][j].value}></point>));
+					if (emptyData[i][j].value > maxValue)
+						maxValue = emptyData[i][j].value;
+				}
+			}
+			//TraceUtils.myTrace("now data is " + _data.toXMLString());
+			// Use log scales if you have outliers, linear otherwise. 
+			// First run through the figures and pull out the top 10 into an array. It really doesn't matter what months
+			// or series they are in.
+			// Read each value and try to place it into the array. Slow, but very little data so no worries.
+			// Might as well just sort all as the data sets will never be more than 30.
+			var top10:Array = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+			var thisValue:uint;
+			//for (i = endYear - startYear; i >= 0 ; i--) {
+			for (i = 0; i <= endYear - startYear; i++) {
+				//TraceUtils.myTrace("i=" + i);
+				for (j = 1; j <= 12; j++) {
+					//TraceUtils.myTrace("j=" + j);
+					thisValue = emptyData[i][j].value;
+					//TraceUtils.myTrace("data for " + i + ", " + j +  "=" + thisValue);
+					// going through the array adding it if you exceed any value
+					for (var k:uint = 0; k < 10; k++) {
+						//TraceUtils.myTrace("k=" + k);
+						if (thisValue > top10[k]) {
+							top10.splice(k,0,thisValue);
+							//TraceUtils.myTrace("saved " + thisValue + " at k=" + k);
+							// and push the lower values down
+							break;
+						}
+					}
+				}
+			}
+			//TraceUtils.myTrace("top10=" + top10.toString());
+			// No work out about outliers. This means one or two figures that are x times bigger than the rest.
+			// 2 seems to trigger too many. And I know that people find the log scale odd. So make it more extreme.
+			var wayBigger:Number = 4.0;
+			// Is the first way bigger than the second?
+			// NOTE: Why does FlashDevelop show the rest of the code as wrong? 
+			var useLogScale:Boolean = false;
+			if (top10[0] > (wayBigger * top10[1]) && top10[1]>0) {
+				useLogScale = true;
+			// Or the second way bigger than the third
+			// Or the first way bigger than the third
+			} else if (top10[0] > (wayBigger * top10[2]) && top10[2]>0) {
+				useLogScale = true;
+			// or finally the third as well
+			} else if (top10[0] > (wayBigger * top10[3]) && top10[3]>0) {
+				useLogScale = true;
+			} else {
+				useLogScale = false;
+			}
+			// Set the yaxis scale.
+			if (useLogScale) {
+				var thisMax:uint = changeYScaleLog(maxValue);
+			} else {
+				thisMax = changeYScaleLinear(maxValue);
+			}
+			
+			// Change the valid values for the slider
+			// Remove
+			//yAxisSlider.minimum = 0;
+			//yAxisSlider.maximum = thisMax;
+			//yAxisSlider.snapInterval = yAxisSlider.tickInterval = NumberUtils.roundUpToList(thisMax / 10, [1, 2, 5, 10, 20, 50, 100]);
+			//yAxisSlider.snapInterval = yAxisSlider.tickInterval = Math.floor(thisMax / 10);
+			//yAxisSlider.value = thisMax;
+			//TraceUtils.myTrace("now chart is " + _fullChartXML.toXMLString());
+			
+			//v3.7.2.1 add overLastYear data to the session block			
+			//counter.text = courseCount.toString();
+			var seconds:Number = new Number(timeCount);
+			var unitLabel:String;
+			var replaceObj:Object = new Object();
+			
+			/* v3.7.2.2 modify the plural problem
+			if (seconds > 3600) {
+				//unitLabel = "hours and minutes";
+				unitLabel = copyProvider.getCopyForId("courseTimeLabelHoursMinutes").toLowerCase();
+			} else {
+				//unitLabel = "minutes and seconds";
+				unitLabel = copyProvider.getCopyForId("courseTimeLabelMinutesSeconds").toLowerCase();
+			}*/
+			// Split up the numbers and units
+			//singleTimeCountLabel.text = getFormattedSeconds(seconds, seconds) + " " + unitLabel;
+			//v3.7.2.1 compose one sentence
+			//singleTimeCountLabel.text = getFormattedSeconds(seconds, seconds);
+			//singleTimeUnitLabel.text = unitLabel;
+			
+			replaceObj.x = numberFormatter.format(courseCount.toString());
+			var tempY:String = getFormattedSeconds(seconds, seconds);
+			replaceObj.y = numberFormatter.format( tempY );
+			trace("replace.y = "+ replaceObj.y );
+			if( Number(tempY) > 1 || Number(tempY) == 0) {
+				unitLabel = copyProvider.getCopyForId("courseTimeLabelHoursMinutes").toLowerCase();
+			} else {
+				unitLabel = copyProvider.getCopyForId("courseTimeLabelHoursMinutes2").toLowerCase();
+			}
+			
+			if (courseCount>1 ||courseCount == 0){
+				replaceObj.timeLabel = "times";
+			} else {
+				replaceObj.timeLabel = "time";
+			}
+			replaceObj.unitLabel = unitLabel;
+
+			startText1.text = copyProvider.getCopyForId("singleCourseUserCount", replaceObj);
+			startText2.text = copyProvider.getCopyForId("sessionChartTitle");
+		}
+			
+		//v3.7.2.1
+		private function getFormattedSeconds(seconds:Number = 0, thisMax:Number = 3600):String {
+				// AR This breaks seconds down into xx:yy where xx is either hours or minutes depending
+				// on how big the value of seconds is.
+				var lblhours:Number;
+				var lblminutes:Number;
+				var lblseconds:Number;
+				if (thisMax > 3600) {
+					// Round the seconds if you are showing hours
+					lblhours = Math.round(seconds / 3600);
+					//lblminutes = Math.round((seconds - (lblhours * 3600)) / 60);
+					//return String(lblhours) + ":" + StringUtils.padLeft(String(lblminutes),"0",2);
+					return String(lblhours) ;
+				} else {
+					// Drop hours label if less than 1
+					lblminutes = Math.round(seconds / 60);
+					//lblseconds = seconds - (lblminutes * 60);
+					return String(lblminutes) ;
+				}
+			}
+
+		public function changeYScaleLinear(maxValue:uint):uint {
+			// Start with fresh XML
+			var _yaxisScale:XMLList = _fullChartXML.charts.chart.chart_settings.axes.y_axis.scale;
+			// In this case, setting show_last_label works, so disable the custom label
+			var _yaxisMarkers:XMLList = _fullChartXML.charts.chart.chart_settings.axes.y_axis.axis_markers.lines.line;
+			// AR I think this is wrong part of the XML
+			//_yaxisMarkers.@enabled = "False";
+			_yaxisMarkers.label.@enabled = "False";
+			
+			// Set the yaxis scale. This needs to be better. The highest number should be as near the top as possible.
+			// If less than 100, then set max to nearest ten with ticks at 10
+			// If less than 200, then set max to nearest twenty with ticks at 20
+			// If less than 500, then set max to nearest fifty with ticks at 50
+			// Above that set max to nearest hundred with ticks at 100
+			// TODO. Actually it would be good if the scale could also be relative to licence number somehow.
+			//	If the licence is a 100 user and one month you have 450, but all other months 90
+			//	it would look best to have the yscale at 100 with that one figure breaching it.
+			//	Mind you, 100 times run in one month with a 100 LT licence is not a good result.
+			var maxYScale:uint;
+			var majorTicks:uint;
+			// Handle zero nicely
+			if (maxValue == 0) {
+				maxYScale = 10;
+				majorTicks = 1;
+			} else if (maxValue <= 100) {
+				maxYScale = NumberUtils.roundUpToMultiple(maxValue, 10);
+				majorTicks = NumberUtils.roundUpToList(maxYScale/10,[2,5,10]);
+			} else if (maxValue <= 200) {
+				maxYScale = NumberUtils.roundUpToMultiple(maxValue, 20);
+				majorTicks = NumberUtils.roundUpToList(maxYScale/10,[10,20]);
+			} else if (maxValue <= 500) {
+				maxYScale = NumberUtils.roundUpToMultiple(maxValue, 50);
+				majorTicks = NumberUtils.roundUpToList(maxYScale / 10, [50]);
+			} else if (maxValue <= 1000) {
+				maxYScale = NumberUtils.roundUpToMultiple(maxValue, 100);
+				majorTicks = NumberUtils.roundUpToList(maxYScale / 10, [50,100,200]);
+			} else if (maxValue <= 10000) {
+				maxYScale = NumberUtils.roundUpToMultiple(maxValue, 1000);
+				majorTicks = NumberUtils.roundUpToList(maxYScale / 10, [1000]);
+			} else {
+				maxYScale = NumberUtils.roundUpToMultiple(maxValue, 5000);
+				majorTicks = NumberUtils.roundUpToList(maxYScale / 10, [1000,5000]);
+			}
+			//TraceUtils.myTrace("change yscale linear, max=" + maxYScale + " ticks=" + majorTicks);
+			//maxYScale = 125;
+			// Put these values into the xml
+			_yaxisScale.@mode = "Overlay";
+			_yaxisScale.@minimum = 0;
+			_yaxisScale.@type = "Linear";
+			_yaxisScale.@maximum = maxYScale;
+			_yaxisScale.@major_interval = majorTicks;
+			_yaxisMarkers.@value = maxYScale;			
+			
+			return maxYScale;
+		}
+		// Similar function if you want a log scale
+		public function changeYScaleLog(maxValue:uint):uint {
+			// Start with fresh XML
+			var _yaxisScale:XMLList = _fullChartXML.charts.chart.chart_settings.axes.y_axis.scale;
+			var _yaxisMarkers:XMLList = _fullChartXML.charts.chart.chart_settings.axes.y_axis.axis_markers.lines.line;
+			
+			var maxYScale:uint;
+			var majorTicks:uint;
+			if (maxValue <= 100) {
+				maxYScale = NumberUtils.roundUpToMultiple(maxValue, 10);
+				majorTicks = 10;
+			} else if (maxValue <= 1000) {
+				maxYScale = NumberUtils.roundUpToMultiple(maxValue, 100);
+				majorTicks = 100;
+			} else {
+				maxYScale = NumberUtils.roundUpToMultiple(maxValue, 1000);
+				majorTicks = 1000;
+			}
+			//TraceUtils.myTrace("change yscale log, max=" + maxYScale + " ticks=" + majorTicks);
+			
+			// For a log scale with max != power of 10, setting show_last_label fails, so enable the custom label
+			if (maxYScale==10 || maxYScale==100 || maxYScale==1000 || maxYScale==10000) {
+				_yaxisMarkers.label.@enabled = "False";
+				//TraceUtils.myTrace("try to hide y-axis custom label because maxYScale=" + maxYScale);
+			} else {
+				//TraceUtils.myTrace("show y-axis custom label because maxYScale=" + maxYScale);
+				_yaxisMarkers.label.@enabled = "True";
+			}
+						
+			// Put these values into the xml
+			_yaxisScale.@mode = "Overlay";
+			_yaxisScale.@minimum = 1;
+			_yaxisScale.@type = "Logarithmic";
+			_yaxisScale.@log_base = "10";
+			_yaxisScale.@maximum = maxYScale;
+			_yaxisScale.@major_interval = majorTicks;
+			_yaxisMarkers.@value = maxYScale;
+			
+			return maxYScale;
+		}
+		
+		public function updateChart(dataProvider:Object, startDate:Date, endDate:Date,courseCount:Number, timeCount:Number):void {
+			TraceUtils.myTrace("sessions updateChart for " + startDate + " to " + endDate);
+			setData(dataProvider, startDate, endDate, courseCount, timeCount);
+			
+			//TraceUtils.myTrace("updateChart with " + _fullChartXML.toString());
+			comparisonChart.anychartXML=_fullChartXML;
+		}
+			
+		
+		// For the user to change the yaxis scale
+		// Remove
+		/*
+		private function changeTheYAxis(e:SliderEvent):void {
+			var currentSlider:HSlider = e.currentTarget as HSlider;
+			changeYScaleLinear(currentSlider.value);			
+			comparisonChart.anychartXML=_fullChartXML;
+		}
+		*/
+		//protected function btnGetImage_clickHandler(event:MouseEvent):void {
+		//	this.imgImagePreview.load(byteArray);
+		//}		
+		]]>
+	</mx:Script>
+	
+	<mx:Style>
+		@font-face {
+			src:url("/../assets/counterFont.swf");
+			fontFamily: "Impact";
+		}
+		.myCounterStyle {
+			/*the impact font couse display error, so I delete it  and chang fontWeight from "normal" to "bold"*/
+			/*fontFamily: "Impact";*/
+			fontWeight: "bold";
+			fontStyle: "regular";
+			fontSize: 11;
+			textAlign: "center";
+		}
+	</mx:Style>
+	<mx:NumberFormatter id="numberFormatter"/>
+	<mx:VBox id="lastOverYear" width="100%" height="100%" paddingTop="10" >
+		<mx:Text width="100%" id="startText1" styleName="myCounterStyle"/>
+		<mx:Text width="100%" id="startText2" styleName="myCounterStyle"/>
+		<ns1:AnyChartFlex id="comparisonChart" width="100%" height="400" />
+		<!-- 
+			<mx:HSlider id="yAxisSlider" height="50" change="changeTheYAxis(event)" liveDragging="true" /> 
+		<mx:Button label="copyImage" click="saveChartAsImage()" />
+		<mx:Image id="imgImagePreview" width="300" height="100" visible="true" includeInLayout="true"/>			 
+		 -->
+	</mx:VBox>
+</mx:TitleWindow>

@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+		xmlns:ns1="com.anychart.*"
+		implements="com.clarityenglish.common.view.interfaces.CopyReceiver"
+		creationComplete="onCreationComplete();">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.common.vo.content.Content;
+		import com.clarityenglish.resultsmanager.view.shared.events.SelectEvent;
+		import mx.collections.ArrayCollection;
+		import mx.core.ClassFactory;
+		import mx.core.Application;
+		import mx.events.*;
+		import com.clarityenglish.utils.TraceUtils;
+		
+		private var copyProvider:CopyProvider;
+		
+		// Hold the data for the chart
+		private var _title:XML;
+		private var _data:XML;
+		private var _mainSettings:XML;
+		private var _dataPlotSettings:XML;
+
+		[Bindable]
+		private var countryList:ArrayCollection;
+		[Bindable]
+		private var durationList:ArrayCollection;
+		
+		// For network we won't offer comparison outside the network yet
+		[Bindable]
+		private var networkVersion:Boolean;
+		
+		/**
+		 * Set any copy in this component and call setCopyProvider on any child components
+		 * 
+		 * @param	copyProvider An object implementing CopyProvider
+		 */
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			//TraceUtils.myTrace("setCopyProvider");
+			this.copyProvider = copyProvider;
+			//contentLabel.text = copyProvider.getCopyForId("content");
+		}
+		
+		public function onCreationComplete():void {
+			// For testing  - see workbench/AnyChart/Playing
+
+			// Initialise the chart settings that don't change
+			// the width of the columns is group_padding in bar_series
+			_mainSettings = <settings>
+								<animation enabled="True"/>
+								<context_menu save_as_image="true" version_info="false" print_chart="true" about_anychart="false" />
+							</settings>;
+			_dataPlotSettings = < data_plot_settings default_series_type = "Bar" enable_3d_mode = "true"
+									z_padding = "0.5" z_aspect = "1"
+									z_elevation="45" >
+									<bar_series point_padding="0" group_padding="1" style="filledGradient">
+										<tooltip_settings enabled="true">
+											<format>{"{%YValue}{numDecimals:0}%"}</format>
+										</tooltip_settings>
+									</bar_series>
+								</data_plot_settings>;			
+			
+			// Default country list
+			countryList = new ArrayCollection([ { label:"Worldwide" }, 
+												{ label:"Hong Kong" }, 
+												{ label:"Bahamas" }, 
+												{ label:"Afghanistan" } ]);
+			// Default duration list
+			durationList = new ArrayCollection([{ label:"Always", data:0 }, 
+							{ label:"Since I started", data:1 },
+							{ label:"In the last month", data:2 },
+							{ label:"In the last year", data:3 },
+							]);
+							
+			// To control the layout
+			TraceUtils.myTrace("env=" + Application.application.parameters.env);
+			networkVersion = Application.application.parameters.env.toLowerCase() == "network";
+		}	
+		
+		public function setChartDataProvider(data:XML):void {
+			// and those that do change
+			_title = <title enabled="true">
+						<text>my title</text>
+					</title>;
+			_data = <data></data>;
+			
+			//TraceUtils.myTrace("current title is " + _title.text + " change it to " + data.@name);
+			// and those that do change
+			//_title.text = data.@name;
+			_title.text = data.@name + " - how much have you completed?";
+			
+			_data.appendChild(<series name="Your progress" palette="RichGlow"></series>);
+			_data.appendChild(<series name="Everyone else" color="Green"></series>);
+			
+			for each (var dataPoint:XML in data.course) {
+				//TraceUtils.myTrace("chart course=" + dataPoint.@name + " eCompleted=" + dataPoint.@ecompleted); // toString());
+				var yourPoint:XML = <point></point>;
+				yourPoint.@name = dataPoint.@name;
+				if (dataPoint.@total>0) {
+					yourPoint.@y = Math.floor(100 * (Number(dataPoint.@completed) / Number(dataPoint.@total)));
+				} else {
+					yourPoint.@y = 0;
+				}
+				_data.series[0].appendChild(yourPoint);
+				
+				var everyonesPoint:XML = <point></point>;
+				everyonesPoint.@name = dataPoint.@name;
+				if (dataPoint.@etotal>0) {
+					everyonesPoint.@y = Math.floor(100 * (Number(dataPoint.@ecompleted) / Number(dataPoint.@etotal)));
+				} else {
+					//TraceUtils.myTrace("set everyone to zero");
+					everyonesPoint.@y = 0;
+				}
+				_data.series[1].appendChild(everyonesPoint);
+			}		
+			//TraceUtils.myTrace("everyone series=" + _data.series[1].toString());
+		}
+
+		public function updateChart():void {
+			var fullChartXML:XML = <anychart>
+				{_mainSettings}
+				<charts>
+				<chart plot_type="CategorizedVertical">
+					{_dataPlotSettings }
+					<styles>
+						<bar_style name="filledGradient">
+							<fill type="Gradient" opacity="1">
+								<gradient>
+									<key position="0" color="Red"/>
+									<key position="1" color="Purple"/>
+								</gradient>
+							</fill>
+							<states>
+								<hover>
+									<fill type="Gradient" opacity="1">
+										<gradient>
+											<key position="0" color="LightColor(%Color)"/>
+											<key position="1" color="DarkColor(%Color)"/>
+										</gradient>
+									</fill>
+								</hover>
+							</states>
+						</bar_style>
+					</styles>
+					<chart_settings>
+						<chart_background>
+							<border enabled="false"/>
+						</chart_background>
+						{_title }
+						<legend enabled="true" position="Bottom" ignore_auto_item="true">
+							<title enabled="false">
+							</title>
+							<columns_separator enabled="true"/>
+							<background>
+								<inside_margin left="10" right="10"/>
+							</background>
+							<items>
+								<item>
+									<icon type="SeriesIcon" series_type="Bar" color="Red" />
+									<text>{"{%Icon} Your progress"}</text>
+								</item>
+								<item> 
+									<icon type="SeriesIcon" series_type="Bar" color="Green" />
+									<text>{"{%Icon} Everyone else"}</text>
+								</item>
+							</items>
+						</legend>
+						<axes>
+							<y_axis>
+								<title rotation="0">
+									<font family="Verdana" size="10" />
+									<text>%</text>
+								</title>
+								<labels allow_overlap="true" show_first_label="true" show_last_label="true">
+									<font family="Verdana" size="10" />
+									<format>{ "{%Value}{numDecimals:0}" }</format>
+								</labels>
+								<major_tickmark enabled="true" />
+								<scale minimum="0" maximum="100" major_interval="20" mode="Overlay"/>
+							</y_axis>
+							<x_axis>
+								<title enabled="false">
+								</title>
+								<labels enabled="true" display_mode="Rotated" rotation="45" allow_overlap="true">
+									<font family="Verdana" size="10" />
+								</labels>
+							</x_axis>
+						</axes>
+					</chart_settings>
+				{_data }
+				<palettes>
+					<palette name="RichGlow" type="ColorRange" color_count="10">
+						<gradient>
+							<key color="Red"/>
+							<key color="Yellow"/>	
+						</gradient>
+					</palette>
+				</palettes>
+				</chart>
+				</charts>
+				</anychart>;
+			//TraceUtils.myTrace("updateChart with " + fullChartXML.toString());
+			comparisonChart.anychartXML=fullChartXML;
+		}
+		
+		// Functions to recalculate everyeone's progress
+		private function changeData(e:ListEvent):void {
+			//sendNotification(PWNotifications.RELOAD_EVERYONES_SCORES, [countrySelection.selectedItem.label, durationSelection.selectedItem.data]);
+			//TraceUtils.myTrace("ComparisonView.changeData");
+			dispatchEvent(new Event(Event.CHANGE));
+		}
+		
+		]]>
+	</mx:Script>
+	<mx:VBox width="100%" height="100%">
+		<ns1:AnyChartFlex id="comparisonChart" width="100%" height="400" />
+		<mx:HBox width="100%" visible="{!networkVersion}" includeInLayout="{!networkVersion}">
+			<mx:Label width="50%" textAlign="right" text="Choose where the others come from:" />
+			<mx:ComboBox width="150" id="countrySelection" dataProvider="{countryList}" change="changeData(event);" selectedIndex="0" />
+		</mx:HBox>
+		<mx:HBox width="100%" visible="{!networkVersion}" includeInLayout="{!networkVersion}">
+			<mx:Label width="50%" textAlign="right" text="Choose the period they have been working:" />
+			<mx:ComboBox id="durationSelection" dataProvider="{durationList}" change="changeData(event);" selectedIndex="0" />
+		</mx:HBox>
+	</mx:VBox>
+</mx:Canvas>

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+		xmlns:controls="org.davekeen.controls.*"
+		xmlns:progress="com.clarityenglish.progressWidget.view.progress.components.*"
+		implements="com.clarityenglish.common.view.interfaces.CopyReceiver"
+		creationComplete="onCreationComplete();">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.common.vo.content.Content;
+		import mx.core.ClassFactory;
+		import com.clarityenglish.progressWidget.events.RefreshEvent;
+		import com.clarityenglish.utils.TraceUtils;
+		import nl.demonsters.debugger.MonsterDebugger;
+		
+		private var copyProvider:CopyProvider;
+		
+		/**
+		 * Set any copy in this component and call setCopyProvider on any child components
+		 * 
+		 * @param	copyProvider An object implementing CopyProvider
+		 */
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			//TraceUtils.myTrace("setCopyProvider");
+			this.copyProvider = copyProvider;
+		}
+		
+		public function onCreationComplete():void {
+			
+		}	
+		
+		public function setDataProvider(data:XML):void {
+			//TraceUtils.myTrace("progressView.setDP to " + data.toString());
+			unit1.setDataProvider(data.course[0]);
+			unit2.setDataProvider(data.course[1]);
+			unit3.setDataProvider(data.course[2]);
+			unit4.setDataProvider(data.course[3]);
+			unit5.setDataProvider(data.course[4]);
+			unit6.setDataProvider(data.course[5]);
+			unit7.setDataProvider(data.course[6]);
+			unit8.setDataProvider(data.course[7]);
+			unit9.setDataProvider(data.course[8]);
+			unit10.setDataProvider(data.course[9]);
+		}
+
+		// Functions to refresh your progress
+		private function clickHandler(event:MouseEvent):void {
+			MonsterDebugger.trace(this, "refresh click handler");
+			dispatchEvent(new RefreshEvent(RefreshEvent.DATA, true));
+		}
+		
+		]]>
+	</mx:Script>
+	<!-- 
+	<mx:VBox width="100%" height="100%" verticalGap="1">
+		<mx:VBox width="100%" height="100%" >
+			<mx:HBox width="100%" height="24%">
+				<progress:UnitProgress width="32%" height="100%" id="unit1" />
+				<progress:UnitProgress width="32%" height="100%" id="unit5" />
+				<progress:UnitProgress width="32%" height="100%" id="unit9" />
+			</mx:HBox>
+			<mx:HBox width="100%" height="24%">
+				<progress:UnitProgress width="32%" height="100%" id="unit2" />
+				<progress:UnitProgress width="32%" height="100%" id="unit6" />
+				<progress:UnitProgress width="32%" height="100%" id="unit10" />
+			</mx:HBox>
+			<mx:HBox width="100%" height="24%">
+				<progress:UnitProgress width="32%" height="100%" id="unit3" />
+				<progress:UnitProgress width="32%" height="100%" id="unit7" />
+				<mx:Spacer width="32%" height="100%"/>
+			</mx:HBox>
+			<mx:HBox width="100%" height="24%">
+				<progress:UnitProgress width="32%" height="100%" id="unit4" />
+				<progress:UnitProgress width="32%" height="100%" id="unit8" />
+				<mx:Spacer width="32%" height="100%"/>
+			</mx:HBox>
+		</mx:VBox>
+	</mx:VBox>
+	 -->
+	<mx:Tile id="progressTiles" paddingTop="5" paddingLeft="5" width="745" direction="horizontal" verticalGap="5" horizontalGap="5" tileWidth="230" tileHeight="125">
+		<progress:UnitProgress id="unit1" />
+		<progress:UnitProgress id="unit2" />
+		<progress:UnitProgress id="unit3" />
+		<progress:UnitProgress id="unit4" />
+		<progress:UnitProgress id="unit5" />
+		<progress:UnitProgress id="unit6" />
+		<progress:UnitProgress id="unit7" />
+		<progress:UnitProgress id="unit8" />
+		<progress:UnitProgress id="unit9" />
+		<progress:UnitProgress id="unit10" />
+		<mx:Button id="refreshBtn" click="clickHandler(event);" label="Refresh"></mx:Button>
+	</mx:Tile>
+</mx:Canvas>

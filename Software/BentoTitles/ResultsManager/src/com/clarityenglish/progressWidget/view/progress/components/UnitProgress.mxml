@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+		implements="com.clarityenglish.common.view.interfaces.CopyReceiver"
+		creationComplete="onCreationComplete();">
+<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.utils.TraceUtils;
+		
+		[Bindable]
+		[Embed(source="/../assets/ProgressBlock.png")]
+		private var progressBlockImage:Class;
+		[Bindable]
+		[Embed(source="/../assets/NoProgressBlock.png")]
+		private var noProgressBlockImage:Class;
+		
+		private var copyProvider:CopyProvider;
+		
+		/**
+		 * Set any copy in this component and call setCopyProvider on any child components
+		 * 
+		 * @param	copyProvider An object implementing CopyProvider
+		 */
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			//TraceUtils.myTrace("setCopyProvider");
+			this.copyProvider = copyProvider;
+		}
+		
+		public function onCreationComplete():void {
+			//TraceUtils.myTrace("created " + this);
+		}	
+		
+		public function setDataProvider(data:XML):void {
+			//TraceUtils.myTrace("unitProgressView.setDP to " + data.@name); // toString());
+			// update the display
+			courseName.text = data.@name;
+			unitName1.text = data.unit[0].@name; // Career Library
+			//progressBar1.setProgress(data.unit[0].@completed, data.unit[0].@total);
+			updateProgressBar("pb1", data.unit[0].@completed, data.unit[0].@total);
+			//updateProgressBar("pb1", 5, 5);
+			
+			unitName2.text = data.unit[1].@name + ": " + data.unit[1].item[0].@name; //Advice Zone Q1
+			//progressBar2.setProgress(data.unit[1].item[0].@completed, data.unit[1].item[0].@total);
+			updateProgressBar("pb2", data.unit[1].item[0].@completed, data.unit[1].item[0].@total);
+			//updateProgressBar("pb2", 2, 5);
+			
+			unitName3.text = data.unit[1].@name + ": " + data.unit[1].item[1].@name; //Advice Zone Q2
+			//progressBar3.setProgress(data.unit[1].item[1].@completed, data.unit[1].item[1].@total);
+			updateProgressBar("pb3", data.unit[1].item[1].@completed, data.unit[1].item[1].@total);
+			
+			// There may not be 3 questions
+			//TraceUtils.myTrace(data.unit[1].@name + " has " + data.unit[1].item.length() + " items");
+			if (data.unit[1].item.length()>2) {
+				unitName4.text = data.unit[1].@name + ": " + data.unit[1].item[2].@name; //Advice Zone Q3
+				//progressBar4.setProgress(data.unit[1].item[2].@completed, data.unit[1].item[2].@total);
+				updateProgressBar("pb4", data.unit[1].item[2].@completed, data.unit[1].item[2].@total);
+			} else {
+				unitName4.text = "-";
+				//progressBar4.setProgress(0,0);
+				updateProgressBar("pb4", 0,0);
+			}
+			unitName5.text = data.unit[3].@name; // Practice Centre
+			//progressBar5.setProgress(data.unit[3].@completed, data.unit[3].@total);
+			updateProgressBar("pb5", data.unit[3].@completed, data.unit[3].@total);
+			//updateProgressBar("pb5", 4, 5);
+			
+			unitName6.text = data.unit[2].@name; //Story Point
+			//progressBar6.setProgress(data.unit[2].@completed, data.unit[2].@total);
+			updateProgressBar("pb6", data.unit[2].@completed, data.unit[2].@total);
+			
+		}
+		private function updateProgressBar(baseName:String, completed:uint, total:uint):void {
+			var myFraction:uint = 0;
+			if (total > 0) {
+				myFraction = Math.floor(completed * 100 / total);
+			}
+			if (baseName == "pb1") {
+				(myFraction >= 20) ? pb1_1.source = progressBlockImage : pb1_1.source = noProgressBlockImage;
+				(myFraction >= 40) ? pb1_2.source = progressBlockImage : pb1_2.source = noProgressBlockImage;
+				(myFraction >= 60) ? pb1_3.source = progressBlockImage : pb1_3.source = noProgressBlockImage;
+				(myFraction >= 80) ? pb1_4.source = progressBlockImage : pb1_4.source = noProgressBlockImage;
+				(myFraction >= 100) ? pb1_5.source = progressBlockImage : pb1_5.source = noProgressBlockImage;
+			}
+			if (baseName == "pb2") {
+				(myFraction >= 20) ? pb2_1.source = progressBlockImage : pb2_1.source = noProgressBlockImage;
+				(myFraction >= 40) ? pb2_2.source = progressBlockImage : pb2_2.source = noProgressBlockImage;
+				(myFraction >= 60) ? pb2_3.source = progressBlockImage : pb2_3.source = noProgressBlockImage;
+				(myFraction >= 80) ? pb2_4.source = progressBlockImage : pb2_4.source = noProgressBlockImage;
+				(myFraction >= 100) ? pb2_5.source = progressBlockImage : pb2_5.source = noProgressBlockImage;
+			}
+			if (baseName == "pb3") {
+				(myFraction >= 20) ? pb3_1.source = progressBlockImage : pb3_1.source = noProgressBlockImage;
+				(myFraction >= 40) ? pb3_2.source = progressBlockImage : pb3_2.source = noProgressBlockImage;
+				(myFraction >= 60) ? pb3_3.source = progressBlockImage : pb3_3.source = noProgressBlockImage;
+				(myFraction >= 80) ? pb3_4.source = progressBlockImage : pb3_4.source = noProgressBlockImage;
+				(myFraction >= 100) ? pb3_5.source = progressBlockImage : pb3_5.source = noProgressBlockImage;
+			}
+			if (baseName == "pb4") {
+				(myFraction >= 20) ? pb4_1.source = progressBlockImage : pb4_1.source = noProgressBlockImage;
+				(myFraction >= 40) ? pb4_2.source = progressBlockImage : pb4_2.source = noProgressBlockImage;
+				(myFraction >= 60) ? pb4_3.source = progressBlockImage : pb4_3.source = noProgressBlockImage;
+				(myFraction >= 80) ? pb4_4.source = progressBlockImage : pb4_4.source = noProgressBlockImage;
+				(myFraction >= 100) ? pb4_5.source = progressBlockImage : pb4_5.source = noProgressBlockImage;
+			}
+			if (baseName == "pb5") {
+				(myFraction >= 20) ? pb5_1.source = progressBlockImage : pb5_1.source = noProgressBlockImage;
+				(myFraction >= 40) ? pb5_2.source = progressBlockImage : pb5_2.source = noProgressBlockImage;
+				(myFraction >= 60) ? pb5_3.source = progressBlockImage : pb5_3.source = noProgressBlockImage;
+				(myFraction >= 80) ? pb5_4.source = progressBlockImage : pb5_4.source = noProgressBlockImage;
+				(myFraction >= 100) ? pb5_5.source = progressBlockImage : pb5_5.source = noProgressBlockImage;
+			}
+			
+			if (baseName == "pb6") {
+				(myFraction >= 20) ? pb6_1.source = progressBlockImage : pb6_1.source = noProgressBlockImage;
+				(myFraction >= 40) ? pb6_2.source = progressBlockImage : pb6_2.source = noProgressBlockImage;
+				(myFraction >= 60) ? pb6_3.source = progressBlockImage : pb6_3.source = noProgressBlockImage;
+				(myFraction >= 80) ? pb6_4.source = progressBlockImage : pb6_4.source = noProgressBlockImage;
+				(myFraction >= 100) ? pb6_5.source = progressBlockImage : pb6_5.source = noProgressBlockImage;
+			}
+		}
+
+		]]>
+	</mx:Script>
+	<mx:VBox width="225" height="100%" horizontalScrollPolicy="off" borderStyle="solid" verticalGap="2" >
+		<mx:Label width="100%" id="courseName" styleName="subHeadingLabelBlack" paddingTop="2" paddingBottom="0" />
+		<mx:HBox width="100%" height="14" horizontalGap="5" >
+			<mx:Label id="unitName1" paddingTop="0" />
+			<mx:Spacer width="100%" />
+			<mx:HBox id="progressBar1" height="100%" width="75" horizontalGap="1" verticalAlign="middle" >
+				<mx:Image id="pb1_1" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb1_2" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb1_3" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb1_4" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb1_5" visible="true" source="{noProgressBlockImage}"/>
+			</mx:HBox>
+		</mx:HBox>
+		<mx:HBox width="100%" height="14" horizontalGap="5" >
+			<mx:Label id="unitName2" paddingTop="0"/>
+			<mx:Spacer width="100%" />
+			<mx:HBox id="progressBar2" height="100%" width="75" horizontalGap="1" verticalAlign="middle" >
+				<mx:Image id="pb2_1" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb2_2" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb2_3" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb2_4" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb2_5" visible="true" source="{noProgressBlockImage}"/>
+			</mx:HBox>
+		</mx:HBox>
+		<mx:HBox width="100%" height="14" horizontalGap="5" >
+			<mx:Label id="unitName3" paddingTop="0" />
+			<mx:Spacer width="100%" />
+			<mx:HBox id="progressBar3" height="100%" width="75" horizontalGap="1" verticalAlign="middle" >
+				<mx:Image id="pb3_1" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb3_2" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb3_3" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb3_4" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb3_5" visible="true" source="{noProgressBlockImage}"/>
+			</mx:HBox>
+		</mx:HBox>
+		<mx:HBox width="100%" height="14" horizontalGap="5" >
+			<mx:Label id="unitName4" paddingTop="0"/>
+			<mx:Spacer width="100%" />
+			<mx:HBox id="progressBar4" height="100%" width="75" horizontalGap="1" verticalAlign="middle" >
+				<mx:Image id="pb4_1" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb4_2" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb4_3" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb4_4" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb4_5" visible="true" source="{noProgressBlockImage}"/>
+			</mx:HBox>
+		</mx:HBox>
+		<mx:HBox width="100%" height="14" horizontalGap="5" >
+			<mx:Label id="unitName5" paddingTop="0" />
+			<mx:Spacer width="100%" />
+			<mx:HBox id="progressBar5" height="100%" width="75" horizontalGap="1" verticalAlign="middle" >
+				<mx:Image id="pb5_1" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb5_2" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb5_3" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb5_4" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb5_5" visible="true" source="{noProgressBlockImage}"/>
+			</mx:HBox>
+		</mx:HBox>
+		<mx:HBox width="100%" height="14" horizontalGap="5" >
+			<mx:Label id="unitName6" paddingTop="0" />
+			<mx:Spacer width="100%" />
+			<mx:HBox id="progressBar6" height="100%" width="75" horizontalGap="1" verticalAlign="middle" >
+				<mx:Image id="pb6_1" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb6_2" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb6_3" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb6_4" visible="true" source="{noProgressBlockImage}"/>
+				<mx:Image id="pb6_5" visible="true" source="{noProgressBlockImage}"/>
+			</mx:HBox>
+		</mx:HBox>
+		<mx:Spacer height="2" />
+	</mx:VBox>
+</mx:Canvas>

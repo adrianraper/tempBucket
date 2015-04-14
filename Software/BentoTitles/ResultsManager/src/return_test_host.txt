@@ -1,0 +1,5 @@
+﻿//return "http://aws2.clarityenglish.com/Software/ResultsManager/web/";
+//return "http://main.wz.com/Software/ResultsManager/web/";
+//return "http://claritydevelop/Software/ResultsManager/web/";
+//return "http://www.ieltspractice.com/Clarity/Software/ResultsManager/web/";
+return "http://dock.fixbench/Software/ResultsManager/web/";

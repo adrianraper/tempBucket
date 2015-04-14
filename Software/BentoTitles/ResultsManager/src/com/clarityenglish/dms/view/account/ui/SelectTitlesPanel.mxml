@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:ui="com.clarityenglish.dms.view.account.ui.*"
+	borderAlpha="0.9"
+	creationComplete="creationComplete()"
+	minWidth="0"
+	minHeight="0"
+	implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.common.vo.content.Title;
+		import com.clarityenglish.dms.view.account.events.TitlesWindowEvent;
+		import com.clarityenglish.dms.vo.account.Account;
+		import flash.events.Event;
+		import mx.controls.Alert;
+		import mx.core.IFlexDisplayObject;
+		import mx.effects.effectClasses.RemoveChildActionInstance;
+		import mx.events.CloseEvent;
+		import mx.events.PropertyChangeEvent;
+		import mx.managers.PopUpManager;
+		import com.clarityenglish.dms.view.account.AccountMediator;
+		public var parentView:IFlexDisplayObject;
+		
+		[Bindable]
+		private var _products:Array;
+		
+		[Bindable]
+		public var useSubmitControls:Boolean = true;
+		
+		// This is the list of product codes that have been assigned
+		private var productCodes:Array = new Array();
+		
+		private var copyProvider:CopyProvider;
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+			
+			title = copyProvider.getCopyForId("configureTitlesWindow");
+			okButton.label = copyProvider.getCopyForId("ok");
+			cancelButton.label = copyProvider.getCopyForId("cancel");
+		}
+		
+		private function creationComplete():void {
+			
+		}
+		
+		public function set products(p:Array):void {
+			_products = new Array();
+			
+			// Create a dataprovider made up of objects containing all the bits of product information out of the product dictionary
+			// v3.6.1 I would like this to use displayOrder, just like RM does. Done by an 'order by' clause when reading the dictionary
+			for each (var item:Object in p) {
+				var product:Object = new Object();
+				product.productCode = item.data;
+				//product.caption = item.label;
+				product.name = item.label;
+				// v3.3 This is not associated with T_Product any more, see T_ProductLanguage
+				//product.defaultContentLocation = item.defaultContentLocation;
+				
+				_products.push(product);
+			}
+			
+			dataGrid.dataProvider = _products;
+		}
+		
+		public function set titles(titles:Array):void {
+			// Add the list of titles in this account to productCodes so we can maintain a list of selected accounts, then either discard
+			// them if the user cancels, or add/remove titles as required if they submit.
+			for each (var title:Title in titles)
+				//productCodes[title.productCode] = { selected: true, caption: title.caption };
+				productCodes[title.productCode] = { selected: true, caption: title.name };
+		}
+		
+		/**
+		 * A checkbox has been (un)checked
+		 * 
+		 * Since this is called from an mx:Component this needs to be a public method.
+		 * 
+		 * @param	selected
+		 * @param	data
+		 */
+		public function setSelected(selected:Boolean, data:Object):void {
+			//productCodes[data.productCode] = { selected: selected, caption: data.caption, defaultContentLocation: data.defaultContentLocation };
+			//productCodes[data.productCode] = { selected: selected, caption: data.name, defaultContentLocation: data.defaultContentLocation };
+			// v3.3 see above
+			productCodes[data.productCode] = { selected: selected, caption: data.name };
+			dispatchEvent(new Event("productCodesChanged"));
+		}
+		
+		/**
+		 * Return whether or not the checkbox is selected for a particular title.
+		 * 
+		 * Since this is called from an mx:Component this needs to be a public method.
+		 * 
+		 * @param	data
+		 * @return
+		 */
+		[Bindable(event="productCodesChanged")]
+		public function isSelected(data:Object):Boolean {
+			return productCodes[data.productCode].selected;
+		}
+		
+		public function getProductCodes():Array {
+			return productCodes;
+		}
+		
+		private function submit():void {
+			dispatchEvent(new TitlesWindowEvent(TitlesWindowEvent.SUBMIT, productCodes, true));
+		}
+		
+		]]>
+	</mx:Script>
+	
+	<mx:DataGrid id="dataGrid"
+				 rowHeight="50"
+				 verticalGridLines="false"
+				 showHeaders="false"
+				 selectable="false">
+		<mx:columns>
+			<mx:DataGridColumn paddingLeft="4" width="25">
+				<mx:itemRenderer>
+					<mx:Component>
+						<mx:CheckBox selected="{outerDocument.isSelected(data)}" change="outerDocument.setSelected(event.currentTarget.selected, data)" />
+					</mx:Component>						
+				</mx:itemRenderer>
+			</mx:DataGridColumn>
+			<mx:DataGridColumn width="50" itemRenderer="com.clarityenglish.dms.view.account.ui.ContentImageRenderer" />
+			<mx:DataGridColumn id="titleColumn" width="200" dataField="name" />
+		</mx:columns>
+	</mx:DataGrid>
+	
+	<mx:ControlBar width="100%" horizontalAlign="right" includeInLayout="{useSubmitControls}" visible="{useSubmitControls}">
+		<mx:Button id="okButton" click="submit()" />
+		<mx:Button id="cancelButton" click="dispatchEvent(new Event(Event.CANCEL, true));" />
+	</mx:ControlBar>
+</mx:Panel>

@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+		   xmlns:fxc="com.fxcomps.vacombobox.*"
+		   width="100%"
+		   implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.dms.vo.account.Account;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.dms.view.account.AccountMediator;
+		import com.clarityenglish.common.vo.dictionary.DictionarySingleton;
+		import com.clarityenglish.resultsmanager.view.management.ui.AddUserWindow;
+		import mx.controls.Alert;
+		import mx.core.UIComponent;
+		import mx.events.ValidationResultEvent;
+		import mx.managers.PopUpManager;
+		import com.clarityenglish.utils.TraceUtils;			
+		
+		[Bindable]
+		public var account:Account;
+		
+		[Bindable]
+		public var editMode:Boolean;
+		
+		private var copyProvider:CopyProvider;
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+			
+			rootIDFormItem.label = copyProvider.getCopyForId("rootIDFormItem");
+			nameFormItem.label = copyProvider.getCopyForId("nameFormItem");
+			// v3.6 Drop T_AccountRoot.F_Email
+			//emailFormItem.label = copyProvider.getCopyForId("emailFormItem");
+			prefixFormItem.label = copyProvider.getCopyForId("prefixFormItem");
+			resellerFormItem.label = copyProvider.getCopyForId("resellerFormItem");
+			accountStatusFormItem.label = copyProvider.getCopyForId("accountStatusFormItem");
+			// v3.0.5 Change status handling
+			//approvalStatusFormItem.label = copyProvider.getCopyForId("approvalStatusFormItem");
+			accountTypeFormItem.label = copyProvider.getCopyForId("accountTypeFormItem");
+			customerTypeFormItem.label = copyProvider.getCopyForId("customerTypeFormItem");
+			
+			tacStatusFormItem.label = copyProvider.getCopyForId("tacStatusFormItem");
+			adminUserFormItem.label = copyProvider.getCopyForId("adminUserFormItem");
+			editAdminUserButton.label = copyProvider.getCopyForId("editAdminUser");
+			referenceFormItem.label = copyProvider.getCopyForId("referenceFormItem");
+			invoiceNumberFormItem.label = copyProvider.getCopyForId("invoiceNumberFormItem");
+			logoFormItem.label = copyProvider.getCopyForId("logoFormItem");
+			// v3.0.6 Self hosting
+			selfHostFormItem.label = copyProvider.getCopyForId("selfHostFormItem");
+			// v3.0.6 Login option
+			loginOptionFormItem.label = copyProvider.getCopyForId("loginOptionFormItem");
+			// gh#231
+			selfRegisterFormItem.label = copyProvider.getCopyForId("selfRegisterFormItem");
+			// v3.5 Opt out of emails
+			optOutEmailsFormItem.label = copyProvider.getCopyForId("optOutEmailsFormItem");
+			optOutEmailDateFormItem.label = copyProvider.getCopyForId("optOutEmailDateFormItem");
+		}
+		
+		public function validate():Boolean {
+			if (nameValidator.validate().type == ValidationResultEvent.INVALID ||
+				prefixValidator.validate().type == ValidationResultEvent.INVALID) return false;
+			
+			// TODO: Once self-hosting accounts have been sorted this needs to take that into account (i.e. not make the DMS user make
+			// an admin user for a self-hosted account).
+			if (!account.adminUser.name || !account.adminUser.password) {
+				Alert.show(copyProvider.getCopyForId("mustAddAdmin"), "Error");
+				return false;
+			}
+			
+			return true;
+		}
+		
+		/**
+		 * Fill in the accounts object with the data from the fields
+		 */
+		public function save():void {
+			account.name = nameTextInput.text;
+			// v3.6 Drop T_AccountRoot.F_Email
+			//account.email = emailTextInput.text;
+			account.prefix = prefixTextInput.text;
+			account.resellerCode = resellerComboBox.value as Number;
+			account.accountStatus = accountStatusComboBox.value as Number;
+			// v3.0.5 Change status handling
+			//account.approvalStatus = approvalStatusComboBox.value as Number;
+			account.accountType = accountTypeComboBox.value as Number;
+			account.customerType = customerTypeComboBox.value as Number;
+			account.tacStatus = tacStatusComboBox.value as Number;
+			account.reference = referenceTextInput.text;
+			account.invoiceNumber = invoiceNumberTextInput.text;
+			account.logo = logoTextInput.text;
+			// v3.0.5 Self-host
+			account.selfHost = selfHostCheckBox.selected;
+			// v3.0.6 Login option. I don't really want to display this, but it seems that if I don't, I lose it.
+			//account.loginOption = loginOptionInput.text as Number;
+			// gh#231
+			account.loginOption = loginOptionComboBox.value as Number;
+			account.selfRegister = selfRegisterComboBox.value as Number;
+			//TraceUtils.myTrace("account.loginOption=" + account.loginOption + " from " + loginOptionInput.text);
+			// v3.5 Email flexibility
+			account.optOutEmails = optOutEmailsCheckBox.selected;
+			account.optOutEmailDate = optOutEmailDateTextInput.text;
+		}
+		
+		/**
+		 * Repopulate the fields from the accounts object
+		 */
+		public function cancel():void {
+			executeBindings(true);
+		}
+		
+		private function onEditUser():void {
+			// Nick the add user window from RM for this operation :)
+			var addUserWindow:AddUserWindow = PopUpManager.createPopUp(UIComponent(parentApplication), AddUserWindow, true) as AddUserWindow;
+			addUserWindow.editMode = true;
+			addUserWindow.setCopyProvider(copyProvider);
+			addUserWindow.parentView = this;
+			addUserWindow.users = [ account.adminUser ];
+			PopUpManager.centerPopUp(addUserWindow);
+		}
+		
+		]]>
+	</mx:Script>
+	
+	<mx:StringValidator id="nameValidator" source="{nameTextInput}" property="text" required="true" />
+	<mx:StringValidator id="prefixValidator" source="{prefixTextInput}" property="text" required="true" />
+	
+	<mx:Form>
+		<mx:FormItem id="rootIDFormItem">
+			<mx:TextInput width="50" editable="false" enabled="false" text="{account.id}" />
+		</mx:FormItem>
+		<mx:FormItem id="nameFormItem">
+			<mx:TextInput width="250" id="nameTextInput" enabled="{editMode}" text="{account.name}" />
+		</mx:FormItem>
+		<!-- 			
+		// v3.6 Drop T_AccountRoot.F_Email
+		<mx:FormItem id="emailFormItem">
+			<mx:TextInput width="250" id="emailTextInput" enabled="{editMode}" text="{account.email}" />
+		</mx:FormItem>
+		-->
+		<mx:FormItem id="prefixFormItem">
+			<mx:TextInput width="80" id="prefixTextInput" enabled="{editMode}" text="{account.prefix}" />
+		</mx:FormItem>
+		<mx:FormItem id="accountTypeFormItem">
+			<fxc:VAComboBox id="accountTypeComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().accountType}" value="{account.accountType}" />
+		</mx:FormItem>
+		<mx:FormItem id="accountStatusFormItem">
+			<fxc:VAComboBox id="accountStatusComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().accountStatus}" value="{account.accountStatus}" />
+		</mx:FormItem>
+		<mx:FormItem id="customerTypeFormItem">
+			<fxc:VAComboBox id="customerTypeComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().customerType}" value="{account.customerType}" />
+		</mx:FormItem>
+		<mx:HBox>
+			<mx:FormItem id="optOutEmailsFormItem" paddingLeft="15" >
+				<mx:CheckBox id="optOutEmailsCheckBox" enabled="{editMode}" selected="{account.optOutEmails}" />
+			</mx:FormItem>
+			<mx:FormItem id="optOutEmailDateFormItem" visible="{optOutEmailsCheckBox.selected}" >
+				<mx:TextInput width="150" id="optOutEmailDateTextInput" enabled="{editMode}" text="{account.optOutEmailDate}" />
+			</mx:FormItem>
+		</mx:HBox>
+		<mx:FormItem id="selfHostFormItem" >
+			<mx:CheckBox id="selfHostCheckBox" enabled="{editMode}" selected="{account.selfHost}" />
+		</mx:FormItem>
+		<mx:FormItem id="loginOptionFormItem">
+			<fxc:VAComboBox id="loginOptionComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().loginOption}" value="{account.loginOption}" />
+			<!-- <mx:TextInput width="50" id="loginOptionInput" enabled="false" text="{account.loginOption}" /> -->
+		</mx:FormItem>
+		<mx:FormItem id="selfRegisterFormItem">
+			<fxc:VAComboBox id="selfRegisterComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().selfRegisterOption}" value="{account.selfRegister}" />
+		</mx:FormItem>
+	</mx:Form>
+	<mx:Form right="50">
+		<mx:FormItem id="resellerFormItem">
+			<fxc:VAComboBox id="resellerComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().resellers}" value="{account.resellerCode}" />
+		</mx:FormItem>
+		<mx:FormItem id="tacStatusFormItem">
+			<fxc:VAComboBox id="tacStatusComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().termsConditions}" value="{account.tacStatus}" />
+		</mx:FormItem>
+		<mx:FormItem id="adminUserFormItem">
+			<mx:TextInput editable="false" enabled="false" text="{account.adminUser.name}" />
+			<mx:TextInput id="adminEmail" editable="false" enabled="false" text="{account.adminUser.email}" />
+			<mx:Button id="editAdminUserButton" width="100%" visible="{editMode}" includeInLayout="{editMode}" click="onEditUser()" />
+		</mx:FormItem>
+		<mx:FormItem id="invoiceNumberFormItem">
+			<mx:TextInput id="invoiceNumberTextInput" enabled="{editMode}" text="{account.invoiceNumber}" />
+		</mx:FormItem>
+		<mx:FormItem id="logoFormItem">
+			<mx:TextInput id="logoTextInput" enabled="{editMode}" text="{account.logo}" />
+		</mx:FormItem>
+		<mx:FormItem id="referenceFormItem" direction="horizontal">
+			<mx:TextArea width="270" height="60" id="referenceTextInput" editable="{editMode}" enabled="{editMode}" text="{account.reference}" />
+		</mx:FormItem>
+	</mx:Form>
+</mx:Canvas>
