@@ -51,9 +51,6 @@
 						// Set the Android config xml file as well as getting the prefix, product code and font size from the iOS settings
 						FlexGlobals.topLevelApplication.parameters.configFile = "android-config-" + language + ".xml";
 						XHTMLImporter.media = "android";
-						if (language != "en" ) {
-							FlexGlobals.topLevelApplication.setStyle("fontFamily", "ChineseFont");
-						}
 						break
 					default:
 						throw new Error("Unsupported platform - " + Capabilities.version);
@@ -125,23 +122,6 @@
 	</fx:Script>
 	
 	<fx:Style>
-		@font-face {
-			src: url("/skins/ielts/assets/SimSun.ttf");			
-			fontFamily: ChineseFont;
-			fontStyle: normal;
-			embedAsCFF: true;
-			advancedAntiAliasing: true;
-		}
-		
-		@font-face {
-			src: url("/skins/ielts/assets/SimSunBold.ttf");			
-			fontFamily: ChineseFont;
-			fontStyle: normal;
-			fontWeight: bold;
-			embedAsCFF: true;
-			advancedAntiAliasing: true;
-		}
-		
 		global {
 			fontFamily: Helvetica;
 			fontSize: 13;
