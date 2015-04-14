@@ -132,6 +132,9 @@ package com.clarityenglish.ielts.view.title {
 		[Bindable]
 		public var dateFormatter:DateFormatter;
 		
+		[Bindable]
+		public var isLogoutButtonHide:Boolean;
+		
 		// #337
 		public var candidateOnlyInfo:Boolean = false;
 		

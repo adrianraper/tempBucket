@@ -58,6 +58,10 @@
 					view.isDirectStartEx = true;
 				}
 			}
+			
+			if (configProxy.isAccountJustAnonymous() && configProxy.isPlatformTablet()) {
+				view.isLogoutButtonHide = true;
+			}
 		}
 		
 		override public function onRemove():void {

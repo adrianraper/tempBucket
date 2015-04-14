@@ -164,5 +164,5 @@
 	<!--Rate Button-->
 	<s:Button id="longRateButton" right="50" top="70" buttonMode="true" useHandCursor="true" visible="{hostComponent.isPlatformTablet}" includeInLayout="{hostComponent.isPlatformTablet}" />
 	
-	<s:Label id="versionLabel" color="#AAAAAA" right="20" bottom="20"/>
+	<s:Label id="versionLabel" color="#AAAAAA" right="20" bottom="20" visible="{hostComponent.isPlatformTablet}"/>
 </s:Skin>
