@@ -26,9 +26,9 @@
     <registerURL>http://takeielts.britishcouncil.org/</registerURL>
     <getAccountURL>http://www.roadtoielts.com/</getAccountURL>
     
-	<contentPath>http://192.168.8.82/Content/</contentPath>
-	<remoteDomain>http://192.168.8.82/Software/</remoteDomain>
-	<remoteGateway>http://192.168.8.82/Software/ResultsManager/web/amfphp/</remoteGateway>>
+	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
+	<remoteDomain>http://www.clarityenglish.com/Software/</remoteDomain>
+	<remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>IELTSService</remoteService>
 	<assetFolder>ResultsManager/web/resources/assets/</assetFolder>
 </config>

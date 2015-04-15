@@ -128,12 +128,12 @@
 	<!-- The icon the system uses for the application. For at least one resolution,
 	specify the path to a PNG file included in the AIR package. Optional. -->
 	<icon>
-		<image57x57>icons/rtiv2_appicon_57.png</image57x57>
-		<image72x72>icons/rtiv2_appicon_72.png</image72x72>
-		<image76x76>icons/rtiv2_appicon_76.png</image76x76>
-		<image114x114>icons/rtiv2_appicon_114.png</image114x114>
-		<image144x144>icons/rtiv2_appicon_144.png</image144x144>
-		<image152x152>icons/rtiv2_appicon_152.png</image152x152>
+		<image57x57>icons/RTI2_iOS_appIcon_57.png</image57x57>
+		<image72x72>icons/RTI2_iOS_appIcon_72.png</image72x72>
+		<image76x76>icons/RTI2_iOS_appIcon_76.png</image76x76>
+		<image114x114>icons/RTI2_iOS_appIcon_114.png</image114x114>
+		<image144x144>icons/RTI2_iOS_appIcon_144.png</image144x144>
+		<image152x152>icons/RTI2_iOS_appIcon_152.png</image152x152>
 	</icon>
 
 	<!-- Whether the application handles the update when a user double-clicks an update version
