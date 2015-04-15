@@ -1,6 +1,6 @@
 ﻿package com.clarityenglish.dms.vo.account {
 	import com.clarityenglish.common.vo.content.Title;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import com.clarityenglish.common.vo.Reportable;
 	import com.clarityenglish.dms.ApplicationFacade;
 	import com.clarityenglish.dms.model.EmailProxy;

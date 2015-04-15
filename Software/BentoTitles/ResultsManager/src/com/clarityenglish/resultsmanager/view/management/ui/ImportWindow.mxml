@@ -15,33 +15,36 @@
 		import com.clarityenglish.resultsmanager.model.utils.ExcelImportParser;
 		import com.clarityenglish.resultsmanager.view.management.events.ManageableEvent;
 		import com.clarityenglish.resultsmanager.view.shared.events.LogEvent;
-		import com.clarityenglish.common.vo.manageable.Group;
+		import com.clarityenglish.resultsmanager.vo.manageable.Group;
+
 		import flash.events.Event;
 		import flash.net.FileFilter;
 		import flash.net.FileReference;
 		import flash.system.System;
+
 		import mx.controls.Alert;
 		import mx.core.IFlexDisplayObject;
 		import mx.managers.PopUpManager;
+
 		import com.clarityenglish.utils.TraceUtils;
-		
+
 		private var _parentGroup:Group;
-		
+
 		public var parentView:IFlexDisplayObject;
-		
+
 		public var fileReference:FileReference;
-		
+
 		[Bindable]
 		public var editMode:Boolean;
-		
+
 		[Bindable]
 		private var importControlsVisible:Boolean = true;
-		
+
 		private var copyProvider:CopyProvider;
-		
+
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			this.copyProvider = copyProvider;
-			
+
 			title = copyProvider.getCopyForId("importWindow");
 			browseButton.label = copyProvider.getCopyForId("browse");
 			//editButton.label = copyProvider.getCopyForId("edit");
@@ -49,13 +52,13 @@
 			//checkDataButton.label = copyProvider.getCopyForId("checkData");
 			closeWindowButton.label = copyProvider.getCopyForId("close");
 			copyFailedToClipboardButton.label = copyProvider.getCopyForId("importCopyFailedToClipboard");
-			
+
 			var replaceObj:Object = new Object();
 			replaceObj.helpFolder = Constants.HOST + Constants.HELP_FOLDER;
 			//TraceUtils.myTrace("helpFolder=" + replaceObj.helpFolder);
 			helpTextArea.htmlText = copyProvider.getCopyForId("importHelp", replaceObj);
 			helpTextLabel.text = copyProvider.getCopyForId("helpArea");
-			
+
 			//excelImportInstructions.text = copyProvider.getCopyForId("excelImportInstructions");			
 			browseButton.label = copyProvider.getCopyForId("browse");
 			importTypeLabel.text = copyProvider.getCopyForId("chooseImportType");
@@ -70,7 +73,7 @@
 			resultsLabel1.text = copyProvider.getCopyForId("resultsLabel1");
 			//excelTextArea.text = copyProvider.getCopyForId("pasteExcelHere");
 			notImplementedYet.text = copyProvider.getCopyForId("notImplementedYet");
-			
+
 			// v3.5 Allow import with update
 			//importWithUpdate.label = copyProvider.getCopyForId("importWithUpdate");
 			//importJustPreview.label = copyProvider.getCopyForId("importJustPreview");
@@ -78,70 +81,71 @@
 			importWithMove.label = copyProvider.getCopyForId("importWithMove");
 			importWithCopy.label = copyProvider.getCopyForId("importWithCopy");
 			importWithBlock.label = copyProvider.getCopyForId("importWithBlock");
-			
+
 		}
-		
+
 		public function set parentGroup(value:Group):void {
 			_parentGroup = value;
 		}
-		
+
 		public function setImportResults(importResults:Array):void {
 			// Show the grid. This is now viewstack 4
 			//importTypeViewStack.selectedIndex = 0;			
-			importTypeViewStack.selectedIndex = 3;			
-			
+			importTypeViewStack.selectedIndex = 3;
+
 			// Show the import results in the grid
 			dataGrid.dataProvider = importResults;
-			
+
 			// Hide the buttons now the import has happened
 			importControlsVisible = false;
-			
+
 			// Enabled to copy to clipboard button
 			copyFailedToClipboardButton.enabled = true;
 		}
-		
+
 		private function removePopup():void {
 			PopUpManager.removePopUp(this);
 		}
-		
-		private function creationComplete():void { }
-		
+
+		private function creationComplete():void {
+		}
+
 		private function browse():void {
 			var fileFilter:FileFilter = new FileFilter("XML files", "*.xml");
 			fileReference.addEventListener(Event.SELECT, onSelect);
 			fileReference.addEventListener(Event.CANCEL, onCancel);
-			fileReference.browse( [ fileFilter ] );
+			fileReference.browse([fileFilter]);
 		}
-		
+
 		private function onSelect(e:Event):void {
 			fileReference.removeEventListener(Event.SELECT, onSelect);
 			fileReference.removeEventListener(Event.CANCEL, onCancel);
-			
+
 			filenameTextInput.text = fileReference.name;
 		}
-		
+
 		private function onCancel(e:Event):void {
 			fileReference.removeEventListener(Event.SELECT, onSelect);
 			fileReference.removeEventListener(Event.CANCEL, onCancel);
 		}
-		
+
 		private function startXMLImport():void {
 			parentView.dispatchEvent(new ManageableEvent(ManageableEvent.IMPORT, null, _parentGroup, true));
 		}
-		
+
 		private function startExcelImport():void {
 			var manageablesObj:Object;
-			
+
 			try {
 				// This will come from the clipboard rather than a text area.
 				// Ah, no there is no getClipboard function due to privacy. So you have to provide a textArea for manual pasting.
 				manageablesObj = ExcelImportParser.excelPasteToManageables(excelTextArea.text);
 				//manageablesObj = ExcelImportParser.excelPasteToManageables(System.getClipboard());
-			
+
 				var manageablesArray:Array = new Array();
 				manageablesArray["groups"] = manageablesObj.groups;
 				manageablesArray["users"] = manageablesObj.users;
-			
+
 				// v3.6.1 Allow import/move or preview?
 				// gh#653
 				if (importWithMove.selected) {
@@ -154,7 +158,7 @@
 				//TraceUtils.myTrace("importView, go to event " + importEventName);
 				//parentView.dispatchEvent(new ManageableEvent(ManageableEvent.IMPORT_FROM_EXCEL, manageablesArray, _parentGroup, true));
 				parentView.dispatchEvent(new ManageableEvent(importEventName, manageablesArray, _parentGroup, true));
-				
+
 			} catch (e:ExcelImportError) {
 				switch (e.message) {
 					case ExcelImportError.NO_USERNAME_HEADER:
@@ -164,30 +168,30 @@
 						parentView.dispatchEvent(new LogEvent(LogEvent.ERROR, e.message, true));
 				}
 			}
-			
+
 		}
-		
+
 		/**
 		 * If the Excel import type is chosen automatically pop up the edit box (ticket #64)
 		 */
 		private function onImportTypeChange():void {
 			//if (importTypeComboBox.selectedItem == "Excel") importTypeViewStack.selectedIndex = 1;
 		}
-		
+
 		/**
 		 * Copy failed results to the clipboard (ticket #85)
 		 */
 		private function copyFailedResultsToClipboard():void {
 			// First get all the failed results
-			var failedResults:Array = dataGrid.dataProvider.source.filter(function(item:Object, index:int, array:Array):Boolean {
+			var failedResults:Array = dataGrid.dataProvider.source.filter(function (item:Object, index:int, array:Array):Boolean {
 				return !item.success;
-			} );
-			
+			});
+
 			// Turn this into comma seperated usernames
-			var usernames:Array = failedResults.map(function(item:Object, index:int, array:Array):String {
+			var usernames:Array = failedResults.map(function (item:Object, index:int, array:Array):String {
 				return item.name;
-			} );
-			
+			});
+
 			if (usernames.length == 0) {
 				Alert.show(copyProvider.getCopyForId("importNothingToCopyToClipboard"), "Notice");
 			} else {
@@ -196,7 +200,6 @@
 				Alert.show(copyProvider.getCopyForId("importCopyToClipboardSuccessful"), "Notice");
 			}
 		}
-		
 		]]>
 	</mx:Script>
 	<mx:VDividedBox width="100%" height="100%">

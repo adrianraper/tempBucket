@@ -3,7 +3,7 @@ require_once(dirname(__FILE__)."/Manageable.php");
 
 class User extends Manageable {
 
-	var $_explicitType = 'com.clarityenglish.common.vo.manageable.User';
+	var $_explicitType = 'com.clarityenglish.resultsmanager.vo.manageable.User';
 	
 	var $userID;
 	var $password;

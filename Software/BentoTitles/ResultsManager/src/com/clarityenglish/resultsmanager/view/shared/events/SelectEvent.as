@@ -1,5 +1,5 @@
 ﻿package com.clarityenglish.resultsmanager.view.shared.events {
-	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
 	import flash.events.Event;
 	
 	/**

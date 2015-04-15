@@ -1,4 +1,4 @@
-﻿package com.clarityenglish.common.vo.manageable {
+﻿package com.clarityenglish.resultsmanager.vo.manageable {
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.Reportable;
 	import org.davekeen.utils.ClassUtils;
@@ -7,7 +7,7 @@
 	* ...
 	* @author DefaultUser (Tools -> Custom Arguments...)
 	*/
-	[RemoteClass(alias = "com.clarityenglish.common.vo.manageable.Manageable")]
+	[RemoteClass(alias = "com.clarityenglish.resultsmanager.vo.manageable.Manageable")]
 	[Bindable]
 	public class Manageable extends Reportable {
 		

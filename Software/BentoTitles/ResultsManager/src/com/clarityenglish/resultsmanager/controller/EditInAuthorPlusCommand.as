@@ -4,7 +4,7 @@ Simple Command - PureMVC
 package com.clarityenglish.resultsmanager.controller {
 	import com.clarityenglish.common.vo.content.Content;
 	import com.clarityenglish.common.vo.content.Exercise;
-	import com.clarityenglish.common.vo.manageable.Manageable;
+	import com.clarityenglish.resultsmanager.vo.manageable.Manageable;
 	import com.clarityenglish.resultsmanager.model.ContentProxy;
 	import com.clarityenglish.resultsmanager.view.management.events.ContentEvent;
 	import org.puremvc.as3.interfaces.INotification;

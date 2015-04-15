@@ -2,7 +2,7 @@ package com.clarityenglish.activereading.view.progress {
 	import com.clarityenglish.alivepdf.pdf.PDF;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.progress.ui.ProgressCourseButtonBar;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;

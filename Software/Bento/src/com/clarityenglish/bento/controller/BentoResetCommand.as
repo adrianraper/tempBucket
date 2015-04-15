@@ -6,7 +6,7 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.common.model.ProgressProxy;
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Licence;
 
 import mx.core.FlexGlobals;

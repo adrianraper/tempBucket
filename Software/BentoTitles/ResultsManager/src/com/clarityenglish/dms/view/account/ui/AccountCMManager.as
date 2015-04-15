@@ -2,7 +2,7 @@
 	import com.clarityenglish.common.events.SearchEvent;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.interfaces.CopyReceiver;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import com.clarityenglish.dms.Constants;
 	import com.clarityenglish.dms.view.account.events.AccountEvent;
 	import com.clarityenglish.dms.vo.account.Account;

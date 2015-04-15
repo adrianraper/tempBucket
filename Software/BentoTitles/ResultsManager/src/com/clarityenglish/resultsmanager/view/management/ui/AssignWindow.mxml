@@ -9,114 +9,114 @@
 	<mx:Script>
 		<![CDATA[
 		import com.clarityenglish.common.model.interfaces.CopyProvider;
-		import com.clarityenglish.common.vo.manageable.Group;
-		import com.clarityenglish.common.vo.manageable.Manageable;
-		import com.clarityenglish.common.vo.manageable.User;
+		import com.clarityenglish.resultsmanager.vo.manageable.Group;
+		import com.clarityenglish.resultsmanager.vo.manageable.Manageable;
+		import com.clarityenglish.resultsmanager.vo.manageable.User;
 		import com.clarityenglish.resultsmanager.Constants;
 		import com.clarityenglish.resultsmanager.view.management.events.ExtraGroupsEvent;
 		import com.clarityenglish.resultsmanager.view.management.ui.treeClasses.AssignTreeDataDescriptor;
 		import com.clarityenglish.resultsmanager.view.shared.ui.ReportableTreeItemRenderer;
-		
+
 		import mx.collections.ArrayCollection;
 		import mx.collections.ICollectionView;
 		import mx.controls.treeClasses.DefaultDataDescriptor;
 		import mx.core.ClassFactory;
 		import mx.core.IFlexDisplayObject;
 		import mx.managers.PopUpManager;
-		
+
 		public var user:User;
-		
+
 		private var parentGroup:Group;
-		
+
 		public var parentView:IFlexDisplayObject;
-		
+
 		private var extraGroups:ArrayCollection = new ArrayCollection();
-		
+
 		[Bindable]
 		private static var dataDescriptor:DefaultDataDescriptor = new AssignTreeDataDescriptor();
-		
+
 		private function creationComplete():void {
 			// Create a ReportableTreeItemRenderer (this does both content and manageables tree) and configure it to use checkboxes
 			assignTree.itemRenderer = ReportableTreeItemRenderer.getRendererFactory(true, this);
 		}
-		
+
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			title = copyProvider.getCopyForId("assignClassesWindowTitle");
 			okButton.label = copyProvider.getCopyForId("ok");
 			cancelButton.label = copyProvider.getCopyForId("cancel");
-			
+
 			//dkTreeControlBar.setCopyProvider(copyProvider);
 		}
-		
+
 		public function setDataProvider(dataProvider:Object):void {
 			assignTree.dataProvider = dataProvider;
-			
+
 			if (!user)
 				throw new Error("You must set the user before setting the dataprovider");
-				
+
 			// Get the parent group of this user
 			var path:Array = Manageable.getPathToManageable(user, dataProvider.toArray());
 			parentGroup = path.pop();
-			
+
 			callLater(assignTree.expandAll);
 		}
-		
+
 		public function setExtraGroups(extraGroups:Array):void {
 			this.extraGroups.source = extraGroups;
 			assignTree.invalidateList();
 		}
-		
+
 		public function isCheckBoxSelected(data:Object):Boolean {
 			var manageable:Manageable = data as Manageable;
 			return (extraGroups.contains(manageable) || parentGroup.uid == manageable.uid);
 		}
-		
+
 		public function isCheckBoxEnabled(data:Object):Boolean {
 			var manageable:Manageable = data as Manageable;
 			return (!(parentGroup.contains(manageable)) && parentGroup.uid != manageable.uid);
 		}
-			
+
 		//gh:#29 due to add isEnableContentEdit() in ICheckBoxRendererProvider, we should add isEnableContentEdit() wherever implement ICheckBoxRendererProvider
 		public function isEnableContentEdit():Boolean {
 			return true;
 		}
+
 		/**
 		 * Set the given group as selected.  This goes through a bunch of algorithmic shenanigans in order to ensure that the user can't select
 		 * nested classes and that only a single item of a path can be selected at once.
-		 * 
-		 * @param	group The group to add to the assign list
-		 * @param	selected Whether to add or remove it
+		 *
+		 * @param    group The group to add to the assign list
+		 * @param    selected Whether to add or remove it
 		 */
 		public function onCheckBoxClick(data:Object, selected:Boolean):void {
 			var group:Group = data as Group;
-			
+
 			if (selected) {
 				var path:Array = Manageable.getPathToManageable(group, assignTree.dataProvider.toArray());
-				
+
 				extraGroups.addItem(group);
 				extraGroups.source = Manageable.normalizeManageables(extraGroups.toArray());
-				
+
 				for each (var pathElement:Manageable in path)
 					if (extraGroups.contains(pathElement)) extraGroups.removeItemAt(extraGroups.getItemIndex(pathElement));
-				
+
 				if (!extraGroups.contains(group)) extraGroups.addItem(group);
 			} else {
 				if (extraGroups.contains(group)) extraGroups.removeItemAt(extraGroups.getItemIndex(group));
 			}
-					
+
 			assignTree.invalidateList();
 		}
-		
+
 		private function submit():void {
 			parentView.dispatchEvent(new ExtraGroupsEvent(ExtraGroupsEvent.SET_EXTRA_GROUPS, user, extraGroups.toArray(), true));
 			removePopup();
 		}
-		
+
 		private function removePopup():void {
 			extraGroups.source = new Array();
 			PopUpManager.removePopUp(this);
 		}
-		
 		]]>
 	</mx:Script>
 	

@@ -7,22 +7,27 @@
 	<mx:Script>
 		<![CDATA[
 		import com.clarityenglish.resultsmanager.Constants;
-		import com.clarityenglish.common.model.interfaces.CopyProvider;;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+
+		;
+
 		import com.clarityenglish.resultsmanager.view.management.events.ManageableEvent;
-		import com.clarityenglish.common.vo.manageable.Group;
-		import com.clarityenglish.common.vo.manageable.User;
+		import com.clarityenglish.resultsmanager.vo.manageable.Group;
+		import com.clarityenglish.resultsmanager.vo.manageable.User;
+
 		import flash.events.Event;
+
 		import mx.core.IFlexDisplayObject;
 		import mx.managers.PopUpManager;
-		
+
 		private var _group:Group;
 		private var _parentGroup:Group;
-		
+
 		public var parentView:IFlexDisplayObject;
-		
+
 		[Bindable]
 		public var editMode:Boolean;
-		
+
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			title = copyProvider.getCopyForId("addGroupWindowTitle");
 			groupFormItem.label = copyProvider.getCopyForId("name");
@@ -30,42 +35,41 @@
 			cancelButton.label = copyProvider.getCopyForId("cancel");
 			groupInfoItem.label = copyProvider.getCopyForId("groupID");
 		}
-		
+
 		public function set parentGroup(value:Group):void {
 			_parentGroup = value;
 		}
-		
+
 		public function set group(value:Group):void {
 			_group = value;
-			
+
 			groupNameTextInput.text = _group.name;
 			groupID.text = _group.id;
 			//myGroupsCheckBox.selected = _group.enableMyGroups;
 		}
-		
+
 		private function submit():void {
 			if (Constants.userType != User.USER_TYPE_REPORTER) {
 				_group.name = groupNameTextInput.text;
-				
+
 				// Since PopUps live on a different branch of the display tree we need to explicitly dispatch the event from the parentView
-				parentView.dispatchEvent(new ManageableEvent(editMode ? ManageableEvent.UPDATE_GROUPS : ManageableEvent.ADD_GROUP, [ _group ], _parentGroup, true));
+				parentView.dispatchEvent(new ManageableEvent(editMode ? ManageableEvent.UPDATE_GROUPS : ManageableEvent.ADD_GROUP, [_group], _parentGroup, true));
 			}
-			
+
 			removePopup();
 		}
-		
+
 		private function removePopup():void {
 			PopUpManager.removePopUp(this);
 		}
-		
+
 		private function creationComplete():void {
 			groupNameTextInput.setFocus();
 			groupNameTextInput.setSelection(0, 0);
-			
+
 			// The add button is not available to reporters
 			addButton.visible = addButton.includeInLayout = (Constants.userType != User.USER_TYPE_REPORTER);
 		}
-		
 		]]>
 	</mx:Script>
 	

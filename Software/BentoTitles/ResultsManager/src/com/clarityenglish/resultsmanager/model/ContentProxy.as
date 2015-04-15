@@ -10,7 +10,7 @@ package com.clarityenglish.resultsmanager.model {
 	import com.clarityenglish.common.vo.content.Exercise;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.content.Unit;
-	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
 	import com.clarityenglish.resultsmanager.RMNotifications;
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;

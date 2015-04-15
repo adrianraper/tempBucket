@@ -19,72 +19,73 @@
 	
 	<mx:Script>
 		<![CDATA[
-			import com.clarityenglish.common.CommonNotifications;
-			import com.clarityenglish.dms.ApplicationFacade;
-			import com.clarityenglish.common.model.interfaces.CopyProvider;
-			import com.clarityenglish.common.vo.manageable.User;
-			import com.clarityenglish.dms.DMSNotifications;
-			//import nl.demonsters.debugger.MonsterDebugger;
-			import com.clarityenglish.utils.TraceUtils;
-			import flash.display.MovieClip;
-			import flash.ui.ContextMenu;
-			
-			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
-			//private var debugger:MonsterDebugger;
-			
-			private function creationComplete():void {
-				//debugger = new MonsterDebugger(this);
-				//MonsterDebugger.trace(this, "DMS started");
-				
-				// Hide the built in context menu
-				var cm:ContextMenu = new ContextMenu();
-				cm.hideBuiltInItems();
-				this.contextMenu = cm;
-				MovieClip(systemManager).contextMenu = this.contextMenu.clone();
-				
-				// Start the PureMVC framework
-				facade.sendNotification(DMSNotifications.STARTUP, this);
-			}
-			
-			private function onLogout():void {
-				facade.sendNotification(CommonNotifications.LOGOUT);
-			}
-			
-			public function setCopyProvider(copyProvider:CopyProvider):void {
-				
-				TraceUtils.myTrace("DMSApplication logged in user is a " + Constants.userType);
-				
-				if (mainStack.contains(accountView)) accountView.label = copyProvider.getCopyForId("accountTab");
-				if (mainStack.contains(emailView)) emailView.label = copyProvider.getCopyForId("emailTab");
-				
-				logoutButton.label = copyProvider.getCopyForId("logoutButton");
-				brandingLabel.text = copyProvider.getCopyForId("dmsApplicationName") + " " + Constants.version;
-				brandingLabel.text += ' connected to ' + Constants.dbDetails;
-				
-			}
-			
-			/**
-			 * Show/hide various tabs based on the currently logged in userType.  Unfortunately viewStacks and tabNavigators don't allow
-			 * visible to show/hide a tab so we can't use an MXML property bound to Constants.userType, but this method works fine.
-			 */
-			public function configureTabsForLoggedInUser():void {
-				/*if (Constants.userType == User.USER_TYPE_ADMINISTRATOR) {
-					if (!(mainStack.contains(loginOptsView)))
-						mainStack.addChild(loginOptsView);
-				} else {
-					if ((mainStack.contains(loginOptsView)))
-						mainStack.removeChild(loginOptsView);
-				}
-				
-				if (Constants.userType != User.USER_TYPE_REPORTER) {
-					if (!(mainStack.contains(licenceView)))
-						mainStack.addChild(licenceView);
-				} else {
-					if ((mainStack.contains(licenceView)))
-						mainStack.removeChild(licenceView);
-				}*/
-			}
-			
+		import com.clarityenglish.common.CommonNotifications;
+		import com.clarityenglish.dms.ApplicationFacade;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.resultsmanager.vo.manageable.User;
+		import com.clarityenglish.dms.DMSNotifications;
+
+		//import nl.demonsters.debugger.MonsterDebugger;
+		import com.clarityenglish.utils.TraceUtils;
+
+		import flash.display.MovieClip;
+		import flash.ui.ContextMenu;
+
+		private var facade:ApplicationFacade = ApplicationFacade.getInstance();
+		//private var debugger:MonsterDebugger;
+
+		private function creationComplete():void {
+			//debugger = new MonsterDebugger(this);
+			//MonsterDebugger.trace(this, "DMS started");
+
+			// Hide the built in context menu
+			var cm:ContextMenu = new ContextMenu();
+			cm.hideBuiltInItems();
+			this.contextMenu = cm;
+			MovieClip(systemManager).contextMenu = this.contextMenu.clone();
+
+			// Start the PureMVC framework
+			facade.sendNotification(DMSNotifications.STARTUP, this);
+		}
+
+		private function onLogout():void {
+			facade.sendNotification(CommonNotifications.LOGOUT);
+		}
+
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+
+			TraceUtils.myTrace("DMSApplication logged in user is a " + Constants.userType);
+
+			if (mainStack.contains(accountView)) accountView.label = copyProvider.getCopyForId("accountTab");
+			if (mainStack.contains(emailView)) emailView.label = copyProvider.getCopyForId("emailTab");
+
+			logoutButton.label = copyProvider.getCopyForId("logoutButton");
+			brandingLabel.text = copyProvider.getCopyForId("dmsApplicationName") + " " + Constants.version;
+			brandingLabel.text += ' connected to ' + Constants.dbDetails;
+
+		}
+
+		/**
+		 * Show/hide various tabs based on the currently logged in userType.  Unfortunately viewStacks and tabNavigators don't allow
+		 * visible to show/hide a tab so we can't use an MXML property bound to Constants.userType, but this method works fine.
+		 */
+		public function configureTabsForLoggedInUser():void {
+			/*if (Constants.userType == User.USER_TYPE_ADMINISTRATOR) {
+			 if (!(mainStack.contains(loginOptsView)))
+			 mainStack.addChild(loginOptsView);
+			 } else {
+			 if ((mainStack.contains(loginOptsView)))
+			 mainStack.removeChild(loginOptsView);
+			 }
+
+			 if (Constants.userType != User.USER_TYPE_REPORTER) {
+			 if (!(mainStack.contains(licenceView)))
+			 mainStack.addChild(licenceView);
+			 } else {
+			 if ((mainStack.contains(licenceView)))
+			 mainStack.removeChild(licenceView);
+			 }*/
+		}
 		]]>
 	</mx:Script>
 	

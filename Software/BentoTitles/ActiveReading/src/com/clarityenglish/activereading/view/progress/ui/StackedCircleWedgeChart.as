@@ -1,7 +1,7 @@
 package com.clarityenglish.activereading.view.progress.ui
 {
 	import com.clarityenglish.bento.view.progress.ui.IStackedChart;
-	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
 	import com.clarityenglish.activereading.view.progress.event.StackedBarMouseOutEvent;
 	import com.clarityenglish.activereading.view.progress.event.StackedBarMouseOverEvent;
 	

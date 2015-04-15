@@ -1,8 +1,8 @@
-﻿package com.clarityenglish.common.vo.manageable {
+﻿package com.clarityenglish.resultsmanager.vo.manageable {
 	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.model.LicenceProxy;
 	import com.clarityenglish.common.vo.content.Title;
-	import com.clarityenglish.common.vo.manageable.Manageable;
+	import com.clarityenglish.resultsmanager.vo.manageable.Manageable;
 	import mx.core.IUID;
 	import com.clarityenglish.utils.TraceUtils;
 	import org.davekeen.utils.DateUtils;
@@ -12,7 +12,7 @@
 	* @author Clarity
 	*
 	*/
-	[RemoteClass(alias = "com.clarityenglish.common.vo.manageable.User")]
+	[RemoteClass(alias = "com.clarityenglish.resultsmanager.vo.manageable.User")]
 	[Bindable]
 	public class User extends Manageable implements IUID {
 		

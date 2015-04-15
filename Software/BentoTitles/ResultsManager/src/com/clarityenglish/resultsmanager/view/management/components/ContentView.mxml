@@ -13,9 +13,9 @@
 		import com.clarityenglish.common.vo.content.Exercise;
 		import com.clarityenglish.common.vo.content.Title;
 		import com.clarityenglish.common.vo.content.Unit;
-		import com.clarityenglish.common.vo.manageable.Group;
-		import com.clarityenglish.common.vo.manageable.Manageable;
-		import com.clarityenglish.common.vo.manageable.User;
+		import com.clarityenglish.resultsmanager.vo.manageable.Group;
+		import com.clarityenglish.resultsmanager.vo.manageable.Manageable;
+		import com.clarityenglish.resultsmanager.vo.manageable.User;
 		import com.clarityenglish.resultsmanager.Constants;
 		import com.clarityenglish.resultsmanager.view.management.events.ContentEvent;
 		import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
@@ -23,10 +23,10 @@
 		import com.clarityenglish.resultsmanager.view.shared.interfaces.ICheckBoxRendererProvider;
 		import com.clarityenglish.resultsmanager.view.shared.ui.ReportableTreeItemRenderer;
 		import com.clarityenglish.utils.TraceUtils;
-		
+
 		import flash.events.ContextMenuEvent;
 		import flash.events.Event;
-		
+
 		import mx.controls.Alert;
 		import mx.controls.Tree;
 		import mx.controls.listClasses.IListItemRenderer;
@@ -34,27 +34,27 @@
 		import mx.core.DragSource;
 		import mx.events.DragEvent;
 		import mx.events.ListEvent;
-		
+
 		import nl.demonsters.debugger.MonsterDebugger;
-		
+
 		import org.davekeen.utils.ClassUtils;
-		
+
 		private var lastTreeItemEvent:ListEvent;
-		
+
 		private var contentCMManager:ContentCMManager;
 		private var copyProvider:CopyProvider;
-		
+
 		// The last items to have been dragged
 		private var dragTreeItems:Array;
 
 		// To stop anyone other than an author from dragging content
 		[Bindable]
 		public var userType:int;
-		
+
 		/**
 		 * Set any copy in this component and call setCopyProvider on any child components
-		 * 
-		 * @param	copyProvider An object implementing CopyProvider
+		 *
+		 * @param    copyProvider An object implementing CopyProvider
 		 */
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			//TraceUtils.myTrace("setCopyProvider");
@@ -62,38 +62,38 @@
 			contentLabel.text = copyProvider.getCopyForId("content");
 			detailedContentLabel.text = copyProvider.getCopyForId("detailedContent");
 			refreshButton.label = copyProvider.getCopyForId("refreshButton");
-			
+
 			//dkTreeControlBar.setCopyProvider(copyProvider);
 			contentCMManager.setCopyProvider(copyProvider);
 		}
-		
+
 		/**
 		 * The checkbox renderer provider for this tree is actually in the mediator for content, so it needs to be set within this view
 		 */
 		public function set checkBoxRendererProvider(checkBoxRendererProvider:ICheckBoxRendererProvider):void {
 			// Create a ReportableTreeItemRenderer (this does both content and manageables tree) and configure it to use checkboxes
 			var checkBoxToolTips:Object = new Object();
-			checkBoxToolTips.editedExerciseToolTip = copyProvider.getCopyForId("editedExerciseToolTip"); 
-			checkBoxToolTips.protectedExerciseToolTip = copyProvider.getCopyForId("protectedExerciseToolTip"); 
-			checkBoxToolTips.movedExerciseToolTip = copyProvider.getCopyForId("movedExerciseToolTip"); 
-			checkBoxToolTips.addedExerciseToolTip = copyProvider.getCopyForId("addedExerciseToolTip"); 
+			checkBoxToolTips.editedExerciseToolTip = copyProvider.getCopyForId("editedExerciseToolTip");
+			checkBoxToolTips.protectedExerciseToolTip = copyProvider.getCopyForId("protectedExerciseToolTip");
+			checkBoxToolTips.movedExerciseToolTip = copyProvider.getCopyForId("movedExerciseToolTip");
+			checkBoxToolTips.addedExerciseToolTip = copyProvider.getCopyForId("addedExerciseToolTip");
 			if (Constants.userType == User.USER_TYPE_REPORTER) {
 				//tree.itemRenderer = ReportableTreeItemRenderer.getRendererFactory(true, checkBoxRendererProvider, true, 
 				//			//enabledToolTip, disabledToolTip);
 				//			checkBoxToolTips);
 			} else {
-				checkBoxToolTips.disabledCheckBoxToolTip = copyProvider.getCopyForId("disabledHiddenContent"); 
+				checkBoxToolTips.disabledCheckBoxToolTip = copyProvider.getCopyForId("disabledHiddenContent");
 				checkBoxToolTips.offCheckBoxToolTip = copyProvider.getCopyForId("allHiddenContent");
 				checkBoxToolTips.triCheckBoxToolTip = copyProvider.getCopyForId("someHiddenContent");
 				checkBoxToolTips.onCheckBoxToolTip = copyProvider.getCopyForId("noHiddenContent");
 				//gh:29
 				checkBoxToolTips.enableEditContent = copyProvider.getCopyForId("enableEditContent");
 			}
-			tree.itemRenderer = ReportableTreeItemRenderer.getRendererFactory(true, checkBoxRendererProvider, true, 
-						//enabledToolTip, disabledToolTip);
-						checkBoxToolTips);
+			tree.itemRenderer = ReportableTreeItemRenderer.getRendererFactory(true, checkBoxRendererProvider, true,
+					//enabledToolTip, disabledToolTip);
+					checkBoxToolTips);
 		}
-		
+
 		/**
 		 * When the component has been created create the context menu and add listeners
 		 */
@@ -111,7 +111,7 @@
 			contentCMManager.addEventListener(ContentEvent.DIRECT_START_LINK, onShowDirectLinkSelect);
 			contentCMManager.addEventListener(ContentEvent.PREVIEW, onPreviewSelect);
 		}
-		
+
 		/**
 		 * If the user selects a different item in the tree pass the array of selected items to the context menu manager so that the
 		 * correct menu items can be enabled/disabled based on the current selection.
@@ -119,7 +119,7 @@
 		private function onChange():void {
 			contentCMManager.enableBySelectedContent(tree.selectedItems);
 		}
-		
+
 		/*
 		 * When a right click is detected select the item the mouse is currently over in the tree.  This value is maintained by
 		 * onItemRollOver.  If this does actually result in a change to the tree selection then fire an onChange event.
@@ -132,25 +132,27 @@
 			}
 			//MonsterDebugger.trace(this, tree.selectedIndex);
 		}
-		
+
 		/**
 		 * When rolling over a row in the tree set lastRolledOverIdx to the index of that row so we can select it when right clicking.
-		 * 
-		 * @param	e
+		 *
+		 * @param    e
 		 */
 		private function onItemRollOver(e:ListEvent):void {
 			lastTreeItemEvent = e.clone() as ListEvent;
 			//TraceUtils.myTrace("rollover " + copyProvider.getCopyForId("content"));
 		}
+
 		/**
 		 * Workaround for bug http://bugs.adobe.com/jira/browse/SDK-17190
-		 * 
-		 * @param	e
+		 *
+		 * @param    e
 		 */
 		private function onDragEnter(e:DragEvent):void {
 			if (e.dragSource.hasFormat("treeItems") && (e.dragSource.dataForFormat("treeItems") as Array).length > 0)
 				dragTreeItems = e.dragSource.dataForFormat("treeItems") as Array;
 		}
+
 		/*
 		 * Now that we are allowing editing of content, dragging units or exercises will be allowed.
 		 * There are some rules:
@@ -170,71 +172,73 @@
 			//MonsterDebugger.trace(this, dragItem);
 			//}
 			// Don't allow dragging anything to the top level
-			if (dropItem==null) {
+			if (dropItem == null) {
 				blockDragging(e);
-				
-			// Note that if the tree has already set the reject cursor, just accept it. 
-			// This should only be draggingOverSelf at present.
+
+				// Note that if the tree has already set the reject cursor, just accept it.
+				// This should only be draggingOverSelf at present.
 			} else if (tree.rejectDropCursor) {
 				blockDragging(e);
-			
-			// Don't allow dragging outside the current product
-			// unless the current product is Author Plus
-			//} else if ((dropItem.uid.split(".")[1] != dragItem.uid.split(".")[1]) ||
+
+				// Don't allow dragging outside the current product
+				// unless the current product is Author Plus
+				//} else if ((dropItem.uid.split(".")[1] != dragItem.uid.split(".")[1]) ||
 			} else if ((dropItem.uid.split(".")[0] != dragItem.uid.split(".")[0]) &&
-						dragItem.uid.split(".")[0]!='1') {
+					dragItem.uid.split(".")[0] != '1') {
 				blockDragging(e);
-				
-			// don't allow dragging of courses or titles
+
+				// don't allow dragging of courses or titles
 			} else if (dragItem is Title || dragItem is Course) {
 				blockDragging(e);
-				
-			// Don't allow dropping of an exercise outside a unit
+
+				// Don't allow dropping of an exercise outside a unit
 			} else if (dragItem is Exercise && (dropItem is Course || dropItem is Title)) {
 				//MonsterDebugger.trace(this, "NO, you are trying to drop onto " + target.name + ":" + ClassUtils.getClassAsString(target));
 				blockDragging(e);
-				
-			// don't allow dropping of a unit unless it is on a course
+
+				// don't allow dropping of a unit unless it is on a course
 			} else if (dragItem is Unit && (dropItem is Exercise || dropItem is Unit || dropItem is Title)) {
 				blockDragging(e);
-				
+
 			} else {
 				tree.showRejectDropCursor(false);
 
 			}
 		}
+
 		// To make the above function more readable
 		private function blockDragging(e:DragEvent):void {
 			tree.showRejectDropCursor(true);
-			e.currentTarget.hideDropFeedback(e);	
+			e.currentTarget.hideDropFeedback(e);
 			e.preventDefault();
 		}
+
 		private function onDragDrop(e:DragEvent):void {
 			// Simply adding this trace causes a many second freeze and it doesn't actually trace.
 			//MonsterDebugger.trace(this, e);
-			
+
 			// If you have set the reject cursor, then do nothing
 			if (tree.rejectDropCursor) {
 				e.preventDefault();
 				return;
 			}
-						
+
 			// Get the item we are dragging. Can only be one. And the place we are dragging to.
 			var dragItem:Content = dragTreeItems[0] as Content;
 			//var dropItem:Content = tree.dropData.parent as Content;
 			var targetIndex:uint = tree.calculateDropIndex(e);
 			var target:Content = tree.indexToItemRenderer(targetIndex).data as Content;
 			var dragItemIndex:uint = tree.selectedIndex;
-			
+
 			// If you are dropping onto the item after yourself, then there is nothing to do.
 			// This is not good as indexes are too reliant on tree branches being open. Fails for units with open exercises for instance.
 			// Still, it is better than nothing. 
 			if (targetIndex == dragItemIndex + 1) {
-				e.currentTarget.hideDropFeedback(e);	
+				e.currentTarget.hideDropFeedback(e);
 				e.preventDefault();
 				return;
 			}
-			
+
 			//MonsterDebugger.trace(this, targetIndex);
 			//var renderer:IListItemRenderer = tree.indexToItemRenderer(tree.calculateDropIndex(e));
 			//var targetEx:Exercise = tree.getChildAt(targetIndex) as Exercise;
@@ -248,10 +252,10 @@
 			if (!target) {
 				//TraceUtils.myTrace("drop to, well, no target");
 				// It is very tricky to drag to the end of the tree. And if the last unit is empty things are odd. Still...
-				target = tree.indexToItemRenderer(targetIndex-1).data as Content;
+				target = tree.indexToItemRenderer(targetIndex - 1).data as Content;
 				var eventType:String = ContentEvent.MOVE_CONTENT_AFTER;
-			// If the unit is empty, then even if we are correctly trying to drop an exercise into it, we end up putting it in the previous unit at the end
-			// because of this condition.
+				// If the unit is empty, then even if we are correctly trying to drop an exercise into it, we end up putting it in the previous unit at the end
+				// because of this condition.
 			} else if (target is Unit && target.children.length == 0) {
 				//TraceUtils.myTrace("drop to an empty unit");
 				// keep this target then
@@ -277,34 +281,35 @@
 			}
 			// 3.4.1 If you are dragging from Author Plus onto other content, then this is not really a move, it is a copy.
 			//MonsterDebugger.trace(this, "are you moving or dragging? " + dragItem.uid.split(".")[0]);
-			if (dragItem.uid.split(".")[0]=='1') {
+			if (dragItem.uid.split(".")[0] == '1') {
 				// It is implemented just like an insert, but without needing to open Author Plus
 				// So if you drag from AP onto AR, ELE, Finding a home, after Getting Started
 				// you should end up with a record like this
 				//1.1278409067000.xx.1278476970468,13420,3,33.1213672591135.1.1217289202522
 				if (eventType == ContentEvent.MOVE_CONTENT_BEFORE) eventType = ContentEvent.COPY_CONTENT_BEFORE;
 				if (eventType == ContentEvent.MOVE_CONTENT_AFTER) eventType = ContentEvent.COPY_CONTENT_AFTER;
-			}			
+			}
 			// v3.5 I need to set the enabledFlag to edited for all moved content. Done in the proxy
 			//dragItem.enabledFlag |= Exercise.ENABLED_FLAG_MOVED;
-			
+
 			dispatchEvent(new ContentEvent(eventType, thisUID, Constants.groupID, target.uid, null, true));
 			// After you have added the row it might make sense to getContent again.
 			// It is what we do with manageables after all
 		}
-		
+
 		/*
-		private function onItemClick(e:ListEvent):void {
-			// AR I just want to tell what to do if they try to click on a disabled check box
-			var enabledItem:Object = e.itemRenderer.data;
-			//var enabledItem:Boolean = e.itemRenderer.data.isCheckBoxEnabled();
-			TraceUtils.myTrace("onItemClick, item=" + enabledItem.toString());
-		}
-		*/
+		 private function onItemClick(e:ListEvent):void {
+		 // AR I just want to tell what to do if they try to click on a disabled check box
+		 var enabledItem:Object = e.itemRenderer.data;
+		 //var enabledItem:Boolean = e.itemRenderer.data.isCheckBoxEnabled();
+		 TraceUtils.myTrace("onItemClick, item=" + enabledItem.toString());
+		 }
+		 */
 		private function onGenerateReportSelect(e:ReportEvent):void {
 			e.onReportables = tree.selectedItems;
 			dispatchEvent(e.clone());
 		}
+
 		// v3.4 Editing Clarity Content
 		private function onEditExerciseSelect(e:ContentEvent):void {
 			//MonsterDebugger.trace(this, e);
@@ -328,6 +333,7 @@
 			// v3.4 After you have edited an exercise, offer refresh
 			refreshButton.visible = true;
 		}
+
 		// v3.4 Editing Clarity Content
 		private function onInsertExerciseSelect(e:ContentEvent):void {
 			//MonsterDebugger.trace(this, e);
@@ -342,6 +348,7 @@
 			// v3.4 After you have edited an exercise, offer refresh
 			refreshButton.visible = true;
 		}
+
 		// v3.4 Editing Clarity Content
 		private function onResetContent(e:ContentEvent):void {
 			// v3.5 When you are resetting you need to know the original UID of moved exercises
@@ -361,7 +368,7 @@
 						// Do the reset for each inserted exercise
 						e.editedUID = "1.%.xx." + exercise.uid.split(".")[3];
 						dispatchEvent(e.clone());
-						
+
 					} else if ((exercise.enabledFlag & Exercise.ENABLED_FLAG_MOVED) == Exercise.ENABLED_FLAG_MOVED) {
 						// Is this from outside this unit?
 						// See if the first part of the UID matches
@@ -375,13 +382,15 @@
 				}
 			}
 		}
+
 		// v3.4 Show the direct link to this item
 		private function onShowDirectLinkSelect(e:ContentEvent):void {
 			showDirectLinkWindow(tree.selectedItem as Content);
 		}
+
 		private function showDirectLinkWindow(item:Content):void {
 			// What we really want to display here is the start page with the startingPoint parameters.
-			
+
 			// First we need to find the title for this item as this has the content location path.
 			// The content location will either be the specific one for this account title, or the default one for the title
 			var thisTitle:Title;
@@ -407,7 +416,7 @@
 				thisCourse = item.parent.parent as Course;
 				thisExercise = item as Exercise;
 			}
-				
+
 			// Then we need to know the full path
 			//var theLink:String = 'content=' + Constants.BASE_FOLDER + thisTitle.contentLocation  + '\n';
 			var theLink:String = copyProvider.getCopyForId("directStartInformation") + '\n';
@@ -417,19 +426,20 @@
 				theLink += '&startingPoint=id:' + thisUnit.id;
 			if (thisExercise)
 				theLink += '&startingPoint=ex:' + thisExercise.id;
-				
+
 			// v3.4 We only need to tell them the IDs I think.
 			// v3.6 Surely it is better to show the whole URL - I mean, why not?
 			Alert.show(theLink, 'Direct start IDs', Alert.OK);
 		}
-		
+
 		// v3.5 Preview the content from the menu
 		private function onPreviewSelect(e:ContentEvent):void {
 			previewWindow(tree.selectedItem as Content);
 		}
+
 		private function previewWindow(item:Content):void {
 			// What we really want to display here is the start page with the startingPoint parameters.
-			
+
 			// First we need to find the title for this item as this has the content location path.
 			// The content location will either be the specific one for this account title, or the default one for the title
 			var thisTitle:Title;
@@ -450,7 +460,7 @@
 				thisCourse = item.parent.parent as Course;
 				thisExercise = item as Exercise;
 			}
-				
+
 			// Then we need to know the full path. But this is simply not held anywhere.
 			var thisStartPage:String = "Start.php";
 			switch (thisTitle.name) {
@@ -492,12 +502,12 @@
 				//case "Active Reading":
 				default:
 					var mySpaces:RegExp = / /g;
-					var thisFolderName:String = thisTitle.name.replace(mySpaces,"");
+					var thisFolderName:String = thisTitle.name.replace(mySpaces, "");
 					break;
 			}
 			var urlRequest:URLRequest = new URLRequest(Constants.HOST + "../../../area1/" + thisFolderName + "/" + thisStartPage);
 			urlRequest.method = URLRequestMethod.GET;
-			
+
 			var sentVariables:URLVariables = new URLVariables();
 			sentVariables.prefix = Constants.prefix;
 			sentVariables.username = Constants.userName;
@@ -506,7 +516,7 @@
 			// I won't send password, you can type this again. In the end I should set up a localConnection query so that Orchid 
 			// can ask you to provide name/password and direct start stuff.
 			// v3.6 Can we try again?
-			
+
 			if (thisCourse)
 				sentVariables.course = thisCourse.id;
 			if (thisUnit) {
@@ -514,20 +524,21 @@
 			} else if (thisExercise) {
 				sentVariables.startingPoint = 'ex:' + thisExercise.id;
 			}
-			
+
 			urlRequest.data = sentVariables;
 			navigateToURL(urlRequest, "_blank");
 		}
-		
+
 		private function onRefreshButtonClick():void {
 			// v3.4 Refresh the content window
 			dispatchEvent(new ContentEvent(ContentEvent.GET_CONTENT));
 		}
+
 		// Just used to make it quicker for testing - lets just do this for authors for now
 		public function openTreeToLastPosition():void {
-			if (userType != User.USER_TYPE_AUTHOR) 
+			if (userType != User.USER_TYPE_AUTHOR)
 				return;
-				
+
 			//MonsterDebugger.trace(this, "openTreeToLastPosition");
 			//tree.validateNow();
 			tree.selectedIndex = 0;
@@ -543,12 +554,11 @@
 			tree.expandItem(tree.selectedItem, true);
 			tree.selectedIndex = -1;
 		}
-			
+
 		//gh:#29
 		private function onHiddenContentCheckBoxClick():void {
 			dispatchEvent(new ContentEvent(ContentEvent.DISABLE_CONTENT_EDIT));
 		}
-
 		]]>
 	</mx:Script>
 	<mx:HBox horizontalGap="1" width="100%">

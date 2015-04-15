@@ -3,7 +3,7 @@ package com.clarityenglish.tensebuster.view.progress {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.progress.ui.IStackedChart;
 	import com.clarityenglish.bento.view.progress.ui.ProgressCourseButtonBar;
-	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
 	import com.clarityenglish.tensebuster.view.progress.event.StackedBarMouseOutEvent;
 	import com.clarityenglish.tensebuster.view.progress.event.StackedBarMouseOverEvent;
 	import com.clarityenglish.tensebuster.view.progress.ui.StackedCircleWedgeChart;

@@ -18,9 +18,9 @@ package com.clarityenglish.resultsmanager.view.management {
 	import com.clarityenglish.common.events.SearchEvent;
 	import com.clarityenglish.resultsmanager.view.shared.events.LogEvent;
 	import com.clarityenglish.resultsmanager.view.shared.events.SelectEvent;
-	import com.clarityenglish.common.vo.manageable.Group;
-	import com.clarityenglish.common.vo.manageable.Manageable;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.Manageable;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	import flash.events.Event;
@@ -333,9 +333,9 @@ package com.clarityenglish.resultsmanager.view.management {
 }
 
 import com.clarityenglish.common.events.SearchEvent;
-import com.clarityenglish.common.vo.manageable.Group;
-import com.clarityenglish.common.vo.manageable.Manageable;
-import com.clarityenglish.common.vo.manageable.User;
+import com.clarityenglish.resultsmanager.vo.manageable.Group;
+import com.clarityenglish.resultsmanager.vo.manageable.Manageable;
+import com.clarityenglish.resultsmanager.vo.manageable.User;
 import mx.collections.ArrayCollection;
 import mx.collections.ICollectionView;
 import mx.collections.ListCollectionView;

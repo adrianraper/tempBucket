@@ -8,9 +8,9 @@
 	import com.clarityenglish.resultsmanager.view.management.events.ContentEvent;
 	import com.clarityenglish.common.events.SearchEvent;
 	import com.clarityenglish.resultsmanager.view.shared.events.SelectEvent;
-	import com.clarityenglish.common.vo.manageable.Group;
-	import com.clarityenglish.common.vo.manageable.Manageable;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.Manageable;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import eu.orangeflash.managers.CMManager;
 	import flash.display.InteractiveObject;
 	import flash.events.ContextMenuEvent;

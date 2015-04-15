@@ -9,8 +9,8 @@ package com.clarityenglish.resultsmanager.model {
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.Reportable;
 	import com.clarityenglish.common.vo.content.Title;
-	import com.clarityenglish.common.vo.manageable.Manageable;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.Manageable;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.Constants;
 	import com.clarityenglish.resultsmanager.RMNotifications;

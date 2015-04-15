@@ -27,220 +27,226 @@
 	-->
 	<mx:Script>
 		<![CDATA[
-			import com.clarityenglish.common.CommonNotifications;
-			import com.clarityenglish.resultsmanager.ApplicationFacade;
-			import com.clarityenglish.resultsmanager.Constants;
-			import com.clarityenglish.common.model.interfaces.CopyProvider;
-			import com.clarityenglish.common.vo.manageable.User;
-			import com.clarityenglish.common.vo.content.Title;
-			import com.clarityenglish.resultsmanager.RMNotifications;
-			import flash.display.MovieClip;
-			import flash.ui.ContextMenu;
-			import com.clarityenglish.utils.TraceUtils;			
-			import nl.demonsters.debugger.MonsterDebugger;
-			import mx.controls.Alert;
-			
-			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
-			//private var debugger:MonsterDebugger;
-			private var copyProvider:CopyProvider;
-			
-			private function creationComplete():void {
-				//debugger = new MonsterDebugger(this);
+		import com.clarityenglish.common.CommonNotifications;
+		import com.clarityenglish.resultsmanager.ApplicationFacade;
+		import com.clarityenglish.resultsmanager.Constants;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.resultsmanager.vo.manageable.User;
+		import com.clarityenglish.common.vo.content.Title;
+		import com.clarityenglish.resultsmanager.RMNotifications;
 
-				//TraceUtils.myTrace("RM started now");
+		import flash.display.MovieClip;
+		import flash.ui.ContextMenu;
 
-				//TraceUtils.myTrace("RM started");
-				// Hide the built in context menu
-				var cm:ContextMenu = new ContextMenu();
-				cm.hideBuiltInItems();
-				this.contextMenu = cm;
-				MovieClip(systemManager).contextMenu = this.contextMenu.clone();
-				
-				// Start the PureMVC framework
-				facade.sendNotification(RMNotifications.STARTUP, this);
-				// See if anything has been passed on as flashvars
+		import com.clarityenglish.utils.TraceUtils;
 
-				// Pick up any flashvars. If present, can I directly call the loginEvent?
-				// And if it failed would it go to the login screen for messages?
-				// Can I fire up the login screen and tell it to work with this data?
-				// AR I think this is unnecessary, see startupCommand.as
-				//var flashvarsName:String = Application.application.parameters.username;
-				//var flashvarsPassword:String = Application.application.parameters.password;
-				//var flashvarsRootID:String = Application.application.parameters.rootID;
-				//TraceUtils.myTrace("flashvars username=" + flashvarsName);
-				//if (flashvarsName) loginView.passedVars(flashvarsName, flashvarsPassword, flashvarsRootID);
-			}
-			
-			private function onLogout():void {
-				resetTabs();
-				facade.sendNotification(CommonNotifications.LOGOUT);
-			}
-			
-			public function setCopyProvider(copyProvider:CopyProvider):void {
-				this.copyProvider = copyProvider;
-				if (mainStack.contains(managementView)) managementView.label = copyProvider.getCopyForId("userManagementTab");
-				//if (mainStack.contains(licenceView)) licenceView.label = copyProvider.getCopyForId("licenceManagementTab");
-				// For testing Sam's initializing problem
-				if (mainStack.contains(usageView)) usageView.label = copyProvider.getCopyForId("usageStatisticsTab");
-				if (mainStack.contains(loginOptsView)) loginOptsView.label = copyProvider.getCopyForId("loginOptionsTab");
-				
-				logoutButton.label = copyProvider.getCopyForId("logoutButton");
-				//brandingLabel.text = copyProvider.getCopyForId("applicationName") + " " + Constants.version;
-				// Take this over for the account name. See below.
-				//brandingLabel.text = "V" + Constants.version;
-			}
-			
-			/**
-			 * Show/hide various tabs based on the currently logged in userType.  Unfortunately viewStacks and tabNavigators don't allow
-			 * visible to show/hide a tab so we can't use an MXML property bound to Constants.userType, but this method works fine.
-			 */
-			public function configureTabsForLoggedInUser():void {
-				//TraceUtils.myTrace("logged in user is a " + Constants.userType);
-				// This might run after directStart tabbing, so only remove tabs here.
-				// If you use logout, hopefully you will reset it all somewhere? No it doesn't.
-				if (Constants.userType == User.USER_TYPE_ADMINISTRATOR) {
-					//if (!(mainStack.contains(loginOptsView)))
-					//	mainStack.addChild(loginOptsView);
-					//if (!(mainStack.contains(licenceView)))
-					//	mainStack.addChild(licenceView);
-				} else {
-					if ((mainStack.contains(loginOptsView)))
-						mainStack.removeChild(loginOptsView);
-						
-					//if ((mainStack.contains(licenceView)))
-					//	mainStack.removeChild(licenceView);
-				}
-				// v3.4 Add a note about who you are.
-				// v3.5 And what account you are in?
-				//whoAmILabel.text = "You are logged in as " + Constants.userName + ", " + copyProvider.getCopyForId("userType" + Constants.userType) + ". " +
-				//				Constants.accountName + ".";
-				whoAmILabel.text = "You are logged in as " + Constants.userName + ", " + copyProvider.getCopyForId("userType" + Constants.userType) + ".";
-				brandingLabel.text = Constants.accountName;
+		import nl.demonsters.debugger.MonsterDebugger;
 
-				// v3.5 Don't let reporters see usage stats. I think eventually teachers should only see stats for their group too.				
-				if (Constants.userType == User.USER_TYPE_REPORTER) {
-					if ((mainStack.contains(usageView)))
-						mainStack.removeChild(usageView);
-				} else {					
-					//if (!(mainStack.contains(usageView)))
-					//	mainStack.addChild(usageView);
-				}
-				// AR. For now I am going to remove licence allocation except for the admin
-				// but I think it will actually go for the admin too. Yes
-				//if (Constants.userType != User.USER_TYPE_REPORTER) {
-				//	if (!(mainStack.contains(licenceView)))
-				//		mainStack.addChild(licenceView);
-				//} else {
-				//	if ((mainStack.contains(licenceView)))
-				//		mainStack.removeChild(licenceView);
-				//}
-				// v3.1 A small change for reporters on the content screen. No, you can't refer to view children like this.
-				//if (Constants.userType == User.USER_TYPE_REPORTER) {
-				//	mainStack.managementView.contentView.detailedContentLabel.visible = false;
-				//}
+		import mx.controls.Alert;
+
+		private var facade:ApplicationFacade = ApplicationFacade.getInstance();
+		//private var debugger:MonsterDebugger;
+		private var copyProvider:CopyProvider;
+
+		private function creationComplete():void {
+			//debugger = new MonsterDebugger(this);
+
+			//TraceUtils.myTrace("RM started now");
+
+			//TraceUtils.myTrace("RM started");
+			// Hide the built in context menu
+			var cm:ContextMenu = new ContextMenu();
+			cm.hideBuiltInItems();
+			this.contextMenu = cm;
+			MovieClip(systemManager).contextMenu = this.contextMenu.clone();
+
+			// Start the PureMVC framework
+			facade.sendNotification(RMNotifications.STARTUP, this);
+			// See if anything has been passed on as flashvars
+
+			// Pick up any flashvars. If present, can I directly call the loginEvent?
+			// And if it failed would it go to the login screen for messages?
+			// Can I fire up the login screen and tell it to work with this data?
+			// AR I think this is unnecessary, see startupCommand.as
+			//var flashvarsName:String = Application.application.parameters.username;
+			//var flashvarsPassword:String = Application.application.parameters.password;
+			//var flashvarsRootID:String = Application.application.parameters.rootID;
+			//TraceUtils.myTrace("flashvars username=" + flashvarsName);
+			//if (flashvarsName) loginView.passedVars(flashvarsName, flashvarsPassword, flashvarsRootID);
+		}
+
+		private function onLogout():void {
+			resetTabs();
+			facade.sendNotification(CommonNotifications.LOGOUT);
+		}
+
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+			if (mainStack.contains(managementView)) managementView.label = copyProvider.getCopyForId("userManagementTab");
+			//if (mainStack.contains(licenceView)) licenceView.label = copyProvider.getCopyForId("licenceManagementTab");
+			// For testing Sam's initializing problem
+			if (mainStack.contains(usageView)) usageView.label = copyProvider.getCopyForId("usageStatisticsTab");
+			if (mainStack.contains(loginOptsView)) loginOptsView.label = copyProvider.getCopyForId("loginOptionsTab");
+
+			logoutButton.label = copyProvider.getCopyForId("logoutButton");
+			//brandingLabel.text = copyProvider.getCopyForId("applicationName") + " " + Constants.version;
+			// Take this over for the account name. See below.
+			//brandingLabel.text = "V" + Constants.version;
+		}
+
+		/**
+		 * Show/hide various tabs based on the currently logged in userType.  Unfortunately viewStacks and tabNavigators don't allow
+		 * visible to show/hide a tab so we can't use an MXML property bound to Constants.userType, but this method works fine.
+		 */
+		public function configureTabsForLoggedInUser():void {
+			//TraceUtils.myTrace("logged in user is a " + Constants.userType);
+			// This might run after directStart tabbing, so only remove tabs here.
+			// If you use logout, hopefully you will reset it all somewhere? No it doesn't.
+			if (Constants.userType == User.USER_TYPE_ADMINISTRATOR) {
+				//if (!(mainStack.contains(loginOptsView)))
+				//	mainStack.addChild(loginOptsView);
+				//if (!(mainStack.contains(licenceView)))
+				//	mainStack.addChild(licenceView);
+			} else {
+				if ((mainStack.contains(loginOptsView)))
+					mainStack.removeChild(loginOptsView);
+
+				//if ((mainStack.contains(licenceView)))
+				//	mainStack.removeChild(licenceView);
 			}
-			/**
-			 * Show/hide various tabs based on the type of licence of the titles.
-			 */
-			public function configureTabsForTitles(Titles:Array):void {
-				// See if every title is an AA licence.
-				// v3.6 This should now be based on the licence type of RM
-				// Except that you haven't got title for RM!
-				// DONE. Sort this out later.
-				// Now picked up and saved from login
-				// v3.6.6 Concurrent Tracking licence should have User view as well, and network
-				//TraceUtils.myTrace('your licence is ' + Constants.licenceType);
-				var allAAlicences:Boolean = true;
-				if (Constants.licenceType == Title.LICENCE_TYPE_LT ||
+			// v3.4 Add a note about who you are.
+			// v3.5 And what account you are in?
+			//whoAmILabel.text = "You are logged in as " + Constants.userName + ", " + copyProvider.getCopyForId("userType" + Constants.userType) + ". " +
+			//				Constants.accountName + ".";
+			whoAmILabel.text = "You are logged in as " + Constants.userName + ", " + copyProvider.getCopyForId("userType" + Constants.userType) + ".";
+			brandingLabel.text = Constants.accountName;
+
+			// v3.5 Don't let reporters see usage stats. I think eventually teachers should only see stats for their group too.
+			if (Constants.userType == User.USER_TYPE_REPORTER) {
+				if ((mainStack.contains(usageView)))
+					mainStack.removeChild(usageView);
+			} else {
+				//if (!(mainStack.contains(usageView)))
+				//	mainStack.addChild(usageView);
+			}
+			// AR. For now I am going to remove licence allocation except for the admin
+			// but I think it will actually go for the admin too. Yes
+			//if (Constants.userType != User.USER_TYPE_REPORTER) {
+			//	if (!(mainStack.contains(licenceView)))
+			//		mainStack.addChild(licenceView);
+			//} else {
+			//	if ((mainStack.contains(licenceView)))
+			//		mainStack.removeChild(licenceView);
+			//}
+			// v3.1 A small change for reporters on the content screen. No, you can't refer to view children like this.
+			//if (Constants.userType == User.USER_TYPE_REPORTER) {
+			//	mainStack.managementView.contentView.detailedContentLabel.visible = false;
+			//}
+		}
+
+		/**
+		 * Show/hide various tabs based on the type of licence of the titles.
+		 */
+		public function configureTabsForTitles(Titles:Array):void {
+			// See if every title is an AA licence.
+			// v3.6 This should now be based on the licence type of RM
+			// Except that you haven't got title for RM!
+			// DONE. Sort this out later.
+			// Now picked up and saved from login
+			// v3.6.6 Concurrent Tracking licence should have User view as well, and network
+			//TraceUtils.myTrace('your licence is ' + Constants.licenceType);
+			var allAAlicences:Boolean = true;
+			if (Constants.licenceType == Title.LICENCE_TYPE_LT ||
 					Constants.licenceType == Title.LICENCE_TYPE_CT ||
 					Constants.licenceType == Title.LICENCE_TYPE_NETWORK ||
 					Constants.licenceType == Title.LICENCE_TYPE_TT)
-					allAAlicences = false;
-				/*
-				for each (var title:Title in Titles) {
-					if (title.productCode == 2) {
-						//TraceUtils.myTrace("RM licence type is " + title.licenceType);
-						allAAlicences = (title.licenceType & Title.LICENCE_TYPE_AA) == Title.LICENCE_TYPE_AA;
-						break;
-					}
-				}
-				for each (var title:Title in Titles) {
-					//TraceUtils.myTrace("checking " + title.name + " type=" + title.licenceType);
-					if (title.licenceType != Title.LICENCE_TYPE_AA) {
-						allAAlicences = false;
-						break;
-					}
-				}
-				*/
-				if (allAAlicences) {
-					if (mainStack.contains(managementView)) {
-						//TraceUtils.myTrace("so hide management view");
-						mainStack.removeChild(managementView);
-					}
-					// v3.6 We will now show the Control Centre as part of the AA RM, but hide the access control part.
-					/*
-					if (mainStack.contains(loginOptsView)) {
-						//TraceUtils.myTrace("and loginopts");
-						mainStack.removeChild(loginOptsView);
-					}
-					*/
-				} else {
-					if ((mainStack.contains(managementView))) {
-						//mainStack.addChild(managementView);
-					}
-				}
-			}
-			/**
-			 * Show just one tab if you are running with directStart. Currently just for usage stats.
-			 * The main reason to hide other tabs is for security because you will not need to login for this.
-			 * Just click a link from email, which will pick up username/password from a time limited row in a security table.
-			 */
-			public function configureTabsForDirectStart(directStart:String):void {
-				// Which tab do they want? If it is blocked by user type or title types, go to it
-				if (directStart.toLowerCase()=="usagestats") {
-					//TraceUtils.myTrace("Direct start to usage ");
-					if (!(mainStack.contains(usageView))) {
-						//TraceUtils.myTrace("so add usage view");
-						mainStack.addChild(usageView);
-					}
-					if (mainStack.contains(managementView)) {
-						//TraceUtils.myTrace("and hide management view");
-						mainStack.removeChild(managementView);
-					}
-					if (mainStack.contains(loginOptsView)) {
-						//TraceUtils.myTrace("and loginopts");
-						mainStack.removeChild(loginOptsView);
-					}
-				} else if (directStart.toLowerCase()=="controlcentre") {
-					//TraceUtils.myTrace("Direct start to control centre");
-					if (!(mainStack.contains(loginOptsView))) {
-						//TraceUtils.myTrace("so add loginOptsView");
-						mainStack.addChild(loginOptsView);
-					}
-					// And how to make this the initially shown tab?
-					mainStack.selectedIndex = 2;
-					
-				} else {
-					showAlert("Sorry, there is no direct access to Results Manager for " + directStart, "Starting problem");
-				}
-			}
+				allAAlicences = false;
 			/*
-			 * For when you logout
+			 for each (var title:Title in Titles) {
+			 if (title.productCode == 2) {
+			 //TraceUtils.myTrace("RM licence type is " + title.licenceType);
+			 allAAlicences = (title.licenceType & Title.LICENCE_TYPE_AA) == Title.LICENCE_TYPE_AA;
+			 break;
+			 }
+			 }
+			 for each (var title:Title in Titles) {
+			 //TraceUtils.myTrace("checking " + title.name + " type=" + title.licenceType);
+			 if (title.licenceType != Title.LICENCE_TYPE_AA) {
+			 allAAlicences = false;
+			 break;
+			 }
+			 }
 			 */
-			public function resetTabs():void {
-				if (!(mainStack.contains(managementView))) 
-					mainStack.addChild(managementView);
-				if (!(mainStack.contains(usageView))) 
+			if (allAAlicences) {
+				if (mainStack.contains(managementView)) {
+					//TraceUtils.myTrace("so hide management view");
+					mainStack.removeChild(managementView);
+				}
+				// v3.6 We will now show the Control Centre as part of the AA RM, but hide the access control part.
+				/*
+				 if (mainStack.contains(loginOptsView)) {
+				 //TraceUtils.myTrace("and loginopts");
+				 mainStack.removeChild(loginOptsView);
+				 }
+				 */
+			} else {
+				if ((mainStack.contains(managementView))) {
+					//mainStack.addChild(managementView);
+				}
+			}
+		}
+
+		/**
+		 * Show just one tab if you are running with directStart. Currently just for usage stats.
+		 * The main reason to hide other tabs is for security because you will not need to login for this.
+		 * Just click a link from email, which will pick up username/password from a time limited row in a security table.
+		 */
+		public function configureTabsForDirectStart(directStart:String):void {
+			// Which tab do they want? If it is blocked by user type or title types, go to it
+			if (directStart.toLowerCase() == "usagestats") {
+				//TraceUtils.myTrace("Direct start to usage ");
+				if (!(mainStack.contains(usageView))) {
+					//TraceUtils.myTrace("so add usage view");
 					mainStack.addChild(usageView);
-				if (!(mainStack.contains(loginOptsView))) 
+				}
+				if (mainStack.contains(managementView)) {
+					//TraceUtils.myTrace("and hide management view");
+					mainStack.removeChild(managementView);
+				}
+				if (mainStack.contains(loginOptsView)) {
+					//TraceUtils.myTrace("and loginopts");
+					mainStack.removeChild(loginOptsView);
+				}
+			} else if (directStart.toLowerCase() == "controlcentre") {
+				//TraceUtils.myTrace("Direct start to control centre");
+				if (!(mainStack.contains(loginOptsView))) {
+					//TraceUtils.myTrace("so add loginOptsView");
 					mainStack.addChild(loginOptsView);
+				}
+				// And how to make this the initially shown tab?
+				mainStack.selectedIndex = 2;
+
+			} else {
+				showAlert("Sorry, there is no direct access to Results Manager for " + directStart, "Starting problem");
 			}
-			
-			public function showAlert(text:String, title:String):void {
-				Alert.show(text, title);
-				
-			}
-			
+		}
+
+		/*
+		 * For when you logout
+		 */
+		public function resetTabs():void {
+			if (!(mainStack.contains(managementView)))
+				mainStack.addChild(managementView);
+			if (!(mainStack.contains(usageView)))
+				mainStack.addChild(usageView);
+			if (!(mainStack.contains(loginOptsView)))
+				mainStack.addChild(loginOptsView);
+		}
+
+		public function showAlert(text:String, title:String):void {
+			Alert.show(text, title);
+
+		}
 		]]>
 	</mx:Script>
 	

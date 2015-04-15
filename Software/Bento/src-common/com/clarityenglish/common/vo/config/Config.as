@@ -1,8 +1,8 @@
 package com.clarityenglish.common.vo.config {
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.vo.content.Title;
-	import com.clarityenglish.common.vo.manageable.Group;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
 	

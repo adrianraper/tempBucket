@@ -7,7 +7,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.content.Course;
 	import com.clarityenglish.common.vo.content.Title;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.RMNotifications;
 	import com.clarityenglish.resultsmanager.model.ManageableProxy;

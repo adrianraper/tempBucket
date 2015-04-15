@@ -1,7 +1,7 @@
 ﻿package com.clarityenglish.resultsmanager.view.management.ui.treeClasses {
-	import com.clarityenglish.common.vo.manageable.Group;
-	import com.clarityenglish.common.vo.manageable.Manageable;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.Manageable;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import mx.collections.ArrayCollection;
 	import mx.collections.ICollectionView;
 	import mx.controls.treeClasses.DefaultDataDescriptor;

@@ -6,7 +6,7 @@ class Group extends Manageable {
 	/*
 	 * AMFPHP Custom Class mapping
 	 */
-	var $_explicitType = 'com.clarityenglish.common.vo.manageable.Group';
+	var $_explicitType = 'com.clarityenglish.resultsmanager.vo.manageable.Group';
 	
 	var $description;
 	

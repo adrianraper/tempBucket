@@ -1,6 +1,6 @@
 package com.clarityenglish.rotterdam.view.course {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
 	import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
 	import com.clarityenglish.rotterdam.view.course.ui.PublishButton;
 	import com.clarityenglish.rotterdam.view.unit.UnitHeaderView;
@@ -95,7 +95,7 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		// gh#208 DK: should we pass the group from the mediator to here so that the view can create the default node
 		// or should we just let the mediator do it?
-		public var group:com.clarityenglish.common.vo.manageable.Group;
+		public var group:com.clarityenglish.resultsmanager.vo.manageable.Group;
 		
 		private var _isPreviewVisible:Boolean = false;
 		private var _course:XML;

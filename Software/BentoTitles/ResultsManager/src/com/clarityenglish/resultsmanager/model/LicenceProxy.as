@@ -3,13 +3,10 @@ Proxy - PureMVC
 */
 package com.clarityenglish.resultsmanager.model {
 	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.RMNotifications;
-	import com.clarityenglish.resultsmanager.view.management.ManageablesMediator;
 	import com.clarityenglish.common.vo.content.Title;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import flash.utils.Dictionary;
-	import mx.utils.ObjectUtil;
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.puremvc.as3.interfaces.IProxy;

@@ -5,51 +5,57 @@
 		   implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>
 		<![CDATA[
-		import com.clarityenglish.common.model.interfaces.CopyProvider;;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+
+		;
+
 		import com.clarityenglish.resultsmanager.view.licence.events.LicenceEvent;
 		import com.clarityenglish.resultsmanager.view.licence.events.LicenceShowTypeEvent;
 		import com.clarityenglish.resultsmanager.view.shared.events.TitleEvent;
 		import com.clarityenglish.resultsmanager.view.shared.interfaces.ICheckBoxRendererProvider;
 		import com.clarityenglish.resultsmanager.view.shared.ui.ReportableTreeItemRenderer;
 		import com.clarityenglish.common.vo.content.Title;
-		import com.clarityenglish.common.vo.manageable.Group;
-		import com.clarityenglish.common.vo.manageable.Manageable;
-		import com.clarityenglish.common.vo.manageable.User;
+		import com.clarityenglish.resultsmanager.vo.manageable.Group;
+		import com.clarityenglish.resultsmanager.vo.manageable.Manageable;
+		import com.clarityenglish.resultsmanager.vo.manageable.User;
+
 		import flash.events.Event;
+
 		import mx.core.ClassFactory;
+
 		import org.davekeen.utils.DateUtils;
-		
+
 		private var copyProvider:CopyProvider;
-		
+
 		/**
 		 * Set any copy in this component and call setCopyProvider on any child components
-		 * 
-		 * @param	copyProvider An object implementing CopyProvider
+		 *
+		 * @param    copyProvider An object implementing CopyProvider
 		 */
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			this.copyProvider = copyProvider;
-			
+
 			manageablesLabel.text = copyProvider.getCopyForId("manageables");
 			titlesLabel.text = copyProvider.getCopyForId("titles");
 			showAllButton.label = copyProvider.getCopyForId("showAll");
 			showSelectedButton.label = copyProvider.getCopyForId("showSelected");
 			showUnassignedButton.label = copyProvider.getCopyForId("showUnassigned");
 			helpTextArea.htmlText = copyProvider.getCopyForId("licenceManagementHelp");
-			
+
 			dkTreeControlBar.setCopyProvider(copyProvider);
 			licenceChart.setCopyProvider(copyProvider);
 		}
-		
+
 		/**
 		 * Set the dataprovider for the tree
-		 * 
-		 * @param	dataProvider
+		 *
+		 * @param    dataProvider
 		 */
 		public function setTreeDataProvider(dataProvider:Object):void {
 			licencesTree.dataProvider = dataProvider;
 			licencesTree.openItems = licencesTree.dataProvider;
 		}
-		
+
 		/**
 		 * The checkbox renderer provider for this tree is actually in the mediator for content, so it needs to be set within this view
 		 */
@@ -64,22 +70,22 @@
 			checkBoxToolTips.onGroupCheckBoxToolTip = "All users in this group can use this title.";
 			licencesTree.itemRenderer = ReportableTreeItemRenderer.getRendererFactory(true, checkBoxRendererProvider, true, checkBoxToolTips);
 		}
-		
+
 		public function setLicenceFigures(assigned:uint, unassigned:uint):void {
 			currentState = "titleSelected";
-			
-			licenceChart.dataProvider = { assigned: assigned, unassigned: unassigned };
+
+			licenceChart.dataProvider = {assigned: assigned, unassigned: unassigned};
 		}
-		
+
 		private function onTitleChange(e:Event):void {
 			var selectedTitle:Title = titleList.selectedItem as Title;
-			
+
 			// Only enable show selected and show unassigned if a title is selected
 			showSelectedButton.enabled = showUnassignedButton.enabled = (selectedTitle != null);
-			
+
 			// Refresh the item renderers
 			licencesTree.invalidateList();
-			
+
 			// Fill in the LicenceInfo box using CopyProvider's substitution to fill in the variables
 			var replaceObj:Object = new Object();
 			//replaceObj.title = selectedTitle.caption;
@@ -88,23 +94,22 @@
 			replaceObj.maxAuthors = selectedTitle.maxAuthors;
 			replaceObj.maxReporters = selectedTitle.maxReporters;
 			replaceObj.maxTeachers = selectedTitle.maxTeachers;
-			
+
 			//replaceObj.expiryDate = new Date(selectedTitle.expiryDate).toDateString();
 			// Ticket #95 - ignore timezones
 			replaceObj.expiryDate = DateUtils.ansiStringToDate(selectedTitle.expiryDate).toDateString();
-			
+
 			licenceInfoTextArea.htmlText = copyProvider.getCopyForId("licenceInfo", replaceObj);
-			
+
 			dispatchEvent(new TitleEvent(TitleEvent.TITLE_CHANGE, selectedTitle, null, null, true));
 		}
-		
+
 		private function onShowTypeChange():void {
 			dispatchEvent(new LicenceShowTypeEvent(showTypeGroup.selectedValue as String));
-			
+
 			// Refresh the item renderers as the data descriptor has changed
 			licencesTree.refreshItemRenderers();
 		}
-		
 		]]>
 	</mx:Script>
 	<!-- Let the user manage the screen space 

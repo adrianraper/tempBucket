@@ -1,5 +1,5 @@
 ﻿package com.clarityenglish.common.vo {
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import mx.core.IUID;
 	import org.davekeen.utils.ClassUtils;
 	
@@ -93,6 +93,7 @@
 			do {
 				// v3.3 Multi-group users.
 				//reportableObj[ClassUtils.getClassAsString(reportable)] = reportable.id;
+				// gh#1190 This vo is common now
 				if (reportable is User) {
 					reportableObj[ClassUtils.getClassAsString(reportable)] = (reportable as User).userID;
 				} else {

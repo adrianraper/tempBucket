@@ -5,38 +5,38 @@
 					   xmlns:tree="com.sparkTree.*">
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.common.vo.manageable.Group;
-			import com.clarityenglish.rotterdam.view.schedule.events.PublishEvent;
-			import com.clarityenglish.rotterdam.view.settings.events.SettingsEvent;
-			
-			[Bindable]
-			public var hasSettings:Function;
-			
-			[Bindable]
-			public var areSettingsValid:Function;
-			
-			protected function onDeleteSettingsClick(event:MouseEvent):void {
-				dispatchEvent(new PublishEvent(PublishEvent.CALENDER_SETTINGS_DELETE, data as Group, true));
+		import com.clarityenglish.resultsmanager.vo.manageable.Group;
+		import com.clarityenglish.rotterdam.view.schedule.events.PublishEvent;
+		import com.clarityenglish.rotterdam.view.settings.events.SettingsEvent;
+
+		[Bindable]
+		public var hasSettings:Function;
+
+		[Bindable]
+		public var areSettingsValid:Function;
+
+		protected function onDeleteSettingsClick(event:MouseEvent):void {
+			dispatchEvent(new PublishEvent(PublishEvent.CALENDER_SETTINGS_DELETE, data as Group, true));
+		}
+
+		public override function set data(value:Object):void {
+			super.data = value;
+			dispatchEvent(new Event("refreshRenderer"));
+		}
+
+		[Bindable(event="refreshRenderer")]
+		private function getTextColour():Number {
+			if (!hasSettings(data)) {
+				return 0x000000;
+			} else {
+				return (areSettingsValid(data) ? 0x005500 : 0xFF0000);
 			}
-			
-			public override function set data(value:Object):void {
-				super.data = value;
-				dispatchEvent(new Event("refreshRenderer"));
-			}
-			
-			[Bindable(event="refreshRenderer")]
-			private function getTextColour():Number {
-				if (!hasSettings(data)) {
-					return 0x000000;
-				} else {
-					return (areSettingsValid(data) ? 0x005500 : 0xFF0000);
-				}				
-			}
-			
-			[Bindable(event="refreshRenderer")]
-			private function getFontWeight():String {
-				return hasSettings(data) ? "bold" : "normal";
-			}
+		}
+
+		[Bindable(event="refreshRenderer")]
+		private function getFontWeight():String {
+			return hasSettings(data) ? "bold" : "normal";
+		}
 		]]>
 	</fx:Script>
 	

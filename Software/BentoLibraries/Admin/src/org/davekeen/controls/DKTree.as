@@ -1,6 +1,6 @@
 ﻿package org.davekeen.controls {
-	import com.clarityenglish.common.vo.manageable.Group;
-	import com.clarityenglish.common.vo.manageable.Manageable;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.Manageable;
 	import flash.events.Event;
 	import mx.collections.ArrayCollection;
 	import mx.controls.Tree;

@@ -4,34 +4,34 @@
 		   implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>
 		<![CDATA[
-			import com.clarityenglish.common.model.interfaces.CopyProvider;
-			import com.clarityenglish.common.vo.content.Content;
-			import com.clarityenglish.common.vo.content.Title;
-			import com.clarityenglish.common.vo.manageable.Manageable;
-			import com.clarityenglish.resultsmanager.Constants;
-			import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
-			import com.clarityenglish.resultsmanager.view.management.ui.ReportWindow;
-			import com.clarityenglish.utils.TraceUtils;
-			
-			import flash.text.StyleSheet;
-			
-			import mx.core.UIComponent;
-			import mx.managers.PopUpManager;
-			
-			import org.davekeen.utils.ClassUtils;
-		
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.common.vo.content.Content;
+		import com.clarityenglish.common.vo.content.Title;
+		import com.clarityenglish.resultsmanager.vo.manageable.Manageable;
+		import com.clarityenglish.resultsmanager.Constants;
+		import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
+		import com.clarityenglish.resultsmanager.view.management.ui.ReportWindow;
+		import com.clarityenglish.utils.TraceUtils;
+
+		import flash.text.StyleSheet;
+
+		import mx.core.UIComponent;
+		import mx.managers.PopUpManager;
+
+		import org.davekeen.utils.ClassUtils;
+
 		private var copyProvider:CopyProvider;
-		
+
 		public var content:Array;
-	    public var contentExcludeAA:Array = [];
-		
+		public var contentExcludeAA:Array = [];
+
 		public var manageables:Array;
-		
+
 		private var reportWindow:ReportWindow;
-		
+
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			this.copyProvider = copyProvider;
-			
+
 			var replaceObj:Object = new Object();
 			replaceObj.helpFolder = Constants.HOST + Constants.HELP_FOLDER;
 			replaceObj.helpFile = replaceObj.helpFolder + copyProvider.getCopyForId("guide");
@@ -44,74 +44,75 @@
 			helpTextArea.htmlText = copyProvider.getCopyForId("userManagementHelp", replaceObj);
 			//TraceUtils.myTrace("filtered htmltext=" + helpTextArea.htmlText);
 			helpTextLabel.text = copyProvider.getCopyForId("helpArea");
-			
+
 			// v3.5 New location for version
 			versionLabel.text = "V" + Constants.version;
 
 			setHelpStyles();
 		}
-		
+
 		public function showReportWindow(e:ReportEvent):void {
 			if (!reportWindow) {
 				reportWindow = PopUpManager.createPopUp(UIComponent(parentApplication), ReportWindow, true) as ReportWindow;
 			} else {
 				PopUpManager.addPopUp(reportWindow, UIComponent(parentApplication), true);
 			}
-			
+
 			reportWindow.setCopyProvider(copyProvider);
 			reportWindow.parentView = this;
 			reportWindow.onReportables = e.onReportables;
-			
+
 			var testClass:Object = new (ClassUtils.checkObjectClasses(e.onReportables))();
-			
+
 			//RM BUG: #150
 			var i:Number = 0;
 			if (testClass is Manageable) {
 				for each (var contentObj:Object in content) {
-					trace("contentObj licentype is "+contentObj.licenceType);
+					trace("contentObj licentype is " + contentObj.licenceType);
 					if (contentObj.licenceType != Title.LICENCE_TYPE_AA) {
-						contentExcludeAA[i] = contentObj;					
+						contentExcludeAA[i] = contentObj;
 						i++;
 					}
-						
+
 				}
-				trace("the number of contentExcludeAA is "+i);
+				trace("the number of contentExcludeAA is " + i);
 				reportWindow.setTreeDataProvider(contentExcludeAA);
 			} else if (testClass is Content) {
 				reportWindow.setTreeDataProvider(manageables);
 			} else {
 				throw new Error("Can only open a report window for manageable/content of the same types");
 			}
-			
+
 			PopUpManager.centerPopUp(reportWindow);
 		}
+
 		[Bindable]
 		private var helpStyle:StyleSheet;
-		
+
 		private function setHelpStyles():void {
 			helpStyle = new StyleSheet();
 
-            var heading:Object = new Object();
-            heading.fontWeight = "bold";
-            heading.color = "#5B5072";
+			var heading:Object = new Object();
+			heading.fontWeight = "bold";
+			heading.color = "#5B5072";
 			heading.fontSize = "11";
 
-            var body:Object = new Object();
-            body.fontFamily = "Verdana";
+			var body:Object = new Object();
+			body.fontFamily = "Verdana";
 			body.fontSize = "10";
 
-            var list:Object = new Object();
+			var list:Object = new Object();
 			list.marginLeft = "12";
 			//list.leading = "4";
 
-            var spacing:Object = new Object();
+			var spacing:Object = new Object();
 			spacing.fontSize = "4";
 			//list.leading = "4";
 
-            helpStyle.setStyle(".heading", heading);
-            helpStyle.setStyle(".list", list);
-            helpStyle.setStyle("body", body);
-		}			
+			helpStyle.setStyle(".heading", heading);
+			helpStyle.setStyle(".list", list);
+			helpStyle.setStyle("body", body);
+		}
 		]]>
 	</mx:Script>
 	

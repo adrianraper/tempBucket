@@ -3,9 +3,9 @@ Proxy - PureMVC
 */
 package com.clarityenglish.resultsmanager.model {
 	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.vo.manageable.Group;
-	import com.clarityenglish.common.vo.manageable.Manageable;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.Manageable;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.Constants;
 	import com.clarityenglish.resultsmanager.RMNotifications;

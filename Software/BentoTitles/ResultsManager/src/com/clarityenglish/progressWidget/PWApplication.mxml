@@ -15,77 +15,80 @@
 				>
 	<mx:Script>
 		<![CDATA[
-			import com.clarityenglish.common.CommonNotifications;
-			import com.clarityenglish.progressWidget.ApplicationFacade;
-			import com.clarityenglish.progressWidget.Constants;
-			import com.clarityenglish.common.model.interfaces.CopyProvider;
-			import com.clarityenglish.common.vo.manageable.User;
-			import com.clarityenglish.progressWidget.PWNotifications;
-			import flash.display.MovieClip;
-			import flash.ui.ContextMenu;
-			import com.clarityenglish.utils.TraceUtils;			
-			//import nl.demonsters.debugger.MonsterDebugger;
-			import mx.controls.Alert;
-			import flash.external.ExternalInterface;
-			
-			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
-			//private var debugger:MonsterDebugger;
-			private function creationComplete():void {
-				//debugger = new MonsterDebugger(this);
-				
-				TraceUtils.myTrace("Progress Widget started");
-				//MonsterDebugger.trace(this, "Progress Widget started");
-				
-				// Hide the built in context menu
-				var cm:ContextMenu = new ContextMenu();
-				cm.hideBuiltInItems();
-				this.contextMenu = cm;
-				MovieClip(systemManager).contextMenu = this.contextMenu.clone();
-				
-				// Expose some functions to ExternalInterface
-				if (ExternalInterface.available) {
-					ExternalInterface.addCallback("switchView", switchView);
-				}
-				// Start the PureMVC framework
-				facade.sendNotification(PWNotifications.STARTUP, this);
+		import com.clarityenglish.common.CommonNotifications;
+		import com.clarityenglish.progressWidget.ApplicationFacade;
+		import com.clarityenglish.progressWidget.Constants;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.resultsmanager.vo.manageable.User;
+		import com.clarityenglish.progressWidget.PWNotifications;
 
+		import flash.display.MovieClip;
+		import flash.ui.ContextMenu;
+
+		import com.clarityenglish.utils.TraceUtils;
+
+		//import nl.demonsters.debugger.MonsterDebugger;
+		import mx.controls.Alert;
+
+		import flash.external.ExternalInterface;
+
+		private var facade:ApplicationFacade = ApplicationFacade.getInstance();
+		//private var debugger:MonsterDebugger;
+		private function creationComplete():void {
+			//debugger = new MonsterDebugger(this);
+
+			TraceUtils.myTrace("Progress Widget started");
+			//MonsterDebugger.trace(this, "Progress Widget started");
+
+			// Hide the built in context menu
+			var cm:ContextMenu = new ContextMenu();
+			cm.hideBuiltInItems();
+			this.contextMenu = cm;
+			MovieClip(systemManager).contextMenu = this.contextMenu.clone();
+
+			// Expose some functions to ExternalInterface
+			if (ExternalInterface.available) {
+				ExternalInterface.addCallback("switchView", switchView);
 			}
-			
-			private function onLogout():void {
-				facade.sendNotification(CommonNotifications.LOGOUT);
+			// Start the PureMVC framework
+			facade.sendNotification(PWNotifications.STARTUP, this);
+
+		}
+
+		private function onLogout():void {
+			facade.sendNotification(CommonNotifications.LOGOUT);
+		}
+
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			//logoutButton.label = copyProvider.getCopyForId("logoutButton");
+			//brandingLabel.text = "V" + Constants.version;
+			//if (topStack.contains(progressView)) progressView.label = copyProvider.getCopyForId("progressView");
+			//if (topStack.contains(comparisonView)) comparisonView.label = copyProvider.getCopyForId("comparisonView");
+		}
+
+		public function showAlert(text:String, title:String):void {
+			Alert.show(text, title);
+		}
+
+		// This function is expected to be called from an external interface
+		public function switchView(viewName:String):void {
+			switch (viewName) {
+				case "loginView":
+					topStack.selectedChild = loginView;
+					break;
+				case "progressView":
+					topStack.selectedChild = progressView;
+					break;
+				case "comparisonView":
+					topStack.selectedChild = comparisonView;
+					break;
+				case "detailView":
+					topStack.selectedChild = detailView;
+					break;
+				default:
+					topStack.selectedIndex = -1;
 			}
-			
-			public function setCopyProvider(copyProvider:CopyProvider):void {
-				//logoutButton.label = copyProvider.getCopyForId("logoutButton");
-				//brandingLabel.text = "V" + Constants.version;
-				//if (topStack.contains(progressView)) progressView.label = copyProvider.getCopyForId("progressView");
-				//if (topStack.contains(comparisonView)) comparisonView.label = copyProvider.getCopyForId("comparisonView");
-			}
-			
-			public function showAlert(text:String, title:String):void {
-				Alert.show(text, title);
-			}
-			
-			// This function is expected to be called from an external interface
-			public function switchView(viewName:String):void {
-				switch (viewName) {
-					case "loginView":
-						topStack.selectedChild = loginView;
-						break;
-					case "progressView":
-						topStack.selectedChild = progressView;
-						break;
-					case "comparisonView":
-						topStack.selectedChild = comparisonView;
-						break;
-					case "detailView":
-						topStack.selectedChild = detailView;
-						break;
-					default:
-						topStack.selectedIndex = -1;
-				}
-			}
-			
+		}
 		]]>
 	</mx:Script>
 	

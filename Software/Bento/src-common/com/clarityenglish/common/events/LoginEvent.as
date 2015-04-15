@@ -1,5 +1,5 @@
 package com.clarityenglish.common.events {
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	
 	import flash.events.Event;
 	

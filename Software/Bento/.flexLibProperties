@@ -152,9 +152,9 @@
     <classEntry path="com.clarityenglish.common.vo.content.Unit"/>
     <classEntry path="com.clarityenglish.common.vo.dictionary.DictionarySingleton"/>
     <classEntry path="com.clarityenglish.common.vo.email.TemplateDefinition"/>
-    <classEntry path="com.clarityenglish.common.vo.manageable.Group"/>
-    <classEntry path="com.clarityenglish.common.vo.manageable.Manageable"/>
-    <classEntry path="com.clarityenglish.common.vo.manageable.User"/>
+    <classEntry path="com.clarityenglish.resultsmanager.vo.manageable.Group"/>
+    <classEntry path="com.clarityenglish.resultsmanager.vo.manageable.Manageable"/>
+    <classEntry path="com.clarityenglish.resultsmanager.vo.manageable.User"/>
     <classEntry path="com.clarityenglish.common.vo.progress.Progress"/>
     <classEntry path="com.pipwerks.SCORM"/>
     <classEntry path="ws.tink.spark.controls.Alert"/>

@@ -1,4 +1,4 @@
-﻿package com.clarityenglish.common.vo.manageable {
+﻿package com.clarityenglish.resultsmanager.vo.manageable {
 	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.model.ContentProxy;
 	import com.clarityenglish.common.vo.content.Title;
@@ -8,7 +8,7 @@
 	* ...
 	* @author DefaultUser (Tools -> Custom Arguments...)
 	*/
-	[RemoteClass(alias = "com.clarityenglish.common.vo.manageable.Group")]
+	[RemoteClass(alias = "com.clarityenglish.resultsmanager.vo.manageable.Group")]
 	[Bindable]
 	public class Group extends Manageable implements IUID {
 		

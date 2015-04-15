@@ -9,7 +9,7 @@ package com.clarityenglish.progressWidget.model {
 	import com.clarityenglish.common.vo.content.Exercise;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.content.Unit;
-	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
 	import com.clarityenglish.progressWidget.PWNotifications;
 	import mx.core.Application;
 	import org.davekeen.delegates.IDelegateResponder;

@@ -1,14 +1,15 @@
-﻿package com.clarityenglish.common.vo.manageable {
-	import com.clarityenglish.resultsmanager.ApplicationFacade;
-	import com.clarityenglish.resultsmanager.model.ContentProxy;
+﻿package com.clarityenglish.resultsmanager.vo.manageable {
+	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.common.vo.content.Title;
+	
 	import mx.core.IUID;
+	import mx.rpc.xml.ContentProxy;
 	
 	/**
 	* ...
 	* @author DefaultUser (Tools -> Custom Arguments...)
 	*/
-	[RemoteClass(alias = "com.clarityenglish.common.vo.manageable.Group")]
+	[RemoteClass(alias = "com.clarityenglish.resultsmanager.vo.manageable.Group")]
 	[Bindable]
 	public class Group extends Manageable implements IUID {
 		
@@ -98,12 +99,14 @@
 			return true;
 		}
 		
+		/* DK: Had to comment this out to get this class to compile with bento.  Now we know why we shouldn't be retrieved proxies from value objects ;)
 		public function hasHiddenContent():Boolean {
 			// We shouldn't really be retrieving proxies from value objects, but the alternatives are much messier and we know
 			// we are doing it for a good reason :)
 			var contentProxy:ContentProxy = ApplicationFacade.getInstance().retrieveProxy(ContentProxy.NAME) as ContentProxy;
 			return (contentProxy && contentProxy.hasHiddenContent(this));
-		}
+		}*/
+		
 		// v3.4 duplicate the above in case we want to show which groups have got edited content.
 		// Don't need this. Better to do it through an interface in the itemRenderer.
 		/*

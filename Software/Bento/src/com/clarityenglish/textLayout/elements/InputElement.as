@@ -1,7 +1,7 @@
 package com.clarityenglish.textLayout.elements {
 	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingOverlayEvent;
-	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
 	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;

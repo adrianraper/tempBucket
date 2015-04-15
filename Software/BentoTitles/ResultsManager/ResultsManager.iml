@@ -8,6 +8,9 @@
             <entry library-name="RMlibs" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry module-name="Common admin" build-configuration-name="Common admin">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="3.6.0" />
         </dependencies>
@@ -29,5 +32,6 @@
     <orderEntry type="jdk" jdkName="3.6.0" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="RMlibs" level="project" />
+    <orderEntry type="module" module-name="Common admin" exported="" />
   </component>
 </module>

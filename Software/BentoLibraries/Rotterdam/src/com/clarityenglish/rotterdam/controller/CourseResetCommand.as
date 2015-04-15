@@ -3,7 +3,7 @@ package com.clarityenglish.rotterdam.controller {
 	import com.clarityenglish.bento.model.XHTMLProxy;
 	import com.clarityenglish.common.model.ProgressProxy;
 	import com.clarityenglish.common.vo.content.Title;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Licence;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	

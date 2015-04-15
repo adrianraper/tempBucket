@@ -3,8 +3,8 @@
 	import com.clarityenglish.common.vo.content.Exercise;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.content.Unit;
-	import com.clarityenglish.common.vo.manageable.Group;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import com.clarityenglish.resultsmanager.Constants;
 	import com.clarityenglish.resultsmanager.view.shared.interfaces.ICheckBoxRendererProvider;
 	import com.clarityenglish.utils.TraceUtils;

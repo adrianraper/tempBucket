@@ -1,18 +1,17 @@
-﻿package com.clarityenglish.common.vo.manageable {
-	import com.clarityenglish.resultsmanager.ApplicationFacade;
-	import com.clarityenglish.resultsmanager.model.LicenceProxy;
+﻿package com.clarityenglish.resultsmanager.vo.manageable {
+	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.common.vo.content.Title;
-	import com.clarityenglish.common.vo.manageable.Manageable;
+	
 	import mx.core.IUID;
-	import com.clarityenglish.utils.TraceUtils;
-	import org.davekeen.utils.DateUtils;
+	
+	import org.davekeen.util.DateUtil;
 	
 	/**
 	* ...
 	* @author Clarity
 	*
 	*/
-	[RemoteClass(alias = "com.clarityenglish.common.vo.manageable.User")]
+	[RemoteClass(alias = "com.clarityenglish.resultsmanager.vo.manageable.User")]
 	[Bindable]
 	public class User extends Manageable implements IUID {
 		
@@ -51,15 +50,30 @@
 		// v3.1 Added for EMU processing
 		public var startDate:String;
 		public var contactMethod:String;
+		public var registrationDate:String;
+		public var userProfileOption:Number = 0;
+		public var registerMethod:String;
 		
-		/** The user's birthday.  This is stored as an ANSI string (use DateUtils.dateToAnsiString to convert Date to a valid String
-		 *  before storing it) */
+		/** 
+		 * The user's birthday. 
+		 * Change to use this as a 'key' date for the user.
+		 * For Road to IELTS this will be the exam date/time.
+		 * TODO. Change the name to keydate from birthday. 
+		 *   Orchid php. ok
+		 *   Orchid as. check
+		 *   RM php. check
+		 *   RM as. check
+		 *   DMS php. check
+		 *   DMS as. check
+		 *   javascript login. check
+		 * */
 		public var birthday:String;
 		
 		public var email:String;
 		public var country:String;
 		public var city:String;
-		public var company:String;
+		// #319
+		//public var company:String;
 		
 		// v3.3 Extra data from special imports
 		public var fullName:String;
@@ -67,10 +81,27 @@
 		// v3.4 Multi-group users
 		public var userID:String;
 		
-		public function User() {
-			
+		// gh#956
+		//public var memory:String;
+		
+		public function User(data:Object = null) {
+			if (data)
+				buildUser(data);
 		}
 		
+		// AR A temporary constructor. Used to populate data into a new user
+		public function buildUser(data:Object):void {
+			if (data.userID)
+				this.id = data.userID;
+			if (data.name)
+				this.name = data.name;
+			if (data.email)
+				this.email = data.email;
+			if (data.studentID)
+				this.studentID = data.studentID;
+			if (data.password)
+				this.password = data.password;
+		}
 		/**
 		 * A single user always has a userCount of 1
 		 */
@@ -82,23 +113,57 @@
 		// The purpose of this is get rid of any non-valid dates by going from string to object and back again.
 		// Use the dateUtils to allow both Y-m-d and Y/m/d
 		public function set expiryDateAsString(dateString:String):void {
-			var date:Date = new Date(DateUtils.ansiStringToDate(dateString));
-			expiryDate = DateUtils.dateToAnsiString(date);
+			var date:Date = new Date(DateUtil.ansiStringToDate(dateString));
+			expiryDate = DateUtil.dateToAnsiString(date);
 		}
 		
 		public function set birthdayAsString(dateString:String):void {
-			var date:Date = new Date(DateUtils.ansiStringToDate(dateString));
-			birthday = DateUtils.dateToAnsiString(date);
+			var date:Date = new Date(DateUtil.ansiStringToDate(dateString));
+			birthday = DateUtil.dateToAnsiString(date);
 		}
 		
 		public function get expiryDateAsDate():Date {
-			//// TraceUtils.myTrace("user.as.expriyDate=" + expiryDate);
-			return (expiryDate) ? DateUtils.ansiStringToDate(expiryDate) : null;
+			//TraceUtils.myTrace("user.as.expriyDate=" + expiryDate);
+			return (expiryDate) ? DateUtil.ansiStringToDate(expiryDate) : null;
 		}
 		
 		public function get birthdayAsDate():Date {
-			return (birthday) ? DateUtils.ansiStringToDate(birthday) : null;
+			return (birthday) ? DateUtil.ansiStringToDate(birthday) : null;
 		}
+		
+		/**
+		 * Shorthand for the exam date, including conversion from database String to program Date
+		 * Change, only use the examDate IF it is explicitly set. Otherwise keep as null.
+		 */
+		public function get examDate():Date {
+			if (birthday) {
+				var thisDateString:String = birthday;
+			//} else if (expiryDate) {
+			//	thisDateString = expiryDate;
+			//} else {
+			//	thisDateString = DateUtil.dateToAnsiString(new Date());				
+			//}
+			//trace("get exam date string is " + thisDateString);
+				return DateUtil.ansiStringToDate(thisDateString);
+			} else {
+				return null;
+			}
+		}
+		public function set examDate(value:Date):void {
+			birthday = DateUtil.dateToAnsiString(value);
+			//trace("set exam date set birthday to " + birthday + " from " + value.toDateString()); 
+		}
+		
+		// gh#1040 I think we will end up with a much more sophisticated memory handler
+		/*
+		public function get memoryXml():XML {
+			if (memory) {
+				return new XML(memory);
+			} else {
+				return null;
+			}
+		}
+		*/
 		
 		/**
 		 * Has this user expired?
@@ -109,7 +174,7 @@
 			if (!expiryDate) return false;
 			
 			// User never expires
-			if (DateUtils.ansiStringToDate(expiryDate).getTime() == 0) return false;
+			if (DateUtil.ansiStringToDate(expiryDate).getTime() == 0) return false;
 			
 			// TODO: This uses the client time - need to check if this is really correct. yes it is.
 			// But if the expiry date is 30-April, it should apply all day. So set 'now' to be 00:00:00.000
@@ -119,8 +184,17 @@
 			rightNow.setMinutes(0);
 			rightNow.setSeconds(0);
 			rightNow.setMilliseconds(0);
-			//// TraceUtils.myTrace("user.as.isExpired=" + DateUtils.ansiStringToDate(expiryDate).getTime() + " now=" + rightNow.getTime());
-			return (DateUtils.ansiStringToDate(expiryDate).getTime() < rightNow.getTime());
+			//TraceUtils.myTrace("user.as.isExpired=" + DateUtils.ansiStringToDate(expiryDate).getTime() + " now=" + rightNow.getTime());
+			return (DateUtil.ansiStringToDate(expiryDate).getTime() < rightNow.getTime());
+		}
+		
+		/**
+		 * Is this an anonymous user?
+		 * 
+		 * @return 
+		 */
+		public function isAnonymous():Boolean {
+			return Number(id) <= 0;
 		}
 		
 		/**
@@ -129,12 +203,12 @@
 		 * @param	title
 		 * @return
 		 */
-		override public function isLicencedForTitle(title:Title):Boolean {
+		/*override public function isLicencedForTitle(title:Title):Boolean {
 			// We shouldn't really be retrieving proxies from value objects, but the alternatives are much messier and we know
 			// we are doing it for a good reason :)
 			var licenceProxy:LicenceProxy = ApplicationFacade.getInstance().retrieveProxy(LicenceProxy.NAME) as LicenceProxy;
 			return (licenceProxy && licenceProxy.isUserInTitle(this, title));
-		}
+		}*/
 		
 		/** 
 		 * Returns all groups in and below this manageables (all the way down the tree).  For example calling this on a
@@ -177,7 +251,11 @@
 		 * that Flex components still know which object is which even when performing a complete refresh from the backend.
 		 */
 		override public function get uid():String{
-			return "user" + id;
+			if (id) {
+				return "user" + id;
+			} else {
+				return "";
+			}
 		}
 		
 		override public function set uid(value:String):void { }

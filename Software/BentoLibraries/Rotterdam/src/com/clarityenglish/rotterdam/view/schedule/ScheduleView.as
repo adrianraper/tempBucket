@@ -1,6 +1,6 @@
 package com.clarityenglish.rotterdam.view.schedule {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
 	import com.clarityenglish.controls.calendar.Calendar;
 	import com.clarityenglish.rotterdam.view.schedule.events.PublishEvent;
 	import com.clarityenglish.rotterdam.view.schedule.ui.CalendarTreeItemRenderer;
@@ -211,7 +211,7 @@ package com.clarityenglish.rotterdam.view.schedule {
 				var allGroups:Array = [];
 				var cursor:IViewCursor = groupTreesCollection.createCursor();
 				while (!cursor.afterLast) {
-					var group:com.clarityenglish.common.vo.manageable.Group = cursor.current as com.clarityenglish.common.vo.manageable.Group;
+					var group:com.clarityenglish.resultsmanager.vo.manageable.Group = cursor.current as com.clarityenglish.resultsmanager.vo.manageable.Group;
 					allGroups.push(group);
 					allGroups = allGroups.concat(group.getSubGroups());
 					cursor.moveNext();
@@ -442,7 +442,7 @@ package com.clarityenglish.rotterdam.view.schedule {
 		 * 
 		 * @param group
 		 */
-		private function hasSettings(group:com.clarityenglish.common.vo.manageable.Group):Boolean {
+		private function hasSettings(group:com.clarityenglish.resultsmanager.vo.manageable.Group):Boolean {
 			var results:XMLList = course.publication.group.(@id == group.id);
 			if (results && results.length() > 0) {
 				for each (var attribute:XML in results[0].attributes()) {
@@ -461,7 +461,7 @@ package com.clarityenglish.rotterdam.view.schedule {
 		 * @param group
 		 * @return 
 		 */
-		private function areSettingsValid(group:com.clarityenglish.common.vo.manageable.Group):Boolean {
+		private function areSettingsValid(group:com.clarityenglish.resultsmanager.vo.manageable.Group):Boolean {
 			var results:XMLList = course.publication.group.(@id == group.id);
 			if (results && results.length() > 0) {
 				var result:XML = results[0];

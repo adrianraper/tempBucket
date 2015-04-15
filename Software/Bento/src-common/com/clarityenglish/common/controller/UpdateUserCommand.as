@@ -3,7 +3,7 @@ Simple Command - PureMVC
  */
 package com.clarityenglish.common.controller {
 	import com.clarityenglish.common.model.LoginProxy;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;

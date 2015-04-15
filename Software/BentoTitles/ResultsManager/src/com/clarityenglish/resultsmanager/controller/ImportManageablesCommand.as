@@ -2,7 +2,7 @@
 Simple Command - PureMVC
  */
 package com.clarityenglish.resultsmanager.controller {
-	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
 	import com.clarityenglish.resultsmanager.model.ManageableProxy;
 	import com.clarityenglish.resultsmanager.view.management.events.ManageableEvent;
 	

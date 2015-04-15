@@ -6,7 +6,7 @@ package com.clarityenglish.common.controller {
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.common.model.ProgressProxy;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
 	
 	import org.puremvc.as3.interfaces.INotification;

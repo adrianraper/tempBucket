@@ -3,7 +3,7 @@
 class LoginAPI {
 
 	// I think this is only for AMFPHP - not needed here
-	var $_explicitType = 'com.clarityenglish.common.vo.manageable.LoginAPI';
+	var $_explicitType = 'com.clarityenglish.resultsmanager.vo.manageable.LoginAPI';
 	
 	var $method;
 	var $name;

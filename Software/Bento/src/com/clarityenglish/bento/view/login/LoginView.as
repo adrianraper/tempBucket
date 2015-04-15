@@ -6,7 +6,7 @@ package com.clarityenglish.bento.view.login {
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;

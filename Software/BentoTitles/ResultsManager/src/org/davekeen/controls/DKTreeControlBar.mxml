@@ -5,46 +5,48 @@
 	<mx:Script>
 		<![CDATA[
 		import com.clarityenglish.common.model.interfaces.CopyProvider;
-		import com.clarityenglish.common.vo.manageable.Manageable;
+		import com.clarityenglish.resultsmanager.vo.manageable.Manageable;
+
 		import flash.events.Event;
+
 		import mx.events.PropertyChangeEvent;
+
 		import org.davekeen.controls.DKTree;
 		import org.davekeen.events.DKTreeEvent;
-		
+
 		public var _tree:DKTree;
-		
+
 		[Bindable]
 		public var collapseRoot:Boolean;
-		
+
 		[Bindable]
 		private var showAllGroupsButtonVisible:Boolean;
-		
+
 		public function set tree(tree:DKTree):void {
 			_tree = tree;
-			
-			tree.addEventListener(DKTreeEvent.DATA_PROVIDER_SET, function(e:Event):void {
-				
+
+			tree.addEventListener(DKTreeEvent.DATA_PROVIDER_SET, function (e:Event):void {
+
 				if (tree.dataProvider) {
 					// Show or hide the show all groups button depending on whether this is a manageables tree or not
 					showAllGroupsButtonVisible = tree.dataProvider[0] is Manageable;
-					
+
 					// Content trees collapse completely, manageable trees only collapse to the first level
 					collapseRoot = !showAllGroupsButtonVisible;
 				}
-			} );
+			});
 		}
-		
+
 		[Bindable]
 		public function get tree():DKTree {
 			return _tree;
 		}
-		
+
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			showAllButton.label = copyProvider.getCopyForId("tree_showAll");
 			showAllGroupsButton.label = copyProvider.getCopyForId("tree_showAllGroups");
 			collapseAllButton.label = copyProvider.getCopyForId("tree_collapseAll");
 		}
-		
 		]]>
 	</mx:Script>
 	<mx:Button width="100%" height="18" id="collapseAllButton" enabled="{tree != null}" click="tree.collapseAll(collapseRoot)" />

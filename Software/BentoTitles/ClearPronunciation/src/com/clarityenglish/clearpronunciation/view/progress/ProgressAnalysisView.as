@@ -7,7 +7,7 @@ package com.clarityenglish.clearpronunciation.view.progress {
 	import com.clarityenglish.clearpronunciation.view.progress.event.StackedBarMouseOverEvent;
 	import com.clarityenglish.clearpronunciation.view.progress.ui.StackedCircleWedgeChart;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
-	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;

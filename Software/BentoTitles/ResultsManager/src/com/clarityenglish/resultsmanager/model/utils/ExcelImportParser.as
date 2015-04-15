@@ -1,6 +1,6 @@
 ﻿package com.clarityenglish.resultsmanager.model.utils {
-	import com.clarityenglish.common.vo.manageable.Group;
-	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.vo.manageable.Group;
+	import com.clarityenglish.resultsmanager.vo.manageable.User;
 	import com.gskinner.StringUtils;
 	import com.clarityenglish.utils.TraceUtils;
 	import nl.demonsters.debugger.MonsterDebugger;
