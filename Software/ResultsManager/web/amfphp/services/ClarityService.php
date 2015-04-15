@@ -162,8 +162,9 @@ class ClarityService extends AbstractService {
 			// v3.5 Special (temporary) change for Taihung University (18000 accounts) for Kima.
 			// and SciencesPo (updated for 2013/14/15)
 			// added BCJPILA. 
+			// added TW_CUTE 2014 11 05 
 			if ((int)$loginObj->F_RootID == 14781 || (int)$loginObj->F_RootID == 19278 || (int)$loginObj->F_RootID == 26155 || 
-				(int)$loginObj->F_RootID == 13982) {
+				(int)$loginObj->F_RootID == 13982 || (int)$loginObj->F_RootID == 13754) {
 				Session::set('no_students', ($manageablesCount > 8000));
 				//NetDebug::trace("for SciencesPo, users=$manageablesCount");
 			} else {

@@ -1152,3 +1152,121 @@ INSERT INTO `T_ProductVersion` VALUES
 (61,'DEMO'),
 (61,'FV');
 
+-- gh#1190 Tables to hold users and related stuff deleted in RM.
+DROP TABLE IF EXISTS `T_Groupstructure_Deleted`;
+CREATE TABLE `T_Groupstructure_Deleted` (
+  `F_GroupID` int(10) NOT NULL,
+  `F_GroupName` varchar(128) DEFAULT NULL,
+  `F_GroupDescription` varchar(256) DEFAULT NULL,
+  `F_GroupParent` int(10) NOT NULL,
+  `F_GroupType` int(10) DEFAULT NULL,
+  `F_GroupLogoImage` varchar(128) DEFAULT NULL,
+  `F_SelfRegister` smallint(5) DEFAULT NULL,
+  `F_Verified` smallint(5) DEFAULT NULL,
+  `F_LoginOption` smallint(5) DEFAULT NULL,
+  `F_lastVisit` varchar(24) DEFAULT NULL,
+  `F_RootDominant` smallint(5) DEFAULT NULL,
+  `F_custom1name` varchar(50) DEFAULT NULL,
+  `F_custom2name` varchar(50) DEFAULT NULL,
+  `F_custom3name` varchar(50) DEFAULT NULL,
+  `F_custom4name` varchar(50) DEFAULT NULL,
+  `F_EnableMGS` smallint(5) DEFAULT NULL,
+  `F_MGSName` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`F_GroupID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `T_HiddenContent_Deleted`;
+CREATE TABLE `T_HiddenContent_Deleted` (
+  `F_HiddenContentUID` char(80) NOT NULL,
+  `F_GroupID` int(10) NOT NULL,
+  `F_ProductCode` smallint(5) DEFAULT NULL,
+  `F_CourseID` bigint(19) DEFAULT NULL,
+  `F_UnitID` bigint(19) DEFAULT NULL,
+  `F_ExerciseID` bigint(19) DEFAULT NULL,
+  `F_EnabledFlag` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `T_ExtraTeacherGroups_Deleted`;
+CREATE TABLE `T_ExtraTeacherGroups_Deleted` (
+  `F_UserID` int(10) NOT NULL,
+  `F_GroupID` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `T_EditedContent_Deleted`;
+CREATE TABLE `T_EditedContent_Deleted` (
+  `F_EditedContentUID` varchar(80) NOT NULL,
+  `F_GroupID` int(10) NOT NULL,
+  `F_EnabledFlag` int(10) DEFAULT NULL,
+  `F_Mode` int(10) NOT NULL DEFAULT '0',
+  `F_RelatedUID` varchar(80) DEFAULT NULL,
+  `ID` bigint(19) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `T_User_Deleted`;
+CREATE TABLE `T_User_Deleted` (
+  `F_UserID` int(10),
+  `F_UserName` varchar(64) DEFAULT NULL,
+  `F_UserSettings` int(10) DEFAULT '0',
+  `F_Password` varchar(32) DEFAULT NULL,
+  `F_StudentID` varchar(32) DEFAULT NULL,
+  `F_Email` varchar(128) DEFAULT NULL,
+  `F_Birthday` datetime DEFAULT NULL,
+  `F_Country` varchar(64) DEFAULT NULL,
+  `F_custom1` varchar(64) DEFAULT NULL,
+  `F_custom2` varchar(64) DEFAULT NULL,
+  `F_custom3` varchar(64) DEFAULT NULL,
+  `F_custom4` varchar(64) DEFAULT NULL,
+  `F_ScratchPad` text,
+  `F_FullName` varchar(255) DEFAULT NULL,
+  `F_AccountStatus` int(10) DEFAULT NULL,
+  `F_UserType` smallint(5) DEFAULT NULL,
+  `F_UserProfileOption` int(10) DEFAULT NULL,
+  `F_UniqueName` smallint(5) DEFAULT NULL,
+  `F_ActivationKey` varchar(20) DEFAULT NULL,
+  `F_RegistrationDate` timestamp NULL DEFAULT NULL,
+  `F_ExpiryDate` datetime DEFAULT NULL,
+  `F_City` varchar(64) DEFAULT NULL,
+  `F_StartDate` datetime DEFAULT NULL,
+  `F_LicenceID` bigint(19) DEFAULT NULL,
+  `F_UserIP` varchar(50) DEFAULT NULL,
+  `F_RegisterMethod` char(16) DEFAULT NULL,
+  `F_ContactMethod` varchar(255) DEFAULT NULL,
+  `F_InstanceID` text,
+  `F_TimeZoneOffset` float(3,1) DEFAULT '0.0',
+  `F_Memory` mediumtext,
+  PRIMARY KEY (`F_UserID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `T_Membership_Deleted`;
+CREATE TABLE `T_Membership_Deleted` (
+  `F_UserID` int(10) NOT NULL,
+  `F_GroupID` int(10) NOT NULL,
+  `F_RootID` int(10) NOT NULL,
+  UNIQUE KEY `Index_2` (`F_GroupID`,`F_UserID`),
+  KEY `Index_1` (`F_RootID`),
+  KEY `Index_3` (`F_GroupID`,`F_RootID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `T_Score_Deleted`;
+CREATE TABLE `T_Score_Deleted` (
+  `F_UserID` int(11) NOT NULL,
+  `F_DateStamp` datetime NOT NULL,
+  `F_ExerciseID` bigint(20) NOT NULL,
+  `F_Score` int(11) NOT NULL,
+  `F_UnitID` bigint(20) NOT NULL,
+  `F_Duration` int(11) NOT NULL,
+  `F_ScoreCorrect` int(11) DEFAULT NULL,
+  `F_ScoreWrong` int(11) DEFAULT NULL,
+  `F_ScoreMissed` int(11) DEFAULT NULL,
+  `F_SessionID` int(11) NOT NULL,
+  `F_TestUnits` varchar(64) DEFAULT NULL,
+  `F_CourseID` bigint(20) NOT NULL,
+  `F_ProductCode` smallint(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `T_Memory_Deleted`;
+CREATE TABLE `T_Memory_Deleted` (
+  `F_UserID` int(10) NOT NULL,
+  `F_ProductCode` smallint(5) NOT NULL,
+  `F_Key` varchar(128) NOT NULL,
+  `F_Value` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- gh#1190
+INSERT INTO `T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (1958, '2015-04-15 00:00:00', 'archive tables for delete gh#1190');
+

@@ -72,7 +72,8 @@ class ManageableOps {
 			if ($adminEmail && $this->templateOps->checkTemplate('emails', $templateID)) {
 				$emailData = array("rootID" => $rootID, "group" => $group, "parent" => $parentGroup);
 				$emailArray = array("to" => $adminEmail, "data" => $emailData);
-				$this->emailOps->sendEmails("", $templateID, array($emailArray));
+				//disabled by Sky according to Andrew's request
+				//$this->emailOps->sendEmails("", $templateID, array($emailArray));
 			}
 		}
 		
@@ -676,7 +677,7 @@ EOD;
 		
 		foreach ($manageablesArray as $manageable) {
 			// gh#448
-			AbstractService::$controlLog->info('userID '.Session::get('userID').' deleted a '.get_class($manageable).' with id='.$manageable->id.' and name='.$manageable->name);
+			AbstractService::$controlLog->info('userID '.Session::get('userID').' wants to delete a '.get_class($manageable).' with id='.$manageable->id.' and name='.$manageable->name);
 			
 			switch (get_class($manageable)) {
 				case "Group":
@@ -731,21 +732,56 @@ EOD;
 	 *
 	 * @param groupIdArray An array of group ids to delete
 	 */
-	function deleteGroupsById($groupIdArray) {
+	function deleteGroupsById($rawGroupIdArray) {
+		
+		// gh#1190 just in case
+		$groupIdArray = array_filter($rawGroupIdArray, function ($groupId) {
+			if ($groupId <= 0)
+				AbstractService::$controlLog->info("Request to delete group $groupId repulsed! ManageableOps.deleteGroupsById");
+			return ($groupId > 0);
+		});
+			
 		// If there are no ids in the array do nothing
 		if (sizeof($groupIdArray) == 0) return;
 		
 		$groupIdInString = join(",", $groupIdArray);
+		AbstractService::$controlLog->info(' delete these groups '.$groupIdInString);
 		
-		// Delete groups from the T_Groupstructure table
-		$this->db->Execute("DELETE FROM T_Groupstructure WHERE F_GroupID IN ($groupIdInString)");
-		
+		// gh#1190 Archive instead of delete
+		$sql = <<<SQL
+			INSERT INTO T_Groupstructure_Deleted
+			SELECT * FROM T_Groupstructure WHERE F_GroupID IN ($groupIdInString);
+SQL;
+		$rc = $this->db->Execute($sql);
+		$sql = <<<SQL
+			DELETE FROM T_Groupstructure WHERE F_GroupID IN ($groupIdInString);
+SQL;
+		$rc = $this->db->Execute($sql);
+
 		// Delete entries for these groups in hidden content
-		$this->db->Execute("DELETE FROM T_HiddenContent WHERE F_GroupID IN ($groupIdInString)");
+		$sql = <<<SQL
+			INSERT INTO T_HiddenContent_Deleted
+			SELECT * FROM T_HiddenContent WHERE F_GroupID IN ($groupIdInString);
+SQL;
+		$rc = $this->db->Execute($sql);
+		$sql = <<<SQL
+			DELETE FROM T_HiddenContent WHERE F_GroupID IN ($groupIdInString);
+SQL;
+		$rc = $this->db->Execute($sql);
 		
-		// Delete entries for these groups in edited content
+		// Delete entries for these groups in edited content (obsolete, so no need to archive)
 		$this->db->Execute("DELETE FROM T_EditedContent WHERE F_GroupID IN ($groupIdInString)");
-		
+
+		// Delete entries for any teachers linked to this group
+		$sql = <<<SQL
+			INSERT INTO T_ExtraTeacherGroups_Deleted
+			SELECT * FROM T_ExtraTeacherGroups WHERE F_GroupID IN ($groupIdInString);
+SQL;
+		$rc = $this->db->Execute($sql);
+		$sql = <<<SQL
+			DELETE FROM T_ExtraTeacherGroups WHERE F_GroupID IN ($groupIdInString);
+SQL;
+		$rc = $this->db->Execute($sql);
 	}
 	
 	/**
@@ -758,7 +794,7 @@ EOD;
 		// gh#359
 		$filteredArray = $userArray;
 		$filteredArray = array_filter($userArray, function ($user) {
-			if ($user->userID < 0)
+			if ($user->userID <= 0)
 				AbstractService::$debugLog->notice("Request to delete user $user->userID repulsed! ManageableOps.deleteUsers");
 			return ($user->userID > 0);
 		});
@@ -767,9 +803,11 @@ EOD;
 		if (sizeof($filteredArray) == 0) return;
 		
 		// gh#653 delete one by one in case they exist in multiple groups
+		// gh#1190 Archive instead of delete
 		foreach ($filteredArray as $user) {
-
+			
 			$this->db->StartTrans();
+			
 			$sql = <<<EOD
 				   SELECT COUNT(*) AS count
 				   FROM T_Membership m
@@ -778,31 +816,66 @@ EOD;
 			$rs = $this->db->GetRow($sql, array($user->userID));
 			if ($rs['count'] > 1) {
 				// This user exists in another group too, so only remove this membership record
+				AbstractService::$controlLog->info(' remove from one group, user id='.$user->userID);
+				
 				$bindingParams = array($user->getMultiUserGroupID(), $user->userID);
-				$this->db->Execute("DELETE FROM T_Membership WHERE F_GroupID=? AND F_UserID=?", $bindingParams);
+				$sql = <<<SQL
+					INSERT INTO T_Membership_Deleted
+					SELECT * FROM T_Membership WHERE F_GroupID=? AND F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM T_Membership WHERE F_GroupID=? AND F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
 			} else { 
-				// TODO: Think about moving to _Delete tables rather than just deleting to make undo easier
+				AbstractService::$controlLog->info(' delete user id='.$user->userID);
 				$bindingParams = array($user->userID);
-				$this->db->Execute("DELETE FROM T_User WHERE F_UserID=?", $bindingParams);
-				$this->db->Execute("DELETE FROM T_Membership WHERE F_UserID=?", $bindingParams);
-				$this->db->Execute("DELETE FROM T_Score WHERE F_UserID=?", $bindingParams);
+				
+				$sql = <<<SQL
+					INSERT INTO T_User_Deleted
+					SELECT * FROM T_User WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM T_User WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				
+				$sql = <<<SQL
+					INSERT INTO T_Membership_Deleted
+					SELECT * FROM T_Membership WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM T_Membership WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				
+				$sql = <<<SQL
+					INSERT INTO T_Score_Deleted
+					SELECT * FROM T_Score WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM T_Score WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				
 				// gh#1067
-				$this->db->Execute("DELETE FROM T_Memory WHERE F_UserID=?", $bindingParams);
+				$sql = <<<SQL
+					INSERT INTO T_Memory_Deleted
+					SELECT * FROM T_Memory WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM T_Memory WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
 			}
-			$this->db->CompleteTrans();
 			
+			$this->db->CompleteTrans();
 		}
-		
-		// Delete user from the t_licences table
-		// v6.5.5.0 The T_Licences table is dropped in favour of using T_Session.
-		// So this clear out is unnecessary
-		//$this->db->Execute("DELETE FROM t_licences WHERE F_UserID IN ($userIdInString)");
-		
-		// Delete user records from the t_session table? (NO - ADRIAN WANTS THIS KEPT FOR CLARITY RECORDS)
-		//$this->db->Execute("DELETE FROM t_session WHERE F_UserID IN ($userIdInString)");
-		
-		// Delete user records from the t_failsession table? (NO - ADRIAN WANTS THIS KEPT FOR CLARITY RECORDS)
-		//$this->db->Execute("DELETE FROM t_failsession WHERE F_UserID IN ($userIdInString)");
 	}
 	
 	/**

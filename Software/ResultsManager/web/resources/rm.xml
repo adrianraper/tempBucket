@@ -331,7 +331,8 @@
 			<lit name="excelImportInstructions">The Help panel shows you how to import users from Excel.</lit>
 			
 			<lit name="userAccessError">You do not have permission to access all these users [{ids}].</lit>
-			<lit name="groupAccessError">You do not have permission to access all these groups [{ids}].</lit>
+            <lit name="groupAccessError">You do not have permission to access all these groups [{ids}].</lit>
+            <lit name="groupDeleteError">You do not have permission to delete this group [{ids}].</lit>
 			<lit name="usernameExistsError">Username '{username}' has already been used.</lit>
 			<lit name="studentIDExistsError">Learner ID '{studentID}' has already been used.</lit>
 			<lit name="usernameAndIDExistsError">Username '{username}' and learner ID '{studentID}' have already been used.</lit>

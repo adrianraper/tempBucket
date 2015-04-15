@@ -101,7 +101,7 @@
 			
 			// v3.3 And different acceptable product versions
 			var availableVersions:Array = new Array();
-			for each (var item:Object in DictionarySingleton.getInstance().versionCode) {
+			for each (item in DictionarySingleton.getInstance().versionCode) {
 				if (item.productCode == selectedTitle.productCode) {
 					availableVersions.push(item);
 				}

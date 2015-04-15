@@ -229,7 +229,7 @@ EOD;
 		} else {
 			// gh#604 Teacher records in session will now include root, so ignore them here
 			$sql = <<<EOD
-				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed 
+				SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
 				FROM T_Session s, T_User u
 				WHERE s.F_StartDateStamp >= ?
 				AND s.F_Duration > 15
