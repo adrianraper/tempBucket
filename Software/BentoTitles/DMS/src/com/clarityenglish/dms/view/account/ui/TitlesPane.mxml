@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+		   xmlns:vo="com.clarityenglish.common.vo.content.*"
+		   xmlns:fxc="com.fxcomps.vacombobox.*"
+		   implements="com.clarityenglish.common.view.interfaces.CopyReceiver"
+		   horizontalScrollPolicy="off">
+	<mx:Script>
+		<![CDATA[
+		import mx.formatters.DateFormatter;
+		import com.clarityenglish.common.vo.content.Title;
+		import com.clarityenglish.common.vo.dictionary.DictionarySingleton;
+		import com.clarityenglish.dms.view.account.AccountMediator;
+		import com.clarityenglish.dms.vo.account.Account;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.dms.Constants;
+		import flash.events.Event;
+		import mx.controls.Alert;
+		import mx.controls.dataGridClasses.DataGridColumn;
+		import mx.core.UIComponent;
+		import mx.events.CloseEvent;
+		import mx.events.ListEvent;
+		import mx.events.PropertyChangeEvent;
+		import org.davekeen.utils.DateUtils;
+		import mx.managers.PopUpManager;
+		import mx.core.IFlexDisplayObject;
+		import mx.collections.ArrayCollection;
+		import com.clarityenglish.dms.view.account.events.TitlesWindowEvent;
+		import com.clarityenglish.dms.view.account.ui.SelectTitlesPanel;
+		import nl.demonsters.debugger.MonsterDebugger;
+		
+		[Bindable]
+		public var account:Account;
+		
+		[Bindable]
+		private var selectedTitle:Title;
+		
+		[Bindable]
+		private var availableLanguagesCollection:ArrayCollection;
+		
+		[Bindable]
+		private var availableVersionsCollection:ArrayCollection;
+		
+		[Bindable]
+		public var editMode:Boolean = false;
+		
+		private var copyProvider:CopyProvider;
+		
+		// Used in doTitlesSubmit() to determine whether to add or remove a title based on the selections
+		private static const ADD:String = "add";
+		private static const REMOVE:String = "remove";
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+			
+			titleColumn.headerText = copyProvider.getCopyForId("titleColumn");
+			expiryDateColumn.headerText = copyProvider.getCopyForId("expiryDateColumn");
+			
+			titleFormItem.label = copyProvider.getCopyForId("titleFormItem");
+			expiryDateFormItem.label = copyProvider.getCopyForId("expiryDateFormItem");
+			licenceStartDateFormItem.label = copyProvider.getCopyForId("licenceStartDateFormItem");
+			licenceClearanceDateFormItem.label = copyProvider.getCopyForId("licenceClearanceDateFormItem");
+			licenceClearanceFrequencyFormItem.label = copyProvider.getCopyForId("licenceClearanceFrequencyFormItem");
+			maxStudentsFormItem.label = copyProvider.getCopyForId("maxStudentsFormItem");
+			maxTeachersFormItem.label = copyProvider.getCopyForId("maxTeachersFormItem");
+			maxAuthorsFormItem.label = copyProvider.getCopyForId("maxAuthorsFormItem");
+			maxReportersFormItem.label = copyProvider.getCopyForId("maxReportersFormItem");
+			licenceTypeFormItem.label = copyProvider.getCopyForId("licenceTypeFormItem");
+			languageCodeFormItem.label = copyProvider.getCopyForId("languageCodeFormItem");
+			versionCodeFormItem.label = copyProvider.getCopyForId("versionCodeFormItem");
+			startPageFormItem.label = copyProvider.getCopyForId("startPageFormItem");
+			licenceFileFormItem.label = copyProvider.getCopyForId("licenceFileFormItem");
+			contentLocationFormItem.label = copyProvider.getCopyForId("contentLocationFormItem");
+			contentLocationHelpLabel.text = copyProvider.getCopyForId("contentLocationHelp");
+			frequencyHelpLabel.text = copyProvider.getCopyForId("frequencyHelp");
+			
+			configureTitlesButton.label = copyProvider.getCopyForId("configureTitles");
+			
+			// gh#1090
+			loginBlockedFormItem.label = copyProvider.getCopyForId("loginBlockedFormItem");
+			
+			// v3.3 To list languages that you can use for a given title.
+			// Start with everything available.
+			//availableLanguagesCollection = new ArrayCollection(DictionarySingleton.getInstance().languageCode);
+		}
+		
+		private function onTitleChange(e:ListEvent):void {
+			// Save the existing title
+			save();
+			
+			// Update selected title to the newly selected title
+			selectedTitle = dataGrid.selectedItem as Title;
+			
+			// v3.3 Each title has different acceptable language codes, so set this up first
+			var availableLanguages:Array = new Array();
+			for each (var item:Object in DictionarySingleton.getInstance().languageCode) {
+				if (item.productCode == selectedTitle.productCode) {
+					availableLanguages.push(item);
+				}
+			}
+			availableLanguagesCollection = new ArrayCollection(availableLanguages);
+			
+			// v3.3 And different acceptable product versions
+			var availableVersions:Array = new Array();
+			for each (var item:Object in DictionarySingleton.getInstance().versionCode) {
+				if (item.productCode == selectedTitle.productCode) {
+					availableVersions.push(item);
+				}
+			}
+			availableVersionsCollection = new ArrayCollection(availableVersions);
+			
+			// Fill in the fields from the selected title
+			expiryDateDateField.selectedDate = DateUtils.ansiStringToDate(selectedTitle.expiryDate);
+			licenceStartDateDateField.selectedDate = DateUtils.ansiStringToDate(selectedTitle.licenceStartDate);
+			if (selectedTitle.licenceClearanceDate) {
+				licenceClearanceDateDateField.selectedDate = DateUtils.ansiStringToDate(selectedTitle.licenceClearanceDate);
+			} else {
+				licenceClearanceDateDateField.selectedDate = undefined;
+			}
+			// gh#706
+			licenceClearanceFrequencyField.text = selectedTitle.licenceClearanceFrequency;
+			
+			//titleTextInput.text = selectedTitle.caption;
+			titleTextInput.text = selectedTitle.name;
+			maxStudentsStepper.value = selectedTitle.maxStudents;
+			maxTeachersStepper.value = selectedTitle.maxTeachers;
+			maxReportersStepper.value = selectedTitle.maxReporters;
+			maxAuthorsStepper.value = selectedTitle.maxAuthors;
+			//languageCodeTextInput.text = selectedTitle.languageCode;
+			languageCodeComboBox.value = selectedTitle.languageCode;
+			versionCodeComboBox.value = selectedTitle.productVersion;
+			startPageTextInput.text = selectedTitle.startPage;
+			licenceFileTextInput.text = selectedTitle.licenceFile;
+			// v3.5 Note that contentLocation is a calculated field, we need the pure database field here
+			//contentLocationTextInput.text = selectedTitle.contentLocation;
+			contentLocationTextInput.text = selectedTitle.dbContentLocation;
+			licenceTypeComboBox.value = selectedTitle.licenceType;
+			
+			// gh#1090
+			loginBlockedCheckBox.selected = (selectedTitle.loginModifier & Title.LOGIN_BLOCKED);
+			loginBlockedFormItem.enabled = editMode && (licenceTypeComboBox.value == Title.LICENCE_TYPE_AA);
+			loginBlockedFormItem.visible = (licenceTypeComboBox.value == Title.LICENCE_TYPE_AA);
+			
+			// To help create accounts, disable fields that don't need to be changed
+			// RM only cares about teachers, reporters and authors. It also CAN'T have a content location
+			// You only need to set this if editMode is on
+			if (editMode) {
+				if (selectedTitle.productCode == 2) {
+					maxStudentsStepper.enabled = false;
+					maxTeachersStepper.enabled = true;
+					maxAuthorsStepper.enabled = true;
+					maxReportersStepper.enabled = true;
+					contentLocationFormItem.enabled = false;
+				} else {
+					// Student programs only care about learners. Author Plus is considered a student program, to
+					// set teacher numbers use RM for that account. Maybe maxAuthors will one day be used with Author Plus too.
+					// v3.4 Yes, for Editing Clarity Content
+					maxStudentsStepper.enabled = true;
+					maxTeachersStepper.enabled = false;
+					maxAuthorsStepper.enabled = false;
+					maxReportersStepper.enabled = false;
+					contentLocationFormItem.enabled = true;
+				}
+			}
+		}
+		
+		public function validate():Boolean {
+			// Can I use this to force Author Plus to have a contentLocation filled in?
+			// Probably not nice as we don't really know about the full array of titles here.
+			return true;
+		}
+		
+		/**
+		 * Fill in the accounts object with the data from the fields.  Note that selectedTitle usually refers to the last selected title
+		 * (as save() is called whenever the user switches to a new title in the datagrid and we don't want to overwrite the newly selected
+		 * title).
+		 */
+		public function save():void {
+			if (selectedTitle) {
+				// Force Author Plus to fill in contentLocation.
+				// gh#219 Also CCB
+				// Sadly this just gives a warning and still goes to the next screen. But better than nothing.
+				if (((selectedTitle.productCode == 1) || (selectedTitle.productCode == 54)) && contentLocationTextInput.text == "") {
+					Alert.show(copyProvider.getCopyForId("AuthorPlusContentLocationEmpty"), "Please note...", Alert.OK, this);					
+				} else {
+					selectedTitle.expiryDate = DateUtils.dateToAnsiString(expiryDateDateField.selectedDate);
+					selectedTitle.licenceStartDate = DateUtils.dateToAnsiString(licenceStartDateDateField.selectedDate);
+					// gh#706
+					selectedTitle.licenceClearanceFrequency = licenceClearanceFrequencyField.text;
+					if (licenceClearanceDateDateField.selectedDate)
+						selectedTitle.licenceClearanceDate = DateUtils.dateToAnsiString(licenceClearanceDateDateField.selectedDate);
+					selectedTitle.maxStudents = maxStudentsStepper.value;
+					selectedTitle.maxTeachers = maxTeachersStepper.value;
+					selectedTitle.maxAuthors = maxAuthorsStepper.value;
+					selectedTitle.maxReporters = maxReportersStepper.value;
+					//selectedTitle.languageCode = languageCodeTextInput.text;
+					selectedTitle.languageCode = languageCodeComboBox.value as String;
+					selectedTitle.productVersion = versionCodeComboBox.value as String;
+					selectedTitle.startPage = startPageTextInput.text;
+					selectedTitle.licenceFile = licenceFileTextInput.text;
+					// v3.5 Note that contentLocation is a calculated field, we need the pure database field here
+					//selectedTitle.contentLocation = contentLocationTextInput.text;
+					selectedTitle.dbContentLocation = contentLocationTextInput.text;
+					selectedTitle.licenceType = licenceTypeComboBox.value as Number;
+					// gh#1090
+					if (loginBlockedCheckBox.selected) {
+						selectedTitle.loginModifier |= Title.LOGIN_BLOCKED;
+					} else {
+						selectedTitle.loginModifier &= ~Title.LOGIN_BLOCKED;
+					}
+				}
+			}
+		}
+		
+		/**
+		 * Repopulate the fields from the accounts object
+		 */
+		public function cancel():void {
+			executeBindings(true);
+		}
+		
+		/**
+		 * Format the date string from an ansi string to DD/MM/YYYY for display in the title grid
+		 */
+		private function formatDateColumn(item:Object, column:DataGridColumn):String {
+			return DateUtils.formatAnsiString(item[column.dataField], "DD/MM/YYYY");
+		}
+		
+		private function onConfigureTitlesClick():void {
+			var selectTitlesPanel:SelectTitlesPanel = PopUpManager.createPopUp(UIComponent(parentApplication), SelectTitlesPanel, true) as SelectTitlesPanel;
+			selectTitlesPanel.setCopyProvider(copyProvider);
+			selectTitlesPanel.parentView = this;
+			
+			selectTitlesPanel.titles = account.titles;
+			selectTitlesPanel.products = DictionarySingleton.getInstance().products;
+			
+			selectTitlesPanel.addEventListener(TitlesWindowEvent.SUBMIT, onTitlesSubmit);
+			selectTitlesPanel.addEventListener(Event.CANCEL, onTitlesCancel);
+			
+			PopUpManager.centerPopUp(selectTitlesPanel);
+		}
+		
+		private function onTitlesSubmit(e:TitlesWindowEvent):void {
+			var productCodes:Array = e.productCodes;
+			
+			// This counts the number of titles (if any) that we are planning to remove so we can pop up a confirm dialog
+			var removeCount:int = 0;
+			for (var productCodeString:String in productCodes) {
+				var productCode:Number = new Number(productCodeString);
+				var operation:String = productCodes[productCode].selected ? ADD : REMOVE;
+				
+				// Check that the product code already exists in the title
+				var titleExistsInAccount:Boolean = account.titles.some(function(title:Title, index:int, array:Array):Boolean {
+					return (title.productCode == productCode);
+				} );
+				
+				if (operation == REMOVE && titleExistsInAccount) removeCount++;
+			}
+			
+			// If we are removing any titles then confirm, otherwise just go ahead
+			if (removeCount > 0) {
+				var replaceObj:Object = new Object();
+				replaceObj.titlesCount = removeCount.toString();
+				
+				Alert.show(copyProvider.getCopyForId("titlesRemove", replaceObj), "Confirm", Alert.YES | Alert.NO, this, function(closeEvent:CloseEvent):void {
+					if (closeEvent.detail == Alert.YES)
+						doTitlesSubmit(productCodes, e);
+				} );
+			} else {
+				doTitlesSubmit(productCodes, e);
+			}
+		}
+		
+		private function doTitlesSubmit(productCodes:Array, e:TitlesWindowEvent):void {			
+			// Go through adding/removing titles as required
+			for (var productCodeString:String in productCodes) {
+				var productCode:Number = new Number(productCodeString);
+				var operation:String = productCodes[productCode].selected ? ADD : REMOVE;
+				var caption:String = productCodes[productCode].caption;
+				// v3.3 Remove, switch to T_ProductLanguage instead
+				//var defaultContentLocation:String = productCodes[productCode].defaultContentLocation;
+				
+				switch (operation) {
+					case ADD:
+						// Ensure that the title does not already exist in the account
+						var titleDoesNotExist:Boolean = account.titles.every(function(title:Title, index:int, array:Array):Boolean {
+							return title.productCode != productCode;
+						} );
+						
+						// If not then create a new default title object and add it to the account
+						if (titleDoesNotExist) {
+							var title:Title = Title.createDefault(productCode);
+							//title.caption = caption;
+							// Title.createDefault should work out the caption since it is called from other places too
+							//title.name = caption;
+							// Author Plus doesn't have a default location, we need to base it on the prefix
+							// gh#219 and CCB
+							if ((productCode == 1) || (productCode == 54)) {
+								// I am not sure that this always puts the correct stuff in the screen field
+								// We assume that the location for Author Plus will have &content=../ap in it
+								//title.contentLocation = "../ap/" + account.prefix;
+								// v3.5 Note that contentLocation is a calculated field, we need the pure database field here
+								//title.contentLocation = account.prefix;
+								// gh#219 if you are just creating this account, it will not exist yet, so
+								// need to get value from the detailsPane screen. Can you? No. 
+								// So put nothing in value and use the warning to remind you.
+								if (account.prefix) 
+									title.dbContentLocation = account.prefix;
+								
+							} else {
+								// v3.3 Otherwise we assume that there will be no override of the default
+								//title.contentLocation = defaultContentLocation;
+							}
+							
+							// v3.3 We should pick up which languages this title can work with
+							// as not all are cross language.
+							
+							// If there is already a title in this account then take some default values from that to save having to type
+							// them in each time
+							if (account.titles.length > 0) {
+								var originalTitle:Title = account.titles[0];
+								
+								title.maxStudents = originalTitle.maxStudents;
+								title.maxTeachers = originalTitle.maxTeachers;
+								title.maxAuthors = originalTitle.maxAuthors;
+								title.maxReporters = originalTitle.maxReporters;
+								title.expiryDate = originalTitle.expiryDate;
+								title.licenceType = originalTitle.licenceType;
+							}
+							
+							account.titles.push(title);
+						}
+						
+						break;
+					case REMOVE:
+						// If we need to remove a title then go through the existing titles and remove the correct one
+						account.titles = account.titles.filter(function(title:Title, index:int, array:Array):Boolean {
+							return (title.productCode != productCode);
+						} );
+						break;
+				}
+			}
+			
+			// Dispatch a property change event on the account so the rest of the application knows to update itself
+			account.dispatchEvent(PropertyChangeEvent.createUpdateEvent(account, "titles", null, null));
+			
+			onTitlesCancel(e);
+		}
+		
+		private function onTitlesCancel(e:Event = null):void {
+			e.target.removeEventListener(TitlesWindowEvent.SUBMIT, onTitlesSubmit);
+			e.target.removeEventListener(Event.CANCEL, onTitlesCancel);
+			PopUpManager.removePopUp(e.target as IFlexDisplayObject);
+		}
+			
+		// gh#1090
+		private function onLicenceTypeChange(e:Event):void {
+			loginBlockedFormItem.enabled = editMode && (licenceTypeComboBox.value == Title.LICENCE_TYPE_AA);
+			loginBlockedFormItem.visible = (licenceTypeComboBox.value == Title.LICENCE_TYPE_AA);
+		}
+		
+		]]>
+		
+	</mx:Script>
+	
+	<mx:HDividedBox width="100%" height="100%">
+		<mx:VBox width="350" height="100%" minWidth="0" minHeight="0" verticalGap="1">
+			<mx:DataGrid id="dataGrid"
+						 width="100%"
+						 height="100%"
+						 rowHeight="50"
+						 verticalAlign="middle"
+						 dataProvider="{account.titles}"
+						 change="onTitleChange(event)">
+				<mx:columns>
+					<mx:DataGridColumn width="50" itemRenderer="com.clarityenglish.dms.view.account.ui.ContentImageRenderer" />
+					<mx:DataGridColumn id="titleColumn" width="200" dataField="name" />
+					<mx:DataGridColumn id="expiryDateColumn" width="100" dataField="expiryDate" labelFunction="formatDateColumn" />
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:HBox width="100%" paddingTop="0" paddingBottom="1" horizontalGap="2" horizontalAlign="right" includeInLayout="{editMode}" visible="{editMode}">
+				<mx:Button id="configureTitlesButton" click="onConfigureTitlesClick()" />
+			</mx:HBox>
+		</mx:VBox>
+		
+		<mx:Form id="form" width="100%" height="100%" paddingTop="0" visible="{dataGrid.selectedItem != null}" horizontalScrollPolicy="off" minWidth="0" minHeight="0">
+			<mx:FormItem id="titleFormItem" >
+				<mx:TextInput id="titleTextInput" editable="false" enabled="false" />
+			</mx:FormItem>
+			<mx:HBox width="80%" paddingLeft="16">
+				<mx:FormItem id="licenceStartDateFormItem">
+					<mx:DateField id="licenceStartDateDateField" formatString="DD/MM/YYYY" editable="true" enabled="{editMode}" yearNavigationEnabled="true" />
+				</mx:FormItem>
+				<mx:Spacer width="20"/>
+				<mx:FormItem id="licenceClearanceDateFormItem">
+					<mx:DateField id="licenceClearanceDateDateField" formatString="DD/MM/YYYY" editable="true" enabled="{editMode}" yearNavigationEnabled="true" />
+				</mx:FormItem>
+			</mx:HBox>
+			<mx:HBox width="80%" paddingLeft="9">
+				<mx:FormItem id="expiryDateFormItem">
+					<mx:DateField id="expiryDateDateField" formatString="DD/MM/YYYY" editable="true" enabled="{editMode}" yearNavigationEnabled="true" />
+				</mx:FormItem>
+				<mx:Spacer width="48"/>
+				<!-- gh#706 -->
+				<mx:FormItem id="licenceClearanceFrequencyFormItem">
+					<mx:TextInput id="licenceClearanceFrequencyField" width="80" editable="true" enabled="{editMode}"/>
+				</mx:FormItem>
+				<mx:Label id="frequencyHelpLabel" />
+				<mx:Spacer/>
+			</mx:HBox>
+			<mx:FormItem id="maxStudentsFormItem">
+				<mx:NumericStepper id="maxStudentsStepper" enabled="{editMode}" maximum="999999" />
+			</mx:FormItem>
+			<mx:HBox width="100%">
+				<mx:FormItem id="maxTeachersFormItem">
+					<mx:NumericStepper id="maxTeachersStepper" enabled="{editMode}" maximum="999999" />
+				</mx:FormItem>
+				<mx:FormItem id="maxReportersFormItem">
+					<mx:NumericStepper id="maxReportersStepper" enabled="{editMode}" maximum="999999" />
+				</mx:FormItem>
+				<!-- For the moment forget about authors -->
+				<mx:FormItem id="maxAuthorsFormItem">
+					<mx:NumericStepper id="maxAuthorsStepper" enabled="{editMode}" maximum="999999" />
+				</mx:FormItem>
+			</mx:HBox>
+			<mx:HBox width="100%">
+				<mx:FormItem id="licenceTypeFormItem">
+					<fxc:VAComboBox id="licenceTypeComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().licenceType}"
+									change="onLicenceTypeChange(event)" />
+				</mx:FormItem>
+				<mx:FormItem id="loginBlockedFormItem" >
+					<mx:CheckBox id="loginBlockedCheckBox" />
+				</mx:FormItem>
+			</mx:HBox>
+			<mx:FormItem id="languageCodeFormItem">
+				<!-- <fxc:VAComboBox id="languageCodeComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().languageCode}" />  -->
+				<fxc:VAComboBox id="languageCodeComboBox" enabled="{editMode}" dataField="data" dataProvider="{availableLanguagesCollection}" />
+			</mx:FormItem>
+			<mx:FormItem id="versionCodeFormItem">
+				<fxc:VAComboBox id="versionCodeComboBox" enabled="{editMode}" dataField="data" dataProvider="{availableVersionsCollection}" />
+			</mx:FormItem>
+			<mx:FormItem id="startPageFormItem" width="100%">
+				<mx:TextInput id="startPageTextInput" enabled="{editMode}" width="100%" />
+			</mx:FormItem>
+			<mx:FormItem id="licenceFileFormItem" width="100%">
+				<mx:TextInput id="licenceFileTextInput" enabled="{editMode}" width="100%" />
+			</mx:FormItem>	
+			<mx:HBox width="100%">
+				<mx:FormItem id="contentLocationFormItem">
+					<mx:TextInput id="contentLocationTextInput" enabled="{editMode}" />
+				</mx:FormItem>	
+				<mx:Label id="contentLocationHelpLabel" />
+				<mx:Spacer/>
+			</mx:HBox>
+		</mx:Form>
+	</mx:HDividedBox>
+</mx:Canvas>

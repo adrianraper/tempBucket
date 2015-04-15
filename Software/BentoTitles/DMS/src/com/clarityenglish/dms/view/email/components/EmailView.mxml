@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+		   xmlns:view="com.clarityenglish.dms.view.email.components.*"
+		   xmlns:ui="com.clarityenglish.dms.view.email.ui.*"
+		   creationComplete="creationComplete()"
+		   implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.common.vo.email.TemplateDefinition;
+		import com.clarityenglish.dms.view.email.events.EmailEvent;
+		import flash.events.Event;
+		import mx.collections.ArrayCollection;
+			
+		private var copyProvider:CopyProvider;
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+			
+			toFormItem.label = copyProvider.getCopyForId("toFormItem");
+			templateFormItem.label = copyProvider.getCopyForId("templateFormItem");
+			
+			nameColumn.headerText = copyProvider.getCopyForId("nameColumn");
+			emailColumn.headerText = copyProvider.getCopyForId("emailColumn");
+			templateFilenameColumn.headerText = copyProvider.getCopyForId("templateFilenameColumn");
+			templateTitleColumn.headerText = copyProvider.getCopyForId("templateTitleColumn");
+			descriptionColumn.headerText = copyProvider.getCopyForId("descriptionColumn");
+			
+			clearButton.label = copyProvider.getCopyForId("clearButton");
+			reloadTemplatesButton.label = copyProvider.getCopyForId("reloadTemplatesButton");
+			previewEmailButton.label = copyProvider.getCopyForId("previewEmailButton");
+		}
+		
+		private function creationComplete():void { }
+		
+		public function setTemplateDefinitions(templateDefinitions:Array):void {
+			templateDataGrid.dataProvider = templateDefinitions;
+			templateDataGrid.validateNow();
+			
+			dispatchEvent(new Event("previewButtonRefresh"));
+		}
+		
+		public function setEmailToList(accounts:Array):void {
+			accountDataGrid.dataProvider = accounts;
+			accountDataGrid.validateNow();
+			
+			dispatchEvent(new Event("previewButtonRefresh"));
+		}
+		
+		private function onReloadTemplateClick():void {
+			dispatchEvent(new EmailEvent(EmailEvent.RELOAD_EMAIL_TEMPLATES));
+		}
+		
+		private function onClearClick():void {
+			dispatchEvent(new EmailEvent(EmailEvent.CLEAR_TO_LIST));
+		}
+		
+		private function onPreviewClick():void {
+			dispatchEvent(new EmailEvent(EmailEvent.PREVIEW_EMAIL, templateDataGrid.selectedItem as TemplateDefinition));
+		}
+		
+		[Bindable(event="previewButtonRefresh")]
+		private function isPreviewButtonEnabled():Boolean {
+			return (accountDataGrid.dataProvider.length > 0 && templateDataGrid.selectedItem != null);
+		}
+		
+		]]>
+	</mx:Script>
+	
+	<mx:Form width="100%" height="100%" paddingBottom="5">
+		<mx:FormItem width="100%" id="toFormItem">
+			<mx:DataGrid id="accountDataGrid" width="100%" height="140" selectable="false">
+				<mx:columns>
+					<mx:DataGridColumn id="nameColumn" dataField="name" />
+					<mx:DataGridColumn id="emailColumn" minWidth="200" >
+						<mx:itemRenderer>
+							<mx:Component>
+								<mx:Label paddingLeft="3" text="{data.adminUser.email} (cc:{data.email})" />
+							</mx:Component>
+						</mx:itemRenderer>
+					</mx:DataGridColumn>				
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:FormItem>
+		<mx:HBox width="100%" horizontalAlign="right">
+			<mx:Button id="clearButton" click="onClearClick()" />
+		</mx:HBox>
+		
+		<mx:HRule width="100%" />
+		
+		<mx:FormItem width="100%" height="100%" id="templateFormItem">
+			<mx:DataGrid id="templateDataGrid" width="100%" height="100%" rowHeight="50" change="dispatchEvent(new Event('previewButtonRefresh'));">
+				<mx:columns>
+					<mx:DataGridColumn id="templateFilenameColumn" dataField="filename" />
+					<mx:DataGridColumn id="templateTitleColumn" dataField="title" />
+					<mx:DataGridColumn id="descriptionColumn" minWidth="200" dataField="description" wordWrap="true" />
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:FormItem>
+		
+		<mx:HRule width="100%" />
+		
+		<mx:HBox width="100%" horizontalAlign="right">
+			<mx:Button id="reloadTemplatesButton" click="onReloadTemplateClick()" />
+			<mx:Button id="previewEmailButton" enabled="{isPreviewButtonEnabled()}" click="onPreviewClick()" />
+		</mx:HBox>
+	</mx:Form>
+		
+</mx:Canvas>

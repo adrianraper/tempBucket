@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Image xmlns:mx="http://www.adobe.com/2006/mxml"
+		  width="50"
+		  height="50"
+		  dataChange="onDataChange()">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.vo.content.Title;
+		import com.clarityenglish.dms.Constants;
+		
+		private function onDataChange():void {
+			source = Constants.HOST + Constants.LOGO_FOLDER + "/" + data.productCode + ".swf";
+		}
+		
+		]]>
+	</mx:Script>
+</mx:Image>

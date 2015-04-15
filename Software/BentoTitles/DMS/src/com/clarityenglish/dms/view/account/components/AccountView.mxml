@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+		   xmlns:view="com.clarityenglish.dms.view.account.components.*"
+		   xmlns:ui="com.clarityenglish.dms.view.account.ui.*"
+		   xmlns:controls="org.davekeen.controls.*"
+		   creationComplete="creationComplete()"
+		   implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+			import com.clarityenglish.dms.Constants;
+			import com.clarityenglish.common.events.SearchEvent;
+			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			import com.clarityenglish.common.vo.dictionary.DictionarySingleton;
+			import com.clarityenglish.dms.model.AccountProxy;
+			import com.clarityenglish.dms.view.account.AccountMediator;
+			import com.clarityenglish.dms.view.account.events.AccountEvent;
+			import com.clarityenglish.dms.view.account.ui.AccountCMManager;
+			import com.clarityenglish.dms.view.account.ui.ReportWindow;
+			import com.clarityenglish.dms.view.account.ui.SearchWindow;
+			import com.clarityenglish.dms.vo.account.Account;
+			import com.clarityenglish.utils.TraceUtils;
+			
+			import flash.events.ContextMenuEvent;
+			import flash.events.Event;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.CheckBox;
+			import mx.controls.dataGridClasses.DataGridColumn;
+			import mx.core.UIComponent;
+			import mx.events.CloseEvent;
+			import mx.events.CollectionEvent;
+			import mx.events.CollectionEventKind;
+			import mx.events.ListEvent;
+			import mx.managers.PopUpManager;
+			import mx.utils.ObjectUtil;
+			
+			import org.davekeen.utils.ArrayUtils;
+		//import nl.demonsters.debugger.MonsterDebugger;
+		
+		private var accountCMManager:AccountCMManager;
+		
+		private var copyProvider:CopyProvider;
+		
+		private var hideShowCheckBoxes:Array = new Array();
+		
+		private var lastDataGridItemEvent:ListEvent;
+		
+		[Bindable]
+		private var editMode:Boolean = false;
+		
+		private static const TREE_FILTERED_BG_COLOUR:int = 0xf2ffb4;
+		
+		private var currentSearchEvent:SearchEvent;
+		
+		private var searchActive:Boolean;
+		
+		public var reportTemplateDefinitions:Array;
+		
+		// Used to keep the sorting on the datagrid when changing the dataProvider
+		// DK: In order to maintain compatability with Flex 4 and Flex 3, this needs to remain untyped
+		private var currentSort:*;
+		
+		[Bindable]
+		private var showIndividualAccounts:Boolean = false;
+		// gh#911
+		[Bindable]
+		private var showArchivedAccounts:Boolean = false;
+			
+		[Bindable]
+		private var showFilterString:String;
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+			
+			accountEditor.setCopyProvider(copyProvider);
+			
+			saveButton.label = copyProvider.getCopyForId("save");
+			cancelButton.label = copyProvider.getCopyForId("cancel");
+			filteredButton.label = copyProvider.getCopyForId("clearSearchButton");
+			individualAccounts.label = copyProvider.getCopyForId("individualAccounts")
+			archivedAccounts.label = copyProvider.getCopyForId("archivedAccounts")
+			
+			// Set copy in DataGrid columns and the hide/show grid
+			for each (var dataGridColumn:DataGridColumn in dataGrid.columns)
+				dataGridColumn.headerText = hideShowCheckBoxes[dataGridColumn.dataField].label = copyProvider.getCopyForId(dataGridColumn.dataField + "Column");
+			
+			// Add copy to the menus
+			accountCMManager.setCopyProvider(copyProvider);
+		}
+		
+		/**
+		 * When the component has been created create the context menu and add listeners
+		 */
+		private function creationComplete():void {
+			accountCMManager = new AccountCMManager(dataGrid);
+			accountCMManager.addEventListener(ContextMenuEvent.MENU_SELECT, onMenuSelect);
+			accountCMManager.addEventListener(AccountEvent.GENERATE_REPORT, onGenerateReportSelect);
+			accountCMManager.addEventListener(AccountEvent.ADD_ACCOUNT, onAddAccountSelect);
+			accountCMManager.addEventListener(AccountEvent.EDIT_ACCOUNT, onEditAccountSelect);
+			accountCMManager.addEventListener(AccountEvent.DELETE_ACCOUNTS, onDeleteAccountsSelect);
+			accountCMManager.addEventListener(AccountEvent.ARCHIVE_ACCOUNTS, onArchiveAccountsSelect);
+			accountCMManager.addEventListener(SearchEvent.SEARCH, onSearchSelect);
+			accountCMManager.addEventListener(SearchEvent.CLEAR_SEARCH, onClearSearchSelect);
+			accountCMManager.addEventListener(AccountEvent.ADD_TO_EMAIL_TO_LIST, onChangeEmailToList);
+			accountCMManager.addEventListener(AccountEvent.SET_EMAIL_TO_LIST, onChangeEmailToList);
+			accountCMManager.addEventListener(AccountEvent.SHOW_IN_RESULTS_MANAGER, onShowInResultsManager);
+			
+			// Setup the show/hide columns VBox
+			for each (var dataGridColumn:DataGridColumn in dataGrid.columns) {
+				var checkBox:CheckBox = new CheckBox();
+				checkBox.selected = dataGridColumn.visible;
+				checkBox.data = dataGridColumn;
+				
+				checkBox.addEventListener(Event.CHANGE, function(e:Event):void {
+					(e.target.data as DataGridColumn).visible = e.target.selected;
+				} );
+				
+				hideShowCheckBoxes[dataGridColumn.dataField] = checkBox;
+				hideShowColumnVBox.addChild(checkBox);
+			}
+			
+			// And the toggle for individual or institutional accounts
+			individualAccounts.addEventListener(Event.CHANGE, onAccountTypeChange);
+			archivedAccounts.addEventListener(Event.CHANGE, onAccountTypeChange);
+			
+			// Add a listener to the datagrid which will make sure sorting is kept when the dataProvider changes
+			dataGrid.addEventListener(CollectionEvent.COLLECTION_CHANGE, onDataGridDataChange, false, 0, true);
+			
+			filterString.addEventListener(mx.events.FlexEvent.ENTER, onFilterStringChange);
+		}
+		
+		/*
+		 * When a right click is detected select the item the mouse is currently over in the datagrid.  This value is maintained by
+		 * onItemRollOver.  If this does actually result in a change to the tree selection then fire an onChange event.
+		 */
+		private function onMenuSelect(e:ContextMenuEvent):void {
+			if (lastDataGridItemEvent && dataGrid.selectedItems.indexOf(lastDataGridItemEvent.itemRenderer.data) == -1) {
+				dataGrid.selectedItem = lastDataGridItemEvent.itemRenderer.data;
+				onChange();
+			}
+		}
+		
+		private function onChange():void {
+			accountCMManager.enableBySelectedContent(dataGrid.selectedItems);
+			
+			var account:Account = dataGrid.selectedItem as Account;
+			accountEditor.account = account;
+		}
+		
+		/**
+		 * When rolling over a row in the tree set lastRolledOverIdx to the index of that row so we can select it when right clicking.
+		 * 
+		 * @param	e
+		 */
+		private function onItemRollOver(e:ListEvent):void {
+			lastDataGridItemEvent = e.clone() as ListEvent;
+		}
+		
+		public function setDataGridDataProvider(dataProvider:Object):void {
+			//MonsterDebugger.trace(this, "accountView.setDP");
+
+			dataGrid.dataProvider = dataProvider;
+			
+			// If search is currently active on a refresh then reapply the search conditions
+			if (currentSearchEvent) onSearchSubmit(currentSearchEvent);
+			
+			editMode = false;
+			
+			// To show the filter string you are currently using
+			showFilterString = Constants.filterString;
+
+		}
+		
+		private function onGenerateReportSelect(e:AccountEvent):void {
+			var reportWindow:ReportWindow = PopUpManager.createPopUp(UIComponent(parentApplication), ReportWindow, true) as ReportWindow;
+			reportWindow.setCopyProvider(copyProvider);
+			reportWindow.parentView = this;
+			reportWindow.accounts = dataGrid.selectedItems;
+			reportWindow.reportTemplateDefinitions = reportTemplateDefinitions;
+			reportWindow.addEventListener(AccountEvent.GENERATE_REPORT, onGenerateReport);
+			reportWindow.addEventListener(Event.CANCEL, onSearchCancel);
+			PopUpManager.centerPopUp(reportWindow);
+		}
+		
+		private function onGenerateReport(e:AccountEvent):void {
+			dispatchEvent(e);
+		}
+		
+		private function onGenerateReportCancel(e:Event):void {
+			e.currentTarget.removeEventListener(AccountEvent.GENERATE_REPORT, onGenerateReport);
+			e.currentTarget.removeEventListener(Event.CANCEL, onGenerateReportCancel);
+		}
+		
+		private function onAddAccountSelect(e:AccountEvent):void {
+			dataGrid.selectedItem = null;
+			
+			// Create a blank account
+			var account:Account = Account.createDefault();
+			accountEditor.eventType = AccountEvent.ADD_ACCOUNT;
+			accountEditor.account = account;
+			
+			editMode = true;
+		}
+
+		private function onEditAccountSelect(e:AccountEvent = null):void {
+			//MonsterDebugger.trace(this, dataGrid.selectedItem);
+			// Trigger a pick up of remaining account details, then wait
+			dispatchEvent(new AccountEvent(AccountEvent.GET_ACCOUNT_DETAILS, [ dataGrid.selectedItem ], null, true));
+
+			//accountEditor.eventType = AccountEvent.UPDATE_ACCOUNTS;
+			//editMode = true;
+		}
+		// This is where you will come back to once you have all the account details and are ready to edit
+		public function onEditAccountDisplay(licenceDetails:Array):void {
+			//MonsterDebugger.trace(this, licenceDetails);
+			dataGrid.selectedItem.licenceAttributes = licenceDetails;
+			accountEditor.eventType = AccountEvent.UPDATE_ACCOUNTS;
+			editMode = true;
+		}
+		
+		private function onDeleteAccountsSelect(e:AccountEvent):void {
+			Alert.show(copyProvider.getCopyForId("deleteAccounts"), "Confirm", Alert.YES | Alert.NO, this, function(closeEvent:CloseEvent):void {
+				if (closeEvent.detail == Alert.YES) {
+					e.accounts = dataGrid.selectedItems;
+					dispatchEvent(e)
+				}
+			} );
+		}
+		
+		// gh#911
+		private function onArchiveAccountsSelect(e:AccountEvent):void {
+			Alert.show(copyProvider.getCopyForId("archiveAccounts"), "Confirm", Alert.YES | Alert.NO, this, function(closeEvent:CloseEvent):void {
+				if (closeEvent.detail == Alert.YES) {
+					e.accounts = dataGrid.selectedItems;
+					dispatchEvent(e)
+				}
+			} );
+		}
+			
+		private function onSearchSelect(e:SearchEvent):void {
+			showSearchWindow();
+		}
+		
+		/**
+		 * Show the search popup window
+		 */
+		private function showSearchWindow():void {
+			var searchWindow:SearchWindow = PopUpManager.createPopUp(UIComponent(parentApplication), SearchWindow, true) as SearchWindow;
+			searchWindow.setCopyProvider(copyProvider);
+			searchWindow.parentView = this;
+			searchWindow.addEventListener(SearchEvent.SEARCH, onSearchSubmit);
+			searchWindow.addEventListener(Event.CANCEL, onSearchCancel);
+			PopUpManager.centerPopUp(searchWindow);
+		}
+		
+		private function onClearSearchSelect(e:SearchEvent):void {
+			if (e)
+				dispatchEvent(e.clone());
+			
+			accountCMManager.setIsSearchActive(false);
+			filterButtonHBox.visible = filterButtonHBox.includeInLayout = false;
+			
+			for each (var dataGridColumn:DataGridColumn in dataGrid.columns)
+				dataGridColumn.setStyle("backgroundColor", 0xFFFFFF);
+				
+			searchActive = false;
+			
+			dataGrid.dataProvider.filterFunction = null;
+			dataGrid.dataProvider.refresh();
+		}
+		
+		private function onSearchSubmit(e:SearchEvent):void {
+			e.currentTarget.removeEventListener(SearchEvent.SEARCH, onSearchSubmit);
+			e.currentTarget.removeEventListener(Event.CANCEL, onSearchCancel);
+			
+			dispatchEvent(e.clone());
+			
+			accountCMManager.setIsSearchActive(true);
+			
+			filterButtonHBox.visible = filterButtonHBox.includeInLayout = true;
+			
+			for each (var dataGridColumn:DataGridColumn in dataGrid.columns)
+				dataGridColumn.setStyle("backgroundColor", TREE_FILTERED_BG_COLOUR);
+			
+			searchActive = true;
+			
+			currentSearchEvent = e;
+			dataGrid.dataProvider.filterFunction = accountFilterFunction;
+			dataGrid.dataProvider.refresh();
+		}
+		
+		private function onSearchCancel(e:Event):void {
+			e.currentTarget.removeEventListener(SearchEvent.SEARCH, onSearchSubmit);
+			e.currentTarget.removeEventListener(Event.CANCEL, onSearchCancel);
+		}
+		
+		private function onClearSearchButtonClick():void {
+			accountCMManager.dispatchEvent(new SearchEvent(SearchEvent.CLEAR_SEARCH, null, true));
+		}
+		
+		private function onChangeEmailToList(e:AccountEvent):void {
+			e.accounts = dataGrid.selectedItems;
+			dispatchEvent(e);
+		}
+		
+		private function onShowInResultsManager(e:AccountEvent):void {
+			e.account = dataGrid.selectedItem as Account;
+			dispatchEvent(e);
+		}
+		
+		private function onSave():void {
+			accountEditor.save();
+		}
+		
+		private function onCancel():void {
+			accountEditor.cancel();
+			
+			var account:Account = dataGrid.selectedItem as Account;
+			accountEditor.account = account;
+			
+			editMode = false;
+		}
+		
+		private function accountFilterFunction(account:Account):Boolean {
+			return currentSearchEvent.validateObject(account);
+		}
+		
+		private function getResellerLabel(item:Object, column:DataGridColumn):String {
+			var obj:Object = ArrayUtils.searchArrayForObject(DictionarySingleton.getInstance().resellers, item.resellerCode, "data");
+			return (obj) ? obj.label : "";
+		}
+		
+		private function getAccountStatusLabel(item:Object, column:DataGridColumn):String {
+			var obj:Object = ArrayUtils.searchArrayForObject(DictionarySingleton.getInstance().accountStatus, item.accountStatus, "data");
+			return (obj) ? obj.label : "";
+		}
+		// v3.0.5 Change status handling
+		//private function getApprovalStatusLabel(item:Object, column:DataGridColumn):String {
+		//	var obj:Object = ArrayUtils.searchArrayForObject(DictionarySingleton.getInstance().approvalStatus, item.approvalStatus, "data");
+		//	return (obj) ? obj.label : "";
+		//}
+		private function getAccountTypeLabel(item:Object, column:DataGridColumn):String {
+			var obj:Object = ArrayUtils.searchArrayForObject(DictionarySingleton.getInstance().accountType, item.accountType, "data");
+			return (obj) ? obj.label : "";
+		}
+		
+		private function getCustomerTypeLabel(item:Object, column:DataGridColumn):String {
+			var obj:Object = ArrayUtils.searchArrayForObject(DictionarySingleton.getInstance().customerType, item.customerType, "data");
+			return (obj) ? obj.label : "";
+		}
+
+		private function getTacStatusLabel(item:Object, column:DataGridColumn):String {
+			var obj:Object = ArrayUtils.searchArrayForObject(DictionarySingleton.getInstance().termsConditions, item.tacStatus, "data");
+			return (obj) ? obj.label : "";
+		}
+		
+		// gh#231
+		/*
+		private function getLoginOptionLabel(item:Object, column:DataGridColumn):String {
+			var obj:Object = ArrayUtils.searchArrayForObject(DictionarySingleton.getInstance().loginOption, item.loginOption, "data");
+			return (obj) ? obj.label : "";
+		}
+		private function getSelfRegisterOptionLabel(item:Object, column:DataGridColumn):String {
+			var obj:Object = ArrayUtils.searchArrayForObject(DictionarySingleton.getInstance().selfRegisterOption, item.loginOption, "data");
+			return (obj) ? obj.label : "";
+		}
+		*/
+		
+		// v3.0.5 I have made reference a textarea, so we only want the first line to be displayed in the grid
+		// But if this is NULL, calling this function crashes the datagrid.
+		private function getReferenceLabel(item:Object, column:DataGridColumn):String {
+			if (item.reference) {
+				var truncatedText:String = item.reference.split(/\r/)[0].substr(0, 64);
+			}
+			return (truncatedText) ? truncatedText : "";
+		}
+		
+		public function updateEmailColumnStyle():void {
+			// Force the email column to redraw (getting the new colours from getEmailColumnColour) with a fake setStyle call
+			emailColumn.setStyle("", "");
+		}
+		
+		public function getEmailColumnColour(obj:Object):Number {
+			var account:Account = obj as Account;
+			return account.isInEmailToList() ? 0x0000FF : 0x0b333c;
+		}
+		
+		private function idNumericSort(itemA:Object, itemB:Object):int {
+			return numericSort(new Number(itemA.id), new Number(itemB.id));
+		}
+		
+		private function invoiceNumericSort(itemA:Object, itemB:Object):int {
+			return numericSort(new Number(itemA.invoiceNumber), new Number(itemB.invoiceNumber));
+		}
+		
+		private static function numericSort(numberA:Number, numberB:Number):int {
+			if (numberA > numberB) return 1;
+			if (numberA == numberB) return 0;
+			return -1;
+		}
+		
+		private function onDataGridDataChange(e:CollectionEvent):void {
+			// Get the new data collection
+			var ac:ArrayCollection = dataGrid.dataProvider as ArrayCollection;
+			
+			// Attach the collection change event with weak reference so it doesn't leak memory when changing the dataProvider
+			ac.addEventListener(CollectionEvent.COLLECTION_CHANGE, onCollectionChanged, false, 0, true);
+			
+			// If a sort was in place before the data was changed, make sure you apply the sort to this new data
+			if (currentSort != null) {
+				ac.sort = currentSort;
+				ac.refresh();
+			}
+		}
+
+		private function onCollectionChanged(e:CollectionEvent):void {
+			if (e.kind == CollectionEventKind.REFRESH) {
+				var ac:ArrayCollection = e.currentTarget as ArrayCollection;
+				currentSort = ac.sort;
+			}
+		}
+		
+		// v3.4 For showing, or not, individual accounts in DMS
+		private function onAccountTypeChange(e:Event):void {
+			var a:AccountEvent = new AccountEvent(AccountEvent.CHANGE_ACCOUNT_TYPE, null, null, true);
+			a.individualAccounts = individualAccounts.selected;
+			a.archivedAccounts = archivedAccounts.selected;
+			dispatchEvent(a);
+		}
+		// v3.6 For changing the filter string
+		private function onFilterStringChange(e:Event):void {
+			Constants.filterString = e.target.text;
+			var a:AccountEvent = new AccountEvent(AccountEvent.GET_ACCOUNTS, null, null, true);
+			a.individualAccounts = individualAccounts.selected;
+			a.archivedAccounts = archivedAccounts.selected;
+			dispatchEvent(a);
+		}
+		
+		]]>
+	</mx:Script>
+	<mx:VBox width="100%" height="100%">
+		<mx:VDividedBox width="100%" height="100%">
+			<mx:HBox width="100%" height="50%">
+				<mx:VBox width="100%" height="100%">
+					<mx:HDividedBox width="100%">
+						<mx:VBox id="accountTypeBox" verticalGap="0" paddingLeft="5" width="8%" height="45">
+							<mx:HBox>
+								<mx:CheckBox id="individualAccounts" selected="{showIndividualAccounts}" />
+								<mx:CheckBox id="archivedAccounts" selected="{showArchivedAccounts}" />
+							</mx:HBox>
+							<mx:TextInput id="filterString" text="{showFilterString}" enabled="true" />
+						</mx:VBox>
+						<mx:HBox id="hideShowColumnVBox" verticalGap="0" paddingLeft="5" paddingRight="5" />
+					</mx:HDividedBox>
+					<mx:HBox id="filterButtonHBox" horizontalGap="1" width="100%" horizontalAlign="right" visible="false" includeInLayout="false">
+						<mx:Label id="manageablesLabel" styleName="subHeadingLabelBlack" />
+						<mx:Button id="filteredButton" height="18" click="onClearSearchButtonClick()" />
+					</mx:HBox>
+					<controls:DKDataGrid id="dataGrid"
+										 width="100%"
+										 height="100%"
+										 enabled="{!editMode}"
+										 itemRollOver="onItemRollOver(event)"
+										 change="onChange()"
+										 doubleClickEnabled="true"
+										 doubleClick="onEditAccountSelect()"
+										 allowMultipleSelection="true"
+										 retainVerticalScrollPosition="true"
+										 selectionDisabledColor="#7FCEFF"
+										 backgroundDisabledColor="#333333"
+										 backgroundAlpha="0.7">
+						<controls:columns>
+							<mx:DataGridColumn id="idColumn" dataField="id" width="60" visible="false" sortCompareFunction="idNumericSort" />
+							<mx:DataGridColumn id="prefixColumn" dataField="prefix" visible="false" />
+							<mx:DataGridColumn id="nameColumn" dataField="name" />
+							<mx:DataGridColumn id="emailColumn" dataField="email" >
+								<mx:itemRenderer>
+									<mx:Component>
+										<!--  
+										<mx:Label paddingLeft="3" text="{data.email}" color="{outerDocument.getEmailColumnColour(data)}" />
+										-->
+										<mx:Label paddingLeft="3" text="{data.adminUser.email}" color="{outerDocument.getEmailColumnColour(data)}" />
+									</mx:Component>
+								</mx:itemRenderer>
+							</mx:DataGridColumn>
+							<mx:DataGridColumn id="resellerColumn" dataField="resellerCode" labelFunction="getResellerLabel" visible="true" />
+							<mx:DataGridColumn id="accountStatusColumn" dataField="accountStatus" labelFunction="getAccountStatusLabel" visible="false" />
+							<mx:DataGridColumn id="accountTypeColumn" dataField="accountType" labelFunction="getAccountTypeLabel" visible="false" />
+							<!-- <mx:DataGridColumn id="tacStatusColumn" dataField="tacStatus" width="70" labelFunction="getTacStatusLabel" visible="false" /> -->
+							<mx:DataGridColumn id="invoiceNumberColumn" dataField="invoiceNumber" width="70" visible="false" sortCompareFunction="invoiceNumericSort" />
+							<mx:DataGridColumn id="referenceColumn" dataField="reference" labelFunction="getReferenceLabel" />
+							<mx:DataGridColumn id="customerTypeColumn" dataField="customerType" labelFunction="getCustomerTypeLabel" visible="false" />
+							<mx:DataGridColumn id="selfhostColumn" dataField="selfHost" visible="false" />
+						</controls:columns>
+					</controls:DKDataGrid>
+					
+				</mx:VBox>
+			</mx:HBox>
+			<ui:AccountEditor id="accountEditor" width="100%" height="50%" enabled="{dataGrid.selectedItem != null &amp;&amp; dataGrid.selectedItems.length == 1}" editMode="{editMode}" />
+			
+		</mx:VDividedBox>
+		<mx:ControlBar includeInLayout="{editMode}" width="100%" horizontalAlign="right" direction="horizontal" paddingTop="0" paddingBottom="4">
+			<mx:Button id="saveButton" click="onSave()" />
+			<mx:Button id="cancelButton" click="onCancel()" />
+		</mx:ControlBar>
+	</mx:VBox>
+</mx:Canvas>

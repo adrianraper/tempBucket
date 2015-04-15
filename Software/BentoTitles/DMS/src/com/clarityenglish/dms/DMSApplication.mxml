@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:login="com.clarityenglish.dms.view.login.components.*"
+				xmlns:account="com.clarityenglish.dms.view.account.components.*"
+				xmlns:email="com.clarityenglish.dms.view.email.components.*"
+				disabledColor="0x000000"
+				disabledOverlayAlpha="0.5"
+				paddingLeft="1"
+				paddingRight="1"
+				paddingBottom="1"
+				paddingTop="1"
+				modalTransparency="0.8"
+				creationComplete="creationComplete()"
+				styleName="rmBackground"
+				implements="com.clarityenglish.common.view.interfaces.CopyReceiver"
+				>
+	<!-- move this up to see if lets DMS compile without complaining about CSS in RM -->
+	<mx:Style source="/../css/clarity.css" />
+	
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.CommonNotifications;
+		import com.clarityenglish.dms.ApplicationFacade;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.resultsmanager.vo.manageable.User;
+		import com.clarityenglish.dms.DMSNotifications;
+
+		//import nl.demonsters.debugger.MonsterDebugger;
+		import com.clarityenglish.utils.TraceUtils;
+
+		import flash.display.MovieClip;
+		import flash.ui.ContextMenu;
+
+		private var facade:ApplicationFacade = ApplicationFacade.getInstance();
+		//private var debugger:MonsterDebugger;
+
+		private function creationComplete():void {
+			//debugger = new MonsterDebugger(this);
+			//MonsterDebugger.trace(this, "DMS started");
+
+			// Hide the built in context menu
+			var cm:ContextMenu = new ContextMenu();
+			cm.hideBuiltInItems();
+			this.contextMenu = cm;
+			MovieClip(systemManager).contextMenu = this.contextMenu.clone();
+
+			// Start the PureMVC framework
+			facade.sendNotification(DMSNotifications.STARTUP, this);
+		}
+
+		private function onLogout():void {
+			facade.sendNotification(CommonNotifications.LOGOUT);
+		}
+
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+
+			TraceUtils.myTrace("DMSApplication logged in user is a " + Constants.userType);
+
+			if (mainStack.contains(accountView)) accountView.label = copyProvider.getCopyForId("accountTab");
+			if (mainStack.contains(emailView)) emailView.label = copyProvider.getCopyForId("emailTab");
+
+			logoutButton.label = copyProvider.getCopyForId("logoutButton");
+			brandingLabel.text = copyProvider.getCopyForId("dmsApplicationName") + " " + Constants.version;
+			brandingLabel.text += ' connected to ' + Constants.dbDetails;
+
+		}
+
+		/**
+		 * Show/hide various tabs based on the currently logged in userType.  Unfortunately viewStacks and tabNavigators don't allow
+		 * visible to show/hide a tab so we can't use an MXML property bound to Constants.userType, but this method works fine.
+		 */
+		public function configureTabsForLoggedInUser():void {
+			/*if (Constants.userType == User.USER_TYPE_ADMINISTRATOR) {
+			 if (!(mainStack.contains(loginOptsView)))
+			 mainStack.addChild(loginOptsView);
+			 } else {
+			 if ((mainStack.contains(loginOptsView)))
+			 mainStack.removeChild(loginOptsView);
+			 }
+
+			 if (Constants.userType != User.USER_TYPE_REPORTER) {
+			 if (!(mainStack.contains(licenceView)))
+			 mainStack.addChild(licenceView);
+			 } else {
+			 if ((mainStack.contains(licenceView)))
+			 mainStack.removeChild(licenceView);
+			 }*/
+		}
+		]]>
+	</mx:Script>
+	
+	<mx:ViewStack id="topStack" width="100%" height="100%" creationPolicy="all">		
+		<!-- The login view -->
+		<login:LoginView id="loginView" />
+		
+		<!-- The main application view -->
+		<mx:VBox width="100%" height="100%" verticalGap="0" 
+				paddingTop="4" paddingLeft="4" paddingRight="4" paddingBottom="4" >
+			
+			<mx:HBox width="100%">
+				<mx:Label id="brandingLabel" styleName="headingLabelWhite" />
+				<mx:Spacer width="100%" />
+				<mx:Button id="logoutButton" click="onLogout()" color="0xFFFFFF" />
+			</mx:HBox>
+			
+			<mx:TabNavigator id="mainStack" borderStyle="solid" width="100%" height="100%">
+				<account:AccountView id="accountView" width="100%" height="100%" />
+				<email:EmailView id="emailView" width="100%" height="100%" />
+				<!--<management:ManagementView id="managementView" width="100%" height="100%" />
+				<licence:LicenceView id="licenceView" width="100%" height="100%" />
+				<usage:UsageView id="usageView" width="100%" height="100%" />
+				<loginopts:LoginOptsView id="loginOptsView" width="100%" height="100%" />-->
+			</mx:TabNavigator>
+
+		</mx:VBox>
+		
+	</mx:ViewStack>
+	
+</mx:Application>

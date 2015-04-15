@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+		   implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.dms.vo.account.Account;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import flash.events.Event;
+		import mx.events.DataGridEvent;
+		import mx.events.ListEvent;
+		
+		[Bindable]
+		public var account:Account;
+		
+		[Bindable]
+		public var editMode:Boolean;
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			keyColumn.headerText = copyProvider.getCopyForId("keyColumn");
+			valueColumn.headerText = copyProvider.getCopyForId("valueColumn");
+			productCodeColumn.headerText = copyProvider.getCopyForId("productCodeColumn");
+			addButton.label = copyProvider.getCopyForId("addButton");
+			removeButton.label = copyProvider.getCopyForId("removeButton");
+		}
+		
+		public function validate():Boolean {
+			return true;
+		}
+		
+		/**
+		 * Fill in the accounts object with the data from the fields
+		 */
+		public function save():void { }
+		
+		/**
+		 * Repopulate the fields from the accounts object
+		 */
+		public function cancel():void {
+			executeBindings(true);
+		}
+		
+		private function addLicenceAttribute():void {
+			// Add a new licence attribute
+			account.licenceAttributes.push( { licenceKey: "<Enter key here>", licenceValue: "<Enter value here>", productCode: null } );
+			
+			// Force the DataGrid to update itself
+			dispatchEvent(new Event("propertyChange"));
+		}
+		
+		private function removeLicenceAttribute():void {
+			// Remove the selected licence attribute
+			account.licenceAttributes.splice(dataGrid.selectedIndex, 1);
+			
+			// Force the DataGrid to update itself
+			dispatchEvent(new Event("propertyChange"));
+		}
+		
+		]]>
+	</mx:Script>
+	<mx:VBox width="100%" height="100%">
+		<mx:DataGrid id="dataGrid"
+					 width="100%"
+					 height="100%"
+					 sortableColumns="false"
+					 dataProvider="{account.licenceAttributes}"
+					 editable="{editMode}">
+			<mx:columns>
+				<mx:DataGridColumn id="keyColumn" dataField="licenceKey" />
+				<mx:DataGridColumn id="valueColumn" dataField="licenceValue" />
+				<mx:DataGridColumn id="productCodeColumn" dataField="productCode" width="40" />
+			</mx:columns>
+		</mx:DataGrid>
+		<mx:HBox width="100%" paddingTop="0" paddingBottom="6" horizontalGap="2" horizontalAlign="left" includeInLayout="{editMode}" visible="{editMode}">
+			<mx:Button id="addButton" click="addLicenceAttribute()" />
+			<mx:Button id="removeButton" enabled="{dataGrid.selectedItem != null}" click="removeLicenceAttribute()" />
+		</mx:HBox>
+	</mx:VBox>
+</mx:Canvas>
