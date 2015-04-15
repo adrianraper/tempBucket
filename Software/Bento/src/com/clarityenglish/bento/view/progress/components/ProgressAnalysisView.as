@@ -20,9 +20,6 @@ package com.clarityenglish.bento.view.progress.components {
 		public var analysisInstructionLabel1:Label;
 		
 		[SkinPart(required="true")]
-		public var analysisInstructionLabel2:Label;
-		
-		[SkinPart(required="true")]
 		public var analysisTimeLabel:Label;
 		
 		[SkinPart(required="true")]
@@ -51,7 +48,6 @@ package com.clarityenglish.bento.view.progress.components {
 			super.onViewCreationComplete();
 			
 			if (analysisInstructionLabel1) analysisInstructionLabel1.text = copyProvider.getCopyForId("analysisInstructionLabel1");
-			if (analysisInstructionLabel2) analysisInstructionLabel2.text = copyProvider.getCopyForId("analysisInstructionLabel2");
 			
 			if (durationDataGroup) {
 				// Inject the copy provider into the data provider

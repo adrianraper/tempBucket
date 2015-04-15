@@ -66,9 +66,9 @@ package com.clarityenglish.bento.view.progress {
 				case progressNavBar:
 					// gh#11 Language Code
 					progressNavBar.dataProvider = new ArrayCollection( [
-						{ label: copyProvider.getCopyForId("progressNavBarCoverage"), data: "coverage" },
 						{ label: copyProvider.getCopyForId("progressNavBarCompare"), data: "compare" },
 						{ label: copyProvider.getCopyForId("progressNavBarAnalyse"), data: "analysis" },
+						{ label: copyProvider.getCopyForId("progressNavBarCoverage"), data: "coverage" },					
 						{ label: copyProvider.getCopyForId("progressNavBarScores"), data: "score" },
 					] );
 					
@@ -85,7 +85,7 @@ package com.clarityenglish.bento.view.progress {
 		 * The state comes from the selection in the progress bar, plus _demo if we are in a demo version 
 		 */
 		protected override function getCurrentSkinState():String {
-			var state:String = (!progressNavBar || !progressNavBar.selectedItem) ? "coverage" : progressNavBar.selectedItem.data;
+			var state:String = (!progressNavBar || !progressNavBar.selectedItem) ? "compare" : progressNavBar.selectedItem.data;
 			return state + ((productVersion == BentoApplication.DEMO) ? "_demo" : "");
 		}
 		

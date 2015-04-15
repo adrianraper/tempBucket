@@ -176,9 +176,8 @@
 			<lit name="notAvailble">Not available in the current version. Click above to upgrade.</lit>
 			<lit name="compareInstructionLabel">Compare your score with people in:</lit>
 			<lit name="chartCaptionLabel">Average score %</lit>
-			<lit name="analysisInstructionLabel1">This shows how you have spent your time</lit>
-			<lit name="analysisInstructionLabel2">Time spent on each skill</lit>
-			<lit name="analysisTime">You have spent {x} minute(s) in total</lit>
+			<lit name="analysisInstructionLabel1">This shows how you have spent your time on each skill.</lit>
+			<lit name="analysisTime">You have spent {x} minute(s) in total.</lit>
 			<lit name="courseDurationRenderLabel">You have spent</lit>
 			<lit name="courseDurationRenderTime">{time} min(s)</lit>
 			<lit name="progressBarCoverage">{course}- overall coverage</lit>
