@@ -2,11 +2,11 @@
   ServerName dock.projectbench
 
   ## Vhost docroot
-  DocumentRoot "/vagrant/software”
+  DocumentRoot "/vagrant/software"
 
   ## Directories, there should at least be a declaration for /vagrant
 
-  <Directory "/vagrant/software”>
+  <Directory "/vagrant/software">
     Options Indexes FollowSymLinks MultiViews
     AllowOverride All
     Order allow,deny
@@ -26,11 +26,11 @@
   ServerName dock.contentbench
 
   ## Vhost docroot
-  DocumentRoot "/vagrant/ContentBench”
+  DocumentRoot "/vagrant/ContentBench"
 
   ## Directories, there should at least be a declaration for /vagrant
 
-  <Directory "/vagrant/ContentBench”>
+  <Directory "/vagrant/ContentBench">
     Options Indexes FollowSymLinks MultiViews
     AllowOverride All
     Order allow,deny
