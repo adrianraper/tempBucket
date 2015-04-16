@@ -243,9 +243,14 @@ EOD;
 		
 		// Just pick up an existing account, or create a new one?
 		if (stristr($apiInformation->method, 'update') !== false) {
-			if (!isset($apiInformation->email) && isset($apiInformation->subscription->email))
+			// gh#1210
+			// Try to get the account from prefix if any. This can fixed the duplicate email address problem
+			if (isset($apiInformation->prefix)){
+				return $this->accountOps->getAccountFromPrefix($apiInformation->prefix);
+			}
+			if (!isset($apiInformation->email) && isset($apiInformation->subscription->email)){
 				$apiInformation->email = $apiInformation->subscription->email;
-				
+			}
 			return $this->accountOps->getAccountFromEmail($apiInformation->email);
 			
 		} else {

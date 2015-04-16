@@ -83,6 +83,10 @@ function loadAPIInformation() {
 			
 	$api = new SubscriptionApi();
 	$api->createFromSentFields($postInformation);
+	// gh#1210
+	if (isset($postInformation['prefix'])){
+		$api->prefix = $postInformation['prefix'];
+	}	
 	
 	// Rather than jam up the database, I will do this with files I think. Then need to clear them out regularly.
 	//AbstractService::$debugLog->info("loadAPIInformation=".$api->toString());
