@@ -1,5 +1,4 @@
 <?php
-
 class Log_ClarityDB extends Log {
 	
 	var $db;
@@ -8,33 +7,37 @@ class Log_ClarityDB extends Log {
 	var $_name;
 	var $_ident;
 	var $_rootID;
-	var $_userID;
+	//var $_userID;
 	var $_productName;
 	var $_mask;
 
-	function Log_ClarityDB($db, $name, $ident = '', $conf = array(), $level = PEAR_LOG_DEBUG) {
+	function Log_ClarityDB($name, $ident = '', $conf = array(), $level = PEAR_LOG_DEBUG) {
 		$this->_id = md5(microtime());
 		$this->_name = $name;
 		$this->_ident = $ident;
 		$this->_mask = Log::UPTO($level);
+		// gh#857
+	    if (!empty($conf['timeFormat'])) {
+            $this->_timeFormat = $conf['timeFormat'];
+        }
 	}
 	
-	function setDB($db) {
-		$this->db = $db;
+	// gh#857
+	function setTarget($name) {
+		$this->db = $name;
+	}
+	function setDB($value) {
+		$this->setTarget($value);
 	}
 	
 	function setRootID($rootID) {
 		$this->_rootID = $rootID;
 	}
 	
+	// gh#857
 	function setUserID($userID) {
-		//NetDebug::trace('log.setUserID='.$userID);
 		$this->_userID = $userID;
 	}
-	// This was just used for debugging
-	//function getDetails() {
-	//	return $this->_userID."+".$this->_productName;
-	//}
 	
 	function setProductName($productName) {
 		$this->_productName = $productName;
@@ -45,10 +48,12 @@ class Log_ClarityDB extends Log {
 		$dbObj = array();
 		$dbObj['F_ProductName'] = $this->_productName;
 		$dbObj['F_RootID'] = $this->_rootID;
-		$dbObj['F_UserID'] = $this->_userID;
+		$dbObj['F_UserID'] = $this->_ident;
 		// v3.5 This fails for MySQL
 		//$dbObj['F_Date'] = "CURRENT_TIMESTAMP";
-		$dbObj['F_Date'] = date('Y-m-d G:i:s');
+		// gh#815
+		$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+		$dbObj['F_Date'] = $dateStampNow->format($this->_timeFormat);
 		$dbObj['F_Level'] = $priority;
 		$dbObj['F_Message'] = $message;
 		
@@ -58,4 +63,3 @@ class Log_ClarityDB extends Log {
 	}
 	
 }
-?>

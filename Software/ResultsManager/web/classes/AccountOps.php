@@ -193,11 +193,12 @@ SQL;
 						$selectBuilder->addWhere("a.F_AccountType = '".$value."'");
 						break;
 					case 'customerType':
-						if ($value == 0) {
-							$selectBuilder->addWhere("(a.F_CustomerType = 0 OR a.F_CustomerType is null)");
-						} else {
-							$selectBuilder->addWhere("a.F_CustomerType = '".$value."'");
-						}
+						// gh#1212 customerType is now a specific request
+						//if ($value == 0) {
+						//	$selectBuilder->addWhere("(a.F_CustomerType = 0 OR a.F_CustomerType is null)");
+						//} else {
+						//}
+						$selectBuilder->addWhere("a.F_CustomerType = '".$value."'");
 						break;
 					case 'notCustomerType':
 						$selectBuilder->addWhere("NOT a.F_CustomerType = '".$value."'");

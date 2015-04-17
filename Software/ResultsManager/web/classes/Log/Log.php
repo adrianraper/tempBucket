@@ -855,4 +855,17 @@ class Log
     {
         return $this->_ident;
     }
+    /**
+     * Abstract implementation of log interface functions
+     * Needs concrete override if the implementation supports this call
+     * gh#857
+     * 
+     */
+    function setRootID($value) {
+    }
+    function setProductName($value) {
+    }
+    function setDB($value) {
+    }
+    
 }

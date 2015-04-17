@@ -143,7 +143,7 @@ function runDailyJobs($triggerDate = null) {
 	$productCode = 59;
 	$trigger = new Trigger();
 	$trigger->templateID = 'user/TB6weeksNewUnit';
-	$trigger->parseCondition("method=getAccounts&accountType=1&active=true&productCode=$productCode");
+	$trigger->parseCondition("method=getAccounts&active=true&productCode=$productCode");
 	//$trigger->condition->customerType = '1'; // If we want to limit this to libraries
 	
 	$triggerResults = $thisService->triggerOps->applyCondition($trigger, $triggerDate);

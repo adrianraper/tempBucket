@@ -295,8 +295,10 @@ class Log_file extends Log
         $message = $this->_extractMessage($message);
 
         /* Build the string containing the complete log line. */
+        // gh#815
+        $dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
         $line = $this->_format($this->_lineFormat,
-                               strftime($this->_timeFormat),
+                               $dateStampNow->format($this->_timeFormat),
                                $priority, $message) . $this->_eol;
 
         /* If locking is enabled, acquire an exclusive lock on the file. */

@@ -41,17 +41,17 @@ ALTER TABLE `rack80829`.`T_Triggers` ADD COLUMN `F_MessageType` SMALLINT NOT NUL
 INSERT INTO `rack80829`.`T_Triggers`
 (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`)
 VALUES
-(32,'Subscription reminder start+7d',null,null,32,'method=getAccounts&startDate={now}-7d&accountType=1&notLicenceType=5',null,null,'email','daily',1),
-(33,'Subscription reminder usage stats',null,null,20,'method=getAccounts&startDay={day}&accountType=1&notLicenceType=5&selfHost=false&active=true&optOutEmails=false',null,null,'usageStats','daily',2),
-(34,'Support start+1.5m',null,null,34,'method=getAccounts&startDate={now}-1.5m&accountType=1&notLicenceType=5',null,null,'email','daily',4),
-(35,'Support start+6.5m',null,null,35,'method=getAccounts&startDate={now}-6.5m&accountType=1&notLicenceType=5','2011-12-31',null,'email','daily',4),
-(36,'Subscription reminder end-2.5m',null,null,36,'method=getAccounts&expiryDate={now}+10w&accountType=1&notLicenceType=5',null,null,'email','daily',1),
-(37,'Create a quotation',null,null,37,'method=getAccounts&expiryDate={now}+11w&accountType=1&notLicenceType=5',null,null,'internalEmail','daily',0),
-(38,'Subscription reminder end-1.5m',null,null,38,'method=getAccounts&expiryDate={now}+45d&accountType=1&notLicenceType=5',null,null,'email','daily',1),
-(39,'Subscription reminder end-2w',null,null,39,'method=getAccounts&expiryDate={now}+14d&accountType=1&notLicenceType=5',null,null,'email','daily',1),
-(40,'Subscription reminder end tomorrow',null,null,40,'method=getAccounts&expiryDate={now}+1d&accountType=1&notLicenceType=5',null,null,'email','daily',1),
-(41,'Subscription reminder end today',null,null,41,'method=getAccounts&expiryDate={now}&accountType=1&notLicenceType=5',null,null,'email','daily',1),
-(42,'Subscription reminder ended',null,null,42,'method=getAccounts&expiryDate={now}-14d&accountType=1&notLicenceType=5',null,null,'email','daily',1);
+(32,'Subscription reminder start+7d',null,null,32,'method=getAccounts&startDate={now}-7d&notCustomerType=1&accountType=1&notLicenceType=5',null,null,'email','daily',1),
+(33,'Subscription reminder usage stats',null,null,20,'method=getAccounts&startDay={day}&notCustomerType=1&accountType=1&notLicenceType=5&selfHost=false&active=true&optOutEmails=false',null,null,'usageStats','daily',2),
+(34,'Support start+1.5m',null,null,34,'method=getAccounts&startDate={now}-1.5m&notCustomerType=1&accountType=1&notLicenceType=5',null,null,'email','daily',4),
+(35,'Support start+6.5m',null,null,35,'method=getAccounts&startDate={now}-6.5m&notCustomerType=1&accountType=1&notLicenceType=5','2011-12-31',null,'email','daily',4),
+(36,'Subscription reminder end-2.5m',null,null,36,'method=getAccounts&expiryDate={now}+10w&notCustomerType=1&accountType=1&notLicenceType=5',null,null,'email','daily',1),
+(37,'Create a quotation',null,null,37,'method=getAccounts&expiryDate={now}+11w&notCustomerType=1&accountType=1&notLicenceType=5',null,null,'internalEmail','daily',0),
+(38,'Subscription reminder end-1.5m',null,null,38,'method=getAccounts&expiryDate={now}+45d&notCustomerType=1&accountType=1&notLicenceType=5',null,null,'email','daily',1),
+(39,'Subscription reminder end-2w',null,null,39,'method=getAccounts&expiryDate={now}+14d&notCustomerType=1&accountType=1&notLicenceType=5',null,null,'email','daily',1),
+(40,'Subscription reminder end tomorrow',null,null,40,'method=getAccounts&expiryDate={now}+1d&notCustomerType=1&accountType=1&notLicenceType=5',null,null,'email','daily',1),
+(41,'Subscription reminder end today',null,null,41,'method=getAccounts&expiryDate={now}&notCustomerType=1&accountType=1&notLicenceType=5',null,null,'email','daily',1),
+(42,'Subscription reminder ended',null,null,42,'method=getAccounts&expiryDate={now}-14d&notCustomerType=1&accountType=1&notLicenceType=5',null,null,'email','daily',1);
 
 UPDATE `rack80829`.`T_Triggers` SET `F_ValidToDate`='2011-07-19' WHERE F_TriggerID in (1,6,7,8,30);
 UPDATE `rack80829`.`T_Triggers` SET F_Name='xxMonthly statistics' WHERE F_TriggerID=31;
@@ -1270,3 +1270,56 @@ INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (1958, '2015-04-15 00:00:00', 'archive tables for delete gh#1190');
 
+-- Latest version of triggers (fix libraries not getting TB6week emails)
+DELETE FROM T_Triggers;
+INSERT INTO `rack80829`.`T_Triggers`
+(`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`)
+VALUES
+(1,'Subscription reminder 30 days',NULL,NULL,'1','method=getAccounts&expiryDate={now}+30d&accountType=1&notLicenceType=5',NULL,'2011-07-19 00:00:00','email','daily',1);
+(2,'EmailMe trial reminder',14582,NULL,'10','method=getUsers&userExpiryDate={now}+2d','2009-01-01 00:00:00',NULL,'email','daily',7);
+(6,'Subscription reminder 7 days',NULL,NULL,'2','method=getAccounts&expiryDate={now}+7d&accountType=1&notLicenceType=5',NULL,'2011-07-19 00:00:00','email','daily',1);
+(7,'Subscription reminder 0 days',NULL,NULL,'3','method=getAccounts&expiryDate={now}&accountType=1&notLicenceType=5',NULL,'2011-07-19 00:00:00','email','daily',1);
+(8,'Subscription expired a week ago',NULL,NULL,'4','method=getAccounts&expiryDate={now}-7d&accountType=1&notLicenceType=5',NULL,'2011-07-19 00:00:00','email','daily',1);
+(10,'Terms and conditions accepted',NULL,NULL,'0','method=dbChange&select=select F_RootID from T_AccountRoot where F_AccountStatus=3 and F_TermsConditions=2&update=update T_AccountRoot set F_AccountStatus=4 where F_RootID in (select F_RootID from T_AccountRoot where F_AccountStatus=3 and F_TermsConditions=2)',NULL,NULL,'sql','hourly',0);
+(11,'Trial about to end 1 day',NULL,NULL,'5','method=getAccounts&expiryDate={now}+1d&accountType=2',NULL,'2038-12-31 00:00:00','email','daily',1);
+(12,'Trial about to end 7 days',NULL,NULL,'6','method=getAccounts&expiryDate={now}+7d&accountType=2',NULL,NULL,'email','daily',1);
+(14,'Its Your Job. Unit 1 email',NULL,NULL,'2131','method=getAccounts&productCode=1001&userStartDate={now}-1d&contactMethod=email',NULL,'2010-05-01 00:00:00','email','daily',1);
+(15,'Its Your Job. Unit 2 email',NULL,NULL,'2132','method=getAccounts&productCode=1001&userStartDate={now}-1f&contactMethod=email',NULL,'2010-05-01 00:00:00','email','daily',1);
+(16,'CLS. Subscription ends in 7 days',NULL,NULL,'2129','method=getAccounts&expiryDate={now}+7d&licenceType=5&resellerID=21',NULL,NULL,'email','daily',1);
+(18,'CLS. Subscription ends today',NULL,NULL,'2130','method=getAccounts&expiryDate={now}&licenceType=5&resellerID=21',NULL,NULL,'email','daily',1);
+(19,'Its Your Job. Unit 3 email',NULL,NULL,'2133','method=getAccounts&productCode=1001&userStartDate={now}-2f&contactMethod=email',NULL,'2010-05-01 00:00:00','email','daily',1);
+(20,'Its Your Job. Unit 4 email',NULL,NULL,'2134','method=getAccounts&productCode=1001&userStartDate={now}-3f&contactMethod=email',NULL,'2010-05-01 00:00:00','email','daily',1);
+(21,'Its Your Job. Unit 5 email',NULL,NULL,'2135','method=getAccounts&productCode=1001&userStartDate={now}-4f&contactMethod=email',NULL,'2010-05-01 00:00:00','email','daily',1);
+(22,'Its Your Job. Unit 6 email',NULL,NULL,'2136','method=getAccounts&productCode=1001&userStartDate={now}-5f&contactMethod=email',NULL,'2010-05-01 00:00:00','email','daily',1);
+(23,'Its Your Job. Unit 7 email',NULL,NULL,'2137','method=getAccounts&productCode=1001&userStartDate={now}-6f&contactMethod=email',NULL,'2010-05-01 00:00:00','email','daily',1);
+(24,'Its Your Job. Unit 8 email',NULL,NULL,'2138','method=getAccounts&productCode=1001&userStartDate={now}-7f&contactMethod=email',NULL,'2010-05-01 00:00:00','email','daily',1);
+(25,'Its Your Job. Unit 9 email',NULL,NULL,'2139','method=getAccounts&productCode=1001&userStartDate={now}-8f&contactMethod=email',NULL,'2010-05-01 00:00:00','email','daily',1);
+(26,'Its Your Job. Unit 10 email',NULL,NULL,'2140','method=getAccounts&productCode=1001&userStartDate={now}-9f&contactMethod=email',NULL,'2010-05-01 00:00:00','email','daily',1);
+(30,'Early warning system',NULL,NULL,'100','method=getAccounts',NULL,'2011-07-19 00:00:00','email','weekly',1);
+(31,'xxMonthly statistics',NULL,NULL,'20','method=getAccounts&notLicenceType=5&accountType=1&active=true&selfHost=false',NULL,'2011-08-29 00:00:00','usageStats','monthly',2);
+(32,'Subscription reminder start+7d',NULL,NULL,'32','method=getAccounts&startDate={now}-7d&notCustomerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
+(33,'Subscription reminder usage stats',NULL,NULL,'20','method=getAccounts&startDay={day}&notCustomerType=1&accountType=1&notLicenceType=5&selfHost=false&active=true&optOutEmails=false',NULL,NULL,'usageStats','daily',2);
+(34,'Support start+1.5m',NULL,NULL,'34','method=getAccounts&startDate={now}-1.5m&notCustomerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',4);
+(35,'Support start+6.5m',NULL,NULL,'35','method=getAccounts&startDate={now}-6.5m&notCustomerType=1&accountType=1&notLicenceType=5','2011-12-31 00:00:00',NULL,'email','daily',4);
+(36,'Subscription reminder end-2.5m',NULL,NULL,'36','method=getAccounts&expiryDate={now}+10w&notCustomerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
+(37,'Create a quotation',NULL,NULL,'37','method=getAccounts&expiryDate={now}+11w&notCustomerType=1&accountType=1&notLicenceType=5',NULL,NULL,'internalEmail','daily',0);
+(38,'Subscription reminder end-1.5m',NULL,NULL,'38','method=getAccounts&expiryDate={now}+45d&notCustomerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
+(39,'Subscription reminder end-2w',NULL,NULL,'39','method=getAccounts&expiryDate={now}+14d&notCustomerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
+(40,'Subscription reminder end tomorrow',NULL,NULL,'40','method=getAccounts&expiryDate={now}+1d&notCustomerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
+(41,'Subscription reminder end today',NULL,NULL,'41','method=getAccounts&expiryDate={now}&notCustomerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
+(42,'Subscription reminder ended',NULL,NULL,'42','method=getAccounts&expiryDate={now}-14d&notCustomerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
+(43,'Self-host licence reminder',NULL,NULL,'43','method=getAccounts&expiryDate={now}+1m&accountType=1&notLicenceType=5&selfHost=true',NULL,NULL,'internalEmail','daily',0);
+(45,'IELTSpractice.com 7d',NULL,NULL,'2200','method=getAccounts&expiryDate={now}+7d&licenceType=5&resellerID=36',NULL,NULL,'email','daily',1);
+(46,'IELTSpractice.com 1d',NULL,NULL,'2201','method=getAccounts&expiryDate={now}-1d&licenceType=5&resellerID=36',NULL,NULL,'email','daily',1);
+(48,'Library reminder start+7d',NULL,NULL,'library/32','method=getAccounts&startDate={now}-7d&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
+(49,'Library reminder usage stats',NULL,NULL,'library/20','method=getAccounts&startDay={day}&customerType=1&accountType=1&notLicenceType=5&selfHost=false&active=true&optOutEmails=false',NULL,NULL,'usageStats','daily',2);
+(50,'Library support start+1.5m',NULL,NULL,'library/34','method=getAccounts&startDate={now}-1.5m&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',4);
+(51,'Library support start+6.5m',NULL,NULL,'library/35','method=getAccounts&startDate={now}-6.5m&customerType=1&accountType=1&notLicenceType=5','2011-12-31 00:00:00',NULL,'email','daily',4);
+(52,'Library reminder end-2.5m',NULL,NULL,'library/36','method=getAccounts&expiryDate={now}+10w&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
+(53,'Library create a quotation',NULL,NULL,'library/37','method=getAccounts&expiryDate={now}+11w&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'internalEmail','daily',0);
+(54,'Library reminder end-1.5m',NULL,NULL,'library/38','method=getAccounts&expiryDate={now}+45d&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
+(55,'Library reminder end-2w',NULL,NULL,'library/39','method=getAccounts&expiryDate={now}+14d&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
+(56,'Library reminder end tomorrow',NULL,NULL,'library/40','method=getAccounts&expiryDate={now}+1d&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
+(57,'Library reminder end today',NULL,NULL,'library/41','method=getAccounts&expiryDate={now}&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
+(58,'Library reminder ended',NULL,NULL,'library/42','method=getAccounts&expiryDate={now}-14d&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
+(59,'Distributor group report',NULL,NULL,'distributor_new_groups','method=getAccounts&accountType=5&newUsersSinceDate={now}-1m',NULL,NULL,'internalEmail','monthly',0);

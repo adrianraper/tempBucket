@@ -83,11 +83,9 @@ class TriggerOps {
 				}
 				if (isset($trigger->condition->accountType)) $accountConditions["accountType"] = $trigger->condition->accountType;
 				// Library - if you don't specifically set a customer type, assume customer type must be null or 0
-				if (isset($trigger->condition->customerType)) {
-					$accountConditions["customerType"] = $trigger->condition->customerType;
-				} else {
-					$accountConditions["customerType"] = 0;
-				}
+				// gh#1212 Now use a specific notCustomerType to stop regular subscription emails going to a library
+				if (isset($trigger->condition->customerType)) $accountConditions["customerType"] = $trigger->condition->customerType;
+				if (isset($trigger->condition->notCustomerType)) $accountConditions["notCustomerType"] = $trigger->condition->notCustomerType;
 				// v3.7 The trigger system should ignore accountStatus=suspended (3) unless specifically set
 				if (isset($trigger->condition->accountStatus)) {
 					$accountConditions["accountStatus"] = $trigger->condition->accountStatus;

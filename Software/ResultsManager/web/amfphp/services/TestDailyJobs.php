@@ -152,14 +152,14 @@ function runDailyJobs($triggerDate = null) {
         $productCode = 59;
         $trigger = new Trigger();
         $trigger->templateID = 'user/TB6weeksNewUnit';
-        $trigger->parseCondition("method=getAccounts&accountType=1&active=true&productCode=$productCode");
+        $trigger->parseCondition("method=getAccounts&active=true&productCode=$productCode");
         //$trigger->condition->customerType = '1'; // If we want to limit this to libraries
 
         $triggerResults = $thisService->triggerOps->applyCondition($trigger, $triggerDate);
         foreach ($triggerResults as $account) {
+            echo "TB6weeks check account ".$account->prefix."$newLine";
 
             // b. For each user in this account, update their subscription, if they have one.
-            echo "TB6weeks check account ".$account->prefix."$newLine";
             $emailArray = $thisService->dailyJobOps->updateSubscriptionBookmarks($account, $productCode, $triggerDate);
             if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
                 // Send the emails
