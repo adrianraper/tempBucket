@@ -24,6 +24,7 @@
 					callLater(
 						function():void {
 							videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+							videoPlayer.visible = false;
 							videoPlayer.placeholderSource = hostComponent.href.rootPath + "/" + hostComponent.videoCollection.getItemAt(videoList.selectedIndex).attribute("poster");
 						}	
 					);			
@@ -33,7 +34,7 @@
 	</fx:Script>
 	
 	<!-- The video players -->
-	<players:WebViewVideoPlayer id="videoPlayer" width="411" height="231" visible="{videoList.selectedItem != null}" placeholderSource="{hostComponent.placeholderSource}" />
+	<players:WebViewVideoPlayer id="videoPlayer" width="411" height="231" visible="false" placeholderSource="{hostComponent.placeholderSource}" />
 	<!--players:OSMFVideoPlayer id="videoPlayer" width="411" height="231" /-->
 	
 	<!-- Placeholder image -->

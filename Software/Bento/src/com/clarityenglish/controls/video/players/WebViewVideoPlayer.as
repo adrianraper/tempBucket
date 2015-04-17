@@ -67,7 +67,8 @@ package com.clarityenglish.controls.video.players {
 			_placeholderSource = value;
 		}
 		
-		private function get link():String {	
+		private function get link():String {
+			trace("holder source: "+placeholderSource);
 			var sourceHtml:String = "";
 			
 			sourceHtml += "<!DOCTYPE html>";
@@ -209,7 +210,6 @@ package com.clarityenglish.controls.video.players {
 						} else {
 							if (source.toString()) {
 								log.debug("loading url {0}", source.toString());
-								stageWebView.addEventListener(Event.COMPLETE, onLoadStringComplete);
 								stageWebView.loadString(link);
 							}
 						}
@@ -218,11 +218,6 @@ package com.clarityenglish.controls.video.players {
 					stop();
 				}
 			});
-		}
-		
-		protected function onLoadStringComplete(event:Event):void {
-			trace("on load string complete");
-			this.visible = true;
 		}
 		
 		public function stop():void {
@@ -234,7 +229,6 @@ package com.clarityenglish.controls.video.players {
 		
 		protected function onAddedToStage(event:Event):void {
 			addEventListener(FlexEvent.HIDE, onHide, false, 0, true);
-			addEventListener(FlexEvent.SHOW, onShow, false, 0, true);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
 			//addEventListener(Event.ENTER_FRAME, onEnterFrame, false, 0, true);
 			
@@ -256,7 +250,6 @@ package com.clarityenglish.controls.video.players {
 		protected function onRemovedFromStage(event:Event):void {
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 			removeEventListener(FlexEvent.HIDE, onHide);
-			removeEventListener(FlexEvent.SHOW, onShow);
 			removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 			
 			if (stageWebView) {
@@ -269,16 +262,8 @@ package com.clarityenglish.controls.video.players {
 		
 		protected function onHide(event:Event):void {
 			if (stageWebView) {
-				stageWebView.reload();
+				stageWebView.stage = null;
 				stageWebView.viewPort = null;
-				stageWebView.removeEventListener(Event.COMPLETE, onLoadStringComplete);
-			}
-		}
-		
-		protected function onShow(event:Event):void {
-			if (stageWebView) {
-				invalidateProperties();
-				invalidateDisplayList();
 			}
 		}
 		
