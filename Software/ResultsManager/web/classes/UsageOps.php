@@ -67,7 +67,7 @@ class UsageOps {
 			// AR also read the number of title/user licences that have been used. This is based on licence
 			// period, not the dates the reporter selected
 			$usage['titleUserCounts'] = $this->getTitleUserCounts($title, $rootID, $fromDateStamp);
-			NetDebug::trace("getUsageForTitle: from ".strftime('%Y-%m-%d 00:00:00',$fromDateStamp)." is ".$usage['titleUserCounts']);
+			//NetDebug::trace("getUsageForTitle: from ".strftime('%Y-%m-%d 00:00:00',$fromDateStamp)." is ".$usage['titleUserCounts']);
 		}
 		
 		$usage['sessionCounts'] = $this->getAASessionCounts($title, $fromDate, $toDate);

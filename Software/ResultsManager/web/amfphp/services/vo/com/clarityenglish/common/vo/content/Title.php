@@ -16,6 +16,14 @@ class Title extends Content {
 	const LICENCE_TYPE_TT = 6;
 	const LICENCE_TYPE_CT = 7;
 		
+	// gh#987
+	const FULL_VERSION = 'FV';
+	const DEMO_VERSION = 'DEMO';
+	
+	// gh#1090
+	const SIGNIN_TRACKING = 1;
+	const SIGNIN_ANONYMOUS = 2;
+		
 	var $courses = array();
 	
 	var $productCode;
@@ -55,6 +63,9 @@ class Title extends Content {
 	var $deliveryFrequency;
 	
 	var $checksum;
+	
+	// gh#1090
+	var $loginModifier;
 	
 	function __construct($existingTitle = null) {
 		
@@ -217,6 +228,9 @@ class Title extends Content {
 		if (isset($obj->F_LicenceClearanceFrequency))
 			$this->licenceClearanceFrequency = $obj->F_LicenceClearanceFrequency;
 
+		// gh#1090
+		$this->loginModifier = $obj->F_LoginModifier;
+		
 		// data that doesn't come from the database, but might have been added to the object before this method called
 		if (isset($obj->indexFile)) $this->indexFile = $obj->indexFile;
 		if (isset($obj->name)) $this->name = $obj->name;
@@ -259,6 +273,10 @@ class Title extends Content {
 		if (isset($this->licenceClearanceFrequency))
 			$array['F_LicenceClearanceFrequency'] = $this->licenceClearanceFrequency;
 
+		// gh#1090
+		if (isset($this->loginModifier) && $this->loginModifier > 0) 
+			$array['F_LoginModifier'] = $this->loginModifier;
+		
 		return $array;
 	}
 	
@@ -283,6 +301,7 @@ class Title extends Content {
 						"$prefix.F_DeliveryFrequency",
 						$db->SQLDate("Y-m-d H:i:s", "$prefix.F_LicenceClearanceDate")." F_LicenceClearanceDate",
 						"$prefix.F_LicenceClearanceFrequency",
+						"$prefix.F_LoginModifier",
 						);
 		
 		return implode(",", $fields);

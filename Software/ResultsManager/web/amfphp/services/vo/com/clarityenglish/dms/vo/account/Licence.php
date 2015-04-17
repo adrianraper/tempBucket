@@ -16,6 +16,8 @@ class Licence {
 	public $licenceStartDate;
 	public $licenceClearanceFrequency;
 	public $licenceType;
+	// gh#1090
+	public $signInAs;
 	
 	public $licenceControlStartDate;
 		

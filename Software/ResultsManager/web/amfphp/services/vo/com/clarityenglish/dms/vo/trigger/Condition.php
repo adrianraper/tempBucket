@@ -36,6 +36,10 @@ class Condition {
 	var $resellerID;
 	// v3.6 For overriding opt out of emails
 	var $optOutEmails;
+	// gh#769
+	var $newUsersSinceDate;
+	// gh#862
+	var $languageCode;
 	
 	function Condition($conditionString, $timeStamp = null ) {
 		$this->timeStamp = $timeStamp;
@@ -86,6 +90,9 @@ class Condition {
 			$this->contactMethod = $conditionArray['contactMethod'];
 		if (isset($conditionArray['deliveryFrequency'])) 
 			$this->deliveryFrequency = $conditionArray['deliveryFrequency'];
+		// gh#862
+		if (isset($conditionArray['languageCode'])) 
+			$this->languageCode = $conditionArray['languageCode'];
 		// Note that a userStartDate that references frequency NEEDS the following condition to be evaluated after the above one
 		// the order in the condition in the db doesn't matter - just this code.
 		// But actually we will normally read deliveryFrequency from the account table, so do this evaluation in usersInAccount too
@@ -109,6 +116,9 @@ class Condition {
 		// v3.6
 		if (isset($conditionArray['optOutEmails'])) 
 			$this->optOutEmails = $conditionArray['optOutEmails'];
+		// gh#769
+		if (isset($conditionArray['newUsersSinceDate'])) 
+			$this->newUsersSinceDate = $this->evaluateDateVariables($conditionArray['newUsersSinceDate']);
 	}
 	/*
 	 * Build a query string from the condition - is this just for debugging?

@@ -76,22 +76,17 @@ class AuthenticationOps {
 	public static function authenticateGroupIDForDelete($groupId) {
 		if (!AuthenticationOps::$useAuthentication) return;
 		
-		// If there are no ids in the array do nothing
-		if (sizeof($groupIdArray) == 0) return;
 		// And if no 'protected' groups have been set do nothing
-		// v3.4 Shouldn't this be Session::is_set?
-		//if ((Session::is-set('groupIDs')) == 0) return;
-		if ((Session::is_set('groupIDs')) == 0) return;
+		if (!Session::is_set('groupIDs')) return;
 		
-		$diff = array_diff($groupIdArray, Session::get('groupIDs'));
+		// gh#1190 Check to see if the current group is in the protected array
+		if (in_array($groupId, Session::get('groupIDs'))) {
 			
-		if (sizeof($diff) == 0) {
-			return;
-		} else {
-			// Get the group access error message from the literals and subsitute in the ids to help with debugging
+			// Get the group access error message from the literals and substitute in the ids to help with debugging
+			AbstractService::$controlLog->info('group delete blocked as top level');
 			$copyOps = new CopyOps();
-			$replaceObj = array("ids" => join(",", $diff));
-			throw new Exception($copyOps->getCopyForId("groupAccessError", $replaceObj));
+			$replaceObj = array("ids" => $groupId);
+			throw new Exception($copyOps->getCopyForId("groupDeleteError", $replaceObj));
 		}
 	}
 	

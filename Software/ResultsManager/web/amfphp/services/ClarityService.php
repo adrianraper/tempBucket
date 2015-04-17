@@ -49,14 +49,10 @@ require_once(dirname(__FILE__)."/../../classes/ReportOps.php");
 require_once(dirname(__FILE__)."/../../classes/ImportXMLParser.php");
 // v3.6 Required as usage ops can also send triggered emails.
 // v3.6 Not any more, remove that to RunTriggers.php
-//require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
-//require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
-// for Clarity Course Builder by WZ
-/*
-require_once(dirname(__FILE__)."/../../classes/CCBOps.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/net/NetFile.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Schedule.php");
-*/
+// gh#769 required to send notification emails to account managers
+require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
+require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
+
 require_once(dirname(__FILE__)."/AbstractService.php");
 
 class ClarityService extends AbstractService {
@@ -125,10 +121,13 @@ class ClarityService extends AbstractService {
 		if ($dbHost)
 			$this->initDbHost($dbHost);
 		
+		// gh#1118 Allow super user to login
 		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
 								 User::USER_TYPE_ADMINISTRATOR,
 								 User::USER_TYPE_AUTHOR,
-								 User::USER_TYPE_REPORTER);
+								 User::USER_TYPE_REPORTER,
+								 User::USER_TYPE_DMS,
+								 User::USER_TYPE_DMS_VIEWER);
 								 
 		$loginObj = $this->loginOps->login($username, $password, $allowedUserTypes, $rootID, 2);
 		
@@ -161,10 +160,11 @@ class ClarityService extends AbstractService {
 			$manageablesCount = $this->manageableOps->countUsersInGroup(Session::get('groupIDs'));
 			
 			// v3.5 Special (temporary) change for Taihung University (18000 accounts) for Kima.
-			// and SciencesPo (updated for 2013/14)
+			// and SciencesPo (updated for 2013/14/15)
 			// added BCJPILA. 
-			if ((int)$loginObj->F_RootID == 14781 || (int)$loginObj->F_RootID == 19278 || 
-				(int)$loginObj->F_RootID == 13982) {
+			// added TW_CUTE 2014 11 05 
+			if ((int)$loginObj->F_RootID == 14781 || (int)$loginObj->F_RootID == 19278 || (int)$loginObj->F_RootID == 26155 || 
+				(int)$loginObj->F_RootID == 13982 || (int)$loginObj->F_RootID == 13754) {
 				Session::set('no_students', ($manageablesCount > 8000));
 				//NetDebug::trace("for SciencesPo, users=$manageablesCount");
 			} else {
@@ -176,6 +176,10 @@ class ClarityService extends AbstractService {
 			$accountRoot = $this->manageableOps->getAccountRoot($loginObj->F_RootID);
 			//NetDebug::trace('accountRoot='.$accountRoot->prefix);
 
+			// gh#769
+			if ((int)$accountRoot->accountType == 5)
+				Session::set('distributorTrial', true);
+				
 			// v3.4 Get some more information about the user (and their group/parent groups)
 			// Keep this in session so that reports can use it for editedContent
 			$parentGroups = array_reverse($this->manageableOps->getGroupParents($loginObj->F_GroupID));
@@ -291,6 +295,11 @@ class ClarityService extends AbstractService {
 	}
 	
 	public function addUser($user, $parentGroup) {
+		// gh#769 record source of registration
+		$today = new DateTime();
+		if (!isset($user->registrationDate))  $user->registrationDate = $today->format('Y-m-d H:i:s');
+		if (!isset($user->registerMethod)) $user->registerMethod = 'RM';
+		
 		return $this->manageableOps->addUser($user, $parentGroup);
 	}
 	

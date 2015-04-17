@@ -190,14 +190,14 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function logout():void {
+			// Stop the licence update timer
+			if (licenceTimer) licenceTimer.stop();
+
 			// gh#970 Is this a logout from a pure AA?
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var justAnonymous:Boolean = configProxy.isAccountJustAnonymous();
 			var params:Array = [ configProxy.getConfig().licence, configProxy.getConfig().sessionID, justAnonymous ];
 			new RemoteDelegate("logout", params, this).execute();
-			
-			// Stop the licence update timer
-			if (licenceTimer) licenceTimer.stop();
 			
 			// #336 Logout triggers SCORM termination
 			if (configProxy.getConfig().scorm) {
@@ -295,6 +295,19 @@ package com.clarityenglish.common.model {
 					break;
 				
 				case "updateLicence":
+					// gh#604 You might have a new sessionID now
+					if (data) {
+						configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+						//trace('back to updateLicence with data sessionID={0}, config.sessionID={1}', data.sessionID, configProxy.getConfig().sessionID);
+						if (data.sessionID as String != configProxy.getConfig().sessionID) {
+							// Sanity check
+							if (data.sessionID > configProxy.getConfig().sessionID) {
+								configProxy.getConfig().sessionID = data.sessionID as String;
+							} else {
+								trace('The new session id seems wrong: {0}', data.sessionID);
+							}
+						}
+					}
 					break;
 				
 				case "updateUser":
@@ -364,8 +377,14 @@ package com.clarityenglish.common.model {
 						if (memory && memory.directStart) {
 							config = configProxy.getConfig();
 							var bookmark:Bookmark = new Bookmark(memory.directStart);
-							config.courseID = bookmark.course;
-							config.startingPoint = bookmark.startingPoint;
+							// gh#1080
+							if (!config.courseID)
+								config.courseID = bookmark.course;
+							if (config.startingPoint) {
+								config.startingPoint += ',' + bookmark.startingPoint;
+							} else {
+								config.startingPoint = bookmark.startingPoint;
+							}
 						}
 								
 						// Carry on with the process
@@ -473,10 +492,14 @@ package com.clarityenglish.common.model {
 					break;
 				
 				case "updateLicence":
+					//trace('back to updateLicence with error');
+
+					// gh#604 Just ignore a failed update
+					/*
 					sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault));
 					// Stop the licence update timer
 					if (licenceTimer) licenceTimer.stop();
-
+					*/
 					break;
 				case "updateUser":
 					sendNotification(CommonNotifications.UPDATE_FAILED);

@@ -13,6 +13,8 @@ class ManageableOps {
 		$this->db = $db;
 		
 		$this->copyOps = new CopyOps();
+		$this->emailOps = new EmailOps($db);
+		$this->templateOps = new TemplateOps($db);
 	}
 	
 	/**
@@ -48,6 +50,32 @@ class ManageableOps {
 		
 		// gh#448
 		AbstractService::$controlLog->info('userID '.Session::get('userID').' added a group(s) with id='.$group->id.' to group '.$parentGroup->id);
+		
+		// gh#769 If this account is for a distributor, can we send an email to the account manager as this  
+		// is quite likely to be the setting up of a trial
+		if (Session::get('distributorTrial')) {
+			$templateID = 'distributor_created_trial';
+			$rootID = Session::get('rootID');
+			// TODO: If this gets unwieldy here, use literals.xml or other form to hold all roots and their account manager
+			switch ($rootID) {
+				case 20895: // EPIC
+					$adminEmail = 'info@bookery.com.au';
+					break;
+				case 7: // Bookery
+					$adminEmail = 'sales@clarityenglish.com';
+					break;
+				// Other distributor accounts will not do anything
+				default:
+					$adminEmail = null;
+			}
+			
+			if ($adminEmail && $this->templateOps->checkTemplate('emails', $templateID)) {
+				$emailData = array("rootID" => $rootID, "group" => $group, "parent" => $parentGroup);
+				$emailArray = array("to" => $adminEmail, "data" => $emailData);
+				//disabled by Sky according to Andrew's request
+				//$this->emailOps->sendEmails("", $templateID, array($emailArray));
+			}
+		}
 		
 		// If parentGroup is null then this is a special case and a top-level group has been created (in DMS) so we need to set
 		// parentGroup to the same as ID.  Since this is the only place this will ever happen just do it with straight SQL.
@@ -135,23 +163,23 @@ class ManageableOps {
 			switch ($rc['returnCode']) {
 				case User::LOGIN_BY_NAME:
 					if (isset($rc['conflictedUsers'])) {
-						throw new Exception($this->copyOps->getCopyForId("usernameExistsError", array(username => $user->name)));
+						throw new Exception($this->copyOps->getCopyForId("usernameExistsError", array('username' => $user->name)));
 					} else {
-						throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array(studentID => $user->studentID, email => $user->email)));							
+						throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array('studentID' => $user->studentID, 'email' => $user->email)));							
 					}
 					break;
 				case User::LOGIN_BY_ID:
 					if (isset($rc['conflictedUsers'])) {
-						throw new Exception($this->copyOps->getCopyForId("studentIDExistsError", array(studentID => $user->studentID)));
+						throw new Exception($this->copyOps->getCopyForId("studentIDExistsError", array('studentID' => $user->studentID)));
 					} else {
-						throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array(username => $user->name, email => $user->email)));							
+						throw new Exception($this->copyOps->getCopyForId("studentIDBlankError", array('username' => $user->name, 'email' => $user->email)));							
 					}
 					break;
 				case User::LOGIN_BY_EMAIL:
 					if (isset($rc['conflictedUsers'])) {
-						throw new Exception($this->copyOps->getCopyForId("emailExistsError", array(email => $user->email)));
+						throw new Exception($this->copyOps->getCopyForId("emailExistsError", array('email' => $user->email)));
 					} else {
-						throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array(username => $user->name, studentID => $user->studentID)));							
+						throw new Exception($this->copyOps->getCopyForId("emailBlankError", array('username' => $user->name, 'studentID' => $user->studentID)));							
 					}
 			    	break;
 				default:
@@ -649,7 +677,7 @@ EOD;
 		
 		foreach ($manageablesArray as $manageable) {
 			// gh#448
-			AbstractService::$controlLog->info('userID '.Session::get('userID').' deleted a '.get_class($manageable).' with id='.$manageable->id.' and name='.$manageable->name);
+			AbstractService::$controlLog->info('userID '.Session::get('userID').' wants to delete a '.get_class($manageable).' with id='.$manageable->id.' and name='.$manageable->name);
 			
 			switch (get_class($manageable)) {
 				case "Group":
@@ -704,21 +732,56 @@ EOD;
 	 *
 	 * @param groupIdArray An array of group ids to delete
 	 */
-	function deleteGroupsById($groupIdArray) {
+	function deleteGroupsById($rawGroupIdArray) {
+		
+		// gh#1190 just in case
+		$groupIdArray = array_filter($rawGroupIdArray, function ($groupId) {
+			if ($groupId <= 0)
+				AbstractService::$controlLog->info("Request to delete group $groupId repulsed! ManageableOps.deleteGroupsById");
+			return ($groupId > 0);
+		});
+			
 		// If there are no ids in the array do nothing
 		if (sizeof($groupIdArray) == 0) return;
 		
 		$groupIdInString = join(",", $groupIdArray);
+		AbstractService::$controlLog->info(' delete these groups '.$groupIdInString);
 		
-		// Delete groups from the T_Groupstructure table
-		$this->db->Execute("DELETE FROM T_Groupstructure WHERE F_GroupID IN ($groupIdInString)");
-		
+		// gh#1190 Archive instead of delete
+		$sql = <<<SQL
+			INSERT INTO T_Groupstructure_Deleted
+			SELECT * FROM T_Groupstructure WHERE F_GroupID IN ($groupIdInString);
+SQL;
+		$rc = $this->db->Execute($sql);
+		$sql = <<<SQL
+			DELETE FROM T_Groupstructure WHERE F_GroupID IN ($groupIdInString);
+SQL;
+		$rc = $this->db->Execute($sql);
+
 		// Delete entries for these groups in hidden content
-		$this->db->Execute("DELETE FROM T_HiddenContent WHERE F_GroupID IN ($groupIdInString)");
+		$sql = <<<SQL
+			INSERT INTO T_HiddenContent_Deleted
+			SELECT * FROM T_HiddenContent WHERE F_GroupID IN ($groupIdInString);
+SQL;
+		$rc = $this->db->Execute($sql);
+		$sql = <<<SQL
+			DELETE FROM T_HiddenContent WHERE F_GroupID IN ($groupIdInString);
+SQL;
+		$rc = $this->db->Execute($sql);
 		
-		// Delete entries for these groups in edited content
+		// Delete entries for these groups in edited content (obsolete, so no need to archive)
 		$this->db->Execute("DELETE FROM T_EditedContent WHERE F_GroupID IN ($groupIdInString)");
-		
+
+		// Delete entries for any teachers linked to this group
+		$sql = <<<SQL
+			INSERT INTO T_ExtraTeacherGroups_Deleted
+			SELECT * FROM T_ExtraTeacherGroups WHERE F_GroupID IN ($groupIdInString);
+SQL;
+		$rc = $this->db->Execute($sql);
+		$sql = <<<SQL
+			DELETE FROM T_ExtraTeacherGroups WHERE F_GroupID IN ($groupIdInString);
+SQL;
+		$rc = $this->db->Execute($sql);
 	}
 	
 	/**
@@ -731,7 +794,7 @@ EOD;
 		// gh#359
 		$filteredArray = $userArray;
 		$filteredArray = array_filter($userArray, function ($user) {
-			if ($user->userID < 0)
+			if ($user->userID <= 0)
 				AbstractService::$debugLog->notice("Request to delete user $user->userID repulsed! ManageableOps.deleteUsers");
 			return ($user->userID > 0);
 		});
@@ -740,9 +803,11 @@ EOD;
 		if (sizeof($filteredArray) == 0) return;
 		
 		// gh#653 delete one by one in case they exist in multiple groups
+		// gh#1190 Archive instead of delete
 		foreach ($filteredArray as $user) {
-
+			
 			$this->db->StartTrans();
+			
 			$sql = <<<EOD
 				   SELECT COUNT(*) AS count
 				   FROM T_Membership m
@@ -751,29 +816,66 @@ EOD;
 			$rs = $this->db->GetRow($sql, array($user->userID));
 			if ($rs['count'] > 1) {
 				// This user exists in another group too, so only remove this membership record
+				AbstractService::$controlLog->info(' remove from one group, user id='.$user->userID);
+				
 				$bindingParams = array($user->getMultiUserGroupID(), $user->userID);
-				$this->db->Execute("DELETE FROM T_Membership WHERE F_GroupID=? AND F_UserID=?", $bindingParams);
+				$sql = <<<SQL
+					INSERT INTO T_Membership_Deleted
+					SELECT * FROM T_Membership WHERE F_GroupID=? AND F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM T_Membership WHERE F_GroupID=? AND F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
 			} else { 
-				// TODO: Think about moving to _Delete tables rather than just deleting to make undo easier
+				AbstractService::$controlLog->info(' delete user id='.$user->userID);
 				$bindingParams = array($user->userID);
-				$this->db->Execute("DELETE FROM T_User WHERE F_UserID=?", $bindingParams);
-				$this->db->Execute("DELETE FROM T_Membership WHERE F_UserID=?", $bindingParams);
-				$this->db->Execute("DELETE FROM T_Score WHERE F_UserID=?", $bindingParams);
+				
+				$sql = <<<SQL
+					INSERT INTO T_User_Deleted
+					SELECT * FROM T_User WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM T_User WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				
+				$sql = <<<SQL
+					INSERT INTO T_Membership_Deleted
+					SELECT * FROM T_Membership WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM T_Membership WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				
+				$sql = <<<SQL
+					INSERT INTO T_Score_Deleted
+					SELECT * FROM T_Score WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM T_Score WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				
+				// gh#1067
+				$sql = <<<SQL
+					INSERT INTO T_Memory_Deleted
+					SELECT * FROM T_Memory WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM T_Memory WHERE F_UserID=?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
 			}
-			$this->db->CompleteTrans();
 			
+			$this->db->CompleteTrans();
 		}
-		
-		// Delete user from the t_licences table
-		// v6.5.5.0 The T_Licences table is dropped in favour of using T_Session.
-		// So this clear out is unnecessary
-		//$this->db->Execute("DELETE FROM t_licences WHERE F_UserID IN ($userIdInString)");
-		
-		// Delete user records from the t_session table? (NO - ADRIAN WANTS THIS KEPT FOR CLARITY RECORDS)
-		//$this->db->Execute("DELETE FROM t_session WHERE F_UserID IN ($userIdInString)");
-		
-		// Delete user records from the t_failsession table? (NO - ADRIAN WANTS THIS KEPT FOR CLARITY RECORDS)
-		//$this->db->Execute("DELETE FROM t_failsession WHERE F_UserID IN ($userIdInString)");
 	}
 	
 	/**
@@ -982,6 +1084,11 @@ EOD;
 				}
 			} else {
 				$addedMsg = "added";
+				// gh#769 record source of registration
+				$today = new DateTime();
+				if (!isset($manageable->registrationDate))  $manageable->registrationDate = $today->format('Y-m-d H:i:s');
+				if (!isset($manageable->registerMethod)) $manageable->registerMethod = 'RMimport';
+				
 				$this->addUser($manageable, $parentGroup);
 				$success = true;
 			}
@@ -1103,14 +1210,17 @@ EOD;
 		if (isset($stubUser->name)) {
 			$whereClause = 'u.F_UserName=?';
 			$key = $stubUser->name;
+			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");
 		} else if (isset($stubUser->studentID)) {
 			$whereClause = 'u.F_StudentID=?';
 			$key = $stubUser->studentID;
+			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
 		} else if (isset($stubUser->email)) {
 			$whereClause = 'u.F_Email=?';
 			$key = $stubUser->email;
+			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
 		} else {
-			throw new Exception("Unspecified loginOption");
+			throw new Exception("Unspecified login option");
 		}
 		// gh#653 Might be duplicate membership records so just grab unique userIDs
 		$sql  = "SELECT DISTINCT ".User::getSelectFields($this->db);
@@ -1135,7 +1245,7 @@ EOD;
 		} else if ($usersRS->RecordCount()==0) {
 			return false;
 		} else {
-			throw new Exception("More than one user with this key $key");
+			throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("loginKeyField" => $loginKeyField));
 		}
 		
 		// How can we use AuthenticationOps to make sure that the logged in teacher has rights over this user?
@@ -1152,21 +1262,27 @@ EOD;
 		if ($loginOption == User::LOGIN_BY_NAME) {
 			$whereClause = 'WHERE u.F_UserName=?';
 			$key = $stubUser->name;
+			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");
 		} else if ($loginOption == User::LOGIN_BY_ID) {
 			$whereClause = 'WHERE u.F_StudentID=?';
 			$key = $stubUser->studentID;
+			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
 		} else if ($loginOption == User::LOGIN_BY_EMAIL) {
 			$whereClause = 'WHERE u.F_Email=?';
 			$key = $stubUser->email;
+			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
 		} else if (isset($stubUser->name)) {
 			$whereClause = 'WHERE u.F_UserName=?';
 			$key = $stubUser->name;
+			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");
 		} else if (isset($stubUser->studentID)) {
 			$whereClause = 'WHERE u.F_StudentID=?';
 			$key = $stubUser->studentID;
 		} else if (isset($stubUser->email)) {
+			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
 			$whereClause = 'WHERE u.F_Email=?';
 			$key = $stubUser->email;
+			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
 		} else {
 			throw new Exception("Unspecified loginOption");
 		}
@@ -1189,7 +1305,9 @@ EOD;
 		} else if ($usersRS->RecordCount()==0) {
 			return false;
 		} else {
-			throw new Exception("More than one user with this key $key");
+			//throw new Exception("More than one user with this key $key");
+			throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("loginKeyField" => $loginKeyField));
+			
 		}
 		
 		// How can we use AuthenticationOps to make sure that the logged in teacher has rights over this user?
@@ -1204,28 +1322,39 @@ EOD;
 	 */
 	function getUserByKey($stubUser, $rootID = NULL, $loginOption = null) {
 
-		//gh#653
-		$rootID = ($rootID) ? $rootID : Session::get('rootID');
+		// gh#653
+		// gh#1067 you might want to force root to be empty, not picked up from session
+		if ($rootID === 0) {
+			$rootID = null;
+		} else {
+			$rootID = ($rootID) ? $rootID : Session::get('rootID');
+		}
 		$loginOption = ($loginOption) ? $loginOption : Session::get('loginOption');
 		
 		if ($loginOption == User::LOGIN_BY_NAME) {
 			$whereClause = 'WHERE u.F_UserName=?';
 			$key = $stubUser->name;
+			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");			
 		} else if ($loginOption == User::LOGIN_BY_ID) {
 			$whereClause = 'WHERE u.F_StudentID=?';
 			$key = $stubUser->studentID;
+			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");			
 		} else if ($loginOption == User::LOGIN_BY_EMAIL) {
 			$whereClause = 'WHERE u.F_Email=?';
 			$key = $stubUser->email;
+			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");			
 		} else if (isset($stubUser->name)) {
 			$whereClause = 'WHERE u.F_UserName=?';
 			$key = $stubUser->name;
+			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");			
 		} else if (isset($stubUser->studentID)) {
 			$whereClause = 'WHERE u.F_StudentID=?';
 			$key = $stubUser->studentID;
+			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");			
 		} else if (isset($stubUser->email)) {
 			$whereClause = 'WHERE u.F_Email=?';
 			$key = $stubUser->email;
+			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");			
 		} else {
 			throw new Exception("Unspecified loginOption");
 		}
@@ -1258,8 +1387,8 @@ EOD;
 		} else if ($usersRS->RecordCount()==0) {
 			return false;
 		} else {
-			throw new Exception("More than one user with this key $key");
-			//throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("key" => $key));
+			//throw new Exception("More than one user with this key $key");
+			throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("loginKeyField" => $loginKeyField));
 		}
 		
 		// How can we use AuthenticationOps to make sure that the logged in teacher has rights over this user?
@@ -1332,34 +1461,35 @@ EOD;
 	 * based on that. But now we could check based on licence type?
 	 * Should be deprecated by the more general function getUserByKey
 	 */
-	function getUserFromEmail($email, $licenceType) {
-		
-		// Ensure the username is unique within this context
-		//		AND t.F_ProductCode=?
-		// I will get one row for each account that this user has, so make sure we measure distinct ones
-		//$sql  = "SELECT ".User::getSelectFields($this->db);
-		$sql  = "SELECT DISTINCT ".User::getSelectFields($this->db);
-		$sql .= <<<EOD
-				FROM T_User u 
-				JOIN T_Membership m ON u.F_UserID = m.F_UserID 
-				JOIN T_Accounts t ON m.F_RootID = t.F_RootID 
-				WHERE u.F_Email = ?
-				AND t.F_LicenceType = ?
+	function getUserFromEmail($email, $licenceType=null) {
+
+		// gh#487
+		$sql  = "SELECT ".User::getSelectFields($this->db);
+		if ($licenceType) {
+			$sql .= <<<EOD
+					FROM T_User u 
+					JOIN T_Membership m ON u.F_UserID = m.F_UserID 
+					JOIN T_Accounts t ON m.F_RootID = t.F_RootID 
+					WHERE u.F_Email = ?
+					AND t.F_LicenceType = ?
 EOD;
-		$rs = $this->db->Execute($sql, array($email, $licenceType));
-		//echo $sql;
+			$bindingParams = array($email, $licenceType);
+		} else {
+			$sql .= <<<EOD
+					FROM T_User u 
+					WHERE u.F_Email = ?
+EOD;
+			$bindingParams = array($email);
+		}
+		$rs = $this->db->Execute($sql, $bindingParams);
+		
 		switch ($rs->RecordCount()) {
 			case 0:
 				// There are no records
 				return false;
-			case 1:
-				// Found just one record, so return it as a user object
-				$userObj = $rs->FetchNextObj();
-				$user = $this->_createUserFromObj($userObj);
-				return Array($user);
 			default:
-				// There is more than one user with this email address in this context
-				// What can we tell the learner?
+				// gh#487
+				// Send back the user(s) that you found
 				$users = Array();
 				while ($userObj = $rs->FetchNextObj())
 					$users[] = $this->_createUserFromObj($userObj);
@@ -1417,6 +1547,35 @@ EOD;
 
 		return null;
 	}
+    /**
+     * This returns the group that matches a productCode (as a name) in an account. Will be used by TB6weeks.
+     * If the group doesn't exist, it is created.
+     * gh#1118
+     */
+    function getGroupForTB6weeks(Account $account, $productCode) {
+        $parentGroup = $this->getGroup($this->getGroupIdForUserId($account->getAdminUserID()));
+        $group = $this->getGroupInParent($productCode.Group::SELF_REGISTER_GROUP_NAME, $parentGroup);
+
+        if (!$group) {
+            $group = new Group();
+            $group->name = $productCode.Group::SELF_REGISTER_GROUP_NAME;
+            $this->addGroup($group, $parentGroup, false);
+        }
+        return $group;
+    }
+	/**
+	 * This returns the root ID that a given user belongs to.
+	 */
+	function getRootIdForUserId($userId) {
+		$sql = <<<EOD
+			   SELECT m.F_RootID
+			   FROM T_User u, T_Membership m
+			   WHERE m.F_UserID = u.F_UserID
+			   AND u.F_UserID=?
+EOD;
+		return $this->db->GetOne($sql, array($userId));
+	}
+	
 	/**
 	 * This returns a group. 
 	 * Added for loginGateway, though I don't see why it isn't here already!
@@ -1439,7 +1598,31 @@ EOD;
 		}
 		return $group;
 	}
-	/**
+    /**
+     * Get group by name within another group. No need to have any members.
+     * gh#1118
+     */
+    function getGroupInParent($groupName, Group $parentGroup) {
+        $sql = <<<EOD
+			   SELECT *
+			   FROM T_Groupstructure g
+			   WHERE g.F_GroupName = ?
+			   AND g.F_GroupParent = ?
+EOD;
+        $rs = $this->db->Execute($sql, array($groupName, $parentGroup->id));
+        $group = new Group();
+
+        // Not sure if this is right, but if you find more than one group with a matching name
+        // just return the first.
+        if ($rs->RecordCount() >= 1) {
+            $obj = $rs->FetchNextObj();
+            $group->fromDatabaseObj($obj);
+        } else {
+            $group = false;
+        }
+        return $group;
+    }
+    /**
 	 * Similar function to get by name. You have to know a rootID, and there has to be at least one user in the group.
 	 */
 	function getGroupByName($groupName, $rootID) {
@@ -2067,6 +2250,69 @@ EOD;
 		//AuthenticationOps::authenticateUsers(array($user));
 		return $usersRS;
 	}
+
+	/**
+	 * Get the account that a user is in
+	 * 
+	 */
+	public function getAccountFromUser($user) {
+		$key = $user->userID;
+		
+		$sql = <<<EOD
+				SELECT a.*
+				FROM T_Membership m, T_AccountRoot a
+				WHERE m.F_RootID = a.F_RootID 
+				AND m.F_UserID = ?
+EOD;
+
+		$rs = $this->db->Execute($sql, array($key));
+		$recordCount = $rs->RecordCount();
+		
+		switch ($recordCount) {
+			case 1:
+				$dbObj = $rs->FetchNextObj();
+				$account = new Account();
+				$account->fromDatabaseObj($dbObj);
+				return $account;
+				break;
+			default:
+				return null;
+		}
+	}
 	
+	/**
+	 * This will either find the user, or will add a new one
+	 * 
+	 * @param User $stubUser
+	 */
+	public function getOrAddUser($stubUser, $rootId, $groupId, $loginOption = User::LOGIN_BY_EMAIL) {
+		
+		$users = $this->getUserFromEmail($stubUser->email);
+		if (!$users) {
+			$group = new Group();
+			$group->id = $groupId;
+			$users = array($this->addUser($stubUser, $group, $rootId, $loginOption));
+		}
+		
+		return $users[0];
+	}
+
+    /**
+     * Anonymize a user without removing them
+     *
+     */
+    public function anonymizeUser($user) {
+        $user->email = $this->anonymized($user->email, 'e');
+        $user->name = $this->anonymized($user->name, 'n');
+        $user->studentID = $this->anonymized($user->studentID, 'i');
+        return $this->updateUsers(array($user));
+    }
+    public function anonymized($data, $type = null) {
+        $base = new DateTime();
+        $buildString = $base->getTimestamp().mt_rand();
+        if ($type)
+            $buildString = $type.$buildString;
+        return $buildString;
+    }
 }
 

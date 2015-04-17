@@ -1086,13 +1086,22 @@ EOD;
 				//NetDebug::trace("this folder is ".$folder);
 				//NetDebug::trace("this product is code=".$titleObj->F_ProductCode);
 				//NetDebug::trace("this lang is code=".$titleObj->F_LanguageCode);
-				if (intval($titleObj->F_ProductCode) > 1000) {
+				// gh#1179
+				//if (intval($titleObj->F_ProductCode) > 1000) {
+				$pid = intval($titleObj->F_ProductCode);
+				switch (true) {
+				case ($pid < 51):
+					$courseType = 'orchid';	
+					$titleObj->indexFile = "course.xml";
+					break;
+				case ($pid > 1000):
 					// case-sensitive
 					$titleObj->indexFile = "Emu.xml";
 					$courseType = 'emu';	
-				// For Road to IELTS 2
-				} else if ((intval($titleObj->F_ProductCode) == 52) || 
-							(intval($titleObj->F_ProductCode) == 53)) {
+					break;
+					
+				case ($pid == 52):
+				case ($pid == 53):
 					$courseType = 'bento';	
 					switch ($titleObj->F_ProductVersion) {
 						case 'R2ILM':
@@ -1113,25 +1122,32 @@ EOD;
 						default:
 							$productVersionName = 'x';
 					}
-					if (intval($titleObj->F_ProductCode) == 52) {
+					if ($pid == 52) {
 						$version = "Academic";
 					} else {
 						$version = "GeneralTraining";
 					}					
 					$titleObj->indexFile = "menu-$version-$productVersionName.xml";
-					
-				} else if (intval($titleObj->F_ProductCode) == 54) {
+					break;					
+				case ($pid == 54):
 					$courseType = 'rotterdam';	
 					$titleObj->indexFile = "courses.xml";
-				 
-				} else if (intval($titleObj->F_ProductCode) == 55) { 
+				 	break;
+				case ($pid == 57): 
+					$courseType = 'bento';
+					$titleObj->indexFile = "menu-Sounds-FullVersion.xml";
+					break;
+				case ($pid == 58): 
+					$courseType = 'bento';
+					$titleObj->indexFile = "menu-Speech-FullVersion.xml";
+					break;
+				default:
 					$courseType = 'bento';
 					$titleObj->indexFile = "menu-FullVersion.xml";
-				} else {
-					$courseType = 'orchid';	
-					$titleObj->indexFile = "course.xml";
+					break;
 				}
-
+				//AbstractService::$debugLog->err("$pid menu is ".$folder."/".$titleObj->indexFile. " is $courseType");
+				
 				// Build the title object (if the course.xml file doesn't exist then just skip it. However, if we are in $forDMS
 				// mode then this is DMS and we want to display everything, even if course.xml doesn't exist.
 				//NetDebug::trace("get content from =".$folder."/".$titleObj->indexFile);
@@ -1200,10 +1216,12 @@ EOD;
 		$doc = new DOMDocument();
 		//NetDebug::trace("read folder=".$folder."/".$title->indexFile);
 		// v3.2 Extra protection in case folders are missing
-		if (!file_exists($folder."/".$title->indexFile)) {
+		if (!file_exists($folder."/".$title->indexFile))
 			throw new Exception("missing title ".$folder."/".$title->indexFile);
-		}
-		$this->_loadFileIntoDOMDocument($doc, $folder."/".$title->indexFile);
+			
+		// gh#777 Error checking
+		if (!$this->_loadFileIntoDOMDocument($doc, $folder."/".$title->indexFile))
+			throw new Exception("corrupt file ".$folder."/".$title->indexFile);
 		
 		// Bento titles have course nodes
 		$coursesXML = $doc->getElementsByTagName("course");
@@ -1225,7 +1243,8 @@ EOD;
 
 			$course->units = $this->_buildBentoUnits($courseXML, $course, $generateMaps, $courseType);
 			//gh#23
-			$course->totalUnits = count($course-> units);
+			$course->totalUnits = count($course->units);
+			//AbstractService::$debugLog->err($course->name." has units ".$course->totalUnits);
 				
 			if ($course->id != null) { // Ticket #104 - don't add content with missing id
 				if ($generateMaps) {
@@ -1259,7 +1278,9 @@ EOD;
 		if (!file_exists($folder."/".$title->indexFile))
 			throw new Exception("missing title ".$folder."/".$title->indexFile);
 			
-		$this->_loadFileIntoDOMDocument($doc, $folder."/".$title->indexFile);
+		// gh#777 Error checking - don't care too much if you can't load a C-Builder course
+		if (!$this->_loadFileIntoDOMDocument($doc, $folder."/".$title->indexFile))
+			return null;
 		
 		$coursesXML = $doc->getElementsByTagName("course");
 		
@@ -1520,7 +1541,8 @@ EOD;
 				// I am just going to have to live with this. Store the sequence number in case you can make it work.
 				// So, if there is no unit attribute, use the id (this will be the case with all emus)
 				$unit->id = $unitXML->getAttribute("unit") == "" ? $unitXML->getAttribute("id") : $unitXML->getAttribute("unit"); 
-				$unit->sequenceNum = $unitXML->getAttribute("unit");
+				// gh#990
+				$unit->sequenceNum = $unitXML->getAttribute("sequenceNum");
 				// v3.4 For Protea, we are now saving the correct ID for unit in T_Score. So need to keep BOTH here.
 				$unit->unitID = $unitXML->getAttribute("id");
 				// v3.1 All old menu.xml have caption rather than name, but standardise on name.
@@ -1534,7 +1556,8 @@ EOD;
 
 				$unit->exercises = $this->_buildExercises($unitXML, $unit, $generateMaps, $courseType, $groupXML);
 				//gh#23
-				$unit->totalExercises = count($unit-> exercises);		
+				$unit->totalExercises = count($unit->exercises);
+				//AbstractService::$debugLog->err($unit->name." has exercises ".$unit->totalExercises);		
 				
 				if ($unit->id != null) { // Ticket #104 - don't add content with missing id
 					if ($generateMaps) {
@@ -1615,6 +1638,7 @@ EOD;
 				} else {
 					$exercise->filename = $exerciseXML->getAttribute("fileName");
 				}
+				//AbstractService::$debugLog->err("exercise=".$exercise->filename);
 
 				if ($exercise->id != null) { // Ticket #104 - don't add content with missing id
 					if ($generateMaps) {
@@ -1631,16 +1655,27 @@ EOD;
 	}
 	
 	private function _loadFileIntoDOMDocument($doc, $filename) {
-		// Load the filename into a string
-		$xmlString = file_get_contents($filename);
-		
-		// The current Clarity XML is not well-formed in that it contains & characters, so go through and replace this with the correct
-		// html entity before passing to the libxml parser.
-		// PHP 5.3
-		$xmlString = preg_replace('/&/', "&amp;", $xmlString);
-		
-		// Create the XML document from the string
-		$doc->loadXML($xmlString, LIBXML_COMPACT);
+		// gh#777
+		try {
+			// Load the filename into a string
+			$xmlString = file_get_contents($filename);
+
+			// gh#777
+			if (!$xmlString)
+				return false;
+				
+			// The current Clarity XML is not well-formed in that it contains & characters, so go through and replace this with the correct
+			// html entity before passing to the libxml parser.
+			// PHP 5.3
+			$xmlString = preg_replace('/&/', "&amp;", $xmlString);
+			
+			// Create the XML document from the string
+			$doc->loadXML($xmlString, LIBXML_COMPACT);
+			
+		} catch (Exception $e) {
+			return false;
+		}
+		return true;
 	}
 	
 	/*

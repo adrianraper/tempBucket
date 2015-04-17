@@ -34,10 +34,17 @@ require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
 require_once(dirname(__FILE__)."/../../classes/ProgressOps.php");
 require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
+require_once(dirname(__FILE__)."/../../classes/MemoryOps.php");
 
 // v3.6 What happens if I want to add in AccountOps so that I can pull back the account object?
 // I already getContent - will that clash or duplicate?
 require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
+
+// v3.6 Required as usage ops can also send triggered emails.
+// v3.6 Not any more, remove that to RunTriggers.php
+// gh#769 required to send notification emails to account managers
+require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
+require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
 
 require_once(dirname(__FILE__)."/../../classes/xml/XmlUtils.php");
 
@@ -67,6 +74,7 @@ class BentoService extends AbstractService {
 		$this->contentOps = new ContentOps($this->db);
 		$this->progressOps = new ProgressOps($this->db);
 		$this->licenceOps = new LicenceOps($this->db);
+		$this->memoryOps = new MemoryOps($this->db);
 		
 		// Set the root id (if set)
 		// I am now using is_set, but is that safe? If not set it might be an error. 
@@ -92,10 +100,20 @@ class BentoService extends AbstractService {
 		    (substr($href->filename, -strlen('.xml')) != '.xml') || // If the filename doesn't end with .xml then disallow
 		    (strpos($href->getUrl(), ".."))) // If there is any directory traversal in the full url then disallow
 			return parent::xhtmlLoad($href);
-		
+
+        // gh#1172
+        $updatedURL = $this->updateUrl($href->currentDir);
+        if ($updatedURL != $href->currentDir)
+            AbstractService::$debugLog->notice("changed this domain ".$href->currentDir);
+        $href->currentDir = $updatedURL;
 		return XmlUtils::buildXml($href, $this->db, $this);
 	}
-	
+
+    // gh#1172
+    // TODO this is just a hack to stop ezproxy servers not reading content xml files
+    private function updateUrl($url) {
+        return preg_replace('/http(s?):\/\/[\w\.]*(:\d+)?/i', "http://www.clarityenglish.com", $url);
+    }
 	/**
 	 *
 	 * This call finds the relevant account, keyed on rootID [or prefix].
@@ -155,7 +173,9 @@ class BentoService extends AbstractService {
 		$group = $this->manageableOps->getGroup($this->manageableOps->getGroupIdForUserId($account->getAdminUserID()));
 		
 		// We also need some misc stuff.
-		$configObj = array("databaseVersion" => $this->getDatabaseVersion(), "ip" => $config['ip']);
+		// gh#914
+		$configObj = array("databaseVersion" => $this->getDatabaseVersion(),
+							"uploadMaxFilesize" => $this->getUploadMaxFilesize(), "ip" => $config['ip']);
 		
 		// Set some session variables that other calls will use
 		Session::set('rootID', $account->id);
@@ -263,15 +283,30 @@ class BentoService extends AbstractService {
 		// #341 or for network licence working in anonymous mode
 		// #341 
 		// gh#100 or for CT
-		// gh#886
-		if ($licence->licenceType == Title::LICENCE_TYPE_AA && $loginObj == NULL || 
+		// gh#1067
+		/*
+		if ($licence->licenceType == Title::LICENCE_TYPE_AA || 
 			($licence->licenceType == Title::LICENCE_TYPE_NETWORK && $loginObj == NULL) ||
 			($licence->licenceType == Title::LICENCE_TYPE_CT && $loginObj == NULL) ||
 			($loginOption & User::LOGIN_BY_ANONYMOUS && $loginObj == NULL)) {
+		*/
+		// Protect older Bento titles that don't send this property
+		if (!isset($licence->signInAs) || $licence->signInAs == NULL) {
+			//AbstractService::$debugLog->notice ("licence->signInAs not sent or null");
+			if ($licence->licenceType == Title::LICENCE_TYPE_AA ||
+				($licence->licenceType == Title::LICENCE_TYPE_NETWORK && $loginObj == NULL) ||
+				($licence->licenceType == Title::LICENCE_TYPE_CT && $loginObj == NULL) ||
+				($loginOption & User::LOGIN_BY_ANONYMOUS && $loginObj == NULL)) {
+				$userObj = $this->loginOps->anonymousUser($rootID);
+			} else {
+				$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $verified, $allowedUserTypes, $rootID, $productCode);
+			}
+		} elseif ($licence->signInAs == Title::SIGNIN_ANONYMOUS) {
+			//AbstractService::$debugLog->notice ("licence->signInAs=" . $licence->signInAs);
 			$userObj = $this->loginOps->anonymousUser($rootID);
-			
 		} else {
-			// First, confirm that the user details are correct
+			//AbstractService::$debugLog->notice ("licence->signInAs=" . $licence->signInAs);
+			// Confirm that the user details are correct
 			$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $verified, $allowedUserTypes, $rootID, $productCode);
 		}
 		
@@ -279,13 +314,18 @@ class BentoService extends AbstractService {
 		$user->fromDatabaseObj($userObj);
 		// Hack the name for now
 		$user->fullName = $user->name;
-
+		
 		// Set various session variables
 		Session::set('valid_userIDs', array($userObj->F_UserID));
 		Session::set('userID', $userObj->F_UserID);
 		Session::set('userType', $userObj->F_UserType);
 		Session::set('groupID', $userObj->groupID);	
 		Session::set('groupIDs', array_merge(array($userObj->groupID), $this->manageableOps->getExtraGroups($userObj->F_UserID)));	
+		
+		// gh#91
+		// TODO You should actually call it for the array of extra groupIDs instead of just my main group
+		// Then weed out duplicates 
+		Session::set('parentGroupIDs', array_reverse($this->manageableOps->getGroupParents($userObj->groupID)));
 		
 		// gh#21 As rootID will be -1 if you have not got an account yet, this will work.
 		// #503 From login you now only have one rootID even if you started with an array
@@ -384,11 +424,10 @@ class BentoService extends AbstractService {
 			Session::set('valid_groupIDs', array($group->id));
 			//if ($user->userType == User::USER_TYPE_STUDENT)
 			//	$contentObj = $this->contentOps->getHiddenContent($productCode);
-			
 		}
-		// TODO. What is a good format for sending back bookmark information?
-		// For now I will just expect an array of courseIDs that this user has started so that
-		// you can use them in licence control.
+		
+		// gh#1067
+		$memory = $this->memoryOps->getWholeMemory($productCode, $user->userID);
 		
 		// Send this information back
 		// #503 including the root that you really found the user in
@@ -396,6 +435,7 @@ class BentoService extends AbstractService {
 		$dataObj = array("group" => $group,
 						 "groupTrees" => $groupTrees,
 						 "licence" => $licence,
+						 "memory" => $memory,
 						 "rootID" => $rootID);
 		
 		// gh#21 include the account you found if the rootID changed based on the login
@@ -423,18 +463,20 @@ class BentoService extends AbstractService {
 		return true;
 	}
 	 	
-	public function logout($licence, $sessionID = null) {
+	public function logout($licence, $sessionId = null, $justAnonymous = null) {
 		// Clear the licence
 		$rs = $this->licenceOps->dropLicenceSlot($licence);
 
 		// Update the session record
-		if ($sessionID)
-			$this->updateSession($sessionID);
+		if ($sessionId)
+			$this->updateSession($sessionId);
 		
 		// Clear php session and authentication
 		$this->loginOps->logout();
 		
 		Session::clear();
+		
+		return array("justAnonymous" => $justAnonymous);
 	}
 	
 	/**
@@ -458,10 +500,10 @@ class BentoService extends AbstractService {
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param dateNow - used to get client time
 	 */
-	public function startSession($user, $rootID, $productCode, $dateNow = null) {
+	public function startSession($user, $rootId, $productCode, $dateNow = null) {
 		// A successful session start will return a new ID
-		$sessionID = $this->progressOps->startSession($user, $rootID, $productCode, $dateNow);
-		return array("sessionID" => $sessionID);
+		$sessionId = $this->progressOps->startSession($user, $rootId, $productCode, $dateNow);
+		return array("sessionID" => $sessionId);
 	}
 	
 	/**
@@ -472,9 +514,11 @@ class BentoService extends AbstractService {
 	 *  	maybe we can use $userID and $rootID from session variables
 	 *  @param dateNow - used to get client time
 	 */
-	public function updateSession($sessionID, $dateNow = null) {
+	public function updateSession($sessionId, $dateNow = null) {
 		// A successful session stop will not generate an error
-		$this->progressOps->updateSession($sessionID, $dateNow);
+		// gh#604 return number of impacted records
+		$sessionId = $this->progressOps->updateSession($sessionId, $dateNow);
+		return array("sessionID" => $sessionId);
 	}
 	
 	/**
@@ -486,8 +530,8 @@ class BentoService extends AbstractService {
 	 *  	maybe we can use $userID and $rootID from session variables
 	 *  @param dateNow - used to get client time
 	 */
-	public function stopSession($sessionID, $dateNow) {
-		return $this->updateSession($sessionID, $dateNow);
+	public function stopSession($sessionId, $dateNow) {
+		return $this->updateSession($sessionId, $dateNow);
 	}
 	
 	/**
@@ -496,9 +540,18 @@ class BentoService extends AbstractService {
 	 *  
 	 *  @param Licence $licence - dummy object for the licence
 	 */
-	public function updateLicence($licence) {
-		// A successful licence update will not generate an error
-		$this->licenceOps->updateLicence($licence);
+	public function updateLicence($licence, $sessionId = null) {
+
+		// gh#604 Update the licence if applicable
+		if ($licence)
+			// A successful licence update will not generate an error
+			$this->licenceOps->updateLicence($licence);
+
+		// Update the session record
+		if ($sessionId)
+			return $this->updateSession($sessionId);
+
+		return false;
 	}
 	
 	/**
@@ -507,11 +560,11 @@ class BentoService extends AbstractService {
 	 *  
 	 *  @param userID - these are all self-explanatory
 	 */
-	public function getInstanceID($userID, $productCode) {
+	public function getInstanceID($userId, $productCode) {
 		// #319 Instance ID per productCode
-		$instanceID = $this->loginOps->getInstanceID($userID, $productCode);
+		$instanceId = $this->loginOps->getInstanceID($userId, $productCode);
 		
-		return array("instanceID" => $instanceID);
+		return array("instanceID" => $instanceId);
 	}
 	
 	/**
@@ -521,7 +574,7 @@ class BentoService extends AbstractService {
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param dateNow - used to get client time
 	 */
-	public function writeScore($user, $sessionID, $dateNow, $scoreObj) {
+	public function writeScore($user, $sessionId, $dateNow, $scoreObj) {
 		// Manipulate the score object from Bento into PHP format
 		// TODO Surely we should be trying to keep the format and names the same!
 		$score = new Score();
@@ -541,14 +594,14 @@ class BentoService extends AbstractService {
 		$score->duration = $scoreObj['duration'];
 		
 		$score->dateStamp = $dateNow;
-		$score->sessionID = $sessionID;
+		$score->sessionID = $sessionId;
 		$score->userID = $user->userID;
 		
 		// Write the score record
 		$score = $this->progressOps->insertScore($score, $user);
 		
 		// and update the session
-		$this->updateSession($sessionID);
+		$this->updateSession($sessionId);
 		
 		return $score;
 	}
@@ -576,13 +629,47 @@ class BentoService extends AbstractService {
 			throw $this->copyOps->getExceptionForId("errorNoSuchRootID", array("rootID" => NULL));
 			
 		// Does this user already exist? Check by the key information ($loginOption)
-		// gh#653 
-		$stubUser = new User();
-		if (isset($user->name)) $stubUser->name = $user->name;
-		if (isset($user->studentID)) $stubUser->studentID = $user->studentID;
-		if (isset($user->email)) $stubUser->email = $user->email;
+		// gh#653
+		// gh#886: fix empty user detail can still registered. 
+		$stubUser = new User ();
+		if ($loginOption & User::LOGIN_BY_NAME || $loginOption & User::LOGIN_BY_NAME_AND_ID) {
+			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");
+			if (isset($user->name)) {
+				$stubUser->name = $user->name;
+			} else {
+				throw $this->copyOps->getExceptionForId ("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
+			}
+		} elseif ($loginOption & User::LOGIN_BY_ID) {
+			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
+			if (isset($user->studentID)) {
+				$stubUser->studentID = $user->studentID;
+			} else {
+				throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
+			}
+		} elseif ($loginOption & User::LOGIN_BY_EMAIL) {
+			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
+			//AbstractService::$debugLog->info("user email: ".$user->email);
+			if (isset ( $user->email )) {
+				$stubUser->email = $user->email;
+			} else {
+				throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
+			}
+		} else {
+			throw $this->copyOps->getExceptionForId ( "errorInvalidLoginOption", array("loginOption" => $loginOption));
+		}
+		
 		// #341 Only need to check user details within this root
-		$stubUser = $this->manageableOps->getUserByKey($stubUser, $rootID, $loginOption);
+		// gh#1090 Catch duplicate users exception as we can give a better error
+		try {
+			$stubUser = $this->manageableOps->getUserByKey($stubUser, $rootID, $loginOption);
+		} catch (Exception $e) {
+			if ($e->getCode() == $this->copyOps->getCodeForId("errorDuplicateUsers")) {
+				// mimic an existing user so we throw a better exception later
+				$stubUser = true;
+			} else {
+				throw $e;
+			}
+		}
 		
 		// Go ahead and add the user to the top level group
 		if ($stubUser==false) {
@@ -604,7 +691,7 @@ class BentoService extends AbstractService {
 		} else {
 			
 			// A user already exists with these details, so throw an error as we can't add the new one
-			throw $this->copyOps->getExceptionForId("errorDuplicateUser", array("name" => $stubUser->name, "loginOption" => $loginOption));
+			throw $this->copyOps->getExceptionForId("errorDuplicateUser", array("name" => $stubUser->name, "loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 		}
 
 		return false;
@@ -633,6 +720,14 @@ EOD;
 		return 0;
 	}
 
+	/**
+	 * Get php settings for upload parameters
+	 * gh#914
+	 */
+	public function getUploadMaxFilesize() {
+		return ini_get('upload_max_filesize');
+	}
+	
 	/**
 	 * gh#119 Old versions of the swf will crash if they don't find this method. So use it as a way to tell them to upgrade
 	 */
@@ -738,5 +833,26 @@ EOD;
 		//	a summary at the course level for time spent by me
 		return array("progress" => $progress);
 	}
-	
+
+	/**
+	 * Write memory for this user. Memories is an associative array of keys and values
+	 * gh#1067
+	 * 
+	 */
+	public function writeMemory($memories, $productCode = null) {
+		
+		foreach ($memories as $key => $value) {
+			$this->memoryOps->set($key, $value, $productCode);
+		}
+		
+	} 
+	/**
+	 * Get memory for this key.
+	 * gh#1067
+	 * 
+	 */
+	public function getMemory($key, $productCode = null) {
+		
+		return $this->memoryOps->get($key, $productCode);
+	} 
 }

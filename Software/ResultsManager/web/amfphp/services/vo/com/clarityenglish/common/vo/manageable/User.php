@@ -29,6 +29,9 @@ class User extends Manageable {
 	var $userProfileOption;
 	var $registerMethod;
 	
+	// gh#956
+	//var $memory;
+	
 	const USER_TYPE_DMS_VIEWER = -2;
 	const USER_TYPE_DMS = -1;
 	const USER_TYPE_STUDENT = 0;
@@ -130,6 +133,9 @@ class User extends Manageable {
 		if ($obj->F_RegistrationDate && strtotime($obj->F_RegistrationDate) > 0) $this->registrationDate = $obj->F_RegistrationDate;
 		$this->userProfileOption = $obj->F_UserProfileOption;
 		$this->registerMethod = $obj->F_RegisterMethod;
+		// gh#856
+		//$this->memory = ($obj->F_Memory) ? new SimpleXMLElement($obj->F_Memory) : null;
+		//$this->memory = $obj->F_Memory;
 	}
 	
 	/**
@@ -138,6 +144,7 @@ class User extends Manageable {
 	function toSQLUpdate($userID) {
 		$this->setDefaultValues();
 		
+		//			F_Memory=?
 		$sql = <<<EOD
 			UPDATE T_User 
 			SET F_UserName=?,F_Email=?,F_Password=?,F_StudentID=?,F_UserType=?,
@@ -156,6 +163,7 @@ EOD;
 	function toSQLInsert() {
 		$this->setDefaultValues();
 		
+		//			F_Memory)
 		$sql = <<<EOD
 			INSERT INTO T_User (F_UserName,F_Email,F_Password,F_StudentID,F_UserType,
 					F_ExpiryDate,F_StartDate,F_RegistrationDate,F_Birthday,
@@ -171,13 +179,16 @@ EOD;
 		return $sql;
 	}
 	
+	// gh#956
 	function toBindingParams() {
 		return array($this->name, $this->email, $this->password, $this->studentID, $this->userType, 
 					$this->expiryDate, $this->startDate, $this->registrationDate, $this->birthday,
 					$this->country, $this->city,
 					$this->custom1, $this->custom2, $this->custom3, $this->custom4, 
 					$this->fullName, $this->contactMethod, $this->userProfileOption,
-					$this->registerMethod);
+					$this->registerMethod); 
+					//($this->memory) ? $this->memory->asXML() : null);
+					//$this->memory);
 	}
 	
 	/**
@@ -208,6 +219,8 @@ EOD;
 		$array['F_ContactMethod'] = ($this->contactMethod) ? $this->contactMethod : ""; // Not null
 		$array['F_UserProfileOption'] = $this->userProfileOption;
 		$array['F_RegisterMethod'] = $this->registerMethod;
+		//$array['F_Memory'] = ($this->memory) ? $this->memory->asXML() : null;
+		//$array['F_Memory'] = $this->memory;
 		
 		return $array;
 	}
@@ -232,8 +245,9 @@ EOD;
 						"$prefix.F_FullName",
 						"$prefix.F_UserProfileOption",
 						"$prefix.F_RegisterMethod",
-						"$prefix.F_ContactMethod");
-						//"$prefix.F_Company",
+						"$prefix.F_ContactMethod",
+						//"$prefix.F_Memory", // gh#856
+						);
 		
 		return implode(",", $fields);
 	}
@@ -273,7 +287,6 @@ EOD;
 					  "userProfileOption",
 					  "registerMethod",
 					  "contactMethod");
-					 // "company",
 	}
 	
 	/**
@@ -369,11 +382,14 @@ EOD;
 				case "Title":
 					// At present there isn't really a way to get statistics on more than one title at a time... ask Adrian about this
 					// Set title to group differently from course
-					$opts[ReportBuilder::SHOW_COURSE] = true;
+					//$opts[ReportBuilder::SHOW_COURSE] = true;
+					$opts[ReportBuilder::SHOW_TITLE] = true;
+					// gh#797
+					$opts[ReportBuilder::WITHIN_COURSE] = true;
 					break;
 				case "Course":
 					$opts[ReportBuilder::SHOW_COURSE] = true;
-					//issue:#23
+					// gh#23
 					$opts[ReportBuilder::WITHIN_COURSE] = true;
 					break;
 				case "Unit":

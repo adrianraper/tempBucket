@@ -18,6 +18,21 @@ class Course extends Content {
 	var $description;
 	var $userID;
 	var $groupID;
+	
+	// gh#91 role values
+	const ROLE_OWNER = 1;
+	const ROLE_COLLABORATOR = 2;
+	const ROLE_PUBLISHER = 3;
+	const ROLE_VIEWER = 4;
+	
+	// gh#91 enabledFlag values
+	// TODO These are wrong, we should be using the ones already in Content
+	const EF_VIEWER = 1;
+	const EF_PUBLISHER = 2;
+	const EF_OWNER = 4;
+	const EF_EDITABLE = 8;
+	const EF_COLLABORATOR = 16;
+	
 	/**
 	 * Get the array of objects that make up a report if a report is generated on this Course
 	 */

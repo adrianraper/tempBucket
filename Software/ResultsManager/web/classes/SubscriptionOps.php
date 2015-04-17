@@ -7,6 +7,8 @@
 // TODO: For updates, we are not altering $account->name or anything account details, just changing titles.
 // TODO: For Emu, the licencedProducts (IYJ Practice Centre) need licenceAttributes, action=validatedLogin which we are not setting
 //
+// Add TB6weeks style subscriptions
+//
 class SubscriptionOps {
 
 	var $db;
@@ -21,6 +23,7 @@ class SubscriptionOps {
 		$this->accountOps = new AccountOps($db);
 		$this->emailOps = new EmailOps($db);
 		$this->templateOps = new TemplateOps($db);
+		$this->memoryOps = new MemoryOps($db);
 	}
 	
 	/**
@@ -33,6 +36,7 @@ class SubscriptionOps {
 		$this->accountOps->changeDB($db);
 		$this->emailOps->changeDB($db);
 		$this->templateOps->changeDB($db);
+		$this->memoryOps->changeDB($db);
 	}
 	
 	function validateApiInformation($apiInformation) {
@@ -239,9 +243,14 @@ EOD;
 		
 		// Just pick up an existing account, or create a new one?
 		if (stristr($apiInformation->method, 'update') !== false) {
-			if (!isset($apiInformation->email) && isset($apiInformation->subscription->email))
+			// gh#1210
+			// Try to get the account from prefix if any. This can fixed the duplicate email address problem
+			if (isset($apiInformation->prefix)){
+				return $this->accountOps->getAccountFromPrefix($apiInformation->prefix);
+			}
+			if (!isset($apiInformation->email) && isset($apiInformation->subscription->email)){
 				$apiInformation->email = $apiInformation->subscription->email;
-				
+			}
 			return $this->accountOps->getAccountFromEmail($apiInformation->email);
 			
 		} else {
@@ -637,6 +646,268 @@ EOD;
 		}
 		
 		return false;				
+	}
+	
+	/**
+	 * TB6weeks
+	 * This is to check if you have already subscribed to this product.
+	 * 
+	 * return: null or the 
+	 */
+	public function hasProductSubscription($user, $productCode) {
+		
+		$subscription = $this->memoryOps->get('subscription', $productCode, $user->userID);
+		if (!$subscription)
+			return false;
+			
+		// Is this subscription valid?
+		return (isset($subscription['valid']) && $subscription['valid']);
+	}
+	
+	/**
+	 * Based on the user set in the session, change their subscription.
+	 * 
+	 * return: true|false
+	 */
+	public function changeProductSubscription($productCode, $level, $bookmark, $dateDiff) {
+		
+		$now = new DateTime();
+		
+		$this->memoryOps = new MemoryOps($this->db);
+		$newSubscription = array('startDate' => $now->format('Y-m-d'), 'frequency' => $dateDiff, 'valid' => true); 
+		$this->memoryOps->set('subscription', $newSubscription);
+		$this->memoryOps->set('level', $level);
+		
+		// The bookmark (which controls direct start), is written to Tense Buster memory, not TB6weeks.
+		switch ($productCode) {
+			case 59;
+				return $this->memoryOps->set('directStart', $bookmark, $this->relatedProducts($productCode));
+				break;
+			default:
+		}
+		
+	}
+	
+	/**
+	 * Remove a student's subscription to this title.
+	 * If they have other subscriptions those will not be removed and the user is not deleted.
+	 * 
+	 * Perhaps unsubscribe means remove yourself from this subscription - so no more TB6weeks. But you still exist as a user.
+	 * Whilst this will completely delete the user, it will only do it if they have a subscription to this product. NO.
+	 * 
+	 * 
+	 */
+	public function removeProductSubscription($user, $productCode) {
+		// Check that this user has a subscription (valid or not)
+		$this->memoryOps = new MemoryOps($this->db);
+		$subscription = $this->memoryOps->get('subscription');
+		
+		if (!$subscription) {
+			$status = 'no subscription';
+			
+		} else {
+			$this->memoryOps->forget($user->userID, $productCode);
+			$this->memoryOps->forget($user->userID, $this->relatedProducts($productCode), 'directStart');
+			$status = 'done';
+					
+			// Does this user have other subscriptions?
+			$rs = $this->memoryOps->getAllKeys('subscription');
+			if ($rs) {
+				if ($rs->recordCount() > 0)
+					$status = 'other records';
+			}
+		}
+		return $status;
+	}
+
+	/**
+	 * Get all users in an account who have a subscription
+	 * 
+	 */
+	public function getSubscribedUsersInAccount($account, $productCode) {
+		$users = array();
+		
+		$sql = <<<SQL
+			SELECT u.*
+			FROM T_User u, T_Membership m, T_Memory me
+			WHERE me.F_ProductCode = ?
+			AND me.F_Key = 'subscription'
+			AND me.F_UserID = u.F_UserID
+			AND u.F_UserID = m.F_UserID
+			AND m.F_RootID = ?
+SQL;
+		$bindingParams = array($productCode, $account->id);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs->RecordCount() > 0) {
+			while ($dbObj = $rs->FetchNextObj()) {
+				$user = new User();
+				$user->fromDatabaseObj($dbObj);
+				$users[] = $user;
+			}
+		}
+		return $users;		
+	}
+	
+	/**
+	 * This might be better as a db lookup?
+	 * Calculates the starting point for a subscription on its nth week in a particular level
+	 * 
+	 */
+	public function getDirectStart($level, $unitsAdded = 0, $productCode = null) {
+		if (!$productCode) $productCode = Session::get('productCode');
+		$relatedProductCode = $this->relatedProducts($productCode);
+		
+		switch ($relatedProductCode) {
+			case 55:
+				switch ($level) {
+					case 'ELE':
+						$course = '1189057932446';
+						switch ($unitsAdded) {
+							case 0:
+								$unit = '1192013076011'; // Am, is, are
+								break;
+							case 1:
+								$unit = '1192013076627';
+								break;
+							case 2:
+								$unit = '1192013076406';
+								break;
+							case 3:
+								$unit = '1192013076042';
+								break;
+							case 4:
+								$unit = '1192013076442';
+								break;
+							case 5:
+								$unit = '1192013076075';
+								break;
+							default:
+								return null;
+						}
+						break;
+					case 'LI':
+						$course = '1189060123431';
+						switch ($unitsAdded) {
+							case 0:
+								$unit = '1192625080479'; // Simple present
+								break;
+							case 1:
+								$unit = '1192625080536';
+								break;
+							case 2:
+								$unit = '1192625080519';
+								break;
+							case 3:
+								$unit = '1192625080036';
+								break;
+							case 4:
+								$unit = '1192625080950';
+								break;
+							case 5:
+								$unit = '1192625080483';
+								break;
+							default:
+								return null;
+						}
+						break;
+					case 'INT':
+						$course = '1195467488046';
+						switch ($unitsAdded) {
+							case 0:
+								$unit = '1195467532331'; // The passive
+								break;
+							case 1:
+								$unit = '1195467532329';
+								break;
+							case 2:
+								$unit = '1192625080157';
+								break;
+							case 3:
+								$unit = '1195467532343';
+								break;
+							case 4:
+								$unit = '1195467532330';
+								break;
+							case 5:
+								$unit = '1195467532328';
+								break;
+							default:
+								return null;
+						}
+						break;
+						
+					case 'UI':
+						$course = '1190277377521';
+						switch ($unitsAdded) {
+							case 0:
+								$unit = '1192625319203'; // Past continuous
+								break;
+							case 1:
+								$unit = '1192625319263';
+								break;
+							case 2:
+								$unit = '1192625319990';
+								break;
+							case 3:
+								$unit = '1192625319573';
+								break;
+							case 4:
+								$unit = '1192625319744';
+								break;
+							case 5:
+								$unit = '1193054443818';
+								break;
+							default:
+								return null;
+						}
+						break;
+						
+					case 'ADV':
+						$course = '1196935701119';
+						switch ($unitsAdded) {
+							case 0:
+								$unit = '1196216926895'; // Reported speech
+								break;
+							case 1:
+								$unit = '1196301393947';
+								break;
+							case 2:
+								$unit = '1196649107233';
+								break;
+							case 3:
+								$unit = '1196204720339';
+								break;
+							case 4:
+								$unit = '1196293510373';
+								break;
+							case 5:
+								$unit = '1196641272970';
+								break;
+							default:
+								return null;
+						}
+						break;
+				}
+				break;
+				
+			default:
+				break;
+		}
+		
+		return $relatedProductCode.'.'.$course.'.'.$unit;
+	}
+	
+	/**
+	 * Related products for subscriptions
+	 * 
+	 */
+	public function relatedProducts($productCode) {
+		switch ($productCode) {
+			case 59:
+				return 55;
+				break;
+		}
+		return null;
 	}
 	
 	// =========

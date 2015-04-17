@@ -158,6 +158,13 @@ SQL;
 							}
 						}
 						break;
+					case 'archived':
+						if ($value) {
+							$selectBuilder->addWhere("a.F_AccountStatus = '11'");
+						} else {
+							$selectBuilder->addWhere("a.F_AccountStatus != '11'");
+						}
+						break;
 					case 'expiryDate':
 						//echo "expiryDate set to $value";
 						//$where[] = "t.F_ExpiryDate = '".$onExpiryDate."'";
@@ -235,6 +242,12 @@ SQL;
 						$needsAccountsTable = true;
 						break;
 						
+					// gh#862
+					case 'languageCode':
+						$selectBuilder->addWhere("t.F_LanguageCode = '".$value."'");
+						$needsAccountsTable = true;
+						break;
+						
 					case 'active':
 						if ($value == 'true') {
 							$now = date('Y-m-d');
@@ -243,6 +256,9 @@ SQL;
 							$selectBuilder->addWhere("t.F_LicenceStartDate <= '$now 23:59:59'");
 							$needsAccountsTable = true;
 						}
+						// gh#911 If we are not specifically setting 'archived', then active means NOT archived
+						if (!isset($conditions['archived']))
+							$selectBuilder->addWhere("a.F_AccountStatus != '11'");
 						break;
 						
 					// v3.5 Flexibility of email triggers. Ignore accounts that have opted out, for a while.
@@ -424,13 +440,10 @@ SQL;
 					$relevantAttributes[] = $detail;
 				} else {
 					$codes = explode(',',$detail['productCode']);
-					$productCodes = explode(',',$productCode);
-					foreach ( $codes as $code ) {
-						foreach ( $productCodes as $theProductCode ) {
-							if ($code == $theProductCode) {
-								$relevantAttributes [] = $detail;
-								break;
-							}
+					foreach ($codes as $code) {
+						if ($code==$productCode) {
+							$relevantAttributes[] = $detail;
+							break;
 						}
 					}
 				}
@@ -568,7 +581,7 @@ EOD;
 			$adminUser = $this->manageableOps->addUser($account->adminUser, $group, $account->id);
 			// Update the adminUserID field in the database to point at the newly created user
 			$this->db->Execute("UPDATE T_AccountRoot SET F_AdminUserID=? WHERE F_RootID=?", array($adminUser->userID, $account->id));
-			AbstractService::$log->notice("Created group name=".$account->name.", id=".$group->id.", and user name=".$account->adminUser->name.", id=".$account->adminUser->userID);
+			AbstractService::$controlLog->info("Created group name=".$account->name.", id=".$group->id.", and user name=".$account->adminUser->name.", id=".$account->adminUser->userID);
 			
 			// v3.7 Also create a learner user at the same time. Mostly useful for AA accounts.
 			// gh#653 but skip this for home user sales as completely unnecessary
@@ -581,7 +594,7 @@ EOD;
 				$learnerUser->password = $account->prefix;
 				$learnerUser->userType = User::USER_TYPE_STUDENT;
 				$learnerUser = $this->manageableOps->addUser($learnerUser, $group, $account->id);			
-				AbstractService::$log->notice("Created learner name=".$learnerUser->name.", id=".$learnerUser->userID);
+				AbstractService::$controlLog->info("Created learner name=".$learnerUser->name.", id=".$learnerUser->userID);
 			}
 						
 			// You need to add a record to T_AccountEmails for this admin user
@@ -604,7 +617,7 @@ EOD;
 			}
 		}
 			
-		AbstractService::$log->notice("Created account name=".$account->name.", id=".$account->id);
+		AbstractService::$controlLog->info("Created account name=".$account->name.", id=".$account->id.", by user=".Session::get('userID'));
 		$this->db->CompleteTrans();
 	}
 	
@@ -614,9 +627,12 @@ EOD;
 	 * @param accountsArray An array of Account objects
 	 */
 	function updateAccounts($accountsArray) {
+		AbstractService::$log->setRootID($account->id);
 		$this->db->StartTrans();
 		
 		foreach ($accountsArray as $account) {
+			AbstractService::$controlLog->info("Update account name=".$account->name.", id=".$account->id.", by user=".Session::get('userID'));
+			
 			if (!$this->isAccountValid($account))
 				// This account cannot be added (probably because it does not have a unique prefix)
 				throw new Exception($this->copyOps->getCopyForId("prefixExistsError", array("prefix" => $account->prefix)));
@@ -645,10 +661,6 @@ EOD;
 				$this->db->AutoExecute("T_LicenceAttributes", $dbObj, "INSERT");
 			}
 		}
-		
-		// make the root of the changed account explicit in the log
-		AbstractService::$log->setRootID($account->id);
-		AbstractService::$log->notice("Updated account name=".$account->name.", id=".$account->id);
 		
 		$this->db->CompleteTrans();
 	}
@@ -691,7 +703,7 @@ EOD;
 		
 		// make the root of the changed account explicit in the log
 		AbstractService::$log->setRootID($account->id);
-		AbstractService::$log->notice("Deleted account name=".$account->name.", id=".$account->id);
+		AbstractService::$controlLog->info("Deleted account name=".$account->name.", id=".$account->id.", by user=".Session::get('userID'));
 		
 		$this->db->CompleteTrans();
 	}
@@ -715,11 +727,15 @@ EOD;
 		$allLicencesAA = true;
 		// Then add in the new/updated titles
 		foreach ($account->titles as $title) {
-			$titleArray = $title->toAssocArray();
 			// v3.3 Before you create the checksum, make sure that the expiry date has been altered to 23:59:59
 			$title->expiryDate = substr($title->expiryDate,0,10).' 23:59:59';
 			$title->licenceStartDate = substr($title->licenceStartDate, 0, 10).' 00:00:00';
 			
+			// gh#987 Check that F_ProductVersion is not null
+			if (!$title->productVersion)
+				$title->productVersion = Title::FULL_VERSION;
+				
+			$titleArray = $title->toAssocArray();
 			$titleArray["F_RootID"] = $account->id;
 			$titleArray["F_Checksum"] = $this->generateChecksumForTitle($title, $account);
 			//NetDebug::trace("root=".$account->id." productCode=".$title->productCode." checksum=".$titleArray["F_Checksum"]);
@@ -746,7 +762,7 @@ EOD;
 						//NetDebug::trace('AccountOps.addAccount failed to copy '.$emptyTemplate.'/course.xml');
 					}
 					AbstractService::$log->setRootID($account->id);
-					AbstractService::$log->notice("Created ap folder=".$thisContentLocation);
+					AbstractService::$controlLog->info(" created ap folder=".$thisContentLocation);
 				}
 			}
 
@@ -756,7 +772,7 @@ EOD;
 				if (!is_dir($thisContentLocation)) {
 					mkdir($thisContentLocation, 0777);
 					AbstractService::$log->setRootID($account->id);
-					AbstractService::$log->notice("Created CCB folder=".$thisContentLocation);
+					AbstractService::$controlLog->info(" created CCB folder=".$thisContentLocation);
 				}
 			}
 			
@@ -785,6 +801,33 @@ EOD;
 			} else {
 				$allLicencesAA = false;
 			}
+			
+			// gh#1190 Write control log
+			switch ($title->licenceType) {
+				case Title::LICENCE_TYPE_LT:
+					$licenceTypeDescription = 'LT';
+					break;
+				case Title::LICENCE_TYPE_AA:
+					$licenceTypeDescription = 'AA';
+					break;
+				case Title::LICENCE_TYPE_NETWORK:
+					$licenceTypeDescription = 'Network';
+					break;
+				case Title::LICENCE_TYPE_SINGLE:
+				case Title::LICENCE_TYPE_I:
+					$licenceTypeDescription = 'Single';
+					break;
+				case Title::LICENCE_TYPE_TT:
+					$licenceTypeDescription = 'TT';
+					break;
+				case Title::LICENCE_TYPE_CT:
+					$licenceTypeDescription = 'LT';
+					break;
+				default:
+					$licenceTypeDescription = 'unknown ';
+					
+			}
+			AbstractService::$controlLog->info(" title ".$title->name." ".$licenceTypeDescription." licence=".$title->maxStudents." until ".$title->expiryDate);
 		}
 		// v3.0.6 If all the titles are AA licences, CE.com/shared will the portal they use for access.
 		// This is signalled by adding 128 to the loginOption.
@@ -1062,9 +1105,8 @@ EOD;
 			while ($rsObj = $rs->FetchNextObj()) {
 				// now simple check to see if the passed ip is in this range
 				if ($this->isIPInRange($ip, $rsObj->ranges))
-					$foundRoots[] = $rsObj->rootID;	
+					$foundRoots[] = $rsObj->rootID;
 			}
-			$foundRoots = array_unique($foundRoots);
 		}
 		
 		switch (count($foundRoots)) {
@@ -1162,8 +1204,9 @@ EOD;
 	 */
 	public function getNextPrefix() {
 		// gh#149
+		// gh#884
 		$sql = 	<<<EOD
-				SELECT MAX(F_Prefix) AS MAXPREFIX from T_AccountRoot
+				SELECT MAX(CAST(F_Prefix AS UNSIGNED)) AS MAXPREFIX from T_AccountRoot
 				WHERE F_Prefix REGEXP '^[0-9]+$'
 EOD;
 		//$sql .= NEG_MYPOSTFIX;

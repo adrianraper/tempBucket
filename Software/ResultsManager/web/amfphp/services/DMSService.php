@@ -52,6 +52,9 @@ require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php");
 // v3.1 New trigger module
 require_once(dirname(__FILE__)."/../../classes/TriggerOps.php");
 
+// gh#1067
+require_once(dirname(__FILE__)."/../../classes/MemoryOps.php");
+
 require_once(dirname(__FILE__)."/AbstractService.php");
 
 class DMSService extends AbstractService {

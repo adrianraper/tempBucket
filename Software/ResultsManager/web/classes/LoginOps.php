@@ -30,25 +30,28 @@ class LoginOps {
 		// loginOption controls what fields you use to login with.
 		// TODO. The code below doesn't properly do username+studentID at the moment
 		if ($loginOption & User::LOGIN_BY_NAME || $loginOption & User::LOGIN_BY_NAME_AND_ID) {
+			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");
 			if (isset($loginObj['username'])) {
 				$key = 'u.F_UserName';
 				$keyValue = $loginObj['username'];
 			} else {
-				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption));
+				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 			}
 		} elseif ($loginOption & User::LOGIN_BY_ID) {
+			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
 			if (isset($loginObj['studentID'])) {
 				$key = 'u.F_StudentID';
 				$keyValue = $loginObj['studentID'];
 			} else {
-				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption));
+				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 			}
 		} elseif ($loginOption & User::LOGIN_BY_EMAIL) {
+			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
 			if (isset($loginObj['email'])) {
 				$key = 'u.F_Email';
 				$keyValue = $loginObj['email'];
 			} else {
-				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption));
+				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 			}
 		} else {
 			throw $this->copyOps->getExceptionForId("errorInvalidLoginOption", array("loginOption" => $loginOption));
@@ -95,11 +98,11 @@ EOD;
 		switch ($rs->RecordCount()) {
 			case 0:
 				// Whilst testing tablet login, tell me about all logins
-				$logMessage = "login $keyValue no such user";
-				if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
-				AbstractService::$debugLog->info($logMessage);
+				//$logMessage = "login $keyValue no such user";
+				//if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
+				//AbstractService::$debugLog->info($logMessage);
 				// Invalid login
-				throw $this->copyOps->getExceptionForId("errorNoSuchUser", array("loginOption" => $loginOption));
+				throw $this->copyOps->getExceptionForId("errorNoSuchUser", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 				break;
 				
 			case 1:
@@ -132,8 +135,8 @@ EOD;
 				// So first of all see if you can figure out some rules for picking one of the multiple users
 				
 				// Do some logging to check this, especially with tablets
-				$logMessage = "login $keyValue has ".$rs->RecordCount()." matches";
-				AbstractService::$debugLog->info($logMessage);
+				//$logMessage = "login $keyValue has ".$rs->RecordCount()." matches";
+				//AbstractService::$debugLog->info($logMessage);
 				
 				// 1. Does the password match just one of them?
 				$matches = 0;
@@ -146,8 +149,8 @@ EOD;
 					}
 				}
 				if ($matches == 1) {
-					$logMessage = "use password to match ".$dbLoginObj->F_UserID;
-					AbstractService::$debugLog->info($logMessage);
+					//$logMessage = "use password to match ".$dbLoginObj->F_UserID;
+					//AbstractService::$debugLog->info($logMessage);
 					continue;
 				}
 
@@ -195,8 +198,8 @@ EOD;
 				$rs1->MoveFirst();
 				while ($accountObj = $rs1->FetchNextObj()) {
 					
-					$logMessage = "root ".$accountObj->rootID." is a ".$accountObj->productVersion;
-					AbstractService::$debugLog->info($logMessage);
+					//$logMessage = "root ".$accountObj->rootID." is a ".$accountObj->productVersion;
+					//AbstractService::$debugLog->info($logMessage);
 					
 					if ($accountObj->productVersion && stristr($accountObj->productVersion, 'HU')) {
 						
@@ -243,17 +246,17 @@ EOD;
 				// TODO. This is not perfect. You might have an expired account that is HU and it is chosen over
 				// non-expired FV ones.
 				
-				throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("loginOption" => $loginOption));
+				throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 		}
 		
 		// A special case to check that the password matches the case (by default MSSQL and MYSQL are case-insensitive)
 		// #341 Only check password if you have set this to be the case 
 		if ($verified) {
 			if ($password != $dbLoginObj->F_Password) {
-				$logMessage = "login $keyValue wrong password, they typed $password, should be ".$dbLoginObj->F_Password;
-				if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
-				AbstractService::$debugLog->info($logMessage);
-				throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption));
+				//$logMessage = "login $keyValue wrong password, they typed $password, should be ".$dbLoginObj->F_Password;
+				//if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
+				//AbstractService::$debugLog->info($logMessage);
+				throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 			}
 		}
 		
@@ -269,18 +272,20 @@ EOD;
 				(strtotime($dbLoginObj->F_ExpiryDate) > 0) && 
 				(strtotime($dbLoginObj->F_ExpiryDate) < strtotime(date("Y-m-d")))) {
 			
-				$logMessage = "login $keyValue but expired on ".$dbLoginObj->F_ExpiryDate;
-				if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.= '-tablet-';
-				AbstractService::$debugLog->info($logMessage);
+				//$logMessage = "login $keyValue but expired on ".$dbLoginObj->F_ExpiryDate;
+				//if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.= '-tablet-';
+				//AbstractService::$debugLog->info($logMessage);
 				throw $this->copyOps->getExceptionForId("errorUserExpired", array("expiryDate" => date("d M Y", strtotime($dbLoginObj->F_ExpiryDate))));
 		}
 		
-		$logMessage = "login $keyValue success";
-		if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
-		AbstractService::$debugLog->info($logMessage);
+		//$logMessage = "login $keyValue success";
+		//if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
+		//AbstractService::$debugLog->info($logMessage);
 		
 		// Authenticate the user with the session
-		Authenticate::login($dbLoginObj->F_UserName, $dbLoginObj->F_UserType);
+		// gh#1140 In case name is null
+		$sessionName = (string)$dbLoginObj->F_UserID.$dbLoginObj->F_UserName;
+		Authenticate::login($sessionName, $dbLoginObj->F_UserType);
 		
 		// gh#156 - update the timezone difference for this user in the database
 		$this->db->Execute("UPDATE T_User SET F_TimeZoneOffset=? WHERE F_UserID=?", array(-$loginObj["timezoneOffset"] / 60, $dbLoginObj->F_UserID));
@@ -339,7 +344,9 @@ EOD;
 		}
 			
 		// gh#334 Authenticate the user with the session
-		Authenticate::login($loginObj->F_UserName, $loginObj->F_UserType);
+		// gh#1140 In case name is null
+		$sessionName = (string)$loginObj->F_UserID.$loginObj->F_UserName;
+		Authenticate::login($sessionName, $loginObj->F_UserType);
 		
 		return $loginObj;
 	}
@@ -440,8 +447,32 @@ EOD;
 		
 		switch ($rs->RecordCount()) {
 			case 0:
-				// Invalid login
-				return false;
+				// Invalid login to regular account
+				// gh#1118 - But are you a super user and did you specify the account?
+				if ($rootID) {
+					$loginObj = $this->login($username, $password, array(User::USER_TYPE_DMS, User::USER_TYPE_DMS_VIEWER), null);
+					if (!$loginObj)
+						return false;
+						
+					// Graft the originally requested root onto the returning data
+					$loginObj->F_RootID = $rootID;
+					// Get the top level group for that root
+					$account = $this->manageableOps->getAccountRoot($rootID);
+					$topGroupID = $this->manageableOps->getGroupIdForUserId($account->getAdminUserID());
+					$loginObj->F_GroupID = $topGroupID;
+					// And pretend that RM is not AA
+					$loginObj->F_LicenceType = 1;
+					
+					// Authenticate the user with the session
+					$sessionName = (string)$loginObj->F_UserID.$loginObj->F_UserName;
+					Authenticate::login($sessionName, $loginObj->F_UserType);
+					Session::set('userID', $loginObj->F_UserID);
+					Session::set('userType', $loginObj->F_UserType);
+					return $loginObj;
+						
+				} else {
+					return false;
+				}
 			case 1:
 				// Valid login
 				$loginObj = $rs->FetchNextObj();
@@ -472,7 +503,9 @@ EOD;
 					throw new Exception("Your Results Manager expired on ".date("d M Y", strtotime($loginObj->ProductExpiryDate)));
 				
 				// Authenticate the user with the session
-				Authenticate::login($username, $loginObj->F_UserType);
+				// gh#1140 In case name is null
+				$sessionName = (string)$loginObj->F_UserID.$loginObj->F_UserName;
+				Authenticate::login($sessionName, $loginObj->F_UserType);
 				
 				// Store information about this login in the session
 				Session::set('userID', $loginObj->F_UserID);
@@ -794,16 +827,11 @@ EOD;
 	 */
 	function getAccountSettings($config) {
 		// Check data
-		if (isset($config['prefix'])) 
-			// #519
-			$prefix = (string) $config['prefix'];
-		if (isset($config['rootID'])) 
-			$rootID = $config['rootID'];
-		if (isset($config['productCode'])) 
-			$productCode = $config['productCode'];
+		$prefix = (isset($config['prefix'])) ? (string) $config['prefix'] : null; //#519
+		$rootID = (isset($config['rootID'])) ? $config['rootID'] : null;
+		$productCode = (isset($config['productCode'])) ? $config['productCode'] : null;
 		// gh#315
-		if (isset($config['ip'])) 
-			$ip = $config['ip'];
+		$ip = (isset($config['ip'])) ? $ip = $config['ip'] : null;
 			
 		// gh#39 productCode might be a comma delimited list '52,53'
 		if (!$productCode)
@@ -837,7 +865,7 @@ EOD;
 			$rootID = (int) $rawRootID;
 			// #519
 			if (!$rootID) {
-				$logMessage = 'prefix error, prefix='.$prefix.' rootID='.$rawRootID.' dbHost='.$config['dbHost'].' db='.$GLOBALS['db'];
+				$logMessage = 'prefix error, prefix='.$prefix.' rootID='.$rawRootID.' db='.$GLOBALS['db'];
 				AbstractService::$debugLog->err($logMessage);
 				throw $this->copyOps->getExceptionForId("errorNoPrefixForRoot", array("prefix" => $prefix));
 			}		

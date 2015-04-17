@@ -120,6 +120,10 @@ class ReportOps {
 				case "includeEmail":
 					$opts[ReportBuilder::SHOW_EMAIL] = $reportOptValue;
 					break;
+				// gh#777
+				case "includeInactiveUsers":
+					$opts[ReportBuilder::SHOW_INACTIVE_USERS] = $reportOptValue;
+					break;
 				case "headers":
 					// Headers are just included in the root xml element for the XSL to do whatever it likes with them
 					$headers = $reportOptValue;
@@ -141,12 +145,88 @@ class ReportOps {
 		foreach ($opts as $opt => $value)
 			$reportBuilder->setOpt($opt, $value);
 		
-		//echo "ReportOps::".ReportBuilder::SHOW_COURSE."=".$reportBuilder->getOpt(ReportBuilder::SHOW_COURSE)."         ";
+		// gh#777 Even if you are reporting on a group you might need userIDs for detailed queries
+		$forUsers = $reportBuilder->getOpt(ReportBuilder::FOR_USERS);
+		if (!$forUsers && ($forGroups = $reportBuilder->getOpt(ReportBuilder::FOR_GROUPS))) {
+			$forGroupsInString = implode(",", $forGroups);
+			$sqlForUsers = <<<EOD
+				SELECT m.F_UserID, u.F_UserName as userName, u.F_Email as email, u.F_StudentID as studentID, g.F_GroupName as groupName
+				FROM T_Membership m, T_User u, T_Groupstructure g
+				WHERE m.F_GroupID IN ($forGroupsInString)
+				AND m.F_UserID = u.F_UserID
+				AND m.F_GroupID = g.F_GroupID
+				AND u.F_UserType = 0
+EOD;
+			$rs = $this->db->Execute($sqlForUsers);
+			$forUsers = Array();
+			$allUsersDetails= Array();
+			switch ($rs->RecordCount()) {
+				case 0:
+					break;
+				default:
+					while ($userObj = $rs->FetchNextObj()) {
+						$forUsers[] = $userObj->F_UserID;
+						$allUsersDetail = array("userID" => $userObj->F_UserID);
+						if ($reportBuilder->getOpt(ReportBuilder::SHOW_USERNAME)) 
+							$allUsersDetail["userName"] = $userObj->userName;
+						if ($reportBuilder->getOpt(ReportBuilder::SHOW_STUDENTID)) 
+							$allUsersDetail["studentID"] = $userObj->studentID;
+						if ($reportBuilder->getOpt(ReportBuilder::SHOW_EMAIL)) 
+							$allUsersDetail["email"] = $userObj->email;
+						if ($reportBuilder->getOpt(ReportBuilder::SHOW_GROUPNAME)) 
+							$allUsersDetail["groupName"] = $userObj->groupName;
+						$allUsersDetails[] = $allUsersDetail;
+					}
+			}
+			// Now put this information into the passed parameters for report building
+			$reportBuilder->setOpt(ReportBuilder::FOR_USERS, $forUsers);
+		}
+			
 		// Execute the query - for some crazy reason its necessary to store the sql in a variable before passing to to AdoDB
 		$sql = $reportBuilder->buildReportSQL();
 		// echo $sql.'<br/>'; exit();
 		$rows = $this->db->GetArray($sql);
-		//echo 'hi'; exit();
+		
+		// gh#777 Run a second query to add all users in a group who haven't got any score records
+		if ($reportBuilder->getOpt(ReportBuilder::SHOW_INACTIVE_USERS)) {
+			$newRows = Array();
+			// which columns appear in the empty rows?
+			$fixedReportColumns = Array();
+			switch (true) {
+				case ($reportBuilder->getOpt(ReportBuilder::SHOW_EXERCISE)):
+					$fixedReportColumns['exerciseID'] = 0;
+				case ($reportBuilder->getOpt(ReportBuilder::SHOW_UNIT)):
+					$fixedReportColumns['unitID'] = 0;
+				case ($reportBuilder->getOpt(ReportBuilder::SHOW_COURSE)):
+					$fixedReportColumns['courseID'] = 0;
+				case ($reportBuilder->getOpt(ReportBuilder::SHOW_TITLE)):
+					$fixedReportColumns['productCode'] = 0;
+					break;
+				default:
+			}
+			// and for those columns, can you put a single value in them?
+			if (isset($fixedReportColumns['productCode']) && $headers['titles'] && count(explode(',', $headers['titles'])) == 1)
+				$fixedReportColumns['productCode'] = 'value';
+			if (isset($fixedReportColumns['courseID']) && $headers['courses'] && count(explode(',', $headers['courses'])) == 1)
+				$fixedReportColumns['courseID'] = 'value';
+				// we don't do units/exercises in the same way - doesn't seem too necessary
+
+			foreach ($allUsersDetails as $user) {
+				// If the user has a detail record, ignore them. Otherwise add them as a blank record. 
+				foreach ($rows as $row) {
+					if ($user["userID"] == $row["userID"])
+						continue 2; 
+				}
+				if ($rows) {
+					$newRows[] = $reportBuilder->createBlankRow($user, $rows[0], $fixedReportColumns);
+				} else {
+					$newRows[] = $user;
+				}
+			}
+			if ($newRows)
+				$rows = array_merge($rows, $newRows);
+		}
+		
 		// v3.4 If a particular report needs score details (as the Clarity test does), this would seem like a good place to get the data.
 		// Build a second SQL and get the data from it into another array. Then you can process this array below too.
 		// Once all the data you need is in the dom, you can let the xsl pick it up.
@@ -354,6 +434,9 @@ class ReportOps {
 					$rowKey .= $row['studentID'];
 				if (isset($row['email']))
 					$rowKey .= $row['email'];
+				// gh#795
+				if (isset($row['userID']))
+					$rowKey .= $row['userID'];
 					
 				if ($rowKey != $rowKeyValue || $this->reportableUID($row) != $rowUID) {
 					// write out the previous row (if not in first loop)
@@ -539,39 +622,53 @@ class ReportOps {
 		if (isset($row['courseID'])) {
 			$courseID = $row['courseID'];
 			unset($row['courseID']);
-			
-			// v3.4 For R2I this always returns Academic, even if they did GT because courseIDs are the same.
-			// If we could get the correct title, then everything else would be OK. And the session records could tell us this.
-			// So that would mean including T_Session in the SQL so I can add productCode to the returned results.
-			// That doesn't seem to be too slow.
-			if (isset($row['productCode'])) {
-				$title = $this->getTitle($row['productCode']);
-			} else {
-				$title = $this->getTitleForCourseID($courseID);
-			}
+		}			
+		// v3.4 For R2I this always returns Academic, even if they did GT because courseIDs are the same.
+		// If we could get the correct title, then everything else would be OK. And the session records could tell us this.
+		// So that would mean including T_Session in the SQL so I can add productCode to the returned results.
+		// That doesn't seem to be too slow.
+		if (isset($row['productCode'])) {
+			$title = $this->getTitle($row['productCode']);
+		} else if (isset($courseID)) {
+			$title = $this->getTitleForCourseID($courseID);
+		} else {
+			return $row;
+		}
 		
-			if (isset($title->name)) {
-				$row['titleName'] = $title->name;
-			} else if (isset($title->caption)) {
-				$row['titleName'] = $title->caption;
-			} else {
-				$row['titleName'] = '-no name-';
-			} 
+		if (isset($title->name)) {
+			$row['titleName'] = $title->name;
+		} else if (isset($title->caption)) {
+			$row['titleName'] = $title->caption;
+		} else {
+			$row['titleName'] = "-no name-";
+			// gh#990
+			if (isset($row['productCode']))
+				$row['titleName'] += "(".$row['productCode'].")";
+		} 
+		if (isset($courseID)) {
 			if (isset($title->courses[$courseID]->caption)) {
 				$row['courseName'] = $title->courses[$courseID]->caption;
 			} else if (isset($title->courses[$courseID]->name)) {
 				$row['courseName'] = $title->courses[$courseID]->name;
 			} else {
-				$row['courseName'] = '-no name-';
+				// gh#990
+				$row['courseName'] = "-no name- ($courseID)";
 			}
-			//gh#28
+			// gh#28
 			if (isset($row['exerciseUnit_percentage'])) {
-			   $total = 0;
-			   foreach ($title->courses[$courseID]->units as $unit) {
-			       $total = $total + $unit->totalExercises;
-			   }
-			// gh#28 express as %
-			$row['exerciseUnit_percentage'] =  100 * $row['exerciseUnit_percentage'] / $total;
+				$total = 0;
+				foreach ($title->courses[$courseID]->units as $unit)
+					$total = $total + $unit->totalExercises;
+				$row['exerciseUnit_percentage'] =  100 * $row['exerciseUnit_percentage'] / $total;
+		    }
+		} else {
+			// gh#28
+			if (isset($row['exerciseUnit_percentage'])) {
+				$total = 0;
+				foreach ($title->courses as $course)
+					foreach ($course->units as $unit)
+						$total = $total + $unit->totalExercises;
+				$row['exerciseUnit_percentage'] =  100 * $row['exerciseUnit_percentage'] / $total;
 		    }
 		}
 		
@@ -605,16 +702,9 @@ class ReportOps {
 				}
 				$row['unitName'] = $bestName;
 			}
-			//gh#28			
-		    if (isset($row['exercise_percentage'])) {
-			   //for AR, some exerciseID in DB is not exist in content xml file
-			   /*if (!isset($title->courses[$courseID]->units[$unitID]->exercises[$exerciseID])) {
-			        $row['exercise_percentage'] = $row['exercise_percentage'] - 1;
-			   }*/
-				// gh#28 express as %
+			// gh#28			
+		    if (isset($row['exercise_percentage']))
 		    	$row['exercise_percentage'] =  100 * $row['exercise_percentage'] / $title->courses[$courseID]->units[$unitID]->totalExercises;
-		    }
-			//echo "unitID=$unitID, name={$title->courses[$courseID]->units['0']->name}";
 		}
 		
 		// If exerciseID is set replace it with the exerciseName
@@ -633,11 +723,11 @@ class ReportOps {
 				// it was just moved to another place.
 				// So you could do a search for the exercise ID (which is probably unique) in the whole title
 				$bestName = "-no name- ($exerciseID)";
-				foreach ($title-> courses as $course) {
-					foreach ($course-> units as $unit) {
+				foreach ($title->courses as $course) {
+					foreach ($course->units as $unit) {
 						foreach ($unit->exercises as $exercise) {
-							if ($exercise-> id == $exerciseID) {
-								$bestName = $exercise-> name.'*';
+							if ($exercise->id == $exerciseID) {
+								$bestName = $exercise->name.'*';
 								break 3;
 							}
 						}
@@ -657,8 +747,9 @@ class ReportOps {
 		
 		// Reformat the start date into "Oct 10 2008 14:37" format (JS compatible to allow for sorting in the browser)
 		if (isset($row['start_date'])) {
-			$timeStamp = $this->db->UnixTimeStamp($row['start_date']);
-			$row['start_date'] = date("M j Y H:i", $timeStamp);
+			//$timeStamp = $this->db->UnixTimeStamp($row['start_date']);
+			//$row['start_date'] = date("M j Y H:i", $timeStamp);
+			$row['start_date'] = DateTime::createFromFormat('Y-m-d H:i:s', $row['start_date'])->format('M j Y H:i');
 		}
 		
 		return $row;
@@ -676,7 +767,7 @@ class ReportOps {
 	// v3.4 Similar to the above except that we know the titleID
 	private function getTitle($titleID) {
 		foreach ($this->contentMap as $title) {
-			if ($title->productCode==$titleID)
+			if ($title->productCode == $titleID)
 				return $title;
 		}		
 		return null;

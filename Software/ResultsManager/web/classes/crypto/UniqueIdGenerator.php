@@ -18,8 +18,10 @@ class UniqueIdGenerator {
 		$uniqId = round($uniqId * 10000);
 		
 		// Add the user id
+		// gh#1052 Need to truncate this otherwise we break BIGINT when userID gets too big
+		// 6 digits does work, but is it safer to truncate to 5? How many could this possibly clash on given the time is already built in?
 		if (Session::is_set('userID'))
-			$uniqId .= Session::get('userID');
+			$uniqId .= substr(Session::get('userID'), -5);
 		
 		// Add a single random digit (this helps a lot with collisions)
 		$uniqId .= rand(0, 9);
