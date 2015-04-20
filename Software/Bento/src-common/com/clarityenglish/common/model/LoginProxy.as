@@ -15,8 +15,10 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Licence;
-	
-	import flash.events.TimerEvent;
+
+import flash.events.Event;
+
+import flash.events.TimerEvent;
 	import flash.net.SharedObject;
 	import flash.utils.Timer;
 	
@@ -42,7 +44,9 @@ package com.clarityenglish.common.model {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		public static const NAME:String = "LoginProxy";
-		public static const LICENCE_UPDATE_DELAY:Number = 60000;
+
+		// gh#604 Seconds between calls to update the licence (and session)
+		public static const LICENCE_UPDATE_DELAY:Number = 20; // was 60000 = 1 minute
 		
 		private var _user:User;
 		private var _group:Group;
@@ -191,7 +195,11 @@ package com.clarityenglish.common.model {
 		
 		public function logout():void {
 			// Stop the licence update timer
-			if (licenceTimer) licenceTimer.stop();
+			if (licenceTimer) {
+				licenceTimer.stop();
+				licenceTimer.removeEventListener(TimerEvent.TIMER, licenceTimerHandler);
+				licenceTimer = null;
+			}
 
 			// gh#970 Is this a logout from a pure AA?
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -318,7 +326,7 @@ package com.clarityenglish.common.model {
 					if (data) {
 						// Just go back into login for this user now
 						configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-						var verified:Boolean = (configProxy.getAccount().verified == 1) ? true : false;
+						var verified:Boolean = (configProxy.getAccount().verified == 1);
 						login(data as User, configProxy.getAccount().loginOption, verified);
 						
 					} else {
@@ -415,7 +423,7 @@ package com.clarityenglish.common.model {
 							licenceTimer.start();
 						}
 						*/
-						licenceTimer = new Timer(LICENCE_UPDATE_DELAY, 0)
+						licenceTimer = new Timer(LICENCE_UPDATE_DELAY * 1000, 0);
 						licenceTimer.addEventListener(TimerEvent.TIMER, licenceTimerHandler);
 						licenceTimer.start();
 
@@ -474,7 +482,7 @@ package com.clarityenglish.common.model {
 							var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 							var configUser:User = new User({name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID});
 							var loginOption:uint = configProxy.getAccount().loginOption;
-							var verified:Boolean = (configProxy.getAccount().verified == 1) ? true : false;
+							var verified:Boolean = (configProxy.getAccount().verified == 1);
 	
 							var loginEvent:LoginEvent = new LoginEvent(LoginEvent.ADD_USER, configUser, loginOption, verified);
 							sendNotification(CommonNotifications.ADD_USER, loginEvent);
@@ -516,8 +524,7 @@ package com.clarityenglish.common.model {
 		/**
 		 * A timer handler that tells the database to update the licence record to show that the user is still active 
 		 * @param event
-		 * @param TimerEvent
-		 * 
+		 *
 		 */
 		private function licenceTimerHandler(event:TimerEvent):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -527,6 +534,21 @@ package com.clarityenglish.common.model {
 			var params:Array = [ configProxy.getConfig().licence, configProxy.getConfig().sessionID ];
 			new RemoteDelegate("updateLicence", params, this).execute();
 		}
-		
+
+		/**
+		 * gh#604 Pick up the user idle event and pause or restart the update session timer
+		 *
+		 */
+		public function userIdleHandler(idle:Boolean):void {
+			if (licenceTimer) {
+				if (idle) {
+					//trace("so, you are idle, no more session updating then");
+					licenceTimer.stop();
+				} else {
+					//trace("ok, nice to see you back again, lets update your session, timer.running=" + licenceTimer.running);
+					licenceTimer.start();
+				}
+			}
+		}
 	}
 }

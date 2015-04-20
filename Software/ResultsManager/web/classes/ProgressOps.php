@@ -4,9 +4,9 @@ class ProgressOps {
 	var $db;
 	var $menu;
 
-	// gh#604
-	const LICENCE_UPDATE_CUTOFF = 900; // 15 * 60;
-	const MINIMUM_DURATION = 15; // seconds
+	// gh#604 Seconds before the session record is considered too old and a new one started
+	const SESSION_IDLE_THRESHOLD = 120;
+	const MINIMUM_DURATION = 15; // Minimum seconds used as duration for new session records
 
 	function ProgressOps($db) {
 		$this->db = $db;
@@ -204,8 +204,9 @@ EOD;
 		if ($rs) {
 			$lastUpdateAt = new DateTime($rs->FetchNextObj()->lastDate, new DateTimeZone(TIMEZONE));
 			$interval = $dateStampNow->getTimestamp() - $lastUpdateAt->getTimestamp();
-			if ($interval > (self::LICENCE_UPDATE_CUTOFF)) {
-				AbstractService::$debugLog->info("obsolete session record $sessionId last updated at: ".$lastUpdateAt->format('Y-m-d H:i:s').", $interval seconds ago");
+			if ($interval > self::SESSION_IDLE_THRESHOLD) {
+				AbstractService::$debugLog->info("too old session record $sessionId - last updated at ".$lastUpdateAt->format('Y-m-d H:i:s').", $interval seconds ago");
+				// TODO You could get these details from the old session record
 				$rootId = Session::get('rootID');
 				$productCode = Session::get('productCode');
 				$userId = Session::get('userID');

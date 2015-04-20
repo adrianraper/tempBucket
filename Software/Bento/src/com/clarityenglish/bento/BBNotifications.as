@@ -118,6 +118,10 @@
 		
 		// gh#267
 		public static const RECORDER_SHOW:String = "bb/recorder_show";
+
+		// gh#604
+		public static const USER_IDLE:String = "bb/user_idle";
+		public static const USER_PRESENT:String = "bb/user_present";
 	}
 	
 }

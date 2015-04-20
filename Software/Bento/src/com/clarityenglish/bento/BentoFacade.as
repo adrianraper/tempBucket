@@ -181,6 +181,10 @@
 			registerCommand(RecorderNotifications.CLEAR_WAVEFORM, ClearWaveformCommand);
 			registerCommand(RecorderNotifications.COMPARE_TO, CompareToCommand);
 			registerCommand(BBNotifications.RECORDER_SHOW, RecorderShowCommand);
+
+			// gh#604
+			registerCommand(BBNotifications.USER_IDLE, UserIdleCommand);
+			registerCommand(BBNotifications.USER_PRESENT, UserIdleCommand);
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

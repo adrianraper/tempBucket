@@ -7,7 +7,7 @@
     <option name="appDescriptorForEmulator" value="Android" />
     <option name="debugTransport" value="USB" />
     <option name="debuggerSdkRaw" value="BC SDK" />
-    <option name="emulator" value="iPad" />
+    <option name="emulator" value="SamsungGalaxyTab" />
     <option name="emulatorAdlOptions" value="" />
     <option name="fastPackaging" value="true" />
     <option name="fullScreenHeight" value="0" />

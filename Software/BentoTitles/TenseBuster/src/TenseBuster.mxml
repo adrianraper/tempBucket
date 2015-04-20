@@ -3,7 +3,8 @@
 									xmlns:s="library://ns.adobe.com/flex/spark"
 									xmlns:tensebuster="com.clarityenglish.tensebuster.*"
 									minWidth="990" minHeight="760"
-									initialize="onInitialize(event)" preloader="com.clarityenglish.tensebuster.TenseBusterPreloader">
+									initialize="onInitialize(event)"
+									preloader="com.clarityenglish.tensebuster.TenseBusterPreloader">
 	<fx:Metadata>
 		[SWF(width="990", height="768")]
 	</fx:Metadata>
@@ -61,9 +62,11 @@
 			import mx.events.FlexEvent;
 			
 			protected function onInitialize(event:FlexEvent):void {
-				versionNumber = "10.3.20";
+				versionNumber = "10.3.21";
 				
 				facade = TenseBusterApplicationFacade.getInstance();
+
+
 			}
 			
 		]]>
