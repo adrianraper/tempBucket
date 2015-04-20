@@ -7,7 +7,7 @@ class Log_ClarityDB extends Log {
 	var $_name;
 	var $_ident;
 	var $_rootID;
-	//var $_userID;
+	var $_userID;
 	var $_productName;
 	var $_mask;
 
@@ -16,10 +16,10 @@ class Log_ClarityDB extends Log {
 		$this->_name = $name;
 		$this->_ident = $ident;
 		$this->_mask = Log::UPTO($level);
-		// gh#857
-	    if (!empty($conf['timeFormat'])) {
-            $this->_timeFormat = $conf['timeFormat'];
-        }
+		// gh#857, gh#1214
+	    //if (!empty($conf['timeFormat'])) {
+        //    $this->_timeFormat = $conf['timeFormat'];
+        //}
 	}
 	
 	// gh#857
@@ -53,7 +53,8 @@ class Log_ClarityDB extends Log {
 		//$dbObj['F_Date'] = "CURRENT_TIMESTAMP";
 		// gh#815
 		$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
-		$dbObj['F_Date'] = $dateStampNow->format($this->_timeFormat);
+		// gh#1214
+		$dbObj['F_Date'] = $dateStampNow->format('Y-m-d H:i:s');
 		$dbObj['F_Level'] = $priority;
 		$dbObj['F_Message'] = $message;
 		
