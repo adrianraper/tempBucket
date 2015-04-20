@@ -482,7 +482,7 @@ class BentoService extends AbstractService {
 	/**
 	 * This service call returns an associative array of Course_ID => course summary data for everyone and is used in progress compare
 	 */
-	public function getEveryoneSummary($productCode, $country) {
+	public function getEveryoneSummary($productCode, $country = 'Worldwide') {
 		return $this->progressOps->getEveryoneSummary($productCode, $country);
 	}
 	
