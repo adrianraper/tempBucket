@@ -254,8 +254,7 @@ EOD;
 			$sql = <<<EOD
 					select count(F_SessionID) sessionCount, $sqldatemonth month
 					from T_Session
-					where F_ProductCode = ?
-					and F_StartDateStamp>='$i-01-01'
+					where F_StartDateStamp>='$i-01-01'
 					and F_StartDateStamp<'$j-01-01'
 EOD;
 			if (stristr($rootID,',')!==FALSE) {
@@ -267,6 +266,15 @@ EOD;
 			} else {
 				$sql.= " AND F_RootID = $rootID";
 			}
+			
+			// gh#1211 And the other old and new combinations
+			$oldProductCode = $this->licenceOps->getOldProductCode($title->id);
+			if ($oldProductCode) {
+				$sql.= " AND F_ProductCode IN (?, $oldProductCode)";
+			} else {
+				$sql.= " AND F_ProductCode = ?";
+			}
+						
 			$sql .= <<<EOD
 					group by $sqldatemonth
 					order by $sqldatemonth;
@@ -501,7 +509,7 @@ EOD;
 EOD;
 			//NetDebug::trace("UsageOps deleted ".$sql);
 			//$rs2 = $this->db->GetRow($sql, array($title->productCode, Session::get('rootID')));
-			$rs2 = $this->db->GetRow($sql, array($title-> productCode, $rootID));
+			$rs2 = $this->db->GetRow($sql, array($title->productCode, $rootID));
 			//NetDebug::trace("UsageOps.sql.deleted.rs=".$rs2['allDeletedCount']);
 			$deletedCount = $rs2['allDeletedCount'];
 		}
@@ -575,18 +583,25 @@ EOD;
 		$sql = 	<<<EOD
 				SELECT COUNT(*) failedLogins, F_ReasonCode
 				FROM T_Failsession
-				WHERE F_ProductCode = ?
-				AND F_RootID = ?
+				WHERE F_RootID = ?
 				AND F_StartTime >= '$fromDateStamp'
 				AND F_StartTime <= '$toDateStamp'
 				AND F_ReasonCode in (203,204,207,208,301,211,303,212,304,209,210,213,311,312,313,220)
-				GROUP BY F_ReasonCode
 EOD;
+		// gh#1211 And the other old and new combinations
+		$oldProductCode = $this->licenceOps->getOldProductCode($title->id);
+		if ($oldProductCode) {
+			$sql.= " AND F_ProductCode IN (?, $oldProductCode)";
+		} else {
+			$sql.= " AND F_ProductCode = ?";
+		}			
+						
+		$sql.= " GROUP BY F_ReasonCode";
 		
 		// Not just one row, but a table now
 		//$rs = $this->db->GetRow($sql, array($title->productCode, $_SESSION['rootID']));
 		//$rs = $this->db->GetArray($sql, array($title->productCode, Session::get('rootID')));
-		$rs = $this->db->GetArray($sql, array($title->productCode, $rootID));
+		$rs = $this->db->GetArray($sql, array($rootID, $title->id));
 		//echo $sql;
 		//NetDebug::trace("UsageOps.failLogins.sql.rs=".$rs['failedLogins']);
 		//return $rs['failedLogins'];
@@ -610,10 +625,17 @@ EOD;
 					COUNT(ss.F_SessionID) as totalCourse, 
 					SUM(IF(ss.F_Duration>$secondsLimit,$secondsLimit,ss.F_Duration)) as totalDuration
 				FROM T_Session ss
-				WHERE ss.F_ProductCode = ?
-				AND ss.F_StartDateStamp >= ?
+				WHERE ss.F_StartDateStamp >= ?
 				AND ss.F_StartDateStamp <= ?
 EOD;
+		// gh#1211 And the other old and new combinations
+		$oldProductCode = $this->licenceOps->getOldProductCode($title->id);
+		if ($oldProductCode) {
+			$sql.= " AND ss.F_ProductCode IN (?, $oldProductCode)";
+		} else {
+			$sql.= " AND ss.F_ProductCode = ?";
+		}
+		
 		if (stristr($rootID,',')!==FALSE) {
 			$sql.= " AND ss.F_RootID in ($rootID)";
 		} else if ($rootID=='*') {
@@ -624,7 +646,7 @@ EOD;
 			$sql.= " AND ss.F_RootID = $rootID";
 		}
 		
-		$rs = $this->db->GetArray($sql, array($title->id, $fromDateStamp, $toDateStamp));
+		$rs = $this->db->GetArray($sql, array($fromDateStamp, $toDateStamp, $title->id));
 		
 		return $rs;
 	}

@@ -1138,14 +1138,14 @@ INSERT INTO `T_ProductVersion` VALUES
 -- gh#1090 Option to block personal tracking from AA
 ALTER TABLE T_Accounts ADD COLUMN F_LoginModifier SMALLINT NULL DEFAULT NULL;
 
--- General writing
+-- Practical writing
 DELETE FROM T_ProductLanguage WHERE F_ProductCode = 61;
 INSERT INTO T_ProductLanguage VALUES 
-(61,'EN','GeneralWriting-International');
+(61,'EN','PracticalWriting-International');
 
 DELETE FROM T_Product WHERE F_ProductCode = 61;
 INSERT INTO `T_Product` VALUES
-(61,'General Writing',NULL,2);
+(61,'Practical Writing',NULL,2);
 
 DELETE FROM T_ProductVersion WHERE F_ProductCode = 61;
 INSERT INTO `T_ProductVersion` VALUES 
@@ -1323,3 +1323,17 @@ VALUES
 (57,'Library reminder end today',NULL,NULL,'library/41','method=getAccounts&expiryDate={now}&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
 (58,'Library reminder ended',NULL,NULL,'library/42','method=getAccounts&expiryDate={now}-14d&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
 (59,'Distributor group report',NULL,NULL,'distributor_new_groups','method=getAccounts&accountType=5&newUsersSinceDate={now}-1m',NULL,NULL,'internalEmail','monthly',0);
+
+-- Business writing V10
+DELETE FROM T_ProductLanguage WHERE F_ProductCode = 62;
+INSERT INTO T_ProductLanguage VALUES 
+(61,'EN','BusinessWriting10-International');
+
+DELETE FROM T_Product WHERE F_ProductCode = 62;
+INSERT INTO `T_Product` VALUES
+(61,'Business Writing',NULL,2);
+
+DELETE FROM T_ProductVersion WHERE F_ProductCode = 62;
+INSERT INTO `T_ProductVersion` VALUES 
+(62,'DEMO'),
+(62,'FV');
