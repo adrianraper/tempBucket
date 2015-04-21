@@ -266,6 +266,21 @@
 <android>
         <manifestAdditions><![CDATA[
 			<manifest android:installLocation="auto">
+				<application android:enabled="true">
+					<activity android:excludeFromRecents="false">
+						<intent-filter>
+							<action android:name="android.intent.action.MAIN"/>
+							<category android:name="android.intent.category.LAUNCHER"/>
+						</intent-filter>
+						<intent-filter>
+                            <action android:name="android.intent.action.VIEW"/>
+                            <category android:name="android.intent.category.BROWSABLE"/>
+                            <category android:name="android.intent.category.DEFAULT"/>
+                            <data android:scheme="clarity55"/>
+                        </intent-filter>
+					</activity>
+				</application>
+
 			    <!--See the Adobe AIR documentation for more information about setting Google Android permissions-->
 			    <!--Removing the permission android.permission.INTERNET will have the side effect
 		of preventing you from debugging your application on your device-->

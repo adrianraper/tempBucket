@@ -4,7 +4,7 @@
 		<group name="group">	
 			<lit name="loginInputTitle">Active Reading</lit>
 			<lit name="applicationVersion">Version {version}</lit>
-			
+
 			<!-- Skin buttons -->
 			<lit name="elementary">Elementary</lit>
 			<lit name="preIntermediate">Pre-Intermediate</lit>

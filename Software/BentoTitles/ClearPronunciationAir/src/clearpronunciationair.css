@@ -98,3 +98,12 @@ progress|ProgressScoreView {
 progress|ProgressCertificateView {
 	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressCertificateSkin");
 }
+
+login|LoginView s|Button#demoButton1 {
+	skinClass: ClassReference("skins.clearpronunciation.login.DemoENButtonSkin");
+}
+
+login|LoginView s|Button#demoButton2 {
+	skinClass: ClassReference("skins.clearpronunciation.login.DemoNAMENButtonSkin");
+}
+

@@ -86,7 +86,7 @@ package com.clarityenglish.common.vo.config {
 		public var ip:String;
 		public var referrer:String;
 		// For CCB
-		public var remoteStartFolder:String
+		public var remoteStartFolder:String;
 		
 		// #335
 		// gh#356

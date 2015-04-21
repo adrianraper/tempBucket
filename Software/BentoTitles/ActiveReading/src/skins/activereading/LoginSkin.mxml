@@ -182,6 +182,12 @@
 			</s:VGroup>
 	</s:SkinnableContainer>
 
+	<!--Demo button-->
+	<s:VGroup right="10" top="80" gap="5" visible="{hostComponent.isPlatformTablet}" includeInLayout="{hostComponent.isPlatformTablet}">
+		<s:Button id="demoButton1" />
+		<s:Button id="demoButton2" />
+	</s:VGroup>
+
 	<!--Footer-->
 	<s:Group height="28" bottom="10" left="10">
 		<s:Rect width="100%" height="100%" radiusX="14" radiusY="14">

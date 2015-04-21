@@ -52,3 +52,12 @@ video|VideoSelector {
 nonetwork|NoNetworkView {
 	skinClass: ClassReference("skins.activereadingair.NoNetworkSkin");
 }
+
+login|LoginView s|Button#demoButton1 {
+	skinClass: ClassReference("skins.activereadingair.login.DemoENButtonSkin");
+}
+
+login|LoginView s|Button#demoButton2 {
+	skinClass: ClassReference("skins.activereadingair.login.DemoNAMENButtonSkin");
+}
+

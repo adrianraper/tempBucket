@@ -180,7 +180,6 @@
 		<s:Button id="demoButton2" />
 	</s:VGroup>
 
-
 	<!--Footer-->
 	<s:Group height="28" bottom="10" left="10">
 		<s:HGroup left="10" verticalAlign="middle" gap="10" paddingTop="4" paddingBottom="4">

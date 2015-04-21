@@ -48,7 +48,11 @@ import com.clarityenglish.textLayout.vo.XHTML;
 
 		[Bindable]
 		public var isPlatformTablet:Boolean;
-		
+
+		// gh#1090
+		[Bindable]
+		public var userNameCaption:String;
+
 		public var channelCollection:ArrayCollection;
 		
 		public var mediaFolder:String;
@@ -137,7 +141,20 @@ import com.clarityenglish.textLayout.vo.XHTML;
 				nodeSelect.dispatch(e.target.selectedItem);
 			}
 		}
-		
+
+		protected override function commitProperties():void {
+			super.commitProperties();
+
+			// gh#1194
+			userNameCaption = '';
+			if (config.username == null || config.username == '') {
+				if (config.email)
+					userNameCaption = copyProvider.getCopyForId('welcomeLabel', {name: config.email});
+			} else if (config.username.toLowerCase() != 'anonymous') {
+				userNameCaption = copyProvider.getCopyForId('welcomeLabel', {name: config.username});
+			}
+		}
+
 		protected override function getCurrentSkinState():String {
 			return currentState;
 		}

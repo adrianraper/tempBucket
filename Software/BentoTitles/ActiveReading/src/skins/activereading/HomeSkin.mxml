@@ -18,7 +18,16 @@
 	<fx:Declarations>
 		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="1.5" alpha="0.6" blurX="7" blurY="7" />
 	</fx:Declarations>
-	
+
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		.userNameText {
+			fontSize: 13;
+			fontFamily: "HelveticaMd";
+			fontWeight: "bold";
+			color: #333333;
+		}
+	</fx:Style>
 	<fx:Script>
 		<![CDATA[			
 			import mx.collections.XMLListCollection;
@@ -182,8 +191,17 @@
 	<!-- Normally clip an image like this, but these lines scale nicely -->
 	<s:BitmapImage width="100%" verticalCenter="150" source="@Embed(source='/skins/activereading/assets/login/loginlines.png')" fillMode="scale" />
 
-	<!-- Student name -->
-	<s:Label left="150" top="80" text="{hostComponent.userNameCaption}" fontSize="13" color="0x000000" />
+	<!-- Student name gh#1194-->
+	<s:Group left="150" top="80" height="28" visible="{hostComponent.userNameCaption != ''}" includeInLayout="{hostComponent.userNameCaption != ''}">
+		<s:Rect height="100%" width="100%" radiusX="14" radiusY="14">
+			<s:fill>
+				<s:SolidColor color="#e3e3e3" />
+			</s:fill>
+		</s:Rect>
+		<home:userIcon top="6" left="16" />
+		<s:Label paddingLeft="38" paddingRight="16" right="0" top="10" text="{hostComponent.userNameCaption}" styleName="userNameText"  />
+	</s:Group>
+
 
 	<!--Rotation Circle-->
 	<home:menucircle left="0" verticalCenter="0" />

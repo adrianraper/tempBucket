@@ -184,6 +184,12 @@
 		</s:VGroup>
 	</s:SkinnableContainer>
 
+	<!--Demo button-->
+	<s:VGroup right="10" top="80" gap="5" visible="{hostComponent.isPlatformTablet}" includeInLayout="{hostComponent.isPlatformTablet}">
+		<s:Button id="demoButton1" />
+		<s:Button id="demoButton2" />
+	</s:VGroup>
+
 	<!-- footer (sits on top of application skin footer) -->
 	<s:Group left="0" bottom="0" height="33" right="0">
 		<s:HGroup height="100%" right="10" verticalAlign="middle" gap="5" >
