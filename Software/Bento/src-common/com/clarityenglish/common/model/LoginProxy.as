@@ -229,11 +229,14 @@ import flash.events.TimerEvent;
 			
 			// #323
 			// gh#335 Library Premium uses CT, but it might still be anonymous
+			// gh#1217 AA licence now allows login
+			/*
 			if (user && (Number(user.userID) > 0) &&
 						(configProxy.getLicenceType() == Title.LICENCE_TYPE_LT || 
 						 configProxy.getLicenceType() == Title.LICENCE_TYPE_CT ||
 						 configProxy.getLicenceType() == Title.LICENCE_TYPE_TT)) {
-				
+			*/
+			if (user && (Number(user.userID) > 0)) {
 				// #319 Instance ID per productCode
 				var params:Array = [ user.userID, configProxy.getProductCode() ];
 				new RemoteDelegate("getInstanceID", params, this).execute();
