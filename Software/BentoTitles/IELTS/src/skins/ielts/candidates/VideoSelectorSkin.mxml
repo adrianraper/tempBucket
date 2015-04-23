@@ -166,6 +166,8 @@
 						return openingScreen5;
 					case 5:
 						return openingScreen6;
+					case 6:
+						return openingScreen7;
 					default:
 						return null;
 				}
@@ -176,11 +178,12 @@
 	
 	<s:Group verticalCenter="-196" horizontalCenter="-310">
 		<candidates:number1red id="number1Red" visible="{videoList.selectedIndex == 0}" />
-		<candidates:number2red visible="{videoListIndex == 1}"/>
-		<candidates:number3red visible="{videoListIndex == 2}"/>
-		<candidates:number4red visible="{videoListIndex== 3}"/>
-		<candidates:number5red visible="{videoListIndex == 4}"/>
-		<candidates:number6red visible="{videoListIndex == 5}"/>
+		<candidates:number2red visible="{videoListIndex == 1}" />
+		<candidates:number3red visible="{videoListIndex == 2}" />
+		<candidates:number4red visible="{videoListIndex == 3}" />
+		<candidates:number5red visible="{videoListIndex == 4}" />
+		<candidates:number6red visible="{videoListIndex == 5}" />
+		<candidates:number7red visible="{videoListIndex == 6}" />
 	</s:Group>
 	
 	<!--video title-->
@@ -227,6 +230,7 @@
 		<s:SWFLoader id="openingScreen4" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen4.jpg')" />
 		<s:SWFLoader id="openingScreen5" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen5.jpg')" />
 		<s:SWFLoader id="openingScreen6" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen6.jpg')" />
+		<s:SWFLoader id="openingScreen7" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen7.jpg')" />
 	</s:HGroup>
 	
 	<candidates:videoframe verticalCenter="10" horizontalCenter="0" />
@@ -237,7 +241,7 @@
 	</s:HGroup>
 
 	<s:VGroup id="videoHolderBackgroundVGroup" bottom="-2" horizontalCenter="0" horizontalAlign="center" gap="0">		
-		<s:Rect width="880" height="85" topLeftRadiusX="12" topLeftRadiusY="12" topRightRadiusX="12" topRightRadiusY="12">
+		<s:Rect width="960" height="85" topLeftRadiusX="12" topLeftRadiusY="12" topRightRadiusX="12" topRightRadiusY="12">
 			<s:fill>
 				<s:SolidColor color="#404041" />
 			</s:fill>
@@ -285,7 +289,7 @@
 						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb4.jpg')" visible="{itemIndex == 3}" />
 						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb5.jpg')" visible="{itemIndex == 4}" />
 						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb6.jpg')" visible="{itemIndex == 5}" />
-						
+						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb7.jpg')" visible="{itemIndex == 6}" />
 						<s:Group left="20" top="20">
 							<s:Rect width="100" height="56" includeIn="hovered, selected">
 								<s:fill>
@@ -303,6 +307,7 @@
 							<candidates:number4 visible="{itemIndex == 3}" />
 							<candidates:number5 visible="{itemIndex == 4}" />
 							<candidates:number6 visible="{itemIndex == 5}" />
+							<candidates:number7 visible="{itemIndex == 6}" />
 						</s:Group>
 					</s:Group>
 				</s:ItemRenderer>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="25" viewWidth="25" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="25" d:pageWidth="25" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Group ai:seqID="1">
+        <Ellipse width="25" height="25" ai:seqID="2">
+          <fill>
+            <SolidColor color="#E42E3C"/>
+          </fill>
+        </Ellipse>
+        <Group x="8.67529" y="7.18945" ai:seqID="3" flm:knockout="false">
+          <Path winding="nonZero" ai:seqID="4" data="M7.65137 1.95264C5.29883 4.00146 4.01758 8.21143 3.98633 11.2046L1.55273 11.2046C1.80859 7.89111 3.18555 4.67383 5.31445 2.11279L0 2.11279 0 0 7.65137 0 7.65137 1.95264Z">
+            <fill>
+              <SolidColor color="#FFFFFF"/>
+            </fill>
+          </Path>
+        </Group>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

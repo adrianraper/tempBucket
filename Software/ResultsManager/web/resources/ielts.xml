@@ -387,6 +387,7 @@
 			<lit name="candidatesVideoTitle3">“Reading”</lit>
 			<lit name="candidatesVideoTitle4">“Speaking”</lit>
 			<lit name="candidatesVideoTitle5">“Listening”</lit>
+			<lit name="candidatesVideoTitle6">“After the test”</lit>
 			<lit name="videoListCaptionLabel">Advice from candidates on...</lit>
 			<lit name="videoListExpandButton">Playlist</lit>
 			<lit name="candidatesVideoDescription0">Watch candidates discussing ways they prepared for their IELTS test.</lit>
@@ -395,6 +396,7 @@
 			<lit name="candidatesVideoDescription3">Watch candidates discussing the IELTS Reading test. See how they made reading practice more interesting and relevant.</lit>
 			<lit name="candidatesVideoDescription4">Watch candidates discussing the IELTS Speaking test.</lit>
 			<lit name="candidatesVideoDescription5">Watch candidates discussing the IELTS Listening test. Find out how to make listening practice more fun.</lit>
+			<lit name="candidatesVideoDescription6">Watch candidates discussing what happens after the IELTS test. How long do you have to wait before you get your results? And why is this important?</lit>
 			<lit name="candidatesVideoPlayLabel">Click here to watch the {videoTitle} video.</lit>
 			
 			<lit name="exampleInSpeaking">Look at speaking or writing for examples.</lit>

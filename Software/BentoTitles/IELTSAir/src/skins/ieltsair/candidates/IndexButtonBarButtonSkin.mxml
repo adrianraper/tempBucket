@@ -3,7 +3,7 @@
                    xmlns:s="library://ns.adobe.com/flex/spark" 
                    xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
                    minWidth="21" minHeight="21" 
-                   alpha.disabledStates="0.5" xmlns:candidates="skins.ieltsair.assets.candidates.*">
+                   alpha.disabledStates="0.5" xmlns:candidates="skins.ieltsair.assets.candidates.*" xmlns:candidates1="skins.ielts.assets.candidates.*">
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ieltsair.view.candidates.IndexButtonBarButton")]
 	</fx:Metadata>
@@ -40,6 +40,7 @@
 			<s:SWFLoader left="1" top="1" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb4.jpg')" visible="{hostComponent.index == 3}" />
 			<s:SWFLoader left="1" top="1" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb5.jpg')" visible="{hostComponent.index == 4}" />
 			<s:SWFLoader left="1" top="1" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb6.jpg')" visible="{hostComponent.index == 5}" />
+			<s:SWFLoader left="1" top="1" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb7.jpg')" visible="{hostComponent.index == 6}" />
 			<s:Label id="labelDisplay" left="-10" bottom="0" width="120" textAlign="center" fontSize="13" fontWeight="bold" color="#FFFFFF" />
 		</s:Group>							
 		
@@ -50,6 +51,7 @@
 			<candidates:number4 visible="{hostComponent.index == 3}" />
 			<candidates:number5 visible="{hostComponent.index == 4}" />
 			<candidates:number6 visible="{hostComponent.index == 5}" />
+			<candidates:number7 visible="{hostComponent.index == 6}" />
 		</s:Group>
 	</s:Group>
     
