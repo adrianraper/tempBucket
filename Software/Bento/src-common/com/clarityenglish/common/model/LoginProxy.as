@@ -15,8 +15,10 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Licence;
-	
-	import flash.events.TimerEvent;
+
+import flash.events.Event;
+
+import flash.events.TimerEvent;
 	import flash.net.SharedObject;
 	import flash.utils.Timer;
 	
@@ -42,7 +44,9 @@ package com.clarityenglish.common.model {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		public static const NAME:String = "LoginProxy";
-		public static const LICENCE_UPDATE_DELAY:Number = 60000;
+
+		// gh#604 Seconds between calls to update the licence (and session)
+		public static const LICENCE_UPDATE_DELAY:Number = 20; // was 60000 = 1 minute
 		
 		private var _user:User;
 		private var _group:Group;
@@ -191,14 +195,18 @@ package com.clarityenglish.common.model {
 		
 		public function logout():void {
 			// Stop the licence update timer
-			if (licenceTimer) licenceTimer.stop();
+			if (licenceTimer) {
+				licenceTimer.stop();
+				licenceTimer.removeEventListener(TimerEvent.TIMER, licenceTimerHandler);
+				licenceTimer = null;
+			}
 
 			// gh#970 Is this a logout from a pure AA?
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var justAnonymous:Boolean = configProxy.isAccountJustAnonymous();
 			var params:Array = [ configProxy.getConfig().licence, configProxy.getConfig().sessionID, justAnonymous ];
 			new RemoteDelegate("logout", params, this).execute();
-			
+
 			// #336 Logout triggers SCORM termination
 			if (configProxy.getConfig().scorm) {
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
@@ -221,11 +229,14 @@ package com.clarityenglish.common.model {
 			
 			// #323
 			// gh#335 Library Premium uses CT, but it might still be anonymous
+			// gh#1217 AA licence now allows login
+			/*
 			if (user && (Number(user.userID) > 0) &&
 						(configProxy.getLicenceType() == Title.LICENCE_TYPE_LT || 
 						 configProxy.getLicenceType() == Title.LICENCE_TYPE_CT ||
 						 configProxy.getLicenceType() == Title.LICENCE_TYPE_TT)) {
-				
+			*/
+			if (user && (Number(user.userID) > 0)) {
 				// #319 Instance ID per productCode
 				var params:Array = [ user.userID, configProxy.getProductCode() ];
 				new RemoteDelegate("getInstanceID", params, this).execute();
@@ -318,7 +329,7 @@ package com.clarityenglish.common.model {
 					if (data) {
 						// Just go back into login for this user now
 						configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-						var verified:Boolean = (configProxy.getAccount().verified == 1) ? true : false;
+						var verified:Boolean = (configProxy.getAccount().verified == 1);
 						login(data as User, configProxy.getAccount().loginOption, verified);
 						
 					} else {
@@ -409,15 +420,16 @@ package com.clarityenglish.common.model {
 							// An error check
 							if (configProxy.getConfig().licence.id <= 0)
 								sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorCantAllocateLicenceNumber"));
-						
+							
 							licenceTimer = new Timer(LICENCE_UPDATE_DELAY, 0)
 							licenceTimer.addEventListener(TimerEvent.TIMER, licenceTimerHandler);
 							licenceTimer.start();
 						}
 						*/
-						licenceTimer = new Timer(LICENCE_UPDATE_DELAY, 0)
+						licenceTimer = new Timer(LICENCE_UPDATE_DELAY * 1000, 0);
 						licenceTimer.addEventListener(TimerEvent.TIMER, licenceTimerHandler);
 						licenceTimer.start();
+
 					} else {
 						// Invalid login. But a no such user error will go to onDelegateFail not here.
 						sendNotification(CommonNotifications.INVALID_LOGIN);
@@ -473,7 +485,7 @@ package com.clarityenglish.common.model {
 							var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 							var configUser:User = new User({name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID});
 							var loginOption:uint = configProxy.getAccount().loginOption;
-							var verified:Boolean = (configProxy.getAccount().verified == 1) ? true : false;
+							var verified:Boolean = (configProxy.getAccount().verified == 1);
 	
 							var loginEvent:LoginEvent = new LoginEvent(LoginEvent.ADD_USER, configUser, loginOption, verified);
 							sendNotification(CommonNotifications.ADD_USER, loginEvent);
@@ -515,17 +527,31 @@ package com.clarityenglish.common.model {
 		/**
 		 * A timer handler that tells the database to update the licence record to show that the user is still active 
 		 * @param event
-		 * @param TimerEvent
-		 * 
+		 *
 		 */
 		private function licenceTimerHandler(event:TimerEvent):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			
-			// gh#604 Pass sessionID as well
-			//log.info("fire the timer to update licence {0}", configProxy.getConfig().licence.id);
+
+			// gh#604 Pass session as well as licence
+			//log.info("fire the timer to update licence {0} and session {1}", configProxy.getConfig().licence.id, configProxy.getConfig().sessionID);
 			var params:Array = [ configProxy.getConfig().licence, configProxy.getConfig().sessionID ];
 			new RemoteDelegate("updateLicence", params, this).execute();
 		}
-		
+
+		/**
+		 * gh#604 Pick up the user idle event and pause or restart the update session timer
+		 *
+		 */
+		public function userIdleHandler(idle:Boolean):void {
+			if (licenceTimer) {
+				if (idle) {
+					//trace("so, you are idle, no more session updating then");
+					licenceTimer.stop();
+				} else {
+					//trace("ok, nice to see you back again, lets update your session, timer.running=" + licenceTimer.running);
+					licenceTimer.start();
+				}
+			}
+		}
 	}
 }

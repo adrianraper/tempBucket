@@ -510,13 +510,13 @@ class BentoService extends AbstractService {
 	 * 
 	 * This service call will close the open session record for this user in the database.
 	 *  
-	 *  @param sessionID - key to the table. If this is not available (perhaps to do with closing the browser?)
+	 *  @param $sessionId - key to the table. If this is not available (perhaps to do with closing the browser?)
 	 *  	maybe we can use $userID and $rootID from session variables
 	 *  @param dateNow - used to get client time
 	 */
 	public function updateSession($sessionId, $dateNow = null) {
 		// A successful session stop will not generate an error
-		// gh#604 return number of impacted records
+		// gh#604 return the session id, it might be a new one
 		$sessionId = $this->progressOps->updateSession($sessionId, $dateNow);
 		return array("sessionID" => $sessionId);
 	}
@@ -539,15 +539,15 @@ class BentoService extends AbstractService {
 	 * This service call will update the licence record for this user in the database.
 	 *  
 	 *  @param Licence $licence - dummy object for the licence
+	 *  @param String $sessionId
 	 */
 	public function updateLicence($licence, $sessionId = null) {
 
 		// gh#604 Update the licence if applicable
 		if ($licence)
-			// A successful licence update will not generate an error
 			$this->licenceOps->updateLicence($licence);
 
-		// Update the session record
+		// Update the session record if applicable
 		if ($sessionId)
 			return $this->updateSession($sessionId);
 
@@ -558,7 +558,8 @@ class BentoService extends AbstractService {
 	 * 
 	 * This service call will get the instance ID from the user's record in the database.
 	 *  
-	 *  @param userID - these are all self-explanatory
+	 *  @param Number $userId
+	 *  @param Number $productCode
 	 */
 	public function getInstanceID($userId, $productCode) {
 		// #319 Instance ID per productCode

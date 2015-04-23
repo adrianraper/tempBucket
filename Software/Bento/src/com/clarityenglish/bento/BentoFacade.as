@@ -161,6 +161,9 @@
 			// gh#84 and gh#90
 			registerCommand(BBNotifications.ITEM_DIRTY, ItemDirtyCommand);
 			registerCommand(BBNotifications.ITEM_CLEAN, ItemCleanCommand);
+			// gh#604
+			registerCommand(BBNotifications.USER_IDLE, UserIdleCommand);
+			registerCommand(BBNotifications.USER_PRESENT, UserIdleCommand);
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {
@@ -224,7 +227,7 @@
 				var stateMachine:StateMachine = retrieveMediator(StateMachine.NAME) as StateMachine;
 				sendNotification(StateMachine.ACTION, null, notificationName);
 				
-				log.debug("sendNotification: " + notificationName);
+				//log.debug("sendNotification: " + notificationName);
 				
 				super.sendNotification(notificationName, body, type);
 				

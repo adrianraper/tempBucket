@@ -63,6 +63,7 @@
 		public static const QUESTION_STRING_ANSWER:String = "bb/question_string_answer";
 		public static const QUESTION_INCORRECT_ANSWER:String = "bb/question_incorrect_answer";
 		public static const QUESTION_ANSWERED:String = "bb/question_answered";
+		public static const QUESTION_CLEAR:String = "bb/question_clear";
 		
 		// Dictionary behaviour
 		public static const WORD_CLICK:String = "bb/word_click";
@@ -86,6 +87,11 @@
 		
 		public static const FEEDBACK_SHOW:String = "bb/feedback_show";
 		
+		// gh#388
+		// gh#413
+		public static const GOT_QUESTION_FEEDBACK:String = "bb/got_question_feedback";
+		public static const FEEDBACK_REMINDER_SHOW:String = "bb/feedback_reminder_show";
+		
 		// gh#90 - set items (which can be anything) dirty or clean
 		public static const ITEM_DIRTY:String = "bb/item_dirty";
 		public static const ITEM_CLEAN:String = "bb/item_clean";
@@ -106,6 +112,16 @@
 		
 		// gh#338
 		public static const HINT_SHOW:String = "bb/hint_show";
+		
+		// gh#267
+		public static const AUDIO_PLAYED:String = "bb/audio_played";
+		
+		// gh#267
+		public static const RECORDER_SHOW:String = "bb/recorder_show";
+
+		// gh#604
+		public static const USER_IDLE:String = "bb/user_idle";
+		public static const USER_PRESENT:String = "bb/user_present";
 	}
 	
 }
