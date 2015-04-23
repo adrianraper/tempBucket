@@ -99,8 +99,8 @@ package com.clarityenglish.common.model {
 			config.userID = config.username = config.email = config.studentID = config.password = config.startingPoint = config.sessionID = null;
 			config.group = new Group();
 			
-			// gh#1090
-			config.retainedParameters = {};
+			// gh#1090 Clear everything except that which you retained on the first go
+			// config.retainedParameters = {};
 			config.prefix = "";
 			config.noLogin = false;
 			config.isReloadAccount = false;
@@ -429,17 +429,6 @@ package com.clarityenglish.common.model {
 			
 			if (_directStartOverride)
 				return directStartObject;
-			
-			if (Config.DEVELOPER.name == "DKweb") {
-				//return { courseID: "1287130400000" };
-				//return { exerciseID: "2287130110007" };
-				return { exerciseID: "2287130110005" };
-			}
-			
-			if (Config.DEVELOPER.name == "AR") {
-				//return { exerciseID: "1156181253997" }; // Writing>Set 1 task 2>Linking words and phrases (1)
-				//return { exerciseID: "1156153794077" }; // Speaking>The speaking test (2)
-			}
 			
 			// #336 SCORM needs to be checked here
 			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;

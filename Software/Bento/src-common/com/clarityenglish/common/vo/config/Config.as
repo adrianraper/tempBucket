@@ -312,7 +312,7 @@ package com.clarityenglish.common.vo.config {
 			// gh#1160
 			// gh#1160 If you started with passed parameters, clear [most of] them out now for a restart
 			this.retainedParameters = {};
-			for (var property:String in parameters) {
+			for (property in parameters) {
 				switch (property) {
 					case 'dbHost':
 					case 'prefix':
