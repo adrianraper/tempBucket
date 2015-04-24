@@ -46,7 +46,7 @@ import flash.events.TimerEvent;
 		public static const NAME:String = "LoginProxy";
 
 		// gh#604 Seconds between calls to update the licence (and session)
-		public static const LICENCE_UPDATE_DELAY:Number = 20; // was 60000 = 1 minute
+		public static const LICENCE_UPDATE_DELAY:Number = 60;
 		
 		private var _user:User;
 		private var _group:Group;

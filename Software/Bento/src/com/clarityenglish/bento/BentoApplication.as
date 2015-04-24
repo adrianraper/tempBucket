@@ -33,7 +33,7 @@ public class BentoApplication extends TLF2Application {
 		public static const DEMO:String = "DEMO";
 
 		// gh#604 Seconds before the user is considered to have stopped working on the app
-		public static const USER_IDLE_THRESHOLD:Number = 60;
+		public static const USER_IDLE_THRESHOLD:Number = 300;
 
 		public var isCtrlDown:Boolean;
 		
