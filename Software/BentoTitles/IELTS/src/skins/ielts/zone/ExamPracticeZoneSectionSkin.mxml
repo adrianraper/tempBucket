@@ -190,7 +190,7 @@
 					</s:Group> 
 
 					<s:HGroup top="295" gap="10" horizontalCenter="0">
-						<tlfcomponents:AudioPlayer id="audioPlayer" visible="{data.attribute('audioHref').length() > 1}" includeInLayout="{data.attribute('audioHref').length() > 1}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
+						<tlfcomponents:AudioPlayer id="audioPlayer" visible="{data.attribute('audioHref').length() > 0}" includeInLayout="{data.attribute('audioHref').length() > 0}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
 						<!--gh#759 using group to show tooltip when button is disabled-->
 						<s:Group id="practiceTestGroup">
 							<s:Button id="practiceTestButton" width="141" height="40" color="#FFFFFF" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='SearchIcon')" label="{data.@caption}" click="onButtonClick(data as XML)" useHandCursor="true" buttonMode="true" />
