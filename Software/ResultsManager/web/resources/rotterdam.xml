@@ -23,6 +23,7 @@
 			<lit name="errorSingleVideoIOS" code="708">Only a single video per unit is currently supported on iOS.</lit>
 			<lit name="errorSavingCourseToDb" code="888">Your course has been saved, but a problem with the database means the publishing details and settings have not. Please try again in a minute. If the problem persists, please contact support@clarityenglish.com and tell us the course you were editing and the date/time.</lit>
 			
+			<lit name="supportEmail">support@clarityenglish.com</lit>
 			<lit name="courseSavingError">We can't save your course. Please try again in case the connection is bad. If that still fails, please click '{saveButtonLabel}' below. This will download a file to your computer which you then need to send to {supportEmail}. We can then recover anything that gets lost. Please restart the program after this.</lit>
 			<lit name="worstCaseError">You could try again in a while. If you close this course or C-Builder you will lose any changes you have made recently. In the worst case, click OK, and take some screen shots.</lit>
 			
@@ -103,6 +104,7 @@
 			<lit name="doneButton">Done</lit>
 			<lit name="addUnitButton">Add a unit</lit>
 			<lit name="unitCopyButton">Duplicate a unit</lit>
+			<lit name="importCourseButton">Import a course</lit> <!-- gh#233 -->
 			<lit name="publishCourseButton">Publish course</lit>
 			<lit name="publishChangeButton">Change published details</lit>
 			<lit name="settingButton">Settings</lit>
@@ -162,6 +164,10 @@
 			<lit name="menuDeleteItem">Delete item</lit>
 			<lit name="menuEditItem">Edit item</lit>
 			<lit name="menuCopyItem">Copy item</lit>
+			
+			<!--  Status messages -->
+			<lit name="importedUnits">{numberOfUnits} units were successfully imported.</lit>
+			<lit name="okButton">OK</lit>
 			
 			<lit name="courseEditableFormItemHelp">Use to protect a completed course</lit>
 			<lit name="collaboratorsFormItemHelp">Collaborators can edit the course</lit>

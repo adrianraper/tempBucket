@@ -43,6 +43,8 @@ class LoginService extends AbstractService {
 		
 		// Set the product name and userID for logging
 		AbstractService::$log->setProductName("LOGIN");
+		AbstractService::$debugLog->setProductName("LOGIN");
+		AbstractService::$controlLog->setProductName("LOGIN");
 
 		// Set the title name for resources
 		AbstractService::$title = "rm";

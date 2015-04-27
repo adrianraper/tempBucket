@@ -865,7 +865,5 @@ class Log
     }
     function setProductName($value) {
     }
-    function setDB($value) {
-    }
     
 }

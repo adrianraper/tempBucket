@@ -60,6 +60,58 @@ class XmlUtils {
 				@fwrite($fp, $dom->saveXML());
 			}
 			
+			@fclose($fp);
+
+			@rmdir($lockDirname);
+			
+			// #153
+			if ($exception) throw $exception;
+	        
+	        // In case the calling function wants to do something with the new XML return it as a string (usually this will be ignored though)
+			return $dom->saveXML();
+		} else {
+			throw new Exception("Unable to open $filename for writing");
+		}
+	}
+	
+	/**
+	 * Functionally process (using $func) and write an XML string.  This uses locking to ensure that people can't modify the file
+	 * concurrently.  This allows us to fiddle with an XML string before writing it using a function.
+	 * 
+	 */
+	public static function newXml($filename, $contents, $func) {
+		
+		$lockDirname = $filename.'_lock';
+		if ($fp = @fopen($filename, 'w')) {
+			// Implement locking with a 10 second timeout in case things go awry
+			$timestamp = time();
+			while (file_exists($lockDirname) || !mkdir($lockDirname)) {
+				usleep(250);
+				if ((time() - $timestamp) > 10) {
+					throw new Exception("Timeout when waiting for file lock");
+				}
+			}
+			
+			$xml = simplexml_load_string($contents);
+			
+			// #153
+			$exception = null;
+			try {
+				$func($xml);
+			} catch (Exception $e) {
+				$exception = $e;
+			}
+			
+			$dom = new DOMDocument();
+			$dom->formatOutput = true;
+			$dom->loadXML($xml->asXML());
+			
+			// If there is an exception then we should replace the file with its original contents, otherwise the new contents
+			if ($exception) {
+			} else {
+				@fwrite($fp, $dom->saveXML());
+			}
+			
 	        @fclose($fp);
 
 			@rmdir($lockDirname);

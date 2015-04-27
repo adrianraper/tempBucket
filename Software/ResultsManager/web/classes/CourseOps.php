@@ -20,6 +20,13 @@ class CourseOps {
 </bento>
 ';
 	
+	// gh#233
+	var $stubXML = '
+<bento xmlns="http://www.w3.org/1999/xhtml">
+	<courses />
+</bento>
+';
+	
 	function __construct($db, $accountFolder = null) {
 		$this->db = $db;
 		if ($accountFolder) 
@@ -167,6 +174,10 @@ SQL;
 				
 				// If the course is missing an id then add it in
 				if (!isset($course['id'])) $course['id'] = $courseId;
+				
+				// gh#619 update the last saved date
+				$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+				$course['lastSaved'] = $dateStampNow->format('Y-m-d H:i:s'); 
 				
 				// If the units or exercises are missing ids then generate them.  At the same time if any unit has a tempid attribute, remove it.
 				foreach ($course->unit as $unit) {
@@ -530,6 +541,18 @@ SQL;
 		}
 	}
 	
+	// gh#233
+	public function createCourseStub($filename, $id) {
+		$stubXML = $this->stubXML;
+		XmlUtils::newXml($filename, $stubXML, function($xml) use($id) {
+			$courseNode = $xml->courses->addChild("course");
+			$courseNode->addAttribute("id", $id);
+			$courseNode->addAttribute("href", $id."/menu.xml");
+			$date = new DateTime();
+			$courseNode->addAttribute("exported", $date->format('Y-m-d H:i:s'));
+		});
+	}
+	
 	public function getCourseStart($id) {
 		$groupID = Session::get('groupID');
 		do {
@@ -792,4 +815,42 @@ EOD;
 		return count($emailArray);
 	}
 	
+	/**
+	 * gh#233 Build an xml list of the media files used in a particular course
+	 * 
+	 */
+	public function buildMediaXml($courseId, $prefix) {
+
+		$menuFile = $this->accountFolder.'/'.$courseId.'/menu.xml';
+		$menuXml = simplexml_load_file($menuFile);
+		$menuXml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
+		$exercises = $menuXml->xpath('//xmlns:exercise');
+		if (count($exercises) > 0) {
+			$filesXml = new SimpleXMLElement('<bento xmlns="http://www.w3.org/1999/xhtml"><files originalAccount="'.$prefix.'" /></bento>');			
+			foreach ($exercises as $exercise) {
+				// Don't write some types of media
+				if ($exercise['type'] == 'video')
+					continue;
+				// Don't try anything that doesn't list a src
+				if (!isset($exercise['src']))
+					continue;
+				// Don't need to copy URLs
+				if ((stripos($exercise['src'], 'http') !== false) && (stripos($exercise['src'], 'http') == 0))
+					continue;
+					
+				$fileNode = $filesXml->addChild('file');
+				$fileNode['filename'] = $exercise['src'];
+				$fileNode['type'] = $exercise['type'];
+				
+				// Some types have a thumbnail as well as a main src
+				if (isset($exercise['thumbnail'])) {
+					$fileNode = $filesXml->addChild('file');
+					$fileNode['filename'] = $exercise['thumbnail'];
+					$fileNode['type'] = 'thumbnail';
+				}
+					
+			}
+			return $filesXml->asXML();
+		}
+	}
 }

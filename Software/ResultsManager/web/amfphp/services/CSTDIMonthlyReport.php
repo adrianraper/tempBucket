@@ -33,7 +33,7 @@ $rootID = 14449;
 
 $outputText = '';
 $outputDevice = 'file';
-$outputDevice = 'screen';
+//$outputDevice = 'screen';
 
 writeOutHeader();
 runQuery($rootID, $startDate, $endDate);

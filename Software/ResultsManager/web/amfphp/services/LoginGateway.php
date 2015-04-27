@@ -21,7 +21,7 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getOrAddUser","studentID":"P10102928-170","name":"RAPER, Adrian","dbHost":2,"custom1":"Basic","custom2":"IMD","prefix":"CSTDI","loginOption":"8"}';
 	//$inputData = '{"method":"getOrAddUser","studentID":"5217-0123-4567","name":"asdf","password":"1234","email":"adrian@noodles.hk","groupID":"170","productCode":"52","subscriptionPeriod":"3m","emailTemplateID":"Welcome-BC-user","adminPassword":"clarity88","dbHost":102,"loginOption":2}';
 	//$inputData = '{"method":"getOrAddUser","dbHost":2,"prefix":"CSTDI","rootID":14449,"groupID":26271,"city":"Hong Kong","country":"Hong Kong","loginOption":2,"subscriptionPeriod":"1y","adminPassword":"57845612","studentID":"cstdi-1234","name":"RAPER, Adrian","custom1":"100","custom2":"21"}';
-	//$inputData = '{"method":"signInUser","rootID":"15095","prefix":"BCLECH","studentID":"123456","password":"aaa","dbHost":2,"loginOption":"2"}';
+	//$inputData = '{"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5","dbHost":102,"loginOption":"8"}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","licenceType":5,"loginOption":128,"dbHost":20}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","loginOption":128,"dbHost":20}';
 	//$inputData = '{"method":"getOrAddUserAutoGroup", "prefix":"TW_TTU", "groupName":"noGroup", "name":"winhoey", "password":"testing", "teacherName":"TTU_Teacher", "adminPassword":"68777214", "dbHost":2, "city":"Taichung", "country":"Taiwan", "loginOption":1}';
@@ -30,8 +30,7 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getOrAddUser","studentID":"xx999-21407-00020","name":"xxD\u00e2v\u00efd V\u00e2h\u00e9y\u00f6","email":"dosh.10@noodles.hk","dbHost":"200","productCode":52,"expiryDate":"2013-03-07 23:59:59","prefix":"GLOBAL","rootID":"14030","groupID":"22155","loginOption":"2","country":"UK","city":"British Council ORS","adminPassword":"clarity88","registerMethod":"ORS-portal"}';
 	//$inputData = '{"method":"forgotPassword","studentID":"5216-8965-3456","dbHost":102,"loginOption":2}';
 	//$inputData = '{"method":"getUser","email":"dandy@email.com","loginOption":128,"licenceType":5}';
-    //$inputData = '{"method":"getSubscription","email":"dundy@email","password":"asdf","productCode":59,"prefix":"Clarity","dbHost":2,"loginOption":128}';
-    $postInformation= json_decode($inputData, true);
+	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
 		// TODO. Ready for PHP 5.3
 		//throw new Exception("Error decoding data: ".json_last_error().': '.$inputData);
@@ -340,7 +339,6 @@ try {
 		default:
 			returnError(1, 'Invalid method '.$apiInformation->method);
 	}
-
 
 	// Send back data.
 	// It might be better to only send back limited account data

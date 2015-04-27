@@ -502,10 +502,11 @@ try {
 	if ($justForTesting) {
 		setDefaultsForTesting();
 	}
+	*/
 	$accountInformation = loadAccountInformation();
 	// Create the accounts
 	addAccountFromPaymentGateway($accountInformation);
-	*/
+	
 } catch (Exception $e) {
 	// Lets assume that we are generating plain text
 	echo '&error=1&message='.$e->getMessage();

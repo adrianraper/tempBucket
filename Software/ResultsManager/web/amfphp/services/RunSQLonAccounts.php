@@ -406,12 +406,13 @@ if (stristr($testingTriggers, "Seed permissions and privacy for CCB")) {
 	$conditions = array();
 	$conditions['productCode'] = 54;
 	$testingAccounts = null;
-	//$testingAccounts = array(10719);
+	$testingAccounts = array(14840);
 	$accounts = $dmsService->accountOps->getAccounts($testingAccounts, $conditions);
 	if ($accounts) {
 		foreach ($accounts as $account) {
 			// get the prefix and the admin userID
 			$prefix = $account->prefix;
+			$prefix = 'HKAPA';
 			$userID = $account->adminUser->id;
 			$rootID = $account->id;
 			
@@ -423,12 +424,12 @@ if (stristr($testingTriggers, "Seed permissions and privacy for CCB")) {
 					$xml = simplexml_load_file($filename);
 					foreach ($xml->courses->course as $course) {
 						$courseID = (string)$course['id'];
-						//seedCoursePermission($courseID);
-						//seedCourseRole($courseID, $userID, $rootID);
+						seedCoursePermission($courseID);
+						seedCourseRole($courseID, $userID, $rootID);
 						echo "&nbsp;&nbsp;&nbsp;&nbsp;course $courseID<br/>";
 					}
 				} else {
-					echo "&nbsp;&nbsp;&nbsp;&nbsp;no courses have been created<br/>";
+					echo "&nbsp;&nbsp;&nbsp;&nbsp;no courses have been created at $filename<br/>";
 				}
 			} catch (Exception $e) {
 				echo "error: $e->getMessage()";

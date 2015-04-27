@@ -66,6 +66,8 @@ class BentoService extends AbstractService {
 			
 		// Set the product name for logging
 		AbstractService::$log->setProductName(Session::getSessionName());
+		AbstractService::$debugLog->setProductName(Session::getSessionName());
+		AbstractService::$controlLog->setProductName(Session::getSessionName());
 		
 		// Create the operation classes
 		$this->accountOps = new AccountOps($this->db);
@@ -79,15 +81,17 @@ class BentoService extends AbstractService {
 		// Set the root id (if set)
 		// I am now using is_set, but is that safe? If not set it might be an error. 
 		if (Session::is_set('userID')) {
-			// AbstractService::$debugLog->notice("Bento-".Session::getSessionName()." service for userID=".Session::get('userID'));
 			AbstractService::$log->setIdent(Session::get('userID'));
+			AbstractService::$debugLog->setIdent(Session::get('userID'));
+			AbstractService::$controlLog->setIdent(Session::get('userID'));
+			
 			$this->loginOps->setTimeZoneForUser(Session::get('userID')); // gh#156
-		} else {
-			// AbstractService::$debugLog->notice("Bento service for NO userID");
 		}
 		
 		if (Session::is_set('rootID')) {
 			AbstractService::$log->setRootID(Session::get('rootID'));
+			AbstractService::$debugLog->setRootID(Session::get('rootID'));
+			AbstractService::$controlLog->setRootID(Session::get('rootID'));
 		}
 	}
 	
@@ -145,8 +149,17 @@ class BentoService extends AbstractService {
 		
 		// gh#659 productCodes is null or not can distinguish whether this is ipad or online version login
 		if (isset($config['ip'])) {
-			foreach ($account->titles as $thisTitle) {
-				array_push($account->IPMatchedProductCodes, $thisTitle->productCode);
+			// gh#1223
+			foreach ($account->licenceAttributes as $thisLicenceAttribute) {
+				if ($thisLicenceAttribute['licenceKey'] == 'IPrange') {
+					if ($thisLicenceAttribute['productCode'] != '') {
+						array_push($account->IPMatchedProductCodes, $thisLicenceAttribute['productCode']);
+					} else { // Sometimes the product code column is empty, so we need to add product code from title
+						foreach ($account->titles as $thisTitle)
+							array_push($account->IPMatchedProductCodes, $thisTitle->productCode);
+						break;
+					}
+				}
 			}
 		}
 		
@@ -331,6 +344,16 @@ class BentoService extends AbstractService {
 		// But getLicenceSlot doesn't cope with that. For now this is OK as no-one uses it.
 		$newRootID = $userObj->rootID;
 		
+		// gh#723, gh#254 Special (and soon to be obsolete) handling for R2I so that if you do know which
+		// version you want to run, we remember it. Then if you login on a tablet next, we can pick it up.
+		// gh#1161
+		if ($userObj->F_UserID > 0 && ($productCode == '52' || $productCode == '53')) {
+			if ($userObj->F_UserProfileOption != $productCode) {
+				$user->userProfileOption = $productCode;
+				$this->updateUser($user, $newRootID);
+			}
+		}
+		
 		if ($rootID != array($newRootID)) {
 			// gh#39 Special case handling for BC LastMinute candidates using tablets. 
 			// The productCode will be a list '52,53', but you can find which to use from T_User.F_UserProfileOption
@@ -464,8 +487,8 @@ class BentoService extends AbstractService {
 	/**
 	 * This service call returns an associative array of Course_ID => course summary data for everyone and is used in progress compare
 	 */
-	public function getEveryoneSummary($productCode) {
-		return $this->progressOps->getEveryoneSummary($productCode);
+	public function getEveryoneSummary($productCode, $country = 'Worldwide') {
+		return $this->progressOps->getEveryoneSummary($productCode, $country);
 	}
 	
 	/**
@@ -483,6 +506,7 @@ class BentoService extends AbstractService {
 	 *  @param dateNow - used to get client time
 	 */
 	public function startSession($user, $rootId, $productCode, $dateNow = null) {
+		
 		// A successful session start will return a new ID
 		$sessionId = $this->progressOps->startSession($user, $rootId, $productCode, $dateNow);
 		return array("sessionID" => $sessionId);
@@ -525,6 +549,9 @@ class BentoService extends AbstractService {
 	 */
 	public function updateLicence($licence, $sessionId = null) {
 
+		//$userId = Session::get('userID');
+		//AbstractService::$debugLog->info($userId." updateLicence for sessionId=$sessionId");
+		
 		// gh#604 Update the licence if applicable
 		if ($licence)
 			$this->licenceOps->updateLicence($licence);

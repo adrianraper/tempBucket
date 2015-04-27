@@ -120,12 +120,11 @@ function securityAction (&$amfbody) {
 			if ($allow === '__amfphp_error' || $allow === false) {
 				// v3.6 Change the text of this message as it does happen quite often
 				//$ex = new MessageException(E_USER_ERROR, "Method access blocked by beforeFilter in " . $className . " class", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
+				// gh#1223
 				if ($className=='DMSService' || $className=='ClarityService' || $className=='IELTSService' || $className=='TenseBusterService' || $className=='ClearPronunciationService' || $className=='TB6weeksService') {
 					$ex = new MessageException(E_USER_ERROR, "Your authentication has been lost, please login again.", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
-					//error_log(date('Y-m-d H:i:s') . ": Error Detection by sky 1 for beforeFilter, className: " . $className . "; MethodName: " . serialize($methodName) . "\n", 3, AMFPHP_BASE . "shared/app/skyerror.log");
 				} else {
 					$ex = new MessageException(E_USER_ERROR, "Method access blocked by beforeFilter in " . $className . " class", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
-					//error_log(date('Y-m-d H:i:s') . ": Error Detection by sky for beforeFilter, className: " . $className . "; MethodName: " . serialize($methodName) . "\n", 3, AMFPHP_BASE . "shared/app/skyerror.log");
 				}
 				MessageException::throwException($amfbody, $ex);
 				return false;

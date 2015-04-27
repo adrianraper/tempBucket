@@ -240,8 +240,8 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 							if ($title->productCode == 2) {
 								// Check to see that the account is at least 26 days old before we send the usage stats
 								if (round(abs(time() - strtotime($title->licenceStartDate)) / 60 / 60 / 24) < 26 ) {
-									// Stop working on this account - break out of two loops
-									break 2;
+									// gh#1223, gh#987 Stop working on this account - jump to next account in loop
+									continue 2;
 								}
 							}
 						}
@@ -337,7 +337,7 @@ $fixedDateShift = 0;
 // This is where I can elect to run weekly or monthly triggers
 // Is today the first of the month?
 // Currently nothing is sent out like this as usage stats moved to a daily check on each account
-if (date("j")==5) {
+if (date("j")==1) {
 	$testingTriggers .= "monthlyActions";
 }
 // Used for Early Warning system emails to Clarity team

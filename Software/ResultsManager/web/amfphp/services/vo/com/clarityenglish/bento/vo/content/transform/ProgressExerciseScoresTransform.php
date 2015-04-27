@@ -5,6 +5,7 @@ class ProgressExerciseScoresTransform extends XmlTransform {
 	
 	var $_explicitType = 'com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform';
 	
+	// gh#1223
 	public function transform($db, $xml, $href, $service) {
 		// #341 No need for any of this if anonymous access
 		if (Session::get('userID') > 0) {

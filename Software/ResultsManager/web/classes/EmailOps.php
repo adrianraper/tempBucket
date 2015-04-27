@@ -195,6 +195,36 @@ EOD;
 		return $errors;
 	}
 	
+	// gh#982
+	function removeQueuedEmails($emailID, $to, $templateNames) {
+		$errors = array();
+		if (isset($emailID)){
+			$sql = 	<<<EOD
+				DELETE FROM T_PendingEmails
+				WHERE `F_EmailID` = ?  
+				AND `F_Attempts` = 0; 
+EOD;
+			$rs = $this->db->Execute($sql, array($emailID));
+			if (!$rs) $errors[] = $rs->lastDBError();
+		}else{
+			foreach ($templateNames as $templateName) { 
+				if ($templateName){
+					if(isset($to)){
+						$sql = 	<<<EOD
+							DELETE FROM T_PendingEmails
+							WHERE `F_To` = ? 
+							AND `F_TemplateID` = ?  
+							AND `F_Attempts` = 0; 
+EOD;
+						$rs = $this->db->Execute($sql, array($to, $templateName));
+						if (!$rs) $errors[] = $rs->lastDBError();
+					}
+				}
+			}
+		}
+		return $errors;
+	}
+	
 	// A version of the above to cope with the old way of sending emails (directly via php.mail)
 	function sendWebsiteEmails($email) {
 		$errors = array();

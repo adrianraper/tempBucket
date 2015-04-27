@@ -48,8 +48,7 @@ class PWService extends AbstractService {
 		// Set the product name and userID for logging
 		AbstractService::$log->setProductName("PW");
 		if (Session::is_set('userID')) {
-			AbstractService::$log->setUserID(Session::get('userID'));
-			AbstractService::$log->setIdent(Session::get('userID'));
+			AbstractService::$log->setIdent(Session::get('userID')); // gh#857
 		};
 		
 		// Set the title name for resources

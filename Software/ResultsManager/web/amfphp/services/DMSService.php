@@ -69,15 +69,18 @@ class DMSService extends AbstractService {
 		
 		// Set the product name and userID for logging
 		AbstractService::$log->setProductName("DMS");
+		AbstractService::$debugLog->setProductName("DMS");
+		AbstractService::$controlLog->setProductName("DMS");
 		
 		// Set the title name for resources (DMS shares resources with rm so use rm for this too)
 		AbstractService::$title = "rm";
 		
+		// gh#857
 		if (Session::is_set('userID')) {
-			AbstractService::$log->setUserID(Session::get('userID'));
+			AbstractService::$log->setIdent(Session::get('userID'));
+			AbstractService::$debugLog->setIdent(Session::get('userID'));
+			AbstractService::$controlLog->setIdent(Session::get('userID'));
 		};
-		//NetDebug::trace('DMSservice.constructor.getDetails='.AbstractService::$log->getDetails());
-		//NetDebug::trace('Abstract service.session.userID='.Session::get('userID'));
 		
 		// Create the operation classes
 		$this->loginOps = new LoginOps($this->db);

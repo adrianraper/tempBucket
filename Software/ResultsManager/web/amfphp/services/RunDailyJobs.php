@@ -137,7 +137,7 @@ function runDailyJobs($triggerDate = null) {
 	$rc = $thisService->dailyJobOps->monitorCBBActivity($database);
 	echo "$rc accounts active yesterday. $newLine";	
 	*/
-	
+	/*
 	// 7. Update TB6weeks bookmarks 
 	// a. Loop round all accounts that have productCode=59 (and are active)
 	$productCode = 59;
@@ -164,7 +164,7 @@ function runDailyJobs($triggerDate = null) {
 			}
 		}
 	}
-	
+	*/	
 }
 
 // Action

@@ -10,7 +10,7 @@ require_once($GLOBALS['adodb_libs']."adodb.inc.php");
 require_once(dirname(__FILE__)."/../../classes/Session.php");
 require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
 require_once(dirname(__FILE__)."/../../classes/Log/Log.php");
-require_once(dirname(__FILE__)."/../../classes/Log/handlers/Log_ClarityDB.php");
+//require_once(dirname(__FILE__)."/../../classes/Log/handlers/db.php");
 
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/Href.php");
 
@@ -53,18 +53,51 @@ class AbstractService {
 		$this->db->SetFetchMode(ADODB_FETCH_ASSOC);
 		
 		// Create the database logger and set the database
-		AbstractService::$log = &Log::factory('ClarityDB');
-		AbstractService::$log->setDB($this->db);
+		// gh#857 Allow production to switch off logging
+		/*
+		 * Purpose of logging is:
+		 * 
+		 *  debugLog - purely for development and should be null in production unless emergency
+		 *  controlLog - used to hold key information, such as user xxx deleted 1000 users in RM
+		 *  log - for information you want to keep, but perhaps temporarily. Like performance or to track a bug fix for a month
+		 */ 
+		$conf = array();
+		$conf['timeFormat'] = 'Y-m-d H:i:s';
 		
-		// v3.3 And one for debug logging. I don't see why the above doesn't really seem to work through the factory.
-		// How to make it write to the folder I want?
-		// v3.4 Sometimes I want to use a file log in DMS. If I set it up here, does it mean overhead with every single call?
-		// I don't think so, it only does opening etc when called to write.
-		AbstractService::$debugLog = &Log::factory('file');
-		AbstractService::$debugLog->setFileName($GLOBALS['logs_dir'].'debugLog.txt');
+		$logType = $debugLogType = $controlLogType = 'null';
+		if (isset($GLOBALS['logType']))
+			$logType = $GLOBALS['logType'];
+		if (isset($GLOBALS['debugLogType']))
+			$debugLogType = $GLOBALS['debugLogType'];
+		if (isset($GLOBALS['controlLogType']))
+			$controlLogType = $GLOBALS['controlLogType'];
+			
+		if ($logType == 'file') {
+			$logTarget = $GLOBALS['logs_dir'].'log.txt';
+		} else if ($logType == 'db') {
+			$logTarget = $this->db;
+		} else {
+			$logTarget = null;
+		}
+		AbstractService::$log = &Log::factory($logType, $logTarget, null, $conf);
 		
-		AbstractService::$controlLog = &Log::factory('file');
-		AbstractService::$controlLog->setFileName($GLOBALS['logs_dir'].'controlLog.txt');
+		if ($debugLogType == 'file') {
+			$debugLogTarget = $GLOBALS['logs_dir'].'debugLog.txt';
+		} else if ($logType == 'db') {
+			$debugLogTarget = $this->db;
+		} else {
+			$debugLogTarget = null;
+		}
+		AbstractService::$debugLog = &Log::factory($debugLogType, $debugLogTarget, null, $conf);
+			
+		if ($controlLogType == 'file') {
+			$controlLogTarget = $GLOBALS['logs_dir'].'controlLog.txt';
+		} else if ($controlLogType == 'db') {
+			$controlLogTarget = $this->db;
+		} else {
+			$controlLogTarget = null;
+		}
+		AbstractService::$controlLog = &Log::factory($controlLogType, $controlLogTarget, null, $conf);
 		
 		// Create the operation classes
 		$this->copyOps = new CopyOps();
@@ -146,6 +179,8 @@ class AbstractService {
 			$function_called == "updateLicence" ||
 			$function_called == "getInstanceID" ||
 			$function_called == "addUser" ||
+			$function_called == "writeScore" || // gh#1223 
+			$function_called == "xhtmlLoad" || // gh#1223 
 			$function_called == "getCCBContent"
 			) return true;
 		
