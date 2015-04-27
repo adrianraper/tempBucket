@@ -100,7 +100,8 @@ package com.clarityenglish.common.model {
 			config.group = new Group();
 			
 			// gh#1090 Clear everything except that which you retained on the first go
-			// config.retainedParameters = {};
+			if (config.prefix == "TD" || config.prefix == "Demo")
+				config.retainedParameters = {};
 			config.prefix = "";
 			config.noLogin = false;
 			config.isReloadAccount = false;
