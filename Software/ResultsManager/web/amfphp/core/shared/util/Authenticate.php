@@ -22,7 +22,7 @@ class Authenticate {
 	 */
 	function isAuthenticated () {
 		//if (isset($_SESSION['amfphp_username'])) {
-		AbstractService::$debugLog->info('isAuthenticated from '.Session::getSessionName());
+		//AbstractService::$debugLog->info('isAuthenticated from '.Session::getSessionName());
 		if (Session::is_set('amfphp_username')) {
 			return true;
 		} else {
@@ -82,6 +82,8 @@ class Authenticate {
 	 * 
 	 * @param string $name The user name
 	 * @param string $roles The comma delimited list of roles for the user
+	 * 
+	 * gh#1140 LoginOps will now pass userID + name in case the name is null - no need for a change here
 	 */
 	function login($name, $roles) {
 		if(!session_id()) 

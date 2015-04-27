@@ -15,7 +15,7 @@ class RotterdamBuilderService extends RotterdamService {
 		// If a user is logged in then get the content folder
 		if (Session::is_set('userID')) {
 			
-			AbstractService::$log->info('accountFolder='.$this->accountFolder);
+			// AbstractService::$log->info('accountFolder='.$this->accountFolder);
 			
 			// gh#338 This is a check that the account content folder has a good structure
 			// Look for a media file (which implies the full folder structure exists)
@@ -35,7 +35,7 @@ class RotterdamBuilderService extends RotterdamService {
 			}
 		}
 	}
-	
+
 	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null) {
 		// gh#66 
 		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
@@ -52,7 +52,9 @@ class RotterdamBuilderService extends RotterdamService {
 		$xhtml = parent::xhtmlLoad($href);
 		
 		// gh#142
-		if ($href->type == Href::MENU_XHTML) {
+		// gh#91 You only need to consider concurrency if this user can edit the course
+		if ($href->type == Href::MENU_XHTML && 
+			($href->options['enabledFlag'] & Course::EF_OWNER || $href->options['enabledFlag'] & Course::EF_COLLABORATOR)) {
 			$courseId = $href->options["courseId"];
 
 			// gh#385, gh#815
@@ -78,7 +80,8 @@ EOD;
 		return $xhtml;
 	}
 	
-	public function courseSessionUpdate($courseId) {
+	// gh#954 Session id passed, but only used by player
+	public function courseSessionUpdate($courseId, $sessionId) {
 		$fields = array(
 			"F_RootID" => Session::get('rootID'),
 			"F_UserID" => Session::get('userID'),
@@ -90,17 +93,14 @@ EOD;
 	}
 	
 	public function courseCreate($course) {
-		// TODO: Only allow this if the logged in user has permission
 		return $this->courseOps->courseCreate($course);
 	}
 	
 	public function courseSave($filename, $xml) {
-		// TODO: Only allow this if the logged in user has permission
 		return $this->courseOps->courseSave($filename, $xml);
 	}
 	
 	public function courseDelete($course) {
-		// TODO: Only allow this if the logged in user has permission
 		return $this->courseOps->courseDelete($course);
 	}
 	
@@ -146,11 +146,20 @@ XML;
 		file_put_contents($this->accountFolder."/courses.xml", $courseXML);
 	}
 	
+	/**
+	 * gh#930
+	 * 
+	 * This service call overwrites Bento and stops scores from Builder
+	 *  
+	 */
+	public function writeScore($user, $sessionID, $dateNow, $scoreObj) {
+		return new Score();
+	}
+	
 	// gh#122
 	public function sendWelcomeEmail($courseXML, $groupID) {
 		// This will send a welcome email to any student in this group for this course
 		// (and subgroups that don't have their own publication data??)
-		// TODO. Make this process just put records into a database and then a cron job can send them
 		return $this->courseOps->sendWelcomeEmail($courseXML, $groupID);
 	}
 }

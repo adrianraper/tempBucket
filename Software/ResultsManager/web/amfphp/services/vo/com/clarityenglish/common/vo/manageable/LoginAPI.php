@@ -37,6 +37,9 @@ class LoginAPI {
 	
 	// Authentication
 	var $adminPassword;
+
+    // gh#1171
+    var $encryptData;
 	
 	function LoginAPI() {
 	}
@@ -105,7 +108,11 @@ class LoginAPI {
 		// Authentication
 		if (isset($info['adminPassword'])) 
 			$this->adminPassword = $info['adminPassword'];
-		
+
+        // gh#1171
+		if (isset($info['encryptData']))
+			$this->encryptData = $info['encryptData'];
+
 		// Fields with defaults if not sent
 		// TODO. This should not be sent, it should be read from the account
 		// but perhaps account value can be overwritten if sent
@@ -120,7 +127,27 @@ class LoginAPI {
 			$this->dbHost = 0;
 		}
 	}
-	
+
+    public function toEncryptedString() {
+		$buildArray = array();
+        if (isset($this->name))
+            $buildArray[] = 'name='.$this->name;
+        if (isset($this->studentID))
+            $buildArray[] = 'studentID='.$this->studentID;
+        if (isset($this->email))
+            $buildArray[] = 'email='.$this->email;
+        if (isset($this->prefix))
+            $buildArray[] = 'prefix='.$this->prefix;
+        if (isset($this->password))
+            $buildArray[] = 'password='.$this->password;
+        if (count($buildArray) > 0) {
+            $crypt = new Crypt();
+            $buildString = implode('&',$buildArray);
+            return $crypt->encodeSafeChars($crypt->encrypt($buildString));
+        }
+        return '';
+    }
+
 	public function toString() {
 		$buildString = 'user details';
 		if (isset($this->name))

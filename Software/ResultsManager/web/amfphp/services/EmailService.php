@@ -28,6 +28,8 @@ class EmailService extends AbstractService {
 		
 		// Set the product name and userID for logging
 		AbstractService::$log->setProductName("EMAIL");
+		AbstractService::$debugLog->setProductName("EMAIL");
+		AbstractService::$controlLog->setProductName("EMAIL");
 		
 		// Set the title name for resources
 		AbstractService::$title = "rm";

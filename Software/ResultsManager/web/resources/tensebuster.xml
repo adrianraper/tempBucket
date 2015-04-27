@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<literals progam="TenseBuster" version="2.0">
+	<language name="English International" code="EN" mediaFolder="EN">
+		<group name="group">	
+			<lit name="loginInputTitle">Tense Buster</lit>
+			<lit name="applicationVersion">Version {version}</lit>
+
+			<!-- Is this one for My progress? -->
+			<lit name="errorCantLoadEveryoneSummary" code="314">Unable to load data for everyone's summary.</lit>
+			
+			<!-- This could be for at-launch loading, but currently it seems TB doesn't use this. -->
+			<lit name="loadingLabel">loading...</lit>
+
+			<!-- Not currently used by TB. Delete?-->
+			<lit name="overallCoverage"> - overall coverage</lit>
+			
+			<!-- Dialog box -->
+			<lit name="noButton">No</lit>
+			<lit name="yesButton">Yes</lit>
+			<lit name="closeButton">OK</lit>
+			
+			<!-- Login screen -->
+			
+			<!-- Skin buttons -->
+			<lit name="Elementary">Elementary</lit>
+			<lit name="Lowerintermediate">Lower Intermediate</lit>
+			<lit name="Intermediate">Intermediate</lit>lit>
+			<lit name="Upperintermediate">Upper Intermediate</lit>
+			<lit name="Advanced">Advanced</lit>
+			<lit name="homeInstructionLabel">Please choose a level.</lit>
+			<lit name="unitInstructionLabel">Please choose a unit.</lit>
+			<lit name="exInstructionLabel">Please choose an exercise.</lit>
+			<lit name="myProgress">My Progress</lit>
+			<lit name="myProfile">My Profile</lit>
+			<lit name="help">Help</lit>
+			<lit name="LogOut">Log out</lit>
+			<lit name="exerciseBackToMenuButton">Menu</lit>
+			<lit name="exerciseStartAgainButton">Start again</lit>
+			<lit name="exerciseBackButton">Back</lit>
+			<lit name="exerciseForwardButton">Forward</lit>
+			<lit name="exerciseFeedbackButton">Feedback</lit>
+			<lit name="exerciseMarkingButton">Marking</lit>
+			<lit name="exerciseScoringButton">Scoring</lit>
+			<lit name="printButton">Print</lit>
+			<lit name="recorderButton">Record</lit>
+			<lit name="exerciseLogOutButton">Log out</lit>
+			<lit name="logoutButton">Log out</lit>
+			<lit name="instructionLabel">Choose a level to start your grammar practice.</lit>
+			<lit name="backToMenuButton">Back to Menu</lit>
+
+			<!-- Marking and feedback -->
+			<lit name="tryAgainButton">Try again</lit>
+			<lit name="seeAnswersButton">See the answers</lit>
+			<lit name="moveForwardButton">Forward</lit>
+			<lit name="loseAnswerWarning1">Are you sure you want to leave this exercise?</lit>
+			<lit name="loseAnswerWarning2">(You will lose your work in this exercise.)</lit>
+			<lit name="loseChangesWarning">Your changes have not been saved. Are you sure you want to continue?</lit>
+			<lit name="loseRecordingWarning">You will lose any unsaved recording you have made. Are you sure you want to continue?</lit>
+			<lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>
+			<lit name="feedbackClickAnswersMsg">Click on any answer to see feedback.</lit>			
+            <lit name="correctFeedbackTitle">Well done!</lit>
+            <lit name="incorrectFeedbackTitle">Sorry...</lit>
+            <lit name="neutralFeedbackTitle"></lit>
+            <lit name="generalFeedbackTitle"></lit>
+
+			<!-- My progress: general -->
+			<lit name="progressAnonymousLabel">You logged in anonymously, so your progress will not be saved.</lit>
+			<lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
+			<lit name="progressNavBarCoverage">My coverage</lit>
+			<lit name="progressNavBarCompare">Compare</lit>
+			<lit name="progressNavBarAnalyse">Analyse</lit>
+			<lit name="progressNavBarScores">My scores</lit>
+			<lit name="progressNavBarCertificate">My certificate</lit>
+			
+			<!-- My progress: My coverage -->
+			<lit name="coverageInstructionLabel">The chart below shows how many exercises you have completed in each unit.</lit>
+			<lit name="progressBarCoverage">{course} - Overall coverage</lit>
+			<lit name="completeLabel">Completed</lit>
+			<lit name="notCompleteLabel">Not completed</lit>
+			
+			<!-- My progress: Compare -->
+			<lit name="chartCaptionLabel">Average score (%)</lit>
+			<lit name="progressBarScore">{course} - Average score</lit>
+			<lit name="compareInstructionLabel">Compare your average score to other learners.</lit>
+			<lit name="mylegendLabel">My scores</lit>
+			<lit name="everyonelegendLabel">Everyone's scores</lit>
+			<lit name="compareEmptyScoreLabel">You must first complete an exercise to see this chart.</lit>
+			
+			<!-- My progress: Analyse -->
+			<lit name="analyseInstructionLabel">This shows how you spent your time on each unit in {course}:</lit>
+			<lit name="circleWedgeLabel">Total time you have spent:</lit>
+			<lit name="totalTimeLabel">Total time you have spent:</lit>
+			<lit name="circleWedgeInstructionLabel">Units you have not done are not shown in the chart above.</lit>
+			<lit name="analysisTime">{x}</lit>
+			<lit name="minLabel">min(s)</lit>
+			<lit name="courseDurationRenderTime">{time}</lit>
+			<lit name="totalLabel">Total:</lit>
+			<lit name="emptyCircleWedgeCourseLabel">There is no record yet.</lit>
+
+			<!-- My progress: My score -->
+			<lit name="scoreGridC1">Unit</lit>
+			<lit name="scoreGridC2">Exercise</lit>
+			<lit name="scoreGridC3">Score %</lit>
+			<lit name="scoreGridC4">Time spent</lit>
+			<lit name="scoreGridC5">Date</lit>
+			<lit name="ScoreEmptyScoreLabelButton">No scores yet.</lit>
+			
+			<!-- My progress: My certificate -->
+			<lit name="notCompleteString">
+			 <![CDATA[
+			 	<p>You have not completed <span fontWeight="bold" fontSize="16">{courseCaption}</span> yet, so you cannot receive a certificate.</p>
+			 	<p>So far you have completed <span fontWeight="bold" fontSize="16">{exerciseAmount} of {totalExercise} exercises</span> and your average score is <span fontWeight="bold" fontSize="16">{aveScor}%.</span></p>
+			 	<p>Go to <span fontWeight="bold" fontSize="16">My Coverage</span> to see which exercises you have not completed so that</p>
+			 	<p>you can finish the whole level.</p> 
+			 ]]>
+			</lit>
+			<lit name="completeString">
+			 	<![CDATA[
+			 	<p>This is to certify that this learner has completed this level</p>
+			 	<p>and has achieved an average score of {aveScore}%.</p>
+			 	]]>
+			</lit>
+			<lit name="certificateName">{name}</lit>
+			<lit name="certificateCourse">{course}</lit>
+			<lit name="certificateDate">{date}</lit>
+			<lit name="certificateWording">This is to certify that this learner has completed this level and has achieved an average score of {score}%.</lit>
+			 
+			<!-- Used in My profile -->
+			<lit name="nameTextLabel">Name:</lit>
+			<lit name="courseTextLabel">Course:</lit>
+			<lit name="dateTextLabel">Date:</lit>
+			<lit name="oopsLabel">Oops...</lit>
+			<lit name="updateError">The two new passwords you typed must be the same.</lit>
+			<lit name="updateFail">Sorry, these details can't be updated.</lit>
+			<lit name="updateSuccess">Your details have been saved.</lit>
+			<lit name="registeredNameLabel">Registered name:</lit>
+			<lit name="emailLabel">Email:</lit>
+			<lit name="accountStartDateLabel">Account start date:</lit>
+			<lit name="accountExpiryDateLabel">Account expiry date:</lit>
+			<lit name="saveChangesButton">Save changes</lit>
+			<lit name="currentPwdLabel">Current password:</lit>
+			<lit name="newPsdLabel">New password:</lit>
+			<lit name="confirmPsdLabel">Confirm password:</lit>
+			<lit name="accountLanguageLabel">Language:</lit>
+			
+			<!-- Help -->
+			<lit name="helpURL">http://www.clarityenglish.com/Content/TenseBuster10-International/help/TB_Help_doc_full.pdf</lit>
+			<lit name="recorderHelpURL">http://www.clarityenglish.com/Content/TenseBuster10-International/help/TB_Help_doc_recorder.pdf</lit>
+			
+			<!-- Footer -->
+			<lit name="footerLabel">© Clarity Language Consultants Ltd, 1993-2014. All rights reserved.</lit>
+            
+			<!-- Log out page -->
+			<lit name="thankYouLabel">Thank you for using Tense Buster.</lit>
+			
+            <!-- Credits -->			
+			 <lit name="creditCaptionLabel">Credits and acknowledgements</lit>
+			 <lit name="creditsRichText">
+			    <![CDATA[
+                        <p>Clarity would like to thank the following people for giving their voices to Tense Buster: Simon Broad,<br/>Jessica Caplan, Sally Nichols, Ben Pelletier, Kath Ryan, Scott Sauer, Michelle Tam, Sarah Toogood.</p>
+
+                        <p>Photos were taken from Shutterstock with permission.</p>
+
+                        <p>Every effort has been made to trace owners of copyright, but if any omissions can be rectified,<br/>we will be pleased to make the necessary arrangements.</p>
+                ]]>
+			</lit>
+			
+		</group>
+	</language>
+</literals>

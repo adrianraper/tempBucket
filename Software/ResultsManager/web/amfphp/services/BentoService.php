@@ -66,6 +66,8 @@ class BentoService extends AbstractService {
 			
 		// Set the product name for logging
 		AbstractService::$log->setProductName(Session::getSessionName());
+		AbstractService::$debugLog->setProductName(Session::getSessionName());
+		AbstractService::$controlLog->setProductName(Session::getSessionName());
 		
 		// Create the operation classes
 		$this->accountOps = new AccountOps($this->db);
@@ -79,15 +81,17 @@ class BentoService extends AbstractService {
 		// Set the root id (if set)
 		// I am now using is_set, but is that safe? If not set it might be an error. 
 		if (Session::is_set('userID')) {
-			// AbstractService::$debugLog->notice("Bento-".Session::getSessionName()." service for userID=".Session::get('userID'));
 			AbstractService::$log->setIdent(Session::get('userID'));
+			AbstractService::$debugLog->setIdent(Session::get('userID'));
+			AbstractService::$controlLog->setIdent(Session::get('userID'));
+			
 			$this->loginOps->setTimeZoneForUser(Session::get('userID')); // gh#156
-		} else {
-			// AbstractService::$debugLog->notice("Bento service for NO userID");
 		}
 		
 		if (Session::is_set('rootID')) {
 			AbstractService::$log->setRootID(Session::get('rootID'));
+			AbstractService::$debugLog->setRootID(Session::get('rootID'));
+			AbstractService::$controlLog->setRootID(Session::get('rootID'));
 		}
 	}
 	
@@ -145,6 +149,7 @@ class BentoService extends AbstractService {
 		
 		// gh#659 productCodes is null or not can distinguish whether this is ipad or online version login
 		if (isset($config['ip'])) {
+			// gh#1223
 			foreach ($account->licenceAttributes as $thisLicenceAttribute) {
 				if ($thisLicenceAttribute['licenceKey'] == 'IPrange') {
 					if ($thisLicenceAttribute['productCode'] != '') {
@@ -501,6 +506,7 @@ class BentoService extends AbstractService {
 	 *  @param dateNow - used to get client time
 	 */
 	public function startSession($user, $rootId, $productCode, $dateNow = null) {
+		
 		// A successful session start will return a new ID
 		$sessionId = $this->progressOps->startSession($user, $rootId, $productCode, $dateNow);
 		return array("sessionID" => $sessionId);
@@ -543,6 +549,9 @@ class BentoService extends AbstractService {
 	 */
 	public function updateLicence($licence, $sessionId = null) {
 
+		//$userId = Session::get('userID');
+		//AbstractService::$debugLog->info($userId." updateLicence for sessionId=$sessionId");
+		
 		// gh#604 Update the licence if applicable
 		if ($licence)
 			$this->licenceOps->updateLicence($licence);

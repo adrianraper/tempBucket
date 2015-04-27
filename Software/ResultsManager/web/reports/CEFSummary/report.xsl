@@ -189,10 +189,11 @@
 										</td>
 									</xsl:when>
 									<xsl:when test="@unitName='LearnEnglish Level Test C'">
+									<!-- corrections from Alex Caughey, Tokyo, 1st Sept 2014 -->
 										<td>
 										<xsl:choose>
-											<xsl:when test="@grammarCorrect &lt; 8"> B2 </xsl:when>
-											<xsl:when test="@grammarCorrect &gt;= 8 and @grammarCorrect &lt;= 14"> C1 </xsl:when>
+											<xsl:when test="@grammarCorrect &lt; 10"> B2 </xsl:when>
+											<xsl:when test="@grammarCorrect &gt;= 10 and @grammarCorrect &lt;= 14"> C1 </xsl:when>
 											<xsl:otherwise> C2 </xsl:otherwise>
 										</xsl:choose>
 										(<xsl:value-of select="@grammarCorrect"/> correct)</td>
@@ -205,15 +206,15 @@
 										(<xsl:value-of select="@vocabularyCorrect"/> correct)</td>
 										<td>
 										<xsl:choose>
-											<xsl:when test="@readingCorrect &lt; 5"> B2 </xsl:when>
-											<xsl:when test="@readingCorrect &gt;= 5 and @readingCorrect &lt;= 11"> C1 </xsl:when>
+											<xsl:when test="@readingCorrect &lt; 7"> B2 </xsl:when>
+											<xsl:when test="@readingCorrect &gt;= 7 and @readingCorrect &lt;= 13"> C1 </xsl:when>
 											<xsl:otherwise> C2 </xsl:otherwise>
 										</xsl:choose>
 										(<xsl:value-of select="@readingCorrect"/> correct)</td>
 										<td>
 											<xsl:choose>
-												<xsl:when test="@grammarCorrect + @vocabularyCorrect + @readingCorrect &gt; 40">C2</xsl:when>
-												<xsl:when test="@grammarCorrect + @vocabularyCorrect + @readingCorrect &gt; 20">C1</xsl:when>
+												<xsl:when test="@grammarCorrect + @vocabularyCorrect + @readingCorrect &gt; 42">C2</xsl:when>
+												<xsl:when test="@grammarCorrect + @vocabularyCorrect + @readingCorrect &gt; 24">C1</xsl:when>
 												<xsl:otherwise>B2</xsl:otherwise>
 											</xsl:choose>
 										</td>

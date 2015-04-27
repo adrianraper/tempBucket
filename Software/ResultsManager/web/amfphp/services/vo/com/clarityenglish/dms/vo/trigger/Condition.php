@@ -40,7 +40,8 @@ class Condition {
 	var $newUsersSinceDate;
 	// gh#862
 	var $languageCode;
-	
+	var $notCustomerType;
+
 	function Condition($conditionString, $timeStamp = null ) {
 		$this->timeStamp = $timeStamp;
 		$this->parseCondition($conditionString);
@@ -72,7 +73,7 @@ class Condition {
 			$this->accountType = $conditionArray['accountType'];
 		if (isset($conditionArray['customerType'])) 
 			$this->customerType = $conditionArray['customerType'];
-		if (isset($conditionArray['notCustomerType'])) 
+		if (isset($conditionArray['notCustomerType']))
 			$this->notCustomerType = $conditionArray['notCustomerType'];
 		if (isset($conditionArray['accountStatus'])) 
 			$this->accountStatus = $conditionArray['accountStatus'];

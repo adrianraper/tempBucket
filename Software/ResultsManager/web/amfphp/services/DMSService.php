@@ -69,6 +69,8 @@ class DMSService extends AbstractService {
 		
 		// Set the product name and userID for logging
 		AbstractService::$log->setProductName("DMS");
+		AbstractService::$debugLog->setProductName("DMS");
+		AbstractService::$controlLog->setProductName("DMS");
 		
 		// Set the title name for resources (DMS shares resources with rm so use rm for this too)
 		AbstractService::$title = "rm";
@@ -76,6 +78,8 @@ class DMSService extends AbstractService {
 		// gh#857
 		if (Session::is_set('userID')) {
 			AbstractService::$log->setIdent(Session::get('userID'));
+			AbstractService::$debugLog->setIdent(Session::get('userID'));
+			AbstractService::$controlLog->setIdent(Session::get('userID'));
 		};
 		
 		// Create the operation classes

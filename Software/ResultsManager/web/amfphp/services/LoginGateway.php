@@ -69,6 +69,9 @@ function returnError($errCode, $data = null) {
 		case 252:
 			$apiReturnInfo['message'] = 'Group not found '.$data;
 			break;
+		case 253:
+			$apiReturnInfo['message'] = 'Wrong password';
+			break;
 		default:
 			$apiReturnInfo['message'] = 'Unknown error';
 			break;
@@ -176,6 +179,57 @@ try {
 				$group = $loginService->getGroup($apiInformation, $account);
 			
 			break;
+			
+		// The following confirms the user details, including password, and returns the user
+		case 'signInUser':
+        case 'getSubscription':
+			$user = $loginService->getUser($apiInformation);
+
+			if ($user==false) {
+				// Return the key information you used to search
+				switch ($apiInformation->loginOption) {
+					case 1:
+						$key = $apiInformation->userName;
+						break;		
+					case 2:
+						$key = $apiInformation->studentID;
+						break;
+					case 128:
+						$key = $apiInformation->email;
+						break;
+					default:
+						$key = "unknown login option ".$apiInformation->loginOption;
+				}
+				returnError(200, $key);
+			}
+			if ($apiInformation->password != $user->password) 
+				returnError(253);
+
+            // gh#1171 and their subscription if they have one
+            if ($apiInformation->productCode) {
+
+                // See if this user has a subscription
+                $loginService->memoryOps = new MemoryOps($loginService->db);
+                $subscription = $loginService->memoryOps->get('subscription', $apiInformation->productCode, $user->userID);
+                $level = $loginService->memoryOps->get('level', $apiInformation->productCode, $user->userID);
+                if ($subscription) {
+                    if ($subscription['valid']) {
+                        $startDate = new DateTime($subscription['startDate']);
+                        $frequency = DateInterval::createFromDateString($subscription['frequency']);
+                        $week = 1;
+                        $today = new DateTime();
+                        while ($startDate->add($frequency) < $today) {
+                            if ($week > 99)
+                                break; // Just in case...
+                            $week++;
+                        }
+                        $subscription['ClarityLevel'] = $level;
+                        $subscription['week'] = $week;
+                    }
+                }
+            }
+
+            break;
 			
 		case 'getOrAddUser':
 		case 'getOrAddUserAutoGroup':
@@ -294,8 +348,14 @@ try {
 	if (!isset($group) || !$group)
 		$group = new Group();
 		
-	$returnInfo = array('user' => $user, 'account' => $account, 'group' => $group); 
-	
+	$returnInfo = array('user' => $user, 'account' => $account, 'group' => $group);
+
+    // gh#1171
+    if ($apiInformation->encryptData)
+        $returnInfo['encryptedData'] = $apiInformation->toEncryptedString();
+    if ($subscription)
+        $returnInfo['subscription'] = $subscription;
+
 	echo json_encode($returnInfo);
 	
 } catch (Exception $e) {

@@ -18,6 +18,10 @@ class XSLTFunctions {
 		// simple minutes
 		// sprintf can do the rounding itself, but apparently not terribly reliable
 		//return sprintf("%d (%d=%f)", round((int)$seconds / 60), (int)$seconds / 60, (int)$seconds / 60);
+		// gh#777
+		if ($seconds == 0)
+			return sprintf("%s", 0);
+			
 		$minutes = round((int)$seconds / 60);
 		if ($minutes == 0) {
 			// using <1 screws up sorting, so how about using seconds if below 1 minute?

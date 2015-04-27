@@ -1,33 +1,29 @@
 <?php
-class Log_ClarityDB extends Log {
+class Log_db extends Log {
 	
 	var $db;
 
 	var $_id;
-	var $_name;
+	var $_db;
 	var $_ident;
 	var $_rootID;
-	//var $_userID;
 	var $_productName;
 	var $_mask;
 
-	function Log_ClarityDB($name, $ident = '', $conf = array(), $level = PEAR_LOG_DEBUG) {
+	function Log_db($db, $ident = '', $conf = array(), $level = PEAR_LOG_DEBUG) {
 		$this->_id = md5(microtime());
-		$this->_name = $name;
+		$this->_db = $db;
 		$this->_ident = $ident;
 		$this->_mask = Log::UPTO($level);
 		// gh#857
-	    if (!empty($conf['timeFormat'])) {
+	    if (!empty($conf['timeFormat']))
             $this->_timeFormat = $conf['timeFormat'];
-        }
+        $this->_productName = Session::getSessionName();
 	}
 	
 	// gh#857
-	function setTarget($name) {
-		$this->db = $name;
-	}
-	function setDB($value) {
-		$this->setTarget($value);
+	function setTarget($db) {
+		$this->db = $db;
 	}
 	
 	function setRootID($rootID) {
@@ -44,20 +40,17 @@ class Log_ClarityDB extends Log {
 	}
 	
 	function log($message, $priority = null) {
-		//NetDebug::trace('log.write.userID='.$this->_userID);
 		$dbObj = array();
 		$dbObj['F_ProductName'] = $this->_productName;
 		$dbObj['F_RootID'] = $this->_rootID;
 		$dbObj['F_UserID'] = $this->_ident;
-		// v3.5 This fails for MySQL
-		//$dbObj['F_Date'] = "CURRENT_TIMESTAMP";
 		// gh#815
 		$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
 		$dbObj['F_Date'] = $dateStampNow->format($this->_timeFormat);
 		$dbObj['F_Level'] = $priority;
 		$dbObj['F_Message'] = $message;
 		
-		$this->db->AutoExecute("T_Log", $dbObj);
+		$this->_db->AutoExecute("T_Log", $dbObj);
 		
 		return true;
 	}

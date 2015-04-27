@@ -67,6 +67,8 @@ class ClarityService extends AbstractService {
 		
 		// Set the product name for logging
 		AbstractService::$log->setProductName("RM");
+		AbstractService::$debugLog->setProductName("RM");
+		AbstractService::$controlLog->setProductName("RM");
 		
 		// Set the title name for resources
 		AbstractService::$title = "rm";
@@ -75,9 +77,13 @@ class ClarityService extends AbstractService {
 		// I am now using is_set, but is that safe? If not set it might be an error. 
 		if (Session::is_set('userID')) {
 			AbstractService::$log->setIdent(Session::get('userID'));
+			AbstractService::$debugLog->setIdent(Session::get('userID'));
+			AbstractService::$controlLog->setIdent(Session::get('userID'));
 		};
 		if (Session::is_set('rootID')) {
 			AbstractService::$log->setRootID(Session::get('rootID'));
+			AbstractService::$debugLog->setRootID(Session::get('rootID'));
+			AbstractService::$controlLog->setRootID(Session::get('rootID'));
 		};
 		
 		// Create the operation classes

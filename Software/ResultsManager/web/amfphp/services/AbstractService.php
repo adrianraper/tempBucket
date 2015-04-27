@@ -10,7 +10,7 @@ require_once($GLOBALS['adodb_libs']."adodb.inc.php");
 require_once(dirname(__FILE__)."/../../classes/Session.php");
 require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
 require_once(dirname(__FILE__)."/../../classes/Log/Log.php");
-require_once(dirname(__FILE__)."/../../classes/Log/handlers/Log_ClarityDB.php");
+//require_once(dirname(__FILE__)."/../../classes/Log/handlers/db.php");
 
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/Href.php");
 
@@ -54,6 +54,16 @@ class AbstractService {
 		
 		// Create the database logger and set the database
 		// gh#857 Allow production to switch off logging
+		/*
+		 * Purpose of logging is:
+		 * 
+		 *  debugLog - purely for development and should be null in production unless emergency
+		 *  controlLog - used to hold key information, such as user xxx deleted 1000 users in RM
+		 *  log - for information you want to keep, but perhaps temporarily. Like performance or to track a bug fix for a month
+		 */ 
+		$conf = array();
+		$conf['timeFormat'] = 'Y-m-d H:i:s';
+		
 		$logType = $debugLogType = $controlLogType = 'null';
 		if (isset($GLOBALS['logType']))
 			$logType = $GLOBALS['logType'];
@@ -61,12 +71,10 @@ class AbstractService {
 			$debugLogType = $GLOBALS['debugLogType'];
 		if (isset($GLOBALS['controlLogType']))
 			$controlLogType = $GLOBALS['controlLogType'];
-		$conf = array();
-		$conf['timeFormat'] = 'Y-m-d H:i:s';
 			
 		if ($logType == 'file') {
 			$logTarget = $GLOBALS['logs_dir'].'log.txt';
-		} else if ($logType == 'ClarityDB') {
+		} else if ($logType == 'db') {
 			$logTarget = $this->db;
 		} else {
 			$logTarget = null;
@@ -75,7 +83,7 @@ class AbstractService {
 		
 		if ($debugLogType == 'file') {
 			$debugLogTarget = $GLOBALS['logs_dir'].'debugLog.txt';
-		} else if ($logType == 'ClarityDB') {
+		} else if ($logType == 'db') {
 			$debugLogTarget = $this->db;
 		} else {
 			$debugLogTarget = null;
@@ -84,7 +92,7 @@ class AbstractService {
 			
 		if ($controlLogType == 'file') {
 			$controlLogTarget = $GLOBALS['logs_dir'].'controlLog.txt';
-		} else if ($controlLogType == 'ClarityDB') {
+		} else if ($controlLogType == 'db') {
 			$controlLogTarget = $this->db;
 		} else {
 			$controlLogTarget = null;
@@ -171,6 +179,8 @@ class AbstractService {
 			$function_called == "updateLicence" ||
 			$function_called == "getInstanceID" ||
 			$function_called == "addUser" ||
+			$function_called == "writeScore" || // gh#1223 
+			$function_called == "xhtmlLoad" || // gh#1223 
 			$function_called == "getCCBContent"
 			) return true;
 		

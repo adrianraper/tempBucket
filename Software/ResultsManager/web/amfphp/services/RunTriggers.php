@@ -81,7 +81,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 		$trigger->condition->notProductCode = '12,13';
 		
 		$triggerResults = $dmsService->triggerOps->applyCondition($trigger, $triggerDate);
-		echo 'got '.count($triggerResults) .' accounts for '.$trigger->name.$newLine;
+		echo count($triggerResults) .' accounts for '.$trigger->name.$newLine;
 		//AbstractService::$log->notice('got '.count($triggerResults) .' accounts for '.$trigger->name);
 		
 		// EmailMe
@@ -156,15 +156,20 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 							$ccEmails = array_merge($accountEmails, $resellerEmail);
 							
 							// To add usage stats link to subscription reminders, we need the security string for this account
-							$securityString = $dmsService->usageOps->getDirectStartRecord($result);
-							if (!$securityString)
-								$securityString = $dmsService->usageOps->insertDirectStartRecord($result);
-							
+							// gh#746 But ignore self-hosted accounts
+							if (!$result->selfHost) {
+								$securityString = $dmsService->usageOps->getDirectStartRecord($result);
+								if (!$securityString)
+									$securityString = $dmsService->usageOps->insertDirectStartRecord($result);
+							} else {
+								$securityString = '';
+							}
 							//echo $result->name.' uses security string '.$securityString.$trigger->name.$newLine;
 							
 							$emailData = array("account" => $result, "expiryDate" => $trigger->condition->expiryDate, "template_dir" => $GLOBALS['smarty_template_dir'], "session" => $securityString);
 							$thisEmail = array("to" => $adminEmail, "cc" => $ccEmails, "data" => $emailData);
 							$emailArray[] = $thisEmail;
+							
 						} catch (Exception $e) {
 							echo 'Exception for root='.$result->id.': '.$e->getMessage().$newLine;
 						}
@@ -216,7 +221,6 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 				break;
 				
 			case "usageStats":
-				
 				$emailArray = array();
 				if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 					// Only update T_DirectStart if you are actually inserting new records
@@ -236,8 +240,8 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 							if ($title->productCode == 2) {
 								// Check to see that the account is at least 26 days old before we send the usage stats
 								if (round(abs(time() - strtotime($title->licenceStartDate)) / 60 / 60 / 24) < 26 ) {
-									// Stop working on this account - break out of two loops
-									break 2;
+									// gh#1223, gh#987 Stop working on this account - jump to next account in loop
+									continue 2;
 								}
 							}
 						}
@@ -335,7 +339,7 @@ if (stripos($testingTriggers, "weeklyActions")!==false) {
 }
 if (stripos($testingTriggers, "monthlyActions")!==false) {
 	$triggerList = null; // find all monthly ones
-	$msgType = null; // Nothing useful to send
+	$msgType = 0; // Internal action
 	runTriggers($msgType, $triggerList, null, "monthly");
 }
 // This is a test of data in the database, and what you do if it changes

@@ -27,6 +27,11 @@ $cc="";
 
 	// Information is sent to us as an input from cURL
 	$postXML = file_get_contents("php://input");
+/*		$postXML = <<<EOD
+requestID=2&customerName=Vivying&customerEmail=vivying@clarityenglish.com&enquiry=test&deliveryMethod=email&institution=Clarity&phone=&address=24 Pak Kong Au
+&hearFrom=Not choosen&mailingList=yes&country=Hong Kong&price=Active_Reading&afterdemo=&contactMethod=both email and phone&sector=Student&message=Can I Have one Please !
+EOD;
+*/
 	if (isset($postXML) && ($postXML!='')) {
 //		$postXML = $_POST['postXML'];
 /*		
@@ -74,7 +79,7 @@ EOD;
 			case "2": # Price enquiry
 				$toClarity = sendEmail(2);
 				if ($data['sector'] == "Home user" || $data['sector'] == "Student") {
-					$toCustomer = sendEmail(4) && sendEmail(22);
+					$toCustomer = sendEmail(4);// && sendEmail(22);
 					if ( ($toClarity) AND ($toCustomer) )
 						$returnPage = "http://www.ClarityLifeSkills.com";
 					$returnTopPage = true;
@@ -145,11 +150,17 @@ EOD;
 
 				case "8": # unsubscribe Loud and Clear
 					$toClarity = sendEmail(11);
-					if ($toClarity)
+					if ($toClarity){
 						$returnPage = "$serverLocation/email/unsubscribeLnC_Success.php";
-					else
+							echo 'true ';
+							echo $returnPage;
+							}
+					else{
 						$returnPage = "$serverLocation/email/unsubscribeLnC_Failure.php";
 						$returnTopPage = true;
+							echo 'false ';
+							echo $returnPage;
+							}
 					break;
 
 				case "9": # YIF promotion
@@ -299,15 +310,117 @@ EOD;
 						echo 'false';
 					}
 					break;	
-				case "99": #Server monitoring alert
-					$toClarity = sendEmail(99);
+				case "21": #ce.com new support site enquiry form
+					$toClarity = sendEmail(32);
+					$toCustomer = sendEmail(33);
+					if ( ($toClarity) AND ($toCustomer) ) {
+						echo 'true';
+					}
+					else {
+						echo 'false';
+					}
+					break;	
+				case "22": #ip.com 6-day IELTS tips email subscription
+					$toClarity = sendEmail(34);
+					$toCustomer = sendEmail(35);
+					if ( ($toClarity) AND ($toCustomer) ) {
+						echo 'true';
+					}
+					else {
+						echo 'false';
+					}
+					break;
+				case "23": #ip.com 6-day IELTS tips email unsubscribe
+					$toClarity = sendEmail(36);
 					if ($toClarity) {
 						echo 'true';
 					}
 					else {
 						echo 'false';
 					}
-					break;						
+					break;
+				case "24": #201415 Loud and Clear 37
+					$toClarity = sendEmail(37);
+					$toCustomer = sendEmail(38);
+					if ( ($toClarity) AND ($toCustomer) ) {
+						echo 'true';
+					}
+					else {
+						echo 'false';
+					}
+					break;
+				case "25": #China Road to IELTS FV Welcome Email
+					$toCustomer = sendEmail(39);
+					if ( $toCustomer ) {
+						echo 'true';
+					}
+					else {
+						echo 'false';
+					}
+					break;
+				case "26": #China Road to IELTS LM Welcome Email
+					$toCustomer = sendEmail(40);
+					if ( $toCustomer ) {
+						echo 'true';
+					}
+					else {
+						echo 'false';
+					}
+					break;
+				case "27": #IELTS tips app promo EDM for IP.com
+					$toCustomer = sendEmail(41);
+					if ( $toCustomer ) {
+						echo 'true';
+					}
+					else {
+						echo 'false';
+					}
+					break;
+				case "98": #S3 upload status
+					$toClarity = sendEmail(98);
+					if ($toClarity) {
+						echo 'true';
+					}
+					else {
+						echo 'false';
+					}
+					break;
+				case "996": #China Server monitoring alert
+					$toClarity = sendEmail(996);
+					if ($toClarity) {
+						echo 'true';
+					}
+					else {
+						echo 'false';
+					}
+					break;	
+				case "997": #China Server monitoring warning
+					$toClarity = sendEmail(997);
+					if ($toClarity) {
+						echo 'true';
+					}
+					else {
+						echo 'false';
+					}
+					break;	
+				case "998": #Europe Server monitoring alert
+					$toClarity = sendEmail(998);
+					if ($toClarity) {
+						echo 'true';
+					}
+					else {
+						echo 'false';
+					}
+					break;	
+				case "999": #Europe Server monitoring warning
+					$toClarity = sendEmail(999);
+					if ($toClarity) {
+						echo 'true';
+					}
+					else {
+						echo 'false';
+					}
+					break;					
 				default:
 					$errorInfo = 'error=1&message=unexpected requestID';
 		}
@@ -315,10 +428,23 @@ EOD;
 					// This is old processing to return to a different page
 					// Skip whilst debugging
 					if ($data['requestID']!="10" 
+						&& $data['requestID']!='8'
 						&& $data['requestID']!='12'
 						&& $data['requestID']!='15'
 						&& $data['requestID']!='16'
 						&& $data['requestID']!='18'
+						&& $data['requestID']!='21'
+						&& $data['requestID']!='22'
+						&& $data['requestID']!='23'
+						&& $data['requestID']!='24'
+						&& $data['requestID']!='25'
+						&& $data['requestID']!='26'
+						&& $data['requestID']!='27'
+						&& $data['requestID']!='98'
+						&& $data['requestID']!='996'
+						&& $data['requestID']!='997'
+						&& $data['requestID']!='998'
+						&& $data['requestID']!='999'
 						) {
 						// Is there a way to redirect php to a parent frame? seems complicated.
 						if ($returnTopPage) {
@@ -342,9 +468,10 @@ function sendEmail($templateID) {
 	global $serverLocation;
 	
 	// Set common variables
-	$clarityTest = "Clarity Testing <vivying.cheng@clarityenglish.com>";
+	$clarityTest = "Clarity Testing <unfrankie@gmail.com>";
 	$clarityNicole = "Nicole Lung <nicole.lung@clarityenglish.com>";
-	$claritySales = "Clarity Admin <sales@clarityenglish.com>";
+	$clarityVivi = "Vivying Cheng<vivying.cheng@clarityenglish.com>";
+	$claritySales = "ClarityEnglish <sales@clarityenglish.com>";
 	$clarityNews = "Clarity English <news@clarityenglish.com>";
 	$clarityInfo = "Clarity Info <info@clarityenglish.com>";
 	#not used
@@ -352,7 +479,9 @@ function sendEmail($templateID) {
 	$claritySupport = "Clarity Support <support@clarityenglish.com>";
 	$clarityAccount = "Clarity Accounts <accounts@clarityenglish.com>";
 	$clarityCLSSupport = "ClarityLifeSkills <support@claritylifeskills.com>";
-	$clarityIELTSSupport = "IELTS Practice Support<support@ieltspractice.com>";
+	$clarityIELTSSupport = "IELTS Practice<support@ieltspractice.com>";
+	$clarityIELTSSupportNoreply = "IELTS Practice <noreply@ieltspractice.com>";
+	$clarityR2ISupport = "Road To IELTS Support Team<support@roadtoielts.com>";
 	#not used
 	//$clarityCLSAdmin = "ClarityLifeSkills Admin <support@claritylifeskills.com>";
 	
@@ -445,6 +574,7 @@ function sendEmail($templateID) {
 		case 7: # request demo page - to Clarity
 			$body = file_get_contents("$templateFolder/email_requestdemo_toClarity.htm");		
 			$to = $clarityNews;
+			
 			$subject = "Request a demo";
 			If ($data['demoCD']<>"") {
 				$subject .= " - for ". $data['demoCD'];
@@ -476,9 +606,9 @@ function sendEmail($templateID) {
 
 		case 11: # unsubscribe Loud and Clear - to Clarity
 			$body = file_get_contents("$templateFolder/email_unsubscribeLnC_toClarity.htm");		
-			$to = clarityNews;
+			$to = $clarityNews;
 			$subject = "Unsubscribe to Clarity Newsletter and Guide";
-			$from = clarityInfo;
+			$from = $clarityInfo;
 			break;
 
 		case 12: # YIF promotion - to Clarity
@@ -591,7 +721,8 @@ function sendEmail($templateID) {
 		case 26: # ClarityLifeSkills contact us - to Clarity
 			$body = file_get_contents("$templateFolder/email_CLS_contactus_toClarity.htm");
 			$to = $clarityCLSSupport;
-			$subject = "ClarityLifeSkills.com, Contact us";
+			$subject = "ClarityLifeSkills.com, Contact us (" . date(DATE_RFC822).")"; 
+
 			$from = $clarityCLSSupport;
 			break;
 			
@@ -606,7 +737,8 @@ function sendEmail($templateID) {
 			$body = file_get_contents("$templateFolder/email_support_contactus_toClarity.htm");
 			$to = $claritySupport;
 			$cc = $clarityInfo;
-			$subject = "ClarityEnglish.com support site enquiry";
+			$subject = "ClarityEnglish.com support site enquiry (" . date(DATE_RFC822) .")"; 
+
 			$from = $data['email'];
 			break;
 			
@@ -620,7 +752,8 @@ function sendEmail($templateID) {
 		case 28: # CE.com Support site enquiry - to Clarity
 			$body = file_get_contents("$templateFolder/form_enquiry_toClarity.htm");
 			$to = $clarityInfo;
-			$subject = $data['sector'] . " enquiry: Clarity English information request";
+			
+			$subject = $data['sector'] . " enquiry: Clarity English information request (" . date(DATE_RFC822) . ")";
 			$from = $data['email'];
 			break;
 			
@@ -650,7 +783,8 @@ function sendEmail($templateID) {
 		case 30: # ieltspractice.com contact us - to Clarity
 			$body = file_get_contents("$templateFolder/email_IPS_contactus_toClarity.htm");
 			$to = $clarityIELTSSupport;
-			$subject = "IELTSpractice.com, Contact us";
+			$subject = "IELTSpractice.com, contact us [". $data['category'] . "] (" . date(DATE_RFC822).")"; 
+
 			$from = $clarityIELTSSupport;
 			break;
 			
@@ -659,7 +793,194 @@ function sendEmail($templateID) {
 			$to = $data['email'];
 			$subject = "IELTSpractice.com enquiry acknowledgement";
 			$from = $clarityIELTSSupport;
-			break;		
+			break;	
+		case 32: # ce.com new support site contact us - to Clarity
+			$body = file_get_contents("$templateFolder/form_enquiry_supportsite_toClarity.htm");
+			$subject = $data['userType'] . " enquiry: Support enquiry [". $data['subject'] . "] (" . date(DATE_RFC822).")"; 
+			if($data['userType']=="Student") { 
+				$to = $clarityCLSSupport;
+				$from = $clarityCLSSupport;
+			} else if($data['userType']=="Candidate") { //for IELTS Candidates
+				$to = $clarityIELTSSupport;
+				$from = $clarityIELTSSupport;
+			} else { //Teachers, Librarian, Others
+				$to = $claritySupport;
+				$from = $claritySupport;
+			}
+			break;
+			
+		case 33: #  ce.com new support site contact us - to Customer
+		
+			if($data['userType']=="Student") { 
+				$body = file_get_contents("$templateFolder/form_enquiry_toHomeUser_master.htm");
+				$from = $clarityCLSSupport;
+			} else if($data['userType']=="Candidate") { //for IELTS Candidates
+				$body = file_get_contents("$templateFolder/email_enquiry_toIELTScandidates_byEmail.htm");
+				$from = $clarityIELTSSupport;
+			} else { //Teachers, Librarian, Others
+				$body = file_get_contents("$templateFolder/form_enquiry_supportsite_toCustomer.htm");
+				$from = $claritySupport;
+			}
+			$to = $data['email'];
+			$subject = "ClarityEnglish support enquiry acknowledgement";
+			break;	
+			
+		case 34: #  ip.com 6-day IELTS tips email subsciption - to Clarity
+			$body = file_get_contents("$templateFolder/IP_studyguide_signup_toClarity.htm");
+			$to = $clarityIELTSSupport;
+			$subject = "IELTSpractice 6-day IELTS tips email subsciption(" . date(DATE_RFC822).")"; 
+
+			$from = $clarityIELTSSupportNoreply;
+			break;
+			
+		case 35: #  ip.com 6-day IELTS tips email subsciption - to Customer
+			$to = $data['email'];
+			$from = $clarityIELTSSupportNoreply;
+
+			$emailData = array();
+			$emailArray = array("to" => $to, "data" => $emailData);
+			$templateID = 'IP/studyguide_importantrules';
+			$emailService->emailOps->queueEmails($from, $templateID, array($emailArray));
+			
+			$delayUntil = date("Y-m-d H:i:s", time() + 86400);
+			$templateID = 'IP/studyguide_understandtasktypes';
+			$emailService->emailOps->queueEmails($from, $templateID, array($emailArray), $delayUntil);
+		
+			$delayUntil = date("Y-m-d H:i:s", time() + 86400*2);
+			$templateID = 'IP/studyguide_speakingtest';
+			$emailService->emailOps->queueEmails($from, $templateID, array($emailArray), $delayUntil);
+
+			$delayUntil = date("Y-m-d H:i:s", time() + 86400*3);
+			$templateID = 'IP/studyguide_understandspeakers';
+			$emailService->emailOps->queueEmails($from, $templateID, array($emailArray), $delayUntil);
+
+			$delayUntil = date("Y-m-d H:i:s", time() + 86400*4);
+			$templateID = 'IP/studyguide_timemanagement';
+			$emailService->emailOps->queueEmails($from, $templateID, array($emailArray), $delayUntil);
+
+			$delayUntil = date("Y-m-d H:i:s", time() + 86400*5);
+			$templateID = 'IP/studyguide_IELTSprepareideas';
+			$emailService->emailOps->queueEmails($from, $templateID, array($emailArray), $delayUntil);
+
+			$delayUntil = date("Y-m-d H:i:s", time() + 86400*6);
+			$templateID = 'IP/studyguide_subscribetoday';
+			$emailService->emailOps->queueEmails($from, $templateID, array($emailArray), $delayUntil);
+			
+			return true;
+			break;
+		case 36: #ip.com 6-day IELTS tips email unsubscribe - to Clarity
+			$body = file_get_contents("$templateFolder/IP_unsubscribe_toClarity.htm");
+			$to = $clarityIELTSSupport;
+			//$cc = $clarityR2ISupport;
+			$subject = "IELTSpractice 6-day IELTS tips email unsubscribe(" . date(DATE_RFC822).")"; 
+
+			$from = $clarityIELTSSupportNoreply;
+			$templateNames = array(	'IP/studyguide_importantrules',
+									'IP/studyguide_understandtasktypes',
+									'IP/studyguide_speakingtest',
+									'IP/studyguide_understandspeakers',
+									'IP/studyguide_timemanagement',
+									'IP/studyguide_IELTSprepareideas',
+									'IP/studyguide_subscribetoday'
+								);
+			$emailService->emailOps->removeQueuedEmails(null,$data['email'], $templateNames);
+			
+			
+			break;
+		case 37: #1415 Loud and Clear 37 - to Clarity
+			$body = file_get_contents("$templateFolder/trial_enquiry_toClarity_byEmail.htm");
+			$to = $claritySales;
+			$subject = $data['sector'] ." enquiry: Trial request from Loud and Clear 37(" . date(DATE_RFC822).")"; 
+
+			$from = $claritySales;
+			break;
+		case 38: #1415 Loud and Clear 37 - to Customer
+			$body = file_get_contents("$templateFolder/trial_enquiry_toCustomer_byEmail.htm");
+			$to = $data['email'];
+			$subject = "ClarityEnglish trial request acknowledgement"; 
+
+			$from = $claritySales;
+			break;
+		case 39: #China Road to IELTS FV Welcome Email - to Customer
+			$to = $data['customerEmail'];
+			$from = $clarityR2ISupport;
+
+			$emailData = array(	'name'=>$data['customerName'],
+								'email'=>$data['customerEmail'],
+								'password'=>$data['password'],
+								'prefix'=>$data['prefix'],
+								'productCode'=>(($data['productCode']==52)?"AC":"GT"),
+								'expiryDate'=>$data['expiryDate']);
+			$emailArray = array("to" => $to, "data" => $emailData);
+			$templateID = 'user/Welcome-BCChina-fullversion';
+			$emailService->emailOps->queueEmails($from, $templateID, array($emailArray));
+			
+			return true;
+			break;
+		case 40: #China Road to IELTS LM Welcome Email - to Customer
+			$to = $data['customerEmail'];
+			$from = $clarityR2ISupport;
+
+			$emailData = array(	'name'=>$data['customerName'],
+								'email'=>$data['customerEmail'],
+								'expiryDate'=>$data['expiryDate']);
+			$emailArray = array("to" => $to, "data" => $emailData);
+			$templateID = 'user/Welcome-BCChina-lastmin';
+			$emailService->emailOps->queueEmails($from, $templateID, array($emailArray));
+			
+			return true;
+			break;
+		case 41: #IELTS tips app promo EDM for IP.com
+			$to = $data['email'];
+			$from = $clarityR2ISupport;
+
+			$emailData = array(	'name'=>$data['name']);
+			$emailArray = array("to" => $to, "data" => $emailData);
+			$templateID = 'IP/IELTS-tips-app-promo-edm';
+			$delayUntil = date("Y-m-d H:i:s", time() + 86400*7);
+			$emailService->emailOps->queueEmails($from, $templateID, array($emailArray), $delayUntil);
+			
+			return true;
+			break;
+		case 98: # server alert
+			$body = file_get_contents("$templateFolder/website_monitoring.htm");
+			$to = $clarityTest;
+			$cc = "Vivying <vivying@clarityenglish.com>";
+			$subject = "S3 upload status report(" . date(DATE_RFC822).")"; 
+			$from = $claritySupport;
+			break;			
+		case 996: # China server alert
+			$body = file_get_contents("$templateFolder/website_monitoring.htm");
+			$to = $clarityTest;
+			$cc = "Vivying <vivying@clarityenglish.com>";
+			$subject = "CHINA - Website status report(" . date(DATE_RFC822).")"; 
+
+			$from = $claritySupport;
+			break;
+		case 997: # China server warning
+			$body = file_get_contents("$templateFolder/website_monitoring.htm");
+			$to = $clarityTest;
+			$cc = "Vivying <vivying@clarityenglish.com>";
+			$subject = "CHINA - URGENT: Website status warning(" . date(DATE_RFC822).")"; 
+
+			$from = $claritySupport;
+			break;			
+		case 998: # Europe server alert
+			$body = file_get_contents("$templateFolder/website_monitoring.htm");
+			$to = $clarityTest;
+			$cc = "Vivying <vivying@clarityenglish.com>";
+			$subject = "Europe - Website status report(" . date(DATE_RFC822).")"; 
+
+			$from = $claritySupport;
+			break;
+		case 999: # Europe server warning
+			$body = file_get_contents("$templateFolder/website_monitoring.htm");
+			$to = $clarityTest;
+			$cc = "Vivying <vivying@clarityenglish.com>";
+			$subject = "Europe - URGENT: Website status warning(" . date(DATE_RFC822).")"; 
+
+			$from = $claritySupport;
+			break;				
 		default:
 			return false;
 	}

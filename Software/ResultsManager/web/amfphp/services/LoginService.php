@@ -25,7 +25,11 @@ require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php");
 require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
+require_once(dirname(__FILE__)."/../../classes/MemoryOps.php");
+
 require_once(dirname(__FILE__)."/AbstractService.php");
+
+require_once($GLOBALS['common_dir'].'/encryptURL.php');
 
 class LoginService extends AbstractService {
 	
@@ -39,6 +43,8 @@ class LoginService extends AbstractService {
 		
 		// Set the product name and userID for logging
 		AbstractService::$log->setProductName("LOGIN");
+		AbstractService::$debugLog->setProductName("LOGIN");
+		AbstractService::$controlLog->setProductName("LOGIN");
 
 		// Set the title name for resources
 		AbstractService::$title = "rm";
@@ -82,7 +88,7 @@ class LoginService extends AbstractService {
 		if (isset($loginDetails->rootID))
 			return $this->manageableOps->getUserByKey($stubUser, $loginDetails->rootID, $loginDetails->loginOption);
 			
-		return $this->manageableOps->getUserByKey($stubUser, null, $loginDetails->loginOption);
+		return $this->manageableOps->getUserByKey($stubUser, 0, $loginDetails->loginOption);
 	}
 	
 	// Add this user

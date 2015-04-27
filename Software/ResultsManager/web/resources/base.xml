@@ -42,7 +42,8 @@
             <lit name="errorRUDoesntMatch" code="312">This licence can only run from certain websites. You came from {referrer}.</lit>
             <lit name="errorIPandRUDontMatch" code="313">This licence can only run from certain computers or websites. You came from {referrer} with {ip}.</lit>
             <lit name="errorCantLoadEveryoneSummary" code="314">Unable to load data for everyone's summary.</lit>
-            
+            <lit name="errorMultipleIPMatches" code="315">More than one account matches the IP you are using ({ip}). Please contact your administrator or support@clarityenglish.com.</lit>
+
             <lit name="errorMultipleExerciseWithSameId" code="400">The menu xml has more than one exercise node with id={exerciseID}.</lit>
             <lit name="errorCantFindAutoIncrementSessionId" code="401">Database can't find auto-increment session id.</lit>
             <lit name="errorParsingExercise" code="402">Unable to read exercise {filename} ({message}). Please contact support@clarityenglish.com with the file name.</lit>
@@ -91,7 +92,8 @@
             <lit name="emailKeyfield">email</lit>
             <lit name="yourID">Your id:</lit>
             <lit name="yourEmail">Your email:</lit>
-            <lit name="welcomeLabel">Account: {name}</lit>
+            <!-- Menu screen gh#1194 -->
+            <lit name="welcomeLabel">{name}</lit>
             <lit name="licencedToName">Licensed to {name}</lit>
             <lit name="forgotPasswordLabel">Forgot your password?</lit>
             <lit name="forgotPasswordLink"><![CDATA[http://www.clarityenglish.com/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
@@ -147,8 +149,6 @@
             <lit name="wrongLabel">Wrong: {wrong}</lit> 
             <lit name="missedLabel">Skipped: {missed}</lit> 
             <lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
-            
-            <lit name="footerLabel"> © Clarity Language Consultants Ltd, 2013-14. All rights reserved.</lit>
             <lit name="printButton">Print</lit>
             <lit name="noButton">No</lit>
             <lit name="yesButton">Yes</lit>
@@ -236,6 +236,14 @@
 		</group>
 	</language>
 
+    <language name="North American" code="NAMEN" mediaFolder="NAMEN">
+        <group name="group">
+            <lit name="anonymousCaption">Just practice</lit>
+            <lit name="exerciseMarkingButton">Scoring</lit>
+            <lit name="progressNavBarAnalyse">Analyze</lit>
+        </group>
+    </language>
+    
 	<language name="Simplified Chinese" code="ZH" mediaFolder="ZH">
 		<group name="group">
 		</group>
@@ -245,9 +253,5 @@
 		<group name="group">
 		</group>
 	</language>
-	
-	<language name="North American" code="NAMEN" mediaFolder="NAMEN">
-        <group name="group">
-        </group>
-    </language>
+
 </literals>

@@ -7,7 +7,7 @@
  * Occasional jobs include 
  *   averaging scores per country
  */
-set_time_limit(6000);
+set_time_limit(12000);
 
 require_once(dirname(__FILE__)."/MinimalService.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
@@ -69,7 +69,7 @@ $oneoff = true;
 // If you are running a one-off job, don't trigger the other regular actions
 if ($oneoff) {
 	// Extra date check to ensure one-off is intentional
-	if (date("j")==5 && date("n")==2) {
+	if (date("j")==21 && date("n")==2) {
 		runOccasionalJobs("oneoff");
 	} else {
 	 	echo "Set the date in RunOccasionalJobs to enable one-off run";

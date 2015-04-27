@@ -1,12 +1,19 @@
 <?php
+require_once($GLOBALS['common_dir'].'/encryptURL.php');
+
 class DailyJobObs {
 	
 	var $db;
+	var $server;
 	
 	function DailyJobObs($db = null) {
+		// gh#1137 This doesn't work from a cronjob
+		$this->server = (isset($_SERVER['HTTP_HOST'])) ? $_SERVER['HTTP_HOST'] : 'www.clarityenglish.com';
 		$this->db = $db;
 		$this->manageableOps = new ManageableOps($this->db);
 		$this->courseOps = new CourseOps($this->db);
+		$this->subscriptionOps = new SubscriptionOps($this->db);
+		$this->memoryOps = new MemoryOps($this->db);
 	}
 	
 	/**
@@ -648,7 +655,129 @@ SQL;
 		
 		return $accounts;
 	}
+
+	/**
+	 * For all users in a group (or groups), get the email addresses and include the user details.
+	 * Would be more useful if you could include other information in the emailArray
+	 * 
+	 */
+	public function getEmailsForGroup($groupId) {
+
+		// Initialise
+		$emailArray = array();
+		
+		$groups = $this->manageableOps->getGroupSubgroups($groupId);
+		$groupList = implode(',', $groups);
+		
+		$sql = <<<SQL
+			SELECT u.*
+			FROM T_User u, T_Membership m 
+			WHERE u.F_UserID = m.F_UserID
+			AND m.F_GroupID in ($groupList)
+SQL;
+		$bindingParams = array();
+		$rs = $this->db->Execute($sql, $bindingParams);
+
+		if ($rs->RecordCount() > 0) {
+			while ($dbObj = $rs->FetchNextObj()) {
+				$user = new User();
+				$user->fromDatabaseObj($dbObj);
+				
+				// Send email IF we have one
+				if (isset($user->email) && $user->email) {
+					$toEmail = $user->email;
+					$emailData = array("user" => $user);
+					$thisEmail = array("to" => $toEmail, "data" => $emailData);
+					$emailArray[] = $thisEmail;
+				}
+			}
+		}
+		return $emailArray;
+	}
 	
+	/**
+	 * This will take an account and find the users in the account with a subscription
+	 * A subscription is defined by startDate, frequency and valid
+	 * Then it will work out if we need to update the bookmark for that user to reflect a new 'week'
+	 * 
+	 * Return an array of 'there is a new unit' emails to be sent
+	 */
+	public function updateSubscriptionBookmarks($account, $productCode, $timestamp = null) {
+
+		// Initialize
+		$emailArray = array();
+		
+		if (!$timestamp) { 
+			$now = new DateTime(null, new DateTimeZone(TIMEZONE));
+		} else {
+			$now = new DateTime();
+			$now->setTimestamp($timestamp);
+		}
+		$today = new DateTime($now->format('Y-m-d'. '00:00:00'));
+			
+		// Find all users in this account with a subscription to this product
+		$users = $this->subscriptionOps->getSubscribedUsersInAccount($account, $productCode);
+		
+		foreach ($users as $user) {
+			$subscription = $this->memoryOps->get('subscription', $productCode, $user->userID);
+				
+			if ($subscription['valid'] == 'true') {
+				
+				$level = $this->memoryOps->get('level', $productCode, $user->userID);
+				$sd = $subscription['startDate'];
+				$f = $subscription['frequency'];
+				
+				// Data checking
+				if (empty($level) || empty($sd) || empty($f))
+					continue;
+					
+				$startDate = new DateTime($sd.' 00:00:00');
+				$frequency = DateInterval::createFromDateString($f);
+				$keyDate = $startDate->add($frequency);
+				
+				// For testing we might pass in a different date to use as 'today'
+				//$now = new DateTime(null, new DateTimeZone(TIMEZONE));
+				//$today = new DateTime($now->format('Y-m-d'. '00:00:00'));
+				$unitsAdded = 1;
+				
+				// TODO: Do we need a 'sensible' limit on number of units to add (in case start date was 1900 or something)
+				while ($keyDate <= $today) {
+					if ($keyDate == $today) {
+						// Need to update the relevant bookmark
+						$newBookmark = $this->subscriptionOps->getDirectStart($level, $unitsAdded, $productCode);
+						
+						// The subscription might have completed
+						if (!$newBookmark) {
+							$subscription['valid'] = 'false';
+							$this->memoryOps->set('subscription', $subscription, $productCode, $user->userID);
+						}
+						
+						// Need to update the Tense Buster bookmark
+						$tbProductCode = $this->subscriptionOps->relatedProducts($productCode);
+						$this->memoryOps->set('directStart', $newBookmark, $tbProductCode, $user->userID);
+						
+						$crypt = new Crypt();
+						$programBase = 'http://'.$this->server.'/area1/TenseBuster/Start.php';
+						$parameters = 'prefix='.$account->prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
+                        $startProgram = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
+                        $parameters .= '&startingPoint=state:progress';
+                        $startProgress = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
+
+						$toEmail = $user->email;
+						$emailData = array("user" => $user, "level" => $level, "programBase" => $programBase, "startProgram" => $startProgram, "startProgress" => $startProgress, "dateDiff" => $f, "weekX" => $unitsAdded+1, "server" => $this->server, "prefix" => $account->prefix);
+						$thisEmail = array("to" => $toEmail, "data" => $emailData);
+						$emailArray[] = $thisEmail;
+						AbstractService::$debugLog->info("update user ".$user->email." to week $unitsAdded");
+						
+						continue 2;
+					}
+					$unitsAdded++;
+					$keyDate = $keyDate->add($frequency);
+				}
+			}
+		}
+		return $emailArray;
+	}
 	// gh#1166
 	function averageCountryScores($productCodes, $fromDate=null, $toDate=null) {
 		// For each product code do worldwide
@@ -722,4 +851,5 @@ SQL;
 			return $this->db->ErrorMsg();
 		return true; 		
 	}
+	
 }

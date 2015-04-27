@@ -181,15 +181,13 @@ EOD;
 			AND s.F_Duration > 15
 EOD;
 
-		// To allow old Road to IELTS to count with the new
-		if ($productCode == 52) {
-			$sql.= " AND s.F_ProductCode IN (?, 12)";
-		} else if ($productCode == 53) {
-			$sql.= " AND s.F_ProductCode IN (?, 13)";
+		// gh#1211 And the other old and new combinations
+		$oldProductCode = $this->getOldProductCode($productCode);
+		if ($oldProductCode) {
+			$sql.= " AND s.F_ProductCode IN (?, $oldProductCode)";
 		} else {
-			$sql.= " AND s.F_ProductCode = ?";			
-		}
-		
+			$sql.= " AND s.F_ProductCode = ?";
+		}			
 		$bindingParams = array($user->userID, $licence->licenceControlStartDate, $productCode);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		
@@ -238,15 +236,14 @@ EOD;
 EOD;
 		}
 		
-		// To allow old Road to IELTS to count with the new
-		if ($productCode == 52) {
-			$sql.= " AND s.F_ProductCode IN (?, 12)";
-		} else if ($productCode == 53) {
-			$sql.= " AND s.F_ProductCode IN (?, 13)";
+		// gh#1211 And the other old and new combinations
+		$oldProductCode = $this->getOldProductCode($productCode);
+		if ($oldProductCode) {
+			$sql.= " AND s.F_ProductCode IN (?, $oldProductCode)";
 		} else {
-			$sql.= " AND s.F_ProductCode = ?";			
-		}
-			
+			$sql.= " AND s.F_ProductCode = ?";
+		}			
+							
 		if (stristr($rootID,',')!==FALSE) {
 			$sql.= " AND s.F_RootID in ($rootID)";
 		} else if ($rootID=='*') {
@@ -541,6 +538,37 @@ EOD;
 		}
 		// We want the datestamp, not a formatted date
 		return $fromDateStamp;
+	}
+
+	// gh#1211 To allow old and new versions of titles to be counted together for licences and usage
+	public function getOldProductCode($pc) {
+		switch ($pc) {
+			case 52:
+				return 12;
+				break;
+			case 53:
+				return 13;
+				break;
+			case 55:
+				return 9;
+				break;
+			case 56:
+				return 33;
+				break;
+			case 60:
+				return 49;
+				break;
+			case 58:
+				return 50;
+				break;
+			case 57:
+				return 39;
+				break;
+			case 62:
+				return 10;
+				break;
+		}
+		return false;
 	}
 	
 }

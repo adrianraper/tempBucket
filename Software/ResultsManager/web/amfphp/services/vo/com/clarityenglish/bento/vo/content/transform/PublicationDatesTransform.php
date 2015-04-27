@@ -27,9 +27,13 @@ class PublicationDatesTransform extends XmlTransform {
 			   "AND F_CourseID = ?";
 		
 		$courseStartObjs = $db->GetArray($sql, array(Session::get('rootID'), $href->options['courseId']));
+		// gh#1223
+		$course = $xml->xpath('/xmlns:bento/xmlns:head/xmlns:script[@id="model"]//xmlns:course[@id="'.$href->options['courseId'].'"]');
+		
+		// gh#598 Make sure that no existing publication node comes from the XML
+		unset($course[0]->publication);
 		
 		// Create a <publication> node to hold the data
-		$course = $xml->xpath('/xmlns:bento/xmlns:head/xmlns:script[@id="model"]//xmlns:course[@id="'.$href->options['courseId'].'"]');
 		$publicationNode = $course[0]->addChild("publication");
 		
 		// Go through the results from the database populating the <publication> node

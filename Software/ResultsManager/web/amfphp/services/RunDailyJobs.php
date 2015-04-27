@@ -38,6 +38,7 @@ if (isset($_SERVER["SERVER_NAME"])) {
 	$newLine = "\n";
 }
 
+// NOTE: Sometime convert all away from timestamps to DateTime objects
 function addDaysToTimestamp($timestamp, $days) {
 	//return date("Y-m-d", $timestamp + ($days * 86400));
 	return $timestamp + ($days * 86400);
@@ -56,19 +57,13 @@ function runDailyJobs($triggerDate = null) {
 	// Need date as simple Y-m-d
 	$expiryDate = date('Y-m-d', $triggerDate);
 
-	// For the old RTI database
 	/*
-	$database = 'GlobalRoadToIELTS';
-	$usersMoved = $thisService->internalQueryOps->archiveExpiredUsers($expiryDate, $database);
-	echo "Moved $usersMoved users from $database to expiry table. $newLine";
-	*/
-	
 	// For the Road to IELTS Last Minute accounts in the merged database
 	$database = 'rack80829';
-	$roots = array(163);
+	$roots = array(100,101,167,168,169,170,171,14028,14030,14031);
 	$usersMoved = $thisService->dailyJobOps->archiveExpiredUsers($expiryDate, $roots, $database);
 	echo "Moved $usersMoved users from $database to expiry table. $newLine";
-	
+	*/
 	/*
 	// 2. Archive expired titles from accounts
 	
@@ -77,26 +72,26 @@ function runDailyJobs($triggerDate = null) {
 	$database = 'rack80829';
 	$accountsMoved = $thisService->dailyJobOps->archiveExpiredAccounts($expiryDate, $database);
 	echo "Moved $accountsMoved titles from $database to expiry table for $expiryDate. $newLine";	
-	
+	*/
+	/*
 	// 3. Archive older users from some roots
 
-	// We want to archive users who took their test more than a month ago from LearnEnglish accounts
-	$regDate = date('Y-m-d', addDaysToTimestamp($triggerDate, -31));
-	$roots = array(13982);
+	// We want to archive users who took their test more than 3 months ago from LearnEnglish accounts
+	$regDate = date('Y-m-d', addDaysToTimestamp($triggerDate, -92));
+	$roots = array(13982,14084,16180,14987);
 	$rc = $thisService->dailyJobOps->archiveOldUsers($roots,$regDate);
 	echo "Archived $rc LearnEnglish level test users who registered before $regDate. $newLine";	
-	
 	*/
-	// 4. EmailMe for Rotterdam
 	
+	// 4. EmailMe for Rotterdam
+	/*
 	// First task is to find units that start today, get all users in the groups the units are published for
 	// and send out the email.
 	// Date is UTC and this job runs at 16:00 UTC. So it should be based on units starting tomorrow.
 	// This means that Vancouver students will see the email the day before the unit is available, so wording
 	// in the email needs to include the date rather than 'now/today'.
-	/*
 	$courseDate = date('Y-m-d', addDaysToTimestamp($triggerDate, 1));
-	$templateID = 'EmailMeUnitStart';
+	$templateID = 'CCB/EmailMeUnitStart';
 	$emailArray = $thisService->dailyJobOps->getEmailsForGroupUnitStart($courseDate);
 	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 		// Send the emails
@@ -126,6 +121,8 @@ function runDailyJobs($triggerDate = null) {
 			echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
 		}
 	}
+	*/
+	/*
 	// 5. Archive sent emails
 
 	// Clean up the T_PendingEmails, remove everything that has been sent
@@ -140,7 +137,34 @@ function runDailyJobs($triggerDate = null) {
 	$rc = $thisService->dailyJobOps->monitorCBBActivity($database);
 	echo "$rc accounts active yesterday. $newLine";	
 	*/
+	/*
+	// 7. Update TB6weeks bookmarks 
+	// a. Loop round all accounts that have productCode=59 (and are active)
+	$productCode = 59;
+	$trigger = new Trigger();
+	$trigger->templateID = 'user/TB6weeksNewUnit';
+	$trigger->parseCondition("method=getAccounts&active=true&productCode=$productCode");
+	//$trigger->condition->customerType = '1'; // If we want to limit this to libraries
 	
+	$triggerResults = $thisService->triggerOps->applyCondition($trigger, $triggerDate);
+	foreach ($triggerResults as $account) {
+		
+		// b. For each user in this account, update their subscription, if they have one.
+		echo "TB6weeks check account ".$account->prefix."$newLine";
+		$emailArray = $thisService->dailyJobOps->updateSubscriptionBookmarks($account, $productCode, $triggerDate);
+		if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+			// Send the emails
+			$thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
+			echo "Sent ".count($emailArray)." emails. $newLine";
+				
+		} else {
+			// Or print on screen
+			foreach($emailArray as $email) {
+				echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($trigger->templateID, $email["data"])."<hr/>";
+			}
+		}
+	}
+	*/	
 }
 
 // Action

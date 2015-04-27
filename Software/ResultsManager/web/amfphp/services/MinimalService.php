@@ -10,9 +10,14 @@ require_once($GLOBALS['adodb_libs']."adodb.inc.php");
 
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/Reportable.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Course.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Title.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Bookmark.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Group.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/User.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Subscription.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/trigger/Trigger.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/trigger/Condition.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Account.php");
 
 require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
@@ -31,6 +36,9 @@ require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
 require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
 require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
 require_once(dirname(__FILE__)."/../../classes/CourseOps.php");
+require_once(dirname(__FILE__)."/../../classes/TriggerOps.php");
+require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php");
+require_once(dirname(__FILE__)."/../../classes/MemoryOps.php");
 
 require_once(dirname(__FILE__)."/AbstractService.php");
 
@@ -59,6 +67,9 @@ class MinimalService extends AbstractService {
 		// gh#122 for daily jobs
 		$this->dailyJobOps = new DailyJobObs($this->db);
 		$this->courseOps = new CourseOps($this->db);
+		$this->triggerOps = new TriggerOps($this->db);
+		$this->subscriptionOps = new SubscriptionOps($this->db);
+		$this->memoryOps = new MemoryOps($this->db);
 		
 		// DMS has no restrictions on user/group access so disable manageable authentication
 		AuthenticationOps::$useAuthentication = false;
@@ -90,6 +101,9 @@ class MinimalService extends AbstractService {
 		$this->internalQueryOps->changeDB($this->db);
 		$this->dailyJobOps->changeDB($this->db);
 		$this->courseOps->changeDB($this->db);
+		$this->triggerOps->changeDB($this->db);
+		$this->subscriptionOps->changeDB($this->db);
+		$this->memoryOps->changeDB($this->db);
 	}
 	
 	public function checkDirectStartSecurityCode($securityCode) {

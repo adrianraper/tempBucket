@@ -69,8 +69,8 @@ $GLOBALS['smarty_compile_dir'] = $smartyRoot."/templates_c/";
 $GLOBALS['smarty_config_dir'] = $smartyRoot."/configs/";
 $GLOBALS['smarty_cache_dir'] = $smartyRoot."/cache/";
 $GLOBALS['smarty_plugins_dir'] = $smartyRoot."/plugins/";
-// Used for logging
-$GLOBALS['logType'] = 'file';
-$GLOBALS['debugLogType'] = 'file';
-$GLOBALS['controlLogType'] = 'file';
+// gh#857 Used for different types of logging in production or development
+$GLOBALS['logType'] = 'file'; // or 'db' or 'null'
+$GLOBALS['debugLogType'] = 'file'; // or 'db' or 'null'
+$GLOBALS['controlLogType'] = 'file'; // or 'db' or 'null'
 $GLOBALS['logs_dir'] = $GLOBALS['common_dir'].'/logs/';
