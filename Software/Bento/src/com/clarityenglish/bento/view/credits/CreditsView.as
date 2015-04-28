@@ -89,7 +89,6 @@ package com.clarityenglish.bento.view.credits {
 		}
 		
 		protected override function getCurrentSkinState():String {
-			trace("product version: "+super.getCurrentSkinState());
 			switch (productVersion) {
 				case "R2ITD":
 					return "testDrive";

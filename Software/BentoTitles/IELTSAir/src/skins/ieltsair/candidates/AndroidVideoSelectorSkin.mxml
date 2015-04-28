@@ -173,6 +173,8 @@
 						return openingScreen5;
 					case 5:
 						return openingScreen6;
+					case 6:
+						return openingScreen7;
 					default:
 						return null;
 				}
@@ -210,7 +212,8 @@
 		<candidates:number3red visible="{videoListIndex == 2}"/>
 		<candidates:number4red visible="{videoListIndex== 3}"/>
 		<candidates:number5red visible="{videoListIndex == 4}"/>
-		<candidates:number6red visible="{videoListIndex == 5}"/>
+		<candidates:number6red visible="{videoListIndex == 5}"/>	
+		<candidates:number7red visible="{videoListIndex == 6}"/>
 	</s:Group>
 	
 	<!--video title-->
@@ -257,6 +260,7 @@
 		<s:SWFLoader id="openingScreen4" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen4.jpg')" />
 		<s:SWFLoader id="openingScreen5" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen5.jpg')" />
 		<s:SWFLoader id="openingScreen6" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen6.jpg')" />
+		<s:SWFLoader id="openingScreen7" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen7.jpg')" />
 	</s:HGroup>
 	
 	<candidates:videoframe verticalCenter="-20" horizontalCenter="0" />
@@ -278,7 +282,7 @@
 		
 		<s:Label id="videoListCaptionLabel" top="50" horizontalCenter="0" color="#FFFFFF" fontSize="13" />
 		<!-- Video list -->
-		<s:List id="videoList" left="0" top="70" verticalScrollPolicy="off" minHeight="0" minWidth="0" itemRenderer="com.clarityenglish.ieltsair.view.candidates.VideoListItemRenderer">
+		<s:List id="videoList" left="0" top="70" bottom="100" minHeight="0" minWidth="0" itemRenderer="com.clarityenglish.ieltsair.view.candidates.VideoListItemRenderer">
 			<s:layout>
 				<s:VerticalLayout gap="5" />
 			</s:layout>
