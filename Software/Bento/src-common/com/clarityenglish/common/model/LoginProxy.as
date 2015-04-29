@@ -483,10 +483,13 @@ import flash.events.TimerEvent;
 						// For SCORM, if the user doesn't exist, automatically add them
 						if (configProxy.getConfig().scorm) {
 							var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
-							var configUser:User = new User({name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID});
 							var loginOption:uint = configProxy.getAccount().loginOption;
 							var verified:Boolean = (configProxy.getAccount().verified == 1);
-	
+							var configUser:User = new User({name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID});
+							// gh#1227
+							if (loginOption & Config.LOGIN_BY_EMAIL)
+								configUser.email = configUser.name + '@scorm.email';
+
 							var loginEvent:LoginEvent = new LoginEvent(LoginEvent.ADD_USER, configUser, loginOption, verified);
 							sendNotification(CommonNotifications.ADD_USER, loginEvent);
 							

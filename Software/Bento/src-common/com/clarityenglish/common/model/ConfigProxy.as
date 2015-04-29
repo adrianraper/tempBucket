@@ -4,9 +4,9 @@ Proxy - PureMVC
 package com.clarityenglish.common.model {
 	
 	import com.clarityenglish.bento.BBNotifications;
-import com.clarityenglish.bento.model.BentoProxy;
-import com.clarityenglish.bento.model.DataProxy;
-import com.clarityenglish.bento.model.SCORMProxy;
+    import com.clarityenglish.bento.model.BentoProxy;
+    import com.clarityenglish.bento.model.DataProxy;
+    import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.vo.config.BentoError;
@@ -411,8 +411,13 @@ import com.clarityenglish.bento.model.SCORMProxy;
 			if (config.scorm) {
 				//trace("scorm");
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+
 				configUser = new User({ name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID });
-				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+                // gh#1227
+                if (loginOption & Config.LOGIN_BY_EMAIL)
+                    configUser.email = configUser.name + '@scorm.email';
+
+                return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 			}
 			
 			return null;
