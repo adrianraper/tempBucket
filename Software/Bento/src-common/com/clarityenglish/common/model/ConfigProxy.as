@@ -412,7 +412,12 @@ package com.clarityenglish.common.model {
 			if (config.scorm) {
 				//trace("scorm");
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+				
 				configUser = new User({ name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID });
+				// gh#1227
+				if (loginOption & Config.LOGIN_BY_EMAIL)
+					configUser.email = configUser.name + '@scorm.email';
+				
 				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 			}
 			

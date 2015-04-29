@@ -128,7 +128,7 @@ class AbstractService {
 			$charSetRC = mysql_set_charset('utf8');
 		
 		$this->db->SetFetchMode(ADODB_FETCH_ASSOC);
-		AbstractService::$log->setDB($this->db);
+		AbstractService::$log->setTarget($this->db);
 	}
 	
 	/**
