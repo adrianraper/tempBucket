@@ -187,7 +187,6 @@
 	<!--Demo button-->
 	<s:VGroup right="10" top="80" gap="5" visible="{hostComponent.isPlatformTablet}" includeInLayout="{hostComponent.isPlatformTablet}">
 		<s:Button id="demoButton1" />
-		<s:Button id="demoButton2" />
 	</s:VGroup>
 
 	<!-- footer (sits on top of application skin footer) -->

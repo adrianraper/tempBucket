@@ -1,14 +1,17 @@
 package com.clarityenglish.clearpronunciation.view.home {
-	import com.clarityenglish.bento.events.ExerciseEvent;
+import com.clarityenglish.bento.BentoApplication;
+import com.clarityenglish.bento.events.ExerciseEvent;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.controls.video.VideoSelector;
+import com.clarityenglish.bento.vo.content.Exercise;
+import com.clarityenglish.controls.video.VideoSelector;
 import com.clarityenglish.controls.video.players.WebViewVideoPlayer;
 import com.clarityenglish.textLayout.vo.XHTML;
 	import com.googlecode.bindagetools.Bind;
 	
 	import flash.events.Event;
-	
-	import mx.collections.ArrayCollection;
+import flash.geom.Point;
+
+import mx.collections.ArrayCollection;
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	import mx.core.ClassFactory;
@@ -18,8 +21,10 @@ import com.clarityenglish.textLayout.vo.XHTML;
 	import org.osflash.signals.Signal;
 	
 	import skins.clearpronunciation.home.ui.UnitListItemRenderer;
-	
-	import spark.components.Label;
+
+import spark.components.Group;
+
+import spark.components.Label;
 	import spark.components.List;
 	import spark.events.IndexChangeEvent;
 	
@@ -42,6 +47,12 @@ import com.clarityenglish.textLayout.vo.XHTML;
 		
 		[SkinPart]
 		public var unitList:List;
+
+		[SkinPart]
+		public var demoTooltipGroup:Group;
+
+		[SkinPart]
+		public var demoTooltipLabel1:Label;
 		
 		[Bindable]
 		public var courses:ListCollectionView;
@@ -106,7 +117,7 @@ import com.clarityenglish.textLayout.vo.XHTML;
 				case unitList:
 					// Set the item renderer
 					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
-					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: true };
+					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: true, isShowDemoFeature: true };
 					instance.itemRenderer = unitListItemRenderer;
 					
 					// Auto select the unit if necessary
@@ -118,8 +129,17 @@ import com.clarityenglish.textLayout.vo.XHTML;
 					// Listen for exercise changes (this one is a special case as the event doesn't come from the expected target)
 					unitList.addEventListener(ExerciseEvent.EXERCISE_SELECTED, function(e:ExerciseEvent):void { 
 						// gh#1116
-						if (e.node)
+						if (e.node && Exercise.exerciseEnabledInMenu(e.node))
 							nodeSelect.dispatch(e.node);
+
+						if (productVersion == BentoApplication.DEMO && !Exercise.exerciseEnabledInMenu(e.node)) {
+							var pt:Point = e.globalPoint;
+							pt = unitList.globalToContent(pt);
+							demoTooltipGroup.verticalCenter = pt.y - 200;
+							demoTooltipGroup.left = unitList.left + pt.x - 100;
+							demoTooltipGroup.visible = true;
+						}
+
 					});
 					break;
 				case introductionList:
@@ -132,6 +152,9 @@ import com.clarityenglish.textLayout.vo.XHTML;
 					introductionVideoSelector.videoCollection = new XMLListCollection(new XMLList(<item href={introductionCourse.@videoHref} />));
 					introductionVideoSelector.placeholderSource = href.rootPath + "/" + introductionCourse.@videoPoster;
 					break;
+				case demoTooltipLabel1:
+					demoTooltipLabel1.text = copyProvider.getCopyForId("demoTooltipLabel1");
+					break;
 			}
 		}
 		
@@ -140,6 +163,8 @@ import com.clarityenglish.textLayout.vo.XHTML;
 			if (e.target.selectedItem) {
 				nodeSelect.dispatch(e.target.selectedItem);
 			}
+
+			demoTooltipGroup.visible = false;
 		}
 
 		protected override function commitProperties():void {

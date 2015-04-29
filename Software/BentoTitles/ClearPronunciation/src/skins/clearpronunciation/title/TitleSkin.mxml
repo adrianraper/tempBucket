@@ -13,7 +13,9 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import mx.events.FlexEvent;
+		import com.clarityenglish.bento.BentoApplication;
+
+		import mx.events.FlexEvent;
 			
 			protected function onCreationComplete(event:FlexEvent):void {
 				
@@ -74,6 +76,24 @@
 	</s:Group>
 	
 	<s:Button id="backButton" top="12" right="10" useHandCursor="true" buttonMode="true" includeIn="progress" />
+
+	<!--Demo version label-->
+	<s:Group id="demoGroup" width="130" height="60" right="15" top="50" visible="{hostComponent.productVersion == BentoApplication.DEMO}" includeIn="home">
+		<s:Rect width="100%" height="100%" bottomLeftRadiusX="10" bottomRightRadiusX="10">
+			<s:fill>
+				<s:SolidColor color="#263A45" alpha="0.6" />
+			</s:fill>
+		</s:Rect>
+		<s:Rect width="120" height="55" horizontalCenter="0" bottomLeftRadiusX="10" bottomRightRadiusX="10">
+			<s:fill>
+				<s:SolidColor color="#263A45" alpha="0.9" />
+			</s:fill>
+		</s:Rect>
+		<s:VGroup width="100%" horizontalCenter="0" horizontalAlign="center" top="10" gap="7">
+			<s:Label id="topLeftDemoLabel" fontSize="14" color="#FFFFFF" fontWeight="bold" />
+			<s:Label id="topRightDemoLabel" fontSize="12" color="#FFFFFF" />
+		</s:VGroup>
+	</s:Group>
 
 	<!-- CP1 logo -->
 	<s:BitmapImage left="0" top="0" source="@Embed(source='/skins/clearpronunciation/assets/home/homeLogo.png')" includeIn="home" />

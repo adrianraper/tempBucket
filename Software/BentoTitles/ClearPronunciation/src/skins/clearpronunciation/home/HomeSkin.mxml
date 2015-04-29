@@ -164,4 +164,15 @@
 		</s:layout>
 	</s:List>
 
+	<!--Demo Tooltip-->
+	<s:Group id="demoTooltipGroup" width="270" height="80" top="360" visible="false">
+		<s:Rect width="100%" height="100%" radiusX="10" radiusY="10">
+			<s:fill>
+				<s:SolidColor color="#263A45" alpha="0.9"/>
+			</s:fill>
+		</s:Rect>
+		<s:VGroup top="16" bottom="16" left="16" right="16" gap="4">
+			<s:Label id="demoTooltipLabel1" width="100%" color="#FFFFFF" fontSize="14" />
+		</s:VGroup>
+	</s:Group>
 </s:Skin>

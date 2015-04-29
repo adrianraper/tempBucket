@@ -13,7 +13,9 @@
 				removedFromStage="onRemovedFromStage(event)">
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.bento.events.ExerciseEvent;
+		import com.clarityenglish.bento.BentoApplication;
+		import com.clarityenglish.bento.events.ExerciseEvent;
+			import com.clarityenglish.bento.vo.content.Exercise;
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
 			
 			import mx.collections.ArrayCollection;
@@ -44,13 +46,16 @@
 			
 			[Bindable]
 			public var selectedExerciseNode:XML;
-			
+
+			[Bindable]
+			public var isShowDemoFeature:Boolean;
+
 			[Bindable]
 			private var pieChartArrayCollection:ArrayCollection;
 			
 			[Bindable]
 			private var exerciseXMLListCollection:XMLListCollection;
-			
+
 			private function onCreationComplete(e:Event):void {
 				addEventListener(FlexEvent.DATA_CHANGE, function():void { invalidateProperties(); });
 			}
@@ -101,7 +106,19 @@
 						unitItemRightButton.label = _copyProvider.getCopyForId(data.@rightIcon);
 						unitItemRightLabel.text = (data.@caption).split(" ")[1];
 					}
-					
+
+					// disable unit list item only if the list require show demo feature
+					if (isShowDemoFeature) {
+						if (data.attribute("enabledFlag").length() > 0 && (data.@enabledFlag.toString() & 8)) {
+							this.enabled = false;
+						} else if (data.attribute("enabledFlag").length() > 0 && (data.@enabledFlag.toString() & 4)) {
+							demoGroup.visible = true;
+						} else {
+							demoGroup.visible = false;
+							this.enabled = true;
+						}
+					}
+
 					exerciseXMLListCollection = new XMLListCollection(data.exercise);
 					
 					_dataChanged = false;
@@ -109,7 +126,9 @@
 			}
 			
 			protected function onExerciseListClick(event:MouseEvent):void {
-				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, null, exerciseList.selectedItem));
+				var pt:Point = new Point(event.localX, event.localY);
+				pt = event.target.localToGlobal(pt);
+				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, null, event.currentTarget.selectedItem, null, pt));
 			}
 			
 			/**
@@ -140,7 +159,7 @@
 		</mx:series>
 	</mx:PieChart>
 	
-	<s:Group width="100%" left.hidePieChart="0" left.showPieChart="40">
+	<s:Group id="exerciseGroup" width="99%" left.hidePieChart="0" left.showPieChart="40">
 		<!-- The background rectangle (only visible when the renderer is expanded) -->
 		<s:Rect height="200" width="100%" radiusX="10" radiusY="10" includeIn="selected">
 			<s:fill>
@@ -169,16 +188,29 @@
 					<s:IconItemRenderer labelField="@caption" iconFunction="getIcon" paddingTop="6" paddingLeft="42" fontSize="13" height="23" iconWidth="8" width="100%">
 						<fx:Script>
 							<![CDATA[
-								import skins.clearpronunciation.assets.home.menuDot;
+							import com.clarityenglish.bento.vo.content.Exercise;
+
+							import skins.clearpronunciation.assets.home.menuDot;
 								import skins.clearpronunciation.assets.home.yellowDot;
 								import skins.clearpronunciation.assets.home.yellowDotOutline;
-								
+
+							override public function set data(value:Object):void {
+								super.data = value;
+
+								this.enabled = Exercise.exerciseEnabledInMenu(value as XML);
+							}
+
 								private function getIcon(item:Object):Object {
 									return item.attribute("done").length() > 0 && parseInt(item.@done) > 0 ? new yellowDot() : new yellowDotOutline();
 								}
 								
 								override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
-									labelDisplay.setStyle("color", selected || down ? 0xFFFFFF : 0x005D5F);
+									if (enabled) {
+										labelDisplay.setStyle("color", selected || down ? 0xFFFFFF : 0x005D5F);
+									} else {
+										labelDisplay.setStyle("color", 0x789E97);
+									}
+
 									
 									super.updateDisplayList(unscaledWidth, unscaledHeight);
 								}
@@ -202,7 +234,17 @@
 				</fx:Component>
 			</s:itemRenderer>
 		</s:List>
-		
+
+		<!--Demo label-->
+		<s:Group id="demoGroup" left="-32" top="10" width="77" height="25" visible="false">
+			<s:Rect width="100%" height="100%" left="0" radiusX="6" radiusY="6">
+				<s:fill>
+					<s:SolidColor color="#DEAE49" />
+				</s:fill>
+			</s:Rect>
+			<s:Label text="Demo" fontFamily="Helvetica" fontSize="13" fontWeight="bold" left="7" verticalCenter="1"/>
+		</s:Group>
+
 		<!-- The question number -->
 		<s:Label id="unitItemIndexLabel" text="{StringUtils.padLeft((itemIndex + 1).toString(), '0', 2)}" fontFamily="Helvetica" fontSize="20" color="#333333" left="15" top="15" visible="{showItemIndex}" />
 		
@@ -213,6 +255,7 @@
 		<!-- The right item -->
 		<s:Button id="unitItemRightButton" color="#4e4e4e" scaleX="0.9" scaleY="0.9" left="160" top="8" />
 		<s:Label id="unitItemRightLabel" fontSize="16" left="200" top="16" />
+
+
 	</s:Group>
-	
 </s:ItemRenderer>

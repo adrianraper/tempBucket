@@ -1,7 +1,9 @@
 package com.clarityenglish.clearpronunciation.view.exercise {
-	import com.clarityenglish.bento.events.ExerciseEvent;
+import com.clarityenglish.bento.BentoApplication;
+import com.clarityenglish.bento.events.ExerciseEvent;
 	import com.clarityenglish.bento.view.exercise.ExerciseView;
-	import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
+import com.clarityenglish.bento.vo.content.Exercise;
+import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
 	import com.clarityenglish.clearpronunciation.view.exercise.ui.WindowShade;
 	import com.googlecode.bindagetools.Bind;
 	
@@ -42,10 +44,10 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 		
 		[SkinPart]
 		public var youWillButton:Button;
-		
+
 		[Bindable]
 		public var selectedExerciseNode:XML;
-		
+
 		public function ExerciseView() {
 			super();
 		}
@@ -114,6 +116,29 @@ package com.clarityenglish.clearpronunciation.view.exercise {
 			
 			// Use the generic sendNotification signal so we don't need to override the mediator just for the sake of this
 			sendNotification.dispatch(ClearPronunciationNotifications.YOUWILL_SHOW, prefix + exerciseIndex);
+		}
+
+		public function getEnalbedUnitList(course:XML):XMLList {
+			if (course) {
+				var units:XMLList = new XMLList();
+
+				// For demo version, except demo unit other units should not show in drop down list in exercise
+				for each (var unitNode:XML in course.unit) {
+					if (productVersion == BentoApplication.DEMO) {
+						if (unitNode.attribute("enabledFlag").length() > 0 && (unitNode.@enabledFlag.toString() & 4)) {
+							units += unitNode;
+						}
+					} else {
+						if (unitNode.attribute("enabledFlag").length() > 0 && (unitNode.@enabledFlag.toString() & 3)) {
+							units += unitNode;
+						}
+					}
+				}
+				return units;
+			} else {
+				return null;
+			}
+
 		}
 	}
 }

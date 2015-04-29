@@ -467,8 +467,10 @@ package com.clarityenglish.bento.view.login {
 				selfRegisterCaption = copyProvider.getCopyForId("selfRegisterCaption");
 			}
 			demoButtonCaption = copyProvider.getCopyForId("demoButtonCaption");
-			demoButton1.label = copyProvider.getCopyForId("demoButton1");
-			demoButton2.label = copyProvider.getCopyForId("demoButton2");
+			if (demoButton1)
+				demoButton1.label = copyProvider.getCopyForId("demoButton1");
+			if (demoButton2)
+				demoButton2.label = copyProvider.getCopyForId("demoButton2");
 
 		}
 		

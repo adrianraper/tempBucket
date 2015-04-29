@@ -79,7 +79,7 @@ package com.clarityenglish.clearpronunciation.view.progress
 		 */
 		protected override function getCurrentSkinState():String {
 			var state:String = (!progressNavBar || !progressNavBar.selectedItem) ? "coverage" : progressNavBar.selectedItem.data;
-			return state + ((productVersion == BentoApplication.DEMO) ? "_demo" : "");
+			return state;
 		}
 		
 		/**

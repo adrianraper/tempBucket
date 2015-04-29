@@ -5,7 +5,7 @@
 	<productCode>57</productCode>
 	<loginOption>128</loginOption>
 	<useCacheBuster>true</useCacheBuster>s
-	<courseFile>menu-{productCode}-FullVersion.xml</courseFile>
+	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 	<platform>tablet|ipad</platform>
 	<channel name="ios-vimeo" caption="vimeo">
         <streamingMedia>http://player.vimeo.com/external/</streamingMedia>
@@ -14,9 +14,9 @@
 	<brandingMedia />
 	<language>EN</language>
 	
-	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
-	<remoteDomain>http://www.clarityenglish.com/</remoteDomain>
-	<remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<contentPath>http://192.168.8.58/Content/</contentPath>
+	<remoteDomain>http://192.168.8.58/</remoteDomain>
+	<remoteGateway>http://192.168.8.58/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>ClearPronunciationService</remoteService>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 	

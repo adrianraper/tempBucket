@@ -52,6 +52,7 @@
 			<!--unit-->
 			<lit name="practiseSoundsLabel"><![CDATA[Practise the sounds]]></lit>
 			<lit name="makeSoundsLabel"><![CDATA[How do I make the sounds?]]></lit>
+			<lit name="demoTooltipLabel1">Please see Introduction and Consonants, Unit 13 to see the material in this demo.</lit>
 			
 			<!--phonetic -->
 			<lit name="Pill">p</lit>

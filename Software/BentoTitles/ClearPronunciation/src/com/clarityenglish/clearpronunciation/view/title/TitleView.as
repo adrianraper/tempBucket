@@ -58,6 +58,12 @@ package com.clarityenglish.clearpronunciation.view.title {
 		
 		[SkinPart]
 		public var productTitle:Label;
+
+		[SkinPart]
+		public var topLeftDemoLabel:Label;
+
+		[SkinPart]
+		public var topRightDemoLabel:Label;
 		
 		private var _selectedNode:XML;
 		
@@ -124,6 +130,12 @@ package com.clarityenglish.clearpronunciation.view.title {
 					break;
 				case logoutButton:
 					logoutButton.addEventListener(MouseEvent.CLICK, onLogoutClick);
+					break;
+				case topLeftDemoLabel:
+					topLeftDemoLabel.text = copyProvider.getCopyForId("topLeftDemoLabel");
+					break;
+				case topRightDemoLabel:
+					topRightDemoLabel.text = copyProvider.getCopyForId("topRightDemoLabel");
 					break;
 			}
 		}
