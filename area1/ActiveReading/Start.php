@@ -17,7 +17,7 @@
 	$startControl = '/Software/BentoTitles/ActiveReading/bin-debug/';
 	$version = '1107';
 	$coordsMinWidth = '990';
-	$coordsMaxWidth = null;
+	$coordsMaxWidth = '1200';
 	$coordsMinHeight = '760';
 	$coordsMaxHeight = null;
 	$locationFile = "config.xml";

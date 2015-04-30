@@ -373,7 +373,7 @@
 										<s:SolidColor color="{outerDocument.getOutlineStrokeColour(data.parent().childIndex())}" />
 									</s:fill>
 								</s:Rect>
-								<s:Label text="Demo" color="#FFFFFF" horizontalCenter="1" verticalCenter="1" />
+								<s:Label text="Demo" color="#FFFFFF" horizontalCenter="1" verticalCenter="1" fontSize="12" />
 							</s:Group>
 						</s:Group>
 					</s:ItemRenderer>
@@ -578,7 +578,7 @@
 									<s:SolidColor color="{getOutlineStrokeColour(hostComponent.courseIndex)}" />
 								</s:fill>
 							</s:Rect>
-							<s:Label text="Demo" color="#FFFFFF" horizontalCenter="1" verticalCenter="1" />
+							<s:Label text="Demo" color="#FFFFFF" horizontalCenter="1" verticalCenter="1" fontSize="12" />
 						</s:Group>
 					</s:VGroup>
 				</s:HGroup>			

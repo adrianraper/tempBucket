@@ -346,6 +346,7 @@ public class HomeView extends BentoView {
 				}
 
 				if (isFirstClickCurrentUnitList && !isAnimationPlayed) {
+					exerciseGroup.alpha = 1;
 					var scale:Scale = new Scale();
 					scale.scaleYFrom = 0;
 					scale.scaleYTo = 1;
@@ -381,12 +382,12 @@ public class HomeView extends BentoView {
 		
 		protected function onUnitListClick(event:MouseEvent = null):void {
 			var unitXML:XML =  unitList.selectedItem as XML;
-			
+
 			if (unitXML) {
 				isUnitListClick = true;
 				exerciseList.visible = true;
 				demoTooltipGroup.visible = false;
-				exerciseGroup.alpha = 1;
+				//exerciseGroup.alpha = 1;
 
 				if (triangleReferenceGroup.y) {
 					var move:Move = new Move();
