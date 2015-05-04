@@ -149,8 +149,9 @@ SQL;
 			// For teachers we will set rootID to -1 in the session record, so, are you a teacher?
 			// Or more specifically are you NOT a student
 			// gh#604 Include all users in session records tied to a root
-			//if (!$user->userType == 0)
-			//	$rootID = -1;
+			// gh#1228 Revert due to licence counting issue
+			if (!$user->userType == User::USER_TYPE_STUDENT)
+				$rootId = -1;
 			$userId = $user->userID;
 		} else {
 			$userId = $user;
