@@ -226,13 +226,12 @@ EOD;
 EOD;
 		} else {
 			// gh#604 Teacher records in session will now include root, so ignore them here
+			// gh#1228 But that ignores deleted/archived users, so revert
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
-				FROM T_Session s, T_User u
+				FROM T_Session s
 				WHERE s.F_StartDateStamp >= ?
 				AND s.F_Duration > 15
-				AND s.F_UserID = u.F_UserID
-				AND u.F_UserType = 0
 EOD;
 		}
 		
