@@ -5,7 +5,7 @@
 	<productCode>57</productCode>
 	<loginOption>128</loginOption>
 	<useCacheBuster>true</useCacheBuster>
-	<courseFile>menu-{productCode}-FullVersion.xml</courseFile>
+	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 	<platform>tablet|android</platform>
 	<channel name='android-rackspace' caption='Ch1'>
 		<streamingMedia>http://798a4ab11405fd81be17-42dc242c457c6a62e22482e1bb35342a.r14.cf1.rackcdn.com/</streamingMedia>
@@ -18,8 +18,8 @@
 	<language>EN</language>
 	
 	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
-	<remoteDomain>http://192.168.8.53/</remoteDomain>
-	<remoteGateway>http://192.168.8.53/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteDomain>http://www.clarityenglish.com/</remoteDomain>
+	<remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>ClearPronunciationService</remoteService>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 	

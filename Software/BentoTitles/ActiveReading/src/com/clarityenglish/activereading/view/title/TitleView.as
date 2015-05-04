@@ -178,10 +178,6 @@ package com.clarityenglish.activereading.view.title {
 				case topRightDemoLabel:
 					topRightDemoLabel.text = copyProvider.getCopyForId("topRightDemoLabel");
 					break;
-				// gh#1090 To hide progress tab for pure AA login
-				case progressViewNavigator:
-					instance.enabled = !config.noLogin;
-					break;
 			}
 			
 		}
