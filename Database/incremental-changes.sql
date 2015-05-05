@@ -1337,3 +1337,44 @@ DELETE FROM T_ProductVersion WHERE F_ProductCode = 62;
 INSERT INTO `T_ProductVersion` VALUES 
 (62,'DEMO'),
 (62,'FV');
+
+-- Discount code
+CREATE TABLE `T_DiscountCode` (
+`F_DiscountCodeID` int(11) NOT NULL AUTO_INCREMENT,
+`F_DiscountCode` varchar(100) NOT NULL,
+`F_StartDate` timestamp NULL DEFAULT NULL,
+`F_EndDate` timestamp NULL DEFAULT NULL,
+`F_DiscountType` int(4) NOT NULL,
+`F_DiscountAmount` decimal(10,2) NOT NULL,
+`F_RemainingAmount` decimal(10,2) NOT NULL,
+`F_MaxCount` int(11) NOT NULL,
+`F_UsedCount` int(11) NOT NULL,
+`F_CampaignID` int(11) NOT NULL,
+`F_TargetRootID` int(11) DEFAULT NULL,
+PRIMARY KEY (`F_DiscountCodeID`),
+UNIQUE KEY `F_DiscountCode_UNIQUE` (`F_DiscountCode`)
+) ENGINE=InnoDB AUTO_INCREMENT=556 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `T_DiscountRecord` (
+`F_DiscountRecordID` int(11) NOT NULL AUTO_INCREMENT,
+`F_DiscountCode` varchar(20) NOT NULL,
+`F_TimeStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+`F_SubscriptionID` int(11) NOT NULL,
+`F_OriginalPrice` decimal(10,2) NOT NULL,
+`F_DiscountedAmount` decimal(10,2) NOT NULL,
+`F_DiscountedPrice` decimal(10,2) NOT NULL,
+PRIMARY KEY (`F_DiscountRecordID`)
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `T_Campaign` (
+`F_CampaignID` int(11) NOT NULL AUTO_INCREMENT,
+`F_CampaignName` varchar(100) DEFAULT NULL,
+`F_CreatedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (`F_CampaignID`)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `T_CampaignOffer` (
+`F_CampaignID` int(11) NOT NULL,
+`F_OfferID` int(11) NOT NULL,
+PRIMARY KEY (`F_CampaignID`,`F_OfferID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
