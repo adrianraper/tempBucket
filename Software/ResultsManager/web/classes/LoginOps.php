@@ -288,7 +288,27 @@ EOD;
 		Authenticate::login($sessionName, $dbLoginObj->F_UserType);
 		
 		// gh#156 - update the timezone difference for this user in the database
-		$this->db->Execute("UPDATE T_User SET F_TimeZoneOffset=? WHERE F_UserID=?", array(-$loginObj["timezoneOffset"] / 60, $dbLoginObj->F_UserID));
+		// gh#1231
+		// Should come in as number of minutes needed to be added to local time to get UTC. So HKG will be -480.
+		//	Here we convert to save in db as number of hours ahead of UTC. So HKG will be 8
+		// TODO It might be neater to save as number of minutes that you should add to local time to get UTC - mirroring as3/ECMA
+		// especially as rare locations are 15/45 mins apart from UTC which float 3.1 in MySQL can't do.
+        AbstractService::$debugLog->info("set user ".$dbLoginObj->F_UserID." timezone to ".$loginObj["timezoneOffset"]);
+        // gh#1231 Cope with the Number cast as uint from as3 Flash Player bug
+        if ($loginObj["timezoneOffset"] > 4294966500) {
+            $loginObj["timezoneOffset"] = -(4294967296 - $loginObj["timezoneOffset"]);
+        }
+        $timezoneOffset = -(intval($loginObj["timezoneOffset"])/60);
+
+        // Sanity check
+        if ($timezoneOffset > 12 || $timezoneOffset < -12)
+            $timezoneOffset = 0;
+
+		// Only update if needed
+		if ($timezoneOffset != $dbLoginObj->F_TimeZoneOffset) {
+            AbstractService::$debugLog->info("updated time zone in db to $timezoneOffset from ".$dbLoginObj->F_TimeZoneOffset);
+            $this->db->Execute("UPDATE T_User SET F_TimeZoneOffset=? WHERE F_UserID=?", array($timezoneOffset, $dbLoginObj->F_UserID));
+        }
 		
 		// Return the $dbLoginObj so the specific service can continue with whatever action it likes
 		return $dbLoginObj;

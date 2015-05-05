@@ -116,9 +116,10 @@ import flash.events.TimerEvent;
 			
 			if (loginObj && configProxy.getConfig().ip)
 				loginObj.ip = configProxy.getConfig().ip;
-			
+
+            // gh#156, gh#1231
 			if (loginObj)
-				loginObj.timezoneOffset = new Date().timezoneOffset; // gh#156
+				loginObj.timezoneOffset = new Date().timezoneOffset.toString();
 			
 			// #340
 			// Network allows anonymous entry if all fields are blank
