@@ -73,15 +73,15 @@ EOD;
 			if ($results[0] > 0)
 				throw $this->copyOps->getExceptionForId("errorConcurrentCourseAccess");
 			
-			// Otherwise this is a successfull login so update the timer (this is also done every minute triggered by the client)
+			// Otherwise this is a successful login so update the timer (this is also done every minute triggered by the client)
 			$this->courseSessionUpdate($href->options["courseId"]);
 		}
 		
 		return $xhtml;
 	}
 	
-	// gh#954 Session id passed, but only used by player
-	public function courseSessionUpdate($courseId, $sessionId = null) {
+	// gh#954
+	public function courseSessionUpdate($courseId) {
 		$fields = array(
 			"F_RootID" => Session::get('rootID'),
 			"F_UserID" => Session::get('userID'),

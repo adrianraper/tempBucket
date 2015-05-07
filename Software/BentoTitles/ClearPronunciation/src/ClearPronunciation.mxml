@@ -59,7 +59,7 @@
 			advancedAntiAliasing: true;
 		}
 		@font-face {
-			src: url("skins/assets/HelveticaNeueLTStd-Bd.otf");
+			src: url("skins/clearpronunciation/assets/HelveticaNeueLTStd-Md.otf");
 			fontFamily: Helvetica;
 			fontStyle: normal;
 			fontWeight: bold;

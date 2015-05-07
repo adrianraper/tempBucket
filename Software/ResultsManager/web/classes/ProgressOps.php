@@ -143,7 +143,7 @@ SQL;
 	 * This method is called to insert a session record when a user starts a program
 	 * gh#954 If you are given a course id, link that to the session record. 
 	 */
-	function startSession($user, $rootId, $productCode, $dateNow = null) {
+	function startSession($user, $rootId, $productCode, $courseId = null) {
 
 		// gh#604 You might start with user as a plain userId
 		if ($user instanceof User) {
@@ -175,12 +175,12 @@ SQL;
 		// EndDateStamp and Duration are different views of the same data. It might be better to just focus on Duration.
 		// When you start a session, the minimum duration is 15 seconds.
 		$sql = <<<SQL
-			INSERT INTO T_Session (F_UserID, F_StartDateStamp, F_EndDateStamp, F_Duration, F_RootID, F_ProductCode)
-			VALUES (?, ?, ?, ?, ?, ?)
+			INSERT INTO T_Session (F_UserID, F_StartDateStamp, F_EndDateStamp, F_Duration, F_RootID, F_ProductCode, F_CourseID)
+			VALUES (?, ?, ?, ?, ?, ?, ?)
 SQL;
 
 		// We want to return the newly created F_SessionID (or the SQL error)
-		$bindingParams = array($userId, $dateNow, $dateSoon, self::MINIMUM_DURATION, $rootId, $productCode);
+		$bindingParams = array($userId, $dateNow, $dateSoon, self::MINIMUM_DURATION, $rootId, $productCode, $courseId);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		if ($rs) {
 			$sessionId = $this->db->Insert_ID();
@@ -204,7 +204,7 @@ SQL;
 	 *   If it is different from the current id, then close the existing session and start a new one. 
 	 *   Return the new session id.  
 	 */
-	function updateSession($sessionId, $dateNow = null) {
+	function updateSession($sessionId, $courseId = null) {
 		// Check that the date is valid
 		// #321
 		//$dateStampNow = strtotime($dateNow);
@@ -214,90 +214,57 @@ SQL;
 		$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
 		$dateNow = $dateStampNow->format('Y-m-d H:i:s');
 
-		// gh#604 Is the session record out of date?
-		$sql = <<<EOD
-				SELECT s.F_EndDateStamp as lastDate FROM T_Session s
+        $sql = <<<EOD
+				SELECT s.*
+				FROM T_Session s
 				WHERE F_SessionID=?
 EOD;
-		$bindingParams = array($sessionId);
-		$rs = $this->db->Execute($sql, $bindingParams);
-		if ($rs) {
-			$lastUpdateAt = new DateTime($rs->FetchNextObj()->lastDate, new DateTimeZone(TIMEZONE));
-			$interval = $dateStampNow->getTimestamp() - $lastUpdateAt->getTimestamp();
-			if ($interval > self::SESSION_IDLE_THRESHOLD) {
-				// TODO You could get these details from the old session record
-				$rootId = Session::get('rootID');
-				$productCode = Session::get('productCode');
-				$userId = Session::get('userID');
-				$newSessionId = $this->startSession($userId, $rootId, $productCode);
-				AbstractService::$debugLog->info("change session record $sessionId to $newSessionId - last updated at ".$lastUpdateAt->format('Y-m-d H:i:s').", $interval seconds ago");
-				return $newSessionId;
-			}
-		}
+        $bindingParams = array($sessionId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs) {
+            $rsObj = $rs->FetchNextObj();
+            $rootId = $rsObj->F_RootID;
+            $productCode = $rsObj->F_ProductCode;
+            $userId = $rsObj->F_UserID;
+            $lastUpdateAt = new DateTime($rsObj->F_EndDateStamp, new DateTimeZone(TIMEZONE));
+            $interval = $dateStampNow->getTimestamp() - $lastUpdateAt->getTimestamp();
 
-		// Calculate F_Duration as well as setting F_EndDateStamp
-		// We can either do it one call, with different SQL for different databases, or
-		// do two calls and make it common.
-		if (strpos($GLOBALS['dbms'],"mysql")!==false) {
-			$sql = <<<EOD
-				UPDATE T_Session
-				SET F_EndDateStamp=?,
-				F_Duration=TIMESTAMPDIFF(SECOND,F_StartDateStamp,?)
-				WHERE F_SessionID=?
-EOD;
-		} else if (strpos($GLOBALS['dbms'],"sqlite")!==false) {
-			$sql = <<<EOD
-				UPDATE T_Session
-				SET F_EndDateStamp=?,
-				F_Duration=strftime('%s',?) - strftime('%s',F_StartDateStamp)
-				WHERE F_SessionID=?
-EOD;
-		} else {
-			$sql = <<<EOD
-				UPDATE T_Session
-				SET F_EndDateStamp=?,
-				F_Duration=DATEDIFF(s,F_StartDateStamp,?)
-				WHERE F_SessionID=?
-EOD;
-		}
-		$bindingParams = array($dateNow, $dateNow, $sessionId);
-		$rs = $this->db->Execute($sql, $bindingParams);
-		
-		// gh#954 Do we have a courseId?
-		if ($courseId) {
-			$sql = <<<SQL
-				SELECT s.* From T_Session s
-				WHERE s.F_SessionID=?
-SQL;
-			$bindingParams = array($sessionId);
-			$rs = $this->db->Execute($sql, $bindingParams);
-			
-			if ($rs && $rs->recordCount() == 1) {
-				$rsObj = $rs->FetchNextObj();
-				
-				// If there is no course listed, add it now
-				if (is_null($rsObj->F_CourseID)) {
-					$sql = <<<EOD
+            // gh#604 Is the session record out of date?
+            // gh#954 Do we have a passed courseId that is different from the existing record?
+            if (($interval > self::SESSION_IDLE_THRESHOLD) ||
+                ($courseId && (!is_null($rsObj->F_CourseID)) && ($rsObj->F_CourseID != $courseId)))  {
+                $newSessionId = $this->startSession($userId, $rootId, $productCode, $courseId);
+                AbstractService::$debugLog->info("change session record $sessionId to $newSessionId - last updated at " . $lastUpdateAt->format('Y-m-d H:i:s') . ", $interval seconds ago");
+                return $newSessionId;
+
+            } else {
+
+                // Calculate F_Duration as well as setting F_EndDateStamp
+                // We can either do it one call, with different SQL for different databases, or
+                // do two calls and make it common.
+                $bindingParams = array($dateNow, $dateNow, $sessionId);
+                $sql = <<<EOD
 						UPDATE T_Session
-						SET F_CourseID=?
-						WHERE F_SessionID=?
+						SET F_EndDateStamp=?,
 EOD;
-					$bindingParams = array($courseId, $sessionId);
-					$rs = $this->db->Execute($sql, $bindingParams);
-					
-				// Need to insert a new session record as the user has changed courses
-				} else if ($rsObj->F_CourseID != $courseId) {
-					// We need to pass a user object, which we don't really have here
-					$user = new User();
-					$user->userID = $rsObj->F_UserID;
-					$user->userType = Session::get('userType');
-					$newSessionId = $this->startSession($user, $rsObj->F_RootID, $rsObj->F_ProductCode, $courseId);
-				}
-			}
-		}
-		
-		return ($newSessionId) ? $newSessionId : $sessionId;
-	}
+                if (strpos($GLOBALS['dbms'], "mysql") !== false) {
+                    $sql .=	" F_Duration=TIMESTAMPDIFF(SECOND,F_StartDateStamp,?) ";
+                } else if (strpos($GLOBALS['dbms'], "sqlite") !== false) {
+                    $sql .=	" F_Duration = strftime('%s',?) -strftime('%s', F_StartDateStamp) ";
+                } else {
+                    $sql .=	" F_Duration=DATEDIFF(s,F_StartDateStamp,?) ";
+                }
+                if ($courseId) {
+                    $bindingParams = array($dateNow, $dateNow, $courseId, $sessionId);
+                    $sql .= ", F_CourseID=? ";
+                }
+                $sql .= " WHERE F_SessionID=? ";
+                $rs = $this->db->Execute($sql, $bindingParams);
+            }
+            return $sessionId;
+        }
+        return false;
+    }
 	
 	/**
 	 * This method is called to insert a score record to the database 

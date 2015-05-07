@@ -508,11 +508,12 @@ class BentoService extends AbstractService {
 	 *  
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param dateNow - used to get client time. Ignored now
+	 * gh@#954 Optional courseId
 	 */
-	public function startSession($user, $rootId, $productCode, $dateNow = null) {
+	public function startSession($user, $rootId, $productCode, $courseId = null) {
 		
 		// A successful session start will return a new ID
-		$sessionId = $this->progressOps->startSession($user, $rootId, $productCode, $dateNow);
+		$sessionId = $this->progressOps->startSession($user, $rootId, $productCode, $courseId);
 		return array("sessionID" => $sessionId);
 	}
 	
@@ -523,11 +524,12 @@ class BentoService extends AbstractService {
 	 *  @param $sessionId - key to the table. If this is not available (perhaps to do with closing the browser?)
 	 *  	maybe we can use $userID and $rootID from session variables
 	 *  @param dateNow - used to get client time. Ignored now.
+	 * gh@#954 Optional courseId
 	 */
-	public function updateSession($sessionId, $dateNow = null) {
+	public function updateSession($sessionId, $courseId = null) {
 		// A successful session stop will not generate an error
 		// gh#604 return the session id, it might be a new one
-		$sessionId = $this->progressOps->updateSession($sessionId, $dateNow);
+		$sessionId = $this->progressOps->updateSession($sessionId, $courseId);
 		return array("sessionID" => $sessionId);
 	}
 	
@@ -539,9 +541,10 @@ class BentoService extends AbstractService {
 	 *  @param sessionID - key to the table. If this is not available (perhaps to do with closing the browser?)
 	 *  	maybe we can use $userID and $rootID from session variables
 	 *  @param dateNow - used to get client time
+	 * gh@#954 Optional courseId
 	 */
-	public function stopSession($sessionId, $dateNow) {
-		return $this->updateSession($sessionId, $dateNow);
+	public function stopSession($sessionId, $courseId = null) {
+		return $this->updateSession($sessionId, $courseId);
 	}
 	
 	/**
@@ -553,9 +556,6 @@ class BentoService extends AbstractService {
 	 */
 	public function updateLicence($licence, $sessionId = null) {
 
-		//$userId = Session::get('userID');
-		//AbstractService::$debugLog->info($userId." updateLicence for sessionId=$sessionId");
-		
 		// gh#604 Update the licence if applicable
 		if ($licence)
 			$this->licenceOps->updateLicence($licence);

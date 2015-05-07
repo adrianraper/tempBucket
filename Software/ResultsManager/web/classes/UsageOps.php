@@ -378,6 +378,8 @@ EOD;
 			// It would be nice to consolidate them based on name. But of very small interest I suppose. And of course I don't know the names
 			// of courseIDs from the db. But I suppose I could just count those that are NOT in the current courseIDs?
 			$otherCount=0;
+
+		$otherDuration=0;
 			foreach ($rs as $record) {
 				// Is this SQL record listed in the current title?
 				if (in_array($record['courseID'],$courseIdArray)) {

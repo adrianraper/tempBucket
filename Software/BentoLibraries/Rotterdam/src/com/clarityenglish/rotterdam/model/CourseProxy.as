@@ -114,7 +114,7 @@ package com.clarityenglish.rotterdam.model {
 		/**
 		 * This is called by CourseStartCommand and can be used to do Rotterdam specific stuff when a course (i.e. menu.xml file) is loaded.
 		 */
-		public function updateCurrentCourse():void {
+		public function updateCurrentCourse():AsyncToken {
 			_unitCollection = new XMLListCollection(courseNode.unit);
 			dispatchEvent(new Event("unitCollectionChanged"));
 			
@@ -129,6 +129,11 @@ package com.clarityenglish.rotterdam.model {
 			// gh#91 and set a default preview mode if you are a publisher (or the course is not editable?)
 			// gh#91a
 			isPreviewMode = isPublisher || !isEditable;
+
+			// gh#954 Trigger a session update with the new course Id
+            var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+
+            return new RemoteDelegate("updateSession", [ configProxy.getConfig().sessionID, courseID ], this).execute();
 		}
 		
 		public function get currentCourse():XHTML {
@@ -280,6 +285,7 @@ package com.clarityenglish.rotterdam.model {
 					sendNotification(RotterdamNotifications.COURSE_DELETED, data);
 					break;
 				case "courseSessionUpdate":
+				case "updateSession":
 					// gh#954 Player will use this for session updates rather than course locking
 					sendNotification(BBNotifications.SESSION_UPDATED, data);
 					break;

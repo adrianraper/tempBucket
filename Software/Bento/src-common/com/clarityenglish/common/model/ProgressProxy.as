@@ -53,8 +53,9 @@ package com.clarityenglish.common.model {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			configProxy.getConfig().sessionStartTime = new Date().time;
 
-			// gh#954 No need to pass time anymore
-			var params:Array = [ user, account.id, (account.titles[0] as Title).id ];
+			// gh#954 No need to pass time anymore, pass courseId
+			var courseId:String = (configProxy.getConfig().courseID == '' || configProxy.getConfig().courseID == null) ? null : configProxy.getConfig().courseID;
+			var params:Array = [ user, account.id, (account.titles[0] as Title).id, courseId ];
 			new RemoteDelegate("startSession", params, this).execute();			
 		}
 		
