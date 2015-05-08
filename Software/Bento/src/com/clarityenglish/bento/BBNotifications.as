@@ -124,6 +124,13 @@
 		// gh#604
 		public static const USER_IDLE:String = "bb/user_idle";
 		public static const USER_PRESENT:String = "bb/user_present";
+
+		// gh#1219
+		public static const IMAGE_ENLARGE:String = "bb/image_enlarge";
+
+		// gh#1221
+		public static const TIMER_SETTING_SHOW:String = "bb/timer_setting_show";
+		public static const TIMER_START:String = "bb/timer_start";
 	}
 	
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+         xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.practicalwriting.view.zone.StartOutZoneView")]
+    </fx:Metadata>
+
+    <!-- states -->
+    <s:states>
+        <s:State name="disabled" />
+        <s:State name="normal" />
+    </s:states>
+</s:Skin>

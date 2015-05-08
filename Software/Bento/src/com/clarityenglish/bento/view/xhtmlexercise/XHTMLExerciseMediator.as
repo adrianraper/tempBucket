@@ -8,7 +8,8 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	import com.clarityenglish.bento.view.xhtmlexercise.events.DictionaryEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.FeedbackEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.HintEvent;
-	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
+import com.clarityenglish.bento.view.xhtmlexercise.events.ImageEvent;
+import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
@@ -38,6 +39,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			view.addEventListener(FeedbackEvent.FEEDBACK_SHOW, onFeedbackShow, false, 0, true);
 			view.addEventListener(DictionaryEvent.WORD_CLICK, onWordClick, false, 0, true);
 			view.addEventListener(HintEvent.HINT_SHOW, onHintShow, false, 0, true); // gh#338
+			view.addEventListener(ImageEvent.IMAGE_ENLARGE, onEnlargeImage, false, 0, true); // gh#1219
 			view.getQuestionFeedback().add(onGotQuestionFeedback); // gh#388, gh#413
 		}
 		
@@ -53,6 +55,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			view.removeEventListener(FeedbackEvent.FEEDBACK_SHOW, onFeedbackShow);
 			view.removeEventListener(DictionaryEvent.WORD_CLICK, onWordClick);
 			view.removeEventListener(HintEvent.HINT_SHOW, onHintShow);
+			view.addEventListener(ImageEvent.IMAGE_ENLARGE, onEnlargeImage);
 			view.getQuestionFeedback().remove(onGotQuestionFeedback);
 		}
 		
@@ -191,6 +194,10 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		// gh#388, gh#413
 		protected function onGotQuestionFeedback(value:Boolean):void {
 			sendNotification(BBNotifications.GOT_QUESTION_FEEDBACK, value);
+		}
+
+		protected function onEnlargeImage(e:ImageEvent):void {
+			sendNotification(BBNotifications.IMAGE_ENLARGE, e.image);
 		}
 	}
 	

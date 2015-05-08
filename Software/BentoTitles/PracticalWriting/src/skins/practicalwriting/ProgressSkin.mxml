@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.practicalwriting.view.progress.ProgressView")]
+    </fx:Metadata>
+
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+        <s:State name="anonymous" />
+
+        <s:State name="coverage" stateGroups="normalStates,coverageStates"/>
+        <s:State name="compare" stateGroups="normalStates,compareStates"/>
+        <s:State name="analysis" stateGroups="normalStates,analysisStates"/>
+        <s:State name="score" stateGroups="normalStates,scoreStates"/>
+        <s:State name="certificate" stateGroups="normalStates, certificateStates"/>
+    </s:states>
+</s:Skin>

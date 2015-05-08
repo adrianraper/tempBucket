@@ -3,6 +3,8 @@ package com.clarityenglish.bento.view.exercise {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.bento.view.recorder.events.RecorderEvent;
+	import com.clarityenglish.bento.view.timer.TimerComponent;
+	import com.clarityenglish.bento.view.timer.events.TimerComponentEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.textLayout.events.AudioPlayerEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -17,7 +19,7 @@ package com.clarityenglish.bento.view.exercise {
 	import spark.components.Button;
 	
 	import org.osflash.signals.Signal;
-	
+
 	[SkinState("exercise")]
 	[SkinState("other")]
 	public class ExerciseView extends BentoView {
@@ -54,6 +56,9 @@ package com.clarityenglish.bento.view.exercise {
 		
 		[SkinPart(required="true")]
 		public var dynamicView:DynamicView;
+
+		[SkinPart]
+		public var exerciseTimer:TimerComponent;
 		
 		[Bindable]
 		public var exerciseTitle:String;
@@ -74,11 +79,11 @@ package com.clarityenglish.bento.view.exercise {
 		public var hasVideoScript:Boolean;
 		
 		[Bindable]
-		public var footerLabel:Text;
+		public var footerLabel:Text;;
 		
 		[Bindable]
 		public var isPlatformiPad:Boolean;
-		
+
 		private var _courseCaption:String;
 		
 		// gh#388
@@ -152,7 +157,7 @@ package com.clarityenglish.bento.view.exercise {
 		public function set languageCode(value:String):void {
 			_languageCode = value;
 		}
-		
+
 		[Bindable]
 		public function get languageCode():String {
 			return _languageCode;
@@ -170,6 +175,7 @@ package com.clarityenglish.bento.view.exercise {
 		public var audioPlayed:Signal = new Signal(String); // gh#267
 		public var record:Signal = new Signal(); // gh#267 
 		public var logout:Signal = new Signal();
+		public var setTimer:Signal = new Signal(Array, Number); // gh#1221
 		
 		public function ExerciseView() {
 			super();
@@ -262,6 +268,9 @@ package com.clarityenglish.bento.view.exercise {
 					ruleButton.label = copyProvider.getCopyForId("ruleButton");
 					ruleButton.addEventListener(MouseEvent.CLICK, onMouseClick);
 					break;
+				case exerciseTimer:
+					exerciseTimer.addEventListener(TimerComponentEvent.TIMER_SET, onTimerSet);
+					break;
 			}
 		}
 		
@@ -275,6 +284,10 @@ package com.clarityenglish.bento.view.exercise {
 			var url:String = config.contentRoot + config.account.getTitle().contentLocation + "/" + _ruleLink;
 			var urlRequest:URLRequest = new URLRequest(url);
 			navigateToURL(urlRequest, "_blank");
+		}
+
+		protected function onTimerSet(event:TimerComponentEvent):void {
+			setTimer.dispatch(event.sessionArray, event.totalTime);
 		}
 		
 	}

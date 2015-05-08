@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<literals progam="ActiveReading" version="2.0">
+	<language name="English International" code="EN" mediaFolder="EN">
+		<group name="group">	
+			<lit name="loginInputTitle">Practical Writing</lit>
+			<lit name="applicationVersion">Version {version}</lit>
+
+			<!-- Help -->
+			<lit name="helpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/ActiveReadingHelp.pdf</lit>
+			<lit name="recorderHelpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/ActiveReadingHelp.pdf</lit>
+			
+			<!-- Footer -->
+			<lit name="copyright">© Clarity Language Consultants Ltd, 1993-2015. All rights reserved.</lit>
+            <lit name="versionLabel">v{versionNumber}</lit>
+            
+			<!-- Log out page -->
+			<lit name="thankYouLabel">Practical Writing from Clarity.</lit>
+			
+            <!-- Credits -->			
+			 <lit name="creditCaptionLabel">Credits and acknowledgements</lit>
+			 <lit name="creditsRichText">
+			    <![CDATA[
+                        <p>Clarity would like to thank the following people for giving their voices to Tense Buster: Simon Broad,<br/>Jessica Caplan, Sally Nichols, Ben Pelletier, Kath Ryan, Scott Sauer, Michelle Tam, Sarah Toogood.</p>
+
+                        <p>Photos were taken from Shutterstock with permission.</p>
+
+                        <p>Every effort has been made to trace owners of copyright, but if any omissions can be rectified,<br/>we will be pleased to make the necessary arrangements.</p>
+                ]]>
+			</lit>
+			
+			<!-- Exercise -->
+			<lit name="neutralFeedbackTitle">Feedback</lit>
+            <lit name="generalFeedbackTitle">Feedback</lit>
+		</group>
+	</language>
+	
+	<language name="North American" code="NAMEN" mediaFolder="NAMEN">
+		<group name="group">
+			<lit name="anonymousCaption">Just practice</lit>
+			<lit name="exerciseMarkingButton">Scoring</lit>
+			<lit name="progressNavBarAnalyse">Analyze</lit>
+		</group>
+	</language>
+</literals>

@@ -1,0 +1,58 @@
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace practicalwriting "com.clarityenglish.practicalwriting.*";
+@namespace login "com.clarityenglish.bento.view.login.*";
+@namespace home "com.clarityenglish.practicalwriting.view.home.*";
+@namespace zone "com.clarityenglish.practicalwriting.view.zone.*";
+@namespace exercise "com.clarityenglish.bento.view.exercise.*";
+@namespace title "com.clarityenglish.practicalwriting.view.title.*";
+@namespace progress "com.clarityenglish.practicalwriting.view.progress.*";
+@namespace timer "com.clarityenglish.bento.view.timer.*";
+
+practicalwriting|PracticalWritingApplication {
+    skinClass: ClassReference("skins.practicalwriting.PracticalWritingApplicationSkin");
+}
+
+login|LoginView {
+    skinClass: ClassReference("skins.practicalwriting.LoginSkin");
+}
+
+title|TitleView {
+    skinClass: ClassReference("skins.practicalwriting.TitleSkin");
+}
+
+home|HomeView {
+    skinClass: ClassReference("skins.practicalwriting.HomeSkin");
+}
+
+zone|ZoneView {
+    skinClass: ClassReference("skins.practicalwriting.ZoneSkin");
+}
+
+zone|StartOutZoneView {
+    skinClass: ClassReference("skins.practicalwriting.zone.StartOutZoneSkin");
+}
+
+zone|PracticeZoneView {
+    skinClass: ClassReference("skins.practicalwriting.zone.PracticeZoneSkin");
+}
+
+zone|ResourcesZoneView {
+    skinClass: ClassReference("skins.practicalwriting.zone.ResourcesZoneSkin");
+}
+
+exercise|ExerciseView {
+    skinClass: ClassReference("skins.practicalwriting.ExerciseSkin");
+}
+
+progress|ProgressView {
+    skinClass: ClassReference("skins.practicalwriting.ProgressSkin");
+}
+
+timer|TimerSettingView {
+    skinClass: ClassReference("skins.practicalwriting.exercise.timer.TimerSettingSkin");
+}
+
+timer|TimerComponent {
+    skinClass: ClassReference("skins.practicalwriting.exercise.timer.TimerSkin");
+}

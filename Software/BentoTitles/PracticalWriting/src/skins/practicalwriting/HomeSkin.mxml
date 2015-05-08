@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        width="100%" height="100%">
+
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.practicalwriting.view.home.HomeView")]
+    </fx:Metadata>
+
+    <!-- states -->
+    <s:states>
+        <s:State name="disabled" />
+        <s:State name="normal" />
+    </s:states>
+
+    <s:List id="courseList" width="100%" height="100%" dataProvider="{hostComponent.courseXMLListCollection}">
+        <s:layout>
+            <s:TileLayout requestedColumnCount="4" requestedRowCount="3" columnWidth="{width * 0.25}" />
+        </s:layout>
+        <s:itemRenderer>
+            <fx:Component>
+                <s:ItemRenderer>
+                    <s:Button label="{data.attribute('caption')}" />
+                </s:ItemRenderer>
+            </fx:Component>
+        </s:itemRenderer>
+    </s:List>
+
+
+</s:Skin>

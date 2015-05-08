@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<id>/area1/ActiveReading in localhost</id>
+	<dbHost>2</dbHost>
+	<productCode>61</productCode>
+	<useCacheBuster>true</useCacheBuster>
+	<courseFile>menu-{productVersion}.xml</courseFile>
+	<platform>browser</platform>
+	<disableAutoTimeout>true</disableAutoTimeout>
+	<channel name="aws-streaming" caption="awsstreaming">
+		<streamingMedia>https://s3-ap-southeast-1.amazonaws.com/clarity-video-streaming/</streamingMedia>
+	</channel>
+	<sharedMedia />
+	<brandingMedia>http://dock.contentbench/CCB/{prefix}/assets/</brandingMedia>
+	<language>EN</language>
+
+	<contentPath>http://192.168.8.82/Content/</contentPath>
+	<remoteDomain>http://192.168.8.82/</remoteDomain>
+	<remoteGateway>http://192.168.8.82/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteService>PracticalWritingService</remoteService>
+	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+	
+</config>
+

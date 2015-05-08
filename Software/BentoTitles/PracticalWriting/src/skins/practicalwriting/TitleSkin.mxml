@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.practicalwriting.view.title.TitleView")]
+    </fx:Metadata>
+
+    <!-- states -->
+    <s:states>
+        <s:State name="disabled" />
+        <s:State name="normal" />
+
+        <s:State name="home" />
+        <s:State name="zone" />
+        <s:State name="exercise" />
+        <s:State name="progress" />
+    </s:states>
+
+    <s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
+        <s:ViewNavigator id="homeViewNavigator" left="0" right="0" top="0" bottom="0" firstView="com.clarityenglish.practicalwriting.view.home.HomeView" label="Home"/>
+        <s:ViewNavigator id="progressViewNavigator" left="0" right="0" top="0" bottom="0" firstView="com.clarityenglish.practicalwriting.view.progress.ProgressView" label="My Progress" />
+    </s:TabbedViewNavigator>
+
+    <s:Button id="helpButton" left="{105 + width * 0.3}" top="0" width="20%" buttonMode="true" useHandCursor="true" excludeFrom="exercise"/>
+    <s:Button id="logoutButton" right="20" top="0" buttonMode="true" useHandCursor="true" excludeFrom="exercise"/>
+</s:Skin>

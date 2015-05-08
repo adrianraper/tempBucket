@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark" xmlns:assets="skins.assets.*">
+
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.bento.view.login.LoginView")]
+    </fx:Metadata>
+
+    <fx:Script>
+        <![CDATA[
+            protected var signInDetailsMargin:uint = 20;
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" inner="true"/>
+    </fx:Declarations>
+
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="register" />
+        <s:State name="error" />
+        <s:State name="disabled" />
+    </s:states>
+
+    <!-- Background (letters and lines) -->
+    <!--login:loginbg verticalCenter="0" horizontalCenter="0" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/-->
+    <!-- Normally clip an image like this, but these lines scale nicely -->
+    <!--s:BitmapImage width="100%" verticalCenter="150" source="@Embed(source='/skins/activereading/assets/login/loginlines.png')" fillMode="scale" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}" /-->
+
+    <!--Girl and demo button-->
+    <s:VGroup bottom="0" right="50" horizontalAlign="center" gap="20">
+        <!-- <s:Button id="demoButton1" label="{hostComponent.demoButtonCaption} " useHandCursor="true" buttonMode="true" /> -->
+        <!--s:BitmapImage source="@Embed(source='/skins/activereading/assets/login/logingirl.png')" scaleX="0.97" scaleY="0.97" /-->
+    </s:VGroup>
+
+    <!--Header-->
+    <s:Label id="licenceLabel" text="{hostComponent.getCopyProvider().getCopyForId('licencedToName', {name: hostComponent.licenceeName})}" left="14" top="14" fontSize="13" color="0xFFFFFF" visible="{!hostComponent.noAccount}" />
+
+    <!-- branding -->
+    <s:BitmapImage id="brandingImage1" visible="{hostComponent.branding}" includeInLayout="{hostComponent.branding}"/>
+    <s:BitmapImage id="brandingImage2" visible="{hostComponent.branding}" includeInLayout="{hostComponent.branding}"/>
+    <s:BitmapImage id="brandingImage3" visible="{hostComponent.branding}" includeInLayout="{hostComponent.branding}"/>
+    <s:BitmapImage id="brandingImage4" visible="{hostComponent.branding}" includeInLayout="{hostComponent.branding}"/>
+
+    <!-- Sign in details -->
+    <s:Group id="signInGroup" excludeFrom="register" verticalCenter="0" left="100" >
+        <s:SkinnableContainer id="trackingGroup" includeInLayout="{hostComponent.allowLogin}" visible="{hostComponent.allowLogin}"  >
+            <s:VGroup paddingTop="{2*signInDetailsMargin}" paddingRight="{signInDetailsMargin}" paddingBottom="8" paddingLeft="{signInDetailsMargin}"
+                      horizontalAlign="center" gap="10">
+                <assets:loginlogoCE horizontalCenter="0" />
+                <s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+                    <s:stroke>
+                        <s:SolidColorStroke color="#9E9E9E" weight="1" caps="square"/>
+                    </s:stroke>
+                </s:Line>
+                <s:Label text="{hostComponent.loginCaption}" styleName="signInHeader"  />
+                <s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+                    <s:stroke>
+                        <s:SolidColorStroke color="#9E9E9E" weight="1" caps="square"/>
+                    </s:stroke>
+                </s:Line>
+                <s:Rect height="5" /> <!-- this is a spacer -->
+                <s:TextInput id="loginKeyInput" prompt="{hostComponent.loginKeyCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false"/>
+                <s:VGroup visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" gap="10" >
+                    <s:TextInput id="passwordInput" displayAsPassword="true" prompt="{hostComponent.passwordCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false"/>
+                    <s:HGroup width="100%" horizontalAlign="right">
+                        <s:Button id="forgotPasswordButton" label="{hostComponent.forgotPasswordCaption}" useHandCursor="true" buttonMode="true"/>
+                    </s:HGroup>
+                </s:VGroup>
+                <s:HGroup width="100%" horizontalAlign="right" >
+                    <s:Button id="newUserButton" label="{hostComponent.newUserButtonCaption}"
+                              includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" />
+                </s:HGroup>
+                <s:Button id="loginButton" label="{hostComponent.loginButtonCaption}" styleName="buttonText" />
+            </s:VGroup>
+        </s:SkinnableContainer>
+        <s:SkinnableContainer id="anonymousGroup" includeInLayout="{hostComponent.allowAnonymous}" visible="{hostComponent.allowAnonymous}" left="{trackingGroup.width+1}" top="28">
+            <s:VGroup paddingTop="{signInDetailsMargin}" paddingRight="{2*signInDetailsMargin}" paddingBottom="8" paddingLeft="{2*signInDetailsMargin}"
+                      horizontalAlign="center" gap="10">
+                <assets:anonymousMask />
+                <s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+                    <s:stroke>
+                        <s:SolidColorStroke color="#999999" weight="1" caps="square"/>
+                    </s:stroke>
+                </s:Line>
+                <s:Label text="{hostComponent.anonymousCaption}" styleName="signInHeader"  />
+                <s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+                    <s:stroke>
+                        <s:SolidColorStroke color="#999999" weight="1" caps="square"/>
+                    </s:stroke>
+                </s:Line>
+                <s:Rect height="10" /> <!-- this is a spacer -->
+                <s:Button id="anonymousStartButton" label="{hostComponent.anonymousStartButtonCaption}" styleName="buttonText" />
+            </s:VGroup>
+        </s:SkinnableContainer>
+    </s:Group>
+
+    <!-- self register screen -->
+    <s:SkinnableContainer id="registerGroup" excludeFrom="normal" verticalCenter="0" left="100" >
+        <s:VGroup paddingTop="{signInDetailsMargin}" paddingRight="{signInDetailsMargin}" paddingBottom="8" paddingLeft="{signInDetailsMargin}"
+                  horizontalAlign="center" gap="10" >
+            <assets:loginlogoCE horizontalCenter="0" />
+            <s:Rect height="10" /> <!-- this is a spacer -->
+            <s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+                <s:stroke>
+                    <s:SolidColorStroke color="#999999" weight="1" caps="square"/>
+                </s:stroke>
+            </s:Line>
+            <s:Label text="{hostComponent.selfRegisterCaption}" fontSize="16" fontFamily="MyriadPro" fontWeight="bold" color="0x125558" />
+            <s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+                <s:stroke>
+                    <s:SolidColorStroke color="#999999" weight="1" caps="square"/>
+                </s:stroke>
+            </s:Line>
+            <s:TextInput id="selfRegisterName" prompt="{hostComponent.selfRegisterNameCaption}"
+                         includeInLayout="{hostComponent.selfRegisterNameCaption != null}" visible="{hostComponent.selfRegisterNameCaption != null}"
+                         styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false"/>
+            <s:TextInput id="selfRegisterId" prompt="{hostComponent.selfRegisterIdCaption}"
+                         includeInLayout="{hostComponent.selfRegisterIdCaption != null}" visible="{hostComponent.selfRegisterIdCaption != null}"
+                         styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false"/>
+            <s:TextInput id="selfRegisterEmail" prompt="{hostComponent.selfRegisterEmailCaption}"
+                         includeInLayout="{hostComponent.selfRegisterEmailCaption != null}" visible="{hostComponent.selfRegisterEmailCaption != null}"
+                         styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false"/>
+            <s:TextInput id="selfRegisterPassword" displayAsPassword="true" prompt="{hostComponent.selfRegisterPasswordCaption}"
+                         includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}"
+                         styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false"/>
+            <s:TextInput id="confirmPassword" displayAsPassword="true" prompt="{hostComponent.confirmPasswordCaption}"
+                         includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}"
+                         styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false"/>
+            <s:Rect height="10" /> <!-- this is a spacer -->
+            <s:HGroup gap="20">
+                <s:Button id="cancelButton" label="{hostComponent.cancelButtonCaption}" styleName="buttonText" />
+                <s:Button id="addUserButton" label="{hostComponent.addUserButtonCaption}" styleName="buttonText" />
+            </s:HGroup>
+        </s:VGroup>
+    </s:SkinnableContainer>
+
+    <!--Footer-->
+    <s:Group height="28" bottom="10" left="10">
+        <s:Rect width="100%" height="100%" radiusX="14" radiusY="14">
+            <s:fill>
+                <s:LinearGradient>
+                    <s:GradientEntry color="#D4D4D4" alpha="1"  />
+                    <s:GradientEntry color="#D4D4D4" alpha="0"  />
+                </s:LinearGradient>
+            </s:fill>
+        </s:Rect>
+        <s:HGroup height="100%" left="10" verticalAlign="middle" gap="5">
+            <s:Label id="versionLabel" color="#333333" fontSize="11" />
+            <s:Label id="copyrightLabel" color="#333333" fontSize="11" />
+        </s:HGroup>
+    </s:Group>
+
+</s:Skin>

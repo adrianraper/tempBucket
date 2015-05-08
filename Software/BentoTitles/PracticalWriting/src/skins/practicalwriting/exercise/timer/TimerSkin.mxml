@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.bento.view.timer.TimerComponent")]
+    </fx:Metadata>
+
+    <!-- states -->
+    <s:states>
+        <s:State name="disabled" />
+        <s:State name="normal" />
+
+        <s:State name="startState" />
+        <s:State name="pauseState" />
+        <s:State name="reState" />
+    </s:states>
+
+    <!--Timer-->
+    <s:HGroup width="500" right="10" top="0" gap="5">
+        <s:Group id="timerSessionGroup" width="300" height="20">
+            <s:HGroup width="100%" height="100%" gap="0">
+                <s:Rect id="planningBar" height="100%" width="{Number(hostComponent.sessionWidthArray.getItemAt(0))}">
+                    <s:fill>
+                        <s:SolidColor color="#000000" />
+                    </s:fill>
+                </s:Rect>
+                <s:Rect id="writingBar" height="100%" width="{Number(hostComponent.sessionWidthArray.getItemAt(1))}">
+                    <s:fill>
+                        <s:SolidColor color="#BBBBBB" />
+                    </s:fill>
+                </s:Rect>
+                <s:Rect id="proofreadingBar" height="100%" width="{Number(hostComponent.sessionWidthArray.getItemAt(2))}">
+                    <s:fill>
+                        <s:SolidColor color="#000000" />
+                    </s:fill>
+                </s:Rect>
+            </s:HGroup>
+            <s:Rect id="progressBar" height="80%">
+                <s:fill>
+                    <s:SolidColor color="#FF0000" />
+                </s:fill>
+            </s:Rect>
+        </s:Group>
+
+        <s:Group width="150">
+            <s:Button id="startButton" width="150" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Start" includeIn="startState"/>
+            <s:Button id="pauseButton" width="150" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Pause" includeIn="pauseState"/>
+            <s:HGroup width="100%" gap="10" includeIn="reState">
+                <s:Button id="resumeButton" width="70" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="resume"/>
+                <s:Button id="restartButton" width="70" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="restart"/>
+            </s:HGroup>
+        </s:Group>
+        <s:Button id="timerSetButton" width="45" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Set"/>
+    </s:HGroup>
+
+</s:Skin>

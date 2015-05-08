@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        width="100%" height="100%">
+
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.practicalwriting.view.zone.PracticeZoneView")]
+    </fx:Metadata>
+
+    <!-- states -->
+    <s:states>
+        <s:State name="disabled" />
+        <s:State name="normal" />
+    </s:states>
+
+    <s:List id="exerciseList" width="100%" height="100%" dataProvider="{hostComponent.exerciseXMLListCollection}">
+        <s:layout>
+            <s:VerticalLayout gap="5" horizontalAlign="center" />
+        </s:layout>
+        <s:itemRenderer>
+            <fx:Component>
+                <s:ItemRenderer>
+                    <s:Button label="{data.@caption}" width="400 " />
+                </s:ItemRenderer>
+            </fx:Component>
+        </s:itemRenderer>
+    </s:List>
+</s:Skin>
