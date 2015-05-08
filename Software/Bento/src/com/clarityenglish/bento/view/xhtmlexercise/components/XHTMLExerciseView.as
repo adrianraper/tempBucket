@@ -15,7 +15,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.textLayout.elements.InputElement;
 	import com.clarityenglish.textLayout.elements.SelectElement;
 	import com.clarityenglish.textLayout.elements.TextComponentElement;
-	import com.clarityenglish.textLayout.util.TLFUtil;
+import com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator;
+import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.display.DisplayObject;
@@ -199,6 +200,9 @@ import spark.components.Group;
 						newImage.source = xhtml.rootPath + '/' + item.@src.toString();
 						newImage.left = parseInt(item.@left);
 						newImage.top = parseInt(item.@top);
+						// gh#1220
+						if (CSSApplicator.fontSizeOffset > 1)
+							newImage.scaleX = newImage.scaleY = 1.04;
 						// TODO DK worries that hasOwnProperty can cause crashes when packaging for iOS.
 						// This codes actually works fine without the checks it just seemed better to test first...
 						if (item.attribute("width").length() > 0 || item.attribute("height").length() > 0) {
