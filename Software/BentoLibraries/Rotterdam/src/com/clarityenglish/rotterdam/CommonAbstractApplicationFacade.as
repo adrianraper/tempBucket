@@ -5,6 +5,7 @@
 	import com.clarityenglish.bento.controller.WarningShowCommand;
 	import com.clarityenglish.common.controller.ShowErrorCommand;
 	import com.clarityenglish.common.view.login.LoginMediator;
+    import com.clarityenglish.bento.view.login.LoginView;
 	import com.clarityenglish.rotterdam.controller.ContentOpenCommand;
 	import com.clarityenglish.rotterdam.controller.CourseResetCommand;
 	import com.clarityenglish.rotterdam.controller.CourseStartCommand;

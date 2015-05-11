@@ -60,13 +60,12 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			
 			itemRendererFunction = widgetItemRendererFunction;
 		}
-		
-		}
+
 		// for video selector widget
 		[Bindable]
 		public function get channelCollection():ArrayCollection {
-			return _channelCollection;
-		
+            return _channelCollection;
+        }
 		public function set channelCollection(value:ArrayCollection):void {
 			_channelCollection = value;
 		}
