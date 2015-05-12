@@ -12,7 +12,8 @@
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.AnswerableBehaviour;
-			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.AudioFeedbackBehaviour;
+            // gh#1198 This was removed with the merge to cp-rewrite
+			// import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.AudioFeedbackBehaviour;
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.DictionaryBehaviour;
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.DraggableBehaviour;
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.MarkableIconsBehaviour;
@@ -65,7 +66,10 @@
 			</s:Rect>
 			
 			<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="0" left="0" right="0" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
-				<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour, AudioFeedbackBehaviour, RecorderButtonBehaviour]}" />
+				<!-- gh#1198
+                <components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour, AudioFeedbackBehaviour, RecorderButtonBehaviour]}" />
+                -->
+				<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour, RecorderButtonBehaviour]}" />
 			</s:Scroller>
 		</s:Group>						
 	</s:Group>
