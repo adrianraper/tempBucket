@@ -40,6 +40,15 @@
 
 	require_once(dirname(__FILE__)."/TB6weeksService.php");
 */
+$attribute = 'seePastUnits';
+$object['seePastUnits'] = null;
+$rc = filter_var($object[$attribute], FILTER_VALIDATE_BOOLEAN);
+if (is_null($rc)) {
+    echo "rc is null";
+} else {
+    echo "this is true";
+}
+/*
 function updateUrl($url) {
     if (stristr($_SERVER['HTTP_HOST'], 'dock.projectbench') !== false) {
         $baseDomain = 'http://dock.contentbench';
@@ -62,6 +71,7 @@ test(
     "https://clarityenglish.com.erm.lib.mcu.edu.tw:81/Content/TenseBuster10-NAmerican/",
     "http://www.clarityenglish.com/Content/TenseBuster10-NAmerican/"
 );
+*/
 /*
 	require_once(dirname(__FILE__)."/MinimalService.php");
 	$dummy = new MinimalService();
