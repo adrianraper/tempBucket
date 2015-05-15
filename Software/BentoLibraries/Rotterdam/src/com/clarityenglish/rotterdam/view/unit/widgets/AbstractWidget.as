@@ -265,6 +265,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 					return GroupWidget;
 				case "videoSelector":
 					return VideoSelectorWidget;
+                // gh#954
+                case "authoring":
+                    return AuthoringWidget;
 				default:
 					return null;
 			}
