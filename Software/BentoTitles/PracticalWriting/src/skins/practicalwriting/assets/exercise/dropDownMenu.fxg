@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="1.0" viewHeight="60.8223" viewWidth="278.16" ai:appVersion="14.0.0.367" d:id="1" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ai="http://ns.adobe.com/ai/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
+  <Library/>
+  <Group y="-9.49902" d:id="45" d:type="layer" d:userLabel="Layer 11">
+    <Group y="9.49902">
+      <mask>
+        <Group y="0.000976563" ai:spare="1">
+          <Rect width="278.16" height="60.8213" ai:knockout="0">
+            <fill>
+              <SolidColor color="#ffffff"/>
+            </fill>
+          </Rect>
+        </Group>
+      </mask>
+      <Group>
+        <mask>
+          <Group ai:spare="1">
+            <Rect width="278.16" height="60.8223" ai:knockout="0">
+              <fill>
+                <SolidColor color="#ffffff"/>
+              </fill>
+            </Rect>
+          </Group>
+        </mask>
+        <Group y="0.000976563" alpha="0.399994" blendMode="multiply" ai:alphaIsShape="1" ai:knockout="0">
+          <Group>
+            <mask>
+              <Group ai:spare="1">
+                <Rect width="278.16" height="54.2402" ai:knockout="0">
+                  <fill>
+                    <SolidColor color="#ffffff"/>
+                  </fill>
+                </Rect>
+              </Group>
+            </mask>
+            <Group>
+              <mask>
+                <Group ai:spare="1">
+                  <Rect width="278.16" height="54.2402" ai:knockout="0">
+                    <fill>
+                      <SolidColor color="#ffffff"/>
+                    </fill>
+                  </Rect>
+                </Group>
+              </mask>
+            </Group>
+          </Group>
+        </Group>
+      </Group>
+      <Group x="3" y="3.00098">
+        <mask>
+          <Group ai:spare="1">
+            <Path winding="nonZero" ai:knockout="0" data="M0 0L7.55273 36.252C8.89844 42.7129 15.4004 47.999 22 47.999L249.997 47.999C256.598 47.999 263.1 42.7129 264.443 36.252L271.997 0 0 0Z" >
+              <fill>
+                <SolidColor color="#ffffff"/>
+              </fill>
+            </Path>
+          </Group>
+        </mask>
+        <Group d:id="50">
+          <Rect width="271.997" height="47.999" ai:knockout="0">
+            <fill>
+              <LinearGradient x="136.063" y="0.00439453" scaleX="48" rotation="-270">
+                <GradientEntry color="#ffffff" ratio="0"/>
+                <GradientEntry color="#edecec" ratio="1"/>
+              </LinearGradient>
+            </fill>
+          </Rect>
+        </Group>
+      </Group>
+      <Group>
+        <mask>
+          <Group ai:spare="1">
+            <Rect width="278.16" height="60.8223" ai:knockout="0">
+              <fill>
+                <SolidColor color="#ffffff"/>
+              </fill>
+            </Rect>
+          </Group>
+        </mask>
+        <Path winding="nonZero" ai:knockout="0" data="M272.865 3.00098L265.414 37.2744C264.012 43.7236 257.465 49.001 250.865 49.001L26.7568 49.001C20.1563 49.001 13.6094 43.7236 12.208 37.2744L4.75684 3.00098" >
+          <fill>
+            <SolidColor color="#0a789d"/>
+          </fill>
+        </Path>
+      </Group>
+      <Group>
+        <mask>
+          <Group ai:spare="1">
+            <Rect width="278.16" height="60.8223" ai:knockout="0">
+              <fill>
+                <SolidColor color="#ffffff"/>
+              </fill>
+            </Rect>
+          </Group>
+        </mask>
+      </Group>
+    </Group>
+  </Group>
+  <Private>
+    <ai:PrivateElement d:ref="#1">
+      <ai:DocData base="DropDownMenu-03.assets/images"/>
+      <ai:AutoGenImageList>
+        <ai:Dictionary>
+          <ai:DictEntry name="1" value="ai14320914157.png" valueType="UnicodeString"/>
+          <ai:DictEntry name="0" value="ai14320914146.png" valueType="UnicodeString"/>
+        </ai:Dictionary>
+      </ai:AutoGenImageList>
+      <ai:SaveOptions>
+        <ai:Dictionary>
+          <ai:DictEntry name="versionKey" value="1" valueType="Integer"/>
+          <ai:DictEntry name="aiEditCap" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="includeSymbol" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="includeXMP" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="writeImages" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="preserveTextPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveFilterPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveGradientPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="rasterizeResolution" value="72" valueType="Integer"/>
+          <ai:DictEntry name="downsampleLinkedImages" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="clipToActiveArtboard" value="1" valueType="Boolean"/>
+        </ai:Dictionary>
+      </ai:SaveOptions>
+      <ai:Artboards rulerCanvasDiffH="512.5" rulerCanvasDiffV="384.5">
+        <ai:Artboard active="1" bottom="-354.239" index="2" left="2635" right="2913.16" top="-293.417"/>
+      </ai:Artboards>
+    </ai:PrivateElement>
+    <ai:PrivateElement d:ref="#45">
+      <ai:LayerOptions colorType="ThreeColor">
+        <ai:ThreeColor/>
+      </ai:LayerOptions>
+    </ai:PrivateElement>
+    <ai:PrivateElement ai:hashcode="059bd777e7cac4e0e9615de6f06258f5" d:ref="#50">
+      <ai:Rect height="47.999" knockout="0" width="271.997" x="0" y="0">
+        <ai:Fill colorType="Gradient">
+          <ai:Gradient angle="-90" gradientType="linear" length="48" originX="136.062" originY="0.004">
+            <ai:GradientStops>
+              <ai:GradientStop colorType="FourColor" rampPoint="0">
+                <ai:FourColor/>
+              </ai:GradientStop>
+              <ai:GradientStop colorType="FourColor" rampPoint="100">
+                <ai:FourColor cyan="0.057" magenta="0.046" yellow="0.044"/>
+              </ai:GradientStop>
+            </ai:GradientStops>
+          </ai:Gradient>
+        </ai:Fill>
+        <ai:ArtStyle/>
+      </ai:Rect>
+    </ai:PrivateElement>
+  </Private>
+</Graphic>

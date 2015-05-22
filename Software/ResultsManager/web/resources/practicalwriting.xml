@@ -5,6 +5,9 @@
 			<lit name="loginInputTitle">Practical Writing</lit>
 			<lit name="applicationVersion">Version {version}</lit>
 
+			<lit name="goToHelpButton">Help</lit>
+			<lit name="goToSettingsButton">Settings</lit>
+
 			<!-- Help -->
 			<lit name="helpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/ActiveReadingHelp.pdf</lit>
 			<lit name="recorderHelpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/ActiveReadingHelp.pdf</lit>

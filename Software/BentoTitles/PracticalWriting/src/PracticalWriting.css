@@ -4,10 +4,18 @@
 @namespace login "com.clarityenglish.bento.view.login.*";
 @namespace home "com.clarityenglish.practicalwriting.view.home.*";
 @namespace zone "com.clarityenglish.practicalwriting.view.zone.*";
-@namespace exercise "com.clarityenglish.bento.view.exercise.*";
+@namespace exercise "com.clarityenglish.practicalwriting.view.exercise.*";
+@namespace exerciseui "com.clarityenglish.practicalwriting.view.exercise.ui.*";
 @namespace title "com.clarityenglish.practicalwriting.view.title.*";
 @namespace progress "com.clarityenglish.practicalwriting.view.progress.*";
+@namespace settings "com.clarityenglish.practicalwriting.view.settings.*";
 @namespace timer "com.clarityenglish.bento.view.timer.*";
+@namespace vo "com.clarityenglish.practicalwriting.view.vo.*";
+
+global {
+    pieChartFillColor: #EC008B, #EF7F31, #91BD49, #333290, #9C298C, #00A054, #F090AB, #00A9A3, #E8194B, #00A8DE;
+    pieChartBottomColor: #EFB1D0, #FDD5BB, #E5E9B8, #9F9FE2, #EFB1E9, #B3DDC8, #F4D4E0, #9CE0DB, #E8A0B5, #AADCE8;
+}
 
 practicalwriting|PracticalWritingApplication {
     skinClass: ClassReference("skins.practicalwriting.PracticalWritingApplicationSkin");
@@ -17,8 +25,44 @@ login|LoginView {
     skinClass: ClassReference("skins.practicalwriting.LoginSkin");
 }
 
+login|LoginView s|Button {
+    skinClass: ClassReference("skins.practicalwriting.login.LoginButtonSkin");
+}
+
+login|LoginView s|Button#newUserButton, s|Button#forgotPasswordButton {
+    skinClass: ClassReference("skins.practicalwriting.login.LoginForgotPasswordButton");
+}
+
+login|LoginView s|TextInput {
+    skinClass: ClassReference("skins.practicalwriting.login.TextInputSkin");
+}
+
+login|LoginView s|SkinnableContainer {
+    skinClass: ClassReference("skins.practicalwriting.login.SignInContainerSkin");
+}
+
+login|LoginView s|SkinnableContainer#anonymousGroup {
+    skinClass: ClassReference("skins.practicalwriting.login.AnonymousContainerSkin");
+}
+
 title|TitleView {
     skinClass: ClassReference("skins.practicalwriting.TitleSkin");
+}
+
+title|TitleView s|TabbedViewNavigator#sectionNavigator {
+    skinClass: ClassReference("skins.practicalwriting.title.TabbedViewNavigatorSkin");
+}
+
+title|TitleView s|Button#helpButton {
+    skinClass: ClassReference("skins.practicalwriting.title.HelpButtonSkin");
+}
+
+title|TitleView s|Button#logoutButton {
+    skinClass: ClassReference("skins.practicalwriting.title.LogoutButtonSkin");
+}
+
+title|TitleView s|ToggleButton#menuToggleButton {
+    skinClass: ClassReference("skins.practicalwriting.title.MenuToggleButtonSkin");
 }
 
 home|HomeView {
@@ -29,12 +73,28 @@ zone|ZoneView {
     skinClass: ClassReference("skins.practicalwriting.ZoneSkin");
 }
 
+zone|ZoneView s|TabbedViewNavigator#zoneViewNavigator {
+    skinClass: ClassReference("skins.practicalwriting.zone.ZoneViewNavigatorSkin");
+}
+
 zone|StartOutZoneView {
     skinClass: ClassReference("skins.practicalwriting.zone.StartOutZoneSkin");
 }
 
 zone|PracticeZoneView {
     skinClass: ClassReference("skins.practicalwriting.zone.PracticeZoneSkin");
+}
+
+zone|PracticeZoneView zone|CompletenessButton {
+    skinClass: ClassReference("skins.practicalwriting.zone.ExerciseButtonSkin");
+}
+
+zone|PracticeZoneView zone|CompletenessButton s|Button#completeButton{
+    skinClass: ClassReference("skins.practicalwriting.zone.CompleteButtonSkin");
+}
+
+zone|PracticeZoneView zone|CompletenessButton s|Button#incompleteButton{
+    skinClass: ClassReference("skins.practicalwriting.zone.IncompleteButtonSkin");
 }
 
 zone|ResourcesZoneView {
@@ -45,8 +105,40 @@ exercise|ExerciseView {
     skinClass: ClassReference("skins.practicalwriting.ExerciseSkin");
 }
 
+exercise|ExerciseView s|ToggleButton#menuToggleButton {
+    skinClass: ClassReference("skins.practicalwriting.exercise.MenuToggleButtonSkin");
+}
+
+exercise|ExerciseView s|Button#backButton {
+    skinClass: ClassReference("skins.practicalwriting.exercise.BackButtonSkin");
+}
+
+exercise|ExerciseView s|Button#forwardButton {
+    skinClass: ClassReference("skins.practicalwriting.exercise.ForwardButtonSkin");
+}
+
+exercise|ExerciseView s|Button#markingButton {
+    skinClass: ClassReference("skins.practicalwriting.exercise.MarkingButtonSkin");
+}
+
+exercise|ExerciseView s|Button#startAgainButton {
+    skinClass: ClassReference("skins.practicalwriting.exercise.StartAgainButtonSkin");
+}
+
+exercise|ExerciseView exerciseui|WindowShade {
+    skinClass: ClassReference("skins.practicalwriting.exercise.WindowShadeSkin");
+}
+
+exercise|ExerciseView exerciseui|WindowShade s|Button#thumbButton{
+    skinClass: ClassReference("skins.practicalwriting.exercise.WindowShadeThumbButtonSkin");
+}
+
 progress|ProgressView {
     skinClass: ClassReference("skins.practicalwriting.ProgressSkin");
+}
+
+settings|SettingsView {
+    skinClass: ClassReference("skins.practicalwriting.SettingsSkin");
 }
 
 timer|TimerSettingView {
@@ -55,4 +147,12 @@ timer|TimerSettingView {
 
 timer|TimerComponent {
     skinClass: ClassReference("skins.practicalwriting.exercise.timer.TimerSkin");
+}
+
+vo|PieChartButton {
+    skinClass: ClassReference("skins.practicalwriting.vo.PieChartButtonSkin");
+}
+
+s|VScrollBar {
+    skinClass: ClassReference("skins.practicalwriting.vo.VScrollBarSkin");
 }

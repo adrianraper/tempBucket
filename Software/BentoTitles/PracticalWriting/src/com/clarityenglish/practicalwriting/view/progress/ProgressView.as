@@ -8,6 +8,8 @@ import com.clarityenglish.bento.view.base.BentoView;
 
         public function ProgressView() {
             super();
+
+            actionBarVisible = false;
         }
     }
 }

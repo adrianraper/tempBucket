@@ -21,6 +21,10 @@ public class HomeView extends BentoView {
 
         public var courseSelect:Signal = new Signal(XML);
 
+        public function HomeView() {
+            actionBarVisible = false;
+        }
+
         override protected function updateViewFromXHTML(xhtml:XHTML):void {
             super.updateViewFromXHTML(xhtml);
 

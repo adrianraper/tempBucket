@@ -131,6 +131,8 @@
 		// gh#1221
 		public static const TIMER_SETTING_SHOW:String = "bb/timer_setting_show";
 		public static const TIMER_START:String = "bb/timer_start";
+
+		public static const PROGRESS_SHOW:String = "bb/progress_show";
 	}
 	
 }

@@ -5,6 +5,8 @@ import com.clarityenglish.bento.view.base.BentoView;
 
         public function ResourcesZoneView() {
             super();
+
+            actionBarVisible = false;
         }
     }
 }

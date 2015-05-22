@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="1.0" viewHeight="15.002" viewWidth="19.2002" ai:appVersion="14.0.0.367" d:id="1" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ai="http://ns.adobe.com/ai/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
+  <Group x="0.0327148" d:id="2" d:type="layer" d:userLabel="Layer 11">
+    <Group>
+      <Path winding="nonZero" ai:knockout="0" data="M18.6768 15.002L4.125 15.002C3.87109 15.002 3.66699 14.7881 3.66699 14.5234 3.66699 14.2588 3.87109 14.0439 4.125 14.0439L18.6768 14.0439C18.9297 14.0439 19.1348 14.2588 19.1348 14.5234 19.1348 14.7881 18.9297 15.002 18.6768 15.002Z" >
+        <fill>
+          <SolidColor color="#484848"/>
+        </fill>
+      </Path>
+      <Path winding="nonZero" ai:knockout="0" data="M18.6768 7.98047L4.125 7.98047C3.87109 7.98047 3.66699 7.76563 3.66699 7.50098 3.66699 7.2373 3.87109 7.02246 4.125 7.02246L18.6768 7.02246C18.9297 7.02246 19.1348 7.2373 19.1348 7.50098 19.1348 7.76563 18.9297 7.98047 18.6768 7.98047Z" >
+        <fill>
+          <SolidColor color="#484848"/>
+        </fill>
+      </Path>
+      <Path winding="nonZero" ai:knockout="0" data="M18.6768 0.958008L4.125 0.958008C3.87109 0.958008 3.66699 0.744141 3.66699 0.478516 3.66699 0.214844 3.87109 0 4.125 0L18.6768 0C18.9297 0 19.1348 0.214844 19.1348 0.478516 19.1348 0.744141 18.9297 0.958008 18.6768 0.958008Z" >
+        <fill>
+          <SolidColor color="#484848"/>
+        </fill>
+      </Path>
+      <Path winding="nonZero" ai:knockout="0" data="M1.25977 15.002L0.458008 15.002C0.205078 15.002 0 14.7881 0 14.5234 0 14.2588 0.205078 14.0439 0.458008 14.0439L1.25977 14.0439C1.51367 14.0439 1.71875 14.2588 1.71875 14.5234 1.71875 14.7881 1.51367 15.002 1.25977 15.002Z" >
+        <fill>
+          <SolidColor color="#484848"/>
+        </fill>
+      </Path>
+      <Path winding="nonZero" ai:knockout="0" data="M1.25977 7.98047L0.458008 7.98047C0.205078 7.98047 0 7.76563 0 7.50098 0 7.2373 0.205078 7.02246 0.458008 7.02246L1.25977 7.02246C1.51367 7.02246 1.71875 7.2373 1.71875 7.50098 1.71875 7.76563 1.51367 7.98047 1.25977 7.98047Z" >
+        <fill>
+          <SolidColor color="#484848"/>
+        </fill>
+      </Path>
+      <Path winding="nonZero" ai:knockout="0" data="M1.25977 0.958008L0.458008 0.958008C0.205078 0.958008 0 0.744141 0 0.478516 0 0.214844 0.205078 0 0.458008 0L1.25977 0C1.51367 0 1.71875 0.214844 1.71875 0.478516 1.71875 0.744141 1.51367 0.958008 1.25977 0.958008Z" >
+        <fill>
+          <SolidColor color="#484848"/>
+        </fill>
+      </Path>
+    </Group>
+  </Group>
+  <Private>
+    <ai:PrivateElement d:ref="#1">
+      <ai:SaveOptions>
+        <ai:Dictionary>
+          <ai:DictEntry name="versionKey" value="1" valueType="Integer"/>
+          <ai:DictEntry name="aiEditCap" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="includeSymbol" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="includeXMP" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="writeImages" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="preserveTextPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveFilterPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveGradientPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="rasterizeResolution" value="72" valueType="Integer"/>
+          <ai:DictEntry name="downsampleLinkedImages" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="clipToActiveArtboard" value="1" valueType="Boolean"/>
+        </ai:Dictionary>
+      </ai:SaveOptions>
+      <ai:DocData base="MenuButton-04-04-04-01.assets/images"/>
+      <ai:Artboards originOffsetH="-9.6" originOffsetV="7.501" rulerCanvasDiffH="297.64" rulerCanvasDiffV="-420.945" zoom="24">
+        <ai:Artboard active="1" bottom="-7.501" index="0" left="-9.6" right="9.6" top="7.501"/>
+        <ai:ArtboardsParam all="0" range="" type="0"/>
+      </ai:Artboards>
+    </ai:PrivateElement>
+    <ai:PrivateElement d:ref="#2">
+      <ai:LayerOptions colorType="ThreeColor">
+        <ai:ThreeColor/>
+      </ai:LayerOptions>
+    </ai:PrivateElement>
+  </Private>
+</Graphic>

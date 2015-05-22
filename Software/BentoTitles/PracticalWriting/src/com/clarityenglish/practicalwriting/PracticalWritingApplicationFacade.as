@@ -2,12 +2,14 @@ package com.clarityenglish.practicalwriting {
 import com.clarityenglish.bento.BBNotifications;
 import com.clarityenglish.bento.BentoFacade;
 import com.clarityenglish.bento.view.exercise.ExerciseMediator;
-import com.clarityenglish.bento.view.exercise.ExerciseView;
 import com.clarityenglish.practicalwriting.controller.PracticalWritingStartupCommand;
+import com.clarityenglish.practicalwriting.view.exercise.ExerciseView;
 import com.clarityenglish.practicalwriting.view.home.HomeMediator;
 import com.clarityenglish.practicalwriting.view.home.HomeView;
 import com.clarityenglish.practicalwriting.view.progress.ProgressMediator;
 import com.clarityenglish.practicalwriting.view.progress.ProgressView;
+import com.clarityenglish.practicalwriting.view.settings.SettingsMediator;
+import com.clarityenglish.practicalwriting.view.settings.SettingsView;
 import com.clarityenglish.practicalwriting.view.title.TitleMediator;
 import com.clarityenglish.practicalwriting.view.title.TitleView;
 import com.clarityenglish.practicalwriting.view.zone.PracticeZoneMediator;
@@ -37,6 +39,7 @@ public class PracticalWritingApplicationFacade extends BentoFacade {
             mapView(ResourcesZoneView, ResourcesZoneMediator);
             mapView(ExerciseView, ExerciseMediator);
             mapView(ProgressView, ProgressMediator);
+            mapView(SettingsView, SettingsMediator);
 
             registerCommand(BBNotifications.STARTUP, PracticalWritingStartupCommand);
         }

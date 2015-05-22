@@ -30,7 +30,7 @@ import org.davekeen.util.StateUtil;
             // Initialise the browser manager to help with capturing events that might take us away from the application
             // and also let us parse the URL
             browserManager = BrowserManager.getInstance();
-            browserManager.init("", "Active Reading V10");
+            browserManager.init("", "Pratical Writing V10");
 
             facade.sendNotification(BBNotifications.STARTUP, this);
         }

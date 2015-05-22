@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="1.0" viewHeight="9.82129" viewWidth="25.3721" ai:appVersion="14.0.0.367" d:id="1" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ai="http://ns.adobe.com/ai/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
+  <Library/>
+  <Group x="-150.788" y="-89.3979" d:id="45" d:type="layer" d:userLabel="Layer 11">
+    <Path winding="nonZero" ai:knockout="0" data="M150.788 89.3979L150.788 94.3755C150.788 95.7271 151.864 97.0767 153.183 97.3774L161.08 98.9937C162.397 99.2944 165.37 99.2944 166.687 98.9937L173.767 97.3774C175.083 97.0767 176.16 95.7271 176.16 94.3755L176.16 89.3979" >
+      <fill>
+        <SolidColor color="#0a789d"/>
+      </fill>
+    </Path>
+    <Path winding="nonZero" ai:knockout="0" data="M166.469 91.106C166.784 91.106 167.042 91.3354 167.042 91.6138 167.042 91.894 166.784 92.1235 166.469 92.1235L160.479 92.1235C160.163 92.1235 159.905 91.894 159.905 91.6138 159.905 91.3354 160.163 91.106 160.479 91.106L166.469 91.106Z" >
+      <fill>
+        <SolidColor color="#ffffff"/>
+      </fill>
+    </Path>
+    <Path winding="nonZero" ai:knockout="0" data="M166.469 93.5864C166.784 93.5864 167.042 93.814 167.042 94.0952 167.042 94.3745 166.784 94.603 166.469 94.603L160.479 94.603C160.163 94.603 159.905 94.3745 159.905 94.0952 159.905 93.814 160.163 93.5864 160.479 93.5864L166.469 93.5864Z" >
+      <fill>
+        <SolidColor color="#ffffff"/>
+      </fill>
+    </Path>
+    <Path winding="nonZero" ai:knockout="0" data="M166.469 96.0649C166.784 96.0649 167.042 96.2944 167.042 96.5737 167.042 96.853 166.784 97.0825 166.469 97.0825L160.479 97.0825C160.163 97.0825 159.905 96.853 159.905 96.5737 159.905 96.2944 160.163 96.0649 160.479 96.0649L166.469 96.0649Z" >
+      <fill>
+        <SolidColor color="#ffffff"/>
+      </fill>
+    </Path>
+  </Group>
+  <Private>
+    <ai:PrivateElement d:ref="#1">
+      <ai:DocData base="1-02.assets/images"/>
+      <ai:AutoGenImageList>
+        <ai:Dictionary>
+          <ai:DictEntry name="1" value="ai14320255983.png" valueType="UnicodeString"/>
+          <ai:DictEntry name="0" value="ai14320255972.png" valueType="UnicodeString"/>
+        </ai:Dictionary>
+      </ai:AutoGenImageList>
+      <ai:SaveOptions>
+        <ai:Dictionary>
+          <ai:DictEntry name="versionKey" value="1" valueType="Integer"/>
+          <ai:DictEntry name="aiEditCap" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="includeSymbol" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="includeXMP" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="writeImages" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="preserveTextPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveFilterPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveGradientPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="rasterizeResolution" value="72" valueType="Integer"/>
+          <ai:DictEntry name="downsampleLinkedImages" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="clipToActiveArtboard" value="1" valueType="Boolean"/>
+        </ai:Dictionary>
+      </ai:SaveOptions>
+      <ai:Artboards rulerCanvasDiffH="512.5" rulerCanvasDiffV="384.5">
+        <ai:Artboard active="1" bottom="-383.137" index="1" left="2785.788" right="2811.16" top="-373.315"/>
+      </ai:Artboards>
+    </ai:PrivateElement>
+    <ai:PrivateElement d:ref="#45">
+      <ai:LayerOptions colorType="ThreeColor">
+        <ai:ThreeColor/>
+      </ai:LayerOptions>
+    </ai:PrivateElement>
+  </Private>
+</Graphic>

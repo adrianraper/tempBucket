@@ -1,0 +1,8 @@
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace practicalwriting "com.clarityenglish.practicalwriting.*";
+
+
+practicalwriting|PracticalWritingApplication {
+    skinClass: ClassReference("skins.practicalwritingair.PracticalWritingApplicationSkin");
+}

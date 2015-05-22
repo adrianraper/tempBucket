@@ -1,11 +1,16 @@
 <?xml version="1.0"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:vo="com.clarityenglish.practicalwriting.view.vo.*"
         width="80%" height="80%">
 
     <fx:Metadata>
         [HostComponent("com.clarityenglish.practicalwriting.view.zone.ZoneView")]
     </fx:Metadata>
+
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" color="#989898" blurX="10" blurY="10" alpha="0.6" distance="0" angle="90" knockout="false"/>
+    </fx:Declarations>
 
     <!-- states -->
     <s:states>
@@ -13,9 +18,52 @@
         <s:State name="normal" />
     </s:states>
 
-    <s:TabbedViewNavigator right="100" width="60%" top="0" bottom="100" creationPolicy="all">
+    <!--Background Rect-->
+    <s:Rect top="70" left="15" right="15" height="100%" filters="{[dropShadowFilter]}">
+        <s:fill>
+            <s:SolidColor color="#FFFFFF" />
+        </s:fill>
+    </s:Rect>
+
+    <!--Left column background-->
+    <s:Rect top="70" left="15" height="100%" width="255">
+        <s:fill>
+            <s:SolidColor color="#EEEFF0" />
+        </s:fill>
+    </s:Rect>
+
+    <!--Left column-->
+    <s:VGroup width="270" height="80%" top="138" horizontalAlign="center" gap="40">
+        <vo:PieChartButton id="pieChartButton" width="200" height="200" node="{hostComponent.course}" fillColor="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}" bottomColor="{getStyle('pieChartBottomColor')[hostComponent.course.childIndex()]}" backgroundColor="#EEEFF0"/>
+
+        <s:HGroup width="250" height="40" horizontalAlign="center" verticalAlign="middle" gap="20">
+            <s:Rect width="5" height="40">
+                <s:fill>
+                    <s:SolidColor color="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}" />
+                </s:fill>
+            </s:Rect>
+            <s:Label id="minsLabel" width="50" fontSize="20" fontFamily="Helvetica" textAlign="center" />
+            <s:Rect id="midRect" width="2" height="40" visible="false" includeInLayout="false">
+                <s:fill>
+                    <s:SolidColor color="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}" />
+                </s:fill>
+            </s:Rect>
+            <s:Label id="readLabel" width="50" fontSize="20" fontFamily="Helvetica" textAlign="center" />
+            <s:Rect width="5" height="40">
+                <s:fill>
+                    <s:SolidColor color="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}" />
+                </s:fill>
+            </s:Rect>
+        </s:HGroup>
+    </s:VGroup>
+
+    <s:TabbedViewNavigator id="zoneViewNavigator" top="112" bottom="100" left="270" right="15" creationPolicy="all">
         <s:ViewNavigator id="startOutViewNavigator" firstView="com.clarityenglish.practicalwriting.view.zone.StartOutZoneView" firstViewData="{hostComponent.course}" label="Start Out" left="0" right="0" top="0" bottom="0" />
-        <s:ViewNavigator id="practiceZoneViewNavigator" firstView="com.clarityenglish.practicalwriting.view.zone.PracticeZoneView" firstViewData="{hostComponent.course}" label="Practice Zone" left="0" right="0" top="0" bottom="0" />
+        <s:ViewNavigator id="practiceZoneViewNavigator" firstView="com.clarityenglish.practicalwriting.view.zone.PracticeZoneView" firstViewData="{hostComponent.course}" label="Practice Zone" left="0" right="0" top="0" bottom="0" horizontalCenter="0" />
         <s:ViewNavigator id="resourcesViewNavigator" firstView="com.clarityenglish.practicalwriting.view.zone.ResourcesZoneView" firstViewData="{hostComponent.course}" label="Resources" left="0" right="0" top="0" bottom="0" />
     </s:TabbedViewNavigator>
+
+    <!--Back button-->
+    <s:Button id="backButton" />
+
 </s:Skin>

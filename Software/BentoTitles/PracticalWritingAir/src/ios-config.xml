@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<id>/area1/ActiveReading in localhost</id>
+	<dbHost>2</dbHost>
+	<productCode>61</productCode>
+	<loginOption>128</loginOption>
+	<useCacheBuster>true</useCacheBuster>
+	<courseFile>menu-FullVersion.xml</courseFile>
+	<platform>tablet|iPad</platform>
+	<channel name='aws-streaming' caption='awsstreaming'>
+		<streamingMedia>https://s3-ap-southeast-1.amazonaws.com/clarity-video-streaming/</streamingMedia>
+	</channel>
+	<sharedMedia />
+	<brandingMedia />
+	
+	<language>EN</language>
+	<contentPath>http://192.168.8.82/Content/</contentPath>
+	
+	<remoteDomain>http://192.168.8.82/</remoteDomain>
+	<remoteGateway>http://192.168.8.82/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteService>ActiveReadingService</remoteService>
+	
+	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+	
+	<rememberLogin>true</rememberLogin>
+	<disableAutoTimeout>true</disableAutoTimeout>
+	
+	<checkNetworkAvailabilityUrl>http://www.clarityenglish.com</checkNetworkAvailabilityUrl>
+	<checkNetworkAvailabilityInterval>30</checkNetworkAvailabilityInterval>
+	<checkNetworkAvailabilityReconnectInterval>5</checkNetworkAvailabilityReconnectInterval>
+	
+	<randomizedTestQuestionTotalNumber></randomizedTestQuestionTotalNumber>
+</config>
+

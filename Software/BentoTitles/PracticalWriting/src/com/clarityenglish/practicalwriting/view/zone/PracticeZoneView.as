@@ -20,6 +20,12 @@ import spark.events.IndexChangeEvent;
 
         public var exerciseSelect:Signal = new Signal(XML);
 
+        public function PracticeZoneView():void {
+            super();
+
+            actionBarVisible = false;
+        }
+
         public override function set data(value:Object):void {
             super.data = value;
 
@@ -31,6 +37,10 @@ import spark.events.IndexChangeEvent;
             return data? new XMLListCollection(data.unit.(attribute("class") == "practiceZone").exercise) : null;
         }
 
+        [Bindable(event="dataChange")]
+        public function get courseIndex():Number {
+            return data? data.childIndex() : 0;
+        }
         protected override function partAdded(partName:String, instance:Object):void {
             super.partAdded(partName, instance);
 
@@ -43,7 +53,6 @@ import spark.events.IndexChangeEvent;
 
         protected function onExerciseSelect(event:IndexChangeEvent):void {
             var exercise:XML = event.target.selectedItem as XML;
-            trace("exercise: "+exercise.toXMLString());
             if (exercise && Exercise.exerciseEnabledInMenu(exercise))
                 exerciseSelect.dispatch(exercise);
         }

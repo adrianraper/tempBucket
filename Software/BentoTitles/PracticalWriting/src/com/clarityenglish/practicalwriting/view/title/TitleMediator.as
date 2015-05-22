@@ -30,6 +30,8 @@ import org.puremvc.as3.patterns.observer.Notification;
             view.href = bentoProxy.menuXHTML.href;
 
             view.logout.add(onLogout);
+            view.backToMenu.add(onBackToMenu);
+            view.goToProgress.add(onGoToProgress);
 
             var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
             var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
@@ -84,6 +86,7 @@ import org.puremvc.as3.patterns.observer.Notification;
             return super.listNotificationInterests().concat([
                 BBNotifications.SELECTED_NODE_CHANGED,
                 BBNotifications.SELECTED_NODE_UP,
+                BBNotifications.PROGRESS_SHOW,
             ]);
         }
 
@@ -94,6 +97,9 @@ import org.puremvc.as3.patterns.observer.Notification;
                 case BBNotifications.SELECTED_NODE_CHANGED:
                     view.selectedNode = note.getBody() as XML;
                     break;
+                case BBNotifications.PROGRESS_SHOW:
+                    view.sectionNavigator.selectedIndex = 1;
+                    break;
             }
         }
 
@@ -101,6 +107,7 @@ import org.puremvc.as3.patterns.observer.Notification;
             super.onRemove();
 
             view.logout.remove(onLogout);
+            view.backToMenu.remove(onBackToMenu);
         }
 
         private function setTabState(index:uint):void {
@@ -123,6 +130,16 @@ import org.puremvc.as3.patterns.observer.Notification;
             if (exerciseProxy.attemptToLeaveExercise(new Notification(BBNotifications.SELECTED_NODE_UP))) {
                 sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view); // #265
                 sendNotification(BBNotifications.SELECTED_NODE_UP);
+            }
+        }
+
+        private function onGoToProgress():void {
+            var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+            var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(bentoProxy.currentExercise)) as ExerciseProxy;
+
+            if (exerciseProxy.attemptToLeaveExercise(new Notification(BBNotifications.PROGRESS_SHOW))) {
+                sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view); // #265
+                sendNotification(BBNotifications.PROGRESS_SHOW);
             }
         }
     }

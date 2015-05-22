@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="1.0" viewHeight="22.7983" viewWidth="12.7676" ai:appVersion="14.0.0.367" d:id="1" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ai="http://ns.adobe.com/ai/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
+  <Library/>
+  <Group x="-1026.95" y="-2383.05" d:id="2" d:type="layer" d:userLabel="Layer 1">
+    <Group x="1029.23" y="2385.54">
+      <Path winding="nonZero" ai:knockout="0" data="M0 1.66016C0.214844 1.44482 0.457031 1.2373 0.729492 1.03906 1 0.839355 1.2959 0.662598 1.61816 0.507324 1.94043 0.352539 2.29297 0.228516 2.67578 0.136719 3.05664 0.0458984 3.4707 0 3.91699 0 4.47363 0 5 0.0834961 5.49316 0.250488 5.98633
+ 0.417969 6.41895 0.65625 6.78809 0.967285 7.15918 1.27734 7.45313 1.65771 7.67188 2.10742 7.8916 2.55762 8 3.06104 8 3.61816 8 4.22314 7.90723 4.74414 7.7207 5.18262 7.5332 5.62012 7.29688 6.00439 7.00977 6.33447 6.72266 6.66504 6.41211 6.95557
+ 6.07813 7.20605 5.74414 7.45703 5.43164 7.69189 5.14063 7.91064 4.85059 8.12988 4.60352 8.35059 4.40039 8.57275 4.19824 8.7959 4.08789 9.04297 4.07227 9.31396L3.92871 11.2725 3.15234 11.2725 3.09277 9.22998 3.09277 9.17041C3.09277 8.84424 3.18848
+ 8.55762 3.37988 8.31055 3.57031 8.06445 3.80664 7.8252 4.08984 7.59375 4.37305 7.36328 4.67773 7.12891 5.00977 6.88965 5.33984 6.65039 5.64648 6.38232 5.92969 6.08398 6.21191 5.78516 6.44922 5.44092 6.63965 5.05127 6.83008 4.66113 6.92578 4.19873
+ 6.92578 3.66553 6.92578 3.23584 6.84277 2.85205 6.67578 2.51318 6.50781 2.17529 6.28125 1.88818 5.99512 1.65381 5.70801 1.41943 5.37793 1.23975 5.00391 1.11621 4.62891 0.993164 4.24023 0.931152 3.83301 0.931152 3.30762 0.931152 2.85254 1.00098
+ 2.46582 1.14063 2.08008 1.2793 1.75586 1.43457 1.49316 1.60547 1.23047 1.77734 1.02344 1.93262 0.87207 2.07178 0.720703 2.21143 0.617188 2.28076 0.5625 2.28076 0.442383 2.28076 0.355469 2.23291 0.298828 2.13721L0 1.66016ZM2.41309 16.1675C2.41309
+ 16.0161 2.44043 15.8735 2.49609 15.7373 2.55176 15.6025 2.62988 15.4854 2.72852 15.3853 2.82813 15.2861 2.94434 15.2065 3.0752 15.147 3.20605 15.0869 3.35156 15.0571 3.51074 15.0571 3.66211 15.0571 3.80566 15.0869 3.94141 15.147 4.07617 15.2065
+ 4.19336 15.2861 4.29297 15.3853 4.39258 15.4854 4.47266 15.6025 4.53223 15.7373 4.5918 15.8735 4.62109 16.0161 4.62109 16.1675 4.62109 16.3271 4.5918 16.4722 4.53223 16.6035 4.47266 16.7349 4.39258 16.8501 4.29297 16.9497 4.19336 17.0498 4.07617
+ 17.127 3.94141 17.1826 3.80566 17.2383 3.66211 17.2666 3.51074 17.2666 3.20117 17.2666 2.93945 17.1606 2.72852 16.9497 2.51758 16.7388 2.41309 16.4785 2.41309 16.1675Z" >
+        <fill>
+          <SolidColor color="#898989"/>
+        </fill>
+      </Path>
+    </Group>
+  </Group>
+  <Private>
+    <ai:PrivateElement d:ref="#1">
+      <ai:DocData base="Help-07-08.assets/images"/>
+      <ai:AutoGenImageList>
+        <ai:Dictionary>
+          <ai:DictEntry name="0" value="ai143166341842.png" valueType="UnicodeString"/>
+        </ai:Dictionary>
+      </ai:AutoGenImageList>
+      <ai:SaveOptions>
+        <ai:Dictionary>
+          <ai:DictEntry name="writeImages" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="includeXMP" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="includeSymbol" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="aiEditCap" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="versionKey" value="1" valueType="Integer"/>
+          <ai:DictEntry name="clipToActiveArtboard" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="downsampleLinkedImages" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="rasterizeResolution" value="72" valueType="Integer"/>
+          <ai:DictEntry name="preserveGradientPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveFilterPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveTextPolicy" value="3" valueType="Integer"/>
+        </ai:Dictionary>
+      </ai:SaveOptions>
+      <ai:Artboards rulerCanvasDiffH="512.5" rulerCanvasDiffV="384.5">
+        <ai:Artboard active="1" bottom="-237.967" index="7" left="2953" right="2965.768" top="-215.168"/>
+      </ai:Artboards>
+    </ai:PrivateElement>
+    <ai:PrivateElement d:ref="#2">
+      <ai:LayerOptions colorType="ThreeColor">
+        <ai:ThreeColor blue="257" green="128.502" red="79.31"/>
+      </ai:LayerOptions>
+    </ai:PrivateElement>
+  </Private>
+</Graphic>

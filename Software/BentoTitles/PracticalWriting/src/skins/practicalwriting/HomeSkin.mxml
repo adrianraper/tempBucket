@@ -1,11 +1,16 @@
 <?xml version="1.0"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:vo="com.clarityenglish.practicalwriting.view.vo.*"
         width="100%" height="100%">
 
     <fx:Metadata>
         [HostComponent("com.clarityenglish.practicalwriting.view.home.HomeView")]
     </fx:Metadata>
+
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" color="#989898" blurX="10" blurY="10" alpha="0.6" distance="0" angle="90" knockout="false"/>
+    </fx:Declarations>
 
     <!-- states -->
     <s:states>
@@ -13,18 +18,23 @@
         <s:State name="normal" />
     </s:states>
 
-    <s:List id="courseList" width="100%" height="100%" dataProvider="{hostComponent.courseXMLListCollection}">
+    <!--Background Rect-->
+    <s:Rect top="70" left="15" right="15" height="100%" filters="{[dropShadowFilter]}">
+        <s:fill>
+            <s:SolidColor color="#FFFFFF" />
+        </s:fill>
+    </s:Rect>
+
+    <s:List id="courseList" left="46" right="46" top="{height > 1020? 160 : 210}" bottom="{height > 1020? 100 : 140}" horizontalCenter="0" dataProvider="{hostComponent.courseXMLListCollection}" borderVisible="false" contentBackgroundAlpha="0" verticalScrollPolicy="off" horizontalScrollPolicy="off">
         <s:layout>
-            <s:TileLayout requestedColumnCount="4" requestedRowCount="3" columnWidth="{width * 0.25}" />
+            <s:TileLayout horizontalAlign="center" rowHeight="{height > 1020? 225 : 184}" columnWidth="{height > 1020? 225 : 184}" verticalGap="50" horizontalGap="0" columnAlign="justifyUsingGap"/>
         </s:layout>
         <s:itemRenderer>
             <fx:Component>
-                <s:ItemRenderer>
-                    <s:Button label="{data.attribute('caption')}" />
+                <s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
+                    <vo:PieChartButton id="pieChartButton" width="100%" height="100%" node="{data}" fillColor="{getStyle('pieChartFillColor')[itemIndex]}" bottomColor="{getStyle('pieChartBottomColor')[itemIndex]}"/>
                 </s:ItemRenderer>
             </fx:Component>
         </s:itemRenderer>
     </s:List>
-
-
 </s:Skin>

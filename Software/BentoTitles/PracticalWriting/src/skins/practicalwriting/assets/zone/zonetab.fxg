@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="1.0" viewHeight="14.207" viewWidth="207" ai:appVersion="14.0.0.367" d:id="1" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ai="http://ns.adobe.com/ai/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
+  <Library/>
+  <Group y="-98.6611" d:id="42" d:type="layer" d:userLabel="Layer 11">
+    <Group y="98.6611">
+      <Group d:id="45">
+        <Rect x="0.5" y="0.5" width="206" height="6" ai:knockout="0">
+          <fill>
+            <LinearGradient x="0.5" y="3.5" scaleX="206" rotation="-0">
+              <GradientEntry color="#0b789c" ratio="0.286496"/>
+              <GradientEntry color="#0b789c" ratio="1"/>
+            </LinearGradient>
+          </fill>
+          <stroke>
+            <SolidColorStroke color="#0b789c" caps="none" weight="1" joints="miter" miterLimit="4"/>
+          </stroke>
+        </Rect>
+      </Group>
+      <Group x="94.293" y="5" d:id="46">
+        <Path winding="nonZero" ai:knockout="0" data="M9.20703 8.5L1.20703 0.5 17.207 0.5 9.20703 8.5Z" >
+          <fill>
+            <LinearGradient x="17.207" y="4.5" scaleX="16" rotation="-180">
+              <GradientEntry color="#0b789c" ratio="0.286496"/>
+              <GradientEntry color="#0b789c" ratio="1"/>
+            </LinearGradient>
+          </fill>
+          <stroke>
+            <SolidColorStroke color="#0b789c" caps="none" weight="1" joints="miter" miterLimit="4"/>
+          </stroke>
+        </Path>
+      </Group>
+    </Group>
+  </Group>
+  <Private>
+    <ai:PrivateElement d:ref="#1">
+      <ai:DocData base="BigBar-02.assets/images"/>
+      <ai:AutoGenImageList>
+        <ai:Dictionary>
+          <ai:DictEntry name="0" value="ai14319212812.png" valueType="UnicodeString"/>
+        </ai:Dictionary>
+      </ai:AutoGenImageList>
+      <ai:SaveOptions>
+        <ai:Dictionary>
+          <ai:DictEntry name="writeImages" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="includeXMP" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="includeSymbol" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="aiEditCap" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="versionKey" value="1" valueType="Integer"/>
+          <ai:DictEntry name="clipToActiveArtboard" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="downsampleLinkedImages" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="rasterizeResolution" value="72" valueType="Integer"/>
+          <ai:DictEntry name="preserveGradientPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveFilterPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveTextPolicy" value="3" valueType="Integer"/>
+        </ai:Dictionary>
+      </ai:SaveOptions>
+      <ai:Artboards rulerCanvasDiffH="512.5" rulerCanvasDiffV="384.5">
+        <ai:Artboard active="1" bottom="-454.794" index="1" left="2914.685" right="3121.685" top="-440.587"/>
+      </ai:Artboards>
+    </ai:PrivateElement>
+    <ai:PrivateElement d:ref="#42">
+      <ai:LayerOptions colorType="ThreeColor">
+        <ai:ThreeColor/>
+      </ai:LayerOptions>
+    </ai:PrivateElement>
+    <ai:PrivateElement ai:hashcode="01d63f2918e353e640b857ec0b5fffe4" d:ref="#45">
+      <ai:Rect height="6" knockout="0" width="206" x="0.5" y="0.5">
+        <ai:Stroke colorType="FourColor" miterLimit="4" weight="1">
+          <ai:FourColor black="0.027" cyan="0.874" magenta="0.436" yellow="0.251"/>
+        </ai:Stroke>
+        <ai:Fill colorType="Gradient">
+          <ai:Gradient gradientType="linear" length="206" originX="0.5" originY="3.5">
+            <ai:GradientStops>
+              <ai:GradientStop colorType="FourColor" rampPoint="28.65">
+                <ai:FourColor black="0.027" cyan="0.874" magenta="0.436" yellow="0.251"/>
+              </ai:GradientStop>
+              <ai:GradientStop colorType="FourColor" rampPoint="100">
+                <ai:FourColor black="0.027" cyan="0.874" magenta="0.436" yellow="0.251"/>
+              </ai:GradientStop>
+            </ai:GradientStops>
+          </ai:Gradient>
+        </ai:Fill>
+        <ai:ArtStyle/>
+      </ai:Rect>
+    </ai:PrivateElement>
+    <ai:PrivateElement ai:hashcode="ec64c7670598e72c3c8d6b6b8cc08d3a" d:ref="#46">
+      <ai:Path data="M 103.5 13.5L 95.5 5.5L 111.5 5.5L 103.5 13.5Z" knockout="0">
+        <ai:ArtStyle/>
+        <ai:Stroke colorType="FourColor" miterLimit="4" weight="1">
+          <ai:FourColor black="0.027" cyan="0.874" magenta="0.436" yellow="0.251"/>
+        </ai:Stroke>
+        <ai:Fill colorType="Gradient">
+          <ai:Gradient angle="180" gradientType="linear" length="16" originX="17.207" originY="4.5">
+            <ai:GradientStops>
+              <ai:GradientStop colorType="FourColor" rampPoint="28.65">
+                <ai:FourColor black="0.027" cyan="0.874" magenta="0.436" yellow="0.251"/>
+              </ai:GradientStop>
+              <ai:GradientStop colorType="FourColor" rampPoint="100">
+                <ai:FourColor black="0.027" cyan="0.874" magenta="0.436" yellow="0.251"/>
+              </ai:GradientStop>
+            </ai:GradientStops>
+          </ai:Gradient>
+        </ai:Fill>
+      </ai:Path>
+    </ai:PrivateElement>
+  </Private>
+</Graphic>
