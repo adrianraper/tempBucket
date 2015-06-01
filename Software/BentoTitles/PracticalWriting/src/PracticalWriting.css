@@ -65,6 +65,22 @@ title|TitleView s|ToggleButton#menuToggleButton {
     skinClass: ClassReference("skins.practicalwriting.title.MenuToggleButtonSkin");
 }
 
+title|TitleView s|Button#backToMenuButton {
+    skinClass: ClassReference("skins.practicalwriting.title.HomeSideBarButtonSkin");
+}
+
+title|TitleView s|Button#goToProgressButton {
+    skinClass: ClassReference("skins.practicalwriting.title.ProgressSideBarButtonSkin");
+}
+
+title|TitleView s|Button#goToHelpButton {
+    skinClass: ClassReference("skins.practicalwriting.title.HelpSideBarButtonSkin");
+}
+
+title|TitleView s|Button#goToSettingsButton {
+    skinClass: ClassReference("skins.practicalwriting.title.SettingsSideBarButtonSkin");
+}
+
 home|HomeView {
     skinClass: ClassReference("skins.practicalwriting.HomeSkin");
 }
@@ -141,12 +157,12 @@ settings|SettingsView {
     skinClass: ClassReference("skins.practicalwriting.SettingsSkin");
 }
 
-timer|TimerSettingView {
-    skinClass: ClassReference("skins.practicalwriting.exercise.timer.TimerSettingSkin");
-}
-
 timer|TimerComponent {
     skinClass: ClassReference("skins.practicalwriting.exercise.timer.TimerSkin");
+}
+
+timer|TimerComponent s|Button {
+    skinClass: ClassReference("skins.practicalwriting.exercise.timer.TimerButtonSkin");
 }
 
 vo|PieChartButton {

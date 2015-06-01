@@ -65,7 +65,7 @@
 				 verticalAlign="middle"
 				 maxDisplayedLines="1"
 				 paddingTop="4" fontSize="17"
-				 color="#787878" fontFamily="Helvetica">
+				 color="#787878">
 		</s:Label>
 		
 	</s:HGroup>

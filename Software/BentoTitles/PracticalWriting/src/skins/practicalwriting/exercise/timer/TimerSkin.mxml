@@ -1,9 +1,48 @@
 <?xml version="1.0"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark">
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:timer="skins.practicalwriting.assets.exercise.timer.*">
 
     <fx:Metadata>
         [HostComponent("com.clarityenglish.bento.view.timer.TimerComponent")]
     </fx:Metadata>
+
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" color="#B2B2B2" blurX="3" blurY="3" alpha="0.4" distance="0" angle="90" knockout="false" inner="true"/>
+    </fx:Declarations>
+
+    <fx:Script>
+        <![CDATA[
+        import mx.events.SliderEvent;
+
+        protected function timeConvert(value:Number):String {
+            var hours:Number = Math.floor(value / 60);
+            var mins:Number = value % 60;
+
+            return String("0" + hours).substr(-2) + ":" + String("0" + mins).substr(-2);
+        }
+
+        protected function onSliderChange(event:SliderEvent):void {
+            midTipLabel.left = (hostComponent.sliderWidth * (timerSlider.values[0] / timerSlider.maximum) < hostComponent.sliderWidth * 0.15)? hostComponent.sliderWidth * 0.15 : hostComponent.sliderWidth * (timerSlider.values[0] / timerSlider.maximum);
+
+            var lastTipDist:Number = hostComponent.sliderWidth * (timerSlider.values[1] / timerSlider.maximum);
+            if (lastTipDist < hostComponent.sliderWidth - 100) {
+                lastTipLabel.left = lastTipDist < (midTipLabel.left + hostComponent.sliderWidth * 0.13)? (midTipLabel.left + hostComponent.sliderWidth * 0.13) : lastTipDist;
+            } else {
+                 lastTipLabel.left = hostComponent.sliderWidth - 100;
+            }
+        }
+
+        private function getDataTip(value:String):String {
+            if (timerSlider.getFocus() == timerSlider.getThumbAt(0)) {
+                // return the duration of second session.
+                return "Writing " + timeConvert(timerSlider.values[1] - Number(value));
+            } else {
+                // return the duration of the thirs session.
+                return "Proofreading " + timeConvert(timerSlider.maximum - Number(value));
+            }
+        }
+        ]]>
+    </fx:Script>
 
     <!-- states -->
     <s:states>
@@ -12,45 +51,144 @@
 
         <s:State name="startState" />
         <s:State name="pauseState" />
-        <s:State name="reState" />
+        <s:State name="resumeState" />
     </s:states>
 
     <!--Timer-->
-    <s:HGroup width="500" right="10" top="0" gap="5">
-        <s:Group id="timerSessionGroup" width="300" height="20">
-            <s:HGroup width="100%" height="100%" gap="0">
-                <s:Rect id="planningBar" height="100%" width="{Number(hostComponent.sessionWidthArray.getItemAt(0))}">
-                    <s:fill>
-                        <s:SolidColor color="#000000" />
-                    </s:fill>
-                </s:Rect>
-                <s:Rect id="writingBar" height="100%" width="{Number(hostComponent.sessionWidthArray.getItemAt(1))}">
-                    <s:fill>
-                        <s:SolidColor color="#BBBBBB" />
-                    </s:fill>
-                </s:Rect>
-                <s:Rect id="proofreadingBar" height="100%" width="{Number(hostComponent.sessionWidthArray.getItemAt(2))}">
-                    <s:fill>
-                        <s:SolidColor color="#000000" />
-                    </s:fill>
-                </s:Rect>
-            </s:HGroup>
-            <s:Rect id="progressBar" height="80%">
-                <s:fill>
-                    <s:SolidColor color="#FF0000" />
-                </s:fill>
-            </s:Rect>
-        </s:Group>
+    <s:Group left="0" right="0" height="100%" top="0" filters="{[dropShadowFilter]}">
+        <s:Rect width="100%" height="100%">
+            <s:fill>
+                <s:SolidColor color="#FFFFFF" />
+            </s:fill>
+        </s:Rect>
+        <s:HGroup left="10" right="160" height="100%" horizontalAlign="center" verticalAlign="middle">
+            <s:Group id="timerSessionGroup" width="82%" height="100%">
+                <!--Fake HSlider-->
+                <s:Group width="696" height="38" verticalCenter="0" horizontalCenter="0"  excludeFrom="startState">
+                    <s:Rect width="100%" height="100%" radiusX="6" radiusY="6">
+                        <s:fill>
+                            <s:SolidColor color="#DDDDDC" />
+                        </s:fill>
+                    </s:Rect>
+                    <s:Rect width="98.5%" height="70%" verticalCenter="0" horizontalCenter="0" radiusX="6" radiusY="6">
+                        <s:fill>
+                            <s:SolidColor color="#FFFFFF" />
+                        </s:fill>
+                    </s:Rect>
+                    <s:HGroup width="{hostComponent.sliderWidth}" height="18" verticalCenter="-1" horizontalCenter="0" gap="0">
+                        <s:Rect id="planningBar" height="100%" percentWidth="{timerSlider.values[0] / timerSlider.maximum * 100}" topLeftRadiusX="4" topLeftRadiusY="4" bottomLeftRadiusX="4" bottomLeftRadiusY="4">
+                            <s:fill>
+                                <s:SolidColor color="#15516D" />
+                            </s:fill>
+                        </s:Rect>
+                        <s:Rect id="writingBar" height="100%" percentWidth="{(timerSlider.values[1] - timerSlider.values[0]) / timerSlider.maximum * 100}">
+                            <s:fill>
+                                <s:SolidColor color="#0681A8" />
+                            </s:fill>
+                        </s:Rect>
+                        <s:Rect id="proofreadingBar" height="100%" percentWidth="{(timerSlider.maximum - timerSlider.values[1]) / timerSlider.maximum * 100}" topRightRadiusX="4" topRightRadiusY="4" bottomRightRadiusX="4" bottomRightRadiusY="4">
+                            <s:fill>
+                                <s:SolidColor color="#15516D"/>
+                            </s:fill>
+                        </s:Rect>
+                    </s:HGroup>
+                </s:Group>
+                <!--Real HSlider-->
+                <s:Group width="696" height="38" verticalCenter="0" horizontalCenter="0"  includeIn="startState">
+                    <s:Rect width="100%" height="100%" radiusX="6" radiusY="6">
+                        <s:fill>
+                            <s:SolidColor color="#222222" />
+                        </s:fill>
+                    </s:Rect>
+                    <timer:sideindicator left="10" verticalCenter="0"/>
+                    <timer:sideindicator right="10" verticalCenter="0" />
+                    <mx:HSlider id="timerSlider" width="100%" height="18" verticalCenter="-2" horizontalCenter="0" thumbCount="2" snapInterval="1" minimum="0" showDataTip="true" dataTipFormatFunction="getDataTip" change="onSliderChange(event)"
+                                trackSkin="skins.practicalwriting.exercise.timer.HSliderTrackSkin"
+                                trackHighlightSkin="skins.practicalwriting.exercise.timer.HSliderTrackHighlightSkin" showTrackHighlight="true"
+                                thumbSkin="skins.practicalwriting.exercise.timer.HSliderThumbSkin"/>
+                </s:Group>
+                <!--Data Tip-->
+                <s:Group left="10" verticalCenter="-30">
+                    <s:Label id="firstTipLabel" color="#15516D" text="{'Planning ' + timeConvert(timerSlider.values[0])}" />
+                    <s:Label id="midTipLabel" color="#0681A8" text="{'Writing ' + timeConvert(timerSlider.values[1] - timerSlider.values[0])}" />
+                    <s:Label id="lastTipLabel" color="#15516D" text="{'Proofreading ' + timeConvert(timerSlider.maximum - timerSlider.values[1])}" />
+                </s:Group>
+                <!--Progress Bar-->
+                <s:Group id="progressBarGroup" width="{hostComponent.sliderWidth}" height="18" horizontalCenter="0" verticalCenter="-1" excludeFrom="startState">
+                    <s:Rect id="progressBar" height="10" width="100%" horizontalCenter="0" verticalCenter="0">
+                        <s:fill>
+                            <s:LinearGradient>
+                                <s:GradientEntry color="#FEEA8E" />
+                                <s:GradientEntry color="#F4A738" />
+                                <s:GradientEntry color="#ED1F24" />
+                            </s:LinearGradient>
+                        </s:fill>
+                    </s:Rect>
+                    <!--This rect is used for hiding the gap when the following progressCoverRect's width shrink and the a gap will appear on the most right side-->
+                    <s:Rect id="unitRect" height="100%" right="0" topRightRadiusX="6" topRightRadiusY="6" bottomRightRadiusY="6" bottomRightRadiusX="6">
+                        <s:fill>
+                            <s:SolidColor color="#15516D" />
+                        </s:fill>
+                    </s:Rect>
+                    <s:HGroup width="100%" height="100%" gap="-1" horizontalAlign="right">
+                        <s:Rect id="firstProgressCoverRect" height="100%" percentWidth="{timerSlider.values[0] / timerSlider.maximum * 100}" topLeftRadiusX="4" topLeftRadiusY="4" bottomLeftRadiusY="4" bottomLeftRadiusX="4">
+                            <s:fill>
+                                <s:SolidColor color="#15516D" />
+                            </s:fill>
+                        </s:Rect>
+                        <s:Rect id="midProgressCoverRect" height="100%" percentWidth="{(timerSlider.values[1] - timerSlider.values[0]) / timerSlider.maximum * 100}">
+                            <s:fill>
+                                <s:SolidColor color="#0681A8" />
+                            </s:fill>
+                        </s:Rect>
+                        <s:Rect id="lastProgressCoverRect" height="100%" percentWidth="{(timerSlider.maximum - timerSlider.values[1]) / timerSlider.maximum * 100}" topRightRadiusX="4" topRightRadiusY="4" bottomRightRadiusY="4" bottomRightRadiusX="4">
+                            <s:fill>
+                                <s:SolidColor color="#15516D" />
+                            </s:fill>
+                        </s:Rect>
+                    </s:HGroup>
+                </s:Group>
+            </s:Group>
 
-        <s:Group width="150">
-            <s:Button id="startButton" width="150" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Start" includeIn="startState"/>
-            <s:Button id="pauseButton" width="150" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Pause" includeIn="pauseState"/>
-            <s:HGroup width="100%" gap="10" includeIn="reState">
-                <s:Button id="resumeButton" width="70" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="resume"/>
-                <s:Button id="restartButton" width="70" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="restart"/>
-            </s:HGroup>
-        </s:Group>
-        <s:Button id="timerSetButton" width="45" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Set"/>
-    </s:HGroup>
+            <s:Group width="18%" height="100%">
+                <s:VGroup width="100%" height="100%" horizontalAlign="center" verticalCenter="-10" verticalAlign="middle" gap="0" includeIn="startState">
+                    <s:HGroup width="100%" height="20" gap="6" horizontalAlign="center" verticalAlign="middle">
+                        <s:Rect width="25" height="1">
+                            <s:fill>
+                                <s:SolidColor color="#222222" />
+                            </s:fill>
+                        </s:Rect>
+                        <s:Label text="Total time" fontSize="13" />
+                        <s:Rect width="25" height="1">
+                            <s:fill>
+                                <s:SolidColor color="#222222" />
+                            </s:fill>
+                        </s:Rect>
+                    </s:HGroup>
+                    <s:HGroup horizontalAlign="center" verticalAlign="middle">
+                        <s:TextInput id="hoursTextInput" width="30" height="40" text="00" color="0xFFFFFF" fontSize="21" contentBackgroundColor="#0A789D" />
+                        <s:Label text=":" />
+                        <s:TextInput id="minsTextInput" width="30" height="40" text="00" color="0xFFFFFF" fontSize="21" contentBackgroundColor="#0A789D" />
+                        <s:Label text=":" />
+                        <s:TextInput id="secondsTextInput" width="30" height="40" text="00" color="0xFFFFFF" fontSize="21" contentBackgroundColor="#0A789D" />
+                    </s:HGroup>
+                </s:VGroup>
+
+                <s:Label id="totalTimeLabel" verticalCenter="0" horizontalCenter="0" color="#ED1F24" text="{hostComponent.totalTimeLabelText}" fontSize="21" excludeFrom="startState" />
+            </s:Group>
+        </s:HGroup>
+
+        <s:HGroup width="15%" height="100%" right="0" gap="0" verticalAlign="middle">
+            <s:Group width="50%" height="100%">
+                <s:Button id="startButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Start" includeIn="startState"/>
+                <s:Button id="pauseButton" width="1000%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Pause" includeIn="pauseState"/>
+                <s:Button id="resumeButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Resume" includeIn="resumeState"/>
+            </s:Group>
+            <s:Group width="50%" height="100%">
+                <s:Button id="resetButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Reset" includeIn="startState"/>
+                <s:Button id="stopButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Stop" excludeFrom="startState"/>
+            </s:Group>
+        </s:HGroup>
+    </s:Group>
 
 </s:Skin>

@@ -39,22 +39,25 @@
         <s:HGroup width="250" height="40" horizontalAlign="center" verticalAlign="middle" gap="20">
             <s:Rect width="5" height="40">
                 <s:fill>
-                    <s:SolidColor color="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}" />
+                    <s:SolidColor color="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}"/>
                 </s:fill>
             </s:Rect>
-            <s:Label id="minsLabel" width="50" fontSize="20" fontFamily="Helvetica" textAlign="center" />
+            <s:Label id="minsLabel" width="50" fontSize="20" fontFamily="Helvetica" textAlign="center"/>
             <s:Rect id="midRect" width="2" height="40" visible="false" includeInLayout="false">
                 <s:fill>
-                    <s:SolidColor color="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}" />
+                    <s:SolidColor color="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}"/>
                 </s:fill>
             </s:Rect>
-            <s:Label id="readLabel" width="50" fontSize="20" fontFamily="Helvetica" textAlign="center" />
+            <s:Label id="readLabel" width="50" fontSize="20" fontFamily="Helvetica" textAlign="center"/>
             <s:Rect width="5" height="40">
                 <s:fill>
-                    <s:SolidColor color="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}" />
+                    <s:SolidColor color="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}"/>
                 </s:fill>
             </s:Rect>
         </s:HGroup>
+
+        <s:Label id="skillCaptionLabel" paddingLeft="-40" fontWeight="bold" fontFamily="Helvetica" fontSize="15" />
+        <s:Label id="skillContentLabel" fontSize="14" width="160" paddingTop="-30" />
     </s:VGroup>
 
     <s:TabbedViewNavigator id="zoneViewNavigator" top="112" bottom="100" left="270" right="15" creationPolicy="all">

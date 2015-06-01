@@ -122,6 +122,15 @@ package com.clarityenglish.bento.vo.content {
 		public function hasNoMarking():Boolean {
 			return (model.hasSettingParam("noMarking") && model.getSettingParam("noMarking"));
 		}
+
+		// For timer default total time
+		public function getTotalTimerTime():Array {
+			if (model &&  model.hasSettingParam("timerTotalTime")) {
+				return String(model.getSettingParam("timerTotalTime")).split(",");
+			} else {
+				return [];
+			}
+		}
 		
 		public function getRule():String {
 			return model.getRule();

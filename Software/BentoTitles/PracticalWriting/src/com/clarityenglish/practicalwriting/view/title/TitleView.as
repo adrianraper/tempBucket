@@ -159,7 +159,7 @@ import spark.managers.PersistenceManager;
                 });
                 break;
                 case backToMenuButton:
-                    backToMenuButton.label = copyProvider.getCopyForId("backToMenuButton");
+                    backToMenuButton.label = copyProvider.getCopyForId("home");
                     backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
                     break;
                 case logoutButton:
@@ -177,7 +177,7 @@ import spark.managers.PersistenceManager;
                     menuToggleButton.addEventListener(MouseEvent.CLICK, onListToggleButtonClick);
                     break;
                 case goToProgressButton:
-                    goToProgressButton.label = copyProvider.getCopyForId("goToProgressButton");
+                    goToProgressButton.label = copyProvider.getCopyForId("myProgress");
                     goToProgressButton.addEventListener(MouseEvent.CLICK, onGoToProgressButtonClick);
                     break;
                 case goToHelpButton:
@@ -185,7 +185,7 @@ import spark.managers.PersistenceManager;
                     goToHelpButton.addEventListener(MouseEvent.CLICK,onHelpClick);
                     break;
                 case goToSettingsButton:
-                    goToSettingsButton.label = copyProvider.getCopyForId("settingsButton");
+                    goToSettingsButton.label = copyProvider.getCopyForId("settings");
                     break;
                 case backToExercieButton:
                     backToExercieButton.label = copyProvider.getCopyForId("backToExerciseButton");
@@ -228,8 +228,8 @@ import spark.managers.PersistenceManager;
 
         protected function onListToggleButtonClick(evnet:MouseEvent):void {
             if (menuToggleButton.selected) {
-                sectionNavigator.left = menuToggleButton.left = 300;
-                sectionNavigator.right = -300;
+                sectionNavigator.left = menuToggleButton.left = 260;
+                sectionNavigator.right = -260;
             } else {
                 sectionNavigator.left = menuToggleButton.left = 0;
                 sectionNavigator.right = 0;

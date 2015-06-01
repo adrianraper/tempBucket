@@ -34,7 +34,7 @@ import spark.events.IndexChangeEvent;
 
         [Bindable(event="dataChange")]
         public function get exerciseXMLListCollection():XMLListCollection {
-            return data? new XMLListCollection(data.unit.(attribute("class") == "practiceZone").exercise) : null;
+            return data? new XMLListCollection(data.unit.(attribute("class") == "learning").exercise) : null;
         }
 
         [Bindable(event="dataChange")]

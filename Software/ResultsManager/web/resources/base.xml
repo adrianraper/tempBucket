@@ -121,6 +121,7 @@
             <lit name="credits">Credits</lit>
             <lit name="more">More</lit>
             <lit name="Home">Home</lit>
+            <lit name="settings">Settings</lit>
             <lit name="recorderButton">Recorder</lit>
             <lit name="Back">Back</lit>
             <lit name="Next">Forward</lit>

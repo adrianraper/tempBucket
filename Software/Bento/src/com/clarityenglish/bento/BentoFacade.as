@@ -27,8 +27,6 @@
 	import com.clarityenglish.bento.view.recorder.WaveformView;
 	import com.clarityenglish.bento.view.swfplayer.SWFPlayerMediator;
 	import com.clarityenglish.bento.view.swfplayer.SWFPlayerView;
-	import com.clarityenglish.bento.view.timer.TimerSettingMediator;
-	import com.clarityenglish.bento.view.timer.TimerSettingView;
 	import com.clarityenglish.bento.view.warning.WarningMediator;
 	import com.clarityenglish.bento.view.warning.WarningView;
 	import com.clarityenglish.bento.view.xhtmlexercise.XHTMLExerciseMediator;
@@ -96,9 +94,6 @@
 			
 			mapView(RecorderView, RecorderMediator);
 			mapView(WaveformView, WaveformMediator);
-
-			// gh#1221
-			mapView(TimerSettingView, TimerSettingMediator);
 			
 			// Initial config loading before the state machine is initialized
 			registerCommand(CommonNotifications.CONFIG_LOAD, ConfigLoadCommand);
@@ -193,9 +188,6 @@
 
 			// gh#1219
 			registerCommand(BBNotifications.IMAGE_ENLARGE, ImageEnlargeCommand);
-
-			// gh#1221
-			registerCommand(BBNotifications.TIMER_SETTING_SHOW, TimerSettingShowCommand);
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

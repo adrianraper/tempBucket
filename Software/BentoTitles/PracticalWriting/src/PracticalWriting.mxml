@@ -7,6 +7,14 @@
 
     <fx:Style source="PracticalWriting.css"/>
 
+    <fx:Style>
+        global {
+            fontFamily: Helvetica;
+            fontLookup: embeddedCFF;
+            fontAntiAliasType: advanced;
+        }
+    </fx:Style>
+
     <fx:Script>
         <![CDATA[
         import com.clarityenglish.practicalwriting.PracticalWritingApplicationFacade;

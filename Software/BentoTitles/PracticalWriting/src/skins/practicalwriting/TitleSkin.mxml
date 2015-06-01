@@ -86,17 +86,14 @@
     </s:Rect>
 
     <!--Side bar-->
-    <s:Group left="0" width="300" height="100%" includeIn="exercise" visible="{menuToggleButton.selected}">
+    <s:Group left="0" width="260" height="100%" includeIn="exercise" visible="{menuToggleButton.selected}">
         <s:Rect width="100%" height="100%" left="0">
             <s:fill>
-                <s:LinearGradient rotation="90">
-                    <s:GradientEntry color="#FFFFFF" />
-                    <s:GradientEntry color="#DBDBDB" />
-                </s:LinearGradient>
+               <s:SolidColor color="#A4A3A3" />
             </s:fill>
         </s:Rect>
 
-        <s:VGroup left="8" height="100%" width="300">
+        <s:VGroup left="0" height="100%" width="100%" gap="0">
             <s:Button id="backToMenuButton" />
             <s:Button id="goToProgressButton" />
             <s:Button id="goToHelpButton" />

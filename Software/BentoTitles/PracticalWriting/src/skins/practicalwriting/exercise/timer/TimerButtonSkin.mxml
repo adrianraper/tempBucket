@@ -43,6 +43,10 @@
         ]]>
     </fx:Metadata>
 
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" color="#B2B2B2" blurX="3" blurY="3" alpha="0.4" distance="0" angle="90" knockout="false"/>
+    </fx:Declarations>
+
     <!-- states -->
     <s:states>
         <s:State name="up" />
@@ -51,24 +55,20 @@
         <s:State name="disabled" />
     </s:states>
 
-    <s:Rect top="0" bottom="0" left="0" right="0">
+    <s:Rect top="0" bottom="0" left="0" right="0" filters="{[dropShadowFilter]}">
         <s:fill>
-            <s:SolidColor color="#FFFFFF" color.down="#E8E8E7" color.over="#E8E8E7" />
+            <s:SolidColor color="#FFFFFF"/>
         </s:fill>
     </s:Rect>
 
-    <s:HGroup top="19" bottom="18" left="15" right="15" horizontalAlign="center" verticalAlign="middle">
-        <title:helpIcon />
-
-        <!-- layer 8: text -->
-        <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
-        <s:Label id="labelDisplay"
-                 textAlign="center"
-                 verticalAlign="middle"
-                 maxDisplayedLines="1"
-                 paddingTop="4" fontSize="17" fontWeight="normal"
-                 color="#787878">
-        </s:Label>
-    </s:HGroup>
+    <!-- layer 8: text -->
+    <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
+    <s:Label id="labelDisplay"
+             textAlign="center"
+             verticalAlign="middle"
+             maxDisplayedLines="1"
+             verticalCenter="0" horizontalCenter="0" fontSize="15" fontWeight="normal"
+             color="#4774748">
+    </s:Label>
 
 </s:SparkButtonSkin>

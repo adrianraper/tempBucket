@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="1.0" viewHeight="30.0005" viewWidth="22.999" ai:appVersion="14.0.0.367" d:id="1" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ai="http://ns.adobe.com/ai/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
+  <Library/>
+  <Group d:id="2" d:type="layer" d:userLabel="Layer 1">
+    <Group>
+      <Path winding="nonZero" ai:knockout="0" data="M11 3.48486L11 0.515625C11 0.230469 11.2246 0 11.5 0 11.7754 0 12 0.230469 12 0.515625L12 3.48486C12 3.76807 11.7754 4.00049 11.5 4.00049 11.2246 4.00049 11 3.76807 11 3.48486" >
+        <fill>
+          <SolidColor color="#ffffff"/>
+        </fill>
+      </Path>
+      <Path winding="nonZero" ai:knockout="0" data="M11 29.7739L11 26.2251C11 26.1001 11.2246 26.0005 11.5 26.0005 11.7754 26.0005 12 26.1001 12 26.2251L12 29.7739C12 29.8989 11.7754 30.0005 11.5 30.0005 11.2246 30.0005 11 29.8989 11 29.7739" >
+        <fill>
+          <SolidColor color="#ffffff"/>
+        </fill>
+      </Path>
+      <Path winding="nonZero" ai:knockout="0" data="M19.043 18.8052C18.9668 18.8052 18.8906 18.7817 18.8242 18.7329 18.6582 18.6118 18.6211 18.3774 18.7422 18.2114L22.166 15.0005 18.7422 11.7876C18.6211 11.6216 18.6582 11.3892 18.8242 11.2681 18.9902 11.147 19.2246 11.1841 19.3457 11.3501
+L22.9277 14.7817C23.0234 14.9106 23.0234 15.0884 22.9277 15.2212L19.3457 18.6509C19.2715 18.7505 19.1602 18.8052 19.043 18.8052" >
+        <fill>
+          <SolidColor color="#ffffff"/>
+        </fill>
+      </Path>
+      <Path winding="nonZero" ai:knockout="0" data="M22.627 15.3735L13.3652 15.3735C13.1602 15.3735 12.9922 15.2056 12.9922 15.0005 12.9922 14.7954 13.1602 14.6274 13.3652 14.6274L22.627 14.6274C22.832 14.6274 23 14.7954 23 15.0005 23 15.2056 22.832 15.3735 22.627 15.3735" >
+        <fill>
+          <SolidColor color="#ffffff"/>
+        </fill>
+      </Path>
+      <Path winding="nonZero" ai:knockout="0" data="M11.5 22.0122C11.2949 22.0122 11.127 21.8462 11.127 21.6392L11.127 8.35986C11.127 8.15283 11.2949 7.98877 11.5 7.98877 11.7051 7.98877 11.873 8.15283 11.873 8.35986L11.873 21.6392C11.873 21.8462 11.7051 22.0122 11.5 22.0122" >
+        <fill>
+          <SolidColor color="#ffffff"/>
+        </fill>
+      </Path>
+      <Path winding="nonZero" ai:knockout="0" data="M3.95703 18.8052C4.0332 18.8052 4.10938 18.7817 4.17578 18.7329 4.3418 18.6118 4.37891 18.3774 4.25781 18.2114L0.833984 15.0005 4.25781 11.7876C4.37891 11.6216 4.3418 11.3892 4.17578 11.2681 4.00977 11.147 3.77539 11.1841 3.6543 11.3501
+L0.0722656 14.7817C-0.0234375 14.9106 -0.0234375 15.0884 0.0722656 15.2212L3.6543 18.6509C3.72852 18.7505 3.83984 18.8052 3.95703 18.8052" >
+        <fill>
+          <SolidColor color="#ffffff"/>
+        </fill>
+      </Path>
+      <Path winding="nonZero" ai:knockout="0" data="M0.373047 15.3735L9.63477 15.3735C9.83984 15.3735 10.0078 15.2056 10.0078 15.0005 10.0078 14.7954 9.83984 14.6274 9.63477 14.6274L0.373047 14.6274C0.167969 14.6274 0 14.7954 0 15.0005 0 15.2056 0.167969 15.3735 0.373047 15.3735" >
+        <fill>
+          <SolidColor color="#ffffff"/>
+        </fill>
+      </Path>
+    </Group>
+  </Group>
+  <Private>
+    <ai:PrivateElement d:ref="#1">
+      <ai:DocData base="arrow-01.assets/images"/>
+      <ai:SaveOptions>
+        <ai:Dictionary>
+          <ai:DictEntry name="clipToActiveArtboard" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="downsampleLinkedImages" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="rasterizeResolution" value="72" valueType="Integer"/>
+          <ai:DictEntry name="preserveGradientPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveFilterPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveTextPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="writeImages" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="versionKey" value="1" valueType="Integer"/>
+          <ai:DictEntry name="aiEditCap" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="includeXMP" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="includeSymbol" value="0" valueType="Boolean"/>
+        </ai:Dictionary>
+      </ai:SaveOptions>
+      <ai:Artboards rulerCanvasDiffH="298.5" rulerCanvasDiffV="-420.39">
+        <ai:Artboard active="1" bottom="390.944" index="0" left="294.245" right="317.244" top="420.945"/>
+      </ai:Artboards>
+    </ai:PrivateElement>
+    <ai:PrivateElement d:ref="#2">
+      <ai:LayerOptions colorType="ThreeColor">
+        <ai:ThreeColor blue="257" green="128.502" red="79.31"/>
+      </ai:LayerOptions>
+    </ai:PrivateElement>
+  </Private>
+</Graphic>

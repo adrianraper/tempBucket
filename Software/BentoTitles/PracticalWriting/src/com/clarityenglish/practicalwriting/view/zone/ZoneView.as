@@ -19,7 +19,7 @@ import spark.components.Label;
 import spark.components.TabbedViewNavigator;
 import spark.primitives.Rect;
 
-public class ZoneView extends BentoView {
+    public class ZoneView extends BentoView {
 
         [SkinPart]
         public var zoneViewNavigator:TabbedViewNavigator;
@@ -36,10 +36,17 @@ public class ZoneView extends BentoView {
         [SkinPart]
         public var backButton:Button;
 
+        [SkinPart]
+        public var skillCaptionLabel:Label;
+
+        [SkinPart]
+        public var skillContentLabel:Label;
+
         public var backHome:Signal = new Signal();
 
         private var _course:XML;
         private var _isCourseChanged:Boolean;
+        private var hasCourseChanged:Boolean;
         private var _everyoneCourseSummaries:Object;
         private var _everyoneCourseSummariesChanged:Boolean;
         private var everyoneUnitScores:Object = new Object();
@@ -91,15 +98,25 @@ public class ZoneView extends BentoView {
                     backButton.label = copyProvider.getCopyForId("backButton");
                     backButton.addEventListener(MouseEvent.CLICK, onBackButtonClick);
                     break;
+                case skillCaptionLabel:
+                    skillCaptionLabel.text = copyProvider.getCopyForId("skillCaptionLabel");
+                    break;
             }
         }
 
         override protected function commitProperties():void {
             super.commitProperties();
 
-            if (_isCourseChanged && _everyoneCourseSummariesChanged) {
+            if (_isCourseChanged) {
                 _isCourseChanged = false;
+                hasCourseChanged = true;
 
+                skillContentLabel.text = copyProvider.getCopyForId(course.attribute("class") + "Skill");
+            }
+
+            if (hasCourseChanged && _everyoneCourseSummariesChanged) {
+                _everyoneCourseSummariesChanged = false;
+                hasCourseChanged = false;
                 if (everyoneUnitScores[course.@id]) {
                     if (everyoneUnitScores[course.@id].mins > 0) {
                         minsLabel.text = everyoneUnitScores[course.@id].mins + copyProvider.getCopyForId("minsLabel");

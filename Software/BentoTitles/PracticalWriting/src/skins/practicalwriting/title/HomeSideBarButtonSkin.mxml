@@ -43,6 +43,10 @@
         ]]>
     </fx:Metadata>
 
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" color="#C4C3C3" distance="0" angle="90" knockout="false"/>
+    </fx:Declarations>
+
     <!-- states -->
     <s:states>
         <s:State name="up" />
@@ -51,14 +55,21 @@
         <s:State name="disabled" />
     </s:states>
 
-    <s:Rect top="0" bottom="0" left="0" right="0">
+    <s:Rect top="0" bottom="0" left="0" right="0" filters="{[dropShadowFilter]}">
         <s:fill>
-            <s:SolidColor color="#FFFFFF" color.down="#E8E8E7" color.over="#E8E8E7" />
+            <s:LinearGradient rotation="90">
+                <s:GradientEntry color="#F3F4F4" color.down="#CFCFCF" color.over="#CFCFCF" ratio="0" />
+                <s:GradientEntry color="#F3F4F4" color.down="#DCDCDB" color.over="#DCDCDB" ratio="0.1" />
+                <s:GradientEntry color="#F3F4F4" color.down="#DCDCDB" color.over="#DCDCDB" ratio="0.9" />
+                <s:GradientEntry color="#F3F4F4" color.down="#CFCFCF" color.over="#CFCFCF" ratio="1" />
+            </s:LinearGradient>
         </s:fill>
     </s:Rect>
 
-    <s:HGroup top="19" bottom="18" left="15" right="15" horizontalAlign="center" verticalAlign="middle">
-        <title:helpIcon />
+    <s:HGroup top="32" bottom="28" width="260" gap="10" paddingLeft="30" verticalAlign="middle">
+        <s:Group left="0" width="35">
+            <title:homeIcon />
+        </s:Group>
 
         <!-- layer 8: text -->
         <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
@@ -66,7 +77,7 @@
                  textAlign="center"
                  verticalAlign="middle"
                  maxDisplayedLines="1"
-                 paddingTop="4" fontSize="17" fontWeight="normal"
+                 paddingTop="4" fontSize="20" fontWeight="normal"
                  color="#787878">
         </s:Label>
     </s:HGroup>

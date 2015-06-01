@@ -4,7 +4,6 @@ package com.clarityenglish.bento.view.exercise {
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.bento.view.recorder.events.RecorderEvent;
 	import com.clarityenglish.bento.view.timer.TimerComponent;
-	import com.clarityenglish.bento.view.timer.events.TimerComponentEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.textLayout.events.AudioPlayerEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -83,6 +82,10 @@ package com.clarityenglish.bento.view.exercise {
 		
 		[Bindable]
 		public var isPlatformiPad:Boolean;
+
+		// Timer total time
+		[Bindable]
+		public var timerTotalTime:Array = [];
 
 		private var _courseCaption:String;
 		
@@ -268,9 +271,6 @@ package com.clarityenglish.bento.view.exercise {
 					ruleButton.label = copyProvider.getCopyForId("ruleButton");
 					ruleButton.addEventListener(MouseEvent.CLICK, onMouseClick);
 					break;
-				case exerciseTimer:
-					exerciseTimer.addEventListener(TimerComponentEvent.TIMER_SET, onTimerSet);
-					break;
 			}
 		}
 		
@@ -284,10 +284,6 @@ package com.clarityenglish.bento.view.exercise {
 			var url:String = config.contentRoot + config.account.getTitle().contentLocation + "/" + _ruleLink;
 			var urlRequest:URLRequest = new URLRequest(url);
 			navigateToURL(urlRequest, "_blank");
-		}
-
-		protected function onTimerSet(event:TimerComponentEvent):void {
-			setTimer.dispatch(event.sessionArray, event.totalTime);
 		}
 		
 	}

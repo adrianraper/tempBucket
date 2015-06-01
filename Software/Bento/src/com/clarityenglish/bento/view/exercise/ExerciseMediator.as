@@ -50,7 +50,6 @@ import org.puremvc.as3.interfaces.IMediator;
 			view.audioPlayed.add(onAudioPlayed); // gh#267
 			view.record.add(onRecord); // gh#267
 			view.logout.add(onLogout);
-			view.setTimer.add(onTimerSet);
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			
@@ -96,7 +95,6 @@ import org.puremvc.as3.interfaces.IMediator;
 				BBNotifications.EXERCISE_PRINTED,
 				BBNotifications.EXERCISE_TRY_AGAIN,
 				BBNotifications.GOT_QUESTION_FEEDBACK,
-				BBNotifications.TIMER_START,
 			]);
 		}
 		
@@ -149,12 +147,6 @@ import org.puremvc.as3.interfaces.IMediator;
 				case BBNotifications.GOT_QUESTION_FEEDBACK:
 					feedbackButtonVisibility(note.getBody() as Boolean);
 					break;
-				case BBNotifications.TIMER_START:
-					if (note.getBody()) {
-						view.exerciseTimer.timerDurationArray = note.getBody().durationArray as Array;
-						view .exerciseTimer.isTimerStart = note.getBody().isTimerStart as Boolean;
-					}
-					break;
 			}
 		}
 		
@@ -201,6 +193,11 @@ import org.puremvc.as3.interfaces.IMediator;
 				view.isFirstExercise = true;
 			}else {
 				view.isFirstExercise = false;
+			}
+
+			trace("getTotalTimerTime: "+exercise.getTotalTimerTime());
+			if (exercise.getTotalTimerTime().length > 0) {
+				view.timerTotalTime = exercise.getTotalTimerTime();
 			}
 		}
 		
@@ -281,16 +278,6 @@ import org.puremvc.as3.interfaces.IMediator;
 		
 		private function onLogout():void {
 			sendNotification(CommonNotifications.LOGOUT);
-		}
-
-		// gh#1221
-		private function onTimerSet(timeDurationArray:Array, totalTime:Number):void {
-			if (timeDurationArray.length > 0) {
-				sendNotification(BBNotifications.TIMER_SETTING_SHOW, {timerDurationArray: timeDurationArray, totalTime: totalTime});
-			} else {
-				sendNotification(BBNotifications.TIMER_SETTING_SHOW, {timerDurationArray: null, totalTime: totalTime});
-			}
-
 		}
 	}
 }
