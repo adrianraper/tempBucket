@@ -6,7 +6,15 @@ import com.clarityenglish.practicalwriting.controller.PracticalWritingStartupCom
 import com.clarityenglish.practicalwriting.view.exercise.ExerciseView;
 import com.clarityenglish.practicalwriting.view.home.HomeMediator;
 import com.clarityenglish.practicalwriting.view.home.HomeView;
+import com.clarityenglish.practicalwriting.view.progress.ProgressAnalysisView;
+import com.clarityenglish.practicalwriting.view.progress.ProgressCertificateView;
+import com.clarityenglish.practicalwriting.view.progress.ProgressCompareMediator;
+import com.clarityenglish.practicalwriting.view.progress.ProgressCompareView;
+import com.clarityenglish.practicalwriting.view.progress.ProgressCoverageMediator;
+import com.clarityenglish.practicalwriting.view.progress.ProgressCoverageView;
 import com.clarityenglish.practicalwriting.view.progress.ProgressMediator;
+import com.clarityenglish.practicalwriting.view.progress.ProgressScoreMediator;
+import com.clarityenglish.practicalwriting.view.progress.ProgressScoreView;
 import com.clarityenglish.practicalwriting.view.progress.ProgressView;
 import com.clarityenglish.practicalwriting.view.settings.SettingsMediator;
 import com.clarityenglish.practicalwriting.view.settings.SettingsView;
@@ -39,6 +47,11 @@ public class PracticalWritingApplicationFacade extends BentoFacade {
             mapView(ResourcesZoneView, ResourcesZoneMediator);
             mapView(ExerciseView, ExerciseMediator);
             mapView(ProgressView, ProgressMediator);
+            mapView(ProgressCoverageView, ProgressCoverageMediator);
+            mapView(ProgressCompareView, ProgressCompareMediator);
+            mapView(ProgressAnalysisView, ProgressAnalysisView);
+            mapView(ProgressScoreView, ProgressScoreMediator);
+            mapView(ProgressCertificateView, ProgressCertificateView);
             mapView(SettingsView, SettingsMediator);
 
             registerCommand(BBNotifications.STARTUP, PracticalWritingStartupCommand);

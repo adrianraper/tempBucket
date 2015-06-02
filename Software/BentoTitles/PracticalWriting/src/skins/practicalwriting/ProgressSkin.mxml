@@ -1,10 +1,14 @@
 <?xml version="1.0"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark">
+        xmlns:s="library://ns.adobe.com/flex/spark" xmlns:progress="com.clarityenglish.practicalwriting.view.progress.*">
 
     <fx:Metadata>
         [HostComponent("com.clarityenglish.practicalwriting.view.progress.ProgressView")]
     </fx:Metadata>
+
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" color="#989898" blurX="10" blurY="10" alpha="0.6" distance="0" angle="90" knockout="false"/>
+    </fx:Declarations>
 
     <s:states>
         <s:State name="normal" />
@@ -17,4 +21,26 @@
         <s:State name="score" stateGroups="normalStates,scoreStates"/>
         <s:State name="certificate" stateGroups="normalStates, certificateStates"/>
     </s:states>
+
+    <!--Background Rect-->
+    <s:Rect top="70" left="15" right="15" height="100%" filters="{[dropShadowFilter]}">
+        <s:fill>
+            <s:SolidColor color="#FFFFFF" />
+        </s:fill>
+    </s:Rect>
+
+    <s:ButtonBar id="progressNavBar" buttonMode="true" useHandCursor="true" horizontalCenter="0" top="130" left="50" right="50" />
+
+    <s:HGroup width="100%" height="100%" top="190" left="50" bottom="0" right="50" excludeFrom="anonymous" >
+        <s:Group width="100%" height="100%">
+            <s:Group width="100%" height="100%" includeIn="normalStates">
+                <progress:ProgressCoverageView id="progressCoverageView" width="100%" height="100%" includeIn="coverage" />
+                <progress:ProgressCompareView id="progressCompareView" width="100%" height="100%" includeIn="compare" />
+                <progress:ProgressAnalysisView id="progressAnalysisView" width="100%" height="100%" includeIn="analysis" />
+                <progress:ProgressScoreView id="progressScoreView"   width="100%" height="100%" includeIn="score" />
+                <progress:ProgressCertificateView id="progressCertificateView" width="100%" height="100%" includeIn="certificate" />
+            </s:Group>
+        </s:Group>
+    </s:HGroup>
+
 </s:Skin>

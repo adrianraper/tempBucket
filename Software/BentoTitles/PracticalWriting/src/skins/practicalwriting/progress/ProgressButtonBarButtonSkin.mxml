@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<!--- The default skin class for a Spark ToggleButton component.
+
+ @see spark.components.ToggleButton
+
+ @langversion 3.0
+ @playerversion Flash 10
+ @playerversion AIR 1.5
+ @productversion Flex 4
+-->
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:s="library://ns.adobe.com/flex/spark"
+                   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+                   minWidth="21" minHeight="21"
+                   alpha.disabledStates="0.5" xmlns:progress="skins.practicalwriting.assets.progress.*">
+    <fx:Metadata>[HostComponent("spark.components.ButtonBarButton")]</fx:Metadata>
+
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" angle="250" distance="1" alpha="0.3" blurX="8" blurY="8" />
+    </fx:Declarations>
+
+    <!-- host component -->
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" stateGroups="overStates" />
+        <s:State name="down" stateGroups="downStates" />
+        <s:State name="disabled" stateGroups="disabledStates" />
+        <s:State name="upAndSelected" stateGroups="selectedStates, selectedUpStates" />
+        <s:State name="overAndSelected" stateGroups="overStates, selectedStates" />
+        <s:State name="downAndSelected" stateGroups="downStates, selectedStates" />
+        <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
+    </s:states>
+
+    <s:Rect left="0" right="0" top="0" bottom="0">
+        <s:fill>
+            <s:SolidColor color="#FFFFFF" alpha="0" />
+        </s:fill>
+    </s:Rect>
+
+    <s:VGroup id="trapezoidTab" horizontalAlign="center">
+        <!-- layer 8: text -->
+        <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
+        <s:Label id="labelDisplay"
+                 textAlign="center"
+                 maxDisplayedLines="1"
+                 color.selectedStates="#0C698A" color.down="#0C698A" color.over="#0C698A"  color="#787878"
+                 fontSize="18"
+                 horizontalCenter="0" top="18" bottom="2">
+        </s:Label>
+
+        <s:Group>
+            <progress:buttonbar excludeFrom="up" />
+            <s:Rect height="6" width="170.285" includeIn="up">
+                <s:fill>
+                    <s:SolidColor color="#D1D2D4" />
+                </s:fill>
+            </s:Rect>
+        </s:Group>
+    </s:VGroup>
+
+</s:SparkButtonSkin>

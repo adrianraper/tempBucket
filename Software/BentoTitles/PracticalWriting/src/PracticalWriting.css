@@ -153,6 +153,14 @@ progress|ProgressView {
     skinClass: ClassReference("skins.practicalwriting.ProgressSkin");
 }
 
+progress|ProgressView s|ButtonBar {
+    skinClass: ClassReference("skins.practicalwriting.progress.ProgressNavBarSkin");
+}
+
+progress|ProgressCoverageView {
+    skinClass: ClassReference("skins.practicalwriting.progress.ProgressCoverageSkin");
+}
+
 settings|SettingsView {
     skinClass: ClassReference("skins.practicalwriting.SettingsSkin");
 }
