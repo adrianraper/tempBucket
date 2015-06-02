@@ -155,12 +155,12 @@
 		<image512x512></image512x512>
 		<image732x412></image732x412>
 		<image1024x1024></image1024x1024 -->
-		<image57x57>icons/TB-iOS-app-icon_57.png</image57x57>
-		<image72x72>icons/TB-iOS-app-icon_72.png</image72x72>
-		<image76x76>icons/TB-iOS-app-icon_76.png</image76x76>
-		<image114x114>icons/TB-iOS-app-icon_114.png</image114x114>
-		<image144x144>icons/TB-iOS-app-icon_144.png</image144x144>
-		<image152x152>icons/TB-iOS-app-icon_152.png</image152x152>
+		<image48x48>icons/TB_appIcon_48.png</image48x48>
+		<image72x72>icons/TB_appIcon_72.png</image72x72>
+		<image76x76>icons/TB_appIcon_76.png</image76x76>
+		<image96x96>icons/TB_appIcon_96.png</image96x96>
+		<image144x144>icons/TB_appIcon_144.png</image144x144>
+		<image152x152>icons/TB_appIcon_152.png</image152x152>
 	</icon>
 
 	<!-- Whether the application handles the update when a user double-clicks an update version
