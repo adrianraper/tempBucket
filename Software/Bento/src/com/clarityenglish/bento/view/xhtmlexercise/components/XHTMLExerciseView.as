@@ -180,10 +180,15 @@ import spark.components.Group;
 		}
 
 		protected function onTimerComplete(event:Event):void {
-			readingTextRichText.visible = true;
-			bodyRichText.visible = true;
-		}
-		
+            //readingTextRichText.visible = true;
+            //bodyRichText.visible = true;
+            for each (var sectionName:String in SUPPORTED_SECTIONS) {
+                var xhtmlRichText:XHTMLRichText = this[sectionName + "RichText"];
+                if (xhtmlRichText)
+                    xhtmlRichText.visible = true;
+            }
+        }
+
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			

@@ -128,7 +128,7 @@
 	<s:ViewNavigator id="unitViewNavigator" left="156" right="0" top="55" bottom="100" />
 	
 	<course:ToolBarView id="toolBar" bottom="38" left="0" right="0" />
-	<s:HGroup left="110" top="-50">
+	<s:HGroup left="156" top="-40">
 		<s:Button id="settingsButton" />
 	</s:HGroup>
 		

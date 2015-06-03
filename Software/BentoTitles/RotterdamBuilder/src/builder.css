@@ -189,7 +189,7 @@ course|CourseView s|Button#publishChangeButton {
 }
 
 course|CourseView s|Button#settingsButton {
-	skinClass: ClassReference("skins.rotterdam.course.SettingsButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
 }
 
 buildercourse|ToolBarView {

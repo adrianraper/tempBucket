@@ -60,7 +60,7 @@
 						<s:VerticalLayout paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10"/>
 					</s:layout>
 					<s:Label id="answerMarkersLabel" />
-					<s:RadioButton id="answerMarker1RadioButton" group="{answerMarkersGroup}" selected="true" includeIn="MultipleChoiceQuestion"/>
+					<s:RadioButton id="answerMarker1RadioButton" group="{answerMarkersGroup}" selected="true"/>
 					<s:RadioButton id="answerMarker2RadioButton" group="{answerMarkersGroup}" />
 					<s:RadioButton id="answerMarker3RadioButton" group="{answerMarkersGroup}" />
 					<s:RadioButton id="answerMarker4RadioButton" group="{answerMarkersGroup}" />
