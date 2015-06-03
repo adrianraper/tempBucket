@@ -139,12 +139,10 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					questionList.addEventListener(QuestionDeleteEvent.QUESTION_DELETE, onQuestionDeleted);
 					questionList.requireSelection = true;
 					
-					// Add a question if there are none and select the first question
-					if (questions.length == 0) addQuestion();
+					// gh#1240 Add a blank question at the end
+					addQuestion();
 					showQuestion(questions.getItemAt(0) as XML);
 					
-					// Add an extra question if required
-					callLater(checkAutoAddQuestion);
 					break;
 				case answersList:
 					// TODO: allowing drag moving on this does weird things, duplicating and deleting answers.  Need to investigate this.
