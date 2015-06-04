@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:assets="skins.practicalwriting.assets.*" alpha.disabled="0.5"  xmlns:certificate="skins.practicalwriting.assets.progress.*" >
+
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.practicalwriting.view.progress.ProgressCertificateView")]
+    </fx:Metadata>
+
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" color="#989898" blurX="10" blurY="10" alpha="0.6" distance="0" angle="90" knockout="false"/>
+    </fx:Declarations>
+
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+    </s:states>
+
+    <s:VGroup id="oopsVGroup" horizontalCenter="0" horizontalAlign="center" width="610" height="350" top="100" bottom="0" gap="54" visible="false">
+        <certificate:oops />
+        <s:RichEditableText id="notCompleteRichEditableText" width="100%" fontSize="18" lineHeight="30" color="#302D2F"/>
+    </s:VGroup>
+
+    <s:Group id="certificateGroup" top="18" left="0" right="0" width="100%">
+        <s:HGroup width="100%" height="496" right="0" horizontalAlign="center">
+            <s:Group width="717" height="100%">
+                <s:Rect width="100%" height="100%" filters="{[dropShadowFilter]}">
+                    <s:fill>
+                       <s:LinearGradient rotation="90">
+                           <s:GradientEntry color="#FFFFFF" />
+                           <s:GradientEntry color="#DCDBDB"  />
+                       </s:LinearGradient>
+                    </s:fill>
+                </s:Rect>
+
+                <s:Group width="100%" height="100%" top="0">
+                    <s:SWFLoader source="@Embed('/skins/practicalwriting/assets/progress/certidicationBg.png')" bottom="0" />
+                    <certificate:line left="50" top="60"/>
+                    <assets:logo left="40" top="20" scaleX="0.45" scaleY="0.45" />
+                    <s:SWFLoader id="certificateSWFLoader" source="@Embed(source='/skins/practicalwriting/assets/progress/certificateMan.png')" bottom="0" right="0" />
+                    <s:HGroup top="120" width="700" horizontalCenter="0" gap="16">
+                        <s:VGroup paddingLeft="100" gap="15">
+                            <s:Label id="nameTextLabel" fontSize="11"/>
+                            <s:Label id="courseTextLabel" fontSize="11"/>
+                            <s:Label id="dateTextLabel" fontSize="11"/>
+                        </s:VGroup>
+                        <s:VGroup gap="15">
+                            <s:Label id="nameLabel" fontWeight="bold" fontSize="11"/>
+                            <s:Label id="courseLabel" fontWeight="bold" fontSize="11" text="Practical Writing"/>
+                            <s:Label id="dateLabel" fontWeight="bold" fontSize="11"/>
+                        </s:VGroup>
+                    </s:HGroup>
+                    <s:RichEditableText id="certificateRichEditableText" width="500" horizontalCenter="0" top="240" fontSize="10" textAlign="center"/>
+                    <!--Signature-->
+                    <s:VGroup width="200" height="100" left="100" bottom="80" horizontalAlign="center" verticalAlign="middle">
+                        <certificate:signature />
+                        <s:Rect width="100%" height="1">
+                            <s:fill>
+                                <s:SolidColor color="#333333" />
+                            </s:fill>
+                        </s:Rect>
+                        <s:Label id="certificateSignatureNameLabel" color="#343434" fontWeight="bold" fontSize="8" />
+                        <s:Label id="certificateSignatureTitle" color="#343434" fontWeight="bold" fontSize="8" />
+                    </s:VGroup>
+                </s:Group>
+            </s:Group>
+        </s:HGroup>
+        <s:Button id="printButton" right="0" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
+    </s:Group>
+</s:Skin>

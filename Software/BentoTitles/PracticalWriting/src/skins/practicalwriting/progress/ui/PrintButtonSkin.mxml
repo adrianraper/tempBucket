@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<!--- The default skin class for the Spark Button component.
+
+ @see spark.components.Button
+
+ @langversion 3.0
+ @playerversion Flash 10
+ @playerversion AIR 1.5
+ @productversion Flex 4
+-->
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:s="library://ns.adobe.com/flex/spark"
+                   xmlns:progress="skins.practicalwriting.assets.progress.*"
+                   minWidth="21" minHeight="21"
+                   alpha.disabled="0.5">
+
+    <fx:Metadata>
+        <![CDATA[
+        /**
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("spark.components.Button")]
+        ]]>
+    </fx:Metadata>
+
+
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" />
+        <s:State name="down" />
+        <s:State name="disabled" />
+    </s:states>
+
+    <s:Rect top="0" bottom="0" left="0" right="0" radiusX="6" radiusY="6">
+        <s:fill>
+           <s:SolidColor color="#EFEFE7" color.down="#A4A4A4" color.over="#A4A4A4" />
+        </s:fill>
+    </s:Rect>
+
+    <s:HGroup height="50" width="95" gap="8" paddingLeft="15" verticalAlign="middle">
+        <s:Group>
+            <s:Path winding="nonZero" data="M16.5879 21.2061L6.95313 21.2061C6.71045 21.2061 6.4873 21.1094 6.3252 20.9355 6.16504 20.7617 6.0835 20.5264 6.10205 20.2871L6.45361 17.3467C6.49414 16.873 6.89697 16.5029 7.37109 16.5029L16.1675 16.5029C16.6426 16.5029 17.0464 16.873
+            17.0874 17.3467L17.1367 17.9463 17.4341 20.2627C17.4565 20.5215 17.3765 20.7578 17.2173 20.9326 17.0571 21.1064 16.8276 21.2061 16.5879 21.2061ZM7.04443 20.2725L16.5249 20.2725 16.1567 17.4248 7.37109 17.4365 7.33154 18.0244 7.04443 20.2725Z" >
+                <s:fill>
+                    <s:SolidColor color="#898989" color.over="#EDECEC" color.down="#EDECEC" />
+                </s:fill>
+            </s:Path>
+            <s:Path winding="nonZero" data="M19.2212 18.4229L18.3584 18.4229 18.2544 17.1758C18.1758 16.2607 17.396 15.543 16.4785 15.543L7.05957 15.543C6.14258 15.543 5.3623 16.2598 5.28369 17.1748L5.17969 18.4229 4.31738 18.4229C1.93701 18.4229 0 16.4854 0 14.1035L0 9.03223C0 6.65137
+            1.93701 4.71387 4.31738 4.71387L5.31738 4.71387 5.31738 7.86816C5.31738 8.8291 6.09912 9.61133 7.05957 9.61133L16.4785 9.61133C17.439 9.61133 18.2207 8.8291 18.2207 7.86816L18.2207 4.71387 19.2212 4.71387C21.603 4.71387 23.541 6.65137 23.541
+            9.03223L23.541 14.1035C23.541 16.4854 21.603 18.4229 19.2212 18.4229ZM7.05957 14.543L16.4785 14.543C17.9106 14.543 19.1284 15.6621 19.2505 17.0908L19.2783 17.4229C21.0825 17.3916 22.541 15.915 22.541 14.1035L22.541 9.03223C22.541 7.20215 21.0518
+            5.71387 19.2212 5.71387L19.2207 5.71387 19.2207 7.86816C19.2207 9.38086 17.9907 10.6113 16.4785 10.6113L7.05957 10.6113C5.54736 10.6113 4.31738 9.38086 4.31738 7.86816L4.31738 5.71387C2.48828 5.71387 1 7.20215 1 9.03223L1 14.1035C1 15.9141 2.45703
+            17.3916 4.25977 17.4219L4.2876 17.0898C4.41016 15.6611 5.62744 14.543 7.05957 14.543Z" >
+                <s:fill>
+                    <s:SolidColor color="#898989" color.over="#EDECEC" color.down="#EDECEC" />
+                </s:fill>
+            </s:Path>
+            <s:Path winding="nonZero" data="M16.1558 8.50391L7.38281 8.50391C6.896 8.50391 6.50049 8.10742 6.50049 7.62012L6.50049 0.882813C6.50049 0.396484 6.896 0 7.38281 0L16.1558 0C16.644 0 17.041 0.396484 17.041 0.882813L17.041 7.62012C17.041 8.10742 16.644 8.50391 16.1558 8.50391Z
+            M16.1094 0.931641L7.43164 0.931641 7.43164 7.57227 16.1094 7.57227 16.1094 0.931641Z" >
+                <s:fill>
+                    <s:SolidColor color="#898989" color.over="#EDECEC" color.down="#EDECEC" />
+                </s:fill>
+            </s:Path>
+        </s:Group>
+
+        <!-- layer 8: text -->
+        <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
+        <s:Label id="labelDisplay"
+                 textAlign="center"
+                 verticalAlign="middle"
+                 maxDisplayedLines="1"
+                 paddingTop="4" fontSize="16" fontFamily="Helvetica"
+                 color="#898989" color.over="#EDECEC" color.down="#EDECEC">
+        </s:Label>
+    </s:HGroup>
+
+</s:SparkButtonSkin>

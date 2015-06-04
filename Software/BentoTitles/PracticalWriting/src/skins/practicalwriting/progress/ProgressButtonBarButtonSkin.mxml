@@ -65,7 +65,7 @@
                  textAlign="center"
                  maxDisplayedLines="1"
                  color.selectedStates="#0C698A" color.down="#0C698A" color.over="#0C698A"  color="#787878"
-                 fontSize="18"
+                 fontSize="18" fontWeight="normal"
                  horizontalCenter="0" top="18" bottom="2">
         </s:Label>
 

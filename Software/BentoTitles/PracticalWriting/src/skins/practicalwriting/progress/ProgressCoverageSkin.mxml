@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:progress="com.clarityenglish.practicalwriting.view.progress.*">
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:ui="com.clarityenglish.practicalwriting.view.progress.ui.*">
 
     <fx:Metadata>
         [HostComponent("com.clarityenglish.practicalwriting.view.progress.ProgressCoverageView")]
@@ -19,7 +19,7 @@
     <s:Label id="coverageInstructionLabel" top="0" left="0" fontSize="13" />
 
     <s:Group width="100%" height="100%" horizontalCenter="0">
-        <progress:PieChartCoverageComponent top="20" nodeArrayCollection="{hostComponent.nodeArrayCollection}" maxRadius="509" maxLineWidth="355" />
+        <ui:PieChartCoverageComponent top="20" nodeArrayCollection="{hostComponent.nodeArrayCollection}" maxRadius="509" maxLineWidth="355" />
     </s:Group>
 
 </s:Skin>

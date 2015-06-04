@@ -1,4 +1,4 @@
-package com.clarityenglish.practicalwriting.view.progress {
+package com.clarityenglish.practicalwriting.view.progress.ui {
 import com.clarityenglish.common.vo.content.Bookmark;
 
 import mx.charts.PieChart;
@@ -6,7 +6,7 @@ import mx.charts.series.PieSeries;
 import mx.collections.ArrayCollection;
 import mx.core.UIComponent;
 
-import skins.practicalwriting.progress.DottedLine;
+import skins.practicalwriting.progress.ui.DottedLine;
 
 import spark.components.Group;
 import spark.components.Label;
