@@ -55,6 +55,13 @@
         <!-- Exercise -->
         <view:DynamicView id="dynamicView" left="17" right="15" top="65" bottom="10" />
 
+        <!--dynamicView disable cover-->
+        <s:Rect id="dynamicViewCover" left="17" right="15" top="30" bottom="10" visible="false">
+            <s:fill>
+                <s:SolidColor color="#606060" alpha="0.2" />
+            </s:fill>
+        </s:Rect>
+
         <!--Exercise Left Bar-->
         <s:Rect width="20" left="-5" top="40" bottom="-5" filters="{[dropShadowFilter]}">
             <s:fill>

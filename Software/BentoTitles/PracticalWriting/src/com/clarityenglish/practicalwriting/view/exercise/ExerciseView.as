@@ -1,6 +1,7 @@
 package com.clarityenglish.practicalwriting.view.exercise {
 import com.clarityenglish.bento.events.ExerciseEvent;
 import com.clarityenglish.bento.view.exercise.ExerciseView;
+import com.clarityenglish.practicalwriting.view.exercise.event.WindowShadeEvent;
 import com.clarityenglish.practicalwriting.view.exercise.ui.WindowShade;
 import com.googlecode.bindagetools.Bind;
 
@@ -25,8 +26,9 @@ import spark.components.Label;
 import spark.components.List;
 import spark.components.ToggleButton;
 import spark.events.IndexChangeEvent;
+import spark.primitives.Rect;
 
-    public class ExerciseView extends com.clarityenglish.bento.view.exercise.ExerciseView {
+public class ExerciseView extends com.clarityenglish.bento.view.exercise.ExerciseView {
 
         [SkinPart]
         public var unitLabel:Label;
@@ -36,6 +38,9 @@ import spark.events.IndexChangeEvent;
 
         [SkinPart]
         public var windowShade:WindowShade;
+
+        [SkinPart]
+        public var dynamicViewCover:Rect;
 
         [Bindable]
         public var selectedExerciseNode:XML;
@@ -54,6 +59,8 @@ import spark.events.IndexChangeEvent;
 
             // gh#1099
             stage.addEventListener(MouseEvent.CLICK, onStageClick);
+            addEventListener(WindowShadeEvent.WINDOWSHADE_OPEN, onWindowShadeOpen);
+            addEventListener(WindowShadeEvent.WINDOWSHADE_CLOSE, onWindowShadeClose);
         }
 
         protected override function partAdded(partName:String, instance:Object):void {
@@ -69,7 +76,6 @@ import spark.events.IndexChangeEvent;
                     Bind.fromProperty(this, "selectedExerciseNode").toFunction(function(node:XML):void {
                         if (node) {
                             courseIndex = node.parent().parent().childIndex();
-                            trace("course index: "+courseIndex);
                             exerciseList.selectedItem = node;
                             callLater(function():void {
                                 exerciseList.ensureIndexIsVisible(exerciseList.selectedIndex);
@@ -101,6 +107,16 @@ import spark.events.IndexChangeEvent;
             if (!(component is WindowShadeSkin)) {
                 windowShade.close();
             }
+        }
+
+        protected function onWindowShadeOpen(event:Event):void {
+            dynamicView.enabled = false;
+            dynamicViewCover.visible = true;
+        }
+
+        protected function onWindowShadeClose(event:Event):void {
+            dynamicView.enabled = true;
+            dynamicViewCover.visible = false;
         }
     }
 }

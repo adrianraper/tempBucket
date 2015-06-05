@@ -1,5 +1,7 @@
 package com.clarityenglish.practicalwriting.view.exercise.ui {
-	import flash.display.DisplayObject;
+import com.clarityenglish.practicalwriting.view.exercise.event.WindowShadeEvent;
+
+import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
@@ -114,12 +116,15 @@ package com.clarityenglish.practicalwriting.view.exercise.ui {
 		public function close():void {
 			isWindowShadeOpen = false;
 			animateSize(contentGroup.height, 0);
+			dispatchEvent(new WindowShadeEvent(WindowShadeEvent.WINDOWSHADE_CLOSE, true));
 		}
 		
 		/** Brings the height to the max available in its parent */
 		public function open():void {	
 			isWindowShadeOpen = true;
 			animateSize(contentGroup.height, elementHeight);
+
+			dispatchEvent(new WindowShadeEvent(WindowShadeEvent.WINDOWSHADE_OPEN, true));
 		}
 		
 		protected function onElementAdd(event:Event):void {
