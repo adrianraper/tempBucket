@@ -61,10 +61,10 @@
                 <s:SolidColor color="#FFFFFF" />
             </s:fill>
         </s:Rect>
-        <s:HGroup left="10" right="160" height="100%" horizontalAlign="center" verticalAlign="middle">
-            <s:Group id="timerSessionGroup" width="82%" height="100%">
+        <s:HGroup width="87%" height="100%" gap="0" horizontalAlign="center" verticalAlign="middle">
+            <s:Group id="timerSessionGroup" width="80%" height="100%">
                 <!--Fake HSlider-->
-                <s:Group width="696" height="38" verticalCenter="0" horizontalCenter="0"  excludeFrom="startState">
+                <s:Group width="696" height="38" verticalCenter="0" horizontalCenter="0" excludeFrom="startState">
                     <s:Rect width="100%" height="100%" radiusX="6" radiusY="6">
                         <s:fill>
                             <s:SolidColor color="#DDDDDC" />
@@ -108,10 +108,10 @@
                                 thumbSkin="skins.practicalwriting.exercise.timer.HSliderThumbSkin"/>
                 </s:Group>
                 <!--Data Tip-->
-                <s:Group left="10" verticalCenter="-30">
-                    <s:Label id="firstTipLabel" color="#15516D" text="{'Planning ' + timeConvert(timerSlider.values[0])}" />
-                    <s:Label id="midTipLabel" color="#0681A8" text="{'Writing ' + timeConvert(timerSlider.values[1] - timerSlider.values[0])}" />
-                    <s:Label id="lastTipLabel" color="#15516D" text="{'Proofreading ' + timeConvert(timerSlider.maximum - timerSlider.values[1])}" />
+                <s:Group width="676" horizontalCenter="0" verticalCenter="-30">
+                    <s:Label id="firstTipLabel" color="#15516D" text="{'Planning ' + timeConvert(timerSlider.values[0])}" fontSize="13" />
+                    <s:Label id="midTipLabel" color="#0681A8" text="{'Writing ' + timeConvert(timerSlider.values[1] - timerSlider.values[0])}" fontSize="13" />
+                    <s:Label id="lastTipLabel" color="#15516D" text="{'Proofreading ' + timeConvert(timerSlider.maximum - timerSlider.values[1])}" fontSize="13" />
                 </s:Group>
                 <!--Progress Bar-->
                 <s:Group id="progressBarGroup" width="{hostComponent.sliderWidth}" height="18" horizontalCenter="0" verticalCenter="-1" excludeFrom="startState">
@@ -150,7 +150,7 @@
                 </s:Group>
             </s:Group>
 
-            <s:Group width="18%" height="100%">
+            <s:Group width="20%" height="100%">
                 <s:VGroup width="100%" height="100%" horizontalAlign="center" verticalCenter="-10" verticalAlign="middle" gap="0" includeIn="startState">
                     <s:HGroup width="100%" height="20" gap="6" horizontalAlign="center" verticalAlign="middle">
                         <s:Rect width="25" height="1">
@@ -166,11 +166,11 @@
                         </s:Rect>
                     </s:HGroup>
                     <s:HGroup horizontalAlign="center" verticalAlign="middle">
-                        <s:TextInput id="hoursTextInput" width="30" height="40" text="00" color="0xFFFFFF" fontSize="21" contentBackgroundColor="#0A789D" />
+                        <s:TextInput id="hoursTextInput" width="38" height="40" text="00" textAlign="center" color="0xFFFFFF" fontSize="20" contentBackgroundColor="#0A789D" />
                         <s:Label text=":" />
-                        <s:TextInput id="minsTextInput" width="30" height="40" text="00" color="0xFFFFFF" fontSize="21" contentBackgroundColor="#0A789D" />
+                        <s:TextInput id="minsTextInput" width="38" height="40" text="00" textAlign="center" color="0xFFFFFF" fontSize="20" contentBackgroundColor="#0A789D" />
                         <s:Label text=":" />
-                        <s:TextInput id="secondsTextInput" width="30" height="40" text="00" color="0xFFFFFF" fontSize="21" contentBackgroundColor="#0A789D" />
+                        <s:TextInput id="secondsTextInput" width="38" height="40" text="00" textAlign="center" color="0xFFFFFF" fontSize="20" contentBackgroundColor="#0A789D" />
                     </s:HGroup>
                 </s:VGroup>
 
@@ -178,7 +178,7 @@
             </s:Group>
         </s:HGroup>
 
-        <s:HGroup width="15%" height="100%" right="0" gap="0" verticalAlign="middle">
+        <s:HGroup width="13%" height="100%" right="0" gap="0" verticalAlign="middle">
             <s:Group width="50%" height="100%">
                 <s:Button id="startButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Start" includeIn="startState"/>
                 <s:Button id="pauseButton" width="1000%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Pause" includeIn="pauseState"/>

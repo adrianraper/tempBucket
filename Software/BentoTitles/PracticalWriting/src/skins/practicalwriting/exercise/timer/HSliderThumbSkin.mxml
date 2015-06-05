@@ -9,14 +9,14 @@
         <s:State name="disabled" />
     </s:states>
 
-    <s:Group width="100%" height="100%" useHandCursor="true" buttonMode="true">
+    <s:Group width="100%" height="100%" top="-5" useHandCursor="true" buttonMode="true">
         <s:Rect width="100%" height="100%">
             <s:fill>
                 <s:SolidColor color="#FFFFFF" alpha="0" />
             </s:fill>
         </s:Rect>
 
-        <timer:arrowthumb verticalCenter="2" />
+        <timer:arrowthumb/>
     </s:Group>
 
 </s:Skin>
