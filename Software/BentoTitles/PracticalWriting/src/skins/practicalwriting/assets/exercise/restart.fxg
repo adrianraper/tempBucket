@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Graphic version="1.0" viewHeight="15.373" viewWidth="13.3643" ai:appVersion="14.0.0.367" d:id="1" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ai="http://ns.adobe.com/ai/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
+<Graphic version="1.0" viewHeight="15.3721" viewWidth="13.3643" ai:appVersion="14.0.0.367" d:id="1" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ai="http://ns.adobe.com/ai/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
   <Library/>
-  <Group x="-1074.23" y="-2451.8" d:id="4" d:type="layer" d:userLabel="Layer 1"/>
-  <Group x="-85.5928" d:id="43" d:type="layer" d:userLabel="Layer 11">
-    <Path winding="nonZero" ai:knockout="0" data="M98.3643 5.93848C97.2354 3.43848 94.6846 1.89453 91.96 2.02441L93.292 0.558594C93.415 0.422852 93.4053 0.210938 93.2705 0.0869141 93.1338 -0.0371094 92.9209 -0.0273438 92.7979 0.110352L90.9639 2.12695C90.8486 2.25293 90.8467 2.44531 90.96
- 2.57324L92.7666 4.61426C92.833 4.68848 92.9229 4.72559 93.0146 4.72656 93.0947 4.72754 93.1748 4.7002 93.2393 4.64258 93.376 4.52148 93.3896 4.30957 93.2666 4.1709L91.958 2.69238C94.4229 2.5625 96.7354 3.95313 97.7549 6.21289 99.1221 9.23633
- 97.7744 12.8047 94.751 14.1709 91.7275 15.5371 88.1572 14.1895 86.792 11.167 85.7412 8.83984 86.2803 6.09277 88.1357 4.33203 88.2686 4.2041 88.2744 3.99316 88.1475 3.86035 88.0205 3.72461 87.8076 3.72266 87.6748 3.84668 85.6143 5.80371 85.0146
- 8.85645 86.1826 11.4424 87.7002 14.7998 91.667 16.2979 95.0264 14.7803 98.3838 13.2627 99.8818 9.2959 98.3643 5.93848" >
+  <Group x="-406.386" y="-96.9111" d:id="2" d:type="layer" d:userLabel="Layer 1">
+    <Path winding="nonZero" ai:knockout="0" data="M419.158 102.849C418.028 100.349 415.479 98.8057 412.753 98.9351L414.085 97.4702C414.209 97.3335 414.199 97.1221 414.063 96.998 413.927 96.874 413.715 96.8843 413.591 97.0205L411.757 99.0376C411.642 99.1636 411.641 99.356 411.754 99.4839
+L413.561 101.525C413.626 101.599 413.717 101.637 413.809 101.638 413.888 101.638 413.968 101.611 414.032 101.554 414.17 101.432 414.184 101.22 414.061 101.082L412.751 99.603C415.217 99.4731 417.528 100.864 418.549 103.124 419.914 106.146 418.566
+ 109.716 415.544 111.082 412.521 112.447 408.951 111.101 407.585 108.078 406.534 105.751 407.073 103.004 408.929 101.243 409.063 101.115 409.068 100.904 408.941 100.771 408.813 100.636 408.602 100.633 408.469 100.757 406.407 102.715 405.808 105.767
+ 406.977 108.353 408.493 111.711 412.46 113.208 415.819 111.69 419.177 110.174 420.675 106.207 419.158 102.849Z" >
       <fill>
         <SolidColor color="#484848"/>
       </fill>
@@ -14,19 +13,14 @@
   </Group>
   <Private>
     <ai:PrivateElement d:ref="#1">
-      <ai:DocData base="UpBarRestart-06.assets/images"/>
-      <ai:AutoGenImageList>
-        <ai:Dictionary>
-          <ai:DictEntry name="0" value="ai143200953515.png" valueType="UnicodeString"/>
-        </ai:Dictionary>
-      </ai:AutoGenImageList>
+      <ai:DocData base="REstart2-04.assets/images"/>
       <ai:SaveOptions>
         <ai:Dictionary>
-          <ai:DictEntry name="writeImages" value="1" valueType="Boolean"/>
-          <ai:DictEntry name="includeXMP" value="0" valueType="Boolean"/>
-          <ai:DictEntry name="includeSymbol" value="0" valueType="Boolean"/>
-          <ai:DictEntry name="aiEditCap" value="1" valueType="Boolean"/>
           <ai:DictEntry name="versionKey" value="1" valueType="Integer"/>
+          <ai:DictEntry name="aiEditCap" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="includeSymbol" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="includeXMP" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="writeImages" value="1" valueType="Boolean"/>
           <ai:DictEntry name="clipToActiveArtboard" value="1" valueType="Boolean"/>
           <ai:DictEntry name="downsampleLinkedImages" value="0" valueType="Boolean"/>
           <ai:DictEntry name="rasterizeResolution" value="72" valueType="Integer"/>
@@ -35,18 +29,13 @@
           <ai:DictEntry name="preserveTextPolicy" value="3" valueType="Integer"/>
         </ai:Dictionary>
       </ai:SaveOptions>
-      <ai:Artboards rulerCanvasDiffH="512.5" rulerCanvasDiffV="384.5">
-        <ai:Artboard active="1" bottom="-299.291" index="5" left="3000.277" right="3013.642" top="-283.917"/>
+      <ai:Artboards rulerCanvasDiffH="421.5" rulerCanvasDiffV="298.5">
+        <ai:Artboard active="1" bottom="-305.767" index="3" left="476.216" right="489.58" top="-290.395"/>
       </ai:Artboards>
     </ai:PrivateElement>
-    <ai:PrivateElement d:ref="#4">
+    <ai:PrivateElement d:ref="#2">
       <ai:LayerOptions colorType="ThreeColor">
         <ai:ThreeColor blue="257" green="128.502" red="79.31"/>
-      </ai:LayerOptions>
-    </ai:PrivateElement>
-    <ai:PrivateElement d:ref="#43">
-      <ai:LayerOptions colorType="ThreeColor">
-        <ai:ThreeColor/>
       </ai:LayerOptions>
     </ai:PrivateElement>
   </Private>

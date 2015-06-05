@@ -150,6 +150,10 @@ exercise|ExerciseView exerciseui|WindowShade s|Button#thumbButton{
     skinClass: ClassReference("skins.practicalwriting.exercise.WindowShadeThumbButtonSkin");
 }
 
+exercise|ExerciseView s|List#exerciseList s|VScrollBar {
+    skinClass: ClassReference("skins.practicalwriting.exercise.VScrollBarSkin");
+}
+
 progress|ProgressView {
     skinClass: ClassReference("skins.practicalwriting.ProgressSkin");
 }

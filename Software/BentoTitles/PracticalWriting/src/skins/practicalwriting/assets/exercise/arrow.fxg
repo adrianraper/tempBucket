@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Graphic version="1.0" viewHeight="12" viewWidth="14.1777" ai:appVersion="14.0.0.367" d:id="1" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ai="http://ns.adobe.com/ai/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
-  <Library/>
-  <Group x="-372.107" y="-99.2949" d:id="2" d:type="layer" d:userLabel="Layer 1">
-    <Group x="372.106" y="99.2949" ai:knockout="0">
-      <Path winding="nonZero" ai:knockout="0" data="M4.54199 12C4.45508 12 4.37109 11.9648 4.31152 11.9014L0.0888672 7.46875C-0.0332031 7.34082 -0.0283203 7.13965 0.0996094 7.01855 0.226563 6.89648 0.428711 6.90137 0.549805 7.0293L4.52441 11.2012 13.6143 0.116699C13.7256 -0.0195313 13.9258
- -0.0390625 14.0625 0.0722656 14.1982 0.183594 14.2178 0.384277 14.1064 0.520508L4.78809 11.8838C4.73047 11.9541 4.64453 11.9961 4.55371 12L4.54199 12 4.54199 12Z" >
-        <fill>
-          <SolidColor color="#484848"/>
-        </fill>
-      </Path>
-    </Group>
+<Graphic version="1.0" viewHeight="10" viewWidth="5.00049" ai:appVersion="14.0.0.367" d:id="1" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ai="http://ns.adobe.com/ai/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
+  <Group x="0.000488281" y="0.000488281" d:id="2" d:type="layer" d:userLabel="Layer 1">
+    <Path winding="nonZero" ai:knockout="0" data="M1.99463 4.99902L0 9.99951 5 4.99902 0 0 1.99463 4.99902Z" >
+      <fill>
+        <SolidColor color="#343333"/>
+      </fill>
+    </Path>
   </Group>
   <Private>
     <ai:PrivateElement d:ref="#1">
-      <ai:DocData base="marking2-03.assets/images"/>
       <ai:SaveOptions>
         <ai:Dictionary>
           <ai:DictEntry name="versionKey" value="1" valueType="Integer"/>
@@ -29,8 +24,10 @@
           <ai:DictEntry name="preserveTextPolicy" value="3" valueType="Integer"/>
         </ai:Dictionary>
       </ai:SaveOptions>
-      <ai:Artboards rulerCanvasDiffH="421.5" rulerCanvasDiffV="298.5">
-        <ai:Artboard active="1" bottom="-304.778" index="2" left="441.938" right="456.115" top="-292.778"/>
+      <ai:DocData base="arrow.assets/images"/>
+      <ai:Artboards originOffsetH="0" originOffsetV="10" rulerCanvasDiffH="2.5" rulerCanvasDiffV="-5" zoom="24">
+        <ai:Artboard active="1" index="0" right="5" top="10"/>
+        <ai:ArtboardsParam all="0" range="" type="0"/>
       </ai:Artboards>
     </ai:PrivateElement>
     <ai:PrivateElement d:ref="#2">

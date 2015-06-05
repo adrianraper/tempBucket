@@ -31,8 +31,8 @@
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
                    xmlns:s="library://ns.adobe.com/flex/spark"
                    xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-                   xmlns:exercise="skins.practicalwriting.assets.exercise.*"
-                   minWidth="21" minHeight="21">
+                   minWidth="21" minHeight="21"
+                   alpha.disabled="0.5">
 
     <fx:Metadata>
         <![CDATA[
@@ -43,10 +43,6 @@
         ]]>
     </fx:Metadata>
 
-    <fx:Declarations>
-        <s:DropShadowFilter id="dropShadowFilter" angle="70" distance="1.5" alpha="0.8"/>
-    </fx:Declarations>
-
     <!-- states -->
     <s:states>
         <s:State name="up" />
@@ -55,23 +51,25 @@
         <s:State name="disabled" />
     </s:states>
 
-    <s:Rect left="0" right="0" top="0" bottom="0">
+    <s:Rect width="15" top="0" bottom="0" horizontalCenter="0">
         <s:fill>
-            <s:SolidColor color="#F3F4F4" color.over="#DADBD9" color.down="#DADBD9"/>
+            <s:SolidColor color="#FFFFFF" alpha="0" />
         </s:fill>
     </s:Rect>
 
-    <s:HGroup top="11" bottom="11" left="11" right="11" horizontalAlign="center" verticalAlign="middle">
-        <exercise:restart />
+    <s:Rect id="fill" horizontalCenter="6" width="4" top="0" bottom="0" radiusX="5" radiusY="5">
+        <s:fill>
+            <s:SolidColor color="#D6D6D6" alpha="0.7"/>
+        </s:fill>
+    </s:Rect>
 
-        <!-- layer 8: text -->
-        <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
-        <s:Label id="labelDisplay"
-                 textAlign="center"
-                 maxDisplayedLines="1"
-                 verticalAlign="middle" paddingTop="3"
-                 fontFamily="Helvetica" color="#474748" fontSize="15" fontWeight="normal">
-        </s:Label>
-    </s:HGroup>
+    <!-- layer 8: text -->
+    <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
+    <s:Label id="labelDisplay"
+             textAlign="center"
+             maxDisplayedLines="1"
+             horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
+             left="10" right="10" top="2" bottom="2">
+    </s:Label>
 
 </s:SparkButtonSkin>

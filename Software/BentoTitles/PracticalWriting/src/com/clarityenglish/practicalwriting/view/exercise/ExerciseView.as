@@ -24,6 +24,7 @@ import spark.components.Label;
 
 import spark.components.List;
 import spark.components.ToggleButton;
+import spark.events.IndexChangeEvent;
 
     public class ExerciseView extends com.clarityenglish.bento.view.exercise.ExerciseView {
 
@@ -31,7 +32,7 @@ import spark.components.ToggleButton;
         public var unitLabel:Label;
 
         [SkinPart]
-        public var unitList:List;
+        public var exerciseList:List;
 
         [SkinPart]
         public var windowShade:WindowShade;
@@ -59,35 +60,31 @@ import spark.components.ToggleButton;
             super.partAdded(partName, instance);
 
             switch (instance) {
-                case unitList:
+                case exerciseList:
                     var exerciseSelected:Signal = new Signal(XML);
 
-                    var unitListItemRenderer:ClassFactory = new ClassFactory(ExerciseUnitListItemRenderer);
-                    unitListItemRenderer.properties = { selectedExerciseNode: selectedExerciseNode, exerciseSelected: exerciseSelected };
-                    instance.itemRenderer = unitListItemRenderer;
-
-                    unitList.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
+                    exerciseList.addEventListener(IndexChangeEvent.CHANGE, onExerciseSelected);
 
                     // Select the current unit and exercise
                     Bind.fromProperty(this, "selectedExerciseNode").toFunction(function(node:XML):void {
                         if (node) {
-                            unitList.selectedItem = node.parent();
+                            courseIndex = node.parent().parent().childIndex();
+                            trace("course index: "+courseIndex);
+                            exerciseList.selectedItem = node;
                             callLater(function():void {
-                                unitList.ensureIndexIsVisible(unitList.selectedIndex);
+                                exerciseList.ensureIndexIsVisible(exerciseList.selectedIndex);
                                 exerciseSelected.dispatch(node);
                             });
-
-                            courseIndex = node.parent().parent().childIndex();
                         }
                     });
                     break;
             }
         }
 
-        protected function onExerciseSelected(e:ExerciseEvent):void {
-            if (e.node) {
+        protected function onExerciseSelected(e:Event):void {
+            if (exerciseList.selectedItem) {
                 windowShade.close();
-                setTimeout(nodeSelect.dispatch, 400, e.node);
+                setTimeout(nodeSelect.dispatch, 400, exerciseList.selectedItem);
             }
         }
 

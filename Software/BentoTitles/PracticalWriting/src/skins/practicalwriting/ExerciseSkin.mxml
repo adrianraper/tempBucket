@@ -87,53 +87,58 @@
 
         <s:ToggleButton id="menuToggleButton" top="5" left="0" />
 
-        <!--Unit Label-->
-        <s:Label id="unitLabel" left="60" top="20" text="{hostComponent.selectedExerciseNode.parent().attribute('caption')}" fontSize="15" color="{getStyle('pieChartFillColor')[hostComponent.courseIndex]}" />
-
-        <!-- Top Right Navigation Buttons -->
-        <s:HGroup top="5" horizontalCenter="188" gap="1">
-            <s:Button id="backButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true"
-                      useHandCursor="true" enabled="{!hostComponent.isFirstExercise}"
-                      visible="{!hostComponent.isDirectStartEx}"/>
-            <s:Button id="forwardButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true"
-                      useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
-        </s:HGroup>
+        <!--Course Label-->
+        <s:Label id="courseLabel" left="60" top="20" text="{hostComponent.selectedExerciseNode.parent().parent().attribute('caption')}" fontSize="15" color="{getStyle('pieChartFillColor')[hostComponent.courseIndex]}" />
 
         <!-- Top Right Buttons -->
-        <s:HGroup right="0" top="5" gap="1">
-            <s:Button id="markingButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true"
-                      useHandCursor="true"/>
-            <s:Button id="feedbackButton" visible="false" includeInLayout="false" color="0x333333" fontSize="15"
-                      fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
-            <s:Button id="startAgainButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true"
-                      useHandCursor="true"/>
-            <!--s:Button id="recorderButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true"
-                      useHandCursor="true"/-->
+        <s:HGroup left="627" top="5" gap="1">
+            <s:Button id="backButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}" visible="{!hostComponent.isDirectStartEx}"/>
+            <s:Button id="forwardButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
+            <s:Button id="markingButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
+            <s:Button id="feedbackButton" visible="false" includeInLayout="false" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
+            <s:Button id="startAgainButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
+            <!--s:Button id="recorderButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true"useHandCursor="true"/-->
         </s:HGroup>
 
-        <!--Top raw-->
-        <s:Group top="0" left="310" width="272">
-            <ui:WindowShade id="windowShade" top="47" width="272" height="304">
-                <s:Rect width="272" height="543" top="0" bottom="0" bottomLeftRadiusX="8" bottomLeftRadiusY="8"
-                        bottomRightRadiusX="8" bottomRightRadiusY="8" horizontalCenter="0">
-                    <s:stroke>
-                        <s:SolidColorStroke color="#497A7A" weight="6"/>
-                    </s:stroke>
+        <!--Top Dropdown menu-->
+        <s:Group top="0" left="300" width="272">
+            <ui:WindowShade id="windowShade" top="47" width="317" height="368">
+                <s:Rect width="272" height="368" top="0" bottom="0" bottomLeftRadiusX="8" bottomLeftRadiusY="8"
+                        bottomRightRadiusX="8" bottomRightRadiusY="8" horizontalCenter="0" filters="{[dropShadowFilter]}">
                     <s:fill>
-                        <s:SolidColor color="#062E2E"/>
+                        <s:SolidColor color="#FFFFFF"/>
                     </s:fill>
                 </s:Rect>
-                <s:List id="unitList"
-                        dataProvider="{new XMLListCollection(hostComponent.selectedExerciseNode.parent().parent().unit)}"
-                        width="272" bottom="10" top="18" left="20" verticalScrollPolicy="on" scaleX="0.9" scaleY="0.9"
-                        borderVisible="false" contentBackgroundAlpha="0">
+                <s:List id="exerciseList" dataProvider="{new XMLListCollection(hostComponent.selectedExerciseNode.parent().exercise)}" width="272" bottom="10" top="10" left="13" verticalScrollPolicy="off" scaleX="0.9" scaleY="0.9" borderVisible="false" contentBackgroundAlpha="0">
                     <s:layout>
-                        <s:VerticalLayout gap="10"/>
+                        <s:VerticalLayout gap="0"/>
                     </s:layout>
+                    <s:itemRenderer>
+                        <fx:Component>
+                            <s:ItemRenderer width="100%">
+                                <s:states>
+                                    <s:State name="normal" />
+                                    <s:State name="selected" />
+                                    <s:State name="hovered" />
+                                </s:states>
+
+                                <s:Rect left="0" right="0" top="0" bottom="0" includeIn="selected, hovered">
+                                    <s:fill>
+                                        <s:SolidColor color="#FEE9CB" />
+                                    </s:fill>
+                                </s:Rect>
+
+                                <s:HGroup left="10" top="10" bottom="10" verticalAlign="middle">
+                                    <exercise:arrow />
+                                    <s:Label text="{data.@caption}" color="#333333" color.selected="#09789C" color.hovered="#333333" fontSize="13" />
+                                </s:HGroup>
+                            </s:ItemRenderer>
+                        </fx:Component>
+                    </s:itemRenderer>
                 </s:List>
             </ui:WindowShade>
-            <s:Group width="272" height="48">
-                <exercise:dropDownMenu top="-5"/>
+            <s:Group width="317" height="48">
+                <exercise:dropDownMenu top="-5" width="317"/>
                 <s:Label text="{hostComponent.selectedExerciseNode.@caption}" horizontalCenter="0" verticalCenter="0"
                          color="#FFFFFF" fontSize="15" fontFamily="Helvetica"/>
             </s:Group>
