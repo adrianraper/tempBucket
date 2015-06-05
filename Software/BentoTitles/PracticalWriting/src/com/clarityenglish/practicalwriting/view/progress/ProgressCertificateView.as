@@ -145,7 +145,7 @@ public class ProgressCertificateView extends BentoView {
         certificateGroup.visible = false;
         printButton.visible = false;
         trace("coverage: "+coverage);
-        if (coverage > 90) {
+        if (coverage < 90) {
             oopsVGroup.visible = true;
             var notCompleteString:String = copyProvider.getCopyForId("notCompleteString", {exerciseAmount: exerciseAmount, totalExercise: totalExercise, aveScor: aveScore});
             var textFlow:TextFlow = TextFlowUtil.importFromString(notCompleteString);
