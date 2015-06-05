@@ -1,8 +1,12 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace practicalwriting "com.clarityenglish.practicalwriting.*";
-
+@namespace nonetwork "com.clarityenglish.bento.view.nonetwork.*";
 
 practicalwriting|PracticalWritingApplication {
     skinClass: ClassReference("skins.practicalwritingair.PracticalWritingApplicationSkin");
+}
+
+nonetwork|NoNetworkView {
+    skinClass: ClassReference("skins.practicalwritingair.nonetwork.NoNetworkSkin");
 }
