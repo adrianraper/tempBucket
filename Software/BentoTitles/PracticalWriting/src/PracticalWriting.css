@@ -90,6 +90,10 @@ zone|ZoneView {
     skinClass: ClassReference("skins.practicalwriting.ZoneSkin");
 }
 
+zone|ZoneView s|Button#backButton {
+    skinClass: ClassReference("skins.practicalwriting.zone.BackHomeButtonSkin");
+}
+
 zone|ZoneView s|TabbedViewNavigator#zoneViewNavigator {
     skinClass: ClassReference("skins.practicalwriting.zone.ZoneViewNavigatorSkin");
 }

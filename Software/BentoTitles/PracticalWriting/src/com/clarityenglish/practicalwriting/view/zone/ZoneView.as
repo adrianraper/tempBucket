@@ -95,7 +95,7 @@ import spark.primitives.Rect;
                     zoneViewNavigator.tabBar.addEventListener(MouseEvent.CLICK, onZoneViewNavigatorClick);
                     break;
                 case backButton:
-                    backButton.label = copyProvider.getCopyForId("backButton");
+                    backButton.label = copyProvider.getCopyForId("Back");
                     backButton.addEventListener(MouseEvent.CLICK, onBackButtonClick);
                     break;
                 case skillCaptionLabel:

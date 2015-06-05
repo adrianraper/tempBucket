@@ -67,6 +67,6 @@
     </s:TabbedViewNavigator>
 
     <!--Back button-->
-    <s:Button id="backButton" />
+    <s:Button id="backButton" bottom="50" right="30" buttonMode="true" useHandCursor="true" />
 
 </s:Skin>
