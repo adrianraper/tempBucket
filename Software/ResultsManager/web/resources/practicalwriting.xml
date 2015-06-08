@@ -7,11 +7,28 @@
 
 			<lit name="goToHelpButton">Help</lit>
 			<lit name="goToSettingsButton">Settings</lit>
-
+			<lit name="minsLabel"><![CDATA[ mins]]></lit>
+           		 <lit name="readLabel"><![CDATA[ read]]></lit>
 			<!-- Help -->
 			<lit name="helpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/ActiveReadingHelp.pdf</lit>
 			<lit name="recorderHelpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/ActiveReadingHelp.pdf</lit>
-			
+
+			<!-- Progress certificate -->
+			<lit name="notCompleteString">
+				<![CDATA[
+                <p>You have not completed this level yet, so you cannot receive a certificate.</p>
+                <p>So far you have completed <span fontWeight="bold" fontSize="16">{exerciseAmount} of {totalExercise} exercises</span> and your average score is <span fontWeight="bold" fontSize="16">{aveScor}%.</span></p>
+                <p>Go to <span fontWeight="bold" fontSize="16">My Coverage</span> to see which exercises you have not completed so that</p>
+                <p>you can finish the whole level.</p>
+             ]]>
+			</lit>
+			<lit name="completeString">
+				<![CDATA[
+                <p>This is to certify that this learner has completed this level</p>
+                <p>with an average score of <span fontWeight="bold" fontSize="14">{aveScore}%.</span></p>
+                ]]>
+			</lit>
+
 			<!-- Footer -->
 			<lit name="copyright">© Clarity Language Consultants Ltd, 1993-2015. All rights reserved.</lit>
             <lit name="versionLabel">v{versionNumber}</lit>
@@ -30,6 +47,8 @@
                         <p>Every effort has been made to trace owners of copyright, but if any omissions can be rectified,<br/>we will be pleased to make the necessary arrangements.</p>
                 ]]>
 			</lit>
+			<lit name="certificateSignatureNameLabel">Dr Adrian Raper,</lit>
+			<lit name="certificateSignatureTitle">Clarity Training Officer</lit>
 			
 			<!-- Exercise -->
 			<lit name="neutralFeedbackTitle">Feedback</lit>

@@ -3,6 +3,8 @@ import com.clarityenglish.bento.BBNotifications;
 import com.clarityenglish.bento.BentoFacade;
 import com.clarityenglish.bento.view.exercise.ExerciseMediator;
 import com.clarityenglish.practicalwriting.controller.PracticalWritingStartupCommand;
+import com.clarityenglish.practicalwriting.view.closing.ClosingMediator;
+import com.clarityenglish.practicalwriting.view.closing.ClosingView;
 import com.clarityenglish.practicalwriting.view.exercise.ExerciseView;
 import com.clarityenglish.practicalwriting.view.home.HomeMediator;
 import com.clarityenglish.practicalwriting.view.home.HomeView;
@@ -55,6 +57,7 @@ public class PracticalWritingApplicationFacade extends BentoFacade {
             mapView(ProgressScoreView, ProgressScoreMediator);
             mapView(ProgressCertificateView, ProgressCertificateMediator);
             mapView(SettingsView, SettingsMediator);
+            mapView(ClosingView, ClosingMediator);
 
             registerCommand(BBNotifications.STARTUP, PracticalWritingStartupCommand);
         }

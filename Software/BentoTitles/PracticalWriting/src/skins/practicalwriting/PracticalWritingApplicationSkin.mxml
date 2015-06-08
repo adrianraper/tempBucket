@@ -4,7 +4,7 @@
         xmlns:login="com.clarityenglish.bento.view.login.*"
         xmlns:title="com.clarityenglish.practicalwriting.view.title.*"
         xmlns:nonetwork="com.clarityenglish.bento.view.nonetwork.*"
-        xmlns:credits="com.clarityenglish.practicalwriting.view.credits.*">
+        xmlns:closing="com.clarityenglish.practicalwriting.view.closing.*">
 
     <!-- host component -->
     <fx:Metadata>
@@ -18,7 +18,7 @@
       <s:State name="loading"/>
       <s:State name="login"/>
       <s:State name="title"/>
-      <s:State name="credits"/>
+      <s:State name="closing"/>
       <s:State name="nonetwork"/>
     </s:states>
 
@@ -39,7 +39,7 @@
         </s:Group>
       <login:LoginView id="loginView" width="100%" height="100%" includeIn="login" />
       <title:TitleView id="titleView" width="100%" height="100%" includeIn="title" />
-      <credits:CreditsView id="creditsView" width="100%" height="100%" includeIn="credits" />
+      <closing:ClosingView id="closingView" width="100%" height="100%" includeIn="closing" />
       <nonetwork:NoNetworkView id="noNetworkView" verticalCenter="0" horizontalCenter="0" includeIn="nonetwork" />
     </s:Group>
 

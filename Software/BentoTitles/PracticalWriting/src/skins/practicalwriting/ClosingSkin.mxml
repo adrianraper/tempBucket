@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark"
-        xmlns:assets="skins.practicalwriting.assets.*"
-        xmlns:nonetwork="skins.practicalwritingair.assets.*">
+        xmlns:assets="skins.practicalwriting.assets.*">
 
     <!-- host component -->
     <fx:Metadata>
-        [HostComponent("com.clarityenglish.bento.view.nonetwork.NoNetworkView")]
+        [HostComponent("com.clarityenglish.practicalwriting.view.closing.ClosingView")]
     </fx:Metadata>
 
     <!-- states -->
@@ -26,18 +25,18 @@
     <assets:mediumlogo left="52" top="47"/>
 
     <!--Background-->
-    <s:BitmapImage left="0" bottom="0" width="100%" source="@Embed(source='skins/practicalwriting/assets/login/backgroundLargeBall.png')" scaleMode="zoom" />
+    <s:BitmapImage left="0" bottom="0" width="100%" source="@Embed(source='/skins/practicalwriting/assets/login/backgroundLargeBall.png')" scaleMode="zoom" />
 
-    <s:VGroup verticalCenter="110" horizontalCenter="-80" horizontalAlign="center" height="500" width="600" gap="34">
-        <s:VGroup width="530" textAlign="center">
-            <s:Label id="nonetworkCaptionLabel" width="100%" fontSize="67" color="#09789C" />
-            <s:Label id="nonetworkContentLabel" width="100%" fontSize="32" color="#09789C" textAlign="center" />
+    <s:VGroup verticalCenter="110" horizontalCenter="-180" horizontalAlign="center" height="500" width="600" gap="34">
+        <s:VGroup width="450" textAlign="center">
+            <s:Label id="closingCaptionLabel" width="100%" fontSize="77" color="#09789C" />
+            <s:Label id="closingContentLabel" width="100%" fontSize="42" color="#09789C" />
+            <s:Label id="productNameLabel" width="100%" fontSize="42" color="#09789C" />
         </s:VGroup>
-        <s:SWFLoader source="@Embed('/skins/practicalwritingair/assets/wifi.png')" />
     </s:VGroup>
 
     <!--Man-->
-    <s:SWFLoader right="0" bottom="0" source="@Embed(source='skins/practicalwriting/assets/login/loginMan.png')" />
+    <s:SWFLoader right="0" bottom="0" source="@Embed(source='/skins/practicalwriting/assets/login/loginMan.png')" />
 
     <!--Footer-->
     <s:Group height="28" bottom="8" left="0" right="0">

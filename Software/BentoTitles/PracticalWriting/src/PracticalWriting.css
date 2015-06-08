@@ -9,6 +9,7 @@
 @namespace title "com.clarityenglish.practicalwriting.view.title.*";
 @namespace progress "com.clarityenglish.practicalwriting.view.progress.*";
 @namespace settings "com.clarityenglish.practicalwriting.view.settings.*";
+@namespace closing "com.clarityenglish.practicalwriting.view.closing.*";
 @namespace timer "com.clarityenglish.bento.view.timer.*";
 @namespace vo "com.clarityenglish.practicalwriting.view.vo.*";
 
@@ -192,6 +193,10 @@ progress|ProgressCertificateView s|Button#printButton {
 
 settings|SettingsView {
     skinClass: ClassReference("skins.practicalwriting.SettingsSkin");
+}
+
+closing|ClosingView {
+    skinClass: ClassReference("skins.practicalwriting.ClosingSkin");
 }
 
 timer|TimerComponent {

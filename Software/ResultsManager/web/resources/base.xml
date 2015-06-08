@@ -218,6 +218,10 @@
             <lit name="nameTextLabel">Name:</lit>
             <lit name="courseTextLabel">Course:</lit>
             <lit name="dateTextLabel">Date:</lit>
+            <lit name="certificateName">{name}</lit>
+            <lit name="certificateCourse">{course}</lit>
+            <lit name="certificateDate">{date}</lit>
+            <lit name="certificateWording">This is to certify that this learner has completed this level and has achieved an average score of {score}%.</lit>
             
             <!-- Marking and feedback -->
             <lit name="tryAgainButton">Try again</lit>
@@ -233,7 +237,14 @@
             <lit name="incorrectFeedbackTitle">Sorry...</lit>
             <lit name="neutralFeedbackTitle"></lit>
             <lit name="generalFeedbackTitle"></lit>
-            
+
+            <!--No network-->
+            <lit name="nonetworkCaptionLabel">Connection error</lit>
+            <lit name="nonetworkContentLabel">An internet connection is required, but cannot be detected.</lit>
+
+            <!--Closing-->
+            <lit name="closingCaptionLabel">Thank you</lit>
+            <lit name="closingContentLabel">for using</lit>
 		</group>
 	</language>
 

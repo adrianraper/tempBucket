@@ -83,7 +83,7 @@ import org.puremvc.as3.utilities.statemachine.StateMachine;
                     view.callLater(handleDirectStart); // need to use callLater as otherwise the title state hasn't validated yet
                     break;
                 case BBStates.STATE_CREDITS:
-                    view.currentState = "credits";
+                    view.currentState = "closing";
                     break;
             }
         }
