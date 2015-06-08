@@ -185,7 +185,7 @@
 
         <!--- @private -->
         <fx:Component id="hoverIndicator">
-            <s:Rect implements="spark.components.gridClasses.IGridVisualElement">
+            <s:Rect implements="spark.components.gridClasses.IGridVisualElement" left="0" right="0" top="0" bottom="0">
                 <fx:Script fb:purpose="styling">
                     <![CDATA[
                     import spark.components.DataGrid;
@@ -201,7 +201,7 @@
                             return;
 
                         const color:uint = dataGrid.getStyle("rollOverColor");
-                        hoverIndicatorFill.color = 0XFFF8D5;
+                        hoverIndicatorFill.color = 0xFFF8D5;
                     }
                     ]]>
                 </fx:Script>

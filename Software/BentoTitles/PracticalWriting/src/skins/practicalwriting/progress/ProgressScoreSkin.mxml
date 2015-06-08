@@ -12,6 +12,10 @@
 		<![CDATA[
         import mx.events.FlexEvent;
 
+        import skins.practicalwriting.progress.ui.ScoreColorItemRenderer;
+
+        import spark.components.supportClasses.ItemRenderer;
+
         import spark.events.IndexChangeEvent;
 
         /**
@@ -132,7 +136,6 @@
                 scoreDetailsDataGrid.dataProvider.itemUpdated(null);
             }
         }
-
         ]]>
 	</fx:Script>
 
@@ -144,11 +147,11 @@
     <s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="0" right="0" top="0" bottom="40" rowHeight="30">
         <s:columns>
             <s:ArrayList>
-                <s:GridColumn id="scoreGridC1" dataField="@unitCaption" sortCompareFunction="sortUnits" width="{(width - 94) * 0.25}" />
-                <s:GridColumn id="scoreGridC2" dataField="@caption" width="{(width - 94) * 0.3}" />
-                <s:GridColumn id="scoreGridC3" dataField="@displayScore" sortCompareFunction="sortScores" width="{(width - 94) * 0.1}" />
-                <s:GridColumn id="scoreGridC4" dataField="@duration" sortCompareFunction="sortDuration" labelFunction="displayDuration" width="{(width - 94) * 0.15}" />
-                <s:GridColumn id="scoreGridC5" dataField="@datetime" width="{(width - 94) * 0.2}"/>
+                <s:GridColumn id="scoreGridC1" dataField="@courseCaption" sortCompareFunction="sortUnits" percentWidth="25" itemRenderer="skins.practicalwriting.progress.ui.ScoreColorItemRenderer" />
+                <s:GridColumn id="scoreGridC2" dataField="@exerciseCaption" percentWidth="30" itemRenderer="skins.practicalwriting.progress.ui.ScoreColorItemRenderer" />
+                <s:GridColumn id="scoreGridC3" dataField="@displayScore" sortCompareFunction="sortScores" percentWidth="10" itemRenderer="skins.practicalwriting.progress.ui.ScoreItemRenderer" />
+                <s:GridColumn id="scoreGridC4" dataField="@duration" sortCompareFunction="sortDuration" labelFunction="displayDuration" percentWidth="15" itemRenderer="skins.practicalwriting.progress.ui.ScoreItemRenderer" />
+                <s:GridColumn id="scoreGridC5" dataField="@datetime" percentWidth="20" itemRenderer="skins.practicalwriting.progress.ui.ScoreItemRenderer" />
             </s:ArrayList>
         </s:columns>
     </s:DataGrid>

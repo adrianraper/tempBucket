@@ -84,14 +84,15 @@ public class ProgressScoreView extends BentoView {
         // Then add the caption from the exercise to the score to make it easy to display in the grid
         // If the grid can do some sort of subheading, then I could do something similar with the unit name too
         for each (var score:XML in buildXML) {
-            score.@caption = score.parent().@caption;
+            score.@exerciseCaption = score.parent().@caption;
 
             // Caption is different from PracticeZone and others
             if (score.parent().attribute("group").length() > 0) {
-                score.@unitCaption = menu.course.(@["class"] == courseClass).groups.group.(@id == score.parent().@group).@caption;
+                score.@courseCaption = menu.course.groups.group.(@id == score.parent().@group).@caption;
             } else {
-                score.@unitCaption = score.parent().parent().@caption;
+                score.@courseCaption = score.parent().parent().parent().@caption;
             }
+            score.@courseIndex = menu.course.(@caption == score.@courseCaption).childIndex();
 
             // #232. Scores of -1 (nothing to mark) should show in the table as ---
             score.@displayScore = (Number(score.@score) >= 0) ? score.@score : '---';
