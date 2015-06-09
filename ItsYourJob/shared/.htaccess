@@ -1,0 +1,5 @@
+# Helicon ISAPI_Rewrite configuration file
+# Version 3.1.0.63
+
+RewriteEngine on
+RewriteRule ^([a-z]+) ../shares/index.php?prefix=$1  [NC,L]

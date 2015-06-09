@@ -1,0 +1,369 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.join_box_content {
+	margin:0;
+	padding:0;
+
+}
+
+.join_box_content_inner {
+	margin:0 auto;
+	padding:10px 0 0 0;
+	height: 280px;
+	width: 620px;
+	position: relative;
+}
+
+.join_box_content h2 {
+	margin:0 auto;
+	padding:20px 0 10px 0;
+	font-weight: bold;
+	font-size: 14px;
+	width:620px;
+	border-bottom:1px dotted #999999;
+}
+
+
+/*--Date picker area--*/
+.datepicker_box {
+	width:300px;
+	float:left;
+	margin: 0;
+	padding: 0;
+	
+}
+
+.datepicker_title {
+	float:left;
+	padding:2px 5px 0 0;
+	width:70px;
+	margin: 0;
+}
+
+.datepicker_area {
+	float:left;
+	padding:0px;
+	width:200px;
+	position: relative;
+	margin: 0;
+}
+/*--Field UL list --*/
+.join_box_content ul.fielding  {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+.join_box_content ul.fielding li {
+	padding:0;
+	margin: 0;
+	clear: both;
+}
+
+
+.field_msg_line {
+	margin:0;
+	padding:0 0 0 125px;
+	font-size: 9px;
+	width: 300px;
+	clear: both;
+}
+
+.field_warn_line {
+	margin:0;
+	padding:0 0 5px 125px;
+	font-size: 9px;
+	width: 300px;
+	clear: both;
+	color:#FF0000;
+	font-size:9px;
+}
+
+.join_box_content ul.fielding li p.field_line .field {
+	border:1px #CCCCCC solid;
+	background-color:#FFFFFF;
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin:0 0 2px 0;
+	text-align:left;
+	width: 190px;
+
+}
+
+.field_country {
+	margin:0;
+	width:185px;
+	font-size: 11px;
+	border: 1px solid #CCCCCC;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+/* Review area*/
+.Subheader_print {
+	margin:0;
+	padding:0;
+	font-size:12px;
+	font-weight:bold;
+	display:none;
+} 
+
+
+
+
+.join4_left {
+	width:445px;
+	
+}
+
+.join4_buybtn_area {
+	bottom:10px;
+	left:0;
+	position: absolute;
+	
+}
+
+.join_box_content ul.fielding_step4  {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+.join_box_content ul.fielding_step4 li {
+	height:23px;
+	margin:0;
+	padding:0;
+	clear:both;
+}
+
+
+.field_title {
+	width:120px;
+	margin:0;
+	padding:0 5px 0 0;
+	float: left;
+}
+
+.field_line {
+	width:315px;
+	margin:0;
+	padding:0;
+	float: left;
+}
+
+
+
+
+.print_line {
+	background:url(../images/arrow_print.gif) no-repeat;
+	padding: 2px 0 0 20px;
+	margin:0;
+	height:16px;
+	display:block;
+	width:150px;
+	color: #000000;
+	clear: both;
+}
+
+
+.price_title {
+	width:120px;
+	font-weight:bold;
+	margin: 0;
+	padding: 0 5px 0 0;
+	float: left;
+}
+
+.price_line {
+	width:315px;
+	font-weight:bold;
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+
+
+/* -- Payment method description --*/
+.join4_right {
+	width:160px;
+	margin:0;
+	border-left:1px #999999 dotted;
+	font-size: 9px;
+	padding: 0 0 0 8px;
+	position: absolute;
+	top: 5px;
+	right: 0px;
+	line-height: 11px;
+}
+
+.join4_right h2 {
+	font-size:11px;
+	border-bottom:1px #666666 dotted;
+	width: 140px;
+	margin: 0 0 5px 0;
+	padding: 0 0 5px 0;
+}
+
+.img_card {
+	background:url(../images/pay_line_card.jpg) no-repeat;
+	width:100px;
+	height:24px;
+	margin:0 0 5px 0;
+	padding:0;
+}
+
+.img_secure {
+	background:url(../images/pay_line_secure.jpg) no-repeat;
+	width:110px;
+	height:29px;
+	margin:2px 0;
+	padding:0;
+}
+
+.im_notes {
+	margin:10px 0 0 0;
+	padding:5px;
+	width:360px;
+	border:1px #999999 dotted;
+	background-color: #E5E5E5;
+	clear: both;
+}
+
+.im_notes_beforebuy {
+	margin:0;
+	padding:5px 0;
+	border:1px #999999 dotted;
+	background-color: #E5E5E5;
+	position: relative;
+	height: 25px;
+}
+
+.im_notes_beforebuy .text{
+	float:left;
+	width:430px;
+	margin:0 0 0 20px;
+	padding:0;
+}
+
+.im_notes_beforebuy .header {
+	color:#FF0000;
+	font-weight:bold;
+	float:left;
+	width:110px;
+	padding:0 0 0 20px;
+	text-align: right;
+	margin: 0;
+}
+
+.im_notes .text{
+	float:left;
+	width:270px;
+	margin:0;
+	padding:0;
+}
+
+
+.im_notes .header {
+	color:#FF0000;
+	font-weight:bold;
+	float:left;
+	width:80px;
+	margin:0;
+	padding:0;
+}
+
+
+/* -- Buttons -- */
+.btn_area {
+	height:27px;
+	padding:10px 0 15px 0;
+	position: relative;
+	clear: both;
+	margin: 0 auto;
+	width: 620px;
+}
+
+.btn_save_submit {
+	height:31px;
+	width:140px;
+	padding:0;
+	background:url(../images/btn_save_submit.jpg) no-repeat;
+	margin:0 10px 0 0;
+	float:left;
+	cursor:pointer;
+}
+
+.btn_save_submit a {
+	height:31px;
+	width:140px;
+	display:block;
+	
+}
+
+
+
+
+.btn_important {
+	height:31px;
+	width:275px;
+	padding:0;
+	background:url(../images/btn_lmportant.jpg) no-repeat;
+	margin:0 10px 0 0;
+	float:left;
+	cursor:pointer;
+}
+
+.btn_important a {
+	height:31px;
+	width:275px;
+	display:block;
+	cursor:pointer;
+	
+}
+
+.btn_back {
+	height:31px;
+	width:100px;
+	padding:0;
+	background:url(../images/btn_back.jpg) no-repeat;
+	margin:0 10px 0 0;
+	float:left;
+	cursor:pointer;
+}
+
+
+.btn_buy_now {
+	height:31px;
+	width:100px;
+	padding:0;
+	background:url(../images/btn_buy_now.jpg) no-repeat;
+	margin:0 10px 0 0;
+	float:left;
+	cursor:pointer;
+}
+
+.btn_buy_now a {
+	height:31px;
+	width:100px;
+	display:block;
+	cursor:pointer;
+}
+
+.btn_cancel {
+	height:31px;
+	width:100px;
+	padding:0;
+	background:url(../images/btn_cancel.jpg) no-repeat;
+	margin:0;
+	float:left;
+	cursor:pointer;
+}
+
+.btn_cancel a {
+	height:31px;
+	width:100px;
+	display:block;
+	cursor:pointer;
+}

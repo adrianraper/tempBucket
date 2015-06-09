@@ -1,0 +1,532 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	margin:0 auto;
+	padding:0;
+	font:11px verdana,Helvetica,sans-serif;
+	height: auto;
+
+}
+
+
+p {
+	color:#000000;
+	margin:0;
+	padding:0;
+	font-size: 11px;
+}
+
+.blue_border {
+	width:300px;
+	padding: 10px;
+	line-height: 17px;
+	border: 1px dashed #666666;
+	margin: 20px 0 0 0;
+	background-color: #EAEAEA;
+}
+
+
+
+/* For English Online - Worksheets page */
+#worksheets_body {
+	width:676px;
+	margin:0 auto;
+	background:url(../images/popupbg_line.jpg) repeat;
+	padding:10px 0 0 0;
+
+}
+
+/* (Tab) CSS */
+#tab-topics-container {
+	border: 1px #404040 solid;
+	margin:0 auto;
+	padding:0;
+	width:680px;
+	background-color: #FFFFFF;
+}
+
+ul#tab-topics-container-nav {
+	width:680px;
+	height:30px;
+	margin:0;
+	padding:0;
+	list-style:none;
+	background-color: #404040;
+	
+	
+}
+
+ul#tab-topics-container-nav li {
+	float:left;
+	width:120px;
+	margin:0 5px 0 5px;
+	height:30px;
+	padding: 0;
+}
+
+ul#tab-topics-container-nav li a.active {	
+	background:url(../images/resources_table_btn_on.jpg) no-repeat bottom center;
+	color:#000000;
+	font-weight:bold;
+}
+
+ul#tab-topics-container-nav li a {
+	display:block;
+	width:120px;
+	height:20px;
+	color:#FFFFFF;
+	text-decoration:none;
+	text-align:center;
+	padding:10px 0 0 0;
+	margin-top:0px;
+}
+
+.tab {
+	margin: 0;
+	padding: 0 0 10px 0;
+	height:auto !important;
+	min-height:200px;
+
+
+
+}
+
+.tab ul {
+	width:380px;
+	margin:0;
+	padding:0;
+	line-height:15px;
+	height:160px;
+
+
+}
+
+.heading {
+	font-weight:bold;
+	margin:5px 0;
+	padding:0;
+}
+
+/* Setting Tab BG */
+#quote {
+	background:url(../images/resources_quote_bg.jpg) no-repeat bottom right;
+}
+
+#worksheet {
+	background:url(../images/resources_wksheet_bg.jpg) no-repeat bottom right;
+}
+
+#weblink {
+	background:url(../images/resources_weblink_bg.jpg) no-repeat bottom right;
+}
+
+#tips {
+	background:url(../images/resources_tips_bg.jpg) no-repeat bottom right;
+}
+
+#recorder {
+	/* background:url(../images/resources_recorder_bg.jpg) no-repeat bottom right; */
+}
+
+/* Resourcs - Reference Links / Books area */
+
+.detail_box_no_list {
+	font-size:11px;
+	overflow:hidden;
+	padding: 0 0 0 20px;
+	margin:0;
+	width:400px;
+}
+
+.detail_box_no_list_text {
+	width:180px;
+	float:left;
+	margin: 5px 0 0 0;
+	padding: 0;
+}
+
+.detail_box_no_list_img {
+	width:180px;
+	float:left;
+	margin: 0 10px 0 0;
+	padding: 0;
+	background: url(../images/reference/bg_shadow.jpg) no-repeat left bottom;
+	height: 120px;
+}
+
+.detail_box_no_list_img img {
+	margin:0;
+}
+
+.tab-links-des {
+	padding:5px 0 5px 190px;
+	font-weight: bold;
+	
+}
+
+.tab-links {
+	margin:0;
+	padding:0;
+	height: 120px;
+	width: 400px;
+	
+}
+
+#tab_links_reference {
+	margin:0 0 0 50px;
+	padding:0 10px 0 0;
+	width:317px;
+	text-align:right;
+	color:#000000;
+}
+
+.tab_links_ref_area {
+	margin:0;
+	padding:0 30px 0 0;
+	width:370px;
+	color:#000000;
+	height: 20px;
+	z-index: 1;
+	text-align: right;
+}
+
+.tab_links_ref_area .links {
+	width:100px;
+	float:right;
+}
+
+.tab_links_ref_area .terms {
+	float:left;
+	width:240px;
+	font-size: 9px;
+	
+}
+
+
+
+/*Quotes box*/
+.tabs_box_outter {
+	height:160px;
+	margin: 0;
+	padding: 10px 0 0 0;
+}
+
+
+.qutoes_box {
+	width: 380px;
+	background-color: #EAEAEA;
+	border: 1px dashed #666666;
+	margin:0 0 0 20px;
+	padding: 8px;
+	
+}
+
+.qutoes_box p {
+	margin:0 0 5px 0;
+	padding:0;
+}
+
+
+/* UL with Number list */
+ul.detail_table_number {
+	font-size:11px;
+	overflow:hidden;
+	padding: 10px 70px 0 45px;
+	margin:0;
+	list-style-type:decimal;
+}
+
+ul.detail_table_number li {
+	line-height:15px;
+	margin-bottom:5px;
+}
+
+/* UL with Arrow list */
+ul.detail_table_arrow {
+	list-style-image:url(../images/red_arrow.gif);
+	font-size:11px;
+	overflow:hidden;
+	padding: 10px 70px 0 45px;
+	margin:0;
+}
+
+ul.detail_table_arrow li {
+	margin-bottom:5px;
+}
+
+/* UL with PDF list */
+ul.detail_table_pdf {
+	list-style-image:url(../images/pdf.gif);
+	font-size:11px;
+	overflow:hidden;
+	padding: 10px 70px 0 45px;
+	margin:0;
+}
+
+ul.detail_table_pdf li {
+	margin-bottom:5px;
+}
+
+/* UL a style */
+ul.detail_table_pdf a, ul.detail_table_number a {
+	color:#000000;
+	text-decoration:underline;
+}
+
+ul.detail_table_arrow a {
+	color:#0000FF;
+	text-decoration:underline;
+}
+
+.show_complete_txt {
+	font-size:11px;
+	margin:10px 5px 0 5px;
+	padding: 0 0 0 30px;
+	background-color: #CCCCCC;
+	width: 635px;
+}
+
+.show_complete_txt a {
+	color:#000000;
+	text-decoration:none;
+	
+}
+
+.tab_header {
+	background-color:#EBEBEB;
+	height:15px;
+	color:#000000;
+	border-bottom:1px dotted #000000;
+	font-size:12px;
+	margin:0;
+	padding:10px 0 5px 0;
+	
+}
+
+.tab_header_double {
+	background-color:#EBEBEB;
+	height:35px;
+	color:#000000;
+	border-bottom:1px dotted #000000;
+	font-size:12px;
+	margin:0;
+	padding:5px 0 5px 0;
+	position: relative;
+	
+}
+
+.tab_header_left_grey {
+	width:130px;
+	float: left;
+	font-size:11px;
+	font-weight:bold;
+	margin: 0;
+	padding: 0 0 0 20px;
+
+}
+
+.tab_header_left_one {
+	float: left;
+	font-size:11px;
+	font-weight:bold;
+	margin: 0;
+	padding: 0 0 0 20px;
+}
+
+.tab_header_left_content{
+	width:155px;
+	float: left;
+	font-size:11px;
+	font-weight:bold;
+	margin: 0;
+	padding: 0 0 0 20px;
+}
+
+.tab_header_left_content_long{
+	width:220px;
+	float: left;
+	font-size:11px;
+	font-weight:bold;
+	margin: 0;
+	padding: 0 0 0 20px;
+}
+
+.tab_body {
+	margin:10px 0 0 0;
+	padding:0;
+	clear:both;
+	position: relative;
+}
+
+.tab_body_rti_script {
+	height:210px;
+	margin:0;
+	padding:0;
+}
+
+ul.tab_body_left_rti_script {
+	margin:0;
+	padding-left:20px;
+	float:left;
+	width:130px;
+	list-style-image:url(../images/red_arrow.gif);
+	font-size:11px;
+	
+}
+
+
+ul.tab_body_left, ul.tab_body_left_single  {
+	margin:0;
+	padding-left:20px;
+	float:left;
+	width:130px;
+	list-style-image:url(../images/red_arrow.gif);
+	font-size:11px;
+}
+
+ul.tab_body_left li {
+	line-height:18px;
+	padding:0;
+	margin:0;
+	color:#666666;
+
+}
+
+ul.tab_body_left li a {
+	text-decoration:none;
+	color:#666666;
+}
+
+
+
+ul.tab_body_left_single li {
+	line-height:18px;
+	padding:0;
+	margin:0;
+	color:#000000;
+}
+
+
+
+.tab_body_right_area {
+	margin:0;
+	padding:0 0 10px 0;
+	float:left;
+	width:525px;
+
+	
+}
+
+.tab_body_right_area ul {
+	list-style-type:none;
+	font-size:11px;
+	margin:0;
+	padding:0;
+
+}
+
+.tab_body_right_area ul li {
+	line-height:18px;
+	width:135px;
+	float:left;
+	padding:0 0 0 40px;
+}
+
+.tab_body_right_area ul li.pdf {
+	background:url(../images/pdf.gif) top left no-repeat;
+}
+
+.tab_body_right_area li a {
+	color:#000000;
+	text-decoration:none;
+}
+
+ul.tab_body_right_area_single {
+	margin:0;
+	padding:0;
+	float:left;
+
+	
+}
+
+ul.tab_body_right_area_single li {
+	margin:0;
+	padding:0 20px;
+	width:485px;
+}
+
+
+ul.tab_body_right_area_column_long {
+	float:left;
+	width:240px;
+	height: auto;
+
+}
+
+ul.tab_body_right_area_column_long li {
+	line-height:18px;
+	width:200px;
+	
+
+
+
+}
+
+
+ul.tab_body_right_area_column {
+	margin:0;
+	padding:0;
+	float:left;
+	width:170px;
+	}
+
+ul.tab_body_right_area_column li {
+	color:#666666;
+}
+
+/* Tips tab */
+#tab-container-tips {
+	font-size:11px;
+	overflow:hidden;
+	padding: 0 70px 0 20px;
+	margin:0;
+	list-style-type:none;
+	
+}
+
+#tips_container {
+	margin:0 0 0 40px;
+	padding:0;
+	height: 140px;
+	width: 322px;
+	
+}
+
+ul#tab-container-tips-nav, ul#tab-container-links-nav {
+	margin:0;
+	padding:0;
+	list-style:none;
+	display:none;
+}
+
+.tab-tips {
+	width:300px;
+	padding: 5px 10px 10px 10px;
+	line-height: 17px;
+	border: 1px dashed #666666;
+	margin: 5px 0 0 0;
+	background-color: #EAEAEA;
+}
+
+.tab_links_area {
+	margin:0 0 0 50px;
+	padding:0 10px 0 0;
+	width:317px;
+	text-align:right;
+	color:#000000;
+}
+
+.tab_links_area  a {
+	color:#000000;
+}

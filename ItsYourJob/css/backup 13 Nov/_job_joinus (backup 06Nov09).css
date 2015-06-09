@@ -1,0 +1,517 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*--Join Us screen--*/
+
+#join_box_menu {
+	height: 81px;
+	margin:0;
+	padding:0;
+	background-color:#1B1464;
+}
+
+
+.join_box_content_outter {
+	height: 345px;
+	margin:0;
+	padding:0;
+
+}
+
+.join_box_content {
+	margin:0;
+	padding:0;
+
+}
+
+.print_line {
+	background:url(../images/arrow_print.gif) no-repeat;
+	padding: 2px 0 0 20px;
+	margin:0;
+	height:16px;
+	display:block;
+	width:150px;
+	color: #000000;
+	clear: both;
+}
+
+ul#join_box_ind {
+	margin:0 auto;
+	padding:10px 0 0 0;
+	width:629px;
+	list-style:none;
+
+}
+
+
+
+ul#join_box_ind li {
+	margin:0;
+	padding:0;
+	float:left;
+
+}
+
+
+ul#join_box_ind li.head {
+	background:url(../images/join_ind_head.jpg) no-repeat right center;
+	width:5px;
+	margin:0;
+	padding:0;
+	height:58px;
+}
+
+ul#join_box_ind li p.number{
+	height:20px;
+	margin:0;
+	padding:0 5px 0 0;
+	width:151px;
+	text-align:right;
+	color:#FFFFFF;
+	font-size:12px;
+	font-weight:bold;
+
+
+}
+
+.graph_off {
+	height:18px;
+	margin:0;
+	padding:0;
+	width:156px;
+	background:url(../images/join_ind_empty.jpg);
+}
+
+#join_box_step1.graph_on {
+	height:18px;
+	margin:0;
+	padding:0;
+	width:156px;
+	background:url(../images/join_ind_1.jpg);
+}
+
+#join_box_step2.graph_on {
+	height:18px;
+	margin:0;
+	padding:0;
+	width:156px;
+	background:url(../images/join_ind_2.jpg);
+}
+
+#join_box_step3.graph_on {
+	height:18px;
+	margin:0;
+	padding:0;
+	width:156px;
+	background:url(../images/join_ind_3.jpg);
+}
+
+#join_box_step4.graph_on {
+	height:18px;
+	margin:0;
+	padding:0;
+	width:156px;
+	background:url(../images/join_ind_4.jpg);
+}
+
+ul#join_box_ind li p.title {
+	height:20px;
+	margin:0;
+	padding:0;
+	width:156px;
+	color:#FFFFFF;
+	text-align:center;
+	font-size:12px;
+	font-weight:bold;
+
+}
+
+.join_box_content h2 {
+	margin:0 auto;
+	padding:20px 0 10px 0;
+	font-weight: bold;
+	font-size: 14px;
+	width:537px;
+	border-bottom:1px dotted #999999;
+}
+
+.join_box_content_inner {
+	margin:0 auto;
+	padding:10px 0 0 0;
+	height: 230px;
+	width: 537px;
+}
+
+.join_box_content_inner .left {
+	margin:0;
+	padding:20px 0 0 0;
+	width:310px;
+	float:left;
+}
+
+.join_box_content_inner .right {
+	margin:0 0 0 20px;
+	padding:0;
+	width:200px;
+	float:left;
+	background-color: #CCCC99;
+	background: url(../images/join_contentlist.jpg) no-repeat;
+	height: 226px;
+}
+
+.join_box_content_inner .right ul {
+	margin:0;
+	padding:0 0 0 10px;
+	list-style:none;
+	color:#FFFFFF;
+	font-size: 10px;
+}
+
+.join_box_content_inner .right ul li {
+	line-height:16px;
+
+}
+
+
+.join_box_content_inner .right ul li.title {
+	height:30px;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 15px 0 0 0;
+
+}
+
+
+
+.Subheader_print {
+	margin:0;
+	padding:0;
+	font-size:12px;
+	font-weight:bold;
+	display:none;
+} 
+
+.join_box_content_inner_check {
+	padding:0 0 0 85px;
+	margin: 0;
+}
+
+
+
+.join_box_content h3 {
+	margin:0 0 5px 0;
+	padding:0;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.join_box_content p {
+	line-height:15px;
+	margin:0 0 5px 0;
+	padding:0;
+}
+
+/* -- General UL list --*/
+.join_box_content ul.text {
+	margin:0;
+	padding:0 0 0 15px;
+	list-style-type:georgian;
+	line-height:15px;
+}
+
+.join_box_content p.title {
+	margin:0;
+	padding:0;
+	font-weight: bold;
+}
+
+.join_box_content ul.text li {
+	margin:0;
+	padding:0;
+	list-style-type:square;
+}
+
+/* --Field UL list --*/
+.join_box_content ul.fielding  {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+.join_box_content ul.fielding_check  {
+	margin:10px 0 0 80px;
+	padding:0;
+	list-style:none;
+	height: auto;
+}
+
+
+
+
+.join_box_content ul.fielding li, .join_box_content ul.fielding_check li {
+	padding:0;
+	margin: 0;
+	height: 23px;
+}
+
+.join_box_content ul.fielding li p, .join_box_content ul.fielding_check li p {
+	float:left;
+	margin:0;
+	padding:0;
+}
+
+.join_box_content ul.fielding li.msg {
+	clear:both;
+	padding:0;
+	margin: 0 0 0 125px;
+	height: 15px;
+	font-size: 9px;
+}
+
+
+.join_box_content ul.fielding li p.field_title, .join_box_content ul.fielding_check li p.field_title {
+	width:125px;
+	margin:0;
+	padding:0;
+}
+
+.join_box_content ul.fielding li p.field_line {
+	width:190px;
+	margin:0;
+	padding:0;
+}
+
+
+
+.join_box_content ul.fielding li p.field_line .field {
+	border:1px #CCCCCC solid;
+	background-color:#FFFFFF;
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin:0 0 2px 0;
+	text-align:left;
+	width: 185px;
+}
+
+.field_country {
+	margin:0;
+	width:185px;
+	font-size: 11px;
+	border: 1px solid #CCCCCC;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+.field_msgBlack {
+	width:230px;
+	font-size:9px;
+	color: #000000;
+}
+.field_msgGreen {
+	width:230px;
+	font-size:9px;
+	color: #009900;
+}
+.field_msgRed {
+	width:230px;
+	font-size:9px;
+	color: #FF0000;
+}
+.join_box_content ul.fielding li p.field_msg {
+	width:150px;
+	font-size:9px;
+	color: #FF0000;
+}
+
+
+/* --Setting UL list --*/
+.join_box_content ul.setting {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+.join_box_content ul.setting li {
+
+	margin:0;
+	padding:0;
+	clear:both;
+
+}
+
+.setting_left {
+	width:148px;
+	border-right:1px solid #FF0000;
+	float:left;
+	height:65px;
+	margin:0;
+	padding:0;
+}
+
+.setting_left p.setting_title {
+	font-weight:bold;
+	margin:0;
+	padding:0;
+	width:100%;
+}
+
+
+a.join_learnmore_iframe{
+	padding:0;
+	text-decoration:none;
+	color:#000000;
+	font-style:italic;
+	margin:0 0 0 15px;
+	width:100%;
+	
+}
+
+.setting_right {
+	width:280px;
+	float:left;
+	height:65px;
+	margin:0;
+	padding:0 0 0 10px;
+}
+
+.setting_right p {
+	margin:0;
+	padding:0;
+	width: 100%;
+}
+
+.setting_right .set_column {
+	margin:0;
+	padding:0;
+	width: 80px;
+	float:left;
+}
+
+/* -- for step 4 Price area --*/
+.join_box_content ul.fielding li p.price_title {
+	width:135px;
+	font-weight:bold;
+}
+
+.join_box_content ul.fielding li p.price_line {
+	width:300px;
+		font-weight:bold;
+}
+
+/* -- Failure Screen UL list --*/
+.join_box_content ul.fielding_fail  {
+	margin:10px 0 0 80px;
+	padding:0;
+	list-style:none;
+	height: auto;
+	width: 480px;
+}
+
+.join_box_content ul.fielding_fail li {
+	line-height:18px;
+}
+
+
+/* -- Buttons -- */
+.btn_area {
+	height:27px;
+	padding:10px 0 20px 0;
+	position: relative;
+	clear: both;
+	margin: 0 auto;
+	width: 537px;
+}
+
+.btn_area_check {
+	height:27px;
+	padding:10px 0 20px 80px;
+	position: relative;
+	clear: both;
+	margin: 0;
+}
+
+
+.btn_next {
+	height:31px;
+	width:100px;
+	padding:0;
+	background:url(../images/btn_next.jpg) no-repeat;
+	float:left;
+	margin:0;
+	cursor:pointer;
+}
+
+.btn_start_lesson {
+	height:31px;
+	width:169px;
+	padding:0;
+	background:url(../images/btn_start_learning.jpg) no-repeat;
+	margin:0 10px 0 0;
+	float:left;
+	cursor:pointer;
+	border: 0;
+}
+
+
+.btn_back {
+	height:31px;
+	width:100px;
+	padding:0;
+	background:url(../images/btn_back.jpg) no-repeat;
+	margin:0 10px 0 0;
+	float:left;
+	cursor:pointer;
+}
+
+.btn_cancel {
+	height:31px;
+	width:100px;
+	padding:0;
+	background:url(../images/btn_cancel.jpg) no-repeat;
+	margin:0;
+	float:left;
+	cursor:pointer;
+}
+
+.btn_cancel a {
+	height:31px;
+	width:100px;
+	display:block;
+	cursor:pointer;
+}
+
+.btn_save_next {
+	height:31px;
+	width:140px;
+	padding:0;
+	background:url(../images/btn_save_next.jpg) no-repeat;
+	margin:0 10px 0 0;
+	float:left;
+	cursor:pointer;
+}
+
+.btn_try_again {
+	height:31px;
+	width:140px;
+	padding:0;
+	background:url(../images/btn_try_again.jpg) no-repeat;
+	margin:0 10px 0 0;
+	float:left;
+	cursor:pointer;
+}
+
+
+.btn_save_submit {
+	height:31px;
+	width:140px;
+	padding:0;
+	background:url(../images/btn_save_submit.jpg) no-repeat;
+	margin:0 10px 0 0;
+	float:left;
+	cursor:pointer;
+}
+
+.btn_save_submit a {
+	height:31px;
+	width:140px;
+	display:block;
+	cursor:pointer;
+}

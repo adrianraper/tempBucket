@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>It's Your Job from Clarity</title>
+	<link rel="shortcut icon" href="/Software/IYJ.ico" type="image/x-icon">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="language" content="en" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+        <link rel="stylesheet" href="../../css/products.css" type="text/css" media="screen" />
+
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
+	<script type="text/javascript" language="JavaScript" src="/script/getURLParam.js"></script>
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
+	<script type="text/javascript">
+		// ****
+		// Change this variable along with the above fixed paths
+		var webShare = "/Software";
+		var lang = getURLParam("version");
+		var productCode = "1001";
+		var locationFile = "";
+		//var licenceFile = "DEMO_licence.txt";
+		//var courseFile = "course-demo.xml";
+		switch (lang) {
+			case "en": { locationFile = "location.txt"; break }
+			case "namen": { locationFile = "location-NAmEN.txt"; break }
+			default: { locationFile = "location.txt"; break }
+		}
+		// 
+		// ****
+		function thisMovie(movieName) {
+
+			if (window.document[movieName]) {
+				return window.document[movieName];
+			}
+			if (navigator.appName.indexOf("Microsoft Internet") == -1) {
+				if (document.embeds && document.embeds[movieName])
+					return document.embeds[movieName];
+			} else {
+				return document.getElementById(movieName);
+			}
+		}
+		
+		function onLoad() {
+			thisMovie("orchid").focus();
+		}
+		// *********
+		// *********
+		var startControl = webShare + "/Common/";
+		var coordsWidth = 760; var coordsHeight = 640;
+		var sections = location.pathname.split("/");
+		var userdatapath = sections.slice(0,sections.length-1).join("/");
+		var argList="?browser=true&userDataPath=" + userdatapath;
+		argList += "&location=" + locationFile;
+		//argList += "&licence=" + licenceFile;
+		argList += "&prefix=DEMO&productCode=" + productCode;
+		//argList += "&courseFile=" + courseFile;
+		
+		var flashvars = {};
+		var params = {
+			id: "orchid",
+			name: "orchid",
+			scale: "noScale"
+		};
+		var attr = {
+			id: "orchid",
+			name: "orchid"
+		};
+		var expressInstall = startControl + "expressInstall.swf";
+		swfobject.embedSWF(startControl + "control.swf" + argList, "altContent", coordsWidth, coordsHeight, "9.0.0", expressInstall, flashvars, params, attr);
+	</script>
+</head>
+<body onload="onLoad()" id="demobody">
+<!-- Note that if you put another <div> round this one, it seems to stop RM loading -->
+	<div align="center" id="altContent">
+		<p>This application requires Adobe's Flash player, running at least version 8.</p>
+		<p>It seems your browser doesn't have this at the moment.</p>
+		<p>Please download the latest Adobe Flash Player.</p>
+		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
+		<p>If you still get this message, then your browser is stopping the scripts on this page from running.</p>
+	</div>
+<NOSCRIPT>
+This application requires your browser to support javascript and to have Adobe's Flash player installed. <br>
+Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br>
+to switch this on and then refresh this page.</NOSCRIPT>
+</body>
+</html>

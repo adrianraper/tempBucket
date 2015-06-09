@@ -1,0 +1,1 @@
+language=INDEN*&content=/Content/ItsYourJob-Indian&mainMovies=/Software/Common&interfaceMovies=/Software/ItsYourJob&database=SQLServer&scripting=PHP&help=/Software/ItsYourJob/Help/help.htm&sharedMedia=/Content/ItsYourJob/SharedMedia&end=1

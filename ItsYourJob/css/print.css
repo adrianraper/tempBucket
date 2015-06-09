@@ -1,0 +1,133 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/* General */
+p {
+	margin:0;
+	padding:0;
+	line-height:18px;
+}
+
+
+a {
+   color: #000000;
+	text-decoration: none;
+}
+
+/* Body print - General */
+#body_print {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	border: solid 1px #000000;
+	width: 580px;
+	padding: 10px;
+	float: none;
+	color: black;
+	margin:10px;
+
+
+}
+#header_print {
+	padding:0;
+	margin:0;
+	text-align:center;
+
+} 
+
+#header_print_line {
+	padding:0;
+	font-size:10px;
+	text-align:right;
+	clear:both;
+
+} 
+
+.Subheader_print {
+	margin:0;
+	padding:0;
+	font-size:12px;
+	font-weight:bold;
+} 
+
+#productsbottom_footer_print {
+font-size:10px;
+display:block;
+border-top: dotted 1px #000000;
+text-align:center;
+padding-top:10px;
+margin:0;
+clear:both;
+
+}
+
+
+/* Body print - Customerize */
+.btn_area, .print_line, .no_print  {
+	display:none;
+}
+
+h1 {
+	font-size:12px;
+	font-weight:bold;
+	margin:0 0 10px 0;
+	padding:0;
+}
+
+h2 {
+	font-size:11px;
+	font-weight:bold;
+	margin:0 0 5px 0;
+	padding:0 0 5px 0;
+	border-bottom: 1px dotted #999999;
+}
+
+.join_box_content {
+	width:480px;
+	margin:0 auto;
+}
+
+
+.join_box_content_inner, #content_container{
+	margin:0;
+	padding:0;
+
+
+}
+
+.btn_start_lesson, .join4_right, .im_notes {
+	display:none;
+}
+
+
+
+/* --Field UL list --*/
+.join_box_content ul.fielding, .join_box_content ul.fielding_check, .join_box_content ul.fielding_step4  {
+	margin:0;
+	padding:0;
+	list-style:none;
+
+}
+
+.join_box_content ul.fielding li, .join_box_content ul.fielding_check li, .join_box_content ul.fielding_step4 li {
+	padding:0;
+	margin: 0;
+	height: 25px;
+}
+
+
+
+.field_title, .price_title {
+	width:140px;
+	float:left;
+
+}
+
+
+.price_line, .field_line  {
+	width:330px;
+
+	float:left;
+
+
+}

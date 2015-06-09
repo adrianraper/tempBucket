@@ -1,0 +1,207 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.join_box_content {
+	margin:0;
+	padding:0;
+
+}
+
+.join_box_content_inner {
+	margin:0 auto;
+	padding:10px 0 0 0;
+	height: 350px;
+	width: 620px;
+	position: relative;
+}
+
+.join_box_content h2 {
+	margin:0 auto;
+	padding:20px 0 10px 0;
+	font-weight: bold;
+	font-size: 14px;
+	width:620px;
+	border-bottom:1px dotted #999999;
+}
+
+
+/*--Date picker area--*/
+.datepicker_box {
+	width:300px;
+	float:left;
+	margin: 0;
+	padding: 0;
+	
+}
+
+.datepicker_title {
+	float:left;
+	padding:2px 5px 0 0;
+	width:70px;
+	margin: 0;
+}
+
+.datepicker_area {
+	float:left;
+	padding:0px;
+	width:200px;
+	position: relative;
+	margin: 0;
+}
+/*--Field UL list --*/
+.join_box_content ul.fielding  {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+.join_box_content ul.fielding li {
+	padding:0;
+	margin: 0;
+	clear: both;
+}
+
+.field_title {
+	width:155px;
+	margin:0;
+	padding:0 5px 0 0;
+	float: left;
+}
+
+.field_line {
+	width:315px;
+	margin:0;
+	padding:0;
+	float: left;
+}
+
+.field_msg_line {
+	margin:0;
+	padding:0 0 0 160px;
+	font-size: 9px;
+	width: 300px;
+	clear: both;
+}
+
+.field_warn_line {
+	margin:0;
+	padding:0 0 5px 125px;
+	font-size: 9px;
+	width: 300px;
+	clear: both;
+	color:#FF0000;
+	font-size:9px;
+}
+
+.join_box_content ul.fielding li p.field_line .field {
+	border:1px #CCCCCC solid;
+	background-color:#FFFFFF;
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin:0 0 2px 0;
+	text-align:left;
+	width: 190px;
+
+}
+
+.field_country {
+	margin:0;
+	width:185px;
+	font-size: 11px;
+	border: 1px solid #CCCCCC;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+#comsoon {
+	position:absolute;
+	right:0;
+	top:11px;
+	margin:0;
+	padding:0;
+}
+
+
+/* --Setting UL list --*/
+.join_box_content ul.setting {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+.join_box_content ul.setting li {
+	margin:0;
+	padding:0;
+	clear:both;
+
+}
+
+.setting_left {
+	width:150px;
+	float:left;
+	margin:0 0 10px 0;
+	padding:0;
+}
+
+.setting_left p.setting_title {
+	margin:0;
+	padding:0;
+	width:100%;
+}
+
+
+a.join_learnmore_iframe{
+	padding:0;
+	text-decoration:none;
+	color:#000000;
+	font-style:italic;
+	margin:0 0 0 15px;
+	width:100%;
+	
+}
+
+.setting_right {
+	width:260px;
+	float:left;
+	margin:0 0 10px 0;
+	padding:0 0 0 10px;
+}
+
+.setting_right p {
+	margin:0;
+	padding:0;
+	width: 100%;
+}
+
+.setting_right .set_column {
+	margin:0;
+	padding:0;
+	width: 90px;
+	float:left;
+}
+
+
+/* -- Buttons -- */
+.btn_area {
+	height:27px;
+	padding:10px 0 15px 0;
+	position: relative;
+	clear: both;
+	margin: 0 auto;
+	width: 620px;
+}
+
+.btn_save_submit {
+	height:31px;
+	width:140px;
+	padding:0;
+	background:url(../images/btn_save_submit.jpg) no-repeat;
+	margin:0 10px 0 0;
+	float:left;
+	cursor:pointer;
+}
+
+.btn_save_submit a {
+	height:31px;
+	width:140px;
+	display:block;
+	

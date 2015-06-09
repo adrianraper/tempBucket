@@ -1,0 +1,90 @@
+<!--CSS General-->
+<link rel="stylesheet" type="text/css" href="css/job_general.css" />
+<link rel="stylesheet" type="text/css" href="css/job_joinus.css" />
+
+
+
+
+
+
+<div class="join_box_content">
+
+    
+    <h2>Step 3: Course settings (these can be changed later)</h2>
+    <div class="join_box_content_inner">
+    	<p id="comsoon"  >* coming soon</p>
+    
+    <ul class="setting">
+        <li>
+            <div class="setting_left">
+                <p class="setting_title">1. Delivery frequency</p>
+                <a href="popup_join_learnmore.htm" class="join_learnmore_iframe">Learn more</a>            </div>
+            <div class="setting_right">
+                
+                <p><input name="IYJreg_dFreq" id="IYJreg_dFreq" type="radio" value="0" checked="checked" />All at once</p>
+                <p  style="display:none"><input name="IYJreg_dFreq" id="IYJreg_dFreq" type="radio" value="1" DISABLED  />One unit every day *</p>
+                <p  style="display:none"><input name="IYJreg_dFreq" id="IYJreg_dFreq" type="radio" value="3" DISABLED />One unit every three days *</p>
+            </div>
+        </li>
+        
+        
+        <li>
+            <div class="setting_left">
+                <p class="setting_title">2. Program version</p>
+                <a href="popup_join_learnmore.htm" class="join_learnmore_iframe">Learn more</a>            </div>
+            <div class="setting_right">
+                <p><input name="IYJreg_language" id="IYJreg_language" type="radio" value="EN" checked="checked" />International English</p>
+                <p><input name="IYJreg_language" id="IYJreg_language" type="radio" value="NAMEN" />North American English</p>
+                <p ><input name="IYJreg_language" id="IYJreg_language" type="radio" value="INDEN" />Indian English</p>
+            </div>
+        </li>
+        
+        <li>
+            <div class="setting_left">
+                <p class="setting_title">3. Contact method</p>
+                <a href="popup_join_learnmore.htm" class="join_learnmore_iframe">Learn more</a>            </div>
+            <div class="setting_right">
+                <div class="set_column">
+                	<p><input name="IYJreg_contact" id="IYJreg_contact" type="checkbox" value="Email" checked="checked" onClick="ClearSingleChecked(document.joinUsForm.IYJreg_contact, 1)" /> Email</p>
+                   <!--<p><input name="IYJreg_contact" id="IYJreg_contact" type="checkbox" value="Not at all" onClick="ClearAllChecked(document.joinUsForm.IYJreg_contact)"/> Not at all</p>-->
+				   <p><input name="IYJreg_contact" id="IYJreg_contact" type="checkbox" value="Not at all" onClick="ClearSingleChecked(document.joinUsForm.IYJreg_contact, 0)"/> Not at all</p>
+              </div>
+              
+               <div class="set_column">
+                	<p><input name="IYJreg_contact" id="IYJreg_contact" type="checkbox" value="SMS" onClick="ClearSingleChecked(document.joinUsForm.IYJreg_contact, 3)" DISABLED/> SMS *</p>
+                   	<p><input name="IYJreg_contact" id="IYJreg_contact" type="checkbox" value="Facebook" onClick="ClearSingleChecked(document.joinUsForm.IYJreg_contact, 3)" DISABLED/> Facebook *</p>  
+               </div>
+          </div>
+            <!--<div class="setting_right">
+                <div class="set_column">
+                	<p><input name="IYJreg_contact" id="IYJreg_contact" type="checkbox" value="Email" checked="checked" onClick="ClearSingleChecked(document.joinUsForm.IYJreg_contact, 3)" /> Email</p>
+                    <p><input name="IYJreg_contact" id="IYJreg_contact" type="checkbox" value="Facebook" onClick="ClearSingleChecked(document.joinUsForm.IYJreg_contact, 3)" /> Facebook</p>
+                    </div>
+                <div class="set_column">
+                	<p><input name="IYJreg_contact" id="IYJreg_contact" type="checkbox" value="SMS" onClick="ClearSingleChecked(document.joinUsForm.IYJreg_contact, 3)" /> SMS</p>
+                   	<p><input name="IYJreg_contact" id="IYJreg_contact" type="checkbox" value="Not at all" onClick="ClearAllChecked(document.joinUsForm.IYJreg_contact)"/> Not at all</p>
+                    
+                    </div>
+            </div>-->
+        </li>
+        
+        
+    </ul>
+    </div>
+<div class="btn_area">
+        <div class="btn_back" onclick="javascript:displayRegData('2'); pageTracker._trackPageview('/ItsYourJob/joinus_back_step2');"></div>
+        <!--<div class="btn_save_next" onclick="javascript:nextStep('4');"></div>-->
+        <div class="btn_save_next" onclick="javascript:checkRegData('4'); pageTracker._trackPageview('/ItsYourJob/joinus_go_step4');"></div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-873320-7");
+pageTracker._trackPageview();
+} catch(err) {}</script>

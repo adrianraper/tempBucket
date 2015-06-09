@@ -1,0 +1,27 @@
+[Clarity Language Consultants Ltd licence]
+Product=Its Your Job
+Branding=Clarity/IYJ
+Product type=Demo
+Serial number=6677-4301-7712
+Institution name=Clarity Language Consultants Ltd
+Installation date=2005-08-11
+Registration date=2005-07-05
+Database=SQLServer
+Scripting=PHP
+Student expiry=2049-12-31
+Student permission=0000000
+Student language=English
+Maximum student=1
+Licencing=Concurrent
+Action=Anonymous
+Login options=8
+Central root=163
+Central key=
+Registration server=www.AuthorPlus.com/register/register.asp
+Verification server=www.clarity.com.hk/verify/verify.asp
+Host server=
+Exit page=
+Licence file version=3.0
+Encryption=0
+Access control=0
+CheckSum=bcd4578e58681f6b806850f93fe3417d

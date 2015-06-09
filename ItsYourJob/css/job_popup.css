@@ -1,0 +1,372 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/*-- EBook Screen--*/
+#eBook_container {
+	margin:0 auto;
+	padding:0;
+	width:778px;
+}
+
+
+/*--popup backgroung setting (for fancy box)--*/
+#popup_body {
+	background:url(../images/popupbg_line.jpg) repeat;
+	margin: 8px 0 0 0;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+/*-- Content popup tasting Screen--*/
+#popup_contatiner {
+	width:549px;
+	margin:0 auto;
+	padding:0;
+}
+
+#popup_bannar {
+	height:87px;
+	background-image:url(../images/popup_bannar_bg.jpg);
+	margin:0;
+	padding:0;
+}
+
+#popup_rainbow {
+	height:35px;
+	background:url(../images/popup_rainbow_bg.jpg) repeat-y;
+	position: relative;
+}
+
+#popup_rainbow p {
+	color:#FFFFFF;
+	padding:11px 0 0 75px;
+	margin:0;
+	font-size: 11px;
+	font-weight: bold;
+	
+}
+
+#popup_content {
+	background:url(../images/popup_content_bg.jpg) repeat-y;
+	padding:50px 0;
+	height: 50px;
+}
+
+
+
+
+#popup_content h1, #popup_setting_msg h1, #popup_warning_msg h1 {
+	padding:0;
+	margin:0 auto;
+	font-size:14px;
+	font-weight:bold;
+	text-align: center;
+	width: 400px;
+	
+}
+
+#popup_content ul {
+	margin:0;
+	padding:0 0 0 80px;
+	list-style-type:decimal;
+}
+
+#popup_content ul li {
+	padding:0 0 0 10px;
+	line-height:18px;
+}
+
+
+#popup_setting_msg {
+	background:url(../images/popup_content_bg.jpg) repeat-y;
+	padding:50px 0;
+	height: 80px;
+}
+
+#popup_warning_msg {
+	background:url(../images/popup_content_bg.jpg) repeat-y;
+	padding:20px 0 50px 0;
+	height: 110px;
+}
+
+
+#popup_warning_msg p {
+	margin:0 auto;
+	padding:10px 0 0 0;
+	width:400px;
+	text-align:left;
+	font-size: 11px;
+
+}
+
+
+#popup_setting_msg p {
+	margin:0 auto;
+	padding:10px 0 0 0;
+	width:400px;
+	text-align:center;
+	font-size: 11px;
+}
+
+
+#popup_contact_msg_outter {
+	background:url(../images/popup_content_bg.jpg) repeat-y;
+	margin: 0;
+	padding: 5px 0 10px 0;
+	position: relative;
+
+}
+
+
+#popup_contact_msg h1 {
+	font-size:14px;
+	font-weight:bold;
+	margin:0;
+	padding:5px;
+}
+
+ul.popup_contact_left {
+	margin:0 auto;
+	padding:0;
+	width:500px;
+	list-style:none;
+	line-height:20px;
+	font-size: 11px;
+}
+
+
+ul.popup_contact_left li {
+	padding: 0 5px;
+}
+
+ul.popup_contact_HK_office {
+	margin:0;
+	padding:0;
+	position:absolute;
+	top: 32px;
+	width: 244px;
+	list-style:none;
+	line-height:20px;
+	right: 26px;
+	font-size: 11px;
+	
+}
+
+
+ul.popup_contact_left li.grey {
+	background-color:#CCCCCC;
+	margin: 5px 0 0 0;
+	padding: 0 5px;
+	font-weight: bold;
+}
+
+/* -- Join Us: Learing more -- */
+#popup_learn_msg {
+	background:url(../images/popup_content_bg.jpg) repeat-y;
+	padding:50px 0;
+	height: 200px;
+}
+
+#popup_learn_msg h1 {
+	padding:0 0 0 75px;
+	margin:0;
+	font-size:11px;
+	font-weight:bold;
+	text-align: left;
+	width: 400px;
+}
+
+#popup_learn_msg p {
+	margin:0;
+	padding:0 0 10px 91px;
+	width:400px;
+	text-align:left;
+	font-size: 11px;
+}
+
+/* -- Forgot message -- */
+#popup_forgotmsg {
+	background:url(../images/popup_content_bg.jpg) repeat-y;
+	padding:20px 0;
+	height: 200px;
+}
+
+
+
+
+#popup_forgotmsg p {
+	margin:0 auto;
+	padding:0 0 10px 0;
+	width:400px;
+	text-align:left;
+	font-size: 11px;
+}
+
+#popup_forgotmsg_fieldbox {
+	margin:0 auto;
+	width: 400px;
+	padding: 10px 0;
+}
+
+#popup_forgotmsg_fieldbox .left {
+	float:left;
+	width:190px;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+}
+
+#popup_forgotmsg_fieldbox .right {
+	float:right;
+	width:210px;
+	margin: 0;
+	padding: 0;
+}
+
+#popup_forgotmsg_fieldbox .clear {
+	clear:both;
+	margin:0;
+	padding:0;
+
+}
+
+
+#popup_forgotmsg_fieldbox .save_but {
+	padding:10px 0 0 190px;
+	margin: 0;
+	clear: both;
+	width: 210px;
+
+}
+
+.btn_submit {
+	height:31px;
+	width:100px;
+	padding:0;
+	background:url(../images/btn_submit.jpg) no-repeat;
+	margin:0;
+	border: 0;
+	cursor: pointer;
+}
+
+.error_msg {
+	padding:5px 0 0 190px;
+	color:#FF0000;
+	font-size: 10px;
+	
+}
+
+
+
+.emailfield {
+	width:200px;
+	margin: 0;
+	padding: 0;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	
+}
+
+#popup_forgotmsg .popup_forgotmsg_footer {
+	border-top:1px #999999 solid;
+	padding: 10px 0;
+
+}
+
+
+/*-- Demo version popup screen--*/
+#demo_container {
+	width:361px;
+	height:262px;
+	margin:0 auto;
+	padding:0;
+}
+
+#demo_banner {
+		background:url(../images/popup_demo_bannar.jpg) no-repeat;
+		width:361px;
+		height:83px;
+		margin:0;
+		padding:0;
+}
+
+#demo_title {
+	background:url(../images/popup_demo_title.jpg) no-repeat;
+		width:361px;
+		height:37px;
+		margin:0;
+		padding:0;
+}
+
+#demo_content {
+	width:361px;
+	height:142px;
+	margin:0;
+	padding:0;
+	background:url(../images/popup_demo_bg.jpg) left bottom repeat-x;
+
+}
+
+#demo_Int_but {
+		background:url(../images/popup_demo_IntBut_off.jpg) no-repeat;
+		width:172px;
+		height:35px;
+		margin:0 auto;
+		padding:0;
+}
+
+#demo_NAme_but {
+		background:url(../images/popup_demo_NAmeBut_off.jpg) no-repeat;
+		width:172px;
+		height:35px;
+		margin:0 auto;
+		padding:0;
+}
+
+#demo_Indian_but {
+		background:url(../images/popup_demo_IndianBut_off.jpg) no-repeat;
+		width:172px;
+		height:35px;
+		margin:0 auto;
+		padding:0;
+}
+
+#demo_Int_but a, #demo_NAme_but a, #demo_Indian_but a {	
+		width:172px;
+		height:35px;
+		margin:0;
+		padding:0;
+		display:block;
+}
+
+#demo_Int_but a:hover {
+			background:url(../images/popup_demo_IntBut_on.jpg) no-repeat;
+	
+}
+
+#demo_NAme_but a:hover {
+			background:url(../images/popup_demo_NAmeBut_on.jpg) no-repeat;
+	
+}
+
+#demo_Indian_but a:hover {
+			background:url(../images/popup_demo_IndianBut_on.jpg) no-repeat;
+	
+}
+
+/* -- Foooter -- */
+#popup_footer {
+	height:39px;
+	background:url(../images/popup_footer_bg.jpg) repeat-x;
+	clear: both;
+	
+}
+
+#popup_footer p {
+	padding:13px 0 0 0;
+	text-align:center;
+	color:#FFFFFF;
+	margin:0;
+	font-size:10px;
+}
