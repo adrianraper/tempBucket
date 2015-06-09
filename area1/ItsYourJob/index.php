@@ -1,12 +1,23 @@
 <?php
-session_start();
-define('TIMEZONE', 'UTC');
-date_default_timezone_set(TIMEZONE);
-
+if (session_id() == '') session_start();
+require_once("../../ItsYourJob/Variables.php");
 require_once("../../ItsYourJob/libQuery.php");
 
-$_SESSION['PREFIX'] = ($_POST['prefix']=="") ? $_GET['prefix']:$_POST['prefix'];
-if(isset($_GET['startingPoint'])){ // direct start parameter
+$testingPortalLogin = $_GET['testing'];
+if ($testingPortalLogin) {
+	$_SESSION['UserID'] = 27639;
+	$_SESSION['UserName'] = 'dandelion';
+	$_SESSION['Password'] = 'password';
+}
+
+if (!isset($_SESSION['Adrian']))
+	$_SESSION['Adrian'] = 'Adrian from index';
+error_log("In index.php and session.adrian=".$_SESSION['Adrian'].' and SID='.session_id()."\r\n", 3, "../../Debug/debug_iyj.log");
+
+if (!isset($_SESSION['PREFIX']))
+	$_SESSION['PREFIX'] = ($_POST['prefix'] == "") ? $_GET['prefix'] : $_POST['prefix'];
+
+if (isset($_GET['startingPoint'])){ // direct start parameter
 	//$startingPoint = ($_GET['startingPoint']=="") ? $_GET["course"] : $_GET["startingPoint"];
 	$tmps = explode("ex:", $_GET['startingPoint']);
 	if($tmps[1] != null){
@@ -15,7 +26,7 @@ if(isset($_GET['startingPoint'])){ // direct start parameter
 		$tmps = explode("unit:", $_GET['startingPoint']);
 		$startingPoint = $tmps[1];
 	}
-}else{
+} else {
 	$startingPoint = $_GET["course"];
 }
 $_SESSION['SCORM'] = $_GET['scorm'] ? $_GET['scorm'] : "";
@@ -27,27 +38,27 @@ $errorInfo=array();
 $noteInfo=array();
 $accountInfo=array();
 $licenceInfo=array();
+// gh#1421
+$settingsInfo=array();
 
 function getRMSetting($prefix){
-	global $userInfo, $errorInfo, $noteInfo, $accountInfo, $failReason, $licenceInfo, $demoversion;
+	global $userInfo, $errorInfo, $noteInfo, $accountInfo, $failReason, $licenceInfo, $demoversion, $settingsInfo;
 	$buildXML = '<query method="getRMSettings" prefix="'.$prefix.'" dateStamp="'.date("Y-m-d H:i:s").'" cacheVersion="'.time().
                      '" zone="'.date_default_timezone_get().'" productcode="1001" dbHost="2"/>';
-	//if(defined("DEBUG"))
-	//	error_log(trim($buildXML,"\r\n")."\r\n", 3, "../../Debug/debug_iyj.log");
 	sendAndLoad($buildXML, $responseXML, "progress");
-	//if(defined("DEBUG"))
-		error_log(trim($responseXML,"\r\n")."\r\n", 3, "../../Debug/debug_iyj.log");
+	if (defined("DEBUG"))
+		error_log(trim($responseXML,"\r\n")."\r\n", 3, "../../Debug/debug_iyj.log");		
 	$xml = simplexml_load_string($responseXML);
 	$parser = xml_parser_create();
 	xml_set_element_handler($parser,"start","stop");
 	xml_parse($parser,$responseXML);
 	xml_parser_free($parser);
 
-    if(isset($_SESSION['FAILREASON'])){
+    if (isset($_SESSION['FAILREASON']))
         unset($_SESSION['FAILREASON']);
-    }
+		
 	$errorCode = $errorInfo['CODE'];
-	switch($errorCode) {
+	switch ($errorCode) {
 		case '100':
 		case '101':
 		case '207':
@@ -57,6 +68,8 @@ function getRMSetting($prefix){
 			$_SESSION['FAILREASON'] = $errorCode;
 			break;
 		default:
+			if (defined("DEBUG"))
+				error_log('settingsInfo(loginOption)='.$settingsInfo['LOGINOPTION']."\r\n", 3, "../../Debug/debug_iyj.log");
 	        $_SESSION['LANGUAGECODE'] = $accountInfo['LANGUAGECODE'];
 			$_SESSION['ROOTID'] = $accountInfo['ROOTID'];
 			$_SESSION['MAXSTUDENTS'] = $accountInfo['MAXSTUDENTS'];
@@ -65,9 +78,13 @@ function getRMSetting($prefix){
 			$_SESSION['LICENCETYPE'] = $accountInfo['LICENCETYPE'];
 			$_SESSION['IPRANGE'] = $licenceInfo['IPRANGE'];
 			$_SESSION['RURANGE'] = $licenceInfo['RURANGE'];
+			// gh#1241 Content path from database
+			$_SESSION['CONTENTLOCATION'] = $licenceInfo['CONTENTLOCATION'];
+			// gh#1241 Login option from database
+			$_SESSION['LOGINOPTION'] = $settingsInfo['LOGINOPTION'];
 	}
 
-	if($accountInfo['ROOTID'] > 0){
+	if ($accountInfo['ROOTID'] > 0){
 		$rangeChecked = true;
 		$ipChecked = true;
 		// Add judgement of ip or referr limit
@@ -164,55 +181,51 @@ function getRMSetting($prefix){
 		} else {
 			return true;
 		}
-	}else{
+	} else {
 		return false;
 	}
 }
 
-if(!empty($_SESSION['PREFIX'])){
+if (!empty($_SESSION['PREFIX'])){
 	// gh#1241 You might be returning to this screen after checking login and finding a mistake.
 	// If so, don't go off and do getRMSettings again as this clears errors
-	if(!isset($_SESSION['FAILURE']) || $_SESSION['FAILURE'] == false) {
-		if(getRMSetting($_SESSION['PREFIX']) == true){
-			if(isset($_SESSION['FAILREASON'])){
+	if (!isset($_SESSION['FAILURE']) || $_SESSION['FAILURE'] == false) {
+		if (getRMSetting($_SESSION['PREFIX']) == true) {
+			if (isset($_SESSION['FAILREASON']))
 				unset($_SESSION['FAILREASON']);
-			}
-			if(isset($_SESSION['FAILURE'])){
+			if (isset($_SESSION['FAILURE']))
 				unset($_SESSION['FAILURE']);
-			}
-			if($startingPoint != "" && $startingPoint != null){
+			if ($startingPoint != "" && $startingPoint != null)
 				$_SESSION['startingPoint'] = $startingPoint;
-			}
-			error_log("getRMSetting is true"."\r\n", 3, "../../Debug/debug_iyj.log");
-			if( $_SESSION['LICENCETYPE'] == "2" ){
+			if ($_SESSION['LICENCETYPE'] == "2"){
 				//adding prefix to the all redirect url link, fix added by sky at 01/08/2013
-				if (isset($_SESSION['PREFIX'])){
-					header("Location: ../../ItsYourJob/login.php?prefix=".$_SESSION['PREFIX']);
-				}else{
-					header("Location: ../../ItsYourJob/login.php");
-				}
+				header("Location: ../../ItsYourJob/login.php?prefix=".$_SESSION['PREFIX']);
 			}
-			if(isset($_GET['username'])){
+			// gh#1241 See if clarityenglish.com has already set session variables for the user
+			if (isset($_SESSION['UserID'])) {
+				error_log("I got a userID in session, so jump ahead with username=".$_SESSION['UserName']."\r\n", 3, "../../Debug/debug_iyj.log");
+			
+				$_POST['submit'] = "Start";
+				header("Location: ../../ItsYourJob/login.php?prefix=".$_SESSION['PREFIX']);
+				
+			} else if (isset($_GET['username'])){
 				$_SESSION['id'] = $_GET['username'];
 				$_SESSION['UserName'] = $_GET['username'];
-				if(isset($_GET['password'])){
+				if (isset($_GET['password'])) {
 					$_SESSION['PASSWORD'] = $_GET['password'];
 					$_SESSION['Password'] = $_GET['password'];
 					$_SESSION['pwd'] = $_GET['password'];
 				}
 				$_POST['submit'] = "Start";
-				if (isset($_SESSION['PREFIX'])){
-					header("Location: ../../ItsYourJob/login.php?prefix=".$_SESSION['PREFIX']);
-				}else{
-					header("Location: ../../ItsYourJob/login.php");
-				}
+				header("Location: ../../ItsYourJob/login.php?prefix=".$_SESSION['PREFIX']);
 			}
-		}else{
-			if(!isset($_SESSION['FAILURE'])) $_SESSION['FAILURE'] = "true";
-			if(!isset($_SESSION['FAILREASON'])) $_SESSION['FAILREASON'] = "220";
+		} else {
+			if (!isset($_SESSION['FAILURE'])) $_SESSION['FAILURE'] = "true";
+			if (!isset($_SESSION['FAILREASON'])) $_SESSION['FAILREASON'] = "220";
 		}
 	}
 }
+session_write_close();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -313,7 +326,7 @@ var licenceErrorMsg = new Array(
 	            Welcome, <?php echo ($_SESSION['USERNAME']=="" ? $_SESSION['id'] : $_SESSION['USERNAME']) ?>.<br/>Click the Start button to begin your course.
 	        </div> 
             <div id="login_btn_box">
-              <input id="submitBtn" name="submitBtn" type="submit" value="Start" class="login_btn"/>
+              <input id="submitBtn" name="submitBtn" type="submit" value="Start" class="login_btn" />
               <input id="newBtn" name="submit" type="submit" value="New user" class="newuser_btn" style="display:none"/>
               <div id="errmsg" style="display:none;"></div>
             </div>

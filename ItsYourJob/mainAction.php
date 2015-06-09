@@ -1,7 +1,7 @@
 <?php
 // gh#1241 Tidy up a little
-//session_start();	// Enable session
-date_default_timezone_set(TIMEZONE);
+session_start();	// Enable session
+require_once("Variables.php");
 
 $frequency = $_SESSION['FREQUENCY'];
 $licenceType = $_SESSION['LICENCETYPE'];
@@ -32,8 +32,8 @@ $expiryDateStr = Date("jS F Y", $expiryDate);
 // Get the content from XML File
 $languageCode = $_SESSION['LANGUAGECODE'];
 // gh#1241 Get content from config and database
-//contentLocation='ItsYourJob-NAmerican'
-$contentFolder
+$contentLocation=(isset($_SESSION['CONTENTLOCATION'])) ? $_SESSION['CONTENTLOCATION'] : 'ItsYourJob';
+//error_log("content comes from".$contentFolder.$contentLocation."\r\n", 3, "../Debug/debug_iyj.log");
 $EmuXML = simplexml_load_file($contentFolder.$contentLocation.'/Emu.xml');
 /*
 if ($languageCode == "NAMEN"){
@@ -58,7 +58,7 @@ if($fre == 7){
 		$startDate = $startDate + $fre * 24 * 3600;
 		$endDate = $startDate + ($fre - 1) * 24 *3600;
 	}
-}else{
+} else {
 	foreach ($EmuXML->children() as $course_node){
 		$startDateStr = Date("jS F Y", $startDate);
 		if( (($today-$startDate) >= 0 ) && (($today-$startDate) < $fre * 24 * 3600) ){

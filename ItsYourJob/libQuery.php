@@ -45,6 +45,7 @@ function start($parser, $element_name, $element_attrs){
 	global $licenceInfo;
 	global $instanceInfo;
 	global $dbInfo;
+	global $settingsInfo;
 	switch(strtoupper($element_name)) {
 		case "NOTE":
 			$noteInfo = $element_attrs;
@@ -66,6 +67,9 @@ function start($parser, $element_name, $element_attrs){
 			break;
 		case "DATABASE":
 			$dbInfo = $element_attrs;
+			break;
+		case "SETTINGS":
+			$settingsInfo = $element_attrs;
 			break;
 		default:
 	}
@@ -107,7 +111,7 @@ function autoRegister($username, $sid, $prefix, $pCode){
     $buildXML = buildXML($queryParams);
     sendAndLoad($buildXML, $responseXML, "progress");
     if(defined("DEBUG")){
-       debug($buildXML."\r\n".$responseXML."\r\n", 3, "../Debug/debug_iyj.log");
+       error_log($buildXML."\r\n".$responseXML."\r\n", 3, "../Debug/debug_iyj.log");
     }
     $xml = simplexml_load_string($responseXML);
     $parser = xml_parser_create();

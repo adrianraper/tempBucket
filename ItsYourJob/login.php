@@ -1,7 +1,5 @@
 <?php
-//session_start();
-date_default_timezone_set(TIMEZONE);
-
+if (session_id() == '') session_start();
 require_once("Variables.php");
 require_once("libQuery.php");
 /*
@@ -13,12 +11,15 @@ $noteInfo=array();
 $accountInfo=array();
 $licenceInfo=array();
 $dbInfo=array();
+$settingsInfo=array();
 
-if(!isset($_SESSION['PREFIX'])) {
+error_log("In login.php and session.adrian=".$_SESSION['Adrian'].' and SID='.session_id()."\r\n", 3, "../Debug/debug_iyj.log");
+$_SESSION['Adrian'] = 'Donald changed by login';
+
+if (!isset($_SESSION['PREFIX']))
 	$_SESSION['PREFIX'] = $_GET['prefix'];
-}
 
-# Custom authentication for HKIED SAO
+# Customer authentication for HKIED SAO
 if ($_SESSION['PREFIX']== 'HKIEDSAO') {
 	$private_key = '5rnVKa9=85rnVsrigk$HGG#529=8LSAFRdlkf72-242vjr3';
 	$myvalid_period = 600;
@@ -54,54 +55,56 @@ if ($_SESSION['PREFIX']== 'HKIEDSAO') {
 	}
 
 }
-# End of custome authentication for HKIED SAO
+# End of customer authentication for HKIED SAO
 
 /*
  * Functions define part
  */
 function checkUser($id, $password){
-	global $userInfo, $errorInfo, $noteInfo, $failReason, $demoversion;
+	global $userInfo, $errorInfo, $noteInfo, $failReason, $demoversion, $settingsInfo;
 	$dbversion = isset($_SESSION['DATABASEVERSION']) ? $_SESSION['DATABASEVERSION'] : "6";
+	$loginOption = isset($_SESSION['LOGINOPTION']) ? $_SESSION['LOGINOPTION'] : "1";
+    if(defined("DEBUG"))
+       error_log("check user loginOption=$loginOption and dbVersion=$dbversion"."\r\n", 3, "../Debug/debug_iyj.log");
     $instanceID = time();
-    if($_SESSION['SCORM'] == true){
+    if ($_SESSION['SCORM'] == true){
 		$buildXML = '<query method="emugetuser" '.
 					'studentID="'.$id.
 					'" prefix="'.$_SESSION['PREFIX'].
 					'" password="'.$password.
 		            '" instanceID="'.$instanceID.
 					'" courseid="1001" productcode="1001'.
-					'" loginOption="2" dbHost="2" databaseVersion="'.$dbversion.'"/>';
-	}else if($_SESSION['Shared'] == true) {
-	// shared account - loginOption = 129
+					'" loginOption="'.$loginOption.'" dbHost="2" databaseVersion="'.$dbversion.'"/>';
+	} else if ($_SESSION['Shared'] == true) {
+		// shared account - loginOption = 129
 		$buildXML = '<query method="emugetuser" '.
 					'name="'.$id.
 					'" password="'.$password.
 		            '" instanceID="'.$instanceID.
 					'" courseid="1001" productcode="1001'.
 					'" loginOption="129" dbHost="2" databaseVersion="'.$dbversion.'"/>';	
-	}else if(isset($_SESSION['PREFIX'])){
-    // Using user name to login
+	} else if (isset($_SESSION['PREFIX'])){
+		// gh#1421 Use database loginOption setting
 		$buildXML = '<query method="emugetuser" '.
 					'name="'.$id.
 					'" prefix="'.$_SESSION['PREFIX'].
 					'" password="'.$password.
 		            '" instanceID="'.$instanceID.
 					'" courseid="1001" productcode="1001'.
-					'" loginOption="1" dbHost="2" databaseVersion="'.$dbversion.'"/>';
-	}else if( $id=="iyjguest"
-    		|| isset($_SESSION['PREFIX'])
+					'" loginOption="'.$loginOption.'" dbHost="2" databaseVersion="'.$dbversion.'"/>';
+	} else if ($id=="iyjguest"
 			|| $_SESSION['LOGINTYPE'] == "school"
 			|| stripos($_SERVER['HTTP_HOST'],"clarityenglish.com")!==false 
 			|| stripos($_SERVER['HTTP_HOST'],"nas.ca")!==false ){
-    // Using user name to login
+		// Using user name to login
 		$buildXML = '<query method="emugetuser" '.
 					'name="'.$id.
 					'" password="'.$password.
 		            '" instanceID="'.$instanceID.
 					'" courseid="1001" productcode="1001'.
 					'" loginOption="1" dbHost="2" databaseVersion="'.$dbversion.'"/>';
-	}else{
-	// Using email address to login
+	} else {
+		// Using email address to login (because we don't have a prefix)
 		$buildXML = '<query method="emugetuser" '.
 					'email="'.$id.
 					'" password="'.$password.
@@ -110,8 +113,8 @@ function checkUser($id, $password){
 					'" loginOption="8" dbHost="2" databaseVersion="'.$dbversion.'"/>';
 	}
 	sendAndLoad($buildXML, $responseXML, "progress");
-    //if(defined("DEBUG"))
-       debug($buildXML."\r\n".$responseXML."\r\n", 3, "../Debug/debug_iyj.log");
+    if(defined("DEBUG"))
+       error_log($buildXML."\r\n".$responseXML."\r\n", 3, "../Debug/debug_iyj.log");
 	$xml = simplexml_load_string($responseXML);
 	$parser = xml_parser_create();
 	xml_set_element_handler($parser,"start","stop");
@@ -119,11 +122,10 @@ function checkUser($id, $password){
 	xml_parser_free($parser);
 
 	$userID=0;
-	if(isset($_SESSION['FAILREASON'])){
+	if (isset($_SESSION['FAILREASON']))
 		unset($_SESSION['FAILREASON']);
-	}
+		
 	$errorCode = $errorInfo['CODE'];
-	debug("emugetuser can back with error $errorCode"."\r\n", 3, "../Debug/debug_iyj.log");
 	switch($errorCode) {
 		case '101':
 		case '203':
@@ -162,13 +164,15 @@ function checkUser($id, $password){
 			$_SESSION['BOOKMARK'] = $userInfo['BOOKMARK'];
 	}
 
-	if($userInfo['USERID'] > 0){
+	if ($userInfo['USERID'] > 0){
 		return true;
-	}else{
+	} else {
 		return false;
 	}
 }
 function getRMSetting($rootID, $prefix){
+	if (defined("DEBUG"))
+		error_log("Calling getRMSettings from login..."."\r\n", 3, "../Debug/debug_iyj.log");
 	global $userInfo, $errorInfo, $noteInfo, $accountInfo, $licenceInfo, $failReason, $demoversion;
 		$buildXML = '<query method="getRMSettings" '.
 				'rootID="'.$rootID.
@@ -178,18 +182,16 @@ function getRMSetting($rootID, $prefix){
 				'" zone="'.date_default_timezone_get().'" productcode="1001'.
 				'" dbHost="2" />';
 	sendAndLoad($buildXML, $responseXML, "progress");
-	if(defined("DEBUG")){
-	   debug($buildXML."\r\n".$responseXML."\r\n", 3, "../Debug/debug_iyj.log");
-	}
+	if (defined("DEBUG"))
+		error_log($buildXML."\r\n".$responseXML."\r\n", 3, "../Debug/debug_iyj.log");
 	$xml = simplexml_load_string($responseXML);
 	$parser = xml_parser_create();
 	xml_set_element_handler($parser,"start","stop");
 	xml_parse($parser,$responseXML);
 	xml_parser_free($parser);
 
-    if(isset($_SESSION['FAILREASON'])){
+    if (isset($_SESSION['FAILREASON']))
         unset($_SESSION['FAILREASON']);
-    }
 	$errorCode = $errorInfo['CODE'];
 	switch($errorCode) {
 		case '100':
@@ -205,9 +207,9 @@ function getRMSetting($rootID, $prefix){
 			if ($prefix != "" && $_SESSION['ROOTID'] != $accountInfo['ROOTID'])
 				return false;
 			//end of add
-	        if($_SESSION['USERNAME']=="iyjguest"){
+	        if ($_SESSION['USERNAME']=="iyjguest"){
                 $_SESSION['LANGUAGECODE'] = $demoversion;
-            }else{
+            } else {
                 $_SESSION['LANGUAGECODE'] = $accountInfo['LANGUAGECODE'];
             }
 			$_SESSION['ROOTID'] = $accountInfo['ROOTID'];
@@ -238,7 +240,7 @@ function getRMSetting($rootID, $prefix){
 			 
 			// Start ip range checking
 			if(defined("DEBUG"))
-			debug("ItsYourJob checking ip $clientIp, allowed ip address is ".$_SESSION['IPRANGE'], 3, "../Debug/debug_iyj.log");
+			error_log("ItsYourJob checking ip $clientIp, allowed ip address is ".$_SESSION['IPRANGE'], 3, "../Debug/debug_iyj.log");
 			$targetIP = explode(",", $_SESSION['IPRANGE']);
 			foreach($targetIP as $ip){
 				if($clientIp == $ip){
@@ -272,7 +274,7 @@ function getRMSetting($rootID, $prefix){
 			$rangeChecked = false;
 			// it is dangerous to send the whole referrer as you might get confused with parameters (specifically content)
 			if (isset($_SERVER['HTTP_REFERER'])) {
-			debug("current referer is ".$_SERVER['HTTP_REFERER']."\n", 3, "../Debug/debug_iyj.log");
+			error_log("current referer is ".$_SERVER['HTTP_REFERER']."\n", 3, "../Debug/debug_iyj.log");
 				if (strpos($_SERVER['HTTP_REFERER'],'?')) {
 					$referrer=substr($_SERVER['HTTP_REFERER'],0,strpos($_SERVER['HTTP_REFERER'],'?'));
 				} else {
@@ -282,7 +284,7 @@ function getRMSetting($rootID, $prefix){
 			 
 			// Start referrer range checking
 			if(defined("DEBUG"))
-			debug("ItsYourJob checking referrer $referrer, allowed referrer is ".$_SESSION['RURANGE'], 3, "../Debug/debug_iyj.log");
+			error_log("ItsYourJob checking referrer $referrer, allowed referrer is ".$_SESSION['RURANGE'], 3, "../Debug/debug_iyj.log");
 			$targetRange = explode(",", $_SESSION['RURANGE']);
 			foreach($targetRange as $range){
 				if(strtolower($referrer) == strtolower($range)){
@@ -324,7 +326,7 @@ function getLicenceSlot($rootID, $userID){
 				'" dbHost="2" databaseVersion="'.$dbversion.'"/>';
 	sendAndLoad($buildXML, $responseXML, "licence");
     if(defined("DEBUG")){
-       debug($buildXML."\r\n".$responseXML."\r\n", 3, "../Debug/debug_iyj.log");
+       error_log($buildXML."\r\n".$responseXML."\r\n", 3, "../Debug/debug_iyj.log");
     }
 	$xml = simplexml_load_string($responseXML);
 	$parser = xml_parser_create();
@@ -361,7 +363,7 @@ function addUser($username, $pwd){
     $buildXML = '<query method="REGISTERUSER" name="'.$username.'" password="'.$pwd.'" rootID="'.$_SESSION['ROOTID'].'" groupID="'.$_SESSION['GROUPID'].'" loginOption="1" dbHost="2" databaseVersion="'.$dbversion.'"/>';
     sendAndLoad($buildXML, $responseXML, "progress");
     if(defined("DEBUG")){
-       debug($buildXML."\r\n".$responseXML."\r\n", 3, "../Debug/debug_iyj.log");
+       error_log($buildXML."\r\n".$responseXML."\r\n", 3, "../Debug/debug_iyj.log");
     }
     $xml = simplexml_load_string($responseXML);
     $parser = xml_parser_create();
@@ -403,7 +405,7 @@ if(!isset($_SESSION['PREFIX'])) {
 // Added by RL for emergency CLS fix - start
 //It is the cross domain issues of CLS that makes IYJ not working in CLS
 $redirect = ($_POST['redirect'] == "") ? $_GET['redirect'] : $_POST['redirect'];
-if($redirect=="CLS") {
+if ($redirect == "CLS") {
 	//$_SESSION['PREFIX'] = ($_POST['prefix'] == "") ? $_GET['prefix'] : $_POST['prefix'];
 	//$id = ($_POST['id'] == "") ? $_GET['id'] : $_POST['id'];
 	//$pwd = ($_POST['pwd'] == "") ? $_GET['pwd'] : $_POST['pwd'];
@@ -428,6 +430,7 @@ if(stripos($_SERVER['HTTP_HOST'],"clarityenglish.com")!==false){
 		//$licenceType = "2";
 	//}
 //Can be regrouped as follow
+
 if (isset($_SESSION['LOGINTYPE'])=="school") {
 	$id = $_SESSION['id'];
 	$pwd = $_SESSION['PASSWORD'];
@@ -443,60 +446,49 @@ if (isset($_SESSION['LOGINTYPE'])=="school") {
 	if ($id == "" && isset($_SESSION['id'])) $id = $_SESSION['id'];
 	if ($pwd == "" && isset($_SESSION['pwd'])) $pwd = $_SESSION['pwd'];
 	if ($pwd == "" && isset($_SESSION['Password'])) $pwd = $_SESSION['Password'];
+
+	// gh#1241 Pick up clarityenglish.com login details
+	error_log("In login.php and session.username=".$_SESSION['UserName'].' and SID='.session_id()."\r\n", 3, "../Debug/debug_iyj.log");
+	if ($id == "" && isset($_SESSION['UserName'])) $id = $_SESSION['UserName'];
+	if ($pwd == "" && isset($_SESSION['Password'])) $pwd = $_SESSION['Password'];
 }
 
 $demoversion = ($_POST['langcode']=="") ? $_GET['langcode'] : $_POST['langcode'];
 $submitType = $_POST['submit'];
 // Added by Adrian for emergency DEMO fix - start
 $demoPrefix = ($_POST['demoPrefix'] == "") ? $_GET['demoPrefix'] : $_POST['demoPrefix'];
-if($demoPrefix=="DEMO") $_SESSION['prefix']='DEMO';
+if ($demoPrefix=="DEMO") $_SESSION['prefix']='DEMO';
 // Added by Adrian for emergency DEMO fix - end
-if($_SESSION['SCORM'] == true) {
+if ($_SESSION['SCORM'] == true) {
 	$sid = $_SESSION['SID'];
 	$sid = htmlspecialchars($sid);
 }
 $id = htmlspecialchars($id);
 $pwd = htmlspecialchars($pwd);
 
-if(!isset($_SESSION['UserName'])) {
+if (!isset($_SESSION['UserName']))
 	$_SESSION['UserName'] = $id;
-}
 
-if(!isset($_SESSION['Password'])) {
+if (!isset($_SESSION['Password']))
 	$_SESSION['Password'] = $pwd;
-}
 
 $_SESSION['FAILURE'] = "false";
-if(!isset($_SESSION['PREFIX'])){
-	if(checkUser($id, $pwd) == false){
+if (!isset($_SESSION['PREFIX'])){
+	if (checkUser($id, $pwd) == false){
 		unset($errorInfo);
 		$_SESSION['FAILURE'] = "true";
-		debug("The fail reason is ".$_SESSION['FAILREASON']."\r\n", 3, "../Debug/debug_iyj.log");
-		//if($_SERVER['HTTP_HOST'] != "www.clarityenglish.com" && $_SERVER['HTTP_HOST'] != "claritymain"){
-		//	header("Location: index.php");
-		//}else{
-			// Now all error message display are changed to area1 folder.
-			// Below are the same
-			header("Location: ../../area1/ItsYourJob/index.php");
-		//}
+		//error_log("The fail reason is ".$_SESSION['FAILREASON']."\r\n", 3, "../Debug/debug_iyj.log");
+		header("Location: ../../area1/ItsYourJob/index.php");
 	} else {
 		if(getRMSetting($_SESSION['ROOTID'], '') == false){
 			unset($errorInfo);
 			$_SESSION['FAILURE'] = "true";
-			//if($_SERVER['HTTP_HOST'] != "www.clarityenglish.com" && $_SERVER['HTTP_HOST'] != "claritymain"){
-			//	header("Location: index.php");
-			//}else{
-				header("Location: ../../area1/ItsYourJob/index.php");
-			//}
+			header("Location: ../../area1/ItsYourJob/index.php");
 		} else {
 			if(getLicenceSlot($_SESSION['ROOTID'], $_SESSION['USERID']) == false){
 				unset($errorInfo);
 				$_SESSION['FAILURE'] = "true";
-				//if($_SERVER['HTTP_HOST'] != "www.clarityenglish.com" && $_SERVER['HTTP_HOST'] != "claritymain"){
-				//	header("Location: index.php");
-				//}else{
-					header("Location: ../../area1/ItsYourJob/index.php");
-				//}
+				header("Location: ../../area1/ItsYourJob/index.php");
 			}
 		}
 	}
@@ -522,12 +514,12 @@ if(!isset($_SESSION['PREFIX'])){
 		} else if (checkUser($id, $pwd) == false){
 			unset($errorInfo);
 			$_SESSION['FAILURE'] = "true";
-			debug("The fail reason is ".$_SESSION['FAILREASON']."\r\n", 3, "../Debug/debug_iyj.log");
+			if (defined('DEBUG')) error_log("The fail reason is ".$_SESSION['FAILREASON']."\r\n", 3, "../Debug/debug_iyj.log");
 			header("Location: ../../area1/ItsYourJob/index.php?prefix=".$_SESSION['PREFIX']);
 		} else if(getRMSetting("", $_SESSION['PREFIX']) == false){
 			unset($errorInfo);
 			$_SESSION['FAILURE'] = "true";
-				header("Location: ../../area1/ItsYourJob/index.php");
+			header("Location: ../../area1/ItsYourJob/index.php");
 		} else {
 			if(getLicenceSlot($_SESSION['ROOTID'], $_SESSION['USERID']) == false){
 				unset($errorInfo);
@@ -536,7 +528,7 @@ if(!isset($_SESSION['PREFIX'])){
 			}
 		}
 	} else {
-		if(defined("DEBUG")) debug($_SERVER['REQUEST_URL']."\r\n", 3, "../Debug/debug_iyj.log");
+		if(defined("DEBUG")) error_log($_SERVER['REQUEST_URL']."\r\n", 3, "../Debug/debug_iyj.log");
 		$_SESSION['USERID'] = "-1";
 		$_SESSION['USERNAME'] = "student";
 		if(getLicenceSlot($_SESSION['ROOTID'], $_SESSION['USERID']) == false){
@@ -565,12 +557,11 @@ if(!isset($_SESSION['PREFIX'])){
 $_SESSION['id']=$id;
 $_SESSION['PASSWORD']=$pwd;
 
-if($_SESSION['LICENCETYPE'] == ""){
+if($_SESSION['LICENCETYPE'] == "")
 	$_SESSION['LICENCETYPE'] = $licenceType;
-}
 
 if (isset($_SESSION['courseid'])) $courseid = $_SESSION['courseid'];
-if($courseid == "") $courseid = 1;
+if ($courseid == "") $courseid = 1;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

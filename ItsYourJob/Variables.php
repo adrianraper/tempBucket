@@ -1,11 +1,14 @@
 <?php
     define("DEBUG", "TRUE");
-    if(defined("DEBUG")){
-        require_once("../Debug/Debug_PHP.php");
-    }
+	define('TIMEZONE', 'UTC');
+	date_default_timezone_set(TIMEZONE);
+
 	$domain = "http://".$_SERVER['HTTP_HOST'];
 	//$adminFolder = "/Admin/";
 	$startFolder = "/ItsYourJob/";
+	// gh#1241 Configure a content base
+	$contentFolder = "$domain/Content/";
+	
 	//$licenceInfo = parse_ini_file("licence-A.txt");
 	//$locationInfo = parse_ini_file("location-A.txt");
 	//$locationInfo = parse_setting_file("location-A.txt");

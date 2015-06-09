@@ -1,9 +1,17 @@
 <?php
+// gh#1241 Tidy up a little
 session_start();	// Enable session
+require_once("Variables.php");
+
 $unitID = intval($_GET["unitID"], 10);
 
 $xmlDoc = new DOMDocument();
-$languageCode = $_SESSION['LANGUAGECODE'];
+// gh#1241 Get content from config and database
+//$languageCode = $_SESSION['LANGUAGECODE'];
+$contentLocation=(isset($_SESSION['CONTENTLOCATION'])) ? $_SESSION['CONTENTLOCATION'] : 'ItsYourJob';
+$EmuXMLFile = $contentFolder.$contentLocation.'/Emu.xml';
+$xmlDoc->loadXML(file_get_contents($EmuXMLFile));
+/*
 if($languageCode == "NAMEN"){
     $xmlDoc->loadXML(file_get_contents('../Content/ItsYourJob-NAmerican/Emu.xml'));
 }else if($languageCode == "INDEN"){
@@ -11,6 +19,7 @@ if($languageCode == "NAMEN"){
 }else{
     $xmlDoc->loadXML(file_get_contents('../Content/ItsYourJob/Emu.xml'));
 }
+*/
 $courseDoc = $xmlDoc->getElementsByTagName('course')->item($unitID-1);
 $unitDocs = $courseDoc->getElementsByTagName('unit');
 foreach($unitDocs as $unitDoc){
@@ -23,4 +32,3 @@ foreach($unitDocs as $unitDoc){
 // Tell the client that the output content type is XML format.
 header("Content-Type: text/xml");
 echo $xmlDoc->saveXML($resourceDoc);
-?>
