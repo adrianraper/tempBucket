@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
-         xmlns:s="library://ns.adobe.com/flex/spark">
+         xmlns:s="library://ns.adobe.com/flex/spark"
+         xmlns:video="com.clarityenglish.controls.video.*">
 
     <fx:Metadata>
         [HostComponent("com.clarityenglish.practicalwriting.view.zone.StartOutZoneView")]
@@ -11,4 +12,11 @@
         <s:State name="disabled" />
         <s:State name="normal" />
     </s:states>
+
+    <s:VGroup width="640" height="100%" gap="20">
+        <video:VideoSelector id="introductionVideoSelector" width="640" height="360" horizontalCenter="0" showSelector="false" placeholderSource="{hostComponent.placeHolderString}" videoCollection="{hostComponent.videoXMLListCollection}" />
+
+        <s:Label id="startOutLabel" width="600" fontSize="15" />
+    </s:VGroup>
+
 </s:Skin>

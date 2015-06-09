@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	<id>/area1/ActiveReading in localhost</id>
+	<id>/area1/PracticalWriting in localhost</id>
 	<dbHost>2</dbHost>
 	<productCode>61</productCode>
 	<loginOption>128</loginOption>
@@ -18,7 +18,7 @@
 	
 	<remoteDomain>http://192.168.8.82/</remoteDomain>
 	<remoteGateway>http://192.168.8.82/Software/ResultsManager/web/amfphp/</remoteGateway>
-	<remoteService>ActiveReadingService</remoteService>
+	<remoteService>PracticalWritingService</remoteService>
 	
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 	

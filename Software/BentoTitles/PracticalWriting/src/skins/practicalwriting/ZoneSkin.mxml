@@ -42,7 +42,10 @@
                     <s:SolidColor color="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}"/>
                 </s:fill>
             </s:Rect>
-            <s:Label id="minsLabel" width="50" fontSize="20" fontFamily="Helvetica" textAlign="center"/>
+            <s:VGroup id="minsVGroup" width="40" horizontalAlign="center">
+                <s:Label id="minsNumberLabel" fontSize="20" />
+                <s:Label id="minsLabel" fontSize="20" />
+            </s:VGroup>
             <s:Rect id="midRect" width="2" height="40" visible="false" includeInLayout="false">
                 <s:fill>
                     <s:SolidColor color="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}"/>

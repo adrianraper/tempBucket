@@ -231,7 +231,7 @@ import spark.utils.TextFlowUtil;
 
 			// Show the script button if there is a @scriptHref attribute
 			scriptButton.visible = (videoList.selectedItem && (videoList.selectedItem.attribute("scriptHref").length() > 0 || videoList.selectedItem.script.length() > 0));
-			if (videoList.selectedItems && videoList.selectedItem.script.length() > 0) {
+			if (videoList.selectedItem && videoList.selectedItem.child("script").length() > 0) {
 				stage.addEventListener(MouseEvent.CLICK, onStageClick);
 			}
 			

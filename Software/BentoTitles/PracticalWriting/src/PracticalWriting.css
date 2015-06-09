@@ -12,6 +12,8 @@
 @namespace closing "com.clarityenglish.practicalwriting.view.closing.*";
 @namespace timer "com.clarityenglish.bento.view.timer.*";
 @namespace vo "com.clarityenglish.practicalwriting.view.vo.*";
+@namespace video "com.clarityenglish.controls.video.*";
+@namespace players "com.clarityenglish.controls.video.players.*";
 
 global {
     pieChartFillColor: #EC008B, #EF7F31, #91BD49, #333290, #9C298C, #00A054, #F090AB, #00A9A3, #E8194B, #00A8DE;
@@ -205,6 +207,14 @@ timer|TimerComponent {
 
 timer|TimerComponent s|Button {
     skinClass: ClassReference("skins.practicalwriting.exercise.timer.TimerButtonSkin");
+}
+
+video|VideoSelector {
+    skinClass: ClassReference("skins.practicalwriting.controls.video.VideoSelectorSkin");
+}
+
+players|OSMFVideoPlayer {
+    skinClass: ClassReference("skins.practicalwriting.controls.video.videoplayer.VideoPlayerSkin");
 }
 
 vo|PieChartButton {

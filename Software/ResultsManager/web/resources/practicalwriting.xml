@@ -7,11 +7,23 @@
 
 			<lit name="goToHelpButton">Help</lit>
 			<lit name="goToSettingsButton">Settings</lit>
-			<lit name="minsLabel"><![CDATA[ mins]]></lit>
-           		 <lit name="readLabel"><![CDATA[ read]]></lit>
+			<lit name="minsLabel">mins</lit>
+			<lit name="readLabel">read</lit>
 			<!-- Help -->
 			<lit name="helpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/ActiveReadingHelp.pdf</lit>
 			<lit name="recorderHelpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/ActiveReadingHelp.pdf</lit>
+
+			<!--Start out-->
+			<lit name="startOutLabel0"></lit>
+			<lit name="startOutLabel1"></lit>
+			<lit name="startOutLabel2"></lit>
+			<lit name="startOutLabel3"></lit>
+			<lit name="startOutLabel4"></lit>
+			<lit name="startOutLabel5"></lit>
+			<lit name="startOutLabel6"></lit>
+			<lit name="startOutLabel7"></lit>
+			<lit name="startOutLabel8"></lit>
+			<lit name="startOutLabel9"></lit>
 
 			<!-- Progress certificate -->
 			<lit name="notCompleteString">

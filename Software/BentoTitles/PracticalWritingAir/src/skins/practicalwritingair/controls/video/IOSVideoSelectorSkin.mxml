@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark" xmlns:players="com.clarityenglish.controls.video.players.*" creationComplete="onCreationComplete(event)">
+    <!-- host component -->
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.controls.video.VideoSelector")]
+    </fx:Metadata>
+
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" angle="260" distance="1.5" alpha="0.5" blurX="8" blurY="5" />
+    </fx:Declarations>
+
+    <fx:Script>
+		<![CDATA[
+        import mx.events.FlexEvent;
+        import spark.events.IndexChangeEvent;
+        import spark.skins.spark.VideoPlayerSkin;
+
+        protected function onCreationComplete(event:FlexEvent):void {
+            trace("video list length: "+hostComponent.videoCollection.length);
+            var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
+            if (settingsSharedObject.data["channelIndex"]) {
+                channelList.selectedIndex = settingsSharedObject.data["channelIndex"];
+            }
+            channelList.visible = false;
+        }
+
+        protected function onPlaceholderClick(event:MouseEvent):void {
+            // For now the default index is 0, but latter we will get index from widgetlist which is user prefered.
+            videoList.selectedIndex = 0;
+            videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+        }
+        ]]>
+	</fx:Script>
+    <!--video player black background-->
+    <s:Rect id="videoListRect" top="2" width="100%" height="100%" filters="{[dropShadowFilter]}">
+        <s:fill>
+            <s:SolidColor color="0xD6D6D6" />
+        </s:fill>
+    </s:Rect>
+
+    <!-- The video players -->
+    <players:WebViewVideoPlayer id="videoPlayer" left="0" width="100%" height="100%" visible="{videoList.selectedItem != null}" />
+    <!--players:OSMFVideoPlayer id="videoPlayer" left="0" width="100%" height="100%" visible="{videoList.selectedItem != null}" /-->
+
+    <!-- Placeholder image -->
+    <s:Image id="placeholderImage" left="0" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
+
+    <!-- Channel list -->
+    <s:List id="channelList" top="260" left="30" width="320" horizontalScrollPolicy="off" >
+        <s:layout>
+            <s:HorizontalLayout />
+        </s:layout>
+    </s:List>
+    <s:Button id="scriptButton" left="411" top="172" width="50" height="45" />
+
+    <!-- Video list -->
+    <s:List id="videoList" top="4" right="-69" width="64" height="100%" horizontalScrollPolicy="off" minHeight="0" minWidth="0" borderVisible="false" contentBackgroundAlpha="0" />
+</s:Skin>

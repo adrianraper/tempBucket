@@ -17,12 +17,19 @@ import spark.components.Button;
 import spark.components.Label;
 
 import spark.components.TabbedViewNavigator;
+import spark.components.VGroup;
 import spark.primitives.Rect;
 
     public class ZoneView extends BentoView {
 
         [SkinPart]
         public var zoneViewNavigator:TabbedViewNavigator;
+
+        [SkinPart]
+        public var minsVGroup:VGroup;
+
+        [SkinPart]
+        public var minsNumberLabel:Label;
 
         [SkinPart]
         public var minsLabel:Label;
@@ -101,6 +108,9 @@ import spark.primitives.Rect;
                 case skillCaptionLabel:
                     skillCaptionLabel.text = copyProvider.getCopyForId("skillCaptionLabel");
                     break;
+                case minsLabel:
+                    minsLabel.text = copyProvider.getCopyForId("minsLabel");
+                    break;
             }
         }
 
@@ -119,9 +129,10 @@ import spark.primitives.Rect;
                 hasCourseChanged = false;
                 if (everyoneUnitScores[course.@id]) {
                     if (everyoneUnitScores[course.@id].mins > 0) {
-                        minsLabel.text = everyoneUnitScores[course.@id].mins + copyProvider.getCopyForId("minsLabel");
+                        minsVGroup.visible = minsVGroup.includeInLayout = true;
+                        minsNumberLabel.text = everyoneUnitScores[course.@id].mins;
                     } else {
-                        minsLabel.visible = minsLabel.includeInLayout = false;
+                        minsVGroup.visible = minsVGroup.includeInLayout = false;
                     }
 
                     if (everyoneUnitScores[course.@id].read > 0) {

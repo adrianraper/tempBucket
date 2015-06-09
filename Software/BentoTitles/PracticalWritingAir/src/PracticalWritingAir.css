@@ -1,10 +1,17 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace practicalwriting "com.clarityenglish.practicalwriting.*";
+@namespace video "com.clarityenglish.controls.video.*";
 @namespace nonetwork "com.clarityenglish.bento.view.nonetwork.*";
 
 practicalwriting|PracticalWritingApplication {
     skinClass: ClassReference("skins.practicalwritingair.PracticalWritingApplicationSkin");
+}
+
+@media (os-platform: "IOS") {
+    video|VideoSelector {
+        skinClass: ClassReference("skins.practicalwritingair.controls.video.IOSVideoSelectorSkin");
+    }
 }
 
 nonetwork|NoNetworkView {
