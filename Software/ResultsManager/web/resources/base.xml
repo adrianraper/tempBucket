@@ -239,8 +239,7 @@
             <lit name="generalFeedbackTitle"></lit>
 
             <!--No network-->
-            <lit name="nonetworkCaptionLabel">Connection error</lit>
-            <lit name="nonetworkContentLabel">An internet connection is required, but cannot be detected.</lit>
+            <lit name="nonetworkContentLabel">No internet connection</lit>
 
             <!--Closing-->
             <lit name="closingCaptionLabel">Thank you</lit>
