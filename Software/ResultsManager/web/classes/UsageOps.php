@@ -718,6 +718,34 @@ EOD;
 	}
 	// The same thing, but for everyone (in a particular country)
 	public function getEveryonesCoverage($reportables, $startDate = 0, $endDate = 0, $userID, $rootID = null, $country = 'worldwide') {
+	
+		// gh#1241 Totally replace with a snapshot of hardcoded data to save time.
+		// I do NOT pretend to understand how the data that is sent back actually works!
+		// CRAZY!
+		$usersRS = array();
+		$idList = array('1001','1255000000650','1255000000800','1255000000950','1255000001100','1255000001250','1255000001400','1255000001560','1255000001700','1255000001850','1255000002010');
+		foreach($idList as $id) {
+			$record = array();
+			$record['id'] = $id;
+			$record['users'] = '1';
+			$usersRS[] = $record;
+		}
+		
+		$emuRS = array();
+		$idList = array('1255000000670','1255000000820','1255000000970','1255000001120','1255000001270','1255000001420','1255000001580','1255000001720','1255000001870','1255000002030');
+		$scoreList = array('14','20','16','14.5','14','15','13.5','13','12.5','16');
+		$i=0;
+		foreach($idList as $id) {
+			$record = array();
+			$record['id'] = $id;
+			$record['completed'] = $scoreList[$i];
+			$record['total'] = '10';
+			$emuRS[] = $record;
+			$i++;
+		}
+		
+		return array_merge($usersRS, $emuRS); //, $orchidRS);
+		
 		// We have to have a different style of getting coverage from SQL as AP exercises record differently than EMU exercises.
 		// So split based on productCode>1000 for EMUs.
 		//NetDebug::trace("UsageOps.EveryonesCoverage userID=".$userID." startDate=".$startDate." endDate=".$endDate." country=".$country);
@@ -733,11 +761,12 @@ EOD;
 		}
 		$emuList = join(",", $emuIDs);
 		$authorPlusList = join(",", $authorPlusIDs);
+		//AbstractService::$debugLog->notice("everyoneCoverage $emuList $authorPlusList start=$startDate");
 		//$fullList = join(",", $fullIDs);
-		
+				
 		// In order to have just one function, allow just one call to be made at a time
 		if ((strtolower($singleStyle=="emu") || $singleStyle==null) && $userID>0) {
-			
+			AbstractService::$debugLog->notice("going to check emu coverage");
 			// EMU progress records have the itemID then the number of unique score_corrects (equivalent to pages or cuepoints) then the total that you could have got.
 			// If the video or eBook never changes length or segements, this data will never change. 
 			// What we are getting here is 
@@ -830,8 +859,11 @@ EOD;
 EOD;
 			//NetDebug::trace("UsageOps.NewEMUEveryonecoverage=".$sql);
 			//$emurs = $this->db->GetArray($sql, $userID, $startDate, $endDate);
+			AbstractService::$debugLog->notice("sql=$sql bindingParams=".implode(',',$bindingParams));
+
 			$workingrs = $this->db->GetArray($sql, $bindingParams);
-			//NetDebug::trace("records=".count($workingrs));
+			AbstractService::$debugLog->notice("records=".count($workingrs));
+			
 			$emurs = array();
 			// Now we need to add up the completed and total for each itemID
 			$thisItemID = "";
@@ -855,7 +887,8 @@ EOD;
 			$emurs = array();
 		}
 		if ((strtolower($singleStyle)=="authorplus" || $singleStyle==null) && $userID>0) {
-		
+			AbstractService::$debugLog->notice("going to check orchid coverage");
+
 			// AP progress records have the itemID then the number of times this exercise has been done (which is irrelevant really)
 			// We do not know the total from progress, can only get it from the menu.xml. But we might need the unit ID of the exercise. No, not useful.
 			// Since we don't care about number of times you have done an exercise, we just return 1 if you have done it at least once.
@@ -932,6 +965,8 @@ EOD;
 
 			//NetDebug::trace("UsageOps.APEveryonecoverage=".$sql);
 			$workingrs = $this->db->GetArray($sql, $bindingParams);
+			AbstractService::$debugLog->notice("sql=$sql");
+
 			//NetDebug::trace("records=".count($workingrs));
 			$authorplusrs = array();
 			// Now we need to add up the completed and total for each itemID
@@ -1014,6 +1049,8 @@ EOD;
 			GROUP BY c.F_CourseID 
 EOD;
 		}
+		AbstractService::$debugLog->notice("country sql=$sql binding=".implode(',',$bingindParams));
+
 		//NetDebug::trace("UsageOps.EveryoneNumbers=".$sql." with ".implode(", ",$bindingParams));
 		$overallrs = $this->db->GetArray($sql, $bindingParams);
 		// Add this as the first records in the return array. Yikes, that is so clumsy.
