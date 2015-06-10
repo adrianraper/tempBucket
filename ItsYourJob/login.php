@@ -1,5 +1,7 @@
 <?php
-if (session_id() == '') session_start();
+//$sessionID = $_GET['sessionID'];
+//session_id($sessionID);
+session_start();
 require_once("Variables.php");
 require_once("libQuery.php");
 /*
@@ -12,9 +14,6 @@ $accountInfo=array();
 $licenceInfo=array();
 $dbInfo=array();
 $settingsInfo=array();
-
-error_log("In login.php and session.adrian=".$_SESSION['Adrian'].' and SID='.session_id()."\r\n", 3, "../Debug/debug_iyj.log");
-$_SESSION['Adrian'] = 'Donald changed by login';
 
 if (!isset($_SESSION['PREFIX']))
 	$_SESSION['PREFIX'] = $_GET['prefix'];
@@ -61,11 +60,17 @@ if ($_SESSION['PREFIX']== 'HKIEDSAO') {
  * Functions define part
  */
 function checkUser($id, $password){
+	if ($id == '' || $id === null) {
+		$_SESSION['FAILURE'] = "true";
+		$_SESSION['FAILREASON'] = 204;
+		return false;
+	}
+
 	global $userInfo, $errorInfo, $noteInfo, $failReason, $demoversion, $settingsInfo;
 	$dbversion = isset($_SESSION['DATABASEVERSION']) ? $_SESSION['DATABASEVERSION'] : "6";
 	$loginOption = isset($_SESSION['LOGINOPTION']) ? $_SESSION['LOGINOPTION'] : "1";
     if(defined("DEBUG"))
-       error_log("check user loginOption=$loginOption and dbVersion=$dbversion"."\r\n", 3, "../Debug/debug_iyj.log");
+       error_log("check user loginOption=$loginOption"."\r\n", 3, "../Debug/debug_iyj.log");
     $instanceID = time();
     if ($_SESSION['SCORM'] == true){
 		$buildXML = '<query method="emugetuser" '.
@@ -87,6 +92,7 @@ function checkUser($id, $password){
 		// gh#1421 Use database loginOption setting
 		$buildXML = '<query method="emugetuser" '.
 					'name="'.$id.
+					'" studentID="'.$id.
 					'" prefix="'.$_SESSION['PREFIX'].
 					'" password="'.$password.
 		            '" instanceID="'.$instanceID.
@@ -398,9 +404,8 @@ function addUser($username, $pwd){
 /*
 * Main progress start
 */
-if(!isset($_SESSION['PREFIX'])) {
-	$_SESSION['PREFIX'] = $_REQUEST['prefix'];
-}
+if (!isset($_SESSION['PREFIX']))
+	$_SESSION['PREFIX'] = ($_POST['prefix'] == "") ? $_GET['prefix'] : $_POST['prefix'];
 
 // Added by RL for emergency CLS fix - start
 //It is the cross domain issues of CLS that makes IYJ not working in CLS
@@ -448,7 +453,6 @@ if (isset($_SESSION['LOGINTYPE'])=="school") {
 	if ($pwd == "" && isset($_SESSION['Password'])) $pwd = $_SESSION['Password'];
 
 	// gh#1241 Pick up clarityenglish.com login details
-	error_log("In login.php and session.username=".$_SESSION['UserName'].' and SID='.session_id()."\r\n", 3, "../Debug/debug_iyj.log");
 	if ($id == "" && isset($_SESSION['UserName'])) $id = $_SESSION['UserName'];
 	if ($pwd == "" && isset($_SESSION['Password'])) $pwd = $_SESSION['Password'];
 }
@@ -562,6 +566,7 @@ if($_SESSION['LICENCETYPE'] == "")
 
 if (isset($_SESSION['courseid'])) $courseid = $_SESSION['courseid'];
 if ($courseid == "") $courseid = 1;
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

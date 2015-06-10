@@ -10,10 +10,6 @@ if ($testingPortalLogin) {
 	$_SESSION['Password'] = 'password';
 }
 
-if (!isset($_SESSION['Adrian']))
-	$_SESSION['Adrian'] = 'Adrian from index';
-error_log("In index.php and session.adrian=".$_SESSION['Adrian'].' and SID='.session_id()."\r\n", 3, "../../Debug/debug_iyj.log");
-
 if (!isset($_SESSION['PREFIX']))
 	$_SESSION['PREFIX'] = ($_POST['prefix'] == "") ? $_GET['prefix'] : $_POST['prefix'];
 
@@ -32,7 +28,7 @@ if (isset($_GET['startingPoint'])){ // direct start parameter
 $_SESSION['SCORM'] = $_GET['scorm'] ? $_GET['scorm'] : "";
 $_SESSION['SID'] = $_GET['sid'] ? $_GET['sid'] : ""; // studentID
 $_SESSION['PRACTICEID'] = $_GET['practice'] ? $_GET['practice'] : "";
-$domain = "http://".$_SERVER['HTTP_HOST'];
+//$domain = "http://".$_SERVER['HTTP_HOST'];
 $userInfo=array();
 $errorInfo=array();
 $noteInfo=array();
@@ -225,7 +221,13 @@ if (!empty($_SESSION['PREFIX'])){
 		}
 	}
 }
-session_write_close();
+if ($_SESSION['LOGINOPTION'] == 1) {
+	$loginOptionFieldName = 'Name';
+} else if ($_SESSION['LOGINOPTION'] == 2) {
+	$loginOptionFieldName = 'ID';
+} else {
+	$loginOptionFieldName = 'Email';
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -275,8 +277,8 @@ var loginType = "<?php echo $_SESSION['LOGINTYPE'];?>";
 var g_domain = "<?php echo $_SERVER['HTTP_HOST']; ?>";
 var errmsg = new Array(
 	    //'Name \"' + username + '\" is not in database, <br> please click \"NEW USER\" button.', //203
-	    'This is the first time this name has been used. Please click New user to confirm.', //203
-        'Sorry, that name or password are wrong, please try again.', // 204 and 206
+	    'This is the first time these details have been used. Please click New user to confirm.', //203
+        'Sorry, these details or password are wrong, please try again.', // 204 and 206
         'Sorry, your account has expired.', //208
         'The licence can only run from a limited range of computers (IP address).' // 250
 );
@@ -289,7 +291,7 @@ var accountErrorMsg = new Array(
 		);
 var licenceErrorMsg = new Array(
 		"Sorry, the licence is full. <br> Please try again in a while once someone else has finished.", //201
-		"Sorry, the licence is full." // 211
+		"Sorry, more than one student matches those details. Please ask your administrator for help." // 211
 		);
 </script>
 </head>
@@ -305,12 +307,11 @@ var licenceErrorMsg = new Array(
     <!--Content Area-->
     <div id="home_container">
     	<div id="login_box">
-       	  <h1>Please log in.</h1>
-       	  <form method="post" action="../../ItsYourJob/login.php<?php if(isset($_SESSION['PREFIX'])) echo "?prefix=".$_SESSION['PREFIX']; ?>" name="loginForm" id="loginForm">
+       	  <h1>Please sign in.</h1>
+       	  <form method="post" action="../../ItsYourJob/login.php" name="loginForm" id="loginForm">
        	    <div id="login_form">
-            <p class="login_btn_text">Please type your name and click Start.</p>
                 <div class="login_box_field">
-                        <p class="login_title">Name:</p>
+                        <p class="login_title"><?php echo $loginOptionFieldName;?>:</p>
                         <input name="id" type="text" value="" class="login_field"/>
                         <div class="clear"></div>
                 </div>
@@ -322,6 +323,7 @@ var licenceErrorMsg = new Array(
                 </div>
             </div>
      
+			<!-- gh#1421 I think this display section is redundant -->
 	        <div id="login_welcome" style="display:none">
 	            Welcome, <?php echo ($_SESSION['USERNAME']=="" ? $_SESSION['id'] : $_SESSION['USERNAME']) ?>.<br/>Click the Start button to begin your course.
 	        </div> 
@@ -377,7 +379,8 @@ if(failure=="true"){
 if(username=="" || failure=="true"){
 	document.getElementById('login_form').style.display = "block";
     document.getElementById('login_welcome').style.display = "none";
-    cmdRequest("../../ItsYourJob/logout.php", "GET", null, false);
+	// gh#1421 This destroys the very information we want in the session
+    //cmdRequest("../../ItsYourJob/logout.php", "GET", null, false);
 }else{
     document.getElementById('login_form').style.display = "none";
     document.getElementById('login_welcome').style.display = "block";

@@ -1,5 +1,4 @@
-﻿In index.php and session.adrian=Adrian from index and SID=gt2a7a3723td10prp14b54s5h6
-﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="Clarity" dateStamp="2015-06-09 10:20:45" cacheVersion="1433845245" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+﻿﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="clarity" dateStamp="2015-06-10 03:27:32" cacheVersion="1433906852" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
 				verified='1'
 				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
 							maxStudents='999'
@@ -13,15 +12,43 @@
 							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
 							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
 settingsInfo(loginOption)=2
-In login.php and session.adrian= and SID=gt2a7a3723td10prp14b54s5h6
-In login.php and session.username= and SID=gt2a7a3723td10prp14b54s5h6
-check user loginOption=1 and dbVersion=6
-<query method="emugetuser" name="" prefix="Clarity" password="" instanceID="1433845250" courseid="1001" productcode="1001" loginOption="1" dbHost="2" databaseVersion="6"/>
-﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" name="" prefix="Clarity" password="" instanceID="1433845250" courseid="1001" productcode="1001" loginOption="1" dbHost="2" databaseVersion="6"/></note><user name="" userID="-1"/></db>
-The fail reason is 
-In index.php and session.adrian=Donald changed by login and SID=gt2a7a3723td10prp14b54s5h6
-In index.php and session.adrian=Adrian from index and SID=gt2a7a3723td10prp14b54s5h6
-﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="Clarity" dateStamp="2015-06-09 10:21:48" cacheVersion="1433845308" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+check user loginOption=2
+<query method="emugetuser" name="dandelion123" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433906866" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" name="dandelion123" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433906866" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/></note><user userID='27639'
+						userName='dandelion'
+						name='dandelion'
+						email='dandy@email'
+						startDate=''
+						expiryDate=''
+						licenceStartDate='1433808000'
+						licenceExpiryDate='1893455999'
+						licenceType='1'
+						userType='0'
+						rootid='163'
+						contactMethod=''
+						sessionID='6836414'
+						languageCode='EN'
+						bookmark='01'
+						isAdmin='false'
+						frequency='' /><instance>1433906866</instance></db>
+Calling getRMSettings from login...
+<query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-10 03:27:46" cacheVersion="1433906866" zone="UTC" productcode="1001" dbHost="2" />
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-10 03:27:46" cacheVersion="1433906866" zone="UTC" productcode="1001" dbHost="2" /></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+<query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433906866" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433906866" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/></note><licence id='6836408' /><note>use existing licence</note></db>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="clarity" dateStamp="2015-06-10 03:28:03" cacheVersion="1433906883" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
 				verified='1'
 				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
 							maxStudents='999'
@@ -35,10 +62,59 @@ In index.php and session.adrian=Adrian from index and SID=gt2a7a3723td10prp14b54
 							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
 							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
 settingsInfo(loginOption)=2
-In login.php and session.adrian= and SID=gt2a7a3723td10prp14b54s5h6
-In login.php and session.username= and SID=gt2a7a3723td10prp14b54s5h6
-check user loginOption=1 and dbVersion=6
-<query method="emugetuser" name="dandelion" prefix="Clarity" password="asdf" instanceID="1433845312" courseid="1001" productcode="1001" loginOption="1" dbHost="2" databaseVersion="6"/>
-﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" name="dandelion" prefix="Clarity" password="asdf" instanceID="1433845312" courseid="1001" productcode="1001" loginOption="1" dbHost="2" databaseVersion="6"/></note><err code='204'>Password does not match</err></db>
+check user loginOption=2
+<query method="emugetuser" name="dandelion123" studentID="dandelion123" prefix="clarity" password="adf" instanceID="1433906953" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" name="dandelion123" studentID="dandelion123" prefix="clarity" password="adf" instanceID="1433906953" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/></note><err code='204'>Password does not match</err></db>
 The fail reason is 204
-In index.php and session.adrian=Donald changed by login and SID=gt2a7a3723td10prp14b54s5h6
+check user loginOption=2
+<query method="emugetuser" name="dandelion123" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433906957" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" name="dandelion123" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433906957" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/></note><user userID='27639'
+						userName='dandelion'
+						name='dandelion'
+						email='dandy@email'
+						startDate=''
+						expiryDate=''
+						licenceStartDate='1433808000'
+						licenceExpiryDate='1893455999'
+						licenceType='1'
+						userType='0'
+						rootid='163'
+						contactMethod=''
+						sessionID='6836415'
+						languageCode='EN'
+						bookmark='01'
+						isAdmin='false'
+						frequency='' /><instance>1433906957</instance></db>
+Calling getRMSettings from login...
+<query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-10 03:29:17" cacheVersion="1433906957" zone="UTC" productcode="1001" dbHost="2" />
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-10 03:29:17" cacheVersion="1433906957" zone="UTC" productcode="1001" dbHost="2" /></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+<query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433906957" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433906957" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/></note><licence id='6836408' /><note>use existing licence</note></db>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="clarity" dateStamp="2015-06-10 03:29:24" cacheVersion="1433906964" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=2
+The fail reason is 204
+The fail reason is 204
