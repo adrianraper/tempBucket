@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+        xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5" xmlns:mx="library://ns.adobe.com/flex/mx"
+        xmlns:core="org.davekeen.core.*">
+
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.practicalwriting.view.progress.ProgressCompareView")]
+    </fx:Metadata>
+
+    <fx:Script>
+		<![CDATA[
+        import com.clarityenglish.common.vo.content.Unit;
+
+        import mx.charts.CategoryAxis;
+        import mx.charts.ChartItem;
+        import mx.charts.LegendItem;
+        import mx.charts.LinearAxis;
+        import mx.collections.ArrayCollection;
+        import mx.collections.XMLListCollection;
+        import mx.containers.GridItem;
+        import mx.containers.GridRow;
+        import mx.containers.TileDirection;
+        import mx.events.FlexEvent;
+        import mx.graphics.IFill;
+        import mx.graphics.SolidColor;
+
+        import org.davekeen.util.StringUtils;
+
+        private function myAverageScoreFill(element:ChartItem, index:Number):IFill {
+            return new SolidColor(getStyle("EColor"));
+        }
+
+        private function everyoneAverageScoreFill(element:ChartItem, index:Number):IFill {
+            return new SolidColor(getStyle("AColor"));
+        }
+
+        public function percentageLabel(item:Object, prevValue:Object, axis:LinearAxis):String {
+            return item + "%";
+        }
+
+        public function captionLabel(item:Object, prevValue:Object, axis:CategoryAxis, categoryItem:Object):String {
+            return categoryItem.@caption;
+        }
+
+        public function getTopColor(index:Number):Number {
+            return  getStyle("homeNumberTagTopColors")[index];
+        }
+
+        public function getTopMidColor(index:Number):Number {
+            return getStyle("homeNumberTagTopMidColors")[index];
+        }
+
+        public function getBottomMidColor(index:Number):Number {
+            return getStyle("homeNumberTagBottomMidColors")[index];
+        }
+
+        public function getCaptionBackgroundColor(index:Number):Number {
+            return getStyle("textBackgroundColor")[index];
+        }
+
+        ]]>
+	</fx:Script>
+
+    <fx:Declarations>
+        <s:SolidColorStroke id="blankStroke" color="#00ff00" weight="0" alpha="0" />
+    </fx:Declarations>
+
+    <s:states>
+        <s:State name="disabled" />
+        <s:State name="normal" />
+    </s:states>
+
+    <s:Label id="compareInstructionLabel" left="0" top="0" fontSize="14" />
+    <!--histogram chart legend-->
+    <s:HGroup top="0" right="0">
+        <s:Rect width="16" height="10">
+            <s:fill>
+               <s:SolidColor color="#0B789C" />
+            </s:fill>
+        </s:Rect>
+        <s:Label id="mylegendLabel" fontSize="12" />
+        <s:Spacer width="10" />
+        <s:Rect width="16" height="10">
+            <s:fill>
+               <s:SolidColor color="#BBBDC0" />
+            </s:fill>
+        </s:Rect>
+        <s:Label id="everyonelegendLabel" fontSize="12" />
+    </s:HGroup>
+
+    <!--Course list-->
+    <s:List top="56" left="0" id="chartList" contentBackgroundAlpha="0" borderVisible="false">
+        <s:layout>
+            <s:VerticalLayout gap="15" />
+        </s:layout>
+        <s:itemRenderer>
+            <fx:Component>
+                <s:ItemRenderer autoDrawBackground="false">
+                    <s:HGroup width="100%" height="35" gap="3">
+                        <s:Label width="200" text="{data.@caption}" color="{getStyle('pieChartFillColor')[data.@index]}" fontSize="15" />
+
+                        <s:VGroup gap="0">
+                            <s:HGroup gap="5">
+                                <s:Rect id="myBarRect" height="12" width="{data.@myAverageScore * 6.5}">
+                                    <s:fill>
+                                        <s:SolidColor color="#0B789C" />
+                                    </s:fill>
+                                </s:Rect>
+                                <s:Label id="myLabel" fontSize="12" fontWeight="bold" text="{data.@myAverageScore + '%'}" visible="{data.@myAverageScore > 0}" />
+                            </s:HGroup>
+
+                            <s:HGroup gap="5">
+                                <s:Rect id="everyoneBarRect" height="12" width="{data.@everyoneAverageScore * 6.5}">
+                                    <s:fill>
+                                        <s:SolidColor color="#BBBDC0" />
+                                    </s:fill>
+                                </s:Rect>
+                                <s:Label id="everyoneLabel" fontSize="12" fontWeight="bold" text="{data.@everyoneAverageScore + '%'}" visible="{data.@everyoneAverageScore > 0}" />
+                            </s:HGroup>
+                        </s:VGroup>
+                    </s:HGroup>
+                </s:ItemRenderer>
+            </fx:Component>
+        </s:itemRenderer>
+    </s:List>
+
+    <!--chart empty tip-->
+    <s:Group width="100%" height="550">
+        <s:Button id="compareEmptyScoreLabel" visible="false" fontSize="12" fontWeight="normal" verticalCenter="0" horizontalCenter="100"/>
+    </s:Group>
+
+    <!--busy indicator-->
+    <s:BusyIndicator id="busyIndicator" verticalCenter="0" horizontalCenter="0" visible="false" />
+</s:Skin>

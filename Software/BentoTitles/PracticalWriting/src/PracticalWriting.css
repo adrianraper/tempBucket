@@ -173,6 +173,10 @@ progress|ProgressCoverageView {
     skinClass: ClassReference("skins.practicalwriting.progress.ProgressCoverageSkin");
 }
 
+progress|ProgressCompareView {
+    skinClass: ClassReference("skins.practicalwriting.progress.ProgressCompareSkin");
+}
+
 progress|ProgressAnalysisView {
     skinClass: ClassReference("skins.practicalwriting.progress.ProgressAnalysisSkin");
 }
