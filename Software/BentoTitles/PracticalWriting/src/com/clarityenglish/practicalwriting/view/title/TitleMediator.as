@@ -7,12 +7,17 @@ import com.clarityenglish.bento.view.base.BentoView;
 import com.clarityenglish.common.CommonNotifications;
 import com.clarityenglish.common.model.ConfigProxy;
 import com.clarityenglish.common.model.CopyProxy;
+import com.clarityenglish.practicalwriting.view.home.HomeView;
+
+import org.alivepdf.transitions.Transition;
 
 import org.puremvc.as3.interfaces.IMediator;
 import org.puremvc.as3.interfaces.INotification;
 import org.puremvc.as3.patterns.observer.Notification;
 
-    public class TitleMediator extends BentoMediator implements IMediator {
+import spark.transitions.ViewTransitionBase;
+
+public class TitleMediator extends BentoMediator implements IMediator {
 
         public function TitleMediator(mediatorName:String, viewComponent:BentoView) {
             super(mediatorName, viewComponent);
@@ -116,6 +121,10 @@ import org.puremvc.as3.patterns.observer.Notification;
 
         private function onLogout():void {
             sendNotification(CommonNotifications.LOGOUT);
+
+
+            // Make sure the first page you always see is the home page after login.
+            view.homeViewNavigator.popToFirstView();
         }
 
         /**
