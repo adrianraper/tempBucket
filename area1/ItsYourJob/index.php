@@ -6,8 +6,11 @@ require_once("../../ItsYourJob/libQuery.php");
 $testingPortalLogin = $_GET['testing'];
 if ($testingPortalLogin) {
 	$_SESSION['UserID'] = 27639;
+	$_SESSION['Email'] = 'dandy@email';
 	$_SESSION['UserName'] = 'dandelion';
+	$_SESSION['StudentID'] = 'dandelion123';
 	$_SESSION['Password'] = 'password';
+	$_SESSION['PREFIX'] = 'Clarity';
 }
 
 if (!isset($_SESSION['PREFIX']))
@@ -34,7 +37,7 @@ $errorInfo=array();
 $noteInfo=array();
 $accountInfo=array();
 $licenceInfo=array();
-// gh#1421
+// gh#1241
 $settingsInfo=array();
 
 function getRMSetting($prefix){
@@ -204,9 +207,31 @@ if (!empty($_SESSION['PREFIX'])){
 				$_POST['submit'] = "Start";
 				header("Location: ../../ItsYourJob/login.php?prefix=".$_SESSION['PREFIX']);
 				
-			} else if (isset($_GET['username'])){
+			} else if (isset($_GET['username']) && ($_SESSION['LOGINOPTION'] == 1)){
 				$_SESSION['id'] = $_GET['username'];
 				$_SESSION['UserName'] = $_GET['username'];
+				if (isset($_GET['password'])) {
+					$_SESSION['PASSWORD'] = $_GET['password'];
+					$_SESSION['Password'] = $_GET['password'];
+					$_SESSION['pwd'] = $_GET['password'];
+				}
+				$_POST['submit'] = "Start";
+				header("Location: ../../ItsYourJob/login.php?prefix=".$_SESSION['PREFIX']);
+				
+			} else if (isset($_GET['studentID']) && ($_SESSION['LOGINOPTION'] == 2)){
+				$_SESSION['id'] = $_GET['studentID'];
+				$_SESSION['StudentID'] = $_GET['studentID'];
+				if (isset($_GET['password'])) {
+					$_SESSION['PASSWORD'] = $_GET['password'];
+					$_SESSION['Password'] = $_GET['password'];
+					$_SESSION['pwd'] = $_GET['password'];
+				}
+				$_POST['submit'] = "Start";
+				header("Location: ../../ItsYourJob/login.php?prefix=".$_SESSION['PREFIX']);
+				
+			} else if (isset($_GET['email'])){
+				$_SESSION['id'] = $_GET['email'];
+				$_SESSION['Email'] = $_GET['email'];
 				if (isset($_GET['password'])) {
 					$_SESSION['PASSWORD'] = $_GET['password'];
 					$_SESSION['Password'] = $_GET['password'];
@@ -323,7 +348,7 @@ var licenceErrorMsg = new Array(
                 </div>
             </div>
      
-			<!-- gh#1421 I think this display section is redundant -->
+			<!-- gh#1241 I think this display section is redundant -->
 	        <div id="login_welcome" style="display:none">
 	            Welcome, <?php echo ($_SESSION['USERNAME']=="" ? $_SESSION['id'] : $_SESSION['USERNAME']) ?>.<br/>Click the Start button to begin your course.
 	        </div> 
@@ -379,7 +404,7 @@ if(failure=="true"){
 if(username=="" || failure=="true"){
 	document.getElementById('login_form').style.display = "block";
     document.getElementById('login_welcome').style.display = "none";
-	// gh#1421 This destroys the very information we want in the session
+	// gh#1241 This destroys the very information we want in the session
     //cmdRequest("../../ItsYourJob/logout.php", "GET", null, false);
 }else{
     document.getElementById('login_form').style.display = "none";

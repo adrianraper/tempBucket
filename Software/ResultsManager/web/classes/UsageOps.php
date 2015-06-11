@@ -744,7 +744,7 @@ EOD;
 			$i++;
 		}
 		
-		return array_merge($usersRS, $emuRS); //, $orchidRS);
+		return array_merge($usersRS, $emuRS);
 		
 		// We have to have a different style of getting coverage from SQL as AP exercises record differently than EMU exercises.
 		// So split based on productCode>1000 for EMUs.

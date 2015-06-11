@@ -89,11 +89,16 @@ function checkUser($id, $password){
 					'" courseid="1001" productcode="1001'.
 					'" loginOption="129" dbHost="2" databaseVersion="'.$dbversion.'"/>';	
 	} else if (isset($_SESSION['PREFIX'])){
-		// gh#1421 Use database loginOption setting
-		$buildXML = '<query method="emugetuser" '.
-					'name="'.$id.
-					'" studentID="'.$id.
-					'" prefix="'.$_SESSION['PREFIX'].
+		// gh#1241 Use database loginOption setting
+		$buildXML = '<query method="emugetuser" ';
+		if ($_SESSION['LOGINOPTION'] == 1) {
+			$buildXML .= 'name="'.$id.'"';
+		} else if ($_SESSION['LOGINOPTION'] == 2) {
+			$buildXML .= 'studentID="'.$id.'"';
+		} else {
+			$buildXML .= 'email="'.$id.'"';
+		}
+		$buildXML .= ' prefix="'.$_SESSION['PREFIX'].
 					'" password="'.$password.
 		            '" instanceID="'.$instanceID.
 					'" courseid="1001" productcode="1001'.
@@ -453,7 +458,20 @@ if (isset($_SESSION['LOGINTYPE'])=="school") {
 	if ($pwd == "" && isset($_SESSION['Password'])) $pwd = $_SESSION['Password'];
 
 	// gh#1241 Pick up clarityenglish.com login details
-	if ($id == "" && isset($_SESSION['UserName'])) $id = $_SESSION['UserName'];
+	if ($_SESSION['LOGINOPTION'] == 1) {
+		if ($id == "" && isset($_SESSION['UserName'])) $id = $_SESSION['UserName'];
+		if (!isset($_SESSION['UserName']))
+			$_SESSION['UserName'] = $id;
+	} else if ($_SESSION['LOGINOPTION'] == 2) {
+		if ($id == "" && isset($_SESSION['StudentID'])) $id = $_SESSION['StudentID'];
+		if (!isset($_SESSION['StudentID']))
+			$_SESSION['StudentID'] = $id;
+	} else {
+		if ($id == "" && isset($_SESSION['Email'])) $id = $_SESSION['Email'];
+		if (!isset($_SESSION['Email']))
+			$_SESSION['Email'] = $id;
+	}
+
 	if ($pwd == "" && isset($_SESSION['Password'])) $pwd = $_SESSION['Password'];
 }
 
@@ -470,9 +488,7 @@ if ($_SESSION['SCORM'] == true) {
 $id = htmlspecialchars($id);
 $pwd = htmlspecialchars($pwd);
 
-if (!isset($_SESSION['UserName']))
-	$_SESSION['UserName'] = $id;
-
+// gh#1241
 if (!isset($_SESSION['Password']))
 	$_SESSION['Password'] = $pwd;
 

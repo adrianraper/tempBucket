@@ -262,3 +262,588 @@ Calling getRMSettings from login...
 							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
 <query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433932359" licenceType="1" userType="0" prefix="Clarity" productcode="1001" dbHost="2" databaseVersion="6"/>
 ﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433932359" licenceType="1" userType="0" prefix="Clarity" productcode="1001" dbHost="2" databaseVersion="6"/></note><licence id='6836408' /><note>use existing licence</note></db>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="Clarity" dateStamp="2015-06-10 11:00:42" cacheVersion="1433934042" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=2
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="clarity" dateStamp="2015-06-11 00:36:16" cacheVersion="1433982976" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=2
+check user loginOption=2
+<query method="emugetuser" name="dandelion123" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433982989" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" name="dandelion123" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433982989" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/></note><user userID='27639'
+						userName='dandelion'
+						name='dandelion'
+						email='dandy@email'
+						startDate=''
+						expiryDate=''
+						licenceStartDate='1433808000'
+						licenceExpiryDate='1893455999'
+						licenceType='1'
+						userType='0'
+						rootid='163'
+						contactMethod=''
+						sessionID='6836428'
+						languageCode='EN'
+						bookmark='02'
+						isAdmin='false'
+						frequency='' /><instance>1433982989</instance></db>
+Calling getRMSettings from login...
+<query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 00:36:36" cacheVersion="1433982996" zone="UTC" productcode="1001" dbHost="2" />
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 00:36:36" cacheVersion="1433982996" zone="UTC" productcode="1001" dbHost="2" /></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+<query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433982997" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433982997" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/></note><licence id='6836408' /><note>use existing licence</note></db>
+check user loginOption=2
+<query method="emugetuser" name="dandelion" studentID="dandelion" prefix="clarity" password="password" instanceID="1433983219" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" name="dandelion" studentID="dandelion" prefix="clarity" password="password" instanceID="1433983219" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/></note><err code="203">no such user</err></db>
+The fail reason is 203
+check user loginOption=2
+<query method="emugetuser" name="dandelion123" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433983225" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" name="dandelion123" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433983225" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/></note><user userID='27639'
+						userName='dandelion'
+						name='dandelion'
+						email='dandy@email'
+						startDate=''
+						expiryDate=''
+						licenceStartDate='1433808000'
+						licenceExpiryDate='1893455999'
+						licenceType='1'
+						userType='0'
+						rootid='163'
+						contactMethod=''
+						sessionID='6836429'
+						languageCode='EN'
+						bookmark='02'
+						isAdmin='false'
+						frequency='' /><instance>1433983225</instance></db>
+Calling getRMSettings from login...
+<query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 00:40:25" cacheVersion="1433983225" zone="UTC" productcode="1001" dbHost="2" />
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 00:40:25" cacheVersion="1433983225" zone="UTC" productcode="1001" dbHost="2" /></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+<query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433983226" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433983226" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/></note><licence id='6836408' /><note>use existing licence</note></db>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="clarity" dateStamp="2015-06-11 00:44:47" cacheVersion="1433983487" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=2
+check user loginOption=2
+<query method="emugetuser" name="dandelion123" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433984031" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" name="dandelion123" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433984031" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/></note><user userID='27639'
+						userName='dandelion123'
+						name='dandelion123'
+						email='dandy@email'
+						startDate=''
+						expiryDate=''
+						licenceStartDate='1433808000'
+						licenceExpiryDate='1893455999'
+						licenceType='1'
+						userType='0'
+						rootid='163'
+						contactMethod=''
+						sessionID='6836430'
+						languageCode='EN'
+						bookmark='06'
+						isAdmin='false'
+						frequency='' /><instance>1433984031</instance></db>
+Calling getRMSettings from login...
+<query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 00:53:51" cacheVersion="1433984031" zone="UTC" productcode="1001" dbHost="2" />
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 00:53:51" cacheVersion="1433984031" zone="UTC" productcode="1001" dbHost="2" /></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+<query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433984031" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433984031" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/></note><licence id='6836408' /><note>use existing licence</note></db>
+check user loginOption=2
+<query method="emugetuser" name="dandelion123" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433984751" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" name="dandelion123" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433984751" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/></note><user userID='27639'
+						userName='dandelion123'
+						name='dandelion123'
+						email='dandy@email'
+						startDate=''
+						expiryDate=''
+						licenceStartDate='1433808000'
+						licenceExpiryDate='1893455999'
+						licenceType='1'
+						userType='0'
+						rootid='163'
+						contactMethod=''
+						sessionID='6836433'
+						languageCode='EN'
+						bookmark='06'
+						isAdmin='false'
+						frequency='' /><instance>1433984751</instance></db>
+Calling getRMSettings from login...
+<query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 01:05:51" cacheVersion="1433984751" zone="UTC" productcode="1001" dbHost="2" />
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 01:05:51" cacheVersion="1433984751" zone="UTC" productcode="1001" dbHost="2" /></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+<query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433984751" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433984751" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/></note><licence id='6836408' /><note>use existing licence</note></db>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="clarity" dateStamp="2015-06-11 01:27:21" cacheVersion="1433986041" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=2
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="clarity" dateStamp="2015-06-11 01:28:36" cacheVersion="1433986116" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=2
+check user loginOption=2
+<query method="emugetuser" studentID="dandelion" prefix="clarity" password="passwrd" instanceID="1433986125" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" studentID="dandelion" prefix="clarity" password="passwrd" instanceID="1433986125" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/></note><err code="203">no such user</err></db>
+The fail reason is 203
+check user loginOption=2
+<query method="emugetuser" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433986131" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433986131" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/></note><user userID='27639'
+						userName='dandelion'
+						name='dandelion'
+						email='dandy@email'
+						startDate=''
+						expiryDate=''
+						licenceStartDate='1433808000'
+						licenceExpiryDate='1893455999'
+						licenceType='1'
+						userType='0'
+						rootid='163'
+						contactMethod=''
+						sessionID='6836435'
+						languageCode='EN'
+						bookmark='06'
+						isAdmin='false'
+						frequency='' /><instance>1433986131</instance></db>
+Calling getRMSettings from login...
+<query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 01:28:51" cacheVersion="1433986131" zone="UTC" productcode="1001" dbHost="2" />
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 01:28:51" cacheVersion="1433986131" zone="UTC" productcode="1001" dbHost="2" /></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+<query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433986131" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433986131" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/></note><licence id='6836408' /><note>use existing licence</note></db>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="clarity" dateStamp="2015-06-11 01:28:59" cacheVersion="1433986139" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=2
+check user loginOption=2
+<query method="emugetuser" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433986146" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" studentID="dandelion123" prefix="clarity" password="password" instanceID="1433986146" courseid="1001" productcode="1001" loginOption="2" dbHost="2" databaseVersion="6"/></note><user userID='27639'
+						userName='dandelion'
+						name='dandelion'
+						email='dandy@email'
+						startDate=''
+						expiryDate=''
+						licenceStartDate='1433808000'
+						licenceExpiryDate='1893455999'
+						licenceType='1'
+						userType='0'
+						rootid='163'
+						contactMethod=''
+						sessionID='6836436'
+						languageCode='EN'
+						bookmark='06'
+						isAdmin='false'
+						frequency='' /><instance>1433986146</instance></db>
+Calling getRMSettings from login...
+<query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 01:29:06" cacheVersion="1433986146" zone="UTC" productcode="1001" dbHost="2" />
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 01:29:06" cacheVersion="1433986146" zone="UTC" productcode="1001" dbHost="2" /></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+<query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433986147" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433986147" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/></note><licence id='6836408' /><note>use existing licence</note></db>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="clarity" dateStamp="2015-06-11 01:31:15" cacheVersion="1433986275" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='2'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=2
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="clarity" dateStamp="2015-06-11 01:31:50" cacheVersion="1433986310" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='1'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=1
+check user loginOption=1
+<query method="emugetuser" name="dandelion" prefix="clarity" password="password" instanceID="1433986316" courseid="1001" productcode="1001" loginOption="1" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" name="dandelion" prefix="clarity" password="password" instanceID="1433986316" courseid="1001" productcode="1001" loginOption="1" dbHost="2" databaseVersion="6"/></note><user userID='27639'
+						userName='dandelion'
+						name='dandelion'
+						email='dandy@email'
+						startDate=''
+						expiryDate=''
+						licenceStartDate='1433808000'
+						licenceExpiryDate='1893455999'
+						licenceType='1'
+						userType='0'
+						rootid='163'
+						contactMethod=''
+						sessionID='6836438'
+						languageCode='EN'
+						bookmark='06'
+						isAdmin='false'
+						frequency='' /><instance>1433986316</instance></db>
+Calling getRMSettings from login...
+<query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 01:31:58" cacheVersion="1433986318" zone="UTC" productcode="1001" dbHost="2" />
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 01:31:58" cacheVersion="1433986318" zone="UTC" productcode="1001" dbHost="2" /></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='1'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+<query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433986318" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433986318" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/></note><licence id='6836408' /><note>use existing licence</note></db>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="clarity" dateStamp="2015-06-11 01:32:22" cacheVersion="1433986342" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='1'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=1
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="clarity" dateStamp="2015-06-11 01:32:50" cacheVersion="1433986370" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='128'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=128
+check user loginOption=128
+<query method="emugetuser" email="dandy@email" prefix="clarity" password="password" instanceID="1433986377" courseid="1001" productcode="1001" loginOption="128" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" email="dandy@email" prefix="clarity" password="password" instanceID="1433986377" courseid="1001" productcode="1001" loginOption="128" dbHost="2" databaseVersion="6"/></note><user userID='27639'
+						userName='dandelion'
+						name='dandelion'
+						email='dandy@email'
+						startDate=''
+						expiryDate=''
+						licenceStartDate='1433808000'
+						licenceExpiryDate='1893455999'
+						licenceType='1'
+						userType='0'
+						rootid='163'
+						contactMethod=''
+						sessionID='6836440'
+						languageCode='EN'
+						bookmark='06'
+						isAdmin='false'
+						frequency='' /><instance>1433986377</instance></db>
+Calling getRMSettings from login...
+<query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 01:32:57" cacheVersion="1433986377" zone="UTC" productcode="1001" dbHost="2" />
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" rootID="" prefix="clarity" dateStamp="2015-06-11 01:32:57" cacheVersion="1433986377" zone="UTC" productcode="1001" dbHost="2" /></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='128'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+<query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433986377" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433986377" licenceType="1" userType="0" prefix="clarity" productcode="1001" dbHost="2" databaseVersion="6"/></note><licence id='6836408' /><note>use existing licence</note></db>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="clarity" dateStamp="2015-06-11 01:33:30" cacheVersion="1433986410" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='128'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=128
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="Clarity" dateStamp="2015-06-11 01:34:35" cacheVersion="1433986475" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='128'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=128
+I got a userID in session, so jump ahead with username=dandelion
+check user loginOption=128
+<query method="emugetuser" email="dandelion" prefix="Clarity" password="password" instanceID="1433986475" courseid="1001" productcode="1001" loginOption="128" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" email="dandelion" prefix="Clarity" password="password" instanceID="1433986475" courseid="1001" productcode="1001" loginOption="128" dbHost="2" databaseVersion="6"/></note><err code="203">no such user</err></db>
+The fail reason is 203
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="Clarity" dateStamp="2015-06-11 01:35:34" cacheVersion="1433986534" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='128'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=128
+I got a userID in session, so jump ahead with username=
+The fail reason is 204
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="Clarity" dateStamp="2015-06-11 01:35:56" cacheVersion="1433986556" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='128'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=128
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="Clarity" dateStamp="2015-06-11 01:36:30" cacheVersion="1433986590" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='128'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=128
+I got a userID in session, so jump ahead with username=
+The fail reason is 204
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="Clarity" dateStamp="2015-06-11 01:37:45" cacheVersion="1433986665" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='128'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=128
+I got a userID in session, so jump ahead with username=dandelion
+check user loginOption=128
+<query method="emugetuser" email="dandelion" prefix="Clarity" password="password" instanceID="1433986666" courseid="1001" productcode="1001" loginOption="128" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" email="dandelion" prefix="Clarity" password="password" instanceID="1433986666" courseid="1001" productcode="1001" loginOption="128" dbHost="2" databaseVersion="6"/></note><err code="203">no such user</err></db>
+The fail reason is 203
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" prefix="Clarity" dateStamp="2015-06-11 01:40:46" cacheVersion="1433986846" zone="UTC" productcode="1001" dbHost="2"/></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='128'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+settingsInfo(loginOption)=128
+I got a userID in session, so jump ahead with username=dandelion
+check user loginOption=128
+<query method="emugetuser" email="dandy@email" prefix="Clarity" password="password" instanceID="1433986847" courseid="1001" productcode="1001" loginOption="128" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="emugetuser" email="dandy@email" prefix="Clarity" password="password" instanceID="1433986847" courseid="1001" productcode="1001" loginOption="128" dbHost="2" databaseVersion="6"/></note><user userID='27639'
+						userName='dandelion'
+						name='dandelion'
+						email='dandy@email'
+						startDate=''
+						expiryDate=''
+						licenceStartDate='1433808000'
+						licenceExpiryDate='1893455999'
+						licenceType='1'
+						userType='0'
+						rootid='163'
+						contactMethod=''
+						sessionID='6836442'
+						languageCode='EN'
+						bookmark='06'
+						isAdmin='false'
+						frequency='' /><instance>1433986847</instance></db>
+Calling getRMSettings from login...
+<query method="getRMSettings" rootID="" prefix="Clarity" dateStamp="2015-06-11 01:40:47" cacheVersion="1433986847" zone="UTC" productcode="1001" dbHost="2" />
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getRMSettings" rootID="" prefix="Clarity" dateStamp="2015-06-11 01:40:47" cacheVersion="1433986847" zone="UTC" productcode="1001" dbHost="2" /></note><note>dbhost=localhost dbname=rack80829 driver=mysqlt</note><database version='1958'  /><settings loginOption='128'
+				verified='1'
+				selfRegister='0'/><decrypt key='undefined' /><account expiryDate='2029-12-31 23:59:59'
+							maxStudents='999'
+							groupID='163'
+							rootID='163'
+							licenceType='1'
+							institution='Clarity Language Consultants Ltd'
+							contentLocation='ItsYourJob'
+							MGSRoot=''
+							licenceStartDate='2015-06-09 00:00:00'
+							checksum='77d3c41cb0df545ab068f8d05df125c2e4f91aaa340a439fc6bf998ed58c13ea'
+							languageCode='EN'/><licence xxRUrange='www.clarityenglish.com,mcl.lib.com.au/home' /></db>
+<query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433986847" licenceType="1" userType="0" prefix="Clarity" productcode="1001" dbHost="2" databaseVersion="6"/>
+﻿<?xml version="1.0" encoding="UTF-8"?><db><note><query method="getLicenceSlot" rootID="163" userID="27639" licenceStartDate="2015-06-09 00:00:00" licences="999" cacheVersion="1433986847" licenceType="1" userType="0" prefix="Clarity" productcode="1001" dbHost="2" databaseVersion="6"/></note><licence id='6836408' /><note>use existing licence</note></db>
