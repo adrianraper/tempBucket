@@ -81,6 +81,7 @@ function getRMSetting($prefix){
 			$_SESSION['CONTENTLOCATION'] = $licenceInfo['CONTENTLOCATION'];
 			// gh#1241 Login option from database
 			$_SESSION['LOGINOPTION'] = $settingsInfo['LOGINOPTION'];
+			$_SESSION['SELFREGISTER'] = $settingsInfo['SELFREGISTER'];
 	}
 
 	if ($accountInfo['ROOTID'] > 0){
@@ -299,6 +300,7 @@ var username = "<?php echo ($_SESSION['USERNAME']=="" ? $_SESSION['id'] : $_SESS
 var failure = "<?php echo $_SESSION['FAILURE'];?>";
 var failReason = "<?php echo $_SESSION['FAILREASON'];?>";
 var loginType = "<?php echo $_SESSION['LOGINTYPE'];?>";
+var selfRegister = "<?php echo $_SESSION['SELFREGISTER'];?>";
 var g_domain = "<?php echo $_SERVER['HTTP_HOST']; ?>";
 var errmsg = new Array(
 	    //'Name \"' + username + '\" is not in database, <br> please click \"NEW USER\" button.', //203
@@ -374,10 +376,10 @@ document.loginForm.id.value = username;
 if(failure=="true"){
     if(failReason == "201"){
     	document.getElementById('errmsg').innerHTML = licenceErrorMsg[0];
-    }else if(failReason == "203"){
+    }else if(failReason == "203" && selfRegister>0){
     	document.getElementById('errmsg').innerHTML = errmsg[0];
     	document.getElementById('newBtn').style.display = "block";
-    }else if(failReason == "204" || failReason == "206"){
+    }else if(failReason == "204" || failReason == "206" || failReason == "203" ){
     	document.getElementById('errmsg').innerHTML = errmsg[1];
     }else if(failReason == "207"){
     	document.getElementById('errmsg').innerHTML = accountErrorMsg[0];

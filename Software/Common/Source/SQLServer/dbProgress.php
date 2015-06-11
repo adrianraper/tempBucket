@@ -1089,6 +1089,7 @@ EOD;
 
 	function addUser( &$vars, &$node ) {
 		global $db;
+		
 		// v6.5.4.6 You could pick up the searchType based on loginOption instead of the data you actually get
 		// For instance, if you login with ID, you will also pass a name but don't care if it is unique or not.
 //		error_log($vars['LOGINOPTION']."\n", 3, "debugs.log");
@@ -1099,7 +1100,8 @@ EOD;
 		} else if (($vars['LOGINOPTION'] & 1) == 1) {
 			$searchType = "name";
 		// v6.5.6.5 Allow email as a unique field for login
-		} else if (($vars['LOGINOPTION'] & 8) == 8) {
+		// gh#1241 Update for new email loginOption
+		} else if ((($vars['LOGINOPTION'] & 8) == 8) || (($vars['LOGINOPTION'] & 128) == 128)) {
 			$searchType = "email";
 		// v6.5.4.7 ClarityEnglish.com special case
 		} else if (($vars['LOGINOPTION'] & 64) == 64) {
@@ -2506,11 +2508,14 @@ EOD;
 		$name = $vars['NAME'];
 		$password = $vars['PASSWORD'];
 		// v6.5.6 Protect variables that might not exist
+		/*
 		if (isset($vars['STUDENTID'])) {
 			$sid = $vars['STUDENTID'];
 		} else {
 			$sid = null;
 		}
+		*/
+		$sid = $vars['STUDENTID'];
 		if (isset($vars['COUNTRY'])) {
 			$country = $vars['COUNTRY'];
 		} else {

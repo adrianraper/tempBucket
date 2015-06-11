@@ -85,7 +85,7 @@ class XMLQuery {
 		'SKIPPED'     => 0,
 		// 'CLASSNAME'   => "",
 		'EMAIL'       => "",
-		'STUDENTID'   => 0,
+		'STUDENTID'   => "", // gh#1241 A better default is an empty string than 0
 		'SESSIONID'   => -1,
 		'DURATION'    => 0,
 		'SENTDATA'    => "",
