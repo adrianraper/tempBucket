@@ -43,6 +43,10 @@
         ]]>
     </fx:Metadata>
 
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" angle="0" distance="0.4" alpha="0.3" color="#888888" />
+    </fx:Declarations>
+
     <!-- states -->
     <s:states>
         <s:State name="up" />
@@ -55,9 +59,12 @@
         <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
     </s:states>
 
-    <s:Rect top="0" bottom="0" left="0" right="0">
+    <s:Rect top="0" bottom="0" left="0" right="0" filters="{[dropShadowFilter]}">
         <s:fill>
-            <s:SolidColor color="#FFFFFF" color.selectedStates="#E8E8E7" color.down="#E8E8E7" color.over="#E8E8E7" />
+            <s:LinearGradient rotation="90">
+                <s:GradientEntry color="#FFFFFF" color.selectedStates="#E8E8E7" color.down="#E8E8E7" color.over="#E8E8E7" />
+                <s:GradientEntry color="#EDEBEB" color.selectedStates="#E8E8E7" color.down="#E8E8E7" color.over="#E8E8E7" />
+            </s:LinearGradient>
         </s:fill>
     </s:Rect>
 

@@ -1,20 +1,12 @@
 package com.clarityenglish.practicalwriting.view.progress {
 import com.clarityenglish.bento.view.base.BentoView;
-import com.clarityenglish.bento.view.progress.ui.ProgressBarRenderer;
-import com.clarityenglish.bento.view.progress.ui.ProgressCourseButtonBar;
 import com.clarityenglish.textLayout.vo.XHTML;
 
-import flash.events.Event;
-
 import mx.collections.XMLListCollection;
-
-import org.davekeen.util.StringUtils;
-import org.osflash.signals.Signal;
 
 import spark.components.Button;
 import spark.components.DataGrid;
 import spark.components.gridClasses.GridColumn;
-import spark.events.IndexChangeEvent;
 
 public class ProgressScoreView extends BentoView {
 

@@ -85,6 +85,10 @@ title|TitleView s|Button#goToSettingsButton {
     skinClass: ClassReference("skins.practicalwriting.title.SettingsSideBarButtonSkin");
 }
 
+title|TitleView s|Button#backToExercieButton {
+    skinClass: ClassReference("skins.practicalwriting.title.BackToExerciseButtonSkin");
+}
+
 home|HomeView {
     skinClass: ClassReference("skins.practicalwriting.HomeSkin");
 }
@@ -177,6 +181,10 @@ progress|ProgressCompareView {
     skinClass: ClassReference("skins.practicalwriting.progress.ProgressCompareSkin");
 }
 
+progress|ProgressCompareView s|Button#compareEmptyScoreLabelButton {
+    skinClass: ClassReference("skins.practicalwriting.progress.ui.EmptyScoreLabelButtonSkin");
+}
+
 progress|ProgressAnalysisView {
     skinClass: ClassReference("skins.practicalwriting.progress.ProgressAnalysisSkin");
 }
@@ -184,6 +192,11 @@ progress|ProgressAnalysisView {
 progress|ProgressScoreView {
     skinClass: ClassReference("skins.practicalwriting.progress.ProgressScoreSkin");
 }
+
+progress|ProgressScoreView s|Button#ScoreEmptyScoreLabelButton {
+    skinClass: ClassReference("skins.practicalwriting.progress.ui.EmptyScoreLabelButtonSkin");
+}
+
 
 progress|ProgressScoreView s|DataGrid#scoreDetailsDataGrid {
     skinClass: ClassReference("skins.practicalwriting.progress.ui.ProgressScoreDataGridSkin");

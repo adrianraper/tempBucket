@@ -128,7 +128,7 @@
 
     <!--chart empty tip-->
     <s:Group width="100%" height="550">
-        <s:Button id="compareEmptyScoreLabel" visible="false" fontSize="12" fontWeight="normal" verticalCenter="0" horizontalCenter="100"/>
+        <s:Button id="compareEmptyScoreLabelButton" visible="false" fontSize="12" fontWeight="normal" verticalCenter="0" horizontalCenter="100"/>
     </s:Group>
 
     <!--busy indicator-->

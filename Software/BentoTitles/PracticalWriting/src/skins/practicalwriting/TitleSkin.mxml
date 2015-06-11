@@ -45,7 +45,8 @@
         <s:Button id="logoutButton" top="0" buttonMode="true" useHandCursor="true" excludeFrom="exercise" />
     </s:HGroup>
 
-    <s:Button id="backToExercieButton" top="8" right="10" visible="false" includeInLayout="false" />
+    <!--Back button only show when progress open from exercise-->
+    <s:Button id="backToExercieButton" top="5" right="0" buttonMode="true" useHandCursor="true" visible="false" includeInLayout="false" />
 
     <s:ToggleButton id="menuToggleButton" left="0" top="5" includeIn="exercise" />
 

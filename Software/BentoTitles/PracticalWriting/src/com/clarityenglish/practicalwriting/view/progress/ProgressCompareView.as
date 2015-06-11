@@ -34,7 +34,7 @@ public class ProgressCompareView extends BentoView {
     public var everyonelegendLabel:Label;
 
     [SkinPart]
-    public var compareEmptyScoreLabel:Button;
+    public var compareEmptyScoreLabelButton:Button;
 
     [SkinPart]
     public var busyIndicator:BusyIndicator;
@@ -81,7 +81,7 @@ public class ProgressCompareView extends BentoView {
         compareInstructionLabel.text = copyProvider.getCopyForId("compareInstructionLabel");
         mylegendLabel.text = copyProvider.getCopyForId("mylegendLabel");
         everyonelegendLabel.text = copyProvider.getCopyForId("everyonelegendLabel");
-        compareEmptyScoreLabel.label = copyProvider.getCopyForId("compareEmptyScoreLabel");
+        compareEmptyScoreLabelButton.label = copyProvider.getCopyForId("compareEmptyScoreLabel");
     }
 
     protected override function commitProperties():void {
@@ -104,9 +104,9 @@ public class ProgressCompareView extends BentoView {
             chartList.dataProvider = new XMLListCollection(xml.course);
 
             if (isNoData) {
-                compareEmptyScoreLabel.visible = true;
+                compareEmptyScoreLabelButton.visible = true;
             } else {
-                compareEmptyScoreLabel.visible = false;
+                compareEmptyScoreLabelButton.visible = false;
             }
         }
     }

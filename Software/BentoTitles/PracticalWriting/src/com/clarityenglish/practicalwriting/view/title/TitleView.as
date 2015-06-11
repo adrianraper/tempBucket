@@ -18,6 +18,7 @@ import mx.core.FlexGlobals;
 import org.davekeen.util.StateUtil;
 
 import org.osflash.signals.Signal;
+import org.puremvc.as3.core.View;
 
 import spark.components.Button;
 import spark.components.Label;
@@ -36,6 +37,9 @@ import spark.managers.PersistenceManager;
 
         [SkinPart]
         public var sectionNavigator:TabbedViewNavigator;
+
+        [SkinPart]
+        public var homeViewNavigator:ViewNavigator;
 
         [SkinPart]
         public var progressViewNavigator:ViewNavigator;
@@ -82,6 +86,7 @@ import spark.managers.PersistenceManager;
         private var _isDirectStartEx:Boolean;
         private var _directExercise:XML;
         private var _isDirectLogout:Boolean;
+        private var isProgressOpen;
 
         public function set selectedNode(value:XML):void {
             _selectedNode = value;
@@ -157,6 +162,7 @@ import spark.managers.PersistenceManager;
                         progress: { viewClass: ProgressView },
                         settings: { viewClass: SettingsView }
                 });
+                    sectionNavigator.addEventListener(IndexChangeEvent.CHANGE, onSectionNavigatorIndexChange);
                 break;
                 case backToMenuButton:
                     backToMenuButton.label = copyProvider.getCopyForId("home");
@@ -188,7 +194,7 @@ import spark.managers.PersistenceManager;
                     goToSettingsButton.label = copyProvider.getCopyForId("settings");
                     break;
                 case backToExercieButton:
-                    backToExercieButton.label = copyProvider.getCopyForId("backToExerciseButton");
+                    backToExercieButton.label = copyProvider.getCopyForId("back");
                     backToExercieButton.addEventListener(MouseEvent.CLICK, onBackToExerciseButtonClick);
                     break;
                 case versionLabel:
@@ -241,24 +247,27 @@ import spark.managers.PersistenceManager;
             sectionNavigator.left = menuToggleButton.left = 0;
             sectionNavigator.right = 0;
             menuToggleButton.selected = false;
+            isProgressOpen = true;
 
-            sectionNavigator.addEventListener(IndexChangeEvent.CHANGE, onSectionNavigatorIndexChange);
             goToProgress.dispatch();
         }
 
         protected function onSectionNavigatorIndexChange(event:IndexChangeEvent):void {
             // After the active view changing to progress view, we hide the tab bar in progress page.
-            sectionNavigator.tabBar.visible = false;
-            backToExercieButton.visible = backToExercieButton.includeInLayout = true;
-            helpButton.visible = logoutButton.visible = false;
+            if (isProgressOpen) {
+                isProgressOpen = false;
 
-            sectionNavigator.removeEventListener(IndexChangeEvent.CHANGE, onSectionNavigatorIndexChange);
+                sectionNavigator.tabBar.visible = false;
+                helpButton.visible = logoutButton.visible = false;
+                backToExercieButton.visible = backToExercieButton.includeInLayout = true;
+            } else {
+                helpButton.visible = logoutButton.visible = true;
+                backToExercieButton.visible = backToExercieButton.includeInLayout = false;
+            }
         }
 
         protected function onBackToExerciseButtonClick(event:MouseEvent):void {
             sectionNavigator.selectedIndex = 0;
-            backToExercieButton.visible = backToExercieButton.includeInLayout = false;
-            helpButton.visible = logoutButton.visible = true;
         }
     }
 }
