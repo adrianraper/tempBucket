@@ -70,7 +70,7 @@ function checkUser($id, $password){
 	$dbversion = isset($_SESSION['DATABASEVERSION']) ? $_SESSION['DATABASEVERSION'] : "6";
 	$loginOption = isset($_SESSION['LOGINOPTION']) ? $_SESSION['LOGINOPTION'] : "1";
     if(defined("DEBUG"))
-       error_log("check user loginOption=$loginOption"."\r\n", 3, "../Debug/debug_iyj.log");
+       error_log("check user loginOption=$loginOption"."\r\n", 3, "../Software/Common/logs/debug_iyj.log");
     $instanceID = time();
     if ($_SESSION['SCORM'] == true){
 		$buildXML = '<query method="emugetuser" '.
@@ -125,7 +125,7 @@ function checkUser($id, $password){
 	}
 	sendAndLoad($buildXML, $responseXML, "progress");
     if(defined("DEBUG"))
-       error_log($buildXML."\r\n".$responseXML."\r\n", 3, "../Debug/debug_iyj.log");
+       error_log($buildXML."\r\n".$responseXML."\r\n", 3, "../Software/Common/logs/debug_iyj.log");
 	$xml = simplexml_load_string($responseXML);
 	$parser = xml_parser_create();
 	xml_set_element_handler($parser,"start","stop");
@@ -182,8 +182,6 @@ function checkUser($id, $password){
 	}
 }
 function getRMSetting($rootID, $prefix){
-	if (defined("DEBUG"))
-		error_log("Calling getRMSettings from login..."."\r\n", 3, "../Debug/debug_iyj.log");
 	global $userInfo, $errorInfo, $noteInfo, $accountInfo, $licenceInfo, $failReason, $demoversion;
 		$buildXML = '<query method="getRMSettings" '.
 				'rootID="'.$rootID.
@@ -194,7 +192,7 @@ function getRMSetting($rootID, $prefix){
 				'" dbHost="2" />';
 	sendAndLoad($buildXML, $responseXML, "progress");
 	if (defined("DEBUG"))
-		error_log($buildXML."\r\n".$responseXML."\r\n", 3, "../Debug/debug_iyj.log");
+		error_log($buildXML."\r\n".$responseXML."\r\n", 3, "../Software/Common/logs/debug_iyj.log");
 	$xml = simplexml_load_string($responseXML);
 	$parser = xml_parser_create();
 	xml_set_element_handler($parser,"start","stop");
@@ -251,7 +249,7 @@ function getRMSetting($rootID, $prefix){
 			 
 			// Start ip range checking
 			if(defined("DEBUG"))
-			error_log("ItsYourJob checking ip $clientIp, allowed ip address is ".$_SESSION['IPRANGE'], 3, "../Debug/debug_iyj.log");
+				error_log("ItsYourJob checking ip $clientIp, allowed ip address is ".$_SESSION['IPRANGE'], 3, "../Software/Common/logs/debug_iyj.log");
 			$targetIP = explode(",", $_SESSION['IPRANGE']);
 			foreach($targetIP as $ip){
 				if($clientIp == $ip){
@@ -285,7 +283,8 @@ function getRMSetting($rootID, $prefix){
 			$rangeChecked = false;
 			// it is dangerous to send the whole referrer as you might get confused with parameters (specifically content)
 			if (isset($_SERVER['HTTP_REFERER'])) {
-			error_log("current referer is ".$_SERVER['HTTP_REFERER']."\n", 3, "../Debug/debug_iyj.log");
+				if (defined("DEBUG"))
+					error_log("current referer is ".$_SERVER['HTTP_REFERER']."\n", 3, "../Software/Common/logs/debug_iyj.log");
 				if (strpos($_SERVER['HTTP_REFERER'],'?')) {
 					$referrer=substr($_SERVER['HTTP_REFERER'],0,strpos($_SERVER['HTTP_REFERER'],'?'));
 				} else {
@@ -294,8 +293,8 @@ function getRMSetting($rootID, $prefix){
 			}
 			 
 			// Start referrer range checking
-			if(defined("DEBUG"))
-			error_log("ItsYourJob checking referrer $referrer, allowed referrer is ".$_SESSION['RURANGE'], 3, "../Debug/debug_iyj.log");
+			if (defined("DEBUG"))
+				error_log("ItsYourJob checking referrer $referrer, allowed referrer is ".$_SESSION['RURANGE'], 3, "../Software/Common/logs/debug_iyj.log");
 			$targetRange = explode(",", $_SESSION['RURANGE']);
 			foreach($targetRange as $range){
 				if(strtolower($referrer) == strtolower($range)){
@@ -337,7 +336,7 @@ function getLicenceSlot($rootID, $userID){
 				'" dbHost="2" databaseVersion="'.$dbversion.'"/>';
 	sendAndLoad($buildXML, $responseXML, "licence");
     if(defined("DEBUG")){
-       error_log($buildXML."\r\n".$responseXML."\r\n", 3, "../Debug/debug_iyj.log");
+       error_log($buildXML."\r\n".$responseXML."\r\n", 3, "../Software/Common/logs/debug_iyj.log");
     }
 	$xml = simplexml_load_string($responseXML);
 	$parser = xml_parser_create();
@@ -382,8 +381,8 @@ function addUser($id, $pwd){
 	}
 	$buildXML .= ' password="'.$pwd.'" rootID="'.$_SESSION['ROOTID'].'" groupID="'.$_SESSION['GROUPID'].'" loginOption="'.$_SESSION['LOGINOPTION'].'" dbHost="2" databaseVersion="'.$dbversion.'"/>';
     sendAndLoad($buildXML, $responseXML, "progress");
-    if(defined("DEBUG"))
-       error_log($buildXML."\r\n".$responseXML."\r\n", 3, "../Debug/debug_iyj.log");
+    if (defined("DEBUG"))
+       error_log($buildXML."\r\n".$responseXML."\r\n", 3, "../Software/Common/logs/debug_iyj.log");
     $xml = simplexml_load_string($responseXML);
     $parser = xml_parser_create();
     xml_set_element_handler($parser,"start","stop");
@@ -505,7 +504,6 @@ if (!isset($_SESSION['PREFIX'])){
 	if (checkUser($id, $pwd) == false){
 		unset($errorInfo);
 		$_SESSION['FAILURE'] = "true";
-		//error_log("The fail reason is ".$_SESSION['FAILREASON']."\r\n", 3, "../Debug/debug_iyj.log");
 		header("Location: ../../area1/ItsYourJob/index.php");
 	} else {
 		if(getRMSetting($_SESSION['ROOTID'], '') == false){
@@ -542,7 +540,7 @@ if (!isset($_SESSION['PREFIX'])){
 		} else if (checkUser($id, $pwd) == false){
 			unset($errorInfo);
 			$_SESSION['FAILURE'] = "true";
-			if (defined('DEBUG')) error_log("The fail reason is ".$_SESSION['FAILREASON']."\r\n", 3, "../Debug/debug_iyj.log");
+			if (defined('DEBUG')) error_log("The fail reason is ".$_SESSION['FAILREASON']."\r\n", 3, "../Software/Common/logs/debug_iyj.log");
 			header("Location: ../../area1/ItsYourJob/index.php?prefix=".$_SESSION['PREFIX']);
 		} else if(getRMSetting("", $_SESSION['PREFIX']) == false){
 			unset($errorInfo);
@@ -556,7 +554,7 @@ if (!isset($_SESSION['PREFIX'])){
 			}
 		}
 	} else {
-		if(defined("DEBUG")) error_log($_SERVER['REQUEST_URL']."\r\n", 3, "../Debug/debug_iyj.log");
+		if(defined("DEBUG")) error_log($_SERVER['REQUEST_URL']."\r\n", 3, "../Software/Common/logs/debug_iyj.log");
 		$_SESSION['USERID'] = "-1";
 		$_SESSION['USERNAME'] = "student";
 		if(getLicenceSlot($_SESSION['ROOTID'], $_SESSION['USERID']) == false){

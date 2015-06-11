@@ -46,7 +46,7 @@ function getRMSetting($prefix){
                      '" zone="'.date_default_timezone_get().'" productcode="1001" dbHost="2"/>';
 	sendAndLoad($buildXML, $responseXML, "progress");
 	if (defined("DEBUG"))
-		error_log(trim($responseXML,"\r\n")."\r\n", 3, "../../Debug/debug_iyj.log");		
+		error_log(trim($responseXML,"\r\n")."\r\n", 3, "../../Software/Common/logs/debug_iyj.log");
 	$xml = simplexml_load_string($responseXML);
 	$parser = xml_parser_create();
 	xml_set_element_handler($parser,"start","stop");
@@ -68,7 +68,7 @@ function getRMSetting($prefix){
 			break;
 		default:
 			if (defined("DEBUG"))
-				error_log('settingsInfo(loginOption)='.$settingsInfo['LOGINOPTION']."\r\n", 3, "../../Debug/debug_iyj.log");
+				error_log('settingsInfo(loginOption)='.$settingsInfo['LOGINOPTION']."\r\n", 3, "../../Software/Common/logs/debug_iyj.log");
 	        $_SESSION['LANGUAGECODE'] = $accountInfo['LANGUAGECODE'];
 			$_SESSION['ROOTID'] = $accountInfo['ROOTID'];
 			$_SESSION['MAXSTUDENTS'] = $accountInfo['MAXSTUDENTS'];
@@ -118,7 +118,8 @@ function getRMSetting($prefix){
 			}
 			 
 			// Start ip range checking
-			error_log("ItsYourJob checking ip $clientIp, allowed ip address is ".$_SESSION['IPRANGE'], 3, "../../Debug/debug_iyj.log");
+			if (defined("DEBUG"))
+				error_log("ItsYourJob checking ip $clientIp, allowed ip address is ".$_SESSION['IPRANGE'], 3, "../../Software/Common/logs/debug_iyj.log");
 			$targetIP = explode(",", $_SESSION['IPRANGE']);
 			foreach($targetIP as $ip){
 				if($clientIp == $ip){
@@ -160,7 +161,8 @@ function getRMSetting($prefix){
 			}
 			 
 			// Start referrer range checking
-			error_log("ItsYourJob checking referrer $referrer, allowed referrer is ".$_SESSION['RURANGE'], 3, "../../Debug/debug_iyj.log");
+			if (defined("DEBUG"))
+				error_log("ItsYourJob checking referrer $referrer, allowed referrer is ".$_SESSION['RURANGE'], 3, "../../Software/Common/logs/debug_iyj.log");
 			$targetRange = explode(",", $_SESSION['RURANGE']);
 			foreach($targetRange as $range){
 				if(strtolower($referrer) == strtolower($range)){
@@ -203,7 +205,8 @@ if (!empty($_SESSION['PREFIX'])){
 			}
 			// gh#1241 See if clarityenglish.com has already set session variables for the user
 			if (isset($_SESSION['UserID'])) {
-				error_log("I got a userID in session, so jump ahead with username=".$_SESSION['UserName']."\r\n", 3, "../../Debug/debug_iyj.log");
+				if (defined("DEBUG"))
+					error_log("I got a userID in session, so jump to login.php with username=".$_SESSION['UserName']."\r\n", 3, "../../Software/Common/logs/debug_iyj.log");
 			
 				$_POST['submit'] = "Start";
 				header("Location: ../../ItsYourJob/login.php?prefix=".$_SESSION['PREFIX']);
