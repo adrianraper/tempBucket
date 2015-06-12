@@ -1,47 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+<comps:GradientCanvas xmlns:mx="http://www.adobe.com/2006/mxml"
 		   xmlns:view="com.clarityenglish.dms.view.login.components.*"
-		   implements="com.clarityenglish.common.view.login.interfaces.LoginComponent, com.clarityenglish.common.view.interfaces.CopyReceiver">
+		   xmlns:comps="com.clarityenglish.dms.view.login.components.*"
+		   implements="com.clarityenglish.common.view.login.interfaces.LoginComponent, com.clarityenglish.common.view.interfaces.CopyReceiver"
+           initialize="onInitialize(event)"
+		   >
 	<mx:Script>
 		<![CDATA[
 		import com.clarityenglish.common.events.LoginEvent;
 		import com.clarityenglish.common.model.interfaces.CopyProvider;
 		import com.clarityenglish.dms.Constants;
+		import com.clarityenglish.dms.view.login.components.*;
+		import com.clarityenglish.utils.TraceUtils;
 		
 		import mx.controls.Alert;
-		import mx.core.Application;
+		import mx.events.FlexEvent;
 		
 		private var copyProvider:CopyProvider;
+		
+		[Embed(source="/../assets/Adrian.png")]
+		private var faceadrian:Class;
+		[Embed(source="/../assets/Brian.png")]
+		private var facebrian:Class;
+		[Embed(source="/../assets/Christine.png")]
+		private var facechristine:Class;
+		[Embed(source="/../assets/Jessie.png")]
+		private var facejessie:Class;
+		[Embed(source="/../assets/Nicole.png")]
+		private var facenicole:Class;
+		[Embed(source="/../assets/Sky.png")]
+		private var facesky:Class;
+		[Embed(source="/../assets/Vivying.png")]
+		private var facevivying:Class;
+						
+		protected function onInitialize(event:FlexEvent):void {
+			this.setStyle('fillColors', [0xffffff, 0xd4d4d3]);
+			this.setStyle('cornerRadius',0);			
+		}
 		
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			this.copyProvider = copyProvider;
 			
-			loginWindow.title = copyProvider.getCopyForId("dmsLoginWindow");
-			usernameFormItem.label = copyProvider.getCopyForId("loginUsername");
-			passwordFormItem.label = copyProvider.getCopyForId("loginPassword");
-			filterStringFormItem.label = copyProvider.getCopyForId("loginFilter");
+			usernameFormItem.text = copyProvider.getCopyForId("loginUsername");
+			passwordFormItem.text = copyProvider.getCopyForId("loginPassword");
+			filterFormItem.text = copyProvider.getCopyForId("loginFilter");
 			loginButton.label = copyProvider.getCopyForId("loginButton");
-			//Alert.show('Your IP is ' + Application.application.parameters.ip + ' and server ' + Application.application.parameters.server);
-			var forLooks:Object = Application.application.parameters;
-			if (Application.application.parameters.server.indexOf("dock") == 0) {
-				if (usernameTextInput.text == '')
-					usernameTextInput.text = 'dmsadrian';
-			}
+			
+			var substTags:Object = {version: Constants.version};
+			version.text = copyProvider.getCopyForId("applicationVersion", substTags);
+			copyright.text = copyProvider.getCopyForId("copyright");
 			setInputFocus();
 		}
 		
 		private function setInputFocus():void {
-			if (usernameTextInput.text == '') {
-				usernameTextInput.setFocus();
-			} else {
-				passwordTextInput.setFocus();
-			}
-			//usernameTextInput.setSelection(0, usernameTextInput.text.length);
-		}
-		
-		[Bindable(event="loginChange")]
-		private function get loginEnabled():Boolean {
-			return (usernameTextInput.text != "" && passwordTextInput.text != "");
+			usernameTextInput.setFocus();
+			usernameTextInput.setSelection(0, usernameTextInput.text.length);
 		}
 		
 		private function login():void {
@@ -70,43 +83,91 @@
 			*/
 			passwordTextInput.text = "";
 		}
+		protected function loginKeyUp(event:KeyboardEvent):void {
+			if (event.keyCode == Keyboard.ENTER) {
+				if (passwordTextInput.text.length == 0) {
+					passwordTextInput.setFocus();
+				} else {
+					if (usernameTextInput.text.length == 0) {
+						usernameTextInput.setFocus();
+					} else {
+						loginButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+					}
+				}				
+			}
+			userFace.visible = false;
+			if (usernameTextInput.text.indexOf('dms') == 0) {
+				var thisUser:String = usernameTextInput.text.substring(3,99).toLowerCase();
+				// This is nice, but getting caught by 
+				// [Fault] exception, information=ReferenceError: Error #1065: Variable facebrian is not defined.
+				/*
+				try {
+					var faceClass:Class = getDefinitionByName("face" + thisUser) as Class;
+					//userFace.source = new faceClass();
+					userFace.source = new facejessie();
+					userFace.visible = true;
+				} catch (e:Error) {
+					filterStringInput.text = e.message;
+				}
+				*/
+				userFace.visible = true;
+				switch (thisUser) {
+					case "adrian":
+						userFace.source = new faceadrian();
+						break;
+					case "brian":
+						userFace.source = new facebrian();
+						break;
+					case "christine":
+						userFace.source = new facechristine();
+						break;
+					case "jessie":
+						userFace.source = new facejessie();
+						break;
+					case "nicole":
+						userFace.source = new facenicole();
+						break;
+					case "sky":
+						userFace.source = new facesky();
+						break;
+					case "vivying":
+						userFace.source = new facevivying();
+						break;
+					default:
+						userFace.visible = false;
+				}
+			}
+
+		}
 		]]>
 	</mx:Script>
-	<mx:VBox height="100%" paddingBottom="50" paddingTop="50" paddingLeft="50" >
-		<mx:HBox width="100%" horizontalAlign="middle">
-			<mx:Image id="DMSwording" height="200" source="@Embed('/../assets/DMSwording.swf')" />
-		</mx:HBox>
-		<mx:Spacer height="100%" />
-		<mx:Image id="ClarityLogo" scaleContent="false" 
-				  completeEffect="Fade" source="@Embed('/../assets/ClarityEnglishLogo.png')" />
-	</mx:VBox>
- 	<mx:TitleWindow id="loginWindow" verticalScrollPolicy="off" horizontalScrollPolicy="off" 
-					horizontalCenter="0" verticalCenter="0" 
-					borderAlpha="0.9" borderColor="{Constants.popupBackgroundColour}" >
-		<mx:Form paddingTop="10" width="100%" height="100%" defaultButton="{loginButton}">
-			<mx:HBox width="100%" includeInLayout="{Constants.DEBUG_MODE}" visible="{Constants.DEBUG_MODE}">
-				<mx:Button label="Adrian Raper" click="dispatchEvent(new LoginEvent(LoginEvent.LOGIN, 'dmsAdrian', 'dock', true))" />
-			</mx:HBox>
-			
-			<mx:FormItem id="usernameFormItem">
-				<mx:TextInput id="usernameTextInput" width="100%" change="dispatchEvent(new Event('loginChange'))" text="" />
-			</mx:FormItem>
-			<mx:FormItem id="passwordFormItem">
-				<mx:TextInput id="passwordTextInput" width="100%" change="dispatchEvent(new Event('loginChange'))" displayAsPassword="true" text="" />
-			</mx:FormItem>
-			<mx:FormItem id="filterStringFormItem">
-				<mx:TextInput id="filterStringInput" width="100%" text="" />
-			</mx:FormItem>
-			<!-- 
-			<mx:FormItem id="accountTypeFormItem">
-				<mx:RadioButton id="individual" groupName="accountTypeGroup" value="5" label="individual accounts" />
-				<mx:RadioButton id="institution" groupName="accountTypeGroup" label="institution accounts" />
-			</mx:FormItem>
-			 -->
-			<mx:FormItem>
-				<mx:Button id="loginButton" enabled="{loginEnabled}" click="login()" />
-			</mx:FormItem>
-		</mx:Form>
-	</mx:TitleWindow>
+	<mx:Image id="RMlogo" maintainAspectRatio="true" verticalCenter="0" horizontalCenter="0" scaleContent="false" 
+			  source="@Embed('/../assets/RM_login_bg_smaller.png')" />
 	
-</mx:Canvas>
+	<!-- gh#747 Very clumsy component, struggling with mx to get it nicer! -->
+	<comps:LoginPanelBackgroundSkin width="430" height="404" 
+									horizontalCenter="0" verticalCenter="0"	/>
+	<mx:VBox id="loginWindow" width="250" height="243" horizontalCenter="0" verticalCenter="80" horizontalAlign="center" >
+		<mx:VBox horizontalAlign="left" verticalGap="0" >
+			<mx:Label id="usernameFormItem" styleName="prompt" />
+			<mx:TextInput id="usernameTextInput" width="225" text="" styleName="promptEntry" keyUp="loginKeyUp(event)" />
+			<mx:Spacer height="5" />
+			<mx:Label id="passwordFormItem" styleName="prompt" />
+			<mx:TextInput id="passwordTextInput" width="225" displayAsPassword="true" text="" styleName="promptEntry" keyUp="loginKeyUp(event)" />
+			<mx:Spacer height="5" />
+			<mx:Label id="filterFormItem" styleName="prompt" />
+			<mx:TextInput id="filterStringInput" width="225" text="" styleName="promptEntry" />
+		</mx:VBox>
+		<mx:Spacer height="100%" />
+		<mx:Button id="loginButton" horizontalCenter="0" verticalCenter="400" click="login()" width="100" height="50"
+				   overSkin="{ButtonUpSkin}" upSkin="{ButtonUpSkin}" downSkin="{ButtonUpSkin}"
+				   styleName="loginButton" textRollOverColor="0xffffff" useHandCursor="true" buttonMode="true"/>
+	</mx:VBox>
+	<mx:VBox id="about" horizontalCenter="0" verticalCenter="360" horizontalAlign="center" verticalGap="0" >
+		<mx:Image maintainAspectRatio="true" scaleContent="false" source="@Embed('/../assets/RM_login_CElogo.png')" />
+		<mx:Label id="version" styleName="smallText" />
+		<mx:Label id="copyright" styleName="smallText" />
+	</mx:VBox>
+	<mx:Image id="userFace" maintainAspectRatio="true" verticalCenter="-137" horizontalCenter="-78" scaleContent="false" 
+			  visible="false" />		
+</comps:GradientCanvas>

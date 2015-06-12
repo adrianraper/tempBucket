@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="1178" viewWidth="1178" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="1178" d:pageWidth="1178" d:type="layer" d:userLabel="Artboard 2">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Group ai:seqID="1">
+        <Group ai:seqID="2">
+          <Group ai:seqID="3">
+            <Group ai:seqID="4">
+              <Path winding="nonZero" ai:seqID="5" data="M1178 589.065C1178 263.595 914.274 0 588.987 0 263.714 0 0 263.595 0 589.065 0 914.277 263.714 1178 588.987 1178 914.274 1178 1178 914.277 1178 589.065Z">
+                <fill>
+                  <SolidColor color="#DBDBDB"/>
+                </fill>
+              </Path>
+              <Path x="108.477" y="108.466" winding="nonZero" ai:seqID="6" data="M961.073 480.559C961.073 215.233 745.977 0 480.484 0 215.158 0 0 215.233 0 480.559 0 746.011 215.158 961.117 480.484 961.117 745.977 961.117 961.073 746.011 961.073 480.559Z">
+                <fill>
+                  <SolidColor color="#EBEBEB"/>
+                </fill>
+              </Path>
+              <Group x="110.042" y="104.541" ai:seqID="7">
+                <Path winding="nonZero" ai:seqID="8" data="M8.00635 592.949C4.48291 537.417 66.9478 395.112 190.729 289.057 156.936 285.238 132.34 284.011 132.34 284.011 135.969 252.942 256.909 20.4775 543.409 67.0879 829.986 113.478 878.168 368.581 882.838 395.993 876.629 392.312 864.28 388.328 849.406
+ 384.391 906.813 507.45 914.821 641.869 901.78 676.539 901.78 676.539 1017.44 531.321 907.753 294.558 797.919 57.7578 562.699 0 492.131 0 421.653 0 190.21 23.8828 45.2837 268.58 11.8804 332.389 -13.6313 479.489 8.00635 592.949Z">
+                  <fill>
+                    <SolidColor color="#FFFFFF"/>
+                  </fill>
+                </Path>
+                <Path x="190.729" y="161.296" winding="nonZero" ai:seqID="9" data="M336.667 0C196.938 0 84.2422 55.3955 0 127.761 41.998 132.533 98.4502 141.417 140.036 157.272 177.742 147.634 392.585 89.3486 564.073 207.285 581.09 207.285 625.901 214.731 658.677 223.095 604.106 106.391 504.921 0 336.667 0Z">
+                  <fill>
+                    <SolidColor color="#F2F2F2"/>
+                  </fill>
+                </Path>
+                <Path x="132.34" y="60.9341" winding="nonZero" ai:seqID="10" data="M411.068 6.15384C124.568 -40.4565 3.62891 192.008 0 223.077 0 223.077 24.5957 224.304 58.3887 228.123 142.631 155.757 255.327 100.362 395.056 100.362 563.31 100.362 662.495 206.752 717.065 323.457 731.939 327.394 744.289 331.377 750.498 335.059
+ 745.828 307.647 697.646 52.5435 411.068 6.15384Z">
+                  <fill>
+                    <SolidColor color="#EBEBEB"/>
+                  </fill>
+                </Path>
+              </Group>
+            </Group>
+          </Group>
+        </Group>
+        <Group x="270.84" y="278.576" ai:seqID="11">
+          <Path x="322.99" y="322.229" winding="nonZero" ai:seqID="12" data="M0 0.463867 0 0 0 0 0 0.463867Z">
+            <fill>
+              <SolidColor color="#0C7CAE"/>
+            </fill>
+          </Path>
+          <Path x="437.222" y="47.3271" winding="nonZero" ai:seqID="13" data="M322.848 228.034C322.848 138.678 286.718 58.2646 228.071 0L0 228.034 322.848 228.034Z">
+            <fill>
+              <SolidColor color="#F47421"/>
+            </fill>
+          </Path>
+          <Path winding="nonZero" ai:seqID="14" data="M322.99 322.229 551.475 94.166C493.153 35.8857 412.392 0 322.99 0 143.622 0 0 143.837 0 322.692 0 412.156 36.0596 492.998 94.3184 551.313 152.691 609.704 233.572 646.021 322.99 646.021 502.107 646.021 646.043 502.083 646.043 322.692L646.043 322.229
+ 322.99 322.229Z">
+            <fill>
+              <SolidColor color="#52B4D6"/>
+            </fill>
+          </Path>
+        </Group>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

@@ -9,13 +9,13 @@
 				paddingRight="1"
 				paddingBottom="1"
 				paddingTop="1"
+				backgroundColor="#0b7bad"
 				modalTransparency="0.8"
 				creationComplete="creationComplete()"
-				styleName="rmBackground"
 				implements="com.clarityenglish.common.view.interfaces.CopyReceiver"
 				>
 	<!-- move this up to see if lets DMS compile without complaining about CSS in RM -->
-	<mx:Style source="/../css/clarity.css" />
+	<mx:Style source="../../../../css/clarity.css" />
 	
 	<mx:Script>
 		<![CDATA[
@@ -24,17 +24,13 @@
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
 			import com.clarityenglish.common.vo.manageable.User;
 			import com.clarityenglish.dms.DMSNotifications;
-			//import nl.demonsters.debugger.MonsterDebugger;
 			import com.clarityenglish.utils.TraceUtils;
 			import flash.display.MovieClip;
 			import flash.ui.ContextMenu;
 			
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
-			//private var debugger:MonsterDebugger;
 			
 			private function creationComplete():void {
-				//debugger = new MonsterDebugger(this);
-				//MonsterDebugger.trace(this, "DMS started");
 				
 				// Hide the built in context menu
 				var cm:ContextMenu = new ContextMenu();
@@ -51,8 +47,6 @@
 			}
 			
 			public function setCopyProvider(copyProvider:CopyProvider):void {
-				
-				TraceUtils.myTrace("DMSApplication logged in user is a " + Constants.userType);
 				
 				if (mainStack.contains(accountView)) accountView.label = copyProvider.getCopyForId("accountTab");
 				if (mainStack.contains(emailView)) emailView.label = copyProvider.getCopyForId("emailTab");
@@ -105,10 +99,6 @@
 			<mx:TabNavigator id="mainStack" borderStyle="solid" width="100%" height="100%">
 				<account:AccountView id="accountView" width="100%" height="100%" />
 				<email:EmailView id="emailView" width="100%" height="100%" />
-				<!--<management:ManagementView id="managementView" width="100%" height="100%" />
-				<licence:LicenceView id="licenceView" width="100%" height="100%" />
-				<usage:UsageView id="usageView" width="100%" height="100%" />
-				<loginopts:LoginOptsView id="loginOptsView" width="100%" height="100%" />-->
 			</mx:TabNavigator>
 
 		</mx:VBox>

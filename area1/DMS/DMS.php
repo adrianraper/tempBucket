@@ -8,21 +8,9 @@
 	
 	if (isset($_REQUEST['dbHost'])) $_SESSION['dbHost'] = $_REQUEST['dbHost'];
 	
-	$server = $_SERVER['HTTP_HOST'];
-	// v6.5.6 Add support for HTTP_X_FORWARDED_FOR
-	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-		// This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
-		// Not always it doesn't. So need to send the whole list to the licence checking algorithm. Better send as a list than an array.
-		//$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
-		//$ip = $ipList[0];
-		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-	} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
-		$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
-	} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
-		$ip = $_SERVER["HTTP_CLIENT_IP"];
-	} else {
-		$ip = $_SERVER["REMOTE_ADDR"];
-	}
+	$userName = $password = $extraParam = $licenceFile = '';
+	if (isset($_SESSION['UserName'])) $userName = rawurlencode($_SESSION['UserName']);  
+	if (isset($_SESSION['Password'])) $password = rawurlencode($_SESSION['Password']);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -35,7 +23,7 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 
-	<script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
 	<script type="text/javascript">
 		// ****
 		// Change this variable along with the above fixed paths
@@ -66,7 +54,7 @@
 		// *********
 		
 		var startControl = webShare + "/Software/ResultsManager/web/";
-		var argList = "?version=3.6.3.1";
+		var argList = "?version=3.7.24"
 		
 		// see whether variables have come from command line or, preferentially, session variables
 		var jsUserName = swfobject.getQueryParamValue("username");
@@ -77,8 +65,6 @@
 			username: jsUserName,
 			password: jsPassword,
 			rootID: swfobject.getQueryParamValue("rootID"),
-			server: "<?php echo $server ?>",
-			ip: "<?php echo $ip ?>",
 			dbHost: jsdbHost
 		};
 		var params = {
@@ -96,7 +82,7 @@
 	</script>
 	<style type="text/css">
 		html, body { height:100%; }
-		body { 	margin-left: 4px; margin-top: 4px; }
+		body { 	margin: 0px}
 	</style>
 </head>
 <body onload="onLoad()">
