@@ -5,6 +5,8 @@
 			<lit name="applicationName">Results Manager</lit>
 			<lit name="applicationVersion">Version {version}</lit>
 			
+            <lit name="version">v{version} Software, Design, Navigation</lit>
+            <lit name="copyright">© Clarity Language Consultants Ltd, 2015. All rights reserved.</lit>
 			<lit name="userExpiredError">This user's account expired on {date}.</lit>
 			<lit name="productExpiredError">The licence for this title stopped on {date}.</lit>
 			
@@ -67,6 +69,7 @@
 			<lit name="learner_id">Learner ID:</lit>
 			<lit name="email">Email:</lit>
 			<lit name="password">Password:</lit>
+			<lit name="forgotPassword">Forgot your password?</lit>
 			<lit name="searchWindowTitle">Search users</lit>
 			<lit name="expiresBefore">Expires before:</lit>
 			<lit name="search">Search</lit>
@@ -78,11 +81,12 @@
 			<lit name="showSelected">Show selected</lit>
 			<lit name="showUnassigned">Show unassigned</lit>
 			<lit name="tooManyUsersToAllocate">Sorry, ading these users would exceed your licence allowance by {userCount}.</lit>
-			<lit name="loginWindow">Log in to Results Manager</lit>
-			<lit name="loginUsername">Username:</lit>
-			<lit name="loginPassword">Password:</lit>
-			<lit name="loginFilter">Search for:</lit>
-			<lit name="loginButton">Login</lit>
+			<lit name="loginWindow">Sign in to Results Manager</lit>
+			<lit name="loginUsername">Username</lit>
+			<lit name="loginPassword">Password</lit>
+			<lit name="loginFilter">Search for</lit>
+			
+			<lit name="loginButton">Sign in</lit>
 			<lit name="logoutButton">Logout</lit>
 			<lit name="empty">Empty</lit>
 			<lit name="userType2">an administrator</lit>
@@ -146,7 +150,7 @@
 			<lit name="uploadSecurityError">There was a security error</lit>
 			<lit name="uploadComplete">Upload complete</lit>
 			<lit name="excelNoUsernameHeader">Unable to import from Excel without at least a 'username' header.</lit>
-			<lit name="invalidLoginWindowTitle">Invalid login</lit>
+			<lit name="invalidLoginWindowTitle">Invalid sign in</lit>
 			<lit name="invalidLogin">Username/password invalid</lit>
 			<lit name="archive">archive</lit>
 			<lit name="delete">delete</lit>
@@ -192,13 +196,13 @@
 			<lit name="barChartTitle">About the program</lit>
 			<lit name="detailTitle">Within the program</lit>
 			<lit name="timeConnection">times for</lit>
-			<lit name="failedLogins">Failed logins:</lit>
-			<lit name="failedLoginCounts">How many people failed to log in, and why?</lit>
+			<lit name="failedLogins">Failed access:</lit>
+			<lit name="failedLoginCounts">How many people failed to sign in, and why?</lit>
 			<lit name="failures">Failures</lit>
 			<lit name="failureReasons">Reason for failure</lit>
 			<lit name="databaseError">The database didn't save the licence.</lit>
 			<lit name="authenticationError">An unauthorised access was blocked.</lit>
-			<lit name="invalidLoginError">The login details were invalid.</lit>
+			<lit name="invalidLoginError">The sign in details were invalid.</lit>
 			<lit name="unknownFailedLoginReason">Reason not known.</lit>
 			<lit name="noSuchLearnerID">The learner ID did not exist.</lit>
 			<lit name="passwordWrong">The password was wrong.</lit>
@@ -206,7 +210,7 @@
 			<lit name="licenceFull">The licence was full.</lit>
 			<lit name="concurrentLicenceFull">All licences were being used at that time.</lit>
 			<lit name="blockedByDoubleLogin">Two people tried to use the same account at the same time.</lit>
-			<lit name="noFailedLogins">There were no failures to login during this period.</lit>
+			<lit name="noFailedLogins">There were no failures to sign in during this period.</lit>
 			<lit name="periodFrom">Measure usage from:</lit>
 			<lit name="periodTo">to:</lit>
 			<lit name="usageStatsAccountName">Usage statistics for {accountName}</lit>
@@ -290,12 +294,12 @@
 			<lit name="accessControl">Learner access control</lit>
 			<lit name="emailControl">Email control</lit>
 			
-			<lit name="loginTypeLoginOpt">To log in, what should a learner type?</lit>
+			<lit name="loginTypeLoginOpt">To sign in, what should a learner type?</lit>
 			<lit name="usernameOnly">Name</lit>
 			<lit name="studentIDOnly">Learner ID</lit>
 			<lit name="emailOnly">Email</lit>
 			<lit name="usernameAndStudentID">Both name and ID</lit>
-			<lit name="anonLoginLoginOpt">Allow anonymous login?</lit>
+			<lit name="anonLoginLoginOpt">Allow anonymous access?</lit>
 			<lit name="passwordRequiredLoginOpt">Is a password required?</lit>
 			<lit name="unregisteredLearnersLoginOpt">Are unregistered learners allowed to use the program?</lit>
 			<lit name="requiredSelfRegisteredFieldsLoginOpt">Required self register fields</lit>
@@ -311,8 +315,8 @@
 			<lit name="srCustom2">Custom 2</lit>
 			<lit name="srCustom3">Custom 3</lit>
 			<lit name="srCustom4">Custom 4</lit>
-			<lit name="updateLoginOpts">Update login options</lit>
-			<lit name="revertLoginOpts">Reset login options</lit>
+			<lit name="updateLoginOpts">Update sign in options</lit>
+			<lit name="revertLoginOpts">Reset sign in options</lit>
 
 			<lit name="adminEmail">Administrator email</lit>
 			<lit name="otherEmail">Other contact</lit>
@@ -369,8 +373,8 @@
 			</lit>
 			<lit name="loginOptsHelp">
 				<![CDATA[
-					<p><b>Learner access control</b> lets you set what learners have to type when they login. You can use name, ID or email. You can use or ignore a password.</p>
-					<p>Self-register. If you want to allow any learner to register themselves to use the program, set the information that they should type. Otherwise only learners whose names are already in Results Manager will be allowed to login.</p>
+					<p><b>Learner access control</b> lets you set what learners have to type when they sign in. You can use name, ID or email. You can use or ignore a password.</p>
+					<p>Self-register. If you want to allow any learner to register themselves to use the program, set the information that they should type. Otherwise only learners whose names are already in Results Manager will be allowed to sign in.</p>
 					<p></p>
 					<p><b>Email control</b> lets you control which email addresses receive which type of email from Clarity.</p>
 					<ul>
@@ -389,7 +393,7 @@
 					<p>Usage statistics tell you how much the different programs have been used. You must select a program on the left and the statistics on the right will be for that title.</p>
 					<p><b>About the licence</b> shows you the subscription expiry date and the number of learners who have used this program.</p>
 					<p><b>About the program</b> shows you how many times the program has been used.</p>
-					<p><b>Failed logins</b> shows how many people failed to run the program and why.</p>
+					<p><b>Failed access</b> shows how many people failed to start the program and why.</p>
 				]]>
 			</lit>
 			<lit name="importHelp">
@@ -456,7 +460,7 @@
 			
 			<!-- DMS literals -->
 			<lit name="dmsApplicationName">DMS</lit>
-			<lit name="dmsLoginWindow">Login to DMS</lit>
+			<lit name="dmsLoginWindow">Sign in to DMS</lit>
 			
 			<lit name="accountTab">Accounts</lit>
 			<lit name="emailTab">Email</lit>
@@ -532,7 +536,7 @@
 			<lit name="logoFormItem">Logo:</lit>
 			<lit name="prefixFormItem">Prefix:</lit>
 			<lit name="selfHostFormItem">Self-hosted:</lit>
-			<lit name="loginOptionFormItem">Student login option:</lit>
+			<lit name="loginOptionFormItem">Student sign in option:</lit>
 			<lit name="selfRegisterFormItem">Student self register:</lit>
 			<lit name="optOutEmailsFormItem">Opt out of emails:</lit>
 			<lit name="optOutEmailDateFormItem">until</lit>
