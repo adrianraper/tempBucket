@@ -5,7 +5,8 @@ package com.clarityenglish.common.controller {
 	
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
-	import com.clarityenglish.common.model.ProgressProxy;
+import com.clarityenglish.common.model.MemoryProxy;
+import com.clarityenglish.common.model.ProgressProxy;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
 	
@@ -24,6 +25,10 @@ package com.clarityenglish.common.controller {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var progressProxy:ProgressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
 			progressProxy.startSession(loginProxy.user, configProxy.getAccount());
+
+			// Get the memory here
+			var memoryProxy:MemoryProxy = facade.retrieveProxy(MemoryProxy.NAME) as MemoryProxy;
+			memoryProxy.getMemory("openUnit");
 		}
 		
 	}

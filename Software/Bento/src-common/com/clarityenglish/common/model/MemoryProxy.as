@@ -35,6 +35,12 @@ package com.clarityenglish.common.model {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		public static const NAME:String = "MemoryProxy";
+
+		private var _memories:Object;
+
+		public function get memories():Object {
+			return _memories;
+		}
 		
 		public function MemoryProxy(data:Object = null) {
 			super(NAME, data);
@@ -57,7 +63,8 @@ package com.clarityenglish.common.model {
 		 * 
 		 */
 		public function getMemory(key:String):Object {
-			return new RemoteDelegate("getMemory", [ key ]).execute();
+			trace("key: "+key);
+			return new RemoteDelegate("getMemory", [ key ], this).execute();
 		}
 		
 		// Another proxy or a mediator calling this would have
@@ -79,10 +86,11 @@ package com.clarityenglish.common.model {
 			// TODO: Most of these generate errors on the client side; I need to implement this
 			switch (operation) {
 				case "writeMemory":
-				case "getMemory":
 					var temp:Object = data;
 					break;
-				
+				case "getMemory":
+					_memories = data;
+					break;
 				default:
 					sendNotification(CommonNotifications.TRACE_ERROR, "Result from unknown operation: " + operation);
 			}

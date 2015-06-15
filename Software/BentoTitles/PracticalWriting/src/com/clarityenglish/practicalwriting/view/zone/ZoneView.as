@@ -1,6 +1,9 @@
 package com.clarityenglish.practicalwriting.view.zone {
 import com.clarityenglish.bento.view.base.BentoView;
+import com.clarityenglish.common.events.MemoryEvent;
 import com.clarityenglish.textLayout.vo.XHTML;
+
+import flash.errors.MemoryError;
 
 import flash.events.Event;
 
@@ -50,6 +53,7 @@ import spark.primitives.Rect;
         public var skillContentLabel:Label;
 
         public var backHome:Signal = new Signal();
+        public var writeMemory:Signal = new Signal(MemoryEvent);
 
         private var _course:XML;
         private var _isCourseChanged:Boolean;
@@ -57,6 +61,9 @@ import spark.primitives.Rect;
         private var _everyoneCourseSummaries:Object;
         private var _everyoneCourseSummariesChanged:Boolean;
         private var everyoneUnitScores:Object = new Object();
+        private var _openUnitMemories:Array = [];
+        private var _isOpenUnitMemoriesChanged:Boolean;
+        private var openUnitID:Object = new Object();
 
         public function ZoneView() {
             actionBarVisible = false;
@@ -68,9 +75,11 @@ import spark.primitives.Rect;
         }
 
         public function set course(value:XML):void {
-            _course = value;
-            _isCourseChanged = true;
-            invalidateProperties();
+            if (value) {
+                _course = value;
+                _isCourseChanged = true;
+                invalidateProperties();
+            }
         }
 
         public function set everyoneCourseSummaries(value:Object):void {
@@ -81,6 +90,18 @@ import spark.primitives.Rect;
                 everyoneUnitScores[_everyoneCourseSummaries[i].CourseID] = {mins: Number(_everyoneCourseSummaries[i].AverageDuration) / 60, read: _everyoneCourseSummaries[i].Count};
             }
             invalidateProperties();
+        }
+
+        public function set openUnitMemories(value:Object):void {
+            if (value) {
+                _openUnitMemories = String(value).split(",");
+                _isOpenUnitMemoriesChanged = true;
+                var values:Array = [];
+                for (var i:Number = 0; i < _openUnitMemories.length; i++) {
+                    values = String(_openUnitMemories[i]).split(".");
+                    openUnitID[values[0]] = {unitID: values[1]};
+                }
+            }
         }
 
         override protected function updateViewFromXHTML(xhtml:XHTML):void {
@@ -144,6 +165,14 @@ import spark.primitives.Rect;
                     }
                 }
             }
+
+            if (_isOpenUnitMemoriesChanged) {
+                _isOpenUnitMemoriesChanged = false;
+
+                if (openUnitID[course.@id]) {
+                    zoneViewNavigator.selectedIndex = course.unit.(@id == openUnitID[course.@id].unitID).childIndex();
+                }
+            }
         }
 
         protected function onZoneViewNavigatorClick(event:MouseEvent):void {
@@ -151,6 +180,15 @@ import spark.primitives.Rect;
                 // Store the index of selected viewNavigator.
                 data = new Object();
                 data.selectedIndex = zoneViewNavigator.tabBar.selectedIndex;
+            }
+
+            // If the unit ID haven't been wriiten, then write memory if user open learning tab (index=1).
+            if (zoneViewNavigator.tabBar.selectedIndex == 1 && !openUnitID[course.@id]) {
+                var unitID:Number = course.unit[1].@id;
+                var memoryValue:String = course.@id + "." + unitID;
+               if (_openUnitMemories)
+                    _openUnitMemories.push(memoryValue);
+                writeMemory.dispatch(new MemoryEvent(MemoryEvent.WRITE, {openUnit: _openUnitMemories}));
             }
         }
 

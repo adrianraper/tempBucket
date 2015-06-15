@@ -59,6 +59,7 @@
 		
 		// gh#1067
 		public static const WRITE_MEMORY:String = "write_memory";
+		//public static const GET_MEMORY:String = "get_memory";
 	}
 	
 }

@@ -188,6 +188,8 @@
 
 			// gh#1219
 			registerCommand(BBNotifications.IMAGE_ENLARGE, ImageEnlargeCommand);
+
+			registerCommand(CommonNotifications.WRITE_MEMORY, MemoryWriteCommand);
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {
