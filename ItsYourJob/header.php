@@ -35,7 +35,7 @@
 
     <div class="bannar_rainbow_line" id="welcome_line">
         <div id="front_logindetails">
-               Welcome, <?php echo ($_SESSION['USERNAME']=="" ? $_SESSION['id'] : $_SESSION['USERNAME']) ?>. Today is <?php echo Date("jS F Y", time()); ?>.
+               OWelcome, <?php echo ($_SESSION['USERNAME']=="" ? $_SESSION['id'] : $_SESSION['USERNAME']) ?>. Today is <?php echo Date("jS F Y", time()); ?>.
         </div>
         <a id="demo_btn_logout" href="javascript:do_logout();" class="logout" style="display:none"></a>
     </div>
@@ -49,7 +49,7 @@
     </div>
 	<div class="bannar_rainbow_line" id="welcome_line">
 		<div id="front_logindetails">
-            Welcome, <?php echo ($_SESSION['USERNAME']=="" ? $_SESSION['id'] : $_SESSION['USERNAME']) ?>. Today is <?php echo Date("jS F Y", time()); ?>.
+            OWelcome, <?php echo ($_SESSION['USERNAME']=="" ? $_SESSION['id'] : $_SESSION['USERNAME']) ?>. Today is <?php echo Date("jS F Y", time()); ?>.
           </div>
 		  <a id="btn_logout" href="javascript:do_logout();" class="logout" style="display:none"></a>
 	</div>
@@ -72,8 +72,8 @@ if(host == "www.clarityenglish.com"){
 		//document.getElementById('btn_logout').style.display = "block";
 	}
 }else{
-	document.getElementById('btn_logout').style.display = "block";
-	document.getElementById('demo_btn_logout').style.display = "block";
+	//document.getElementById('btn_logout').style.display = "block";
+	//document.getElementById('demo_btn_logout').style.display = "block";
 }
 
 if(failure == "true" || user == ""){
