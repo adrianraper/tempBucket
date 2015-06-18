@@ -49,7 +49,7 @@
 		// *********
 		
 		var startControl = webShare + "/Software/ResultsManager/web/";
-		var argList = "?version=3.7.2.653"
+		var argList = "?version=3.7.24"
 		
 		// see whether variables have come from command line or, preferentially, session variables
 		if ("<?php echo $userName ?>".length>0) {

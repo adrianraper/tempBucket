@@ -3,18 +3,9 @@ if (session_id() == '') session_start();
 require_once("../../ItsYourJob/Variables.php");
 require_once("../../ItsYourJob/libQuery.php");
 
-$testingPortalLogin = $_GET['testing'];
-if ($testingPortalLogin) {
-	$_SESSION['UserID'] = 27639;
-	$_SESSION['Email'] = 'dandy@email';
-	$_SESSION['UserName'] = 'dandelion';
-	$_SESSION['StudentID'] = 'dandelion123';
-	$_SESSION['Password'] = 'password';
-	$_SESSION['PREFIX'] = 'Clarity';
-}
-
+// For the network version, default the prefix
 if (!isset($_SESSION['PREFIX']))
-	$_SESSION['PREFIX'] = ($_POST['prefix'] == "") ? $_GET['prefix'] : $_POST['prefix'];
+	$_SESSION['PREFIX'] = ($_POST['prefix'] == "") ? (($_GET['prefix']) ? $_GET['prefix'] : 'demo') : $_POST['prefix'];
 
 if (isset($_GET['startingPoint'])){ // direct start parameter
 	//$startingPoint = ($_GET['startingPoint']=="") ? $_GET["course"] : $_GET["startingPoint"];

@@ -66,7 +66,7 @@
 		// *********
 		
 		var startControl = webShare + "/Software/ResultsManager/web/";
-		var argList = "?version=3.6.3.1";
+		var argList = "?version=3.7.24";
 		
 		// see whether variables have come from command line or, preferentially, session variables
 		var jsUserName = swfobject.getQueryParamValue("username");

@@ -159,7 +159,7 @@ class PWService extends AbstractService {
 	 * Include country if you want to filter.
 	 */
 	public function getEveryonesCoverage($reportable, $userID, $rootID=null, $country=null, $startDate=0, $endDate=0) {
-		// gh#1421 The usage queries can take a long time
+		// gh#1241 The usage queries can take a long time
 		set_time_limit(300);
 
 		// Need userID (to exclude it) and then perhaps rootID and country if you want to filter by a limited set of others
@@ -176,22 +176,24 @@ class PWService extends AbstractService {
 			$myRootID = Session::is_set('rootID');
 		}
 		// gh#1421 Aim to cut down long queries, 2 years of everyone's data is enough
-		try {
-			$stopDate = new DateTime($endDate);
-		} catch (Exception $e) {
-			$stopDate = new DateTime();
+		if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
+			try {
+				$stopDate = new DateTime($endDate);
+			} catch (Exception $e) {
+				$stopDate = new DateTime();
+			}
+			try {
+				$beginDate = new DateTime($startDate);
+			} catch (Exception $e) {
+				$beginDate = new DateTime();
+			}
+			if (($beginDate >= $stopDate) || (($stopDate->diff($beginDate)) > new DateInterval('P1Y'))) {
+				$beginDate = $stopDate;
+				$beginDate->sub(new DateInterval('P1Y'));
+			}
+			$startDate = $beginDate->format('Y-m-d 00:00:00');
+			$endDate = $stopDate->format('Y-m-d 00:00:00');
 		}
-		try {
-			$beginDate = new DateTime($startDate);
-		} catch (Exception $e) {
-			$beginDate = new DateTime();
-		}
-		if (($beginDate >= $stopDate) || (($stopDate->diff($beginDate)) > new DateInterval('P1Y'))) {
-			$beginDate = $stopDate;
-			$beginDate->sub(new DateInterval('P1Y'));
-		}
-		$startDate = $beginDate->format('Y-m-d 00:00:00');
-		$endDate = $stopDate->format('Y-m-d 00:00:00');
 		//NetDebug::trace('PW.getContent.productCode='.$productCode);
 		return $this->usageOps->getEveryonesCoverage($reportable, $startDate, $endDate, $myUserID, $myRootID, $country);
 	}

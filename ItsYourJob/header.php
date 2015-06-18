@@ -35,7 +35,7 @@
 
     <div class="bannar_rainbow_line" id="welcome_line">
         <div id="front_logindetails">
-               OWelcome, <?php echo ($_SESSION['USERNAME']=="" ? $_SESSION['id'] : $_SESSION['USERNAME']) ?>. Today is <?php echo Date("jS F Y", time()); ?>.
+               Welcome, <?php echo ($_SESSION['USERNAME']=="" ? $_SESSION['id'] : $_SESSION['USERNAME']) ?>. Today is <?php echo Date("jS F Y", time()); ?>.
         </div>
         <a id="demo_btn_logout" href="javascript:do_logout();" class="logout" style="display:none"></a>
     </div>
@@ -49,7 +49,7 @@
     </div>
 	<div class="bannar_rainbow_line" id="welcome_line">
 		<div id="front_logindetails">
-            OWelcome, <?php echo ($_SESSION['USERNAME']=="" ? $_SESSION['id'] : $_SESSION['USERNAME']) ?>. Today is <?php echo Date("jS F Y", time()); ?>.
+            Welcome, <?php echo ($_SESSION['USERNAME']=="" ? $_SESSION['id'] : $_SESSION['USERNAME']) ?>. Today is <?php echo Date("jS F Y", time()); ?>.
           </div>
 		  <a id="btn_logout" href="javascript:do_logout();" class="logout" style="display:none"></a>
 	</div>
@@ -63,7 +63,7 @@ var failure = "<?php echo $_SESSION['FAILURE'];?>";
 var host = "<?php echo $_SERVER['HTTP_HOST'];?>";
 var isDirectLink = "<?php echo $_SESSION['PREFIX'];?>";
 
-if(host == "www.clarityenglish.com"){
+if (host == "www.clarityenglish.com"){
 	document.getElementById('bannar_before_login').className = "ban_choice";
 	document.getElementById('bannar_before_login').innerHTML = "";
 	document.getElementById('bannar_demo').className = "ban_choice";
@@ -71,16 +71,17 @@ if(host == "www.clarityenglish.com"){
 	if(isDirectLink != "" && isSCORM != "true"){
 		//document.getElementById('btn_logout').style.display = "block";
 	}
-}else{
-	//document.getElementById('btn_logout').style.display = "block";
-	//document.getElementById('demo_btn_logout').style.display = "block";
+} else {
+	// gh#1241 No logout in a portal
+	document.getElementById('btn_logout').style.display = "block";
+	document.getElementById('demo_btn_logout').style.display = "block";
 }
 
-if(failure == "true" || user == ""){
+if (failure == "true" || user == ""){
 	document.getElementById('header_before_login').style.display = "block";
 	document.getElementById('header_after_login').style.display = "none";
 	document.getElementById('header_demo_login').style.display = "none";
-}else{
+} else {
 	if(user == "iyjguest"){
 		document.getElementById('header_before_login').style.display = "none";
 		document.getElementById('header_after_login').style.display = "none";
