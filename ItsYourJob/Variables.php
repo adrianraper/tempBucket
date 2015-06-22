@@ -8,6 +8,8 @@
 	$startFolder = "/ItsYourJob/";
 	// gh#1241 Configure a content base
 	$contentFolder = "$domain/Content/";
+	// gh#1241 Optional logout button (generally hidden when using a portal)
+	$allowLogout = true;
 	
 	function parse_setting_file($filename){
 		$fileContent = file_get_contents($filename, true);
