@@ -3,6 +3,7 @@
 @namespace practicalwriting "com.clarityenglish.practicalwriting.*";
 @namespace video "com.clarityenglish.controls.video.*";
 @namespace nonetwork "com.clarityenglish.bento.view.nonetwork.*";
+@namespace settings "com.clarityenglish.practicalwriting.view.settings.*";
 
 practicalwriting|PracticalWritingApplication {
     skinClass: ClassReference("skins.practicalwritingair.PracticalWritingApplicationSkin");
@@ -11,6 +12,10 @@ practicalwriting|PracticalWritingApplication {
 @media (os-platform: "IOS") {
     video|VideoSelector {
         skinClass: ClassReference("skins.practicalwritingair.controls.video.IOSVideoSelectorSkin");
+    }
+
+    settings|SettingsView video|VideoSelector {
+        skinClass: ClassReference("skins.practicalwritingair.controls.video.SettingsIOSVideoSelectorSkin");
     }
 }
 

@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark">
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:video="com.clarityenglish.controls.video.*">
 
     <fx:Metadata>
         [HostComponent("com.clarityenglish.practicalwriting.view.settings.SettingsView")]
@@ -11,4 +12,8 @@
         <s:State name="disabled" />
     </s:states>
 
+    <s:Group width="100%" height="100%" top="150">
+        <video:VideoSelector id="videoSelector" width="640" height="360" horizontalCenter="0" showSelector="false"/>
+        <s:Label id="videoLabel" top="380" width="640" fontSize="15" horizontalCenter="0" />
+    </s:Group>
 </s:Skin>

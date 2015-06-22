@@ -7,8 +7,11 @@
 	<useCacheBuster>true</useCacheBuster>
 	<courseFile>menu-FullVersion.xml</courseFile>
 	<platform>tablet|android</platform>
-	<channel name='aws-streaming' caption='awsstreaming'>
+	<channel name='aws-streaming' caption='Ch1'>
 		<streamingMedia>https://s3-ap-southeast-1.amazonaws.com/clarity-video-streaming/</streamingMedia>
+	</channel>
+	<channel name='vimeo' caption='Ch2'>
+		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
 	</channel>
 	<sharedMedia />
 	<brandingMedia />

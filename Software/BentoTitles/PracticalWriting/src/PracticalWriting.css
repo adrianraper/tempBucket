@@ -214,6 +214,10 @@ settings|SettingsView {
     skinClass: ClassReference("skins.practicalwriting.SettingsSkin");
 }
 
+settings|SettingsView video|VideoSelector {
+    skinClass: ClassReference("skins.practicalwriting.controls.video.SettingsVideoSelectorSkin");
+}
+
 closing|ClosingView {
     skinClass: ClassReference("skins.practicalwriting.ClosingSkin");
 }
