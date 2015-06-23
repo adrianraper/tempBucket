@@ -214,8 +214,8 @@ in accordance with the terms of the license agreement accompanying it.
 				<s:Rect id="tbFill" left="0" right="0" top="0" bottom="1" height="33" filters="{dropShadowFilter}">
 					<s:fill>
 						<s:LinearGradient rotation="90">
-							<s:GradientEntry color="0XFFC700" />
-							<s:GradientEntry color="0XFF9D00"/>
+							<s:GradientEntry color="#FFC700" />
+							<s:GradientEntry color="#FF9D00"/>
 						</s:LinearGradient>
 					</s:fill>
 				</s:Rect>                
@@ -233,9 +233,9 @@ in accordance with the terms of the license agreement accompanying it.
 				<!-- Sadly this doesn't react to the close button being invisible -->
 				<s:HGroup horizontalAlign="right" right="15" top="6">
 					<!--- the new settings button -->
-					<s:Button id="settingsButton" skinClass="skins.rotterdam.ui.CogButtonSkin" scaleX="1.5" scaleY="1.5" />
+					<s:Button id="settingsButton" skinClass="skins.rotterdam.ui.CogButtonSkin" />
 					
-					<s:Spacer width="10" />
+					<s:Spacer width="5" />
 					
 					<!--- @copy spark.components.TitleWindow#closeButton -->
 					<s:Button id="closeButton" skinClass="skins.rotterdam.ui.DeleteButtonSkin" />

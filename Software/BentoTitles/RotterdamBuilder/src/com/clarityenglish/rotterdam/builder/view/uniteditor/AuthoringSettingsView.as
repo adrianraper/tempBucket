@@ -132,6 +132,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		}
 		
 		override protected function updateViewFromXHTML(xhtml:XHTML):void {
+			trace("Hello, I am in here");
 			addFormItemHandler(new RadioButtonGroupItemHandler(numberingGroup, exerciseGenerator.settings.questionNumbering[0],
 				[ numbering1RadioButton, numbering2RadioButton, numbering3RadioButton, numbering4RadioButton, numbering5RadioButton ],
 				[ "1", "2", "3", "4", "5" ]));
@@ -144,12 +145,12 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			addFormItemHandler(new TextFormItemHandler(timerMinutesTextInput, exerciseGenerator.settings.timerMinutes[0]));
 			addFormItemHandler(new TextFormItemHandler(exerciseFeedbackTextArea, exerciseGenerator.settings.exerciseFeedbackText[0]));
 			addFormItemHandler(new TextFormItemHandler(showFirstNQuestionsTextInput, exerciseGenerator.settings.showFirstNQuestions[0]));
+            addFormItemHandler(new CheckBoxFormItemHandler(shuffleAnswersCheckBox, exerciseGenerator.settings.shuffleAnswers[0]));
 			addFormItemHandler(new CheckBoxFormItemHandler(questionByQuestionCheckBox, exerciseGenerator.settings.questionByQuestionEnabled[0]));
-			addFormItemHandler(new CheckBoxFormItemHandler(shuffleAnswersCheckBox, exerciseGenerator.settings.shuffleAnswers[0]));
 			addFormItemHandler(new RadioButtonGroupItemHandler(answerMarkersGroup, exerciseGenerator.settings.answerNumbering[0],
 				[ answerMarker1RadioButton, answerMarker2RadioButton, answerMarker3RadioButton, answerMarker4RadioButton, answerMarker5RadioButton],
 				[ "3", "4", "1", "7", "6" ]));
-			/*
+            /*
 			*/
 		}
 		

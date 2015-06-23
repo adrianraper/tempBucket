@@ -132,7 +132,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 				if (!target) return null;
 				else if (target is AbstractWidget) return (target as AbstractWidget);
 				return arguments.callee(target.parent); // this is how you do recursion in an anonoymous function
-			}(mouseDownTarget);
+			}(mouseDownTarget as UIComponent);
 			
 			DragManager.doDrag(widget, dragSource, event, null, 0, 0, 0.5, dragMoveEnabled);
 			

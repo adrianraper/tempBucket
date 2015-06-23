@@ -68,13 +68,13 @@
 			mapView(ExerciseWidget, WidgetMediator);
 			mapView(AuthoringWidget, WidgetMediator);
 			// gh#867
-			mapView(AnimationWidget, WidgetMediator);
+			//mapView(AnimationWidget, WidgetMediator);
 			// gh#869
-			mapView(OrchidWidget, WidgetMediator);
+			//mapView(OrchidWidget, WidgetMediator);
 			// gh#866
-			mapView(SelectorWidget, WidgetMediator);
+			//mapView(SelectorWidget, WidgetMediator);
 			// gh#865
-			mapView(GroupWidget, WidgetMediator);
+			//mapView(GroupWidget, WidgetMediator);
 		}
 		
 	}
