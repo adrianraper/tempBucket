@@ -3487,12 +3487,27 @@ package org.alivepdf.pdf
 					break;
 				
 				case Method.REMOTE :
+					/**
+					 * gh#1244 Started again for Flash Player 18?
+					 * Modified on 2014.07.21 to resolve a recent change to Flash Player
+					 * (introduced in version 13.0.0.214) that broke AlivePDF. As of this version of
+					 * Flash, the original AlivePDF code produced the following runtime error:
+					 * SecurityError: Error #3769: Security sandbox violation: Only simple headers can be used with navigateToUrl() or sendToUrl().
+					 * 
+					 * https://forums.adobe.com/message/6398364#6398364
+					
 					var header:URLRequestHeader = new URLRequestHeader ("Content-type","application/octet-stream");
 					var myRequest:URLRequest = new URLRequest (url+'?name='+fileName+'&method='+downloadMethod );
 					myRequest.requestHeaders.push (header);
 					myRequest.method = URLRequestMethod.POST;
 					myRequest.data = buffer;
 					navigateToURL ( myRequest, frame );
+					*/
+					var bytesTemp : ByteArray = buffer;
+					var sendRequest:URLRequest =new URLRequest(url+'?name='+fileName+'&method='+downloadMethod);
+					sendRequest.method = URLRequestMethod.POST;
+					sendRequest.data = bytesTemp;
+					navigateToURL(sendRequest, '_blank');
 					break;
 				
 				default:

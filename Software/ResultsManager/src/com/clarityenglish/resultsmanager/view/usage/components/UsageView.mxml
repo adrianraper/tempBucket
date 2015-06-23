@@ -23,6 +23,7 @@
 			import flash.utils.ByteArray;
 			import flash.utils.Timer;
 			import flash.utils.setTimeout;
+			import flash.net.FileReference;
 			
 			import mx.containers.utilityClasses.Layout;
 			import mx.controls.Alert;
@@ -89,7 +90,7 @@
 		[Embed( source="/../assets/sessions_started.png")]    
 		private var pngBytes:Class;  
 		*/
-		[Embed( source="/../assets/ClarityLogo.png", mimeType="application/octet-stream" )]
+		[Embed( source="/../assets/ClarityEnglish_Logo.png", mimeType="application/octet-stream" )]
 		private var imageLogoStream:Class;
 		[Embed( source="/../assets/StatsYellowHeader.png", mimeType="application/octet-stream" )]
 		private var imageHeaderStream:Class;
@@ -561,12 +562,14 @@
 				// And a footer. Seems you can get addText much lower than addMultiCell
 				//pdf.setXY( 10, 280 );				
 				var imageLogo:ByteArray = new imageLogoStream() as ByteArray;
-				pdf.addImageStream(imageLogo, ColorSpace.DEVICE_RGB, new org.alivepdf.layout.Resize(Mode.NONE, Position.LEFT), 184, 262, 12 );
+				// gh#1244 Retire Clarity oldman, remove text
+				//pdf.addImageStream(imageLogo, ColorSpace.DEVICE_RGB, new org.alivepdf.layout.Resize(Mode.NONE, Position.LEFT), 184, 262, 12 );
+				pdf.addImageStream(imageLogo, ColorSpace.DEVICE_RGB, new org.alivepdf.layout.Resize(Mode.NONE, Position.LEFT), 0, 275 );
 				var imageFooter:ByteArray = new imageFooterStream() as ByteArray;
 				pdf.addImageStream(imageFooter, ColorSpace.DEVICE_RGB, new org.alivepdf.layout.Resize(Mode.NONE, Position.LEFT), -10, 286, 210, 1 );
 				
-				pdf.setFont( arialNormal, 10 );				
-				pdf.addText("provided by Clarity Language Consultants Ltd", 120, 292);
+				//pdf.setFont( arialNormal, 10 );				
+				//pdf.addText("provided by ClarityEnglish", 120, 292);
 				
 			} catch (errObject:Error) {
 				TraceUtils.myTrace(errObject.message);
@@ -582,11 +585,20 @@
 
 		private function sendPDF():void {
 			
-			TraceUtils.myTrace("sendPDF");
 			
 			// Then send the byte stream to the server. Go through amfphp simply to keep everything in one place?
 			var pdfURL:String = "/Software/ResultsManager/web/amfphp/services/createPDF.php";
-			pdf.save(Method.REMOTE, pdfURL, Download.ATTACHMENT);
+			try {
+				pdf.save(Method.REMOTE, pdfURL, Download.ATTACHMENT);
+				TraceUtils.myTrace("sendPDF to " + pdfURL);
+			} catch (thisError:Error) {
+				TraceUtils.myTrace("the error is " + thisError);
+			}
+			
+			// An alternative way to create a pdf - without the server call
+			//var file:FileReference = new FileReference();
+			//var bytes:ByteArray = pdf.save( Method.LOCAL );
+			//file.save( bytes, "usagestats.pdf" );
 			
 			// Then close
 			pdf.end();
