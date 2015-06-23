@@ -50,7 +50,7 @@
 					<s:Line width="100%" stroke="{horizontalRuler}" />
 					<s:HGroup verticalAlign="middle">
 						<s:Label id="questionStartNumberLabel" />
-						<s:TextInput id="questionStartNumberTextInput" width="30" />
+						<s:TextInput id="questionStartNumberTextInput" width="30" restrict="0-9" />
 					</s:HGroup>
 				</s:Group>
 			</s:BorderContainer>
@@ -95,10 +95,11 @@
 					<s:CheckBox id="testModeCheckBox" />
 					<s:HGroup verticalAlign="middle" >
 						<s:CheckBox id="timerCheckBox" />
-						<s:TextInput id="timerMinutesTextInput" width="30" restrict="0-9." />
-						<s:Label id="timerUnitsLabel" />
+						<s:TextInput id="timerMinutesTextInput" width="30" restrict="0-9." height="18" enabled="{timerCheckBox.selected}" />
+						<s:Label id="timerUnitsLabel" color="{(timerCheckBox.selected) ? 0x000000 : 0x666666}" />
 					</s:HGroup>
-				</s:Group>
+
+                </s:Group>
 			</s:HGroup>
 		</s:BorderContainer>
 		
@@ -106,8 +107,8 @@
 		
 		<s:Group width="100%" >
 			<s:CheckBox id="exerciseFeedbackCheckBox" top="0" left="0" />
-			<s:VGroup width="100%" top="0" right="0" horizontalAlign="right" gap="2">
-				<s:HGroup>
+			<s:VGroup width="100%" top="0" right="0" horizontalAlign="right" gap="2" enabled="{exerciseFeedbackCheckBox.selected}" >
+				<s:HGroup enabled="false">
 					<s:ToggleButton label="B" fontWeight="bold" width="30" />
 					<s:ToggleButton label="I" fontStyle="italic" width="30" />
 					<s:ToggleButton label="U" textDecoration="underline" width="30" />
@@ -116,7 +117,7 @@
 					<s:ToggleButton label="a" fontSize="17" width="28" />
 					<mx:ColorPicker />
 				</s:HGroup>
-				<s:TextArea id="exerciseFeedbackTextArea" enabled="{exerciseFeedbackCheckBox.selected}" width="100%" minHeight="60" />
+				<s:TextArea id="exerciseFeedbackTextArea" width="100%" minHeight="60" />
 			</s:VGroup>
 		</s:Group>
 		

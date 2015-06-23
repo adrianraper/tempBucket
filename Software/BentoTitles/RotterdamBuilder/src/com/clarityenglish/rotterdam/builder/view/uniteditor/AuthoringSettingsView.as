@@ -83,7 +83,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		[SkinPart]
 		public var testModeCheckBox:CheckBox;
 		
-		[SkinPart]
+        [SkinPart]
 		public var timerCheckBox:CheckBox;
 		
 		[SkinPart]
@@ -136,6 +136,9 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			addFormItemHandler(new RadioButtonGroupItemHandler(numberingGroup, exerciseGenerator.settings.questionNumbering[0],
 				[ numbering1RadioButton, numbering2RadioButton, numbering3RadioButton, numbering4RadioButton, numbering5RadioButton ],
 				[ "1", "2", "3", "4", "5" ]));
+            addFormItemHandler(new RadioButtonGroupItemHandler(answerMarkersGroup, exerciseGenerator.settings.answerNumbering[0],
+                    [ answerMarker1RadioButton, answerMarker2RadioButton, answerMarker3RadioButton, answerMarker4RadioButton, answerMarker5RadioButton],
+                    [ "3", "4", "1", "7", "6" ]));
 			addFormItemHandler(new TextFormItemHandler(questionStartNumberTextInput, exerciseGenerator.settings.questionStartNumber[0]));
 			addFormItemHandler(new RadioButtonGroupItemHandler(markingTypeGroup, exerciseGenerator.settings.markingType[0],
 				[ delayedMarkingRadioButton, instantMarkingRadioButton ],
@@ -147,9 +150,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			addFormItemHandler(new TextFormItemHandler(showFirstNQuestionsTextInput, exerciseGenerator.settings.showFirstNQuestions[0]));
             addFormItemHandler(new CheckBoxFormItemHandler(shuffleAnswersCheckBox, exerciseGenerator.settings.shuffleAnswers[0]));
 			addFormItemHandler(new CheckBoxFormItemHandler(questionByQuestionCheckBox, exerciseGenerator.settings.questionByQuestionEnabled[0]));
-			addFormItemHandler(new RadioButtonGroupItemHandler(answerMarkersGroup, exerciseGenerator.settings.answerNumbering[0],
-				[ answerMarker1RadioButton, answerMarker2RadioButton, answerMarker3RadioButton, answerMarker4RadioButton, answerMarker5RadioButton],
-				[ "3", "4", "1", "7", "6" ]));
+            addFormItemHandler(new CheckBoxFormItemHandler(timerCheckBox, exerciseGenerator.settings.timerEnabled[0]));
             /*
 			*/
 		}
@@ -245,7 +246,6 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					break;
 				case exerciseFeedbackTextArea:
 					exerciseFeedbackTextArea.prompt = copyProvider.getCopyForId("authoringExerciseFeedbackPrompt");
-					exerciseFeedbackTextArea.text = "my initials are ajm";
 					break;
 			}
 		}

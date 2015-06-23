@@ -200,7 +200,7 @@
 			<lit name="vimeoBase"><![CDATA[https://vimeo.com\/{id}]]></lit>
 			
 			<lit name="widgetAuthoringCaption">Questions</lit>
-			<lit name="widgetImageCaption">Questions</lit>
+			<lit name="widgetImageCaption">Image</lit>
 			
 			<!-- Section for authoring exercises -->
 			<lit name="questionNumberingFormat1">1, 2, 3</lit>

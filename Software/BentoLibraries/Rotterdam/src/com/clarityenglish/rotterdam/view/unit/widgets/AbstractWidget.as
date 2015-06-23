@@ -86,7 +86,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		// Authoring specific signals
 		public var exerciseSwitch:Signal = new Signal(Exercise);
 		public var showMarking:Signal = new Signal(Exercise);
-		
+        public var showFeedback:Signal = new Signal();
+        public var showFeedbackReminder:Signal = new Signal(String);
 		private var captureCaption:String = "";
 		
 		// gh#899

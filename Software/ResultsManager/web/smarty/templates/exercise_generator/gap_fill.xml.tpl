@@ -175,8 +175,14 @@
 					{foreach from=$question->answers item=answers name=answers}
 						<{$exerciseType} source="{$answers.source}" block="q{$smarty.foreach.question.index}">
 						{foreach from=$answers item=answer name=answer}
-							<answer value="{$answer}" correct="{$answer.correct}" />
-						{/foreach}
+							<answer value="{$answer}" correct="{$answer.correct}" >
+                                {foreach from=$question->feedback item=feedback name=feedback}
+                                    {if $feedback|count_characters>0}
+                                        <feedback source="fb{$smarty.foreach.question.index}" />
+                                    {/if}
+                                {/foreach}
+                            </answer>
+                        {/foreach}
 						</{$exerciseType}>
 					{/foreach}
 				{/foreach}
@@ -199,5 +205,14 @@
 				{/foreach}
 			</div>
 		</section>
-	</body>
+        {foreach from=$questions item=question name=question}
+            {foreach from=$question->feedback item=feedback name=feedback}
+                {if $feedback|count_characters>0}
+                    <section id="fb{$smarty.foreach.question.index}" class="feedback">
+                        <p>{$feedback}</p>
+                    </section>
+                {/if}
+            {/foreach}
+        {/foreach}
+    </body>
 </bento>

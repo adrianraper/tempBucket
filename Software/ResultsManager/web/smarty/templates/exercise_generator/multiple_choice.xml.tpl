@@ -136,14 +136,28 @@
 		<script id="model" type="application/xml">
 			<settings>
 				<param name="delayedMarking" value="{if $xml->settings->markingType == 'instant'}false{else}true{/if}" />
-			</settings>
+                {if $xml->settings->exerciseFeedbackEnabled == 'true'}
+                <feedback>
+                    <feedback source="fb0" />
+                </feedback>
+                {/if}
+            </settings>
 			
 			<questions>
 				{foreach from=$questions item=question name=question}
 				<{$exerciseType} block="q{$smarty.foreach.question.index}">
 					{foreach from=$question->answers->answer item=answer name=answer}
-					<answer source="q{$smarty.foreach.question.index}a{$smarty.foreach.answer.index}" correct="{$answer.correct}" />
-					{/foreach}
+					<answer source="q{$smarty.foreach.question.index}a{$smarty.foreach.answer.index}" correct="{$answer.correct}" >
+					    {* This is for question based feedback only *}
+                        {if $xml->settings->exerciseFeedbackEnabled != 'true'}
+                            {foreach from=$question->feedback item=feedback name=feedback}
+                                {if $feedback|count_characters>0}
+                                    <feedback source="fb{$smarty.foreach.question.index}" />
+                                {/if}
+                            {/foreach}
+                        {/if}
+                    </answer>
+                    {/foreach}
 				</{$exerciseType}>
 				{/foreach}
 			</questions>
@@ -172,5 +186,21 @@
 				{/foreach}
 			</div>
 		</section>
-	</body>
+
+        {if $xml->settings->exerciseFeedbackEnabled == 'true'}
+            <section id="fb0" class="feedback">
+                {$xml->settings->exerciseFeedbackText}
+            </section>
+        {else}
+            {foreach from=$questions item=question name=question}
+                {foreach from=$question->feedback item=feedback name=feedback}
+                    {if $feedback|count_characters>0}
+                        <section id="fb{$smarty.foreach.question.index}" class="feedback">
+                            <p>{$feedback}</p>
+                        </section>
+                    {/if}
+                {/foreach}
+            {/foreach}
+        {/if}
+    </body>
 </bento>

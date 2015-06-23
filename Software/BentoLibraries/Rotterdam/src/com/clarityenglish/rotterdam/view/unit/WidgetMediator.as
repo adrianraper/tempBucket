@@ -4,13 +4,14 @@
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.common.model.ConfigProxy;
+    import com.clarityenglish.bento.model.ExerciseProxy;
+    import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
-	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
+    import com.clarityenglish.rotterdam.view.unit.widgets.AuthoringWidget;
 	
 	import flash.events.ProgressEvent;
 	import flash.net.URLRequest;
@@ -69,16 +70,14 @@
 			view.textSelected.add(onTextSelected);
 			// gh#306
 			view.captionSelected.add(onCaptionSelected);
-			
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			//if (bentoProxy.menu.@id != 57) {
-				// gh#106
-				view.playVideo.add(onPlay);
-				view.playAudio.add(onPlay);
-			//}	
-			
+
+			// gh#106
+			view.playVideo.add(onPlay);
+			view.playAudio.add(onPlay);
+
 			view.exerciseSwitch.add(onExerciseSwitch);
 			view.showMarking.add(onShowMarking);
+            view.showFeedback.add(onShowFeedback);
 			
 			injectCopy();
 		}
@@ -109,6 +108,9 @@
 				RotterdamNotifications.WEB_URL_CANCEL,
 				RotterdamNotifications.WIDGET_RENAME,
 				RotterdamNotifications.EXERCISE_GENERATOR_SAVED,
+                BBNotifications.MARKING_SHOWN,
+                BBNotifications.GOT_QUESTION_FEEDBACK,
+                BBNotifications.EXERCISE_STARTED
 			]);
 		}
 		
@@ -135,6 +137,10 @@
 					if (view.xml.hasOwnProperty("@href") && view.xml.@href.toString() == note.getBody().href)
 						view.reloadContents();
 					break;
+                case BBNotifications.EXERCISE_STARTED:
+                    var exercise:Exercise = note.getBody() as Exercise;
+                    configureButtonVisibility(exercise);
+                    break;
 			}
 			
 			// Other actions only count if the widget is selected
@@ -155,10 +161,48 @@
 						view.widgetChrome.widgetCaptionTextInput.setFocus();
 						view.widgetChrome.widgetCaptionLabel.visible = false;
 						break;
+                    case BBNotifications.MARKING_SHOWN:
+                        configureButtonVisibility(note.getBody().exercise as Exercise);
+                        break;
+                    /*
+                     case BBNotifications.GOT_QUESTION_FEEDBACK:
+                     feedbackButtonVisibility(note.getBody() as Boolean);
+                     break;
+                     */
 				}
 			}
 		}
-		
+        /*
+         private function feedbackButtonVisibility(value:Boolean):void {
+         if (view.feedbackButton) {
+         view.feedbackButton.visible = view.feedbackButton.includeInLayout = value;
+         }
+         }
+         */
+        private function configureButtonVisibility(exercise:Exercise):void {
+            // If there is exercise feedback then show the exercise feedback button
+            // gh#413
+            if (view is AuthoringWidget) {
+                var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
+                if ((view as AuthoringWidget).markingButton)
+                    (view as AuthoringWidget).markingButton.visible = (view as AuthoringWidget).markingButton.includeInLayout = !(exerciseProxy.exerciseMarked) && exercise.hasQuestions() && !exercise.hasNoMarking();
+
+                if ((view as AuthoringWidget).feedbackButton) {
+                    if (exerciseProxy.exerciseMarked) {
+                        if (exerciseProxy.hasExerciseFeedback())
+                            (view as AuthoringWidget).hasExerciseFeedback = feedbackVisible = true;
+
+                        if (exerciseProxy.hasQuestionFeedback())
+                            (view as AuthoringWidget).hasQuestionFeedback = feedbackVisible = true;
+
+                    } else {
+                        var feedbackVisible:Boolean = false;
+                    }
+                    (view as AuthoringWidget).feedbackButton.visible = (view as AuthoringWidget).feedbackButton.includeInLayout = feedbackVisible;
+                }
+            }
+        }
+
 		protected function handleTextFormat(options:Object):void {
 			view.widgetText.applyTextLayoutFormat(options.format);
 		}
@@ -234,6 +278,11 @@
 		protected function onShowMarking(exercise:Exercise):void {
 			sendNotification(BBNotifications.MARKING_SHOW, { exercise: exercise } );
 		}
-		
+        private function onShowFeedback():void {
+            sendNotification(BBNotifications.EXERCISE_SHOW_FEEDBACK);
+        }
+        private function onShowFeedbackReminder(value:String):void {
+            sendNotification(BBNotifications.FEEDBACK_REMINDER_SHOW, value);
+        }
 	}
 }

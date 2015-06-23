@@ -23,9 +23,33 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public var markingButton:Button;
 		
 		[SkinPart]
-		public var dynamicView:DynamicView;
-		
-		public function AuthoringWidget() {
+        public var feedbackButton:Button;
+
+        [SkinPart]
+        public var dynamicView:DynamicView;
+
+        // gh#413
+        private var _hasExerciseFeedback:Boolean;
+        private var _hasQuestionFeedback:Boolean;
+
+        [Bindable]
+        public function get hasExerciseFeedback():Boolean {
+            return _hasExerciseFeedback;
+        }
+
+        public function set hasExerciseFeedback(value:Boolean):void {
+            _hasExerciseFeedback = value;
+        }
+        [Bindable]
+        public function get hasQuestionFeedback():Boolean {
+            return _hasQuestionFeedback;
+        }
+
+        public function set hasQuestionFeedback(value:Boolean):void {
+            _hasQuestionFeedback = value;
+        }
+
+        public function AuthoringWidget() {
 			super();
 			
 			// Add a top priority, capture phase, click listener which switches exercise before anything else has a chance to happen #885
@@ -50,7 +74,17 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 					markingButton.addEventListener(MouseEvent.CLICK, onShowMarking);
 					markingButton.label = copyProvider.getCopyForId("exerciseMarkingButton");
 					break;
-			}
+                case feedbackButton:
+                    feedbackButton.addEventListener(MouseEvent.CLICK, function():void {
+                        // gh#413
+                        if (hasExerciseFeedback) {
+                            showFeedback.dispatch();
+                        } else {
+                            showFeedbackReminder.dispatch(copyProvider.getCopyForId("feedbackClickAnswersMsg"));
+                        }} );
+                    feedbackButton.label = copyProvider.getCopyForId("exerciseFeedbackButton");
+                    break;
+            }
 		}
 		
 		protected override function validateUnitListLayout(e:Event=null):void {
