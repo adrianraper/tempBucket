@@ -61,7 +61,7 @@
         </s:fill>
     </s:Rect>
 
-    <s:HGroup top="11" bottom="11" left="11" right="11" horizontalAlign="center" verticalAlign="middle">
+    <s:HGroup top="11" bottom="11" left="10" right="10" horizontalAlign="center" verticalAlign="middle">
         <!-- layer 8: text -->
         <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
         <s:Label id="labelDisplay"

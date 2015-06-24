@@ -7,9 +7,17 @@
 	<courseFile>menu-{productVersion}.xml</courseFile>
 	<platform>browser</platform>
 	<disableAutoTimeout>true</disableAutoTimeout>
-	<channel name="aws-streaming" caption="awsstreaming">
+
+	<channel name='vimeo' caption='Vimeo'>
+		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+	</channel>
+	<channel name='rackspace' caption='Rack'>
+		<streamingMedia>http://c284790.r90.stream.cf1.rackcdn.com/</streamingMedia>
+	</channel>
+	<channel name='aws-streaming' caption='AWS'>
 		<streamingMedia>https://s3-ap-southeast-1.amazonaws.com/clarity-video-streaming/</streamingMedia>
 	</channel>
+
 	<sharedMedia />
 	<brandingMedia>http://dock.contentbench/CCB/{prefix}/assets/</brandingMedia>
 	<language>EN</language>

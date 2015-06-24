@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:mx="library://ns.adobe.com/flex/mx"
+        minWidth="280" minHeight="80" width="50%" height="45%">
+    <!-- host component -->
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.bento.view.warning.WarningView")]
+    </fx:Metadata>
+
+    <s:states>
+        <s:State name="disabled" />
+        <s:State name="normal" />
+    </s:states>
+
+    <s:layout>
+        <s:VerticalLayout horizontalAlign="center" verticalAlign="middle" />
+    </s:layout>
+
+    <s:Group width="430" height="156">
+        <s:Rect left="12" width="100%" height="100%" radiusX="8" radiusY="8">
+            <s:fill>
+                <s:SolidColor color="#F4F5F5" alpha="0.8" />
+            </s:fill>
+        </s:Rect>
+
+        <s:VGroup width="100%" horizontalCenter="0">
+            <s:VGroup width="100%" paddingTop="30" horizontalAlign="center" verticalAlign="middle" >
+                <s:Label id="warningMessage" fontSize="13" width="280" lineHeight="20" textAlign="center" />
+            </s:VGroup>
+
+            <s:HGroup width="100%" horizontalCenter="0" paddingTop="18" paddingBottom="30" horizontalAlign="center" verticalAlign="middle">
+                <s:Button id="yesButton" fontSize="14" width="111" height="40" color="0xFFFFFF" buttonMode="true" useHandCursor="true" />
+                <s:Spacer width="5" />
+                <s:Button id="noButton" fontSize="14" width="111" height="40" color="0xFFFFFF" buttonMode="true" useHandCursor="true" />
+            </s:HGroup>
+        </s:VGroup>
+    </s:Group>
+</s:Skin>

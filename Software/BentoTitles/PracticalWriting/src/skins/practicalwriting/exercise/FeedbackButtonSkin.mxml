@@ -62,7 +62,7 @@
     </s:Rect>
 
     <s:HGroup top="11" bottom="11" left="10" right="10" horizontalAlign="center" verticalAlign="middle">
-        <exercise:back />
+        <exercise:feedback />
 
         <!-- layer 8: text -->
         <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->

@@ -31,8 +31,8 @@
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
                    xmlns:s="library://ns.adobe.com/flex/spark"
                    xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-                   xmlns:exercise="skins.practicalwriting.assets.exercise.*"
-                   minWidth="21" minHeight="21">
+                   minWidth="21" minHeight="21"
+                   alpha.disabled="0.5" xmlns:warning="skins.practicalwriting.assets.exercise.warning.*">
 
     <fx:Metadata>
         <![CDATA[
@@ -55,23 +55,24 @@
         <s:State name="disabled" />
     </s:states>
 
-    <s:Rect left="0" right="0" top="0" bottom="0">
-        <s:fill>
-            <s:SolidColor color="#F3F4F4" color.over="#DADBD9" color.down="#DADBD9"/>
-        </s:fill>
-    </s:Rect>
+    <s:Group width="100" height="40" top.over="2" top.down="2" top.up="0">
+        <s:Rect width="100%" height="100%" radiusX="8" radiusY="8" filters.up="{[dropShadowFilter]}">
+            <s:fill>
+                <s:SolidColor color="#2CA874" />
+            </s:fill>
+        </s:Rect>
 
-    <s:HGroup top="11" bottom="11" left="10" right="10" horizontalAlign="center" verticalAlign="middle">
-        <exercise:back />
+        <warning:tick left="25" verticalCenter="0" />
 
         <!-- layer 8: text -->
         <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
         <s:Label id="labelDisplay"
                  textAlign="center"
                  maxDisplayedLines="1"
-                 verticalAlign="middle" paddingTop="3"
-                 fontFamily="Helvetica" color="#474748" fontSize="15" fontWeight="normal">
+                 horizontalCenter="8" verticalCenter="0" verticalAlign="middle"
+                 fontWeight="normal"
+                 left="10" right="10" top="2" bottom="2">
         </s:Label>
-    </s:HGroup>
+    </s:Group>
 
 </s:SparkButtonSkin>

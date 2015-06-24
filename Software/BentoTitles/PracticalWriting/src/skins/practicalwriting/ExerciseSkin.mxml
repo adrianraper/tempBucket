@@ -98,7 +98,7 @@
         <s:Label id="courseLabel" left="60" top="20" text="{hostComponent.selectedExerciseNode.parent().parent().attribute('caption')}" fontSize="15" color="{getStyle('pieChartFillColor')[hostComponent.courseIndex]}" />
 
         <!-- Top Right Buttons -->
-        <s:HGroup left="627" top="5" gap="1">
+        <s:HGroup right="0" top="5" gap="1" horizontalAlign="right">
             <s:Button id="backButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}" visible="{!hostComponent.isDirectStartEx}"/>
             <s:Button id="forwardButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
             <s:Button id="markingButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>

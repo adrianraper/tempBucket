@@ -14,11 +14,15 @@
 @namespace vo "com.clarityenglish.practicalwriting.view.vo.*";
 @namespace video "com.clarityenglish.controls.video.*";
 @namespace players "com.clarityenglish.controls.video.players.*";
+@namespace warning "com.clarityenglish.bento.view.warning.*";
+@namespace marking "com.clarityenglish.bento.view.marking.*";
+@namespace error "com.clarityenglish.common.view.error.*";
 
 global {
     pieChartFillColor: #EC008B, #EF7F31, #91BD49, #333290, #9C298C, #00A054, #F090AB, #00A9A3, #E8194B, #00A8DE;
     pieChartBottomColor: #EFB1D0, #FDD5BB, #E5E9B8, #9F9FE2, #EFB1E9, #B3DDC8, #F4D4E0, #9CE0DB, #E8A0B5, #AADCE8;
     analyseCircleWedgeColors: #0B789C, #B5E3F2, #38839C, #5A9CB2, #02566D, #B79CE5, #6CC6DF, #0E9AC9, #78CEDC, #A4DDEF;
+    markingColours: #6D6E70, #B7B9BB;
 }
 
 practicalwriting|PracticalWritingApplication {
@@ -153,6 +157,10 @@ exercise|ExerciseView s|Button#startAgainButton {
     skinClass: ClassReference("skins.practicalwriting.exercise.StartAgainButtonSkin");
 }
 
+exercise|ExerciseView s|Button#feedbackButton {
+    skinClass: ClassReference("skins.practicalwriting.exercise.FeedbackButtonSkin");
+}
+
 exercise|ExerciseView exerciseui|WindowShade {
     skinClass: ClassReference("skins.practicalwriting.exercise.WindowShadeSkin");
 }
@@ -163,6 +171,42 @@ exercise|ExerciseView exerciseui|WindowShade s|Button#thumbButton{
 
 exercise|ExerciseView s|List#exerciseList s|VScrollBar {
     skinClass: ClassReference("skins.practicalwriting.exercise.VScrollBarSkin");
+}
+
+warning|WarningView {
+    skinClass: ClassReference("skins.practicalwriting.exercise.warning.WarningSkin");
+}
+
+warning|WarningView s|Button#yesButton {
+    skinClass: ClassReference("skins.practicalwriting.exercise.warning.YesButtonSkin");
+}
+
+warning|WarningView s|Button#noButton {
+    skinClass: ClassReference("skins.practicalwriting.exercise.warning.NoButtonSkin");
+}
+
+marking|MarkingView {
+    skinClass: ClassReference("skins.practicalwriting.exercise.marking.MarkingSkin");
+}
+
+marking|MarkingView s|Button#tryAgainButton {
+    skinClass: ClassReference("skins.practicalwriting.exercise.TitleWindowButtonSkin");
+}
+
+marking|MarkingView s|Button#seeAnswersButton {
+    skinClass: ClassReference("skins.practicalwriting.exercise.TitleWindowButtonSkin");
+}
+
+marking|MarkingView s|Button#moveForwardButton {
+    skinClass: ClassReference("skins.practicalwriting.exercise.TitleWindowButtonSkin");
+}
+
+error|ErrorView {
+    skinClass: ClassReference("skins.practicalwriting.exercise.error.ErrorSkin");
+}
+
+error|ErrorView s|Button#closeButton {
+    skinClass: ClassReference("skins.practicalwriting.exercise.TitleWindowButtonSkin");
 }
 
 progress|ProgressView {
@@ -196,7 +240,6 @@ progress|ProgressScoreView {
 progress|ProgressScoreView s|Button#ScoreEmptyScoreLabelButton {
     skinClass: ClassReference("skins.practicalwriting.progress.ui.EmptyScoreLabelButtonSkin");
 }
-
 
 progress|ProgressScoreView s|DataGrid#scoreDetailsDataGrid {
     skinClass: ClassReference("skins.practicalwriting.progress.ui.ProgressScoreDataGridSkin");
@@ -244,4 +287,20 @@ vo|PieChartButton {
 
 s|VScrollBar {
     skinClass: ClassReference("skins.practicalwriting.vo.VScrollBarSkin");
+}
+
+s|TitleWindow.warningTitleWindow {
+    skinClass: ClassReference("skins.practicalwriting.exercise.warning.WarningTitleWindowSkin");
+}
+
+s|TitleWindow.markingTitleWindow {
+    skinClass: ClassReference("skins.practicalwriting.exercise.marking.MarkingTitleWindowSkin");
+}
+
+s|TitleWindow.feedbackTitleWindow {
+    skinClass: ClassReference("skins.practicalwriting.exercise.feedback.FeedbackTitleWindowSkin");
+}
+
+s|TitleWindow.errorTitleWindow {
+    skinClass: ClassReference("skins.practicalwriting.exercise.error.ErroTitleWindowSkin");
 }
