@@ -52,3 +52,8 @@ roadtoielts
 html-template
 xhtml-template
 /Software/Common/textLayout/bin/textLayout.swc
+Software/BentoTitles/ActiveReading/bin
+Software/BentoTitles/ClearPronunciation/bin
+Software/BentoTitles/RotterdamPlayer/bin
+Software/BentoTitles/TenseBuster/bin
+Software/Common/OSMF/bin
