@@ -41,23 +41,23 @@ global {
 	/* Course colours and icons are used all over the place, so set them globally */
 	writingColor: #7DAB36;
 	writingColorDark: #364A17;
-	writingIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconSmall');
-	writingIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconBare');
+	writingIconSmall: Embed(source="skins/ielts/assets/assets.swf", symbol="WritingIconSmall");
+	writingIconBare: Embed(source="skins/ielts/assets/assets.swf", symbol="WritingIconBare");
 	
 	readingColor: #00A2C8;
 	readingColorDark: #005063;
-	readingIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall');
-	readingIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconBare');
+	readingIconSmall: Embed(source="skins/ielts/assets/assets.swf", symbol="ReadingIconSmall");
+	readingIconBare: Embed(source="skins/ielts/assets/assets.swf", symbol="ReadingIconBare");
 	
 	speakingColor: #A93087;
 	speakingColorDark: #4F173F;
-	speakingIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconSmall');
-	speakingIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconBare');
+	speakingIconSmall: Embed(source="skins/ielts/assets/assets.swf", symbol="SpeakingIconSmall");
+	speakingIconBare: Embed(source="skins/ielts/assets/assets.swf", symbol="SpeakingIconBare");
 	
 	listeningColor: #FF6600;
 	listeningColorDark: #7A3100;
-	listeningIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconSmall');
-	listeningIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconBare');
+	listeningIconSmall: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningIconSmall");
+	listeningIconBare: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningIconBare");
 	
 	disabledColor: #EEEEEE;
 }

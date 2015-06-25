@@ -869,6 +869,10 @@ package com.clarityenglish.ielts.view.login {
 		public function setBranding(xml:XML):void {
 			
 		}
+
+		public function setNoLogin(value:Boolean):void {
+
+		}
 	
 	}
 }

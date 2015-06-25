@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="Flex" version="4">
+  <component name="FlexBuildConfigurationManager" active="IELTS">
+    <configurations>
+      <configuration name="IELTS" main-class="RoadToIELTS" output-file="RoadToIELTS.swf" output-folder="$MODULE_DIR$/bin-debug">
+        <dependencies target-player="16.0">
+          <entries>
+            <entry module-name="Bento" build-configuration-name="Bento">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="textLayout" build-configuration-name="textLayout">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="OSMF" build-configuration-name="OSMF">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="540d39a7-cb17-4bd1-a5c4-73261c9f472e">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="Mobile components" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="csslib" build-configuration-name="csslib">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="4bc27976-a31b-4b74-a580-aabe0f43740a">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="eb7101a9-57d1-4776-8992-d01720d8faa6">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="f9471e1a-d457-4874-a89e-d76020866f5d">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="13.0_AIR16 (Bento)" />
+        </dependencies>
+        <compiler-options>
+          <option name="additionalOptions" value="--swf-version=20" />
+        </compiler-options>
+        <packaging-air-desktop />
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+      <configuration name="IELTSLib" target-platform="Mobile" output-type="Library" output-file="IELTSLib.swc" output-folder="$MODULE_DIR$/bin-debug">
+        <dependencies>
+          <entries>
+            <entry module-name="Bento" build-configuration-name="Bento">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="textLayout" build-configuration-name="textLayout">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="OSMF" build-configuration-name="OSMF">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="e7d79a29-409d-4af1-a18a-a71e3c0aa734">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="Mobile components" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="csslib" build-configuration-name="csslib">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="cf65a186-2cce-43a6-8359-a67f0f4a9612">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="98e0700a-2c34-494d-ab01-4879a3823753">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="MX components" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="44d2406d-9cec-479c-bba4-071e66e27172">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="13.0_AIR16 (Bento)" />
+        </dependencies>
+        <compiler-options>
+          <option name="filesToIncludeInSWC" value="$MODULE_DIR$/src/ielts.css" />
+          <option name="additionalOptions" value="--swf-version=20" />
+        </compiler-options>
+        <packaging-air-desktop />
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+    </configurations>
+    <compiler-options />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/vo" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="13.0_AIR16 (Bento)" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="OSMF" exported="" />
+    <orderEntry type="module" module-name="textLayout" exported="" />
+    <orderEntry type="module" module-name="Bento" exported="" />
+    <orderEntry type="library" exported="" name="MX components" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="540d39a7-cb17-4bd1-a5c4-73261c9f472e" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/skins/ielts/assets/Preloader.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" exported="" name="Mobile components" level="project" />
+    <orderEntry type="module" module-name="csslib" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="4bc27976-a31b-4b74-a580-aabe0f43740a" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/assets/CountdownDisplay.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="eb7101a9-57d1-4776-8992-d01720d8faa6" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/assets/CourseSelectorWidget.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="f9471e1a-d457-4874-a89e-d76020866f5d" />
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/libs" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="e7d79a29-409d-4af1-a18a-a71e3c0aa734" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/skins/ielts/assets/Preloader.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="cf65a186-2cce-43a6-8359-a67f0f4a9612" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/assets/CountdownDisplay.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="98e0700a-2c34-494d-ab01-4879a3823753" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/assets/CourseSelectorWidget.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="44d2406d-9cec-479c-bba4-071e66e27172" />
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/libs" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
+      </library>
+    </orderEntry>
+  </component>
+</module>
