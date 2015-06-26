@@ -80,7 +80,7 @@
         </dependencies>
         <compiler-options>
           <option name="filesToIncludeInSWC" value="$MODULE_DIR$/src/ielts.css" />
-          <option name="additionalOptions" value="--swf-version=20" />
+          <option name="additionalOptions" value="--swf-version=20 -define=CONFIG::flex3,false -define=CONFIG::flex4,true -define=CONFIG::debug,true" />
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
