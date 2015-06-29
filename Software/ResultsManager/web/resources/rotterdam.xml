@@ -245,9 +245,9 @@
             <lit name="authoringExerciseFeedback">Exercise feedback</lit>
             <lit name="authoringExerciseFeedbackPrompt">Type feedback here that is shown for the whole exercise.</lit>
             <lit name="authoringQuestionByQuestion">Question by question</lit>
-            <lit name="authoringQuestionByQuestionLabel1">Show</lit>
-            <lit name="authoringQuestionByQuestionLabel2">questions</lit>
-            <lit name="authoringQuestionByQuestionLabel3">---- Leave blank for no scrolling</lit>
+            <lit name="authoringDepthOfWidgetLabel1">Depth of widget</lit>
+            <lit name="authoringDepthOfWidgetLabel2"></lit>
+            <lit name="authoringDepthOfWidgetLabel3">--- Leave blank for no scrolling</lit>
             <lit name="authoringQuestionMarkersLabel">Question numbering</lit>
             <lit name="authoringAnswerMarkersLabel">Answer markers</lit>
             <lit name="authoringInstantMarking">Instant marking</lit>

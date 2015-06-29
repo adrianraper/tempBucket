@@ -41,7 +41,14 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.tlf {
 		public function getSelectedGapId():String {
 			return _selectedGapId;
 		}
-		
+
+        /**
+         * gh@#1248 Set the gapCounter used for creating new gaps to account for all initial ones
+         */
+        public function initialiseGapIds(value:uint):void {
+            gapCounter = value;
+        }
+
 		/**
 		 * Select the full gapfill if there is a mouse selection
 		 */

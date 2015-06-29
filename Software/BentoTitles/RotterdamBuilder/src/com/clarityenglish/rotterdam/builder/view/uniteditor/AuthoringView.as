@@ -100,8 +100,14 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			
 			questions = new XMLListCollection(exerciseGenerator.questions.*);
 			log.debug("Loaded {0} questions from xml", questions.length);
-			
-			// Update the skin state from the loaded xhtml
+
+            // gh#1248 Pick up the highest gapID currently used ready for any more
+            if (exerciseGenerator.getSettingParam("exerciseType") == Question.GAP_FILL_QUESTION) {
+                var gapEditManager:GapEditManager = new GapEditManager();
+                gapEditManager.initialiseGapIds(getHighestGapId());
+            }
+
+            // Update the skin state from the loaded xhtml
 			callLater(invalidateSkinState);
 		}
 		
@@ -241,10 +247,26 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				// gh#1005 - add a default answer for multiple choice questions
 				if (exerciseGenerator.getSettingParam("exerciseType") == Question.MULTIPLE_CHOICE_QUESTION)
 					question.answers.setChildren(<answer correct='true' />);
-				
-				questions.addItem(question);
+
+                questions.addItem(question);
 			}
 		}
+
+        // gh#1248 Search all the questions to find the highest recorded gapId
+        // Pick it up from '<answers source="gap6">'
+        private function getHighestGapId():uint {
+            var maxId:uint = 0;
+            // Assume we are looking for the first integer in the id
+            var regNum:RegExp = /\d/;
+            for each (var question:XML in questions) {
+                var idString:String = question.answers.@source.toString();
+                var findResult:Array = idString.match(regNum);
+                if (findResult)
+                    var thisId:uint = parseInt(findResult[0], 10);
+                maxId = (thisId > maxId) ? thisId : maxId;
+            }
+            return maxId++;
+        }
 		
 		/** The add gap button was pressed */
 		protected function onAddGap(event:Event):void {

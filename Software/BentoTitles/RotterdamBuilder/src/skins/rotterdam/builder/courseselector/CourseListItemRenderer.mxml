@@ -113,11 +113,18 @@
 					</mx:series>			
 				</mx:AreaChart>
 			</s:HGroup>
-			<s:Spacer width="25" />
-			<s:Button id="deleteCourseButton" width="21"
-					  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
-					  click="dispatchEvent(new CourseDeleteEvent(CourseDeleteEvent.COURSE_DELETE, data as XML, true))" />
+			<s:Spacer width="36" />
 		</s:HGroup>
 	</s:Group>
-	
+
+    <!-- delete button has to be outside any group with item click event -->
+    <s:Group verticalCenter="0" width="100%">
+        <s:HGroup verticalAlign="middle" width="100%" horizontalAlign="right" right="25" >
+            <s:Button id="deleteCourseButton" width="21"
+                  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
+                  click="dispatchEvent(new CourseDeleteEvent(CourseDeleteEvent.COURSE_DELETE, data as XML, true))" />
+        </s:HGroup>
+    </s:Group>
+
+
 </s:ItemRenderer>

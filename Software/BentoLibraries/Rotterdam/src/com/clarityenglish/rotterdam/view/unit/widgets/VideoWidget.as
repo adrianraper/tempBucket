@@ -79,7 +79,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
-			
+
 			// hiding span button bar for youku video
 			if (widgetChrome)
 				widgetChrome.hideSpanButtonBar = hideSpanButtonBar;

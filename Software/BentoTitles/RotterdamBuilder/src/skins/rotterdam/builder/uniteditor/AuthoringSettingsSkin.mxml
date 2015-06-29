@@ -54,7 +54,7 @@
 					</s:HGroup>
 				</s:Group>
 			</s:BorderContainer>
-			<s:BorderContainer height="100%" minWidth="{questionNumbering.width}" >
+			<s:BorderContainer height="100%" minWidth="{questionNumbering.width}" id="answerMarkers">
 				<s:Group>
 					<s:layout>
 						<s:VerticalLayout paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10"/>
@@ -88,7 +88,7 @@
 				</s:Group>
 				<s:Line height="100%" stroke="{horizontalRuler}" />
 				<s:Spacer width="2" />
-				<s:Group width="50%">
+				<s:Group width="50%" enabled="false">
 					<s:layout>
 						<s:VerticalLayout />
 					</s:layout>
@@ -108,7 +108,7 @@
 		<s:Group width="100%" >
 			<s:CheckBox id="exerciseFeedbackCheckBox" top="0" left="0" />
 			<s:VGroup width="100%" top="0" right="0" horizontalAlign="right" gap="2" enabled="{exerciseFeedbackCheckBox.selected}" >
-				<s:HGroup enabled="false">
+				<s:HGroup visible="false">
 					<s:ToggleButton label="B" fontWeight="bold" width="30" />
 					<s:ToggleButton label="I" fontStyle="italic" width="30" />
 					<s:ToggleButton label="U" textDecoration="underline" width="30" />
@@ -133,13 +133,13 @@
 					<s:layout>
 						<s:VerticalLayout />
 					</s:layout>
-					<s:CheckBox id="questionByQuestionCheckBox" />
+					<s:CheckBox id="questionByQuestionCheckBox" enabled="false"/>
 					<s:HGroup verticalAlign="middle">
-						<s:Label id="questionByQuestionLabel1" />
+						<s:Label id="depthOfWidgetLabel1" />
 						<s:TextInput id="showFirstNQuestionsTextInput" width="25" restrict="0-9" />
-						<s:Label id="questionByQuestionLabel2" />
+						<s:Label id="depthOfWidgetLabel2" />
 						<s:Spacer width="5" />
-						<s:Label id="questionByQuestionLabel3" color="#666666" />
+						<s:Label id="depthOfWidgetLabel3" color="#666666" />
 					</s:HGroup>
 				</s:Group>
 			</s:HGroup>

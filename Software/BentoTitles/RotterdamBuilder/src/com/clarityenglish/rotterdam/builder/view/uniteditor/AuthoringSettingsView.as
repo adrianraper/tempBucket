@@ -4,18 +4,24 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.bento.form.TextFormItemHandler;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.content.ExerciseGenerator;
-	import com.clarityenglish.textLayout.vo.XHTML;
-	
-	import flash.events.Event;
+import com.clarityenglish.bento.vo.content.model.Question;
+import com.clarityenglish.textLayout.vo.XHTML;
+
+import flash.display.DisplayObject;
+
+import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
-	
-	import mx.events.CloseEvent;
+
+import mx.core.UIComponent;
+
+import mx.events.CloseEvent;
 	import mx.events.FlexEvent;
 	
 	import spark.components.Button;
 	import spark.components.CheckBox;
-	import spark.components.Label;
+import spark.components.Group;
+import spark.components.Label;
 	import spark.components.RadioButton;
 	import spark.components.RadioButtonGroup;
 	import spark.components.TextArea;
@@ -96,13 +102,13 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		public var answerMarkersLabel:Label;
 		
 		[SkinPart]
-		public var questionByQuestionLabel1:Label;
+		public var depthOfWidgetLabel1:Label;
 		
 		[SkinPart]
-		public var questionByQuestionLabel2:Label;
+		public var depthOfWidgetLabel2:Label;
 		
 		[SkinPart]
-		public var questionByQuestionLabel3:Label;
+		public var depthOfWidgetLabel3:Label;
 		
 		[SkinPart]
 		public var timerMinutesTextInput:TextInput;
@@ -124,6 +130,9 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		[SkinPart]
 		public var questionByQuestionCheckBox:CheckBox;
+
+        [SkinPart]
+        public var answerMarkers:UIComponent;
 		
 		public function get DELETE_ME_XML():XML { return _xhtml.xml; }
 		
@@ -132,25 +141,30 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		}
 		
 		override protected function updateViewFromXHTML(xhtml:XHTML):void {
-			trace("Hello, I am in here");
 			addFormItemHandler(new RadioButtonGroupItemHandler(numberingGroup, exerciseGenerator.settings.questionNumbering[0],
 				[ numbering1RadioButton, numbering2RadioButton, numbering3RadioButton, numbering4RadioButton, numbering5RadioButton ],
 				[ "1", "2", "3", "4", "5" ]));
-            addFormItemHandler(new RadioButtonGroupItemHandler(answerMarkersGroup, exerciseGenerator.settings.answerNumbering[0],
-                    [ answerMarker1RadioButton, answerMarker2RadioButton, answerMarker3RadioButton, answerMarker4RadioButton, answerMarker5RadioButton],
-                    [ "3", "4", "1", "7", "6" ]));
+            if (exerciseGenerator.exerciseType == Question.MULTIPLE_CHOICE_QUESTION) {
+                answerMarkers.visible = answerMarkers.includeInLayout = true;
+                addFormItemHandler(new RadioButtonGroupItemHandler(answerMarkersGroup, exerciseGenerator.settings.answerNumbering[0],
+                        [answerMarker1RadioButton, answerMarker2RadioButton, answerMarker3RadioButton, answerMarker4RadioButton, answerMarker5RadioButton],
+                        ["3", "4", "1", "7", "6"]));
+                addFormItemHandler(new CheckBoxFormItemHandler(shuffleAnswersCheckBox, exerciseGenerator.settings.shuffleAnswers[0]));
+            } else {
+                answerMarkers.visible = answerMarkers.includeInLayout = false;
+            }
 			addFormItemHandler(new TextFormItemHandler(questionStartNumberTextInput, exerciseGenerator.settings.questionStartNumber[0]));
 			addFormItemHandler(new RadioButtonGroupItemHandler(markingTypeGroup, exerciseGenerator.settings.markingType[0],
 				[ delayedMarkingRadioButton, instantMarkingRadioButton ],
 				[ "delayed", "instant" ]));
 			addFormItemHandler(new CheckBoxFormItemHandler(exerciseFeedbackCheckBox, exerciseGenerator.settings.exerciseFeedbackEnabled[0]));
-			addFormItemHandler(new CheckBoxFormItemHandler(testModeCheckBox, exerciseGenerator.settings.testMode[0]));
-			addFormItemHandler(new TextFormItemHandler(timerMinutesTextInput, exerciseGenerator.settings.timerMinutes[0]));
 			addFormItemHandler(new TextFormItemHandler(exerciseFeedbackTextArea, exerciseGenerator.settings.exerciseFeedbackText[0]));
 			addFormItemHandler(new TextFormItemHandler(showFirstNQuestionsTextInput, exerciseGenerator.settings.showFirstNQuestions[0]));
-            addFormItemHandler(new CheckBoxFormItemHandler(shuffleAnswersCheckBox, exerciseGenerator.settings.shuffleAnswers[0]));
-			addFormItemHandler(new CheckBoxFormItemHandler(questionByQuestionCheckBox, exerciseGenerator.settings.questionByQuestionEnabled[0]));
+            // The following are not used yet
+		    addFormItemHandler(new CheckBoxFormItemHandler(testModeCheckBox, exerciseGenerator.settings.testMode[0]));
+   			addFormItemHandler(new TextFormItemHandler(timerMinutesTextInput, exerciseGenerator.settings.timerMinutes[0]));
             addFormItemHandler(new CheckBoxFormItemHandler(timerCheckBox, exerciseGenerator.settings.timerEnabled[0]));
+			addFormItemHandler(new CheckBoxFormItemHandler(questionByQuestionCheckBox, exerciseGenerator.settings.questionByQuestionEnabled[0]));
             /*
 			*/
 		}
@@ -232,14 +246,14 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				case timerUnitsLabel:
 					timerUnitsLabel.text = copyProvider.getCopyForId("authoringTimerUnits");
 					break;
-				case questionByQuestionLabel1:
-					questionByQuestionLabel1.text = copyProvider.getCopyForId("authoringQuestionByQuestionLabel1");
+				case depthOfWidgetLabel1:
+                    depthOfWidgetLabel1.text = copyProvider.getCopyForId("authoringDepthOfWidgetLabel1");
 					break;
-				case questionByQuestionLabel2:
-					questionByQuestionLabel2.text = copyProvider.getCopyForId("authoringQuestionByQuestionLabel2");
+				case depthOfWidgetLabel2:
+                    depthOfWidgetLabel2.text = copyProvider.getCopyForId("authoringDepthOfWidgetLabel2");
 					break;
-				case questionByQuestionLabel3:
-					questionByQuestionLabel3.text = copyProvider.getCopyForId("authoringQuestionByQuestionLabel3");
+				case depthOfWidgetLabel3:
+                    depthOfWidgetLabel3.text = copyProvider.getCopyForId("authoringDepthOfWidgetLabel3");
 					break;
 				case exerciseFeedbackCheckBox:
 					exerciseFeedbackCheckBox.label = copyProvider.getCopyForId("authoringExerciseFeedback");
