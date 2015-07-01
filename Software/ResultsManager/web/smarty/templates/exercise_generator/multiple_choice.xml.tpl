@@ -123,8 +123,10 @@
 		.answer-list {
 		{/literal}
 			list-style-type: {formatAnswerNumber format=$xml->settings->answerNumbering};
+            {if $xml->settings->answerNumbering != 7}
+            padding-left: 23px;
+            {/if}
 		{literal}
-			padding-left: 23px;
 			text-indent: 0px;
 			margin-left: 0px;
 			line-height: 150%;

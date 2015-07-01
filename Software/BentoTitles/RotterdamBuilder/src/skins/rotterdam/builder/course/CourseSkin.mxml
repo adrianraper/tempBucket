@@ -66,7 +66,7 @@
 		<s:State name="unitplayer" enterState="unitViewNavigatorShow(UnitView, unitViewNavigator.defaultPushTransition)" />
 	</s:states>
 	
-	<s:BorderContainer id="unitContainer" backgroundColor="0xFFFFFF" left="2" width="140" dropShadowVisible="true" 
+	<s:BorderContainer id="unitContainer" backgroundColor="0xFFFFFF" top="4" left="2" width="140" dropShadowVisible="true"
 					maxHeight="{hostComponent.height*0.75}" minHeight="90">
 		<s:layout>
 			<s:VerticalLayout paddingTop="10" paddingBottom="10"/>
@@ -124,7 +124,7 @@
 		</s:HGroup>
 	</s:VGroup>
 	
-	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="0" height="50" />
+	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="4" height="50" />
 	<s:ViewNavigator id="unitViewNavigator" left="156" right="0" top="55" bottom="100" />
 	
 	<course:ToolBarView id="toolBar" bottom="38" left="0" right="0" />

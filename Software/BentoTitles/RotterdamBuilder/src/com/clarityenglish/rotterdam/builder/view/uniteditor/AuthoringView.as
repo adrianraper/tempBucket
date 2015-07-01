@@ -104,7 +104,9 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
             // gh#1248 Pick up the highest gapID currently used ready for any more
             if (exerciseGenerator.getSettingParam("exerciseType") == Question.GAP_FILL_QUESTION) {
                 var gapEditManager:GapEditManager = new GapEditManager();
-                gapEditManager.initialiseGapIds(getHighestGapId());
+                var nextGapId:uint = getHighestGapId();
+                log.debug("next gap id={0}", nextGapId);
+                gapEditManager.initialiseGapIds(nextGapId);
             }
 
             // Update the skin state from the loaded xhtml
@@ -265,7 +267,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
                     var thisId:uint = parseInt(findResult[0], 10);
                 maxId = (thisId > maxId) ? thisId : maxId;
             }
-            return maxId++;
+            return maxId + 1;
         }
 		
 		/** The add gap button was pressed */

@@ -17,7 +17,7 @@
 	$startControl = '/Software/BentoTitles/RotterdamBuilder/bin-debug/';
 	$version = '1107';
 	$coordsMinWidth = '990';
-	$coordsMaxWidth = '1200';
+	$coordsMaxWidth = '990';
 	$coordsMinHeight = '760';
 	$coordsMaxHeight = null;
 	$locationFile = "configBuilder.xml";

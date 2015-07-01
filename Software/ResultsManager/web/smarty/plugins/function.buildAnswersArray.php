@@ -5,7 +5,7 @@
 	 */
 	function smarty_function_buildAnswersArray($params, $smarty) {
 		$baseArray = range(0, count($params['base'])-1);
-		if ($params['randomise'])
+		if ($params['randomise']=='true')
 			shuffle($baseArray);
 		$smarty->assign('answersArray', $baseArray);
 		return null;

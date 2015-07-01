@@ -68,12 +68,14 @@
 		<s:Label id="addImageLabel" top="110" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
 		<s:Button id="listAddAudioButton" useHandCursor="true" buttonMode="true" top="140" left="25"/>
 		<s:Label id="addAudioLabel" top="150" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
-		<s:Button id="listAddAnimationButton" useHandCursor="true" buttonMode="true" top="140" left="190"/>
-		<s:Label id="addAnimationLabel" top="150" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
 		<s:Button id="listAddExerciseButton" useHandCursor="true" buttonMode="true" top="180" left="25"/>
 		<s:Label id="addExerciseLabel" top="190" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
-		<s:Button id="listAddAuthoringButton" useHandCursor="true" buttonMode="true" top="180" left="190"/>
-		<s:Label id="addAuthoringLabel" top="190" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="listAddAuthoringButton" useHandCursor="true" buttonMode="true" top="140" left="190"/>
+		<s:Label id="addAuthoringLabel" top="150" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+        <!--
+		<s:Button id="listAddAnimationButton" useHandCursor="true" buttonMode="true" top="180" left="190"/>
+		<s:Label id="addAnimationLabel" top="190" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+		-->
 	</s:Group>
 	
 	<!-- Grey background -->
@@ -108,13 +110,15 @@
 		<s:Button includeIn="image" id="imageUploadButton" useHandCursor="true" buttonMode="true" />
 		<s:Label includeIn="image" id="imageOrLabel2" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
 		<s:TextInput includeIn="image" id="imageUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5"  />
-		
+
+        <!--
 		<s:Label includeIn="animation" id="uploadAnimationLabel" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:Button includeIn="animation" id="animationResourceCloudButton" label="Resource Cloud" />
 		<s:Label includeIn="animation" id="animationOrLabel" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
 		<s:Button includeIn="animation" id="animationUploadButton" useHandCursor="true" buttonMode="true" />
 		<s:Label includeIn="animation" id="animationOrLabel2" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
 		<s:TextInput includeIn="animation" id="animationUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5"  />
+		-->
 		
 		<s:Label includeIn="audio" id="uploadAudioLabel" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:Button includeIn="audio" id="audioResourceCloudButton" />
@@ -166,7 +170,7 @@
 			<s:Button id="normalAddVideoButton" useHandCursor="true" buttonMode="true" />
 			<s:Button id="normalAddImageButton" useHandCursor="true" buttonMode="true" />	
 			<s:Button id="normalAddAudioButton" useHandCursor="true" buttonMode="true" />
-			<s:Button id="normalAddAnimationButton" useHandCursor="true" buttonMode="true" />
+			<!-- <s:Button id="normalAddAnimationButton" useHandCursor="true" buttonMode="true" /> -->
 			<s:Button id="normalAddExerciseButton" useHandCursor="true" buttonMode="true" />
 			<s:Button id="normalAddAuthoringButton" useHandCursor="true" buttonMode="true" />
 			<s:Button id="upButton" horizontalCenter="0" useHandCursor="true" buttonMode="true" click="upAnim.play();" />
