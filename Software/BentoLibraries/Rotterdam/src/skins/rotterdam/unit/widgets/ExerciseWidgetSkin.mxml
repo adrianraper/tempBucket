@@ -8,8 +8,11 @@
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.ExerciseWidget")]
 	</fx:Metadata>
-	
-	<s:states>
+
+    <!-- pick up styles from css -->
+    <fx:Style source="../../content.css" />
+
+    <s:states>
 		<s:State name="normal" />
 		<s:State name="editing_normal" stateGroups="editing" />
 		<s:State name="editing_selected" stateGroups="editing,selected" />
@@ -26,7 +29,7 @@
 	
 	<s:VGroup left="0" right="0" top="25" paddingBottom="10">
 		<!-- Text -->
-		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+		<widgets:WidgetText id="widgetText" widget="{hostComponent}" styleName="normalTextStyle" editing.editing="true" width="100%" minHeight="20" />
 		
 		<s:HGroup paddingLeft="8" gap="10">
 			<!-- Exercise icon -->

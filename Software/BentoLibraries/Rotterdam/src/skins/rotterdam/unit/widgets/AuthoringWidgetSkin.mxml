@@ -11,8 +11,11 @@
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.AuthoringWidget")]
 	</fx:Metadata>
-	
-	<s:states>
+
+    <!-- pick up styles from css -->
+    <fx:Style source="../../content.css" />
+
+    <s:states>
 		<s:State name="normal" />
 		<s:State name="editing_normal" stateGroups="editing" />
 		<s:State name="editing_selected" stateGroups="editing,selected" />
@@ -45,6 +48,6 @@
 	</s:HGroup>
 	
 	<!-- widget caption -->
-	<widgets:WidgetText id="widgetText" left="1" right="1" top="25" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+	<widgets:WidgetText id="widgetText" left="1" right="1" top="25" widget="{hostComponent}" styleName="normalTextStyle" editing.editing="true" width="100%" minHeight="20" />
 		
 </s:Skin>

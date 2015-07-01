@@ -1,0 +1,29 @@
+/*
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace widgets "skins.rotterdam.unit.widgets.*";
+
+// This is how to get a special font into the content css
+@font-face {
+    src: url("../assets/TEEN____.TTF");
+    fontFamily: Teen;
+    fontStyle: normal;
+    fontWeight: normal;
+    embedAsCFF: true;
+    advancedAntiAliasing: true;
+}
+
+// This does not work, you can't set a class on a a span in a TextFlow
+.largeText {
+    fontSize: 20;
+    color: #3A00FF;
+}
+*/
+
+.normalTextStyle {
+    fontFamily: Verdana;
+    fontSize: 13;
+}
+
+
+
+

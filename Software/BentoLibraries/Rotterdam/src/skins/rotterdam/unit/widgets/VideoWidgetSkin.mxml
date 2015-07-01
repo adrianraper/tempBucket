@@ -9,8 +9,11 @@
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.VideoWidget")]
 	</fx:Metadata>
-	
-	<s:states>
+
+    <!-- pick up styles from css -->
+    <fx:Style source="../../content.css" />
+
+    <s:states>
 		<s:State name="normal" />
 		<s:State name="editing_normal" stateGroups="editing" />
 		<s:State name="editing_selected" stateGroups="editing,selected" />
@@ -27,7 +30,7 @@
 	
 	<s:VGroup left="0" right="0" top="25">
 		<!-- Text -->
-		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+		<widgets:WidgetText id="widgetText" widget="{hostComponent}" styleName="normalTextStyle" editing.editing="true" width="100%" minHeight="20" />
 		
 		<!-- gh#246 add height for videoHolder-->
 		<s:Group id="videoHolder" left="0" right="0" height="375">

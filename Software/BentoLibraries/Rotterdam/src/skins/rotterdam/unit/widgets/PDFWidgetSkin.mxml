@@ -8,8 +8,11 @@
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget")]
 	</fx:Metadata>
-	
-	<s:states>
+
+    <!-- pick up styles from css -->
+    <fx:Style source="../../content.css" />
+
+    <s:states>
 		<s:State name="normal" />
 		<s:State name="editing_normal" stateGroups="editing" />
 		<s:State name="editing_selected" stateGroups="editing,selected" />
@@ -34,7 +37,7 @@
 		</s:HGroup>
 		
 		<!-- Text -->
-		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="60" height="100%" />
+		<widgets:WidgetText id="widgetText" widget="{hostComponent}" styleName="normalTextStyle" editing.editing="true" width="100%" minHeight="60" height="100%" />
 	</s:HGroup>
 	
 </s:Skin>
