@@ -2,7 +2,8 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		minWidth="800">
+		minWidth="200">
+
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.builder.view.uniteditor.AuthoringView")]
@@ -10,9 +11,9 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import mx.collections.ArrayCollection;
-			import mx.collections.XMLListCollection;
-		]]>
+
+            var colWidth:uint = 250;
+        ]]>
 	</fx:Script>
 	
 	<!-- states -->
@@ -24,18 +25,18 @@
 		<s:State name="GapFillQuestion_questions" stateGroups="GapFillQuestion,questions" />
 	</s:states>
 	
-	<s:VGroup width="100%" paddingLeft="4" paddingTop="4" paddingRight="4" paddingBottom="4" >
-		<s:HGroup width="100%">
-			<s:VGroup height="100%" includeIn="questions" width="80" >
-				<s:Label id="questionsLabel" width="100%" />
-				<s:List id="questionList" dataProvider="{hostComponent.questions}" width="80" height="100%" borderVisible="false" >
+	<s:VGroup width="100%" paddingLeft="8" paddingTop="8" paddingRight="8" paddingBottom="8" >
+		<s:HGroup width="100%" >
+			<s:VGroup height="100%" includeIn="questions" >
+				<!-- <s:Label id="questionsLabel" width="100%" /> -->
+				<s:List id="questionList" dataProvider="{hostComponent.questions}" width="70" height="100%" borderVisible="false" >
 					<s:layout>
 						<s:VerticalLayout requestedMinRowCount="1" horizontalAlign="justify" gap="0"/>
 					</s:layout>
 					<s:itemRenderer>
 						<fx:Component>
 							<!--gh#872 remove mouseOver effect in preview mode-->
-							<s:ItemRenderer width="80" mouseOver="deleteQuestionButton.visible = true" mouseOut="deleteQuestionButton.visible = false">
+							<s:ItemRenderer mouseOver="deleteQuestionButton.visible = true" mouseOut="deleteQuestionButton.visible = false">
 								<fx:Script>
 									<![CDATA[
 										import com.clarityenglish.rotterdam.builder.view.uniteditor.events.QuestionDeleteEvent;
@@ -55,21 +56,19 @@
 									]]>
 								</fx:Script>
 								
-								<s:Label id="questionCaption" width="50%" maxDisplayedLines="3" paddingTop="6" paddingBottom="4" />
-								<s:Group right="2" verticalCenter="0" width="50%">
-									<s:Button id="deleteQuestionButton"
-											  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
+								<s:Label id="questionCaption" left="4" width="20" maxDisplayedLines="1" paddingTop="6" paddingBottom="4" />
+                                <s:Button id="deleteQuestionButton" right="2" verticalCenter="0"
+                                              skinClass="skins.rotterdam.ui.DeleteButtonSkin"
 											  visible="false" useHandCursor="true" buttonMode="true" scaleX="0.8" scaleY="0.8"
 											  click="dispatchEvent(new QuestionDeleteEvent(QuestionDeleteEvent.QUESTION_DELETE, data as XML, true))" />
-								</s:Group>
-								
+
 							</s:ItemRenderer>
 						</fx:Component>
 					</s:itemRenderer>
 				</s:List>
 			</s:VGroup>
-			
-			<s:VGroup width="100%" enabled="{questionList.selectedItem != null}">
+            <s:Spacer width="6" />
+			<s:VGroup width="{hostComponent.widgetNode.@span * colWidth}" enabled="{questionList.selectedItem != null}" gap="4">
 				<s:TextArea id="questionTextArea" width="100%" />
 				
 				<s:HGroup includeIn="GapFillQuestion">
@@ -77,9 +76,16 @@
 					<s:Button id="clearGapButton"  />
 				</s:HGroup>
 				
-				<!-- TODO: Checkbox with editable area.  List and item renderers? -->
-				<s:Label id="answersLabel" />
-				<s:List id="answersList" width="100%" dataProvider="{hostComponent.answers}" enabled="{hostComponent.answers != null}" borderVisible="false" >
+                <s:HGroup includeIn="MultipleChoiceQuestion" >
+                    <s:Label id="correctLabel" width="50"/>
+                    <s:Label id="answersLabel" />
+                </s:HGroup>
+
+				<s:List id="answersList" width="100%" dataProvider="{hostComponent.answers}" enabled="{hostComponent.answers != null}"
+                        borderVisible="false" >
+                    <s:layout>
+                        <s:VerticalLayout gap="4" />
+                    </s:layout>
 					<s:itemRenderer>
 						<fx:Component>
 							<s:ItemRenderer>
@@ -88,9 +94,10 @@
 										import com.clarityenglish.rotterdam.builder.view.uniteditor.events.AnswerDeleteEvent;
 									]]>
 								</fx:Script>
-								<s:HGroup width="100%">
-									<s:CheckBox selected="{data.@correct == 'true'}" change="data.@correct = event.currentTarget.selected" />
+								<s:HGroup width="{outerDocument.hostComponent.widgetNode.@span * outerDocument.colWidth}">
+									<s:CheckBox width="50" selected="{data.@correct == 'true'}" change="data.@correct = event.currentTarget.selected" />
 									<s:TextInput width="100%" text="{data.text()}" change="data.setChildren(event.currentTarget.text)" />
+                                    <s:Spacer width="2" />
 									<s:Button skinClass="skins.rotterdam.ui.DeleteButtonSkin" click="dispatchEvent(new AnswerDeleteEvent(AnswerDeleteEvent.ANSWER_DELETE, data as XML, true))" />
 								</s:HGroup>
 							</s:ItemRenderer>
@@ -103,9 +110,11 @@
 			</s:VGroup>
 		</s:HGroup>
 		
-		<s:HGroup>
-			<s:Button id="okButton" />
-		</s:HGroup>
-	</s:VGroup>
+        <s:HGroup width="100%">
+            <s:Spacer width="90%" />
+            <s:Button id="okButton" useHandCursor="true" buttonMode="true" />
+        </s:HGroup>
+
+    </s:VGroup>
 	
 </s:Skin>

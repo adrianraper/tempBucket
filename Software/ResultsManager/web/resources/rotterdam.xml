@@ -5,11 +5,9 @@
 			<lit name="applicationName">Rotterdam</lit>
 			<lit name="applicationVersion">Version {version}</lit>
 			<lit name="applicationTitle">Clarity Course Builder</lit>
-			
-			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
-			<lit name="errorVideoLoad" code="602">This URL isn't recognised as a compatible video source. Click 'share' under a YouTube video and copy the URL, something like http://youtu.be/oSn3i4vsGeY. Vimeo can be copied direct from the URL.</lit>
-            <lit name="contentBlockedWarning" code="603">This device can't link to the content for this item. Please try to access the course from a computer browser.</lit>
-			
+
+            <lit name="LogOut">Sign out</lit>
+
 			<lit name="errorSavingCourse" code="700">Error saving this course. Please contact support@clarityenglish.com. ({reason})</lit>
 			<lit name="errorSecurity" code="701">Security error.</lit>
 			<lit name="errorCourseDoesNotExist" code="702">This course does not exist.</lit>
@@ -122,7 +120,7 @@
 			<lit name="importCourseButton">Import a course</lit> <!-- gh#233 -->
 			<lit name="publishCourseButton">Publish course</lit>
 			<lit name="publishChangeButton">Change published details</lit>
-			<lit name="settingButton">Settings</lit>
+			<lit name="settingsButton">Settings</lit>
 			<lit name="oneClickPublishButton">1-click</lit>
 			<lit name="publishSettingsButton">Advanced</lit>
 			<lit name="oneClickLabel">Your course is immediately available to all your students.</lit>
@@ -150,6 +148,7 @@
 			<lit name="selectButton">Select</lit>
 			<lit name="cancelButton">Cancel</lit>
 			<lit name="backButton">Back to editor</lit>
+			<lit name="doneButton">Done</lit>
 			<lit name="savePublishButton">Publish</lit>
 			<lit name="resourseCloudLabel">Resource Cloud</lit>
 			<lit name="nameGridColumn">Name</lit>
@@ -177,10 +176,15 @@
 			<lit name="addAuthoringLabel">Questions</lit>
 			<lit name="addAnimationLabel">Animation</lit>
 			
-			<lit name="menuRenameItem">Rename item</lit>
-			<lit name="menuDeleteItem">Delete item</lit>
-			<lit name="menuEditItem">Edit item</lit>
-			<lit name="menuCopyItem">Copy item</lit>
+			<lit name="menuRenameItem">Change caption</lit>
+			<lit name="menuDeleteItem">Delete</lit>
+			<lit name="menuEditItem">Edit</lit>
+			<lit name="menuAuthoringEditItem">Edit questions</lit>
+			<lit name="menuImageEditItem">Change image</lit>
+			<lit name="menuVideoEditItem">Change video</lit>
+			<lit name="menuAudioEditItem">Change audio</lit>
+			<lit name="menuPdfEditItem">Change PDF</lit>
+			<lit name="menuCopyItem">Copy</lit>
 			
 			<!--  Status messages -->
 			<lit name="importedUnits">{numberOfUnits} units were successfully imported.</lit>
@@ -217,13 +221,16 @@
             <lit name="answerNumberingFormat6">•</lit>
             <lit name="answerNumberingFormat7">none</lit>
             
-            <lit name="authoringQuestionsLabel">Questions</lit>
+            <lit name="authoringTitleWindow">Questions</lit>
+            <lit name="authoringSettingsTitleWindow">Question settings</lit>
+            <lit name="authoringQuestionsLabel">Number</lit>
             <lit name="authoringAnswersLabel">Answers</lit>
+            <lit name="authoringCorrectLabel">Correct</lit>
             <lit name="authoringFeedbackLabel">Feedback</lit>
             <lit name="authoringAddQuestionButton">+Q</lit>
             <lit name="authoringAddGapButton">Add gap</lit>
             <lit name="authoringClearGapButton">Remove gap</lit>
-            <lit name="authoringOkButton">OK</lit>
+            <lit name="authoringOkButton">Done</lit>
             <lit name="authoringQuestionPrompt">type a question here</lit>
             <lit name="authoringAnswerPrompt">type an answer here</lit>
             <lit name="authoringFeedbackPrompt">type any feedback here</lit>

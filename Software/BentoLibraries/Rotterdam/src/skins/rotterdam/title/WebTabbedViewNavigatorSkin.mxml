@@ -28,5 +28,5 @@
 		</s:layout>
 	</s:Group>
 
-	<s:ButtonBar id="tabBar" left="20" top="7" height="38" />
+	<s:ButtonBar id="tabBar" left="20" top="7" height="38" useHandCursor="true" buttonMode="true"  />
 </s:Skin>

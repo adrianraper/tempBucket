@@ -217,8 +217,5 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				onHideWidgetMenu();
 			}
 		}
-		
-		
-		
 	}
 }

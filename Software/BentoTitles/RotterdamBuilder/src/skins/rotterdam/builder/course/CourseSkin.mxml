@@ -112,16 +112,12 @@
 		</s:VGroup>
 	</s:BorderContainer>
 	
-	<s:VGroup top="{unitContainer.height + 10}" left="2" includeIn="uniteditor">
+	<s:VGroup top="{unitContainer.height + 10}" left="2" includeIn="uniteditor" horizontalAlign="center">
 		<s:Button id="addUnitButton" useHandCursor="true" buttonMode="true" />
-		
-		<!-- temporarily put these buttons here (gh#110) but they will likely move elsewhere later -->
-		<!--s:Spacer height="20" /-->
-		<!--s:Label text="Unit:" fontWeight="bold" /-->
-		<s:HGroup width="100%">
-			<s:Button id="unitCopyButton" width="50%" useHandCursor="true" buttonMode="true" enabled="{unitList.selectedItem != null}" />
-			<!--s:Button id="unitPasteButton" label="Paste" width="50%" useHandCursor="true" buttonMode="true" /-->
-		</s:HGroup>
+        <s:Button id="unitCopyButton" useHandCursor="true" buttonMode="true" enabled="{unitList.selectedItem != null}" />
+		<!--s:Button id="unitPasteButton" label="Paste" width="50%" useHandCursor="true" buttonMode="true" /-->
+        <s:Spacer height="8" />
+        <s:Button id="settingsButton" useHandCursor="true" buttonMode="true" />
 	</s:VGroup>
 	
 	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="4" height="50" />
@@ -129,7 +125,7 @@
 	
 	<course:ToolBarView id="toolBar" bottom="38" left="0" right="0" />
 	<s:HGroup left="156" top="-40">
-		<s:Button id="settingsButton" />
+
 	</s:HGroup>
 		
 	<!-- gh#91 Keep the publish button even in preview mode, gh#880 -->

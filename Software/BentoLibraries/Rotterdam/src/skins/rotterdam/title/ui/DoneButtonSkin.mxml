@@ -32,7 +32,7 @@ limitations under the License.
 				   xmlns:s="library://ns.adobe.com/flex/spark" 
 				   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
 				   xmlns:icon="skins.assets.*"
-				   minWidth="90" minHeight="30"
+				   minWidth="70" minHeight="30"
 				   alpha.disabled="0.5">
 	
 	<fx:Metadata>
@@ -43,8 +43,13 @@ limitations under the License.
 		[HostComponent("spark.components.Button")]
 		]]>
 	</fx:Metadata>
-	
-	<!-- states -->
+
+    <fx:Declarations>
+        <s:GlowFilter id="glowFilter" alpha="0.6" blurX="2" blurY="0" color="0x000000" knockout="false" quality="10" />
+        <s:DropShadowFilter id="dropShadowFilter" blurX="2" blurY="0" angle="-90" distance="0.5" alpha="0.8" />
+    </fx:Declarations>
+
+    <!-- states -->
 	<s:states>
 		<s:State name="up" />
 		<s:State name="over" />
@@ -64,7 +69,7 @@ limitations under the License.
 	
 	<!-- layer 2: fill -->
 	<!--- @private -->
-	<s:Rect id="fill" left="1" right="1" top="1" bottom="1" radiusX="5">
+	<s:Rect id="fill" left="1" right="1" top="1" bottom="1" radiusX="5" filters="{dropShadowFilter}">
 		<s:fill>
             <s:LinearGradient rotation="90">
                 <s:GradientEntry id="color1" color="#ffffff" color.over="#ffffff" color.down="#ffffff" ratio="0" />
@@ -73,7 +78,8 @@ limitations under the License.
 		</s:fill>
 	</s:Rect>
 	
-	<s:Group right="6" top="6" bottom="6">
+	<s:Group left="0" top="0">
+        <!--
 		<s:Path x="0.0498047" y="0.0498047" winding="nonZero" data="M19.2656 8.39844 19.2656 3.4248C19.2656 1.53662 17.7295 0 15.8408 0L3.4248 0C1.53711 0 0 1.53662 0 3.4248L0 21.4819C0 23.3696 1.53711 24.9058 3.4248 24.9058L15.8408 24.9058C17.7295 24.9058 19.2656 23.3696 19.2656 21.4819L19.2656 16.4565 16.4121
 				19.0503 16.4121 21.4819C16.4121 21.7964 16.1553 22.0522 15.8408 22.0522L3.4248 22.0522C3.11035 22.0522 2.85449 21.7964 2.85449 21.4819L2.85449 15.6274 2.85449 9.22803 2.85449 3.4248C2.85449 3.10986 3.11035 2.85449 3.4248 2.85449L15.8408 2.85449
 				C16.1553 2.85449 16.4121 3.10986 16.4121 3.4248L16.4121 5.80664 19.2656 8.39844Z">
@@ -81,7 +87,8 @@ limitations under the License.
 				<s:SolidColor color="#444444"  color.over="#666666" color.down="#666666"/>
 			</s:fill>
 		</s:Path>
-		<s:Path x="6.12695" y="6.31461" winding="nonZero" data="M13.54 5.75571 7.45898 0.234222C7.1416 -0.0548401 6.30957 -0.219391 6.30957 0.620453 6.30957 0.880219 6.30957 1.97739 6.30957 3.47836L1.14258 3.47836C0.511719 3.47836 0 3.98959 0 4.61948L0 7.70639C0 8.33725 0.511719 8.84799 1.14258 8.84799L6.30957
+		-->
+		<s:Path rotation="-180" x="24" y="20" winding="nonZero" data="M13.54 5.75571 7.45898 0.234222C7.1416 -0.0548401 6.30957 -0.219391 6.30957 0.620453 6.30957 0.880219 6.30957 1.97739 6.30957 3.47836L1.14258 3.47836C0.511719 3.47836 0 3.98959 0 4.61948L0 7.70639C0 8.33725 0.511719 8.84799 1.14258 8.84799L6.30957
 				8.84799C6.30957 10.3499 6.30957 11.4456 6.30957 11.7054 6.30957 12.5453 7.1416 12.3802 7.45898 12.0921L13.54 6.57065C13.667 6.45541 13.7402 6.31186 13.7656 6.16245 13.7402 6.01401 13.667 5.87045 13.54 5.75571Z">
 			<s:fill>
 				<s:SolidColor color="#444444"  color.over="#666666" color.down="#666666"/>
@@ -96,7 +103,7 @@ limitations under the License.
 			 verticalCenter="0" verticalAlign="middle"
 			 color="#444444"  color.over="#666666" color.down="#666666"
 			 fontWeight="normal"
-			 left="10">
+			 right="10">
 	</s:Label>
 
 	

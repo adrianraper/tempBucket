@@ -101,9 +101,10 @@ package com.clarityenglish.common.model {
 			config.userID = config.username = config.email = config.studentID = config.password = config.startingPoint = config.sessionID = null;
 			config.group = new Group();
 			
-			// gh#1090
-			config.retainedParameters = {};
-			config.prefix = "";
+            // gh#1090 Clear everything except that which you retained on the first go
+            // config.retainedParameters = {};
+            if (config.prefix == "TD" || config.prefix == "Demo")
+                config.retainedParameters = {};
 			config.noLogin = false;
 			config.isReloadAccount = false;
 

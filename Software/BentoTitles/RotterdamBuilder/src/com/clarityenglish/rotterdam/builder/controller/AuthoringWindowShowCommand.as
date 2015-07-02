@@ -1,5 +1,7 @@
 package com.clarityenglish.rotterdam.builder.controller {
-	import com.clarityenglish.rotterdam.RotterdamNotifications;
+import com.clarityenglish.common.model.CopyProxy;
+import com.clarityenglish.common.model.interfaces.CopyProvider;
+import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.AuthoringView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.AuthoringEvent;
@@ -51,11 +53,13 @@ package com.clarityenglish.rotterdam.builder.controller {
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleSettingsWindow();
 			titleWindow.styleName = "authoringTitleWindow";
-			titleWindow.title = "Authoring";
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
 			titleWindow.addEventListener(AuthoringEvent.OPEN_SETTINGS, onOpenSettings);
-			
-			authoringView = new AuthoringView();
+
+            var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
+            titleWindow.title = copyProvider.getCopyForId('authoringTitleWindow');
+
+            authoringView = new AuthoringView();
 			authoringView.percentWidth = authoringView.percentHeight = 100;
 			authoringView.widgetNode = node;
 			titleWindow.addElement(authoringView);

@@ -16,7 +16,8 @@ package com.clarityenglish.rotterdam.view.title {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
-	import spark.components.Label;
+import spark.components.Group;
+import spark.components.Label;
 	import spark.components.ViewNavigator;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
@@ -49,8 +50,11 @@ package com.clarityenglish.rotterdam.view.title {
 		
 		[SkinPart]
 		public var productTitle:Label;
-		
-		public var dirtyWarningShow:Signal = new Signal(Function);
+
+        [SkinPart]
+        public var coverTabBarDisabler:Group;
+
+        public var dirtyWarningShow:Signal = new Signal(Function);
 		
 		public var logout:Signal = new Signal();
 		
@@ -63,7 +67,7 @@ package com.clarityenglish.rotterdam.view.title {
 			this.addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onStateChange);
 		}
 		
-		public function showCourseView():void {
+		public function showCourseView(event:Event=null):void {
 			currentState = "course";
 		}
 		
@@ -83,8 +87,8 @@ package com.clarityenglish.rotterdam.view.title {
 					setNavStateMap(sectionNavigator, {
 						course_selector: { viewClass: CourseSelectorView },
 						course: { viewClass: CourseView, stack: true },
-						settings: {viewClass: SettingsView, stack: true},
-						schedule: {viewClass: ScheduleView, stack:true}
+						settings: { viewClass: SettingsView, stack: true },
+						schedule: { viewClass: ScheduleView, stack:true }
 						// TODO: this really should be here, but there is some bug whereby the framework is straight away changing back from progress to course, so leave for now
 						//progress: { viewClass: ProgressView }
 					});
@@ -110,36 +114,37 @@ package com.clarityenglish.rotterdam.view.title {
 					instance.label = copyProvider.getCopyForId("LogOut");
 					instance.addEventListener(MouseEvent.CLICK, onLogoutClick);
 					break;
+                case backButton:
+                    // gh#217
+                    instance.label = copyProvider.getCopyForId("doneButton");
+                    instance.addEventListener(MouseEvent.CLICK, onBackToCourseSelector);
+                    break;
 				case productTitle:
 					instance.text = copyProvider.getCopyForId("applicationTitle");
 					break;
-			}
+                case coverTabBarDisabler:
+                    instance.addEventListener(MouseEvent.CLICK, doNothing);
+                    break;
+            }
 		}
 		
 		// gh#745
 		protected function onStateChange(event:StateChangeEvent):void {
-			if (myCoursesViewNavigator) {
-				if (currentState == "course_selector") {
-					myCoursesViewNavigator.label = copyProvider.getCopyForId("myCoursesViewNavigator");
-				} else if (currentState == "course") {
-					myCoursesViewNavigator.label = copyProvider.getCopyForId("Back");
-				} else {
-					myCoursesViewNavigator.label = "";
-				}
-			}	
 		}
+
+        protected function onBackToCourseSelector(event:Event=null):void {
+            dirtyWarningShow.dispatch(function():void {myCoursesViewNavigator.popView()});
+        }
 		
 		// gh#217
 		protected function onLogoutClick(event:Event):void {
 			logout.dispatch();
 		}
-		
-		// AR but back is not a button, but a tab
-		protected function onBackButtonClick(event:MouseEvent):void {
-			myCoursesViewNavigator.popView();
-		}
-		
-		protected override function getCurrentSkinState():String {
+
+        // Stops components that have been hidden from picking up mouse events
+        protected function doNothing(event:MouseEvent):void {}
+
+        protected override function getCurrentSkinState():String {
 			return currentState;
 		}		
 	}

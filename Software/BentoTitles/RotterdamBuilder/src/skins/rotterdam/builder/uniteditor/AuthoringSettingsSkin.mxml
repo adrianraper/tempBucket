@@ -149,7 +149,7 @@
 		
 		<s:HGroup width="100%">
 			<s:Spacer width="90%" />
-			<s:Button id="okButton" label="ok" useHandCursor="true" buttonMode="true" />				
+			<s:Button id="okButton" useHandCursor="true" buttonMode="true" />
 		</s:HGroup>
 	</s:Group>
 

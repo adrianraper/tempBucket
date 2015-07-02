@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f6c35e89-c638-40b4-ba11-2ed7a92fd3b4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/uniteditor/AuthoringView.as" afterPath="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/uniteditor/AuthoringView.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../area1/CCB/Builder.php" afterPath="$PROJECT_DIR$/../../area1/CCB/Builder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/courseselector/CourseListItemRenderer.mxml" afterPath="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/courseselector/CourseListItemRenderer.mxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/course/CourseSkin.mxml" afterPath="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/course/CourseSkin.mxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/course/ToolBarSkin.mxml" afterPath="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/course/ToolBarSkin.mxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ResultsManager/web/smarty/plugins/function.buildAnswersArray.php" afterPath="$PROJECT_DIR$/../ResultsManager/web/smarty/plugins/function.buildAnswersArray.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ResultsManager/web/smarty/templates/exercise_generator/multiple_choice.xml.tpl" afterPath="$PROJECT_DIR$/../ResultsManager/web/smarty/templates/exercise_generator/multiple_choice.xml.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/courseselector/CourseSelectorSkin.mxml" afterPath="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/courseselector/CourseSelectorSkin.mxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BentoTitles/RotterdamPlayer/src/skins/rotterdam/player/courseselector/CourseSelectorSkin.mxml" afterPath="$PROJECT_DIR$/../BentoTitles/RotterdamPlayer/src/skins/rotterdam/player/courseselector/CourseSelectorSkin.mxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/courseselector/CourseSelectorView.as" afterPath="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/courseselector/CourseSelectorView.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../area1/CCB/Player.php" afterPath="$PROJECT_DIR$/../../area1/CCB/Player.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/builder.css" afterPath="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/builder.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BentoTitles/RotterdamPlayer/src/player.css" afterPath="$PROJECT_DIR$/../BentoTitles/RotterdamPlayer/src/player.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Bento.iws" />
@@ -58,28 +57,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CourseSkin.mxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/course/CourseSkin.mxml">
+      <file leaf-file-name="CourseSelectorSkin.mxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamPlayer/src/skins/rotterdam/player/courseselector/CourseSelectorSkin.mxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.038462">
-              <caret line="130" column="35" selection-start-line="130" selection-start-column="35" selection-end-line="130" selection-end-column="35" />
-              <folding>
-                <marker date="1435733335785" expanded="false" signature="568:888" placeholder="..." />
-                <marker date="1435733335785" expanded="true" signature="946:1646" placeholder="{...}" />
-                <marker date="1435733335785" expanded="true" signature="1749:2151" placeholder="{...}" />
-                <marker date="1435733335785" expanded="true" signature="1885:2145" placeholder="{...}" />
-                <marker date="1435733335785" expanded="true" signature="1926:1977" placeholder="{...}" />
-                <marker date="1435733335785" expanded="true" signature="2033:2140" placeholder="{...}" />
-              </folding>
+            <state vertical-scroll-proportion="-13.076923">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="25" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ToolBarSkin.mxml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/course/ToolBarSkin.mxml">
+      <file leaf-file-name="CourseSelectorView.as" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/courseselector/CourseSelectorView.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5687732">
-              <caret line="75" column="74" selection-start-line="75" selection-start-column="74" selection-end-line="75" selection-end-column="74" />
+            <state vertical-scroll-proportion="-10.551724">
+              <caret line="181" column="33" selection-start-line="181" selection-start-column="33" selection-end-line="181" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CourseSelectorMediator.as" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/courseselector/CourseSelectorMediator.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="30" column="12" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="player.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamPlayer/src/player.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.24138">
+              <caret line="82" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="builder.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/builder.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.275862">
+              <caret line="118" column="82" selection-start-line="118" selection-start-column="82" selection-end-line="118" selection-end-column="82" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CourseSelectorSkin.mxml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/courseselector/CourseSelectorSkin.mxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4293915">
+              <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -105,27 +137,53 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../ResultsManager/web/resources/rotterdam.xml" />
-        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/uniteditor/AuthoringSettingsView.as" />
-        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/uniteditor/AuthoringSettingsSkin.mxml" />
         <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/uniteditor/events/GapEvent.as" />
         <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/uniteditor/tlf/GapEditManager.as" />
         <option value="$PROJECT_DIR$/src/com/clarityenglish/controls/video/UniversalVideoPlayer.as" />
         <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/unit/widgets/VideoWidget.as" />
         <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/AuthoringWidgetSkin.mxml" />
-        <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/VideoWidgetSkin.mxml" />
         <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/ExerciseWidgetSkin.mxml" />
         <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/PDFWidgetSkin.mxml" />
         <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/TextWidgetSkin.mxml" />
         <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/content.css" />
         <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/AudioWidgetSkin.mxml" />
         <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/ImageWidgetSkin.mxml" />
-        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/uniteditor/AuthoringView.as" />
         <option value="$PROJECT_DIR$/../ResultsManager/web/smarty/templates/exercise_generator/multiple_choice.xml.tpl" />
         <option value="$PROJECT_DIR$/../ResultsManager/web/smarty/plugins/function.buildAnswersArray.php" />
         <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/courseselector/CourseListItemRenderer.mxml" />
+        <option value="$PROJECT_DIR$/../ResultsManager/web/classes/ExerciseOps.php" />
+        <option value="$PROJECT_DIR$/src-common/com/clarityenglish/common/model/ConfigProxy.as" />
+        <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/VideoWidgetSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/controller/AuthoringWindowShowCommand.as" />
+        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/uniteditor/AuthoringView.as" />
+        <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/WidgetMenu.mxml" />
+        <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/title/ui/TabBarSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/uniteditor/UnitEditorView.as" />
         <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/course/CourseSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/course/CourseView.as" />
+        <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/title/TitleMediator.as" />
+        <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/RotterdamNotifications.as" />
+        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/uniteditor/AuthoringSettingsView.as" />
+        <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/title/TitleView.as" />
+        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/title/TitleSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/title/ui/LogOutButtonSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/title/WebTabbedViewNavigatorSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/title/ui/TabBarButtonSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/ui/GreenButtonSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/uniteditor/AuthoringSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/uniteditor/AuthoringSettingsSkin.mxml" />
         <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/course/ToolBarSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/controller/AuthoringSettingsWindowShowCommand.as" />
+        <option value="$PROJECT_DIR$/../ResultsManager/web/resources/rotterdam.xml" />
+        <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/title/ui/DoneButtonSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamPlayer/src/skins/rotterdam/player/courseselector/CourseSelectorSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamPlayer/src/player.css" />
+        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/builder.css" />
+        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/courseselector/FilteringFormHeadingSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/courseselector/FilterFilteringFormSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/courseselector/FilteringFormItemSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/courseselector/CourseSelectorSkin.mxml" />
+        <option value="$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/courseselector/CourseSelectorView.as" />
       </list>
     </option>
   </component>
@@ -153,6 +211,28 @@
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>CSS</id>
+          </State>
+          <State>
+            <id>Invalid elementsCSS</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>CssInvalidPropertyValue</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
@@ -176,9 +256,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -283,7 +363,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="uniteditor" />
+              <option name="myItemId" value="courseselector" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -308,10 +388,6 @@
               <option name="myItemId" value="builder" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="course" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -363,7 +439,157 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="clarityenglish" />
+              <option name="myItemId" value="skins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rotterdam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bento" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotterdam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotterdam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="skins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rotterdam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="unit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bento" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotterdam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotterdam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="skins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rotterdam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bento" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotterdam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotterdam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="skins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rotterdam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="title" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bento" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotterdam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotterdam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="skins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rotterdam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="title" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bento" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotterdam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotterdam" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="skins" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -385,10 +611,18 @@
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ProjectBench\Software\BentoLibraries\Rotterdam\src\skins\rotterdam\ui" />
+      <recent name="D:\ProjectBench\Software\BentoLibraries\Rotterdam\src\skins\rotterdam\title\ui" />
       <recent name="D:\ProjectBench\Software\BentoLibraries\Rotterdam\src\skins\assets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\ProjectBench\Software\BentoTitles\RotterdamBuilder\src\skins\rotterdam\builder\assets\title" />
     </key>
   </component>
   <component name="RunManager" selected="Flash App.RotterdamBuilder">
@@ -645,7 +879,7 @@
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32864866" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864866" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -655,7 +889,6 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -665,6 +898,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -706,11 +940,16 @@
           <line>39</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="flex">
+          <url>file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/title/TitleMediator.as</url>
+          <line>68</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="20" />
+      <option name="time" value="28" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -719,396 +958,497 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Flex/13.0_AIR16.0/frameworks/projects/framework/src/mx/managers/FocusManager.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33206832">
-          <caret line="732" column="0" selection-start-line="732" selection-start-column="0" selection-end-line="732" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Flex/13.0_AIR16.0/frameworks/projects/spark/src/spark/components/supportClasses/RichEditableTextContainerManager.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33206832">
-          <caret line="737" column="0" selection-start-line="737" selection-start-column="0" selection-end-line="737" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/uniteditor/tlf/GapEditManager.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/unit/widgets/AuthoringWidget.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/uniteditor/AuthoringMediator.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="12" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clarityenglish/controls/video/players/FlashVideoPlayer.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/model/CourseProxy.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="253" column="24" selection-start-line="253" selection-start-column="24" selection-end-line="253" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/unit/UnitMediator.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/controller/widgets/VideoWidgetAddCommand.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28716215">
-          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/unit/UnitView.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5456081">
-          <caret line="26" column="68" selection-start-line="26" selection-start-column="68" selection-end-line="26" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/controller/WidgetAddCommand.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0625">
-          <caret line="46" column="29" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Flex/13.0_AIR16.0/frameworks/projects/spark/src/spark/components/Group.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="918" column="0" selection-start-line="918" selection-start-column="0" selection-end-line="918" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Flex/13.0_AIR16.0/frameworks/projects/spark/src/spark/components/supportClasses/SkinnableComponent.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="415" column="0" selection-start-line="415" selection-start-column="0" selection-end-line="415" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/unit/layouts/FreeUnitLayout.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Flex/13.0_AIR16.0/frameworks/projects/spark/src/spark/components/supportClasses/GroupBase.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1301" column="0" selection-start-line="1301" selection-start-column="0" selection-end-line="1301" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Flex/13.0_AIR16.0/frameworks/projects/framework/src/mx/core/UIComponent.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9530" column="0" selection-start-line="9530" selection-start-column="0" selection-end-line="9530" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Flex/13.0_AIR16.0/frameworks/projects/framework/src/mx/managers/LayoutManager.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33206832">
-          <caret line="1187" column="0" selection-start-line="1187" selection-start-column="0" selection-end-line="1187" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Flex/13.0_AIR16.0/frameworks/projects/spark/src/spark/components/DataGroup.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="837" column="0" selection-start-line="837" selection-start-column="0" selection-end-line="837" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/unit/widgets/SelectorWidget.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="114" column="29" selection-start-line="114" selection-start-column="29" selection-end-line="114" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clarityenglish/textLayout/elements/VideoElement.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1722973">
-          <caret line="33" column="47" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/unit/widgets/VideoWidget.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/unit/widgets/ImageWidget.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/unit/ui/UniversalWidgetHolder.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43207127">
-          <caret line="63" column="74" selection-start-line="63" selection-start-column="74" selection-end-line="63" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/UnitSkin.mxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33180252">
-          <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/unit/ui/WidgetList.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clarityenglish/controls/video/UniversalVideoPlayer.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26726058">
-          <caret line="119" column="16" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/WidgetChrome.mxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.9222615">
-          <caret line="64" column="63" selection-start-line="64" selection-start-column="63" selection-end-line="64" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/unit/widgets/AbstractWidget.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Flex/13.0_AIR16.0/frameworks/projects/spark/src/spark/components/RichEditableText.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clarityenglish/components/PromptingRichEditableText.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="58" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/builder.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="379" column="1" selection-start-line="379" selection-start-column="1" selection-end-line="379" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/Builder.mxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6895943">
-          <caret line="23" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/WidgetText.mxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.569665">
-          <caret line="203" column="8" selection-start-line="203" selection-start-column="8" selection-end-line="203" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/AuthoringWidgetSkin.mxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08994709">
-          <caret line="27" column="44" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/ExerciseWidgetSkin.mxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.92945325">
-          <caret line="31" column="97" selection-start-line="31" selection-start-column="97" selection-end-line="31" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/TextWidgetSkin.mxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8994709">
-          <caret line="30" column="93" selection-start-line="30" selection-start-column="93" selection-end-line="30" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/PDFWidgetSkin.mxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7195767">
-          <caret line="39" column="97" selection-start-line="39" selection-start-column="97" selection-end-line="39" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/content.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08600337">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/VideoWidgetSkin.mxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68606704">
-          <caret line="32" column="97" selection-start-line="32" selection-start-column="97" selection-end-line="32" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clarityenglish/textLayout/components/AudioPlayer.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.4822936">
-          <caret line="43" column="45" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/AudioWidgetSkin.mxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5696649">
-          <caret line="43" column="66" selection-start-line="43" selection-start-column="66" selection-end-line="43" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/ImageWidgetSkin.mxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44973546">
-          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/smarty/templates/exercise_generator/multiple_choice.xml.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.576923">
-          <caret line="180" column="119" selection-start-line="180" selection-start-column="89" selection-end-line="180" selection-end-column="119" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/smarty/plugins/function.buildAnswersArray.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.576923">
-          <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/courseselector/CourseListItemRenderer.mxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.96113074">
-          <caret line="96" column="90" selection-start-line="96" selection-start-column="90" selection-end-line="96" selection-end-column="90" />
-          <folding>
-            <marker date="1435733093814" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1435733093814" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1435733093814" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1435733093814" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1435733093814" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1435733093814" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/resources/rotterdam.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="16" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/uniteditor/AuthoringSkin.mxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27738515">
-          <caret line="75" column="51" selection-start-line="75" selection-start-column="51" selection-end-line="75" selection-end-column="51" />
-          <folding>
-            <marker date="1435561129493" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1435561129493" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1435561129493" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1435561129493" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1435561129493" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/uniteditor/AuthoringView.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3250444">
-          <caret line="107" column="31" selection-start-line="107" selection-start-column="31" selection-end-line="107" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="191" column="42" selection-start-line="191" selection-start-column="42" selection-end-line="191" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/widgets/WidgetMenu.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.307693">
+          <caret line="156" column="32" selection-start-line="156" selection-start-column="32" selection-end-line="156" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/unit/UnitHeaderView.as">
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/assets/title/CCB-logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/resources/base.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08600337">
-          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        <state vertical-scroll-proportion="-6.4827585">
+          <caret line="57" column="28" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="28" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/uniteditor/UnitEditorSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/uniteditor/UnitEditorView.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45531198">
+          <caret line="207" column="8" selection-start-line="207" selection-start-column="8" selection-end-line="207" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/uniteditor/UnitEditorMediator.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/title/ui/TabBarSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8461537">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/settings/SettingsView.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="133" column="29" selection-start-line="133" selection-start-column="19" selection-end-line="133" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/settings/SettingsMediator.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0067453">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/course/CourseMediator.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="137" column="27" selection-start-line="137" selection-start-column="27" selection-end-line="137" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/course/CourseSkin.mxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.038462">
-          <caret line="130" column="35" selection-start-line="130" selection-start-column="35" selection-end-line="130" selection-end-column="35" />
-          <folding>
-            <marker date="1435733335785" expanded="false" signature="568:888" placeholder="..." />
-            <marker date="1435733335785" expanded="true" signature="946:1646" placeholder="{...}" />
-            <marker date="1435733335785" expanded="true" signature="1749:2151" placeholder="{...}" />
-            <marker date="1435733335785" expanded="true" signature="1885:2145" placeholder="{...}" />
-            <marker date="1435733335785" expanded="true" signature="1926:1977" placeholder="{...}" />
-            <marker date="1435733335785" expanded="true" signature="2033:2140" placeholder="{...}" />
-          </folding>
+        <state vertical-scroll-proportion="20.236364">
+          <caret line="61" column="14" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/course/CourseView.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="168.2069">
+          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/uniteditor/AuthoringSettingsView.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="176" column="67" selection-start-line="176" selection-start-column="67" selection-end-line="176" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/controller/CourseSaveCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/controller/CourseSavedCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3153457">
+          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/course/ToolBarMediator.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="113" column="13" selection-start-line="113" selection-start-column="13" selection-end-line="113" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/RotterdamNotifications.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/as3-signals/src/org/osflash/signals/OnceSignal.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/title/TitleMediator.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.724138">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Flex/13.0_AIR16.0/frameworks/projects/mobilecomponents/src/spark/components/TabbedViewNavigator.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.115942">
+          <caret line="147" column="3" selection-start-line="147" selection-start-column="3" selection-end-line="147" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/title/TitleView.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.3793104">
+          <caret line="109" column="90" selection-start-line="109" selection-start-column="90" selection-end-line="109" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/schedule/ScheduleView.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3322091">
+          <caret line="177" column="38" selection-start-line="177" selection-start-column="38" selection-end-line="177" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clarityenglish/components/CancelableTabbedViewNavigator.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.43338954">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/title/WebTabbedViewNavigatorSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6895943">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/title/ui/LogOutButtonSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.423077">
+          <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/title/TitleSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.076923">
+          <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/unit/AddVideoButtonSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.2226149">
+          <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/ui/OrangeButtonSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.65384614">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="40" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/course/AddUnitButtonSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.307692">
+          <caret line="76" column="107" selection-start-line="76" selection-start-column="107" selection-end-line="76" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/ui/GreenButtonSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.1538463">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/view/course/ToolBarView.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6932624">
+          <caret line="212" column="42" selection-start-line="212" selection-start-column="19" selection-end-line="212" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/uniteditor/AuthoringSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.961538">
+          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/uniteditor/AuthoringSettingsSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.076923">
+          <caret line="143" column="26" selection-start-line="143" selection-start-column="26" selection-end-line="143" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/controller/AuthoringWindowShowCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="61" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/com/clarityenglish/rotterdam/builder/controller/AuthoringSettingsWindowShowCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="76" selection-start-line="46" selection-start-column="76" selection-end-line="46" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/resources/rotterdam.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.0689654">
+          <caret line="224" column="70" selection-start-line="224" selection-start-column="70" selection-end-line="224" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Flex/13.0_AIR16.0/frameworks/projects/spark/src/spark/components/TitleWindow.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/course/ToolBarButtonSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.040564373">
+          <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/course/ToolBarSkin.mxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5687732">
-          <caret line="75" column="74" selection-start-line="75" selection-start-column="74" selection-end-line="75" selection-end-column="74" />
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="149" column="65" selection-start-line="149" selection-start-column="65" selection-end-line="149" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/title/ui/TabBarButtonSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4303351">
+          <caret line="59" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/skins/rotterdam/title/ui/DoneButtonSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="20.692308">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamPlayer/src/player.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.24138">
+          <caret line="82" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamPlayer/src/skins/rotterdam/player/courseselector/CourseSelectorSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.076923">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="25" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/courseselector/FilterFilteringFormSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7266314">
+          <caret line="58" column="50" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="50" />
+          <folding>
+            <marker date="1436152762152" expanded="true" signature="-1:-1" placeholder="/**This skin defines a contentGroup for the Form container with a ...*/" />
+            <marker date="1436152762152" expanded="true" signature="-1:-1" placeholder="/** @copy spark.skins.spark.ApplicationSkin#hostComponent ...*/" />
+            <marker date="1436152762152" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152762152" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152762152" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/courseselector/FilteringFormHeadingSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46737212">
+          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="79" selection-end-column="13" />
+          <folding>
+            <marker date="1436152675090" expanded="true" signature="-1:-1" placeholder="/**@see spark.components.FormHeading ...*/" />
+            <marker date="1436152675090" expanded="true" signature="-1:-1" placeholder="/** @copy spark.skins.spark.ApplicationSkin#hostComponent ...*/" />
+            <marker date="1436152675090" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152675090" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152675090" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152675090" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152675090" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152675090" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152675090" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152675090" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/courseselector/FilteringFormItemSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.340388">
+          <caret line="72" column="66" selection-start-line="72" selection-start-column="66" selection-end-line="72" selection-end-column="66" />
+          <folding>
+            <marker date="1436152956754" expanded="true" signature="-1:-1" placeholder="/**@see spark.components.FormItem ...*/" />
+            <marker date="1436152956754" expanded="true" signature="-1:-1" placeholder="/** @copy spark.skins.spark.ApplicationSkin#hostComponent ...*/" />
+            <marker date="1436152956754" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152956754" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152956754" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152956754" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152956754" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152956754" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152956754" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152956754" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152956754" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152956754" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152956754" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1436152956754" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/builder.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.275862">
+          <caret line="118" column="82" selection-start-line="118" selection-start-column="82" selection-end-line="118" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/courseselector/CourseSelectorMediator.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="12" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoLibraries/Rotterdam/src/com/clarityenglish/rotterdam/view/courseselector/CourseSelectorView.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.551724">
+          <caret line="181" column="33" selection-start-line="181" selection-start-column="33" selection-end-line="181" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BentoTitles/RotterdamBuilder/src/skins/rotterdam/builder/courseselector/CourseSelectorSkin.mxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4293915">
+          <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>jquery</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>3.6.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>ActiveReading|ActiveReading|ActiveReading</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>FlexUnit</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

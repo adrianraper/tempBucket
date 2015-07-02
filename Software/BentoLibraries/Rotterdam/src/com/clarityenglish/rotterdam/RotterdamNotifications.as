@@ -95,6 +95,7 @@
 		// gh#849
 		public static const SETTINGS_SHOW:String = "rotterdam/settings_show";
 		public static const SCHEDULE_SHOW:String = "rotterdam/schedule_show";
+		//public static const BACK_TO_COURSE:String = "rotterdam/back_to_course";
 	}
 	
 }

@@ -43,6 +43,7 @@
 				BBNotifications.COURSE_STARTED,
 				RotterdamNotifications.SETTINGS_SHOW,
 				RotterdamNotifications.SCHEDULE_SHOW,
+				//RotterdamNotifications.BACK_TO_COURSE
 			]);
 		}
 		
@@ -51,6 +52,7 @@
 			
 			switch (note.getName()) {
 				case BBNotifications.COURSE_STARTED:
+				//case RotterdamNotifications.BACK_TO_COURSE:
 					view.showCourseView();
 					break;
 				case RotterdamNotifications.SETTINGS_SHOW:
@@ -59,7 +61,7 @@
 				case RotterdamNotifications.SCHEDULE_SHOW:
 					view.showScheduleView();
 					break;
-			}
+            }
 		}
 		
 		protected function onDirtyWarningShow(next:Function):void {

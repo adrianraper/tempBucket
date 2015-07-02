@@ -80,7 +80,6 @@ courseselector|CourseSelectorView {
 courseselector|CourseSelectorView s|List#courseList s|VScrollBar {
 	skinClass:ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
 }
-
 @media (os-platform: "IOS"), (os-platform: "Android") {
 	courseselector|CourseSelectorView s|List#courseList s|VScrollBar {
 		skinClass:ClassReference("spark.skins.mobile.VScrollBarSkin");

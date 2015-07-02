@@ -36,6 +36,9 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		public var answersLabel:Label;
 		
 		[SkinPart]
+		public var correctLabel:Label;
+
+		[SkinPart]
 		public var feedbackLabel:Label;
 
 		[SkinPart]
@@ -73,9 +76,10 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		[Bindable]
 		public var answers:ListCollectionView;
-		
+
+        [Bindable]
 		public var widgetNode:XML;
-		
+
 		public var exerciseSave:Signal = new Signal(XML, XML, Href);
 		public var showSettings:Signal = new Signal(Href);
 		
@@ -94,7 +98,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			super.onRemovedFromStage(event);
 			removeEventListener(AuthoringEvent.OPEN_SETTINGS, openSettings);
 		}
-		
+
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
@@ -105,7 +109,6 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
             if (exerciseGenerator.getSettingParam("exerciseType") == Question.GAP_FILL_QUESTION) {
                 var gapEditManager:GapEditManager = new GapEditManager();
                 var nextGapId:uint = getHighestGapId();
-                log.debug("next gap id={0}", nextGapId);
                 gapEditManager.initialiseGapIds(nextGapId);
             }
 
@@ -122,6 +125,9 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					break;
 				case answersLabel:
 					instance.text = copyProvider.getCopyForId("authoringAnswersLabel");
+					break;
+				case correctLabel:
+					instance.text = copyProvider.getCopyForId("authoringCorrectLabel");
 					break;
 				case feedbackLabel:
 					instance.text = copyProvider.getCopyForId("authoringFeedbackLabel");
@@ -328,7 +334,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		}
 		
 		protected function onAnswerAdded(event:Event = null):void {
-			if (answers) answers.addItem(<answer correct='true' />);
+			if (answers) answers.addItem(<answer correct='false' />);
 		}
 		
 		protected function onAnswerDeleted(event:AnswerDeleteEvent):void {

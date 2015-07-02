@@ -50,12 +50,36 @@
         /**
          * @private
          */
-        private var cornerRadius:Number = 2;
+        private var cornerRadius:Number = 6;
     </fx:Script>
 
     <fx:Declarations>
-        <s:GlowFilter id="glowFilter" alpha="0.6" blurX="2" blurY="2" color="0x000000" knockout="false" quality="10" />
+        <s:GlowFilter id="glowFilter" alpha="0.6" blurX="2" blurY="0" color="0x000000" knockout="false" quality="10" />
+        <s:DropShadowFilter id="dropShadowFilter" blurX="2" blurY="0" angle="-90" distance="0.5" alpha="0.8" />
     </fx:Declarations>
+
+    <fx:Script>
+		<![CDATA[
+
+        override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+            /*
+            if (shadow) {
+                if (getStyle("buttonHeight"))
+                    shadow.height = getStyle("buttonHeight");
+                else
+                    shadow.height = 35;
+            }
+            */
+            if (filler) {
+                if (getStyle("buttonHeight"))
+                    filler.height = getStyle("buttonHeight");
+                else
+                    filler.height = 35;
+            }
+            super.updateDisplayList(unscaledWidth, unscaledHeight);
+        }
+        ]]>
+	</fx:Script>
 
     <s:transitions>
         <s:Transition fromState="up" toState="over" autoReverse="true" >
@@ -65,7 +89,6 @@
         <s:Transition  fromState="over" toState="up" autoReverse="true" >
             <s:AnimateColor targets="{[color1, color2]}" duration="300" />
         </s:Transition>
-
     </s:transitions>
 
     <!-- states -->
@@ -80,21 +103,21 @@
         <s:State name="disabledAndSelected" stateGroups="disabledStates, selectedStates" />
     </s:states>
 
-    <!-- layer 2: fill -->
-    <!--- @private -->
-    <s:Group id="trapezoidTab" left="0" right="0" top="0" bottom="0" filters="{glowFilter}">
-        <s:Path left="0" right="0" top="0" bottom="0" >
-            <s:data>M110.999 37.2583C111.778 39.3154 110.616 40.999 108.416 40.999L4 40.999C1.7998 40.999 0 39.1992 0 36.999L0 4C0 1.7998 1.7998 0 4 0L92.8911 0C95.0913 0 97.5283 1.68359 98.3076 3.74072L110.999 37.2583Z</s:data>
-            <s:fill>
-                <s:LinearGradient rotation="90">
-                    <s:GradientEntry id="color1" color.selectedStates="#FFC700" color.over="#FFD43B" color.down="#FFD43B" color.up="#F2F2F2" ratio="0.5" />
-                    <s:GradientEntry id="color2" color.selectedStates="#FF9D00" color.over="#FFE382" color.down="#FFE382" color.up="#E6E6E6" />
-                </s:LinearGradient>
-            </s:fill>
-        </s:Path>
-        <s:Label id="labelDisplay"
-                 horizontalCenter="-6" verticalCenter="2" paddingRight="10" paddingLeft="10" fontWeight="bold" fontSize="13">
-        </s:Label>
-    </s:Group>
+    <s:Rect id="filler" left="0" right="0" filters="{dropShadowFilter}"
+            topLeftRadiusX="{cornerRadius}" topLeftRadiusY="{cornerRadius}" topRightRadiusX="{cornerRadius}" topRightRadiusY="{cornerRadius}" >
+        <s:fill>
+            <s:LinearGradient rotation="90">
+                <s:GradientEntry id="color1" color="#ffffff" color.selectedStates="#333333" color.down="#373737" ratio="0" />
+                <s:GradientEntry id="color2" color="#dcdcdc" color.selectedStates="#595959" color.down="#111111" ratio="1"/>
+            </s:LinearGradient>
+        </s:fill>
+    </s:Rect>
+
+    <s:Label id="labelDisplay"
+             maxDisplayedLines="1"
+             horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
+             color.up="#666666" color.over="#666666" color="#ffffff"
+            left="10" right="10" top="4" bottom="4">
+    </s:Label>
 
 </s:SparkButtonSkin>

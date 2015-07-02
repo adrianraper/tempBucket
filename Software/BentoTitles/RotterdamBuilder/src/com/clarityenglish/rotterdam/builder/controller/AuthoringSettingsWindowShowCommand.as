@@ -1,6 +1,8 @@
 package com.clarityenglish.rotterdam.builder.controller {
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.rotterdam.builder.view.uniteditor.AuthoringSettingsView;
+import com.clarityenglish.common.model.CopyProxy;
+import com.clarityenglish.common.model.interfaces.CopyProvider;
+import com.clarityenglish.rotterdam.builder.view.uniteditor.AuthoringSettingsView;
 	
 	import flash.display.DisplayObject;
 	
@@ -39,10 +41,12 @@ package com.clarityenglish.rotterdam.builder.controller {
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
 			titleWindow.styleName = "markingTitleWindow"; //... if we want to skin the title window
-			titleWindow.title = "Authoring Settings";
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
-			
-			var authoringSettingsView:AuthoringSettingsView = new AuthoringSettingsView();
+
+            var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
+            titleWindow.title = copyProvider.getCopyForId('authoringSettingsTitleWindow');
+
+            var authoringSettingsView:AuthoringSettingsView = new AuthoringSettingsView();
 			authoringSettingsView.percentWidth = authoringSettingsView.percentHeight = 100;
 			authoringSettingsView.href = href;
 			titleWindow.addElement(authoringSettingsView);

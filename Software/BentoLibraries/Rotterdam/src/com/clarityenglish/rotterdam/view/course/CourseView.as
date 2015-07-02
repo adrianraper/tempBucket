@@ -86,7 +86,7 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		[SkinPart]
 		public var anim:Animate;
-		
+
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
 		
@@ -287,7 +287,7 @@ package com.clarityenglish.rotterdam.view.course {
 					break;
 				case settingsButton:
 					instance.addEventListener(MouseEvent.CLICK, onSettingsClick);
-					instance.label = copyProvider.getCopyForId("settingButton");
+					instance.label = copyProvider.getCopyForId("courseSettingsLabel");
 					break;
 				case anim:
 					anim.addEventListener(EffectEvent.EFFECT_END, onAnimEnd);
@@ -297,7 +297,7 @@ package com.clarityenglish.rotterdam.view.course {
 					break;
 			}
 		}
-		
+
 		protected function onExpandUnitListButtonClick(event:MouseEvent):void {
 			if (event.target.selected) {
 				unitListExpandAnimate.play();

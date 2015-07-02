@@ -179,14 +179,18 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					filterTextInput.addEventListener(Event.CHANGE, onChangeFilter);
 					break;
 				case filterOwner:
+                    // gh#1253 start with nothing filtered out
+                    instance.selected = true;
 					instance.label = copyProvider.getCopyForId("filterOwnerCourses");
 					instance.addEventListener(Event.CHANGE, onChangeFilter);
 					break;
 				case filterCollaborator:
+                    instance.selected = true;
 					instance.label = copyProvider.getCopyForId("filterCollaboratorCourses");
 					instance.addEventListener(Event.CHANGE, onChangeFilter);
 					break;
 				case filterPublisher:
+                    instance.selected = true;
 					instance.label = copyProvider.getCopyForId("filterPublisherCourses");
 					instance.addEventListener(Event.CHANGE, onChangeFilter);
 					break;
@@ -343,8 +347,9 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					if ((item.hasOwnProperty("@enabledFlag") && item.@enabledFlag & Course.EF_PUBLISHER))
 						keepItem = true;
 				}
-				if (!filterOwner.selected && !filterCollaborator.selected && !filterPublisher.selected)
-					keepItem = true;
+                // gh#1253
+				//if (!filterOwner.selected && !filterCollaborator.selected && !filterPublisher.selected)
+				//	keepItem = true;
 				
 				// If you type any text, that gets rid of unmatching items
 				if (filterTextInput.text) {

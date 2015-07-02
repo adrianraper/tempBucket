@@ -135,7 +135,7 @@
 		<s:Label includeIn="link" id="webLinkTextLabel" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:TextInput includeIn="link" id="captionTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" />	
 		
-		<s:HGroup includeIn="authoring" paddingLeft="20" >
+		<s:HGroup includeIn="authoring" paddingLeft="20" paddingTop="10">
 			<s:Button id="authoringMultipleChoiceButton" />
 			<s:Button id="authoringGapFillButton"  />
 			<s:Button id="authoringDrapAndDropButton" enabled="false" />
@@ -147,7 +147,7 @@
 	</s:HGroup>
 	
 	<!-- font formatting -->
-	<s:HGroup includeIn="normal" bottom="0" height="48" left="168" gap="8" verticalAlign="middle">
+	<s:HGroup includeIn="normal" bottom="0" height="48" left="176" gap="8" verticalAlign="middle">
 		<!--s:Label includeIn="normal" paddingTop="5" text="Font weight" fontWeight="bold" color="#FFFFFF" /-->
 		<s:ToggleButton id="boldButton" label="B" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
 		<s:ToggleButton id="underlineButton" label="U" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" textDecoration="underline"/>

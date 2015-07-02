@@ -73,6 +73,9 @@ title|TitleView s|ButtonBar {
 title|TitleView s|Button#logoutButton {
 	skinClass: ClassReference("skins.rotterdam.title.ui.LogOutButtonSkin");
 }
+title|TitleView s|Button#backButton {
+    skinClass: ClassReference("skins.rotterdam.title.ui.DoneButtonSkin");
+}
 
 saveerror|SavingErrorView {
 	skinClass: ClassReference("skins.rotterdam.builder.error.SavingErrorSkin");
@@ -92,9 +95,8 @@ courseselector|CourseSelectorView s|Button#createCourseButton {
 courseselector|CourseSelectorView s|List s|HScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.HorizontalScrollBarSkin");
 }
-
-courseselector|CourseSelectorView s|List s|VScrollBar {
-	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
+courseselector|CourseSelectorView s|List#courseList s|VScrollBar {
+    skinClass:ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
 }
 
 courseselector|CourseSelectorView s|ToggleButton#showFiltersToggleButton {
@@ -200,7 +202,6 @@ buildercourse|ToolBarView s|Button {
 	skinClass: ClassReference("skins.rotterdam.builder.course.ToolBarButtonSkin");
 	fontSize: 13;
 }
-
 buildercourse|ToolBarView s|ToggleButton {
 	skinClass: ClassReference("skins.rotterdam.builder.course.ToolBarToggleButtonSkin");
 	fontSize: 13;
@@ -224,6 +225,10 @@ buildercourse|ToolBarView s|Button#downButton {
 
 buildercourse|ToolBarView s|Button#normalSaveButton {
 	skinClass: ClassReference("skins.rotterdam.unit.SaveButtonSkin");
+}
+
+buildercourse|ToolBarView #authoringMultipleChoiceButton, #authoringGapFillButton, #authoringDrapAndDropButton, #authoringTargetSpottingButton, #authoringErrorCorrectionButton, #authoringDropdownButton {
+    skinClass: ClassReference("skins.rotterdam.ui.GreenButtonSkin");
 }
 
 buildercourse|ToolBarView s|Button#normalAddVideoButton, buildercourse|ToolBarView s|Button#listAddVideoButton{
@@ -342,19 +347,27 @@ uniteditor|AuthoringView {
 }
 
 uniteditor|AuthoringView s|Button#okButton {
-	skinClass:ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
+	skinClass:ClassReference("skins.rotterdam.title.ui.DoneButtonSkin");
+}
+uniteditor|AuthoringSettingsView s|Button#okButton {
+    skinClass:ClassReference("skins.rotterdam.title.ui.DoneButtonSkin");
 }
 
 uniteditor|AuthoringView s|Button#cancelButton {
 	skinClass:ClassReference("skins.rotterdam.ui.GreyButtonSkin");
 }
-
+/**
+ * This doesn't work
+ *
+uniteditor|AuthoringView s|TitleWindow#backgroundFill {
+    color: #ff0000;
+}
+*/
 uniteditor|AuthoringView s|Label {
 	fontSize: 12;
 	color: #000000;
 	textAlign: left;
 }
-
 uniteditor|AuthoringView s|Label#questionCaption {
 	fontSize: 14;
 	color: #000000;
@@ -362,6 +375,7 @@ uniteditor|AuthoringView s|Label#questionCaption {
 }
 
 uniteditor|AuthoringView s|TextInput {
+    fontSize: 14;
 	cornerRadius: 4;
 	skinClass:ClassReference("skins.rotterdam.builder.RoundedTextInputSkin");
 }
@@ -369,6 +383,7 @@ uniteditor|AuthoringView s|TextInput {
 uniteditor|AuthoringView s|TextArea {
 	cornerRadius: 4;
 	skinClass:ClassReference("skins.rotterdam.builder.RoundedTextAreaSkin");
+    fontSize: 14;
 }
 
 uniteditor|AuthoringSettingsView {

@@ -175,7 +175,7 @@ import spark.components.Label;
 			switch (instance) {
 				case okButton:
 					okButton.addEventListener(MouseEvent.CLICK, onOkButton);
-					okButton.label = copyProvider.getCopyForId("okButton");
+					okButton.label = copyProvider.getCopyForId("doneButton");
 					break;
 				case questionStartNumberTextInput:
 					questionStartNumberTextInput.restrict = "0-9";
