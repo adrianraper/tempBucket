@@ -1,7 +1,8 @@
 ﻿package com.clarityenglish.rotterdam.view.unit {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
-	import com.clarityenglish.bento.vo.ExerciseMark;
+import com.clarityenglish.bento.view.DynamicView;
+import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
     import com.clarityenglish.bento.model.ExerciseProxy;
@@ -12,8 +13,10 @@
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
     import com.clarityenglish.rotterdam.view.unit.widgets.AuthoringWidget;
-	
-	import flash.events.ProgressEvent;
+
+import flash.display.Stage;
+
+import flash.events.ProgressEvent;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	
@@ -274,9 +277,10 @@
 		protected function onExerciseSwitch(exercise:Exercise):void {
 			facade.sendNotification(BBNotifications.EXERCISE_SWITCH, exercise);
 		}
-		
-		protected function onShowMarking(exercise:Exercise):void {
-			sendNotification(BBNotifications.MARKING_SHOW, { exercise: exercise } );
+
+        // gh#1256 Send the view so marking can be aligned
+		protected function onShowMarking(exercise:Exercise, widgetView:DynamicView=null):void {
+			sendNotification(BBNotifications.MARKING_SHOW, { exercise: exercise, view: widgetView  } );
 		}
         private function onShowFeedback():void {
             sendNotification(BBNotifications.EXERCISE_SHOW_FEEDBACK);

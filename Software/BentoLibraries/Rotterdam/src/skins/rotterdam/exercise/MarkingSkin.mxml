@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        width="160" height="150">
+
+    <!-- host component -->
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.bento.view.marking.MarkingView")]
+    </fx:Metadata>
+
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" angle="90" distance="5" alpha="0.5" blurX="5" blurY="5" />
+        <s:DropShadowFilter id="dropShadowElementFilter" angle="70" distance="1.5" alpha="0.8" />
+    </fx:Declarations>
+
+    <s:states>
+        <s:State name="disabled" />
+        <s:State name="normal" />
+    </s:states>
+
+    <s:Group id="content" width="150" height="155">
+            <s:VGroup left="20" top="10">
+                <s:Label id="overallScoreLabel"  />
+                <s:Spacer height="6"/>
+                <s:Label id="correctLabel" color="#2CA874" fontSize="12" />
+                <s:Label id="wrongLabel" color="#E61E1E" fontSize="12" />
+                <s:Label id="missedLabel" color="#0066FF" fontSize="12" />
+            </s:VGroup>
+    </s:Group>
+
+    <s:HGroup horizontalCenter="0" bottom="20" >
+        <s:Button id="seeAnswersButton" buttonMode="true" useHandCursor="true"/>
+    </s:HGroup>
+
+</s:Skin>

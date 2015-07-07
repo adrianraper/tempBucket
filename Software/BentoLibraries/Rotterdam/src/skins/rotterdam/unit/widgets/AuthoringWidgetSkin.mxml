@@ -44,7 +44,7 @@
 	<!-- Exercise controls -->
 	<s:HGroup width="100%" left="5" right="40" horizontalAlign="right" top="2">
 		<s:Button id="markingButton" />
-        <s:Button id="feedbackButton" />
+        <s:Button id="feedbackButton" visible="false" />
 	</s:HGroup>
 	
 	<!-- widget caption -->

@@ -45,13 +45,13 @@ package com.clarityenglish.bento.view.marking {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case tryAgainButton:
-					tryAgainButton.addEventListener(MouseEvent.CLICK, onTryAgainButton);
-					tryAgainButton.label = copyProvider.getCopyForId("tryAgainButton");
-					break;
 				case seeAnswersButton:
 					seeAnswersButton.addEventListener(MouseEvent.CLICK, onSeeAnswersButton);
 					seeAnswersButton.label = copyProvider.getCopyForId("seeAnswersButton");
+					break;
+				case tryAgainButton:
+					tryAgainButton.addEventListener(MouseEvent.CLICK, onTryAgainButton);
+					tryAgainButton.label = copyProvider.getCopyForId("tryAgainButton");
 					break;
 				case moveForwardButton:
 					moveForwardButton.addEventListener(MouseEvent.CLICK, onMoveForwardButton);
@@ -85,10 +85,10 @@ package com.clarityenglish.bento.view.marking {
 					tryAgainButton.removeEventListener(MouseEvent.CLICK, onTryAgainButton);
 					break;
 				case seeAnswersButton:
-					seeAnswersButton.removeEventListener(MouseEvent.CLICK, onTryAgainButton);
+					seeAnswersButton.removeEventListener(MouseEvent.CLICK, onSeeAnswersButton);
 					break;
 				case moveForwardButton:
-					moveForwardButton.removeEventListener(MouseEvent.CLICK, onTryAgainButton);
+					moveForwardButton.removeEventListener(MouseEvent.CLICK, onMoveForwardButton);
 					break;
 			}
 		}

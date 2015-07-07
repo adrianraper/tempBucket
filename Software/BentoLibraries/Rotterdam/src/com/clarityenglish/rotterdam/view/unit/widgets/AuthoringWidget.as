@@ -5,7 +5,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	
 	import flash.events.Event;
-	import flash.events.MouseEvent;
+import flash.events.MouseEvent;
+import flash.events.MouseEvent;
 	
 	import mx.events.ResizeEvent;
 	
@@ -101,10 +102,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				exerciseSwitch.dispatch(dynamicView.xhtml as Exercise);
 		}
 		
-		protected function onShowMarking(e:Event):void {
+		protected function onShowMarking(e:MouseEvent):void {
 			// Mark exercise
 			if (dynamicView.xhtml is Exercise)
-				showMarking.dispatch(dynamicView.xhtml as Exercise);
+                // gh#1256 Send the view so marking can be aligned
+				showMarking.dispatch(dynamicView.xhtml as Exercise, dynamicView);
 		}
 		
 		/**

@@ -5,8 +5,10 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.view.marking.MarkingView;
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.content.Exercise;
-	
-	import flash.display.DisplayObject;
+import com.clarityenglish.common.model.CopyProxy;
+import com.clarityenglish.common.model.interfaces.CopyProvider;
+
+import flash.display.DisplayObject;
 	
 	import mx.core.FlexGlobals;
 	import mx.events.CloseEvent;
@@ -36,7 +38,7 @@ package com.clarityenglish.bento.controller {
 			super.execute(note);
 			
 			var exercise:Exercise = note.getBody().exercise as Exercise;
-			
+
 			// Get the marks
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
 			var exerciseMark:ExerciseMark = exerciseProxy.getExerciseMark();
@@ -44,23 +46,25 @@ package com.clarityenglish.bento.controller {
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
 			titleWindow.styleName = "markingTitleWindow";
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			if (configProxy.getConfig().languageCode == "NAMEN") {
-				titleWindow.title = "Scoring";
-			} else {
-				titleWindow.title = "Marking";
-			}
-			
+            var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
+			titleWindow.title = copyProvider.getCopyForId('exerciseMarkingButton');
+
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
 			
 			var markingView:MarkingView = new MarkingView();
 			markingView.exerciseMark = exerciseMark;
 			titleWindow.addElement(markingView);
 			
+            // gh#1256 See if the view was sent so marking can be aligned
+            if (note.getBody().view) {
+                var parentDisplayObject:DisplayObject = note.getBody().view as DisplayObject;
+            } else {
+			    parentDisplayObject = FlexGlobals.topLevelApplication as DisplayObject;
+            }
 			// Create and centre the popup
-			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, false, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
-			PopUpManager.centerPopUp(titleWindow);
-			
+            PopUpManager.addPopUp(titleWindow, parentDisplayObject, false, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
+            PopUpManager.centerPopUp(titleWindow);
+
 			// Hide the close button
 			titleWindow.closeButton.visible = false;
 			

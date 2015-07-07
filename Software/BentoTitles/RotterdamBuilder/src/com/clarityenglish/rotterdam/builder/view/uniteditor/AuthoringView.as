@@ -87,7 +87,6 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		public function get DELETE_ME_XML():XML { return _xhtml.xml; }
 
-        [Bindable]
         public function get questionType():String {
             return (_questionType) ? _questionType : null;
         }

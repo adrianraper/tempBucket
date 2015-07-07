@@ -23,6 +23,7 @@
 @namespace help "com.clarityenglish.rotterdam.builder.view.help.*";
 @namespace saveerror "com.clarityenglish.rotterdam.builder.view.error.*";
 @namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
+@namespace marking "com.clarityenglish.bento.view.marking.*";
 
 /** For some reason this isn't getting picked up even though it is in Rotterdam defaults, so duplicate it here */
 components|XHTMLExerciseView {
@@ -483,6 +484,13 @@ help|HelpView {
 help|HelpView s|Button#helpButton {
 	skinClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
 	buttonHeight: 40;
+}
+
+marking|MarkingView {
+    skinClass: ClassReference("skins.rotterdam.exercise.MarkingSkin");
+}
+marking|MarkingView s|Button#seeAnswersButton {
+    skinClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
 }
 
 .authoringTitleWindow {
