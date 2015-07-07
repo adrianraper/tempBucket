@@ -33,7 +33,7 @@
     </s:Rect>
 
     <!--Left column-->
-    <s:VGroup width="270" height="80%" top="138" horizontalAlign="center" gap="40">
+    <s:VGroup left="5" width="270" height="80%" top="138" horizontalAlign="center" gap="40">
         <vo:PieChartButton id="pieChartButton" width="200" height="200" node="{hostComponent.course}" fillColor="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}" bottomColor="{getStyle('pieChartBottomColor')[hostComponent.course.childIndex()]}" backgroundColor="#EEEFF0"/>
 
         <s:HGroup width="250" height="40" horizontalAlign="center" verticalAlign="middle" gap="20">
@@ -59,8 +59,8 @@
             </s:Rect>
         </s:HGroup>
 
-        <s:Label id="skillCaptionLabel" paddingLeft="-40" fontWeight="bold" fontFamily="Helvetica" fontSize="15" />
-        <s:Label id="skillContentLabel" fontSize="14" width="160" paddingTop="-30" />
+        <s:Label id="skillCaptionLabel" paddingLeft="-95" fontWeight="bold" fontFamily="Helvetica" fontSize="15" />
+        <s:Label id="skillContentLabel" fontSize="14" width="190" paddingTop="-30" lineHeight="25" />
     </s:VGroup>
 
     <s:TabbedViewNavigator id="zoneViewNavigator" top="112" bottom="50" left="270" right="15" creationPolicy="all">

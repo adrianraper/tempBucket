@@ -142,7 +142,7 @@ import spark.primitives.Rect;
                 _isCourseChanged = false;
                 hasCourseChanged = true;
 
-                skillContentLabel.text = copyProvider.getCopyForId(course.attribute("class") + "Skill");
+                skillContentLabel.text = copyProvider.getCopyForId("skillContent" + course.childIndex());
             }
 
             if (hasCourseChanged && _everyoneCourseSummariesChanged) {

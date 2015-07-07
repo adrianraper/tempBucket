@@ -53,7 +53,7 @@ public class StartOutZoneView extends BentoView {
                     introductionVideoSelector.channelCollection = channelCollection;
                     break;
                 case startOutLabel:
-                    startOutLabel.text = copyProvider.getCopyForId("startOutLabel") + data.childIndex();
+                    startOutLabel.text = copyProvider.getCopyForId("startOutLabel" + data.childIndex());
                     break;
             }
         }
