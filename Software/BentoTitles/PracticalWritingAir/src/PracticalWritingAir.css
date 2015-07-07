@@ -1,9 +1,11 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace practicalwriting "com.clarityenglish.practicalwriting.*";
+@namespace login "com.clarityenglish.bento.view.login.*";
 @namespace video "com.clarityenglish.controls.video.*";
 @namespace nonetwork "com.clarityenglish.bento.view.nonetwork.*";
 @namespace settings "com.clarityenglish.practicalwriting.view.settings.*";
+@namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 
 practicalwriting|PracticalWritingApplication {
     skinClass: ClassReference("skins.practicalwritingair.PracticalWritingApplicationSkin");
@@ -21,4 +23,29 @@ practicalwriting|PracticalWritingApplication {
 
 nonetwork|NoNetworkView {
     skinClass: ClassReference("skins.practicalwritingair.nonetwork.NoNetworkSkin");
+}
+
+s|TextInput {
+    skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+    contentBackgroundColor: #FFFFFF;
+    contentBackgroundAlpha: 1;
+    paddingLeft: 10;
+    paddingRight: 10;
+}
+
+login|LoginView s|TextInput {
+    skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+    contentBackgroundColor: #FFFFFF;
+    contentBackgroundAlpha: 1;
+    paddingLeft: 10;
+    paddingRight: 10;
+    showPromptWhenFocused: false;
+}
+
+components|XHTMLExerciseView s|TextInput {
+    skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+    contentBackgroundColor: #FFFFFF;
+    contentBackgroundAlpha: 0;
+    paddingLeft: 0;
+    paddingRight: 0;
 }

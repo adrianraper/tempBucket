@@ -190,7 +190,7 @@ import spark.primitives.Rect;
                 case hoursTextInput:
                 case minsTextInput:
                 case secondsTextInput:
-                    instance.addEventListener(FlexEvent.VALUE_COMMIT, onValueCommit);
+                    instance.addEventListener(FlexEvent.ENTER, onValueCommit);
                     break;
                 case startButton:
                     startButton.addEventListener(MouseEvent.CLICK, onStartButtonClick);

@@ -133,6 +133,7 @@
 		public static const TIMER_START:String = "bb/timer_start";
 
 		public static const PROGRESS_SHOW:String = "bb/progress_show";
+		public static const SETTINGS_SHOW:String = "bb/settings_show";
 	}
 	
 }

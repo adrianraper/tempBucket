@@ -11,7 +11,7 @@ package skins.air.bento.exercise {
 	public class ExerciseTextInputSkin extends TextInputSkin {
 		
 		private var dropTargetBorder:Graphic;
-		
+
 		public function ExerciseTextInputSkin() {
 			super();
 			
@@ -35,7 +35,7 @@ package skins.air.bento.exercise {
 			super.commitProperties();
 			
 			if (hostComponent.editable) {
-				if (border) border.visible = true;
+				if (border) border.visible = false;
 				if (dropTargetBorder) dropTargetBorder.visible = false;
 			} else {
 				if (border) border.visible = false;
@@ -58,7 +58,7 @@ package skins.air.bento.exercise {
 			
 			// Very hacky fix for #403, but it seems to work
 			setElementSize(textDisplay, unscaledWidth + 4, textDisplay.height);
-			setElementPosition(textDisplay, -2, textDisplay.y);
+			setElementPosition(textDisplay, -4, textDisplay.y);
 		}
 		
 		override public function set currentState(value:String):void {

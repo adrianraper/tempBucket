@@ -34,11 +34,13 @@
                     // Set the iOS config xml file
                     FlexGlobals.topLevelApplication.parameters.configFile = "ios-config.xml";
                     XHTMLImporter.media = "ios";
+                    resizeForSoftKeyboard = true;
                     break;
                 case "AND":
                     // Set the Android config xml file as well as getting the prefix, product code and font size from the iOS settings
                     FlexGlobals.topLevelApplication.parameters.configFile = "android-config.xml";
                     XHTMLImporter.media = "android";
+                    resizeForSoftKeyboard =false;
                     break
                 default:
                     throw new Error("Unsupported platform - " + Capabilities.version);

@@ -77,6 +77,7 @@ import spark.managers.PersistenceManager;
         public var backToMenu:Signal = new Signal();
         public var logout:Signal = new Signal();
         public var goToProgress:Signal = new Signal();
+        public var goToSettings:Signal = new Signal();
 
         private var _selectedNode:XML;
         private var _isDirectStartCourse:Boolean;
@@ -192,6 +193,7 @@ import spark.managers.PersistenceManager;
                     break;
                 case goToSettingsButton:
                     goToSettingsButton.label = copyProvider.getCopyForId("settings");
+                    goToSettingsButton.addEventListener(MouseEvent.CLICK, onGoToSettingsButtonClick)
                     break;
                 case backToExercieButton:
                     backToExercieButton.label = copyProvider.getCopyForId("back");
@@ -250,6 +252,15 @@ import spark.managers.PersistenceManager;
             isProgressOpen = true;
 
             goToProgress.dispatch();
+        }
+
+        protected function onGoToSettingsButtonClick(event:MouseEvent):void {
+            sectionNavigator.left = menuToggleButton.left = 0;
+            sectionNavigator.right = 0;
+            menuToggleButton.selected = false;
+            isProgressOpen = true;
+
+            goToSettings.dispatch();
         }
 
         protected function onSectionNavigatorIndexChange(event:IndexChangeEvent):void {

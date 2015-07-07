@@ -166,11 +166,11 @@
                         </s:Rect>
                     </s:HGroup>
                     <s:HGroup horizontalAlign="center" verticalAlign="middle">
-                        <s:TextInput id="hoursTextInput" width="38" height="40" text="00" textAlign="center" color="0xFFFFFF" fontSize="20" contentBackgroundColor="#0A789D" />
+                        <s:TextInput id="hoursTextInput" width="38" height="40" text="00" textAlign="center" color="0xFFFFFF" fontSize="20" contentBackgroundColor="#0A789D" focusAlpha="0" softKeyboardType="number" />
                         <s:Label text=":" />
-                        <s:TextInput id="minsTextInput" width="38" height="40" text="00" textAlign="center" color="0xFFFFFF" fontSize="20" contentBackgroundColor="#0A789D" />
+                        <s:TextInput id="minsTextInput" width="38" height="40" text="00" textAlign="center" color="0xFFFFFF" fontSize="20" contentBackgroundColor="#0A789D" focusAlpha="0" softKeyboardType="number" />
                         <s:Label text=":" />
-                        <s:TextInput id="secondsTextInput" width="38" height="40" text="00" textAlign="center" color="0xFFFFFF" fontSize="20" contentBackgroundColor="#0A789D" />
+                        <s:TextInput id="secondsTextInput" width="38" height="40" text="00" textAlign="center" color="0xFFFFFF" fontSize="20" contentBackgroundColor="#0A789D" focusAlpha="0" softKeyboardType="number" />
                     </s:HGroup>
                 </s:VGroup>
 

@@ -37,6 +37,7 @@ public class TitleMediator extends BentoMediator implements IMediator {
             view.logout.add(onLogout);
             view.backToMenu.add(onBackToMenu);
             view.goToProgress.add(onGoToProgress);
+            view.goToSettings.add(onGoToSettings);
 
             var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
             var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
@@ -92,6 +93,7 @@ public class TitleMediator extends BentoMediator implements IMediator {
                 BBNotifications.SELECTED_NODE_CHANGED,
                 BBNotifications.SELECTED_NODE_UP,
                 BBNotifications.PROGRESS_SHOW,
+                BBNotifications.SETTINGS_SHOW,
             ]);
         }
 
@@ -104,6 +106,9 @@ public class TitleMediator extends BentoMediator implements IMediator {
                     break;
                 case BBNotifications.PROGRESS_SHOW:
                     view.sectionNavigator.selectedIndex = 1;
+                    break;
+                case BBNotifications.SETTINGS_SHOW:
+                    view.sectionNavigator.selectedIndex = 2;
                     break;
             }
         }
@@ -149,6 +154,16 @@ public class TitleMediator extends BentoMediator implements IMediator {
             if (exerciseProxy.attemptToLeaveExercise(new Notification(BBNotifications.PROGRESS_SHOW))) {
                 sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view); // #265
                 sendNotification(BBNotifications.PROGRESS_SHOW);
+            }
+        }
+
+        private function onGoToSettings():void {
+            var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+            var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(bentoProxy.currentExercise)) as ExerciseProxy;
+
+            if (exerciseProxy.attemptToLeaveExercise(new Notification(BBNotifications.SETTINGS_SHOW))) {
+                sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view); // #265
+                sendNotification(BBNotifications.SETTINGS_SHOW);
             }
         }
     }

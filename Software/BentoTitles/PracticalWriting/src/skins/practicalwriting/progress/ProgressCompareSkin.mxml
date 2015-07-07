@@ -91,7 +91,7 @@
     </s:HGroup>
 
     <!--Course list-->
-    <s:List top="56" left="0" id="chartList" contentBackgroundAlpha="0" borderVisible="false">
+    <s:List top="56" bottom="30" left="0" right="0" id="chartList" contentBackgroundAlpha="0" borderVisible="false">
         <s:layout>
             <s:VerticalLayout gap="15" />
         </s:layout>

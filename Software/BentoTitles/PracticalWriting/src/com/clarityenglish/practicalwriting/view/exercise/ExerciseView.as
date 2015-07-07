@@ -1,12 +1,15 @@
 package com.clarityenglish.practicalwriting.view.exercise {
 import com.clarityenglish.bento.events.ExerciseEvent;
 import com.clarityenglish.bento.view.exercise.ExerciseView;
+import com.clarityenglish.bento.view.timer.TimerComponent;
 import com.clarityenglish.practicalwriting.view.exercise.event.WindowShadeEvent;
 import com.clarityenglish.practicalwriting.view.exercise.ui.WindowShade;
 import com.googlecode.bindagetools.Bind;
 
 import flash.events.Event;
+import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
+import flash.events.SoftKeyboardEvent;
 import flash.utils.setTimeout;
 
 import mx.core.ClassFactory;
@@ -28,7 +31,7 @@ import spark.components.ToggleButton;
 import spark.events.IndexChangeEvent;
 import spark.primitives.Rect;
 
-public class ExerciseView extends com.clarityenglish.bento.view.exercise.ExerciseView {
+    public class ExerciseView extends com.clarityenglish.bento.view.exercise.ExerciseView {
 
         [SkinPart]
         public var unitLabel:Label;
@@ -41,6 +44,9 @@ public class ExerciseView extends com.clarityenglish.bento.view.exercise.Exercis
 
         [SkinPart]
         public var dynamicViewCover:Rect;
+
+        [SkinPart]
+        public var timerComponent:TimerComponent
 
         [Bindable]
         public var selectedExerciseNode:XML;
@@ -84,6 +90,10 @@ public class ExerciseView extends com.clarityenglish.bento.view.exercise.Exercis
                         }
                     });
                     break;
+                case timerComponent:
+                    timerComponent.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_ACTIVATE, onSoftKeyBoardActivate);
+                    timerComponent.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_DEACTIVATE, onSoftKeyBoardDeactivate);
+                    break;
             }
         }
 
@@ -117,6 +127,19 @@ public class ExerciseView extends com.clarityenglish.bento.view.exercise.Exercis
         protected function onWindowShadeClose(event:Event):void {
             dynamicView.enabled = true;
             dynamicViewCover.visible = false;
+        }
+
+        protected function onSoftKeyBoardActivate(event:Event):void {
+            trace("softkeyboard height: "+stage.softKeyboardRect.height);
+            if (!isPlatformiPad) {
+                timerComponent.bottom = stage.softKeyboardRect.height + 10;
+            }
+        }
+
+        protected function onSoftKeyBoardDeactivate(event:Event):void {
+            if (!isPlatformiPad) {
+                timerComponent.bottom = 0;
+            }
         }
     }
 }

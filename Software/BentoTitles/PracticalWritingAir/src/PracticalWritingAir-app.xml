@@ -111,8 +111,8 @@
 
 		<!-- Display Resolution for the app (either "standard" or "high"). Optional, OSX-only. Default "standard" -->
 		<!-- <requestedDisplayResolution></requestedDisplayResolution> -->
-	<aspectRatio>landscape</aspectRatio>
-	<autoOrients>true</autoOrients>
+		<aspectRatio>landscape</aspectRatio>
+		<autoOrients>true</autoOrients>
         <fullScreen>true</fullScreen>
         <visible>true</visible>
         <softKeyboardBehavior>none</softKeyboardBehavior>
@@ -160,12 +160,11 @@
 		<image512x512></image512x512>
 		<image732x412></image732x412>
 		<image1024x1024></image1024x1024>-->
-		<!--image57x57>icons/AR_iOS_appIcon_57.png</image57x57>
-		<image72x72>icons/AR_iOS_appIcon_72.png</image72x72>
-		<image76x76>icons/AR_iOS_appIcon_76.png</image76x76>
-		<image114x114>icons/AR_iOS_appIcon_114.png</image114x114>
-		<image144x144>icons/AR_iOS_appIcon_144.png</image144x144>
-		<image152x152>icons/AR_iOS_appIcon_152.png</image152x152-->
+		<image48x48>icons/PW_appIcon_48.png</image48x48>
+		<image72x72>icons/PW_appIcon_72.png</image72x72>
+		<image76x76>icons/PW_appIcon_76.png</image76x76>
+		<image144x144>icons/PW_appIcon_144.png</image144x144>
+		<image152x152>icons/PW_appIcon_152.png</image152x152>
 	</icon>
 
 	<!-- Whether the application handles the update when a user double-clicks an update version
@@ -291,6 +290,7 @@
 			    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>-->
 			    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>-->
 			    <application android:hardwareAccelerated="true"/>
+			    <activity android:windowSoftInputMode="adjustResize" />
 			</manifest>
             ]]>
 		</manifestAdditions>

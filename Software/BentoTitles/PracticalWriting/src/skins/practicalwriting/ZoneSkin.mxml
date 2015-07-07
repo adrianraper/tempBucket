@@ -63,7 +63,7 @@
         <s:Label id="skillContentLabel" fontSize="14" width="160" paddingTop="-30" />
     </s:VGroup>
 
-    <s:TabbedViewNavigator id="zoneViewNavigator" top="112" bottom="100" left="270" right="15" creationPolicy="all">
+    <s:TabbedViewNavigator id="zoneViewNavigator" top="112" bottom="50" left="270" right="15" creationPolicy="all">
         <s:ViewNavigator id="startOutViewNavigator" firstView="com.clarityenglish.practicalwriting.view.zone.StartOutZoneView" firstViewData="{hostComponent.course}" label="Start Out" left="0" right="0" top="0" bottom="0" />
         <s:ViewNavigator id="practiceZoneViewNavigator" firstView="com.clarityenglish.practicalwriting.view.zone.PracticeZoneView" firstViewData="{hostComponent.course}" label="Practice Zone" left="0" right="0" top="0" bottom="0" horizontalCenter="0" />
         <s:ViewNavigator id="resourcesViewNavigator" firstView="com.clarityenglish.practicalwriting.view.zone.ResourcesZoneView" firstViewData="{hostComponent.course}" label="Resources" left="0" right="0" top="0" bottom="0" />

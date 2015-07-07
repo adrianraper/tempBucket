@@ -129,6 +129,8 @@ import org.puremvc.as3.interfaces.IMediator;
 					view.hasPrintStylesheet = exercise.hasPrintStylesheet();
 					
 					view.hasVideoScript = exercise.hasVideoScript();
+
+					view.timerTotalTime = [];
 					
 					// #171
 					configureButtonVisibility(exercise);
