@@ -94,7 +94,7 @@
 						<mx:LinearAxis id="vaxis" minimum="0" maximum="{Math.ceil(maxValue/5)*5}" interval="{Math.ceil(maxValue/5)}" />
 					</mx:verticalAxis>
 					<mx:horizontalAxis>
-						<mx:CategoryAxis id="haxis" categoryField="month" title="12 months"/>
+						<mx:CategoryAxis id="haxis" categoryField="month" title="12 months use"/>
 					</mx:horizontalAxis>
 					<mx:horizontalAxisRenderers>
 						<mx:AxisRenderer axis="{haxis}" tickPlacement="none" minorTickPlacement="none" showLabels="false" showLine="false" />

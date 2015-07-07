@@ -105,6 +105,7 @@ EOD;
 	}
 	
 	public function exerciseCreate($courseID, $type, $filename) {
+        AbstractService::$debugLog->notice('RBS::'.Session::get('rootID')." creating questions for $courseID/".$filename);
 		return $this->exerciseOps->exerciseCreate($courseID, $type, $filename);
 	}
 	

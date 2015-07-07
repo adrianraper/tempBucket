@@ -234,7 +234,8 @@
             <lit name="authoringQuestionPrompt">type a question here</lit>
             <lit name="authoringAnswerPrompt">type an answer here</lit>
             <lit name="authoringFeedbackPrompt">type any feedback here</lit>
-            
+            <lit name="authoringQuestionFeedbackPrompt">type any feedback for this question here</lit>
+
             <lit name="authoringMultipleChoiceButton">Multiple choice</lit>
             <lit name="authoringGapfillButton">Gapfill</lit>
             <lit name="authoringDragAndDropButton">Drag and drop</lit>

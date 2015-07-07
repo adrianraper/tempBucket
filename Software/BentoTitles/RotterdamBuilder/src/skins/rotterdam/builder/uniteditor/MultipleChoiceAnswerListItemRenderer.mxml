@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+                xmlns:s="library://ns.adobe.com/flex/spark"
+                xmlns:mx="library://ns.adobe.com/flex/mx"
+                autoDrawBackground="false">
+    <fx:Script>
+	    <![CDATA[
+            import com.clarityenglish.rotterdam.builder.view.uniteditor.events.AnswerDeleteEvent;
+        ]]>
+    </fx:Script>
+    <!--  -->
+    <s:HGroup width="100%">
+         <s:Spacer width="15" />
+         <s:CheckBox width="30" selected="{data.@correct == 'true'}" change="data.@correct = event.currentTarget.selected" />
+         <s:TextInput width="200" text="{data.text()}" change="data.setChildren(event.currentTarget.text)" />
+         <!-- <s:Button skinClass="skins.rotterdam.ui.DeleteButtonSkin" click="dispatchEvent(new AnswerDeleteEvent(AnswerDeleteEvent.ANSWER_DELETE, data as XML, true))" /> -->
+    </s:HGroup>
+    <s:Button id="deleteAnswerButton" left="2" verticalCenter="0"
+                      skinClass="skins.rotterdam.ui.DeleteButtonSkin"
+                      visible="false" useHandCursor="true" buttonMode="true" scaleX="0.8" scaleY="0.8"
+                      click="dispatchEvent(new AnswerDeleteEvent(AnswerDeleteEvent.ANSWER_DELETE, data as XML, true))"  />
+</s:ItemRenderer>
+

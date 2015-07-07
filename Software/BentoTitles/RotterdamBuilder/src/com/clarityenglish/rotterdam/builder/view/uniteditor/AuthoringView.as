@@ -80,11 +80,18 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
         [Bindable]
 		public var widgetNode:XML;
 
+        private var _questionType:String;
+
 		public var exerciseSave:Signal = new Signal(XML, XML, Href);
 		public var showSettings:Signal = new Signal(Href);
 		
 		public function get DELETE_ME_XML():XML { return _xhtml.xml; }
-		
+
+        [Bindable]
+        public function get questionType():String {
+            return (_questionType) ? _questionType : null;
+        }
+
 		protected function get exerciseGenerator():ExerciseGenerator {
 			return _xhtml as ExerciseGenerator;
 		}
@@ -104,6 +111,9 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			
 			questions = new XMLListCollection(exerciseGenerator.questions.*);
 			log.debug("Loaded {0} questions from xml", questions.length);
+
+            // gh#1253
+            _questionType = exerciseGenerator.getSettingParam("exerciseType");
 
             // gh#1248 Pick up the highest gapID currently used ready for any more
             if (exerciseGenerator.getSettingParam("exerciseType") == Question.GAP_FILL_QUESTION) {
@@ -139,6 +149,9 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					});
 					questionTextArea.prompt = copyProvider.getCopyForId("authoringQuestionPrompt");
 					break;
+                case feedbackTextArea:
+                    feedbackTextArea.prompt = copyProvider.getCopyForId("authoringQuestionFeedbackPrompt");
+                    break;
 				case addGapButton:
 					addGapButton.addEventListener(MouseEvent.CLICK, onAddGap);
 					addGapButton.label = copyProvider.getCopyForId("authoringAddGapButton");

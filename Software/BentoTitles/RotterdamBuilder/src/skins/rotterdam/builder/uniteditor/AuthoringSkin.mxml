@@ -13,6 +13,7 @@
 		<![CDATA[
 
             var colWidth:uint = 250;
+
         ]]>
 	</fx:Script>
 	
@@ -86,20 +87,24 @@
                     <s:layout>
                         <s:VerticalLayout gap="4" />
                     </s:layout>
-					<s:itemRenderer>
-						<fx:Component>
-							<s:ItemRenderer>
+					<s:itemRenderer >
+						<fx:Component >
+							<s:ItemRenderer  mouseOver="deleteAnswerButton.visible = true" mouseOut="deleteAnswerButton.visible = false">
 								<fx:Script>
 									<![CDATA[
 										import com.clarityenglish.rotterdam.builder.view.uniteditor.events.AnswerDeleteEvent;
 									]]>
 								</fx:Script>
 								<s:HGroup width="{outerDocument.hostComponent.widgetNode.@span * outerDocument.colWidth}">
-									<s:CheckBox width="50" selected="{data.@correct == 'true'}" change="data.@correct = event.currentTarget.selected" />
+                                    <s:Spacer width="10" includeInLayout="{outerDocument.hostComponent.questionType == 'MultipleChoiceQuestion'}" visible="{outerDocument.hostComponent.questionType == 'MultipleChoiceQuestion'}" />
+									<s:CheckBox width="30" selected="{data.@correct == 'true'}" change="data.@correct = event.currentTarget.selected" includeInLayout="{outerDocument.hostComponent.questionType == 'MultipleChoiceQuestion'}" visible="{outerDocument.hostComponent.questionType == 'MultipleChoiceQuestion'}" />
+                                    <s:Spacer width="5" includeInLayout="{outerDocument.hostComponent.questionType == 'MultipleChoiceQuestion_questions'}" visible="{outerDocument.hostComponent.questionType == 'MultipleChoiceQuestion'}" />
 									<s:TextInput width="100%" text="{data.text()}" change="data.setChildren(event.currentTarget.text)" />
-                                    <s:Spacer width="2" />
-									<s:Button skinClass="skins.rotterdam.ui.DeleteButtonSkin" click="dispatchEvent(new AnswerDeleteEvent(AnswerDeleteEvent.ANSWER_DELETE, data as XML, true))" />
 								</s:HGroup>
+                                <s:Button id="deleteAnswerButton" right="2" verticalCenter="0"
+                                          skinClass="skins.rotterdam.ui.DeleteButtonSkin"
+                                          visible="false" useHandCursor="true" buttonMode="true" scaleX="0.8" scaleY="0.8"
+                                          click="dispatchEvent(new AnswerDeleteEvent(AnswerDeleteEvent.ANSWER_DELETE, data as XML, true))"  />
 							</s:ItemRenderer>
 						</fx:Component>
 					</s:itemRenderer>

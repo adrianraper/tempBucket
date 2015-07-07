@@ -3,7 +3,8 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
-	
+	import com.clarityenglish.common.model.ConfigProxy;
+
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	import mx.utils.UIDUtil;
