@@ -53,8 +53,15 @@ package com.clarityenglish.bento.controller {
 			feedback = note.getBody().feedback as Feedback;
 			var xhtml:XHTML = note.getBody().exercise as XHTML;
 			var substitutions:Object = note.getBody().substitutions;
-			
-			var feedbackNode:XML = xhtml.selectOne("#" + feedback.source);
+
+            // gh#1256 See if the view was sent so marking can be aligned
+            if (note.getBody().view) {
+                var parentDisplayObject:DisplayObject = note.getBody().view as DisplayObject;
+            } else {
+                parentDisplayObject = FlexGlobals.topLevelApplication as DisplayObject;
+            }
+
+            var feedbackNode:XML = xhtml.selectOne("#" + feedback.source);
 			if (feedbackNode) {
 				
 				if (substitutions) {
@@ -128,17 +135,18 @@ package com.clarityenglish.bento.controller {
 
 				// This is very hacky, but otherwise the feedback popup can hijack uncommitted textfields and break the tab flow.  There is probably
 				// a neater way to do this, but this works and doesn't seem to do any harm.
-				if (!titleWindowAdded) setTimeout(addPopupWindow, 150);
+				if (!titleWindowAdded) setTimeout(addPopupWindow, 150, parentDisplayObject);
 			} else {
 				log.error("Unable to find feedback source {0}", feedback.source);
 			}
 		}
 		
-		private function addPopupWindow():void {
-			// Create and centre the popup
-			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, false, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
-			PopUpManager.centerPopUp(titleWindow);
-			
+		private function addPopupWindow(parentDisplayObject:DisplayObject):void {
+
+            // Create and centre the popup
+            PopUpManager.addPopUp(titleWindow, parentDisplayObject, false, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
+            PopUpManager.centerPopUp(titleWindow);
+
 			titleWindowAdded = true;
 			
 			// Listen for the close event so that we can cleanup

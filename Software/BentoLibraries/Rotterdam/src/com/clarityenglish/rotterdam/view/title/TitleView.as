@@ -16,15 +16,18 @@ package com.clarityenglish.rotterdam.view.title {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
-import spark.components.Group;
-import spark.components.Label;
+    import spark.components.Group;
+    import spark.components.Label;
 	import spark.components.ViewNavigator;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
 	[SkinState("course_selector")]
 	[SkinState("course")]
-	//[SkinState("progress")] // optional
-	//[SkinState("filemanager")] // optional
+	[SkinState("progress")] // optional
+	[SkinState("filemanager")] // optional
+	[SkinState("settings")] // optional
+	[SkinState("schedule")] // optional
+
 	public class TitleView extends BentoView {
 		
 		[SkinPart(required="true")]
@@ -79,6 +82,10 @@ import spark.components.Label;
 			currentState = "schedule";
 		}
 		
+		public function showProgressView():void {
+			currentState = "progress";
+		}
+
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			

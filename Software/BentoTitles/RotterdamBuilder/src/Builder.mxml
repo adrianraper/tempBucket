@@ -35,12 +35,9 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.rotterdam.builder.view.uniteditor.ui.TitleSettingsWindow;
 			import com.clarityenglish.rotterdam.builder.BuilderApplicationFacade;
 			
 			import mx.events.FlexEvent;
-			
-			private var com_clarityenglish_rotterdam_builder_view_uniteditor_ui_TitleSettingsWindow_obj:com.clarityenglish.rotterdam.builder.view.uniteditor.ui.TitleSettingsWindow;
 			
 			protected function onInitialize(event:FlexEvent):void {
 				versionNumber = "1.1.4.22";

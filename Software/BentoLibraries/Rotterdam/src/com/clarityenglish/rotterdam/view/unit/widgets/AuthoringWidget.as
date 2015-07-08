@@ -79,7 +79,8 @@ import flash.events.MouseEvent;
                     feedbackButton.addEventListener(MouseEvent.CLICK, function():void {
                         // gh#413
                         if (hasExerciseFeedback) {
-                            showFeedback.dispatch();
+                            // gh#1256 Send the view so marking can be aligned
+                            showFeedback.dispatch(dynamicView);
                         } else {
                             showFeedbackReminder.dispatch(copyProvider.getCopyForId("feedbackClickAnswersMsg"));
                         }} );

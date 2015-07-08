@@ -36,45 +36,45 @@
 	<s:BusyIndicator id="busyIndicator" visible="true" verticalCenter="0" horizontalCenter="0" />
 
     <s:Group id="filtersPanel" width="180" right="20" top="40" >
-            <s:VGroup paddingTop="0" visible="true" gap="0" width="180" >
-                <s:Form id="filtering" width="180">
-                    <s:FormHeading id="filterHeadingFormHeading" width="180" />
-                    <s:FormItem>
-                        <s:TextInput id="filterTextInput" height="25" width="164"/>
-                    </s:FormItem>
-                    <s:FormItem>
-                        <s:CheckBox id="filterOwner" />
-                        <s:CheckBox id="filterCollaborator" />
-                        <s:CheckBox id="filterPublisher" />
-                    </s:FormItem>
-                </s:Form>
-                <s:Form id="sorting" width="180" >
-                    <s:FormHeading id="sortHeadingFormHeading" width="180" />
-                    <s:FormItem>
-                        <s:RadioButton group="{sortRadioButtonGroup}" id="sortCreateDate" />
-                        <s:RadioButton group="{sortRadioButtonGroup}" id="sortChangeDate" />
-                        <s:RadioButton group="{sortRadioButtonGroup}" id="sortSize" />
-                        <s:RadioButton group="{sortRadioButtonGroup}" id="sortPopularity" />
-                        <s:RadioButton group="{sortRadioButtonGroup}" id="sortName" />
-                    </s:FormItem>
-                </s:Form>
-            </s:VGroup>
-            <s:ToggleButton id="sortDescendingToggleButton" top="194" right="5" useHandCursor="true" buttonMode="true" />
-			<!-- <s:ToggleButton id="showFiltersToggleButton" top="-5" left="-13" height="40" useHandCursor="true" buttonMode="true"/> -->
-		</s:Group>
-		<s:VGroup width="100%" gap="10" top="10" left="20" right="220" bottom="50">
-            <s:HGroup width="100%" verticalAlign="middle">
-                <s:Label id="courseListTitleLabel" fontSize="16" fontWeight="bold" top="14" />
-                <s:Spacer width="100%" />
-                <s:Button id="createCourseButton" width="150" fontWeight="bold" useHandCursor="true" buttonMode="true"/>
-            </s:HGroup>
-                <s:List width="100%" height="100%" id="courseList" borderVisible="false" labelField="@caption" itemRenderer="skins.rotterdam.builder.courseselector.CourseListItemRenderer"
-                        verticalScrollPolicy="on" >
-                    <s:layout>
-                        <s:VerticalLayout gap="4" horizontalAlign="justify"/>
-                    </s:layout>
-                </s:List>
-		</s:VGroup>
+        <s:VGroup paddingTop="0" visible="true" gap="0" width="180" >
+            <s:Form id="filtering" width="180">
+                <s:FormHeading id="filterHeadingFormHeading" width="180" />
+                <s:FormItem>
+                    <s:TextInput id="filterTextInput" height="25" width="164"/>
+                </s:FormItem>
+                <s:FormItem>
+                    <s:CheckBox id="filterOwner" />
+                    <s:CheckBox id="filterCollaborator" />
+                    <s:CheckBox id="filterPublisher" />
+                </s:FormItem>
+            </s:Form>
+            <s:Form id="sorting" width="180" >
+                <s:FormHeading id="sortHeadingFormHeading" width="180" />
+                <s:FormItem>
+                    <s:RadioButton group="{sortRadioButtonGroup}" id="sortCreateDate" />
+                    <s:RadioButton group="{sortRadioButtonGroup}" id="sortChangeDate" />
+                    <s:RadioButton group="{sortRadioButtonGroup}" id="sortSize" />
+                    <s:RadioButton group="{sortRadioButtonGroup}" id="sortPopularity" />
+                    <s:RadioButton group="{sortRadioButtonGroup}" id="sortName" />
+                </s:FormItem>
+            </s:Form>
+        </s:VGroup>
+        <s:ToggleButton id="sortDescendingToggleButton" top="194" right="5" useHandCursor="true" buttonMode="true" />
+        <!-- <s:ToggleButton id="showFiltersToggleButton" top="-5" left="-13" height="40" useHandCursor="true" buttonMode="true"/> -->
+	</s:Group>
+	<s:VGroup width="100%" gap="10" top="10" left="20" right="220" bottom="50">
+        <s:HGroup width="100%" verticalAlign="middle">
+            <s:Label id="courseListTitleLabel" fontSize="16" fontWeight="bold" top="14" />
+            <s:Spacer width="100%" />
+            <s:Button id="createCourseButton" width="150" fontWeight="bold" useHandCursor="true" buttonMode="true"/>
+        </s:HGroup>
+        <s:List width="100%" height="100%" id="courseList" borderVisible="false" labelField="@caption" itemRenderer="skins.rotterdam.builder.courseselector.CourseListItemRenderer"
+                verticalScrollPolicy="on" >
+            <s:layout>
+                <s:VerticalLayout gap="4" horizontalAlign="justify"/>
+            </s:layout>
+        </s:List>
+	</s:VGroup>
     <!--
             <s:HGroup paddingLeft="20" width="100%" >
             </s:HGroup>

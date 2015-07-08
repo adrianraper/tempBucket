@@ -58,17 +58,16 @@ login|LoginView s|TextInput {
 }
 
 title|TitleView {
-	skinClass: ClassReference("skins.rotterdam.player.title.TitleSkin");
+    skinClass: ClassReference("skins.rotterdam.player.title.TitleSkin");
 }
 title|TitleView s|TabbedViewNavigator {
     skinClass: ClassReference("skins.rotterdam.title.WebTabbedViewNavigatorSkin");
 }
-/*
- TODO I do not understand why I can't do title|TitleView s|ButtonBar to reference the component
- but if I do then I do NOT link to this skin. Also the buttons in the skin have an overlay of orange?
- */
-title|TitleView #tabBar {
+title|TitleView s|ButtonBar {
     skinClass: ClassReference("skins.rotterdam.title.ui.TabBarSkin");
+}
+title|TitleView s|ButtonBarButton {
+    skinClass: ClassReference("skins.rotterdam.title.ui.TabBarButtonSkin");
 }
 title|TitleView s|Button#logoutButton {
     skinClass: ClassReference("skins.rotterdam.title.ui.LogOutButtonSkin");

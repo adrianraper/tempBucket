@@ -18,6 +18,7 @@
 		<s:State name="filemanager"/>
 		<s:State name="settings"/>
 		<s:State name="schedule"/>
+		<s:State name="progress"/>
 	</s:states>
 
 	<s:Group left="0" right="0" top="0">

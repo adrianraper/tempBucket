@@ -282,8 +282,8 @@ import flash.events.ProgressEvent;
 		protected function onShowMarking(exercise:Exercise, widgetView:DynamicView=null):void {
 			sendNotification(BBNotifications.MARKING_SHOW, { exercise: exercise, view: widgetView  } );
 		}
-        private function onShowFeedback():void {
-            sendNotification(BBNotifications.EXERCISE_SHOW_FEEDBACK);
+        private function onShowFeedback(widgetView:DynamicView=null):void {
+            sendNotification(BBNotifications.EXERCISE_SHOW_FEEDBACK, { view: widgetView });
         }
         private function onShowFeedbackReminder(value:String):void {
             sendNotification(BBNotifications.FEEDBACK_REMINDER_SHOW, value);

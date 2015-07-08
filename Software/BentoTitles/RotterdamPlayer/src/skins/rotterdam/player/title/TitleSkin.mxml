@@ -13,37 +13,40 @@
 		<s:State name="disabled"/>
 		<s:State name="normal"/>
 
-		<s:State name="course_selector"/>
-		<s:State name="course"/>
-		<s:State name="progress"/>
+        <s:State name="course_selector"/>
+        <s:State name="course"/>
+        <s:State name="filemanager"/>
+        <s:State name="settings"/>
+        <s:State name="schedule"/>
+        <s:State name="progress"/>
 	</s:states>
 
-	<s:Group left="0" right="0" top="0">
-		<s:Rect left="0" right="0" top="0" height="45">
-			<s:fill>
-				<s:LinearGradient x="55" y="45" scaleX="45" rotation="-90">
-					<s:GradientEntry color="#333333" ratio="0"/>
-					<s:GradientEntry color="#595959" ratio="1"/>
-				</s:LinearGradient>
-			</s:fill>
-		</s:Rect>
-		<s:HGroup right="120" verticalCenter="0" verticalAlign="middle">
-			<s:SWFLoader source="@Embed(source='/skins/rotterdam/player/assets/title/ccb_logo.png')"
-						 includeIn="course_selector"/>
-			<s:Label id="productTitle" color="0xFFFFFF" fontWeight="bold" fontSize="15"
-					 includeIn="course_selector"/>
-		</s:HGroup>
-	</s:Group>
+    <s:Group left="0" right="0" top="0">
+        <s:Rect left="0" right="0" top="0" height="62">
+            <s:fill>
+                <s:LinearGradient rotation="-90">
+                    <s:GradientEntry color="#e6e6e6" ratio="0.11" />
+                    <s:GradientEntry color="#ffffff" ratio="0.5" />
+                    <s:GradientEntry color="#ffffff" ratio="0.85" />
+                    <s:GradientEntry color="#f2f2f2" ratio="1"/>
+                </s:LinearGradient>
+            </s:fill>
+        </s:Rect>
+        <s:SWFLoader left="0" top="0" source="@Embed(source='/skins/rotterdam/player/assets/title/CCB-topBar-bg-LT.png')" />
+        <s:SWFLoader right="0" top="0" source="@Embed(source='/skins/rotterdam/player/assets/title/CCB-topBar-bg-RT.png')" />
+        <s:Group horizontalCenter="0" verticalCenter="0" includeIn="course_selector">
+            <s:SWFLoader source="@Embed(source='/skins/rotterdam/player/assets/title/CCB-logo.png')" />
+        </s:Group>
+    </s:Group>
 
-	<components:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0">
-		<s:ViewNavigator id="myCoursesViewNavigator"
-						 firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0"
-						 right="0" height="100%"/>
+    <components:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="20" bottom="0">
+        <s:ViewNavigator id="myCoursesViewNavigator"
+                         firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView"
+                         left="0" right="0" height="100%"/>
 		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.bento.view.progress.ProgressView"
 						 left="0" right="0" height="100%" excludeFrom="course_selector"/>
 	</components:CancelableTabbedViewNavigator>
 
-	<!-- This needs to go 'on top' of the view navigator to be picked up -->
-	<s:Button id="logoutButton" right="10" top="6" useHandCursor="true" buttonMode="true" includeIn="course_selector"/>
+    <s:Button id="logoutButton" right="10" top="16" useHandCursor="true" buttonMode="true" includeIn="course_selector"/>
 
 </s:Skin>

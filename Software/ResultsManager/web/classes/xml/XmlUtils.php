@@ -83,7 +83,10 @@ class XmlUtils {
 	 * Build an XML string by loading an href and applying a series of transforms.
 	 */
 	public static function buildXml($href, $db, $service) {
-		$contents = file_get_contents($href->getUrl());
+        // gh#1255 Add cache killer for CBuilder content
+        $cacheKiller = ($href->type == 'exercise') ? true : false;
+        //AbstractService::$debugLog->notice("read xml ".$href->type." from ".$href->getUrl($cacheKiller));
+		$contents = file_get_contents($href->getUrl($cacheKiller));
 		
 		$xml = simplexml_load_string($contents);
 		

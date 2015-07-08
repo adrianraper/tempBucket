@@ -8,29 +8,28 @@
 	<fx:Metadata>
 		[SWF(width="990", height="740")]
 	</fx:Metadata>
-	
-	<fx:Style>
-		@namespace s "library://ns.adobe.com/flex/spark";
 
-		@font-face {
-			src: url("skins/rotterdam/player/assets/HelveticaNeueLTStd-Roman.otf");
-			fontFamily: Helvetica;
-			fontStyle: normal;
-			fontWeight: normal;
-			embedAsCFF: true;
-			advancedAntiAliasing: true;
-		}
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
 
-		@font-face {
-			src: url("skins/rotterdam/player/assets/HelveticaNeueLTStd-Bd.otf");
-			fontFamily: Helvetica;
-			fontStyle: normal;
-			fontWeight: bold;
-			embedAsCFF: true;
-			advancedAntiAliasing: true;
-		}
+        @font-face {
+            src: url("skins/rotterdam/player/assets/HelveticaNeueLTStd-Roman.otf");
+            fontFamily: Helvetica;
+            fontStyle: normal;
+            fontWeight: normal;
+            embedAsCFF: true;
+            advancedAntiAliasing: true;
+        }
 
-	</fx:Style>
+        @font-face {
+            src: url("skins/rotterdam/player/assets/HelveticaNeueLTStd-Bd.otf");
+            fontFamily: Helvetica;
+            fontStyle: normal;
+            fontWeight: bold;
+            embedAsCFF: true;
+            advancedAntiAliasing: true;
+        }
+    </fx:Style>
 	
 	<fx:Style source="player.css" />
 	
