@@ -18,8 +18,6 @@ import org.davekeen.util.StateUtil;
 
 import org.osflash.signals.Signal;
 
-import skins.practicalwriting.exercise.ExerciseUnitListItemRenderer;
-
 import skins.practicalwriting.exercise.WindowShadeSkin;
 
 import spark.components.Button;
