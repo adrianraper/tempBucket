@@ -63,12 +63,14 @@ title|TitleView {
 title|TitleView s|TabbedViewNavigator {
     skinClass: ClassReference("skins.rotterdam.title.WebTabbedViewNavigatorSkin");
 }
-title|TitleView s|ButtonBar {
+title|TitleView s|TabbedViewNavigator s|ButtonBar#tabBar {
     skinClass: ClassReference("skins.rotterdam.title.ui.TabBarSkin");
 }
+/*
 title|TitleView s|ButtonBarButton {
     skinClass: ClassReference("skins.rotterdam.title.ui.TabBarButtonSkin");
 }
+*/
 title|TitleView s|Button#logoutButton {
     skinClass: ClassReference("skins.rotterdam.title.ui.LogOutButtonSkin");
 }

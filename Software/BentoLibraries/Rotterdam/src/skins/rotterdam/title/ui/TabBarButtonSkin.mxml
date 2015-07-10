@@ -26,7 +26,9 @@
                    minWidth="21"
                    minHeight="21"
                    alpha.disabledStates="0.5">
-    <fx:Metadata>[HostComponent("spark.components.ButtonBarButton")]</fx:Metadata>
+    <fx:Metadata>
+        [HostComponent("spark.components.ButtonBarButton")]
+    </fx:Metadata>
 
     <!-- host component -->
     <fx:Script fb:purpose="styling">

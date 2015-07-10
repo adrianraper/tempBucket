@@ -44,7 +44,7 @@
                          firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView"
                          left="0" right="0" height="100%"/>
 		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.bento.view.progress.ProgressView"
-						 left="0" right="0" height="100%" excludeFrom="course_selector"/>
+						 left="0" right="0" height="100%" excludeFrom="course_selector" />
 	</components:CancelableTabbedViewNavigator>
 
     <s:Button id="logoutButton" right="10" top="16" useHandCursor="true" buttonMode="true" includeIn="course_selector"/>
