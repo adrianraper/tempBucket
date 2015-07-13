@@ -12,6 +12,9 @@ import spark.components.supportClasses.SkinnableComponent;
         public var incompleteColor:uint;
 
         [Bindable]
+        public var mouseOverColor:uint;
+
+        [Bindable]
         public var labelText:String;
 
         private var _isComplete:Boolean;

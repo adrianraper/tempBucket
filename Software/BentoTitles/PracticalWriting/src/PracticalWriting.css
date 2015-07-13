@@ -19,8 +19,9 @@
 @namespace error "com.clarityenglish.common.view.error.*";
 
 global {
-    pieChartFillColor: #EC008B, #EF7F31, #91BD49, #333290, #9C298C, #00A054, #F090AB, #00A9A3, #E8194B, #00A8DE;
-    pieChartBottomColor: #EFB1D0, #FDD5BB, #E5E9B8, #9F9FE2, #EFB1E9, #B3DDC8, #F4D4E0, #9CE0DB, #E8A0B5, #AADCE8;
+    pieChartFillColor: #EC008C, #1F542B, #E79524, #3A6CA3, #B87B4B, #6F5DA8, #F47D71, #00A9A3, #E52351, #00A6DB;
+    pieChartBottomColor: #EDB3D2, #75A380, #FFD08D, #C1D6ED, #F2BC98, #BEAFD5, #FAC9C9, #A1D9D7, #F8B8CD, #B3E2EE;
+    exerciseListIncompleteColor: #F6D9E5, #A9C4AF, #FFE3BF, #DCEBF3, #FEDFCA, #D5CCE5, #FCDEDD, #CEE9EB, #FCDDE6, #DCEEF2;
     analyseCircleWedgeColors: #0B789C, #B5E3F2, #38839C, #5A9CB2, #02566D, #B79CE5, #6CC6DF, #0E9AC9, #78CEDC, #A4DDEF;
     markingColours: #6D6E70, #B7B9BB;
 }

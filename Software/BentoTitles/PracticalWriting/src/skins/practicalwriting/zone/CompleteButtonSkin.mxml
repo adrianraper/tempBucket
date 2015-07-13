@@ -28,7 +28,7 @@
  @playerversion AIR 1.5
  @productversion Flex 4
 -->
-<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
                    xmlns:s="library://ns.adobe.com/flex/spark"
                    xmlns:title="skins.practicalwriting.assets.title.*"
                    minWidth="21" minHeight="21"
@@ -53,7 +53,7 @@
 
     <s:Rect top="0" bottom="0" left="0" right="0">
         <s:fill>
-            <s:SolidColor color="{getStyle('color')}" color.down="#E8E8E7" color.over="#E8E8E7" />
+            <s:SolidColor color="{getStyle('color')}" color.down="{getStyle('focusColor')}" color.over="{getStyle('focusColor')}" />
         </s:fill>
     </s:Rect>
 
@@ -64,7 +64,7 @@
              maxDisplayedLines="1"
              horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
              left="10" right="10" top="2" bottom="2"
-             color="#FFFFFF" fontSize="16" fontWeight="normal">
+             color="0xFFFFFF" color.down="{getStyle('color')}" color.over="{getStyle('color')}" fontSize="16" fontWeight="normal">
     </s:Label>
 
-</s:SparkButtonSkin>
+</s:Skin>
