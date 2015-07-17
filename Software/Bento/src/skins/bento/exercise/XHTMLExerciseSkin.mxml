@@ -143,7 +143,7 @@
 										  behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, EnlargeImageBehaviour/*, DictionaryBehaviour*/]}"/>
 				<!--blur the right no scroll image-->
 				<s:SWFLoader id="imgLeftBlur" source="@Embed(source='/skins/assets/sideBlur.png')" left="-1" top="-1"/>
-				<s:SWFLoader id="imgBottomBlur" source="@Embed(source='/skins/assets/bottomBlur.png')" left="-1" top="604"/>
+				<s:SWFLoader id="imgBottomBlur" source="@Embed(source='/skins/assets/bottomBlur.png')" left="-1" top="644"/>
 			</s:Group>
 		</s:Group>
 	</s:Group>

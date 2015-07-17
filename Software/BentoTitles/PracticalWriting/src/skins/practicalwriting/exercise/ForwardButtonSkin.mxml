@@ -57,7 +57,7 @@
 
     <s:Rect left="0" right="0" top="0" bottom="0">
         <s:fill>
-            <s:SolidColor color="#F3F4F4" color.over="#DADBD9" color.down="#DADBD9"/>
+            <s:SolidColor color="#F3F4F4" color.over="#DADBD9" color.down="#DADBD9" color.disabled="#EAEAEA"/>
         </s:fill>
     </s:Rect>
 
@@ -68,7 +68,7 @@
                  textAlign="center"
                  maxDisplayedLines="1"
                  verticalAlign="middle" paddingTop="4"
-                 fontFamily="Helvetica" color="#474748" fontSize="15" fontWeight="normal">
+                 fontFamily="Helvetica" color="#474748" color.disabled="#CFCECE" fontSize="15" fontWeight="normal">
         </s:Label>
 
         <exercise:forward />
