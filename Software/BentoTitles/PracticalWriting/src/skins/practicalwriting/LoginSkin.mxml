@@ -6,6 +6,25 @@
         [HostComponent("com.clarityenglish.bento.view.login.LoginView")]
     </fx:Metadata>
 
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        .signInHeader {
+            fontSize: 14;
+            fontFamily: "Helvetica";
+            fontWeight: "bold";
+            color: #333333;
+        }
+        .signInPrompt {
+            fontSize: 14;
+        }
+        .buttonText {
+            fontSize: 14;
+            fontFamily: "Helvetica";
+            fontWeight: "bold";
+            color: #FFFFFF;
+        }
+    </fx:Style>
+
     <fx:Script>
         <![CDATA[
             protected var signInDetailsMargin:uint = 20;

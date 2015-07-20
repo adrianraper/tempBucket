@@ -30,12 +30,14 @@
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/android-config.xml" path-in-package="android-config.xml" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/icons/android/icons" path-in-package="icons" />
           </files-to-package>
+          <AirSigningOptions keystore-path="$MODULE_DIR$/../../../../../../Licence/ClarityAndroid.p12" use-temp-certificate="false" />
         </packaging-android>
         <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/PracticalWritingAir-app.xml" package-file-name="PracticalWritingAir">
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/icons/android/icons" path-in-package="icons" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/ios-config.xml" path-in-package="ios-config.xml" />
           </files-to-package>
+          <AirSigningOptions keystore-path="$USER_HOME$/.ssh/ios-clarity/development/ios_development.p12" provisioning-profile-path="$USER_HOME$/.ssh/ios-clarity/development/PracticalWriting.mobileprovision" />
         </packaging-ios>
       </configuration>
     </configurations>

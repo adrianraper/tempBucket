@@ -47,7 +47,7 @@
           <sdk name="13.0_AIR16 (Bento)" />
         </dependencies>
         <compiler-options>
-          <option name="filesToIncludeInSWC" value="$MODULE_DIR$/src/PracticalWriting.css&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/login/loginMan.png&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/login/backgroundLargeBall.png&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/loading.swf" />
+          <option name="filesToIncludeInSWC" value="$MODULE_DIR$/src/PracticalWriting.css&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/login/loginMan.png&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/login/backgroundLargeBall.png&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/loading.swf&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/HelveticaNeueLTStd-Bd.otf&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/HelveticaNeueLTStd-Roman.otf" />
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android />

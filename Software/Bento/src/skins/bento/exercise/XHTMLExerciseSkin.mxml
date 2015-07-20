@@ -142,8 +142,8 @@
 				<components:XHTMLRichText id="rightNoScrollRichText" top="-1" left="0" right="0" bottom="0"
 										  behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, EnlargeImageBehaviour/*, DictionaryBehaviour*/]}"/>
 				<!--blur the right no scroll image-->
-				<s:SWFLoader id="imgLeftBlur" source="@Embed(source='/skins/assets/sideBlur.png')" left="-1" top="-1"/>
-				<s:SWFLoader id="imgBottomBlur" source="@Embed(source='/skins/assets/bottomBlur.png')" left="-1" top="644"/>
+				<s:SWFLoader id="imgLeftBlur" source="@Embed(source='/skins/assets/sideBlur.png')" left="0" top="-1"/>
+				<s:SWFLoader id="imgBottomBlur" source="@Embed(source='/skins/assets/bottomBlur.png')" left="-1" top="655"/>
 			</s:Group>
 		</s:Group>
 	</s:Group>
