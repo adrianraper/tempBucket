@@ -110,10 +110,6 @@
 
         <!-- Top Right Buttons -->
         <s:HGroup right="0" top="5" gap="1" horizontalAlign="right">
-            <s:Button id="backButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true"
-                      useHandCursor="true" visible="{!hostComponent.isDirectStartEx &amp;&amp; !hostComponent.isFirstExercise}"/>
-            <s:Button id="forwardButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true"
-                      useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
             <s:Button id="markingButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true"
                       useHandCursor="true"/>
             <s:Button id="feedbackButton" visible="false" includeInLayout="false" color="0x333333" fontSize="15"
@@ -121,6 +117,10 @@
             <s:Button id="startAgainButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true"
                       useHandCursor="true"/>
             <!--s:Button id="recorderButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true"useHandCursor="true"/-->
+            <s:Button id="backButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true"
+                      useHandCursor="true" visible="{!hostComponent.isDirectStartEx &amp;&amp; !hostComponent.isFirstExercise}"/>
+            <s:Button id="forwardButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true"
+                      useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
         </s:HGroup>
 
         <!--Top Dropdown menu-->
