@@ -8,6 +8,24 @@
     <fx:Style source="PracticalWriting.css"/>
 
     <fx:Style>
+        @font-face {
+            src: url("skins/practicalwriting/assets/HelveticaNeueLTStd-Roman.otf");
+            fontFamily: Helvetica;
+            fontStyle: normal;
+            fontWeight: normal;
+            embedAsCFF: true;
+            advancedAntiAliasing: true;
+        }
+
+        @font-face {
+            src: url("skins/practicalwriting/assets/HelveticaNeueLTStd-Bd.otf");
+            fontFamily: Helvetica;
+            fontStyle: normal;
+            fontWeight: bold;
+            embedAsCFF: true;
+            advancedAntiAliasing: true;
+        }
+
         global {
             fontFamily: Helvetica;
             fontLookup: embeddedCFF;
