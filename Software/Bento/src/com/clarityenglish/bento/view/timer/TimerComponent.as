@@ -2,6 +2,7 @@ package com.clarityenglish.bento.view.timer {
 import com.clarityenglish.common.model.interfaces.CopyProvider;
 
 import flash.events.Event;
+import flash.events.FocusEvent;
 import flash.events.MouseEvent;
 import flash.events.TimerEvent;
 import flash.utils.Timer;
@@ -58,7 +59,7 @@ import spark.primitives.Rect;
         public var minsTextInput:TextInput;
 
         [SkinPart]
-        public var secondsTextInput:TextInput;
+        public var secondsTextLabel:Label;
 
         [SkinPart]
         public var totalTimeLabel:Label;
@@ -80,6 +81,21 @@ import spark.primitives.Rect;
 
         [Bindable]
         public var totalTimeLabelText:String;
+
+        [Bindable]
+        public var firstRectPercentWidth:Number;
+
+        [Bindable]
+        public var midRectPercentWidth:Number;
+
+        [Bindable]
+        public var lastRectPercentWidth:Number;
+
+        [Bindable]
+        public var leftRadius:Number;
+
+        [Bindable]
+        public var rightRadius:Number;
 
         public const sliderWidth:Number = 676;
 
@@ -172,8 +188,8 @@ import spark.primitives.Rect;
                     valuesArray[i] = time / totalTime;
                 }
 
-                hoursTextInput.text = String("0" + Math.floor(totalTime / 3600)).substr(-2);
-                minsTextInput.text = String("0" + Math.floor(totalTime / 60)).substr(-2);
+                hoursTextInput.text = formatTime(Math.floor(totalTime / 3600));
+                minsTextInput.text = formatTime(Math.floor(totalTime / 60));
             }
 
             if (_isTotalTimeChange)  {
@@ -189,8 +205,8 @@ import spark.primitives.Rect;
             switch (instance) {
                 case hoursTextInput:
                 case minsTextInput:
-                case secondsTextInput:
                     instance.addEventListener(FlexEvent.ENTER, onValueCommit);
+                    instance.addEventListener(FocusEvent.FOCUS_OUT, onValueCommit);
                     break;
                 case startButton:
                     startButton.addEventListener(MouseEvent.CLICK, onStartButtonClick);
@@ -226,28 +242,31 @@ import spark.primitives.Rect;
                onValueCommit();
         }
 
-        protected function initializeTimer():void {
-            timer = new Timer(1000, totalTime);
-            timer.addEventListener(TimerEvent.TIMER, onTimerUpdate);
-            timer.addEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
-        }
-
         // Commit the total time user input.
         protected function onValueCommit(event:Event = null) {
             var time:Number = 0;
-            if (hoursTextInput.text)
+            if (hoursTextInput.text) {
                 time = Number(hoursTextInput.text) * 3600;
-            if (minsTextInput.text)
+                hoursTextInput.text = formatTime(Number(hoursTextInput.text));
+            }
+
+            if (minsTextInput.text) {
                 time += Number(minsTextInput.text) * 60;
-            if (secondsTextInput.text)
-                time += Number(secondsTextInput.text);
+                var minsCarry = Math.floor(Number(minsTextInput.text) / 60);
+                if (minsCarry > 0) {
+                    minsTextInput.text = formatTime(Number(minsTextInput.text) - 60 * minsCarry);
+                    hoursTextInput.text = formatTime(Number(hoursTextInput.text) + minsCarry);
+                } else {
+                    minsTextInput.text = formatTime(Number(minsTextInput.text));
+                }
+            }
+
             totalTime = time;
         }
 
         protected function onTimerUpdate(event:TimerEvent):void {
             // Shrink the width of specific cover bar to make the progress bar appear.
             var unit:Number = sliderWidth / totalTime;
-            unitRect.width = unit;
             if (timer.currentCount <= timerSlider.values[0] * 60) {
                 firstProgressCoverRect.width = timer.currentCount < timerSlider.values[0] * 60 ? (firstProgressCoverRect.width - unit) : 0;
                 firstProgressCoverRect.topLeftRadiusX = firstProgressCoverRect.topLeftRadiusY = firstProgressCoverRect.bottomLeftRadiusX = firstProgressCoverRect.bottomLeftRadiusY = 0;
@@ -255,14 +274,12 @@ import spark.primitives.Rect;
                 midProgressCoverRect.width = timer.currentCount < timerSlider.values[1] * 60 ? (midProgressCoverRect.width - unit) : 0;
             } else {
                 lastProgressCoverRect.width = timer.currentCount < timerSlider.maximum * 60 ? (lastProgressCoverRect.width - unit) : 0;
-                if (timer.currentCount == timerSlider.maximum * 60)
-                    unitRect.width = 0;
             }
 
             var totalMSeconds:Number = totalTime - timer.currentCount;
-            var sec:String = ("0" + totalMSeconds % 60).substr(-2);
-            var min:String = ("0" + Math.floor((totalMSeconds % 3600 ) / 60)).substr(-2);
-            var hour:String = ("0" + Math.floor(totalMSeconds / (60 * 60))).substr(-2);
+            var sec:String = formatTime(totalMSeconds % 60);
+            var min:String = formatTime(Math.floor((totalMSeconds % 3600 ) / 60));
+            var hour:String = formatTime(Math.floor(totalMSeconds / (60 * 60)));
             totalTimeLabelText = String(hour + ":" + min + ":" + sec);
         }
 
@@ -272,7 +289,8 @@ import spark.primitives.Rect;
 
         protected function onStartButtonClick(event:MouseEvent):void {
             initializeTimer();
-            totalTimeLabelText = hoursTextInput.text + ":" +minsTextInput.text + ":" + secondsTextInput.text;
+            initializeSlider();
+            totalTimeLabelText = hoursTextInput.text + ":" +minsTextInput.text + ":" + secondsTextLabel.text;
 
             setState("pauseState");
             timer.reset();
@@ -291,11 +309,12 @@ import spark.primitives.Rect;
 
         protected function onResetButtonClick(event:MouseEvent):void {
             initializeValue(defaultTotalTime);
-            hoursTextInput.text = String("0" + Math.floor(defaultTotalTime / 3600)).substr(-2);
-            minsTextInput.text = String("0" + Math.floor(defaultTotalTime / 60)).substr(-2);
+            hoursTextInput.text = formatTime(Math.floor(defaultTotalTime / 3600));
+            minsTextInput.text = formatTime(Math.floor(defaultTotalTime / 60));
         }
 
         protected function onStopButtonClick(event:MouseEvent):void {
+            resetSlider();
             setState("startState");
             timer.stop();
         }
@@ -310,7 +329,41 @@ import spark.primitives.Rect;
             var hours:Number = Math.floor(value / 60);
             var mins:Number = value % 60;
 
-            return String("0" + hours).substr(-2) + ":" + String("0" + mins).substr(-2);
+            return formatTime(hours) + ":" + formatTime(mins);
+        }
+
+        private function formatTime(value:Number):String {
+            return String("0" + value).substr(-2);
+        }
+
+        private function initializeTimer():void {
+            timer = new Timer(1000, totalTime);
+            timer.addEventListener(TimerEvent.TIMER, onTimerUpdate);
+            timer.addEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
+        }
+
+        private function initializeSlider():void {
+            firstRectPercentWidth = timerSlider.values[0] / timerSlider.maximum * 100;
+            midRectPercentWidth = (timerSlider.values[1] - timerSlider.values[0]) / timerSlider.maximum * 100;
+            lastRectPercentWidth = (timerSlider.maximum - timerSlider.values[1]) / timerSlider.maximum * 100;
+
+            if (timerSlider.values[0] == 0) {
+                leftRadius = 4;
+            } else {
+                leftRadius = 0;
+            }
+
+            if (timerSlider.values[1] == timerSlider.maximum) {
+                rightRadius = 4;
+            } else {
+                rightRadius = 0;
+            }
+        }
+
+        private function resetSlider():void {
+            firstProgressCoverRect.width = sliderWidth * timerSlider.values[0] / timerSlider.maximum;
+            midProgressCoverRect.width = sliderWidth * (timerSlider.values[1] - timerSlider.values[0]) / timerSlider.maximum;
+            lastProgressCoverRect.width = sliderWidth * (timerSlider.maximum - timerSlider.values[1]) / timerSlider.maximum;
         }
     }
 }

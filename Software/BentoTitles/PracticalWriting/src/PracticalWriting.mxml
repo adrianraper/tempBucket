@@ -18,6 +18,15 @@
         }
 
         @font-face {
+            src: url("skins/practicalwriting/assets/HelveticaNeueLTStd-Roman.otf");
+            fontFamily: HelveticaNoCFF;
+            fontStyle: normal;
+            fontWeight: normal;
+            embedAsCFF: false;
+            advancedAntiAliasing: true;
+        }
+
+        @font-face {
             src: url("skins/practicalwriting/assets/HelveticaNeueLTStd-Bd.otf");
             fontFamily: Helvetica;
             fontStyle: normal;

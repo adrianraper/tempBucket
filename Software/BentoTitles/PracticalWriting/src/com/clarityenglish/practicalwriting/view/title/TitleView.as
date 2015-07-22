@@ -166,7 +166,7 @@ import spark.managers.PersistenceManager;
                     sectionNavigator.addEventListener(IndexChangeEvent.CHANGE, onSectionNavigatorIndexChange);
                 break;
                 case backToMenuButton:
-                    backToMenuButton.label = copyProvider.getCopyForId("home");
+                    backToMenuButton.label = copyProvider.getCopyForId("Home");
                     backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
                     break;
                 case logoutButton:
