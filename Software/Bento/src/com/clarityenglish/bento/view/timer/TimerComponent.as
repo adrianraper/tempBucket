@@ -79,6 +79,9 @@ import spark.primitives.Rect;
         [SkinPart]
         public var stopButton:Button;
 
+        [SkinPart]
+        public var resetCompleteButton:Button;
+
         [Bindable]
         public var totalTimeLabelText:String;
 
@@ -111,7 +114,7 @@ import spark.primitives.Rect;
         private var _copyProvider:CopyProvider;
 
         public function TimerComponent() {
-            StateUtil.addStates(this, ["startState", "pauseState", "resumeState"], true);
+            StateUtil.addStates(this, ["startState", "pauseState", "resumeState", "completeState"], true);
 
             addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
             _isFirstTimeChange = true;
@@ -221,7 +224,8 @@ import spark.primitives.Rect;
                     resetButton.addEventListener(MouseEvent.CLICK, onResetButtonClick);
                     break;
                 case stopButton:
-                    stopButton.addEventListener(MouseEvent.CLICK, onStopButtonClick);
+                case resetCompleteButton:
+                    instance.addEventListener(MouseEvent.CLICK, onStopButtonClick);
                     break;
             }
         }
@@ -284,7 +288,7 @@ import spark.primitives.Rect;
         }
 
         protected function onTimerComplete(event:Event):void {
-            setState("pauseState");
+            setState("completeState");
         }
 
         protected function onStartButtonClick(event:MouseEvent):void {

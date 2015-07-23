@@ -58,6 +58,7 @@
         <s:State name="startState" />
         <s:State name="pauseState" />
         <s:State name="resumeState" />
+        <s:State name="completeState" />
     </s:states>
 
     <!--Timer-->
@@ -185,14 +186,17 @@
         </s:HGroup>
 
         <s:HGroup width="13%" height="100%" right="0" gap="0" verticalAlign="middle">
-            <s:Group width="50%" height="100%">
+            <s:Group width="50%" height="100%" excludeFrom="completeState">
                 <s:Button id="startButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Start" includeIn="startState"/>
                 <s:Button id="pauseButton" width="1000%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Pause" includeIn="pauseState"/>
                 <s:Button id="resumeButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Resume" includeIn="resumeState"/>
             </s:Group>
-            <s:Group width="50%" height="100%">
+            <s:Group width="50%" height="100%" excludeFrom="completeState">
                 <s:Button id="resetButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Reset" includeIn="startState"/>
-                <s:Button id="stopButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Stop" excludeFrom="startState"/>
+                <s:Button id="stopButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Stop" includeIn="pauseState, resumeState"/>
+            </s:Group>
+            <s:Group width="100%" height="100%" includeIn="completeState">
+                <s:Button id="resetCompleteButton" width="100%" height="100%" color="#333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Reset" />
             </s:Group>
         </s:HGroup>
     </s:Group>
