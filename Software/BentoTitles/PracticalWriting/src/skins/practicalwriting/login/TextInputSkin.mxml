@@ -164,7 +164,7 @@
 				if (!promptDisplay)
 					return;
 				
-				padding = getStyle("paddingLeft");
+				padding = 10;
 				if (promptDisplay.getStyle("paddingLeft") != padding)
 					promptDisplay.setStyle("paddingLeft", padding);
 				

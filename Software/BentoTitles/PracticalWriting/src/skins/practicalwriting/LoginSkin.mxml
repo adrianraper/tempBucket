@@ -94,12 +94,12 @@
                 <s:Rect height="5" /> <!-- this is a spacer -->
                 <s:TextInput id="loginKeyInput" prompt="{hostComponent.loginKeyCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5"/>
                 <s:VGroup visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" gap="10" >
-                    <s:TextInput id="passwordInput" displayAsPassword="true" prompt="{hostComponent.passwordCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5"/>
-                    <s:HGroup width="100%" horizontalAlign="right">
+                    <s:TextInput id="passwordInput" displayAsPassword="true" prompt=" {hostComponent.passwordCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5"/>
+                    <s:HGroup width="100%" paddingTop="10" paddingLeft="105">
                         <s:Button id="forgotPasswordButton" label="{hostComponent.forgotPasswordCaption}" useHandCursor="true" buttonMode="true"/>
                     </s:HGroup>
                 </s:VGroup>
-                <s:HGroup width="100%" horizontalAlign="right" >
+                <s:HGroup width="100%" paddingLeft="105">
                     <s:Button id="newUserButton" label="{hostComponent.newUserButtonCaption}"
                               includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" />
                 </s:HGroup>
@@ -138,7 +138,7 @@
                     <s:SolidColorStroke color="#999999" weight="1" caps="square"/>
                 </s:stroke>
             </s:Line>
-            <s:Label text="{hostComponent.selfRegisterCaption}" fontSize="16" fontFamily="MyriadPro" fontWeight="bold" color="0x125558" />
+            <s:Label text="{hostComponent.selfRegisterCaption}" fontSize="16" fontFamily="Helvetica" fontWeight="bold" color="0x125558" />
             <s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
                 <s:stroke>
                     <s:SolidColorStroke color="#999999" weight="1" caps="square"/>
