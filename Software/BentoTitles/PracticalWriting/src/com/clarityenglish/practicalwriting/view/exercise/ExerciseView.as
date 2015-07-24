@@ -21,6 +21,7 @@ import org.osflash.signals.Signal;
 import skins.practicalwriting.exercise.WindowShadeSkin;
 
 import spark.components.Button;
+import spark.components.Group;
 
 import spark.components.Label;
 
@@ -32,7 +33,7 @@ import spark.primitives.Rect;
     public class ExerciseView extends com.clarityenglish.bento.view.exercise.ExerciseView {
 
         [SkinPart]
-        public var unitLabel:Label;
+        public var courseLabelButton:Button;
 
         [SkinPart]
         public var exerciseList:List;
@@ -41,10 +42,13 @@ import spark.primitives.Rect;
         public var windowShade:WindowShade;
 
         [SkinPart]
+        public var exerciseCaptionGroup:Group;
+
+        [SkinPart]
         public var dynamicViewCover:Rect;
 
         [SkinPart]
-        public var timerComponent:TimerComponent
+        public var timerComponent:TimerComponent;
 
         [Bindable]
         public var selectedExerciseNode:XML;
@@ -71,6 +75,12 @@ import spark.primitives.Rect;
             super.partAdded(partName, instance);
 
             switch (instance) {
+                case courseLabelButton:
+                    courseLabelButton.addEventListener(MouseEvent.CLICK, onCourseLabelButtonClick);
+                    break;
+                case exerciseCaptionGroup:
+                    exerciseCaptionGroup.addEventListener(MouseEvent.CLICK, onExerciseCaptionGroupClick);
+                    break;
                 case exerciseList:
                     var exerciseSelected:Signal = new Signal(XML);
 
@@ -138,6 +148,14 @@ import spark.primitives.Rect;
             if (!isPlatformiPad) {
                 timerComponent.bottom = 0;
             }
+        }
+
+        protected function onExerciseCaptionGroupClick(event:Event):void {
+            windowShade.open();
+        }
+
+        protected function onCourseLabelButtonClick(event:Event):void {
+            backToMenu.dispatch();
         }
     }
 }

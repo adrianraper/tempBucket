@@ -209,6 +209,10 @@ import spark.managers.PersistenceManager;
 
         }
 
+        override protected function onAddedToStage(event:Event):void {
+            addEventListener(MouseEvent.CLICK, onStageClick);
+        }
+
         protected override function getCurrentSkinState():String {
             return currentState;
         }
@@ -279,6 +283,17 @@ import spark.managers.PersistenceManager;
 
         protected function onBackToExerciseButtonClick(event:MouseEvent):void {
             sectionNavigator.selectedIndex = 0;
+        }
+
+        // When the side bar open, click the stage will close it.
+        protected function onStageClick(event:Event):void {
+            if (menuToggleButton) {
+                if (event.target != menuToggleButton && menuToggleButton.selected) {
+                    sectionNavigator.left = menuToggleButton.left = 0;
+                    sectionNavigator.right = 0;
+                    menuToggleButton.selected = false;
+                }
+            }
         }
     }
 }

@@ -104,9 +104,9 @@
         <s:ToggleButton id="menuToggleButton" top="5" left="0"/>
 
         <!--Course Label-->
-        <s:Label id="courseLabel" left="60" top="20"
-                 text="{hostComponent.selectedExerciseNode.parent().parent().attribute('caption')}" fontSize="15"
-                 color="{getStyle('pieChartFillColor')[hostComponent.courseIndex]}"/>
+        <s:Button id="courseLabelButton" left="60" top="20"
+                 label="{hostComponent.selectedExerciseNode.parent().parent().attribute('caption')}" fontSize="15"
+                 color="{getStyle('pieChartFillColor')[hostComponent.courseIndex]}" useHandCursor="true" buttonMode="true"/>
 
         <!-- Top Right Buttons -->
         <s:HGroup right="0" top="5" gap="1" horizontalAlign="right">
@@ -165,7 +165,7 @@
                     </s:itemRenderer>
                 </s:List>
             </ui:WindowShade>
-            <s:Group width="317" height="48">
+            <s:Group id="exerciseCaptionGroup" width="317" height="48" useHandCursor="true" buttonMode="true">
                 <exercise:dropDownMenu top="-5" width="317"/>
                 <s:Label text="{hostComponent.selectedExerciseNode.@caption}" horizontalCenter="0" verticalCenter="0"
                          color="#FFFFFF" fontSize="15" fontFamily="Helvetica"/>

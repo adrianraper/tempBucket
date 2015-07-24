@@ -162,6 +162,10 @@ exercise|ExerciseView s|Button#feedbackButton {
     skinClass: ClassReference("skins.practicalwriting.exercise.FeedbackButtonSkin");
 }
 
+exercise|ExerciseView s|Button#courseLabelButton {
+    skinClass: ClassReference("skins.practicalwriting.exercise.CourseLabelButtonSkin");
+}
+
 exercise|ExerciseView exerciseui|WindowShade {
     skinClass: ClassReference("skins.practicalwriting.exercise.WindowShadeSkin");
 }
