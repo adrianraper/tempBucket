@@ -51,12 +51,11 @@
                     <s:Label paddingTop="45" fontSize="17" color="#6D6E70" text="%"/>
                 </s:HGroup>
             </s:Group>
-            <s:VGroup height="100%" verticalAlign="middle" paddingTop="20">
-                <s:Label id="overallScoreLabel" fontSize="14" paddingLeft="-10"/>
-                <s:Spacer height="6"/>
-                <s:Label id="correctLabel" fontSize="12" />
-                <s:Label id="wrongLabel" fontSize="12" />
-                <s:Label id="missedLabel" fontSize="12" />
+            <s:VGroup height="100%" verticalAlign="middle" horizontalAlign="left" textAlign="left" paddingTop="20">
+                <s:Label id="overallScoreLabel" fontSize="15" />
+                <s:Label id="correctLabel" fontSize="15" />
+                <s:Label id="wrongLabel" fontSize="15" />
+                <s:Label id="missedLabel" fontSize="15" />
             </s:VGroup>
         </s:HGroup>
 
