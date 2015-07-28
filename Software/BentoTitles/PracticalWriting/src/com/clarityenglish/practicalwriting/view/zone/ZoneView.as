@@ -110,6 +110,7 @@ import spark.primitives.Rect;
 
         override protected function onViewCreationComplete():void {
             if (data) {
+                trace("data selected index: "+data.selectedIndex);
                 zoneViewNavigator.selectedIndex = data.selectedIndex;
             }
 
@@ -176,11 +177,9 @@ import spark.primitives.Rect;
         }
 
         protected function onZoneViewNavigatorClick(event:MouseEvent):void {
-            if (!data) {
-                // Store the index of selected viewNavigator.
-                data = new Object();
-                data.selectedIndex = zoneViewNavigator.tabBar.selectedIndex;
-            }
+            // Store the index of selected viewNavigator.
+            data = new Object();
+            data.selectedIndex = zoneViewNavigator.tabBar.selectedIndex;
 
             // If the unit ID haven't been wriiten, then write memory if user open learning tab (index=1).
             if (zoneViewNavigator.tabBar.selectedIndex == 1 && !openUnitID[course.@id]) {
