@@ -247,7 +247,7 @@ package com.clarityenglish.bento.model {
 			// If there is no selected answer map yet then create one
 			if (!selectedAnswerMap[question])
 				selectedAnswerMap[question] = new AnswerMap();
-			
+			trace('selected answer map: '+selectedAnswerMap[question].keys+", question: "+question.source);
 			return selectedAnswerMap[question];
 		}
 		
@@ -282,7 +282,7 @@ package com.clarityenglish.bento.model {
 				if (question.isMutuallyExclusive()) answerMap.clear();
 				
 				if (question.isSelectable()) {
-					if (!didKeyAlreadyExist) answerMap.put(key, answer);
+					/* gh #1265 if (!didKeyAlreadyExist)*/ answerMap.put(key, answer);
 				} else {
 					// Add the answer
 					answerMap.put(key, answer);
