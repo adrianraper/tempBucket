@@ -441,7 +441,8 @@ class ErrorCorrectionAnswerManager extends InputAnswerManager implements IAnswer
 				// When the user clicks on the text show the component
 				var eventMirror:IEventDispatcher = inputElement.tlf_internal::getEventMirror();
 				if (eventMirror) {
-					eventMirror.addEventListener(FlowElementMouseEvent.CLICK, onErrorCorrectionTextClick);
+					eventMirror.addEventListener(FlowElementMouseEvent.CLICK, Closure.create(this, onErrorCorrectionTextClick, source));
+
 				} else {
 					log.error("Attempt to bind a click handler to non-leaf element {0} [question: {1}]", inputElement, question);
 				}
@@ -449,10 +450,10 @@ class ErrorCorrectionAnswerManager extends InputAnswerManager implements IAnswer
 		}
 	}
 	
-	private function onErrorCorrectionTextClick(e:FlowElementMouseEvent):void {
+	private function onErrorCorrectionTextClick(e:FlowElementMouseEvent, inputNode:XML):void {
 		log.info("Click detected on an error detection question");
-
-		if ((e.flowElement as TextComponentElement).hideChrome) {
+		// gh#1266 Using disable to know whether the exercise has been marked or not.
+		if ((e.flowElement as TextComponentElement).hideChrome && !XHTML.hasClass(inputNode, "disabled")) {
 			// Set hide chrome to false, and dispatch a fake UPDATE_COMPLETE event to force OverlayBehaviour to redraw its components
 			(e.flowElement as TextComponentElement).hideChrome = false;
 			
