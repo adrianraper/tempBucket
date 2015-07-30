@@ -35,7 +35,7 @@ package skins.air.bento.exercise {
 			super.commitProperties();
 			
 			if (hostComponent.editable) {
-				if (border) border.visible = false;
+				if (border) border.visible = true;
 				if (dropTargetBorder) dropTargetBorder.visible = false;
 			} else {
 				if (border) border.visible = false;

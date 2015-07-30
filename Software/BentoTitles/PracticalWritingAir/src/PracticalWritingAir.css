@@ -6,6 +6,11 @@
 @namespace nonetwork "com.clarityenglish.bento.view.nonetwork.*";
 @namespace settings "com.clarityenglish.practicalwriting.view.settings.*";
 @namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
+@namespace timer "com.clarityenglish.bento.view.timer.*";
+
+global {
+    interactionMode: touch;
+}
 
 practicalwriting|PracticalWritingApplication {
     skinClass: ClassReference("skins.practicalwritingair.PracticalWritingApplicationSkin");
@@ -48,4 +53,12 @@ components|XHTMLExerciseView s|TextInput {
     contentBackgroundAlpha: 0;
     paddingLeft: 0;
     paddingRight: 0;
+}
+
+timer|TimerComponent {
+    skinClass: ClassReference("skins.practicalwritingair.exercise.timer.TimerSkin");
+}
+
+timer|TimerComponent s|TextInput {
+    skinClass: ClassReference("skins.practicalwritingair.exercise.timer.TimerTextInputSkin");
 }
