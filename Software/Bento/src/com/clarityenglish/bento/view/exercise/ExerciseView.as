@@ -14,8 +14,9 @@ package com.clarityenglish.bento.view.exercise {
 	import flash.net.navigateToURL;
 	
 	import mx.controls.Text;
-	
-	import spark.components.Button;
+import mx.core.FlexGlobals;
+
+import spark.components.Button;
 	
 	import org.osflash.signals.Signal;
 
@@ -84,9 +85,8 @@ package com.clarityenglish.bento.view.exercise {
 		public var isPlatformiPad:Boolean;
 
 		// Timer total time
-		[Bindable]
-		public var timerTotalTime:Array = [];
-
+		private var _timerTotalTime:Array = [];
+		private var _isTimereTotalTimeChange;
 		private var _courseCaption:String;
 		
 		// gh#388
@@ -164,6 +164,16 @@ package com.clarityenglish.bento.view.exercise {
 		[Bindable]
 		public function get languageCode():String {
 			return _languageCode;
+		}
+
+		public function set timerTotalTime(value:Array):void {
+			_timerTotalTime = value;
+			_isTimereTotalTimeChange = true;
+		}
+
+		[Bindable]
+		public function get timerTotalTime():Array {
+			return _timerTotalTime;
 		}
 		
 		public var startAgain:Signal = new Signal();
@@ -271,6 +281,20 @@ package com.clarityenglish.bento.view.exercise {
 					ruleButton.label = copyProvider.getCopyForId("ruleButton");
 					ruleButton.addEventListener(MouseEvent.CLICK, onMouseClick);
 					break;
+			}
+		}
+
+		override protected function commitProperties():void {
+			super.commitProperties();
+
+			// gh#1267
+			if (isPlatformiPad) {
+				if (_isTimereTotalTimeChange && _timerTotalTime.length > 0) {
+					_isTimereTotalTimeChange = false;
+					FlexGlobals.topLevelApplication.resizeForSoftKeyboard = true;
+				} else {
+					FlexGlobals.topLevelApplication.resizeForSoftKeyboard = false;
+				}
 			}
 		}
 		

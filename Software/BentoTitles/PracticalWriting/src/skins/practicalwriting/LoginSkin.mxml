@@ -1,10 +1,22 @@
 <?xml version="1.0"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark" xmlns:bentoassets="skins.assets.*" xmlns:assets="skins.practicalwriting.assets.*">
+        xmlns:s="library://ns.adobe.com/flex/spark" xmlns:bentoassets="skins.assets.*" xmlns:assets="skins.practicalwriting.assets.*" creationComplete="onCreationComplete(event)">
 
     <fx:Metadata>
         [HostComponent("com.clarityenglish.bento.view.login.LoginView")]
     </fx:Metadata>
+
+    <fx:Script>
+        <![CDATA[
+        import mx.core.FlexGlobals;
+
+        protected function onCreationComplete(e:Event):void {
+            // gh#1267
+            if (hostComponent.isPlatformipad)
+                FlexGlobals.topLevelApplication.resizeForSoftKeyboard = true;
+        }
+        ]]>
+    </fx:Script>
 
     <fx:Style>
         @namespace s "library://ns.adobe.com/flex/spark";
