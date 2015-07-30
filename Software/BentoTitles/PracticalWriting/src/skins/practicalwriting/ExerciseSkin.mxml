@@ -101,11 +101,9 @@
             </s:fill>
         </s:Rect>
 
-        <s:ToggleButton id="menuToggleButton" top="5" left="0"/>
-
         <!--Course Label-->
-        <s:Button id="courseLabelButton" left="60" top="20"
-                 label="{hostComponent.selectedExerciseNode.parent().parent().attribute('caption')}" fontSize="15"
+        <s:Button id="courseLabelButton" left="52" top="20"
+                 label="{hostComponent.selectedExerciseNode.parent().parent().attribute('caption')}" fontSize="15" fontWeight="normal"
                  color="{getStyle('pieChartFillColor')[hostComponent.courseIndex]}" useHandCursor="true" buttonMode="true"/>
 
         <!-- Top Right Buttons -->

@@ -83,15 +83,15 @@
 
     <s:HGroup top="11" bottom="11" left="11" right="11" horizontalAlign="center" verticalAlign="middle">
         <title:menu />
-
-        <!-- layer 8: text -->
-        <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
-        <s:Label id="labelDisplay"
-                 textAlign="center"
-                 maxDisplayedLines="1"
-                 verticalAlign="middle" paddingTop="3"
-                 fontFamily="Helvetica" color="#474748" fontSize="15">
-        </s:Label>
     </s:HGroup>
+
+    <!-- layer 8: text -->
+    <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
+    <s:Label id="labelDisplay"
+             textAlign="center"
+             maxDisplayedLines="1"
+             verticalAlign="middle" paddingTop="3"
+             fontFamily="Helvetica" color="#474748" fontSize="15">
+    </s:Label>
 
 </s:SparkButtonSkin>

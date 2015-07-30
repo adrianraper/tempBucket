@@ -138,10 +138,6 @@ exercise|ExerciseView {
     skinClass: ClassReference("skins.practicalwriting.ExerciseSkin");
 }
 
-exercise|ExerciseView s|ToggleButton#menuToggleButton {
-    skinClass: ClassReference("skins.practicalwriting.exercise.MenuToggleButtonSkin");
-}
-
 exercise|ExerciseView s|Button#backButton {
     skinClass: ClassReference("skins.practicalwriting.exercise.BackButtonSkin");
 }
