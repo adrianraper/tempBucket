@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:components="com.clarityenglish.textLayout.components.*"
-		xmlns:exercise="skins.bento.exercise.*">
+		xmlns:exercise="skins.bento.exercise.*" creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView")]
@@ -19,9 +19,15 @@
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.PopupableBehaviour;
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.RecorderButtonBehaviour;
 			import com.clarityenglish.textLayout.components.behaviours.OverlayBehaviour;
-			
+
+			import mx.core.FlexGlobals;
+
 			import mx.events.FlexMouseEvent;
-			
+
+			protected function onCreationComplete(event:Event):void {
+				//FlexGlobals.topLevelApplication.resizeForSoftKeyboard = false;
+			}
+
 			protected function onScrollerMouseWheelChanging(event:FlexMouseEvent):void {
 				// #66
 				event.delta = event.delta / Math.abs(event.delta) * 32;
@@ -43,7 +49,7 @@
 	</s:states>
 	
 	<s:layout>
-		<s:VerticalLayout gap="0" />
+		<s:VerticalLayout gap="-1" />
 	</s:layout>
 	
 	<s:Group id="headerGroup" width="100%">
@@ -73,7 +79,7 @@
 
 	<s:Group left="0" width="100%" height="100%">
 		<s:layout>
-			<s:VerticalLayout/>
+			<s:VerticalLayout gap="-1"/>
 		</s:layout>
 
 		<s:Group id="noscrollGroup" width="100%">
@@ -142,8 +148,8 @@
 				<components:XHTMLRichText id="rightNoScrollRichText" top="-1" left="0" right="0" bottom="0"
 										  behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, EnlargeImageBehaviour/*, DictionaryBehaviour*/]}"/>
 				<!--blur the right no scroll image-->
-				<s:SWFLoader id="imgLeftBlur" source="@Embed(source='/skins/assets/sideBlur.png')" left="0" top="-1"/>
-				<s:SWFLoader id="imgBottomBlur" source="@Embed(source='/skins/assets/bottomBlur.png')" left="-1" top="655"/>
+				<!--s:SWFLoader id="imgLeftBlur" source="@Embed(source='/skins/assets/sideBlur.png')" left="0" top="-1"/-->
+				<s:SWFLoader id="imgBottomBlur" source="@Embed(source='/skins/assets/bottomBlur.png')" left="-1" top="644"/>
 			</s:Group>
 		</s:Group>
 	</s:Group>

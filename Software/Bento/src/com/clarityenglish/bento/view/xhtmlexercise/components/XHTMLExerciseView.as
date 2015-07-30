@@ -233,10 +233,12 @@ import spark.components.Group;
 					// gh#1164 hide the blur mask here for it covering the video scripture button. But after the image can blur itself we can remove the code.
 					if (sectionName == "rightNoScroll" && exercise.getSection("rightNoScroll")) {
 						if(exercise.getSection("rightNoScroll").video.length() > 0) {
-							imgLeftBlur.visible = false;
+							if (imgLeftBlur)
+								imgLeftBlur.visible = false;
 							imgBottomBlur.visible = false;
 						} else {
-							imgLeftBlur.visible = true;
+							if (imgLeftBlur)
+								imgLeftBlur.visible = true;
 							imgBottomBlur.visible = true;
 						}
 					}
