@@ -51,6 +51,12 @@
         <s:State name="disabled" />
     </s:states>
 
+    <s:Rect top="-15" left="-5" bottom="-5" right="-5">
+        <s:fill>
+            <s:SolidColor color="#FFFFFF" alpha="0" />
+        </s:fill>
+    </s:Rect>
+
     <s:Label id="labelDisplay"
              textAlign="center"
              maxDisplayedLines="1"
