@@ -42,9 +42,6 @@ import spark.primitives.Rect;
         public var windowShade:WindowShade;
 
         [SkinPart]
-        public var exerciseCaptionGroup:Group;
-
-        [SkinPart]
         public var dynamicViewCover:Rect;
 
         [SkinPart]
@@ -77,9 +74,6 @@ import spark.primitives.Rect;
             switch (instance) {
                 case courseLabelButton:
                     courseLabelButton.addEventListener(MouseEvent.CLICK, onCourseLabelButtonClick);
-                    break;
-                case exerciseCaptionGroup:
-                    exerciseCaptionGroup.addEventListener(MouseEvent.CLICK, onExerciseCaptionGroupClick);
                     break;
                 case exerciseList:
                     var exerciseSelected:Signal = new Signal(XML);
@@ -148,10 +142,6 @@ import spark.primitives.Rect;
             if (!isPlatformiPad) {
                 timerComponent.bottom = 0;
             }
-        }
-
-        protected function onExerciseCaptionGroupClick(event:Event):void {
-            windowShade.open();
         }
 
         protected function onCourseLabelButtonClick(event:Event):void {

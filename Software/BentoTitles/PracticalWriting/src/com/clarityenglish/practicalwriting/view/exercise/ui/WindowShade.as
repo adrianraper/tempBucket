@@ -63,6 +63,7 @@ import flash.display.DisplayObject;
 			switch (instance) {
 				case thumbButton:
 					thumbButton.addEventListener(MouseEvent.MOUSE_DOWN, thumbButton_mouseDownHandler);
+					thumbButton.addEventListener(MouseEvent.CLICK, onMouseClick);
 					break;
 				case contentGroup:
 					// start the contentGroup with no height
@@ -72,6 +73,10 @@ import flash.display.DisplayObject;
 					contentGroup.addEventListener(ElementExistenceEvent.ELEMENT_ADD, onElementAdd);
 					break;
 			}
+		}
+
+		private function onMouseClick(event:Event):void {
+			open();
 		}
 		
 		private function thumbButton_mouseDownHandler(event:MouseEvent):void {
