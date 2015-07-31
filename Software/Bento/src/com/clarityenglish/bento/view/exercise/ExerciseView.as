@@ -9,12 +9,14 @@ package com.clarityenglish.bento.view.exercise {
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
-	import flash.events.MouseEvent;
+import flash.events.KeyboardEvent;
+import flash.events.MouseEvent;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	
 	import mx.controls.Text;
 import mx.core.FlexGlobals;
+import mx.managers.FocusManager;
 
 import spark.components.Button;
 	
@@ -233,6 +235,8 @@ import spark.components.Button;
 					startAgainButton.label = copyProvider.getCopyForId("exerciseStartAgainButton");
 					// When you first open exercise, buttons have not been initialized in configureButtonVisibility
 					startAgainButton.visible = startAgainButton.includeInLayout = hasQuestions && !noMarking;
+					// gh#1269
+					startAgainButton.focusEnabled = false;
 					break;
 				case feedbackButton:
 					feedbackButton.addEventListener(MouseEvent.CLICK, function():void {
@@ -243,20 +247,28 @@ import spark.components.Button;
 							showFeedbackReminder.dispatch(copyProvider.getCopyForId("feedbackClickAnswersMsg"));
 						}} );
 					feedbackButton.label = copyProvider.getCopyForId("exerciseFeedbackButton");
+					// gh#1269
+					feedbackButton.focusEnabled = false;
 					break;
 				case markingButton:
 					markingButton.addEventListener(MouseEvent.CLICK, function():void { showMarking.dispatch(); } );
 					markingButton.label = copyProvider.getCopyForId("exerciseMarkingButton");
 					// When you first open exercise, buttons have not been initialized in configureButtonVisibility
 					markingButton.visible = markingButton.includeInLayout = !isMarked && hasQuestions && !noMarking;
+					// gh#1269
+					markingButton.focusEnabled = false;
 					break;
 				case forwardButton:
 					forwardButton.addEventListener(MouseEvent.CLICK, function():void { nextExercise.dispatch(); } );
 					forwardButton.label = copyProvider.getCopyForId("exerciseForwardButton");
+					// gh#1269
+					forwardButton.focusEnabled = false;
 					break;
 				case backButton:
 					backButton.addEventListener(MouseEvent.CLICK, function():void { previousExercise.dispatch(); } );
 					backButton.label = copyProvider.getCopyForId("exerciseBackButton");
+					// gh#1269
+					backButton.focusEnabled = false;
 					break;
 				case printButton:
 					printButton.addEventListener(MouseEvent.CLICK, function():void { printExercise.dispatch(dynamicView); } );
@@ -309,7 +321,6 @@ import spark.components.Button;
 			var urlRequest:URLRequest = new URLRequest(url);
 			navigateToURL(urlRequest, "_blank");
 		}
-		
 	}
 	
 }

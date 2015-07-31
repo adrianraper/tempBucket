@@ -320,62 +320,65 @@ import mx.utils.StringUtil;
 		}
 		
 		private function onEnter(event:FlexEvent):void {
-			if (scroller) {
-				// gh#709 when click enter, the focus will not jump to the next component but deactivated on gap fill and focus on scroller.
-				var focusManager:FocusManager = event.target.focusManager;
-				FocusManager(focusManager).mx_internal::lastFocus =  scroller;
-			} else {
-				var nextComponent:DisplayObject = event.target.focusManager.getNextFocusManagerComponent();
-				// gh#979 If nextComponent is Button, it is back button. navigating to ExerciseView marking button
-				if (nextComponent is Button) {
-					//while (!(nextComponent is ExerciseView)) {
-						nextComponent = nextComponent.parent;
-					//}
-					// gh#1157 nextComponent = (nextComponent as ExerciseView).markingButton;
-				}
-				if (nextComponent is IFocusManagerComponent) {
-					event.target.focusManager.setFocus(nextComponent);	
+			// gh#1269
+			if (event.target.focusManager) {
+				if (scroller) {
+					// gh#709 when click enter, the focus will not jump to the next component but deactivated on gap fill and focus on scroller.
+					var focusManager:FocusManager = event.target.focusManager;
+					FocusManager(focusManager).mx_internal::lastFocus =  scroller;
 				} else {
-					event.target.focusManager.hideFocus();
+					var nextComponent:DisplayObject = event.target.focusManager.getNextFocusManagerComponent();
+					// gh#979 If nextComponent is Button, it is back button. navigating to ExerciseView marking button
+					if (nextComponent is Button) {
+						//while (!(nextComponent is ExerciseView)) {
+						nextComponent = nextComponent.parent;
+						//}
+						// gh#1157 nextComponent = (nextComponent as ExerciseView).markingButton;
+					}
+					if (nextComponent is IFocusManagerComponent) {
+						event.target.focusManager.setFocus(nextComponent);
+					} else {
+						event.target.focusManager.hideFocus();
+					}
+
+
+					// #187 - if the focused element is offscreen then scroll it into view
+					// First find the parent scroller
+					var displayObject:DisplayObject = nextComponent;
+					while (!(displayObject is Scroller) && displayObject.parent)
+						displayObject = displayObject.parent;
+
+					if (!displayObject || displayObject is Stage)
+						return;
+
+					var scroller:Scroller = displayObject as Scroller;
+
+					// If the scroller has no scrollbar then there is nothing to do
+					if (!scroller.verticalScrollBar)
+						return;
+
+					// Get the component's y position by summing y positions up the hierarchy
+					/*var focusTopEdge:int = nextComponent.y;
+					 var thisItem:DisplayObjectContainer = nextComponent.parent;
+					 while (thisItem !== scroller) {
+					 focusTopEdge += thisItem.y;
+					 thisItem = thisItem.parent;
+					 }
+
+					 var focusBottomEdge:int = focusTopEdge + nextComponent.height;
+					 var scrollbarRange:int = scroller.verticalScrollBar.maxHeight;
+					 var visibleWindowHeight:int = scroller.height;
+					 var lastVisibleY:int = visibleWindowHeight + scroller.viewport.verticalScrollPosition;
+
+					 if (focusTopEdge == scroller.viewport.verticalScrollPosition) {
+					 // Do nothing
+					 } else if (focusTopEdge != 0) {
+					 // If the component is out of view then scroll it into view
+					 var newPos:int = Math.min(scrollbarRange, scroller.viewport.verticalScrollPosition + (focusBottomEdge - lastVisibleY));
+					 scroller.viewport.verticalScrollPosition = newPos;
+					 }*/
 				}
-						
-								
-				// #187 - if the focused element is offscreen then scroll it into view				
-				// First find the parent scroller
-				var displayObject:DisplayObject = nextComponent;
-				while (!(displayObject is Scroller) && displayObject.parent)
-					displayObject = displayObject.parent;
-				
-				if (!displayObject || displayObject is Stage)
-					return;
-				
-				var scroller:Scroller = displayObject as Scroller;
-				
-				// If the scroller has no scrollbar then there is nothing to do
-				if (!scroller.verticalScrollBar)
-					return;
-				
-				// Get the component's y position by summing y positions up the hierarchy
-				/*var focusTopEdge:int = nextComponent.y;
-				var thisItem:DisplayObjectContainer = nextComponent.parent;
-				while (thisItem !== scroller) {
-					focusTopEdge += thisItem.y;
-					thisItem = thisItem.parent;
-				}
-				
-				var focusBottomEdge:int = focusTopEdge + nextComponent.height;
-				var scrollbarRange:int = scroller.verticalScrollBar.maxHeight;
-				var visibleWindowHeight:int = scroller.height;
-				var lastVisibleY:int = visibleWindowHeight + scroller.viewport.verticalScrollPosition;
-				
-				if (focusTopEdge == scroller.viewport.verticalScrollPosition) {
-					// Do nothing
-				} else if (focusTopEdge != 0) {
-					// If the component is out of view then scroll it into view
-					var newPos:int = Math.min(scrollbarRange, scroller.viewport.verticalScrollPosition + (focusBottomEdge - lastVisibleY));
-					scroller.viewport.verticalScrollPosition = newPos;
-				}*/
-			}			
+			}
 		}
 		
 		private function onDragEnter(event:DragEvent):void {
