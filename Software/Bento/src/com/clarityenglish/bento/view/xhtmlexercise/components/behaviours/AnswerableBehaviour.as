@@ -458,7 +458,8 @@ class ErrorCorrectionAnswerManager extends InputAnswerManager implements IAnswer
 			(e.flowElement as TextComponentElement).hideChrome = false;
 			
 			// gh#407 If I set element.text to the longest answer at this point, it will stick nicely
-			(e.flowElement as TextComponentElement).text = (e.flowElement as InputElement).longestAnswer;
+			// gh#1268
+			(e.flowElement as TextComponentElement).text = (e.flowElement as InputElement).longestAnswer.length > String(inputNode.attribute('value')).length ?  (e.flowElement as InputElement).longestAnswer : inputNode.attribute('value');
 			
 			var tf:TextFlow = e.flowElement.getTextFlow();
 			// gh#413 copied from inputElement.dragDrop - is this how to get the flow updated? Seems to work.
