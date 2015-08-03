@@ -15,9 +15,9 @@
     </mx:PieChart>
 
     <!--Pen-->
-    <s:Group right="26" top="11">
+    <s:Group right="{height > 200? 26 : 25}" top="{height > 200? 15 : 11}" scaleX="{height > 200? 1 : 0.8}" scaleY="{height > 200? 1 : 0.8}">
         <s:Group x="-201.238" y="-413.365">
-            <s:Path winding="nonZero" data="M216.91 464.537L201.238 452.199 231.323 413.365 246.993 425.703 216.91 464.537Z" >
+            <s:Path winding="nonZero" data="M216.91 464.537L201.238 452.199 231.323 413.365 246.993 425.703 216.91 464.537Z">
                 <s:fill>
                     <s:SolidColor color="{hostComponent.backgroundColor? hostComponent.backgroundColor : uint('0xFFFFFF')}"/>
                 </s:fill>
@@ -35,5 +35,5 @@
         </s:Group>
     </s:Group>
 
-    <s:Label id="titleLabel" width="70%" text="{hostComponent.title}" color="{hostComponent.fillColor}" textAlign="center" fontFamily="Helvetica" fontSize="22" verticalCenter="0" horizontalCenter="0" />
+    <s:Label id="titleLabel" width="70%" text="{hostComponent.title}" color="{hostComponent.fillColor}" textAlign="center" fontFamily="Helvetica" fontSize="{height > 200? 22 : 18}" verticalCenter="4" horizontalCenter="0" />
 </s:Skin>
