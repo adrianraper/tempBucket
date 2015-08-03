@@ -18,7 +18,7 @@
 	$version = '1107';
 	$coordsMinWidth = '990';
 	$coordsMaxWidth = '1024';
-	$coordsMinHeight = '760';
+	$coordsMinHeight = '860';
 	$coordsMaxHeight = null;
 	$locationFile = "config.xml";
 	
@@ -32,7 +32,7 @@
 <html>
 <head>
 	<title>Practical Writing from Clarity</title>
-	<link rel="shortcut icon" href="/Software/AR.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="/Software/PW.ico" type="image/x-icon" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 	<meta name="description" content="" />

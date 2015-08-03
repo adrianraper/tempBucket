@@ -25,9 +25,9 @@
         </s:fill>
     </s:Rect>
 
-    <s:List id="courseList" left="46" right="46" top="{height > 1020? 160 : 175}" bottom="{height > 1020? 100 : 140}" horizontalCenter="0" dataProvider="{hostComponent.courseXMLListCollection}" borderVisible="false" contentBackgroundAlpha="0" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+    <s:List id="courseList" left="46" right="46" top="{height > 1020? 160 : 175}" bottom="{height > 1020? 100 : 0}" horizontalCenter="0" dataProvider="{hostComponent.courseXMLListCollection}" borderVisible="false" contentBackgroundAlpha="0" verticalScrollPolicy="off" horizontalScrollPolicy="off">
         <s:layout>
-            <s:TileLayout horizontalAlign="center" rowHeight="{height > 1020? 225 : 184}" columnWidth="{height > 1020? 225 : 184}" verticalGap="50" horizontalGap="0" columnAlign="justifyUsingGap"/>
+            <s:TileLayout horizontalAlign="center" rowHeight="{height > 1020? 225 : 184}" columnWidth="{height > 1020? 220 : 184}" verticalGap="50" horizontalGap="0" columnAlign="justifyUsingGap"/>
         </s:layout>
         <s:itemRenderer>
             <fx:Component>
