@@ -15,6 +15,26 @@
             if (hostComponent.isPlatformipad)
                 FlexGlobals.topLevelApplication.resizeForSoftKeyboard = true;
         }
+
+        protected function onLoginSoftKeyboardActivating(event:Event) {
+            if (height < 700 && hostComponent.isPlatformAndroid)
+                signInGroup.verticalCenter = -100;
+        }
+
+        protected function onLoginSoftKeyboardDeactivate(event:Event) {
+            if (height < 700 && hostComponent.isPlatformAndroid)
+                signInGroup.verticalCenter = 10;
+        }
+
+        protected function onRegisterSoftKeyboardActivating(event:Event) {
+            if (height < 700 && hostComponent.isPlatformAndroid)
+                registerGroup.verticalCenter = -110;
+        }
+
+        protected function onRegisterSoftKeyboardDeactivate(event:Event) {
+            if (height < 700 && hostComponent.isPlatformAndroid)
+                registerGroup.verticalCenter = 0;
+        }
         ]]>
     </fx:Script>
 
@@ -104,9 +124,9 @@
                     </s:stroke>
                 </s:Line>
                 <s:Rect height="5" /> <!-- this is a spacer -->
-                <s:TextInput id="loginKeyInput" prompt="{hostComponent.loginKeyCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5"/>
+                <s:TextInput id="loginKeyInput" prompt="{hostComponent.loginKeyCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5" softKeyboardActivating="onLoginSoftKeyboardActivating(event)" softKeyboardDeactivate="onLoginSoftKeyboardDeactivate(event)" />
                 <s:VGroup visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" gap="10" >
-                    <s:TextInput id="passwordInput" displayAsPassword="true" prompt=" {hostComponent.passwordCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5"/>
+                    <s:TextInput id="passwordInput" displayAsPassword="true" prompt=" {hostComponent.passwordCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5" softKeyboardActivating="onLoginSoftKeyboardActivating(event)" softKeyboardDeactivate="onLoginSoftKeyboardDeactivate(event)" />
                     <s:HGroup width="100%" paddingTop="10" paddingLeft="105">
                         <s:Button id="forgotPasswordButton" label="{hostComponent.forgotPasswordCaption}" useHandCursor="true" buttonMode="true"/>
                     </s:HGroup>
@@ -158,19 +178,19 @@
             </s:Line>
             <s:TextInput id="selfRegisterName" prompt="{hostComponent.selfRegisterNameCaption}"
                          includeInLayout="{hostComponent.selfRegisterNameCaption != null}" visible="{hostComponent.selfRegisterNameCaption != null}"
-                         styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5" />
+                         styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5" softKeyboardActivating="onRegisterSoftKeyboardActivating(event)" softKeyboardDeactivate="onRegisterSoftKeyboardDeactivate(event)" />
             <s:TextInput id="selfRegisterId" prompt="{hostComponent.selfRegisterIdCaption}"
                          includeInLayout="{hostComponent.selfRegisterIdCaption != null}" visible="{hostComponent.selfRegisterIdCaption != null}"
-                         styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5" />
+                         styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5" softKeyboardActivating="onRegisterSoftKeyboardActivating(event)" softKeyboardDeactivate="onRegisterSoftKeyboardDeactivate(event)" />
             <s:TextInput id="selfRegisterEmail" prompt="{hostComponent.selfRegisterEmailCaption}"
                          includeInLayout="{hostComponent.selfRegisterEmailCaption != null}" visible="{hostComponent.selfRegisterEmailCaption != null}"
-                         styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5" />
+                         styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5" softKeyboardActivating="onRegisterSoftKeyboardActivating(event)" softKeyboardDeactivate="onRegisterSoftKeyboardDeactivate(event)" />
             <s:TextInput id="selfRegisterPassword" displayAsPassword="true" prompt="{hostComponent.selfRegisterPasswordCaption}"
                          includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}"
-                         styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5" />
+                         styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5" softKeyboardActivating="onRegisterSoftKeyboardActivating(event)" softKeyboardDeactivate="onRegisterSoftKeyboardDeactivate(event)" />
             <s:TextInput id="confirmPassword" displayAsPassword="true" prompt="{hostComponent.confirmPasswordCaption}"
                          includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}"
-                         styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5" />
+                         styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5" softKeyboardActivating="onRegisterSoftKeyboardActivating(event)" softKeyboardDeactivate="onRegisterSoftKeyboardDeactivate(event)" />
             <s:Rect height="10" /> <!-- this is a spacer -->
             <s:HGroup gap="20">
                 <s:Button id="cancelButton" label="{hostComponent.cancelButtonCaption}" styleName="buttonText" />

@@ -31,7 +31,7 @@
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
                    xmlns:s="library://ns.adobe.com/flex/spark"
                    xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-                   minWidth="21" minHeight="21"
+                   minWidth="15" minHeight="21"
                    alpha.disabled="0.5">
 
     <fx:Metadata>
@@ -51,13 +51,13 @@
         <s:State name="disabled" />
     </s:states>
 
-    <s:Rect width="15" top="0" bottom="0" horizontalCenter="0">
+    <s:Rect width="20" top="0" bottom="0" horizontalCenter="0">
         <s:fill>
             <s:SolidColor color="#FFFFFF" alpha="0" />
         </s:fill>
     </s:Rect>
 
-    <s:Rect id="fill" horizontalCenter="6" width="4" top="0" bottom="0" radiusX="5" radiusY="5">
+    <s:Rect id="fill" horizontalCenter="4" width="4" top="0" bottom="0" radiusX="5" radiusY="5">
         <s:fill>
             <s:SolidColor color="#D6D6D6" alpha="0.7"/>
         </s:fill>
@@ -69,7 +69,7 @@
              textAlign="center"
              maxDisplayedLines="1"
              horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
-             left="10" right="10" top="2" bottom="2">
+             left="0" right="0" top="2" bottom="2">
     </s:Label>
 
 </s:SparkButtonSkin>

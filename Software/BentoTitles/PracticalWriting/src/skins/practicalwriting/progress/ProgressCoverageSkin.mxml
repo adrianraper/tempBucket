@@ -18,7 +18,7 @@
 
     <s:Label id="coverageInstructionLabel" top="0" left="0" fontSize="13" />
 
-    <s:Group width="100%" height="100%" horizontalCenter="0">
+    <s:Group width="100%" height="100%" horizontalCenter="0" scaleX="{height > 559 ? 1 : 0.66 * height / 380} " scaleY="{height > 559 ? 1 : 0.66 * height / 380}">
         <ui:PieChartCoverageComponent top="20" nodeArrayCollection="{hostComponent.nodeArrayCollection}" maxRadius="509" maxLineWidth="355" />
     </s:Group>
 

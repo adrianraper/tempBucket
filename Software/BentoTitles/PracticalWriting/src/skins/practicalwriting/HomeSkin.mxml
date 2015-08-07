@@ -25,9 +25,11 @@
         </s:fill>
     </s:Rect>
 
-    <s:List id="courseList" left="46" right="46" top="{height > 1020? 160 : 175}" bottom="{height > 1020? 100 : 0}" horizontalCenter="0" dataProvider="{hostComponent.courseXMLListCollection}" borderVisible="false" contentBackgroundAlpha="0" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+
+    <!--After testing, height = 650 is the minimum width in tablet fitting the broswer size changing schema. And height shorter thann 650 needs to adjust top can verticalGap.-->
+    <s:List id="courseList" left="46" right="46" minWidth="900" top="{height > 640? 160 : height * 0.23}" bottom="{height > 1120? 100 : 0}" horizontalCenter="0" dataProvider="{hostComponent.courseXMLListCollection}" borderVisible="false" contentBackgroundAlpha="0" verticalScrollPolicy="off" horizontalScrollPolicy="off">
         <s:layout>
-            <s:TileLayout horizontalAlign="center" rowHeight="{height > 1020? 225 : 184}" columnWidth="{height > 1020? 220 : 184}" verticalGap="50" horizontalGap="0" columnAlign="justifyUsingGap"/>
+            <s:TileLayout horizontalAlign="center" rowHeight="{height > 910? 225 : width * 0.18}" columnWidth="{height > 910 ? 225 : width * 0.18}" verticalGap="{(height > 1020 || (height &lt; 910 &amp;&amp; height > 640)) ? 50 : 0}" horizontalGap="0" columnAlign="justifyUsingGap" />
         </s:layout>
         <s:itemRenderer>
             <fx:Component>

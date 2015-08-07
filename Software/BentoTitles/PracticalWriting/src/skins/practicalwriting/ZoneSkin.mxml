@@ -33,10 +33,10 @@
     </s:Rect>
 
     <!--Left column-->
-    <s:VGroup left="5" width="270" height="80%" top="138" horizontalAlign="center" gap="40">
+    <s:VGroup left="5" width="{height > 640 ? 255 : 300}" height="80%" top="{height > 640 ? 130 : 110}" horizontalAlign="center" gap="{height > 640 ? 40 : 20}" scaleX="{height > 640 ? 1 : 0.85}" scaleY="{height > 640 ? 1 : 0.85}">
         <vo:PieChartButton id="pieChartButton" width="200" height="200" node="{hostComponent.course}" fillColor="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}" bottomColor="{getStyle('pieChartBottomColor')[hostComponent.course.childIndex()]}" backgroundColor="#EEEFF0"/>
 
-        <s:HGroup width="250" height="40" horizontalAlign="center" verticalAlign="middle" gap="20">
+        <s:HGroup width="250" height="40" horizontalAlign="center" verticalAlign="middle" gap="20" paddingTop="-10">
             <s:Rect width="5" height="40">
                 <s:fill>
                     <s:SolidColor color="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}"/>
@@ -59,12 +59,15 @@
             </s:Rect>
         </s:HGroup>
 
-        <s:Label id="skillCaptionLabel" paddingLeft="-95" fontWeight="bold" fontFamily="Helvetica" fontSize="15" />
-        <s:Label id="skillContentLabel" fontSize="14" width="190" paddingTop="-30" lineHeight="25" />
+        <s:VGroup gap="10">
+            <s:Label id="skillCaptionLabel" fontWeight="bold" fontFamily="Helvetica" fontSize="15" />
+            <s:Label id="skillContentLabel" fontSize="14" width="200" lineHeight="25" />
+        </s:VGroup>
+
     </s:VGroup>
 
-    <s:TabbedViewNavigator id="zoneViewNavigator" top="112" bottom="50" left="270" right="15" creationPolicy="all">
-        <s:ViewNavigator id="startOutViewNavigator" firstView="com.clarityenglish.practicalwriting.view.zone.StartOutZoneView" firstViewData="{hostComponent.course}" label="Start Out" left="0" right="0" top="0" bottom="0" />
+    <s:TabbedViewNavigator id="zoneViewNavigator" top="112" bottom="60" left="270" right="15" creationPolicy="all">
+        <s:ViewNavigator id="startOutViewNavigator" firstView="com.clarityenglish.practicalwriting.view.zone.StartOutZoneView" firstViewData="{hostComponent.course}" label="Start Out" left="0" right="0" top="0" bottom="0" height="100%"/>
         <s:ViewNavigator id="practiceZoneViewNavigator" firstView="com.clarityenglish.practicalwriting.view.zone.PracticeZoneView" firstViewData="{hostComponent.course}" label="Practice Zone" left="0" right="0" top="0" bottom="0" horizontalCenter="0" />
         <s:ViewNavigator id="resourcesViewNavigator" firstView="com.clarityenglish.practicalwriting.view.zone.ResourcesZoneView" firstViewData="{hostComponent.course}" label="Resources" left="0" right="0" top="0" bottom="0" />
     </s:TabbedViewNavigator>

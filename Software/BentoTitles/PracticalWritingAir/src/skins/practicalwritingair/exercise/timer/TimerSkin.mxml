@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
-        xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:timer="skins.practicalwriting.assets.exercise.timer.*">
+        xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:timer="skins.practicalwriting.assets.exercise.timer.*" creationComplete="onCreationComplete(event)">
 
     <fx:Metadata>
         [HostComponent("com.clarityenglish.bento.view.timer.TimerComponent")]
@@ -18,7 +18,11 @@
 
     <fx:Script>
         <![CDATA[
+        import mx.core.FlexGlobals;
         import mx.events.SliderEvent;
+
+        [Bindable]
+        public var appWidth:Number;
 
         protected function timeConvert(value:Number):String {
             var hours:Number = Math.floor(value / 60);
@@ -36,6 +40,11 @@
             } else {
                 lastTipLabel.left = hostComponent.sliderWidth - 100;
             }
+        }
+
+        protected function onCreationComplete(e:Event):void {
+            appWidth = FlexGlobals.topLevelApplication.width;
+            trace("app width: "+appWidth);
         }
 
         private function getDataTip(value:String):String {
@@ -71,7 +80,7 @@
         <s:HGroup width="87%" height="100%" gap="0" horizontalAlign="center" verticalAlign="middle">
             <s:Group id="timerSessionGroup" width="82%" height="100%">
                 <!--Fake HSlider-->
-                <s:Group width="696" height="38" verticalCenter="0" horizontalCenter="0" excludeFrom="startState">
+                <s:Group width="{appWidth > 999 ? 696 : appWidth * 0.696}" height="38" verticalCenter="0" horizontalCenter="0" excludeFrom="startState">
                     <s:Rect width="100%" height="100%" radiusX="6" radiusY="6">
                         <s:fill>
                             <s:SolidColor color="#DDDDDC" />
@@ -103,7 +112,7 @@
                     </s:HGroup>
                 </s:Group>
                 <!--Real HSlider-->
-                <s:Group width="696" height="38" verticalCenter="0" horizontalCenter="0"  includeIn="startState">
+                <s:Group width="{appWidth > 999 ? 696 : appWidth * 0.696}" height="38" verticalCenter="0" horizontalCenter="0"  includeIn="startState">
                     <s:Rect width="100%" height="100%" radiusX="6" radiusY="6">
                         <s:fill>
                             <s:SolidColor color="#222222" />
@@ -117,7 +126,7 @@
                                 thumbSkin="skins.practicalwritingair.exercise.timer.HSliderThumbSkin"/>
                 </s:Group>
                 <!--Data Tip-->
-                <s:Group width="676" horizontalCenter="0" verticalCenter="-30">
+                <s:Group width="{appWidth > 999 ? 696 : appWidth * 0.696}" horizontalCenter="0" verticalCenter="-30">
                     <s:Label id="firstTipLabel" color="#15516D" text="{'Planning ' + timeConvert(timerSlider.values[0])}" fontSize="13" />
                     <s:Label id="midTipLabel" color="#0681A8" text="{'Writing ' + timeConvert(timerSlider.values[1] - timerSlider.values[0])}" fontSize="13" />
                     <s:Label id="lastTipLabel" color="#15516D" text="{'Proofreading ' + timeConvert(timerSlider.maximum - timerSlider.values[1])}" fontSize="13" />

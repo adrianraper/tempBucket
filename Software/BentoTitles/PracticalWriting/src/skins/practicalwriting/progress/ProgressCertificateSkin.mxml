@@ -16,7 +16,7 @@
         <s:State name="disabled" />
     </s:states>
 
-    <s:VGroup id="oopsVGroup" horizontalCenter="0" horizontalAlign="center" width="100%" height="350" top="100" bottom="0" gap="54" visible="false">
+    <s:VGroup id="oopsVGroup" horizontalCenter="0" horizontalAlign="center" width="100%" height="350" verticalCenter="-60" gap="54" visible="false">
         <certificate:oops />
         <s:RichEditableText id="notCompleteRichEditableText" horizontalCenter="0" fontSize="16" lineHeight="30" color="#302D2F"/>
     </s:VGroup>

@@ -14,13 +14,13 @@
         <s:State name="disabled" />
     </s:states>
 
-    <s:VGroup left="0" right="0" top="10" bottom="10" gap="10">
+    <s:VGroup left="0" right="0" top="0" bottom="10" gap="10">
         <s:Label id="analyseInstructionLabel" paddingTop="5" left="0" fontSize="14" />
 
-        <s:HGroup width="100%" height="100%" paddingTop="10" gap="100">
-            <s:Scroller left="0" width="35%">
+        <s:Group width="100%" height="100%">
+            <s:Scroller left="0" width="35%" height="90%">
                 <s:VGroup width="100%" height="100%">
-                    <s:DataGroup id="durationDataGroup" dataProvider="{hostComponent.courseListCollection}" width="100%" height="100%">
+                    <s:DataGroup id="durationDataGroup" dataProvider="{hostComponent.courseListCollection}" width="100%">
                         <s:layout>
                             <s:VerticalLayout gap="4"/>
                         </s:layout>
@@ -89,7 +89,7 @@
                 </s:VGroup>
             </s:Scroller>
 
-            <s:Group width="500">
+            <s:Group width="500" right="0">
                 <pwui:StackedCircleWedgeChart id="stackedChart" horizontalCenter="250" height="35" />
                 <s:Path horizontalCenter="0" data="M381.42 0 0 0C0 105.326 85.3853 190.71 190.71 190.71 296.037 190.71 381.42 105.326 381.42 0Z">
                     <s:fill>
@@ -111,7 +111,7 @@
                         <s:Label id="totalTimeMinLabel" fontSize="14" paddingTop="9" color="#0B789C" />
                     </s:HGroup>
                 </s:VGroup>
-                <s:Group width="450" height="25" top="270" horizontalCenter="0">
+                <s:Group width="450" height="25" top="260" horizontalCenter="0">
                     <s:Rect width="100%" height="100%" radiusX="10" radiusY="10">
                         <s:fill>
                             <s:SolidColor id="circleWedgeLabelBackgroundColor" color="#EDECEC" />
@@ -120,7 +120,7 @@
                     <s:Label id="circleWedgeLabel" verticalCenter="1" horizontalCenter="0" fontSize="13" color="#333333" />
                 </s:Group>
             </s:Group>
-        </s:HGroup>
+        </s:Group>
     </s:VGroup>
 </s:Skin>
 

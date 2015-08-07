@@ -9,6 +9,7 @@ import flash.utils.Timer;
 
 import mx.collections.ArrayCollection;
 import mx.controls.HSlider;
+import mx.core.FlexGlobals;
 import mx.events.FlexEvent;
 
 import mx.events.SliderEvent;
@@ -100,7 +101,8 @@ import spark.primitives.Rect;
         [Bindable]
         public var rightRadius:Number;
 
-        public const sliderWidth:Number = 676;
+        [Bindable]
+        public var sliderWidth:Number;
 
         private var timer:Timer;
         private var defaultTotalTime:Number;
@@ -118,6 +120,13 @@ import spark.primitives.Rect;
 
             addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
             _isFirstTimeChange = true;
+
+            // For smaller android device.
+            if (FlexGlobals.topLevelApplication.width > 999) {
+                sliderWidth = 676;
+            } else {
+                sliderWidth = FlexGlobals.topLevelApplication.width * 0.696 - 20;
+            }
         }
 
         public function set totalTime(value:Number):void {

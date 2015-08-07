@@ -12,7 +12,7 @@
         <s:State name="disabled" />
     </s:states>
 
-    <s:Group width="100%" height="100%" top="150">
+    <s:Group width="100%" height="100%" top="130" scaleX="{height > 640 ? 1 : 0.8 * height / 550}" scaleY="{height > 640 ? 1 : 0.8 * height / 550}">
         <video:VideoSelector id="videoSelector" width="640" height="360" horizontalCenter="0" showSelector="false"/>
         <s:Label id="videoLabel" top="380" width="640" fontSize="15" horizontalCenter="0" />
     </s:Group>
