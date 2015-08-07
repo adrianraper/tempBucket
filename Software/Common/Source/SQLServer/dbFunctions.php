@@ -1,8 +1,21 @@
 <?php
+require_once("crypto/claritySerialNumber.php");
+
 class FUNCTIONS {
 	function FUNCTIONS() {
 	}
 
+	// Decode the passed serial number
+	function decodeSerialNumber($vars, &$node){
+		$serialNumberText = $vars['SERIALNUMBER'];
+		$serialNumber = new claritySerialNumber();
+		if ($serialNumber->decode($serialNumberText)) {
+			$node .= "<register productCode='$serialNumber->productCode' expiryDate='$serialNumber->expiryDate' licences='$serialNumber->licences' />";
+		} else {
+			$node .= "<err serialNumberText='$serialNumberText' />";
+		}
+	}
+	
 	// v6.5.5 Is this serial number controlled in some way?
 	function isNotBlacklisted( &$vars, &$node ){
 		global $db;

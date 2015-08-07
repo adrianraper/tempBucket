@@ -10,28 +10,46 @@ require_once(dirname(__FILE__)."/dbPath.php");
 require_once(dirname(__FILE__)."/dbFunctions.php");
 
 	// read the passed XML
-	$Query	= new XMLQuery();
-	$vars		= $Query->vars;
+	$Query = new XMLQuery();
+	$vars = $Query->vars;
 	
 	// make the database connection
 	global $db;
 	$dbDetails = new DBDetails($vars['DBHOST']);
-	//print($dbDetails->dsn);
-	$db = &ADONewConnection($dbDetails->dsn);
-	if (!$db) die("Connection failed");
-	//$db->debug = true;
-	$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+	$vars['DBDRIVER']=$dbDetails->driver;
 	
+	//echo $dbDetails->dsn;
+	$db = ADONewConnection($dbDetails->dsn);
+
+	if (!$db) die("Connection failed");
+	// Put this line on to see all sql calls before they are made
+	//$db->debug = true;
+	
+	// v3.6 UTF8 character mismatch between PHP and MySQL
+	if ($dbDetails->driver == 'mysql') {
+		$charSetRC = mysql_set_charset('utf8');
+		//echo 'charSet='.$charSetRC;
+	}
+	
+	// Fetch mode to use
+	$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+		
 	// load the progress functions - all code is in this class now
 	$Functions = new FUNCTIONS();
 	switch ( strtoupper($vars['METHOD']) ) {
 	
 		case 'REGISTER':
 			//$node .= "<note>dbhost=".$dbDetails->host." dbname=".$dbDetails->dbname."</note>";
-			$rC = $Functions->isNotBlacklisted( $vars, $node );
-			if ($rC) {
-				$rC = $Functions->insertDetails( $vars, $node );
-			}
+			//$rC = $Functions->isNotBlacklisted( $vars, $node );
+			//if ($rC) {
+			$rC = $Functions->insertDetails( $vars, $node );
+			//}
+			break;
+		case 'CHECKSERIALNUMBER':
+			//$node .= "<note>dbhost=".$dbDetails->host." dbname=".$dbDetails->dbname."</note>";
+			$rC = $functions->isNotBlacklisted($vars, $node);
+			if ($rC)
+				$rC = $functions->decodeSerialNumber($vars, $node);
 			break;
 		default:
 			$node .= "<err>No method sent</err>";
@@ -40,4 +58,3 @@ require_once(dirname(__FILE__)."/dbFunctions.php");
 	$node .= "</db>";
 	print($node);
 	$db->Close();
-?>
