@@ -106,7 +106,7 @@ package com.clarityenglish.common.view.login {
 			
 			view.isPlatformTablet = configProxy.isPlatformTablet();
 			view.isPlatformipad = configProxy.isPlatformiPad();
-			view.isPlatformAndroid = configProxy.isPlatformTablet();
+			view.isPlatformAndroid = configProxy.isPlatformAndroid();
 		}
         
 		override public function onRemove():void {
