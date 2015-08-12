@@ -2,6 +2,9 @@
 header("Content-Type: text/xml");
 $node = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><db>";
 
+define('TIMEZONE', 'UTC');
+date_default_timezone_set(TIMEZONE);
+
 require_once(dirname(__FILE__)."/XMLQuery.php");
 $adodbPath= "../..";
 require_once($adodbPath."/adodb5/adodb-exceptions.inc.php");
@@ -35,15 +38,25 @@ require_once(dirname(__FILE__)."/dbFunctions.php");
 	$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 		
 	// load the progress functions - all code is in this class now
-	$Functions = new FUNCTIONS();
-	switch ( strtoupper($vars['METHOD']) ) {
+	$functions = new FUNCTIONS();
+	switch (strtoupper($vars['METHOD'])) {
 	
+		case 'REGISTERPROGRAM':
+			$rC = $functions->isNotBlacklisted($vars, $node);
+			if ($rC)
+				$rC = $functions->decodeSerialNumber($vars, $node);
+			if ($rC)
+				$rC = $functions->insertDetails($vars, $node);
+			if ($rC)
+				$checksum = $functions->generateCheckSum($vars, $node);
+			$node .= "<licence checksum='$checksum' />";
+			break;
 		case 'REGISTER':
 			//$node .= "<note>dbhost=".$dbDetails->host." dbname=".$dbDetails->dbname."</note>";
 			//$rC = $Functions->isNotBlacklisted( $vars, $node );
-			//if ($rC) {
-			$rC = $Functions->insertDetails( $vars, $node );
-			//}
+			$rC = $functions->insertDetails($vars, $node);
+			if ($rC)
+				$rC = $functions->generateSerialNumber($vars, $node);
 			break;
 		case 'CHECKSERIALNUMBER':
 			//$node .= "<note>dbhost=".$dbDetails->host." dbname=".$dbDetails->dbname."</note>";

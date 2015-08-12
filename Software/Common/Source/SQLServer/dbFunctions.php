@@ -6,14 +6,20 @@ class FUNCTIONS {
 	}
 
 	// Decode the passed serial number
-	function decodeSerialNumber($vars, &$node){
+	function decodeSerialNumber(&$vars, &$node){
 		$serialNumberText = $vars['SERIALNUMBER'];
 		$serialNumber = new claritySerialNumber();
 		if ($serialNumber->decode($serialNumberText)) {
-			$node .= "<register productCode='$serialNumber->productCode' expiryDate='$serialNumber->expiryDate' licences='$serialNumber->licences' />";
+			//$node .= "<licence productCode='$serialNumber->productCode' expiryDate='$serialNumber->expiryDate' licences='$serialNumber->licences' />";
+			$vars['PRODUCTCODE'] = $serialNumber->productCode;
+			$vars['PRODUCT'] = 'My Canada';
+			$vars['EXPIRYDATE'] = $serialNumber->expiryDate;
+			$vars['LICENCES'] = $serialNumber->licences;
 		} else {
-			$node .= "<err serialNumberText='$serialNumberText' />";
+			$node .= "<err code='402'>This serial number is not recognised.</err>";
+			return false;
 		}
+		return true;
 	}
 	
 	// v6.5.5 Is this serial number controlled in some way?
@@ -37,19 +43,25 @@ EOD;
 			return true;
 		} else {
 			// otherwise set the return node
-			if (stristr($vars['PRODUCT'],'MyCanada')) {
-				$node .= "<register code='serialblocked' />";
-			} else {
-				$node .= "<register code='0' />";
-			}
+			//if (stristr($vars['PRODUCT'],'MyCanada')) {
+			//	$node .= "<register code='serialblocked' />";
+			//} else {
+				$node .= "<err code='401'>This serial number has been blacklisted.</err>";
+			//}
 			$rs->Close();
 			return false;
 		}
 	}
-	// v6.5.5 Add the user's registration details to the database
-	function insertDetails( &$vars, &$node ){
-		global $db;
 	
+	// Generate a checksum for this licence
+	function generateCheckSum($vars, &$node){
+		return '1E6214B4A5D37B38C69D794CFC143EDC0BBAEFABBB103A7FC0CA10D46F68E78C';
+	}
+	
+	// v6.5.5 Add the user's registration details to the database
+	function insertDetails($vars, &$node){
+		global $db;
+		
 		$instName = $vars['INSTNAME'];
 		$product = $vars['PRODUCT'];
 		$Expiry = $vars['EXPIRY'];
@@ -116,7 +128,7 @@ EOD;
 EOD;
 		$rs = $db->Execute($sql, $bindingParams);
 		
-		if ( $rs ) {
+		if ($rs) {
 			if (stristr($vars['PRODUCT'],'MyCanada')) {
 				$node .= "<register code='success' />";
 			} else {
@@ -125,7 +137,7 @@ EOD;
 			}
 			return true;
 		} else {
-			$node .= "<err code='202'>failed to insert licence record</err>";
+			$node .= "<err code='403'>Failed to register your details.</err>";
 			return false;
 		}
 	
