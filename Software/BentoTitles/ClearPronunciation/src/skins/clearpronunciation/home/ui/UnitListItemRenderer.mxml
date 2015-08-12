@@ -185,7 +185,7 @@
 			</s:layout>
 			<s:itemRenderer>
 				<fx:Component>
-					<s:IconItemRenderer labelField="@caption" iconFunction="getIcon" paddingTop="6" paddingLeft="42" fontSize="13" height="23" iconWidth="8" width="100%">
+					<s:IconItemRenderer labelField="@caption" iconFunction="getIcon" paddingTop="6" paddingLeft="42" fontSize="13" height="23" iconWidth="8" width="100%" fontFamily="MyriadPro">
 						<fx:Script>
 							<![CDATA[
 							import com.clarityenglish.bento.vo.content.Exercise;
@@ -246,15 +246,15 @@
 		</s:Group>
 
 		<!-- The question number -->
-		<s:Label id="unitItemIndexLabel" text="{StringUtils.padLeft((itemIndex + 1).toString(), '0', 2)}" fontFamily="Helvetica" fontSize="20" color="#333333" left="15" top="15" visible="{showItemIndex}" />
+		<s:Label id="unitItemIndexLabel" text="{StringUtils.padLeft((itemIndex + 1).toString(), '0', 2)}" fontFamily="MyriadPro" fontSize="20" color="#333333" left="15" top="15" visible="{showItemIndex}" />
 		
 		<!-- The left item -->
 		<s:Button id="unitItemLeftButton" color="#4e4e4e" scaleX="0.9" scaleY="0.9" left="50"  top="8" />
-		<s:Label id="unitItemLeftLabel" fontSize="16" left="90" top="16" />
+		<s:Label id="unitItemLeftLabel" fontSize="16" left="90" top="16" fontFamily="MyriadPro" />
 		
 		<!-- The right item -->
 		<s:Button id="unitItemRightButton" color="#4e4e4e" scaleX="0.9" scaleY="0.9" left="160" top="8" />
-		<s:Label id="unitItemRightLabel" fontSize="16" left="200" top="16" />
+		<s:Label id="unitItemRightLabel" fontSize="16" left="200" top="16" fontFamily="MyriadPro" />
 
 
 	</s:Group>

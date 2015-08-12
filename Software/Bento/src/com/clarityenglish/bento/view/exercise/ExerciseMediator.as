@@ -67,6 +67,7 @@ import org.puremvc.as3.interfaces.IMediator;
 			
 			view.languageCode = configProxy.getConfig().languageCode;
 			view.isPlatformiPad = configProxy.isPlatformiPad();
+			view.isPlatformTablet = configProxy.isPlatformTablet();
 		}
 		
 		public override function onRemove():void {

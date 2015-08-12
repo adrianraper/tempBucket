@@ -66,14 +66,6 @@
 			embedAsCFF: true;
 			advancedAntiAliasing: true;
 		}
-
-		global {
-			fontFamily: Helvetica;
-			fontLookup: embeddedCFF;
-			fontAntiAliasType: advanced;
-			color: #333333;
-		}
-
 	</fx:Style>
 	
 	<fx:Script>

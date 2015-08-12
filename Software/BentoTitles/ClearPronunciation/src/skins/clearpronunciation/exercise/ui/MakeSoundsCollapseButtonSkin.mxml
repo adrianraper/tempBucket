@@ -32,7 +32,7 @@
              xmlns:s="library://ns.adobe.com/flex/spark" 
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
              minWidth="21" minHeight="21" 
-             alpha.disabled="0.5" xmlns:course="skins.clearpronunciation.assets.course.*">
+             alpha.disabled="0.5" xmlns:exercise="skins.clearpronunciation.assets.exercise.*">
      
     <fx:Metadata>
         <![CDATA[ 
@@ -51,8 +51,8 @@
         <s:State name="disabled" />
     </s:states>
     
-	<course:practiceOff includeIn="up" />
-	<course:practiceOn includeIn="down, over"/>
+	<exercise:practiceOff includeIn="up" />
+	<exercise:practiceOn includeIn="down, over"/>
 	
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->

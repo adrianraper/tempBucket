@@ -21,7 +21,7 @@
         <option name="playerPath" value="/Applications/Flash Player Debugger.app" />
       </LauncherParameters>
     </option>
-    <option name="mobileRunTarget" value="Emulator" />
+    <option name="mobileRunTarget" value="iOSDevice" />
     <option name="moduleName" value="ClearPronunciationAir" />
     <option name="overriddenMainClass" value="" />
     <option name="overriddenOutputFileName" value="" />

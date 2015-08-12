@@ -109,7 +109,7 @@
 				<s:SolidColor color="#263A45" />
 			</s:fill>
 		</s:Rect>
-		<s:Label id="introductionTutorialLabel" top="370" left="70" fontFamily="Mgbold" fontWeight="bold" fontSize="20" color="#FFFFFF" />
+		<s:Label id="introductionTutorialLabel" top="370" left="50" fontFamily="Mgbold" fontWeight="bold" fontSize="20" color="#FFFFFF" />
 		<s:List id="introductionList" width="540" height="35" horizontalCenter="0" verticalCenter="145" labelField="@caption" borderVisible="false" useVirtualLayout="false" contentBackgroundAlpha="0">
 			<s:layout>
 				<s:HorizontalLayout gap="10" />

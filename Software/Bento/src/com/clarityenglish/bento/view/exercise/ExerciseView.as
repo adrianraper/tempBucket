@@ -86,6 +86,9 @@ import spark.components.Button;
 		[Bindable]
 		public var isPlatformiPad:Boolean;
 
+		[Bindable]
+		public var isPlatformTablet:Boolean;
+
 		// Timer total time
 		private var _timerTotalTime:Array = [];
 		private var _isTimereTotalTimeChange;

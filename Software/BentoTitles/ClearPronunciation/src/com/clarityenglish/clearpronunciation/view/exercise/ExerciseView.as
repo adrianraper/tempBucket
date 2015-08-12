@@ -5,15 +5,18 @@ import com.clarityenglish.bento.events.ExerciseEvent;
 import com.clarityenglish.bento.vo.content.Exercise;
 import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
 	import com.clarityenglish.clearpronunciation.view.exercise.ui.WindowShade;
-	import com.googlecode.bindagetools.Bind;
+import com.clarityenglish.textLayout.vo.XHTML;
+import com.googlecode.bindagetools.Bind;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	import flash.utils.setTimeout;
-	
-	import mx.core.ClassFactory;
+
+import mx.controls.SWFLoader;
+
+import mx.core.ClassFactory;
 	
 	import org.davekeen.util.XmlUtils;
 	import org.osflash.signals.Signal;
@@ -22,6 +25,7 @@ import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
 	import skins.clearpronunciation.home.ui.UnitListItemRenderer;
 	
 	import spark.components.Button;
+	import spark.components.Label;
 	import spark.components.List;
 	import spark.events.IndexChangeEvent;
 	
@@ -45,8 +49,32 @@ import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
 		[SkinPart]
 		public var youWillButton:Button;
 
+		[SkinPart]
+		public var makeSoundsLabel:Label;
+
+		[SkinPart]
+		public var leftAnimationLabel:Label;
+
+		[SkinPart]
+		public var rightAnimationLabel:Label;
+
+		[SkinPart]
+		public var tabletAnimationAlertLabel:Label;
+
+		[SkinPart]
+		public var makeSoundsGroup:spark.components.Group;
+
+		[SkinPart]
+		public var leftAnimation:SWFLoader;
+
+		[SkinPart]
+		public var rightAnimation:SWFLoader;
+
 		[Bindable]
 		public var selectedExerciseNode:XML;
+
+		[Bindable]
+		public var rootPath:String;
 
 		public function ExerciseView() {
 			super();
@@ -54,6 +82,16 @@ import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
 		
 		protected override function onAddedToStage(event:Event):void {
 			super.onAddedToStage(event);
+		}
+
+		protected override function updateViewFromXHTML(xhtml:XHTML):void {
+			super.updateViewFromXHTML(xhtml);
+
+			if (xhtml && !isPlatformTablet) {
+				leftAnimation.source = xhtml.rootPath + '../../media/' + selectedExerciseNode.parent().@leftAnimation  + '.swf';
+				rightAnimation.source = xhtml.rootPath + '../../media/' + selectedExerciseNode.parent().@rightAnimation  + '.swf';
+			}
+
 		}
 
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -95,6 +133,18 @@ import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
 					break;
 				case youWillButton:
 					youWillButton.addEventListener(MouseEvent.CLICK, onYouWillButtonClick);
+					break;
+				case makeSoundsLabel:
+					makeSoundsLabel.text = copyProvider.getCopyForId("makeSoundsLabel");
+					break;
+				case leftAnimationLabel:
+					leftAnimationLabel.text = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('leftIcon') + "Instruction");
+					break;
+				case rightAnimationLabel:
+					rightAnimationLabel.text = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('rightIcon') + "Instruction");
+					break;
+				case tabletAnimationAlertLabel:
+					tabletAnimationAlertLabel.text = copyProvider.getCopyForId("tabletAnimationAlertLabel");
 					break;
 			}
 		}

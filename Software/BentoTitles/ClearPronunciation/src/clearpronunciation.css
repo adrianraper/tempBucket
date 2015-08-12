@@ -271,13 +271,13 @@ exercise|ExerciseView s|Button#forwardButton {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.NextButtonSkin");
 }
 
-/*course|CourseView s|Button#makeSoundsExpandButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.MakeSoundsExpandButtonSkin");
+exercise|ExerciseView s|Button#makeSoundsExpandButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.MakeSoundsExpandButtonSkin");
 }
 
-course|CourseView s|Button#makeSoundsCollapseButton {
-	skinClass: ClassReference("skins.clearpronunciation.course.ui.MakeSoundsCollapseButtonSkin");
-}*/
+exercise|ExerciseView s|Button#makeSoundsCollapseButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.MakeSoundsCollapseButtonSkin");
+}
 
 
 marking|MarkingView {

@@ -104,6 +104,11 @@
 			<lit name="Buy2">aɪ</lit>
 			<lit name="Know">əʊ</lit>
 			<lit name="Now">aʊ</lit>
+
+			<!--Animation instruction-->
+			<lit name="tabletAnimationAlertLabel">Sorry this animation will not run on tablet app, please use a computer to run the program.</lit>
+			<lit name="PillInstruction"><![CDATA[At first your teeth are slightly apart, with the front of your tongue down, and your lips together. Your lips are stopping the air coming out. When you open your lips, you release the air. /p/ is unvoiced, so you don;t use your vocal cords.]]></lit>
+			<lit name="FillInstruction"><![CDATA[Your bottom lip moves upwards to touch your top teeth. The soft part at the back of the roof of your mouth rises. As you make the sound, the air comes out of your mouth and the middle of your tongue moves down. /f/ is unvoiced, so you don't use your vocal cords.]]></lit>>
 		</group>
 	</language>
 </literals>

@@ -15,8 +15,8 @@
     <option name="launchUrl" value="true" />
     <option name="launcherParameters">
       <LauncherParameters>
-        <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-        <option name="launcherType" value="Browser" />
+        <option name="browser" value="e5120d43-2c3f-47ef-9f26-65e539e05186" />
+        <option name="launcherType" value="OSDefault" />
         <option name="newPlayerInstance" value="false" />
         <option name="playerPath" value="/Applications/Flash Player Debugger.app" />
       </LauncherParameters>
