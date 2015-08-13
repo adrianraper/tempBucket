@@ -139,7 +139,7 @@
 		<!--Expand and collapse button-->
 		<s:VGroup horizontalAlign="right" width="100%" paddingRight="12" paddingLeft="12" top="0" gap="0">
 			<s:Button id="makeSoundsExpandButton" useHandCursor="true" buttonMode="true" click="expandAnimate.play()" />
-			<s:Button id="makeSoundsCollapseButton" useHandCursor="true" buttonMode="true" visible="true" click="collapseAnimate.play()" />
+			<s:Button id="makeSoundsCollapseButton" useHandCursor="true" buttonMode="true" visible="false" click="collapseAnimate.play()" />
 		</s:VGroup>
 	</s:Group>
 	
@@ -202,7 +202,7 @@
 				<course1:dropDownListBg />
 				<ui:UnitListItemRenderer id="currentUnitRenderer" showPieChart="false" showItemIndex="false" color="#FFFFFF" horizontalCenter="-10" verticalCenter="2" scaleX="1.2" scaleY="1.2" />
 			</s:Group>
-			<ui1:WindowShade id="windowShade" x="40" y="61" width="278" height="420">
+			<ui1:WindowShade id="windowShade" x="35" y="61" width="278" height="420">
 				<s:Rect width="270" height="420" top="0" bottom="0" bottomLeftRadiusX="10" bottomLeftRadiusY="10" bottomRightRadiusX="10" bottomRightRadiusY="10" horizontalCenter="0">
 					<s:stroke>
 						<s:SolidColorStroke color="#497A7A" weight="8" />
@@ -211,7 +211,7 @@
 						<s:SolidColor color="#FFFFFF" />
 					</s:fill>
 				</s:Rect>
-				<s:List id="unitList" dataProvider="{new XMLListCollection(hostComponent.getEnalbedUnitList(hostComponent.selectedExerciseNode.parent().parent()))}" width="283" bottom="10" top="12" horizontalCenter="4" verticalScrollPolicy="on" scaleX="0.9" scaleY="0.9" borderVisible="false" contentBackgroundAlpha="0">
+				<s:List id="unitList" dataProvider="{new XMLListCollection(hostComponent.getEnalbedUnitList(hostComponent.selectedExerciseNode.parent().parent()))}" width="283" bottom="10" top="12" horizontalCenter="4" verticalScrollPolicy="on" scaleX="0.9" scaleY="0.9" borderVisible="false" contentBackgroundAlpha="0" color="#333333">
 					<s:layout>
 						<s:VerticalLayout gap="10" />
 					</s:layout>

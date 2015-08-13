@@ -73,7 +73,7 @@
 		]]>
 	</fx:Script>
 	<!--video player black background-->
-	<s:Rect left="0" width="{getStyle('videoPlayerWidth')}" height="{getStyle('videoPlayerHeight')}" filters="{[dropShadowFilter]}">
+	<s:Rect left="0" top="0" width="{getStyle('videoPlayerWidth') + 5}" height="{getStyle('videoPlayerHeight') + 5 }" filters="{[dropShadowFilter]}">
 		<s:fill>
 			<s:SolidColor color="0x273A45" />
 		</s:fill>

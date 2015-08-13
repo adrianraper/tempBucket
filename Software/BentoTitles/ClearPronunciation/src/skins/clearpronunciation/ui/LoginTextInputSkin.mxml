@@ -161,7 +161,7 @@
             if (!promptDisplay)
                 return;
             
-            padding = getStyle("paddingLeft");
+            padding = 10;
             if (promptDisplay.getStyle("paddingLeft") != padding)
                 promptDisplay.setStyle("paddingLeft", padding);
             
@@ -254,7 +254,6 @@
                 verticalAlign="middle"
                 mouseEnabled="false" mouseChildren="false"
                 includeIn="normalWithPrompt,disabledWithPrompt" 
-                includeInLayout="false"
-                />
+                includeInLayout="false" fontStyle="normal"/>
 
 </s:SparkSkin>

@@ -51,6 +51,9 @@
 			public var isShowDemoFeature:Boolean;
 
 			[Bindable]
+			public var exerciseListPaddingLeft:Number;
+
+			[Bindable]
 			private var pieChartArrayCollection:ArrayCollection;
 			
 			[Bindable]
@@ -95,9 +98,11 @@
 					if (data.@caption == "Introduction") {
 						unitItemLeftButton.visible = false;
 						unitItemIndexLabel.left = 55;
+						exerciseListPaddingLeft = 60;
 					} else {
 						unitItemLeftButton.visible = true;
 						unitItemIndexLabel.left = 15;
+						exerciseListPaddingLeft = 50;
 					}
 					
 					// Set the labels on the right symbol.  Hide this altogether if @rightIcon isn't defined.
@@ -185,7 +190,7 @@
 			</s:layout>
 			<s:itemRenderer>
 				<fx:Component>
-					<s:IconItemRenderer labelField="@caption" iconFunction="getIcon" paddingTop="6" paddingLeft="42" fontSize="13" height="23" iconWidth="8" width="100%" fontFamily="MyriadPro">
+					<s:IconItemRenderer labelField="@caption" iconFunction="getIcon" paddingTop="6" paddingLeft="{outerDocument.exerciseListPaddingLeft}" fontSize="13" height="23" iconWidth="8" width="100%" fontFamily="MyriadPro">
 						<fx:Script>
 							<![CDATA[
 							import com.clarityenglish.bento.vo.content.Exercise;
@@ -250,11 +255,11 @@
 		
 		<!-- The left item -->
 		<s:Button id="unitItemLeftButton" color="#4e4e4e" scaleX="0.9" scaleY="0.9" left="50"  top="8" />
-		<s:Label id="unitItemLeftLabel" fontSize="16" left="90" top="16" fontFamily="MyriadPro" />
+		<s:Label id="unitItemLeftLabel" fontSize="20" left="90" top="16" fontFamily="MyriadPro" />
 		
 		<!-- The right item -->
 		<s:Button id="unitItemRightButton" color="#4e4e4e" scaleX="0.9" scaleY="0.9" left="160" top="8" />
-		<s:Label id="unitItemRightLabel" fontSize="16" left="200" top="16" fontFamily="MyriadPro" />
+		<s:Label id="unitItemRightLabel" fontSize="20" left="200" top="16" fontFamily="MyriadPro" />
 
 
 	</s:Group>
