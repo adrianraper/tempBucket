@@ -1,5 +1,5 @@
 <?php
-//header("Content-Type: text/xml");
+//header("Content-Type: text/xml; charset=UTF-8");
 $node = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><db>";
 
 error_reporting(E_ALL);
@@ -45,15 +45,27 @@ require_once(dirname(__FILE__)."/dbFunctions.php");
 	$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 	
 	// load the progress functions - all code is in this class now
+	if (isset($vars['INSTNAME']))
+		$vars['INSTNAME'] = htmlspecialchars_decode($vars['INSTNAME']);
 	$functions = new FUNCTIONS();
 	switch ( strtoupper($vars['METHOD']) ) {
 	
+		case 'REGISTERPROGRAM':
+			$rC = $functions->isNotBlacklisted($vars, $node);
+			if ($rC)
+				$rC = $functions->decodeSerialNumber($vars, $node);
+			if ($rC)
+				$rC = $functions->insertDetails($vars, $node);
+			if ($rC) {
+				$checksum = $functions->generateCheckSum($vars, $node);
+				$node .= "<checksum>$checksum</checksum>";
+			}
+			break;
 		case 'REGISTER':
 			//$node .= "<note>dbhost=".$dbDetails->host." dbname=".$dbDetails->dbname."</note>";
-			//$rC = $Functions->isNotBlacklisted( $vars, $node );
-			//if ($rC) {
-			$rC = $functions->insertDetails( $vars, $node );
-			//}
+			$rC = $functions->insertDetails($vars, $node);
+			if ($rC)
+				$rC = $functions->generateSerialNumber($vars, $node);
 			break;
 		case 'CHECKSERIALNUMBER':
 			//$node .= "<note>dbhost=".$dbDetails->host." dbname=".$dbDetails->dbname."</note>";

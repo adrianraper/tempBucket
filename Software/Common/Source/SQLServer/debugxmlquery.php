@@ -20,9 +20,11 @@ class XMLQuery {
 	// Otherwise I just couldn't get the + sign to work in names. It seems fine.
 	//$post = urldecode(file_get_contents("php://input"));
 	$post = file_get_contents("php://input");
+	
 	//Global $node;
 	//$node .= "<note>" .urlencode($post)  ."</note>";
-	$post = '<query dbHost="2" method="checkSerialNumber" serialNumber="63F1-2F8B-E044-41C0-0090" />';
+	$post = '<query dbHost="2" method="registerProgram" serialNumber="ddd" instName="çlarity&apos;s &quot;yôu &amp; me&quot; namé?" email="v" />';
+	//$post = '<query dbHost="2" method="registerProgram" serialNumber="0382-26BB-E04C-41C0-0090" instName="ClarityEnglish" email="me@email" />';
 	//$post = '<query dbHost="200" method="getRMSettings" rootID="" prefix="WHC" eKey="" dateStamp="2014-01-08 08:33:32" productCode="33" cacheVersion="1389141212418" />';
 	//$post = '<query dbHost="2" method="writeSpecificStats" rootID="14449" userID="251563" productCode="10" courseID="51" itemID="51" sessionID="2228973" databaseVersion="840" cacheVersion="1343358520347.25" />';
 	//$post = '<query dbHost="2" method="getSpecificStats" rootID="14449" userID="251563" productCode="10" courseID="51" itemID="51" sessionID="2228973" databaseVersion="840" cacheVersion="1343358520347.25" />';

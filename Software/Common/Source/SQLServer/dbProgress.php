@@ -3780,6 +3780,8 @@ EOD;
 		$rootID = $vars['ROOTID'];
 		$productCode = $vars['PRODUCTCODE'];
 		$languageCode = $vars['LANGUAGECODE'];
+		// CD152B Add in product version as separate from language code 
+		$productVersion = $vars['PRODUCTVERSION'];
 		$licenceType = $vars['LICENCETYPE'];
 		
 		// Get content location
@@ -3822,33 +3824,43 @@ EOD;
 					F_ExpiryDate=?,
 					F_Checksum=?,
 					F_LanguageCode=?,
+					F_ProductVersion=?,
 					F_LicenceType=?
 				WHERE F_RootID=? AND F_ProductCode=?
 EOD;
-		}else{
+		} else {
 			$sql = <<<EOD
 				INSERT INTO T_Accounts(
 					F_MaxStudents, F_LicenceStartDate, F_ExpiryDate, F_Checksum,
-					F_LanguageCode, F_LicenceType, F_RootID, F_ProductCode)
-				VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+					F_LanguageCode, F_ProductVersion, F_LicenceType, F_RootID, F_ProductCode)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 EOD;
 		}
 		// Update the first account. Set startDate to yesterday to make sure that UTC doesn't bite you
 		$yesterday = date('Y-m-d H:i:s', strtotime($today)-(60*60*24));
 		//$bindingParams = array($licences, $yesterday, $expiryDate, $checkSum, $contentFolder, $languageCode, $licenceType, $rootID, $productCode);
-		$bindingParams = array($licences, $yesterday, $expiryDate, $checkSum, $languageCode, $licenceType, $rootID, $productCode);
+		$bindingParams = array($licences, $yesterday, $expiryDate, $checkSum, $languageCode, $productVersion, $licenceType, $rootID, $productCode);
 
 		$rs = $db->Execute($sql, $bindingParams);
 		if ($productCode=='38') { // It's Your Job need register two product code
 			$productCode2 = 1001;
 			// Then the second (EMU) account
-			$bindingParams = array($licences, $yesterday, $expiryDate, $EmuCheckSum, $contentFolder, $languageCode, $licenceType, $rootID, $productCode2);
+			$bindingParams = array($licences, $yesterday, $expiryDate, $EmuCheckSum, $contentFolder, $languageCode, $productVersion, $licenceType, $rootID, $productCode2);
 			$rs = $db->Execute($sql, $bindingParams);
 		}
 		if (!$rs) {
 			return false;
 		} else {
-			$node .= "<note>Your licence expiry date is $expiryDate and language is $languageCode</note>";
+			$node .= "<note>Your licence expiry date is $expiryDate and language is $languageCode for productCode $productCode</note>";
+			
+			// gh#1277 Are there any products that automatically install RM?
+			if ($productCode=='20') { // MyCanada
+				$vars['PRODUCTCODE'] = 2;
+				$this->updateAccountInfo($vars, $node);
+				// Then the second title
+				//$bindingParams = array($licences, $yesterday, $expiryDate, $checkSum, null, null, $licenceType, $rootID, $productCode2);
+				//$rs = $db->Execute($sql, $bindingParams);
+			}			
 			return true;
 		}
 	}

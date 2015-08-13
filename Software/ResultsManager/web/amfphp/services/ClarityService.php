@@ -169,13 +169,15 @@ class ClarityService extends AbstractService {
 			// and SciencesPo (updated for 2013/14/15)
 			// added BCJPILA. 
 			// added TW_CUTE 2014 11 05 
+			// added ELS 2015/08/17
 			if ((int)$loginObj->F_RootID == 14781 || (int)$loginObj->F_RootID == 19278 || (int)$loginObj->F_RootID == 26155 || 
-				(int)$loginObj->F_RootID == 13982 || (int)$loginObj->F_RootID == 13754) {
-				Session::set('no_students', ($manageablesCount > 8000));
-				//NetDebug::trace("for SciencesPo, users=$manageablesCount");
+				(int)$loginObj->F_RootID == 13982 || (int)$loginObj->F_RootID == 13754
+				|| (int)$loginObj->F_RootID == 32366) {
+				Session::set('no_students', ($manageablesCount > 9000));
 			} else {
 				Session::set('no_students', ($manageablesCount > $GLOBALS['max_manageables_for_student_display']));
 			}
+			NetDebug::trace("for root ".(int)$loginObj->F_RootID.", users=$manageablesCount");
 			
 			// v3.4 I would like to send back (some) account root information as well (remember that accounts in RM means titles)
 			// v3.6 Maybe it is better to do a separate getAccount call as I also want things like adminUser's email

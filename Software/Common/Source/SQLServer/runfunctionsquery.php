@@ -1,5 +1,5 @@
 <?php
-header("Content-Type: text/xml");
+header("Content-Type: text/xml; charset=UTF-8");
 $node = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><db>";
 
 define('TIMEZONE', 'UTC');
@@ -38,32 +38,35 @@ require_once(dirname(__FILE__)."/dbFunctions.php");
 	$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 		
 	// load the progress functions - all code is in this class now
+	// gh#1277 nsis installer will html encode characters before sending 
+	if (isset($vars['INSTNAME']))
+		$vars['INSTNAME'] = htmlspecialchars_decode($vars['INSTNAME']);
+		
 	$functions = new FUNCTIONS();
 	switch (strtoupper($vars['METHOD'])) {
 	
+		// gh#1277 A new method used for one shot registration (given serial number and organisation details)
 		case 'REGISTERPROGRAM':
 			$rC = $functions->isNotBlacklisted($vars, $node);
 			if ($rC)
 				$rC = $functions->decodeSerialNumber($vars, $node);
 			if ($rC)
 				$rC = $functions->insertDetails($vars, $node);
-			if ($rC)
+			if ($rC) {
 				$checksum = $functions->generateCheckSum($vars, $node);
-			$node .= "<licence checksum='$checksum' />";
+				$node .= "<checksum>$checksum</checksum>";
+			}
 			break;
+			
+		// Depreciated with new installers, but still needed for old CDs
 		case 'REGISTER':
 			//$node .= "<note>dbhost=".$dbDetails->host." dbname=".$dbDetails->dbname."</note>";
-			//$rC = $Functions->isNotBlacklisted( $vars, $node );
-			$rC = $functions->insertDetails($vars, $node);
+			$rC = $functions->isNotBlacklisted( $vars, $node );
+			
 			if ($rC)
-				$rC = $functions->generateSerialNumber($vars, $node);
+				$rC = $functions->insertDetails($vars, $node);
 			break;
-		case 'CHECKSERIALNUMBER':
-			//$node .= "<note>dbhost=".$dbDetails->host." dbname=".$dbDetails->dbname."</note>";
-			$rC = $functions->isNotBlacklisted($vars, $node);
-			if ($rC)
-				$rC = $functions->decodeSerialNumber($vars, $node);
-			break;
+			
 		default:
 			$node .= "<err>No method sent</err>";
 	}

@@ -1,20 +1,35 @@
 <?php
 require_once("crypto/claritySerialNumber.php");
+require_once("crypto/Base8.php");
+require_once("crypto/RSAKey.php");
 
 class FUNCTIONS {
+	
+	private $dmsKey;
+	private $orchidPublicKey;
+	
+	// gh#1277 This will now handle the creation of the checksum for a title to be passed back with internet regisgtration	
 	function FUNCTIONS() {
+		$this->dmsKey = new RSAKey("a6f945c79fa1db830591618a0178f1ec4076436bd22e2c264de61b114eb78fad", "10001", "8fe751ce63b3b95dc854ad7da51b3953811b560d00d6a1248d91cff6a2976841");
+		$this->orchidPublicKey = new RSAKey("00c2053455fe3c7c7b22a629d53ab2d98a2f46a2c403457da8d044116df9ab43fb", "10001");
 	}
 
-	// Decode the passed serial number
+	// gh#1277 Decode the passed serial number
 	function decodeSerialNumber(&$vars, &$node){
 		$serialNumberText = $vars['SERIALNUMBER'];
 		$serialNumber = new claritySerialNumber();
-		if ($serialNumber->decode($serialNumberText)) {
-			//$node .= "<licence productCode='$serialNumber->productCode' expiryDate='$serialNumber->expiryDate' licences='$serialNumber->licences' />";
-			$vars['PRODUCTCODE'] = $serialNumber->productCode;
-			$vars['PRODUCT'] = 'My Canada';
-			$vars['EXPIRYDATE'] = $serialNumber->expiryDate;
-			$vars['LICENCES'] = $serialNumber->licences;
+		$rc = $serialNumber->decode($serialNumberText);
+		if ($rc){
+			if ($vars['PRODUCTCODE'] != "" && $vars['PRODUCTCODE'] != $serialNumber->productCode) {
+				$node .= "<err code='404'>This serial number is for a different program (".$vars['PRODUCTCODE']." vs ".$serialNumber->productCode.")</err>";
+				return false;
+			} else {
+				$node .= "<licence productCode='$serialNumber->productCode' expiryDate='$serialNumber->expiryDate' licences='$serialNumber->licences' licenceType='$serialNumber->licenceType' />";
+				$vars['PRODUCTCODE'] = $serialNumber->productCode;
+				$vars['EXPIRY'] = $serialNumber->expiryDate;
+				$vars['LICENCES'] = $serialNumber->licences;
+				$vars['LICENCETYPE'] = $serialNumber->licenceType;
+			}
 		} else {
 			$node .= "<err code='402'>This serial number is not recognised.</err>";
 			return false;
@@ -26,7 +41,7 @@ class FUNCTIONS {
 	function isNotBlacklisted( &$vars, &$node ){
 		global $db;
 		
-		//' Match the serial against the control table
+		// Match the serial against the control table
 		$sql = <<<EOD
 				SELECT * from T_SerialNumberAdmin 
 				WHERE F_SerialNumber=?
@@ -43,47 +58,52 @@ EOD;
 			return true;
 		} else {
 			// otherwise set the return node
-			//if (stristr($vars['PRODUCT'],'MyCanada')) {
-			//	$node .= "<register code='serialblocked' />";
-			//} else {
-				$node .= "<err code='401'>This serial number has been blacklisted.</err>";
-			//}
+			$node .= "<err code='401'>This serial number has been blacklisted.</err>";
 			$rs->Close();
 			return false;
 		}
 	}
 	
-	// Generate a checksum for this licence
+	// gh#1277 Generate a checksum for this licence
 	function generateCheckSum($vars, &$node){
-		return '1E6214B4A5D37B38C69D794CFC143EDC0BBAEFABBB103A7FC0CA10D46F68E78C';
+		
+		// Assume that we are dealing with the network installation - or is root passed?
+		$rootID = 1;
+		$protectedString = $vars['INSTNAME'].$vars['EXPIRY'].' 23:59:59'.$vars['LICENCES'].$vars['LICENCETYPE'].$rootID.$vars['PRODUCTCODE'];
+		$escapedString = $this->actionscriptEscape($protectedString);
+		$hash = md5($escapedString);
+		$m = Base8::encode($hash);
+		$c = $this->dmsKey->sign($m);
+		$c = $this->orchidPublicKey->encrypt($c);
+		return $c;
 	}
 	
 	// v6.5.5 Add the user's registration details to the database
 	function insertDetails($vars, &$node){
 		global $db;
 		
-		$instName = $vars['INSTNAME'];
-		$product = $vars['PRODUCT'];
-		$Expiry = $vars['EXPIRY'];
-		$Licences = $vars['LICENCES'];
+		$instName = (isset($vars['INSTNAME'])) ? $vars['INSTNAME'] : 'unknown school'; 
+		$product = (isset($vars['PRODUCT'])) ? $vars['PRODUCT'] : $vars['PRODUCTCODE'];
+		$expiryDate = (isset($vars['EXPIRY'])) ? $vars['EXPIRY'] : '2000-01-01';
+		$licences = (isset($vars['LICENCES'])) ? $vars['LICENCES'] : 0;
 		$dateNow = date('Y-m-d G:i:s', time());
-		$SerialNumber = $vars['SERIALNUMBER'];
-		$installationDate = $vars['INSTALLDATE'];
-		$address1 = $vars['ADDRESS1'];
-		$address2 = $vars['ADDRESS2'];
-		$address3 = $vars['ADDRESS3'];
-		$address4 = $vars['ADDRESS4'];
-		$city = $vars['CITY'];
-		$state = $vars['STATE'];
-		$postcode = $vars['POSTCODE'];
-		$contactTitle = $vars['CONTACTTITLE'];
-		$contactName = $vars['CONTACTNAME'];
-		$contactJob = $vars['CONTACTJOB'];
-		$tel = $vars['TEL'];
-		$fax = $vars['FAX'];
-		$country = $vars['COUNTRY'];
-		$email = $vars['EMAIL'];
-		$MachineID = $vars['MACHINEID'];
+		$serialNumber = (isset($vars['SERIALNUMBER'])) ? $vars['SERIALNUMBER'] : 'unknown serial' ;
+		$installationDate = (isset($vars['INSTALLDATE'])) ? $vars['INSTALLDATE'] : $dateNow;
+		$address1 = (isset($vars['ADDRESS1'])) ? $vars['ADDRESS1'] : null;
+		$address2 = (isset($vars['ADDRESS2'])) ? $vars['ADDRESS2'] : null;
+		$address3 = (isset($vars['ADDRESS3'])) ? $vars['ADDRESS3'] : null;
+		$address4 = (isset($vars['ADDRESS4'])) ? $vars['ADDRESS4'] : null;
+		$city = (isset($vars['CITY'])) ? $vars['CITY'] : null;
+		$state = (isset($vars['STATE'])) ? $vars['STATE'] : null;
+		$postcode = (isset($vars['POSTCODE'])) ? $vars['POSTCODE'] : null;
+		$contactTitle = (isset($vars['CONTACTTITLE'])) ? $vars['CONTACTTITLE'] : null;
+		$contactName = (isset($vars['CONTACTNAME'])) ? $vars['CONTACTNAME'] : null;
+		$contactJob = (isset($vars['CONTACTJOB'])) ? $vars['CONTACTJOB'] : null;
+		$tel = (isset($vars['TEL'])) ? $vars['TEL'] : null;
+		$fax = (isset($vars['FAX'])) ? $vars['FAX'] : null;
+		$country = (isset($vars['COUNTRY'])) ? $vars['COUNTRY'] : null;
+		$email = (isset($vars['EMAIL'])) ? $vars['EMAIL'] : null;
+		$machineID = (isset($vars['MACHINEID'])) ? $vars['MACHINEID'] : null;
 
 		// gh#895
 		if (isset ( $_SERVER ['HTTP_X_FORWARDED_FOR'] )) {
@@ -96,7 +116,7 @@ EOD;
 			$ip = $_SERVER ["REMOTE_ADDR"];
 		}
 		
-		$bindingParams = array($instName, $product, $Expiry, $Licences, $dateNow, $SerialNumber,$address1,$address2,$address3,$address4);
+		$bindingParams = array($instName, $product, $expiryDate, $licences, $dateNow, $serialNumber, $address1,$address2,$address3,$address4);
 		$bindingParams[] = $city;
 		$bindingParams[] = $state;
 		$bindingParams[] = $postcode;
@@ -109,7 +129,7 @@ EOD;
 		$bindingParams[] = $country;
 		$bindingParams[] = $email;
 		$bindingParams[] = $ip;
-		$bindingParams[] = $MachineID;
+		$bindingParams[] = $machineID;
 		// v6.5.6.5 No need for CONVERT with a MySQL database
 		//	'Network', CONVERT(datetime, ?, 120), 0,
 		$sql = <<<EOD
@@ -129,11 +149,11 @@ EOD;
 		$rs = $db->Execute($sql, $bindingParams);
 		
 		if ($rs) {
-			if (stristr($vars['PRODUCT'],'MyCanada')) {
+			if (stristr($product,'MyCanada')) {
 				$node .= "<register code='success' />";
 			} else {
-				$checkSum = $this->CreateAVCode($SerialNumber, $installationDate);
-				$node .= "<register code='".$checkSum."' />";
+				$avCode = $this->CreateAVCode($serialNumber, $installationDate);
+				$node .= "<register code='".$avCode."' />";
 			}
 			return true;
 		} else {
@@ -142,6 +162,7 @@ EOD;
 		}
 	
 	}
+	// gh#1277 redundant when you send back a checksum
 	// v6.5.5 Create a registration code to send back to the user
 	function createAVCode($xSerialNo, $xfactor) {
 	
@@ -219,6 +240,13 @@ EOD;
 		//print " ".$RtnIndex." is ".chr($RtnIndex);
 		return chr($RtnIndex);
 	}
+	/*
+	 * This is a simple version of ActionScript escape function
+	 */
+	private function actionscriptEscape($text) {
+		$needles = array('_','-','.');
+		$replaces = array('%5F','%2D','%2E');
+		return str_replace($needles,$replaces,rawurlencode($text));
+	}
 	
 }
-?>

@@ -1,5 +1,4 @@
 ﻿<?php
-//echo("XMLQuery.php");
 class XMLQuery {
 
     function XMLQuery() {
@@ -20,14 +19,14 @@ class XMLQuery {
 	// Otherwise I just couldn't get the + sign to work in names. It seems fine.
 	//$post = urldecode(file_get_contents("php://input"));
 	$post = file_get_contents("php://input");
-	//if (empty($post)) {
-	//	print "nothing from php://input";
-	//	$post = urldecode($_POST['queryXML']);
-	//} else {
-	//	echo "post=$post";
-	//}
+	
+	// gh#1277 An nsis installer sends post information using ansi. Need to convert to utf-8 for php handling
+	$enc = mb_detect_encoding($post, "UTF-8,ISO-8859-1");
+	if ($enc != "UTF-8")
+		$post = iconv($enc, "UTF-8", $post);
+
 	global $node;
-	$node .= "<note>" .$post  ."</note>";
+	$node .= "<note>".$post."</note>";
 	
 //        $post = '<query method="getRMSettings" rootID="10779" dbHost="1" />';
 //        $post = '<query method="countUsers" rootID="1" />';
@@ -134,7 +133,7 @@ class XMLQuery {
 
         if ( !xml_parse_into_struct($xml, $post, $vals, $index) ) {
             return;
-	}
+        }
 
         xml_parser_free( $xml );
         // Register variables - find the index of the query node
