@@ -5,6 +5,7 @@ confirm that the rotterdam.clearpronunciation namespaces are NOT used please
 */
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
+@namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 @namespace progress "com.clarityenglish.clearpronunciation.view.progress.*";
 @namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 @namespace progressui "com.clarityenglish.bento.view.progress.ui.*"; 
@@ -216,6 +217,10 @@ home|HomeView video|VideoSelector {
 	skinClass: ClassReference("skins.clearpronunciation.controls.video.VideoSelectorSkin");
 	videoPlayerWidth: 640;
 	videoPlayerHeight: 360;
+}
+
+components|XHTMLExerciseView {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.XHTMLExerciseSkin");
 }
 
 exercise|YouWillView {

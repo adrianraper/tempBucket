@@ -235,11 +235,13 @@ import spark.components.Group;
 						if(exercise.getSection("rightNoScroll").video.length() > 0) {
 							if (imgLeftBlur)
 								imgLeftBlur.visible = false;
-							imgBottomBlur.visible = false;
+							if (imgBottomBlur)
+								imgBottomBlur.visible = false;
 						} else {
 							if (imgLeftBlur)
 								imgLeftBlur.visible = true;
-							imgBottomBlur.visible = true;
+							if (imgBottomBlur)
+								imgBottomBlur.visible = true;
 						}
 					}
 				}
