@@ -1063,14 +1063,14 @@ SQL;
 			}
 			
 		} else if (get_class($manageable) == "User") {
-			// #653 Check if the user details conflict with existing users 
+			// #653 Check if the user details conflict with existing users
 			// If they don't, then simply add them.
 			// If they do and the control parameter=move - then call moveUser
 			// If they do and the control parameter=copy - then call copyUser
 			// If they do and the control parameter=simple - then report an error
-			$rc = $this->isUserConflicted($manageable, $rootID);
+			$rc = $this->isUserConflicted($manageable);
 			if ($rc['returnCode'] > 0) {
-				if ($controlExistingStudents == self::EXCEL_MOVE_IMPORT) {
+                if ($controlExistingStudents == self::EXCEL_MOVE_IMPORT) {
 					$addedMsg = "moved";
 					$this->moveUsers($rc['conflictedUsers'], $parentGroup, $manageable);
 					$success = true;
@@ -1105,6 +1105,8 @@ SQL;
 			}
 			*/
 		}
+        // gh#1275
+        return $success;
 	}
 	
 	private function addImportResult($type, $name, $success, $message = "") {

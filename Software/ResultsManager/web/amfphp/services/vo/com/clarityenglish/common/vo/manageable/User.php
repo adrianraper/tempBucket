@@ -360,7 +360,17 @@ EOD;
 		
 		return $user;
 	}
-	
+
+    // gh#1275
+    static function createFromArray($object) {
+        $user = new User();
+        foreach ($object as $attribute => $value)
+            // TODO Needs checking that the attributes match to real user properties
+            $user->$attribute = $value;
+
+        return $user;
+    }
+
 	//static function getReportBuilderOpts($forClass) {
 	// v3.2 You can change the reportOpts if you have to
 	static function getReportBuilderOpts($forClass, &$reportOpts, $template='standard') {
