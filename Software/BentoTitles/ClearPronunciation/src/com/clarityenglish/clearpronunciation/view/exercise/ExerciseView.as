@@ -103,10 +103,13 @@ import mx.core.ClassFactory;
 			super.updateViewFromXHTML(xhtml);
 
 			if (xhtml && !isPlatformTablet) {
+                var replaceObj:Object = {newline: '\n'};
 				if (selectedExerciseNode.parent().hasOwnProperty('@leftAnimation')) {
 					leftAnimation.source = xhtml.rootPath + '../../media/' + selectedExerciseNode.parent().@leftAnimation  + '.swf';
 					leftAnimationLabel.visible = true;
-					leftAnimationLabel.text = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('leftIcon') + "Instruction");
+                    replaceObj.ipa = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('leftIcon'));
+                    replaceObj.compareipa = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('rightIcon'));
+					leftAnimationLabel.text = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('leftIcon') + "Instruction", replaceObj);
 				} else {
 					leftAnimation.source = null;
 					leftAnimationLabel.visible = false;
@@ -115,7 +118,9 @@ import mx.core.ClassFactory;
 				if (selectedExerciseNode.parent().hasOwnProperty('@rightAnimation')) {
 					rightAnimation.source = xhtml.rootPath + '../../media/' + selectedExerciseNode.parent().@rightAnimation  + '.swf';
 					rightAnimationLabel.visible = true;
-					rightAnimationLabel.text = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('rightIcon') + "Instruction");
+                    replaceObj.ipa = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('rightIcon'));
+                    replaceObj.compareipa = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('leftIcon'));
+					rightAnimationLabel.text = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('rightIcon') + "Instruction", replaceObj);
 				} else {
 					rightAnimation.source = null;
 					rightAnimationLabel.visible = false;

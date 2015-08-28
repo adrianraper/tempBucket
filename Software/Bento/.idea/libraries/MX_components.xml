@@ -2,6 +2,7 @@
   <library name="MX components" type="flex">
     <CLASSES>
       <root url="jar:///Applications/Flex/4.13_AIR16.0/frameworks/libs/mx/mx.swc!/" />
+      <root url="jar://C:/Flex/13.0_AIR16.0/frameworks/libs/mx/mx.swc!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
