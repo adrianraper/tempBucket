@@ -354,8 +354,10 @@
 			
 		// gh#1090
 		private function onLicenceTypeChange(e:Event):void {
+			if (licenceTypeComboBox.value != Title.LICENCE_TYPE_AA) 
+				loginBlockedCheckBox.selected = false;
 			loginBlockedFormItem.enabled = editMode && (licenceTypeComboBox.value == Title.LICENCE_TYPE_AA);
-			loginBlockedFormItem.visible = (licenceTypeComboBox.value == Title.LICENCE_TYPE_AA);
+			//loginBlockedFormItem.visible = (licenceTypeComboBox.value == Title.LICENCE_TYPE_AA);
 		}
 		
 		]]>
