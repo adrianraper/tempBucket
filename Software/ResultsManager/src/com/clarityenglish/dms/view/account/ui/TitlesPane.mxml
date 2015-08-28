@@ -135,10 +135,10 @@
 			contentLocationTextInput.text = selectedTitle.dbContentLocation;
 			licenceTypeComboBox.value = selectedTitle.licenceType;
 			
-			// gh#1090
+			// gh#1090, gh#1203
 			loginBlockedCheckBox.selected = (selectedTitle.loginModifier & Title.LOGIN_BLOCKED);
-			loginBlockedFormItem.enabled = editMode && (licenceTypeComboBox.value == Title.LICENCE_TYPE_AA);
-			loginBlockedFormItem.visible = (licenceTypeComboBox.value == Title.LICENCE_TYPE_AA);
+			loginBlockedFormItem.enabled = editMode && (selectedTitle.licenceType == Title.LICENCE_TYPE_AA);
+			//loginBlockedFormItem.visible = (selectedTitle.licenceType == Title.LICENCE_TYPE_AA);
 			
 			// To help create accounts, disable fields that don't need to be changed
 			// RM only cares about teachers, reporters and authors. It also CAN'T have a content location
