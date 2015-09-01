@@ -19,7 +19,7 @@
 		// *********
 		var argList="?configFile=" + jsLocation;
 		argList+="&prefix=" + jsPrefix + "&productCode=" + jsProductCode;
-		argList+="&version=" + jsVersion;
+		argList+="&version=" + jsVersion + "&country=" + jsCountry;
 		
 		// see whether variables have come from command line or, preferentially, session variables
 		// the rest can come from other kinds of integration

@@ -1,4 +1,7 @@
 <?php
+
+	$country = "France";
+	
 	// Initialisation
 	require_once '../startInit.php';
 	

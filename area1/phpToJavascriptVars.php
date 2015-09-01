@@ -12,6 +12,7 @@ echo 'var jsReferrer="'.$referrer.'";';
 echo 'var jsServer="'.$server.'";';
 echo 'var jsIP="'.$ip.'";';
 echo 'var jsCourseFile="'.$courseFile.'";';
+echo 'var jsCountry="'.$country.'";';
 
 echo 'var jsWebShare="'.$webShare.'";';
 echo 'var jsSwfName="'.$swfName.'";';

@@ -10,6 +10,7 @@ package com.clarityenglish.ielts {
 	import mx.preloaders.SparkDownloadProgressBar;
 	
 	import org.davekeen.util.ClassUtil;
+	import mx.core.FlexGlobals;
 	
 	public class IELTSPreloader extends SparkDownloadProgressBar {
 
@@ -28,6 +29,7 @@ package com.clarityenglish.ielts {
 		 */
 		private var rslEstimate:Number = 1000000;
 		private var swfEstimate:Number = 2500000; // published size
+		private var passedCountryName:String;
 		
 		public function IELTSPreloader() {
 			super();
@@ -61,6 +63,8 @@ package com.clarityenglish.ielts {
 				if (stageWidth == 0 && stageHeight == 0) return;
 			}
 			
+			// gh#1281
+			passedCountryName = (loaderInfo.parameters && loaderInfo.parameters.country) ? loaderInfo.parameters.country : '';
 			showingDisplay = true;
 			createChildren();
 		}
@@ -74,7 +78,7 @@ package com.clarityenglish.ielts {
 				
 				onResize();
 				
-				addChild(preloaderDisplay);
+				addChild(preloaderDisplay);				
 			}
 		}
 		
@@ -194,6 +198,9 @@ package com.clarityenglish.ielts {
 			//var totalPercent:Number = Math.round(100 * (swfBytesLoaded + bytesLoaded) / (swfBytesTotal + bytesTotal)); 
 			var totalPercent:Number = Math.round(100 * (swfBytesLoaded + bytesLoaded) / (swfEstimate + bytesTotal)); 
 			preloaderDisplay.setMainProgress(totalPercent);
+			
+			// gh#1281
+			preloaderDisplay.changeCountryName(passedCountryName);
 		}
 		
 		private function logToConsole(message:String):void {
