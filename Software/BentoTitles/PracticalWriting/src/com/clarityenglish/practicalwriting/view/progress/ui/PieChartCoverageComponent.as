@@ -46,7 +46,7 @@ import spark.components.Label;
                 pieChartGroup.height = maxRadius;
                 addChild(pieChartGroup);
 
-                for (var i = 0; i < nodeArrayCollection.length; i++) {
+                for (var i:uint = 0; i < nodeArrayCollection.length; i++) {
                     var pieChart:PieChart = new PieChart();
                     var pieSeries:PieSeries = new PieSeries();
                     pieChart.dataProvider = nodeArrayCollection.getItemAt(i);

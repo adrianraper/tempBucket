@@ -36,6 +36,9 @@
         [Bindable]
         public var courseColorDark:Number;
 
+        [Bindable]
+        public var leftMargin:Number = 0; // gh#1282
+
         ]]>
 	</fx:Script>
 
@@ -110,27 +113,26 @@
                         </s:fill>
                     </s:Rect>
 
-                    <s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="15" left="15" right="15"
-                                bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
-                        <components:XHTMLRichText id="readingTextRichText" visible="false" top="5" left="30" right="5"
+                    <s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="0" left="0" right="10" bottom="0"
+                                mouseWheelChanging="onScrollerMouseWheelChanging(event)">
+                        <components:XHTMLRichText id="readingTextRichText" visible="false" top="5" left="0" right="0"
                                                   behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour/*, DictionaryBehaviour*/]}"/>
                     </s:Scroller>
 
-                    <s:Rect width="1" top="15" bottom="15" right="10">
+                    <s:Rect width="1" top="15" bottom="15" right="0">
                         <s:fill>
                             <s:SolidColor color="#6ca8a8"/>
                         </s:fill>
                     </s:Rect>
                 </s:Group>
 
-                <s:Group id="bodyGroup" width="100%" height="100%" minHeight="52" left="50">
+                <s:Group id="bodyGroup" width="100%" height="100%" minHeight="52" left="0">
                     <s:Group id="backgroundGraphics" clipAndEnableScrolling="true"
                              verticalScrollPosition="{bodyRichText.verticalScrollPosition}" visible="false"
                              addedEffect="{backgroundGraphicShowEffect}">
-                        <!-- <s:BitmapImage left="150" top="200" source="/6.gif" /> -->
                     </s:Group>
 
-                    <s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="15" left="15" right="0"
+                    <s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="15" left="0" right="0"
                                 bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
                         <components:XHTMLRichText id="bodyRichText" visible="false"
                                                   behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, /*DictionaryBehaviour,*/ RecorderButtonBehaviour, EnlargeImageBehaviour]}"/>

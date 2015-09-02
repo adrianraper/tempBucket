@@ -87,7 +87,7 @@ import spark.managers.PersistenceManager;
         private var _isDirectStartEx:Boolean;
         private var _directExercise:XML;
         private var _isDirectLogout:Boolean;
-        private var isProgressOpen;
+        private var isProgressOpen:Boolean;
 
         public function set selectedNode(value:XML):void {
             _selectedNode = value;
