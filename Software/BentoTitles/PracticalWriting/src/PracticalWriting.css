@@ -1,6 +1,7 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace practicalwriting "com.clarityenglish.practicalwriting.*";
+@namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 @namespace login "com.clarityenglish.bento.view.login.*";
 @namespace home "com.clarityenglish.practicalwriting.view.home.*";
 @namespace zone "com.clarityenglish.practicalwriting.view.zone.*";
@@ -132,6 +133,10 @@ zone|PracticeZoneView zone|CompletenessButton s|Button#incompleteButton{
 
 zone|ResourcesZoneView {
     skinClass: ClassReference("skins.practicalwriting.zone.ResourcesZoneSkin");
+}
+
+components|XHTMLExerciseView {
+    skinClass: ClassReference("skins.practicalwriting.exercise.XHTMLExerciseSkin");
 }
 
 exercise|ExerciseView {
