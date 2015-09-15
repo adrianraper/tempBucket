@@ -15,6 +15,12 @@ import spark.components.supportClasses.SkinnableComponent;
         public var bottomColor:uint;
 
         [Bindable]
+        public var disabledFillColor:uint;
+
+        [Bindable]
+        public var disabledBottomColor:uint;
+
+        [Bindable]
         public var backgroundColor:uint;
 
         [Bindable]

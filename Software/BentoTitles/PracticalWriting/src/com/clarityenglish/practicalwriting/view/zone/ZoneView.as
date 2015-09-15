@@ -170,8 +170,22 @@ import spark.primitives.Rect;
             if (_isOpenUnitMemoriesChanged) {
                 _isOpenUnitMemoriesChanged = false;
 
+                // #1294
                 if (openUnitID[course.@id]) {
-                    zoneViewNavigator.selectedIndex = course.unit.(@id == openUnitID[course.@id].unitID).childIndex();
+                    if(isUnitEnabled(course.unit[1])) {
+                        zoneViewNavigator.selectedIndex = 1;
+                    } else {
+                        // If learning unit is disabled then find the first unit that is enable.
+                        if(isUnitEnabled(course.unit[0])) {
+                            zoneViewNavigator.selectedIndex = 0;
+                        } else {
+                            if (isUnitEnabled(course.unit[2])) {
+                                zoneViewNavigator.selectedIndex = 2;
+                            } else {
+                                zoneViewNavigator.selectedIndex = 0;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -193,6 +207,15 @@ import spark.primitives.Rect;
 
         protected function onBackButtonClick(event:MouseEvent):void {
             this.navigator.popView();
+        }
+
+        // #1294
+        private function isUnitEnabled(unit:XML):Boolean {
+            if(unit.attribute("enabledFlag").length() > 0 && (unit.@enabledFlag.toString() & 8)) {
+                return false;
+            } else {
+                return true;
+            }
         }
     }
 }

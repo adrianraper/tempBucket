@@ -53,13 +53,13 @@
         </s:fill>
     </s:Rect>
 
-    <s:Rect top="26" left="0" height="6" width="206" includeIn="up, over, down">
+    <s:Rect top="26" left="0" height="6" width="206" includeIn="up, over, down, disabled">
         <s:fill>
             <s:SolidColor color="#D2D1D4" />
         </s:fill>
     </s:Rect>
 
-    <zone:zonetab left="0" top="26" width="206" includeIn="selectedStates"/>
+    <zone:zonetab left="0" top="26" width="206" includeIn="selectedStates, disabledAndSelected"/>
 
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->

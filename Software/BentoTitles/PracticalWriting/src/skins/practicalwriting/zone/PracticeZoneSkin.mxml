@@ -21,7 +21,18 @@
         <s:itemRenderer>
             <fx:Component>
                 <s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
-                    <zone:CompletenessButton id="exerciseButton" width="350" height="35" labelText="{data.@caption}" completeColor="{getStyle('pieChartFillColor')[outerDocument.hostComponent.courseIndex]}" incompleteColor="{getStyle('exerciseListIncompleteColor')[outerDocument.hostComponent.courseIndex]}" mouseOverColor="{getStyle('pieChartBottomColor')[outerDocument.hostComponent.courseIndex]}" isComplete="{data.attribute('done').length() > 0}"/>
+                    <fx:Script>
+                        <![CDATA[
+                            // #1294
+                            import com.clarityenglish.bento.vo.content.Exercise;
+
+                        ]]>
+                    </fx:Script>
+
+                    <zone:CompletenessButton id="exerciseButton" width="350" height="35" labelText="{data.@caption}"
+                                             completeColor="{getStyle('pieChartFillColor')[outerDocument.hostComponent.courseIndex]}" incompleteColor="{getStyle('exerciseListIncompleteColor')[outerDocument.hostComponent.courseIndex]}"
+                                             mouseOverColor="{getStyle('pieChartBottomColor')[outerDocument.hostComponent.courseIndex]}" isComplete="{data.attribute('done').length() > 0}"
+                                             enabled="{Exercise.exerciseEnabledInMenu(data as XML)}"/>
                 </s:ItemRenderer>
             </fx:Component>
         </s:itemRenderer>

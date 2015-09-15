@@ -33,8 +33,26 @@
         </s:layout>
         <s:itemRenderer>
             <fx:Component>
-                <s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
-                    <vo:PieChartButton id="pieChartButton" width="100%" height="100%" node="{data}" fillColor="{getStyle('pieChartFillColor')[itemIndex]}" bottomColor="{getStyle('pieChartBottomColor')[itemIndex]}"/>
+                <s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true" disabledAlpha="1">
+                    <fx:Script>
+                        <![CDATA[
+                        // #1294
+                        override public function set data(value:Object):void {
+                            super.data = value;
+
+                            if (data.attribute("enabledFlag").length() > 0 && (data.@enabledFlag.toString() & 8)) {
+                                this.enabled = false;
+                                pieChartButton.enabled = false;
+                            } else {
+                                this.enabled = true;
+                                pieChartButton.enabled = true;
+                            }
+                        }
+                        ]]>
+                    </fx:Script>
+
+                    <vo:PieChartButton id="pieChartButton" width="100%" height="100%" node="{data}" fillColor="{getStyle('pieChartFillColor')[itemIndex]}" bottomColor="{getStyle('pieChartBottomColor')[itemIndex]}"
+                                       disabledFillColor="{getStyle('pieChartDisabledFillColor')}" disabledBottomColor="{getStyle('pieChartDisabledBottomColor')}" />
                 </s:ItemRenderer>
             </fx:Component>
         </s:itemRenderer>

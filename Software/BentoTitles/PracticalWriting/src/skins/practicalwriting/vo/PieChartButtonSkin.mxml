@@ -10,7 +10,7 @@
 
     <mx:PieChart id="picChart" width="100%" height="100%" innerRadius="0.82" dataProvider="{hostComponent.nodeArrayCollection}">
         <mx:series>
-            <mx:PieSeries field="coverage" startAngle="45" filters="{[]}" fills="{[hostComponent.fillColor, hostComponent.bottomColor]}" />
+            <mx:PieSeries field="coverage" startAngle="45" filters="{[]}" fills="{hostComponent.enabled? [hostComponent.fillColor, hostComponent.bottomColor] : [hostComponent.disabledFillColor, hostComponent.disabledBottomColor]}" />
         </mx:series>
     </mx:PieChart>
 
@@ -24,16 +24,16 @@
             </s:Path>
             <s:Path winding="nonZero" data="M221.362 449.882L214.052 444.127 235.029 417.483 242.338 423.238 221.362 449.882Z" >
                 <s:fill>
-                    <s:SolidColor color="{hostComponent.fillColor}"/>
+                    <s:SolidColor color="{hostComponent.enabled? hostComponent.fillColor : hostComponent.disabledFillColor}"/>
                 </s:fill>
             </s:Path>
             <s:Path winding="nonZero" data="M220.117 451.474L209.607 457.265 212.77 445.689 220.117 451.474Z" >
                 <s:fill>
-                    <s:SolidColor color="{hostComponent.fillColor}"/>
+                    <s:SolidColor color="{hostComponent.enabled? hostComponent.fillColor : hostComponent.disabledFillColor}"/>
                 </s:fill>
             </s:Path>
         </s:Group>
     </s:Group>
 
-    <s:Label id="titleLabel" width="70%" text="{hostComponent.title}" color="{hostComponent.fillColor}" textAlign="center" fontFamily="Helvetica" fontSize="{height > 200? 22 : 18}" verticalCenter="4" horizontalCenter="0" />
+    <s:Label id="titleLabel" width="70%" text="{hostComponent.title}" color="{hostComponent.enabled? hostComponent.fillColor : hostComponent.disabledFillColor}" textAlign="center" fontFamily="Helvetica" fontSize="{height > 200? 22 : 18}" verticalCenter="4" horizontalCenter="0" />
 </s:Skin>

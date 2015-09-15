@@ -32,7 +32,7 @@
                    xmlns:s="library://ns.adobe.com/flex/spark"
                    xmlns:title="skins.practicalwriting.assets.title.*"
                    minWidth="21" minHeight="21"
-                   alpha.disabled="0.5">
+                   alpha.disabled="0.3">
 
     <fx:Metadata>
         <![CDATA[

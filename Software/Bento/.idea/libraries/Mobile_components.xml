@@ -3,6 +3,8 @@
     <CLASSES>
       <root url="jar://C:/Flex/13.0_AIR16.0/frameworks/libs/mobile/mobilecomponents.swc!/" />
       <root url="jar://C:/Flex/13.0_AIR16.0/frameworks/themes/Mobile/mobile.swc!/" />
+      <root url="jar://$SDK_HOME$/frameworks/libs/mobile/mobilecomponents.swc!/" />
+      <root url="jar://$SDK_HOME$/frameworks/themes/Mobile/mobile.swc!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
