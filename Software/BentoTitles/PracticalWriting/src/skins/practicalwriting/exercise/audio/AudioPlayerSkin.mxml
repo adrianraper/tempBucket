@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:mx="library://ns.adobe.com/flex/mx">
+    <!-- host component -->
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.textLayout.components.AudioPlayer")]
+    </fx:Metadata>
+
+    <s:states>
+        <s:State name="hidden" />
+
+        <s:State name="stopped_compact" stateGroups="stopped,compact" />
+        <s:State name="playing_compact" stateGroups="playing,compact" />
+        <s:State name="paused_compact" stateGroups="paused,compact" />
+        <s:State name="played_compact" stateGroups="played,compact" />
+
+        <s:State name="stopped_full" stateGroups="stopped,full" />
+        <s:State name="playing_full" stateGroups="playing,full" />
+        <s:State name="paused_full" stateGroups="paused,full" />
+        <s:State name="played_full" stateGroups="played,full" />
+    </s:states>
+
+    <!-- All in one button with different states (compact mode) -->
+    <s:Image id="compactComponent"
+             source.stopped="{getStyle('compactStoppedIcon')}"
+             source.played="{getStyle('compactPlayedIcon')}"
+             source.paused="{getStyle('compactPausedIcon')}"
+             source.playing="{getStyle('compactPlayingIcon')}"
+             includeIn="compact"
+             useHandCursor="true"
+             buttonMode="true" />
+
+    <!-- Proper control with a scrub bar and buttons (full mode) -->
+    <s:HGroup verticalAlign="middle">
+        <s:Image id="playComponent" source="{getStyle('fullPlayIcon')}"  includeIn="stopped_full,paused_full,played_full" useHandCursor="true" buttonMode="true" />
+        <s:Image id="pauseComponent" source="{getStyle('fullPauseIcon')}" includeIn="playing_full" useHandCursor="true" buttonMode="true" />
+        <s:ScrubBar id="scrubBar" includeIn="full" />
+    </s:HGroup>
+
+</s:Skin>
