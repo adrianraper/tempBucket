@@ -138,6 +138,29 @@ SQL;
 		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
 	}
+
+	/**
+	 * @param $userID
+	 * @param $productCode
+	 * @return array
+	 *
+	 * This method gets the 'mastery' of each exercise, which is the sum of correct answers
+	 */
+	function getMastery($userID, $productCode) {
+		$sql = <<<SQL
+			SELECT F_ExerciseID as exerciseID, SUM(F_ScoreCorrect) as mastery
+			FROM T_Score
+			WHERE F_ProductCode=?
+			AND F_UserID=?
+			GROUP BY F_ExerciseID;
+SQL;
+
+		$bindingParams = array($productCode, $userID);
+		$rs = $this->db->GetAssoc($sql, $bindingParams);
+
+		// cast the values to integers and remove 0 entries
+		return array_filter(array_map('intval', $rs));
+	}
 	
 	/**
 	 * This method is called to insert a session record when a user starts a program
