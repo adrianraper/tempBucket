@@ -29,7 +29,7 @@
         </s:fill>
     </s:Rect>
 
-    <s:Group left="50" right="40" top="120">
+    <s:Group left="50" right="40" top="120" enabled.anonymous="false">
         <s:ButtonBar id="progressNavBar" buttonMode="true" useHandCursor="true" horizontalCenter="0" left="0" right="0" />
     </s:Group>
 
@@ -45,4 +45,17 @@
         </s:Group>
     </s:HGroup>
 
+    <!--Anonymouse reminder-->
+    <s:Group horizontalCenter="0" verticalCenter="0" includeIn="anonymous">
+        <s:Rect left="0" right="0" top="0" bottom="0" radiusX="7" radiusY="7">
+            <s:fill>
+                <s:SolidColor color="0x808080" />
+            </s:fill>
+        </s:Rect>
+        <s:Label id="labelDisplay"
+                 horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
+                 left="10" right="10" top="4" bottom="4"
+                 color="0xFFFFFF" fontSize="14" text="You are anonymous. To keep track of your progress, sign in next time.">
+        </s:Label>
+    </s:Group>
 </s:Skin>
