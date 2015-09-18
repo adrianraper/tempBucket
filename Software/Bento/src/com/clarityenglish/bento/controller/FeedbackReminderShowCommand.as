@@ -46,12 +46,15 @@ package com.clarityenglish.bento.controller
 			
 			var label:spark.components.Label = new spark.components.Label();
 			label.text = text;
+            // gh#1297 id the label so that css from practicalwriting.css can be used for the styling
+            label.id = "feedbackWarningText";
 			label.top = 20;
-			label.right = 20;
-			label.left = 20;
+			label.right = 25;
 			label.bottom = 20;
+            label.left = 25;
+
 			titleWindow.addElement(label);
-			
+
 			if (!titleWindowAdded) setTimeout(addPopupWindow, 150);
 		}
 		

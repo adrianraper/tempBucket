@@ -29,6 +29,7 @@ class LoginAPI {
 	var $licenceType;
 	var $registerMethod;
 	var $birthday;
+	var $directAccessURL;
 	
 	// Autogroup
 	var $groupName;
@@ -96,6 +97,8 @@ class LoginAPI {
 			$this->registerMethod = $info['registerMethod'];
 		if (isset($info['birthday'])) 
 			$this->birthday = $info['birthday'];
+		if (isset($info['directAccessURL'])) 
+			$this->directAccessURL = $info['directAccessURL'];
 			
 		// AutoGroup.
 		if (isset($info['groupName'])) 

@@ -7,8 +7,13 @@
 
 			<lit name="goToHelpButton">Help</lit>
 			<lit name="goToSettingsButton">Settings</lit>
-			<lit name="minsLabel">mins</lit>
-			<lit name="readLabel">read</lit>
+			<lit name="minsLabel">{time} mins</lit>
+			<lit name="readLabel">{count} people</lit>
+			<lit name="startingOut">Starting out</lit>
+			<lit name="practiceZone">Practice zone</lit>
+			<lit name="resourceBank">Resource bank</lit>
+			<lit name="minsExplanationLabel">How long do other people spend on this unit?</lit>
+
 			<!-- Help -->
 			<lit name="helpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/ActiveReadingHelp.pdf</lit>
 			<lit name="recorderHelpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/ActiveReadingHelp.pdf</lit>

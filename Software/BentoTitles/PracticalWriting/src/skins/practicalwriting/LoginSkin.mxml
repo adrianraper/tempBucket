@@ -41,16 +41,16 @@
     <fx:Style>
         @namespace s "library://ns.adobe.com/flex/spark";
         .signInHeader {
-            fontSize: 14;
+            fontSize: 15px;
             fontFamily: "Helvetica";
             fontWeight: "bold";
             color: #333333;
         }
         .signInPrompt {
-            fontSize: 14;
+            fontSize: 15px;
         }
         .buttonText {
-            fontSize: 14;
+            fontSize: 15px;
             fontFamily: "Helvetica";
             fontWeight: "bold";
             color: #FFFFFF;
@@ -126,7 +126,7 @@
                 <s:Rect height="5" /> <!-- this is a spacer -->
                 <s:TextInput id="loginKeyInput" prompt="{hostComponent.loginKeyCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5" softKeyboardActivating="onLoginSoftKeyboardActivating(event)" softKeyboardDeactivate="onLoginSoftKeyboardDeactivate(event)" />
                 <s:VGroup visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" gap="10" >
-                    <s:TextInput id="passwordInput" displayAsPassword="true" prompt=" {hostComponent.passwordCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5" softKeyboardActivating="onLoginSoftKeyboardActivating(event)" softKeyboardDeactivate="onLoginSoftKeyboardDeactivate(event)" />
+                    <s:TextInput id="passwordInput" displayAsPassword="true" prompt="{hostComponent.passwordCaption}" styleName="signInPrompt" width="260" height="35" filters="{dropShadowFilter}" borderVisible="false" textIndent="5" softKeyboardActivating="onLoginSoftKeyboardActivating(event)" softKeyboardDeactivate="onLoginSoftKeyboardDeactivate(event)" />
                     <s:HGroup width="100%" paddingTop="10" paddingLeft="105">
                         <s:Button id="forgotPasswordButton" label="{hostComponent.forgotPasswordCaption}" useHandCursor="true" buttonMode="true"/>
                     </s:HGroup>

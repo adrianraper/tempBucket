@@ -319,6 +319,15 @@ s|TitleWindow.markingTitleWindow {
 s|TitleWindow.feedbackTitleWindow {
     skinClass: ClassReference("skins.practicalwriting.exercise.feedback.FeedbackTitleWindowSkin");
 }
+/* gh#1297 */
+#feedbackWarningText {
+    fontSize: 14px;
+    color: #000000;
+}
+#warningMessage {
+    fontSize: 14px;
+    textAlign: left;
+}
 
 s|TitleWindow.errorTitleWindow {
     skinClass: ClassReference("skins.practicalwriting.exercise.error.ErroTitleWindowSkin");

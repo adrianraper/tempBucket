@@ -97,14 +97,14 @@
             <lit name="licencedToName">Licensed to {name}</lit>
             <lit name="forgotPasswordLabel">Forgot your password?</lit>
             <lit name="forgotPasswordLink"><![CDATA[http://www.clarityenglish.com/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
-            <lit name="loginCaption">Sign in with your Clarity account</lit>
+            <lit name="loginCaption">Sign in with your Clarity account.</lit>
             <lit name="anonymousCaption">Just practise</lit>
             <lit name="loginDetail">Signing in will save your progress.</lit>
-            <lit name="newUserButtonCaption">Create an account</lit>
+            <lit name="newUserButtonCaption">Create an account.</lit>
             <lit name="addUserButtonCaption">Start</lit>
             <lit name="cancelButtonCaption">Cancel</lit>
             <lit name="anonymousButtonCaption">Start</lit>
-            <lit name="selfRegisterCaption">Create your account</lit>
+            <lit name="selfRegisterCaption">Create your account.</lit>
             <lit name="selfRegisterNameCaption">Name</lit>
             <lit name="selfRegisterIDCaption">ID</lit>
             <lit name="selfRegisterEmailCaption">Email</lit>
@@ -150,6 +150,8 @@
             <lit name="wrongLabel">Wrong: {wrong}</lit> 
             <lit name="missedLabel">Skipped: {missed}</lit> 
             <lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
+            
+            <lit name="footerLabel"> © Clarity Language Consultants Ltd, 2014-15. All rights reserved.</lit>
             <lit name="printButton">Print</lit>
             <lit name="noButton">No</lit>
             <lit name="yesButton">Yes</lit>

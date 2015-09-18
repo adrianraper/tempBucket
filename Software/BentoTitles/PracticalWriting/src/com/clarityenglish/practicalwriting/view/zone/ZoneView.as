@@ -20,6 +20,7 @@ import spark.components.Button;
 import spark.components.Label;
 
 import spark.components.TabbedViewNavigator;
+import spark.components.ViewNavigator;
 import spark.components.VGroup;
 import spark.primitives.Rect;
 
@@ -29,10 +30,20 @@ import spark.primitives.Rect;
         public var zoneViewNavigator:TabbedViewNavigator;
 
         [SkinPart]
+        public var startOutViewNavigator:ViewNavigator;
+        [SkinPart]
+        public var practiceZoneViewNavigator:ViewNavigator;
+        [SkinPart]
+        public var resourcesViewNavigator:ViewNavigator;
+
+        [SkinPart]
         public var minsVGroup:VGroup;
 
         [SkinPart]
         public var minsNumberLabel:Label;
+
+        [SkinPart]
+        public var minsExplanationLabel:Label;
 
         [SkinPart]
         public var minsLabel:Label;
@@ -87,7 +98,8 @@ import spark.primitives.Rect;
             _everyoneCourseSummariesChanged = true;
             // Make the array easier to search by unitID
             for (var i:Number = 0; i < _everyoneCourseSummaries.length; i++) {
-                everyoneUnitScores[_everyoneCourseSummaries[i].CourseID] = {mins: Number(_everyoneCourseSummaries[i].AverageDuration) / 60, read: _everyoneCourseSummaries[i].Count};
+                var averageDuration:Number = Math.round(Number(_everyoneCourseSummaries[i].AverageDuration) / 60);
+                everyoneUnitScores[_everyoneCourseSummaries[i].CourseID] = {mins: averageDuration, read: _everyoneCourseSummaries[i].Count};
             }
             invalidateProperties();
         }
@@ -110,7 +122,7 @@ import spark.primitives.Rect;
 
         override protected function onViewCreationComplete():void {
             if (data) {
-                trace("data selected index: "+data.selectedIndex);
+                //trace("data selected index: "+data.selectedIndex);
                 zoneViewNavigator.selectedIndex = data.selectedIndex;
             }
 
@@ -130,8 +142,20 @@ import spark.primitives.Rect;
                 case skillCaptionLabel:
                     skillCaptionLabel.text = copyProvider.getCopyForId("skillCaptionLabel");
                     break;
+                case minsExplanationLabel:
+                    minsExplanationLabel.text = copyProvider.getCopyForId("minsExplanationLabel");
+                    break;
                 case minsLabel:
                     minsLabel.text = copyProvider.getCopyForId("minsLabel");
+                    break;
+                case startOutViewNavigator:
+                    startOutViewNavigator.label = copyProvider.getCopyForId("startingOut");
+                    break;
+                case practiceZoneViewNavigator:
+                    practiceZoneViewNavigator.label = copyProvider.getCopyForId("practiceZone");
+                    break;
+                case resourcesViewNavigator:
+                    resourcesViewNavigator.label = copyProvider.getCopyForId("resourceBank");
                     break;
             }
         }
@@ -149,21 +173,22 @@ import spark.primitives.Rect;
             if (hasCourseChanged && _everyoneCourseSummariesChanged) {
                 _everyoneCourseSummariesChanged = false;
                 hasCourseChanged = false;
+                // If no-one has done this unit, put in an estimate
                 if (everyoneUnitScores[course.@id]) {
-                    if (everyoneUnitScores[course.@id].mins > 0) {
-                        minsVGroup.visible = minsVGroup.includeInLayout = true;
-                        minsNumberLabel.text = everyoneUnitScores[course.@id].mins;
-                    } else {
-                        minsVGroup.visible = minsVGroup.includeInLayout = false;
-                    }
+                    minsLabel.text = copyProvider.getCopyForId("minsLabel", {time: (everyoneUnitScores[course.@id].mins >= 10) ? everyoneUnitScores[course.@id].mins : 20});
 
-                    if (everyoneUnitScores[course.@id].read > 0) {
-                        readLabel.text = everyoneUnitScores[course.@id].read + copyProvider.getCopyForId("readLabel");
+                    if (everyoneUnitScores[course.@id].read >= 100) {
+                        readLabel.text = copyProvider.getCopyForId("readLabel", {count: everyoneUnitScores[course.@id].read});
                         midRect.visible = midRect.includeInLayout = true;
+                        readLabel.visible = readLabel.includeInLayout = true;
                     } else {
                         midRect.visible = midRect.includeInLayout = false;
                         readLabel.visible = readLabel.includeInLayout = false;
                     }
+                } else {
+                    minsLabel.text = copyProvider.getCopyForId("minsLabel", {time: 20});
+                    midRect.visible = midRect.includeInLayout = false;
+                    readLabel.visible = readLabel.includeInLayout = false;
                 }
             }
 

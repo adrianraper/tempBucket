@@ -45,6 +45,9 @@ import spark.managers.PersistenceManager;
         public var progressViewNavigator:ViewNavigator;
 
         [SkinPart]
+        public var settingsViewNavigator:ViewNavigator;
+
+        [SkinPart]
         public var backToMenuButton:Button;
 
         [SkinPart]
@@ -165,6 +168,15 @@ import spark.managers.PersistenceManager;
                 });
                     sectionNavigator.addEventListener(IndexChangeEvent.CHANGE, onSectionNavigatorIndexChange);
                 break;
+                case homeViewNavigator:
+                    homeViewNavigator.label = copyProvider.getCopyForId("Home");
+                    break;
+                case progressViewNavigator:
+                    progressViewNavigator.label = copyProvider.getCopyForId("myProgress");
+                    break;
+                case settingsViewNavigator:
+                    settingsViewNavigator.label = copyProvider.getCopyForId("settings");
+                    break;
                 case backToMenuButton:
                     backToMenuButton.label = copyProvider.getCopyForId("Home");
                     backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);

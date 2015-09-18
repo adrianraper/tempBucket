@@ -164,7 +164,7 @@ import flash.events.TimerEvent;
 					configProxy.getConfig().signInAs = Title.SIGNIN_ANONYMOUS;
 					rootID = new Array(2);
 					if (demoVersion == "NAMEN") {
-						// for Noth American Demo
+						// for North American Demo
 						rootID[0] = 13456;
 						rootID[1] = 0;
 					} else if (demoVersion == "EN") {

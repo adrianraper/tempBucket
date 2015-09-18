@@ -35,9 +35,9 @@
     </s:Rect>
 
     <s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
-        <s:ViewNavigator id="homeViewNavigator" left="0" right="0" top="0" bottom="0" firstView="com.clarityenglish.practicalwriting.view.home.HomeView" label="Home"/>
-        <s:ViewNavigator id="progressViewNavigator" left="0" right="0" top="0" bottom="0" firstView="com.clarityenglish.practicalwriting.view.progress.ProgressView" label="My Progress" />
-        <s:ViewNavigator id="settingsViewNavigator" left="0" right="0" top="0" bottom="0" firstView="com.clarityenglish.practicalwriting.view.settings.SettingsView" label="Settings" />
+        <s:ViewNavigator id="homeViewNavigator" left="0" right="0" top="0" bottom="0" firstView="com.clarityenglish.practicalwriting.view.home.HomeView"/>
+        <s:ViewNavigator id="progressViewNavigator" left="0" right="0" top="0" bottom="0" firstView="com.clarityenglish.practicalwriting.view.progress.ProgressView"/>
+        <s:ViewNavigator id="settingsViewNavigator" left="0" right="0" top="0" bottom="0" firstView="com.clarityenglish.practicalwriting.view.settings.SettingsView"/>
     </s:TabbedViewNavigator>
 
     <s:HGroup right="0" top="8" gap="1">
