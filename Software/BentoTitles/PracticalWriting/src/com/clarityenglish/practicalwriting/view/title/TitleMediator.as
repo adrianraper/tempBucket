@@ -141,9 +141,9 @@ public class TitleMediator extends BentoMediator implements IMediator {
             var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
             var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(bentoProxy.currentExercise)) as ExerciseProxy;
 
-            if (exerciseProxy.attemptToLeaveExercise(new Notification(BBNotifications.SELECTED_NODE_UP))) {
+            if (exerciseProxy.attemptToLeaveExercise(new Notification(BBNotifications.SELECTED_NODE_CHANGE, bentoProxy.menu))) {
                 sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view); // #265
-                sendNotification(BBNotifications.SELECTED_NODE_UP);
+                sendNotification(BBNotifications.SELECTED_NODE_CHANGE, bentoProxy.menu);
             }
         }
 

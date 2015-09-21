@@ -96,6 +96,10 @@ import spark.managers.PersistenceManager;
             _selectedNode = value;
 
             switch (_selectedNode.localName()) {
+                case "menu":
+                    currentState = "home";
+                    homeViewNavigator.popToFirstView();
+                    break;
                 case "course":
                 case "unit":
                     currentState = "zone";
