@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark">
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:ui="skins.practicalwriting.zone.ui.*"
+        xmlns:assets="skins.practicalwriting.assets.zone.*">
 
     <fx:Metadata>
         [HostComponent("com.clarityenglish.practicalwriting.view.zone.ResourcesZoneView")]
@@ -11,5 +13,123 @@
         <s:State name="disabled" />
         <s:State name="normal" />
     </s:states>
+
+    <s:Scroller horizontalScrollPolicy="off" width="100%" top="0" bottom="0">
+        <s:VGroup width="100%" height="100%" top="10" gap="10">
+            <s:VGroup width="100%" gap="0" visible="{hostComponent.studySheetListXMLListCollction.length > 0}" includeInLayout="{hostComponent.studySheetListXMLListCollction.length > 0}">
+                <s:HGroup width="100%" paddingRight="23" gap="20" verticalAlign="middle">
+                    <assets:studySheet />
+                    <ui:DottedLine width="100%" height="1" dotColor="#333333" dotHeight="1" dotWidth="1" />
+                </s:HGroup>
+                <s:List id="studySheetList" width="100%" dataProvider="{hostComponent.studySheetListXMLListCollction}" contentBackgroundAlpha="0" borderVisible="false" verticalScrollPolicy="off">
+                    <s:layout>
+                        <s:TileLayout columnAlign="justifyUsingGap" requestedRowCount="1" paddingLeft="20" paddingRight="30" paddingTop="20" paddingBottom="20" />
+                    </s:layout>
+                    <s:itemRenderer>
+                        <fx:Component>
+                            <s:ItemRenderer autoDrawBackground="false">
+                                <fx:Script>
+                                <![CDATA[
+                                    override public function set data(value:Object):void {
+                                        super.data = value;
+
+                                        studySheetSWFLoader.source = outerDocument.hostComponent.href.rootPath+ '/' + data.@thumbnail;
+                                    }
+
+                                    protected function onItemClick(href:String):void {
+                                        var url:String = outerDocument.hostComponent.href.rootPath+ '/' + href;
+                                        var request:URLRequest = new URLRequest(url);
+                                        navigateToURL(request);
+                                    }
+                                    ]]>
+                            </fx:Script>
+                                <s:VGroup verticalAlign="middle" horizontalAlign="center" gap="8" click="onItemClick(data.@href)" useHandCursor="true" buttonMode="true">
+                                    <s:SWFLoader id="studySheetSWFLoader" width="125" height="181" />
+                                    <assets:triangle />
+                                    <s:Label text="{data.@caption}" fontSize="12" color="#116A8A" />
+                                </s:VGroup>
+                            </s:ItemRenderer>
+                        </fx:Component>
+                    </s:itemRenderer>
+                </s:List>
+            </s:VGroup>
+
+            <s:VGroup width="100%" gap="0" visible="{hostComponent.sampleEssayXMLListCollection.length > 0}" includeInLayout="{hostComponent.sampleEssayXMLListCollection.length > 0}">
+                <s:HGroup width="100%" paddingRight="23" gap="20" verticalAlign="middle">
+                    <assets:sampleEssay />
+                    <ui:DottedLine width="100%"  height="1" dotColor="#333333" dotHeight="1" dotWidth="1" />
+                </s:HGroup>
+                <s:List id="sampleEssayList" width="100%" dataProvider="{hostComponent.sampleEssayXMLListCollection}" contentBackgroundAlpha="0" borderVisible="false" verticalScrollPolicy="off">
+                    <s:layout>
+                        <s:TileLayout columnAlign="justifyUsingGap" requestedRowCount="1" paddingLeft="20" paddingRight="30" paddingTop="20" paddingBottom="20" />
+                    </s:layout>
+                    <s:itemRenderer>
+                        <fx:Component>
+                            <s:ItemRenderer autoDrawBackground="false">
+                                <fx:Script>
+                                <![CDATA[
+                                    override public function set data(value:Object):void {
+                                        super.data = value;
+
+                                        sampleEssaySWFLoader.source = outerDocument.hostComponent.href.rootPath+ '/' + data.@thumbnail;
+                                    }
+
+                                    protected function onItemClick(href:String):void {
+                                        var url:String = outerDocument.hostComponent.href.rootPath+ '/' + href;
+                                        var request:URLRequest = new URLRequest(url);
+                                        navigateToURL(request);
+                                    }
+                                    ]]>
+                            </fx:Script>
+                                <s:VGroup verticalAlign="middle" horizontalAlign="center" gap="8" click="onItemClick(data.@href)" useHandCursor="true" buttonMode="true">
+                                    <s:SWFLoader id="sampleEssaySWFLoader" width="125" height="181" />
+                                    <assets:triangle />
+                                    <s:Label text="{data.@caption}" fontSize="12" color="#116A8A" />
+                                </s:VGroup>
+                            </s:ItemRenderer>
+                        </fx:Component>
+                    </s:itemRenderer>
+                </s:List>
+            </s:VGroup>
+
+            <s:VGroup width="100%" gap="0" visible="{hostComponent.modelAnswerXMLListCollection.length > 0}" includeInLayout="{hostComponent.modelAnswerXMLListCollection.length > 0}">
+                <s:HGroup width="100%" paddingRight="23" gap="20" verticalAlign="middle">
+                    <assets:modelAnswer />
+                    <ui:DottedLine width="100%" height="1" dotColor="#333333" dotHeight="1" dotWidth="1" />
+                </s:HGroup>
+                <s:List id="modelAnswerList" width="100%" dataProvider="{hostComponent.modelAnswerXMLListCollection}" contentBackgroundAlpha="0" borderVisible="false" verticalScrollPolicy="off">
+                    <s:layout>
+                        <s:TileLayout columnAlign="justifyUsingGap" requestedRowCount="1" paddingLeft="20" paddingRight="30" paddingTop="20" paddingBottom="20" />
+                    </s:layout>
+                    <s:itemRenderer>
+                        <fx:Component>
+                            <s:ItemRenderer autoDrawBackground="false">
+                                <fx:Script>
+                                <![CDATA[
+                                    override public function set data(value:Object):void {
+                                        super.data = value;
+
+                                        modelAnswerSWFLoader.source = outerDocument.hostComponent.href.rootPath+ '/' + data.@thumbnail;
+                                    }
+
+                                    protected function onItemClick(href:String):void {
+                                        var url:String = outerDocument.hostComponent.href.rootPath+ '/' + href;
+                                        var request:URLRequest = new URLRequest(url);
+                                        navigateToURL(request);
+                                    }
+                                    ]]>
+                            </fx:Script>
+                                <s:VGroup verticalAlign="middle" horizontalAlign="center" gap="8" click="onItemClick(data.@href)" useHandCursor="true" buttonMode="true">
+                                    <s:SWFLoader id="modelAnswerSWFLoader" width="125" height="181" />
+                                    <assets:triangle />
+                                    <s:Label text="{data.@caption}" fontSize="12" color="#116A8A" />
+                                </s:VGroup>
+                            </s:ItemRenderer>
+                        </fx:Component>
+                    </s:itemRenderer>
+                </s:List>
+            </s:VGroup>
+        </s:VGroup>
+    </s:Scroller>
 
 </s:Skin>

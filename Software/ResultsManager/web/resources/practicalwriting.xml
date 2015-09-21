@@ -11,7 +11,7 @@
 			<lit name="readLabel">{count} people</lit>
 			<lit name="startingOut">Starting out</lit>
 			<lit name="practiceZone">Practice zone</lit>
-			<lit name="resourceBank">Resource bank</lit>
+			<lit name="resourceBank">Resource Bank</lit>
 			<lit name="minsExplanationLabel">How long do other people spend on this unit?</lit>
 
 			<!-- Help -->
