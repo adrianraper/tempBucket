@@ -51,9 +51,11 @@
             <lit name="timerPlanningCaption">Planning {time}</lit>
             <lit name="timerWritingCaption">Writing {time}</lit>
             <lit name="timerProofreadingCaption">Proofreading {time}</lit>
-            <lit name="timerTotalTimeLabel">total time</lit>
-            <lit name="timerStartLabel">start</lit>
-            <lit name="timerResetLabel">reset</lit>
+            <lit name="timerTotalTimeLabel">Total time</lit>
+            <lit name="timerStartLabel">Start</lit>
+            <lit name="timerResetLabel">Reset</lit>
+            <lit name="timerPauseLabel">Pause</lit>
+            <lit name="timerStopLabel">Stop</lit>
 
 			<!-- Progress certificate -->
 			<lit name="notCompleteString">

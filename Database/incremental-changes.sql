@@ -1378,3 +1378,6 @@ CREATE TABLE `T_CampaignOffer` (
 `F_OfferID` int(11) NOT NULL,
 PRIMARY KEY (`F_CampaignID`,`F_OfferID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO T_ProductLanguage VALUES 
+(61,'NAMEN','PracticalWriting-NAmerica');

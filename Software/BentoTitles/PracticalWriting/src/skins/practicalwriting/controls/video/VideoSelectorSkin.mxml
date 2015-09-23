@@ -17,7 +17,11 @@
         import spark.skins.spark.VideoPlayerSkin;
 
         protected function onCreationComplete(event:FlexEvent):void {
+            // gh#1305
             trace("video list length: "+hostComponent.videoCollection.length);
+            if (hostComponent.videoCollection.length <= 1)
+                videoList.visible = videoList.includeInLayout = false;
+
             var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
             if (settingsSharedObject.data["channelIndex"]) {
                 channelList.selectedIndex = settingsSharedObject.data["channelIndex"];
