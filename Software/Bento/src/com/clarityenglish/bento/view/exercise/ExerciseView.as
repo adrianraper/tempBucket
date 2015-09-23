@@ -92,6 +92,7 @@ import spark.components.Button;
 		// Timer total time
 		private var _timerTotalTime:Array = [];
 		private var _isTimereTotalTimeChange;
+		private var _timerSectionLabels:Array = [];
 		private var _courseCaption:String;
 		
 		// gh#388
@@ -179,6 +180,15 @@ import spark.components.Button;
 		[Bindable]
 		public function get timerTotalTime():Array {
 			return _timerTotalTime;
+		}
+
+		public function set timerSectionLabels(value:Array):void {
+			_timerSectionLabels = value;
+		}
+
+		[Bindable]
+		public function get timerSectionLabels():Array {
+			return _timerSectionLabels;
 		}
 		
 		public var startAgain:Signal = new Signal();

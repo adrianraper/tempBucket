@@ -131,6 +131,16 @@ package com.clarityenglish.bento.vo.content {
 				return [];
 			}
 		}
+
+		public function getTimerSectionLabels():Array {
+			if (model &&  model.hasSettingParam("timerSectionLabels")) {
+				return String(model.getSettingParam("timerSectionLabels")).split(",");
+			} else {
+				return [];
+			}
+		}
+
+		// For timer
 		
 		public function getRule():String {
 			return model.getRule();

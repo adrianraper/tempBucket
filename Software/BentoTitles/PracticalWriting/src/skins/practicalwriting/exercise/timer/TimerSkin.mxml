@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
-        xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:timer="skins.practicalwriting.assets.exercise.timer.*">
+        xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:timer="skins.practicalwriting.assets.exercise.timer.*" xmlns:components="com.clarityenglish.textLayout.components.*">
 
     <fx:Metadata>
         [HostComponent("com.clarityenglish.bento.view.timer.TimerComponent")]
@@ -40,11 +40,11 @@
 
         private function getDataTip(value:String):String {
             if (timerSlider.getFocus() == timerSlider.getThumbAt(0)) {
-                // return the duration of second section.
-                return "Writing " + timeConvert(timerSlider.values[1] - Number(value));
+                // return the duration of second session.
+                return hostComponent.timerSectionLabels[1] + ' ' + timeConvert(timerSlider.values[1] - Number(value));
             } else {
-                // return the duration of the third section.
-                return "Proofreading " + timeConvert(timerSlider.maximum - Number(value));
+                // return the duration of the thirs session.
+                return hostComponent.timerSectionLabels[2] + ' ' + timeConvert(timerSlider.maximum - Number(value));
             }
         }
         ]]>
@@ -89,8 +89,8 @@
                             </s:fill>
                         </s:Rect>
                         <s:Rect id="writingBar" height="100%" percentWidth="{hostComponent.midRectPercentWidth}"
-                                topLeftRadiusY="{hostComponent.leftRadius}" topLeftRadiusX="{hostComponent.leftRadius}" bottomLeftRadiusX="{hostComponent.leftRadius}" bottomLeftRadiusY="{hostComponent.leftRadius}"
-                                topRightRadiusY="{hostComponent.rightRadius}" topRightRadiusX="{hostComponent.rightRadius}" bottomRightRadiusX="{hostComponent.rightRadius}" bottomRightRadiusY="{hostComponent.rightRadius}">
+                                topLeftRadiusY="{hostComponent.secondLeftRadius}" topLeftRadiusX="{hostComponent.secondLeftRadius}" bottomLeftRadiusX="{hostComponent.secondLeftRadius}" bottomLeftRadiusY="{hostComponent.secondLeftRadius}"
+                                topRightRadiusY="{hostComponent.secondRightRadius}" topRightRadiusX="{hostComponent.secondRightRadius}" bottomRightRadiusX="{hostComponent.secondRightRadius}" bottomRightRadiusY="{hostComponent.secondRightRadius}">
                             <s:fill>
                                 <s:SolidColor color="#0681A8" />
                             </s:fill>
@@ -114,13 +114,19 @@
                     <mx:HSlider id="timerSlider" width="100%" height="18" verticalCenter="-2" horizontalCenter="0" thumbCount="2" snapInterval="1" minimum="0" showDataTip="true" dataTipFormatFunction="getDataTip" change="onSliderChange(event)" dataTipStyleName="dataTipStyle"
                                 trackSkin="skins.practicalwriting.exercise.timer.HSliderTrackSkin"
                                 trackHighlightSkin="skins.practicalwriting.exercise.timer.HSliderTrackHighlightSkin" showTrackHighlight="true"
-                                thumbSkin="skins.practicalwriting.exercise.timer.HSliderThumbSkin" />
+                                thumbSkin="skins.practicalwriting.exercise.timer.HSliderThumbSkin"
+                                visible="{hostComponent.timerTotalTime.length > 1}"/>
+                    <s:Rect left="10" right="10" height="18" verticalCenter="0" horizontalCenter="0" radiusX="4" radiusY="4" visible="{hostComponent.timerTotalTime.length == 1}">
+                        <s:fill>
+                            <s:SolidColor color="#15516D" />
+                        </s:fill>
+                    </s:Rect>
                 </s:Group>
                 <!--Data Tip-->
-                <s:Group width="676" horizontalCenter="0" verticalCenter="-30">
-                    <s:Label id="firstTipLabel" color="#15516D" text="{'Planning ' + timeConvert(timerSlider.values[0])}" fontSize="13" />
-                    <s:Label id="midTipLabel" color="#0681A8" text="{'Writing ' + timeConvert(timerSlider.values[1] - timerSlider.values[0])}" fontSize="13" />
-                    <s:Label id="lastTipLabel" color="#15516D" text="{'Proofreading ' + timeConvert(timerSlider.maximum - timerSlider.values[1])}" fontSize="13" />
+                <s:Group id="tipLabelGroup" width="676" horizontalCenter="0" verticalCenter="-30">
+                    <s:Label id="firstTipLabel" color="#15516D" text="{hostComponent.timerSectionLabels[0] + ' ' + timeConvert(timerSlider.values[0])}" fontSize="13" visible="{hostComponent.timerTotalTime.length > 1}" />
+                    <s:Label id="midTipLabel" color="#0681A8" text="{hostComponent.timerSectionLabels[1] + ' ' + timeConvert(timerSlider.values[1] - timerSlider.values[0])}" fontSize="13" visible="{hostComponent.timerTotalTime.length > 1}" />
+                    <s:Label id="lastTipLabel" color="#15516D" text="{hostComponent.timerSectionLabels[2] + ' ' + timeConvert(timerSlider.maximum - timerSlider.values[1])}" fontSize="13" visible="{hostComponent.timerTotalTime.length > 2}" />
                 </s:Group>
                 <!--Progress Bar-->
                 <s:Group id="progressBarGroup" width="{hostComponent.sliderWidth}" height="18" horizontalCenter="0" verticalCenter="0" excludeFrom="startState">
@@ -135,14 +141,15 @@
                     </s:Rect>
                     <!--Shrink the width of progress cover rect to show the red progress bar.-->
                     <s:HGroup width="100%" height="100%" gap="-1" horizontalAlign="right">
-                        <s:Rect id="firstProgressCoverRect" height="100%" percentWidth="{hostComponent.firstRectPercentWidth}" topLeftRadiusX="4" topLeftRadiusY="4" bottomLeftRadiusY="4" bottomLeftRadiusX="4">
+                        <s:Rect id="firstProgressCoverRect" height="100%" percentWidth="{hostComponent.firstRectPercentWidth}" topLeftRadiusX="4" topLeftRadiusY="4" bottomLeftRadiusY="4" bottomLeftRadiusX="4"
+                                topRightRadiusY="{hostComponent.firstRightRadius}" topRightRadiusX="{hostComponent.firstRightRadius}" bottomRightRadiusX="{hostComponent.firstRightRadius}" bottomRightRadiusY="{hostComponent.firstRightRadius}">
                             <s:fill>
                                 <s:SolidColor color="#15516D" />
                             </s:fill>
                         </s:Rect>
                         <s:Rect id="midProgressCoverRect" height="100%" percentWidth="{hostComponent.midRectPercentWidth}"
-                                topLeftRadiusY="{hostComponent.leftRadius}" topLeftRadiusX="{hostComponent.leftRadius}" bottomLeftRadiusX="{hostComponent.leftRadius}" bottomLeftRadiusY="{hostComponent.leftRadius}"
-                                topRightRadiusY="{hostComponent.rightRadius}" topRightRadiusX="{hostComponent.rightRadius}" bottomRightRadiusX="{hostComponent.rightRadius}" bottomRightRadiusY="{hostComponent.rightRadius}">
+                                topLeftRadiusY="{hostComponent.secondLeftRadius}" topLeftRadiusX="{hostComponent.secondLeftRadius}" bottomLeftRadiusX="{hostComponent.secondLeftRadius}" bottomLeftRadiusY="{hostComponent.secondLeftRadius}"
+                                topRightRadiusY="{hostComponent.secondRightRadius}" topRightRadiusX="{hostComponent.secondRightRadius}" bottomRightRadiusX="{hostComponent.secondRightRadius}" bottomRightRadiusY="{hostComponent.secondRightRadius}">
                             <s:fill>
                                 <s:SolidColor color="#0681A8" />
                             </s:fill>
@@ -164,7 +171,7 @@
                                 <s:SolidColor color="#222222" />
                             </s:fill>
                         </s:Rect>
-                        <s:Label id="totalTimeLabel" fontSize="13" />
+                        <s:Label text="Total time" fontSize="13" />
                         <s:Rect width="25" height="1">
                             <s:fill>
                                 <s:SolidColor color="#222222" />
@@ -181,24 +188,23 @@
                     </s:HGroup>
                 </s:VGroup>
 
-                <s:Label id="totalTimeText" verticalCenter="0" horizontalCenter="0" color="#ED1F24" text="{hostComponent.totalTimeText}" fontSize="21" excludeFrom="startState" />
+                <s:Label id="totalTimeLabel" verticalCenter="0" horizontalCenter="0" color="#ED1F24" text="{hostComponent.totalTimeLabelText}" fontSize="21" excludeFrom="startState" />
             </s:Group>
         </s:HGroup>
 
         <s:HGroup width="13%" height="100%" right="0" gap="0" verticalAlign="middle">
             <s:Group width="50%" height="100%" excludeFrom="completeState">
-                <s:Button id="startButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" includeIn="startState"/>
-                <s:Button id="pauseButton" width="1000%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" includeIn="pauseState"/>
-                <s:Button id="resumeButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" includeIn="resumeState"/>
+                <s:Button id="startButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Start" includeIn="startState"/>
+                <s:Button id="pauseButton" width="1000%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Pause" includeIn="pauseState"/>
+                <s:Button id="resumeButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Resume" includeIn="resumeState"/>
             </s:Group>
             <s:Group width="50%" height="100%" excludeFrom="completeState">
-                <s:Button id="resetButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" includeIn="startState"/>
-                <s:Button id="stopButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" includeIn="pauseState, resumeState"/>
+                <s:Button id="resetButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Reset" includeIn="startState"/>
+                <s:Button id="stopButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Stop" includeIn="pauseState, resumeState"/>
             </s:Group>
             <s:Group width="100%" height="100%" includeIn="completeState">
-                <s:Button id="resetCompleteButton" width="100%" height="100%" color="#333333" fontSize="15" buttonMode="true" useHandCursor="true"  />
+                <s:Button id="resetCompleteButton" width="100%" height="100%" color="#333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Reset" />
             </s:Group>
         </s:HGroup>
     </s:Group>
-
 </s:Skin>

@@ -173,6 +173,8 @@
         <!--Timer-->
         <timer:TimerComponent id="timerComponent" bottom="0" width="100%" height="94"
                               timerTotalTime="{hostComponent.timerTotalTime}"
+                              timerSectionLabels="{hostComponent.timerSectionLabels}"
+                              contentPath="{hostComponent.href.rootPath}"
                               copyProvider="{hostComponent.copyProvider}"
                               visible="{hostComponent.timerTotalTime.length > 0}"
                               includeInLayout="{hostComponent.timerTotalTime.length > 0}"/>

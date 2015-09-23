@@ -1,10 +1,13 @@
 package com.clarityenglish.bento.view.timer {
 import com.clarityenglish.common.model.interfaces.CopyProvider;
+import com.clarityenglish.textLayout.components.AudioPlayer;
 
 import flash.events.Event;
 import flash.events.FocusEvent;
 import flash.events.MouseEvent;
 import flash.events.TimerEvent;
+import flash.media.Sound;
+import flash.net.URLRequest;
 import flash.utils.Timer;
 
 import mx.collections.ArrayCollection;
@@ -84,7 +87,7 @@ import spark.primitives.Rect;
         public var resetCompleteButton:Button;
 
         [Bindable]
-        public var totalTimeText:String;
+        public var totalTimeLabelText:String;
 
         [Bindable]
         public var firstRectPercentWidth:Number;
@@ -96,13 +99,19 @@ import spark.primitives.Rect;
         public var lastRectPercentWidth:Number;
 
         [Bindable]
-        public var leftRadius:Number;
+        public var secondLeftRadius:Number;
 
         [Bindable]
-        public var rightRadius:Number;
+        public var secondRightRadius:Number;
+
+        [Bindable]
+        public var firstRightRadius:Number;
 
         [Bindable]
         public var sliderWidth:Number;
+
+        [Bindable]
+        public var contentPath:String;
 
         private var timer:Timer;
         private var defaultTotalTime:Number;
@@ -112,8 +121,11 @@ import spark.primitives.Rect;
         private var _isTotalTimeChange:Boolean;
         private var _timerTotalTime:Array = [];
         private var _isTimerTotalTimeChange:Boolean;
+        private var _timerSectionLabels:Array = [];
+        private var _isTimerSectionLabelsChange:Boolean;
         private var _isFirstTimeChange:Boolean;
         private var _copyProvider:CopyProvider;
+        private var audioPlayer:AudioPlayer;
 
         public function TimerComponent() {
             StateUtil.addStates(this, ["startState", "pauseState", "resumeState", "completeState"], true);
@@ -130,7 +142,7 @@ import spark.primitives.Rect;
         }
 
         public function set totalTime(value:Number):void {
-            if (value) {
+            if (value >= 0) {
                 _totalTime = value;
                 _isTotalTimeChange = true;
                 invalidateProperties();
@@ -155,6 +167,16 @@ import spark.primitives.Rect;
             return _timerTotalTime;
         }
 
+        public function set timerSectionLabels(value:Array):void {
+            _timerSectionLabels = value;
+            _isTimerSectionLabelsChange = true;
+        }
+
+        [Bindable]
+        public function get timerSectionLabels():Array {
+            return _timerSectionLabels;
+        }
+
         public function set copyProvider(value:CopyProvider):void {
             _copyProvider = value;
         }
@@ -170,9 +192,9 @@ import spark.primitives.Rect;
                 timerSlider.values[i] = timerSlider.maximum * valuesArray[i];
             }
 
-            firstTipLabel.text = copyProvider.getCopyForId("timerPlanningCaption", {time: timeConvert(timerSlider.values[0])});
-            midTipLabel.text = copyProvider.getCopyForId("timerWritingCaption", {time: timeConvert(timerSlider.values[1] - timerSlider.values[0])});
-            lastTipLabel.text = copyProvider.getCopyForId("timerProofreadingCaption", {time: timeConvert(timerSlider.maximum - timerSlider.values[1])});
+            firstTipLabel.text = timerSectionLabels[0] + ' ' + timeConvert(timerSlider.values[0]);
+            midTipLabel.text = timerSectionLabels[1] + ' ' + timeConvert(timerSlider.values[1] - timerSlider.values[0]);
+            lastTipLabel.text = timerSectionLabels[2] + ' ' + timeConvert(timerSlider.maximum - timerSlider.values[1]);
 
             midTipLabel.left = 100;
             lastTipLabel.left = sliderWidth - 100;
@@ -202,6 +224,18 @@ import spark.primitives.Rect;
 
                 hoursTextInput.text = formatTime(Math.floor(totalTime / 3600));
                 minsTextInput.text = formatTime(Math.floor(totalTime / 60));
+
+            }
+
+            if (_isTimerSectionLabelsChange) {
+                _isTimerSectionLabelsChange = false;
+
+                // When the label array is less then maximum number of sections, we now hard code it as 3, fill the array with the empty string to be the same length of the maximum number of sections.
+                if (timerSectionLabels.length < 3) {
+                    for (var i:Number = 0; i < (3 - timerSectionLabels.length); i++) {
+                        timerSectionLabels.push("");
+                    }
+                }
             }
 
             if (_isTotalTimeChange)  {
@@ -222,30 +256,19 @@ import spark.primitives.Rect;
                     break;
                 case startButton:
                     startButton.addEventListener(MouseEvent.CLICK, onStartButtonClick);
-                    startButton.label = copyProvider.getCopyForId('timerStartLabel');
                     break;
                 case pauseButton:
                     pauseButton.addEventListener(MouseEvent.CLICK, onPauseButtonClick);
-                    pauseButton.label = copyProvider.getCopyForId('timerPauseLabel');
                     break;
                 case resumeButton:
                     resumeButton.addEventListener(MouseEvent.CLICK, onResumeButtonClick);
-                    resumeButton.label = copyProvider.getCopyForId('timerResumeLabel');
                     break;
                 case resetButton:
                     resetButton.addEventListener(MouseEvent.CLICK, onResetButtonClick);
-                    resetButton.label = copyProvider.getCopyForId('timerResetLabel');
                     break;
                 case stopButton:
-                    instance.addEventListener(MouseEvent.CLICK, onStopButtonClick);
-                    stopButton.label = copyProvider.getCopyForId('timerStopLabel');
-                    break;
                 case resetCompleteButton:
                     instance.addEventListener(MouseEvent.CLICK, onStopButtonClick);
-                    resetCompleteButton.label = copyProvider.getCopyForId('timerResetLabel');
-                    break;
-                case totalTimeLabel:
-                    totalTimeLabel.text = copyProvider.getCopyForId('timerTotalTimeLabel');
                     break;
             }
         }
@@ -276,49 +299,75 @@ import spark.primitives.Rect;
 
             if (minsTextInput.text) {
                 time += Number(minsTextInput.text) * 60;
-                var minsCarry = Math.floor(Number(minsTextInput.text) / 60);
+                // The maximum seconds the timer can accept is 362340 which is 99:00:00.
+                var minsNumber:Number = Number(minsTextInput.text);
+                var hoursNumber:Number = Number(hoursTextInput.text);
+                if (time > 356400) {
+                    minsNumber = 356400 / 60;
+                    hoursNumber = 0;
+                }
+                var minsCarry = Math.floor(minsNumber / 60);
                 if (minsCarry > 0) {
-                    minsTextInput.text = formatTime(Number(minsTextInput.text) - 60 * minsCarry);
-                    hoursTextInput.text = formatTime(Number(hoursTextInput.text) + minsCarry);
+                    minsTextInput.text = formatTime(minsNumber - 60 * minsCarry);
+                    hoursTextInput.text = formatTime(hoursNumber + minsCarry);
                 } else {
-                    minsTextInput.text = formatTime(Number(minsTextInput.text));
+                    minsTextInput.text = formatTime(minsNumber);
                 }
             }
 
             totalTime = time;
+
+            // Handle the total time 0 problem.
+            if (totalTime == 0) {
+                startButton.enabled = false;
+            } else {
+                startButton.enabled = true;
+            }
         }
 
         protected function onTimerUpdate(event:TimerEvent):void {
             // Shrink the width of specific cover bar to make the progress bar appear.
             var unit:Number = sliderWidth / totalTime;
-            if (timer.currentCount <= timerSlider.values[0] * 60) {
-                firstProgressCoverRect.width = timer.currentCount < timerSlider.values[0] * 60 ? (firstProgressCoverRect.width - unit) : 0;
-                firstProgressCoverRect.topLeftRadiusX = firstProgressCoverRect.topLeftRadiusY = firstProgressCoverRect.bottomLeftRadiusX = firstProgressCoverRect.bottomLeftRadiusY = 0;
-            } else if (timer.currentCount <= timerSlider.values[1] * 60) {
-                midProgressCoverRect.width = timer.currentCount < timerSlider.values[1] * 60 ? (midProgressCoverRect.width - unit) : 0;
+            if (timerTotalTime.length == 1) {
+                firstProgressCoverRect.width = timer.currentCount < timerTotalTime[0] * 60 ? (firstProgressCoverRect.width - unit) : 0
             } else {
-                lastProgressCoverRect.width = timer.currentCount < timerSlider.maximum * 60 ? (lastProgressCoverRect.width - unit) : 0;
+                if (timer.currentCount <= timerSlider.values[0] * 60) {
+                    firstProgressCoverRect.width = timer.currentCount < timerSlider.values[0] * 60 ? (firstProgressCoverRect.width - unit) : 0;
+                    firstProgressCoverRect.topLeftRadiusX = firstProgressCoverRect.topLeftRadiusY = firstProgressCoverRect.bottomLeftRadiusX = firstProgressCoverRect.bottomLeftRadiusY = 0;
+                } else if (timer.currentCount <= timerSlider.values[1] * 60) {
+                    midProgressCoverRect.width = timer.currentCount < timerSlider.values[1] * 60 ? (midProgressCoverRect.width - unit) : 0;
+                } else {
+                    lastProgressCoverRect.width = timer.currentCount < timerSlider.maximum * 60 ? (lastProgressCoverRect.width - unit) : 0;
+                }
             }
 
             var totalMSeconds:Number = totalTime - timer.currentCount;
             var sec:String = formatTime(totalMSeconds % 60);
             var min:String = formatTime(Math.floor((totalMSeconds % 3600 ) / 60));
             var hour:String = formatTime(Math.floor(totalMSeconds / (60 * 60)));
-            totalTimeText = String(hour + ":" + min + ":" + sec);
+            totalTimeLabelText = String(hour + ":" + min + ":" + sec);
         }
 
         protected function onTimerComplete(event:Event):void {
             setState("completeState");
+
+            audioPlayer = new AudioPlayer();
+            audioPlayer.autoplay = audioPlayer.playComponentEnable = true;
+            audioPlayer.src = contentPath + "/../media/beep.mp3";
+            this.stage.addChild(audioPlayer);
         }
 
         protected function onStartButtonClick(event:MouseEvent):void {
             initializeTimer();
             initializeSlider();
-            totalTimeText = hoursTextInput.text + ":" +minsTextInput.text + ":" + secondsTextLabel.text;
+            totalTimeLabelText = hoursTextInput.text + ":" +minsTextInput.text + ":" + secondsTextLabel.text;
 
             setState("pauseState");
             timer.reset();
             timer.start();
+
+            if(audioPlayer)
+                this.stage.removeChild(audioPlayer);
         }
 
         protected function onPauseButtonClick(event:MouseEvent):void {
@@ -371,23 +420,43 @@ import spark.primitives.Rect;
             midRectPercentWidth = (timerSlider.values[1] - timerSlider.values[0]) / timerSlider.maximum * 100;
             lastRectPercentWidth = (timerSlider.maximum - timerSlider.values[1]) / timerSlider.maximum * 100;
 
-            if (timerSlider.values[0] == 0) {
-                leftRadius = 4;
+            if (timerTotalTime.length == 1) {
+                firstRectPercentWidth = 100;
+                midRectPercentWidth = lastRectPercentWidth = 0;
+                firstRightRadius = 4;
             } else {
-                leftRadius = 0;
+                firstRectPercentWidth = timerSlider.values[0] / timerSlider.maximum * 100;
+                if (timerTotalTime.length > 1)
+                    midRectPercentWidth = (timerSlider.values[1] - timerSlider.values[0]) / timerSlider.maximum * 100;
+                if (timerTotalTime.length > 2)
+                    lastRectPercentWidth = (timerSlider.maximum - timerSlider.values[1]) / timerSlider.maximum * 100;
+                firstRightRadius = 0;
+            }
+
+            if (timerSlider.values[0] == 0) {
+                secondLeftRadius = 4;
+            } else {
+                secondLeftRadius = 0;
             }
 
             if (timerSlider.values[1] == timerSlider.maximum) {
-                rightRadius = 4;
+                secondRightRadius = 4;
             } else {
-                rightRadius = 0;
+                secondRightRadius = 0;
             }
         }
 
         private function resetSlider():void {
-            firstProgressCoverRect.width = sliderWidth * timerSlider.values[0] / timerSlider.maximum;
-            midProgressCoverRect.width = sliderWidth * (timerSlider.values[1] - timerSlider.values[0]) / timerSlider.maximum;
-            lastProgressCoverRect.width = sliderWidth * (timerSlider.maximum - timerSlider.values[1]) / timerSlider.maximum;
+            if (timerTotalTime.length == 1) {
+                firstProgressCoverRect.width = sliderWidth;
+                midProgressCoverRect.width = lastProgressCoverRect.width = 0;
+            } else {
+                firstProgressCoverRect.width = sliderWidth * timerSlider.values[0] / timerSlider.maximum;
+                if (timerTotalTime.length > 1)
+                    midProgressCoverRect.width = sliderWidth * (timerSlider.values[1] - timerSlider.values[0]) / timerSlider.maximum;
+                if (timerTotalTime.length > 2)
+                    lastProgressCoverRect.width = sliderWidth * (timerSlider.maximum - timerSlider.values[1]) / timerSlider.maximum;
+            }
         }
     }
 }
