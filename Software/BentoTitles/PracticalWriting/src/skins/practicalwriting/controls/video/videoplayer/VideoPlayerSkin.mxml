@@ -287,8 +287,9 @@
 						<s:SolidColor color="0x000000" alpha="0.75" />
 					</s:fill>
 				</s:Rect>
-				
-				<s:Label text="Error: Please select another video channel from the Settings tab in the Menu." width="280" textAlign="center" color="0xFFFFFF" fontSize="12.6" verticalCenter="0" horizontalCenter="4" alpha="0.7"  />
+                
+				<!-- This text must come from copyProvider -->
+				<s:Label id="channelBlockedError" text="This channel can't be streamed. Please try a different one from Settings." width="280" textAlign="center" color="0xFFFFFF" fontSize="12.6" verticalCenter="0" horizontalCenter="4" alpha="0.7"  />
 			</s:Group>
 
 		</s:Group>

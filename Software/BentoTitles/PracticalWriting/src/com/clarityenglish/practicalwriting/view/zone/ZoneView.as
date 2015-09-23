@@ -36,6 +36,10 @@ import spark.primitives.Rect;
         [SkinPart]
         public var resourcesViewNavigator:ViewNavigator;
 
+        /**
+         * remove stats until we have a reasonable number of data points
+         *
+
         [SkinPart]
         public var minsVGroup:VGroup;
 
@@ -53,6 +57,7 @@ import spark.primitives.Rect;
 
         [SkinPart]
         public var midRect:Rect;
+         */
 
         [SkinPart]
         public var backButton:Button;
@@ -142,12 +147,14 @@ import spark.primitives.Rect;
                 case skillCaptionLabel:
                     skillCaptionLabel.text = copyProvider.getCopyForId("skillCaptionLabel");
                     break;
+                /*
                 case minsExplanationLabel:
                     minsExplanationLabel.text = copyProvider.getCopyForId("minsExplanationLabel");
                     break;
                 case minsLabel:
                     minsLabel.text = copyProvider.getCopyForId("minsLabel");
                     break;
+                */
                 case startOutViewNavigator:
                     startOutViewNavigator.label = copyProvider.getCopyForId("startingOut");
                     break;
@@ -173,6 +180,7 @@ import spark.primitives.Rect;
             if (hasCourseChanged && _everyoneCourseSummariesChanged) {
                 _everyoneCourseSummariesChanged = false;
                 hasCourseChanged = false;
+                /*
                 // If no-one has done this unit, put in an estimate
                 if (everyoneUnitScores[course.@id]) {
                     minsLabel.text = copyProvider.getCopyForId("minsLabel", {time: (everyoneUnitScores[course.@id].mins >= 10) ? everyoneUnitScores[course.@id].mins : 20});
@@ -190,6 +198,7 @@ import spark.primitives.Rect;
                     midRect.visible = midRect.includeInLayout = false;
                     readLabel.visible = readLabel.includeInLayout = false;
                 }
+                */
             }
 
             if (_isOpenUnitMemoriesChanged) {
@@ -236,7 +245,7 @@ import spark.primitives.Rect;
 
         // #1294
         private function isUnitEnabled(unit:XML):Boolean {
-            if(unit.attribute("enabledFlag").length() > 0 && (unit.@enabledFlag.toString() & 8)) {
+            if (unit.attribute("enabledFlag").length() > 0 && (unit.@enabledFlag.toString() & 8)) {
                 return false;
             } else {
                 return true;

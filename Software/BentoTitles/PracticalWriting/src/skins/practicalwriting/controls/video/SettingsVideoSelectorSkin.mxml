@@ -45,7 +45,7 @@
     <s:Image id="placeholderImage" left="0" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
 
     <!-- Channel list -->
-    <s:List id="channelList" top="420" left="0" horizontalScrollPolicy="off" borderVisible="false" contentBackgroundAlpha="0">
+    <s:List id="channelList" top="410" left="0" horizontalScrollPolicy="off" borderVisible="false" contentBackgroundAlpha="0">
         <s:layout>
             <s:HorizontalLayout columnWidth="176" gap="10"/>
         </s:layout>
@@ -91,7 +91,7 @@
                                 <s:SolidColor color="#333333" />
                             </s:fill>
                         </s:Ellipse>
-                        <s:Label id="channelLabel" left="50" verticalCenter="0" fontSize="16" color="#888888" />
+                        <s:Label id="channelLabel" left="50" verticalCenter="2" fontSize="16" color="#888888" />
                     </s:Group>
                 </s:ItemRenderer>
             </fx:Component>

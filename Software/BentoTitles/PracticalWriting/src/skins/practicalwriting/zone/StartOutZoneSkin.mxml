@@ -28,7 +28,7 @@
     <s:VGroup width="640" top="0" bottom="50" horizontalCenter="0" gap="20" scaleX="{height > 407 ? 1 : 0.8 * appHeight / 550}" scaleY="{height > 407 ? 1 :  0.8 * appHeight / 550}">
         <video:VideoSelector id="introductionVideoSelector" width="640" height="360" horizontalCenter="0" showSelector="false" placeholderSource="{hostComponent.placeHolderString}" videoCollection="{hostComponent.videoXMLListCollection}" />
 
-        <s:Label id="startOutLabel" width="600" fontSize="15" />
+        <!-- <s:Label id="startOutLabel" width="600" fontSize="15" /> -->
     </s:VGroup>
 
 </s:Skin>

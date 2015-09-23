@@ -84,7 +84,7 @@ import spark.primitives.Rect;
         public var resetCompleteButton:Button;
 
         [Bindable]
-        public var totalTimeLabelText:String;
+        public var totalTimeText:String;
 
         [Bindable]
         public var firstRectPercentWidth:Number;
@@ -170,9 +170,9 @@ import spark.primitives.Rect;
                 timerSlider.values[i] = timerSlider.maximum * valuesArray[i];
             }
 
-            firstTipLabel.text = 'Planning ' + timeConvert(timerSlider.values[0]);
-            midTipLabel.text = 'Writing ' + timeConvert(timerSlider.values[1] - timerSlider.values[0]);
-            lastTipLabel.text = 'Proofreading ' + timeConvert(timerSlider.maximum - timerSlider.values[1]);
+            firstTipLabel.text = copyProvider.getCopyForId("timerPlanningCaption", {time: timeConvert(timerSlider.values[0])});
+            midTipLabel.text = copyProvider.getCopyForId("timerWritingCaption", {time: timeConvert(timerSlider.values[1] - timerSlider.values[0])});
+            lastTipLabel.text = copyProvider.getCopyForId("timerProofreadingCaption", {time: timeConvert(timerSlider.maximum - timerSlider.values[1])});
 
             midTipLabel.left = 100;
             lastTipLabel.left = sliderWidth - 100;
@@ -222,19 +222,30 @@ import spark.primitives.Rect;
                     break;
                 case startButton:
                     startButton.addEventListener(MouseEvent.CLICK, onStartButtonClick);
+                    startButton.label = copyProvider.getCopyForId('timerStartLabel');
                     break;
                 case pauseButton:
                     pauseButton.addEventListener(MouseEvent.CLICK, onPauseButtonClick);
+                    pauseButton.label = copyProvider.getCopyForId('timerPauseLabel');
                     break;
                 case resumeButton:
                     resumeButton.addEventListener(MouseEvent.CLICK, onResumeButtonClick);
+                    resumeButton.label = copyProvider.getCopyForId('timerResumeLabel');
                     break;
                 case resetButton:
                     resetButton.addEventListener(MouseEvent.CLICK, onResetButtonClick);
+                    resetButton.label = copyProvider.getCopyForId('timerResetLabel');
                     break;
                 case stopButton:
+                    instance.addEventListener(MouseEvent.CLICK, onStopButtonClick);
+                    stopButton.label = copyProvider.getCopyForId('timerStopLabel');
+                    break;
                 case resetCompleteButton:
                     instance.addEventListener(MouseEvent.CLICK, onStopButtonClick);
+                    resetCompleteButton.label = copyProvider.getCopyForId('timerResetLabel');
+                    break;
+                case totalTimeLabel:
+                    totalTimeLabel.text = copyProvider.getCopyForId('timerTotalTimeLabel');
                     break;
             }
         }
@@ -293,7 +304,7 @@ import spark.primitives.Rect;
             var sec:String = formatTime(totalMSeconds % 60);
             var min:String = formatTime(Math.floor((totalMSeconds % 3600 ) / 60));
             var hour:String = formatTime(Math.floor(totalMSeconds / (60 * 60)));
-            totalTimeLabelText = String(hour + ":" + min + ":" + sec);
+            totalTimeText = String(hour + ":" + min + ":" + sec);
         }
 
         protected function onTimerComplete(event:Event):void {
@@ -303,7 +314,7 @@ import spark.primitives.Rect;
         protected function onStartButtonClick(event:MouseEvent):void {
             initializeTimer();
             initializeSlider();
-            totalTimeLabelText = hoursTextInput.text + ":" +minsTextInput.text + ":" + secondsTextLabel.text;
+            totalTimeText = hoursTextInput.text + ":" +minsTextInput.text + ":" + secondsTextLabel.text;
 
             setState("pauseState");
             timer.reset();

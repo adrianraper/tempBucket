@@ -1,7 +1,9 @@
 package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.view.warning.WarningView;
-	
-	import flash.display.DisplayObject;
+    import com.clarityenglish.common.model.CopyProxy;
+    import com.clarityenglish.common.model.interfaces.CopyProvider;
+
+    import flash.display.DisplayObject;
 	
 	import mx.core.FlexGlobals;
 	import mx.events.CloseEvent;
@@ -30,11 +32,12 @@ package com.clarityenglish.bento.controller {
 			
 			var type:String = note.getType();
 			var body:Object = note.getBody();
-			
-			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
+            var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
+
+            // Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
 			titleWindow.styleName = "warningTitleWindow";
-			titleWindow.title = "Warning";
+			titleWindow.title = copyProvider.getCopyForId('warningWindowCaption');
 			
 			var warningView:WarningView = new WarningView();
 			warningView.type = type;

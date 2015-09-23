@@ -31,7 +31,7 @@
 			<lit name="skillContent8">You will learn to be formal and informal in texts, reply in an appropriate style, use common Textspeak vocabulary, and make your texts sound like speech.</lit>
 			<lit name="skillContent9">You will learn to use other people's words correctly, use verbs to introduce quotations, use the correct tense when reporting others' words, and express other people's ideas in your own words.</lit>
 
-			<!--Start out-->
+			<!--Starting out-->
 			<lit name="startOutLabel0">Click to play the video above to learn about writing for and against essays.</lit>
 			<lit name="startOutLabel1">Click to play the video above to learn about writing descriptive essays.</lit>
 			<lit name="startOutLabel2">Click to play the video above to learn about writing short hotel and restaurant reports.</lit>
@@ -43,6 +43,17 @@
 			<lit name="startOutLabel8">Click to play the video to learn about Textspeak and using it appropriately.</lit>
 			<lit name="startOutLabel9">Click to play the video to learn about plagiarism and how to avoid it.</lit>
 
+            <!-- Settings -->
+            <lit name="videoLabel">Select a channel that plays the video smoothly for you.</lit>
+            <lit name="channelBlockedErrorLabel">This channel can't be streamed. Please try a different one from Settings.</lit>
+
+            <!-- Timer -->
+            <lit name="timerPlanningCaption">Planning {time}</lit>
+            <lit name="timerWritingCaption">Writing {time}</lit>
+            <lit name="timerProofreadingCaption">Proofreading {time}</lit>
+            <lit name="timerTotalTimeLabel">total time</lit>
+            <lit name="timerStartLabel">start</lit>
+            <lit name="timerResetLabel">reset</lit>
 
 			<!-- Progress certificate -->
 			<lit name="notCompleteString">
@@ -65,7 +76,7 @@
             <lit name="versionLabel">v{versionNumber}</lit>
             
 			<!-- Log out page -->
-			<lit name="thankYouLabel">Practical Writing from Clarity.</lit>
+			<lit name="thankYouLabel">Practical Writing from ClarityEnglish.</lit>
 			
             <!-- Credits -->			
 			 <lit name="creditCaptionLabel">Credits and acknowledgements</lit>

@@ -41,7 +41,7 @@
             <lit name="errorIPDoesntMatch" code="311">This licence can only run from certain computers. Your IP is {ip}.</lit>
             <lit name="errorRUDoesntMatch" code="312">This licence can only run from certain websites. You came from {referrer}.</lit>
             <lit name="errorIPandRUDontMatch" code="313">This licence can only run from certain computers or websites. You came from {referrer} with {ip}.</lit>
-            <lit name="errorCantLoadEveryoneSummary" code="314">Unable to load data for everyone's summary.</lit>
+            <lit name="errorCantLoadEveryoneSummary" code="314">The data for all users is not reliable at the moment.</lit>
             <lit name="errorMultipleIPMatches" code="315">More than one account matches the IP you are using ({ip}). Please contact your administrator or support@clarityenglish.com.</lit>
 
             <lit name="errorMultipleExerciseWithSameId" code="400">The menu xml has more than one exercise node with id={exerciseID}.</lit>
@@ -231,6 +231,7 @@
             <lit name="moveForwardButton">Forward</lit>
             <lit name="loseAnswerWarning1">Are you sure you want to leave this exercise?</lit>
             <lit name="loseAnswerWarning2">(You will lose your work in this exercise.)</lit>
+            <lit name="loseAnswerWarning">Are you sure you want to leave this exercise? (You will lose your work in this exercise.)</lit>
             <lit name="loseChangesWarning">Your changes have not been saved. Are you sure you want to continue?</lit>
             <lit name="loseRecordingWarning">You will lose any unsaved recording you have made. Are you sure you want to continue?</lit>
             <lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>
@@ -239,6 +240,7 @@
             <lit name="incorrectFeedbackTitle">Sorry...</lit>
             <lit name="neutralFeedbackTitle"></lit>
             <lit name="generalFeedbackTitle"></lit>
+            <lit name="warningWindowCaption">Are you sure?</lit>
 
             <!--No network-->
             <lit name="nonetworkContentLabel">No internet connection</lit>

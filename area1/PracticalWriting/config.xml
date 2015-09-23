@@ -11,10 +11,10 @@
 	<channel name='vimeo' caption='Vimeo'>
 		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
 	</channel>
-	<channel name='rackspace' caption='Rack'>
+	<channel name='rackspace' caption='Akamai stream'>
 		<streamingMedia>http://c284790.r90.stream.cf1.rackcdn.com/</streamingMedia>
 	</channel>
-	<channel name='aws-streaming' caption='AWS'>
+	<channel name='aws-streaming' caption='Amazon'>
 		<streamingMedia>https://s3-ap-southeast-1.amazonaws.com/clarity-video-streaming/</streamingMedia>
 	</channel>
 

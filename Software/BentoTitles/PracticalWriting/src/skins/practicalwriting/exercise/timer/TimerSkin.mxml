@@ -40,10 +40,10 @@
 
         private function getDataTip(value:String):String {
             if (timerSlider.getFocus() == timerSlider.getThumbAt(0)) {
-                // return the duration of second session.
+                // return the duration of second section.
                 return "Writing " + timeConvert(timerSlider.values[1] - Number(value));
             } else {
-                // return the duration of the thirs session.
+                // return the duration of the third section.
                 return "Proofreading " + timeConvert(timerSlider.maximum - Number(value));
             }
         }
@@ -164,7 +164,7 @@
                                 <s:SolidColor color="#222222" />
                             </s:fill>
                         </s:Rect>
-                        <s:Label text="Total time" fontSize="13" />
+                        <s:Label id="totalTimeLabel" fontSize="13" />
                         <s:Rect width="25" height="1">
                             <s:fill>
                                 <s:SolidColor color="#222222" />
@@ -181,22 +181,22 @@
                     </s:HGroup>
                 </s:VGroup>
 
-                <s:Label id="totalTimeLabel" verticalCenter="0" horizontalCenter="0" color="#ED1F24" text="{hostComponent.totalTimeLabelText}" fontSize="21" excludeFrom="startState" />
+                <s:Label id="totalTimeText" verticalCenter="0" horizontalCenter="0" color="#ED1F24" text="{hostComponent.totalTimeText}" fontSize="21" excludeFrom="startState" />
             </s:Group>
         </s:HGroup>
 
         <s:HGroup width="13%" height="100%" right="0" gap="0" verticalAlign="middle">
             <s:Group width="50%" height="100%" excludeFrom="completeState">
-                <s:Button id="startButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Start" includeIn="startState"/>
-                <s:Button id="pauseButton" width="1000%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Pause" includeIn="pauseState"/>
-                <s:Button id="resumeButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Resume" includeIn="resumeState"/>
+                <s:Button id="startButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" includeIn="startState"/>
+                <s:Button id="pauseButton" width="1000%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" includeIn="pauseState"/>
+                <s:Button id="resumeButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" includeIn="resumeState"/>
             </s:Group>
             <s:Group width="50%" height="100%" excludeFrom="completeState">
-                <s:Button id="resetButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Reset" includeIn="startState"/>
-                <s:Button id="stopButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Stop" includeIn="pauseState, resumeState"/>
+                <s:Button id="resetButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" includeIn="startState"/>
+                <s:Button id="stopButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" includeIn="pauseState, resumeState"/>
             </s:Group>
             <s:Group width="100%" height="100%" includeIn="completeState">
-                <s:Button id="resetCompleteButton" width="100%" height="100%" color="#333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Reset" />
+                <s:Button id="resetCompleteButton" width="100%" height="100%" color="#333333" fontSize="15" buttonMode="true" useHandCursor="true"  />
             </s:Group>
         </s:HGroup>
     </s:Group>

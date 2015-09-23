@@ -15,8 +15,8 @@ public class StartOutZoneView extends BentoView {
         [SkinPart]
         public var introductionVideoSelector:VideoSelector;
 
-        [SkinPart]
-        public var startOutLabel:Label;
+       //[SkinPart]
+       // public var startOutLabel:Label;
 
         public var channelCollection:ArrayCollection;
 
@@ -52,9 +52,11 @@ public class StartOutZoneView extends BentoView {
                     introductionVideoSelector.href = href;
                     introductionVideoSelector.channelCollection = channelCollection;
                     break;
+                /* No need for a label now
                 case startOutLabel:
                     startOutLabel.text = copyProvider.getCopyForId("startOutLabel" + data.childIndex());
                     break;
+                 */
             }
         }
     }

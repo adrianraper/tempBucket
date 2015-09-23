@@ -49,7 +49,7 @@ package com.clarityenglish.bento.view.warning {
 				case warningMessage:
 					switch (type) {
 						case "lose_answers":
-							instance.text = copyProvider.getCopyForId("loseAnswerWarning1") + copyProvider.getCopyForId("loseAnswerWarning2");
+							instance.text = copyProvider.getCopyForId("loseAnswerWarning");
 							break;
 						case "feedback_not_seen":
 							instance.text = copyProvider.getCopyForId("feedbackWarning");

@@ -49,6 +49,7 @@
     <s:VGroup left="5" width="{height > 640 ? 255 : 300}" height="80%" top="{height > 640 ? 130 : 110}" horizontalAlign="center" gap="{height > 640 ? 40 : 20}" scaleX="{height > 640 ? 1 : 0.85}" scaleY="{height > 640 ? 1 : 0.85}">
         <vo:PieChartButton id="pieChartButton" width="200" height="200" node="{hostComponent.course}" fillColor="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}" bottomColor="{getStyle('pieChartBottomColor')[hostComponent.course.childIndex()]}" backgroundColor="#EEEFF0"/>
 
+        <!-- Remove stats until we have a sensible number of data points
         <s:VGroup gap="10" horizontalAlign="center" >
             <s:Label id="minsExplanationLabel" fontSize="13" textAlign="center" width="70%" />
             <s:HGroup width="250" height="50" horizontalAlign="center" verticalAlign="top" gap="12">
@@ -71,6 +72,7 @@
                 </s:Rect>
             </s:HGroup>
         </s:VGroup>
+        -->
 
         <s:VGroup gap="10">
             <s:Label id="skillCaptionLabel" fontWeight="bold" fontFamily="Helvetica" fontSize="15"/>
@@ -91,6 +93,6 @@
     </s:TabbedViewNavigator>
 
     <!--Back button-->
-    <s:Button id="backButton" bottom="50" right="30" buttonMode="true" useHandCursor="true" />
+    <!-- <s:Button id="backButton" bottom="50" right="30" buttonMode="true" useHandCursor="true" /> -->
 
 </s:Skin>

@@ -46,11 +46,14 @@ import org.puremvc.as3.interfaces.INotification;
             new RemoteDelegate("getEveryoneUnitSummary", [ view.productCode, view.config.rootID ]).execute().addResponder(new ResultResponder(
                     function(e:ResultEvent, data:AsyncToken):void {
                         view.everyoneCourseSummaries = e.result;
-                    },
+                    }
+                    // gh#1299 Not sure you need to report an error here, there is nothing to be done about it!
+                    /*
                     function(e:FaultEvent, data:AsyncToken):void {
                         var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
-                        sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorCantLoadEveryoneSummary"));
+                        sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorCantLoadEveryoneSummary",null,false));
                     }
+                    */
             ));
 
             var memoryProxy:MemoryProxy = facade.retrieveProxy(MemoryProxy.NAME) as MemoryProxy;
