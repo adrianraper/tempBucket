@@ -44,16 +44,15 @@
 
         protected function onCreationComplete(e:Event):void {
             appWidth = FlexGlobals.topLevelApplication.width;
-            trace("app width: "+appWidth);
         }
 
         private function getDataTip(value:String):String {
             if (timerSlider.getFocus() == timerSlider.getThumbAt(0)) {
                 // return the duration of second session.
-                return "Writing " + timeConvert(timerSlider.values[1] - Number(value));
+                return hostComponent.timerSectionLabels[1] + ' ' + timeConvert(timerSlider.values[1] - Number(value));
             } else {
                 // return the duration of the thirs session.
-                return "Proofreading " + timeConvert(timerSlider.maximum - Number(value));
+                return hostComponent.timerSectionLabels[2] + ' ' + timeConvert(timerSlider.maximum - Number(value));
             }
         }
         ]]>
@@ -98,8 +97,8 @@
                             </s:fill>
                         </s:Rect>
                         <s:Rect id="writingBar" height="100%" percentWidth="{hostComponent.midRectPercentWidth}"
-                                topLeftRadiusY="{hostComponent.leftRadius}" topLeftRadiusX="{hostComponent.leftRadius}" bottomLeftRadiusX="{hostComponent.leftRadius}" bottomLeftRadiusY="{hostComponent.leftRadius}"
-                                topRightRadiusY="{hostComponent.rightRadius}" topRightRadiusX="{hostComponent.rightRadius}" bottomRightRadiusX="{hostComponent.rightRadius}" bottomRightRadiusY="{hostComponent.rightRadius}">
+                                topLeftRadiusY="{hostComponent.secondLeftRadius}" topLeftRadiusX="{hostComponent.secondLeftRadius}" bottomLeftRadiusX="{hostComponent.secondLeftRadius}" bottomLeftRadiusY="{hostComponent.secondLeftRadius}"
+                                topRightRadiusY="{hostComponent.secondRightRadius}" topRightRadiusX="{hostComponent.secondRightRadius}" bottomRightRadiusX="{hostComponent.secondRightRadius}" bottomRightRadiusY="{hostComponent.secondRightRadius}">
                             <s:fill>
                                 <s:SolidColor color="#0681A8" />
                             </s:fill>
@@ -123,13 +122,19 @@
                     <mx:HSlider id="timerSlider" width="100%" height="18" verticalCenter="-2" horizontalCenter="0" thumbCount="2" snapInterval="1" minimum="0" showDataTip="true" dataTipFormatFunction="getDataTip"  change="onSliderChange(event)" dataTipStyleName="dataTipStyle"
                                 trackSkin="skins.practicalwriting.exercise.timer.HSliderTrackSkin"
                                 trackHighlightSkin="skins.practicalwriting.exercise.timer.HSliderTrackHighlightSkin" showTrackHighlight="true"
-                                thumbSkin="skins.practicalwritingair.exercise.timer.HSliderThumbSkin"/>
+                                thumbSkin="skins.practicalwritingair.exercise.timer.HSliderThumbSkin"
+                                visible="{hostComponent.timerTotalTime.length > 1}"/>
+                    <s:Rect left="10" right="10" height="18" verticalCenter="0" horizontalCenter="0" radiusX="4" radiusY="4" visible="{hostComponent.timerTotalTime.length == 1}">
+                        <s:fill>
+                            <s:SolidColor color="#15516D" />
+                        </s:fill>
+                    </s:Rect>
                 </s:Group>
                 <!--Data Tip-->
                 <s:Group width="{appWidth > 999 ? 696 : appWidth * 0.696}" horizontalCenter="0" verticalCenter="-30">
-                    <s:Label id="firstTipLabel" color="#15516D" text="{'Planning ' + timeConvert(timerSlider.values[0])}" fontSize="13" />
-                    <s:Label id="midTipLabel" color="#0681A8" text="{'Writing ' + timeConvert(timerSlider.values[1] - timerSlider.values[0])}" fontSize="13" />
-                    <s:Label id="lastTipLabel" color="#15516D" text="{'Proofreading ' + timeConvert(timerSlider.maximum - timerSlider.values[1])}" fontSize="13" />
+                    <s:Label id="firstTipLabel" color="#15516D" text="{hostComponent.timerSectionLabels[0] + ' ' + timeConvert(timerSlider.values[0])}" fontSize="13" visible="{hostComponent.timerTotalTime.length > 1}" />
+                    <s:Label id="midTipLabel" color="#0681A8" text="{hostComponent.timerSectionLabels[1] + ' ' + timeConvert(timerSlider.values[1] - timerSlider.values[0])}" fontSize="13" visible="{hostComponent.timerTotalTime.length > 1}" />
+                    <s:Label id="lastTipLabel" color="#15516D" text="{hostComponent.timerSectionLabels[2] + ' ' + timeConvert(timerSlider.maximum - timerSlider.values[1])}" fontSize="13" visible="{hostComponent.timerTotalTime.length > 2}" />
                 </s:Group>
                 <!--Progress Bar-->
                 <s:Group id="progressBarGroup" width="{hostComponent.sliderWidth}" height="18" horizontalCenter="0" verticalCenter="0" excludeFrom="startState">
@@ -144,14 +149,15 @@
                     </s:Rect>
                     <!--Shrink the width of progress cover rect to show the red progress bar.-->
                     <s:HGroup width="100%" height="100%" gap="-1" horizontalAlign="right">
-                        <s:Rect id="firstProgressCoverRect" height="100%" percentWidth="{hostComponent.firstRectPercentWidth}" topLeftRadiusX="4" topLeftRadiusY="4" bottomLeftRadiusY="4" bottomLeftRadiusX="4">
+                        <s:Rect id="firstProgressCoverRect" height="100%" percentWidth="{hostComponent.firstRectPercentWidth}" topLeftRadiusX="4" topLeftRadiusY="4" bottomLeftRadiusY="4" bottomLeftRadiusX="4"
+                                topRightRadiusY="{hostComponent.firstRightRadius}" topRightRadiusX="{hostComponent.firstRightRadius}" bottomRightRadiusX="{hostComponent.firstRightRadius}" bottomRightRadiusY="{hostComponent.firstRightRadius}">
                             <s:fill>
                                 <s:SolidColor color="#15516D" />
                             </s:fill>
                         </s:Rect>
                         <s:Rect id="midProgressCoverRect" height="100%" percentWidth="{hostComponent.midRectPercentWidth}"
-                                topLeftRadiusY="{hostComponent.leftRadius}" topLeftRadiusX="{hostComponent.leftRadius}" bottomLeftRadiusX="{hostComponent.leftRadius}" bottomLeftRadiusY="{hostComponent.leftRadius}"
-                                topRightRadiusY="{hostComponent.rightRadius}" topRightRadiusX="{hostComponent.rightRadius}" bottomRightRadiusX="{hostComponent.rightRadius}" bottomRightRadiusY="{hostComponent.rightRadius}">
+                                topLeftRadiusY="{hostComponent.secondLeftRadius}" topLeftRadiusX="{hostComponent.secondLeftRadius}" bottomLeftRadiusX="{hostComponent.secondLeftRadius}" bottomLeftRadiusY="{hostComponent.secondLeftRadius}"
+                                topRightRadiusY="{hostComponent.secondRightRadius}" topRightRadiusX="{hostComponent.secondRightRadius}" bottomRightRadiusX="{hostComponent.secondRightRadius}" bottomRightRadiusY="{hostComponent.secondRightRadius}">
                             <s:fill>
                                 <s:SolidColor color="#0681A8" />
                             </s:fill>
