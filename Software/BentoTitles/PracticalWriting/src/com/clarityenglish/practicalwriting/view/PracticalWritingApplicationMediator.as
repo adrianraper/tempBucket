@@ -5,6 +5,7 @@ package com.clarityenglish.practicalwriting.view {
 import com.clarityenglish.bento.BBNotifications;
 import com.clarityenglish.bento.BBStates;
 import com.clarityenglish.bento.model.BentoProxy;
+import com.clarityenglish.bento.model.DataProxy;
 import com.clarityenglish.bento.model.SCORMProxy;
 import com.clarityenglish.bento.view.base.BentoMediator;
 import com.clarityenglish.bento.view.base.BentoView;
@@ -81,6 +82,11 @@ import org.puremvc.as3.utilities.statemachine.StateMachine;
                 case BBStates.STATE_TITLE:
                     view.currentState = "title";
                     view.callLater(handleDirectStart); // need to use callLater as otherwise the title state hasn't validated yet
+                    // gh#1313
+                    var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
+                    if (dataProxy.has('openUnit')) {
+                        dataProxy.clear('openUnit');
+                    }
                     break;
                 case BBStates.STATE_CREDITS:
                     view.currentState = "closing";

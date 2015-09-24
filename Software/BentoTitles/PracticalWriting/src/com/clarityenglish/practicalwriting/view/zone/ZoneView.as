@@ -233,7 +233,7 @@ import spark.primitives.Rect;
             if (zoneViewNavigator.tabBar.selectedIndex == 1 && !openUnitID[course.@id]) {
                 var unitID:Number = course.unit[1].@id;
                 var memoryValue:String = course.@id + "." + unitID;
-               if (_openUnitMemories)
+                if (_openUnitMemories)
                     _openUnitMemories.push(memoryValue);
                 writeMemory.dispatch(new MemoryEvent(MemoryEvent.WRITE, {openUnit: _openUnitMemories}));
             }

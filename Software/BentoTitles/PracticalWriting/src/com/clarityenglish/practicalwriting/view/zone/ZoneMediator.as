@@ -10,6 +10,7 @@ import com.clarityenglish.bento.view.base.BentoView;
 import com.clarityenglish.common.CommonNotifications;
 import com.clarityenglish.common.events.MemoryEvent;
 import com.clarityenglish.common.model.CopyProxy;
+import com.clarityenglish.common.model.LoginProxy;
 import com.clarityenglish.common.model.MemoryProxy;
 import com.googlecode.bindagetools.Bind;
 
@@ -64,7 +65,6 @@ import org.puremvc.as3.interfaces.INotification;
                 view.openUnitMemories = memoryProxy.memories;
             }
 
-
             view.writeMemory.add(onMemoryWrite);
         }
 
@@ -80,7 +80,6 @@ import org.puremvc.as3.interfaces.INotification;
             ]);
         }
 
-
         override public function handleNotification(note:INotification):void {
             super.handleNotification(note);
 
@@ -94,9 +93,12 @@ import org.puremvc.as3.interfaces.INotification;
         private function onMemoryWrite(memoryEvent:MemoryEvent):void {
             var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
             dataProxy.set("openUnit", memoryEvent.memory.openUnit);
-            trace("Write memory openUnit: "+memoryEvent.memory.openUnit);
 
-            sendNotification(CommonNotifications.WRITE_MEMORY, memoryEvent);
+            // gh#1313
+            var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+            if (!loginProxy.user.isAnonymous()) {
+                sendNotification(CommonNotifications.WRITE_MEMORY, memoryEvent);
+            }
         }
     }
 }
