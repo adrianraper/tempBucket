@@ -40,6 +40,9 @@ package com.clarityenglish.bento.controller {
 			// Get the marks
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
 			var exerciseMark:ExerciseMark = exerciseProxy.getExerciseMark();
+
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			var courseIndex:Number = bentoProxy.selectedCourseNode.childIndex();
 			
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
@@ -55,6 +58,7 @@ package com.clarityenglish.bento.controller {
 			
 			var markingView:MarkingView = new MarkingView();
 			markingView.exerciseMark = exerciseMark;
+			markingView.courseIndex = courseIndex
 			titleWindow.addElement(markingView);
 			
 			// Create and centre the popup
@@ -69,7 +73,7 @@ package com.clarityenglish.bento.controller {
 
 			// #294 - if the exercise has questions then the score gets written here, but only the first time the marking window opens (per exercise)
 			if (exercise.hasQuestions() && !exerciseProxy.exerciseMarkWritten) {
-				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				//var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 				
 				// Add more data to the exerciseMark ready to send it as a score
 				exerciseMark.duration = Math.round(exerciseProxy.duration / 1000);

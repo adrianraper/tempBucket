@@ -36,6 +36,9 @@ package com.clarityenglish.bento.view.marking {
 		
 		[Bindable]
 		public var exerciseMark:ExerciseMark;
+
+		[Bindable]
+		public var courseIndex:Number;
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
