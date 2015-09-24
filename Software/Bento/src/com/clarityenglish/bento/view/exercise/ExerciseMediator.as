@@ -135,6 +135,12 @@ import org.puremvc.as3.interfaces.IMediator;
 					view.stopTimer();
 					
 					// #171
+
+                    // gh#1291
+                    view.hasExerciseFeedback = getExerciseProxy(exercise).hasExerciseFeedback();
+                    view.hasQuestionFeedback = getExerciseProxy(exercise).hasQuestionFeedback();
+
+                    // #171
 					configureButtonVisibility(exercise);
 					break;
 				case BBNotifications.MARKING_SHOWN:
@@ -165,16 +171,12 @@ import org.puremvc.as3.interfaces.IMediator;
 			// If there is exercise feedback then show the exercise feedback button
 			// gh#413
 			if (view.feedbackButton) {
-				if (getExerciseProxy(exercise).exerciseMarked){
-					if (getExerciseProxy(exercise).hasExerciseFeedback())
-						view.hasExerciseFeedback = feedbackVisible = true;
-					
-					if (getExerciseProxy(exercise).hasQuestionFeedback())
-						view.hasQuestionFeedback = feedbackVisible = true;
-					
-				} else {
-					var feedbackVisible:Boolean = false;
-				}
+                // gh#1291
+                var feedbackVisible:Boolean = false;
+				if (getExerciseProxy(exercise).exerciseMarked)
+					if (getExerciseProxy(exercise).hasExerciseFeedback() ||
+					    getExerciseProxy(exercise).hasQuestionFeedback())
+						feedbackVisible = true;
 				view.feedbackButton.visible = view.feedbackButton.includeInLayout = feedbackVisible;
 			}
 			

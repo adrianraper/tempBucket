@@ -82,6 +82,10 @@ package com.clarityenglish.bento.vo.content.model {
 			}
 			return false;
 		}
+        // gh#1291
+        public function hasExerciseFeedback():Boolean {
+            return (getExerciseFeedback().length > 0);
+        }
 		
 		/**
 		 * Given a node in the body of the exercise, this returns all the possible Answer nodes that could match it.  This only really applies for

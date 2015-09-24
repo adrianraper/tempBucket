@@ -563,9 +563,12 @@ package com.clarityenglish.bento.model {
 		public function hasQuestionFeedback():Boolean {
 			return exercise.model.hasQuestionFeedback();
 		}
-		
+
+        // gh#1291 I wonder why we don't mirror hasQuestionFeedback here?
+        // getExerciseFeedback will return null if you have not marked yet, even if you DO have exercise feedback...
 		public function hasExerciseFeedback():Boolean {
-			return (getExerciseFeedback() != null);
+			// return (getExerciseFeedback() != null);
+            return exercise.model.hasExerciseFeedback();
 		}
 		
 		public function showExerciseFeedback():void {
