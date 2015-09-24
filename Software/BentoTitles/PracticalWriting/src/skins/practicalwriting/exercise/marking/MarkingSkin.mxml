@@ -46,8 +46,8 @@
                         <mx:PieSeries field="Count" filters="{[]}" startAngle="-90" fills="{getStyle('markingColours')}" renderDirection="clockwise"/>
                     </mx:series>
                 </mx:PieChart>
-                <s:HGroup horizontalCenter="0" verticalCenter="12" width="150" height="80" horizontalAlign="center" gap="1">
-                    <s:Label fontSize="82" color="#B7B9BB" text="{hostComponent.exerciseMark.correctPercent}" />
+                <s:HGroup horizontalCenter="0" verticalCenter="12" width="150" height="80" horizontalAlign="center" gap="-3">
+                    <s:Label fontSize="76" color="#B7B9BB" text="{hostComponent.exerciseMark.correctPercent}" />
                     <s:Label paddingTop="45" fontSize="17" color="#6D6E70" text="%"/>
                 </s:HGroup>
             </s:Group>
