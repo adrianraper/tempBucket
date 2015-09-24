@@ -43,5 +43,10 @@ public class ResourcesZoneView extends BentoView {
     public function get modelAnswerXMLListCollection():XMLListCollection {
         return data ? new XMLListCollection(data.unit.(attribute("class") == "resources").exercise.(attribute("group") == "3")): null;
     }
+
+    [Bindable(event="dataChange")]
+    public function get transcriptXMLListCollection():XMLListCollection {
+        return data ? new XMLListCollection(data.unit.(attribute("class") == "resources").exercise.(attribute("group") == "4")): null;
+    }
 }
 }
