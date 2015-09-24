@@ -69,7 +69,7 @@ import spark.managers.PersistenceManager;
         public var helpButton:Button;
 
         [SkinPart]
-        public var menuToggleButton:ToggleButton;
+        public var homeButton:Button;
 
         [SkinPart]
         public var versionLabel:Label;
@@ -181,10 +181,10 @@ import spark.managers.PersistenceManager;
                 case settingsViewNavigator:
                     settingsViewNavigator.label = copyProvider.getCopyForId("settings");
                     break;
-                case backToMenuButton:
+                /*case backToMenuButton:
                     backToMenuButton.label = copyProvider.getCopyForId("Home");
                     backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
-                    break;
+                    break;*/
                 case logoutButton:
                     logoutButton.addEventListener(MouseEvent.CLICK, onLogoutClick);
                     break;
@@ -196,10 +196,10 @@ import spark.managers.PersistenceManager;
                 case progressViewNavigator:
                     instance.enabled = !config.noLogin;
                     break;
-                case menuToggleButton:
-                    menuToggleButton.addEventListener(MouseEvent.CLICK, onListToggleButtonClick);
+                case homeButton:
+                    homeButton.addEventListener(MouseEvent.CLICK, onHomeButtonClick);
                     break;
-                case goToProgressButton:
+                /*case goToProgressButton:
                     goToProgressButton.label = copyProvider.getCopyForId("myProgress");
                     goToProgressButton.addEventListener(MouseEvent.CLICK, onGoToProgressButtonClick);
                     break;
@@ -210,7 +210,7 @@ import spark.managers.PersistenceManager;
                 case goToSettingsButton:
                     goToSettingsButton.label = copyProvider.getCopyForId("settings");
                     goToSettingsButton.addEventListener(MouseEvent.CLICK, onGoToSettingsButtonClick)
-                    break;
+                    break;*/
                 case backToExercieButton:
                     backToExercieButton.label = copyProvider.getCopyForId("back");
                     backToExercieButton.addEventListener(MouseEvent.CLICK, onBackToExerciseButtonClick);
@@ -225,15 +225,15 @@ import spark.managers.PersistenceManager;
 
         }
 
-        override protected function onAddedToStage(event:Event):void {
+        /*override protected function onAddedToStage(event:Event):void {
             addEventListener(MouseEvent.CLICK, onStageClick);
-        }
+        }*/
 
         protected override function getCurrentSkinState():String {
             return currentState;
         }
 
-        protected function onBackToMenuButtonClick(event:MouseEvent):void {
+        /*protected function onBackToMenuButtonClick(event:MouseEvent):void {
             if (menuToggleButton.selected) {
                 menuToggleButton.selected = false;
                 sectionNavigator.left = menuToggleButton.left = 0;
@@ -241,7 +241,7 @@ import spark.managers.PersistenceManager;
             }
 
             _isDirectLogout? logout.dispatch() : backToMenu.dispatch();
-        }
+        }*/
 
         // gh#217
         protected function onLogoutClick(event:Event):void {
@@ -254,18 +254,11 @@ import spark.managers.PersistenceManager;
             navigateToURL(urlRequest, "_blank");
         }
 
-        protected function onListToggleButtonClick(evnet:MouseEvent):void {
-            if (menuToggleButton.selected) {
-                sectionNavigator.left = menuToggleButton.left = 260;
-                sectionNavigator.right = -260;
-            } else {
-                sectionNavigator.left = menuToggleButton.left = 0;
-                sectionNavigator.right = 0;
-
-            }
+        protected function onHomeButtonClick(evnet:MouseEvent):void {
+            backToMenu.dispatch();
         }
 
-        protected function onGoToProgressButtonClick(event:MouseEvent):void {
+        /*protected function onGoToProgressButtonClick(event:MouseEvent):void {
             sectionNavigator.left = menuToggleButton.left = 0;
             sectionNavigator.right = 0;
             menuToggleButton.selected = false;
@@ -281,7 +274,7 @@ import spark.managers.PersistenceManager;
             isProgressOpen = true;
 
             goToSettings.dispatch();
-        }
+        }*/
 
         protected function onSectionNavigatorIndexChange(event:IndexChangeEvent):void {
             // After the active view changing to progress view, we hide the tab bar in progress page.
@@ -302,7 +295,7 @@ import spark.managers.PersistenceManager;
         }
 
         // When the side bar open, click the stage will close it.
-        protected function onStageClick(event:Event):void {
+        /*protected function onStageClick(event:Event):void {
             if (menuToggleButton) {
                 if (event.target != menuToggleButton && menuToggleButton.selected) {
                     sectionNavigator.left = menuToggleButton.left = 0;
@@ -310,6 +303,6 @@ import spark.managers.PersistenceManager;
                     menuToggleButton.selected = false;
                 }
             }
-        }
+        }*/
     }
 }

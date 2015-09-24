@@ -84,8 +84,8 @@ title|TitleView s|Button#logoutButton {
     skinClass: ClassReference("skins.practicalwriting.title.LogoutButtonSkin");
 }
 
-title|TitleView s|ToggleButton#menuToggleButton {
-    skinClass: ClassReference("skins.practicalwriting.title.MenuToggleButtonSkin");
+title|TitleView s|Button#homeButton {
+    skinClass: ClassReference("skins.practicalwriting.title.HomeButtonSkin");
 }
 
 title|TitleView s|Button#backToMenuButton {
