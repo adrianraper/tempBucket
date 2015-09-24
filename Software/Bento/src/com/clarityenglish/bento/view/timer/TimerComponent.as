@@ -121,7 +121,7 @@ import spark.primitives.Rect;
         private var _isTotalTimeChange:Boolean;
         private var _timerTotalTime:Array = [];
         private var _isTimerTotalTimeChange:Boolean;
-        private var _timerSectionLabels:Array = [];
+        private var _timerSectionLabels:Array = ["Planning", "Writing", "Proofreading"];
         private var _isTimerSectionLabelsChange:Boolean;
         private var _isFirstTimeChange:Boolean;
         private var _copyProvider:CopyProvider;
@@ -168,8 +168,10 @@ import spark.primitives.Rect;
         }
 
         public function set timerSectionLabels(value:Array):void {
-            _timerSectionLabels = value;
-            _isTimerSectionLabelsChange = true;
+            if(value.length > 0) {
+                _timerSectionLabels = value;
+                _isTimerSectionLabelsChange = true;
+            }
         }
 
         [Bindable]
@@ -184,6 +186,13 @@ import spark.primitives.Rect;
         [Bindable]
         public function get copyProvider():CopyProvider {
             return _copyProvider;
+        }
+
+        public function stopTimer():void {
+            if (timer) {
+                onStopButtonClick();
+            }
+            AudioPlayer.stopAllAudio();
         }
 
         public function initializeValue(value:Number):void {
@@ -386,7 +395,7 @@ import spark.primitives.Rect;
             minsTextInput.text = formatTime(Math.floor(defaultTotalTime / 60));
         }
 
-        protected function onStopButtonClick(event:MouseEvent):void {
+        protected function onStopButtonClick(event:MouseEvent = null):void {
             resetSlider();
             setState("startState");
             timer.stop();
@@ -416,18 +425,13 @@ import spark.primitives.Rect;
         }
 
         private function initializeSlider():void {
-            firstRectPercentWidth = timerSlider.values[0] / timerSlider.maximum * 100;
-            midRectPercentWidth = (timerSlider.values[1] - timerSlider.values[0]) / timerSlider.maximum * 100;
-            lastRectPercentWidth = (timerSlider.maximum - timerSlider.values[1]) / timerSlider.maximum * 100;
-
             if (timerTotalTime.length == 1) {
                 firstRectPercentWidth = 100;
                 midRectPercentWidth = lastRectPercentWidth = 0;
                 firstRightRadius = 4;
             } else {
                 firstRectPercentWidth = timerSlider.values[0] / timerSlider.maximum * 100;
-                if (timerTotalTime.length > 1)
-                    midRectPercentWidth = (timerSlider.values[1] - timerSlider.values[0]) / timerSlider.maximum * 100;
+                midRectPercentWidth = (timerSlider.values[1] - timerSlider.values[0]) / timerSlider.maximum * 100;
                 if (timerTotalTime.length > 2)
                     lastRectPercentWidth = (timerSlider.maximum - timerSlider.values[1]) / timerSlider.maximum * 100;
                 firstRightRadius = 0;
@@ -452,8 +456,7 @@ import spark.primitives.Rect;
                 midProgressCoverRect.width = lastProgressCoverRect.width = 0;
             } else {
                 firstProgressCoverRect.width = sliderWidth * timerSlider.values[0] / timerSlider.maximum;
-                if (timerTotalTime.length > 1)
-                    midProgressCoverRect.width = sliderWidth * (timerSlider.values[1] - timerSlider.values[0]) / timerSlider.maximum;
+                midProgressCoverRect.width = sliderWidth * (timerSlider.values[1] - timerSlider.values[0]) / timerSlider.maximum;
                 if (timerTotalTime.length > 2)
                     lastProgressCoverRect.width = sliderWidth * (timerSlider.maximum - timerSlider.values[1]) / timerSlider.maximum;
             }

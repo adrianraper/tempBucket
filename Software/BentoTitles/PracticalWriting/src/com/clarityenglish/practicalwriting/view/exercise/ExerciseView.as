@@ -44,9 +44,6 @@ import spark.primitives.Rect;
         [SkinPart]
         public var dynamicViewCover:Rect;
 
-        [SkinPart]
-        public var timerComponent:TimerComponent;
-
         [Bindable]
         public var selectedExerciseNode:XML;
 
@@ -132,7 +129,6 @@ import spark.primitives.Rect;
         }
 
         protected function onSoftKeyBoardActivate(event:Event):void {
-            trace("softkeyboard height: "+stage.softKeyboardRect.height);
             if (!isPlatformiPad) {
                 timerComponent.bottom = stage.softKeyboardRect.height + 10;
             }

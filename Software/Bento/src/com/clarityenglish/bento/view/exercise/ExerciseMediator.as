@@ -132,6 +132,7 @@ import org.puremvc.as3.interfaces.IMediator;
 					view.hasVideoScript = exercise.hasVideoScript();
 
 					view.timerTotalTime = [];
+					view.stopTimer();
 					
 					// #171
 					configureButtonVisibility(exercise);
