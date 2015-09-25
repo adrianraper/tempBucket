@@ -5,8 +5,9 @@ package com.clarityenglish.common.model {
 	
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.common.CommonNotifications;
-	
-	import flash.events.Event;
+import com.clarityenglish.common.vo.config.BentoError;
+
+import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	
 	import mx.core.FlexGlobals;
@@ -97,7 +98,13 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function onDelegateFault(operation:String, fault:Fault):void {
-			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
+            var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+
+            var authenticationError:BentoError = BentoError.create(fault);
+            authenticationError.errorContext = copyProxy.getCopyForId("errorLostAuthentication");
+            sendNotification(CommonNotifications.BENTO_ERROR, authenticationError);
+
+            sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
 		}
 	}
 }

@@ -197,7 +197,7 @@ import spark.primitives.Rect;
 
         public function initializeValue(value:Number):void {
             timerSlider.maximum = value / 60;
-            for (var i = 0; i < valuesArray.length; i++) {
+            for (var i:uint = 0; i < valuesArray.length; i++) {
                 timerSlider.values[i] = timerSlider.maximum * valuesArray[i];
             }
 
@@ -218,7 +218,7 @@ import spark.primitives.Rect;
 
                 // Get the timer total time.
                 var time:Number = 0;
-                for (var i = 0; i < timerTotalTime.length; i++) {
+                for (var i:uint = 0; i < timerTotalTime.length; i++) {
                     timerTotalTime[i] = Number(timerTotalTime[i]);
                     time += timerTotalTime[i];
                 }
@@ -226,7 +226,7 @@ import spark.primitives.Rect;
 
                 // Get the default proportion of timer sessions.
                 time = 0;
-                for (var i = 0; i < timerTotalTime.length - 1; i++) {
+                for (i = 0; i < timerTotalTime.length - 1; i++) {
                     time += timerTotalTime[i];
                     valuesArray[i] = time / totalTime;
                 }
@@ -241,7 +241,7 @@ import spark.primitives.Rect;
 
                 // When the label array is less then maximum number of sections, we now hard code it as 3, fill the array with the empty string to be the same length of the maximum number of sections.
                 if (timerSectionLabels.length < 3) {
-                    for (var i:Number = 0; i < (3 - timerSectionLabels.length); i++) {
+                    for (i = 0; i < (3 - timerSectionLabels.length); i++) {
                         timerSectionLabels.push("");
                     }
                 }
@@ -299,7 +299,7 @@ import spark.primitives.Rect;
         }
 
         // Commit the total time user input.
-        protected function onValueCommit(event:Event = null) {
+        protected function onValueCommit(event:Event = null):void {
             var time:Number = 0;
             if (hoursTextInput.text) {
                 time = Number(hoursTextInput.text) * 3600;
@@ -315,7 +315,7 @@ import spark.primitives.Rect;
                     minsNumber = 356400 / 60;
                     hoursNumber = 0;
                 }
-                var minsCarry = Math.floor(minsNumber / 60);
+                var minsCarry:Number = Math.floor(minsNumber / 60);
                 if (minsCarry > 0) {
                     minsTextInput.text = formatTime(minsNumber - 60 * minsCarry);
                     hoursTextInput.text = formatTime(hoursNumber + minsCarry);

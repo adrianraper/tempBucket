@@ -33,7 +33,7 @@ import org.puremvc.as3.interfaces.IMediator;
             view.channelSave.add(onChannelSave);
         }
 
-        protected function onChannelSave(value:Number) {
+        protected function onChannelSave(value:Number):void {
             trace("channel save value: "+value);
             var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
             settingsSharedObject.data["channelIndex"] = value;

@@ -5,7 +5,7 @@ class ProgressOps {
 	var $menu;
 
 	// gh#604 Seconds before the session record is considered too old and a new one started
-	const SESSION_IDLE_THRESHOLD = 3600;
+	const SESSION_IDLE_THRESHOLD = 100;
 	const MINIMUM_DURATION = 15; // Minimum seconds used as duration for new session records
 
 	function ProgressOps($db) {

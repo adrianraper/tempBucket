@@ -16,22 +16,22 @@
                 FlexGlobals.topLevelApplication.resizeForSoftKeyboard = true;
         }
 
-        protected function onLoginSoftKeyboardActivating(event:Event) {
+        protected function onLoginSoftKeyboardActivating(event:Event):void {
             if (height < 700 && hostComponent.isPlatformAndroid)
                 signInGroup.verticalCenter = -100;
         }
 
-        protected function onLoginSoftKeyboardDeactivate(event:Event) {
+        protected function onLoginSoftKeyboardDeactivate(event:Event):void {
             if (height < 700 && hostComponent.isPlatformAndroid)
                 signInGroup.verticalCenter = 10;
         }
 
-        protected function onRegisterSoftKeyboardActivating(event:Event) {
+        protected function onRegisterSoftKeyboardActivating(event:Event):void {
             if (height < 700 && hostComponent.isPlatformAndroid)
                 registerGroup.verticalCenter = -110;
         }
 
-        protected function onRegisterSoftKeyboardDeactivate(event:Event) {
+        protected function onRegisterSoftKeyboardDeactivate(event:Event):void {
             if (height < 700 && hostComponent.isPlatformAndroid)
                 registerGroup.verticalCenter = 0;
         }

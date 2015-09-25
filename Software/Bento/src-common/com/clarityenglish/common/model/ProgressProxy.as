@@ -147,7 +147,13 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function onDelegateFault(operation:String, fault:Fault):void {
-			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
+            var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+
+            var authenticationError:BentoError = BentoError.create(fault);
+            authenticationError.errorContext = copyProxy.getCopyForId("errorLostAuthentication");
+            sendNotification(CommonNotifications.BENTO_ERROR, authenticationError);
+
+            sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
 		}
 	
 		// gh#954 Session record id has changed

@@ -44,18 +44,20 @@ import org.puremvc.as3.interfaces.INotification;
             Bind.fromProperty(bentoProxy, "selectedCourseNode").toProperty(view, "course");
 
             // getEveryoneSummary is only used by the compare mediator, so use a direct call with a responder instead of mucking about with notifications
+            /**
+             * Remove this call for now. When reinstated (when we have plenty of data) it only needs to be called once, not each time the view is loaded
+             *
             new RemoteDelegate("getEveryoneUnitSummary", [ view.productCode, view.config.rootID ]).execute().addResponder(new ResultResponder(
                     function(e:ResultEvent, data:AsyncToken):void {
                         view.everyoneCourseSummaries = e.result;
                     }
                     // gh#1299 Not sure you need to report an error here, there is nothing to be done about it!
-                    /*
                     function(e:FaultEvent, data:AsyncToken):void {
                         var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
                         sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorCantLoadEveryoneSummary",null,false));
                     }
-                    */
             ));
+            */
 
             var memoryProxy:MemoryProxy = facade.retrieveProxy(MemoryProxy.NAME) as MemoryProxy;
             var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
@@ -93,6 +95,7 @@ import org.puremvc.as3.interfaces.INotification;
         private function onMemoryWrite(memoryEvent:MemoryEvent):void {
             var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
             dataProxy.set("openUnit", memoryEvent.memory.openUnit);
+            //trace("Write memory openUnit: "+memoryEvent.memory.openUnit);
 
             // gh#1313
             var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;

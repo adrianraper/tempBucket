@@ -176,11 +176,11 @@ class AbstractService {
 			$function_called == "getAccountSettings" ||
 			$function_called == "getIPMatch" ||
 			$function_called == "updateUser" ||
-			$function_called == "updateLicence" ||
-			$function_called == "getInstanceID" ||
+			//$function_called == "updateLicence" || // gh#1299 I think should not be here
+			//$function_called == "getInstanceID" || // gh#1299 I think should not be here
 			$function_called == "addUser" ||
-			$function_called == "writeScore" || // gh#1223 
-			$function_called == "xhtmlLoad" || // gh#1223 
+			//$function_called == "writeScore" || // gh#1223  // gh#1299 I think should not be here
+			$function_called == "xhtmlLoad" || // gh#1223
 			$function_called == "getCCBContent"
 			) return true;
 		

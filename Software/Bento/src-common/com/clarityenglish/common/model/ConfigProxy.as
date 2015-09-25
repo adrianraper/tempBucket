@@ -565,25 +565,31 @@ package com.clarityenglish.common.model {
 			//log.IP = config.ip;
 			//sendNotification(CommonNotifications.PERFORMANCE_LOG, log);
 		}
-		
-		public function onDelegateFault(operation:String, fault:Fault):void {
-			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
-			var thisError:BentoError = BentoError.create(fault);
-			
-			switch (operation) {
-				// gh#315
-				case "getIPMatch":
-					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoPrefixOrRoot")) {
-						this.createDummyAccount();
-						break;
-					}
 
-				case "getAccountSettings":
-					sendNotification(CommonNotifications.CONFIG_ERROR, thisError);
-					break;
-			}
-			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
-			
+        public function onDelegateFault(operation:String, fault:Fault):void {
+            var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+            var thisError:BentoError = BentoError.create(fault);
+
+            if (fault.faultCode == 'AMFPHP_AUTHENTICATE_ERROR') {
+                var authenticationError:BentoError = BentoError.create(fault);
+                authenticationError.errorContext = copyProxy.getCopyForId("errorLostAuthentication");
+                sendNotification(CommonNotifications.BENTO_ERROR, authenticationError);
+            } else {
+
+                switch (operation) {
+                    // gh#315
+                    case "getIPMatch":
+                        if (thisError.errorNumber == copyProxy.getCodeForId("errorNoPrefixOrRoot")) {
+                            this.createDummyAccount();
+                            break;
+                        }
+
+                    case "getAccountSettings":
+                        sendNotification(CommonNotifications.CONFIG_ERROR, thisError);
+                        break;
+                }
+                sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
+            }
 			// Performance logging
 			//var log:PerformanceLog = new PerformanceLog(PerformanceLog.APP_LOADED, config.appLaunchTime);
 			//sendNotification(CommonNotifications.PERFORMANCE_LOG, log);

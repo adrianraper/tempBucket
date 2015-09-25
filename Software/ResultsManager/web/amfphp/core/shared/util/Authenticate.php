@@ -22,7 +22,8 @@ class Authenticate {
 	 */
 	function isAuthenticated () {
 		//if (isset($_SESSION['amfphp_username'])) {
-		//AbstractService::$debugLog->info('isAuthenticated from '.Session::getSessionName());
+		AbstractService::$debugLog->info('isAuthenticated from '.Session::getSessionName());
+        // return false;
 		if (Session::is_set('amfphp_username')) {
 			return true;
 		} else {

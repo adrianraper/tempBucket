@@ -81,7 +81,7 @@ import spark.components.Button;
 		public var hasVideoScript:Boolean;
 
 		[Bindable]
-		public var footerLabel:Text;;
+		public var footerLabel:Text;
 
 		[Bindable]
 		public var isPlatformiPad:Boolean;
@@ -91,7 +91,7 @@ import spark.components.Button;
 
 		// Timer total time
 		private var _timerTotalTime:Array = [];
-		private var _isTimereTotalTimeChange;
+		private var _isTimerTotalTimeChange:Boolean;
 		private var _timerSectionLabels:Array = [];
 		private var _courseCaption:String;
 
@@ -174,7 +174,7 @@ import spark.components.Button;
 
 		public function set timerTotalTime(value:Array):void {
 			_timerTotalTime = value;
-			_isTimereTotalTimeChange = true;
+			_isTimerTotalTimeChange = true;
 		}
 
 		[Bindable]
@@ -328,8 +328,8 @@ import spark.components.Button;
 
 			// gh#1267
 			if (isPlatformiPad) {
-				if (_isTimereTotalTimeChange && _timerTotalTime.length > 0) {
-					_isTimereTotalTimeChange = false;
+				if (_isTimerTotalTimeChange && _timerTotalTime.length > 0) {
+					_isTimerTotalTimeChange = false;
 					FlexGlobals.topLevelApplication.resizeForSoftKeyboard = true;
 				} else {
 					FlexGlobals.topLevelApplication.resizeForSoftKeyboard = false;

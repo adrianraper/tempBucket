@@ -454,78 +454,87 @@ import flash.events.TimerEvent;
 		
 		public function onDelegateFault(operation:String, fault:Fault):void {
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
-			
-			switch (operation) {
-				case "login":
-					// Clear the remote shared object, if there is one so it doesn't keep trying to log back in
-					var loginSharedObject:SharedObject = SharedObject.getLocal("login");
-					loginSharedObject.clear();
-					
-					// #445 Any error other than user not found is simply reported
-					var thisError:BentoError = BentoError.create(fault);
-					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoSuchUser")) {
-						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-						
-						// #341 For network, if you don't find the user, offer to add them
-						// gh#100 and for CT too (so long as selfRegister is set)
-						// gh#100 and for LT/TT too surely!
-						// gh#837 not allowed self-register in C-Builder
-						// gh#1090 Bin all this, hopefully the 'create account' is clear enough
-						/*
-						if ((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK ||
-							configProxy.getLicenceType() == Title.LICENCE_TYPE_CT ||
-							configProxy.getLicenceType() == Title.LICENCE_TYPE_LT ||
-							configProxy.getLicenceType() == Title.LICENCE_TYPE_TT ||
-						    (configProxy.getLicenceType() == Title.LICENCE_TYPE_AA && configProxy.getConfig().noLogin != true)) &&
-							configProxy.getAccount().selfRegister > 0 &&
-							(FlexGlobals.topLevelApplication.name as String).indexOf("Builder") < 0) {
-							sendNotification(CommonNotifications.CONFIRM_NEW_USER);
-						*/
-						// For SCORM, if the user doesn't exist, automatically add them
-						if (configProxy.getConfig().scorm) {
-							var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
-							var loginOption:uint = configProxy.getAccount().loginOption;
-							var verified:Boolean = (configProxy.getAccount().verified == 1);
-							var configUser:User = new User({name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID});
-							// gh#1227
-							if (loginOption & Config.LOGIN_BY_EMAIL)
-								configUser.email = configUser.name + '@scorm.email';
 
-							var loginEvent:LoginEvent = new LoginEvent(LoginEvent.ADD_USER, configUser, loginOption, verified);
-							sendNotification(CommonNotifications.ADD_USER, loginEvent);
-							
-						} else {
-							sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault, false)); // GH #3
-						}
-					} else {
-						sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault, false)); // GH #3
-					}
+            if (fault.faultCode == 'AMFPHP_AUTHENTICATE_ERROR') {
+                var authenticationError:BentoError = BentoError.create(fault);
+                authenticationError.errorContext = copyProxy.getCopyForId("errorLostAuthentication");
+                sendNotification(CommonNotifications.BENTO_ERROR, authenticationError);
+            } else {
 
-					break;
-				
-				case "addUser":
-					sendNotification(CommonNotifications.ADD_USER_FAILED, BentoError.create(fault, false));
-					break;
-				
-				case "updateLicence":
-					//trace('back to updateLicence with error');
+                switch (operation) {
+                    case "login":
+                        // Clear the remote shared object, if there is one so it doesn't keep trying to log back in
+                        var loginSharedObject:SharedObject = SharedObject.getLocal("login");
+                        loginSharedObject.clear();
 
-					// gh#604 Just ignore a failed update
-					/*
-					sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault));
-					// Stop the licence update timer
-					if (licenceTimer) licenceTimer.stop();
-					*/
-					break;
-				case "updateUser":
-					sendNotification(CommonNotifications.UPDATE_FAILED);
-					break;
-				case "getInstanceID":
-					sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault));
-					break;
-			}
-			
-			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
+                        // #445 Any error other than user not found is simply reported
+                        var thisError:BentoError = BentoError.create(fault);
+                        if (thisError.errorNumber == copyProxy.getCodeForId("errorNoSuchUser")) {
+                            var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+
+                            // #341 For network, if you don't find the user, offer to add them
+                            // gh#100 and for CT too (so long as selfRegister is set)
+                            // gh#100 and for LT/TT too surely!
+                            // gh#837 not allowed self-register in C-Builder
+                            // gh#1090 Bin all this, hopefully the 'create account' is clear enough
+                            /*
+                             if ((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK ||
+                             configProxy.getLicenceType() == Title.LICENCE_TYPE_CT ||
+                             configProxy.getLicenceType() == Title.LICENCE_TYPE_LT ||
+                             configProxy.getLicenceType() == Title.LICENCE_TYPE_TT ||
+                             (configProxy.getLicenceType() == Title.LICENCE_TYPE_AA && configProxy.getConfig().noLogin != true)) &&
+                             configProxy.getAccount().selfRegister > 0 &&
+                             (FlexGlobals.topLevelApplication.name as String).indexOf("Builder") < 0) {
+                             sendNotification(CommonNotifications.CONFIRM_NEW_USER);
+                             */
+                            // For SCORM, if the user doesn't exist, automatically add them
+                            if (configProxy.getConfig().scorm) {
+                                var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+                                var loginOption:uint = configProxy.getAccount().loginOption;
+                                var verified:Boolean = (configProxy.getAccount().verified == 1);
+                                var configUser:User = new User({
+                                    name: scormProxy.scorm.studentName,
+                                    studentID: scormProxy.scorm.studentID
+                                });
+                                // gh#1227
+                                if (loginOption & Config.LOGIN_BY_EMAIL)
+                                    configUser.email = configUser.name + '@scorm.email';
+
+                                var loginEvent:LoginEvent = new LoginEvent(LoginEvent.ADD_USER, configUser, loginOption, verified);
+                                sendNotification(CommonNotifications.ADD_USER, loginEvent);
+
+                            } else {
+                                sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault, false)); // GH #3
+                            }
+                        } else {
+                            sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault, false)); // GH #3
+                        }
+
+                        break;
+
+                    case "addUser":
+                        sendNotification(CommonNotifications.ADD_USER_FAILED, BentoError.create(fault, false));
+                        break;
+
+                    case "updateLicence":
+                        //trace('back to updateLicence with error');
+                        // gh#604 Just ignore a failed update
+                        // gh#1299 A failure seems to indicate some other problem - perhaps it should be fatal?
+                        sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault));
+
+                        // Stop the licence update timer
+                        if (licenceTimer) licenceTimer.stop();
+                        break;
+                    case "updateUser":
+                        sendNotification(CommonNotifications.UPDATE_FAILED);
+                        break;
+                    case "getInstanceID":
+                        sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault));
+                        break;
+                }
+
+                sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
+            }
 		}
 		
 		/**
