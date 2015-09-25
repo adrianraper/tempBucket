@@ -325,13 +325,6 @@ import spark.primitives.Rect;
             }
 
             totalTime = time;
-
-            // Handle the total time 0 problem.
-            if (totalTime == 0) {
-                startButton.enabled = false;
-            } else {
-                startButton.enabled = true;
-            }
         }
 
         protected function onTimerUpdate(event:TimerEvent):void {
