@@ -29,9 +29,10 @@
          * @copy spark.skins.spark.ApplicationSkin#hostComponent
          */
         [HostComponent("spark.components.TextInput")]
-    ]]>
-    </fx:Metadata> 
-    
+
+        ]]>
+    </fx:Metadata>
+
     <fx:Script>
         <![CDATA[
         /** 
@@ -74,9 +75,18 @@
 	-->
     <!-- text -->
     <s:RichEditableText id="textDisplay"
-              verticalAlign="middle"
-              widthInChars="10"
-              left="0" right="0" top="0" bottom="0" />
+                        verticalAlign="middle"
+                        widthInChars="10"
+                        left="0" right="0" top="0" bottom="0" />
+
+    <!-- gh#996 This blob colour should be picked up from program.css -->
+    <s:Group verticalCenter="0" horizontalCenter="0" visible="{!hostComponent.editable &amp;&amp; !hostComponent.text}">
+        <s:Ellipse y="0" width="8" height="8" >
+            <s:fill>
+                <s:SolidColor id="dropDownMarker" color="#0A789D" />
+            </s:fill>
+        </s:Ellipse>
+    </s:Group>
 
 	<!-- underline (for text input - determined by whether or not the component is editable) gh#60 -->
 	<!-- gh#472 {hostComponent.editable} -->

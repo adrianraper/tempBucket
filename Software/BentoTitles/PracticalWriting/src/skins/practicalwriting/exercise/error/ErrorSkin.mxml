@@ -19,9 +19,9 @@
         <s:SWFLoader source="@Embed(source='/skins/practicalwriting/assets/errormessage.swf')" />
         <s:Spacer width="10" />
         <s:VGroup>
-            <s:Label id="problemLabel" width="310" fontSize="16" fontWeight="bold" paddingTop="10" />
+            <s:Label id="problemLabel" width="310" paddingTop="10" />
             <s:Spacer height="1" />
-            <s:Label width="310" text="{hostComponent.error.errorContext}" lineHeight="20" />
+            <s:Label id="errorMessage" width="310" text="{hostComponent.error.errorContext}" lineHeight="20" />
             <s:Spacer height="1" />
             <s:Button id="closeButton" width="65" height="35" />
         </s:VGroup>

@@ -9,8 +9,8 @@
 			<lit name="goToSettingsButton">Settings</lit>
 			<lit name="minsLabel">{time} mins</lit>
 			<lit name="readLabel">{count} people</lit>
-			<lit name="startingOut">Starting out</lit>
-			<lit name="practiceZone">Practice zone</lit>
+			<lit name="startingOut">Starting Out</lit>
+			<lit name="practiceZone">Practice Zone</lit>
 			<lit name="resourceBank">Resource Bank</lit>
 			<lit name="minsExplanationLabel">How long do other people spend on this unit?</lit>
 
@@ -19,7 +19,7 @@
 			<lit name="recorderHelpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/ActiveReadingHelp.pdf</lit>
 
 			<!--Skill-->
-			<lit name="skillCaptionLabel">Skill focus:</lit>
+			<lit name="skillCaptionLabel">Skills focus:</lit>
 			<lit name="skillContent0">You will learn to brainstorm, plan essays, choose appropriate styles, write drafts, and review them.</lit>
 			<lit name="skillContent1">You will learn to structure descriptive essays, match words and senses, choose "precise" words, and link ideas using "signpost" words.</lit>
 			<lit name="skillContent2">You will learn to structure a short report, write topic sentences to introduce a paragraph, mix long and short sentences, and use accurate vocabulary for hotels and restaurants.</lit>
@@ -27,12 +27,13 @@
 			<lit name="skillContent4">You will learn to structure emails, think about formality in emails, use functional language for asking people to do things, and start emails to people from different cultures</lit>
 			<lit name="skillContent5">You will learn to lay out an official letter, use formal language in an official letter, write a cover letter for a job application, and choose the correct tense in a cover letter.</lit>
 			<lit name="skillContent6">You will learn to use layout and abbreviations effectively, identify the important points in a talk, prepare to take notes by researching the topic, and take notes from a talk.</lit>
-			<lit name="skillContent7">You will learn about typical mistakes in an online profile, the structure of a personal profile, how to check grammar, spelling and punctuation, and how to create a proof reading checklist.</lit>
+			<lit name="skillContent7">You will learn how to structure and write an online profile. You will also learn key proof reading skills.</lit>
 			<lit name="skillContent8">You will learn to be formal and informal in texts, reply in an appropriate style, use common Textspeak vocabulary, and make your texts sound like speech.</lit>
 			<lit name="skillContent9">You will learn to use other people's words correctly, use verbs to introduce quotations, use the correct tense when reporting others' words, and express other people's ideas in your own words.</lit>
 
-			<!--Starting out-->
-			<lit name="startOutLabel0">Click to play the video above to learn about writing for and against essays.</lit>
+			<!--Start out-->
+			<lit name="startOutLabel0"></lit>
+			<!--Click to play the video above to learn about writing for and against essays.-->
 			<lit name="startOutLabel1">Click to play the video above to learn about writing descriptive essays.</lit>
 			<lit name="startOutLabel2">Click to play the video above to learn about writing short hotel and restaurant reports.</lit>
 			<lit name="startOutLabel3">Click to play the video to learn about writing short reports about graphs.</lit>
@@ -104,7 +105,7 @@
 		<group name="group">
 			<lit name="anonymousCaption">Just practice</lit>
 			<lit name="exerciseMarkingButton">Scoring</lit>
-			<lit name="progressNavBarAnalyse">Analyze</lit>
+			<lit name="progressNavBarAnalyse">Analyse</lit>
 		</group>
 	</language>
 </literals>

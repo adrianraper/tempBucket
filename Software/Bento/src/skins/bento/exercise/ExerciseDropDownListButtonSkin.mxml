@@ -71,6 +71,7 @@
 			/**
 			 *  @private
 			 */
+            /*
 			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 				var cr:Number = getStyle("cornerRadius");
 				
@@ -93,7 +94,7 @@
 				
 				super.updateDisplayList(unscaledWidth, unscaledHeight);
 			}
-			
+			*/
 			protected function onContentChange(event:Event):void {
 				//arrowGroup.horizontalCenter = hostComponent.content ? null : 0;
 				invalidateDisplayList();
@@ -108,19 +109,16 @@
 		<s:State name="down" />
 		<s:State name="disabled" />
 	</s:states>
-	<!-- layer 2: fill -->
-	<!--- @private -->
-	<s:Rect id="fill" left="1" right="1" top="1" bottom="1" radiusX="4">
+
+	<!-- Fill, this is needed so that mouse click anywhere activates the dropdown -->
+	<s:Rect id="fill" left="0" right="0" top="1" bottom="0">
 		<s:fill>
-			<s:LinearGradient rotation="90">
-				<s:GradientEntry color="0xFFFFFF" color.over="0xC9C9C9" color.down="0xAAAAAA" alpha="0.85" />
-				<s:GradientEntry color="0xF2F2F2" color.over="0xC9C9C9" color.down="0x929496" alpha="0.85" />
-			</s:LinearGradient>
+            <s:SolidColor color="#ffffff" />
 		</s:fill>
 	</s:Rect>
 
 	<!-- layer 3: fill lowlight -->
-	<!--- @private -->
+	<!---
 	<s:Rect id="lowlight" left="1" right="1" top="1" bottom="1" radiusX="4">
 		<s:fill>
 			<s:LinearGradient rotation="270">
@@ -130,9 +128,9 @@
 			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
-
+     @private -->
 	<!-- layer 4: fill highlight -->
-	<!--- @private -->
+	<!---
 	<s:Rect id="highlight" left="1" right="1" top="1" bottom="1" radiusX="4">
 		<s:fill>
 			<s:LinearGradient rotation="90">
@@ -142,9 +140,9 @@
 			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
-
+     @private -->
 	<!-- layer 5: highlight stroke (all states except down) -->
-	<!--- @private -->
+	<!---
 	<s:Rect id="highlightStroke" left="1" right="1" top="1" bottom="1" excludeFrom="down" radiusX="4">
 		<s:stroke>
 			<s:LinearGradientStroke rotation="90" weight="1">
@@ -153,9 +151,9 @@
 			</s:LinearGradientStroke>
 		</s:stroke>
 	</s:Rect>
-
+     @private -->
 	<!-- layer 6: highlight stroke (down state only) -->
-	<!--- @private -->
+	<!---
 	<s:Rect id="hldownstroke1" left="1" right="1" top="1" bottom="1" radiusX="4" includeIn="down">
 		<s:stroke>
 			<s:LinearGradientStroke rotation="90" weight="1">
@@ -167,8 +165,8 @@
 			</s:LinearGradientStroke>
 		</s:stroke>
 	</s:Rect>
-
-	<!--- @private -->
+     @private -->
+	<!---
 	<s:Rect id="hldownstroke2" left="2" right="2" top="2" bottom="2" radiusX="4" includeIn="down">
 		<s:stroke>
 			<s:LinearGradientStroke rotation="90" weight="1">
@@ -177,31 +175,36 @@
 			</s:LinearGradientStroke>
 		</s:stroke>
 	</s:Rect>
-
+     @private -->
 	<!-- layer 7: border - put on top of the fill so it doesn't disappear when scale is less than 1 -->
-	<!--- @private -->
+	<!---
 	<s:Rect id="border" left="0" right="0" top="0" bottom="0" radiusX="4">
 		<s:stroke>
 			<s:LinearGradientStroke rotation="90" weight="1">
-				<s:GradientEntry color="0x999999" alpha.down="0.6375" />
+				<s:GradientEntry color="0xFF0000" alpha.down="0.6375" />
 				<s:GradientEntry color="0x999999" alpha.down="0.85" />
 			</s:LinearGradientStroke>
 		</s:stroke>
 	</s:Rect>
+     @private -->
 
-	<!-- layer 8: arrow -->
-	<!--- The arrow graphic displayed in the anchor button. -->
-	<s:Group id="arrowGroup" verticalCenter="0">
-		<s:Ellipse y="-0.000976563" width="11" height="11" top="5" bottom="5">
-			<s:fill>
-				<s:SolidColor color="#333333" />
-			</s:fill>
-		</s:Ellipse>
+    <!-- gh#996 This blob colour should be picked up from program.css -->
+    <s:Group verticalCenter="1" right="4" visible="{!hostComponent.content}">
+        <s:Path x="0" y="0" data="M 0 0 L 8 0 L 4 6.928 L 0 0Z">
+            <s:stroke>
+                <s:SolidColorStroke color="0x0A789D"/>
+            </s:stroke>
+            <s:fill>
+                <s:SolidColor color="0x0A789D" />
+            </s:fill>
+        </s:Path>
+    </s:Group>
 
-		<s:Path id="arrow" top="8" left="2.7" data="M5.16602 3.2793L8.00781 3.2793 6.58691 5.73828 5.16504 8.19922 3.74707 5.73828 2.32813 3.2793 5.16602 3.2793Z">
-			<s:fill>
-				<s:SolidColor color="#FFFFFF" />
-			</s:fill>
-		</s:Path>
-	</s:Group>
+    <!-- underline (for text input - determined by whether or not the component is editable) gh#60 -->
+    <!-- gh#472 {hostComponent.editable} -->
+    <s:Line left="0" right="0" bottom="1" visible="true">
+        <s:stroke>
+            <s:SolidColorStroke color="#6A6A6A" weight="1" alpha="0.8" />
+        </s:stroke>
+    </s:Line>
 </s:SparkSkin>

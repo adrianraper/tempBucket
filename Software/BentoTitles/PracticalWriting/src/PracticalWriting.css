@@ -330,5 +330,14 @@ s|TitleWindow.feedbackTitleWindow {
 }
 
 s|TitleWindow.errorTitleWindow {
-    skinClass: ClassReference("skins.practicalwriting.exercise.error.ErroTitleWindowSkin");
+    skinClass: ClassReference("skins.practicalwriting.exercise.error.ErrorTitleWindowSkin");
+}
+#problemLabel {
+    fontSize: 16px;
+    fontWeight: bold;
+    color: #0A789D;
+}
+#errorMessage {
+    fontSize: 14px;
+    color: #0A789D;
 }
