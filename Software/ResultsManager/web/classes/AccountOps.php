@@ -1108,6 +1108,7 @@ EOD;
 				if ($this->isIPInRange($ip, $rsObj->ranges))
 					$foundRoots[] = $rsObj->rootID;
 			}
+			$foundRoots = array_unique($foundRoots);
 		}
 		
 		switch (count($foundRoots)) {

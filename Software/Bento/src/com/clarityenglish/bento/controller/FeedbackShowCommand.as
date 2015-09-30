@@ -1,5 +1,6 @@
 package com.clarityenglish.bento.controller {
-	import com.clarityenglish.bento.model.ExerciseProxy;
+import com.clarityenglish.bento.BBNotifications;
+import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.answer.Answer;
 	import com.clarityenglish.bento.vo.content.model.answer.Feedback;
@@ -128,6 +129,8 @@ package com.clarityenglish.bento.controller {
 
 				// This is very hacky, but otherwise the feedback popup can hijack uncommitted textfields and break the tab flow.  There is probably
 				// a neater way to do this, but this works and doesn't seem to do any harm.
+                // gh#1299 If this is a dropdownquestion, delay a little longer to give the popup selector time to go
+                // No, that doesn't have any impact
 				if (!titleWindowAdded) setTimeout(addPopupWindow, 150);
 			} else {
 				log.error("Unable to find feedback source {0}", feedback.source);
@@ -136,7 +139,15 @@ package com.clarityenglish.bento.controller {
 		
 		private function addPopupWindow():void {
 			// Create and centre the popup
-			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, false, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
+            try {
+                // gh#1299 If you put the popup onto the PARENT rather than POPUP does that make a difference?
+                PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, false, PopUpManagerChildList.PARENT, FlexGlobals.topLevelApplication.moduleFactory);
+            } catch (e:Error) {
+                log.error("Triggered the error {0}", e.getStackTrace());
+                onClosePopUp();
+                sendNotification(BBNotifications.CLOSE_ALL_POPUPS);
+                return;
+            }
 			PopUpManager.centerPopUp(titleWindow);
 			
 			titleWindowAdded = true;
