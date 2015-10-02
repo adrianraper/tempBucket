@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <literals progam="ActiveReading" version="2.0">
 	<language name="English International" code="EN" mediaFolder="EN">
-		<group name="group">	
+		<group name="group">
 			<lit name="loginInputTitle">Practical Writing</lit>
 			<lit name="applicationVersion">Version {version}</lit>
 
@@ -59,6 +59,8 @@
             <lit name="timerStopLabel">Stop</lit>
 
 			<!-- Progress certificate -->
+            <lit name="anonymousProgressMessage">You are anonymous. To keep track of your progress, sign in next time.</lit>
+            <lit name="mockedUpProgressMessage">If you sign in you will be able to track your progress.</lit>
 			<lit name="notCompleteString">
 				<![CDATA[
                 <p>You have not completed this level yet, so you cannot receive a certificate.</p>

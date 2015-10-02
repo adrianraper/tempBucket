@@ -1,4 +1,5 @@
 package com.clarityenglish.practicalwriting.view.closing {
+import com.clarityenglish.bento.BentoApplication;
 import com.clarityenglish.bento.view.base.BentoView;
 
 import mx.core.FlexGlobals;
@@ -22,6 +23,11 @@ import spark.components.Label;
         [SkinPart]
         public var copyrightLabel:Label;
 
+        // gh#1307
+        public function get isDemo():Boolean {
+            return productVersion == BentoApplication.DEMO;
+        }
+
         protected override function partAdded(partName:String, instance:Object):void {
             super.partAdded(partName, instance);
 
@@ -43,5 +49,14 @@ import spark.components.Label;
                     break;
             }
         }
+        protected override function getCurrentSkinState():String {
+            // gh#1307
+            if (this.isDemo)
+                return "demo";
+
+            return "normal";
+        }
+
+
     }
 }

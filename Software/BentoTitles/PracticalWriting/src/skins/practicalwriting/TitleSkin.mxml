@@ -46,9 +46,9 @@
     </s:HGroup>
 
     <!--Back button only show when progress open from exercise-->
-    <s:Button id="backToExercieButton" top="5" right="0" buttonMode="true" useHandCursor="true" visible="false" includeInLayout="false" />
+    <s:Button id="backToExerciseButton" top="5" right="0" buttonMode="true" useHandCursor="true" visible="false" includeInLayout="false" />
 
-    <s:Button id="homeButton" left="0" top="5" includeIn="exercise" />
+    <s:Button id="homeButton" left="0" top="5" buttonMode="true" useHandCursor="true" includeIn="exercise" />
 
     <!--Left logo-->
     <s:Group left="-3" top="8" filters="{[dropShadowFilter]}" excludeFrom="exercise">
@@ -101,5 +101,10 @@
             <s:Button id="goToSettingsButton" />
         </s:VGroup>
     </s:Group-->
+
+    <!-- gh#1307 demo watermark -->
+    <s:Group id="demoWatermark" top="10" left="100" visible="{hostComponent.isDemo}" includeInLayout="{hostComponent.isDemo}" >
+        <s:Label text="DEMO" />
+    </s:Group>
 
 </s:Skin>

@@ -20,7 +20,7 @@
 	$coordsMaxWidth = '1024';
 	$coordsMinHeight = '860';
 	$coordsMaxHeight = null;
-	$locationFile = "config.xml";
+	$locationFile = "config-preview.xml";
 	
 	// Picking up IP and referrer for security checking
 	require_once '../securityCheck.php';

@@ -104,7 +104,7 @@ title|TitleView s|Button#goToSettingsButton {
     skinClass: ClassReference("skins.practicalwriting.title.SettingsSideBarButtonSkin");
 }
 
-title|TitleView s|Button#backToExercieButton {
+title|TitleView s|Button#backToExerciseButton {
     skinClass: ClassReference("skins.practicalwriting.title.BackToExerciseButtonSkin");
 }
 

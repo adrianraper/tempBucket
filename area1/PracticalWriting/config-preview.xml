@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<id>/area1/PracticalWriting in localhost</id>
+	<dbHost>2</dbHost>
+	<productCode>61</productCode>
+	<useCacheBuster>true</useCacheBuster>
+	<courseFile>menu-preview-{productVersion}.xml</courseFile>
+	<platform>browser</platform>
+	<disableAutoTimeout>true</disableAutoTimeout>
+
+	<channel name='vimeo' caption='Vimeo'>
+		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+	</channel>
+	<channel name='rackspace' caption='Akamai stream'>
+		<streamingMedia>http://c284790.r90.stream.cf1.rackcdn.com/</streamingMedia>
+	</channel>
+	<channel name='aws-streaming' caption='Amazon'>
+		<streamingMedia>https://s3-ap-southeast-1.amazonaws.com/clarity-video-streaming/</streamingMedia>
+	</channel>
+
+	<sharedMedia />
+	<brandingMedia />
+	<language>EN</language>
+
+	<contentPath>http://dock.contentbench/Content/</contentPath>
+	<remoteDomain>http://dock.projectbench/</remoteDomain>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteService>PracticalWritingService</remoteService>
+	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+	
+</config>
+

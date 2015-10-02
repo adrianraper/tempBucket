@@ -1,4 +1,5 @@
 package com.clarityenglish.practicalwriting.view.title {
+import com.clarityenglish.bento.BentoApplication;
 import com.clarityenglish.bento.view.base.BentoView;
 import com.clarityenglish.practicalwriting.view.exercise.ExerciseView;
 import com.clarityenglish.practicalwriting.view.home.HomeView;
@@ -60,7 +61,7 @@ import spark.managers.PersistenceManager;
         public var goToSettingsButton:Button;
 
         [SkinPart]
-        public var backToExercieButton:Button;
+        public var backToExerciseButton:Button;
 
         [SkinPart]
         public var logoutButton:Button;
@@ -153,6 +154,11 @@ import spark.managers.PersistenceManager;
             return _isDirectLogout;
         }
 
+        // gh#1307
+        public function get isDemo():Boolean {
+            return productVersion == BentoApplication.DEMO;
+        }
+
         public function TitleView() {
             // The first one listed will be the default
             StateUtil.addStates(this, [ "home", "exercise", "progress", "zone", "settings"], true);
@@ -211,9 +217,9 @@ import spark.managers.PersistenceManager;
                     goToSettingsButton.label = copyProvider.getCopyForId("settings");
                     goToSettingsButton.addEventListener(MouseEvent.CLICK, onGoToSettingsButtonClick)
                     break;*/
-                case backToExercieButton:
-                    backToExercieButton.label = copyProvider.getCopyForId("back");
-                    backToExercieButton.addEventListener(MouseEvent.CLICK, onBackToExerciseButtonClick);
+                case backToExerciseButton:
+                    backToExerciseButton.label = copyProvider.getCopyForId("back");
+                    backToExerciseButton.addEventListener(MouseEvent.CLICK, onBackToExerciseButtonClick);
                     break;
                 case versionLabel:
                     versionLabel.text = copyProvider.getCopyForId("versionLabel", {versionNumber: FlexGlobals.topLevelApplication.versionNumber});
@@ -283,10 +289,10 @@ import spark.managers.PersistenceManager;
 
                 sectionNavigator.tabBar.visible = false;
                 helpButton.visible = logoutButton.visible = false;
-                backToExercieButton.visible = backToExercieButton.includeInLayout = true;
+                backToExerciseButton.visible = backToExerciseButton.includeInLayout = true;
             } else {
                 helpButton.visible = logoutButton.visible = true;
-                backToExercieButton.visible = backToExercieButton.includeInLayout = false;
+                backToExerciseButton.visible = backToExerciseButton.includeInLayout = false;
             }
         }
 

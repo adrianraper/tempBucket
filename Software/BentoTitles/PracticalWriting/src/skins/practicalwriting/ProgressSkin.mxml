@@ -14,6 +14,7 @@
         <s:State name="normal" />
         <s:State name="disabled" />
         <s:State name="anonymous" />
+        <s:State name="demo" />
 
         <s:State name="coverage" stateGroups="normalStates,coverageStates"/>
         <s:State name="compare" stateGroups="normalStates,compareStates"/>
@@ -29,11 +30,11 @@
         </s:fill>
     </s:Rect>
 
-    <s:Group left="50" right="40" top="120" enabled.anonymous="false">
+    <s:Group left="50" right="40" top="120" excludeFrom="demo, anonymous" >
         <s:ButtonBar id="progressNavBar" buttonMode="true" useHandCursor="true" horizontalCenter="0" left="0" right="0" />
     </s:Group>
 
-    <s:HGroup width="100%" height="100%" top="170" left="50" bottom="0" right="50" excludeFrom="anonymous" >
+    <s:HGroup width="100%" height="100%" top="170" left="50" bottom="0" right="50" excludeFrom="demo, anonymous" >
         <s:Group width="100%" height="100%">
             <s:Group width="100%" height="100%" includeIn="normalStates">
                 <progress:ProgressCoverageView id="progressCoverageView" width="100%" height="100%" includeIn="coverage" />
@@ -45,17 +46,26 @@
         </s:Group>
     </s:HGroup>
 
-    <!--Anonymouse reminder-->
+    <!-- gh#1307 Demo mockup progress screens -->
+    <s:Group horizontalCenter="0" verticalCenter="0" includeIn="demo">
+        <s:BitmapImage source="@Embed('/skins/practicalwriting/assets/progress/mockedUpOverview.png')"/>
+        <s:Label id="mockedUpMessage"
+                 horizontalCenter="0" verticalCenter="0"
+                 color="0x123456" fontSize="14" >
+        </s:Label>
+    </s:Group>
+
+    <!--Anonymous reminder-->
     <s:Group horizontalCenter="0" verticalCenter="0" includeIn="anonymous">
         <s:Rect left="0" right="0" top="0" bottom="0" radiusX="7" radiusY="7">
             <s:fill>
                 <s:SolidColor color="0x808080" />
             </s:fill>
         </s:Rect>
-        <s:Label id="labelDisplay"
+        <s:Label id="anonymousUserLabel"
                  horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
                  left="10" right="10" top="4" bottom="4"
-                 color="0xFFFFFF" fontSize="14" text="You are anonymous. To keep track of your progress, sign in next time.">
+                 color="0xFFFFFF" fontSize="14" >
         </s:Label>
     </s:Group>
 </s:Skin>

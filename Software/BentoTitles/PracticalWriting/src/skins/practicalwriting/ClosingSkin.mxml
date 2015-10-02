@@ -12,6 +12,7 @@
     <s:states>
         <s:State name="disabled" />
         <s:State name="normal" />
+        <s:State name="demo" />
     </s:states>
 
     <!--Header-->
@@ -32,6 +33,9 @@
             <s:Label id="closingCaptionLabel" width="100%" fontSize="77" color="#09789C" />
             <s:Label id="closingContentLabel" width="100%" fontSize="42" color="#09789C" />
             <s:Label id="productNameLabel" width="100%" fontSize="42" color="#09789C" />
+        </s:VGroup>
+        <s:VGroup width="450" textAlign="center" includeIn="demo">
+            <s:Label text="Find out more about Practical Writing at www.ClarityEnglish.com" width="100%" fontSize="18" color="#09789C" />
         </s:VGroup>
     </s:VGroup>
 

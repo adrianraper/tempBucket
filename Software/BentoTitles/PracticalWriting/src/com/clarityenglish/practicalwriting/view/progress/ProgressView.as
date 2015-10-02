@@ -2,6 +2,7 @@
  * Created by alice on 17/4/15.
  */
 package com.clarityenglish.practicalwriting.view.progress {
+import com.clarityenglish.bento.BentoApplication;
 import com.clarityenglish.bento.view.base.BentoView;
 
 import flash.events.Event;
@@ -9,14 +10,26 @@ import flash.events.Event;
 import mx.collections.ArrayCollection;
 
 import spark.components.ButtonBar;
+import spark.components.Label;
 
-    public class ProgressView extends BentoView {
+public class ProgressView extends BentoView {
 
         [SkinPart]
         public var progressNavBar:ButtonBar;
 
+        [SkinPart]
+        public var anonymousUserLabel:Label;
+
+        [SkinPart]
+        public var mockedUpMessage:Label;
+
         [Bindable]
         public var isAnonymousUser:Boolean;
+
+        // gh#1307
+        public function get isDemo():Boolean {
+            return productVersion == BentoApplication.DEMO;
+        }
 
         public function ProgressView() {
             super();
@@ -40,6 +53,12 @@ import spark.components.ButtonBar;
                     progressNavBar.requireSelection = true;
                     progressNavBar.addEventListener(Event.CHANGE, onNavBarIndexChange);
                     break;
+                case anonymousUserLabel:
+                    anonymousUserLabel.text = copyProvider.getCopyForId("anonymousProgressMessage");
+                    break;
+                case mockedUpMessage:
+                    mockedUpMessage.text = copyProvider.getCopyForId("mockedUpProgressMessage");
+                    break;
             }
         }
 
@@ -47,6 +66,10 @@ import spark.components.ButtonBar;
          * The state comes from the selection in the progress bar, plus _demo if we are in a demo version
          */
         protected override function getCurrentSkinState():String {
+            // gh#1307
+            if (this.isDemo)
+                return "demo";
+
             // gh#1090
             if (isAnonymousUser)
                 return "anonymous";
