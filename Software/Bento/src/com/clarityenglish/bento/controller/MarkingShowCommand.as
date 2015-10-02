@@ -5,8 +5,10 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.view.marking.MarkingView;
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.content.Exercise;
-	
-	import flash.display.DisplayObject;
+import com.clarityenglish.common.model.CopyProxy;
+import com.clarityenglish.common.model.interfaces.CopyProvider;
+
+import flash.display.DisplayObject;
 	
 	import mx.core.FlexGlobals;
 	import mx.events.CloseEvent;
@@ -21,7 +23,7 @@ package com.clarityenglish.bento.controller {
 	
 	import spark.components.TitleWindow;
 	import spark.events.TitleWindowBoundsEvent;
-	import com.clarityenglish.common.model.ConfigProxy;
+	//import com.clarityenglish.common.model.ConfigProxy;
 	
 	public class MarkingShowCommand extends SimpleCommand {
 		
@@ -43,23 +45,33 @@ package com.clarityenglish.bento.controller {
 
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var courseIndex:Number = bentoProxy.selectedCourseNode.childIndex();
-			
-			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
+
+
+            // Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
 			titleWindow.styleName = "markingTitleWindow";
+            var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
+            titleWindow.title = copyProvider.getCopyForId('exerciseMarkingButton');
+            /*
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			if (configProxy.getConfig().languageCode == "NAMEN") {
 				titleWindow.title = "Scoring";
 			} else {
 				titleWindow.title = "Marking";
 			}
-			
+			*/
+
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
 			
 			var markingView:MarkingView = new MarkingView();
 			markingView.exerciseMark = exerciseMark;
-			markingView.courseIndex = courseIndex
-			titleWindow.addElement(markingView);
+			markingView.courseIndex = courseIndex;
+
+            // If this is the second time the marking has been shown, explain that the score is first time score
+            if (exerciseProxy.exerciseMarkWritten)
+                markingView.secondTimeShown = true;
+
+            titleWindow.addElement(markingView);
 			
 			// Create and centre the popup
 			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, false, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
@@ -82,7 +94,7 @@ package com.clarityenglish.bento.controller {
 				sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
 				
 				exerciseProxy.exerciseMarkWasWritten();
-			}
+            }
 			
 			sendNotification(BBNotifications.MARKING_SHOWN, exercise);
 		}

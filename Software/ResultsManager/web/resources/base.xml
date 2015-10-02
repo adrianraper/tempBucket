@@ -149,7 +149,8 @@
             <lit name="overallScoreLabel">You scored {score}%</lit>
             <lit name="correctLabel">Correct: {correct}</lit> 
             <lit name="wrongLabel">Wrong: {wrong}</lit> 
-            <lit name="missedLabel">Skipped: {missed}</lit> 
+            <lit name="missedLabel">Skipped: {missed}</lit>
+            <lit name="markingSecondTimeShown">Your saved score is based on your first attempt.</lit>
             <lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
             
             <lit name="footerLabel"> © Clarity Language Consultants Ltd, 2014-15. All rights reserved.</lit>

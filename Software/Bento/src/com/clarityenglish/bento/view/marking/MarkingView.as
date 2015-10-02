@@ -33,13 +33,16 @@ package com.clarityenglish.bento.view.marking {
 		public var wrongLabel:Label;
 		[SkinPart]
 		public var missedLabel:Label;
-		
+        [SkinPart]
+        public var secondTimeShownLabel:Label;
+
 		[Bindable]
 		public var exerciseMark:ExerciseMark;
 
 		[Bindable]
 		public var courseIndex:Number;
-		
+
+        public var secondTimeShown:Boolean = false;
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 		}
@@ -76,6 +79,11 @@ package com.clarityenglish.bento.view.marking {
 					replaceObj = {missed: exerciseMark.missedCount};
 					missedLabel.text = copyProvider.getCopyForId("missedLabel", replaceObj);
 					break;
+                case secondTimeShownLabel:
+                    //replaceObj = {score: copyProvider.getCopyForId("missedLabel")};
+                    secondTimeShownLabel.text = copyProvider.getCopyForId("markingSecondTimeShown");
+                    secondTimeShownLabel.visible = secondTimeShownLabel.includeInLayout = secondTimeShown;
+                    break;
 			}
 		}
 		

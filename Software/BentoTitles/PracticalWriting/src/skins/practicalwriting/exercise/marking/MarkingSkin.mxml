@@ -12,9 +12,7 @@
         [Bindable]
         private var markingCount:ArrayCollection;
 
-        protected function onCreationComplete(event:FlexEvent):void
-        {
-            // TODO Auto-generated method stub
+        protected function onCreationComplete(event:FlexEvent):void {
             if (hostComponent.exerciseMark) {
                 markingCount = new ArrayCollection([{Count: hostComponent.exerciseMark.correctCount}, {Count: hostComponent.exerciseMark.incorrectCount}, {Count: hostComponent.exerciseMark.missedCount}]);
             }
@@ -39,6 +37,7 @@
             </s:fill>
         </s:Rect>
 
+        <s:Label id="secondTimeShownLabel" top="8" paddingRight="10" width="100%" textAlign="right" color="#C0C0C0" fontSize="13" visible="false" includeInLayout="false"  />
         <s:HGroup width="100%" height="220" top="5" left="26" verticalAlign="middle">
             <s:Group width="220" height="220">
                 <mx:PieChart id="markingPieChart" width="100%" height="100%" paddingTop="10" dataProvider="{markingCount}" innerRadius="0.8">
@@ -46,13 +45,13 @@
                         <mx:PieSeries field="Count" filters="{[]}" startAngle="-90" fills="{[getStyle('pieChartFillColor')[hostComponent.courseIndex], getStyle('pieChartBottomColor')[hostComponent.courseIndex], getStyle('pieChartBottomColor')[hostComponent.courseIndex]]}" renderDirection="clockwise"/>
                     </mx:series>
                 </mx:PieChart>
-                <s:HGroup horizontalCenter="0" verticalCenter="12" width="150" height="80" horizontalAlign="center" gap="-3">
+                <s:HGroup horizontalCenter="0" verticalCenter="12" horizontalAlign="center" verticalAlign="baseline" gap="-3">
                     <s:Label fontSize="76" color="{getStyle('pieChartFillColor')[hostComponent.courseIndex]}" text="{hostComponent.exerciseMark.correctPercent}" />
-                    <s:Label paddingTop="45" fontSize="17" color="{getStyle('pieChartFillColor')[hostComponent.courseIndex]}" text="%"/>
+                    <s:Label fontSize="20" color="{getStyle('pieChartFillColor')[hostComponent.courseIndex]}" text="%"/>
                 </s:HGroup>
             </s:Group>
             <s:VGroup height="100%" verticalAlign="middle" horizontalAlign="left" textAlign="left" paddingTop="20">
-                <s:Label id="overallScoreLabel" fontSize="15" />
+                <s:Label id="overallScoreLabel" fontSize="15" visible="false" includeInLayout="false" />
                 <s:Label id="correctLabel" fontSize="15" />
                 <s:Label id="wrongLabel" fontSize="15" />
                 <s:Label id="missedLabel" fontSize="15" />

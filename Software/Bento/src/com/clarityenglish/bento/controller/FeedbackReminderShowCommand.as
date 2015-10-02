@@ -36,14 +36,18 @@ package com.clarityenglish.bento.controller
 			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 			
 			var text:String = note.getBody() as String;
-			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
-			titleWindow = new TitleWindow();
-			//titleWindow.styleName = "markingTitleWindow"; ... if we want to skin the title window
-			titleWindow.styleName = "feedbackTitleWindow";
-			titleWindow.title = copyProvider.getCopyForId('exerciseFeedbackButton');
 
-			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
-			
+            // Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
+            // gh#1318
+            if (!titleWindow) {
+                titleWindow = new TitleWindow();
+                titleWindow.styleName = "feedbackTitleWindow";
+                titleWindow.title = copyProvider.getCopyForId('exerciseFeedbackButton');
+                titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
+            } else {
+                titleWindow.removeElement(titleWindow.getElementAt(0));
+            }
+
 			var label:spark.components.Label = new spark.components.Label();
 			label.text = text;
             // gh#1297 id the label so that css from practicalwriting.css can be used for the styling
