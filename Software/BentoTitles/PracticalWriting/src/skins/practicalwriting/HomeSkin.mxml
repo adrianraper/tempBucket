@@ -36,17 +36,13 @@
                 <s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true" disabledAlpha="1">
                     <fx:Script>
                         <![CDATA[
-                        // #1294
+                        import com.clarityenglish.bento.vo.content.Course;
+
+                        // gh#1294
                         override public function set data(value:Object):void {
                             super.data = value;
-
-                            if (data.attribute("enabledFlag").length() > 0 && (data.@enabledFlag.toString() & 8)) {
-                                this.enabled = false;
-                                pieChartButton.enabled = false;
-                            } else {
-                                this.enabled = true;
-                                pieChartButton.enabled = true;
-                            }
+                            this.visible = pieChartButton.visible = Course.showCourseInMenu(value as XML);
+                            this.enabled = pieChartButton.enabled = Course.courseEnabledInMenu(value as XML);
                         }
                         ]]>
                     </fx:Script>

@@ -460,11 +460,11 @@ EOD;
 			$bindingParams[] = $rootID;
 		}
 		
-		//NetDebug::trace("sql=".$sql);
-		//NetDebug::trace("bindingParams=".implode(",",$bindingParams));
+        //AbstractService::$debugLog->notice("sql=".$sql);
+        //AbstractService::$debugLog->notice("bindingParams=".implode(",",$bindingParams));
 		$rs = $this->db->Execute($sql, $bindingParams);
-		//NetDebug::trace("records==".$rs->RecordCount());
-		
+        //AbstractService::$debugLog->notice("records==".$rs->RecordCount());
+
 		switch ($rs->RecordCount()) {
 			case 0:
 				// Invalid login to regular account
@@ -496,7 +496,7 @@ EOD;
 			case 1:
 				// Valid login
 				$loginObj = $rs->FetchNextObj();
-		
+
 				// A special case to check that the password matches the case (by default MSSQL and MYSQL are case-insensitive)
 				if ($password != $loginObj->F_Password) return false;
 				

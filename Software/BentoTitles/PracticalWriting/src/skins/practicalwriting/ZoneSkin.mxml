@@ -10,13 +10,11 @@
 
     <fx:Script>
         <![CDATA[
-            // #1294
+        import com.clarityenglish.bento.vo.content.Unit;
+
+        // gh#1294 Could also add function for showUnitInMenu - though not needed yet
             public function isUnitEnabled(unit:XML):Boolean {
-                if(unit.attribute("enabledFlag").length() > 0 && (unit.@enabledFlag.toString() & 8)) {
-                    return false;
-                } else {
-                    return true;
-                }
+                return Unit.unitEnabledInMenu(unit);
             }
         ]]>
     </fx:Script>

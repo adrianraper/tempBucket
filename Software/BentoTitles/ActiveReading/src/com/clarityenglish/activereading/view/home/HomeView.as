@@ -16,18 +16,18 @@ package com.clarityenglish.activereading.view.home {
 	import mx.core.ScrollPolicy;
 	import mx.effects.Move;
 	import mx.effects.easing.Back;
-import mx.events.EffectEvent;
+    import mx.events.EffectEvent;
 
-import org.osflash.signals.Signal;
+    import org.osflash.signals.Signal;
 
 	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.List;
-import spark.effects.Scale;
-import spark.primitives.Path;
-import spark.primitives.Rect;
+    import spark.effects.Scale;
+    import spark.primitives.Path;
+    import spark.primitives.Rect;
 
-public class HomeView extends BentoView {
+    public class HomeView extends BentoView {
 		
 		[SkinPart]
 		public var instructionGroup:Group;
