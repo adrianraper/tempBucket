@@ -118,6 +118,15 @@ import org.puremvc.as3.utilities.statemachine.StateMachine;
                         sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
                         return true;
                     }
+                } else {
+                    // gh#1328
+                    if (directStart.unitID) {
+                        unit = bentoProxy.menuXHTML.getElementById(directStart.unitID);
+                        sendNotification(BBNotifications.SELECTED_NODE_CHANGE, unit);
+                    } else if (directStart.courseID) {
+                        var course:XML = bentoProxy.menuXHTML.getElementById(directStart.courseID);
+                        sendNotification(BBNotifications.SELECTED_NODE_CHANGE, course);
+                    }
                 }
             } else {
                 var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
