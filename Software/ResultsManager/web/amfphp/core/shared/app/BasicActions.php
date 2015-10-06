@@ -112,7 +112,7 @@ function securityAction (&$amfbody) {
 		$className = $amfbody->className;
 		
 		if (method_exists($classConstruct, "beforeFilter")) {			
-			//Pass throught the executive
+			//Pass through the executive
 			$allow = Executive::doMethodCall($amfbody, 
 										$classConstruct, 
 										'beforeFilter', 
@@ -121,7 +121,10 @@ function securityAction (&$amfbody) {
 				// v3.6 Change the text of this message as it does happen quite often
 				//$ex = new MessageException(E_USER_ERROR, "Method access blocked by beforeFilter in " . $className . " class", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
 				// gh#1223
-				if ($className=='DMSService' || $className=='ClarityService' || $className=='IELTSService' || $className=='TenseBusterService' || $className=='ClearPronunciationService' || $className=='TB6weeksService') {
+				if ($className=='DMSService' || $className=='ClarityService'
+                    || $className=='IELTSService' || $className=='TenseBusterService'
+                    || $className=='ClearPronunciationService' || $className=='PracticalWritingService'
+                    || $className=='TB6weeksService') {
 					$ex = new MessageException(E_USER_ERROR, "Your authentication has been lost, please login again.", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
 				} else {
 					$ex = new MessageException(E_USER_ERROR, "Method access blocked by beforeFilter in " . $className . " class", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");

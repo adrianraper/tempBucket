@@ -170,22 +170,27 @@ class AbstractService {
 			$function_called == "getCopy" ||
 			$function_called == "getContent" ||
 			$function_called == "getProgressData" ||
-			$function_called == "getCoverage" ||
+			$function_called == "getCoverage" || // This is just for IYJ progress
 			$function_called == "getEveryonesCoverage" ||
 			$function_called == "getEveryoneSummary" ||
 			$function_called == "getAccountSettings" ||
 			$function_called == "getIPMatch" ||
 			$function_called == "updateUser" ||
-			//$function_called == "updateLicence" || // gh#1299 I think should not be here
-			//$function_called == "getInstanceID" || // gh#1299 I think should not be here
 			$function_called == "addUser" ||
+            //$function_called == "updateLicence" || // gh#1299 I think should not be here
+            //$function_called == "getInstanceID" || // gh#1299 I think should not be here
 			//$function_called == "writeScore" || // gh#1223  // gh#1299 I think should not be here
 			$function_called == "xhtmlLoad" || // gh#1223
 			$function_called == "getCCBContent"
 			) return true;
 		
 		// If the user isn't authenticated then fail
-        if (!Authenticate::isAuthenticated()) return false;
+        if (!Authenticate::isAuthenticated()) {
+            AbstractService::$debugLog->info('fail call to '.$function_called.' from '.Session::getSessionName().' sessionId='.session_id());
+            return false;
+        } else {
+            AbstractService::$debugLog->info('ok '.$function_called.' from '.Session::getSessionName().' as '.(string)Authenticate::getAuthUser().' sessionId='.session_id());
+        }
 		
 		// Now check the user roles against the permissions for the method we are calling (if none are set then we succeed).
 		$memberName = $function_called."Roles";

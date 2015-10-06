@@ -23,7 +23,7 @@
             fontStyle: normal;
             fontWeight: normal;
             embedAsCFF: false;
-            advancedAntiAliasing: true;
+            advancedAntiAliasing: true;f
         }
 
         @font-face {

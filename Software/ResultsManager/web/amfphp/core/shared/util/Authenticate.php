@@ -21,9 +21,6 @@ class Authenticate {
 	 * @return bool Whether the current user has been authenticated
 	 */
 	function isAuthenticated () {
-		//if (isset($_SESSION['amfphp_username'])) {
-		AbstractService::$debugLog->info('isAuthenticated from '.Session::getSessionName());
-        // return false;
 		if (Session::is_set('amfphp_username')) {
 			return true;
 		} else {
@@ -36,9 +33,7 @@ class Authenticate {
 	 * @return string the name of the authenticated user
 	 */
 	function getAuthUser () {
-		//if(isset($_SESSION['amfphp_username']))
 		if (Session::is_set('amfphp_username')) {
-			//return $_SESSION['amfphp_username'];
 			return Session::get('amfphp_username');
 		} else {
 			return false;
