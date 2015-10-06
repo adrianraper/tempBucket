@@ -14,7 +14,7 @@ package org.davekeen.delegates {
 	
 	public class RemoteDelegate extends EventDispatcher implements IDelegate {
 		
-		private static var disableAppOnCall:Boolean = true;
+		private static var disableAppOnCall:Boolean = false;
 		
 		// PHP Error codes
 		public static const E_ERROR:int = 1;
@@ -26,6 +26,8 @@ package org.davekeen.delegates {
 		private var args:Array;
 		private var remoteObject:RemoteObject;
 		private var dispatchEvents:Boolean;
+		
+		private static var showBusyCursor:Boolean = true;
 		
 		private static var channelSet:ChannelSet;
 		private static var service:String;
@@ -39,12 +41,25 @@ package org.davekeen.delegates {
 			this.dispatchEvents = dispatchEvents;
 		}
 		
+		public static function setShowBusyCursor(value:Boolean):void {
+			showBusyCursor = value;
+		}
+		
 		/**
-		 * Statically set the gateway for the delegate.  For AMFPHP this will be the absolute URL of a gateway.php file.
-		 * 
+		 * Statically set the gateway for the delegate.  For AMFPHP this will be the absolute URL of a gateway.php file.  There is an option getParams
+		 * object argument, which list permanent get parameters that will be added to the url.  Typically this would be used for a sessionid.
+		 * gh#1314 Updated to Bento version
 		 * @param	url
 		 */
-		public static function setGateway(url:String):void {
+		public static function setGateway(url:String, getParams:Object = null):void {
+			if (getParams) {
+				var getArray:Array = [];
+				for (var key:String in getParams)
+					getArray.push(key + "=" + getParams[key]);
+				
+				url += "?" + encodeURI(getArray.join("&"));
+			}
+			
 			channelSet = new ChannelSet();
 			var amfChannel:AMFChannel = new AMFChannel("amfphp", url);
 			channelSet.addChannel(amfChannel);
@@ -85,7 +100,7 @@ package org.davekeen.delegates {
 			remoteObject.channelSet = channelSet;
 			remoteObject.destination = "amfphp";
 			remoteObject.source = service;
-			remoteObject.showBusyCursor = true;
+			remoteObject.showBusyCursor = showBusyCursor;
 			
 			// Add listeners for results and faults
 			remoteObject.addEventListener(ResultEvent.RESULT, onResult);
@@ -97,8 +112,6 @@ package org.davekeen.delegates {
 			if (args) operation.arguments = args;
 			
 			if (disableAppOnCall) Application.application.enabled = false;
-			
-			//trace("CALLING: " + operationName + "(" + args + ")");
 			
 			operation.send();
 		}

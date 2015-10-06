@@ -1,7 +1,13 @@
 <?php
 
+// gh#32 gh#1314
+if (isset($_GET['PHPSESSID'])) {
+    session_id($_GET['PHPSESSID']);
+} elseif (isset($_COOKIE["PHPSESSID"])) {
+    session_id($_COOKIE["PHPSESSID"]);
+}
+
 // I need to call session_start here as this is about the first thing in any page.
-// Move into abstract service so you can use our Session class to register a handler
 if (!isset($noSession)) session_start();
 
 // Whilst this is done in amfphp globals, some scripts don't run through that

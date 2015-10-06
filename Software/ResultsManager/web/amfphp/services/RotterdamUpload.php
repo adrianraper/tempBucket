@@ -1,5 +1,6 @@
 <?php
-if (isset($_GET['PHPSESSID'])) session_id($_GET['PHPSESSID']); // gh#32
+// gh#1314
+// if (isset($_GET['PHPSESSID'])) session_id($_GET['PHPSESSID']); // gh#32
 if (isset($_GET['span'])) $span = $_GET['span'];
 
 require_once(dirname(__FILE__)."/../../config.php");
@@ -30,7 +31,7 @@ switch($maxUnits) {
 
 if (!Authenticate::isAuthenticated()) {
 	// Fail if the user isn't authenticated
-	AbstractService::$debugLog->info('in RotterdamUpload, session name is '.Session::getSessionName().' user is '.Authenticate::getAuthUser());
+	//AbstractService::$debugLog->info('in RotterdamUpload, session name is '.Session::getSessionName().' user is '.Authenticate::getAuthUser());
 	echo json_encode(array("success" => false, "message" => $service->copyOps->getCopyForId("errorUploadNotAuthenticated")));
 	exit(0);
 }

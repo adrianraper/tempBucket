@@ -32,13 +32,18 @@ package com.clarityenglish.resultsmanager.controller {
 			if (Application.application.parameters.host) Constants.HOST = Application.application.parameters.host;
 			
 			// If the sessionid is defined in the FlashVars then set it
-			if (Application.application.parameters.sessionid) Constants.SESSIONID = Application.application.parameters.sessionid;
+			if (Application.application.parameters.sessionid) {
+				Constants.SESSIONID = Application.application.parameters.sessionid;
+			} else {
+				Constants.SESSIONID = this.generateSessionId();
+			}
 			
 			// v3.4 Can I also figure out the domain here so that it can be used if necessary?
 			Constants.BASE_FOLDER = Application.application.url.replace('ResultsManager.swf','');
 			
 			// Configure the delegate
-			RemoteDelegate.setGateway(Constants.AMFPHP_BASE + "gateway.php");
+			// gh#1314
+			RemoteDelegate.setGateway(Constants.AMFPHP_BASE + "gateway.php", { PHPSESSID: Constants.SESSIONID });
 			RemoteDelegate.setService(Constants.AMFPHP_SERVICE);
 			
 			// Register the copy and login proxies (all other proxies are registered on a successful login)
@@ -66,6 +71,17 @@ package com.clarityenglish.resultsmanager.controller {
 			}
 			
 		}
-		
+		private function generateSessionId():String {
+			// Interleave a timestamp with a random string of letters
+			var chars:String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+			var numChars:Number = chars.length - 1;
+			var buildId:String = '';
+			var timeStamp:Date = new Date();
+			var timeChars:String = timeStamp.getTime().toString();
+			for (var ix:uint = 0; ix < timeChars.length; ix++)
+				buildId += timeChars.charAt(ix) + chars.charAt(Math.floor(Math.random() * numChars));
+			return buildId;
+		}
+
 	}
 }

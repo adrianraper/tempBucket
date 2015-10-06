@@ -79,7 +79,8 @@
 			name: "rm"
 		};
 		var expressInstall = webShare + "/Software/Common/expressInstall.swf";
-		flashvars.sessionid = "<?php echo session_id(); ?>";
+		// gh#1314
+		// flashvars.sessionid = "<?php echo session_id(); ?>";
 		swfobject.embedSWF(startControl + "ResultsManager.swf" + argList, "altContent", "100%", "100%", "9.0.45", expressInstall, flashvars, params, attr);
 	</script>
 	<style type="text/css">

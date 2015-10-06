@@ -71,7 +71,6 @@ package com.clarityenglish.common.vo.config {
 		public var password:String;
 		public var courseID:String;
 		public var startingPoint:String;
-		public var sessionID:String;
 		public var userID:String;
 		public var courseFile:String;
 		// language determines what string literal language is used
@@ -82,7 +81,12 @@ package com.clarityenglish.common.vo.config {
 		public var assetFolder:String;
 		public var remoteGateway:String;
 		public var remoteService:String;
-		public var instanceID:String;
+        // gh#1314
+        public var _sessionID:String = null;
+        public var _instanceID:String = null;
+        public var server:String = null;
+        public var protocol:String = 'http://';
+
 		public var ip:String;
 		public var referrer:String;
 		// For CCB
@@ -191,6 +195,7 @@ package com.clarityenglish.common.vo.config {
 			
 			// gh#1090
 			this.rootID = 0;
+
 		}
 		
 		/**
@@ -240,7 +245,27 @@ package com.clarityenglish.common.vo.config {
 		public function set noLogin(value:Boolean):void {
 			_noLogin = value;
 		}
-		
+
+        // gh#1314
+        public function set sessionID(value:String):void {
+            _sessionID = value;
+        }
+        public function get sessionID():String {
+            if (!_sessionID) {
+                _sessionID = this.generateSessionId();
+            }
+            return _sessionID;
+        }
+        public function set instanceID(value:String):void {
+            _instanceID = value;
+        }
+        public function get instanceID():String {
+            if (!_instanceID) {
+                _instanceID = this.generateInstanceId();
+            }
+            return _instanceID;
+        }
+
 		/**
 		 *  You can pass the following to the application from start page or command line
 		 * 	  prefix
@@ -281,6 +306,9 @@ package com.clarityenglish.common.vo.config {
 					case 'instanceID':
 					// #336 SCORM
 					case 'scorm':
+                    // gh#1314
+                    case 'server':
+                    case 'protocol':
 						if (this.hasOwnProperty(property))
 							this[property] = parameters[property];
 						break;
@@ -302,14 +330,26 @@ package com.clarityenglish.common.vo.config {
 						this.otherParameters[property] = parameters[property];	
 				}
 			}
-				
+
 			// #361
+            // gh#1314 Done in getter initialisation now
+            /*
 			if (!this.instanceID) {
 				var timeStamp:Date = new Date();
 				this.instanceID = timeStamp.getTime().toString();
 			}
+			*/
 
-			// gh#1160
+            // gh#1314 Have to do this after picking up sever parameters
+            // gh#1339 Substitute any dynamic domains
+            var replaceObj:Object = {remoteDomain: this.remoteDomain, currentDomain: this.protocol + this.server + '/'};
+            for (var searchString:String in replaceObj) {
+                var regExp:RegExp = new RegExp("\{" + searchString + "\}", "g");
+                this.remoteGateway = this.remoteGateway.replace(regExp, replaceObj[searchString]);
+                this.contentRoot = this.contentRoot.replace(regExp, replaceObj[searchString]);
+            }
+
+            // gh#1160
 			// gh#1160 If you started with passed parameters, clear [most of] them out now for a restart
 			this.retainedParameters = {};
 			for (property in parameters) {
@@ -321,6 +361,23 @@ package com.clarityenglish.common.vo.config {
 				}
 			}
 		}
+
+        // gh#1314
+        private function generateInstanceId():String {
+            var timeStamp:Date = new Date();
+            return timeStamp.getTime().toString();
+        }
+        private function generateSessionId():String {
+            // Interleave a timestamp with a random string of letters
+            var chars:String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var numChars:Number = chars.length - 1;
+            var buildId:String = '';
+            var timeStamp:Date = new Date();
+            var timeChars:String = timeStamp.getTime().toString();
+            for (var ix:uint = 0; ix < timeChars.length; ix++)
+                buildId += timeChars.charAt(ix) + chars.charAt(Math.floor(Math.random() * numChars));
+            return buildId;
+        }
 		/**
 		 * Do any substitutions that you can for the menu filename
 		 */
@@ -409,12 +466,9 @@ package com.clarityenglish.common.vo.config {
 			
 			// This is the base content folder, we expect it to be added to with title specific subFolder
 			if (xml..contentPath.toString()) {
-				//loginout
 				this.contentRoot = xml..contentPath.toString();
-				//this.paths.content = xml..contentPath.toString();
 			} else {
-				this.contentRoot= "/Content";
-				//this.paths.content = "/Content";
+				this.contentRoot= "/";
 			}
 			
 			// Name of the menu file (called courseFile to fit in with Orchid)
@@ -455,8 +509,15 @@ package com.clarityenglish.common.vo.config {
 				this.language = xml..language.toString();
 				this.languageCode = xml..language.toString();
 			}
-			
-			// To handle the amfphp gateway
+
+            // For remote access and domain independence
+            if (xml..remoteDomain.toString()) {
+                this.remoteDomain = xml..remoteDomain.toString();
+            } else {
+                this.remoteDomain = "http://www.ClarityEnglish.com/";
+            }
+
+            // To handle the amfphp gateway
 			if (xml..remoteGateway.toString()) {
 				this.remoteGateway = xml..remoteGateway.toString();
 			} else {
@@ -465,15 +526,9 @@ package com.clarityenglish.common.vo.config {
 			if (xml..remoteService.toString()) {
 				this.remoteService = xml..remoteService.toString();
 			} else {
-				this.remoteService = "IELTSService";
+				this.remoteService = "BentoService";
 			}
 			
-			// For remote access and domain independence
-			if (xml..remoteDomain.toString()) {
-				this.remoteDomain = xml..remoteDomain.toString();
-			} else {
-				this.remoteDomain = "http://www.ClarityEnglish.com/Software/";
-			}			
 			if (xml..assetFolder.toString()) {
 				this.assetFolder = xml..assetFolder.toString();
 			} else {

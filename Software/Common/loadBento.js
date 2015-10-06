@@ -36,6 +36,7 @@
 			startTime: jsStartTime,
 			referrer: jsReferrer,
 			server: jsServer,
+			protocol: jsHttpProtocol,
 			ip: jsIP,
 			courseFile: jsCourseFile,
 			licence: "",

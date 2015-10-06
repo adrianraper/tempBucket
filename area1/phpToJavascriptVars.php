@@ -10,6 +10,7 @@ echo 'var jsProductCode="'.$productCode.'";';
 echo 'var jsAccountName="'.$accountName.'";';
 echo 'var jsReferrer="'.$referrer.'";';
 echo 'var jsServer="'.$server.'";';
+echo 'var jsHttpProtocol="'.$httpProtocol.'";';
 echo 'var jsIP="'.$ip.'";';
 echo 'var jsCourseFile="'.$courseFile.'";';
 

@@ -93,6 +93,9 @@ class BentoService extends AbstractService {
 			AbstractService::$debugLog->setRootID(Session::get('rootID'));
 			AbstractService::$controlLog->setRootID(Session::get('rootID'));
 		}
+
+        // gh#1314
+        AbstractService::$debugLog->notice("php session running with id=".session_id());
 	}
 	
 	/**
@@ -137,10 +140,13 @@ class BentoService extends AbstractService {
 	 * @return error - Error object if required 
 	 */
 	public function getAccountSettings($config) {
+        // gh#1314 incorporate into config - session Id will be passed in url if not available in cookies
 		// gh#622 Add cookie checking code
+        /*
 		if (!isset($_COOKIE["PHPSESSID"])) 
     		throw $this->copyOps->getExceptionForId("errorCookiesBlocked", array("domain" => $_SERVER['SERVER_NAME']));
-		
+		*/
+
 		// #353 This first call might change the dbHost that the session uses
 		if (isset($config['dbHost']))
 			$this->initDbHost($config['dbHost']);
@@ -190,7 +196,6 @@ class BentoService extends AbstractService {
 		Session::set('rootID', $account->id);
 		Session::set('productCode', $config['productCode']);		
 		
-		// TODO: Check with Adrian that this is ok
 		$title = $account->getTitleByProductCode($config['productCode']);
 		Session::set('dbContentLocation', $title->dbContentLocation);
 		//issue:#11
@@ -266,10 +271,13 @@ class BentoService extends AbstractService {
 	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null, $allowedUserTypes = null) {
 		if ($dbHost)
 			$this->initDbHost($dbHost);
-		
-		// gh#622 Add cookie checking code
+
+        // gh#1314 incorporate into config - session Id will be passed in url if not available in cookies
+        // gh#622 Add cookie checking code
+        /*
 		if (!isset($_COOKIE["PHPSESSID"]))
     		throw $this->copyOps->getExceptionForId("errorCookiesBlocked", array("domain" => $_SERVER['SERVER_NAME']));
+		*/
 			
 		// gh#21 It is acceptable to pass a null rootID, so don't grab it from session
 		// if (!$rootID) $rootID = array(Session::get('rootID'));
@@ -482,9 +490,7 @@ class BentoService extends AbstractService {
 		
 		// Clear php session and authentication
 		$this->loginOps->logout();
-		
-		Session::clear();
-		
+
 		return array("justAnonymous" => $justAnonymous);
 	}
 	

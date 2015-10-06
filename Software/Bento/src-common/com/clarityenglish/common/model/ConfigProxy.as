@@ -92,14 +92,15 @@ package com.clarityenglish.common.model {
 			
 			config.productCode = config.configProductCode;
 			config.paths.menuFilename = config.configFilename;
-			var timeStamp:Date = new Date();
-			config.instanceID = timeStamp.getTime().toString();
+			config.instanceID = null;
+            // gh#1314 Since you can't reset the gateway, you don't want to reset the sessionID either
+            //config.sessionID = null;
 
 			// gh#1160
 			config.userID = config.username = config.email = config.studentID = config.password = config.startingPoint = config.sessionID = null;
 			config.group = new Group();
 			
-			// gh#1090 Clear everything except that which you retained on the first go
+			// gh#1090 Clear everything except that which you retained on the first go, special case for logout of demo accounts
 			if (config.prefix == "TD" || config.prefix == "Demo")
 				config.retainedParameters = {};
 			config.prefix = "";
@@ -111,25 +112,22 @@ package com.clarityenglish.common.model {
 			config.courseID = '';
 
 			_directStartOverride = false;
-		}
+
+            // gh#1314
+            // gh#1160 If we have already used these, just keep those that are retainable.
+            // gh#1090 config.retainedParameters cannot tell the object is empty or not.
+            if (config.retainedParameters["prefix"])
+                config.mergeParameters(config.retainedParameters);
+
+        }
 		
 		/**
 		 * Method to get details sent on the command line, or from the start page
 		 * 
 		 */
 		public function getApplicationParameters():void {
-			/**
-			 *  Use what is passed from start page or command line
-			 */
-			// gh#1160 If we have already used these, just keep those that are retainable.
-			// gh#1090 config.retainedParameters cannot tell the object is empty or not.
-			if (config.retainedParameters["prefix"]) {
-				var parameters:Object = config.retainedParameters;
-			} else {
-				parameters = FlexGlobals.topLevelApplication.parameters;
-			}
-			config.mergeParameters(parameters);
-			
+			// gh#1314 merge parameters from command line earlier now
+
 			// #336 SCORM
 			// The SCORM initialisation might fail and raise an exception. Don't bother going on...
 			var rc:Boolean = true;
@@ -224,10 +222,21 @@ package com.clarityenglish.common.model {
 		public function onConfigLoadComplete(e:Event):void {
 			//config = new XML(e.target.data);
 			config.mergeFileData(new XML(e.target.data));
-			
-			// Configure the delegate now that you have the gateway path.  If a sessionid is defined in the FlashVars then add it to the gateway.
-			var sessionParams:Object = (FlexGlobals.topLevelApplication.parameters.sessionid != undefined) ? { PHPSESSID: FlexGlobals.topLevelApplication.parameters.sessionid } : null;		
-			RemoteDelegate.setGateway(config.remoteGateway + "gateway.php", sessionParams);
+
+            // gh#1314  Use what is passed from start page or command line
+            // gh#1160 If we have already used these, just keep those that are retainable.
+            // gh#1090 config.retainedParameters cannot tell the object is empty or not.
+            //if (config.retainedParameters["prefix"]) {
+            //    var parameters:Object = config.retainedParameters;
+            //} else {
+            //    parameters = FlexGlobals.topLevelApplication.parameters;
+            //}
+            config.mergeParameters(FlexGlobals.topLevelApplication.parameters);
+
+            // Configure the delegate now that you have the gateway path.  If a sessionid is defined then add it to the gateway.
+            // gh#1314 Otherwise generate an id to use as a session id.
+            log.debug('use config.sessionID=' + config.sessionID);
+			RemoteDelegate.setGateway(config.remoteGateway + "gateway.php", { PHPSESSID: config.sessionID });
 			RemoteDelegate.setService(config.remoteService);
 			
 			// A special case; if disableAutoTimeout is true then turn off the activity timer #385
@@ -267,7 +276,6 @@ package com.clarityenglish.common.model {
 		
 		// Then methods to get parts of the configuration data
 		public function getMenuFilename():String {
-			//return "menu-Academic-LastMinute.xml";
 			return config.paths.menuFilename;
 		}
 		

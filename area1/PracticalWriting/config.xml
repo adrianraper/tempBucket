@@ -23,8 +23,9 @@
 	<language>EN</language>
 
 	<contentPath>http://dock.contentbench/Content/</contentPath>
-	<remoteDomain>http://dock.projectbench/</remoteDomain>
-	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<!-- <remoteDomain>http://dock.projectbench/</remoteDomain> -->
+	<remoteDomain>/</remoteDomain>
+	<remoteGateway>{remoteDomain}Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>PracticalWritingService</remoteService>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 	
