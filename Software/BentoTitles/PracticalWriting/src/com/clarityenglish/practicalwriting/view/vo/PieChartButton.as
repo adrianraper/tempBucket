@@ -49,8 +49,9 @@ import spark.components.supportClasses.SkinnableComponent;
                 if (node) {
                     var notDone:Number = Number(node.@of - node.@count);
                     var done:Number = Number(node.@count);
-                    var extra:Number = Math.round(Number(node.@of) * 10 / 360);
-                    nodeArrayCollection = new ArrayCollection([{coverage: done + extra}, {coverage: notDone }]);
+                    // gh#1310
+                    //var extra:Number = Math.round(Number(node.@of) * 10 / 360);
+                    nodeArrayCollection = new ArrayCollection([{coverage: done}, {coverage: notDone}]);
 
                     title = node.@caption;
                 }
