@@ -36,14 +36,12 @@
                                         studySheetSWFLoader.source = outerDocument.hostComponent.href.rootPath+ '/' + data.@thumbnail;
                                     }
 
-                                    protected function onItemClick(href:String):void {
-                                        var url:String = outerDocument.hostComponent.href.rootPath+ '/' + href;
-                                        var request:URLRequest = new URLRequest(url);
-                                        navigateToURL(request);
+                                    protected function onItemClick(data:Object):void {
+                                        outerDocument.hostComponent.onPDFClick(data as XML);
                                     }
                                     ]]>
                             </fx:Script>
-                                <s:VGroup verticalAlign="middle" horizontalAlign="center" gap="8" click="onItemClick(data.@href)" useHandCursor="true" buttonMode="true">
+                                <s:VGroup verticalAlign="middle" horizontalAlign="center" gap="8" click="onItemClick(data)" useHandCursor="true" buttonMode="true">
                                     <s:SWFLoader id="studySheetSWFLoader" width="125" height="181" />
                                     <assets:triangle />
                                     <s:Label text="{data.@caption}" fontSize="12" color="#116A8A" width="125" textAlign="center" />
@@ -74,14 +72,12 @@
                                         sampleEssaySWFLoader.source = outerDocument.hostComponent.href.rootPath+ '/' + data.@thumbnail;
                                     }
 
-                                    protected function onItemClick(href:String):void {
-                                        var url:String = outerDocument.hostComponent.href.rootPath+ '/' + href;
-                                        var request:URLRequest = new URLRequest(url);
-                                        navigateToURL(request);
+                                    protected function onItemClick(data:Object):void {
+                                        outerDocument.hostComponent.onPDFClick(data as XML);
                                     }
                                     ]]>
                             </fx:Script>
-                                <s:VGroup verticalAlign="middle" horizontalAlign="center" gap="8" click="onItemClick(data.@href)" useHandCursor="true" buttonMode="true">
+                                <s:VGroup verticalAlign="middle" horizontalAlign="center" gap="8" click="onItemClick(data)" useHandCursor="true" buttonMode="true">
                                     <s:SWFLoader id="sampleEssaySWFLoader" width="125" height="181" />
                                     <assets:triangle />
                                     <s:Label text="{data.@caption}" fontSize="12" color="#116A8A" width="125" textAlign="center" />
@@ -112,14 +108,12 @@
                                         modelAnswerSWFLoader.source = outerDocument.hostComponent.href.rootPath+ '/' + data.@thumbnail;
                                     }
 
-                                    protected function onItemClick(href:String):void {
-                                        var url:String = outerDocument.hostComponent.href.rootPath+ '/' + href;
-                                        var request:URLRequest = new URLRequest(url);
-                                        navigateToURL(request);
+                                    protected function onItemClick(data:Object):void {
+                                        outerDocument.hostComponent.onPDFClick(data as XML);
                                     }
                                     ]]>
                             </fx:Script>
-                                <s:VGroup verticalAlign="middle" horizontalAlign="center" gap="8" click="onItemClick(data.@href)" useHandCursor="true" buttonMode="true">
+                                <s:VGroup verticalAlign="middle" horizontalAlign="center" gap="8" click="onItemClick(data)" useHandCursor="true" buttonMode="true">
                                     <s:SWFLoader id="modelAnswerSWFLoader" width="125" height="181" />
                                     <assets:triangle />
                                     <s:Label text="{data.@caption}" fontSize="12" color="#116A8A" width="125" textAlign="center" />
@@ -149,14 +143,12 @@
                                         transcriptSWFLoader.source = outerDocument.hostComponent.href.rootPath+ '/' + data.@thumbnail;
                                     }
 
-                                    protected function onItemClick(href:String):void {
-                                        var url:String = outerDocument.hostComponent.href.rootPath+ '/' + href;
-                                        var request:URLRequest = new URLRequest(url);
-                                        navigateToURL(request);
+                                    protected function onItemClick(data:Object):void {
+                                        outerDocument.hostComponent.onPDFClick(data as XML);
                                     }
                                     ]]>
                             </fx:Script>
-                                <s:VGroup verticalAlign="middle" horizontalAlign="center" gap="8" click="onItemClick(data.@href)" useHandCursor="true" buttonMode="true">
+                                <s:VGroup verticalAlign="middle" horizontalAlign="center" gap="8" click="onItemClick(data)" useHandCursor="true" buttonMode="true">
                                     <s:SWFLoader id="transcriptSWFLoader" width="125" height="181" />
                                     <assets:triangle />
                                     <s:Label text="{data.@caption}" fontSize="12" color="#116A8A" width="125" textAlign="center" />

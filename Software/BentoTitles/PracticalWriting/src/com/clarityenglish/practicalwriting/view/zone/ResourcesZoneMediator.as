@@ -1,4 +1,5 @@
 package com.clarityenglish.practicalwriting.view.zone {
+import com.clarityenglish.bento.BBNotifications;
 import com.clarityenglish.bento.model.BentoProxy;
 import com.clarityenglish.bento.view.base.BentoMediator;
 import com.clarityenglish.bento.view.base.BentoView;
@@ -21,6 +22,12 @@ import org.puremvc.as3.interfaces.IMediator;
             // Load courses.xml serverside gh#84
             var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
             view.href = bentoProxy.menuXHTML.href;
+
+            view.PDFSelect.add(onPDFSelect);
+        }
+
+        protected function onPDFSelect(node:XML):void {
+            sendNotification(BBNotifications.SELECTED_NODE_CHANGE, node);
         }
     }
 }

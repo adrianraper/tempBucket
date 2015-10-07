@@ -1,7 +1,9 @@
 package com.clarityenglish.practicalwriting.view.zone {
+import com.clarityenglish.bento.BBNotifications;
 import com.clarityenglish.bento.model.BentoProxy;
 import com.clarityenglish.bento.view.base.BentoMediator;
 import com.clarityenglish.bento.view.base.BentoView;
+import com.clarityenglish.bento.vo.ExerciseMark;
 import com.clarityenglish.common.model.ConfigProxy;
 
 import mx.collections.ArrayCollection;
@@ -27,6 +29,12 @@ import org.puremvc.as3.interfaces.IMediator;
 
             var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
             view.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
+
+            view.videoScore.add(onVideoScore);
+        }
+
+        protected function onVideoScore(exerciseMark:ExerciseMark):void {
+            sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
         }
     }
 }

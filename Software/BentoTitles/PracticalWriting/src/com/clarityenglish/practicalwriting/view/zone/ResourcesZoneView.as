@@ -7,6 +7,8 @@ import flash.events.Event;
 
 import mx.collections.XMLListCollection;
 
+import org.osflash.signals.Signal;
+
 import spark.components.List;
 
 public class ResourcesZoneView extends BentoView {
@@ -16,6 +18,8 @@ public class ResourcesZoneView extends BentoView {
 
     [SkinPart]
     public var sampleEssayList:List;
+
+    public var PDFSelect:Signal = new Signal(XML);
 
     public function ResourcesZoneView() {
         super();
@@ -47,6 +51,10 @@ public class ResourcesZoneView extends BentoView {
     [Bindable(event="dataChange")]
     public function get transcriptXMLListCollection():XMLListCollection {
         return data ? new XMLListCollection(data.unit.(attribute("class") == "resources").exercise.(attribute("group") == "4")): null;
+    }
+
+    public function onPDFClick(node:XML):void {
+        PDFSelect.dispatch(node);
     }
 }
 }
