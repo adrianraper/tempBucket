@@ -46,7 +46,7 @@
                                 <s:VGroup verticalAlign="middle" horizontalAlign="center" gap="8" click="onItemClick(data.@href)" useHandCursor="true" buttonMode="true">
                                     <s:SWFLoader id="studySheetSWFLoader" width="125" height="181" />
                                     <assets:triangle />
-                                    <s:Label text="{data.@caption}" fontSize="12" color="#116A8A" />
+                                    <s:Label text="{data.@caption}" fontSize="12" color="#116A8A" width="125" textAlign="center" />
                                 </s:VGroup>
                             </s:ItemRenderer>
                         </fx:Component>
@@ -84,7 +84,7 @@
                                 <s:VGroup verticalAlign="middle" horizontalAlign="center" gap="8" click="onItemClick(data.@href)" useHandCursor="true" buttonMode="true">
                                     <s:SWFLoader id="sampleEssaySWFLoader" width="125" height="181" />
                                     <assets:triangle />
-                                    <s:Label text="{data.@caption}" fontSize="12" color="#116A8A" />
+                                    <s:Label text="{data.@caption}" fontSize="12" color="#116A8A" width="125" textAlign="center" />
                                 </s:VGroup>
                             </s:ItemRenderer>
                         </fx:Component>
@@ -122,7 +122,7 @@
                                 <s:VGroup verticalAlign="middle" horizontalAlign="center" gap="8" click="onItemClick(data.@href)" useHandCursor="true" buttonMode="true">
                                     <s:SWFLoader id="modelAnswerSWFLoader" width="125" height="181" />
                                     <assets:triangle />
-                                    <s:Label text="{data.@caption}" fontSize="12" color="#116A8A" />
+                                    <s:Label text="{data.@caption}" fontSize="12" color="#116A8A" width="125" textAlign="center" />
                                 </s:VGroup>
                             </s:ItemRenderer>
                         </fx:Component>
@@ -159,7 +159,7 @@
                                 <s:VGroup verticalAlign="middle" horizontalAlign="center" gap="8" click="onItemClick(data.@href)" useHandCursor="true" buttonMode="true">
                                     <s:SWFLoader id="transcriptSWFLoader" width="125" height="181" />
                                     <assets:triangle />
-                                    <s:Label text="{data.@caption}" fontSize="12" color="#116A8A" />
+                                    <s:Label text="{data.@caption}" fontSize="12" color="#116A8A" width="125" textAlign="center" />
                                 </s:VGroup>
                             </s:ItemRenderer>
                         </fx:Component>
