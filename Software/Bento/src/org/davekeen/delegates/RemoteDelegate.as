@@ -9,7 +9,8 @@ package org.davekeen.delegates {
 	import mx.core.FlexGlobals;
 	import mx.messaging.ChannelSet;
 	import mx.messaging.channels.AMFChannel;
-	import mx.rpc.AbstractOperation;
+import mx.messaging.channels.SecureAMFChannel;
+import mx.rpc.AbstractOperation;
 	import mx.rpc.AsyncToken;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
@@ -64,7 +65,7 @@ package org.davekeen.delegates {
 			}
 			
 			channelSet = new ChannelSet();
-			var amfChannel:AMFChannel = new AMFChannel("amfphp", url);
+			var amfChannel:SecureAMFChannel = new SecureAMFChannel("amfphp", url);
 			channelSet.addChannel(amfChannel);
 		}
 		

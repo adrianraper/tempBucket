@@ -25,7 +25,7 @@
         </dependencies>
         <compiler-options />
         <packaging-air-desktop />
-        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/PracticalWritingAir-app.xml" package-file-name="PracticalWritingAir">
+        <packaging-android use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/PracticalWritingAir-app.xml" package-file-name="PracticalWritingAir">
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/android-config.xml" path-in-package="android-config.xml" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/icons/android/icons" path-in-package="icons" />

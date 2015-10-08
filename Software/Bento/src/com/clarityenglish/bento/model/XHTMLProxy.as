@@ -283,6 +283,7 @@ package com.clarityenglish.bento.model {
 			
 			log.info("IO error loading from href {0} - {1}", href, event.text);
 			sendNotification(BBNotifications.XHTML_LOAD_IOERROR, { href: href } );
+            // gh#1340 You only want to send this if it is really the menu.xml which has failed to load, not just a regular exercise.
 			sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
 			delete urlLoaders[urlLoader];
 		}
