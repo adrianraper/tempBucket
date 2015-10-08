@@ -10,12 +10,17 @@ try {
     $json = json_decode(file_get_contents('php://input'));
     echo json_encode(router($json));
 } catch (Exception $e) {
-    header(':', false, 500);
+    header(':', false, $e->getCode() === 0 ? 500 : $e->getCode());
     echo json_encode(array("error" => $e->getMessage()));
 }
 
 // Router
 function router($json) {
+    // Security
+    if ($json->command !== "login") {
+        if (!Authenticate::isAuthenticated()) throw new Exception("userAccessError", 403);
+    }
+
     switch ($json->command) {
         case "login": return login($json->email, $json->password, $json->timezoneOffset);
         case "updateSession": return updateSession($json->sessionID);
