@@ -7,17 +7,17 @@
 	<useCacheBuster>true</useCacheBuster>
 	<courseFile>menu-FullVersion.xml</courseFile>
 	<platform>tablet|iPad</platform>
-	<channel name='aws-streaming' caption='awsstreaming'>
-		<streamingMedia>https://s3-ap-southeast-1.amazonaws.com/clarity-video-streaming/</streamingMedia>
+	<channel name="ios-vimeo" caption="vimeo">
+		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
 	</channel>
 	<sharedMedia />
 	<brandingMedia />
 	
 	<language>EN</language>
 
-	<contentPath>http://192.168.8.82/Content/</contentPath>
-	<remoteDomain>http://192.168.8.82/</remoteDomain>
-	<remoteGateway>http://192.168.8.82/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
+	<remoteDomain>http://www.clarityenglish.com/</remoteDomain>
+	<remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>PracticalWritingService</remoteService>
 	
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
