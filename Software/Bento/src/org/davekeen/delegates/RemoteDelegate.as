@@ -65,8 +65,14 @@ import mx.rpc.AbstractOperation;
 			}
 			
 			channelSet = new ChannelSet();
-			var amfChannel:SecureAMFChannel = new SecureAMFChannel("amfphp", url);
-			channelSet.addChannel(amfChannel);
+            // gh#1331 For when we are talking to https for ios clearance
+            if (url.indexOf('https') == 0) {
+                var secureAmfChannel:SecureAMFChannel = new SecureAMFChannel("amfphp", url);
+                channelSet.addChannel(amfChannel);
+            } else {
+                var amfChannel:AMFChannel = new AMFChannel("amfphp", url);
+                channelSet.addChannel(amfChannel);
+            }
 		}
 		
 		/**
