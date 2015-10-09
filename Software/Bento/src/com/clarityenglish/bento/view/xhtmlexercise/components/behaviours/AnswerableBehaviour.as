@@ -351,7 +351,7 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 				if (question.unmatchedFeedbackSource) {
 					xmlString += '<feedback source="' + question.unmatchedFeedbackSource + '" />';
 				} else if (question.answers[0].feedback) {
-					xmlString += '<feedback source="' + question.answers[0].feedback.source + '" />';
+					xmlString += '<feedback source="' + question.answers[0].feedback.source + '" width="' + question.answers[0].feedback.width + '" />';
 				}
 				xmlString += "</answer>";
 
