@@ -6,7 +6,7 @@
             
             <!-- Errors -->
             <lit name="errorUnknown" code="100">Unknown error</lit>
-            <lit name="errorLostAuthentication">You have been signed-out. Please sign-in again. If the problem persists, please contact support@clarityenglish.com.</lit>
+            <lit name="errorLostAuthentication">You have been signed out. Please start again. If the problem persists, please contact support@clarityenglish.com.</lit>
 
             <lit name="errorNoSuchUser" code="200">Your {loginKeyField} is not registered. Please contact your administrator.</lit>
             <lit name="errorNoProductCode" code="201">No product code sent.</lit>
@@ -35,9 +35,9 @@
             <lit name="errorConcurrentLicenceFull" code="304">This licence is full, please try again later.</lit>
             <lit name="errorReadingLicenceControlTable" code="305">Error reading licence control table. Please contact support@clarityenglish.com.</lit>
             <lit name="errorUnrecognisedLicenceType" code="306">The licence type {licenceType} is not recognised. Please contact support@clarityenglish.com.</lit>
-            <lit name="errorCantFindLicence" code="307">Error, can't find licence {licenceID}. Please sign-in again. If the problem persists, please contact support@clarityenglish.com.</lit>
-            <lit name="errorCantUpdateLicence" code="308">Error, can't update licence {licenceID}. Please sign-in again. If the problem persists, please contact support@clarityenglish.com.</lit>
-            <lit name="errorCantDeleteLicence" code="309">Error, can't delete licence {licenceID}. Please sign-in again. If the problem persists, please contact support@clarityenglish.com.</lit>
+            <lit name="errorCantFindLicence" code="307">Someone else started using your licence while the program was asleep. Please try again. If the problem persists, please contact support@clarityenglish.com.</lit>
+            <lit name="errorCantUpdateLicence" code="308">Error, can't update licence {licenceID}. Please sign in again. If the problem persists, please contact support@clarityenglish.com.</lit>
+            <lit name="errorCantDeleteLicence" code="309">Error, can't delete licence {licenceID}. Please sign in again. If the problem persists, please contact support@clarityenglish.com.</lit>
             <lit name="errorCantAllocateLicenceNumber" code="310">Error, can't allocate a licence number.</lit>
             <lit name="errorIPDoesntMatch" code="311">This licence can only run from certain computers. Your IP is {ip}.</lit>
             <lit name="errorRUDoesntMatch" code="312">This licence can only run from certain websites. You came from {referrer}.</lit>

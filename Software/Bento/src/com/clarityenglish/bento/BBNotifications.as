@@ -124,6 +124,7 @@
 		// gh#604
 		public static const USER_IDLE:String = "bb/user_idle";
 		public static const USER_PRESENT:String = "bb/user_present";
+		public static const USER_ACTIVE:String = "bb/user_active";
 
 		// gh#1219
 		public static const IMAGE_ENLARGE:String = "bb/image_enlarge";

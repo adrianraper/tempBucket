@@ -1,14 +1,17 @@
 package com.clarityenglish.bento.model {
-	import com.clarityenglish.bento.vo.Href;
+import com.clarityenglish.bento.BBNotifications;
+import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
-	import flash.system.System;
-	
-	import mx.logging.ILogger;
+import flash.events.TimerEvent;
+import flash.system.System;
+import flash.utils.Timer;
+
+import mx.logging.ILogger;
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
@@ -37,7 +40,11 @@ package com.clarityenglish.bento.model {
 		private var dirtyObj:Object;
 		
 		private var _selectedNode:XML;
-		
+
+        // gh#604 Seconds before the user is considered to have stopped working on the app
+        public static const USER_IDLE_THRESHOLD:Number = 300;
+        private var idleTimer:Timer;
+
 		public function BentoProxy() {
 			super(NAME);
 			
@@ -271,7 +278,29 @@ package com.clarityenglish.bento.model {
 			
 			return null;
 		}
-		
-	}
+        // gh#1342
+        public function startUserIdleTimer():void {
+            idleTimer = new Timer(USER_IDLE_THRESHOLD * 1000, 0);
+            idleTimer.addEventListener(TimerEvent.TIMER, onUserIdle);
+            idleTimer.start();
+        }
+        private function onUserIdle(event:TimerEvent):void {
+            trace("you haven't done anything for ages, bye");
+            idleTimer.stop();
+            facade.sendNotification(BBNotifications.USER_IDLE);
+        }
+        public function onUserPresent():void {
+            if (!idleTimer.running) {
+                trace("You started again, hooray");
+                facade.sendNotification(BBNotifications.USER_PRESENT);
+            }
+            if (idleTimer) {
+                trace("You are present and doing something");
+                idleTimer.reset();
+                idleTimer.start();
+            }
+        }
+
+    }
 	
 }

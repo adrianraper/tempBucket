@@ -1381,3 +1381,6 @@ PRIMARY KEY (`F_CampaignID`,`F_OfferID`)
 
 INSERT INTO T_ProductLanguage VALUES 
 (61,'NAMEN','PracticalWriting-NAmerica');
+
+-- gh#1342 Add field so a licence can be hibernating
+ALTER TABLE T_Licences ADD COLUMN F_Hibernating BOOLEAN NULL DEFAULT FALSE AFTER F_UserID;

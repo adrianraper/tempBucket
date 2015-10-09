@@ -560,11 +560,11 @@ class BentoService extends AbstractService {
 	 *  @param Licence $licence - dummy object for the licence
 	 *  @param String $sessionId
 	 */
-	public function updateLicence($licence, $sessionId = null) {
+	public function updateLicence($licence, $sessionId = null, $hibernate = false) {
 
 		// gh#604 Update the licence if applicable
 		if ($licence)
-			$this->licenceOps->updateLicence($licence);
+			$this->licenceOps->updateLicence($licence, $hibernate);
 
 		// Update the session record if applicable
 		if ($sessionId)

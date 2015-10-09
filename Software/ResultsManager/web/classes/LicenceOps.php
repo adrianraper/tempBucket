@@ -41,8 +41,9 @@ class LicenceOps {
 		//$dateNow = date('Y-m-d 23:59:59');
 		$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
 		$dateNow = $dateStampNow->format('Y-m-d 23:59:59');
-		$aWhileAgo = $dateStampNow->modify('-'.(LicenceOps::LICENCE_DELAY * 60).' secs')->format('Y-m-d H:i:s');
-		
+        $aShortWhileAgo = $dateStampNow->modify('-'.(LicenceOps::LICENCE_DELAY * 60).' secs')->format('Y-m-d H:i:s');
+        $aLongerWhileAgo = $dateStampNow->modify('-'.(LicenceOps::LICENCE_DELAY * 60 * 7.5).' secs')->format('Y-m-d H:i:s');
+
 		if ($licence->licenceStartDate > $dateNow)
 			throw $this->copyOps->getExceptionForId("errorLicenceHasntStartedYet");
 		
@@ -64,18 +65,18 @@ class LicenceOps {
 					
 				} else {
 					
-					// gh#815 
-					//$aWhileAgo = time() - LicenceOps::LICENCE_DELAY * 60;
-					
 					// First, always delete old licences for this product/root
+                    // gh#1342 First delete those that are not hibernating
 					$sql = <<<EOD
 					DELETE FROM T_Licences 
 					WHERE F_ProductCode=? 
 					AND F_RootID=?
+					AND NOT F_Hibernating
 					AND (F_LastUpdateTime<? OR F_LastUpdateTime is null) 
 EOD;
-					$bindingParams = array($productCode, $singleRootID, $aWhileAgo);
+					$bindingParams = array($productCode, $singleRootID, $aShortWhileAgo);
 					$rs = $this->db->Execute($sql, $bindingParams);
+                    AbstractService::$debugLog->info("delete not hibernating from ".$aShortWhileAgo);
 					// the sql call failed
 					if (!$rs) {
 						// Write a record to the failure table
@@ -83,15 +84,30 @@ EOD;
 						
 						throw $this->copyOps->getExceptionForId("errorCantClearLicences");
 					}
+
+                    // gh#1342 Then a longer time for those that ARE hibernating
+                    $sql = <<<EOD
+					DELETE FROM T_Licences
+					WHERE F_ProductCode=?
+					AND F_RootID=?
+					AND F_Hibernating
+					AND (F_LastUpdateTime<? OR F_LastUpdateTime is null)
+EOD;
+                    $bindingParams = array($productCode, $singleRootID, $aLongerWhileAgo);
+                    $rs = $this->db->Execute($sql, $bindingParams);
+                    AbstractService::$debugLog->info("delete hibernating from ".$aLongerWhileAgo);
+                    // the sql call failed
+                    if (!$rs)
+                        throw $this->copyOps->getExceptionForId("errorCantClearLicences");
+
 					// Then count how many are currently in use
-					$bindingParams = array($productCode, $singleRootID);			
-		
 					$sql = <<<EOD
 					SELECT COUNT(F_LicenceID) as i FROM T_Licences 
 					WHERE F_ProductCode=?
 					AND F_RootID=? 
 EOD;
-					$rs = $this->db->Execute($sql, $bindingParams);
+                    $bindingParams = array($productCode, $singleRootID);
+                    $rs = $this->db->Execute($sql, $bindingParams);
 					$usedLicences = $rs->FetchNextObj()->i;
 	
 					if ($usedLicences >= $licence->maxStudents) {
@@ -296,7 +312,8 @@ EOD;
 	 * @param Number $id
 	 * @param Licence $licence
 	 */
-	function updateLicence($licence) {
+    // gh#1342
+	function updateLicence($licence, $hibernate = false) {
 
 		// gh#604 Teacher records with licence=0 do not need updating
 		if ($licence->id <= 0)
@@ -344,13 +361,15 @@ EOD;
 			throw $this->copyOps->getExceptionForId("errorCantFindLicence", array("licenceID" => $licence->id));
 
 		// Update the licence in the table
+        // gh#1342
 		$sql = <<<EOD
 			UPDATE $licenceControlTable 
-			SET F_LastUpdateTime=?
+			SET F_LastUpdateTime=?, F_Hibernating=?
 			WHERE F_LicenceID=?
 EOD;
-		$bindingParams = array($dateNow, $licence->id);
+		$bindingParams = array($dateNow, $hibernate, $licence->id);
 		$rs = $this->db->Execute($sql, $bindingParams);
+        AbstractService::$debugLog->info("sql: ".$sql.' time='.$dateNow.' id='.$licence->id.' hibernate='.$hibernate);
 		if (!$rs)
 			throw $this->copyOps->getExceptionForId("errorCantUpdateLicence", array("licenceID" => $licence->id));
 	}

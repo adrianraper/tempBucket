@@ -1,4 +1,6 @@
 package com.clarityenglish.bento.view.timer {
+import com.clarityenglish.bento.BBNotifications;
+import com.clarityenglish.bento.BentoFacade;
 import com.clarityenglish.common.model.interfaces.CopyProvider;
 import com.clarityenglish.textLayout.components.AudioPlayer;
 
@@ -126,6 +128,8 @@ import spark.primitives.Rect;
         private var _isFirstTimeChange:Boolean;
         private var _copyProvider:CopyProvider;
         private var audioPlayer:AudioPlayer;
+
+        //protected var facade:BentoFacade;
 
         public function TimerComponent() {
             StateUtil.addStates(this, ["startState", "pauseState", "resumeState", "completeState"], true);
@@ -348,6 +352,10 @@ import spark.primitives.Rect;
             var min:String = formatTime(Math.floor((totalMSeconds % 3600 ) / 60));
             var hour:String = formatTime(Math.floor(totalMSeconds / (60 * 60)));
             totalTimeLabelText = String(hour + ":" + min + ":" + sec);
+
+            // gh#1342 The timer running acts like someone clicking to keep the session/licence updated
+            // Maybe need to do this by dispatching an event?
+            //facade.sendNotification(BBNotifications.USER_ACTIVE);
         }
 
         protected function onTimerComplete(event:Event):void {

@@ -1,8 +1,10 @@
 package com.clarityenglish.bento {
 	import caurina.transitions.properties.CurveModifiers;
 	import caurina.transitions.properties.DisplayShortcuts;
-	
-	import com.clarityenglish.textLayout.util.TLF2Application;
+
+import com.clarityenglish.bento.model.BentoProxy;
+
+import com.clarityenglish.textLayout.util.TLF2Application;
 	
 	import flash.display.StageQuality;
 	import flash.events.Event;
@@ -33,14 +35,14 @@ public class BentoApplication extends TLF2Application {
 		public static const DEMO:String = "DEMO";
 
 		// gh#604 Seconds before the user is considered to have stopped working on the app
-		public static const USER_IDLE_THRESHOLD:Number = 300;
+		//public static const USER_IDLE_THRESHOLD:Number = 300;
 
 		public var isCtrlDown:Boolean;
 		
 		protected var facade:BentoFacade;
 
 		// gh#604
-		private var idleTimer:Timer;
+		//private var idleTimer:Timer;
 
 		public function BentoApplication() {
 			// Configure logging
@@ -91,29 +93,37 @@ public class BentoApplication extends TLF2Application {
 			stage.addEventListener(TouchEvent.TOUCH_BEGIN, onUserPresent);
 			stage.addEventListener(MouseEvent.CLICK, onUserPresent);
 			stage.addEventListener(KeyboardEvent.KEY_UP, onUserPresent);
-			idleTimer = new Timer(USER_IDLE_THRESHOLD * 1000, 0);
-			idleTimer.addEventListener(TimerEvent.TIMER, onUserIdle);
-			idleTimer.start();
+            // gh#1342 Should the idle time be held in BentoProxy so it is widely accessible?
+            var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+            bentoProxy.startUserIdleTimer();
+			//idleTimer = new Timer(USER_IDLE_THRESHOLD * 1000, 0);
+			//idleTimer.addEventListener(TimerEvent.TIMER, onUserIdle);
+			//idleTimer.start();
 		}
 
 		// gh#604
-		private function onUserPresent(event:Event):void {
+		public function onUserPresent(event:Event):void {
+            var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+            bentoProxy.onUserPresent();
+            /*
 			if (!idleTimer.running) {
-				trace("You started again, hooray");
+				//trace("You started again, hooray");
 				facade.sendNotification(BBNotifications.USER_PRESENT);
 			}
 			if (idleTimer) {
-				trace("You are present and doing something");
+				//trace("You are present and doing something");
 				idleTimer.reset();
 				idleTimer.start();
 			}
+			*/
 		}
+    /*
 		private function onUserIdle(event:TimerEvent):void {
 			trace("you haven't done anything for ages, bye");
-			idleTimer.stop();
+			//idleTimer.stop();
 			facade.sendNotification(BBNotifications.USER_IDLE);
 		}
-
+    */
 		private function onViewAddedToStage(event:Event):void {
 			if (facade) {
 				facade.onViewAdded(event.target);

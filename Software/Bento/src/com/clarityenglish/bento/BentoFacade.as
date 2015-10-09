@@ -185,6 +185,7 @@
 			// gh#604
 			registerCommand(BBNotifications.USER_IDLE, UserIdleCommand);
 			registerCommand(BBNotifications.USER_PRESENT, UserIdleCommand);
+			registerCommand(BBNotifications.USER_ACTIVE, UserActiveCommand);
 
 			// gh#1219
 			registerCommand(BBNotifications.IMAGE_ENLARGE, ImageEnlargeCommand);
