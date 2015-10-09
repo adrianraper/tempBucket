@@ -52,5 +52,5 @@
         </s:layout>
     </s:Group>
 	
-	<s:ButtonBar id="tabBar" skinClass="skins.practicalwriting.title.TitleButtonBarSkin" right="149"/>
+	<s:ButtonBar id="tabBar" skinClass="skins.practicalwriting.title.TitleButtonBarSkin" right="64"/>
 </s:Skin>

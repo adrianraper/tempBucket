@@ -41,7 +41,7 @@
     </s:TabbedViewNavigator>
 
     <s:HGroup right="0" top="8" gap="1">
-        <s:Button id="helpButton" top="0"  buttonMode="true" useHandCursor="true" excludeFrom="exercise" />
+        <s:Button id="helpButton" top="0"  buttonMode="true" useHandCursor="true" excludeFrom="exercise" visible="false" includeInLayout="false" />
         <s:Button id="logoutButton" top="0" buttonMode="true" useHandCursor="true" excludeFrom="exercise" />
     </s:HGroup>
 
