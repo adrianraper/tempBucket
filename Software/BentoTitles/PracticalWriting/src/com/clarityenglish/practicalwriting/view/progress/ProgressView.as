@@ -9,8 +9,12 @@ import flash.events.Event;
 
 import mx.collections.ArrayCollection;
 
+import mx.collections.ArrayCollection;
+import mx.collections.ArrayList;
+
 import spark.components.ButtonBar;
 import spark.components.Label;
+import spark.components.List;
 
 public class ProgressView extends BentoView {
 
@@ -23,11 +27,21 @@ public class ProgressView extends BentoView {
         [SkinPart]
         public var mockedUpMessage:Label;
 
+        [SkinPart]
+        public var demoList:List;
+
+        [SkinPart]
+        public var demoListCaption:Label;
+
+        [SkinPart]
+        public var demoRMLabel:Label;
+
         [Bindable]
         public var isAnonymousUser:Boolean;
 
         // gh#1307
         public function get isDemo():Boolean {
+            trace("product version: "+productVersion);
             return productVersion == BentoApplication.DEMO;
         }
 
@@ -58,6 +72,15 @@ public class ProgressView extends BentoView {
                     break;
                 case mockedUpMessage:
                     mockedUpMessage.text = copyProvider.getCopyForId("mockedUpProgressMessage");
+                    break;
+                case demoListCaption:
+                    demoListCaption.text = copyProvider.getCopyForId("demoListCaption");
+                    break;
+                case demoList:
+                    demoList.dataProvider = new ArrayCollection(copyProvider.getCopyForId("demoList").split(";"));
+                    break;
+                case demoRMLabel:
+                    demoRMLabel.text = copyProvider.getCopyForId("demoRMLabel");
                     break;
             }
         }

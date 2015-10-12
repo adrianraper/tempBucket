@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark" xmlns:progress="com.clarityenglish.practicalwriting.view.progress.*">
+        xmlns:s="library://ns.adobe.com/flex/spark" xmlns:progress="com.clarityenglish.practicalwriting.view.progress.*" xmlns:assets="skins.practicalwriting.assets.progress.*">
 
     <fx:Metadata>
         [HostComponent("com.clarityenglish.practicalwriting.view.progress.ProgressView")]
@@ -47,12 +47,57 @@
     </s:HGroup>
 
     <!-- gh#1307 Demo mockup progress screens -->
-    <s:Group horizontalCenter="0" verticalCenter="0" includeIn="demo">
-        <s:BitmapImage source="@Embed('/skins/practicalwriting/assets/progress/mockedUpOverview.png')"/>
+    <s:Group horizontalCenter="0" top="150" includeIn="demo">
+        <!--s:BitmapImage source="@Embed('/skins/practicalwriting/assets/progress/mockedUpOverview.png')"/>
         <s:Label id="mockedUpMessage"
                  horizontalCenter="0" verticalCenter="0"
                  color="0x123456" fontSize="14" >
-        </s:Label>
+        </s:Label-->
+        <s:Scroller width="822" bottom="50">
+            <s:Group width="100%">
+                <s:Group top="50" width="100%" height="186">
+                    <s:Rect width="100%" height="100%" radiusX="14" radiusY="14">
+                        <s:stroke>
+                            <s:SolidColorStroke color="#EDECEC" />
+                        </s:stroke>
+                    </s:Rect>
+                    <s:List id="demoList" left="30" top="60" borderVisible="false">
+                        <s:layout>
+                            <s:VerticalLayout gap="10" />
+                        </s:layout>
+                        <s:itemRenderer>
+                            <fx:Component>
+                                <s:ItemRenderer autoDrawBackground="false">
+                                    <s:HGroup>
+                                        <assets:tick />
+                                        <s:Label text="{data}" fontSize="16" />
+                                    </s:HGroup>
+                                </s:ItemRenderer>
+                            </fx:Component>
+                        </s:itemRenderer>
+                    </s:List>
+                    <s:Group width="100%" height="40">
+                        <s:Rect width="100%" height="100%" topLeftRadiusX="14" topLeftRadiusY="14" topRightRadiusX="14" topRightRadiusY="14">
+                            <s:fill>
+                                <s:SolidColor color="#EDECEC" />
+                            </s:fill>
+                        </s:Rect>
+                        <s:Label id="demoListCaption" fontSize="17" verticalCenter="0" left="30" color="#333333" />
+                    </s:Group>
+                </s:Group>
+                <s:SWFLoader source="@Embed(source='/skins/practicalwriting/assets/progress/demoProgress1.png')" right="50" top="0" />
+                <s:SWFLoader source="@Embed(source='/skins/practicalwriting/assets/progress/demoProgress2.png')" right="20" top="180" />
+                <s:Group top="286" width="477" height="169">
+                    <s:Rect width="100%" height="134" radiusX="10" radiusY="10">
+                        <s:stroke>
+                            <s:SolidColorStroke color="#E0E0DF"/>
+                        </s:stroke>
+                    </s:Rect>
+                    <s:Label id="demoRMLabel" verticalCenter="-15" horizontalCenter="0" width="430" fontSize="17" />
+                    <assets:RM right="30" bottom="0" />
+                </s:Group>
+            </s:Group>
+        </s:Scroller>
     </s:Group>
 
     <!--Anonymous reminder-->
