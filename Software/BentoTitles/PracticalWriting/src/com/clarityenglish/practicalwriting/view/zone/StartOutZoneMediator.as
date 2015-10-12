@@ -1,6 +1,7 @@
 package com.clarityenglish.practicalwriting.view.zone {
 import com.clarityenglish.bento.BBNotifications;
 import com.clarityenglish.bento.model.BentoProxy;
+import com.clarityenglish.bento.model.ExerciseProxy;
 import com.clarityenglish.bento.view.base.BentoMediator;
 import com.clarityenglish.bento.view.base.BentoView;
 import com.clarityenglish.bento.vo.ExerciseMark;
@@ -31,6 +32,8 @@ import org.puremvc.as3.interfaces.IMediator;
             view.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
 
             view.videoScore.add(onVideoScore);
+            // gh#1344
+            view.hrefToUidFunction = bentoProxy.getExerciseUID;
         }
 
         protected function onVideoScore(exerciseMark:ExerciseMark):void {

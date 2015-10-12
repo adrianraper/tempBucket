@@ -1,6 +1,7 @@
 package com.clarityenglish.practicalwriting.view.zone {
 import com.clarityenglish.bento.view.base.BentoView;
 import com.clarityenglish.bento.vo.ExerciseMark;
+import com.clarityenglish.bento.vo.Href;
 import com.clarityenglish.controls.video.VideoSelector;
 import com.clarityenglish.controls.video.events.VideoScoreEvent;
 import com.clarityenglish.textLayout.vo.XHTML;
@@ -22,6 +23,9 @@ public class StartOutZoneView extends BentoView {
 
        //[SkinPart]
        // public var startOutLabel:Label;
+
+        [Bindable]
+        public var hrefToUidFunction:Function;
 
         public var channelCollection:ArrayCollection;
         public var videoScore:Signal = new Signal(ExerciseMark);
@@ -57,7 +61,8 @@ public class StartOutZoneView extends BentoView {
                 case introductionVideoSelector:
                     introductionVideoSelector.href = href;
                     introductionVideoSelector.channelCollection = channelCollection;
-                    introductionVideoSelector.addEventListener(VideoScoreEvent.VIDEO_SCORE, onVideoScore)
+                    introductionVideoSelector.addEventListener(VideoScoreEvent.VIDEO_SCORE, onVideoScore);
+                    introductionVideoSelector.hrefToUidFunction = hrefToUidFunction;
                     break;
                 /* No need for a label now
                 case startOutLabel:

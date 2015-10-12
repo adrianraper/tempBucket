@@ -7,7 +7,9 @@ import com.clarityenglish.controls.video.events.VideoScoreEvent;
 import com.clarityenglish.controls.video.loaders.RssVideoLoader;
 
 import flash.events.Event;
+import flash.events.FocusEvent;
 import flash.events.MouseEvent;
+import flash.net.NetStream;
 
 import flashx.textLayout.elements.TextFlow;
 
@@ -16,6 +18,7 @@ import mx.logging.ILogger;
 import mx.logging.Log;
 
 import org.davekeen.util.ClassUtil;
+import org.osmf.events.DynamicStreamEvent;
 import org.osmf.events.TimeEvent;
 
 import spark.components.Button;
@@ -199,7 +202,8 @@ import spark.utils.TextFlowUtil;
 					videoPlayer.addEventListener(VideoEvent.VIDEO_READY, onVideoScore);
 					videoPlayer.addEventListener(VideoEvent.VIDEO_PAUSED, onVideoScore);
 					videoPlayer.addEventListener(TimeEvent.COMPLETE, onVideoScore);
-
+					// gh#1344
+					videoPlayer.addEventListener(Event.REMOVED_FROM_STAGE, onVideoScore);
 					videoPlayer.addEventListener(TimeEvent.COMPLETE, onVideoPlayerComplete);
 					break;
 				case channelList:
