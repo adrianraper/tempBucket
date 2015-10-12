@@ -18,6 +18,7 @@ try {
 function router($json) {
     // Security
     if ($json->command !== "login") {
+        new PracticalWritingService(); // We need this in order to set the session name!
         if (!Authenticate::isAuthenticated()) throw new Exception("userAccessError", 403);
     }
 
