@@ -113,6 +113,7 @@
 			<lit name="anonymousCaption">Just practice</lit>
 			<lit name="exerciseMarkingButton">Scoring</lit>
 			<lit name="progressNavBarAnalyse">Analyse</lit>
+			<lit name="resourceBank">Resource Center</lit>
 		</group>
 	</language>
 </literals>

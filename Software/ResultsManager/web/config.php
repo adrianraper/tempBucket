@@ -1,9 +1,9 @@
 <?php
 
 // gh#32 gh#1314
-if (isset($_GET['PHPSESSID'])) {
+if (isset($_GET['PHPSESSID']) && ($_GET['PHPSESSID']!='')) {
     session_id($_GET['PHPSESSID']);
-} elseif (isset($_COOKIE["PHPSESSID"])) {
+} elseif (isset($_COOKIE["PHPSESSID"]) && ($_COOKIE['PHPSESSID']!='')) {
     session_id($_COOKIE["PHPSESSID"]);
 }
 

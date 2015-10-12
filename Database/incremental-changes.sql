@@ -1380,7 +1380,7 @@ PRIMARY KEY (`F_CampaignID`,`F_OfferID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO T_ProductLanguage VALUES 
-(61,'NAMEN','PracticalWriting-NAmerica');
+(61,'NAMEN','PracticalWriting-NAmerican');
 
 -- gh#1342 Add field so a licence can be hibernating
 ALTER TABLE T_Licences ADD COLUMN F_Hibernating BOOLEAN NULL DEFAULT FALSE AFTER F_UserID;

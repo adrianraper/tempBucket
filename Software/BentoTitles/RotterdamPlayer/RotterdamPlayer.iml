@@ -2,7 +2,7 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="RotterdamPlayerLib">
     <configurations>
-      <configuration name="RotterdamPlayer" main-class="Player" output-file="Player.swf" output-folder="$MODULE_DIR$/bin-debug">
+      <configuration name="RotterdamPlayer" main-class="Player" output-file="Player.swf" output-folder="$MODULE_DIR$/bin-release">
         <dependencies target-player="16.0">
           <entries>
             <entry module-name="Bento" build-configuration-name="Bento">
@@ -17,7 +17,9 @@
           </entries>
           <sdk name="13.0_AIR16 (Bento)" />
         </dependencies>
-        <compiler-options />
+        <compiler-options>
+          <option name="additionalOptions" value="-debug=false" />
+        </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
         <packaging-ios />

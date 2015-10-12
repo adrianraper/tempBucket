@@ -76,7 +76,7 @@ class LicenceOps {
 EOD;
 					$bindingParams = array($productCode, $singleRootID, $aShortWhileAgo);
 					$rs = $this->db->Execute($sql, $bindingParams);
-                    AbstractService::$debugLog->info("delete not hibernating from ".$aShortWhileAgo);
+                    //AbstractService::$debugLog->info("delete not hibernating from ".$aShortWhileAgo);
 					// the sql call failed
 					if (!$rs) {
 						// Write a record to the failure table
@@ -95,7 +95,7 @@ EOD;
 EOD;
                     $bindingParams = array($productCode, $singleRootID, $aLongerWhileAgo);
                     $rs = $this->db->Execute($sql, $bindingParams);
-                    AbstractService::$debugLog->info("delete hibernating from ".$aLongerWhileAgo);
+                    //AbstractService::$debugLog->info("delete hibernating from ".$aLongerWhileAgo);
                     // the sql call failed
                     if (!$rs)
                         throw $this->copyOps->getExceptionForId("errorCantClearLicences");
