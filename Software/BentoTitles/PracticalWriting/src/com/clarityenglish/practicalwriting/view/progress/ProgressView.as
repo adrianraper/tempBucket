@@ -41,7 +41,6 @@ public class ProgressView extends BentoView {
 
         // gh#1307
         public function get isDemo():Boolean {
-            trace("product version: "+productVersion);
             return productVersion == BentoApplication.DEMO;
         }
 

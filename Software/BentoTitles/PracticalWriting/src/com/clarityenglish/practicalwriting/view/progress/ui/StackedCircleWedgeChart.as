@@ -65,7 +65,8 @@ package com.clarityenglish.practicalwriting.view.progress.ui {
 				for each (item in _dataProvider) {
 					// Determine colour and width
 					var myArc:Sprite = new Sprite();
-					var barColour:Number = _colours[idx];
+					// gh#1343
+					var barColour:Number = _colours[item.childIndex()];
 					var duration:Number = new Number(item.attribute(_field));
 					var barValue:Number = Math.floor(duration / 60);
 					if (totalValues != 0) {

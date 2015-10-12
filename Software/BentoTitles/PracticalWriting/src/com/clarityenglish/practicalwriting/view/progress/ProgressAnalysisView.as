@@ -79,7 +79,7 @@ public class ProgressAnalysisView extends BentoView {
         var courseXMLList:XMLList = new XMLList(menu.course);
 
         stackedChart.dataProvider = new  XMLListCollection(menu.course).toArray().reverse();
-        stackedChart.colours = getStyle("analyseCircleWedgeColors");
+        stackedChart.colours = getStyle("pieChartFillColor");
 
         courseListCollection = new XMLListCollection(menu.course);
 

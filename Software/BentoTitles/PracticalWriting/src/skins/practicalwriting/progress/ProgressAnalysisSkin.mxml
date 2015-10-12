@@ -49,10 +49,6 @@
                                                 courseDuration = data.@duration;
                                             }
                                         }
-
-                                        public function getExerciseListItemColor(data:Object):Number {
-                                            return getStyle("progressAnalysisTextColors")[data.parent().childIndex()];
-                                        }
                                         ]]>
 									</fx:Script>
                                     <s:VGroup width="100%" height="100%" gap="4">

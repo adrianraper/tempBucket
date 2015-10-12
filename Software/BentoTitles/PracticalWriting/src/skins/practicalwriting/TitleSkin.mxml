@@ -104,7 +104,7 @@
 
     <!-- gh#1307 demo watermark -->
     <s:Group id="demoWatermark" top="10" left="100" visible="{hostComponent.isDemo}" includeInLayout="{hostComponent.isDemo}" >
-        <s:Label text="DEMO" />
+        <!--s:Label text="DEMO" /-->
     </s:Group>
 
 </s:Skin>
