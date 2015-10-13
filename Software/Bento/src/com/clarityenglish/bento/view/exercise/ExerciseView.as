@@ -245,6 +245,9 @@ import spark.components.Button;
 					backButton.visible = visibleValue;
 					backButton.includeInLayout = visibleValue;
 				}
+
+				// gh#1269
+				focusManager.deactivate();
 			}
 		}
 
@@ -262,8 +265,6 @@ import spark.components.Button;
 					startAgainButton.label = copyProvider.getCopyForId("exerciseStartAgainButton");
 					// When you first open exercise, buttons have not been initialized in configureButtonVisibility
 					startAgainButton.visible = startAgainButton.includeInLayout = hasQuestions && !noMarking;
-					// gh#1269
-					startAgainButton.focusEnabled = false;
 					break;
 				case feedbackButton:
 					feedbackButton.addEventListener(MouseEvent.CLICK, function():void {
@@ -274,28 +275,20 @@ import spark.components.Button;
 							showFeedbackReminder.dispatch(copyProvider.getCopyForId("feedbackClickAnswersMsg"));
 						}} );
 					feedbackButton.label = copyProvider.getCopyForId("exerciseFeedbackButton");
-					// gh#1269
-					feedbackButton.focusEnabled = false;
 					break;
 				case markingButton:
 					markingButton.addEventListener(MouseEvent.CLICK, function():void { showMarking.dispatch(); } );
 					markingButton.label = copyProvider.getCopyForId("exerciseMarkingButton");
 					// When you first open exercise, buttons have not been initialized in configureButtonVisibility
 					markingButton.visible = markingButton.includeInLayout = !isMarked && hasQuestions && !noMarking;
-					// gh#1269
-					markingButton.focusEnabled = false;
 					break;
 				case forwardButton:
 					forwardButton.addEventListener(MouseEvent.CLICK, function():void { nextExercise.dispatch(); } );
 					forwardButton.label = copyProvider.getCopyForId("exerciseForwardButton");
-					// gh#1269
-					forwardButton.focusEnabled = false;
 					break;
 				case backButton:
 					backButton.addEventListener(MouseEvent.CLICK, function():void { previousExercise.dispatch(); } );
 					backButton.label = copyProvider.getCopyForId("exerciseBackButton");
-					// gh#1269
-					backButton.focusEnabled = false;
 					break;
 				case printButton:
 					printButton.addEventListener(MouseEvent.CLICK, function():void { printExercise.dispatch(dynamicView); } );
