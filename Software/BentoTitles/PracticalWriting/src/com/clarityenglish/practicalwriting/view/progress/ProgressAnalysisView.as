@@ -131,10 +131,15 @@ public class ProgressAnalysisView extends BentoView {
         totalTimeWedgeVGroup.visible = false;
         // gh#1092
         var duration:Number = menu.course.(@caption == event.caption).@duration;
+        var index:Number = menu.course.(@caption == event.caption).childIndex();
 
         analysisTimeLabel.text = String(Math.floor(duration / 60) );
+        analysisTimeLabel.setStyle('color', getStyle('pieChartFillColor')[index]);
 
         circleWedgeCourseLabel.text = event.caption;
+        circleWedgeCourseLabel.setStyle('color', getStyle('pieChartFillColor')[index]);
+
+        minLabel.setStyle('color', getStyle('pieChartFillColor')[index]);
 
         timeWedgeVGroup.visible = true;
     }

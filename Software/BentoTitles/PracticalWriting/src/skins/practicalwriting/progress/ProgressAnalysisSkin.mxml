@@ -96,15 +96,15 @@
                 <s:VGroup id="timeWedgeVGroup" horizontalCenter="0" top="70" horizontalAlign="center" gap="10" visible="false">
                     <s:Label id="circleWedgeCourseLabel" fontSize="14" color="#333333"/>
                     <s:HGroup>
-                        <s:Label id="analysisTimeLabel" fontSize="28" fontWeight="bold" color="#0B789C" />
-                        <s:Label id="minLabel" fontSize="14" paddingTop="9" color="#0B789C" />
+                        <s:Label id="analysisTimeLabel" fontSize="28" fontWeight="bold" />
+                        <s:Label id="minLabel" fontSize="14" paddingTop="9" />
                     </s:HGroup>
                 </s:VGroup>
                 <s:VGroup id="totalTimeWedgeVGroup" horizontalCenter="0" top="70" horizontalAlign="center" gap="10">
                     <s:Label id="totalTimeLabel" fontSize="14" color="#333333" />
                     <s:HGroup>
-                        <s:Label id="totalTimeNumberLabel" fontSize="28" fontWeight="bold" color="#0B789C" />
-                        <s:Label id="totalTimeMinLabel" fontSize="14" paddingTop="9" color="#0B789C" />
+                        <s:Label id="totalTimeNumberLabel" fontSize="28" fontWeight="bold" color="#333333" />
+                        <s:Label id="totalTimeMinLabel" fontSize="14" paddingTop="9" color="#333333" />
                     </s:HGroup>
                 </s:VGroup>
                 <s:Group width="450" height="25" top="260" horizontalCenter="0">
