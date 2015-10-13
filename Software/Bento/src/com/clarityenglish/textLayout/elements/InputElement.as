@@ -94,7 +94,7 @@ import mx.utils.StringUtil;
 		
 		// gh#712
 		private var scrollerMemento:Object;
-		private var scroller:Scroller
+		private var scroller:Scroller;
 		private var dragImage:Image;
 		
 		public function InputElement() {

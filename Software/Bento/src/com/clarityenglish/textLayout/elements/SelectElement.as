@@ -56,10 +56,13 @@ package com.clarityenglish.textLayout.elements {
 			if (component)
 				(component as DropDownList).selectedItem = value;
 		}
+
+		public override function set text(textValue:String):void {
+			// Pad the hidden text with a fixed string (its always the same for drop downs)
+			super.text = textValue + "____.";
+		}
 		
 		public function createComponent():void {
-			text = getLongestOption() + "____.";
-			
 			// Default to a normal DropDownList, but also allow a custom elementFactoryFunction to be defined (used to create the Spinner for AIR apps)
 			var dropDownList:DropDownList = (elementFactoryFunction == null) ? new DropDownList() : elementFactoryFunction();
 			// gh#480 randomise the order of the answers			
@@ -74,15 +77,6 @@ package com.clarityenglish.textLayout.elements {
 			component.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
 			(component as DropDownList).addEventListener(ListEvent.ITEM_ROLL_OVER, onItemRollOver);
 			(component as DropDownList).addEventListener(ListEvent.ITEM_ROLL_OUT, onItemRollOut);
-		}
-		
-		private function getLongestOption():String {
-			var longestOption:String = "";
-			for each (var option:XML in _options)
-				if (option.toString().length > longestOption.length)
-					longestOption = option.toString();
-			
-			return longestOption;
 		}
 		
 		// gh#739

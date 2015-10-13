@@ -211,7 +211,7 @@ class DropDownAnswerManager extends AnswerManager implements IAnswerManager {
 		for each (var source:XML in question.getSourceNodes(exercise)) {
 			var selectElement:SelectElement = flowElementXmlBiMap.getFlowElement(source) as SelectElement;
 			if (selectElement) {
-				selectElement.text = getLongestAnswerValue(question.answers);
+				selectElement.text = getLongestOptionValue(source.*);
 				
 				var eventMirror:IEventDispatcher = selectElement.tlf_internal::getEventMirror();
 				if (eventMirror) {
@@ -223,6 +223,17 @@ class DropDownAnswerManager extends AnswerManager implements IAnswerManager {
 				}
 			}
 		}
+	}
+
+	private function getLongestOptionValue(options:XMLList):String {
+		var longestAnswer:String = "";
+		for each (var option:XML in options) {
+			if (option.text().toString().length > longestAnswer.length) {
+				longestAnswer = option.text().toString();
+			}
+		}
+
+		return longestAnswer;
 	}
 
 	private function onAnswerSubmitted(e:Event, exercise:Exercise, question:Question, selectNode:XML):void {
