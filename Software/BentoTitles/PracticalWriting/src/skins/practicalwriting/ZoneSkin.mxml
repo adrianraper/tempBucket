@@ -27,6 +27,7 @@
     <s:states>
         <s:State name="disabled" />
         <s:State name="normal" />
+        <s:State name="demo" />
     </s:states>
 
     <!--Background Rect-->
@@ -77,6 +78,7 @@
             <s:Label id="skillContentLabel" fontSize="14" width="200" lineHeight="120%" />
         </s:VGroup>
 
+        <s:SWFLoader id="priceBannerSWFLoader" source="@Embed(source='/skins/practicalwriting/assets/zone/priceBanner.png')" useHandCursor="true" buttonMode="true" includeIn="demo" />
     </s:VGroup>
 
     <s:TabbedViewNavigator id="zoneViewNavigator" top="112" bottom="60" left="270" right="15" creationPolicy="all">

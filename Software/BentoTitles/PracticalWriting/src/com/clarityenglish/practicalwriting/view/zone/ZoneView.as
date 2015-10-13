@@ -1,4 +1,5 @@
 package com.clarityenglish.practicalwriting.view.zone {
+import com.clarityenglish.bento.BentoApplication;
 import com.clarityenglish.bento.view.base.BentoView;
 import com.clarityenglish.common.events.MemoryEvent;
 import com.clarityenglish.textLayout.vo.XHTML;
@@ -9,9 +10,12 @@ import flash.events.Event;
 
 import flash.events.MouseEvent;
 import flash.net.ObjectEncoding;
+import flash.net.URLRequest;
+import flash.net.navigateToURL;
 
 import mx.charts.PieChart;
 import mx.collections.ArrayCollection;
+import mx.controls.SWFLoader;
 
 import org.osflash.signals.Signal;
 
@@ -31,10 +35,15 @@ import spark.primitives.Rect;
 
         [SkinPart]
         public var startOutViewNavigator:ViewNavigator;
+
         [SkinPart]
         public var practiceZoneViewNavigator:ViewNavigator;
+
         [SkinPart]
         public var resourcesViewNavigator:ViewNavigator;
+
+        [SkinPart]
+        public var priceBannerSWFLoader:SWFLoader;
 
         /**
          * remove stats until we have a reasonable number of data points
@@ -80,6 +89,11 @@ import spark.primitives.Rect;
         private var _openUnitMemories:Array = [];
         private var _isOpenUnitMemoriesChanged:Boolean;
         private var openUnitID:Object = new Object();
+
+        // gh#1307
+        public function get isDemo():Boolean {
+            return productVersion == BentoApplication.DEMO;
+        }
 
         public function ZoneView() {
             actionBarVisible = false;
@@ -164,6 +178,9 @@ import spark.primitives.Rect;
                 case resourcesViewNavigator:
                     resourcesViewNavigator.label = copyProvider.getCopyForId("resourceBank");
                     break;
+                case priceBannerSWFLoader:
+                    priceBannerSWFLoader.addEventListener(MouseEvent.CLICK, onPriceBannerClick);
+                    break;
             }
         }
 
@@ -224,6 +241,14 @@ import spark.primitives.Rect;
             }
         }
 
+        protected override function getCurrentSkinState():String {
+            // gh#1307
+            if (this.isDemo)
+                return "demo";
+
+            return super.getCurrentViewState();
+        }
+
         protected function onZoneViewNavigatorClick(event:MouseEvent):void {
             // Store the index of selected viewNavigator.
             data = new Object();
@@ -241,6 +266,11 @@ import spark.primitives.Rect;
 
         protected function onBackButtonClick(event:MouseEvent):void {
             this.navigator.popView();
+        }
+
+        protected function onPriceBannerClick(event:MouseEvent):void {
+            var url:String = copyProvider.getCopyForId("demoPriceURL");
+            navigateToURL(new URLRequest(url), "_blank");
         }
 
         // #1294

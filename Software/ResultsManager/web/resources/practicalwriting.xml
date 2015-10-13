@@ -31,6 +31,9 @@
 			<lit name="skillContent8">You will learn to be formal and informal in texts, reply in an appropriate style, use common Textspeak vocabulary, and make your texts sound like speech.</lit>
 			<lit name="skillContent9">You will learn to use other people's words correctly, use verbs to introduce quotations, use the correct tense when reporting others' words, and express other people's ideas in your own words.</lit>
 
+			<!--Zone-->
+			<lit name="demoPriceURL">http://www.clarityenglish.com/prices.php?pw</lit>
+
 			<!--Start out-->
 			<lit name="startOutLabel0"></lit>
 			<!--Click to play the video above to learn about writing for and against essays.-->
