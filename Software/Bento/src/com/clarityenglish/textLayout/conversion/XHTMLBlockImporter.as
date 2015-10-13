@@ -389,19 +389,21 @@ package com.clarityenglish.textLayout.conversion {
 		 */
 		override public function parseFlowGroupElementChildren(xmlToParse:XML, parent:FlowGroupElement, exceptionElements:Object = null, chainedParent:Boolean = false):void {
 			// gh#1345 only if noscroll section only contain drag nodes.
-			if (xmlToParse.@id == "noscroll") {
-				var shuffledXMLToParse:XML = new XML(xmlToParse);
-				var xmlToParseArray:Array = [];
-				var randomPos:Number = 0;
-				for (var i:int = 0; i < xmlToParse.children().length(); i++) {
-					xmlToParseArray[i] = xmlToParse.children()[i];
+			if (xmlToParse.@id == "noscroll" && xmlToParse.hasOwnProperty("@randomize")) {
+				if (xmlToParse.@randomize == "true") {
+					var shuffledXMLToParse:XML = new XML(xmlToParse);
+					var xmlToParseArray:Array = [];
+					var randomPos:Number = 0;
+					for (var i:int = 0; i < xmlToParse.children().length(); i++) {
+						xmlToParseArray[i] = xmlToParse.children()[i];
+					}
+					for (var i:int = 0; i < shuffledXMLToParse.children().length(); i++) {
+						randomPos = int(Math.random() * xmlToParseArray.length);
+						shuffledXMLToParse.children()[i] = xmlToParseArray[randomPos];
+						xmlToParseArray.splice(randomPos, 1);
+					}
+					xmlToParse = shuffledXMLToParse;
 				}
-				for (var i:int = 0; i < shuffledXMLToParse.children().length(); i++) {
-					randomPos = int(Math.random() * xmlToParseArray.length);
-					shuffledXMLToParse.children()[i] = xmlToParseArray[randomPos];
-					xmlToParseArray.splice(randomPos, 1);
-				}
-				xmlToParse = shuffledXMLToParse;
 			}
 			for each (var child:XML in xmlToParse.children()) {
 				if (child.nodeKind() == "element") {
