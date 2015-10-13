@@ -27,7 +27,8 @@ import flash.geom.Point;
 import flash.utils.Timer;
 
 import mx.controls.SWFLoader;
-	import mx.graphics.BitmapFillMode;
+import mx.core.IVisualElement;
+import mx.graphics.BitmapFillMode;
 	import mx.graphics.BitmapSmoothingQuality;
 	import mx.graphics.SolidColor;
 
@@ -272,7 +273,7 @@ import spark.components.Group;
 			event.currentTarget.addElement(swfLoader);
 			
 			Tweener.addTween(swfLoader, { alpha: 1, time: 0.6 } );
-			Tweener.addTween(swfLoader, { alpha: 0, time: 0.6, delay: 2, onComplete: function():void { (this.parent as Group).removeElement(this); } } );
+			Tweener.addTween(swfLoader, { alpha: 0, time: 0.6, delay: 2, onComplete: function():void { (this.parent as Group).removeElement(this as IVisualElement); } } );
 		}
 		
 		public function stopAllAudio():void {
