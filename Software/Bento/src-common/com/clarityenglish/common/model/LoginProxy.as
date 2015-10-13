@@ -573,14 +573,14 @@ import flash.events.TimerEvent;
 				if (idle) {
 					//trace("so, you are idle, no more session updating then");
 					licenceTimer.stop();
-                    // gh#1342 Hibernate the licence
-                    updateLicence(true);
 
 				} else {
 					//trace("ok, nice to see you back again, lets update your session, timer.running=" + licenceTimer.running);
 					licenceTimer.start();
 				}
 			}
+            // gh#1342 Hibernate the licence or check the licence immediately on wake up
+            updateLicence(idle);
 		}
 	}
 }

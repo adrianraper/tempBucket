@@ -103,7 +103,7 @@
 
 			<!-- Demo -->
 			<lit name="demoListCaption">On the Progress screens you can:</lit>
-			<lit name="demoList">check your scores in all activities;analyse the time you've spent on different topics;see your progress day by day;compare your performance with others - worldwide!</lit>
+			<lit name="demoList">check your scores in all activities; analyse the time you've spent on different topics; see your progress day by day; compare your performance with others - worldwide!</lit>
 			<lit name="demoRMLabel">Teachers can monitor their students' scores and times using the integrated Results Manager.</lit>
 		</group>
 	</language>

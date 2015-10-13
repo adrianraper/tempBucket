@@ -27,7 +27,8 @@
             <lit name="errorTitleBlockedByHiddenContent" code="216">Your group has been blocked from using this program. Please contact your teacher or administrator for help.</lit>
             <lit name="errorDuplicateUser" code="217">Sorry, this {loginKeyField} has already been used. Please try again.</lit>
             <lit name="errorWrongUserType" code="218">Sorry, you don't have permission to run this program. (Type is {userType})</lit>
-            
+            <lit name="errorNullRootId" code="219">Please refresh the browser or start the app again to keep going.</lit>
+
             <lit name="errorLicenceHasntStartedYet" code="300">Your account hasn't started yet. Please contact your administrator.</lit>
             <lit name="errorLicenceExpired" code="301">Your account expired on {expiryDate}. Please contact your administrator.</lit>
             <lit name="errorCantClearLicences" code="302">Unable to clear old licences.</lit>

@@ -320,6 +320,9 @@ class BentoService extends AbstractService {
 			}
 		} elseif ($licence->signInAs == Title::SIGNIN_ANONYMOUS) {
 			//AbstractService::$debugLog->notice ("licence->signInAs=" . $licence->signInAs);
+            // gh#1320
+            if (!$rootID)
+                throw $this->copyOps->getExceptionForId("errorNullRootId");
 			$userObj = $this->loginOps->anonymousUser($rootID);
 		} else {
 			//AbstractService::$debugLog->notice ("licence->signInAs=" . $licence->signInAs);

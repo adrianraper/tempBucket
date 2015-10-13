@@ -369,7 +369,7 @@ EOD;
 EOD;
 		$bindingParams = array($dateNow, $hibernate, $licence->id);
 		$rs = $this->db->Execute($sql, $bindingParams);
-        AbstractService::$debugLog->info("sql: ".$sql.' time='.$dateNow.' id='.$licence->id.' hibernate='.$hibernate);
+        AbstractService::$debugLog->info('time='.$dateNow.' id='.$licence->id.' hibernate='.$hibernate);
 		if (!$rs)
 			throw $this->copyOps->getExceptionForId("errorCantUpdateLicence", array("licenceID" => $licence->id));
 	}

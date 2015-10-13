@@ -36,5 +36,7 @@
         </s:Group>
     </s:Group>
 
-    <s:Label id="titleLabel" width="70%" text="{hostComponent.title}" color="{hostComponent.enabled? hostComponent.fillColor : hostComponent.disabledFillColor}" textAlign="center" fontFamily="Helvetica" fontSize="{height > 200? 22 : 18}" verticalCenter="4" horizontalCenter="0" />
+    <s:Label id="titleLabel" width="70%" text="{hostComponent.title}" color="{hostComponent.enabled? hostComponent.fillColor : hostComponent.disabledFillColor}"
+             textAlign="center" fontFamily="Helvetica" fontSize="{height > 200? 22 : 18}" lineHeight="110%"
+             verticalCenter="4" horizontalCenter="0" />
 </s:Skin>

@@ -45,7 +45,7 @@
             }
 
             // Hardcode the font offset to +4 for tablet gh#55
-            CSSApplicator.fontSizeOffset = 3;
+            CSSApplicator.fontSizeOffset = 1;
 
             // The AIR application uses a custom Spinner instead of the normal dropdown
             SelectElement.elementFactoryFunction = function():DropDownList {
