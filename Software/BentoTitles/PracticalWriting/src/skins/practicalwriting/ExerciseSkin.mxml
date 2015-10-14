@@ -118,11 +118,11 @@
             <s:Button id="backButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true"
                       useHandCursor="true" visible="{!hostComponent.isDirectStartEx &amp;&amp; !hostComponent.isFirstExercise}"/>
             <s:Button id="forwardButton" color="0x333333" fontSize="15" fontFamily="HelveticaMd" buttonMode="true"
-                      useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
+                      useHandCursor="true" visible="{!hostComponent.isDirectStartEx}" />
         </s:HGroup>
 
         <!--Top Dropdown menu-->
-        <s:Group top="0" left="300" width="272">
+        <s:Group top="0" left="300" width="272" visible="{!hostComponent.isDirectStartEx}">
             <ui:WindowShade id="windowShade" top="47" width="300" height="368">
                 <s:Rect width="252" height="368" top="0" bottom="0" bottomLeftRadiusX="8" bottomLeftRadiusY="8"
                         bottomRightRadiusX="8" bottomRightRadiusY="8" horizontalCenter="0"
