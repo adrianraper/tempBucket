@@ -18,7 +18,6 @@
 
         protected function onCreationComplete(event:FlexEvent):void {
             // gh#1305
-            trace("video list length: "+hostComponent.videoCollection.length);
             if (hostComponent.videoCollection.length <= 1)
                 videoList.visible = videoList.includeInLayout = false;
 

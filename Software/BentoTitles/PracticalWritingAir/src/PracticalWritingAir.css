@@ -7,6 +7,7 @@
 @namespace settings "com.clarityenglish.practicalwriting.view.settings.*";
 @namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 @namespace timer "com.clarityenglish.bento.view.timer.*";
+@namespace players "com.clarityenglish.controls.video.players.*";
 
 global {
     interactionMode: touch;
@@ -24,6 +25,10 @@ practicalwriting|PracticalWritingApplication {
     settings|SettingsView video|VideoSelector {
         skinClass: ClassReference("skins.practicalwritingair.controls.video.SettingsIOSVideoSelectorSkin");
     }
+}
+
+players|OSMFVideoPlayer {
+    skinClass: ClassReference("skins.practicalwritingair.controls.video.VideoPlayerSkin");
 }
 
 nonetwork|NoNetworkView {
