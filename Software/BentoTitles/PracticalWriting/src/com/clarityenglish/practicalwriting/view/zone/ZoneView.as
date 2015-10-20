@@ -26,6 +26,7 @@ import spark.components.Label;
 import spark.components.TabbedViewNavigator;
 import spark.components.ViewNavigator;
 import spark.components.VGroup;
+import spark.events.IndexChangeEvent;
 import spark.primitives.Rect;
 
     public class ZoneView extends BentoView {
@@ -76,6 +77,12 @@ import spark.primitives.Rect;
 
         [SkinPart]
         public var skillContentLabel:Label;
+
+        [SkinPart]
+        public var forwardButton:Button;
+
+        [SkinPart]
+        public var backwardButton:Button;
 
         public var backHome:Signal = new Signal();
         public var writeMemory:Signal = new Signal(MemoryEvent);
@@ -153,6 +160,7 @@ import spark.primitives.Rect;
             switch (instance) {
                 case zoneViewNavigator:
                     zoneViewNavigator.tabBar.addEventListener(MouseEvent.CLICK, onZoneViewNavigatorClick);
+                    zoneViewNavigator.addEventListener(IndexChangeEvent.CHANGE, onIndexChange);
                     break;
                 case backButton:
                     backButton.label = copyProvider.getCopyForId("Back");
@@ -180,6 +188,12 @@ import spark.primitives.Rect;
                     break;
                 case priceBannerSWFLoader:
                     priceBannerSWFLoader.addEventListener(MouseEvent.CLICK, onPriceBannerClick);
+                    break;
+                case forwardButton:
+                    forwardButton.addEventListener(MouseEvent.CLICK, onForwardButtonClick);
+                    break;
+                case backwardButton:
+                    backwardButton.addEventListener(MouseEvent.CLICK, onBackwardButtonClick);
                     break;
             }
         }
@@ -271,6 +285,28 @@ import spark.primitives.Rect;
         protected function onPriceBannerClick(event:MouseEvent):void {
             var url:String = copyProvider.getCopyForId("demoPriceURL");
             navigateToURL(new URLRequest(url), "_blank");
+        }
+
+        protected function onIndexChange(event:Event):void {
+            if (zoneViewNavigator.selectedIndex == zoneViewNavigator.length - 1) {
+                forwardButton.visible = false;
+            } else {
+                forwardButton.visible = true;
+            }
+
+            if (zoneViewNavigator.selectedIndex == 0) {
+                backwardButton.visible = false;
+            } else {
+                backwardButton.visible = true;
+            }
+        }
+
+        protected function onForwardButtonClick(event:MouseEvent):void {
+            zoneViewNavigator.selectedIndex = zoneViewNavigator.selectedIndex < zoneViewNavigator.length - 1? zoneViewNavigator.selectedIndex + 1 : zoneViewNavigator.selectedIndex;
+        }
+
+        protected function onBackwardButtonClick(event:MouseEvent):void {
+            zoneViewNavigator.selectedIndex = zoneViewNavigator.selectedIndex > 0? zoneViewNavigator.selectedIndex - 1 : zoneViewNavigator.selectedIndex;
         }
 
         // #1294

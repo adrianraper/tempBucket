@@ -92,6 +92,9 @@
                          enabled="{isUnitEnabled(hostComponent.course.unit.(attribute('class') == 'resources')[0])}"/>
     </s:TabbedViewNavigator>
 
+    <s:Button id="forwardButton" right="25" top="320" width="20" height="20" useHandCursor="true" buttonMode="true" />
+    <s:Button id="backwardButton" left="300" top="320" width="20" height="20" useHandCursor="true" buttonMode="true" />
+
     <!--Back button-->
     <!-- <s:Button id="backButton" bottom="50" right="30" buttonMode="true" useHandCursor="true" /> -->
 

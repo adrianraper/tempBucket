@@ -124,6 +124,14 @@ zone|ZoneView s|TabbedViewNavigator#zoneViewNavigator {
     skinClass: ClassReference("skins.practicalwriting.zone.ZoneViewNavigatorSkin");
 }
 
+zone|ZoneView s|Button#forwardButton {
+    skinClass: ClassReference("skins.practicalwriting.zone.ZoneForwardButtonSkin");
+}
+
+zone|ZoneView s|Button#backwardButton {
+    skinClass: ClassReference("skins.practicalwriting.zone.ZoneBackwardButtonSkin");
+}
+
 zone|StartOutZoneView {
     skinClass: ClassReference("skins.practicalwriting.zone.StartOutZoneSkin");
 }
