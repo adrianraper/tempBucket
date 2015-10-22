@@ -48,7 +48,7 @@ import mx.events.FlexEvent;
 			if (!stageWebView) {
 				dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
 				stageWebView = new StageWebView();
-				
+
 				addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
 				addEventListener(FlexEvent.HIDE, onRemovedFromStage, false, 0, true);
 				addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
@@ -64,6 +64,8 @@ import mx.events.FlexEvent;
 		}
 
 		private function get link():String {
+			if (!stageWebView.viewPort) return null;
+
 			var sourceHtml:String = "";
 			sourceHtml += "<!DOCTYPE html>";
 			sourceHtml += "<html>";
@@ -172,7 +174,7 @@ import mx.events.FlexEvent;
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
-			
+
 			if (!stageWebView.viewPort) {
 				var globalPos:Point = contentToGlobal(new Point(x, y));
 				stageWebView.viewPort = new Rectangle(globalPos.x, globalPos.y, Math.max(0, unscaledWidth * dpiScaleFactor), unscaledHeight * dpiScaleFactor);
@@ -207,6 +209,9 @@ import mx.events.FlexEvent;
 			if (stageWebView) {
 				stageWebView.reload();
 				stageWebView.viewPort = null;
+
+				// #1354
+				invalidateDisplayList();
 			}
 		}
 		
