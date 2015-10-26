@@ -35,7 +35,7 @@
 			<lit name="demoPriceURL">http://www.clarityenglish.com/prices.php?pw</lit>
 
 			<!--Start out-->
-			<lit name="startOutLabel0"></lit>
+			<lit name="startOutLabel"></lit>
 			<!--Click to play the video above to learn about writing for and against essays.-->
 			<lit name="startOutLabel1">Click to play the video above to learn about writing descriptive essays.</lit>
 			<lit name="startOutLabel2">Click to play the video above to learn about writing short hotel and restaurant reports.</lit>
