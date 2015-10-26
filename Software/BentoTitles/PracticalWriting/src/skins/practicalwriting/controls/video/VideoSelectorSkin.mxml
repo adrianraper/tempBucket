@@ -36,11 +36,11 @@
         ]]>
 	</fx:Script>
     <!--video player black background-->
-    <s:Rect id="videoListRect" top="2" width="100%" height="100%" filters="{[dropShadowFilter]}">
+    <!--s:Rect id="videoListRect" top="2" width="100%" height="100%" filters="{[dropShadowFilter]}">
         <s:fill>
             <s:SolidColor color="0xD6D6D6" />
         </s:fill>
-    </s:Rect>
+    </s:Rect-->
 
     <!-- The video players -->
     <!--players:WebViewVideoPlayer id="videoPlayer" left="30" width="320" height="240" visible="{videoList.selectedItem != null}" /-->
