@@ -4,6 +4,7 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform;
 	import com.clarityenglish.bento.vo.content.transform.RandomizedTestTransform;
+    import com.clarityenglish.bento.vo.content.transform.ExercisePathsTransform;
 	import com.clarityenglish.bento.vo.content.transform.XmlTransform;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
@@ -157,7 +158,9 @@ package com.clarityenglish.bento.model {
 				// gh#265				
 				if (href.type == Href.EXERCISE) {
 					// gh#1115 transformDefinitions.splice(0, transformDefinitions.length);
-					var transforms:Array = [new RandomizedTestTransform()];
+                    // gh#1356 to substitute paths
+					var transforms:Array = [ new RandomizedTestTransform(),
+                                             new ExercisePathsTransform(configProxy.getConfig().paths) ];
 					registerTransforms(transforms, [ Href.EXERCISE ]);
 					// gh#660, gh#1030 pick up from exercise
 					//href.options = {totalNumber: configProxy.getRandomizedTestQuestionTotalNumber()};
@@ -199,8 +202,17 @@ package com.clarityenglish.bento.model {
 			} else {
 				// Load the xml file normally using a URLLoader
 				log.debug("Loading href {0}", href);
-				
-				// Load it!
+
+                // gh#1356 Allow substitution of paths in href links
+                href.resetTransforms();
+                if (href.type == Href.EXERCISE) {
+                    var transforms:Array = [ new ExercisePathsTransform(configProxy.getConfig().paths) ];
+                    registerTransforms(transforms, [ Href.EXERCISE ]);
+                }
+                for each (var transform:XmlTransform in transforms)
+                    href.transforms.push(transform);
+
+                // Load it!
 				var urlLoader:URLLoader = new URLLoader();
 				urlLoader.addEventListener(Event.COMPLETE, onXHTMLLoadComplete);
 				urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onXHTMLLoadError);
@@ -254,8 +266,10 @@ package com.clarityenglish.bento.model {
 				var xml:XML = new XML(data);
 				
 				// Run all the transforms client side (these might well be empty methods)
-				for each (var xmlTransform:XmlTransform in href.transforms)
-					xmlTransform.transform(xml);
+				for each (var xmlTransform:XmlTransform in href.transforms) {
+                    log.info("Run client side transform {0}", xmlTransform);
+                    xmlTransform.transform(xml);
+                }
 
 				// Store the resource
 				switch (href.type) {

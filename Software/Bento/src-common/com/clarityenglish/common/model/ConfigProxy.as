@@ -235,7 +235,7 @@ package com.clarityenglish.common.model {
 
             // Configure the delegate now that you have the gateway path.  If a sessionid is defined then add it to the gateway.
             // gh#1314 Otherwise generate an id to use as a session id.
-            log.debug('use config.sessionID=' + config.sessionID);
+            //log.debug('use config.sessionID=' + config.sessionID);
 			RemoteDelegate.setGateway(config.remoteGateway + "gateway.php", { PHPSESSID: config.sessionID });
 			RemoteDelegate.setService(config.remoteService);
 			
