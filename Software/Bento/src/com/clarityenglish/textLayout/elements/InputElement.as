@@ -24,9 +24,10 @@ package com.clarityenglish.textLayout.elements {
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.FlowLeafElement;
 	import flashx.textLayout.elements.SpanElement;
-	import flashx.textLayout.events.ModelChange;
+import flashx.textLayout.elements.TextFlow;
+import flashx.textLayout.events.ModelChange;
 	import flashx.textLayout.tlf_internal;
-	
+
 	import mx.core.DragSource;
 	import mx.core.FlexGlobals;
 	import mx.core.IUIComponent;
@@ -328,12 +329,16 @@ import mx.utils.StringUtil;
 					FocusManager(focusManager).mx_internal::lastFocus =  scroller;
 				} else {
 					var nextComponent:DisplayObject = event.target.focusManager.getNextFocusManagerComponent();
+					//trace("children: "+event.target.parent.children);
 					// gh#979 If nextComponent is Button, it is back button. navigating to ExerciseView marking button
 					if (nextComponent is Button) {
-						//while (!(nextComponent is ExerciseView)) {
-						nextComponent = nextComponent.parent;
-						//}
+						// gh#1355
+						while (!(nextComponent is ExerciseView)) {
+							nextComponent = nextComponent.parent;
+						}
 						// gh#1157 nextComponent = (nextComponent as ExerciseView).markingButton;
+						var stage:Stage = (nextComponent as ExerciseView).stage;
+						stage.focus = null;
 					}
 					if (nextComponent is IFocusManagerComponent) {
 						event.target.focusManager.setFocus(nextComponent);
