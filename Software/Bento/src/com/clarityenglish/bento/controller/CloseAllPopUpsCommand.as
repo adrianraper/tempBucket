@@ -29,7 +29,12 @@ package com.clarityenglish.bento.controller {
 				titleWindow = systemManager.popUpChildren.getChildAt(n) as TitleWindow;
 				if (titleWindow) titleWindows.push(titleWindow);
 			}
-			
+            // gh#1299 Some popups are put in the parent childlist
+            for (n = 0; n < systemManager.rawChildren.numChildren; n++) {
+                titleWindow = systemManager.rawChildren.getChildAt(n) as TitleWindow;
+                if (titleWindow) titleWindows.push(titleWindow);
+            }
+
 			// Then go through dispatching CloseEvents on them
 			for each (titleWindow in titleWindows)
 				titleWindow.dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));

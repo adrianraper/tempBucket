@@ -140,12 +140,12 @@ import com.clarityenglish.bento.model.ExerciseProxy;
 		private function addPopupWindow():void {
 			// Create and centre the popup
             try {
-                // gh#1299 If you put the popup onto the PARENT rather than POPUP does that make a difference?
+                // gh#1299 Adding the popup onto the PARENT rather than POPUP makes a difference
                 PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, false, PopUpManagerChildList.PARENT, FlexGlobals.topLevelApplication.moduleFactory);
             } catch (e:Error) {
                 log.error("Triggered the error {0}", e.getStackTrace());
                 onClosePopUp();
-                sendNotification(BBNotifications.CLOSE_ALL_POPUPS);
+                //sendNotification(BBNotifications.CLOSE_ALL_POPUPS);
                 return;
             }
 			PopUpManager.centerPopUp(titleWindow);

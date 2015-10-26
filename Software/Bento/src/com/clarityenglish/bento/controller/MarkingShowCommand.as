@@ -46,6 +46,8 @@ import flash.display.DisplayObject;
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var courseIndex:Number = bentoProxy.selectedCourseNode.childIndex();
 
+            // gh#1335 Before displaying marking window, remove any instant feedback windows
+            sendNotification(BBNotifications.CLOSE_ALL_POPUPS, FlexGlobals.topLevelApplication);
 
             // Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
