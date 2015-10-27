@@ -100,13 +100,13 @@ package com.clarityenglish.bento.vo.content {
 		}
 		
 		/**
-		 * TODO: #20 - for the moment this is hardcoded to false, but it should come from the parameters
+		 * #20 gh#1359 If you want all answers in an exercise to be case sensitive
 		 *  
 		 * @return 
 		 * 
 		 */
 		public function isCaseSensitive():Boolean {
-			return false;
+            return (model.hasSettingParam("caseSensitive") && model.getSettingParam("caseSensitive"));
 		}
 		
 		/**
@@ -147,7 +147,7 @@ package com.clarityenglish.bento.vo.content {
 		}
 		
 		public function hasVideoScript():Boolean {
-			return model.getSettingParam("videoScript");
+            return (model.hasSettingParam("videoScript") && model.getSettingParam("videoScript"));
 		}
 		
 		/**
