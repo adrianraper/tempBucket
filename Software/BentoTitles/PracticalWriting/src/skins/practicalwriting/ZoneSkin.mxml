@@ -45,7 +45,7 @@
     </s:Rect>
 
     <!--Left column-->
-    <s:VGroup left="5" width="{height > 640 ? 255 : 300}" height="80%" top="{height > 640 ? 130 : 110}" horizontalAlign="center" gap="{height > 640 ? 40 : 20}" scaleX="{height > 640 ? 1 : 0.85}" scaleY="{height > 640 ? 1 : 0.85}">
+    <s:VGroup left="5" width="255" height="80%" top="130" top.demo="{height > 990 ? 130 : 110}" horizontalAlign="center" gap="40" gap.demo="{height > 990 ? 40 : 12}">
         <vo:PieChartButton id="pieChartButton" width="200" height="200" node="{hostComponent.course}" fillColor="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}" bottomColor="{getStyle('pieChartBottomColor')[hostComponent.course.childIndex()]}" backgroundColor="#EEEFF0"/>
 
         <!-- Remove stats until we have a sensible number of data points
@@ -78,7 +78,11 @@
             <s:Label id="skillContentLabel" fontSize="14" width="200" lineHeight="120%" />
         </s:VGroup>
 
-        <s:SWFLoader id="priceBannerSWFLoader" source="@Embed(source='/skins/practicalwriting/assets/zone/priceBanner.png')" useHandCursor="true" buttonMode="true" includeIn="demo" />
+        <s:VGroup gap="15">
+            <s:SWFLoader id="priceBannerSWFLoader" source="@Embed(source='/skins/practicalwriting/assets/zone/priceBanner.png')" useHandCursor="true" buttonMode="true" includeIn="demo" />
+            <s:SWFLoader id="tabletPhoneBanner" source="@Embed(source='/skins/practicalwriting/assets/zone/tabletPhoneBanner.png')" includeIn="demo" />
+        </s:VGroup>
+
     </s:VGroup>
 
     <s:TabbedViewNavigator id="zoneViewNavigator" top="112" bottom="60" left="270" right="15" creationPolicy="all">
