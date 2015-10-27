@@ -4,7 +4,8 @@ Proxy - PureMVC
 package com.clarityenglish.common.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoApplication;
-	import com.clarityenglish.bento.model.SCORMProxy;
+import com.clarityenglish.bento.model.BentoProxy;
+import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.events.MemoryEvent;
@@ -46,7 +47,7 @@ import flash.events.TimerEvent;
         public static const NAME:String = "LoginProxy";
 
         // gh#604 Seconds between calls to update the licence (and session)
-        public static const LICENCE_UPDATE_DELAY:Number = 60; // was 60000 = 1 minute
+        public static const LICENCE_UPDATE_DELAY:Number = 60; // production should be 60;
 
         private var _user:User;
         private var _group:Group;
@@ -201,6 +202,9 @@ import flash.events.TimerEvent;
                 licenceTimer.removeEventListener(TimerEvent.TIMER, licenceTimerHandler);
                 licenceTimer = null;
             }
+            // gh#1342 stop the user idle timer
+            var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+            bentoProxy.stopUserIdleTimer();
 
             // gh#970 Is this a logout from a pure AA?
             var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -435,9 +439,14 @@ import flash.events.TimerEvent;
                          licenceTimer.start();
                          }
                          */
+                        //trace("start the licence timer after login");
                         licenceTimer = new Timer(LICENCE_UPDATE_DELAY * 1000, 0);
                         licenceTimer.addEventListener(TimerEvent.TIMER, licenceTimerHandler);
                         licenceTimer.start();
+
+                        // gh#1342 start the user idle timer
+                        var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+                        bentoProxy.startUserIdleTimer();
 
                     } else {
                         // Invalid login. But a no such user error will go to onDelegateFail not here.
@@ -575,7 +584,7 @@ import flash.events.TimerEvent;
 					licenceTimer.stop();
 
 				} else {
-					//trace("ok, nice to see you back again, lets update your session, timer.running=" + licenceTimer.running);
+                    //trace("start the licence timer from userIdleHandler");
 					licenceTimer.start();
 				}
 			}

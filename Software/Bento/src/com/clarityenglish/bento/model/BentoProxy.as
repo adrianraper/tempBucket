@@ -42,7 +42,7 @@ import mx.logging.ILogger;
 		private var _selectedNode:XML;
 
         // gh#604 Seconds before the user is considered to have stopped working on the app
-        public static const USER_IDLE_THRESHOLD:Number = 300;
+        public static const USER_IDLE_THRESHOLD:Number = 300; // production should be 300
         private var idleTimer:Timer;
 
 		public function BentoProxy() {
@@ -261,7 +261,7 @@ import mx.logging.ILogger;
 		 */
 		public function setClean(type:String):void {
 			delete dirtyObj[type];
-			log.info("Set clean: " + type);
+			//log.info("Set clean: " + type);
 		}
 		
 		public function get isDirty():Boolean {
@@ -280,24 +280,39 @@ import mx.logging.ILogger;
 		}
         // gh#1342
         public function startUserIdleTimer():void {
+            //trace("start the idle timer");
             idleTimer = new Timer(USER_IDLE_THRESHOLD * 1000, 0);
             idleTimer.addEventListener(TimerEvent.TIMER, onUserIdle);
             idleTimer.start();
         }
+        public function stopUserIdleTimer():void {
+            //trace("stop the idle timer");
+            if (idleTimer) {
+                idleTimer.stop();
+                idleTimer.removeEventListener(TimerEvent.TIMER, onUserIdle);
+            }
+            idleTimer = null;
+        }
         private function onUserIdle(event:TimerEvent):void {
-            trace("you haven't done anything for ages, bye");
-            idleTimer.stop();
-            facade.sendNotification(BBNotifications.USER_IDLE);
+            // gh#1342 Only do something if there is an idleTimer to play with
+            if (idleTimer) {
+                //trace("you haven't done anything for ages, bye");
+                idleTimer.stop();
+                facade.sendNotification(BBNotifications.USER_IDLE);
+            }
         }
         public function onUserPresent():void {
-            if (!idleTimer.running) {
-                trace("You started again, hooray");
-                facade.sendNotification(BBNotifications.USER_PRESENT);
-            }
+            // gh#1342 Only do something if there is an idleTimer to play with
             if (idleTimer) {
-                trace("You are present and doing something");
-                idleTimer.reset();
-                idleTimer.start();
+                if (!idleTimer.running) {
+                    //trace("You started again, hooray");
+                    facade.sendNotification(BBNotifications.USER_PRESENT);
+                }
+                if (idleTimer) {
+                    //trace("You are present and doing something");
+                    idleTimer.reset();
+                    idleTimer.start();
+                }
             }
         }
 

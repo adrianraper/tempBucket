@@ -6,9 +6,10 @@ class LicenceOps {
 	
 	// We expect Bento to update the licence record every minute that the user is connected
 	// This is the number of minutes after which a licence record can be removed
-	// gh#815, gh#900
-	const LICENCE_DELAY = 2;
-	
+	// gh#815, gh#900, gh#1342
+	const LICENCE_DELAY = 2; // production = 2
+    const HIBERNATE_DELAY = 15; // production = 2
+
 	function LicenceOps($db) {
 		$this->db = $db;
 		$this->copyOps = new CopyOps();
@@ -42,7 +43,7 @@ class LicenceOps {
 		$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
 		$dateNow = $dateStampNow->format('Y-m-d 23:59:59');
         $aShortWhileAgo = $dateStampNow->modify('-'.(LicenceOps::LICENCE_DELAY * 60).' secs')->format('Y-m-d H:i:s');
-        $aLongerWhileAgo = $dateStampNow->modify('-'.(LicenceOps::LICENCE_DELAY * 60 * 7.5).' secs')->format('Y-m-d H:i:s');
+        $aLongerWhileAgo = $dateStampNow->modify('-'.(LicenceOps::HIBERNATE_DELAY * 60).' secs')->format('Y-m-d H:i:s');
 
 		if ($licence->licenceStartDate > $dateNow)
 			throw $this->copyOps->getExceptionForId("errorLicenceHasntStartedYet");
@@ -64,65 +65,66 @@ class LicenceOps {
 					$licenceID = 0;
 					
 				} else {
-					
-					// First, always delete old licences for this product/root
-                    // gh#1342 First delete those that are not hibernating
-					$sql = <<<EOD
-					DELETE FROM T_Licences 
-					WHERE F_ProductCode=? 
-					AND F_RootID=?
-					AND NOT F_Hibernating
-					AND (F_LastUpdateTime<? OR F_LastUpdateTime is null) 
-EOD;
-					$bindingParams = array($productCode, $singleRootID, $aShortWhileAgo);
-					$rs = $this->db->Execute($sql, $bindingParams);
-                    //AbstractService::$debugLog->info("delete not hibernating from ".$aShortWhileAgo);
-					// the sql call failed
-					if (!$rs) {
-						// Write a record to the failure table
-						$this->failLicenceSlot($user, $singleRootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorCantClearLicences"));
-						
-						throw $this->copyOps->getExceptionForId("errorCantClearLicences");
-					}
+                    // gh#1342 Reorder so that first check is to see if there is a free licence you can use
+                    $usedLicences = $this->countCurrentLicences($productCode, $singleRootID);
+                    //AbstractService::$debugLog->info('licences in use='.$usedLicences);
+                    if ($usedLicences >= $licence->maxStudents) {
 
-                    // gh#1342 Then a longer time for those that ARE hibernating
-                    $sql = <<<EOD
-					DELETE FROM T_Licences
-					WHERE F_ProductCode=?
-					AND F_RootID=?
-					AND F_Hibernating
-					AND (F_LastUpdateTime<? OR F_LastUpdateTime is null)
+                        // Then, if not, delete the ones that are not hibernating and check again
+                        $sql = <<<EOD
+                            DELETE FROM T_Licences
+                            WHERE F_ProductCode=?
+                            AND F_RootID=?
+                            AND NOT F_Hibernating
+                            AND (F_LastUpdateTime<? OR F_LastUpdateTime is null)
 EOD;
-                    $bindingParams = array($productCode, $singleRootID, $aLongerWhileAgo);
-                    $rs = $this->db->Execute($sql, $bindingParams);
-                    //AbstractService::$debugLog->info("delete hibernating from ".$aLongerWhileAgo);
-                    // the sql call failed
-                    if (!$rs)
-                        throw $this->copyOps->getExceptionForId("errorCantClearLicences");
+                        $bindingParams = array($productCode, $singleRootID, $aShortWhileAgo);
+                        $rs = $this->db->Execute($sql, $bindingParams);
+                        if (!$rs) {
+                            // Write a record to the failure table
+                            $this->failLicenceSlot($user, $singleRootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorCantClearLicences"));
 
-					// Then count how many are currently in use
-					$sql = <<<EOD
-					SELECT COUNT(F_LicenceID) as i FROM T_Licences 
-					WHERE F_ProductCode=?
-					AND F_RootID=? 
+                            throw $this->copyOps->getExceptionForId("errorCantClearLicences");
+                        }
+                        $usedLicences = $this->countCurrentLicences($productCode, $singleRootID);
+                        //AbstractService::$debugLog->info('after clearing closed ones, licences in use='.$usedLicences);
+
+                        if ($usedLicences >= $licence->maxStudents) {
+                            // gh#1342 Then a longer time for those that ARE hibernating
+                            $sql = <<<EOD
+                                DELETE FROM T_Licences
+                                WHERE F_ProductCode=?
+                                AND F_RootID=?
+                                AND F_Hibernating
+                                AND (F_LastUpdateTime<? OR F_LastUpdateTime is null)
 EOD;
-                    $bindingParams = array($productCode, $singleRootID);
-                    $rs = $this->db->Execute($sql, $bindingParams);
-					$usedLicences = $rs->FetchNextObj()->i;
-	
-					if ($usedLicences >= $licence->maxStudents) {
-						// Write a record to the failure table
-						$this->failLicenceSlot($user, $singleRootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorConcurrentLicenceFull"));
-	
-						throw $this->copyOps->getExceptionForId("errorConcurrentLicenceFull");
-					}
+                            $bindingParams = array($productCode, $singleRootID, $aLongerWhileAgo);
+                            $rs = $this->db->Execute($sql, $bindingParams);
+                            if (!$rs) {
+                                // Write a record to the failure table
+                                $this->failLicenceSlot($user, $singleRootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorCantClearLicences"));
+
+                                throw $this->copyOps->getExceptionForId("errorCantClearLicences");
+                            }
+                            $usedLicences = $this->countCurrentLicences($productCode, $singleRootID);
+                            //AbstractService::$debugLog->info('after clearing hibernating ones (since '.$aLongerWhileAgo.' ), licences in use='.$usedLicences);
+
+                            if ($usedLicences >= $licence->maxStudents) {
+                                // You really can't get a space
+                                $this->failLicenceSlot($user, $singleRootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorConcurrentLicenceFull"));
+
+                                throw $this->copyOps->getExceptionForId("errorConcurrentLicenceFull");
+                            }
+                        }
+                    }
+
 					// Insert this user in the licence control table
 					$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
 					$dateNow = $dateStampNow->format('Y-m-d H:i:s');
 					$userID = $user->userID; 
 					$sql = <<<EOD
-					INSERT INTO T_Licences (F_UserHost, F_StartTime, F_LastUpdateTime, F_RootID, F_ProductCode, F_UserID) VALUES
-					('$ip', '$dateNow', '$dateNow', $singleRootID, $productCode, $userID)
+                        INSERT INTO T_Licences (F_UserHost, F_StartTime, F_LastUpdateTime, F_RootID, F_ProductCode, F_UserID) VALUES
+                        ('$ip', '$dateNow', '$dateNow', $singleRootID, $productCode, $userID)
 EOD;
 					$rs = $this->db->Execute($sql);
 					// v6.5.4.8 adodb will get the identity ID (F_LicenceID) for us.
@@ -178,6 +180,20 @@ EOD;
 		
 		return $licenceID;
 	}
+    /**
+     * Count how many licences are currently in use
+     */
+    private function countCurrentLicences($productCode, $rootId)
+    {
+        $sql = <<<EOD
+            SELECT COUNT(F_LicenceID) as i FROM T_Licences
+        	WHERE F_ProductCode=?
+		    AND F_RootID=?
+EOD;
+        $bindingParams = array($productCode, $rootId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        return $rs->FetchNextObj()->i;
+    }
 	/**
 	 * 
 	 * Does this user already have a licence for this product?
@@ -369,7 +385,7 @@ EOD;
 EOD;
 		$bindingParams = array($dateNow, $hibernate, $licence->id);
 		$rs = $this->db->Execute($sql, $bindingParams);
-        AbstractService::$debugLog->info('time='.$dateNow.' id='.$licence->id.' hibernate='.$hibernate);
+        //AbstractService::$debugLog->info('time='.$dateNow.' id='.$licence->id.' hibernate='.$hibernate);
 		if (!$rs)
 			throw $this->copyOps->getExceptionForId("errorCantUpdateLicence", array("licenceID" => $licence->id));
 	}

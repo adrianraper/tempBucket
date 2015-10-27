@@ -94,8 +94,9 @@ public class BentoApplication extends TLF2Application {
 			stage.addEventListener(MouseEvent.CLICK, onUserPresent);
 			stage.addEventListener(KeyboardEvent.KEY_UP, onUserPresent);
             // gh#1342 Should the idle time be held in BentoProxy so it is widely accessible?
-            var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-            bentoProxy.startUserIdleTimer();
+            // Don't do this here, the user has not signed in yet!
+            //var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+            //bentoProxy.startUserIdleTimer();
 			//idleTimer = new Timer(USER_IDLE_THRESHOLD * 1000, 0);
 			//idleTimer.addEventListener(TimerEvent.TIMER, onUserIdle);
 			//idleTimer.start();

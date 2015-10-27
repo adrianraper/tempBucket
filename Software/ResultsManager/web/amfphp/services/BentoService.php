@@ -95,7 +95,7 @@ class BentoService extends AbstractService {
 		}
 
         // gh#1314
-        AbstractService::$debugLog->notice("php session running with id=".session_id());
+        //AbstractService::$debugLog->notice("php session running with id=".session_id());
 	}
 	
 	/**
