@@ -159,7 +159,6 @@ import spark.primitives.Rect;
 
             switch (instance) {
                 case zoneViewNavigator:
-                    zoneViewNavigator.tabBar.addEventListener(MouseEvent.CLICK, onZoneViewNavigatorClick);
                     zoneViewNavigator.addEventListener(IndexChangeEvent.CHANGE, onIndexChange);
                     break;
                 case backButton:
@@ -263,21 +262,6 @@ import spark.primitives.Rect;
             return super.getCurrentViewState();
         }
 
-        protected function onZoneViewNavigatorClick(event:MouseEvent):void {
-            // Store the index of selected viewNavigator.
-            data = new Object();
-            data.selectedIndex = zoneViewNavigator.tabBar.selectedIndex;
-
-            // If the unit ID haven't been wriiten, then write memory if user open learning tab (index=1).
-            if (zoneViewNavigator.tabBar.selectedIndex == 1 && !openUnitID[course.@id]) {
-                var unitID:Number = course.unit[1].@id;
-                var memoryValue:String = course.@id + "." + unitID;
-                if (_openUnitMemories)
-                    _openUnitMemories.push(memoryValue);
-                writeMemory.dispatch(new MemoryEvent(MemoryEvent.WRITE, {openUnit: _openUnitMemories}));
-            }
-        }
-
         protected function onBackButtonClick(event:MouseEvent):void {
             this.navigator.popView();
         }
@@ -298,6 +282,19 @@ import spark.primitives.Rect;
                 backwardButton.visible = false;
             } else {
                 backwardButton.visible = true;
+            }
+
+            // gh#1358
+            data = new Object();
+            data.selectedIndex = zoneViewNavigator.tabBar.selectedIndex;
+
+            // If the unit ID haven't been wriiten, then write memory if user open learning tab (index=1).
+            if (zoneViewNavigator.tabBar.selectedIndex == 1 && !openUnitID[course.@id]) {
+                var unitID:Number = course.unit[1].@id;
+                var memoryValue:String = course.@id + "." + unitID;
+                if (_openUnitMemories)
+                    _openUnitMemories.push(memoryValue);
+                writeMemory.dispatch(new MemoryEvent(MemoryEvent.WRITE, {openUnit: _openUnitMemories}));
             }
         }
 
