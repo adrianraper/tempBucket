@@ -21,27 +21,27 @@
 			<!--Skill-->
 			<lit name="skillCaptionLabel">Skills focus:</lit>
 			<lit name="skillContent0">You will learn to brainstorm, plan essays, choose appropriate styles, write drafts, and review them.</lit>
-			<lit name="skillContent1">You will learn to structure descriptive essays, match words and senses, choose "precise" words, and link ideas using "signpost" words.</lit>
-			<lit name="skillContent2">You will learn to structure a short report, write topic sentences to introduce a paragraph, mix long and short sentences, and use accurate vocabulary for hotels and restaurants.</lit>
+			<lit name="skillContent1">You will learn how to structure and write an online profile. You will also learn key proof reading skills.</lit>
+			<lit name="skillContent2">You will learn to structure emails, think about formality in emails, use functional language for asking people to do things, and start emails to people from different cultures.</lit>
 			<lit name="skillContent3">You will learn to structure a report, use the present and past in reports, use time prepositions correctly, and describe differences in graphs.</lit>
-			<lit name="skillContent4">You will learn to structure emails, think about formality in emails, use functional language for asking people to do things, and start emails to people from different cultures</lit>
-			<lit name="skillContent5">You will learn to lay out an official letter, use formal language in an official letter, write a cover letter for a job application, and choose the correct tense in a cover letter.</lit>
+			<lit name="skillContent4">You will learn to structure a short report, write topic sentences to introduce a paragraph, mix long and short sentences, and use accurate vocabulary for hotels and restaurants.</lit>
+			<lit name="skillContent5">You will learn to use other people's words correctly, use verbs to introduce quotations, use the correct tense when reporting others' words, and express other people's ideas in your own words.</lit>
 			<lit name="skillContent6">You will learn to use layout and abbreviations effectively, identify the important points in a talk, prepare to take notes by researching the topic, and take notes from a talk.</lit>
-			<lit name="skillContent7">You will learn how to structure and write an online profile. You will also learn key proof reading skills.</lit>
+			<lit name="skillContent7">You will learn to structure descriptive essays, match words and senses, choose 'precise' words, and link ideas using 'signpost' words.</lit>
 			<lit name="skillContent8">You will learn to be formal and informal in texts, reply in an appropriate style, use common Textspeak vocabulary, and make your texts sound like speech.</lit>
-			<lit name="skillContent9">You will learn to use other people's words correctly, use verbs to introduce quotations, use the correct tense when reporting others' words, and express other people's ideas in your own words.</lit>
+			<lit name="skillContent9">You will learn to lay out an official letter, use formal language in an official letter, write a cover letter for a job application, and choose the correct tense in a cover letter.</lit>
 
 			<!--Zone-->
 			<lit name="demoPriceURL">http://www.clarityenglish.com/prices.php?pw</lit>
 
 			<!--Start out-->
-			<lit name="startOutLabel"></lit>
+			<lit name="startOutLabel">You can go to the Resource Bank to find a transcript of this video.</lit>
 			<!--Click to play the video above to learn about writing for and against essays.-->
 			<lit name="startOutLabel1">Click to play the video above to learn about writing descriptive essays.</lit>
 			<lit name="startOutLabel2">Click to play the video above to learn about writing short hotel and restaurant reports.</lit>
 			<lit name="startOutLabel3">Click to play the video to learn about writing short reports about graphs.</lit>
 			<lit name="startOutLabel4">Click to play the video to learn about writing emails to ask for information.</lit>
-			<lit name="startOutLabel5">Click to play the video to learn about writing official letters.</lit>
+			<lit name="startOutLabel5">Go to the Resource Center to see a video transcript.</lit>
 			<lit name="startOutLabel6">Click to play the video to learn about taking notes when listening to a talk or reading a book.</lit>
 			<lit name="startOutLabel7">Click to play the video to learn about writing online profiles, and how they influence your job applications.</lit>
 			<lit name="startOutLabel8">Click to play the video to learn about Textspeak and using it appropriately.</lit>
@@ -106,7 +106,7 @@
 
 			<!-- Demo -->
 			<lit name="demoListCaption">On the Progress screens you can:</lit>
-			<lit name="demoList">check your scores in all activities; analyse the time you've spent on different topics; see your progress day by day; compare your performance with others - worldwide!</lit>
+			<lit name="demoList">check your scores in all activities; analyse the time you've spent on different topics; see your progress day by day; compare your performance with others — worldwide!</lit>
 			<lit name="demoRMLabel">Teachers can monitor their students' scores and times using the integrated Results Manager.</lit>
 		</group>
 	</language>
@@ -117,6 +117,11 @@
 			<lit name="exerciseMarkingButton">Scoring</lit>
 			<lit name="progressNavBarAnalyse">Analyse</lit>
 			<lit name="resourceBank">Resource Center</lit>
+			<lit name="skillContent1">You will learn how to structure and write an online profile. You will also learn key proofreading skills.</lit>
+			<lit name="skillContent7">You will learn to structure descriptive essays, match words and senses, choose "precise" words, and link ideas using "signpost" words.</lit>
+			<lit name="certificateSignatureNameLabel">Dr. Adrian Raper,</lit>
+			<lit name="startOutLabel">You can go to the Resource Center to find a transcript of this video.</lit>
+			<lit name="demoList">check your scores in all activities; analyze the time you've spent on different topics; see your progress day by day; compare your performance with others — worldwide!</lit>
 		</group>
 	</language>
 </literals>
