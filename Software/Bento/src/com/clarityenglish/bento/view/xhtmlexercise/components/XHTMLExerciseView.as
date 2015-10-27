@@ -403,13 +403,12 @@ import spark.components.Group;
 				if (question.type == Question.TARGET_SPOTTING_QUESTION) {
 					XHTML.addClass(answerNode, "disabled");
 				}
-				
 				TLFUtil.markFlowElementFormatChanged(answerElement);
 				textFlowDamageAccumulator.damageTextFlow(answerElement.getTextFlow());
 			}
 			
 			textFlowDamageAccumulator.updateDamagedTextFlows();
-		}
+        }
 		
 		/**
 		 * When an exercise has been marked, various things (i.e. drags, inputs, etc) become non-interactive.
@@ -456,8 +455,20 @@ import spark.components.Group;
 					log.error("Cannot find flow element for {0}", node);
 				}
 			}
-			
-			textFlowDamageAccumulator.updateDamagedTextFlows();
+
+            // gh#1334 Stop incorrect click behaviour after marking (and enable on try again)
+            if (exercise.model.hasSettingParam("incorrectClickSection")) {
+                var group:Group = this[exercise.model.getSettingParam("incorrectClickSection") + "Group"];
+                if (marked) {
+                    log.info("remove incorrect click event for section {0}", exercise.model.getSettingParam("incorrectClickSection"));
+                    group.removeEventListener(MouseEvent.CLICK, onSectionClick);
+                } else {
+                    log.info("add back incorrect click event for section {0}", exercise.model.getSettingParam("incorrectClickSection"));
+                    group.addEventListener(MouseEvent.CLICK, onSectionClick);
+                }
+            }
+
+            textFlowDamageAccumulator.updateDamagedTextFlows();
 		}
 		
 		// gh#627
