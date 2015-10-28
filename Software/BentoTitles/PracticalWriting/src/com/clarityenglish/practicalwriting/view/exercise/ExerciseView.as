@@ -73,8 +73,6 @@ import spark.primitives.Rect;
                     courseLabelButton.addEventListener(MouseEvent.CLICK, onCourseLabelButtonClick);
                     break;
                 case exerciseList:
-                    var exerciseSelected:Signal = new Signal(XML);
-
                     exerciseList.addEventListener(IndexChangeEvent.CHANGE, onExerciseSelected);
 
                     // Select the current unit and exercise
@@ -84,7 +82,6 @@ import spark.primitives.Rect;
                             exerciseList.selectedItem = node;
                             callLater(function():void {
                                 exerciseList.ensureIndexIsVisible(exerciseList.selectedIndex);
-                                exerciseSelected.dispatch(node);
                             });
                         }
                     });

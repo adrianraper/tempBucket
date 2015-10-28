@@ -256,7 +256,14 @@ import org.puremvc.as3.interfaces.IMediator;
 		
 		private function onNodeSelect(node:XML):void {
 			sendNotification(BBNotifications.CLOSE_ALL_POPUPS, FlexGlobals.topLevelApplication); // gh#1163
-			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, node);
+
+			// #1360
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(bentoProxy.currentExercise)) as ExerciseProxy;
+			if (exerciseProxy.attemptToLeaveExercise(new Notification(BBNotifications.SELECTED_NODE_CHANGE, node))) {
+				sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view); // #265
+				sendNotification(BBNotifications.SELECTED_NODE_CHANGE, node);
+			}
 		}
 		
 		private function onBackToMenu():void {
