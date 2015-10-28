@@ -103,6 +103,8 @@ import spark.components.Button;
 		private var _isFirstExercise:Boolean;
 		private var _isDirectStartEx:Boolean;
 		private var _languageCode:String;
+		private var forwardLastTime:Date = new Date();
+		private var backLastTime:Date = new Date();
 
 		public function set courseCaption(value:String):void {
 			_courseCaption = value;
@@ -283,11 +285,23 @@ import spark.components.Button;
 					markingButton.visible = markingButton.includeInLayout = !isMarked && hasQuestions && !noMarking;
 					break;
 				case forwardButton:
-					forwardButton.addEventListener(MouseEvent.CLICK, function():void { nextExercise.dispatch(); } );
+					forwardButton.addEventListener(MouseEvent.CLICK, function():void {
+						if ((new Date()).time - forwardLastTime.time < 1000) {
+							return;
+						}
+						nextExercise.dispatch();
+						forwardLastTime = new Date();
+					} );
 					forwardButton.label = copyProvider.getCopyForId("exerciseForwardButton");
 					break;
 				case backButton:
-					backButton.addEventListener(MouseEvent.CLICK, function():void { previousExercise.dispatch(); } );
+					backButton.addEventListener(MouseEvent.CLICK, function():void {
+						if ((new Date()).time - backLastTime.time < 1000) {
+							return;
+						}
+						previousExercise.dispatch();
+						backLastTime = new Date();
+					} );
 					backButton.label = copyProvider.getCopyForId("exerciseBackButton");
 					break;
 				case printButton:
