@@ -14,17 +14,11 @@
         <s:VerticalLayout />
     </s:layout>
 
-    <s:Spacer height="0" />
-    <s:HGroup width="100%" paddingLeft="20" paddingBottom="30" paddingRight="20">
-        <s:SWFLoader source="@Embed(source='/skins/practicalwriting/assets/errormessage.swf')" />
-        <s:Spacer width="10" />
-        <s:VGroup>
-            <s:Label id="problemLabel" width="310" paddingTop="10" />
-            <s:Spacer height="1" />
-            <s:Label id="errorMessage" width="310" text="{hostComponent.error.errorContext}" lineHeight="20" />
-            <s:Spacer height="1" />
-            <s:Button id="closeButton" width="65" height="35" />
-        </s:VGroup>
-    </s:HGroup>
+    <!-- gh#1364 -->
+    <s:VGroup width="100%" paddingTop="20" paddingRight="30" paddingBottom="30" paddingLeft="30" gap="15" horizontalAlign="center">
+        <s:Label id="problemLabel" width="360" />
+        <s:Label id="errorMessage" width="360" text="{hostComponent.error.errorContext}" lineHeight="125%" />
+        <s:Button id="closeButton" width="65" height="35" />
+    </s:VGroup>
 
 </s:Skin>

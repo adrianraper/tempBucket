@@ -42,8 +42,8 @@ package com.clarityenglish.common.controller {
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
 			titleWindow.styleName = "errorTitleWindow";
-			titleWindow.title = copyProvider.getCopyForId('stdErrorTitle');
-			
+			//titleWindow.title = copyProvider.getCopyForId('stdErrorTitle');
+
 			errorView = new ErrorView();
 			//trace("load error message");
 			errorView.error = note.getBody() as BentoError;

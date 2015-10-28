@@ -20,7 +20,7 @@
 
 			<!--Skill-->
 			<lit name="skillCaptionLabel">Skills focus:</lit>
-			<lit name="skillContent0">You will learn to brainstorm, plan essays, choose appropriate styles, write drafts, and review them.</lit>
+			<lit name="skillContent0">You will learn to brainstorm, plan essays, choose an appropriate style, write drafts, and review them.</lit>
 			<lit name="skillContent1">You will learn how to structure and write an online profile. You will also learn key proof reading skills.</lit>
 			<lit name="skillContent2">You will learn to structure emails, think about formality in emails, use functional language for asking people to do things, and start emails to people from different cultures.</lit>
 			<lit name="skillContent3">You will learn to structure a report, use the present and past in reports, use time prepositions correctly, and describe differences in graphs.</lit>

@@ -21,7 +21,7 @@
             <lit name="errorNoSuchGroup" code="210">No such group exists. Please contact your administrator.</lit>
             <lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
             <lit name="errorGetInstanceId" code="212">Can't get the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
-            <lit name="errorFailedInstanceCheck" code="213">Someone else has signed in with your details. Please try again. ({instanceID})</lit>
+            <lit name="errorFailedInstanceCheck" code="213">Someone else has signed in with your details. Please try again.</lit>
             <lit name="errorInvalidLoginOption" code="214">This account has not set the sign in options. ({loginOption})</lit>
             <lit name="errorLoginKeyEmpty" code="215">The {loginKeyField} can't be empty.</lit>
             <lit name="errorTitleBlockedByHiddenContent" code="216">Your group has been blocked from using this program. Please contact your teacher or administrator for help.</lit>
@@ -36,10 +36,10 @@
             <lit name="errorConcurrentLicenceFull" code="304">This licence is full, please try again later.</lit>
             <lit name="errorReadingLicenceControlTable" code="305">Error reading licence control table. Please contact support@clarityenglish.com.</lit>
             <lit name="errorUnrecognisedLicenceType" code="306">The licence type {licenceType} is not recognised. Please contact support@clarityenglish.com.</lit>
-            <lit name="errorCantFindLicence" code="307">Someone else started using your licence while the program was asleep. Please try again. If the problem persists, please contact support@clarityenglish.com.</lit>
-            <lit name="errorCantUpdateLicence" code="308">Error, can't update licence {licenceID}. Please sign in again. If the problem persists, please contact support@clarityenglish.com.</lit>
-            <lit name="errorCantDeleteLicence" code="309">Error, can't delete licence {licenceID}. Please sign in again. If the problem persists, please contact support@clarityenglish.com.</lit>
-            <lit name="errorCantAllocateLicenceNumber" code="310">Error, can't allocate a licence number.</lit>
+            <lit name="errorCantFindLicence" code="307">Someone else started using your licence while the program was asleep. Please try again. If this keeps happening, please contact support@clarityenglish.com.</lit>
+            <lit name="errorCantUpdateLicence" code="308">Error, can't update licence {licenceID}. Please sign in again. If this keeps happening, please contact support@clarityenglish.com.</lit>
+            <lit name="errorCantDeleteLicence" code="309">Error, can't delete licence {licenceID}. Please sign in again. If this keeps happening, please contact support@clarityenglish.com.</lit>
+            <lit name="errorCantAllocateLicenceNumber" code="310">Error, can't set a licence number.</lit>
             <lit name="errorIPDoesntMatch" code="311">This licence can only run from certain computers. Your IP is {ip}.</lit>
             <lit name="errorRUDoesntMatch" code="312">This licence can only run from certain websites. You came from {referrer}.</lit>
             <lit name="errorIPandRUDontMatch" code="313">This licence can only run from certain computers or websites. You came from {referrer} with {ip}.</lit>
@@ -77,7 +77,7 @@
             <lit name="supportEmail">support@clarityenglish.com</lit>
             <lit name="problemLabel"></lit> <!-- "Sorry, there is a problem" is hardcoded in ShowErrorCommand -->
             
-            <lit name="stdErrorTitle">Sorry, there is a problem...</lit>
+            <lit name="stdErrorTitle">Sorry, you can’t keep going...</lit>
             
             <!-- Loading -->
             <lit name="loadingLabel">loading...</lit>
@@ -150,7 +150,7 @@
             <lit name="overallScoreLabel">You scored {score}%</lit>
             <lit name="correctLabel">Correct: {correct}</lit> 
             <lit name="wrongLabel">Wrong: {wrong}</lit> 
-            <lit name="missedLabel">Skipped: {missed}</lit>
+            <lit name="missedLabel">Missed: {missed}</lit>
             <lit name="markingSecondTimeShown">Your saved score is based on your first attempt.</lit>
             <lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
             
@@ -259,6 +259,7 @@
             <lit name="anonymousCaption">Just practice</lit>
             <lit name="exerciseMarkingButton">Scoring</lit>
             <lit name="progressNavBarAnalyse">Analyze</lit>
+	    <lit name="missedLabel">Skipped: {missed}</lit>
         </group>
     </language>
     
