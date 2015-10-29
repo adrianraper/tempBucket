@@ -19,6 +19,9 @@ public class ResourcesZoneView extends BentoView {
     [SkinPart]
     public var sampleEssayList:List;
 
+    [Bindable]
+    public var rootPath:String;
+
     public var PDFSelect:Signal = new Signal(XML);
 
     public function ResourcesZoneView() {
@@ -55,6 +58,11 @@ public class ResourcesZoneView extends BentoView {
 
     public function onPDFClick(node:XML):void {
         PDFSelect.dispatch(node);
+    }
+
+    // gh#1370
+    protected override function updateViewFromXHTML(xhtml:XHTML):void {
+        rootPath = href.rootPath;
     }
 }
 }

@@ -33,7 +33,7 @@
                                     override public function set data(value:Object):void {
                                         super.data = value;
 
-                                        studySheetSWFLoader.source = outerDocument.hostComponent.href.rootPath+ '/' + data.@thumbnail;
+                                        studySheetSWFLoader.source = outerDocument.hostComponent.rootPath + '/' + data.@thumbnail;
                                     }
 
                                     protected function onItemClick(data:Object):void {
@@ -69,7 +69,7 @@
                                     override public function set data(value:Object):void {
                                         super.data = value;
 
-                                        sampleEssaySWFLoader.source = outerDocument.hostComponent.href.rootPath+ '/' + data.@thumbnail;
+                                        sampleEssaySWFLoader.source = outerDocument.hostComponent.rootPath + '/' + data.@thumbnail;
                                     }
 
                                     protected function onItemClick(data:Object):void {
@@ -105,7 +105,7 @@
                                     override public function set data(value:Object):void {
                                         super.data = value;
 
-                                        modelAnswerSWFLoader.source = outerDocument.hostComponent.href.rootPath+ '/' + data.@thumbnail;
+                                        modelAnswerSWFLoader.source = outerDocument.hostComponent.rootPath + '/' + data.@thumbnail;
                                     }
 
                                     protected function onItemClick(data:Object):void {
@@ -140,7 +140,7 @@
                                     override public function set data(value:Object):void {
                                         super.data = value;
 
-                                        transcriptSWFLoader.source = outerDocument.hostComponent.href.rootPath+ '/' + data.@thumbnail;
+                                        transcriptSWFLoader.source = outerDocument.hostComponent.rootPath + '/' + data.@thumbnail;
                                     }
 
                                     protected function onItemClick(data:Object):void {
