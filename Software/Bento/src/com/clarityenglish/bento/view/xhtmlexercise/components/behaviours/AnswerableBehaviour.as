@@ -384,8 +384,12 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 		// If this is a true gapfill, with a user entered answer then answerOrString will still be null, in which case we
 		// use a String with the value the user has entered.  QuestionStringAnswerCommand will derive the score for this
 		// string and create a TextAnswer to pass on to ExerciseProxy.
-		if (!answerOrString)
-			answerOrString = inputElement.enteredValue;
+		if (!answerOrString) {
+            answerOrString = inputElement.enteredValue;
+            // gh#1365 Truncate the typed answer to fit in the box (which is big enough for longest answer)
+            while (answerOrString.length > inputElement.textLength)
+                answerOrString = answerOrString.slice(0, -1);
+        }
 
 		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, inputNode, true));
 	}
