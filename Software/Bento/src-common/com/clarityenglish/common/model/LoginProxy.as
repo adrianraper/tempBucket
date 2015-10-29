@@ -486,9 +486,9 @@ import flash.events.TimerEvent;
 
                         // #445 Any error other than user not found is simply reported
                         var thisError:BentoError = BentoError.create(fault);
-                        if (thisError.errorNumber == copyProxy.getCodeForId("errorNoSuchUser")) {
-                            var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+                        var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 
+                        if (thisError.errorNumber == copyProxy.getCodeForId("errorNoSuchUser")) {
                             // #341 For network, if you don't find the user, offer to add them
                             // gh#100 and for CT too (so long as selfRegister is set)
                             // gh#100 and for LT/TT too surely!
@@ -524,7 +524,9 @@ import flash.events.TimerEvent;
                                 sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault, false)); // GH #3
                             }
                         } else {
-                            sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault, false)); // GH #3
+                            // gh#1367 Login errors for pure AA have to be fatal
+                            var isFatal:Boolean = (configProxy.isAccountJustAnonymous()) ? true : false;
+                            sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault, isFatal)); // GH #3
                         }
 
                         break;

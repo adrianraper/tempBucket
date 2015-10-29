@@ -16,6 +16,7 @@ package com.clarityenglish.bento.controller {
 			// Inject the FSM into PureMVC
 			// Note that 'changed' means entered, really
 			// gh#21
+            // gh#1367 Exited from login state goes to closing screen
 			var fsm:XML =				
 				<fsm initial={BBStates.STATE_LOAD_COPY}>
 					<state name={BBStates.STATE_LOAD_COPY} entering={CommonNotifications.COPY_LOAD}>
@@ -37,6 +38,7 @@ package com.clarityenglish.bento.controller {
 						<transition action={CommonNotifications.ACCOUNT_RELOAD} target={BBStates.STATE_RELOAD_ACCOUNT} />
 						<transition action={CommonNotifications.LOGGED_IN} target={BBStates.STATE_LOAD_MENU} />
 						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
+                        <transition action={CommonNotifications.EXITED} target={BBStates.STATE_CREDITS} />
 					</state>
 
 					<state name={BBStates.STATE_LOAD_MENU} entering={BBNotifications.MENU_XHTML_LOAD}>
@@ -72,7 +74,7 @@ package com.clarityenglish.bento.controller {
 				loginXML.appendChild(<transition action={CommonNotifications.INVALID_LOGIN} target={BBStates.STATE_CREDITS} />);
 				loginXML.appendChild(<transition action={CommonNotifications.INVALID_DATA} target={BBStates.STATE_CREDITS} />);
 			}
-			
+
 			// #322
 			// gh#113 Due to change of config and account loading, you might have errors before
 			// so always add this state. And config errors come during account load, not login
