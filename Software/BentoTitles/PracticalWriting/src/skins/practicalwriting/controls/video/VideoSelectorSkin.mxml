@@ -20,12 +20,6 @@
             // gh#1305
             if (hostComponent.videoCollection.length <= 1)
                 videoList.visible = videoList.includeInLayout = false;
-
-            var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
-            if (settingsSharedObject.data["channelIndex"]) {
-                channelList.selectedIndex = settingsSharedObject.data["channelIndex"];
-            }
-            channelList.visible = false;
         }
 
         protected function onPlaceholderClick(event:MouseEvent):void {
@@ -35,12 +29,6 @@
         }
         ]]>
 	</fx:Script>
-    <!--video player black background-->
-    <!--s:Rect id="videoListRect" top="2" width="100%" height="100%" filters="{[dropShadowFilter]}">
-        <s:fill>
-            <s:SolidColor color="0xD6D6D6" />
-        </s:fill>
-    </s:Rect-->
 
     <!-- The video players -->
     <!--players:WebViewVideoPlayer id="videoPlayer" left="30" width="320" height="240" visible="{videoList.selectedItem != null}" /-->
@@ -50,11 +38,41 @@
     <s:Image id="placeholderImage" left="0" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
 
     <!-- Channel list -->
-    <s:List id="channelList" top="260" left="30" width="320" horizontalScrollPolicy="off" >
+    <s:List id="channelList" top="362" left="0" horizontalScrollPolicy="off" borderVisible="false" contentBackgroundAlpha="0" useHandCursor="true" buttonMode="true">
         <s:layout>
-            <s:HorizontalLayout />
+            <s:HorizontalLayout gap="8" />
         </s:layout>
+        <s:itemRenderer>
+            <fx:Component>
+                <s:ItemRenderer autoDrawBackground="false">
+                    <fx:Declarations>
+                        <s:DropShadowFilter id="channelShadowFilter" angle="70" alpha="0.5" distance="1.5" color="#B5B5B6" />
+                    </fx:Declarations>
+                    <s:states>
+                        <s:State name="normal" />
+                        <s:State name="hovered" />
+                        <s:State name="selected" />
+                    </s:states>
+
+                    <s:Group width="136" height="35" top.normal="0" top.hovered="3" top.selected="3">
+                        <s:Rect width="100%" height="100%" bottomLeftRadiusX="8" bottomLeftRadiusY="8" bottomRightRadiusX="8" bottomRightRadiusY="8" filters.normal="{[channelShadowFilter]}">
+                            <s:fill>
+                                <s:SolidColor color="#E5E5E5" color.hovered="#FFDA88" color.selected="#FFDA88" />
+                            </s:fill>
+                        </s:Rect>
+                        <s:Label verticalCenter="0" horizontalCenter="0" text="{data.caption}" fontSize="16" color="#898989" color.hovered="#0D6A8A" color.selected="#0D6A8A"/>
+                    </s:Group>
+                </s:ItemRenderer>
+            </fx:Component>
+        </s:itemRenderer>
     </s:List>
+
+    <s:Rect height="5" width="640" top="360" left="0">
+        <s:fill>
+            <s:SolidColor color="#D2D1D4" />
+        </s:fill>
+    </s:Rect>
+
     <s:Button id="scriptButton" left="411" top="172" width="50" height="45" />
 
     <!-- Video list -->

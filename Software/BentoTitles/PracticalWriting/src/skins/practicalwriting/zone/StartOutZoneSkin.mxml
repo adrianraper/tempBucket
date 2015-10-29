@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
          xmlns:s="library://ns.adobe.com/flex/spark"
-         xmlns:video="com.clarityenglish.controls.video.*" initialize="onInitialize(event)">
+         xmlns:video="com.clarityenglish.controls.video.*"
+         xmlns:assets="skins.practicalwriting.assets.zone.*"
+         initialize="onInitialize(event)">
 
     <fx:Metadata>
         [HostComponent("com.clarityenglish.practicalwriting.view.zone.StartOutZoneView")]
@@ -15,6 +17,14 @@
 
         protected function onInitialize(e:Event):void {
             appHeight = FlexGlobals.topLevelApplication.height;
+
+            // #gh1363
+            var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
+            if (settingsSharedObject.data["isChannelSelect"]) {
+                videoTipImage.visible = !settingsSharedObject.data["isChannelSelect"];
+            } else {
+                videoTipImage.visible = true;
+            }
         }
         ]]>
     </fx:Script>
@@ -25,10 +35,12 @@
         <s:State name="normal" />
     </s:states>
 
-    <s:VGroup width="640" top="0" bottom="50" horizontalCenter="0" gap="20" scaleX="{height > 407 ? 1 : 0.8 * appHeight / 550}" scaleY="{height > 407 ? 1 :  0.8 * appHeight / 550}">
+    <s:VGroup width="640" top="0" bottom="50" horizontalCenter="0" gap="70" scaleX="{height > 407 ? 1 : 0.8 * appHeight / 550}" scaleY="{height > 407 ? 1 :  0.8 * appHeight / 550}">
         <video:VideoSelector id="introductionVideoSelector" width="640" height="360" horizontalCenter="0" showSelector="false" placeholderSource="{hostComponent.placeHolderString}" videoCollection="{hostComponent.videoXMLListCollection}" />
 
         <s:Label id="startOutLabel" width="600" fontSize="15" />
     </s:VGroup>
 
+    <!--Video tip-->
+    <assets:chooseChannelTip id="videoTipImage" right="-5" top="370" />
 </s:Skin>

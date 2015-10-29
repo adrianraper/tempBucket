@@ -10,6 +10,7 @@ import flash.events.Event;
 import flash.events.FocusEvent;
 import flash.events.MouseEvent;
 import flash.net.NetStream;
+import flash.net.SharedObject;
 
 import flashx.textLayout.elements.TextFlow;
 
@@ -163,6 +164,12 @@ import spark.utils.TextFlowUtil;
 					channelList.dataProvider = _channelCollection;
 					if (channelList.dataProvider.length>1)
 						channelList.visible = true;
+
+					// gh#1363
+					var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
+					if (settingsSharedObject.data["channelIndex"]) {
+						channelList.selectedIndex = settingsSharedObject.data["channelIndex"];
+					}
 				}
 			}
 
@@ -230,6 +237,11 @@ import spark.utils.TextFlowUtil;
 		protected function onChannelSelected(event:IndexChangeEvent):void {
 			_channelChanged = true;
 			invalidateProperties();
+
+			// gh#1363
+			var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
+			settingsSharedObject.data["channelIndex"] = channelList.selectedIndex;
+			settingsSharedObject.flush();
 		}
 
 		protected function onVideoSelected(event:Event):void {

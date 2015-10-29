@@ -8,6 +8,7 @@ import com.clarityenglish.textLayout.vo.XHTML;
 
 import flash.events.Event;
 import flash.events.MouseEvent;
+import flash.net.SharedObject;
 
 import mx.collections.ArrayCollection;
 import mx.collections.XMLListCollection;
@@ -15,6 +16,7 @@ import mx.collections.XMLListCollection;
 import org.osflash.signals.Signal;
 
 import spark.components.Label;
+import spark.events.IndexChangeEvent;
 
 public class StartOutZoneView extends BentoView {
 
@@ -63,6 +65,7 @@ public class StartOutZoneView extends BentoView {
                     introductionVideoSelector.channelCollection = channelCollection;
                     introductionVideoSelector.addEventListener(VideoScoreEvent.VIDEO_SCORE, onVideoScore);
                     introductionVideoSelector.hrefToUidFunction = hrefToUidFunction;
+                    introductionVideoSelector.channelList.addEventListener(IndexChangeEvent.CHANGE, onChannelListIndexChange);
                     break;
                 case startOutLabel:
                     startOutLabel.text = copyProvider.getCopyForId("startOutLabel");
@@ -71,8 +74,15 @@ public class StartOutZoneView extends BentoView {
             }
         }
 
-         protected function onVideoScore(event:VideoScoreEvent):void {
+        protected function onChannelListIndexChange(event:Event):void {
+            // #gh1363
+            var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
+            settingsSharedObject.data["isChannelSelect"] = true;
+            settingsSharedObject.flush();
+        }
+
+        protected function onVideoScore(event:VideoScoreEvent):void {
             videoScore.dispatch(event.exerciseMark);
-         }
+        }
     }
 }
