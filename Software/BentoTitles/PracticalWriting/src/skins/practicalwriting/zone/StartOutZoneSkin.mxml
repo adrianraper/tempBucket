@@ -3,7 +3,7 @@
          xmlns:s="library://ns.adobe.com/flex/spark"
          xmlns:video="com.clarityenglish.controls.video.*"
          xmlns:assets="skins.practicalwriting.assets.zone.*"
-         initialize="onInitialize(event)">
+         initialize="onInitialize(event)" creationComplete="onCreationComplete(event)">
 
     <fx:Metadata>
         [HostComponent("com.clarityenglish.practicalwriting.view.zone.StartOutZoneView")]
@@ -17,13 +17,15 @@
 
         protected function onInitialize(e:Event):void {
             appHeight = FlexGlobals.topLevelApplication.height;
+        }
 
+        protected function onCreationComplete(event:Event) {
             // #gh1363
             var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
             if (settingsSharedObject.data["isChannelSelect"]) {
                 videoTipImage.visible = !settingsSharedObject.data["isChannelSelect"];
             } else {
-                videoTipImage.visible = true;
+                videoTipImage.visible = true && introductionVideoSelector.channelList.dataProvider.length > 1;
             }
         }
         ]]>
