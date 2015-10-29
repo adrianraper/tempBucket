@@ -477,7 +477,7 @@ package com.clarityenglish.bento.model {
 			
 			// If we are using delayed marking then mark all selected questions now
 			// gh#624 /**/
-			/*if (delayedMarking)*/ markSelectedQuestions();
+			/*if (delayedMarking)*/markSelectedQuestions();
 			
 			_exerciseMark = new ExerciseMark();
 			
@@ -538,8 +538,9 @@ package com.clarityenglish.bento.model {
 			
 			// gh#739
 			// gh#624 comment out /*selectedAnswerMap*/
+			// gh#1362
 			/*if (delayedMarking)
-				selectedAnswerMap = markableAnswerMap= new Dictionary(true);*/ 
+				selectedAnswerMap =*/ markableAnswerMap= new Dictionary(true);
 		}
 		
 		/**
@@ -549,7 +550,7 @@ package com.clarityenglish.bento.model {
 			for (var questionObj:Object in selectedAnswerMap) {
 				var question:Question = questionObj as Question;
 				var answerMap:AnswerMap = selectedAnswerMap[question];
-				
+
 				for each (var key:Object in answerMap.keys) {
 					var answer:Answer = answerMap.get(key);
 					
