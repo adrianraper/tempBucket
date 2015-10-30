@@ -2,11 +2,17 @@ package com.clarityenglish.practicalwriting.view.closing {
 import com.clarityenglish.bento.BentoApplication;
 import com.clarityenglish.bento.view.base.BentoView;
 
+import flash.events.MouseEvent;
+import flash.net.URLRequest;
+import flash.net.navigateToURL;
+
+import mx.controls.SWFLoader;
+
 import mx.core.FlexGlobals;
 
 import spark.components.Label;
 
-    public class ClosingView extends BentoView {
+public class ClosingView extends BentoView {
 
         [SkinPart]
         public var closingCaptionLabel:Label;
@@ -16,6 +22,9 @@ import spark.components.Label;
 
         [SkinPart]
         public var productNameLabel:Label;
+
+        [SkinPart]
+        public var priceBannerSWFLoader:SWFLoader;
 
         [SkinPart]
         public var versionLabel:Label;
@@ -41,6 +50,9 @@ import spark.components.Label;
                 case productNameLabel:
                     productNameLabel.text = copyProvider.getCopyForId("loginInputTitle") + "!";
                     break;
+                case priceBannerSWFLoader:
+                    priceBannerSWFLoader.addEventListener(MouseEvent.CLICK, onPriceBannerClick);
+                    break;
                 case versionLabel:
                     versionLabel.text = copyProvider.getCopyForId("versionLabel", {versionNumber: FlexGlobals.topLevelApplication.versionNumber});
                     break;
@@ -49,6 +61,7 @@ import spark.components.Label;
                     break;
             }
         }
+
         protected override function getCurrentSkinState():String {
             // gh#1307
             if (this.isDemo)
@@ -57,6 +70,9 @@ import spark.components.Label;
             return "normal";
         }
 
-
+        protected function onPriceBannerClick(event:MouseEvent):void {
+            var url:String = copyProvider.getCopyForId("demoPriceURL");
+            navigateToURL(new URLRequest(url), "_blank");
+        }
     }
 }

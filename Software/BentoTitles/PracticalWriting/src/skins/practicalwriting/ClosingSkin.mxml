@@ -28,15 +28,16 @@
     <!--Background-->
     <s:BitmapImage left="0" bottom="0" width="100%" source="@Embed(source='/skins/practicalwriting/assets/login/backgroundLargeBall.png')" scaleMode="zoom" />
 
-    <s:VGroup verticalCenter="110" horizontalCenter="-180" horizontalAlign="center" height="500" width="600" gap="34">
+    <s:VGroup verticalCenter="100" horizontalCenter="-180" horizontalAlign="center" height="500" width="600" gap="34">
         <s:VGroup width="450" textAlign="center">
-            <s:Label id="closingCaptionLabel" width="100%" fontSize="77" color="#09789C" />
-            <s:Label id="closingContentLabel" width="100%" fontSize="42" color="#09789C" />
-            <s:Label id="productNameLabel" width="100%" fontSize="42" color="#09789C" />
+            <s:Label id="closingCaptionLabel" width="100%" fontSize="76" color="#09789C" fontWeight="bold" />
+            <s:Label id="closingContentLabel" width="100%" fontSize="48" color="#09789C" />
+            <s:Label id="productNameLabel" width="100%" fontSize="48" color="#09789C" />
         </s:VGroup>
-        <s:VGroup width="450" textAlign="center" includeIn="demo">
-            <s:Label text="Find out more about Practical Writing at www.ClarityEnglish.com" width="100%" fontSize="18" color="#09789C" />
-        </s:VGroup>
+        <s:HGroup width="100%" horizontalAlign="center" gap="11" includeIn="demo">
+            <s:SWFLoader id="priceBannerSWFLoader" source="@Embed(source='/skins/practicalwriting/assets/zone/priceBanner.png')" buttonMode="true" useHandCursor="true" />
+            <s:SWFLoader source="@Embed(source='/skins/practicalwriting/assets/zone/tabletPhoneBanner.png')" />
+        </s:HGroup>
     </s:VGroup>
 
     <!--Man-->
