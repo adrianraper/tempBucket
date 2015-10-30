@@ -28,6 +28,9 @@ global {
     exerciseListIncompleteColor: #F6D9E5, #A9C4AF, #FFE3BF, #DCEBF3, #FEDFCA, #D5CCE5, #FCDEDD, #CEE9EB, #FCDDE6, #DCEEF2;
     analyseCircleWedgeColors: #0B789C, #B5E3F2, #38839C, #5A9CB2, #02566D, #B7DCE5, #6CC6DF, #0E9AC9, #78CEDC, #A4DDEF;
     markingColours:  #6D6E70, #B7B9BB, #B7B9BB;
+
+    /* gh#1371*/
+    focus-thickness: 0;
 }
 
 practicalwriting|PracticalWritingApplication {
