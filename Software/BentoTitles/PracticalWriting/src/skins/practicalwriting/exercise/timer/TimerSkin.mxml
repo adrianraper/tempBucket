@@ -111,7 +111,7 @@
                     </s:Rect>
                     <timer:sideindicator left="10" verticalCenter="0"/>
                     <timer:sideindicator right="10" verticalCenter="0" />
-                    <mx:HSlider id="timerSlider" width="100%" height="18" verticalCenter="-2" horizontalCenter="0" thumbCount="2" snapInterval="1" minimum="0" showDataTip="true" dataTipFormatFunction="getDataTip" change="onSliderChange(event)" dataTipStyleName="dataTipStyle"
+                    <mx:HSlider id="timerSlider" width="100%" height="18" verticalCenter="-2" horizontalCenter="0" thumbCount="2" snapInterval="1" minimum="0" showDataTip="false" liveDragging="true" change="onSliderChange(event)" dataTipStyleName="dataTipStyle"
                                 trackSkin="skins.practicalwriting.exercise.timer.HSliderTrackSkin"
                                 trackHighlightSkin="skins.practicalwriting.exercise.timer.HSliderTrackHighlightSkin" showTrackHighlight="true"
                                 thumbSkin="skins.practicalwriting.exercise.timer.HSliderThumbSkin"
@@ -194,7 +194,7 @@
 
         <s:HGroup width="13%" height="100%" right="0" gap="0" verticalAlign="middle">
             <s:Group width="50%" height="100%" excludeFrom="completeState">
-                <s:Button id="startButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Start" includeIn="startState"/>
+                <s:Button id="startButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Start" enabled="true" includeIn="startState"/>
                 <s:Button id="pauseButton" width="1000%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Pause" includeIn="pauseState"/>
                 <s:Button id="resumeButton" width="100%" height="100%" color="0x333333" fontSize="15" buttonMode="true" useHandCursor="true" label="Resume" includeIn="resumeState"/>
             </s:Group>
