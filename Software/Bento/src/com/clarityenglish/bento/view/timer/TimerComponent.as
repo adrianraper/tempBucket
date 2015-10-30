@@ -123,11 +123,12 @@ import spark.primitives.Rect;
         private var _isTotalTimeChange:Boolean;
         private var _timerTotalTime:Array = [];
         private var _isTimerTotalTimeChange:Boolean;
-        private var _timerSectionLabels:Array = ["Planning", "Writing", "Proofreading"];
+        private var _timerSectionLabels:Array = [];
         private var _isTimerSectionLabelsChange:Boolean;
         private var _isFirstTimeChange:Boolean;
         private var _copyProvider:CopyProvider;
         private var audioPlayer:AudioPlayer;
+        private const timterSectionInitialLabels:Array = ["Planning", "Writing", "Proofreading"];
 
         //protected var facade:BentoFacade;
 
@@ -174,8 +175,11 @@ import spark.primitives.Rect;
         public function set timerSectionLabels(value:Array):void {
             if(value.length > 0) {
                 _timerSectionLabels = value;
-                _isTimerSectionLabelsChange = true;
+            } else {
+                // gh#1372
+                _timerSectionLabels = timterSectionInitialLabels;
             }
+            _isTimerSectionLabelsChange = true;
         }
 
         [Bindable]

@@ -203,9 +203,6 @@ import org.puremvc.as3.interfaces.IMediator;
 
 			if (exercise.getTotalTimerTime().length > 0) {
 				view.timerTotalTime = exercise.getTotalTimerTime();
-			}
-
-			if (exercise.getTimerSectionLabels().length > 0) {
 				view.timerSectionLabels = exercise.getTimerSectionLabels();
 			}
 		}
