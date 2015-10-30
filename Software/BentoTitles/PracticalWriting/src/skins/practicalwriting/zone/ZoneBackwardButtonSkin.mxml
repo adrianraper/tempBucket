@@ -28,7 +28,7 @@
  @playerversion AIR 1.5
  @productversion Flex 4
 -->
-<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
                    xmlns:s="library://ns.adobe.com/flex/spark"
                    xmlns:title="skins.practicalwriting.assets.title.*"
                    minWidth="21" minHeight="21"
@@ -55,8 +55,11 @@
         <s:State name="disabled" />
     </s:states>
 
-    <s:SWFLoader source="@Embed(source='/skins/practicalwriting/assets/zone/arrow.png')" rotation="180" top="5" includeIn="up" />
-    <s:SWFLoader source="@Embed(source='/skins/practicalwriting/assets/zone/arrowOver.png')"  rotation="180" top="5" excludeFrom="up" />
+    <s:Path data="M14.3037 28.6084L0 14.3032 14.3037 0 14.3037 28.6084Z">
+        <s:fill>
+            <s:SolidColor color="#5090A6" color.over="#0d6A8A" color.down="#0d6A8A" />
+        </s:fill>
+    </s:Path>
 
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
@@ -68,4 +71,4 @@
              color="#787878">
     </s:Label>
 
-</s:SparkButtonSkin>
+</s:Skin>
