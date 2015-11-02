@@ -1169,9 +1169,29 @@ EOD;
 	 * This returns a specific user object defined by its ID
 	 */
 	function getUserById($userID) {
-		$users = $this->getUsersById(array($userID));
-		if (isset($users[0]))
-			return $users[0];
+        // gh#1292 Are you just trying to get yourself?
+        if ($userID == Session::get('userID')) {
+            AbstractService::$debugLog->notice("getUserById recognised myself");
+            $sql  = "SELECT ".User::getSelectFields($this->db);
+            $sql .= <<<EOD
+				FROM T_User u
+				WHERE u.F_UserID=?
+EOD;
+            $bindingParams = array($userID);
+            $usersRS = $this->db->Execute($sql, $bindingParams);
+
+            if ($usersRS->RecordCount() == 1) {
+                return $this->_createUserFromObj($usersRS->FetchNextObj());
+            } else {
+                throw new Exception("Database error, user lost");
+            }
+
+        } else {
+            AbstractService::$debugLog->notice("getUserById working the old way on someone else $userID");
+            $users = $this->getUsersById(array($userID));
+            if (isset($users[0]))
+                return $users[0];
+        }
 	}
 	
 	/**
