@@ -48,11 +48,11 @@
             CSSApplicator.fontSizeOffset = 1;
 
             // The AIR application uses a custom Spinner instead of the normal dropdown
-            SelectElement.elementFactoryFunction = function():DropDownList {
+            /*SelectElement.elementFactoryFunction = function():DropDownList {
                 var dropDownList:DropDownList = new SpinnerDropDownList();
                 dropDownList.setStyle("skinClass", SpinnerDropDownListSkin);
                 return dropDownList;
-            }
+            }*/
 
             // #383 No busy cursor on AIR
             RemoteDelegate.setShowBusyCursor(false);

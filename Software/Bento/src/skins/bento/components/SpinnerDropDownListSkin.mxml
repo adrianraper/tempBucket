@@ -89,7 +89,7 @@ for the PopUpAnchor defined by the popUp property.</p>
 	<!--- @copy spark.components.DropDownList#labelDisplay -->
 	<s:Label id="labelDisplay" verticalAlign="middle" maxDisplayedLines="1" 
 			 mouseEnabled="false" mouseChildren="false"
-			 left="27" left.disabled="0" top="0" bottom="0" verticalCenter="0" /> 
+			 left="0" left.disabled="0" top="0" bottom="0" verticalCenter="0" />
 	
 	<!-- underline -->
 	<s:Line left="0" width="100%" bottom="1" includeIn="disabled">
