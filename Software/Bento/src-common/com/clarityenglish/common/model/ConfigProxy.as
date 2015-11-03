@@ -578,7 +578,7 @@ package com.clarityenglish.common.model {
             var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
             var thisError:BentoError = BentoError.create(fault);
 
-            if (fault.faultCode == 'AMFPHP_AUTHENTICATE_ERROR') {
+            if (fault.faultCode == 'AMFPHP_AUTHENTICATE_ERROR' || fault.faultString == 'errorLostAuthentication') {
                 var authenticationError:BentoError = BentoError.create(fault);
                 authenticationError.errorContext = copyProxy.getCopyForId("errorLostAuthentication");
                 sendNotification(CommonNotifications.BENTO_ERROR, authenticationError);

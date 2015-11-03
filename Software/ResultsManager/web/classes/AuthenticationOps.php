@@ -106,7 +106,7 @@ class AuthenticationOps {
 		if (sizeof($diff) == 0) {
 			return;
 		} else {
-			// Get the user access error message from the literals and subsitute in the ids to help with debugging
+			// Get the user access error message from the literals and substitute in the ids to help with debugging
 			$copyOps = new CopyOps();
 			$replaceObj = array("ids" => join(",", $diff));
 			throw new Exception($copyOps->getCopyForId("userAccessError", $replaceObj));

@@ -121,8 +121,9 @@ class CopyOps {
 	 */
 	function getCopyForId($id, $replaceObj = null, $languageCode = null) {
 		$xpath = $this->getXPath();
-		
-		// TODO: This needs to respect the language code once we've decided how it will work
+        AbstractService::$debugLog->info('getCopyForId lang='.Session::get('language'));
+
+        // TODO: This needs to respect the language code once we've decided how it will work
 		$elements = $xpath->query("/literals/language[@code='".(($languageCode) ? $languageCode : Session::get('language'))."']//lit[@name='".$id."']");
 		
 		// If no element was found return the id
@@ -156,7 +157,7 @@ class CopyOps {
 	}
 	
 	function getExceptionForId($id, $replaceObj = null, $languageCode = null) {
-		$copy = $this->getCopyForId($id, $replaceObj, $languageCode);
+        $copy = $this->getCopyForId($id, $replaceObj, $languageCode);
 		$code = $this->getCodeForId($id, $languageCode);
 		return new Exception($copy, $code);
 	}

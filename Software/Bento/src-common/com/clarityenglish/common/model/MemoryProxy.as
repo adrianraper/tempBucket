@@ -100,10 +100,12 @@ import flash.events.Event;
 		public function onDelegateFault(operation:String, fault:Fault):void {
             var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 
-            var authenticationError:BentoError = BentoError.create(fault);
-            authenticationError.errorContext = copyProxy.getCopyForId("errorLostAuthentication");
-            sendNotification(CommonNotifications.BENTO_ERROR, authenticationError);
+            var delegateError:BentoError = BentoError.create(fault);
 
+            if (fault.faultCode == 'AMFPHP_AUTHENTICATE_ERROR' || fault.faultString == 'errorLostAuthentication')
+                delegateError.errorContext = copyProxy.getCopyForId("errorLostAuthentication");
+
+            sendNotification(CommonNotifications.BENTO_ERROR, delegateError);
             sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
 		}
 	}

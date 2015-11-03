@@ -43,10 +43,10 @@ class Authenticate {
 	 * Returns true if the client is authenticated and the requested roles
 	 * passed match.
 	 * 
-	 * Every service method can have a comman delimited list of roles that are
-	 * required to access a service.  Every user can also be assigned to a seperate
+	 * Every service method can have a comma delimited list of roles that are
+	 * required to access a service.  Every user can also be assigned to a separate
 	 * comma delimited list to roles they belong to.  This method compares those two 
-	 * strings (lists) and makes sure there is atleast one match.
+	 * strings (lists) and makes sure there is at least one match.
 	 * 
 	 * @param string $roles comma delimited list of the methods roles
 	 * @return bool Whether the user is in the proper role.
@@ -90,7 +90,7 @@ class Authenticate {
 		//AbstractService::$debugLog->info('authenticate.login to '.Session::getSessionName().' for '.$name);
 		Session::set('amfphp_username', $name);
 		Session::set('amfphp_roles', $roles);
-		AbstractService::$debugLog->info('login from '.Session::getSessionName().' user as '.Authenticate::getAuthUser());
+		//AbstractService::$debugLog->info('authenticate set '.Session::getSessionName().' user as '.Authenticate::getAuthUser().' id='.session_id());
 	} 
 
 	/**
@@ -109,6 +109,7 @@ class Authenticate {
 			unset($_SESSION['amfphp_roles']);
 		}
 		*/
+        AbstractService::$debugLog->info('authenticate removed for '.Session::getSessionName().' user as '.Authenticate::getAuthUser());
 		Session::un_set('amfphp_username');
 		Session::un_set('amfphp_roles');
 		return true;

@@ -472,7 +472,7 @@ import flash.events.TimerEvent;
         public function onDelegateFault(operation:String, fault:Fault):void {
             var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 
-            if (fault.faultCode == 'AMFPHP_AUTHENTICATE_ERROR') {
+            if (fault.faultCode == 'AMFPHP_AUTHENTICATE_ERROR' || fault.faultString == 'errorLostAuthentication') {
                 var authenticationError:BentoError = BentoError.create(fault);
                 authenticationError.errorContext = copyProxy.getCopyForId("errorLostAuthentication");
                 sendNotification(CommonNotifications.BENTO_ERROR, authenticationError);

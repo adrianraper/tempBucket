@@ -101,6 +101,7 @@ class AbstractService {
 		
 		// Create the operation classes
 		$this->copyOps = new CopyOps();
+
 	}
 
 	/**
@@ -186,17 +187,17 @@ class AbstractService {
 		
 		// If the user isn't authenticated then fail
         if (!Authenticate::isAuthenticated()) {
-            AbstractService::$debugLog->info('fail call to '.$function_called.' from '.Session::getSessionName().' sessionId='.session_id());
+            AbstractService::$debugLog->info('authenticate fail '.$function_called.' from '.Session::getSessionName().' sessionId='.session_id());
             return false;
         } else {
-            AbstractService::$debugLog->info('ok '.$function_called.' from '.Session::getSessionName().' as '.(string)Authenticate::getAuthUser().' sessionId='.session_id());
+            AbstractService::$debugLog->info('authenticate ok '.$function_called.' from '.Session::getSessionName().' as '.(string)Authenticate::getAuthUser().' sessionId='.session_id());
         }
 		
 		// Now check the user roles against the permissions for the method we are calling (if none are set then we succeed).
 		$memberName = $function_called."Roles";
 		if (isset($this->$memberName))
-			return Authenticate::isUserInRole(join($this->$memberName, ","));
-		
+            return Authenticate::isUserInRole(join($this->$memberName, ","));
+
 		// Otherwise return true
 		return true;
 	}

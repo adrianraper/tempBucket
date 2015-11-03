@@ -53,17 +53,29 @@ require_once(dirname(__FILE__)."/AbstractService.php");
 class BentoService extends AbstractService {
 	
 	var $db;
+    const sessionLifetime = 600; // production should be 86400
 
 	function __construct() {
 		parent::__construct();
 		
 		if (get_class($this) == "BentoService")
 			throw new Exception("Cannot use BentoService as a gateway; extend with a title specific child (e.g. IELTSService)");
-		
+
 		// gh#341
 		if (!Session::getSessionName())
 			Session::setSessionName("Bento");
-			
+
+        // gh#1292 Session lifetime handling
+        // http://stackoverflow.com/questions/520237/how-do-i-expire-a-php-session-after-30-minutes
+        if (Session::get('lastActivity') && (time() - Session::get('lastActivity') > self::sessionLifetime)) {
+            AbstractService::$debugLog->info('php session too old '.Session::getSessionName().' user as '.Authenticate::getAuthUser().' id='.session_id());
+            // last request was too long ago
+            Session::clear();
+            // You can't use copyOps here as the practicalWritingService has not initialised it yet
+            throw new Exception('errorLostAuthentication');
+        }
+        Session::set('lastActivity', time());
+
 		// Set the product name for logging
 		AbstractService::$log->setProductName(Session::getSessionName());
 		AbstractService::$debugLog->setProductName(Session::getSessionName());

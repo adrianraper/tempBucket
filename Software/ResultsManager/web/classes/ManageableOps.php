@@ -1171,7 +1171,7 @@ EOD;
 	function getUserById($userID) {
         // gh#1292 Are you just trying to get yourself?
         if ($userID == Session::get('userID')) {
-            AbstractService::$debugLog->notice("getUserById recognised myself");
+            // AbstractService::$debugLog->notice("getUserById recognised myself");
             $sql  = "SELECT ".User::getSelectFields($this->db);
             $sql .= <<<EOD
 				FROM T_User u
@@ -1187,7 +1187,7 @@ EOD;
             }
 
         } else {
-            AbstractService::$debugLog->notice("getUserById working the old way on someone else $userID");
+            // AbstractService::$debugLog->notice("getUserById working the old way on someone else $userID");
             $users = $this->getUsersById(array($userID));
             if (isset($users[0]))
                 return $users[0];
