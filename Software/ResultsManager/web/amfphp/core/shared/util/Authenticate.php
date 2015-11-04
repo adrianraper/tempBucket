@@ -109,7 +109,6 @@ class Authenticate {
 			unset($_SESSION['amfphp_roles']);
 		}
 		*/
-        AbstractService::$debugLog->info('authenticate removed for '.Session::getSessionName().' user as '.Authenticate::getAuthUser());
 		Session::un_set('amfphp_username');
 		Session::un_set('amfphp_roles');
 		return true;

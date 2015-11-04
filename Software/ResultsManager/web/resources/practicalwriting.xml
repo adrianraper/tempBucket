@@ -106,7 +106,7 @@
 
 			<!-- Demo -->
 			<lit name="demoListCaption">On the Progress screens you can:</lit>
-			<lit name="demoList">check your scores in all activities;analyse the time you've spent on different topics;see your progress day by day;compare your performance with others — worldwide!</lit>
+			<lit name="demoList">check your scores in all activities; analyse the time you've spent on different topics; see your progress day by day; compare your performance with others — worldwide!</lit>
 			<lit name="demoRMLabel">Teachers can monitor their students' scores and times using the integrated Results Manager.</lit>
 		</group>
 	</language>
@@ -121,7 +121,7 @@
 			<lit name="skillContent7">You will learn to structure descriptive essays, match words and senses, choose "precise" words, and link ideas using "signpost" words.</lit>
 			<lit name="certificateSignatureNameLabel">Dr. Adrian Raper,</lit>
 			<lit name="startOutLabel">You can go to the Resource Center to find a transcript of this video.</lit>
-			<lit name="demoList">check your scores in all activities;analyze the time you've spent on different topics;see your progress day by day;compare your performance with others — worldwide!</lit>
+			<lit name="demoList">check your scores in all activities; analyze the time you've spent on different topics; see your progress day by day; compare your performance with others — worldwide!</lit>
 		</group>
 	</language>
 </literals>

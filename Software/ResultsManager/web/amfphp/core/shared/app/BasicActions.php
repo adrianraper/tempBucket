@@ -121,14 +121,17 @@ function securityAction (&$amfbody) {
 				// v3.6 Change the text of this message as it does happen quite often
 				//$ex = new MessageException(E_USER_ERROR, "Method access blocked by beforeFilter in " . $className . " class", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
 				// gh#1223
+                // gh#1292 Should not need to set the text as the error should be caught by Bento programs from now on
+                /*
 				if ($className=='DMSService' || $className=='ClarityService'
                     || $className=='IELTSService' || $className=='TenseBusterService'
                     || $className=='ClearPronunciationService' || $className=='PracticalWritingService'
                     || $className=='TB6weeksService') {
 					$ex = new MessageException(E_USER_ERROR, "Your authentication has been lost, please start again.", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
 				} else {
-					$ex = new MessageException(E_USER_ERROR, "Method access blocked by beforeFilter in " . $className . " class", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
 				}
+                */
+                $ex = new MessageException(E_USER_ERROR, "Method access blocked by beforeFilter in " . $className . " class", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
 				MessageException::throwException($amfbody, $ex);
 				return false;
 			} 

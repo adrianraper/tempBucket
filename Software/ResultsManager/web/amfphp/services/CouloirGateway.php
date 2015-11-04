@@ -19,7 +19,8 @@ function router($json) {
     // Security
     if ($json->command !== "login") {
         new PracticalWritingService(); // We need this in order to set the session name!
-        if (!Authenticate::isAuthenticated()) throw new Exception("userAccessError", 403);
+        // Clarity#gh#1292, PW#gh#80 Is this call needed at all?
+        if (!Authenticate::isAuthenticated()) throw new Exception("errorLostAuthentication", 403);
     }
 
     switch ($json->command) {

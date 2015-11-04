@@ -53,7 +53,7 @@ require_once(dirname(__FILE__)."/AbstractService.php");
 class BentoService extends AbstractService {
 	
 	var $db;
-    const sessionLifetime = 600; // production should be 86400
+    const sessionLifetime = 86400; // production should be 86400
 
 	function __construct() {
 		parent::__construct();
@@ -67,14 +67,19 @@ class BentoService extends AbstractService {
 
         // gh#1292 Session lifetime handling
         // http://stackoverflow.com/questions/520237/how-do-i-expire-a-php-session-after-30-minutes
-        if (Session::get('lastActivity') && (time() - Session::get('lastActivity') > self::sessionLifetime)) {
-            AbstractService::$debugLog->info('php session too old '.Session::getSessionName().' user as '.Authenticate::getAuthUser().' id='.session_id());
-            // last request was too long ago
-            Session::clear();
-            // You can't use copyOps here as the practicalWritingService has not initialised it yet
-            throw new Exception('errorLostAuthentication');
+        // If you have already set the lastActivity marker, update it (or close everything if too long).
+        // But don't make a new lastActivity - that is only done during bento.login
+        if (Session::get('lastActivity')) {
+            if (time() - Session::get('lastActivity') > self::sessionLifetime) {
+                AbstractService::$debugLog->info('php session too old ' . Session::getSessionName() . ' user as ' . Authenticate::getAuthUser() . ' id=' . session_id());
+                // last request was too long ago
+                // tbh I don't think you need to do this as the error should throw you through logout
+                Session::clear();
+                // You can't use copyOps here as the practicalWritingService has not initialised it yet
+                throw new Exception('errorLostAuthentication');
+            }
+            Session::set('lastActivity', time());
         }
-        Session::set('lastActivity', time());
 
 		// Set the product name for logging
 		AbstractService::$log->setProductName(Session::getSessionName());
@@ -283,6 +288,11 @@ class BentoService extends AbstractService {
 	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null, $allowedUserTypes = null) {
 		if ($dbHost)
 			$this->initDbHost($dbHost);
+
+        // gh#1292 Make sure the current session has a lastActivity time set
+        // TODO perhaps this should go in Authenticate->login?
+        if (!Session::get('lastActivity'))
+            Session::set('lastActivity', time());
 
         // gh#1314 incorporate into config - session Id will be passed in url if not available in cookies
         // gh#622 Add cookie checking code

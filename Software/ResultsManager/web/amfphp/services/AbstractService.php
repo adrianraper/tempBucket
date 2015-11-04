@@ -47,7 +47,9 @@ class AbstractService {
 		
 		// v3.6 UTF8 character mismatch between PHP and MySQL
 		// gh#166 and allow for mysqlt as dbms too
-		if (stristr($GLOBALS['dbms'],'mysql')) 
+		if (stristr($GLOBALS['dbms'],'mysql'))
+            // Would the following work instead?
+            // $this->db->SetCharSet('utf8');
 			$charSetRC = mysql_set_charset('utf8');
 		
 		$this->db->SetFetchMode(ADODB_FETCH_ASSOC);
@@ -125,7 +127,9 @@ class AbstractService {
 		
 		// v3.6 UTF8 character mismatch between PHP and MySQL
 		// gh#166 and allow for mysqlt as dbms too
-		if (stristr($GLOBALS['dbms'],'mysql')) 
+		if (stristr($GLOBALS['dbms'],'mysql'))
+            // Would the following work instead?
+            // $this->db->SetCharSet('utf8');
 			$charSetRC = mysql_set_charset('utf8');
 		
 		$this->db->SetFetchMode(ADODB_FETCH_ASSOC);

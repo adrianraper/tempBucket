@@ -476,8 +476,8 @@ import flash.events.TimerEvent;
                 var authenticationError:BentoError = BentoError.create(fault);
                 authenticationError.errorContext = copyProxy.getCopyForId("errorLostAuthentication");
                 sendNotification(CommonNotifications.BENTO_ERROR, authenticationError);
-            } else {
 
+            } else {
                 switch (operation) {
                     case "login":
                         // Clear the remote shared object, if there is one so it doesn't keep trying to log back in
