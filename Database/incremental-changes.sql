@@ -1384,3 +1384,8 @@ INSERT INTO T_ProductLanguage VALUES
 
 -- gh#1342 Add field so a licence can be hibernating
 ALTER TABLE T_Licences ADD COLUMN F_Hibernating BOOLEAN NULL DEFAULT FALSE AFTER F_UserID;
+
+-- gh#1378 Increase size of id column
+ALTER TABLE T_User CHANGE COLUMN F_StudentID F_StudentID varchar(64) NULL DEFAULT NULL;
+ALTER TABLE T_User_Expiry CHANGE COLUMN F_StudentID F_StudentID varchar(64) NULL DEFAULT NULL;
+ALTER TABLE T_User_Deleted CHANGE COLUMN F_StudentID F_StudentID varchar(64) NULL DEFAULT NULL;
