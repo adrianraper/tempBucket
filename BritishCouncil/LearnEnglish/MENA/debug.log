@@ -1,0 +1,4 @@
+to LoginGateway with {"method":"getOrAddUser","studentID":"374e754221b6037f90d66484eead7312","name":"vivi at MENA","email":"vivying@clarityenglish.com","password":"BCLELT","productCode":46,"subscriptionPeriod":"1m","country":"MENA","emailTemplateID":"BC-MENA-LearnEnglishLevelTest","prefix":"BCLEMENA","groupID":"61607","adminPassword":"clarity88","dbHost":2,"loginOption":2}
+going to the program with BCLEMENA
+to LoginGateway with {"method":"getOrAddUser","studentID":"80c77e6ef1ef6a12bb85b7ddeaef4995","name":"vivying","email":"vivying@clarityenglish.com","password":"BCLELT","productCode":46,"subscriptionPeriod":"1m","country":"MENA","emailTemplateID":"BC-MENA-LearnEnglishLevelTest","prefix":"BCLEMENA","groupID":"61607","adminPassword":"clarity88","dbHost":2,"loginOption":2}
+going to the program with BCLEMENA
