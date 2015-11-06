@@ -12,7 +12,8 @@ package com.clarityenglish.textLayout.elements {
 	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.events.FocusEvent;
-	import flash.events.MouseEvent;
+import flash.events.KeyboardEvent;
+import flash.events.MouseEvent;
 	import flash.events.SoftKeyboardEvent;
 	import flash.events.SoftKeyboardTrigger;
 	import flash.filters.DisplacementMapFilter;
@@ -239,6 +240,9 @@ import mx.utils.StringUtil;
 					
 					// If the user presses <enter> whilst in the textinput go to the next element in the focus cycle group
 					component.addEventListener(FlexEvent.ENTER, onEnter);
+					// gh#1379
+					component.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+					component.tabEnabled =false;
 
 					// Duplicate some events on the event mirror so other things can listen to the FlowElement
 					component.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
@@ -383,6 +387,18 @@ import mx.utils.StringUtil;
 					 scroller.viewport.verticalScrollPosition = newPos;
 					 }*/
 				}
+			}
+		}
+
+		// gh#1379
+		private function onKeyDown(event:KeyboardEvent):void {
+			// If press tab key
+			if(event.keyCode == 9) {
+				var parent:Object = event.target.parent;
+				while(!(parent is TextInput)) {
+					parent = parent.parent;
+				}
+				parent.dispatchEvent(new FlexEvent(FlexEvent.ENTER, true, false));
 			}
 		}
 		
