@@ -33,11 +33,13 @@ import flash.display.DisplayObject;
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		private var titleWindow:TitleWindow;
+        private var exercise:Exercise;
 		
 		public override function execute(note:INotification):void {
 			super.execute(note);
-			
-			var exercise:Exercise = note.getBody().exercise as Exercise;
+
+            // gh#1383
+			exercise = note.getBody().exercise as Exercise;
 			
 			// Get the marks
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
@@ -54,15 +56,6 @@ import flash.display.DisplayObject;
 			titleWindow.styleName = "markingTitleWindow";
             var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
             titleWindow.title = copyProvider.getCopyForId('exerciseMarkingButton');
-            /*
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			if (configProxy.getConfig().languageCode == "NAMEN") {
-				titleWindow.title = "Scoring";
-			} else {
-				titleWindow.title = "Marking";
-			}
-			*/
-
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
 			
 			var markingView:MarkingView = new MarkingView();
@@ -76,7 +69,8 @@ import flash.display.DisplayObject;
             titleWindow.addElement(markingView);
 			
 			// Create and centre the popup
-			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, false, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
+            // gh#1383 Make marking panel modal as any action on the exercise causes problems
+			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, true, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
 			PopUpManager.centerPopUp(titleWindow);
 			
 			// Hide the close button
@@ -97,7 +91,7 @@ import flash.display.DisplayObject;
 				
 				exerciseProxy.exerciseMarkWasWritten();
             }
-			
+
 			sendNotification(BBNotifications.MARKING_SHOWN, exercise);
 		}
 		
@@ -107,7 +101,8 @@ import flash.display.DisplayObject;
 		 * @param event
 		 */
 		protected function onClosePopUp(event:CloseEvent = null):void {
-			titleWindow.removeEventListener(CloseEvent.CLOSE, onClosePopUp);
+
+            titleWindow.removeEventListener(CloseEvent.CLOSE, onClosePopUp);
 			titleWindow.removeEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
 			
 			PopUpManager.removePopUp(titleWindow);
