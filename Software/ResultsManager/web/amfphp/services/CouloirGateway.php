@@ -5,12 +5,17 @@ require_once(dirname(__FILE__)."/PracticalWritingService.php");
 header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
+class UserAccessException extends Exception {}
+
 try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
     echo json_encode(router($json));
+} catch (UserAccessException $e) {
+    header(':', false, 403);
+    echo json_encode(array("error" => $e->getMessage()));
 } catch (Exception $e) {
-    header(':', false, $e->getCode() === 0 ? 500 : $e->getCode());
+    header(':', false, 500);
     echo json_encode(array("error" => $e->getMessage()));
 }
 
@@ -19,10 +24,9 @@ function router($json) {
     // Security
     if ($json->command !== "login") {
         new PracticalWritingService(); // We need this in order to set the session name!
-        // Clarity#gh#1292, PW#gh#80 Is this call needed at all?
-        if (!Authenticate::isAuthenticated()) throw new Exception("errorLostAuthentication", 403);
+        if (!Authenticate::isAuthenticated()) throw new UserAccessException("errorLostAuthentication");
     }
-
+    
     switch ($json->command) {
         case "login": return login($json->email, $json->password, $json->timezoneOffset);
         case "updateSession": return updateSession($json->sessionID);
