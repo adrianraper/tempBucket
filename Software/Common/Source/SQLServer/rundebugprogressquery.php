@@ -49,8 +49,8 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 	// load the progress functions - all code is in this class now
 	$Progress	= new PROGRESS();
 	//$node .= "<note>method=".$vars['METHOD']."</note>";
-	switch ( strtoupper($vars['METHOD']) ) {
 	
+	switch ( strtoupper($vars['METHOD']) ) {
 		case 'GETRMSETTINGS':
 			$node .= "<note>dbhost=".$dbDetails->host." dbname=".$dbDetails->dbname." driver=".$dbDetails->driver."</note>";
 			$rC = $Progress->checkDatabaseVersion( $vars, $node );

@@ -42,7 +42,7 @@ class AbstractService {
 		try {
 			$this->db = ADONewConnection($GLOBALS['db']);
 		} catch (Exception $e) {
-			throw new Exception("Sorry, can't connect to the database. (".$e->getMessage().")");
+			throw new Exception("Sorry, failed to connect to the database. (".$e->getMessage().")");
 		}
 		
 		// v3.6 UTF8 character mismatch between PHP and MySQL

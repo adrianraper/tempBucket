@@ -11,6 +11,14 @@
 		exit;
 	}
 	
+	// To make sure that anyone viewing the trial who is logged into any other Clarity program doesn't pick up the session variables
+	if ($prefix=='PWTrial2015' || $prefix=='PWNTrial2015') {
+		$userName = $password = $extraParam = $licenceFile = $version = '';
+		$studentID = $email = $userID = $instanceID = '';
+		$referrer = $ip = $server = $productCode = $accountName = '';
+		$course = $startingPoint = $resize = '';
+	}
+		
 	// For this product
 	$productCode = 61;
 	$swfName = 'PracticalWriting.swf';

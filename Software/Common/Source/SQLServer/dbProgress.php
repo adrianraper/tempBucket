@@ -35,6 +35,7 @@ class PROGRESS {
 		50	=>	array('name' => "Clear Pronunciation 2", 'place' => "ClearPronunciation2"),
 		52	=>	array('name' => "Road to IELTS 2 Academic", 'place' => "RoadToIELTS2"),
 		53	=>	array('name' => "Road to IELTS 2 General Training", 'place' => "RoadToIELTS2"),
+		61	=>	array('name' => "Practical Writing", 'place' => "PracticalWriting"),
 		1001=>	array('name' => "It's Your Job", 'place' => "ItsYourJob")
 	);
 	 

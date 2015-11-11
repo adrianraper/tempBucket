@@ -1327,11 +1327,11 @@ VALUES
 -- Business writing V10
 DELETE FROM T_ProductLanguage WHERE F_ProductCode = 62;
 INSERT INTO T_ProductLanguage VALUES 
-(61,'EN','BusinessWriting10-International');
+(62,'EN','BusinessWriting10-International');
 
 DELETE FROM T_Product WHERE F_ProductCode = 62;
 INSERT INTO `T_Product` VALUES
-(61,'Business Writing',NULL,2);
+(62,'Business Writing',NULL,2);
 
 DELETE FROM T_ProductVersion WHERE F_ProductCode = 62;
 INSERT INTO `T_ProductVersion` VALUES 

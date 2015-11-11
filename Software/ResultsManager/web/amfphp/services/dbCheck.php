@@ -2,8 +2,8 @@
 /*
  * To see if you can connect to the database.
  */
-require_once(dirname(__FILE__)."/MinimalService.php");
-$thisService = new MinimalService();
+require_once(dirname(__FILE__)."/ClarityService.php");
+$thisService = new ClarityService();
 
 header('Content-Type: text/plain; charset=utf-8');
 

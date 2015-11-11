@@ -29,7 +29,7 @@ require_once(dirname(__FILE__)."/dbProgress.php");
 	if (isset($_REQUEST['rootID'])) {
 		$rootID = intval($_REQUEST['rootID']);
 	} else {
-		$rootID = 163;
+		$rootID = 1;
 	}
 	$dbDetails = new DBDetails($dbHost);
 	$vars['ROOTID'] = $rootID;
