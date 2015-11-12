@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<literals progam="ActiveReading" version="2.0">
+<literals progam="PracticalWriting" version="2.0">
 	<language name="English International" code="EN" mediaFolder="EN">
 		<group name="group">
 			<lit name="loginInputTitle">Practical Writing</lit>
@@ -13,10 +13,6 @@
 			<lit name="practiceZone">Practice Zone</lit>
 			<lit name="resourceBank">Resource Bank</lit>
 			<lit name="minsExplanationLabel">How long do other people spend on this unit?</lit>
-
-			<!-- Help -->
-			<lit name="helpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/ActiveReadingHelp.pdf</lit>
-			<lit name="recorderHelpURL">http://www.clarityenglish.com/Content/ActiveReading10-International/help/ActiveReadingHelp.pdf</lit>
 
 			<!--Skill-->
 			<lit name="skillCaptionLabel">Skills focus:</lit>
@@ -90,7 +86,7 @@
 			 <lit name="creditCaptionLabel">Credits and acknowledgements</lit>
 			 <lit name="creditsRichText">
 			    <![CDATA[
-                        <p>Clarity would like to thank the following people for giving their voices to Tense Buster: Simon Broad,<br/>Jessica Caplan, Sally Nichols, Ben Pelletier, Kath Ryan, Scott Sauer, Michelle Tam, Sarah Toogood.</p>
+                        <p>Clarity would like to thank the following people for giving their voices to Practical Writing: xxx</p>
 
                         <p>Photos were taken from Shutterstock with permission.</p>
 
