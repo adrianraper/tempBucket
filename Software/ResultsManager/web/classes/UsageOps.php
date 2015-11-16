@@ -622,13 +622,14 @@ EOD;
 		
 		// Tidy up the two SQL statements into one, with the HCT aggregated result
 		$secondsLimit = 10800; // 3 hours
-		$sql = 	<<<EOD
-				SELECT F_CourseID courseID, 
-					COUNT(ss.F_SessionID) as totalCourse, 
-					SUM(IF(ss.F_Duration>$secondsLimit,$secondsLimit,ss.F_Duration)) as totalDuration
-				FROM T_Session ss
-				WHERE ss.F_StartDateStamp >= ?
-				AND ss.F_StartDateStamp <= ?
+        // gh#1396 Change SQL for sqlite compatibility
+        $sql = <<<EOD
+            SELECT F_CourseID courseID,
+                COUNT(ss.F_SessionID) as totalCourse,
+                SUM(CASE WHEN ss.F_Duration>$secondsLimit THEN $secondsLimit ELSE ss.F_Duration END) as totalDuration
+            FROM T_Session ss
+            WHERE ss.F_StartDateStamp >= ?
+            AND ss.F_StartDateStamp <= ?
 EOD;
 		// gh#1211 And the other old and new combinations
 		$oldProductCode = $this->licenceOps->getOldProductCode($title->id);
