@@ -339,7 +339,12 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 			$rC = $Progress->updateInformation( $vars, $node );
 			break;
 
-		// v6.5.5.8 This is used for picking up information about the Clarity Recorder download
+		// Used for getting information from network databases
+		case "GETINFORMATION":
+			$rC = $Progress->selectAccountRootInfo( $vars, $node );
+			break;
+
+			// v6.5.5.8 This is used for picking up information about the Clarity Recorder download
 		case "DOWNLOADRECORDER":
 			$rC = $Progress->insertDownloadLog( $vars, $node );
 			break;

@@ -54,8 +54,9 @@ require_once(dirname(__FILE__)."/dbFunctions.php");
 				$rC = $functions->insertDetails($vars, $node);
 			if ($rC) {
 				$checksum = $functions->generateCheckSum($vars, $node);
-				$node .= "<checksum>$checksum</checksum>";
+				$node .= '<checksum productCode="'.$vars['PRODUCTCODE'].'">$checksum</checksum>';
 			}
+			// Finally, if you have been sent other checksums, validate them and recreate for a new institution name
 			break;
 			
 		// Depreciated with new installers, but still needed for old CDs

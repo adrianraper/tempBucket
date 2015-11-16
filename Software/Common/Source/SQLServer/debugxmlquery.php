@@ -23,8 +23,8 @@ class XMLQuery {
 	
 	//Global $node;
 	//$node .= "<note>" .urlencode($post)  ."</note>";
-	$post = '<query method="updateInformation" productCode="61" name="Clarity Sai Kung" productVersion="FV" licences="12" checksum="3A9E6A333878177BE898BBB2C61D58C5D10B144AF19A1B22AF427E18192A8B8A" languageCode="EN" licenceType="3" expiryDate="2017-12-17 23:59:59" rootID="1" email="adrian.raper@clarityenglish.com" />';
-	//$post = '<query dbHost="2" method="registerProgram" serialNumber="ddd" instName="çlarity&apos;s &quot;yôu &amp; me&quot; namé?" email="v" />';
+	//$post = '<query method="updateInformation" productCode="61" name="Clarity Sai Kung" productVersion="FV" licences="12" checksum="3A9E6A333878177BE898BBB2C61D58C5D10B144AF19A1B22AF427E18192A8B8A" languageCode="EN" licenceType="3" expiryDate="2017-12-17 23:59:59" rootID="1" email="adrian.raper@clarityenglish.com" />';
+	$post = '<query dbHost="2" method="registerProgram" serialNumber="0C22-13C3-227C-0D3C-0001" instName="ClarityEnglish" email="adrian@clarity" productCode="" sentData="2|81f156d9054cb444152260fb4a68e70759864bff54a15a31dccefa6c999c25e4;20|81f156d9054cb444152260fb4a68e70759864bff54a15a31dccefa6c999c25e4;55|e9cb96117ce0d10ad824105a0234502e8e99e340a8f1ffddaa4225ba10b6b8;61|55428a8e85fe5030671e00d5a92b377e5edd00e88340df612f2b08199eb1fb12;" />';
 	//$post = '<query dbHost="2" method="registerProgram" serialNumber="0382-26BB-E04C-41C0-0090" instName="ClarityEnglish" email="me@email" />';
 	//$post = '<query dbHost="200" method="getRMSettings" rootID="" prefix="WHC" eKey="" dateStamp="2014-01-08 08:33:32" productCode="33" cacheVersion="1389141212418" />';
 	//$post = '<query dbHost="2" method="writeSpecificStats" rootID="14449" userID="251563" productCode="10" courseID="51" itemID="51" sessionID="2228973" databaseVersion="840" cacheVersion="1343358520347.25" />';

@@ -35,7 +35,13 @@ class PROGRESS {
 		50	=>	array('name' => "Clear Pronunciation 2", 'place' => "ClearPronunciation2"),
 		52	=>	array('name' => "Road to IELTS 2 Academic", 'place' => "RoadToIELTS2"),
 		53	=>	array('name' => "Road to IELTS 2 General Training", 'place' => "RoadToIELTS2"),
+		55	=>	array('name' => "Tense Buster V10", 'place' => "TenseBuster"),
+		56	=>	array('name' => "Active Reading V10", 'place' => "ActiveReading"),
+		57	=>	array('name' => "Clear Pronunciation Sounds", 'place' => "ClearPronunciation"),
+		58	=>	array('name' => "Clear Pronunciation Speech", 'place' => "ClearPronunciation"),
+		60	=>	array('name' => "Study Skills Success V10", 'place' => "StudySkillsSuccess"),
 		61	=>	array('name' => "Practical Writing", 'place' => "PracticalWriting"),
+		62	=>	array('name' => "Business Writing V10", 'place' => "BusinessWriting"),
 		1001=>	array('name' => "It's Your Job", 'place' => "ItsYourJob")
 	);
 	 
@@ -3770,6 +3776,57 @@ EOD;
 		} else {
 			return true;
 		}
+	}
+	// For picking up details from a network account
+	function selectAccountRootInfo( &$vars, &$node ){
+		global $db;
+		$rootID = $vars['ROOTID'];
+		$bindingParams = array($rootID);
+		$sql = <<<EOD
+			SELECT * FROM T_AccountRoot
+			WHERE F_RootID=?
+EOD;
+		$rs = $db->Execute($sql, $bindingParams);
+		if (!$rs) {
+			$node .= "<err code='xxx'>Database can't be read.</err>";
+			return false;
+		}
+		if ($rs->RecordCount() == 1) {
+			$dbObj = $rs->FetchNextObj();
+			$node .= "<account name='".$dbObj->F_Name."' email='".$dbObj->F_Email."'></account>";
+		} else {
+			$node .= "<err code='xxx'>Account has x records in the database.</err>";
+			return false;
+		}
+		// Also find if our title is already registered
+		$rc = $this->selectAccountInfo($vars, $node);
+		if ($rc)
+			$node .= "<status>success</status>";
+		return true;
+	}
+	// For picking up details from a network account
+	function selectAccountInfo($vars, &$node ){
+		global $db;
+		$rootID = $vars['ROOTID'];
+		$bindingParams = array($rootID);
+		$sql = <<<EOD
+			SELECT F_ProductCode, F_LanguageCode, F_Checksum FROM T_Accounts
+			WHERE F_RootID=?
+EOD;
+		$rs = $db->Execute($sql, $bindingParams);
+		if (!$rs) {
+			$node .= "<err code='xxx'>Database can't be read.</err>";
+			return false;
+		}
+		if ($rs->RecordCount() >= 1) {
+			while ($dbObj = $rs->FetchNextObj()) {
+				$node .= "<title productCode='".$dbObj->F_ProductCode."' languageCode='".$dbObj->F_LanguageCode."' checksum='".$dbObj->F_Checksum."'/>";
+			}
+		} else {
+			$node .= "<err code='xxx'>Account has no programs registered in the database.</err>";
+			return false;
+		}
+		return true;
 	}
 	function updateAccountInfo( &$vars, &$node ){
 		global $db;
