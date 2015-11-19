@@ -57,7 +57,7 @@
         </s:fill>
     </s:Rect>
 
-    <s:Rect id="fill" horizontalCenter="4" width="4" top="0" bottom="0" radiusX="5" radiusY="5">
+    <s:Rect id="fill" horizontalCenter="4" width="6" top="0" bottom="0" radiusX="5" radiusY="5">
         <s:fill>
             <s:SolidColor color="#D6D6D6" alpha="0.7"/>
         </s:fill>

@@ -60,6 +60,10 @@ components|XHTMLExerciseView s|TextInput {
     paddingRight: 0;
 }
 
+components|XHTMLExerciseView s|Scroller {
+    skinClass: ClassReference("skins.practicalwritingair.exercise.AlwaysVisibleScrollerSkin");
+}
+
 timer|TimerComponent {
     skinClass: ClassReference("skins.practicalwritingair.exercise.timer.TimerSkin");
 }
