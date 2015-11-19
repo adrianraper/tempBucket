@@ -20,8 +20,9 @@ import flash.events.MouseEvent;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
-	
-	import flashx.textLayout.compose.FlowDamageType;
+import flash.system.Capabilities;
+
+import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.FlowLeafElement;
 	import flashx.textLayout.elements.SpanElement;
@@ -294,8 +295,6 @@ import mx.utils.StringUtil;
 		private function softKeyboardActivateHandler(event:SoftKeyboardEvent):void {
 			var displayObject:DisplayObject = event.target as DisplayObject;
 			
-			var textInput:TextInput = displayObject as TextInput;
-			
 			while (!(displayObject is Scroller) && displayObject.parent) {
 				displayObject = displayObject.parent;
 			}
@@ -305,7 +304,24 @@ import mx.utils.StringUtil;
 			scroller = displayObject as Scroller;
 			
 			// this value may only suit for IPad
-			scroller.bottom = FlexGlobals.topLevelApplication.height / 2 - 80;
+			if (Capabilities.version.split(" ")[0] == "IOS") {
+				scroller.bottom = FlexGlobals.topLevelApplication.height / 2 - 80;
+			} else {
+				// gh#1395
+				if(scroller.bottom == 0) {
+					var elementBounds:Rectangle = TLFUtil.getFlowElementBounds(this);
+					var containingBlock:RenderFlow = this.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
+					elementBounds = PointUtil.convertRectangleCoordinateSpace(elementBounds, containingBlock, scroller);
+
+					var elementBottom:Number = scroller.height - elementBounds.bottom;
+					var keyboardHeight:Number = (scroller.stage).softKeyboardRect.height;
+					var offset:Number = keyboardHeight > elementBottom? (keyboardHeight - elementBottom) + 50 : 0;
+					scroller.bottom =  (scroller.stage).softKeyboardRect.height;
+					if (offset > 0) {
+						scroller.viewport.verticalScrollPosition += offset;
+					}
+				}
+			}
 		}
 		
 		// gh#708

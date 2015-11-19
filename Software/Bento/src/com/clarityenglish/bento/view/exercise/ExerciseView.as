@@ -250,6 +250,7 @@ import spark.components.Button;
 
 				// gh#1269
 				//focusManager.deactivate();
+				// gh#1395
 				stage.focus = null;
 			}
 		}
