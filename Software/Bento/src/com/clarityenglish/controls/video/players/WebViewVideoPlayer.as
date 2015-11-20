@@ -1,7 +1,11 @@
 package com.clarityenglish.controls.video.players {
 	import com.clarityenglish.controls.video.IVideoPlayer;
-	import flash.events.Event;
-	import flash.geom.Point;
+import com.clarityenglish.controls.video.events.VideoEvent;
+import com.clarityenglish.controls.video.events.VideoEvent;
+
+import flash.events.Event;
+import flash.events.FocusEvent;
+import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.media.StageWebView;
 import flash.system.Capabilities;
@@ -224,6 +228,8 @@ import mx.events.FlexEvent;
 			if (!stageWebView) {
 				dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
 				stageWebView = new StageWebView();
+				// gh#1399
+				stageWebView.addEventListener(FocusEvent.FOCUS_IN, onFocusIn);
 			}
 
 			// Make sure that commitProperties runs when the component is added to the stage so that stageWebView.stage can be set
@@ -235,7 +241,12 @@ import mx.events.FlexEvent;
 			}
 			//addEventListener(Event.ENTER_FRAME, onEnterFrame, false, 0, true);
 		}
-		
+
+		protected function onFocusIn(event:Event) {
+			// gh#1399 imitate the video player play state, in order to get time for currentVideoStartTime
+			dispatchEvent(new VideoEvent(VideoEvent.VIDEO_PLAYED));
+		}
+
 		protected function onRemovedFromStage(event:Event):void {
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 			removeEventListener(FlexEvent.HIDE, onHide);
