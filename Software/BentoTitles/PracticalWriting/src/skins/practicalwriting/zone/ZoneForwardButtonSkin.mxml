@@ -55,6 +55,12 @@
         <s:State name="disabled" />
     </s:states>
 
+    <s:Rect width="40" height="50" left="-15" top="-12">
+        <s:fill>
+            <s:SolidColor color="#FFFFFF" alpha="0" />
+        </s:fill>
+    </s:Rect>
+
     <s:Path data="M0 28.6084L14.3042 14.3032 0 0 0 28.6084Z">
         <s:fill>
             <s:SolidColor color="#5090A6" color.over="#0d6A8A" color.down="#0d6A8A" />
