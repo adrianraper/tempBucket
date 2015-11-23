@@ -356,6 +356,7 @@ package com.clarityenglish.common.vo.config {
 				switch (property) {
 					case 'dbHost':
 					case 'prefix':
+                    case 'rootID':
 						this.retainedParameters[property] = parameters[property];
 						break;
 				}

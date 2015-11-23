@@ -101,7 +101,8 @@ package com.clarityenglish.common.model {
 			config.group = new Group();
 			
 			// gh#1090 Clear everything except that which you retained on the first go, special case for logout of demo accounts
-			if (config.prefix == "TD" || config.prefix == "Demo")
+            // gh#1277 Network prefix is set to DEMO for historical reasons, so ignore that case
+			if ((config.prefix == "TD" || config.prefix == "Demo") && config.licenceType != Title.LICENCE_TYPE_NETWORK)
 				config.retainedParameters = {};
 			config.prefix = "";
 			config.noLogin = false;

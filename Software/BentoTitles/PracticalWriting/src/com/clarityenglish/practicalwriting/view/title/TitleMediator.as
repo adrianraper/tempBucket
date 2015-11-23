@@ -127,7 +127,6 @@ public class TitleMediator extends BentoMediator implements IMediator {
         private function onLogout():void {
             sendNotification(CommonNotifications.LOGOUT);
 
-
             // Make sure the first page you always see is the home page after login.
             view.homeViewNavigator.popToFirstView();
         }

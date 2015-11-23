@@ -84,14 +84,20 @@ SQL;
 		} else if ($rs->RecordCount() == 0) {
 			throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array("productCode" => $productCode, "rootID" => $rootID));
 		} 
-		
+
 		// Create the account object (just use the first record if multiple ones as they will all be the same account details)
 		$dbObj = $rs->FetchObj();
 		$account = $this->_createAccountFromObj($dbObj);
 				
 		// gh#39 You might have multiple matching titles
 		while ($dbObj = $rs->FetchNextObj()) {
-			$account->addTitles(array($this->_createTitleFromObj($dbObj)));
+            $title = $this->_createTitleFromObj($dbObj);
+
+            // gh#1404 Is the checksum valid for this account?
+            if (!$this->_validateChecksum($title, $account))
+                throw $this->copyOps->getExceptionForId("errorTitleCorrupted", array("productCode" => $productCode));
+
+            $account->addTitles(array($title));
 		}
 				
 		return $account;
@@ -860,27 +866,24 @@ EOD;
 		//	rootID
 		//	productCode
 		//$protectedString = $account->name.$account->selfHostDomain.$title-> expiryDate.$title-> maxStudents.$title-> licenceType.$account->id.$title-> productCode;
-		$protectedString = $account->name.$title-> expiryDate.$title-> maxStudents.$title-> licenceType.$account->id.$title-> productCode;
+		$protectedString = $account->name.$title->expiryDate.$title->maxStudents.$title->licenceType.$account->id.$title->productCode;
 		$escapedString = $this->actionscriptEscape($protectedString);
-		//$protectedString = "adrian raper's college of languagehttp://www.clarityenglish.com2009-12-10153138";
 
-		//NetDebug::trace("checksum protected=$protectedString");
-		//NetDebug::trace("escaped=$escapedString");
 		// v6.5.5.5 because php and actionscript do md5 differently, we need to escape first
 		$hash = md5($escapedString);
-		//NetDebug::trace("hash=$hash");
-		
+
 		// Encode and sign the hash
 		$m = Base8::encode($hash);
-		//NetDebug::trace("checksum m=$m");
 		$c = $this->dmsKey->sign($m);
-		//NetDebug::trace("checksum c=$c");
 		$c = $this->orchidPublicKey->encrypt($c);
-		//NetDebug::trace("checksum=$c");
-		//echo "checksum c=$c";
-		
+
 		return $c;
 	}
+    // gh#1404 Decode a checksum to validate it
+    private function _validateChecksum($title, $account) {
+        //AbstractService::$debugLog->info("checksum is ".$this->generateChecksumForTitle($title, $account)." compare against ".$title->checksum);
+        return ($title->checksum == $this->generateChecksumForTitle($title, $account));
+    }
 	/*
 	 * This reads all the email addresses for this account who are registered to receive this type of message
 	 */

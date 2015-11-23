@@ -491,7 +491,8 @@ package com.clarityenglish.bento.view.login {
 				// If an account has some AA and some LT, they may switch off selfRegister in RM as they don't want it in LT titles.
 				// So if an AA account has no selfRegister, overwrite with email + loginOption + verified
 				// If the account does have selfRegister, force email to be on
-				if (licenceType == Title.LICENCE_TYPE_AA || licenceType == Title.LICENCE_TYPE_CT) {
+                // gh#1277 Network licence treated same as AA
+				if (licenceType == Title.LICENCE_TYPE_AA || licenceType == Title.LICENCE_TYPE_CT || licenceType == Title.LICENCE_TYPE_NETWORK) {
 					if (selfRegister <= 0)
 						selfRegister = loginOption;
 					selfRegister |= Config.SELF_REGISTER_EMAIL;
@@ -503,7 +504,8 @@ package com.clarityenglish.bento.view.login {
 				allowLogin = (noLogin) ? false : true;
 				
 				// Is anonymous access allowed?
-				allowAnonymous = (licenceType == Title.LICENCE_TYPE_AA || licenceType == Title.LICENCE_TYPE_CT) ? true : false;
+                // gh#1277 Network licence treated same as AA
+				allowAnonymous = (licenceType == Title.LICENCE_TYPE_AA || licenceType == Title.LICENCE_TYPE_CT || licenceType == Title.LICENCE_TYPE_NETWORK) ? true : false;
 			}
 			
 			// gh#1090 Might be useful for various skins
