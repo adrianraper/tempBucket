@@ -5,8 +5,9 @@ import com.clarityenglish.bento.view.base.BentoMediator;
 import com.clarityenglish.bento.view.base.BentoView;
 
 import org.puremvc.as3.interfaces.IMediator;
+import org.puremvc.as3.interfaces.INotification;
 
-    public class HomeMediator extends BentoMediator implements IMediator {
+public class HomeMediator extends BentoMediator implements IMediator {
 
         public function HomeMediator(mediatorName:String, viewComponent:BentoView) {
             super(mediatorName, viewComponent);
@@ -24,6 +25,24 @@ import org.puremvc.as3.interfaces.IMediator;
             if (bentoProxy.menuXHTML) view.href = bentoProxy.menuXHTML.href;
 
             view.courseSelect.add(onCourseSelect);
+        }
+
+
+        public override function listNotificationInterests():Array {
+            return super.listNotificationInterests().concat([
+                BBNotifications.SCORE_WRITTEN,
+            ])
+        }
+
+        public override function handleNotification(note:INotification):void {
+            super.handleNotification(note);
+
+            switch(note.getName()) {
+                case BBNotifications.SCORE_WRITTEN:
+                    var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+                    view.xhtml = bentoProxy.menuXHTML;
+                    break;
+            }
         }
 
         protected function onCourseSelect(course:XML):void {
