@@ -74,7 +74,14 @@ package com.clarityenglish.common.model {
 		
 		// gh#13
 		public function reset():void {
+            // gh#1090 Clear everything except that which you retained on the first go, special case for logout of demo accounts
+            // gh#1277 Network prefix is set to DEMO for historical reasons, so ignore that case
+            if ((config.prefix == "TD" || config.prefix == "Demo") && getLicenceType() != Title.LICENCE_TYPE_NETWORK)
+                config.retainedParameters = {};
+
 			// TODO. Examine if these really are the right things to reset for a fresh login
+            // For instance, why would you change the title details?
+            // I suppose that for tablet, a new login picks up new account and title
 			// Especially the licence type
 			config.rootID = new Number();
 			config.licence = new Licence();
@@ -100,10 +107,6 @@ package com.clarityenglish.common.model {
 			config.userID = config.username = config.email = config.studentID = config.password = config.startingPoint = config.sessionID = null;
 			config.group = new Group();
 			
-			// gh#1090 Clear everything except that which you retained on the first go, special case for logout of demo accounts
-            // gh#1277 Network prefix is set to DEMO for historical reasons, so ignore that case
-			if ((config.prefix == "TD" || config.prefix == "Demo") && config.licenceType != Title.LICENCE_TYPE_NETWORK)
-				config.retainedParameters = {};
 			config.prefix = "";
 			config.noLogin = false;
 			config.isReloadAccount = false;
