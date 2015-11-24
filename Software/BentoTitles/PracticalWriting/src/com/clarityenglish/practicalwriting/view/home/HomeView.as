@@ -13,37 +13,53 @@ import spark.events.IndexChangeEvent;
 
 public class HomeView extends BentoView {
 
-        [SkinPart]
-        public var courseList:List;
+    [SkinPart]
+    public var courseList:List;
 
-        [Bindable]
-        public var courseXMLListCollection:XMLListCollection;
+    [Bindable]
+    public var courseXMLListCollection:XMLListCollection;
 
-        public var courseSelect:Signal = new Signal(XML);
+    [Bindable]
+    public var userNameCaption:String;
 
-        public function HomeView() {
-            actionBarVisible = false;
-        }
+    public var courseSelect:Signal = new Signal(XML);
 
-        override protected function updateViewFromXHTML(xhtml:XHTML):void {
-            super.updateViewFromXHTML(xhtml);
+    public function HomeView() {
+        actionBarVisible = false;
+    }
 
-            courseXMLListCollection = new XMLListCollection(xhtml..menu.course);
-        }
+    override protected function updateViewFromXHTML(xhtml:XHTML):void {
+        super.updateViewFromXHTML(xhtml);
 
-        override protected function partAdded(partName:String, instance:Object):void {
-            super.partAdded(partName, instance);
+        courseXMLListCollection = new XMLListCollection(xhtml..menu.course);
+    }
 
-            switch (instance) {
-                case courseList:
-                    courseList.addEventListener(IndexChangeEvent.CHANGE, onIndexChange);
-                    break;
-            }
-        }
+    override protected function partAdded(partName:String, instance:Object):void {
+        super.partAdded(partName, instance);
 
-        protected function onIndexChange(event:IndexChangeEvent):void {
-            if (event.target.selectedItem)
-                courseSelect.dispatch(event.target.selectedItem);
+        switch (instance) {
+            case courseList:
+                courseList.addEventListener(IndexChangeEvent.CHANGE, onIndexChange);
+                break;
         }
     }
+
+    protected override function commitProperties():void {
+        super.commitProperties();
+
+        // gh#1194
+        userNameCaption = '';
+        if (config.username == null || config.username == '') {
+            if (config.email)
+                userNameCaption = copyProvider.getCopyForId('welcomeLabel', {name: config.email});
+        } else if (config.username.toLowerCase() != 'anonymous') {
+            userNameCaption = copyProvider.getCopyForId('welcomeLabel', {name: config.username});
+        }
+    }
+
+    protected function onIndexChange(event:IndexChangeEvent):void {
+        if (event.target.selectedItem)
+            courseSelect.dispatch(event.target.selectedItem);
+    }
+}
 }
