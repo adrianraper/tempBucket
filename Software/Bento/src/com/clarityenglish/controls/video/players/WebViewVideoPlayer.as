@@ -187,6 +187,7 @@ import mx.events.FlexEvent;
 		
 		public function play():void {
 			invalidateDisplayList();
+
 			
 			callLater(function():void {
 				if (source) {
@@ -223,6 +224,7 @@ import mx.events.FlexEvent;
 			addEventListener(FlexEvent.HIDE, onHide, false, 0, true);
 			addEventListener(FlexEvent.SHOW, onShow, false, 0, true);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
+			addEventListener(Event.ENTER_FRAME, onEnterFrame, false, 0, true);
 
 			// Create the StageWebView
 			if (!stageWebView) {
@@ -239,7 +241,6 @@ import mx.events.FlexEvent;
 			if (source) {
 				play();
 			}
-			//addEventListener(Event.ENTER_FRAME, onEnterFrame, false, 0, true);
 		}
 
 		protected function onFocusIn(event:Event) {
