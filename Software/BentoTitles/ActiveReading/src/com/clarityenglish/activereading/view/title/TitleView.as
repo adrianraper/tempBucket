@@ -183,7 +183,7 @@ package com.clarityenglish.activereading.view.title {
 		}
 
 		protected function onBackToMenuButtonClick(event:MouseEvent):void {
-			_isDirectLogout? logout.dispatch() : backToMenu.dispatch();
+			_isDirectLogout ? logout.dispatch() : backToMenu.dispatch();
 		}
 		
 		protected override function getCurrentSkinState():String {

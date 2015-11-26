@@ -19,7 +19,7 @@
             appHeight = FlexGlobals.topLevelApplication.height;
         }
 
-        protected function onCreationComplete(event:Event) {
+        protected function onCreationComplete(event:Event):void {
             // #gh1363
             var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
             if (settingsSharedObject.data["isChannelSelect"]) {

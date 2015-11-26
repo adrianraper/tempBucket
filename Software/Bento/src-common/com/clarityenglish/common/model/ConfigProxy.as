@@ -128,17 +128,15 @@ package com.clarityenglish.common.model {
 		public function getApplicationParameters():void {
 			// gh#1314 merge parameters from command line earlier now
 
-			// #336 SCORM
-			// The SCORM initialisation might fail and raise an exception. Don't bother going on...
-			var rc:Boolean = true;
-			if (config.scorm) {
-				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
-				rc = scormProxy.initialise();
-			}
-			
-			// Trigger the database call
-			if (rc)
-				getAccountSettings();
+            // gh#1405 Initialise SCORM
+            // #336 SCORM initialisation might fail and raise an exception. Don't bother going on...
+            if (config.scorm) {
+                var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+                var rc:Boolean = scormProxy.initialise();
+            }
+
+            // Trigger the database call
+			getAccountSettings();
 		}
 
 		/**
@@ -244,8 +242,8 @@ package com.clarityenglish.common.model {
 			
 			// #410 (too early though)
 			sendNotification(BBNotifications.NETWORK_CHECK_AVAILABILITY);
-			
-			// Next stage is to get data from the database
+
+            // Next stage is to get data from the database
 			// #322 Get copy literals first
 			// getApplicationParameters();
 			sendNotification(CommonNotifications.CONFIG_LOADED);
@@ -416,17 +414,16 @@ package com.clarityenglish.common.model {
 				}
 			}
 				
-			// #336 SCORM probably needs to be checked here
+			// #336 SCORM needs to be checked here as a form of direct start
 			if (config.scorm) {
-				//trace("scorm");
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 
-				configUser = new User({ name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID });
-                // gh#1227
-                if (loginOption & Config.LOGIN_BY_EMAIL)
-                    configUser.email = configUser.name + '@scorm.email';
-
-                return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+                // gh#1405 SCORM might not have been initialised yet
+                if (scormProxy.initialised) {
+                    // gh#1227
+                    configUser = new User({name: scormProxy.scorm.studentName, studentID: scormProxy.scorm.studentID, email: scormProxy.email});
+                    return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+                }
 			}
 			
 			return null;

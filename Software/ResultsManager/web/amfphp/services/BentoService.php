@@ -368,7 +368,7 @@ class BentoService extends AbstractService {
 		// TODO You should actually call it for the array of extra groupIDs instead of just my main group
 		// Then weed out duplicates 
 		Session::set('parentGroupIDs', array_reverse($this->manageableOps->getGroupParents($userObj->groupID)));
-		
+
 		// gh#21 As rootID will be -1 if you have not got an account yet, this will work.
 		// #503 From login you now only have one rootID even if you started with an array
 		// If that root has changed, you have to get a new licence object for this new root
@@ -434,9 +434,12 @@ class BentoService extends AbstractService {
 		$licence->id = $licenceID;
 		
 		// That call also gave us the groupID
-		// TODO. Do we want an entire hierarchy of groups here so we can do hiddenContent stuff? 
+		// TODO. Do we want an entire hierarchy of groups here so we can do hiddenContent stuff?
+        // gh#1405 If a user exists but their group has been deleted (somehow) catch it
 		$group = $this->manageableOps->getGroup($userObj->groupID);
-		
+        if (!$group)
+            throw $this->copyOps->getExceptionForId("errorNoSuchGroup", array("groupID" => $userObj->groupID));
+
 		// Add the user into the group
 		$group->addManageables(array($user));
 		

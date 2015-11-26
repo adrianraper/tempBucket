@@ -4,7 +4,7 @@
 package com.clarityenglish.practicalwriting.controller {
 import com.clarityenglish.bento.RecorderNotifications;
 import com.clarityenglish.bento.controller.BentoStartupCommand;
-import com.clarityenglish.bento.model.AudioProxy;
+//import com.clarityenglish.bento.model.AudioProxy;
 import com.clarityenglish.bento.model.XHTMLProxy;
 import com.clarityenglish.bento.model.adaptor.AIRRecorderAdaptor;
 import com.clarityenglish.bento.model.adaptor.IRecorderAdaptor;
@@ -26,11 +26,14 @@ public class PracticalWritingStartupCommand extends BentoStartupCommand {
             super.execute(note);
 
             // gh#267
+            // TODO Surely PW doesn't use the recorder??
+            /*
             var recorderAdaptor:IRecorderAdaptor = (PlayerUtils.isAirApplication()) ? new AIRRecorderAdaptor() : new WebRecorderAdaptor();
             facade.registerProxy(new AudioProxy(RecorderNotifications.RECORD_PROXY_NAME, true, recorderAdaptor));
             facade.registerProxy(new AudioProxy(RecorderNotifications.MODEL_PROXY_NAME, false, recorderAdaptor));
+            */
 
-            // Set the transforms that TenseBuster uses on its menu.xml files
+            // Set the transforms that PracticalWriting uses on its menu.xml files
             // TODO: currently these are the same as IELTS
             var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
             var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;

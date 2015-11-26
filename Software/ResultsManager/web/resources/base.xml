@@ -20,7 +20,7 @@
             <lit name="errorUserExpired" code="207">Your user account expired on {expiryDate}. Please contact your administrator.</lit>
             <lit name="errorDuplicateUsers" code="208">More than one user matches this {loginKeyField}. Please contact your administrator.</lit>
             <lit name="errorNoAnonymousUser" code="209">No anonymous user registered.</lit>
-            <lit name="errorNoSuchGroup" code="210">No such group exists. Please contact your administrator.</lit>
+            <lit name="errorNoSuchGroup" code="210">There is a problem with the group you are in. Please contact your administrator.</lit>
             <lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
             <lit name="errorGetInstanceId" code="212">Can't get the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
             <lit name="errorFailedInstanceCheck" code="213">Someone else has signed in with your details. Please try again.</lit>

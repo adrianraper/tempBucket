@@ -243,7 +243,7 @@ import mx.events.FlexEvent;
 			}
 		}
 
-		protected function onFocusIn(event:Event) {
+		protected function onFocusIn(event:Event):void {
 			// gh#1399 imitate the video player play state, in order to get time for currentVideoStartTime
 			dispatchEvent(new VideoEvent(VideoEvent.VIDEO_PLAYED));
 		}

@@ -206,7 +206,7 @@ package com.clarityenglish.bento.model {
                 // gh#1356 Allow substitution of paths in href links
                 href.resetTransforms();
                 if (href.type == Href.EXERCISE) {
-                    var transforms:Array = [ new ExercisePathsTransform(configProxy.getConfig().paths) ];
+                    transforms = [ new ExercisePathsTransform(configProxy.getConfig().paths) ];
                     registerTransforms(transforms, [ Href.EXERCISE ]);
                 }
                 for each (var transform:XmlTransform in transforms)

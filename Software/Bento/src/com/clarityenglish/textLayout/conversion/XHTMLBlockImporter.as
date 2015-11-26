@@ -397,7 +397,7 @@ package com.clarityenglish.textLayout.conversion {
 					for (var i:int = 0; i < xmlToParse.children().length(); i++) {
 						xmlToParseArray[i] = xmlToParse.children()[i];
 					}
-					for (var i:int = 0; i < shuffledXMLToParse.children().length(); i++) {
+					for (i = 0; i < shuffledXMLToParse.children().length(); i++) {
 						randomPos = int(Math.random() * xmlToParseArray.length);
 						shuffledXMLToParse.children()[i] = xmlToParseArray[randomPos];
 						xmlToParseArray.splice(randomPos, 1);

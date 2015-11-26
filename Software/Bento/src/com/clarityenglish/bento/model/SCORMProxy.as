@@ -37,11 +37,35 @@ package com.clarityenglish.bento.model {
 		
 		// #336
 		public var scorm:SCORM;
+
+
+        // gh#1405
+        private var _initialised:Boolean = false;
+        private var _email:String = '';
 		
 		public function SCORMProxy() {
 			super(NAME);
 		}
-		
+
+        public function get initialised():Boolean {
+            return _initialised;
+        }
+        public function set initialised(value:Boolean):void {
+            if (value != _initialised)
+                _initialised = value;
+        }
+        public function get email():String {
+            if (_email == '') {
+                // simplify the name to be more like email if we are just making one up
+                var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+                var regex:RegExp = /[\W]+/gim;
+                _email = scorm.studentName.replace(regex, '') + '@scorm.' + configProxy.getRootID();
+            }
+            return _email;
+        }
+        public function set email(value:String):void {
+            _email = value;
+        }
 		/**
 		 * Establish SCORM communication with the API in the browser
 		 * Get initial variables and leave it all ready for communication once the SCO is started
@@ -68,8 +92,6 @@ package com.clarityenglish.bento.model {
 			scorm.studentLanguage = scorm.getParameter('interfaceLanguage');
 			scorm.entry = scorm.getParameter('entry');
 			
-			// Did any of these calls raise an error?
-			
 			scorm.objectiveCount = Number(scorm.getParameter('objective.count'));
 			
 			// launch_data is key, and you need to carefully check this as not all LMS support it
@@ -78,6 +100,8 @@ package com.clarityenglish.bento.model {
 			if (scorm.entry == 'resume')
 				scorm.suspendData = scorm.getParameter('suspendData');			
 
+            // gh#1405
+            this.initialised = true;
 			return true;
 		}
 
@@ -103,14 +127,20 @@ package com.clarityenglish.bento.model {
 			// Also can't have question marks! What about other punctuation?
 			// Moodle implementation has regex '^\\w{1,255}$' - so allowing letters, digits and underscores only.
 			var exCaption:String = exID;
-			
-			scorm.setParameter('objective.count', String(scorm.objectiveCount++));
-			scorm.setParameter('objective.id', exCaption, scorm.objectiveCount);
-			scorm.setParameter('objective.status', 'completed', scorm.objectiveCount);
-			scorm.setParameter('objective.score', String(score), scorm.objectiveCount);
+
+            // gh#1405 You can't set the objectives count
+			//scorm.setParameter('objective.count', String(scorm.objectiveCount++));
+            var newObjectiveCount:uint = Number(scorm.getParameter('objective.count'));
+			scorm.setParameter('objective.id', exCaption, newObjectiveCount);
+			scorm.setParameter('objective.status', 'completed', newObjectiveCount);
+			scorm.setParameter('objective.score', String(score), newObjectiveCount);
 			scorm.setParameter('suspendData', this.formatSuspendData(exID, score, hasQuestion));			
 			scorm.setParameter('bookmark', this.formatBookmark(exID));
-			// gh#881
+
+            // Just to see if that worked, force a count from the LMS...
+            newObjectiveCount = Number(scorm.getParameter('objective.count'));
+
+            // gh#881
 			checkScormComplete();
 			
 			return true;

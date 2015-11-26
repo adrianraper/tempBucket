@@ -511,11 +511,9 @@ import flash.events.TimerEvent;
                                 var verified:Boolean = (configProxy.getAccount().verified == 1);
                                 var configUser:User = new User({
                                     name: scormProxy.scorm.studentName,
-                                    studentID: scormProxy.scorm.studentID
+                                    studentID: scormProxy.scorm.studentID,
+                                    email: scormProxy.email
                                 });
-                                // gh#1227
-                                if (loginOption & Config.LOGIN_BY_EMAIL)
-                                    configUser.email = configUser.name + '@scorm.email';
 
                                 var loginEvent:LoginEvent = new LoginEvent(LoginEvent.ADD_USER, configUser, loginOption, verified);
                                 sendNotification(CommonNotifications.ADD_USER, loginEvent);

@@ -293,13 +293,28 @@ package com.pipwerks {
 					return "cmi.objectives._count";
 					break;
 				case "objective.id":
-					return "cmi.objectives." + index + ".id";
+                    // gh#1405 According to the specs, both versions should use dot notation. But Moodle seems to understand _ NOT .
+                    if (this.version == "2004") {
+                        return "cmi.objectives." + String(index) + ".id";
+                    } else {
+                        return "cmi.objectives_" + String(index) + ".id";
+                    }
 					break;
 				case "objective.score":
-					return "cmi.objectives." + index + ".score.raw";
+                    if (this.version == "2004") {
+                        return "cmi.objectives." + String(index) + ".score.raw";
+                    } else {
+                        return "cmi.objectives_" + String(index) + ".score.raw";
+                    }
 					break;
+                // gh#1405
 				case "objective.status":
-					return "cmi.objectives." + index + ".status";
+                    if (this.version == "2004") {
+                        return "cmi.objectives." + String(index) + ".completion_status";
+                    } else {
+                        return "cmi.objectives_" + String(index) + ".status";
+                    }
+                    break;
 					break;
 				case "rubbish":
 					return "cmi.rubbish";
