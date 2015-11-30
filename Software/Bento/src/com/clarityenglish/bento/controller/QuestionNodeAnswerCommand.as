@@ -3,8 +3,10 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
-	
-	import mx.logging.ILogger;
+
+import flash.geom.Rectangle;
+
+import mx.logging.ILogger;
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
@@ -27,9 +29,11 @@ package com.clarityenglish.bento.controller {
 			var nodeAnswer:NodeAnswer = note.getBody().nodeAnswer;
 			var key:Object = note.getBody().key;
 			var disabled:Boolean = note.getBody().disabled;
-			
+			// gh#1373
+			var bounds:Rectangle = note.getBody().bounds;
+
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
-			exerciseProxy.questionAnswer(question, nodeAnswer, key, disabled);
+			exerciseProxy.questionAnswer(question, nodeAnswer, key, disabled, bounds);
 		}
 		
 	}

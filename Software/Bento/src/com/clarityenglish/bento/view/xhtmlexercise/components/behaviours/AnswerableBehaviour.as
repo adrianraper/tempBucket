@@ -31,7 +31,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		
 		public function AnswerableBehaviour(container:Group) {
 			super(container);
-			
+
 			clickableAnswerManager = new ClickableAnswerManager(container);
 			inputAnswerManager = new InputAnswerManager(container);
 			errorCorrectionAnswerManager = new ErrorCorrectionAnswerManager(container);
@@ -88,14 +88,19 @@ import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 import com.clarityenglish.textLayout.elements.InputElement;
 import com.clarityenglish.textLayout.elements.SelectElement;
 import com.clarityenglish.textLayout.elements.TextComponentElement;
+import com.clarityenglish.textLayout.rendering.RenderFlow;
 import com.clarityenglish.textLayout.util.TLFUtil;
 import com.clarityenglish.textLayout.vo.XHTML;
+
+import flash.display.DisplayObject;
 
 import flash.events.Event;
 import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
+import flash.geom.Point;
+import flash.geom.Rectangle;
 import flash.ui.Mouse;
 import flash.ui.MouseCursor;
 
@@ -114,8 +119,10 @@ import mx.utils.UIDUtil;
 
 import org.davekeen.util.ClassUtil;
 import org.davekeen.util.Closure;
+import org.davekeen.util.PointUtil;
 
 import spark.components.Group;
+import spark.components.Scroller;
 
 interface IAnswerManager {
 
@@ -145,6 +152,16 @@ class AnswerManager {
 		}
 		
 		return longestAnswer;
+	}
+
+	// gh#1373
+	protected function getElementBounds(element:FlowElement):Rectangle {
+		var elementBounds:Rectangle = TLFUtil.getFlowElementBounds(element);
+		var containingBlock:RenderFlow = element.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
+		elementBounds = PointUtil.convertRectangleCoordinateSpace(elementBounds, containingBlock, container);
+		elementBounds.y -= container.verticalScrollPosition;
+
+		return elementBounds;
 	}
 	
 }
@@ -183,7 +200,7 @@ class ClickableAnswerManager extends AnswerManager implements IAnswerManager {
 	}
 	
 	private function onAnswerClick(e:FlowElementMouseEvent, flowElementXmlBiMap:FlowElementXmlBiMap, exercise:Exercise, question:Question, answer:Answer, source:XML):void {
-		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, source, true));
+		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, source, true, getElementBounds(e.flowElement)));
 	}
 	
 	// gh#740
@@ -249,7 +266,7 @@ class DropDownAnswerManager extends AnswerManager implements IAnswerManager {
 			for each (var source:XML in answer.getSourceNodes(exercise)) {
 				if (source === optionNode) {
 					// Once we find a matching answer dispatch it
-					container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, selectNode, true));
+					container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, selectNode, true, getElementBounds(selectElement)));
 					return;
 				}
 			}
@@ -370,6 +387,8 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 			}
 
 			if (inputElement.droppedFlowElement) {
+				var dropFlowElementBounds:Rectangle = getElementBounds(inputElement.droppedFlowElement);
+
 				// #11 - once a drag source has been moved it becomes disabled, unless allowMultipleDrags is set
 				if (!exercise.model.getSettingParam("allowMultipleDrags")) {
 					container.callLater(function ():void {
@@ -391,7 +410,9 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
                 answerOrString = answerOrString.slice(0, -1);
         }
 
-		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, inputNode, true));
+		// gh#1373
+		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, inputNode, true, getElementBounds(inputElement)));
+
 	}
 	
 	/**

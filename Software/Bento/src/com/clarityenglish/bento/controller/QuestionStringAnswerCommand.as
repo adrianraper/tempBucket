@@ -5,8 +5,10 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.vo.content.model.answer.Feedback;
 	import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
 	import com.newgonzo.commons.utils.StringUtil;
-	
-	import mx.logging.ILogger;
+
+import flash.geom.Rectangle;
+
+import mx.logging.ILogger;
 	import mx.logging.Log;
 	import mx.utils.ObjectUtil;
 	
@@ -30,11 +32,13 @@ package com.clarityenglish.bento.controller {
 			var answerString:String = note.getBody().answerString;
 			var key:Object = note.getBody().key;
 			var disabled:Boolean = note.getBody().disabled;
+			// gh#1373
+			var bounds:Rectangle = note.getBody().bounds;
 			
 			var textAnswer:TextAnswer = getTextAnswer(question, answerString, exercise.isCaseSensitive());
 			
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
-			exerciseProxy.questionAnswer(question, textAnswer, key, disabled);
+			exerciseProxy.questionAnswer(question, textAnswer, key, disabled, bounds);
 		}
 		
 		/**
@@ -69,6 +73,12 @@ package com.clarityenglish.bento.controller {
 					xmlString += '<feedback source="' + question.answers[0].feedback.source + '"' + 'width="' + question.answers[0].feedback.width + '"/>';
 				} else {
 					xmlString += '<feedback source="' + question.answers[0].feedback.source + '"/>';
+				}
+			} else if (question.answers[0].smallFeedback) { /* gh#1373 */
+				if (question.answers[0].feedback.width) {
+					xmlString += '<smallFeedback source="' + question.answers[0].smallFeedback.source + '"' + 'width="' + question.answers[0].smallFeedback.width + '"/>';
+				} else {
+					xmlString += '<smallFeedback source="' + question.answers[0].smallFeedback.source + '"/>';
 				}
 			}
 			xmlString += "</answer>";

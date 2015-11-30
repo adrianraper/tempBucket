@@ -225,7 +225,7 @@ import spark.components.Group;
 					
 					xhtmlRichText.xhtml = exercise;
 					xhtmlRichText.nodeId = (sectionName == "header") ? "body > header" : "#" + sectionName;
-					
+
 					// #258
 					group.removeEventListener(MouseEvent.CLICK, onSectionClick);
 					if (exercise.model.hasSettingParam("incorrectClickSection") && exercise.model.getSettingParam("incorrectClickSection") == sectionName)
@@ -309,7 +309,7 @@ import spark.components.Group;
 				textFlowDamageAccumulator.damageTextFlow(answerElement.getTextFlow());
 				break;
 			}
-			
+
 			textFlowDamageAccumulator.updateDamagedTextFlows();
 		}
 		
@@ -490,6 +490,15 @@ import spark.components.Group;
 					}
 				}			
 			} 
+		}
+
+		// gh#1373
+		public function getTopGroupHeight():Number {
+			if (noscrollGroup.height > 0) {
+				return headerGroup.height + noscrollGroup.height + 5;
+			} else {
+				return headerGroup.height;
+			}
 		}
 	}
 

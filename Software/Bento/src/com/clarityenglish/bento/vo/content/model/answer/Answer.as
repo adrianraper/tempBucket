@@ -17,12 +17,18 @@ package com.clarityenglish.bento.vo.content.model.answer {
 		protected var question:Question;
 		
 		private var _feedback:Feedback;
+
+		private var _smallFeedback:Feedback;
 		
 		public function Answer(xml:XML = null) {
 			this.xml = xml;
 			
 			if (xml.hasOwnProperty("feedback"))
 				_feedback = new Feedback(xml.feedback[0], this);
+
+			// gh#1373
+			if (xml.hasOwnProperty("smallFeedback"))
+				_smallFeedback = new Feedback(xml.smallFeedback[0], this);
 		}
 		
 		public function get score():int {
@@ -62,7 +68,12 @@ package com.clarityenglish.bento.vo.content.model.answer {
 		public function get feedback():Feedback {
 			return _feedback;
 		}
-		
+
+		// gh#1373
+		public function get smallFeedback():Feedback {
+			return _smallFeedback;
+		}
+
 		public function set correct(value:Boolean):void {
 			xml.@correct = value;
 		}

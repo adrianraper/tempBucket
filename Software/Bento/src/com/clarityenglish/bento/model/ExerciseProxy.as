@@ -262,7 +262,7 @@ package com.clarityenglish.bento.model {
 		 * @param disabled If this is true then the only effect of this will be to display feedback, if there is any.  
 		 * 				   This is used when things happen after marking has been shown.
 		 */
-		public function questionAnswer(question:Question, answer:Answer, key:Object = null, disabled:Boolean = false):void {
+		public function questionAnswer(question:Question, answer:Answer, key:Object = null, disabled:Boolean = false, bounds = null):void {
 			checkExercise();
 
 			if (!disabled) {
@@ -297,14 +297,19 @@ package com.clarityenglish.bento.model {
 			
 			// If there is any feedback attached to the answer send a notification to tell the framework to display some feedback.  
 			// If delayed marking is on we only show feedback once the exercise has been marked.
-			if (answer.feedback && (!delayedMarking || exerciseMarked)) {
+			if ((answer.feedback || answer.smallFeedback) && (!delayedMarking || exerciseMarked)) {
 				// Create substitutions where appropriate
 				var correctAnswers:Vector.<Answer> = question.getCorrectAnswers();
 				var substitutions:Object = {};
 				substitutions.yourAnswer = answer.toReadableString(exercise);
 				substitutions.correctAnswer = (correctAnswers.length > 0) ? correctAnswers[0].toReadableString(exercise) : "";
-				
-				sendNotification(BBNotifications.FEEDBACK_SHOW, { exercise: exercise, feedback: answer.feedback, substitutions: substitutions } );
+
+				// gh#1373
+				if (answer.smallFeedback) {
+					sendNotification(BBNotifications.SMALL_FEEDBACK_SHOW, { exercise: exercise, smallFeedback: answer.smallFeedback, substitutions: substitutions, bounds: bounds } );
+				} else {
+					sendNotification(BBNotifications.FEEDBACK_SHOW, { exercise: exercise, feedback: answer.feedback, substitutions: substitutions, bounds: bounds } );
+				}
 			}
 		}
 		

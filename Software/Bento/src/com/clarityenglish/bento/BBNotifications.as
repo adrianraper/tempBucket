@@ -135,6 +135,9 @@
 
 		public static const PROGRESS_SHOW:String = "bb/progress_show";
 		public static const SETTINGS_SHOW:String = "bb/settings_show";
+
+		// gh#1373
+		public static const SMALL_FEEDBACK_SHOW:String = "bb/tip_show";
 	}
 	
 }

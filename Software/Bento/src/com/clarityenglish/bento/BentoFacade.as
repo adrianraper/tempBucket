@@ -191,6 +191,9 @@
 			registerCommand(BBNotifications.IMAGE_ENLARGE, ImageEnlargeCommand);
 
 			registerCommand(CommonNotifications.WRITE_MEMORY, MemoryWriteCommand);
+
+			// gh#1373
+			registerCommand(BBNotifications.SMALL_FEEDBACK_SHOW, SmallFeedbackShowCommand);
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

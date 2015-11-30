@@ -2,12 +2,14 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
-	
-	import flash.events.IEventDispatcher;
+
+import flash.events.IEventDispatcher;
 	
 	import org.osflash.signals.Signal;
-	
-	public interface IExerciseView extends IEventDispatcher {
+
+import spark.components.Group;
+
+public interface IExerciseView extends IEventDispatcher {
 		
 		function set courseCaption(value:String):void;
 		function get exercise():Exercise;
@@ -17,6 +19,8 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		function stopAllAudio():void;
 		function getQuestionFeedback():Signal; // gh#388, gh#413
 		function modifyMarkingClass(question:Question, selectedAnswerMap:AnswerMap, markableAnswerMap:AnswerMap, marked:Boolean = true):void; // gh#627
+		// gh#1373 header group height + nonscroll group height
+		function getTopGroupHeight():Number;
 	}
 	
 }
