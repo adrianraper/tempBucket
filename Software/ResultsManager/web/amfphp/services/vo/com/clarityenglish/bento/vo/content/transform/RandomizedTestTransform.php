@@ -15,8 +15,15 @@ class RandomizedTestTransform extends XmlTransform {
 		$questionBanks = $xmlDoc->getElementsByTagName("questionBank");
 		$xmlPath = new DOMXPath($xmlDoc);
 		$xmlPath->registerNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
-		$bodyQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]';
-		$xmlBody = $xmlPath->query($bodyQuery)->item(0);
+        // gh#1409 Find the placeholder for question.
+		$questionsPlaceholderQuery = "/xmlns:bento/xmlns:body/xmlns:section[@id='body']//xmlns:*[@id='questionPlaceHolder']";
+        $questionsPlaceholder = $xmlPath->query($questionsPlaceholderQuery)->item(0);
+        // if no question place holder listed, just use the whole body section
+        if (!$questionsPlaceholder) {
+            $questionsPlaceholderQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]';
+            $questionsPlaceholder = $xmlPath->query($questionsPlaceholderQuery)->item(0);
+            //AbstractService::$debugLog->info("so found placeholder=".$questionsPlaceholder->nodeName);
+        }
 		
 		$tempQuestions = new DOMDocument();
 		$tempQuestions->formatOutput = true;
@@ -91,15 +98,22 @@ class RandomizedTestTransform extends XmlTransform {
 			$tempQuestionNode = $tempQuestions->childNodes->item($number);
 			$xmlQuestionNode = $xmlDoc->importNode($tempQuestionNode, true);
 			$xmlQuestions->appendChild($xmlQuestionNode);
-			
+
+            // gh#1409 Search for #q# and replace with number.
+            $tempNode = $tempDoc->childNodes->item($number);
+            foreach ($tempNode->childNodes as $node) {
+                $node->firstChild->nodeValue = str_replace("#q#", $j, $node->firstChild->nodeValue);
+            }
+            $xmlNode = $xmlDoc->importNode($tempNode, true);
+            // TODO Somehow the template should work out what to do if no number in the question bank...
+            /*
 			$questionNumberDoc = new DOMDocument();
 			$questionNumberDoc->loadXML('<div class="question-number">'.($j).'</div>');
 			$gapQuestionNumberNode = $questionNumberDoc->getElementsByTagName("div")->item(0);
 			$gapQuestionNumberNode = $tempDoc->importNode($gapQuestionNumberNode, true);
-			$tempNode = $tempDoc->childNodes->item($number);
 			$tempNode->insertBefore($gapQuestionNumberNode, $tempNode->firstChild);
-			$xmlNode = $xmlDoc->importNode ($tempNode, true );
-    		$xmlBody->appendChild($xmlNode);
+            */
+            $questionsPlaceholder->appendChild($xmlNode);
     		$j++;
 		}
 		

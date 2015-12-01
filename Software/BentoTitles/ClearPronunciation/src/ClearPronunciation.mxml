@@ -32,15 +32,15 @@
 			advancedAntiAliasing: true;
 		}
 		
-		@font-face {
-			src: url("skins/clearpronunciation/assets/L_10646.TTF");
-			fontFamily: Phonetic;
-			fontStyle: normal;
-			fontWeight: normal;
-			embedAsCFF: true;
-			advancedAntiAliasing: true;
-		}
-		
+        @font-face {
+            src: url("skins/clearpronunciation/assets/L_10646.TTF");
+            fontFamily: Phonetic;
+            fontStyle: normal;
+            fontWeight: normal;
+            embedAsCFF: true;
+            advancedAntiAliasing: true;
+        }
+
 		@font-face {
 			src: url("skins/clearpronunciation/assets/MyriadPro-Regular.otf");
 			fontFamily: MyriadPro;
