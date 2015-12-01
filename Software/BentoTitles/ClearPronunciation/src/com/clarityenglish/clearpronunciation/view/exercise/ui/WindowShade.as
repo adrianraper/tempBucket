@@ -95,7 +95,6 @@ import spark.components.Button;
 			}
 
 			if (!isWindowOpen) {
-				trace("close window");
 				close();
 			}
 		}

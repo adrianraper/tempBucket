@@ -76,9 +76,9 @@
 			import mx.events.FlexEvent;
 			
 			protected function onInitialize(event:FlexEvent):void {
-				CSSApplicator.fontSizeOffset = 4;
+				CSSApplicator.fontSizeOffset = 0;
 				
-				versionNumber = "10.1.27";
+				versionNumber = "10.1.29A";
 				
 				facade = ClearPronunciationApplicationFacade.getInstance();
 			}
