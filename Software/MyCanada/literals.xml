@@ -106,7 +106,7 @@
 <lit name="seconds">[x] secs</lit>
 <lit name="stats">Countdown statistics</lit>
 <lit name="word">Word</lit>
-<lit name="loginHeading">Please log in.</lit>
+<lit name="loginHeading">Sign in with your NAS account.</lit>
 <lit name="registrationHeading">Your details</lit>
 <lit name="progressAnon">Progress for you (in [x]).</lit>
 <lit name="loadScores">Load scores...</lit>
