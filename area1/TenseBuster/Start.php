@@ -14,7 +14,7 @@
 	// For this product
 	$productCode = 55; // RoadToIELTS 2
 	$swfName = 'TenseBuster.swf';
-	$startControl = '/Software/BentoTitles/TenseBuster/bin-debug/';
+	$startControl = '/Software/BentoTitles/TenseBuster/bin-release/';
 	$version = '1107';
 	$coordsMinWidth = '990';
 	$coordsMaxWidth = '990';

@@ -11,6 +11,7 @@ class RandomizedTestTransform extends XmlTransform {
 		$xmlDoc = new DOMDocument();
 		$xmlDoc->formatOutput = true;
 		$xmlDoc->load($href->getUrl());
+        // get the node that we will later fill up with real questions, at the moment it just holds the question bank(s)
 		$xmlQuestions = $xmlDoc->getElementsByTagName("questions")->item(0);
 		$questionBanks = $xmlDoc->getElementsByTagName("questionBank");
 		$xmlPath = new DOMXPath($xmlDoc);
@@ -92,27 +93,33 @@ class RandomizedTestTransform extends XmlTransform {
 		$numbers = range(0, $totalNumber-1);
 		shuffle($numbers);
 		$j = 1;
-		// insert question number node to each node in tempDoc and copy each node to xmlDoc
-		// TODO gh#660 Replace this with question number variable, #q#, in the question bank
+		// format question number in each node and copy to xmlDoc
 		foreach ($numbers as $number) {
 			$tempQuestionNode = $tempQuestions->childNodes->item($number);
 			$xmlQuestionNode = $xmlDoc->importNode($tempQuestionNode, true);
 			$xmlQuestions->appendChild($xmlQuestionNode);
 
-            // gh#1409 Search for #q# and replace with number.
             $tempNode = $tempDoc->childNodes->item($number);
+            // See if the question contains a question number. If not, add one (for TB legacy data)
+            $hasNoQuestionNumber = true;
             foreach ($tempNode->childNodes as $node) {
-                $node->firstChild->nodeValue = str_replace("#q#", $j, $node->firstChild->nodeValue);
+                if ($node->nodeType == XML_ELEMENT_NODE && $node->hasAttributes() && $node->getAttribute('class') == 'question-number')
+                    $hasNoQuestionNumber = false;
+            }
+            if ($hasNoQuestionNumber) {
+                $questionNumberDoc = new DOMDocument();
+                $questionNumberDoc->loadXML('<div class="question-number">#q#</div>');
+                $gapQuestionNumberNode = $questionNumberDoc->getElementsByTagName("div")->item(0);
+                $gapQuestionNumberNode = $tempDoc->importNode($gapQuestionNumberNode, true);
+                $tempNode->insertBefore($gapQuestionNumberNode, $tempNode->firstChild);
+            }
+
+            // gh#1409 Search for #q# and replace with number.
+            foreach ($tempNode->childNodes as $node) {
+                if ($node->nodeType == XML_ELEMENT_NODE && $node->hasAttributes() && $node->getAttribute('class') == 'question-number')
+                    $node->nodeValue = str_replace("#q#", $j, $node->nodeValue);
             }
             $xmlNode = $xmlDoc->importNode($tempNode, true);
-            // TODO Somehow the template should work out what to do if no number in the question bank...
-            /*
-			$questionNumberDoc = new DOMDocument();
-			$questionNumberDoc->loadXML('<div class="question-number">'.($j).'</div>');
-			$gapQuestionNumberNode = $questionNumberDoc->getElementsByTagName("div")->item(0);
-			$gapQuestionNumberNode = $tempDoc->importNode($gapQuestionNumberNode, true);
-			$tempNode->insertBefore($gapQuestionNumberNode, $tempNode->firstChild);
-            */
             $questionsPlaceholder->appendChild($xmlNode);
     		$j++;
 		}

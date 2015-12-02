@@ -282,10 +282,10 @@ EOD;
 		if ($this->getOpt(ReportBuilder::SHOW_EMAIL)) $this->addColumn("u.F_Email", "email");
 		
 		// For Science Po who need more data. How can I tell if it is them?
-		// updated for 2013/14/15
+		// updated for 2013/14/15/16
 		$rootID = Session::get('rootID');
 		$this->selectBuilder->addWhere("m.F_RootID = '$rootID'");
-		if ($rootID == '14781' || $rootID == '19278' || $rootID == '26155') {
+		if ($rootID == '14781' || $rootID == '19278' || $rootID == '26155' || $rootID == '35886') {
 			$this->addColumn("u.F_StudentID", "studentID");
 			$this->addColumn("u.F_Email", "email");
 			$this->addColumn("u.F_FullName", "fullName");
