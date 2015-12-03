@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<id>/area1/PracticalWriting in localhost</id>
+	<dbHost>2</dbHost>
+	<productCode>61</productCode>
+	<courseFile>menu-FullVersion.xml</courseFile>
+
+	<channel name='vimeo' caption='Vimeo'>
+		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+	</channel>
+	<channel name='rackspace' caption='Akamai stream'>
+		<streamingMedia>http://798a4ab11405fd81be17-42dc242c457c6a62e22482e1bb35342a.r14.cf1.rackcdn.com/</streamingMedia>
+	</channel>
+	<channel name='aws-streaming' caption='Amazon'>
+		<streamingMedia>https://s3-ap-southeast-1.amazonaws.com/clarity-video-streaming/</streamingMedia>
+	</channel>
+
+	<sharedMedia />
+	<brandingMedia />
+	<language>EN</language>
+
+	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
+	<remoteDomain>http://www.clarityenglish.com/</remoteDomain>
+	<remoteGateway>{remoteDomain}Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteService>PracticalWritingService</remoteService>
+	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+	
+</config>
+
