@@ -24,11 +24,12 @@ class ProgressExerciseScoresTransform extends XmlTransform {
 SQL;
 			$bindingParams = array($user->userID, Session::get('productCode'));
 			$rs = $db->GetArray($sql, $bindingParams);
-		
-			// For each matching exercise add in a @done counter and child <score> nodes
+
+            // For each matching exercise add in a @done counter and child <score> nodes
 			foreach ($rs as $record) {
 				// Only output a score if the exercise that the score refers to exists in the main xml document, otherwise we don't care
 				$existingExerciseXPath = $xml->xpath('/xmlns:bento/xmlns:head/xmlns:script[@id="model"]//xmlns:exercise[@id="'.$record['F_ExerciseID'].'"]');
+
 				if (count($existingExerciseXPath) == 0) {
 					// I could use other parts of the UID to confirm which one we want, though it would also be good to throw an error
 					// gh#165 this is now stopping me - it will have to be that we ignore any score that no longer has an id in the menu 

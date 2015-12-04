@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<literals progam="ResultsManager" version="2.0">
+	<language name="English International" code="EN" mediaFolder="EN">
+		<group name="group">
+			<lit name="applicationVersion">Version {version}</lit>
+
+			<!--This is literals for services based on ResultsManager, and will be used for full Bento RM-->
+		</group>
+	</language>
+</literals>

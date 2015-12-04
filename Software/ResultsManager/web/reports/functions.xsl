@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 							 xmlns:xdt="http://www.w3.org/2005/04/xpath-datatype"
-							 xmlns:xs="http://www.w3.org/2001/XMLSchema"
 							 xmlns:date="http://exslt.org/dates-and-times"
 							 xmlns:php="http://php.net/xsl"
 							 xmlns:exslt="http://exslt.org/common"
@@ -121,7 +120,16 @@
 			</xsl:when>
 		</xsl:choose>
 	</xsl:template>
-	
+
+    <xsl:template name="generateCourseNameSelector">
+        <xsl:param name="component" />
+        <select id="{$component}">
+        <xsl:for-each select="bento/head/script/menu/course">
+            <option value='<xsl:value-of select="@id"/>'><xsl:value-of select="@caption"/></option>
+        </xsl:for-each>
+        </select>
+    </xsl:template>
+
 	<!-- generateTable generates an HTML table containing all the results in the XML document -->
 	<xsl:template name="generateTable">
 		<xsl:param name="tableId" />
