@@ -492,11 +492,15 @@ package com.clarityenglish.bento.view.login {
 				// So if an AA account has no selfRegister, overwrite with email + loginOption + verified
 				// If the account does have selfRegister, force email to be on
                 // gh#1277 Network licence treated same as AA
-				if (licenceType == Title.LICENCE_TYPE_AA || licenceType == Title.LICENCE_TYPE_CT || licenceType == Title.LICENCE_TYPE_NETWORK) {
-					if (selfRegister <= 0)
-						selfRegister = loginOption;
-					selfRegister |= Config.SELF_REGISTER_EMAIL;
-					verified = true;
+                // gh#1413 No, not here. A network just follows the RM settings
+				if (licenceType == Title.LICENCE_TYPE_AA || licenceType == Title.LICENCE_TYPE_CT) {
+					if (selfRegister <= 0) {
+                        selfRegister = loginOption | Config.SELF_REGISTER_EMAIL;
+                    } else {
+                        selfRegister |= Config.SELF_REGISTER_EMAIL;
+                    }
+                    // gh#1413
+					// verified = true;
 				}
 				allowSelfRegister = (selfRegister > 0) ? true : false;
 				
