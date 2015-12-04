@@ -38,6 +38,9 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 	
 	// Fetch mode to use
 	$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+
+	// gh#1414
+	session_start();
 	
 	// load the progress functions - all code is in this class now
 	$Progress	= new PROGRESS();
@@ -106,6 +109,10 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 				// v6.5.5.0 Should be renamed to instanceID
 				//$rC = $Progress->saveLicenceID( $vars, $node );
 				$rC = $Progress->saveInstanceID( $vars, $node );
+				
+				// gh#1414 Save the productCode in session variables in case getInstanceID isn't told it
+				if ($vars['PRODUCTCODE'])
+					$_SESSION['productCode'] = $vars['PRODUCTCODE'];
 				
 				// v6.5.4.6 Switch to non-transferable licences
 				// v6.5.5.0 wrong place to do this

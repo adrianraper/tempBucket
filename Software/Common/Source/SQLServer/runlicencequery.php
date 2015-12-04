@@ -36,6 +36,9 @@ require_once(dirname(__FILE__)."/dbLicence.php");
 	}
 	$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 	
+	// gh#1414
+	session_start();
+	
 	// load the progress functions - all code is in this class now
 	$Licence	= new LICENCE();
 	//error_log($vars['METHOD']."\n", 3, "debugs.log");
@@ -85,27 +88,19 @@ require_once(dirname(__FILE__)."/dbLicence.php");
 		// v6.5.4.5 For stopping the same username
 		//case "GETLICENCEID":
 		case "GETINSTANCEID":
-			// This will be blocked in Orchid now
-			//$rC = checkDatabaseVersion($vars, $node);
-			//if ($vars['DATABASEVERSION']>1 ) {
-			//	$node .= "<note>getlicenceID</note>";
-				//$rC = $Licence->getLicenceID($vars, $node);
-				$rC = $Licence->getInstanceID($vars, $node);
-			//} else {
-			//	$node .= "<note>licence not recorded</note>";
-			//}
+			// gh#1414 Save the productCode in session variables in case getInstanceID isn't told it
+			if ($vars['PRODUCTCODE'] == 0 && $_SESSION['productCode'])
+				$vars['PRODUCTCODE'] = $_SESSION['productCode'];
+				
+			$rC = $Licence->getInstanceID($vars, $node);
 			break;
 			
 		// v6.5.4.5 This isn't usually called on its own, part of progress.startUser. But keep here in case
 		// This seems very dangerous - if I can't see where it is being called, I should kill it. Unless of course it comes from IYJ or something.
 		//case "SETLICENCEID":
 		case "SETINSTANCEID":
-			// This will be blocked in Orchid now
-			//$rC = checkDatabaseVersion($vars, $node);
-			//if ($vars['DATABASEVERSION']>1 ) {
-				//$rC = $Licence->setLicenceID($vars, $node);
-				$rC = $Licence->setInstanceID($vars, $node);
-			//}
+			
+			$rC = $Licence->setInstanceID($vars, $node);
 			break;
 			
 		default:
