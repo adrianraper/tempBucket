@@ -882,7 +882,7 @@ EOD;
     // gh#1404 Decode a checksum to validate it
     private function _validateChecksum($title, $account) {
         //AbstractService::$debugLog->info("checksum is ".$this->generateChecksumForTitle($title, $account)." compare against ".$title->checksum);
-        return ($title->checksum == $this->generateChecksumForTitle($title, $account));
+        return (strtolower($title->checksum) == strtolower($this->generateChecksumForTitle($title, $account)));
     }
 	/*
 	 * This reads all the email addresses for this account who are registered to receive this type of message
