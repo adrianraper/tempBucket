@@ -10,7 +10,7 @@ class ProgressExerciseScoresTransform extends XmlTransform {
 		// #341 No need for any of this if anonymous access
 		if (Session::get('userID') > 0) {
 			$user = $service->manageableOps->getUserById(Session::get('userID'));
-		
+
 			// Register the namespace for menu xml so we can run xpath queries against it
 			$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 			

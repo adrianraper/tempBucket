@@ -76,7 +76,7 @@ class TriggerOps {
 			case "getAccounts":
 			case "getUsers":
 				$accountConditions = array();
-				if (isset($trigger->condition->expiryDate)) {
+                if (isset($trigger->condition->expiryDate)) {
 					$accountConditions["expiryDate"] = $trigger->condition->expiryDate;
 				} else {
 					$accountConditions["expiryDate"] = null;
@@ -116,7 +116,7 @@ class TriggerOps {
 				// (unless we override this for internal reports - and for usage stats)
 				if (isset($trigger->condition->optOutEmails) && ($trigger->condition->optOutEmails == 'false'))
 					unset ($accountConditions["optOutEmails"]);
-				
+
 				//$expiryDate = $trigger->condition->expiryDate;
 				//$triggerResults = $this->accountOps->getAccounts(null, $expiryDate);
 				// Pick up the root if specified in the trigger. Group doesn't make any sense for accounts.

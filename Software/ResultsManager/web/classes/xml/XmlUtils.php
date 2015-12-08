@@ -80,8 +80,12 @@ class XmlUtils {
 	public static function buildXml($href, $db, $service) {
 		$contents = file_get_contents($href->getUrl());
 		$xml = simplexml_load_string($contents);
-		
+        if ($xml === false)
+            foreach(libxml_get_errors() as $error)
+                AbstractService::$debugLog->info("xml load error ", $error->message);
+
 		foreach ($href->transforms as $transform) {
+            //AbstractService::$debugLog->info("apply transform ".get_class($transform));
 			// gh#265
 			if (get_class($transform) == "RandomizedTestTransform") {
 				$xml = $transform->transform($db, $xml, $href, $service);
@@ -89,8 +93,7 @@ class XmlUtils {
 			} else {
 				$transform->transform($db, $xml, $href, $service);
 			}			
-		}			
-		
+		}
 		return $xml->asXML();
 	}
 	
