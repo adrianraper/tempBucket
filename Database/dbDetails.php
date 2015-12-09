@@ -5,21 +5,21 @@ class DBDetails {
 		switch ($dbHost) {
 			// for performance testing
 			case 248:
-				$this->driver = "mysql";
+				$this->driver = "mysqli";
 				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";
 				$this->user = "clarity";
 				$this->password = "clarity123";
 				$this->dbname = "global_r2iv2";
 				break;
 			case 249:
-				$this->driver = "mysql";
+				$this->driver = "mysqli";
 				$this->host = "211.151.90.72";
 				$this->user = "root";
 				$this->password = "123456";
 				$this->dbname = "copy_global_r2iv2";
 				break;
 			case 200:
-				$this->driver = "mysql";
+				$this->driver = "mysqli";
 				$this->host = "clarity-eu-db.c8s4j19sgnql.eu-west-1.rds.amazonaws.com";
 				$this->user = "clarity";
 				$this->password = "clarity123";
@@ -33,28 +33,28 @@ class DBDetails {
 				$this->password = "clarity123";
 				$this->dbname = "GlobalRoadToIELTS";
 				*/
-				$this->driver = "mysql";
+				$this->driver = "mysqli";
 				$this->host = "localhost";
 				$this->user = "clarity";
 				$this->password = "clarity";
 				$this->dbname = "global_r2iv2";
 				break;
 			case 101:
-				$this->driver = "mysql";
+				$this->driver = "mysqli";
 				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";
 				$this->user = "clarity";
 				$this->password = "clarity123";
 				$this->dbname = "global_r2iv2";
 				break;
 			case 1000:
-				$this->driver = "mysql";
+				$this->driver = "mysqli";
 				$this->host = "localhost";
 				$this->user = "root";
 				$this->password = "Sunshine1787";
 				$this->dbname = "GlobalRoadToIELTS";
 				break;
 			case 20:
-				$this->driver = "mysql";
+				$this->driver = "mysqli";
 				$this->host = "localhost";
 				$this->user = "clarity";
 				$this->password = "clarity";
@@ -69,7 +69,7 @@ class DBDetails {
 				break;
 			*/
 			case 400:
-				$this->driver = "mysql";
+				$this->driver = "mysqli";
 				$this->host = "46.38.190.53";
 				$this->user = "clarity";
 				$this->password = "cl4r479@";
@@ -85,7 +85,7 @@ class DBDetails {
 			
 			// For Dave's development environment
 			case 5:
-				$this->driver = "mysqlt";
+				$this->driver = "mysqli";
 				$this->host = "dock.projectbench";
 				$this->user = "clarity";
 				$this->password = "clarity";
@@ -94,7 +94,7 @@ class DBDetails {
 					
 			case 2:
 			default:
-				$this->driver = "mysqlt";
+				$this->driver = "mysqli";
 				$this->host = "localhost";
 				$this->user = "clarity";
 				$this->password = "clarity";
