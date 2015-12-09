@@ -20,7 +20,7 @@ class Authenticate {
 	 * 
 	 * @return bool Whether the current user has been authenticated
 	 */
-	function isAuthenticated () {
+	static function isAuthenticated () {
 		if (Session::is_set('amfphp_username')) {
 			return true;
 		} else {
@@ -32,7 +32,7 @@ class Authenticate {
 	 * getAuthUser returns the current user name of the user that is logged in with the session.
 	 * @return string the name of the authenticated user
 	 */
-	function getAuthUser () {
+	static function getAuthUser () {
 		if (Session::is_set('amfphp_username')) {
 			return Session::get('amfphp_username');
 		} else {
@@ -51,7 +51,7 @@ class Authenticate {
 	 * @param string $roles comma delimited list of the methods roles
 	 * @return bool Whether the user is in the proper role.
 	 */
-	function isUserInRole($roles) {
+	static function isUserInRole($roles) {
 		$methodRoles = explode(",", $roles); // split the method roles into an array
 		foreach($methodRoles as $key => $role) {
 			$methodRoles[$key] = strtolower(trim($role));
@@ -81,7 +81,7 @@ class Authenticate {
 	 * 
 	 * gh#1140 LoginOps will now pass userID + name in case the name is null - no need for a change here
 	 */
-	function login($name, $roles) {
+	static function login($name, $roles) {
 		if(!session_id()) 
 			session_start();
 			
@@ -96,7 +96,7 @@ class Authenticate {
 	/**
 	 * logout kills the user session and terminates the login properties
 	 */
-	function logout() {
+	static function logout() {
 		/*
 		$_SESSION['amfphp_username'] = null;
 		$_SESSION['amfphp_roles'] = null;
