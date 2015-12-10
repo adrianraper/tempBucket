@@ -88,6 +88,9 @@ package com.clarityenglish.resultsmanager.view.management {
 			manageablesView.addEventListener(LogEvent.ERROR, onLog);
 			
 			manageablesView.addEventListener(Event.CHANGE, onChange);
+			
+			// gh#1424
+			manageablesView.addEventListener(ManageableEvent.GET_ALL_MANAGEABLES, onRefreshContent);
 		}
 		
 		private function get manageablesView():ManageablesView {
@@ -180,6 +183,11 @@ package com.clarityenglish.resultsmanager.view.management {
 					// If you do it here, you end up screwing the tree, I guess because you don't have editedContent, or something
 					//if (manageablesView.tree.selectedIndex<0)
 					//	manageablesView.selectTopGroup();
+					// gh#1424 If no data, offer a refresh button as something went wrong getting it
+					// Or is it generally useful?
+					//if (note.getBody().length == 1)
+					manageablesView.refreshButton.visible = true;
+					
 					break;
 				case RMNotifications.HIDDEN_CONTENT_LOADED:
 					// When the hidden content has loaded invalidate the tree so that the icons are updated
@@ -327,6 +335,12 @@ package com.clarityenglish.resultsmanager.view.management {
 			//MonsterDebugger.trace(this, "mediator.onChange");
 			//MonsterDebugger.trace(this, manageablesView.tree.selectedIndex);
 			sendNotification(RMNotifications.MANAGEABLE_SELECTED, manageablesView.getSelectedManageables());
+		}
+
+		// gh#1424
+		private function onRefreshContent(e:ManageableEvent):void {
+			var managablesProxy:ManageableProxy = facade.retrieveProxy(ManageableProxy.NAME) as ManageableProxy;
+			managablesProxy.getAllManageables();
 		}
 
 	}

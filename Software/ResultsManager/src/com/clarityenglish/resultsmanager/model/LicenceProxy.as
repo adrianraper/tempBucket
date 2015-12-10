@@ -102,15 +102,14 @@ package com.clarityenglish.resultsmanager.model {
 		
 		public function onDelegateFault(operation:String, data:Object):void {
 			//sendNotification(ApplicationFacade.TRACE_ERROR, operation + ": " + data);
-			
-			// Don't show function name as this is sometimes an expected error
-			sendNotification(CommonNotifications.TRACE_ERROR, data);
-			
+
+			// gh#1424
 			switch (operation) {
 				case "getLicences":
 					break;
 				case "allocateLicences":
 				case "unallocateLicences":
+					sendNotification(CommonNotifications.TRACE_ERROR, data);
 					getLicences();
 					break;
 			}

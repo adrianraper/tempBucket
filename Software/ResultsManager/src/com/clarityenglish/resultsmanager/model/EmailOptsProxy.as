@@ -125,15 +125,14 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		public function onDelegateFault(operation:String, data:Object):void {
-			sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + data);
-			
+
+			// gh#1424
 			switch (operation) {
-				case "setEmailOpts":
-					break;
 				case "getEmailOpts":
 					break;
+				case "setEmailOpts":
 				default:
-					sendNotification(CommonNotifications.TRACE_ERROR, "Fault from unknown operation: " + operation);
+					sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + data);
 			}
 		}
 		

@@ -73,7 +73,7 @@ package com.clarityenglish.resultsmanager.view.management {
 			
 			// v3.4 For refreshing content
 			contentView.addEventListener(ContentEvent.GET_CONTENT, onRefreshContent);
-			//gh:#29
+			// gh#29
 			contentView.addEventListener(ContentEvent.DISABLE_CONTENT_EDIT, onEnableContentEdit);
 
 		}

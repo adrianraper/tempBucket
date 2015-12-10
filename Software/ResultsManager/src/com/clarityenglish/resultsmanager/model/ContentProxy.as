@@ -797,7 +797,13 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		public function onDelegateFault(operation:String, data:Object):void{
-			sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + data);
+			// gh#1424
+			switch (operation) {
+				case "getContent":
+					break;
+				default:
+					sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + data);
+			}
 		}
 		
 	}

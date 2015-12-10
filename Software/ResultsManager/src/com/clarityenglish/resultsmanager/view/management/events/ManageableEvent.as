@@ -37,6 +37,9 @@
 		public static const UPDATE_GROUPS:String = "update_groups";
 		public static const MOVE_MANAGEABLES:String = "move_manageables";
 		
+		// gh#1424
+		public static const GET_ALL_MANAGEABLES:String = "get_all_manageables";
+		
 		public var manageables:Array;
 		public var parentGroup:Group;
 		

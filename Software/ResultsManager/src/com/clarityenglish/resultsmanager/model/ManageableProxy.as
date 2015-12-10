@@ -290,7 +290,12 @@ package com.clarityenglish.resultsmanager.model {
 			// Don't show function name as this is sometimes an expected error
 			sendNotification(CommonNotifications.TRACE_ERROR, data);
 			
+			// gh#1424 If a call fails, why would you try to refresh manageables? 
 			switch (operation) {
+				case "getAllManageables":
+					// Probably this is a timeout - what is the best advice to give?
+					sendNotification(CommonNotifications.TRACE_ERROR, "We can't get all users and groups. This is probably because there are a lot, or the computers are slow. Try again. If that fails, try to sign in as a teacher with fewer groups.");
+					break;
 				case "addGroup":
 				case "addUser":
 				case "deleteManageables":
