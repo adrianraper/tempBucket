@@ -208,9 +208,9 @@ SQL;
 		 				$seePastUnits = XmlUtils::xml_attribute($group, 'seePastUnits', 'boolean');
 		 				$startDate = XmlUtils::xml_attribute($group, 'startDate', 'date');
 		 				$endDate = XmlUtils::xml_attribute($group, 'endDate', 'date'); // defaults to null if not present
-		 				
-						// gh#720 If we are missing any required data then throw an exception
-						if (is_null($unitInterval) || !$seePastUnits || !$startDate)
+
+						// gh#720, gh#954 If we are missing any required data then throw an exception
+						if (is_null($unitInterval) || is_null($seePastUnits) || !$startDate)
 							throw $copyOps->getExceptionForId("errorSavingCourseDates");
 						
 						// 1.1 First write the T_CourseStart row
@@ -221,7 +221,7 @@ SQL;
 							"F_CourseID" => $courseId,
 							"F_StartMethod" => "group",
 							"F_UnitInterval" => $unitInterval,
-							"F_SeePastUnits" => $seePastUnits,
+							"F_SeePastUnits" => $seePastUnits ? 1 : 0,
 							"F_StartDate" => $startDate,
 							"F_EndDate" => $endDate
 						);

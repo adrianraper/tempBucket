@@ -79,8 +79,12 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 		}
 		// Ignore Road to IELTS v1 until all expired or removed
 		$trigger->condition->notProductCode = '12,13';
-		
-		$triggerResults = $dmsService->triggerOps->applyCondition($trigger, $triggerDate);
+
+        // gh#1422 Temporary hack to stop Practical Writing trial accounts from triggering a renewal reminder
+        if ($msgType == 1)
+            $trigger->condition->notProductCode = '61';
+
+        $triggerResults = $dmsService->triggerOps->applyCondition($trigger, $triggerDate);
 		echo count($triggerResults) .' accounts for '.$trigger->name.$newLine;
 		//AbstractService::$log->notice('got '.count($triggerResults) .' accounts for '.$trigger->name);
 		

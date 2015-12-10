@@ -263,7 +263,7 @@ class ClarityService extends AbstractService {
 	
 	public function getAllManageables() {
 		// gh#1424 Can be a very long call
-		set_time_limit(60);
+		set_time_limit(120);
 		return $this->manageableOps->getAllManageables();
 	}
 	
