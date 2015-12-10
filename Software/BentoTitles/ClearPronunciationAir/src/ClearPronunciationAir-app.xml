@@ -166,6 +166,7 @@
 		<image96x96>icons/CP1_appIcon_96.png</image96x96>
 		<image144x144>icons/CP1_appIcon_144.png</image144x144>
 		<image152x152>icons/CP1_appIcon_152.png</image152x152>
+		<image192x192>icons/CP1_appIcon_192.png</image192x192>
 	</icon>
 
 	<!-- Whether the application handles the update when a user double-clicks an update version
