@@ -32,7 +32,7 @@ vagrantfile:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
         synced_folder:
             vflsf_eynhliy7ew0g:
-                source: ./
+                source: ../
                 target: /vagrant
                 sync_type: nfs
                 smb:
@@ -80,10 +80,11 @@ users_groups:
 locale:
     install: '1'
     settings:
-        default_locale: ''
+        default_locale: 'en_GB.UTF-8'
         locales:
             - en_GB.UTF-8
             - en_US.UTF-8
+            - cs_CZ.UTF-8
 firewall:
     install: '1'
     rules: {  }
@@ -169,7 +170,7 @@ apache:
     vhosts:
         av_w196nl9rbovp:
             servername: dock2.projectbench
-            docroot: /vagrant
+            docroot: /vagrant/software
             port: '80'
             setenvif:
                 - 'Authorization "(.*)" HTTP_AUTHORIZATION=$1'
@@ -244,7 +245,7 @@ php:
         pecl: {  }
     ini:
         display_errors: 'On'
-        error_reporting: '-1'
+        error_reporting: 'On'
         session.save_path: /var/lib/php/session
         date.timezone: UTC
     fpm_ini:
@@ -264,7 +265,7 @@ xdebug:
     settings:
         xdebug.remote_enable: '1'
         xdebug.remote_connect_back: '0'
-        xdebug.profiler_enable_trigger: '1'
+        xdebug.profiler_enable_trigger: '0'
         xdebug.profiler_output_dir: /vagrant/profile
         xdebug.remote_host: 10.0.2.2
         xdebug.idekey: PHPSTORM
