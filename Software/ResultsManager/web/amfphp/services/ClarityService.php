@@ -263,7 +263,9 @@ class ClarityService extends AbstractService {
 	
 	public function getAllManageables() {
 		// gh#1424 Can be a very long call
-		set_time_limit(120);
+		$rc = set_time_limit(120);
+        if (!$rc)
+            AbstractService::$debugLog->info("Could not set the time limit");
 		return $this->manageableOps->getAllManageables();
 	}
 	

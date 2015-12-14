@@ -24,6 +24,7 @@ package com.clarityenglish.resultsmanager.model {
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	//import nl.demonsters.debugger.MonsterDebugger;
 	import com.clarityenglish.utils.TraceUtils;
+	import mx.core.Application;
 
 	/**
 	 * A proxy
@@ -749,11 +750,15 @@ package com.clarityenglish.resultsmanager.model {
 					//MonsterDebugger.trace(this, resetContent[0].courses[0]);
 
 					// Now we have the main content get the data on what is hidden for groups
-					getHiddenContent();
+					// gh#1171
+					var directStart:String = Application.application.parameters.directStart;
+					if (!directStart) {
+						getHiddenContent();
 					// And get the edited content at the same time - or should I wait and get that after hiddenContent comes back?
 					// Or indeed do it as part of getHiddenContent? The drawback with doing hidden and edited together is that both
 					// trigger a refresh of the tree rendering.
-					getEditedContent();
+						getEditedContent();
+					}
 					
 					sendNotification(RMNotifications.CONTENT_LOADED, titles);
 					break;

@@ -12,6 +12,7 @@ package com.clarityenglish.resultsmanager.model {
 	import com.clarityenglish.resultsmanager.controller.ImportManageablesCommand;
 	import com.clarityenglish.resultsmanager.view.management.events.ManageableEvent;
 	import com.clarityenglish.utils.TraceUtils;
+	import mx.core.Application;
 	
 	import flash.net.URLRequest;
 	import flash.net.URLVariables;
@@ -42,7 +43,10 @@ package com.clarityenglish.resultsmanager.model {
 			super(NAME, data);
 			
 			// v3.4 In a bid to not overload AMF or anything else, lets getContent after we have got manageables, not at the same time.
-			getAllManageables();
+			// gh#1171
+			var directStart:String = Application.application.parameters.directStart;
+			if (!directStart)
+				getAllManageables();
 		}
 		
 		public function get manageables():Array { return _manageables; }

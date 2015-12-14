@@ -1,7 +1,7 @@
 <?php
 
 // gh#1424 Set a longer max time, and then default for any normal call to 30 seconds
-ini_set('max_execution_time', 120); // 2 minutes
+//ini_set('max_execution_time', 120); // 2 minutes
 set_time_limit(30);
 
 // gh#32 gh#1314
