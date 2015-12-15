@@ -102,12 +102,12 @@ s|TitleWindow.feedbackTitleWindow {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.feedback.FeedbackTitleWindowSkin");
 }
 
-s|TitleWindow.smallFeedbackTitleWindow {
-	skinClass: ClassReference("skins.clearpronunciation.exercise.feedback.SmallFeedbackTitleWindowSkin");
-}
-
 s|TitleWindow.noTitleTitleWindow {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.NoTitleTitleWindowSkin");
+}
+
+s|SkinnableContainer.smallFeedbackContainer {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.feedback.SmallFeedbackContainerSkin");
 }
 
 s|TitleWindow.errorTitleWindow {

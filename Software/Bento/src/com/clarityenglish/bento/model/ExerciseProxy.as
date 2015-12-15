@@ -262,7 +262,7 @@ package com.clarityenglish.bento.model {
 		 * @param disabled If this is true then the only effect of this will be to display feedback, if there is any.  
 		 * 				   This is used when things happen after marking has been shown.
 		 */
-		public function questionAnswer(question:Question, answer:Answer, key:Object = null, disabled:Boolean = false, bounds = null):void {
+		public function questionAnswer(question:Question, answer:Answer, key:Object = null, disabled:Boolean = false, bounds = null, container = null):void {
 			checkExercise();
 
 			if (!disabled) {
@@ -306,7 +306,7 @@ package com.clarityenglish.bento.model {
 
 				// gh#1373
 				if (answer.smallFeedback) {
-					sendNotification(BBNotifications.SMALL_FEEDBACK_SHOW, { exercise: exercise, smallFeedback: answer.smallFeedback, substitutions: substitutions, bounds: bounds } );
+					sendNotification(BBNotifications.SMALL_FEEDBACK_SHOW, { exercise: exercise, smallFeedback: answer.smallFeedback, substitutions: substitutions, bounds: bounds, container: container } );
 				} else {
 					sendNotification(BBNotifications.FEEDBACK_SHOW, { exercise: exercise, feedback: answer.feedback, substitutions: substitutions, bounds: bounds } );
 				}

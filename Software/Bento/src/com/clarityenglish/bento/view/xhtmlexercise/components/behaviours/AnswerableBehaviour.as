@@ -105,6 +105,7 @@ import flash.ui.Mouse;
 import flash.ui.MouseCursor;
 
 import flashx.textLayout.compose.FlowDamageType;
+import flashx.textLayout.compose.TextFlowLine;
 import flashx.textLayout.elements.FlowElement;
 import flashx.textLayout.elements.TextFlow;
 import flashx.textLayout.events.FlowElementMouseEvent;
@@ -158,8 +159,9 @@ class AnswerManager {
 	protected function getElementBounds(element:FlowElement):Rectangle {
 		var elementBounds:Rectangle = TLFUtil.getFlowElementBounds(element);
 		var containingBlock:RenderFlow = element.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
+		var textFlowLine:TextFlowLine = element.getTextFlow().flowComposer.getLineAt(1);
 		elementBounds = PointUtil.convertRectangleCoordinateSpace(elementBounds, containingBlock, container);
-		elementBounds.y -= container.verticalScrollPosition;
+		if (textFlowLine) elementBounds.y -= textFlowLine.height;
 
 		return elementBounds;
 	}
@@ -200,7 +202,7 @@ class ClickableAnswerManager extends AnswerManager implements IAnswerManager {
 	}
 	
 	private function onAnswerClick(e:FlowElementMouseEvent, flowElementXmlBiMap:FlowElementXmlBiMap, exercise:Exercise, question:Question, answer:Answer, source:XML):void {
-		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, source, true, getElementBounds(e.flowElement)));
+		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, source, true, getElementBounds(e.flowElement), container));
 	}
 	
 	// gh#740
@@ -266,7 +268,7 @@ class DropDownAnswerManager extends AnswerManager implements IAnswerManager {
 			for each (var source:XML in answer.getSourceNodes(exercise)) {
 				if (source === optionNode) {
 					// Once we find a matching answer dispatch it
-					container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, selectNode, true, getElementBounds(selectElement)));
+					container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, selectNode, true, getElementBounds(selectElement), container));
 					return;
 				}
 			}
@@ -294,7 +296,7 @@ class DropDownAnswerManager extends AnswerManager implements IAnswerManager {
 	
 	// gh#740
 	private function onAnswerRollOver(e:Event, question:Question):void {
-		if ((question.answers[0] as Answer).feedback){
+		if ((question.answers[0] as Answer).hasFeedback){
 			Mouse.cursor = MouseCursor.BUTTON;
 		}
 	}
@@ -411,7 +413,7 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
         }
 
 		// gh#1373
-		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, inputNode, true, getElementBounds(inputElement)));
+		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, inputNode, true, getElementBounds(inputElement), container));
 
 	}
 	
@@ -437,10 +439,10 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 		
 		onAnswerSubmitted(e, exercise, question, inputNode);
 	}
-	
+
 	// gh#740
 	private function onMouseOver(e:Event, exercise:Exercise, question:Question):void {
-		if ((question.answers[0] as Answer).feedback && exercise.isExerciseMarked)
+		if ((question.answers[0] as Answer).hasFeedback && exercise.isExerciseMarked)
 			Mouse.cursor = MouseCursor.BUTTON;
 	}
 	

@@ -12,8 +12,10 @@ import mx.logging.ILogger;
 	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
-	
-	public class QuestionNodeAnswerCommand extends SimpleCommand {
+
+import spark.components.Group;
+
+public class QuestionNodeAnswerCommand extends SimpleCommand {
 		
 		/**
 		 * Standard flex logger
@@ -31,11 +33,12 @@ import mx.logging.ILogger;
 			var disabled:Boolean = note.getBody().disabled;
 			// gh#1373
 			var bounds:Rectangle = note.getBody().bounds;
+			var container:Group = note.getBody().container;
 
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
-			exerciseProxy.questionAnswer(question, nodeAnswer, key, disabled, bounds);
+			exerciseProxy.questionAnswer(question, nodeAnswer, key, disabled, bounds, container);
 		}
-		
+
 	}
 	
 }

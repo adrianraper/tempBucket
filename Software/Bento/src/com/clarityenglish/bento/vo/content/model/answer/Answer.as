@@ -56,7 +56,7 @@ package com.clarityenglish.bento.vo.content.model.answer {
 			
 			if (score < 0)
 				return INCORRECT;
-			
+
 			// If score is 0 then the marking class can be either neutral or incorrect based on the value of @correct
 			return (xml.hasOwnProperty("@correct") && xml.@correct == "neutral") ? NEUTRAL : INCORRECT;
 		}
@@ -72,6 +72,11 @@ package com.clarityenglish.bento.vo.content.model.answer {
 		// gh#1373
 		public function get smallFeedback():Feedback {
 			return _smallFeedback;
+		}
+
+		// gh#1373
+		public function get hasFeedback():Boolean {
+			return _feedback || _smallFeedback;
 		}
 
 		public function set correct(value:Boolean):void {

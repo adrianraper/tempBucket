@@ -151,17 +151,12 @@ import org.puremvc.as3.interfaces.INotification;
 		 */
 		protected function onQuestionAnswered(event:SectionEvent):void {
 			var answerOrString:* = event.answerOrString;
-			// gh#1373
-			var bounds:Rectangle = event.bounds;
-			if (bounds) {
-				bounds.y += view.getTopGroupHeight()
-			}
-			
+
 			// Dispatch the appropriate notitification depending on whether the answer is a NodeAnswer or a String
 			if (answerOrString is NodeAnswer) {
-				sendNotification(BBNotifications.QUESTION_NODE_ANSWER, { exercise: view.exercise, question: event.question, nodeAnswer: event.answerOrString, key: event.key, disabled: XHTML.hasClass(event.key as XML, "disabled"), bounds: event.bounds} );
+				sendNotification(BBNotifications.QUESTION_NODE_ANSWER, { exercise: view.exercise, question: event.question, nodeAnswer: event.answerOrString, key: event.key, disabled: XHTML.hasClass(event.key as XML, "disabled"), bounds: event.bounds, container: event.container } );
 			} else if (answerOrString is String) {
-				sendNotification(BBNotifications.QUESTION_STRING_ANSWER, { exercise: view.exercise, question: event.question, answerString: event.answerOrString, key: event.key, disabled: XHTML.hasClass(event.key as XML, "disabled"), bounds: event.bounds } );
+				sendNotification(BBNotifications.QUESTION_STRING_ANSWER, { exercise: view.exercise, question: event.question, answerString: event.answerOrString, key: event.key, disabled: XHTML.hasClass(event.key as XML, "disabled"), bounds: event.bounds, container: event.container } );
 			} else {
 				throw new Error("onQuestionAnswered received an answer that was neither a NodeAnswer nor a String - " + answerOrString);
 			}

@@ -7,6 +7,7 @@ import com.clarityenglish.common.model.CopyProxy;
 import com.clarityenglish.common.model.interfaces.CopyProvider;
 import com.clarityenglish.textLayout.components.XHTMLRichText;
 import com.clarityenglish.textLayout.events.XHTMLEvent;
+import com.clarityenglish.textLayout.rendering.RenderFlow;
 import com.clarityenglish.textLayout.vo.XHTML;
 import com.newgonzo.web.css.CSSComputedStyle;
 
@@ -39,6 +40,7 @@ import spark.components.Group;
 import spark.components.HGroup;
 
 import spark.components.Scroller;
+import spark.components.SkinnableContainer;
 import spark.components.TextInput;
 import spark.components.TitleWindow;
 import spark.events.TitleWindowBoundsEvent;
@@ -50,11 +52,13 @@ public class SmallFeedbackShowCommand extends SimpleCommand {
      */
     private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 
-    private static var titleWindow:TitleWindow;
+    private static var feedbackContainer:SkinnableContainer;
 
-    private static var titleWindowAdded:Boolean;
+    private static var feedbackContainerwAdded:Boolean;
 
     private static var bounds:Rectangle;
+
+    private static var container:Group;
 
     private var feedback:Feedback;
 
@@ -67,10 +71,11 @@ public class SmallFeedbackShowCommand extends SimpleCommand {
         feedback = note.getBody().smallFeedback as Feedback;
         var xhtml:XHTML = note.getBody().exercise as XHTML;
         var substitutions:Object = note.getBody().substitutions;
+        container = note.getBody().container;
+        (FlexGlobals.topLevelApplication as DisplayObject).stage.addEventListener(MouseEvent.CLICK, onStageClick);
 
         var feedbackNode:XML = xhtml.selectOne("#" + feedback.source);
         if (feedbackNode && bounds) {
-
             if (substitutions) {
                 // Since we might change the XHTML during the substitution phase, we need to clone it
                 xhtml = xhtml.clone();
@@ -84,20 +89,13 @@ public class SmallFeedbackShowCommand extends SimpleCommand {
                     while (xmlString.search("{{=" + find + "}}") > 0)
                         xmlString = xmlString.replace("{{=" + find + "}}", replace);
                 }
-
                 xhtml.xml = new XML(xmlString);
             }
 
-            // Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
-            if (!titleWindow) {
-                titleWindow = new TitleWindow();
-                titleWindow.styleName = "smallFeedbackTitleWindow";
-                titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
-            } else {
-                titleWindow.removeElement(titleWindow.getElementAt(0));
+            if (!feedbackContainer) {
+                feedbackContainer = new SkinnableContainer();
+                feedbackContainer.styleName = "smallFeedbackContainer";
             }
-            titleWindow.addEventListener("mouseDownOutside", onMouseDownOutside);
-            titleWindow.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 
             // Create an XHTMLRichText component and add it to the title window
             var xhtmlRichText:XHTMLRichText = new XHTMLRichText();
@@ -120,8 +118,7 @@ public class SmallFeedbackShowCommand extends SimpleCommand {
             scroller.minWidth = 0;
             scroller.height = 20;
             scroller.viewport = xhtmlRichText;
-
-            titleWindow.addElement(scroller);
+            feedbackContainer.addElement(scroller);
 
             // #210, #256
             var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(note.getBody().exercise as Exercise)) as ExerciseProxy;
@@ -131,7 +128,7 @@ public class SmallFeedbackShowCommand extends SimpleCommand {
             // a neater way to do this, but this works and doesn't seem to do any harm.
             // gh#1299 If this is a dropdownquestion, delay a little longer to give the popup selector time to go
             // No, that doesn't have any impact
-            if (!titleWindowAdded) setTimeout(addPopupWindow, 160, bounds);
+            if (!feedbackContainerwAdded) setTimeout(addPopupWindow, 160, xhtmlRichText.width );
         } else if (!feedbackNode) {
             log.error("Unable to find feedback source {0}", feedback.source);
         } else if (!bounds) {
@@ -140,25 +137,11 @@ public class SmallFeedbackShowCommand extends SimpleCommand {
     }
 
     private function addPopupWindow():void {
-        // Create and centre the popup
-        try {
-            // gh#1299 Adding the popup onto the PARENT rather than POPUP makes a difference
-            PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, false, PopUpManagerChildList.PARENT, FlexGlobals.topLevelApplication.moduleFactory);
-        } catch (e:Error) {
-            log.error("Triggered the error {0}", e.getStackTrace());
-            onClosePopUp();
-            //sendNotification(BBNotifications.CLOSE_ALL_POPUPS);
-            return;
-        }
-        PopUpManager.centerPopUp(titleWindow);
-        var bounds:Rectangle = arguments[0];
-        titleWindow.x = bounds.x;
-        titleWindow.y = bounds.y + 90;
+        feedbackContainer.x = bounds.x - (arguments[0] - bounds.width) / 2 - 3;
+        feedbackContainer.y = bounds.y - 25;
+        container.addElement(feedbackContainer);
 
-        titleWindowAdded = true;
-
-        // Listen for the close event so that we can cleanup
-        titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
+        feedbackContainerwAdded = true;
 
         // Add a keyboard listener so the user can close the feedback window with the keyboard.  This listener needs a brief delay before being
         // added as otherwise its possible to trigger the feedback window with the same key that closes it, hence closing it instantly.
@@ -171,13 +154,6 @@ public class SmallFeedbackShowCommand extends SimpleCommand {
         var xhtmlRichText:XHTMLRichText = event.target as XHTMLRichText;
 
         xhtmlRichText.removeEventListener(XHTMLEvent.CSS_PARSED, onCssParsed);
-
-        var style:CSSComputedStyle = xhtmlRichText.css.style(<feedback
-                class={"feedback titlebar " + ((feedback.answer) ? feedback.answer.markingClass : "")}/>);
-        if (style.backgroundColor) titleWindow.setStyle("popUpBarColor", style.backgroundColor);
-        if (style.opacity) titleWindow.setStyle("popUpBarAlpha", style.opacity);
-        if (style.color) titleWindow.setStyle("popUpBarTextColor", style.color);
-
     }
 
     /**
@@ -188,29 +164,10 @@ public class SmallFeedbackShowCommand extends SimpleCommand {
     protected function onKeyboardDown(event:KeyboardEvent):void {
         if (event.keyCode == Keyboard.ESCAPE) {
             onClosePopUp();
-        } else if (event.keyCode == Keyboard.ENTER && titleWindow) {
-            var focus:IFocusManagerComponent = titleWindow.focusManager.getFocus();
+        } else if (event.keyCode == Keyboard.ENTER && feedbackContainer) {
+            var focus:IFocusManagerComponent = feedbackContainer.focusManager.getFocus();
             if (!focus || !(focus is TextInput)) // #265(d) - don't close the popup if focus is in a gapfill
                 onClosePopUp();
-        }
-    }
-
-    /**
-     * Keep the window on the screen (#197)
-     *
-     * @param event
-     */
-    protected function onWindowMoving(event:TitleWindowBoundsEvent):void {
-        if (event.afterBounds.left < 0) {
-            event.afterBounds.left = 0;
-        } else if (event.afterBounds.right > titleWindow.systemManager.stage.stageWidth) {
-            event.afterBounds.left = titleWindow.systemManager.stage.stageWidth - event.afterBounds.width;
-        }
-
-        if (event.afterBounds.top < 0) {
-            event.afterBounds.top = 0;
-        } else if (event.afterBounds.bottom > titleWindow.systemManager.stage.stageHeight) {
-            event.afterBounds.top = titleWindow.systemManager.stage.stageHeight - event.afterBounds.height;
         }
     }
 
@@ -220,32 +177,18 @@ public class SmallFeedbackShowCommand extends SimpleCommand {
      * @param event
      */
     protected function onClosePopUp(event:CloseEvent = null):void {
-        if (titleWindow) {
-            titleWindow.removeEventListener(CloseEvent.CLOSE, onClosePopUp);
-            titleWindow.removeEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
-        }
+        container.removeElement(feedbackContainer);
+        container.removeEventListener(MouseEvent.CLICK, onStageClick);
 
-        PopUpManager.removePopUp(titleWindow);
-
-        (FlexGlobals.topLevelApplication as DisplayObject).stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyboardDown);
-
-        titleWindowAdded = false;
-        titleWindow = null;
+        feedbackContainerwAdded = false;
+        feedbackContainer = null;
         feedback = null;
         bounds = null;
+        container = null;
     }
 
-    protected function onMouseDownOutside(event:FlexMouseEvent):void {
-        onClosePopUp();
-    }
-
-    protected function onAddedToStage(event:Event):void {
-        var stage:Stage = titleWindow.stage;
-
-        /*while(!(displayObject is Scroller) && titleWindow.parent) {
-            displayObject = displayObject.parent;
-        }
-        trace("scroller vertical: "+(displayObject as Scroller).viewport.verticalScrollPosition);*/
+    protected function onStageClick(event:Event):void {
+        if (feedbackContainerwAdded) onClosePopUp();
     }
 
 }

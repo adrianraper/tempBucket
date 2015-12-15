@@ -1,9 +1,11 @@
 package com.clarityenglish.bento.view.xhtmlexercise.events {
 	import com.clarityenglish.bento.vo.content.model.answer.Answer;
 	import com.clarityenglish.bento.vo.content.model.Question;
-	
-	import flash.events.Event;
+
+import flash.events.Event;
 import flash.geom.Rectangle;
+
+import spark.components.Group;
 
 public class SectionEvent extends Event {
 		
@@ -16,8 +18,9 @@ public class SectionEvent extends Event {
 		private var _key:Object;
 		// gh#1373
 		private var _bounds:Rectangle;
+		private var _container:Group;
 		
-		public function SectionEvent(type:String, question:Question = null, answerOrString:* = null, key:Object = null, bubbles:Boolean = false, bounds:Rectangle = null) {
+		public function SectionEvent(type:String, question:Question = null, answerOrString:* = null, key:Object = null, bubbles:Boolean = false, bounds:Rectangle = null, container:Group = null) {
 			super(type, bubbles);
 			
 			if (type == QUESTION_ANSWER && !(answerOrString is Answer || answerOrString is String))
@@ -27,6 +30,7 @@ public class SectionEvent extends Event {
 			this._answerOrString = answerOrString;
 			this._key = key;
 			this._bounds = bounds;
+			this._container = container;
 		}
 		
 		public function get question():Question {
@@ -44,13 +48,17 @@ public class SectionEvent extends Event {
 		public function get bounds():Rectangle {
 			return _bounds;
 		}
+
+		public function get container():Group {
+			return _container;
+		}
 		
 		public override function clone():Event {
-			return new SectionEvent(type, question, answerOrString, bubbles, bounds);
+			return new SectionEvent(type, question, answerOrString, key, bubbles, bounds, container);
 		}
 		
 		public override function toString():String {
-			return formatToString("SectionEvent", "question", "answerOrString", "bubbles", "bounds");
+			return formatToString("SectionEvent", "question", "answerOrString", "bubbles", "bounds", "container");
 		}
 		
 	}
