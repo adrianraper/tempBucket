@@ -376,7 +376,7 @@ import spark.components.Group;
 						log.error("Unable to find a correct answer for dropdown {0}", selectElement);
 					}
 				}
-				
+
 				// This is used by MarkableIconsBehaviour
 				if (isShowAnswers) {
 					// The tick/cross rules when showing answers is slightly different; we tick something you got right, otherwise we do nothing
@@ -475,7 +475,7 @@ import spark.components.Group;
 		public function modifyMarkingClass(question:Question, selectedAnswerMap:AnswerMap, markableAnswerMap:AnswerMap, marked:Boolean = true):void {
 			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
 			
-			if (marked && !(exercise.model && exercise.model.getSettingParam("delayedMarking"))) {
+			if (marked) {
 				var targetNodes:Vector.<XML> = question.getSourceNodes(exercise);
 				for each (var key:Object in selectedAnswerMap.keys) {
 					var sourceNode:XML = key as XML;
@@ -484,8 +484,10 @@ import spark.components.Group;
 					var selectedAnswerElement:FlowElement = getFlowElement(sourceNode);						
 					
 					// For multiple choice, the sourceNode(key) is not same in selectedAnswerMap and markableAnswerMap. 
-					// Hence if the answer in second try is not same as teh first try, you will not get markableAnswer through the key in selectedAnswerMap
-					if (!markableAnswer || ((selectedAnswer.markingClass != markableAnswer.markingClass) && markableAnswer.markingClass == Answer.INCORRECT)) {
+					// Hence if the answer in second try is not same as the first try, you will not get markableAnswer through the key in selectedAnswerMap
+					if (markableAnswer && ((selectedAnswer.markingClass != markableAnswer.markingClass) && markableAnswer.markingClass == Answer.INCORRECT)) {
+						selectedAnswerElement.getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_UNMARKED, selectedAnswerElement));
+					} else if (!markableAnswer) {
 						selectedAnswerElement.getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_UNMARKED, selectedAnswerElement));
 					}
 				}			

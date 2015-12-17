@@ -409,14 +409,6 @@ package com.clarityenglish.bento.model {
 				targetNodes = targetNodes.filter(function(targetNode:XML, idx:int, vector:Vector.<XML>):Boolean {
 					var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
 					if (selectedAnswer && selectedAnswer.markingClass == Answer.CORRECT) {
-						// gh#627
-						if (!delayedMarking) {
-							var markableAnswerAnswer:Answer = markableAnswerMap.get(targetNode);
-							if (markableAnswerAnswer.markingClass != selectedAnswer.markingClass) {
-								selectedAnswerMap.remove(targetNode);
-								return true;
-							}
-						}
 						var idx:int = correctAnswers.indexOf(selectedAnswer);
 						if (idx > -1) {
 							// Remove the correct answer
@@ -435,8 +427,8 @@ package com.clarityenglish.bento.model {
 
 					// 5. If the current answer is empty or incorrect then add it to the answer map
 					if (!selectedAnswer || selectedAnswer.markingClass == Answer.INCORRECT) {
-						var correctAnswer:Answer = correctAnswers[0]
-
+						var correctAnswer:Answer = correctAnswers[0];
+						trace("targetNode: "+targetNode.toXMLString()+", correctAnswer: "+correctAnswer.toXMLString());
 						answerMap.put(targetNode, correctAnswer);
 						correctAnswers.shift();
 						

@@ -134,7 +134,7 @@ import org.puremvc.as3.interfaces.INotification;
 				for each (var question:Question in view.exercise.model.questions) {
 					var selectedAnswerMap:AnswerMap = exerciseProxy.getSelectedAnswerMap(question);
 					var markableAnswerMap:AnswerMap = exerciseProxy.getMarkableAnswerMap(question);
-					if (markableAnswerMap.keys.length > 0) {
+					if (!view.exercise.model.getSettingParam("delayedMarking") && markableAnswerMap.keys.length > 0) {
 						view.modifyMarkingClass(question, selectedAnswerMap, markableAnswerMap);
 					}					
 				}
