@@ -72,7 +72,7 @@ public class SmallFeedbackShowCommand extends SimpleCommand {
         var xhtml:XHTML = note.getBody().exercise as XHTML;
         var substitutions:Object = note.getBody().substitutions;
         container = note.getBody().container;
-        (FlexGlobals.topLevelApplication as DisplayObject).stage.addEventListener(MouseEvent.CLICK, onStageClick);
+        container.stage.addEventListener(MouseEvent.CLICK, onStageClick);
 
         var feedbackNode:XML = xhtml.selectOne("#" + feedback.source);
         if (feedbackNode && bounds) {
@@ -128,7 +128,7 @@ public class SmallFeedbackShowCommand extends SimpleCommand {
             // a neater way to do this, but this works and doesn't seem to do any harm.
             // gh#1299 If this is a dropdownquestion, delay a little longer to give the popup selector time to go
             // No, that doesn't have any impact
-            if (!feedbackContainerwAdded) setTimeout(addPopupWindow, 160, xhtmlRichText.width );
+            if (!feedbackContainerwAdded) setTimeout(addPopupWindow, 100, xhtmlRichText.width );
         } else if (!feedbackNode) {
             log.error("Unable to find feedback source {0}", feedback.source);
         } else if (!bounds) {
@@ -140,7 +140,6 @@ public class SmallFeedbackShowCommand extends SimpleCommand {
         feedbackContainer.x = bounds.x - (arguments[0] - bounds.width) / 2 - 3;
         feedbackContainer.y = bounds.y - 25;
         container.addElement(feedbackContainer);
-
         feedbackContainerwAdded = true;
 
         // Add a keyboard listener so the user can close the feedback window with the keyboard.  This listener needs a brief delay before being
@@ -177,18 +176,20 @@ public class SmallFeedbackShowCommand extends SimpleCommand {
      * @param event
      */
     protected function onClosePopUp(event:CloseEvent = null):void {
-        container.removeElement(feedbackContainer);
-        container.removeEventListener(MouseEvent.CLICK, onStageClick);
+        if (feedbackContainerwAdded) {
+            container.removeElement(feedbackContainer);
+            container.stage.removeEventListener(MouseEvent.CLICK, onStageClick);
 
-        feedbackContainerwAdded = false;
-        feedbackContainer = null;
-        feedback = null;
-        bounds = null;
-        container = null;
+            feedbackContainerwAdded = false;
+            feedbackContainer = null;
+            feedback = null;
+            bounds = null;
+            container = null;
+        }
     }
 
     protected function onStageClick(event:Event):void {
-        if (feedbackContainerwAdded) onClosePopUp();
+        onClosePopUp();
     }
 
 }
