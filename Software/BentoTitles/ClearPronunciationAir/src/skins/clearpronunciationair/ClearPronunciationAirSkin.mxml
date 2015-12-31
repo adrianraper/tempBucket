@@ -23,7 +23,7 @@
 	</s:states>
 	
 	<!-- Body -->
-	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0" bottom.title="44">
+	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0">
 		<!--s:BusyIndicator includeIn="loading" verticalCenter="0" horizontalCenter="0" /--> <!-- TODO: just used the mobile one for speediness for the moment -->
 		<s:Group verticalCenter="-50" horizontalCenter="0">
 			<s:BusyIndicator includeIn="loading" horizontalCenter="0"/>

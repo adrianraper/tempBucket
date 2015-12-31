@@ -8,7 +8,7 @@
 		xmlns:title="skins.clearpronunciation.assets.title.*"
 		xmlns:flexlayouts="org.flexlayouts.layouts.*"
 		enabled="{hostComponent.enabled}"
-		width="100%" height="100%" creationComplete="onCreationComplete(event)">
+		width="100%" height="100%">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.home.HomeView")]
@@ -23,20 +23,6 @@
 			color: #333333;
 		}
 	</fx:Style>
-
-	<fx:Script>
-		<![CDATA[
-		import mx.events.FlexEvent;
-
-		protected function onCreationComplete(event:FlexEvent):void {
-			if (hostComponent.isPlatformTablet) {
-				footerBitmapImage.bottom = 0;
-			} else {
-				footerBitmapImage.bottom = 45;
-			}
-		}
-		]]>
-	</fx:Script>
 	
 	<!-- states -->
 	<s:states>
@@ -73,7 +59,7 @@
 	</s:Group>
 
 	<!-- footer (sits on top of application skin footer) -->
-	<s:BitmapImage id="footerBitmapImage" left="0" source="@Embed(source='/skins/clearpronunciation/assets/home/homeGirl.png')" />
+	<s:BitmapImage id="footerBitmapImage" left="0" bottom="45" source="@Embed(source='/skins/clearpronunciation/assets/home/homeGirl.png')" />
 
 	<!-- The course list -->
 	<!-- gh#1123 -->
