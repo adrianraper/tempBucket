@@ -161,7 +161,6 @@ class AnswerManager {
 		var containingBlock:RenderFlow = element.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
 		var textFlowLine:TextFlowLine = element.getTextFlow().flowComposer.getLineAt(1);
 		elementBounds = PointUtil.convertRectangleCoordinateSpace(elementBounds, containingBlock, container);
-		if (textFlowLine) elementBounds.y -= textFlowLine.height;
 
 		return elementBounds;
 	}

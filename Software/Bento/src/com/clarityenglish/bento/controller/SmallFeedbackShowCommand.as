@@ -138,7 +138,7 @@ public class SmallFeedbackShowCommand extends SimpleCommand {
 
     private function addPopupWindow():void {
         feedbackContainer.x = bounds.x - (arguments[0] - bounds.width) / 2 - 3;
-        feedbackContainer.y = bounds.y - 25;
+        feedbackContainer.y = bounds.y - 45;
         container.addElement(feedbackContainer);
         feedbackContainerwAdded = true;
 
