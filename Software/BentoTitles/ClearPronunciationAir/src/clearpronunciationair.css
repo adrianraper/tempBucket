@@ -71,3 +71,7 @@ players|OSMFVideoPlayer {
 login|LoginView s|TextInput {
 	skinClass: ClassReference("spark.skins.mobile.TextInputSkin");
 }
+
+login|LoginView s|Button#demoButton1 {
+	skinClass: ClassReference("skins.clearpronunciation.login.DemoENButtonSkin");
+}
