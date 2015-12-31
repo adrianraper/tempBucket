@@ -77,7 +77,7 @@ import mx.events.FlexEvent;
 			sourceHtml += "	<meta name='viewport' content='width=" + getVideoWidth() + ", height=" + getVideoHeight() + ",";
 			sourceHtml += "		  initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi' />"
 			sourceHtml += " <style type='text/css'>";
-			sourceHtml += "		video::-webkit-media-controls-fullscreen-button {display: true;}";
+			sourceHtml += "		video::-webkit-media-controls-fullscreen-button {display: none;}";
 			sourceHtml += "	</style>";
 			sourceHtml += "</head>";
 			sourceHtml += "<body style='margin:0;padding:0;border:0;overflow:hidden;'>";

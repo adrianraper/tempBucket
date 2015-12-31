@@ -13,6 +13,7 @@
 @namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace progress "com.clarityenglish.clearpronunciation.view.progress.*";
 @namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
+@namespace players "com.clarityenglish.controls.video.players.*";
 
 clearpronunciation|ClearPronunciationApplication {
 	skinClass: ClassReference("skins.clearpronunciationair.ClearPronunciationAirSkin");
@@ -47,6 +48,10 @@ login|LoginView s|TextInput {
 s|List {
 	verticalScrollPolicy: off;
 	horizontalScrollPolicy: off;
+}
+
+players|OSMFVideoPlayer {
+	skinClass: ClassReference("skins.clearpronunciationair.controls.video.videoplayer.VideoPlayerSkin");
 }
 
 @media (os-platform: "IOS") {
