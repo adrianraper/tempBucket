@@ -32,7 +32,7 @@
 			 buttonMode="true" />
 	
 	<!-- Proper control with a scrub bar and buttons (full mode) -->
-	<s:HGroup verticalAlign="middle">
+	<s:HGroup verticalAlign="middle" gap="0">
 		<s:Image id="playComponent" source="{getStyle('fullPlayIcon')}"  includeIn="stopped_full,paused_full,played_full" useHandCursor="true" buttonMode="true" />
 		<s:Image id="pauseComponent" source="{getStyle('fullPauseIcon')}" includeIn="playing_full" useHandCursor="true" buttonMode="true" />
 		<s:ScrubBar id="scrubBar" includeIn="full" />

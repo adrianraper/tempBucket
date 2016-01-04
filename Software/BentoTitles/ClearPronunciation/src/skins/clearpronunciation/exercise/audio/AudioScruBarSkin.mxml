@@ -73,13 +73,23 @@
             </s:DataRenderer>
         </fx:Component>
     </fx:Declarations>
+
+    <!--White track bar background-->
+    <s:Rect left="0" width="320" height="21" radiusX="6" radiusY="6">
+        <s:fill>
+            <s:SolidColor color="#FFFFFF" />
+        </s:fill>
+        <s:stroke>
+            <s:SolidColorStroke color="#E6E6E6" weight="0.8" />
+        </s:stroke>
+    </s:Rect>
     
     <!--- The skin pat that defines the video timeline. The timeline shows the current playhead location  
           in the video, the amount of the video previously played, and the loaded in part of the video. -->
-    <s:Button id="track" left="0" right="0" top="-4" height="11" skinClass="skins.clearpronunciation.exercise.audio.AudioScrubBarTrackSkin"/>
+    <s:Button id="track" left="10" right="0" top="8" height="11" skinClass="skins.clearpronunciation.exercise.audio.AudioScrubBarTrackSkin"/>
 
     <!--- @copy spark.components.mediaClasses.ScrubBar#loadedRangeArea -->
-    <s:Group id="loadedRangeArea" x="0" y="0" height="11" includeInLayout="false">
+    <s:Group id="loadedRangeArea" x="3" y="5" height="11" includeInLayout="false">
     
         <!-- inset 7 and 6 pixels because that's thumbSize/2 -->
         <s:Group left="7" right="6" top="0" bottom="0" minWidth="0">
@@ -114,11 +124,11 @@
                 </s:fill>
             </s:Rect-->
             
-        </s:Group>    
+        </s:Group>
     </s:Group>
     
     <!--- @copy spark.components.mediaClasses.ScrubBar#playedArea -->
-    <s:Group id="playedArea" x="0" y="0" height="11" includeInLayout="false">
+    <s:Group id="playedArea" x="3" y="5" height="11" includeInLayout="false">
     
         <!-- inset 7 and 6 pixels because that's thumbSize/2 -->
         <s:Group left="7" right="6" top="0" bottom="0" minWidth="0">
@@ -154,7 +164,7 @@
 
     <!--- A skin part that defines a button that can be dragged along the track to increase or decrease 
           the playhead location in the video.   -->
-    <s:Button id="thumb" x="0" y="-3" width="14" height="19" includeInLayout="false" 
+    <s:Button id="thumb" x="0" y="0" width="14" height="19" includeInLayout="false"
 			  skinClass="skins.clearpronunciation.exercise.audio.AudioScrubBarThumbSkin"/>
 
 </s:SparkSkin>
