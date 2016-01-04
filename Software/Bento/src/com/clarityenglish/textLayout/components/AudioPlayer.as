@@ -30,6 +30,7 @@ package com.clarityenglish.textLayout.components {
 	[SkinState("playing_full")]
 	[SkinState("paused_full")]
 	[SkinState("played_full")]
+	[Event(name="soundChannelUpateEvent", type="flash.events.Event")]
 	public class AudioPlayer extends SkinnableComponent {
 		
 		private static const STOPPED:String = "stopped";
@@ -88,7 +89,9 @@ package com.clarityenglish.textLayout.components {
 		 */
 		private static var soundChannel:SoundChannel;
 		// gh#1124
-		private static var scrubBarTimer:Timer;
+		private static var currentSrc:String;
+
+		private var scrubBarTimer:Timer;
 		
 		// alice
 		// gh#1055 Why is this a class level variable?
@@ -100,7 +103,7 @@ package com.clarityenglish.textLayout.components {
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 
 			scrubBarTimer = new Timer(500, 0);
-			//scrubBarTimer.addEventListener(TimerEvent.TIMER, onScrubBarTimer);
+			scrubBarTimer.addEventListener(TimerEvent.TIMER, onScrubBarTimer);
 		}
 		
 		protected function onAddedToStage(event:Event):void {
@@ -212,10 +215,11 @@ package com.clarityenglish.textLayout.components {
 		protected function play():void {
 			// Work out the start position (based on whether we are paused or not)
 			var startTime:Number = (soundStatus == PAUSED) ? pausePosition : null;
-			
+
+			currentSrc = src;
+
 			// Stop any previously playing sound and play the new one
 			stop();
-			
 			// gh#1055 Why am I reloading sound?
 			/*
 			loaderContext = new SoundLoaderContext(2500);
@@ -229,13 +233,15 @@ package com.clarityenglish.textLayout.components {
 				soundChannel = sound.play(startTime);
 				soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete, false, 0, false);
 				played = true;
-				
+
+				scrubBarTimer.reset();
+				scrubBarTimer.start();
 				// gh#1124 only start the timer for full audio
-				if (controls == "full") {
+				/*if (controls == "full") {
 					scrubBarTimer.addEventListener(TimerEvent.TIMER, onScrubBarTimer);
 					scrubBarTimer.reset();
 					scrubBarTimer.start();
-				}
+				}*/
 				
 				// Change the status and invalidate the skin state
 				soundStatus = PLAYING;
@@ -280,7 +286,7 @@ package com.clarityenglish.textLayout.components {
 				soundChannel.stop();
 				soundChannel.dispatchEvent(new Event(Event.SOUND_COMPLETE));
 			}
-			
+
 			scrubBarTimer.stop();
 			
 			// Change the status and invalidate the skin state
@@ -289,11 +295,16 @@ package com.clarityenglish.textLayout.components {
 		}
 		
 		protected function onSoundComplete(event:Event):void {
+			// gh#1124 Sound complete event handle function will be called in each audio. So here we stop any timer in other audios that is still running.
+			if (src != currentSrc) {
+				if (scrubBarTimer.running) {
+					scrubBarTimer.stop();
+				}
+			}
 			// Change the status and invalidate the skin state
 			soundStatus = (played) ? PLAYED : STOPPED;
 			invalidateSkinState();
 		}
-		
 	}
 	
 }
