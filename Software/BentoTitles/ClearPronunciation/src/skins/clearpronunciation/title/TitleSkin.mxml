@@ -62,9 +62,9 @@
 	<s:Group right="0" includeIn="home">
 		<s:HGroup gap="0" width="100%">
 			<!-- NOTE: This should be a repeating image on left and right, with the 'mid' point set based on titleButtonHGroup width -->
-			<title:menuBarLT id="menuBarLT" width="{backgroundRect.width - titleButtonHGroup.width - 64}" top="-70" />
+			<title:menuBarLT id="menuBarLT" left="0" width="200" top="-70" />
 			<title:menuBarMid id="menuBarMid" width="64" top="-70" />
-			<title:menuBarRT id="menuBarRT" right="0" width="{titleButtonHGroup.width}" top="-70" />
+			<title:menuBarRT id="menuBarRT" right="0" width="620" top="-70" />
 		</s:HGroup>
 		<s:HGroup id="titleButtonHGroup" top="5" right="0" gap="30">
 			<s:Button id="progressButton" useHandCursor="true" buttonMode="true" />
