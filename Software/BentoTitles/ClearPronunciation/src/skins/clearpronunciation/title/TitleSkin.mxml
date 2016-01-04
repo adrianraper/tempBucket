@@ -4,6 +4,7 @@
 		xmlns:ui="com.clarityenglish.components.*"
 		xmlns:title="skins.clearpronunciation.assets.title.*"
 		xmlns:home="skins.clearpronunciation.assets.home.*"
+		xmlns:login="skins.clearpronunciation.assets.login.*"
 		creationComplete="onCreationComplete(event)"
 		width="100%" height="100%">
 	<!-- host component -->
@@ -97,4 +98,21 @@
 
 	<!-- CP1 logo -->
 	<s:BitmapImage left="0" top="0" source="@Embed(source='/skins/clearpronunciation/assets/home/homeLogo.png')" includeIn="home" />
+
+	<!-- Footer -->
+	<s:Rect left="0" right="0" bottom="33" height="11">
+		<s:fill>
+			<s:SolidColor color="#008391" />
+		</s:fill>
+	</s:Rect>
+	<s:Group left="0" right="0" height="33" bottom="0">
+		<s:Rect height="100%" width="100%">
+			<s:fill>
+				<s:SolidColor color="#263A45" />
+			</s:fill>
+		</s:Rect>
+		<login:ClarityEnglishLogo left="23" top="8" scaleX="0.8" scaleY="0.8" />
+		<s:Label id="copyrightLabel" color="#FFFFFF" right="20" verticalCenter="0" fontSize="12" />
+		<s:Label id="versionLabel" color="#FFFFFF" right="{copyrightLabel.width + 40}" verticalCenter="0" fontSize="12" />
+	</s:Group>
 </s:Skin>

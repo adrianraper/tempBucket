@@ -10,7 +10,9 @@ package com.clarityenglish.clearpronunciation.view.title {
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 
-	import org.davekeen.util.StateUtil;
+import mx.core.FlexGlobals;
+
+import org.davekeen.util.StateUtil;
 	import org.osflash.signals.Signal;
 
 	import spark.components.Button;
@@ -64,6 +66,12 @@ package com.clarityenglish.clearpronunciation.view.title {
 
 		[SkinPart]
 		public var topRightDemoLabel:Label;
+
+		[SkinPart]
+		public var copyrightLabel:Label;
+
+		[SkinPart]
+		public var versionLabel:Label;
 		
 		private var _selectedNode:XML;
 		
@@ -137,6 +145,13 @@ package com.clarityenglish.clearpronunciation.view.title {
 				case topRightDemoLabel:
 					topRightDemoLabel.text = copyProvider.getCopyForId("topRightDemoLabel");
 					break;
+				case versionLabel:
+					versionLabel.text = copyProvider.getCopyForId("versionLabel", {versionNumber: FlexGlobals.topLevelApplication.versionNumber});
+					break;
+				case copyrightLabel:
+					copyrightLabel.text = copyProvider.getCopyForId("copyright");
+					break;
+
 			}
 		}
 		

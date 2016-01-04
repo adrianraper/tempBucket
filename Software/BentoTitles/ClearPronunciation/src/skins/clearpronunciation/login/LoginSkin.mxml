@@ -189,12 +189,21 @@
 		<s:Button id="demoButton1" />
 	</s:VGroup>
 
-	<!-- footer (sits on top of application skin footer) -->
-	<s:Group left="0" bottom="0" height="33" right="0">
-		<s:HGroup height="100%" right="10" verticalAlign="middle" gap="5" >
-			<s:Label id="versionLabel" color="#FFFFFF" fontSize="11" />
-			<s:Label id="copyrightLabel" color="#FFFFFF" fontSize="11" />
-		</s:HGroup>
+	<!-- Footer -->
+	<s:Rect left="0" right="0" bottom="33" height="11">
+		<s:fill>
+			<s:SolidColor color="#008391" />
+		</s:fill>
+	</s:Rect>
+	<s:Group left="0" right="0" height="33" bottom="0">
+		<s:Rect height="100%" width="100%">
+			<s:fill>
+				<s:SolidColor color="#263A45" />
+			</s:fill>
+		</s:Rect>
+		<login:ClarityEnglishLogo left="23" top="8" scaleX="0.8" scaleY="0.8" />
+		<s:Label id="copyrightLabel" color="#FFFFFF" right="20" verticalCenter="0" fontSize="12" />
+		<s:Label id="versionLabel" color="#FFFFFF" right="{copyrightLabel.width + 40}" verticalCenter="0" fontSize="12" />
 	</s:Group>
 
 </s:Skin>
