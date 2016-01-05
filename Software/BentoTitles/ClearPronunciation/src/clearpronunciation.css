@@ -213,14 +213,6 @@ home|HomeView s|Button#courseListButton {
 
 video|VideoSelector {
 	skinClass: ClassReference("skins.clearpronunciation.controls.video.VideoSelectorSkin");
-	videoPlayerWidth: 320;
-	videoPlayerHeight: 240;
-}
-
-home|HomeView video|VideoSelector {
-	skinClass: ClassReference("skins.clearpronunciation.controls.video.VideoSelectorSkin");
-	videoPlayerWidth: 640;
-	videoPlayerHeight: 360;
 }
 
 components|XHTMLExerciseView {

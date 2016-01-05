@@ -57,14 +57,6 @@ players|OSMFVideoPlayer {
 @media (os-platform: "IOS") {
 	video|VideoSelector {
 		skinClass: ClassReference("skins.clearpronunciationair.controls.video.IOSVideoSelectorSkin");
-		videoPlayerWidth: 320;
-		videoPlayerHeight: 240;
-	}
-
-	home|HomeView video|VideoSelector {
-		skinClass: ClassReference("skins.clearpronunciationair.controls.video.IOSVideoSelectorSkin");
-		videoPlayerWidth: 640;
-		videoPlayerHeight: 360;
 	}
 }
 

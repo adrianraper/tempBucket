@@ -73,7 +73,7 @@
 		]]>
 	</fx:Script>
 	<!--video player black background-->
-	<s:Rect left="0" top="0" width="{getStyle('videoPlayerWidth') + 5}" height="{getStyle('videoPlayerHeight') + 5 }" filters="{[dropShadowFilter]}">
+	<s:Rect left="0" top="0" width="{hostComponent.width + 5}" height="{hostComponent.height + 5 }" filters="{[dropShadowFilter]}">
 		<s:fill>
 			<s:SolidColor color="0x273A45" />
 		</s:fill>
@@ -81,7 +81,7 @@
 		
 	<!-- The video players -->
 	<!--players:WebViewVideoPlayer id="videoPlayer" left="30" width="320" height="240" visible="{videoList.selectedItem != null}" /-->
-	<players:OSMFVideoPlayer id="videoPlayer" left="0" width="{getStyle('videoPlayerWidth')}" height="{getStyle('videoPlayerHeight')}" visible="{videoList.selectedItem != null}" />
+	<players:OSMFVideoPlayer id="videoPlayer" left="0" width="{hostComponent.width}" height="{hostComponent.height}" visible="{videoList.selectedItem != null}" />
 	
 	<!-- Placeholder image -->
 	<s:Image id="placeholderImage" left="0" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
