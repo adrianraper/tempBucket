@@ -29,7 +29,7 @@ $(function() {
 		// block the button to avoid double clicking
 		$("input#LoginSubmit").hide();
 		
-		var formData = "method=signInUser&" + $("form#loginForm").serialize();
+		var formData = "method=authenticateUser&" + $("form#loginForm").serialize();
 		$("div#responseMessage").show();
 		$("div#responseMessage").text("Please wait while your details are checked...");
 		//alert(formData); return false;
@@ -62,6 +62,7 @@ $(function() {
 				case 202:
 				case 204:
 				case 209:
+                case 200:
 					var errorID = 'invalidIDorPassword';
 					break;
 				case 206:

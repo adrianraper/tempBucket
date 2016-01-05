@@ -4,9 +4,7 @@
 * You can test like this:
    http://dock.fixbench/BritishCouncil/LearnEnglish/Model/action.php?method=addNewUser&learnerName=Gustomer Horris&email=adrian@noodles.hk
 */
-
 session_start();
-error_log("line 1\n", 3, $debugFile);
 
 require_once "variables.php";
 
@@ -29,7 +27,7 @@ $rc = array();
 // The purpose of this script is to create a user and send them to the LearnEnglish Level Test
 	
 // This is the method called after the candidate has typed in their details on the register screen
-if ($queryMethod=="signInUser") {
+if ($queryMethod=="authenticateUser") {
 
 	// We know we are sent a name and email. 
 	if (isset($_POST['learnerName'])) {
@@ -56,21 +54,21 @@ if ($queryMethod=="signInUser") {
         $prefix = "";
     }
 
-    // Use LoginGateway to login this user.
+    // Use BulkImportGateway to login this user.
 	$LoginAPI = array();
-	$LoginAPI['method'] = 'signInUser';
+	$LoginAPI['method'] = 'authenticateUser';
 	$LoginAPI['name'] = htmlspecialchars($learnerName, ENT_QUOTES, 'UTF-8');
 	$LoginAPI['password'] = htmlspecialchars($learnerPassword, ENT_QUOTES, 'UTF-8');
 	$LoginAPI['prefix'] = $prefix;
-    $LoginAPI['rootID'] = 163;
+    //$LoginAPI['rootID'] = 163;
 	$LoginAPI['dbHost'] = $dbHost;
 	$LoginAPI['loginOption'] = 1;
 
 	// Send this single LoginAPI
 	$serializedObj = json_encode($LoginAPI);
-	$targetURL = $thisDomain.'Software/ResultsManager/web/amfphp/services/LoginGateway.php';
+	$targetURL = $thisDomain.'Software/ResultsManager/web/amfphp/services/BulkImportGateway.php';
 	if ($debugLog)
-		error_log("to LoginGateway with $serializedObj\n", 3, $debugFile);
+		error_log("to BulkImportGateway with $serializedObj\n", 3, $debugFile);
 		
 	// echo $targetURL.' '.$serializedObj; exit(0);
 	
@@ -109,13 +107,14 @@ if ($queryMethod=="signInUser") {
 			$failReason = $returnInfo['message'];
 			
 			if ($debugLog)
-				error_log("error from LoginGateway $errorCode, $failReason\n", 3, $debugFile);
+				error_log("error from BulkImportGateway $errorCode, $failReason\n", 3, $debugFile);
 				
 		} elseif (isset($returnInfo['user'])){
 			
 			$userInfo = $returnInfo['user'];
 			$username = $userInfo['name'];
             $userType = $userInfo['userType'];
+            $userId = $userInfo['userID'];
 			
 			// Check if they are an administrator
 			if ($userType != 2)
@@ -128,8 +127,8 @@ if ($queryMethod=="signInUser") {
 		if ($errorCode == 0) {
 			if ($debugLog)
 				error_log("going to the program with $prefix\n", 3, $debugFile);
-				
-			$rc['redirect']=$thisDomain.$startFolder."importDetails.php?prefix=$prefix";
+
+			$rc['redirect']=$thisDomain.$startFolder."importDetails.php?prefix=$prefix&session=" . $returnInfo['sessionId'];
 			print json_encode($rc);
 			exit();
 		}

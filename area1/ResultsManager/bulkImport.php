@@ -36,23 +36,23 @@
 </head>
 
 <body>
-
+<h1>Welcome to the Results Manager bulk importer.</h1>
 <div id="container_afterlogin">
     <div id="userDetails_form">
         <div id="addlearner_title">
-            <p>Welcome to the Results Manager bulk importer.</p>
+
             <p>You must be the administrator of your account to run this program, please sign-in below.</p>
         </div>
         <div>
             <form id="loginForm" name="loginForm" onSubmit="return false;">
                 <div class="login_line">
                     <p class="labelname"><label for="learnerName" id="nameLbl">Your name:</label></p>
-                    <p class="labeltitle"><input type="text" name="learnerName" id="learnerName" value="" tabindex="1" class="field" /></p>
+                    <p class="labeltitle"><input type="text" name="learnerName" id="learnerName" value="clarity" tabindex="1" class="field" /></p>
                     <div class="clear"></div>
                 </div>
                 <div class="login_line">
                     <p class="labelname"><label for="learnerPassword" id="passwordlLbl">Password:</label></p>
-                    <p class="labeltitle"><input type="password" name="learnerPassword" id="learnerPassword" value="" tabindex="2" class="field" /></p>
+                    <p class="labeltitle"><input type="password" name="learnerPassword" id="learnerPassword" value="ceonlin787e" tabindex="2" class="field" /></p>
                     <div class="clear"></div>
                 </div>
                 <input name="prefix" value="<?echo $prefix;?>" style="display: none" />

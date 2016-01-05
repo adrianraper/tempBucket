@@ -131,6 +131,58 @@ SQL;
 		$rs = $dmsService->db->Execute($sql, $bindingParams);
 	}		
 }
+// gh#1275 Delete orphaned users in an account.
+function clearOrphanedUsers($account, $rowLimit=100, $database='rack80829') {
+    global $dmsService;
+
+    $bindingParams = array($account->id, $rowLimit);
+
+    // Find all the users who we want to delete.
+    // This is users who have a membership record, but whose group no longer exists
+    $sql = <<<SQL
+        SELECT u.F_UserID FROM $database.T_User u, $database.T_Membership m
+            where u.F_UserID = m.F_UserID
+            and m.F_RootID = ?
+            and NOT exists (SELECT * FROM $database.T_Groupstructure g where g.F_GroupID = m.F_GroupID)
+            limit 0,?;
+SQL;
+    $rs = $dmsService->db->Execute($sql, $bindingParams);
+
+    if ($rs->RecordCount() > 0) {
+        $userArray = array();
+        while ($dbObj = $rs->FetchNextObj()) {
+            $userID = $dbObj->F_UserID;
+            // gh#359
+            if ($userID < 1) {
+                AbstractService::$debugLog->notice("Request to delete user $userID repulsed! clearOrphanedUsers");
+                continue 1;
+            }
+            $userArray[] = $userID;
+        }
+        $userList = implode(',', $userArray);
+
+        $dmsService->db->StartTrans();
+
+        $bindingParams = array();
+        $sql = <<<SQL
+			DELETE FROM $database.T_Membership
+			WHERE F_UserID in ($userList);
+SQL;
+        $rc = $dmsService->db->Execute($sql, $bindingParams);
+
+        $sql = <<<SQL
+			DELETE FROM $database.T_User
+			WHERE F_UserID in ($userList);
+SQL;
+        $rc = $dmsService->db->Execute($sql, $bindingParams);
+
+        $dmsService->db->CompleteTrans();
+    }
+
+    // send back the number of archived users
+    return $rs->RecordCount();
+
+}
 // For archiving users who haven't done anything for a while.
 // But keep users who have been registered in the last x period but haven't done anything!
 function archiveUsersWithNoRecentActivity($cutoffDate, $account, $rowLimit=100, $database='rack80829') {
@@ -333,7 +385,8 @@ $testingTriggers = "";
 //$testingTriggers .= "terms and conditions";
 //$testingTriggers .= "Seed permissions and privacy for CCB";
 //$testingTriggers .= "Archive users who have not done anything lately";
-$testingTriggers .= "Restore archived users";
+//$testingTriggers .= "Restore archived users";
+$testingTriggers .= "Clear orphans";
 
 if (stristr($testingTriggers, "Restore archived users")) {
 	$cutoffID = 894120;
@@ -401,6 +454,34 @@ if (stristr($testingTriggers, "Archive users who have not done anything lately")
 	} else {
 		echo "no active accounts found";
 	}
+}
+if (stristr($testingTriggers, "Clear orphans")) {
+    $conditions = array();
+    //$testingAccounts = array();
+    $testingAccounts = array(163);
+    $accounts = $dmsService->accountOps->getAccounts($testingAccounts, $conditions);
+    $rowLimit = 100;
+
+    if ($accounts) {
+        foreach ($accounts as $account) {
+            // Do some error checking for testing accounts that might be a bit odd, like not having any titles
+            if (count($account->titles)<1)
+                continue 1;
+            // Split the processing into chunks with a limit on number of rows returned each time
+            do {
+                $rc = clearOrphanedUsers($account, $rowLimit);
+            } while ($rc >= $rowLimit);
+
+            if ($rc > 0) {
+                echo "Cleared $rc orphans from account {$account->name}<br/>";
+            } else {
+                echo "No orphans for account {$account->name}<br/>";
+            }
+        }
+
+    } else {
+        echo "no active accounts found";
+    }
 }
 if (stristr($testingTriggers, "Seed permissions and privacy for CCB")) {
 	$conditions = array();

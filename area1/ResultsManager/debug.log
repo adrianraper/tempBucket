@@ -1,26 +1,20 @@
-to LoginGateway with {"method":"signInUser","name":"admin","password":"","prefix":null,"dbHost":2,"loginOption":1}
-error from LoginGateway 1, Exception, More than one user matches this name. Please contact your administrator.
-to LoginGateway with {"method":"signInUser","name":"admin","password":"","prefix":null,"dbHost":2,"loginOption":1}
-error from LoginGateway 1, Exception, More than one user matches this name. Please contact your administrator.
-to LoginGateway with {"method":"signInUser","name":"admin","password":"","prefix":null,"dbHost":2,"loginOption":1}
-error from LoginGateway 1, Exception, More than one user matches this name. Please contact your administrator.
-to LoginGateway with {"method":"signInUser","name":"admin","password":"","prefix":null,"dbHost":2,"loginOption":1}
-error from LoginGateway 1, Exception, More than one user matches this name. Please contact your administrator.
-to LoginGateway with {"method":"signInUser","name":"dandelion","password":"","prefix":null,"dbHost":2,"loginOption":1}
-error from LoginGateway 1, Exception, More than one user matches this name. Please contact your administrator.
-to LoginGateway with {"method":"signInUser","name":"dandelion","password":"","prefix":null,"dbHost":2,"loginOption":1}
-error from LoginGateway 1, Exception, More than one user matches this name. Please contact your administrator.
-to LoginGateway with {"method":"signInUser","name":"dandelion","password":"","prefix":null,"rootID":163,"dbHost":2,"loginOption":1}
-error from LoginGateway 253, Wrong password
-to LoginGateway with {"method":"signInUser","name":"dandelion","password":"","prefix":null,"rootID":163,"dbHost":2,"loginOption":1}
-error from LoginGateway 253, Wrong password
-to LoginGateway with {"method":"signInUser","name":"asdf","password":"","prefix":"Clarity","rootID":163,"dbHost":2,"loginOption":1}
-error from LoginGateway 200, No such user 
-to LoginGateway with {"method":"signInUser","name":"dandelion","password":"","prefix":"Clarity","rootID":163,"dbHost":2,"loginOption":1}
-error from LoginGateway 253, Wrong password
-to LoginGateway with {"method":"signInUser","name":"dandelion","password":"password","prefix":"Clarity","rootID":163,"dbHost":2,"loginOption":1}
-to LoginGateway with {"method":"signInUser","name":"dandelion","password":"password","prefix":"Clarity","rootID":163,"dbHost":2,"loginOption":1}
-to LoginGateway with {"method":"signInUser","name":"dandelion","password":"password","prefix":"Clarity","rootID":163,"dbHost":2,"loginOption":1}
-to LoginGateway with {"method":"signInUser","name":"dandelion","password":"password","prefix":"Clarity","rootID":163,"dbHost":2,"loginOption":1}
-to LoginGateway with {"method":"signInUser","name":"clarity","password":"ceonlin787e","prefix":"Clarity","rootID":163,"dbHost":2,"loginOption":1}
+to BulkImportGateway with {"method":"authenticateUser","name":"clarity","password":"ceonlin787e","prefix":"Clarity","dbHost":2,"loginOption":1}
+picked up user 9003
+picked up sessionId q32sc137nu41qkie88eatu42p3
+going to the program with Clarity
+to BulkImportGateway with {"method":"authenticateUser","name":"clarity","password":"ceonlin787e","prefix":"Clarity","dbHost":2,"loginOption":1}
+picked up user 9003
+picked up sessionId 4iobu5d5a3cko7p559s2u1dsm6
+going to the program with Clarity
+to BulkImportGateway with {"method":"authenticateUser","name":"clarity","password":"ceonlin787e","prefix":"Clarity","dbHost":2,"loginOption":1}
+picked up user 9003
+picked up sessionId t8snmesler2ie1n5r34sj0su82
+going to the program with Clarity
+to BulkImportGateway with {"method":"authenticateUser","name":"clarity","password":"ceonlin787e","prefix":"Clarity","dbHost":2,"loginOption":1}
+picked up user 9003
+picked up sessionId 5g1sqq1g8t0u0hk2j1eppof353
+going to the program with Clarity
+to BulkImportGateway with {"method":"authenticateUser","name":"clarity","password":"ceonlin787e","prefix":"Clarity","dbHost":2,"loginOption":1}
+picked up user 9003
+picked up sessionId 43o6il540o5ij89ilp7fhksrs6
 going to the program with Clarity

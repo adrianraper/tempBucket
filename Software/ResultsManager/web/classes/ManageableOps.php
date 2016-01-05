@@ -35,9 +35,12 @@ class ManageableOps {
 		// v3.5 I can't see any circumstance when I would want to allow groups with the same name?
 		if (!$allowDuplicates) {
 			// Check if the group already exists and if so just return that group
-			foreach ($parentGroup->manageables as $manageable) 
-				if (strtolower($manageable->name) == strtolower($group->name))
-					return $manageable;
+			foreach ($parentGroup->manageables as $manageable) {
+                if (get_class($manageable) == "Group") {
+                    if (strtolower($manageable->name) == strtolower($group->name))
+                        return $manageable;
+                }
+            }
 		}
 		
 		// Set the parent id (from $parentGroup) and write the new record to the database
@@ -506,16 +509,19 @@ EOD;
 	}
 	
 	function moveUsers($usersArray, $parentGroup, $userDetails = null) {
+        //$time_start_1 = microtime(true);
 		if (sizeof($usersArray) == 0) return;
-		
+
 		// Ensure that this root context has permission to access all these users
 		AuthenticationOps::authenticateUsers($usersArray);
 		
 		// Ensure that this root context has permission to access all these groups
 		AuthenticationOps::authenticateGroups(array($parentGroup));
-		
-		$this->db->StartTrans();
-		
+
+        // gh#1275 Seems very little benefit in running these calls in a transaction, so remove the overhead
+		//$this->db->StartTrans();
+        //$time_start = microtime(true);
+
 		// gh#653 Since each user might be coming from a different group, need to do multiple sql updates
 		// each of which references the old group as well as the userID. 
 		foreach ($usersArray as $user) {
@@ -526,23 +532,37 @@ EOD;
 				   AND F_UserID=?
 EOD;
 			$rs = $this->db->GetRow($sql, array($parentGroup->id, $user->userID));
+            //AbstractService::$debugLog->info("userid=" . $user->userID . " in groupid=" . $parentGroup->id . "count=" . $rs['count']);
 			// Does this user already exist in the target group? If so, just delete them from their old group(s).
 			if ($rs['count'] > 0) {
 				$thisGroupId = $user->getMultiUserGroupID();
 				// gh#717 But NOT if you are (accidentally) moving the user within one group
+                //$time_start_5 = microtime(true);
 				if ($thisGroupId && $thisGroupId > 0 && $thisGroupId != $parentGroup->id) {
-					$bindingParams = array($user->getMultiUserGroupID(), $user->userID);
+					$bindingParams = array($thisGroupId, $user->userID);
 					$this->db->Execute("DELETE FROM T_Membership WHERE F_GroupID=? AND F_UserID=?", $bindingParams);
 				} else {
-					$bindingParams = array($parentGroup->id, $user->userID);
-					$this->db->Execute("DELETE FROM T_Membership WHERE NOT F_GroupID=? AND F_UserID=?", $bindingParams);
+                    // gh#1275 This DELETE WHERE NOT an expensive call, and quite likely not necessary, so it might be worth counting first
+                    $sql = <<<EOD
+				   SELECT COUNT(*) AS count
+				   FROM T_Membership m
+				   WHERE F_UserID=?
+EOD;
+                    $rs = $this->db->GetRow($sql, array($user->userID));
+                    if ($rs['count'] > 1) {
+                        // AbstractService::$debugLog->info("delete user from outside this group");
+                        $bindingParams = array($parentGroup->id, $user->userID);
+                        $this->db->Execute("DELETE FROM T_Membership WHERE NOT F_GroupID=? AND F_UserID=?", $bindingParams);
+                    }
 				}
-			} else { 
+                //AbstractService::$debugLog->info("delete=" . sprintf('%f', microtime(true) - $time_start_5));
+			} else {
 				// Otherwise update T_Membership
 				// During import, if you are moving a user you will have got their data from the database
 				// so you will NOT have the group portion of id. You could just update based on userID
 				// but this will crash if there the user is already in here twice. In that case you need
 				// to delete then insert.
+                //$time_start_3 = microtime(true);
 				$thisGroupId = $user->getMultiUserGroupID();
 				if ($thisGroupId && $thisGroupId > 0) {
 					// make sure you only move this one instance of the user
@@ -560,11 +580,13 @@ EOD;
 					$rc = $this->db->Execute($sql, $bindingParams);
 					if (!$rc)
 						throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
-				}					
+				}
+                //AbstractService::$debugLog->info("update 1=" . sprintf('%f', microtime(true) - $time_start_3));
 			}
 			
 			// gh#653 Since a moved user might have updated some details, check to see if need an update too
 			if ($userDetails) {
+                //$time_start_4 = microtime(true);
 				// It is safe to update all relevant fields as conflict with loginOption key field will have already been resolved
 				if (($userDetails->email != $user->email) ||
 					($userDetails->studentID != $user->studentID) ||
@@ -576,14 +598,19 @@ EOD;
 					$user->password = $userDetails->password;
 					$this->db->AutoExecute("T_User", $user->toAssocArray(), "UPDATE", "F_UserID=".$user->userID);
 				}
+                //AbstractService::$debugLog->info("update 2=" . sprintf('%f', microtime(true) - $time_start_4));
 			}
+
+            // gh#1275 Report which users moved
+            $userIds[] = $user->userID;
 		}
-		
-		
-		$this->db->CompleteTrans();
+
+        // gh#1275
+		//$this->db->CompleteTrans();
 		
 		// gh#448
-		AbstractService::$controlLog->info('userID '.Session::get('userID').' moved a user(s) with id='.$userIdInString.' to group '.$parentGroup->id);
+		AbstractService::$controlLog->info('userID '.Session::get('userID').' moved a user(s) with id='.implode(',',$userIds).' to group '.$parentGroup->id);
+        //AbstractService::$debugLog->info("for moveUsers=" . (microtime(true) - $time_start_1));
 	}
 	
 	function moveGroups($groupsArray, $parentGroup) {
@@ -676,6 +703,7 @@ EOD;
 		$this->db->StartTrans();
 		
 		foreach ($manageablesArray as $manageable) {
+            set_time_limit(60);
 			// gh#448
 			AbstractService::$controlLog->info('userID '.Session::get('userID').' wants to delete a '.get_class($manageable).' with id='.$manageable->id.' and name='.$manageable->name);
 			
@@ -1022,21 +1050,43 @@ SQL;
 		// Create a parser and create the manageables tree from the xml
 		$importXMLParser = new ImportXMLParser();
 		$manageables = $importXMLParser->xmlToManageables($doc);
-		
-		// Now go through adding everything, building up the results in $this->importResults
-		$this->importResults = array();
-		
+
+        // Now go through adding everything, building up the results
+        $this->initImportResults();
+
 		foreach ($manageables as $manageable)
-			$this->_importManageable($manageable, $parentGroup, $mergeGroups, $moveExistingStudents);
-		
-		// Sort the importResults on success so that the failure appear at the top
-		usort($this->importResults, array(&$this, "successCmp"));
-		
+            $this->_importManageable($manageable, $parentGroup, $mergeGroups, $moveExistingStudents);
+
 		// Return the results for display in the client
-		return $this->importResults;
+		return $this->getImportResults();
 	}
-	
-	/**
+
+    public function initImportResults() {
+        $this->_importResults = array();
+    }
+    public function getImportResults($sort = true) {
+        if (!isset($this->_importResults))
+            return false;
+
+        if ($sort)
+            // Sort the importResults on success so that the failures appear at the top
+            usort($this->_importResults, function ($a, $b) {
+                if ($a["success"] == $b["success"]) return 0;
+                return ($a["success"] == false && $b["success"] == true) ? 0 : 1;
+            });
+
+        return $this->_importResults;
+    }
+    private function addImportResult($type, $name, $success = "not known", $message = "") {
+        // gh#1275
+        if (isset($this->_importResults))
+            $this->_importResults[] = array("type" => $type,
+                "name" => $name,
+                "success" => $success,
+                "message" => $message);
+    }
+
+    /**
 	 * usort() function that orders import results failures first
 	 */
 	static function successCmp($a, $b) {
@@ -1070,19 +1120,28 @@ SQL;
 			// If they do and the control parameter=simple - then report an error
 			$rc = $this->isUserConflicted($manageable);
 			if ($rc['returnCode'] > 0) {
-                if ($controlExistingStudents == self::EXCEL_MOVE_IMPORT) {
-					$addedMsg = "moved";
-					$this->moveUsers($rc['conflictedUsers'], $parentGroup, $manageable);
-					$success = true;
-				} elseif ($controlExistingStudents == self::EXCEL_COPY_IMPORT) {
-					$addedMsg = "copied";
-					$this->copyUsers($rc['conflictedUsers'], $parentGroup, $manageable);
-					$success = true;
-				} else {
-					$addedMsg = "duplicate details";
-					$success = false;
-				}
+				//AbstractService::$debugLog->info("move/copy user " . $manageable->studentID . " into group " . $parentGroup->id);
+                // gh#1275 Catch permission problem exceptions so you can keep going
+                try {
+                    if ($controlExistingStudents == self::EXCEL_MOVE_IMPORT) {
+                        $addedMsg = "moved";
+                        $this->moveUsers($rc['conflictedUsers'], $parentGroup, $manageable);
+                        $success = true;
+                    } elseif ($controlExistingStudents == self::EXCEL_COPY_IMPORT) {
+                        $addedMsg = "copied";
+                        $this->copyUsers($rc['conflictedUsers'], $parentGroup, $manageable);
+                        $success = true;
+                    } else {
+                        $addedMsg = "duplicate details";
+                        $success = false;
+                    }
+                } catch (Exception $e) {
+                    AbstractService::$debugLog->info("caught exception for " . $manageable->name . " of ".$e->getMessage());
+                    $addedMsg = $e->getMessage();
+                    $success = false;
+                }
 			} else {
+				//AbstractService::$debugLog->info("try to add " . $manageable->studentID . " into group " . $parentGroup->id);
 				$addedMsg = "added";
 				// gh#769 record source of registration
 				$today = new DateTime();
@@ -1109,13 +1168,6 @@ SQL;
         return $success;
 	}
 	
-	private function addImportResult($type, $name, $success, $message = "") {
-		$this->importResults[] = array("type" => $type,
-									   "name" => $name,
-									   "success" => $success,
-									   "message" => $message);
-	}
-
 	/**
 	 * This function reads account root information
 	 */
@@ -1766,7 +1818,6 @@ EOD;
 		$manageables = array();
 		
 		foreach ($groupIDArray as $groupID) {
-			//NetDebug::trace('ManageableOps.getManageables sql id='.$groupID);
 			// To begin the recursion we need to initially get the root node
 			$sql  = "SELECT ".Group::getSelectFields($this->db);
 			$sql .= <<<EOD
@@ -2028,7 +2079,7 @@ EOD;
 			}
 		}
 		Session::set('loginOption', $loginOption);
-		
+
 		// There may be no groupedRoots, a single one, a list or a wildcard.
 		if (!$groupedRoots) {
 			// v3.6.1 Check T_LicenceAttributes - for now just to get groupedRoots
@@ -2103,7 +2154,7 @@ EOD;
 			$checkClause
 EOD;
 		$rs = $this->db->Execute($sql, $bindingParams);
-
+		//AbstractService::$debugLog->info("conflicted sql=" . $sql . " params=" . implode(',', $bindingParams));
 		$rc['returnCode'] = 0;
 		switch ($rs->RecordCount()) {
 			case 0:

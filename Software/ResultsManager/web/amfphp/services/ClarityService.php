@@ -16,6 +16,9 @@ require_once(dirname(__FILE__)."/../../config.php");
 require_once($GLOBALS['adodb_libs']."adodb-exceptions.inc.php");
 require_once($GLOBALS['adodb_libs']."adodb.inc.php");
 
+// gh#1275
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/LoginAPI.php");
+
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/Reportable.php");
 
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Manageable.php");
@@ -94,6 +97,8 @@ class ClarityService extends AbstractService {
 		//$this->licenceOps = new LicenceOps($this->db);
 		$this->usageOps = new UsageOps($this->db);
 		$this->reportOps = new ReportOps($this->db);
+        // gh#1275
+        $this->accountOps = new AccountOps($this->db);
 
 	}
 
@@ -118,8 +123,8 @@ class ClarityService extends AbstractService {
 			$this->manageableOps->changeDB($this->db);
 		}
 	}
-	
-	// Allow several optional parameters to come from Flash
+
+    // Allow several optional parameters to come from Flash
 	// $productCode is deprecated
 	public function login($username, $password, $rootID = null, $dbHost=null, $productCode = null) {
 		
@@ -134,17 +139,21 @@ class ClarityService extends AbstractService {
 								 User::USER_TYPE_REPORTER,
 								 User::USER_TYPE_DMS,
 								 User::USER_TYPE_DMS_VIEWER);
-								 
+
 		$loginObj = $this->loginOps->login($username, $password, $allowedUserTypes, $rootID, 2);
 		
-		if ($loginObj) {	
+		if ($loginObj) {
 			// RM specific setup values for this root
 			if (isset($loginObj->F_LangaugeCode) && strlength($loginObj->F_LanguageCode)>0) {
 				Session::set('languageCode', $loginObj->F_LanguageCode);
 			} else {
 				Session::set('languageCode', 'EN');
 			}
-			Session::set('rootID', $loginObj->F_RootID);
+            // gh#1275
+            AbstractService::$debugLog->info("try to set sesssion userid=" . $loginObj->F_UserID);
+            Session::set('userID', $loginObj->F_UserID);
+
+            Session::set('rootID', $loginObj->F_RootID);
 			Session::set('rootGroupID', $loginObj->F_GroupID);
 			Session::set('groupIDs', array_merge(array($loginObj->F_GroupID), $this->manageableOps->getExtraGroups($loginObj->F_UserID)));
 			Session::set('max'.User::USER_TYPE_TEACHER, $loginObj->F_MaxTeachers);
@@ -173,7 +182,7 @@ class ClarityService extends AbstractService {
 			// added BCVIETNAM
 			if ((int)$loginObj->F_RootID == 14781 || (int)$loginObj->F_RootID == 19278 || (int)$loginObj->F_RootID == 26155 || 
 				(int)$loginObj->F_RootID == 13982 || (int)$loginObj->F_RootID == 13754 || (int)$loginObj->F_RootID == 22743
-				|| (int)$loginObj->F_RootID == 32366 || (int)$loginObj->F_RootID == 35886) {
+				|| (int)$loginObj->F_RootID == 32366 || (int)$loginObj->F_RootID == 35886  || (int)$loginObj->F_RootID == 163) {
 				Session::set('no_students', ($manageablesCount > 20000));
 			} else {
 				Session::set('no_students', ($manageablesCount > $GLOBALS['max_manageables_for_student_display']));
@@ -220,13 +229,7 @@ class ClarityService extends AbstractService {
 						 "licenceType" => (int)$loginObj->F_LicenceType,
 						 );
 		} else {
-			//NetDebug::trace('originalStartPage='.$_SESSION['originalStartpage'].'!');
-			if (isset($_SESSION['dbHost'])) {
-				NetDebug::trace('ClarityService session.dbHost='.$_SESSION['dbHost']);
-			} else {
-				NetDebug::trace('ClarityService session.dbHost not set');
-			}
-			NetDebug::trace('db used '.$GLOBALS['db']);
+            AbstractService::$debugLog->info("failed to login");
 			// Invalid username/password
 			return false;
 		}
@@ -431,5 +434,10 @@ class ClarityService extends AbstractService {
 	public function resetContent($editedUID, $groupID) {
 		return $this->contentOps->resetContent($editedUID, $groupID);
 	}
+
+    // gh#1275
+    public function getRootIDFromPrefix($loginDetails) {
+        return $this->accountOps->getRootIDFromPrefix($loginDetails->prefix);
+    }
 
 }

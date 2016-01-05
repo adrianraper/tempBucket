@@ -52,7 +52,7 @@ class LoginService extends AbstractService {
 		$this->manageableOps = new ManageableOps($this->db);
 		$this->subscriptionOps = new SubscriptionOps($this->db);
 		$this->accountOps = new AccountOps($this->db);
-		
+
 		// DMS has no restrictions on user/group access so disable manageable authentication
 		AuthenticationOps::$useAuthentication = false;
 	}

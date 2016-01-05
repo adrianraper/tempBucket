@@ -19,7 +19,8 @@ bin-release-temp
 *.OLD
 *.IGNORE
 /desktop.ini
-
+/.idea
+*.iml
 /Software/BentoTitles/IELTS/src/skins/ielts/assets/*.swc
 /Software/BentoLibraries/Rotterdam/bin/*.swc
 /Software/Bento/bin/*.swc

@@ -9,13 +9,6 @@ $unitName = 'Am is are';
 $rootID = 24568;
 $prefix = 'CSS';
 
-
-$studentID = '163';
-$teacherID = null;
-$unitName = 'am is are';
-$rootID = 163;
-
-
 $crypt = new Crypt();
 $parameters = 'rootID='.$rootID.'&prefix='.$prefix.'&studentID='.$studentID.'&teacherID='.$teacherID.'&unitName='.$unitName;
 $startProgram = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
