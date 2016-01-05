@@ -102,8 +102,8 @@
                         </s:fill>
                     </s:Rect>
 
-                    <s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="15" left="15" right="15" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
-                        <components:XHTMLRichText id="readingTextRichText" visible="false" top="5" left="30" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour/*, DictionaryBehaviour*/]}" />
+                    <s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="15" left="0" right="15" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
+                        <components:XHTMLRichText id="readingTextRichText" visible="false" top="5" left="0" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour/*, DictionaryBehaviour*/]}" />
                     </s:Scroller>
 
                     <s:Rect width="1" top="15" bottom="15" right="10">
