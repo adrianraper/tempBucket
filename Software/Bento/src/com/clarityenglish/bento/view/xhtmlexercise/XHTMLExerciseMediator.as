@@ -160,6 +160,8 @@ import org.puremvc.as3.interfaces.INotification;
 			} else {
 				throw new Error("onQuestionAnswered received an answer that was neither a NodeAnswer nor a String - " + answerOrString);
 			}
+
+			view.isClickFlowElement = true;
 		}
 		
 		/**

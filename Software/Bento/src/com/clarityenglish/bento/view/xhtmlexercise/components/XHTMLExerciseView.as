@@ -24,6 +24,7 @@ import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.events.TimerEvent;
 import flash.geom.Point;
+import flash.text.engine.TextLine;
 import flash.utils.Timer;
 
 import mx.controls.SWFLoader;
@@ -118,6 +119,9 @@ import spark.components.Group;
 		
 		[Bindable]
 		public var atLeastOneSelectedAnswerHasFeedback:Boolean;
+
+		[Bindable]
+		public var isClickFlowElement:Boolean;
 		
 		// gh#413
 		public var gotQuestionFeedback:Signal = new Signal(Boolean);
@@ -255,9 +259,11 @@ import spark.components.Group;
 		 * @param event
 		 */
 		protected function onSectionClick(event:MouseEvent):void {
-			// gh#533 If you are in a gap, stop the click from progressing with this event
-			if (event.target.hasOwnProperty("editable") && event.target.editable)
+			// gh#1436
+			if (isClickFlowElement || !(event.target is TextLine)) {
+				isClickFlowElement = false;
 				return;
+			}
 			
 			dispatchEvent(new SectionEvent(SectionEvent.INCORRECT_QUESTION_ANSWER, null, null, null, true));
 			
@@ -275,7 +281,7 @@ import spark.components.Group;
 			Tweener.addTween(swfLoader, { alpha: 1, time: 0.6 } );
 			Tweener.addTween(swfLoader, { alpha: 0, time: 0.6, delay: 2, onComplete: function():void { (this.parent as Group).removeElement(this as IVisualElement); } } );
 		}
-		
+
 		public function stopAllAudio():void {
 			AudioPlayer.stopAllAudio();
 		}

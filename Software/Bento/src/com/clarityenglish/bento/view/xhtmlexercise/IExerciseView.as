@@ -21,6 +21,8 @@ public interface IExerciseView extends IEventDispatcher {
 		function modifyMarkingClass(question:Question, selectedAnswerMap:AnswerMap, markableAnswerMap:AnswerMap, marked:Boolean = true):void; // gh#627
 		// gh#1373 header group height + nonscroll group height
 		function getTopGroupHeight():Number;
+		// gh#1436
+		function set isClickFlowElement(value:Boolean):void;
 	}
 	
 }
