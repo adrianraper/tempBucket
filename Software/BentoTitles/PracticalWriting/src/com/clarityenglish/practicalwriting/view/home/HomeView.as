@@ -1,12 +1,19 @@
 package com.clarityenglish.practicalwriting.view.home {
+import com.clarityenglish.bento.BentoApplication;
 import com.clarityenglish.bento.view.base.BentoView;
 import com.clarityenglish.textLayout.vo.XHTML;
+
+import flash.events.MouseEvent;
+import flash.geom.Point;
 
 import mx.collections.XMLListCollection;
 
 import mx.collections.XMLListCollection;
 
 import org.osflash.signals.Signal;
+
+import spark.components.Group;
+import spark.components.Label;
 
 import spark.components.List;
 import spark.events.IndexChangeEvent;
@@ -15,6 +22,12 @@ public class HomeView extends BentoView {
 
     [SkinPart]
     public var courseList:List;
+
+    [SkinPart]
+    public var demoTooltipGroup:Group;
+
+    [SkinPart]
+    public var demoTooltipLabel1:Label;
 
     [Bindable]
     public var courseXMLListCollection:XMLListCollection;
@@ -40,6 +53,10 @@ public class HomeView extends BentoView {
         switch (instance) {
             case courseList:
                 courseList.addEventListener(IndexChangeEvent.CHANGE, onIndexChange);
+                courseList.addEventListener(MouseEvent.CLICK, onCourseListClick);
+                break;
+            case demoTooltipLabel1:
+                demoTooltipLabel1.text = copyProvider.getCopyForId("demoTooltipLabel");
                 break;
         }
     }
@@ -60,6 +77,22 @@ public class HomeView extends BentoView {
     protected function onIndexChange(event:IndexChangeEvent):void {
         if (event.target.selectedItem)
             courseSelect.dispatch(event.target.selectedItem);
+    }
+
+    protected function onCourseListClick(event:MouseEvent):void {
+        demoTooltipGroup.visible = false;
+        if (productVersion == BentoApplication.DEMO && courseList.selectedIndex == -1) {
+            var pt:Point = new Point(event.localX, event.localY);
+            pt = event.target.localToGlobal(pt);
+            if(pt.x > 730) {
+                demoTooltipGroup.left = pt.x - demoTooltipGroup.width - 10;
+            } else {
+                demoTooltipGroup.left = pt.x + 10;
+            }
+            demoTooltipGroup.top = pt.y + 10;
+
+            demoTooltipGroup.visible = true;
+        }
     }
 }
 }

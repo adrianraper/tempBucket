@@ -78,6 +78,12 @@ import spark.managers.PersistenceManager;
         [SkinPart]
         public var copyrightLabel:Label;
 
+        [SkinPart]
+        public var topLeftDemoLabel:Label;
+
+        [SkinPart]
+        public var topRightDemoLabel:Label;
+
         public var backToMenu:Signal = new Signal();
         public var logout:Signal = new Signal();
         public var goToProgress:Signal = new Signal();
@@ -226,6 +232,12 @@ import spark.managers.PersistenceManager;
                     break;
                 case copyrightLabel:
                     copyrightLabel.text = copyProvider.getCopyForId("copyright");
+                    break;
+                case topLeftDemoLabel:
+                    topLeftDemoLabel.text = copyProvider.getCopyForId("topLeftDemoLabel");
+                    break;
+                case topRightDemoLabel:
+                    topRightDemoLabel.text = copyProvider.getCopyForId("topRightDemoLabel");
                     break;
             }
 
