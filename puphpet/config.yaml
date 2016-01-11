@@ -229,7 +229,7 @@ apache:
 php:
     install: '1'
     settings:
-        version: '56'
+        version: '70'
     modules:
         php:
             - cli
@@ -244,8 +244,8 @@ php:
         pear: {  }
         pecl: {  }
     ini:
-        display_errors: 'On'
-        error_reporting: 'On'
+        display_errors: On
+        error_reporting: On
         session.save_path: /var/lib/php/session
         date.timezone: UTC
     fpm_ini:
