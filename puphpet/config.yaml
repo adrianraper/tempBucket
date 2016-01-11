@@ -343,7 +343,9 @@ mysql:
     settings:
         version: '5.5'
         root_password: '123'
-        override_options: {  }
+        override_options:
+            mysqld:
+                lower_case_table_names: 1
     adminer: 0
     users:
         mysqlnu_c4jdpiphp8ac:
