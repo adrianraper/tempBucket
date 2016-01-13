@@ -40,7 +40,7 @@
 			ip: jsIP,
 			courseFile: jsCourseFile,
 			licence: "",
-			sessionid: jsSessionID
+			sessionID: jsSessionID
 		};
 			
 		var params = {

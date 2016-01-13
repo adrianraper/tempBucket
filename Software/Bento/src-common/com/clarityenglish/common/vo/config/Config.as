@@ -372,7 +372,7 @@ package com.clarityenglish.common.vo.config {
             // Interleave a timestamp with a random string of letters
             var chars:String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             var numChars:Number = chars.length - 1;
-            var buildId:String = '';
+            var buildId:String = 'bento'; // prefix to make it clear where this session id came from
             var timeStamp:Date = new Date();
             var timeChars:String = timeStamp.getTime().toString();
             for (var ix:uint = 0; ix < timeChars.length; ix++)

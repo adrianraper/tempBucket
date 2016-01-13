@@ -9,7 +9,6 @@
 		session_id($_GET['session']);
 	session_start();
 	$currentSessionID = session_id();
-	//
 	
 	$userName = $password = $extraParam = $licenceFile = $version = '';
 	$studentID = $email = $userID = $instanceID = '';
