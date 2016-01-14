@@ -48,7 +48,7 @@ images
 /area1/AccessUK/content
 /area1/AccessUK/video
 ChinaLogin
-bin-realese
+bin-release
 roadtoielts
 html-template
 xhtml-template
@@ -59,3 +59,6 @@ Software/BentoTitles/RotterdamPlayer/bin
 Software/BentoTitles/TenseBuster/bin
 Software/Common/OSMF/bin
 /Software/BentoTitles/PracticalWriting/bin/PracticalWritingLib.swc
+/area1/ResultsManager/uploads
+/area1/ResultsManager/*.log
+/Software/Common/uploads

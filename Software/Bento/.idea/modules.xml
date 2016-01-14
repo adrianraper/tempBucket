@@ -19,7 +19,6 @@
       <module fileurl="file://$PROJECT_DIR$/../BentoTitles/TenseBuster/TenseBuster.iml" filepath="$PROJECT_DIR$/../BentoTitles/TenseBuster/TenseBuster.iml" group="TenseBuster" />
       <module fileurl="file://$PROJECT_DIR$/../BentoTitles/TenseBusterAir/TenseBusterAir.iml" filepath="$PROJECT_DIR$/../BentoTitles/TenseBusterAir/TenseBusterAir.iml" group="TenseBuster" />
       <module fileurl="file://$PROJECT_DIR$/../Common/as3csslib/csslib.iml" filepath="$PROJECT_DIR$/../Common/as3csslib/csslib.iml" group="Core" />
-      <module fileurl="file://D:/moodle/moodle.iml" filepath="D:/moodle/moodle.iml" group="ActiveReading" />
       <module fileurl="file://$PROJECT_DIR$/../Common/textLayout/textLayout.iml" filepath="$PROJECT_DIR$/../Common/textLayout/textLayout.iml" group="Core" />
     </modules>
   </component>
