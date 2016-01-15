@@ -40,15 +40,18 @@ package com.clarityenglish.activereading.view.home {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			if (ObjectUtil.getClassInfo(configProxy.getDirectStart()).properties.length > 0) {
 				var directStart:Object = configProxy.getDirectStart();
-				if (directStart.courseID) { 
-					view.directCourseID = directStart.courseID
-					// gh#853
-					view.isDirectStart = true;
-				}
-				if (directStart.unitID) { 
+				if (directStart.courseID)
+					view.directCourseID = directStart.courseID;
+
+				if (directStart.unitID)
 					view.directUnitID = directStart.unitID;
-					view.isDirectStart = true;
-				}
+
+				if (directStart.exerciseID)
+					view.directExerciseID = directStart.exerciseID;
+
+				view.isDirectStart = true;
+			} else {
+				view.isDirectStart = false;
 			}
 		}
 		

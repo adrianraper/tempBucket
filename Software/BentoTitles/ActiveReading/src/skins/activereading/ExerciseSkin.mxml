@@ -88,7 +88,7 @@
 	</s:HGroup>
 	
 	<!--Top raw-->
-	<s:Group top="0" horizontalCenter="0" width="370" height="40">
+	<s:Group top="0" horizontalCenter="0" width="370" height="40" visible="{!hostComponent.isDirectStartEx &amp;&amp; !hostComponent.isDirectStartUnit}">
 		<ui:WindowShade id="windowShade" x="34" y="40" width="296" height="304">
 			<s:Rect width="296" height="543" top="0" bottom="0" bottomLeftRadiusX="8" bottomLeftRadiusY="8" bottomRightRadiusX="8" bottomRightRadiusY="8" horizontalCenter="0">
 				<s:stroke>

@@ -89,6 +89,12 @@ import spark.components.Button;
 		[Bindable]
 		public var isPlatformTablet:Boolean;
 
+		[Bindable]
+		public var isDirectStartEx:Boolean;
+
+		[Bindable]
+		public var isDirectStartUnit:Boolean;
+
 		// Timer total time
 		private var _timerTotalTime:Array = [];
 		private var _isTimerTotalTimeChange:Boolean;
@@ -101,7 +107,6 @@ import spark.components.Button;
 		private var _hasQuestionFeedback:Boolean;
 		private var _ruleLink:String;
 		private var _isFirstExercise:Boolean;
-		private var _isDirectStartEx:Boolean;
 		private var _languageCode:String;
 		private var forwardLastTime:Date = new Date();
 		private var backLastTime:Date = new Date();
@@ -154,15 +159,6 @@ import spark.components.Button;
 		[Bindable]
 		public function get isFirstExercise():Boolean {
 			return _isFirstExercise;
-		}
-
-		public function set isDirectStartEx(value:Boolean):void {
-			_isDirectStartEx = value;
-		}
-
-		[Bindable]
-		public function get isDirectStartEx():Boolean {
-			return _isDirectStartEx;
 		}
 
 		public function set languageCode(value:String):void {

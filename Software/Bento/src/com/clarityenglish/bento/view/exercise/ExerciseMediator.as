@@ -61,9 +61,10 @@ import org.puremvc.as3.interfaces.IMediator;
 			}).toProperty(view, "href");
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			if (configProxy.getDirectStart().exerciseID && !configProxy.getDirectStart().scorm) {
+			if (configProxy.getDirectStart().exerciseID)
 				view.isDirectStartEx = true;
-			}
+			if (configProxy.getDirectStart().unitID)
+				view.isDirectStartUnit = true;
 			
 			view.languageCode = configProxy.getConfig().languageCode;
 			view.isPlatformiPad = configProxy.isPlatformiPad();

@@ -14,16 +14,19 @@ package com.clarityenglish.activereading.view.home {
 	import mx.collections.XMLListCollection;
 	import mx.core.FlexGlobals;
 	import mx.core.ScrollPolicy;
-	import mx.effects.Move;
-	import mx.effects.easing.Back;
+import mx.effects.Fade;
+import mx.effects.Move;
+import mx.effects.Resize;
+import mx.effects.easing.Back;
     import mx.events.EffectEvent;
+import mx.graphics.SolidColorStroke;
 
-    import org.osflash.signals.Signal;
+import org.osflash.signals.Signal;
 
 	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.List;
-    import spark.effects.Scale;
+import spark.effects.Scale;
     import spark.primitives.Path;
     import spark.primitives.Rect;
 
@@ -46,6 +49,9 @@ package com.clarityenglish.activereading.view.home {
 		
 		[SkinPart]
 		public var levelTitleGroup:Group;
+
+		[SkinPart]
+		public var levelTitleGroupLabel:Label;
 		
 		[SkinPart]
 		public var trianglePath:Path;
@@ -83,6 +89,9 @@ package com.clarityenglish.activereading.view.home {
 		[SkinPart]
 		public var copyrightLabel:Label;
 
+		[SkinPart]
+		public var unitTitleBarStrokeColour:SolidColorStroke;
+
 		// gh#1090
 		[Bindable]
 		public var userNameCaption:String;
@@ -91,10 +100,37 @@ package com.clarityenglish.activereading.view.home {
 		public var exerciseXMLListCollection:XMLListCollection;
 
 		[Bindable]
-		public var isFirstClickCurrentUnitList:Boolean;
+		public var courseIndex:Number;
 
 		[Bindable]
 		public var isAnimationPlayed:Boolean;
+
+		[Bindable]
+		public var isUnitListClicked:Boolean;
+
+		[Bindable]
+		public var isClickOnUnitList:Boolean;
+
+		[Bindable]
+		public var isClickOnCourseSelector:Boolean;
+
+		[Bindable]
+		public var isInitialSelect:Boolean;
+
+		[Bindable]
+		public var isDirectStart:Boolean;
+
+		[Bindable]
+		public var directCourseID:String;
+
+		[Bindable]
+		public var directUnitID:String;
+
+		[Bindable]
+		public var directExerciseID:String;
+
+		[Bindable]
+		public var exListAlphaArray:Array = [];
 		
 		public var courseSelect:Signal = new Signal(XML);
 		public var unitSelect:Signal = new Signal(XML);
@@ -106,14 +142,6 @@ package com.clarityenglish.activereading.view.home {
 		[Bindable]
 		private var courseChanged:Boolean;
 		private var unitChanged:Boolean;
-		private var _courseIndex:Number;
-		private var _isBackToHome:Boolean;
-		private var _isInitialSelect:Boolean =  true;
-		private var _isCourseSelectorClick:Boolean;
-		private var _isUnitListClick:Boolean;
-		private var _isDirectStart:Boolean;
-		private var _directCourseID:String;
-		private var _directUnitID:String;
 		
 		// gh#757
 		[Bindable]
@@ -125,7 +153,7 @@ package com.clarityenglish.activereading.view.home {
 		public function set course(value:XML):void {
 			_course = value;
 			courseChanged = true;
-			invalidateProperties();	
+			invalidateProperties();
 		}
 		
 		[Bindable]
@@ -134,83 +162,9 @@ package com.clarityenglish.activereading.view.home {
 		}
 		
 		public function set unit(value:XML):void {
-			if (value) {
-				_unit = value;
-				unitChanged = true;
-				invalidateProperties();
-			}
-		}
-		
-		[Bindable]
-		public function get courseIndex():Number {
-			return _courseIndex;
-		}
-		
-		public function set courseIndex(value:Number):void {
-			_courseIndex = value;
-		}		
-		
-		[Bindable]
-		public function get isBackToHome():Boolean {
-			return _isBackToHome;
-		}
-		
-		public function set isBackToHome(value:Boolean):void {
-			_isBackToHome = value;
-		}
-		
-		[Bindable]
-		public function get isInitialSelect():Boolean {
-			return _isInitialSelect;
-		}
-		
-		public function set isInitialSelect(value:Boolean):void {
-			_isInitialSelect = value;
-		}
-		
-		[Bindable]
-		public function get isCourseSelectorClick():Boolean {
-			return _isCourseSelectorClick;
-		}
-		
-		public function set isCourseSelectorClick(value:Boolean):void {
-			_isCourseSelectorClick = value;
-		}
-		
-		[Bindable]
-		public function get isUnitListClick():Boolean {
-			return _isUnitListClick;
-		}
-		
-		public function set isUnitListClick(value:Boolean):void {
-			_isUnitListClick = value;
-		}
-		
-		public function set isDirectStart(value:Boolean):void {
-			_isDirectStart = value;
-		}
-		
-		[Bindable]
-		public function get isDirectStart():Boolean {
-			return _isDirectStart;
-		}
-		
-		public function set directCourseID(value:String):void {
-			_directCourseID = value;
-		}
-		
-		[Bindable]
-		public function get directCourseID():String {
-			return _directCourseID;
-		}
-		
-		public function set directUnitID(value:String):void {
-			_directUnitID = value;
-		}
-		
-		[Bindable]
-		public function get directUnitID():String {
-			return _directUnitID;
+			_unit = value;
+			unitChanged = true;
+			invalidateProperties();
 		}
 		
 		public function HomeView():void {
@@ -242,8 +196,8 @@ package com.clarityenglish.activereading.view.home {
 				courseSelector.dataProvider = menu;
 			
 			if (isDirectStart) {
-				courseSelector.isDirectStart = true;
-				course = menu.course.(@id == directCourseID)[0];
+				if (directCourseID)
+					course = menu.course.(@id == directCourseID)[0];
 				if (directUnitID) {
 					unit = course.unit.(@id == directUnitID)[0];
 				}
@@ -259,6 +213,7 @@ package com.clarityenglish.activereading.view.home {
 					break;
 				case courseSelector:
 					courseSelector.addEventListener(NodeSelectEvent.NODE_SELECT, onCourseSelect);
+					courseSelector.addEventListener("animationCompleted", onCourseAnimationCompleted, false, 0, true);
 					break;
 				case unitList:
 					unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
@@ -298,35 +253,34 @@ package com.clarityenglish.activereading.view.home {
 				userNameCaption = copyProvider.getCopyForId('welcomeLabel', {name: config.username});
 			}
 			
-			// for re-login
+			// For re-login, reset all value
 			if (!course && !unit) {
+				isInitialSelect = true;
 				courseSelector.level = null;
 				unitList.visible = false;
 				demoTooltipGroup.visible = false;
-				isInitialSelect = true;
 				courseSelector.level = null;
+				levelTitleGroup.alpha = 0;
+				isClickOnCourseSelector = false;
+				exerciseGroup.visible = false;
+				exerciseGroup.alpha = 0;
 			}
-			
-			// for back from exercise or progress
-			// This is the only place we set isBackToHome to true base on the courseSelector and unitList isn't clicked 
-			if (!isCourseSelectorClick && !isUnitListClick) {
-				if (course != null && courseChanged != false) {
-					isBackToHome = true;
-				}		
-			} else if (isCourseSelectorClick) {
-				isCourseSelectorClick = false;
-			} else if (isUnitListClick) {
-				isUnitListClick = false;
-			}
-			
+
 			if (courseChanged && course) {
 				courseIndex = menu.course.(@caption == course.@caption).childIndex();
 				courseSelector.level = course;
 				unitList.dataProvider = new XMLListCollection(course.unit);
+				if (!isClickOnCourseSelector) {
+					levelTitleGroup.alpha = 1;
+					levelTitleGroupLabel.text = course.@caption;
+					levelTitleGroupLabel.setStyle("color", getOutlineStrokeColour(courseIndex));
+					unitList.height = unitList.dataProvider.length * 39 + 5;
+					unitList.visible = true;
+				}
 				courseChanged = false;
 			}
 			
-			if (unitChanged) {
+			if (unitChanged && unit) {
 				// used to put reload exercise in unit click handler, but turns out that evaluation to unit.exercise will cause unit select effect disfunctional
 				// so the exercise reload function will be put here and the data provider.
 				exerciseXMLListCollection = new XMLListCollection(getExercisesList(unit));
@@ -339,27 +293,34 @@ package com.clarityenglish.activereading.view.home {
 					exerciseGroup.height = exerciseRect.height = exerciseXMLListCollection.length * 31 + 95;
 				}
 
-				if (unitList.selectedIndex < 7) {
-					exerciseGroup.verticalCenter = unitList.selectedIndex * 39 - 100;
-				} else {
-					exerciseGroup.verticalCenter = 7 * 39 - 100;
-				}
-
-				if (isFirstClickCurrentUnitList && !isAnimationPlayed) {
+				if (!exerciseGroup.visible && !isAnimationPlayed) {
+					exerciseGroup.visible = true;
 					exerciseGroup.alpha = 1;
-					var scale:Scale = new Scale();
-					scale.scaleYFrom = 0;
-					scale.scaleYTo = 1;
-					scale.duration = 500;
-					scale.addEventListener(EffectEvent.EFFECT_END, onScaleEnd);
-					scale.play([exerciseRect]);
+					if (isClickOnUnitList) {
+						var scale:Scale = new Scale();
+						scale.scaleYFrom = 0;
+						scale.scaleYTo = 1;
+						scale.duration = 500;
+						scale.addEventListener(EffectEvent.EFFECT_END, onScaleEnd);
+						scale.play([exerciseRect]);
 
-					var fadeIn:mx.effects.Fade = new mx.effects.Fade();
-					fadeIn.alphaFrom = 0;
-					fadeIn.alphaTo = 1;
-					fadeIn.duration = 400;
-					fadeIn.startDelay = 200;
-					fadeIn.play([triangleGroup, exerciseListLabel]);
+						var fadeIn:mx.effects.Fade = new mx.effects.Fade();
+						fadeIn.alphaFrom = 0;
+						fadeIn.alphaTo = 1;
+						fadeIn.duration = 400;
+						fadeIn.startDelay = 200;
+						fadeIn.play([triangleGroup, exerciseListLabel]);
+
+						isClickOnUnitList = false;
+					} else {
+						unitList.selectedIndex = course.unit.(@id == unit.@id).childIndex();
+						exerciseGroup.verticalCenter = unitList.selectedIndex < 7 ? (unitList.selectedIndex * 39 - 100) : (7 * 39 - 100);
+						triangleReferenceGroup.y = unitList.selectedIndex * 37 + 65;
+						exerciseRect.scaleY = 1;
+						triangleGroup.alpha = exerciseListLabel.alpha = 1;
+						isUnitListClicked = true;
+					}
+
 					// for exercise list frame, when the list doesn't roll out completely and we selecte another unit, we don't want it to roll out again
 					isAnimationPlayed = true;
 				}
@@ -374,9 +335,51 @@ package com.clarityenglish.activereading.view.home {
 		
 		protected function onCourseSelect(event:NodeSelectEvent):void {
 			instructionGroup.visible = false;
-			
+			isClickOnCourseSelector = true;
+			unitList.visible = false;
+			exerciseList.visible = false;
+
 			if (!isDirectStart &&  event.node.@["class"].length() > 0) {
 				courseSelect.dispatch(menu.course.(@["class"] == event.node.@["class"])[0]);
+			}
+
+			// we need to detect the first click. If it is, the levelTitleGroup won't fade out, because it never fade in before.
+			if (isInitialSelect) {
+				isInitialSelect = false;
+			} else {
+				var titleFadeOut:mx.effects.Fade = new Fade();
+				titleFadeOut.alphaFrom = 1.0;
+				titleFadeOut.alphaTo = 0.0;
+				titleFadeOut.duration = 200;
+				titleFadeOut.play([levelTitleGroup]);
+				titleFadeOut.addEventListener(EffectEvent.EFFECT_END, OnLevelTitleGroupFadeOutEnd);
+
+				// if we don't add the following condition, the  will flash when we only switch the unit list
+				if (exerciseGroup.visible) {
+					var exerciseFadeOut:mx.effects.Fade = new mx.effects.Fade();
+					exerciseFadeOut.alphaFrom = 1;
+					exerciseFadeOut.alphaTo = 0;
+					exerciseFadeOut.duration = 100;
+					exerciseFadeOut.play([exerciseGroup, triangleGroup]);
+					exerciseFadeOut.addEventListener(EffectEvent.EFFECT_END, onExerciseGroupFadeOutEnd);
+
+					isUnitListClicked = false;
+				}
+			}
+		}
+
+		protected function onCourseAnimationCompleted(event:Event):void {
+			if (isClickOnCourseSelector) {
+				levelTitleGroupLabel.text = course.@caption;
+				levelTitleGroupLabel.setStyle("color", getOutlineStrokeColour(courseIndex));
+				var	fadeIn:mx.effects.Fade = new Fade();
+				fadeIn.alphaFrom = 0.0;
+				fadeIn.alphaTo = 1.0;
+				fadeIn.duration = 100;
+				fadeIn.play([levelTitleGroup]);
+				fadeIn.addEventListener(EffectEvent.EFFECT_END, onUnitTitleBarFadeInEnd);
+
+				isClickOnCourseSelector = false;
 			}
 		}
 		
@@ -384,10 +387,10 @@ package com.clarityenglish.activereading.view.home {
 			var unitXML:XML =  unitList.selectedItem as XML;
 
 			if (unitXML) {
-				isUnitListClick = true;
+				isClickOnUnitList = true;
 				exerciseList.visible = true;
 				demoTooltipGroup.visible = false;
-				//exerciseGroup.alpha = 1;
+				exerciseGroup.verticalCenter = unitList.selectedIndex < 7 ? (unitList.selectedIndex * 39 - 100) : (7 * 39 - 100);
 
 				if (triangleReferenceGroup.y) {
 					var move:Move = new Move();
@@ -407,11 +410,7 @@ package com.clarityenglish.activereading.view.home {
 		protected function onScaleEnd(event:Event):void {
 			// for the item on exercise list, when you first click unit with 6 exercises, and then click another with 11,
 			// the first 6 items has played fade in already and won't play again, but we also don't want the rest 5 items played fade in. So we use isFirstClickUnitList to avoid playing
-			isFirstClickCurrentUnitList = false;
-		}
-		
-		protected function onExerciseGroupMoveEnd(event:Event):void {
-			exerciseGroup.alpha = 1;
+			isUnitListClicked = true;
 		}
 		
 		// hide the invisible exercise
@@ -442,6 +441,41 @@ package com.clarityenglish.activereading.view.home {
 				demoTooltipGroup.top = pt.y;
 				demoTooltipGroup.visible = true;
 			}
+		}
+
+		private function OnLevelTitleGroupFadeOutEnd(event:Event):void {
+			unitTitleBarStrokeColour.color = getOutlineStrokeColour(courseIndex);
+		}
+
+		private function onExerciseGroupFadeOutEnd(event:Event):void {
+			exerciseGroup.visible = false;
+		}
+
+		private function onUnitTitleBarFadeInEnd(event:Event):void {
+			unitList.visible = true;
+
+			var resize:mx.effects.Resize = new Resize();
+			resize.heightFrom = 0;
+			// calculate the unit list height here, 13 is the sum for padding top and bottom
+			resize.heightTo = unitList.dataProvider.length * 39 + 5;
+			resize.duration = 300;
+			resize.addEventListener(EffectEvent.EFFECT_END, onUnitListResizeEnd);
+			resize.play([unitList]);
+		}
+
+		private function onUnitListResizeEnd(event:Event):void {
+			isAnimationPlayed = false;
+			isClickOnUnitList = false;
+			isUnitListClicked = false;
+			exListAlphaArray = [];
+			triangleGroup.alpha = 0;
+			exerciseListLabel.alpha = 0;
+			triangleReferenceGroup.y = new Number();
+		}
+
+		private function getOutlineStrokeColour(index:Number):Number {
+			var colors:Array = getStyle("outlineColors");
+			return colors[index]
 		}
 	}
 }
