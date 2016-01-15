@@ -111,6 +111,12 @@
 												unitItemRightLabel.visible = false;
 											}
 
+											var leftIconString:String = String(data.@caption).split(' ')[0];
+											var rightIconString:String = String(data.@caption).split(' ')[1];
+											unitItemLeftLabel.text = leftIconString;
+											unitItemRightLabel.text = rightIconString;
+
+
 											coverageCirclesDataGroup.dataProvider = new XMLListCollection(data.exercise);
 										}
 									}
@@ -122,12 +128,12 @@
 									<s:Spacer width="5" />
 									<s:HGroup left="0" width="80" verticalCenter="0" verticalAlign="middle">
 										<s:Button id="unitItemLeftButton" scaleX="0.8" scaleY="0.8"/>
-										<s:Label id="unitItemLeftLabel" text="{data.@leftIcon}" fontSize="14" color="#005D5F" />
+										<s:Label id="unitItemLeftLabel" fontSize="14" color="#005D5F" />
 									</s:HGroup>
 									<s:Spacer width="10" />
 									<s:HGroup width="80" verticalCenter="0" verticalAlign="middle">
 										<s:Button id="unitItemRightButton" scaleX="0.8" scaleY="0.8" />
-										<s:Label id="unitItemRightLabel" text="{data.@rightIcon}" fontSize="14" color="#005D5F" />
+										<s:Label id="unitItemRightLabel" fontSize="14" color="#005D5F" />
 									</s:HGroup>
 									<s:Spacer width="10" />
 									<!--Coverage Circles-->
