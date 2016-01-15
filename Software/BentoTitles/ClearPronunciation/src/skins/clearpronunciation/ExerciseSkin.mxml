@@ -44,11 +44,7 @@
 
 			protected function onCreationComplete(event:Event):void {
 				// Due to the position for tablet and browser is different, I have to assigned
-				if (hostComponent.isPlatformTablet) {
-					expandBottom = 0;
-				} else {
-					expandBottom = 44;
-				}
+				expandBottom = 44;
 
 				Bind.fromProperty(hostComponent, "selectedExerciseNode").toFunction(function(node:XML):void {
 					if (node) {
