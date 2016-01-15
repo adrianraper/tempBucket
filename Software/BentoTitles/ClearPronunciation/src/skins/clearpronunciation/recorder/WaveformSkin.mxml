@@ -4,7 +4,8 @@
 		xmlns:ui="com.clarityenglish.bento.view.recorder.ui.*"
 		xmlns:assets="skins.assets.*"
 		minWidth.full="555" height.full="200"
-		minWidth.minimized="555" height.minimized="28" xmlns:recorder="skins.clearpronunciation.assets.unit.recorder.*">
+		minWidth.minimized="555" height.minimized="28"
+		xmlns:recorder="skins.clearpronunciation.assets.unit.recorder.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.recorder.WaveformView")]
@@ -45,14 +46,14 @@
 		<s:Button id="pauseButton" skinClass="skins.clearpronunciation.recorder.ui.PauseButtonSkin" toolTip="Pause" useHandCursor="true" buttonMode="true"/>		
 		<s:Button id="saveButton" skinClass="skins.clearpronunciation.recorder.ui.SaveButtonSkin" toolTip="Save" includeIn="record" includeInLayout="{hostComponent.isSaveEnabled}" visible="{hostComponent.isSaveEnabled}" useHandCursor="true" buttonMode="true"/>
 		<s:Button id="newButton" skinClass="skins.clearpronunciation.recorder.ui.NewButtonSkin" toolTip="New" includeIn="record" useHandCursor="true" buttonMode="true"/>
-		<s:Button id="compareButton" skinClass="skins.clearpronunciation.recorder.ui.CompareButtonSkin" enabled="{hostComponent.isCompareEnabled}" toolTip="Compare" includeIn="record" useHandCursor="true" buttonMode="true"/>
-		<s:RichText id="richText" color="#FFFFFF" columnCount="1" fontFamily="Verdana" fontSize="9" height="22" kerning="on" lineHeight="13" tabStops="S31.4992408752441 S62.9984817504883 S94.4977226257324 S125.996963500977" whiteSpaceCollapse="preserve" width="180" x="310" y="5" />
+		<s:Button id="compareButton" skinClass="skins.clearpronunciation.recorder.ui.CompareButtonSkin" enabled="{hostComponent.isCompareEnabled}" toolTip="Compare you and a model" includeIn="record" useHandCursor="true" buttonMode="true"/>
+		<s:RichText id="richText" color="#FFFFFF" columnCount="1" fontFamily="Verdana" fontSize="10" height="22" kerning="on" lineHeight="13" tabStops="S31.4992408752441 S62.9984817504883 S94.4977226257324 S125.996963500977" whiteSpaceCollapse="preserve" width="180" x="310" y="5" />
 	</s:HGroup>
 	
 	<s:HGroup right.minimized="20" top.minimized="6" right.full="20" bottom.full="12">
 		<s:Group>
-			<s:Button id="maxButton" skinClass="skins.clearpronunciation.recorder.ui.MaxButtonSkin" toolTip="Hide" includeIn="minimized" useHandCursor="true" buttonMode="true"/>
-			<s:Button id="minButton" skinClass="skins.clearpronunciation.recorder.ui.MinButtonSkin" y="7" toolTip="Hide" includeIn="full" visible="{hostComponent.isRecordEnabled}" includeInLayout="{hostComponent.isRecordEnabled}" useHandCursor="true" buttonMode="true"/>
+			<s:Button id="maxButton" skinClass="skins.clearpronunciation.recorder.ui.MaxButtonSkin" toolTip="Show waveform" includeIn="minimized" useHandCursor="true" buttonMode="true"/>
+			<s:Button id="minButton" skinClass="skins.clearpronunciation.recorder.ui.MinButtonSkin" y="7" toolTip="Hide waveform" includeIn="full" visible="{hostComponent.isRecordEnabled}" includeInLayout="{hostComponent.isRecordEnabled}" useHandCursor="true" buttonMode="true"/>
 		</s:Group>
 		<s:VGroup paddingTop.full="6">
 			<s:Button id="helpButton" skinClass="skins.clearpronunciation.recorder.ui.HelpButtonSkin" toolTip="Help" visible="{hostComponent.isRecordEnabled}" includeInLayout="{hostComponent.isRecordEnabled}" useHandCursor="true" buttonMode="true"/>
@@ -64,11 +65,12 @@
 			   enabled="{!hostComponent.isRecording}"
 			   minimum="0" maximum="1" snapInterval="0.001" value="0" bottom="-15" left="10" right="10" toolTip="Scrub bar" includeIn="minimized" />-->
 	
-	<s:VSlider id="gainSlider" skinClass="skins.clearpronunciation.recorder.ui.VerticalSliderSkin" minimum="0" maximum="2" snapInterval="0.05" value="1" top="8" right="13" bottom="58" toolTip="Visual gain" includeIn="full" />
-	
-	<ui:LevelMeter id="levelMeter" width="7"
-				   top.minimized="0" bottom.minimized="0" right.minimized="0"
-				   right.full="30" top.full="32" bottom.full="60"
+	<s:VSlider id="gainSlider" skinClass="skins.clearpronunciation.recorder.ui.VerticalSliderSkin" minimum="0" maximum="2" snapInterval="0.05" value="1" top="8" right="10" bottom="58" toolTip="Visual gain" includeIn="full" />
+
+    <!-- gh#1439 -->
+	<ui:LevelMeter id="levelMeter" width="6"
+				   top.minimized="0" bottom.minimized="0" right.minimized="4"
+				   right.full="28" top.full="13" bottom.full="63"
 				   toolTip="Recording level meter"
 				   visible="{hostComponent.isRecording}"
 				   includeIn="record" />

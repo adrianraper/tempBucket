@@ -73,6 +73,13 @@ tlfcomponents|AudioPlayer {
 tlfcomponents|AudioPlayer s|ScrubBar {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.audio.AudioScruBarSkin");
 }
+/* gh#1439 For Clarity Recorder tool tips */
+mx|ToolTip {
+    color: #FFFFFF;
+    backgroundColor: #263A45;
+    fontSize: 12;
+    fontFamily: Verdana;
+}
 
 ui4|WindowShade {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.WindowShadeSkin");
@@ -81,7 +88,6 @@ ui4|WindowShade {
 ui4|WindowShade s|Button#thumbButton {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.ui.WindowShadeThumbButtonSkin");
 }
-
 s|TitleWindow.RecorderTitleWindow {
 	skinClass: ClassReference("skins.clearpronunciation.recorder.RecorderTitleWindowSkin");
 }

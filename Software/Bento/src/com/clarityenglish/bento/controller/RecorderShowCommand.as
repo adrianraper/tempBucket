@@ -36,6 +36,8 @@ package com.clarityenglish.bento.controller
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
 			
 			var recorderView:RecorderView = new RecorderView();
+            // gh#1439
+			recorderView.currentState = "full";
 			titleWindow.addElement(recorderView);
 			
 			// Create and centre the popup
