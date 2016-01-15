@@ -78,7 +78,7 @@
 			protected function onInitialize(event:FlexEvent):void {
 				CSSApplicator.fontSizeOffset = 0;
 				
-				versionNumber = "10.1.30E";
+				versionNumber = "10.1.32";
 				
 				facade = ClearPronunciationApplicationFacade.getInstance();
 			}
