@@ -36,7 +36,6 @@
 				}
 				
 				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
-				videoList.addEventListener(FocusEvent.FOCUS_OUT, onVideoListFocusOut);
 			}
 			
 			protected function onPlaceholderClick(event:MouseEvent):void {
@@ -45,26 +44,6 @@
 				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 				// Manually set the focus here, for we manually change the video list index.
 				focusManager.setFocus(videoList);
-			}
-			
-			protected function onVideoListFocusOut(event:FocusEvent):void {
-				var component:Object = event.relatedObject;
-				var isFocusIn:Boolean;
-
-				while (component) {
-					if (component is VideoPlayerSkin) {
-						isFocusIn = true;
-					}
-					component = component.parent;
-				}
-
-				if (!isFocusIn) {
-					videoList.selectedItem = null;
-					videoPlayer.visible = false;
-					isFocusIn = false;
-				} else {
-					focusManager.setFocus(videoList);
-				}
 			}
 			
 			protected function onVideoListIndexChange(event:Event):void {
