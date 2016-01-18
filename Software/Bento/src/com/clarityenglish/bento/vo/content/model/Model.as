@@ -76,7 +76,7 @@ package com.clarityenglish.bento.vo.content.model {
 					return true;
 				
 				for each (var answer:Answer in question.answers) {
-					if (answer.feedback)
+					if (answer.feedback || answer.smallFeedback)
 						return true;
 				}
 			}
