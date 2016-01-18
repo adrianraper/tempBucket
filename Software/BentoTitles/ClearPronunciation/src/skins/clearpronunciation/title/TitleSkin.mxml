@@ -60,10 +60,21 @@
 		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.clearpronunciation.view.progress.ProgressView" left="0" right="0" height="100%" />
 	</ui:CancelableTabbedViewNavigator>
 	
-	<s:Group right="0" includeIn="home">
-		<s:HGroup gap="0" width="100%">
+	<s:Group left="0" right="0" includeIn="home">
+		<s:HGroup gap="0" width="100%" horizontalAlign="right">
 			<!-- NOTE: This should be a repeating image on left and right, with the 'mid' point set based on titleButtonHGroup width -->
-			<title:menuBarLT id="menuBarLT" left="0" width="200" top="-70" />
+			<s:VGroup width="100%" gap="0">
+				<s:Rect width="100%" height="7">
+					<s:fill>
+						<s:SolidColor color="#273B46" />
+					</s:fill>
+				</s:Rect>
+				<s:Rect width="100%" height="6.5">
+					<s:fill>
+						<s:SolidColor color="#040505" alpha="0.35" />
+					</s:fill>
+				</s:Rect>
+			</s:VGroup>
 			<title:menuBarMid id="menuBarMid" width="64" top="-70" />
 			<title:menuBarRT id="menuBarRT" right="0" width="620" top="-70" />
 		</s:HGroup>
