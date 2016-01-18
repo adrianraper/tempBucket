@@ -8,240 +8,292 @@
 		 
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.bento.view.recorder.events.RecorderEvent;
-			import com.clarityenglish.bento.view.recorder.events.WaveformEvent;
-			import com.clarityenglish.bento.view.recorder.events.WaveformRangeEvent;
-			import com.clarityenglish.bento.view.recorder.ui.LevelMeter;
-			import com.clarityenglish.bento.view.recorder.ui.WaveformRenderer;
-			
-			import spark.components.Button;
-			import spark.components.HSlider;
-			import spark.components.RichText;
-			import spark.components.VSlider;
-			
-			private static const SECONDS_TO_SHOW:Number = 5;
-			
-			private var _isRecordEnabled:Boolean;
-			
-			private var _isMinimized:Boolean;
-			
-			private var _dragMode:String;
-			
-			[Bindable]
-			public var samples:ByteArray;
-			
-			[Bindable]
-			public var sampleRate:Number;
-			
-			[Bindable]
-			public var isRecording:Boolean;
-			
-			[Bindable]
-			public var audioProxyName:String;
-			
-			[Bindable]
-			public var isCompareEnabled:Boolean;
-			
-			[SkinPart]		
-			public var recordButton:Button;
-			
-			[SkinPart]
-			public var playButton:Button;
-			
-			[SkinPart]
-			public var pauseButton:Button;
-			
-			[SkinPart]
-			public var stopButton:Button;
-			
-			[SkinPart]
-			public var saveButton:Button;
-			
-			[SkinPart]
-			public var openButton:Button;
-			
-			[SkinPart]
-			public var newButton:Button;
-			
-			[SkinPart]
-			public var compareButton:Button;
-			
-			[SkinPart]
-			public var minButton:Button;
-			
-			[SkinPart]
-			public var maxButton:Button;
-			
-			[SkinPart]
-			public var helpButton:Button;
-			
-			[Bindable]
-			[SkinPart]
-			public var gainSlider:VSlider;
-			
-			[Bindable]
-			[SkinPart]
-			public var scrubSlider:HSlider;
-			
-			[SkinPart]
-			public var levelMeter:LevelMeter;
-			
-			[SkinPart]
-			public var richText:RichText;
-			
-			[Bindable]
-			public var mp3FileSizeText:String = "-";
-			
-			[Bindable]
-			public var durationText:String = "-";
-			
-			// v4.0.1.1 Small step to help trouble shoot
-			public var microphoneName:String;
-			public var audioStatus:String;
-			
-			private var showAllContextMenuItem:ContextMenuItem;
-			private var resetViewContextMenuItem:ContextMenuItem;
-			private var cutContextMenuItem:ContextMenuItem;
-			// gh#683
-			private var _isSaveEnabled:Boolean;
-			
-			[Bindable]
-			public function set isRecordEnabled(value:Boolean):void {
-				_isRecordEnabled = value;
-				invalidateSkinState();
-			}
-			
-			public function get isRecordEnabled():Boolean { return _isRecordEnabled; }
-			
-			[Bindable]
-			public function set minimized(value:Boolean):void {
-				_isMinimized = value;
-				invalidateSkinState();
-			}
-			
-			public function get minimized():Boolean { return _isMinimized; }
-			
-			[Bindable]
-			public function set dragMode(value:String):void {
-				_dragMode = value;
-				
-				if (cutContextMenuItem) cutContextMenuItem.visible = !value;
-			}
-			
-			public function get dragMode():String { return _dragMode; }
-			
-			// gh#683
-			[Bindable]
-			public function get isSaveEnabled():Boolean {
-				return _isSaveEnabled;
-			}
-			
-			public function set isSaveEnabled(value:Boolean):void {
-				_isSaveEnabled = value;
-			}
-			/**
-			 * This resets the wave renderer to go back to the beginning and show the set amount of seconds.  Called on startup and when the user clicks NEW.
-			 */
-			public function reset():void {
-				waveformRenderer.leftSample = 0;
-				waveformRenderer.clearSelection();
-				waveformRenderer.followMode = true;
-				waveformRenderer.showSamples = SECONDS_TO_SHOW * sampleRate;
-				
-				waveformRenderer.invalidateDisplayList();
-			}
-			
-			private function creationComplete():void {
-				// Get the adaptor interface so we can use the same methods in the AIR and web versions
-				/*var recorderAdaptor:IRecorderAdaptor = parentApplication.recorderAdaptor as IRecorderAdaptor;
-				
-				showAllContextMenuItem = new ContextMenuItem("Show full waveform");
-				resetViewContextMenuItem = new ContextMenuItem("Reset view");
-				cutContextMenuItem = new ContextMenuItem("Cut selected area", true, false, dragMode == WaveformRenderer.SELECT);
-				
-				showAllContextMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, onMenuItemSelect);
-				resetViewContextMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, onMenuItemSelect);
-				cutContextMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, onMenuItemSelect);
-				
-				var menuItems:Array = [ showAllContextMenuItem, resetViewContextMenuItem, cutContextMenuItem ];
-				
-				contextMenu = new ContextMenu();
-				recorderAdaptor.setContextMenuItems(contextMenu, menuItems);*/
-				
-				// v4.0.1.1 Small step to help trouble shoot
-				if (isRecordEnabled)
-					recordButton.toolTip = "Record from " + microphoneName;
-				//levelMeter.toolTip = audioStatus;
-			}
-			
-			private function onMenuItemSelect(e:ContextMenuEvent):void {
-				switch (e.target) {
-					case showAllContextMenuItem:
-						waveformRenderer.showAll();
-						// There seems to be a Flex 4 bug where the context menu is left behind (only in web mode) so might need to do some kind of redraw here
-						break;
-					case resetViewContextMenuItem:
-						reset();
-						
-						waveformRenderer.invalidateDisplayList();
-						break;
-					case cutContextMenuItem:
-						dispatchEvent(new WaveformRangeEvent(WaveformRangeEvent.CUT, waveformRenderer.leftSelection, waveformRenderer.rightSelection));
-						waveformRenderer.clearSelection();
-						break;
-				}
-			}
-			
-			override protected function partAdded(partName:String, instance:Object):void {
-				switch (instance) {
-					case recordButton:
-						recordButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.RECORD)); } );
-						break;
-					case playButton:
-						playButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.PLAY)); } );
-						break;
-					case pauseButton:
-						pauseButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.PAUSE)); } );
-						break;
-					case stopButton:
-						stopButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.STOP)); } );
-						break;
-					case saveButton:
-						saveButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.SAVE_MP3)); } );
-						break;
-					case openButton:
-						openButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.LOAD_MP3)); } );
-						break;
-					case newButton:
-						newButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.NEW_WAVE)); } );
-						break;
-					case compareButton:
-						compareButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new RecorderEvent(RecorderEvent.COMPARE)); } );
-						break;
-					case minButton:
-						minButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new RecorderEvent(RecorderEvent.MINIMIZE)); } );
-						break;
-					case maxButton:
-						maxButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new RecorderEvent(RecorderEvent.MAXIMIZE)); } );
-						break
-					case helpButton:
-						helpButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new RecorderEvent(RecorderEvent.HELP, "help", true)); } );
-						break;
-					case richText:
-						richText.textFlow = textFlow;
-						break;
-				}
-			}
-			
-			private function onWaveformSelect(e:WaveformRangeEvent):void {
-				cutContextMenuItem.enabled = e.left < e.right;
-			}
-			
-			override protected function getCurrentSkinState():String {
-				return ((isRecordEnabled) ? "record" : "playback") + "_" + ((_isMinimized) ? "minimized" : "full");
-			}
+        import com.clarityenglish.bento.view.recorder.events.RecorderEvent;
+        import com.clarityenglish.bento.view.recorder.events.WaveformEvent;
+        import com.clarityenglish.bento.view.recorder.events.WaveformRangeEvent;
+        import com.clarityenglish.bento.view.recorder.ui.LevelMeter;
+        import com.clarityenglish.bento.view.recorder.ui.WaveformRenderer;
 
-		]]>
+        import spark.components.Button;
+        import spark.components.Group;
+        import spark.components.HSlider;
+        import spark.components.RichText;
+        import spark.components.TextArea;
+        import spark.components.VSlider;
+
+        private static const SECONDS_TO_SHOW:Number = 5;
+
+        private var _isRecordEnabled:Boolean;
+
+        private var _isMinimized:Boolean;
+
+        private var _dragMode:String;
+
+        [Bindable]
+        public var samples:ByteArray;
+
+        [Bindable]
+        public var sampleRate:uint;
+
+        [Bindable]
+        public var isRecording:Boolean;
+
+        [Bindable]
+        public var audioProxyName:String;
+
+        [Bindable]
+        public var isCompareEnabled:Boolean;
+
+        [SkinPart]
+        public var recordButton:Button;
+
+        [SkinPart]
+        public var playButton:Button;
+
+        [SkinPart]
+        public var pauseButton:Button;
+
+        [SkinPart]
+        public var stopButton:Button;
+
+        [SkinPart]
+        public var saveButton:Button;
+
+        [SkinPart]
+        public var openButton:Button;
+
+        [SkinPart]
+        public var newButton:Button;
+
+        [SkinPart]
+        public var compareButton:Button;
+
+        [SkinPart]
+        public var minButton:Button;
+
+        [SkinPart]
+        public var maxButton:Button;
+
+        [SkinPart]
+        public var helpButton:Button;
+
+        [SkinPart]
+        public var compareButtonWrapper:Group;
+
+        [Bindable]
+        [SkinPart]
+        public var gainSlider:VSlider;
+
+        [Bindable]
+        [SkinPart]
+        public var scrubSlider:HSlider;
+
+        [SkinPart]
+        public var levelMeter:LevelMeter;
+
+        [SkinPart]
+        public var richText:RichText;
+
+        [Bindable]
+        public var mp3FileSizeText:String = "-";
+
+        [Bindable]
+        public var durationText:String = "-";
+
+        [Bindable]
+        public var debugInfo:String;
+
+        // v4.0.1.1 Small step to help trouble shoot
+        public var microphoneName:String;
+        public var audioStatus:String;
+
+        private var showAllContextMenuItem:ContextMenuItem;
+        private var resetViewContextMenuItem:ContextMenuItem;
+        private var cutContextMenuItem:ContextMenuItem;
+        // gh#683
+        private var _isSaveEnabled:Boolean;
+
+        [Bindable]
+        public function set isRecordEnabled(value:Boolean):void {
+            _isRecordEnabled = value;
+            invalidateSkinState();
+        }
+
+        public function get isRecordEnabled():Boolean {
+            return _isRecordEnabled;
+        }
+
+        [Bindable]
+        public function set minimized(value:Boolean):void {
+            _isMinimized = value;
+            invalidateSkinState();
+        }
+
+        public function get minimized():Boolean {
+            return _isMinimized;
+        }
+
+        [Bindable]
+        public function set dragMode(value:String):void {
+            _dragMode = value;
+
+            if (cutContextMenuItem) cutContextMenuItem.visible = !value;
+        }
+
+        public function get dragMode():String {
+            return _dragMode;
+        }
+
+        // gh#683
+        [Bindable]
+        public function get isSaveEnabled():Boolean {
+            return _isSaveEnabled;
+        }
+
+        public function set isSaveEnabled(value:Boolean):void {
+            _isSaveEnabled = value;
+        }
+
+        public function set compareEnabled(value:Boolean):void {
+            isCompareEnabled = value;
+            compareButtonWrapper.toolTip = (value) ? copyProvider.getCopyForId("recorderCompareEnabledToolTip") : copyProvider.getCopyForId("recorderCompareDisabledToolTip");
+        }
+
+        /**
+         * This resets the wave renderer to go back to the beginning and show the set amount of seconds.  Called on startup and when the user clicks NEW.
+         */
+        public function reset():void {
+            waveformRenderer.leftSample = 0;
+            waveformRenderer.clearSelection();
+            waveformRenderer.followMode = true;
+            waveformRenderer.showSamples = SECONDS_TO_SHOW * sampleRate;
+
+            waveformRenderer.invalidateDisplayList();
+        }
+
+        private function creationComplete():void {
+            // Get the adaptor interface so we can use the same methods in the AIR and web versions
+            /*var recorderAdaptor:IRecorderAdaptor = parentApplication.recorderAdaptor as IRecorderAdaptor;
+
+             showAllContextMenuItem = new ContextMenuItem("Show full waveform");
+             resetViewContextMenuItem = new ContextMenuItem("Reset view");
+             cutContextMenuItem = new ContextMenuItem("Cut selected area", true, false, dragMode == WaveformRenderer.SELECT);
+
+             showAllContextMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, onMenuItemSelect);
+             resetViewContextMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, onMenuItemSelect);
+             cutContextMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, onMenuItemSelect);
+
+             var menuItems:Array = [ showAllContextMenuItem, resetViewContextMenuItem, cutContextMenuItem ];
+
+             contextMenu = new ContextMenu();
+             recorderAdaptor.setContextMenuItems(contextMenu, menuItems);*/
+
+            // v4.0.1.1 Small step to help trouble shoot
+            if (isRecordEnabled)
+                recordButton.toolTip = copyProvider.getCopyForId("recorderRecordToolTip", {microphone: microphoneName});
+            //levelMeter.toolTip = audioStatus;
+            //recorderDebugInfo.text = "sampleRate=" + sampleRate + "\n" + "audioStatus=" + audioStatus;
+        }
+
+        private function onMenuItemSelect(e:ContextMenuEvent):void {
+            switch (e.target) {
+                case showAllContextMenuItem:
+                    waveformRenderer.showAll();
+                    // There seems to be a Flex 4 bug where the context menu is left behind (only in web mode) so might need to do some kind of redraw here
+                    break;
+                case resetViewContextMenuItem:
+                    reset();
+
+                    waveformRenderer.invalidateDisplayList();
+                    break;
+                case cutContextMenuItem:
+                    dispatchEvent(new WaveformRangeEvent(WaveformRangeEvent.CUT, waveformRenderer.leftSelection, waveformRenderer.rightSelection));
+                    waveformRenderer.clearSelection();
+                    break;
+            }
+        }
+
+        override protected function partAdded(partName:String, instance:Object):void {
+            switch (instance) {
+                case recordButton:
+                    recordButton.addEventListener(MouseEvent.CLICK, function ():void {
+                        dispatchEvent(new WaveformEvent(WaveformEvent.RECORD));
+                    });
+                    break;
+                case playButton:
+                    playButton.addEventListener(MouseEvent.CLICK, function ():void {
+                        dispatchEvent(new WaveformEvent(WaveformEvent.PLAY));
+                    });
+                    playButton.toolTip = copyProvider.getCopyForId("recorderPlayToolTip");
+                    break;
+                case pauseButton:
+                    pauseButton.addEventListener(MouseEvent.CLICK, function ():void {
+                        dispatchEvent(new WaveformEvent(WaveformEvent.PAUSE));
+                    });
+                    pauseButton.toolTip = copyProvider.getCopyForId("recorderPauseToolTip");
+                    break;
+                case stopButton:
+                    stopButton.addEventListener(MouseEvent.CLICK, function ():void {
+                        dispatchEvent(new WaveformEvent(WaveformEvent.STOP));
+                    });
+                    stopButton.toolTip = copyProvider.getCopyForId("recorderStopToolTip");
+                    break;
+                case saveButton:
+                    saveButton.addEventListener(MouseEvent.CLICK, function ():void {
+                        dispatchEvent(new WaveformEvent(WaveformEvent.SAVE_MP3));
+                    });
+                    saveButton.toolTip = copyProvider.getCopyForId("recorderSaveToolTip");
+                    break;
+                case openButton:
+                    openButton.addEventListener(MouseEvent.CLICK, function ():void {
+                        dispatchEvent(new WaveformEvent(WaveformEvent.LOAD_MP3));
+                    });
+                    break;
+                case newButton:
+                    newButton.addEventListener(MouseEvent.CLICK, function ():void {
+                        dispatchEvent(new WaveformEvent(WaveformEvent.NEW_WAVE));
+                    });
+                    newButton.toolTip = copyProvider.getCopyForId("recorderNewToolTip");
+                    break;
+                case compareButton:
+                    compareButton.addEventListener(MouseEvent.CLICK, function ():void {
+                        dispatchEvent(new RecorderEvent(RecorderEvent.COMPARE));
+                    });
+                    break;
+                case compareButtonWrapper:
+                    compareButtonWrapper.toolTip = copyProvider.getCopyForId("recorderCompareDisabledToolTip");
+                    break;
+                case minButton:
+                    minButton.addEventListener(MouseEvent.CLICK, function ():void {
+                        dispatchEvent(new RecorderEvent(RecorderEvent.MINIMIZE));
+                    });
+                    minButton.toolTip = copyProvider.getCopyForId("recorderMinToolTip");
+                    break;
+                case maxButton:
+                    maxButton.addEventListener(MouseEvent.CLICK, function ():void {
+                        dispatchEvent(new RecorderEvent(RecorderEvent.MAXIMIZE));
+                    });
+                    maxButton.toolTip = copyProvider.getCopyForId("recorderMaxToolTip");
+                    break;
+                case helpButton:
+                    helpButton.addEventListener(MouseEvent.CLICK, function ():void {
+                        dispatchEvent(new RecorderEvent(RecorderEvent.HELP, "help", true));
+                    });
+                    break;
+                case richText:
+                    richText.textFlow = textFlow;
+                    break;
+            }
+        }
+
+        private function onWaveformSelect(e:WaveformRangeEvent):void {
+            cutContextMenuItem.enabled = e.left < e.right;
+        }
+
+        override protected function getCurrentSkinState():String {
+            return ((isRecordEnabled) ? "record" : "playback") + "_" + ((_isMinimized) ? "minimized" : "full");
+        }
+        ]]>
 	</fx:Script>
 	
 	<fx:Declarations>

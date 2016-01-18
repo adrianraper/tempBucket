@@ -74,7 +74,11 @@
 					view.setCurrentState("nomic");
 					break;
 				case RecorderNotifications.GOT_MICROPHONE:
-					view.setCurrentState("minimized");
+                    // gh#1438
+                    var audioProxy:AudioProxy = facade.retrieveProxy(RecorderNotifications.RECORD_PROXY_NAME) as AudioProxy;
+                    trace("got a microphone " + audioProxy.getMicrophoneName());
+                    audioProxy.setMicrophone(-1);
+					//view.setCurrentState("minimized");
 					break;
 				case RecorderNotifications.MP3_LOAD_START:
 					stateBeforeProgress = view.currentState;

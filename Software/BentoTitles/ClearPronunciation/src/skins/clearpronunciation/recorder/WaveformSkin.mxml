@@ -40,20 +40,22 @@
 			  x.full="15" bottom.full="12"
 			  verticalAlign="middle">
 		
-		<s:Button id="recordButton" skinClass="skins.clearpronunciation.recorder.ui.RecorderButtonSkin" toolTip="Record" includeIn="record" useHandCursor="true" buttonMode="true"/>
-		<s:Button id="playButton" skinClass="skins.clearpronunciation.recorder.ui.PlayButtonSkin" toolTip="Play" useHandCursor="true" buttonMode="true"/>
-		<s:Button id="stopButton" skinClass="skins.clearpronunciation.recorder.ui.StopButtonSkin" toolTip="Stop" useHandCursor="true" buttonMode="true"/>
-		<s:Button id="pauseButton" skinClass="skins.clearpronunciation.recorder.ui.PauseButtonSkin" toolTip="Pause" useHandCursor="true" buttonMode="true"/>		
-		<s:Button id="saveButton" skinClass="skins.clearpronunciation.recorder.ui.SaveButtonSkin" toolTip="Save" includeIn="record" includeInLayout="{hostComponent.isSaveEnabled}" visible="{hostComponent.isSaveEnabled}" useHandCursor="true" buttonMode="true"/>
-		<s:Button id="newButton" skinClass="skins.clearpronunciation.recorder.ui.NewButtonSkin" toolTip="New" includeIn="record" useHandCursor="true" buttonMode="true"/>
-		<s:Button id="compareButton" skinClass="skins.clearpronunciation.recorder.ui.CompareButtonSkin" enabled="{hostComponent.isCompareEnabled}" toolTip="Compare you and a model" includeIn="record" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="recordButton" skinClass="skins.clearpronunciation.recorder.ui.RecorderButtonSkin" includeIn="record" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="playButton" skinClass="skins.clearpronunciation.recorder.ui.PlayButtonSkin" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="stopButton" skinClass="skins.clearpronunciation.recorder.ui.StopButtonSkin" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="pauseButton" skinClass="skins.clearpronunciation.recorder.ui.PauseButtonSkin" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="saveButton" skinClass="skins.clearpronunciation.recorder.ui.SaveButtonSkin" includeIn="record" includeInLayout="{hostComponent.isSaveEnabled}" visible="{hostComponent.isSaveEnabled}" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="newButton" skinClass="skins.clearpronunciation.recorder.ui.NewButtonSkin" includeIn="record" useHandCursor="true" buttonMode="true"/>
+        <s:Group id="compareButtonWrapper">
+		    <s:Button id="compareButton" skinClass="skins.clearpronunciation.recorder.ui.CompareButtonSkin" enabled="{hostComponent.isCompareEnabled}" includeIn="record" useHandCursor="true" buttonMode="true"/>
+        </s:Group>
 		<s:RichText id="richText" color="#FFFFFF" columnCount="1" fontFamily="Verdana" fontSize="10" height="22" kerning="on" lineHeight="13" tabStops="S31.4992408752441 S62.9984817504883 S94.4977226257324 S125.996963500977" whiteSpaceCollapse="preserve" width="180" x="310" y="5" />
 	</s:HGroup>
 	
 	<s:HGroup right.minimized="20" top.minimized="6" right.full="20" bottom.full="12">
 		<s:Group>
-			<s:Button id="maxButton" skinClass="skins.clearpronunciation.recorder.ui.MaxButtonSkin" toolTip="Show waveform" includeIn="minimized" useHandCursor="true" buttonMode="true"/>
-			<s:Button id="minButton" skinClass="skins.clearpronunciation.recorder.ui.MinButtonSkin" y="7" toolTip="Hide waveform" includeIn="full" visible="{hostComponent.isRecordEnabled}" includeInLayout="{hostComponent.isRecordEnabled}" useHandCursor="true" buttonMode="true"/>
+			<s:Button id="maxButton" skinClass="skins.clearpronunciation.recorder.ui.MaxButtonSkin" includeIn="minimized" useHandCursor="true" buttonMode="true"/>
+			<s:Button id="minButton" skinClass="skins.clearpronunciation.recorder.ui.MinButtonSkin" y="7" includeIn="full" visible="{hostComponent.isRecordEnabled}" includeInLayout="{hostComponent.isRecordEnabled}" useHandCursor="true" buttonMode="true"/>
 		</s:Group>
 		<s:VGroup paddingTop.full="6">
 			<s:Button id="helpButton" skinClass="skins.clearpronunciation.recorder.ui.HelpButtonSkin" toolTip="Help" visible="{hostComponent.isRecordEnabled}" includeInLayout="{hostComponent.isRecordEnabled}" useHandCursor="true" buttonMode="true"/>

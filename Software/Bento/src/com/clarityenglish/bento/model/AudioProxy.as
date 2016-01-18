@@ -31,9 +31,10 @@ package com.clarityenglish.bento.model {
 	 * A proxy
 	 */
 	public class AudioProxy extends Proxy implements IProxy {
-		
+
 		public static const SAMPLE_RATE:Number = 44100;
-		
+        public static const MICROPHONE_RATE:uint = 44;
+
 		/**
 		 * Certain functions happen differently in the AIR or the web version; the IRecorderAdaptor provides an adaptor such that we can treat both
 		 * versions of the application in the same way.  This is passed into the constructor of the proxy.
@@ -140,10 +141,11 @@ package com.clarityenglish.bento.model {
 				// v4.0.1.2 But -1 is the default microphone, 0 is simply the 
 				//setMicrophone(0);
 				setMicrophone(-1);
+                // gh#1438 Is there a better microphone than the default?
 			}
 		}
 		private function microphoneStatusHandler(e:StatusEvent):void {
-			//trace("statusEvent " + e.code);
+			trace("micStatusEvent " + e.code + " mic is " + getMicrophoneName());
 			if (e.code == "Microphone.Muted") {
 				sendNotification(RecorderNotifications.NO_MICROPHONE);
 				//throw new Error("You have blocked the Recorder from using your microphone. Please use Settings to clear this.");
@@ -394,16 +396,9 @@ package com.clarityenglish.bento.model {
 			//	microphone.removeEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
 			
 			microphone = Microphone.getMicrophone(idx);
-
-			// gh#530
-			if (microphone) {
-				_recordEnabled = true;
-				microphone.addEventListener(StatusEvent.STATUS, microphoneStatusHandler);
-			}
-				
+            trace("set Microphone, Microphone.names=" + Microphone.names.toString() + " microphone.name=" + microphone.name + " muted=" + microphone.muted);
 			// v4.0.1.2 Error checking
-			if (microphone == null) {
-				//trace("microphone = null");
+			if (microphone == null || Microphone.names.length == 0) {
 				_recordEnabled = false;
 				sendNotification(RecorderNotifications.NO_MICROPHONE);
 				Security.showSettings(SecurityPanel.MICROPHONE);
@@ -412,15 +407,28 @@ package com.clarityenglish.bento.model {
 				sendNotification(RecorderNotifications.NO_MICROPHONE);
 				Security.showSettings(SecurityPanel.PRIVACY);
 			} else {
-				microphone.setSilenceLevel(0);
-				microphone.rate = 44;
-				
-				//microphone.addEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
-				//microphone.addEventListener(StatusEvent.STATUS, microphoneStatusHandler);
-			}
+                // gh#530
+                _recordEnabled = true;
+                microphone.addEventListener(StatusEvent.STATUS, microphoneStatusHandler);
+                microphone.setSilenceLevel(0);
+                // gh#1438
+                microphone.rate = MICROPHONE_RATE;
+            }
 		}
 		
 		public function record(clearWaveform:Boolean = false):void {
+            // gh#1438 Check that the mic has not been denied since we first started
+            // and also it might have been allowed, but not properly initialised
+            var tempMic:Microphone = Microphone.getMicrophone();
+            if (tempMic == null || Microphone.names.length == 0 || tempMic.muted) {
+                //trace("caught a mic that has been switched off");
+                sendNotification(RecorderNotifications.NO_MICROPHONE);
+                return;
+            } else {
+                //trace("just going to reset the mic before you record");
+                setMicrophone(-1);
+            }
+
 			// If we are recording then pressing record stops the recording
 			if (isRecording) {
 				stop();
@@ -521,6 +529,13 @@ package com.clarityenglish.bento.model {
 		private function msToSamplePosition(msPosition:Number):Number {
 			return msPosition * SAMPLE_RATE / 1000 * 2;
 		}
-		
+
+		// For debugging
+		public function getMicrophoneInfo():String {
+			return "codec=" + microphone.codec + "\n" + "rate=" + microphone.rate;
+		}
+        public function getMicrophoneRate():uint {
+            return (microphone) ? microphone.rate : 0;
+        }
 	}
 }

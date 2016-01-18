@@ -251,6 +251,18 @@
             <!--No network-->
             <lit name="nonetworkContentLabel">No internet connection</lit>
 
+            <!-- Clarity recorder captions -->
+            <lit name="recorderRecordToolTip">Record from {microphone}</lit>
+            <lit name="recorderPlayToolTip">Play</lit>
+            <lit name="recorderStopToolTip">Stop</lit>
+            <lit name="recorderPauseToolTip">Pause</lit>
+            <lit name="recorderSaveToolTip">Save recording as mp3</lit>
+            <lit name="recorderNewToolTip">Clear the recording</lit>
+            <lit name="recorderMaxToolTip">Show waveform</lit>
+            <lit name="recorderMinToolTip">Hide waveform</lit>
+            <lit name="recorderCompareEnabledToolTip">Listen to the model and compare yourself</lit>
+            <lit name="recorderCompareDisabledToolTip">Play an audio, then compare yourself</lit>
+
             <!--Closing-->
             <lit name="closingCaptionLabel">Thank you</lit>
             <lit name="closingContentLabel">for using</lit>
