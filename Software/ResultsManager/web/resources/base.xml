@@ -97,14 +97,16 @@
             <lit name="licencedToName">Licensed to {name}</lit>
             <lit name="forgotPasswordLabel">Forgot your password?</lit>
             <lit name="forgotPasswordLink"><![CDATA[http://www.clarityenglish.com/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
-            <lit name="loginCaption">Sign in with your Clarity account</lit>
-            <lit name="anonymousCaption">Just practise</lit>
-            <lit name="loginDetail">Signing in will save your progress.</lit>
+            <lit name="loginCaption">Use a personal account to track your progress.</lit>
+            <lit name="anonymousCaption">Use the program with no tracking or sign in.</lit>
+            <lit name="loginDetail">The account details are only used to track your progress, nothing will be sent to you.</lit>
+            <lit name="anonymousDetail"></lit>
+            <lit name="selfRegisterDetail">The account details are only used to track your progress, nothing will be sent to you.</lit>
             <lit name="newUserButtonCaption">Create an account</lit>
             <lit name="addUserButtonCaption">Start</lit>
             <lit name="cancelButtonCaption">Cancel</lit>
             <lit name="anonymousButtonCaption">Start</lit>
-            <lit name="selfRegisterCaption">Create your account</lit>
+            <lit name="selfRegisterCaption">Create an account to track your progress.</lit>
             <lit name="selfRegisterNameCaption">Name</lit>
             <lit name="selfRegisterIDCaption">ID</lit>
             <lit name="selfRegisterEmailCaption">Email</lit>
@@ -113,7 +115,8 @@
             <lit name="demoButtonCaption">Demo</lit>
             <lit name="accountName">You are signed in as: {name}</lit>
             <lit name="orCaption">OR</lit>
-            
+            <!-- Why do I need my own account? If you create your own account, the system will keep your scores. This means you are able to track your progress from one session to another. Don't worry, your account details are safe and will not be used for any other purpose.
+             -->
             <!-- General screen literals -->
             <lit name="myProgress">My progress</lit>
             <lit name="myProfile">My profile</lit>

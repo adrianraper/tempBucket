@@ -47,6 +47,14 @@ package com.clarityenglish.bento.view.login {
 		[Bindable]
 		public var loginCaption:String;
 		
+		// gh#1441
+		[Bindable]
+		public var loginDetail:String;
+		[Bindable]
+		public var anonymousDetail:String;
+		[Bindable]
+		public var selfRegisterDetail:String;
+		
 		[Bindable]
 		public var loginKeyCaption:String;
 		
@@ -448,16 +456,20 @@ package com.clarityenglish.bento.view.login {
 			loginButtonCaption = copyProvider.getCopyForId("loginButton");
 			orCaption = copyProvider.getCopyForId("orCaption");
 			anonymousCaption = copyProvider.getCopyForId("anonymousCaption");
-			anonymousStartButtonCaption = copyProvider.getCopyForId("anonymousButtonCaption");		
+			anonymousStartButtonCaption = copyProvider.getCopyForId("anonymousButtonCaption");
+			// gh#1441
+			loginDetail = copyProvider.getCopyForId("loginDetail");
+			anonymousDetail = copyProvider.getCopyForId("anonymousDetail");
+			selfRegisterDetail = copyProvider.getCopyForId("selfRegisterDetail");
 
 			if (selfRegister & Config.SELF_REGISTER_NAME)
-				selfRegisterNameCaption = copyProvider.getCopyForId("nameLoginDetail");
+				selfRegisterNameCaption = copyProvider.getCopyForId("selfRegisterNameCaption");
 			if (selfRegister & Config.SELF_REGISTER_ID)
-				selfRegisterIdCaption = copyProvider.getCopyForId("IDLoginDetail");
+				selfRegisterIdCaption = copyProvider.getCopyForId("selfRegisterIDCaption");
 			if (selfRegister & Config.SELF_REGISTER_EMAIL)
-				selfRegisterEmailCaption = copyProvider.getCopyForId("emailLoginDetail");
+				selfRegisterEmailCaption = copyProvider.getCopyForId("selfRegisterEmailCaption");
 			if (verified) {
-				selfRegisterPasswordCaption = copyProvider.getCopyForId("passwordLabel");
+				selfRegisterPasswordCaption = copyProvider.getCopyForId("selfRegisterPasswordCaption");
 				confirmPasswordCaption = copyProvider.getCopyForId("confirmPasswordCaption");
 			}
 			if (selfRegister) {

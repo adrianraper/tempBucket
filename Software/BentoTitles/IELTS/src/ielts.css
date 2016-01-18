@@ -106,12 +106,8 @@ login|LoginView s|TextInput {
 	contentBackgroundColor: #FFFFFF;
 }
 
-login|LoginView s|SkinnableContainer#trackingGroup,#registerGroup {
+login|LoginView s|SkinnableContainer#trackingGroup,#registerGroup,#anonymousGroup {
 	skinClass: ClassReference("skins.ielts.login.SignInContainerSkin");
-}
-
-login|LoginView s|SkinnableContainer#anonymousGroup {
-	skinClass: ClassReference("skins.ielts.login.AnonymousContainerSkin");
 }
 
 login|LoginView s|Button {
