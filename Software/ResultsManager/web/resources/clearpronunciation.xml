@@ -6,10 +6,10 @@
 			<lit name="applicationTitle">Clear Pronunciation</lit>
             
 			<lit name="creditLabel">We hope you liked using Clear Pronunciation 1 - Sounds.</lit>
-			<lit name="phonemicChartURL"><![CDATA[http://www.clarityenglish.com/Content/ClearPronunciation-International/sharedMedia/phonemicChart.pdf]]></lit>
+			<lit name="phonemicChartURL"><![CDATA[http://www.clarityenglish.com/Content/ClearPronunciation-International/sharedMedia/PhonemicChart.pdf]]></lit>
 			<lit name="helpURL"><![CDATA[http://www.clarityenglish.com/Content/ClearPronunciation10-International/help/ClearPronunciationSoundsHelp.pdf]]></lit>
 			<lit name="recorderHelpURL"><![CDATA[http://www.clarityenglish.com/Content/ClearPronunciation10-International/help/ClearPronunciationSoundsHelp.pdf]]></lit>
-			<lit name="warningWindowCaption">Sorry</lit>
+			<lit name="warningWindowCaption">Are you sure?</lit>
             		<lit name="homeInstructionLabel">Choose the section you want to view.</lit>
 			
 			<!--  overrides -->
@@ -25,25 +25,35 @@
 			<lit name="introductionYouWillLabel1"><![CDATA[<p>When you have finished this exercise, you will know the names of the parts of the mouth.</p>]]></lit>
 			<lit name="introductionYouWillLabel2"><![CDATA[<p>When you have finished this exercise, you will know why it is important to learn the International Phonemic Alphabet.</p>]]></lit>
 			<lit name="youWillLabel0"><![CDATA[
-			<p>When you have finished this exercise, you should be able to:</p>
-			<p>- Recognise each sound when you hear it</p>
-			<p>- Pronounce the sounds in different positions in words, for example at the beginning, in the middle or at the end</p>
-			<p>- Recognise each phonemic symbol and know which sound it represents.</p>
+			<p>When you have finished this exercise, you should be able to:
+			<br/>1. Recognise each sound when you hear it
+			<br/>2. Pronounce the sounds in different positions in words, for
+			<br/>&#xA0;&#xA0;&#xA0;&#xA0;example at the beginning, in the middle or at the end
+			<br/>3. Recognise each phonemic symbol and know which sound it
+			<br/>&#xA0;&#xA0;&#xA0;&#xA0;represents.</p>
 			]]>
 			</lit>
 			<lit name="youWillLabel1"><![CDATA[
-			<p>When you have finished this exercise, you should be able to hear and pronounce each of the sounds, in words and sentences.</p>
-			<p>Extra task: if the sound is at the beginning or end of the word, does it link to the word before or after?</p>
+			<p>When you have finished this exercise, you should be able to <br/>hear and pronounce each of the sounds, in words and
+			<br/>sentences.</p>
+			<p>Extra task: If the sound is at the beginning or end of the
+			<br/>word, does it link to the word before or after?</p>
 			]]>
 			</lit>
 			<lit name="youWillLabel2"><![CDATA[
-			<p>When you have finished this exercise, you should be confident that you can recognise each of the sounds when you hear them.</p>
+			<p>When you have finished this exercise, you should be
+			<br/>confident that you can recognise each of the sounds
+			<br/>when you hear them.</p>
 			]]></lit>
 			<lit name="youWillLabel3"><![CDATA[
-			<p>When you have finished this exercise, you should be confident that you can recognise each of the sounds in a real-life situation.</p>
+			<p>When you have finished this exercise, you should be
+			<br/>confident that you can recognise each of the sounds in
+			<br/>a real-life situation.</p>
 			]]></lit>
 			<lit name="youWillLabel4"><![CDATA[
-			<p>When you have finished this exercise, you should be confident that you can read the phonemic symbols you will see in a dictionary.</p>
+			<p>When you have finished this exercise, you should be
+			<br/>confident that you can read the phonemic symbols you will
+			<br/>see in a dictionary.</p>
 			]]></lit>
 			
 			<!-- Settings -->

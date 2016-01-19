@@ -195,7 +195,7 @@
             <lit name="mylegendLabel">My scores</lit>
             <lit name="everyonelegendLabel">Everyone's scores</lit>
             <lit name="compareEmptyScoreLabel">You must first complete an exercise to see this chart.</lit>
-            <lit name="analyseInstructionLabel">This shows how you spent your time on exercise in {course}:</lit>
+            <lit name="analyseInstructionLabel">This shows how you spent your time on exercises in {course}:</lit>
             <lit name="minLabel">min(s)</lit>
             <lit name="totalLabel">Total:</lit>
             <lit name="totalTimeLabel">Total time you have spent</lit>

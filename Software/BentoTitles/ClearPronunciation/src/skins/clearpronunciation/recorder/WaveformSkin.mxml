@@ -2,10 +2,9 @@
 <s:Skin xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:ui="com.clarityenglish.bento.view.recorder.ui.*"
-		xmlns:assets="skins.assets.*"
 		minWidth.full="555" height.full="200"
-		minWidth.minimized="555" height.minimized="28"
-		xmlns:recorder="skins.clearpronunciation.assets.unit.recorder.*">
+		minWidth.minimized="555" height.minimized="28">
+
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.recorder.WaveformView")]
@@ -46,7 +45,7 @@
 		<s:Button id="pauseButton" skinClass="skins.clearpronunciation.recorder.ui.PauseButtonSkin" useHandCursor="true" buttonMode="true"/>
 		<s:Button id="saveButton" skinClass="skins.clearpronunciation.recorder.ui.SaveButtonSkin" includeIn="record" includeInLayout="{hostComponent.isSaveEnabled}" visible="{hostComponent.isSaveEnabled}" useHandCursor="true" buttonMode="true"/>
 		<s:Button id="newButton" skinClass="skins.clearpronunciation.recorder.ui.NewButtonSkin" includeIn="record" useHandCursor="true" buttonMode="true"/>
-        <s:Group id="compareButtonWrapper">
+        <s:Group id="compareButtonWrapper" includeIn="record" >
 		    <s:Button id="compareButton" skinClass="skins.clearpronunciation.recorder.ui.CompareButtonSkin" enabled="{hostComponent.isCompareEnabled}" includeIn="record" useHandCursor="true" buttonMode="true"/>
         </s:Group>
 		<s:RichText id="richText" color="#FFFFFF" columnCount="1" fontFamily="Verdana" fontSize="10" height="22" kerning="on" lineHeight="13" tabStops="S31.4992408752441 S62.9984817504883 S94.4977226257324 S125.996963500977" whiteSpaceCollapse="preserve" width="180" x="310" y="5" />

@@ -184,7 +184,7 @@ package com.clarityenglish.bento.view.recorder {
 		
 		private function updateMp3Info():void {
 			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
-            view.debugInfo = audioProxy.getMicrophoneInfo();
+           // view.debugInfo = audioProxy.getMicrophoneInfo();
 
 			view.mp3FileSizeText = (audioProxy.samples) ? "MP3 file size " + Math.round(audioProxy.samples.length / 22000) + "kb" : "-";
 			var duration:String = ((audioProxy.samples.length / AudioProxy.SAMPLE_RATE / 8) as Number).toFixed(1);
@@ -209,7 +209,7 @@ package com.clarityenglish.bento.view.recorder {
 		private function onRecord(e:WaveformEvent):void {
 			//trace("on record");
 			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
-            view.debugInfo = audioProxy.getMicrophoneInfo();
+            //view.debugInfo = audioProxy.getMicrophoneInfo();
 			// Bug 4. 27 July 2010. AR
 			// You should stop playing before you start recording.
 			audioProxy.stop();

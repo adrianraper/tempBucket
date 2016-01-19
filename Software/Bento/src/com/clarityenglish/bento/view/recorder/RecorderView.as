@@ -38,7 +38,13 @@ package com.clarityenglish.bento.view.recorder {
 					recordWaveformView.addEventListener(RecorderEvent.MAXIMIZE, onMaximize, false, 0, true);
 					recordWaveformView.addEventListener(RecorderEvent.COMPARE, onCompare, false, 0, true);
 					recordWaveformView.addEventListener(RecorderEvent.HELP, onHelp, false, 0, true);
+                    // gh#1348
+                    recordWaveformView.setCopyProvider(copyProvider);
 					break;
+                case compareWaveformView:
+                    // gh#1348
+                    compareWaveformView.setCopyProvider(copyProvider);
+                    break;
 			}
 		}
 		

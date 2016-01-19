@@ -13,6 +13,7 @@
         import com.clarityenglish.bento.view.recorder.events.WaveformRangeEvent;
         import com.clarityenglish.bento.view.recorder.ui.LevelMeter;
         import com.clarityenglish.bento.view.recorder.ui.WaveformRenderer;
+        import com.clarityenglish.common.model.interfaces.CopyProvider;
 
         import spark.components.Button;
         import spark.components.Group;
@@ -156,7 +157,13 @@
 
         public function set compareEnabled(value:Boolean):void {
             isCompareEnabled = value;
-            compareButtonWrapper.toolTip = (value) ? copyProvider.getCopyForId("recorderCompareEnabledToolTip") : copyProvider.getCopyForId("recorderCompareDisabledToolTip");
+            if (compareButtonWrapper)
+                compareButtonWrapper.toolTip = (value) ? copyProvider.getCopyForId("recorderCompareEnabledToolTip") : copyProvider.getCopyForId("recorderCompareDisabledToolTip");
+        }
+
+        // gh#1348 Need to get this working properly?
+        public function getCopyProvider():CopyProvider {
+            return copyProvider;
         }
 
         /**
@@ -308,6 +315,5 @@
 	 -->
 	<!-- This without the scrub bar -->
 	<ui:WaveformRenderer id="waveformRenderer" data="{samples}" playbackGain="{gainSlider.value}" scrubValue="{scrubSlider.value}" width="100%" height="100%" sampleRate="{sampleRate}" dragMode="{dragMode}" select="onWaveformSelect(event)" showSamples="{SECONDS_TO_SHOW * sampleRate}" />
-	<!-- This with the scrub bar -->
-	
+
 </bento:BentoView>
