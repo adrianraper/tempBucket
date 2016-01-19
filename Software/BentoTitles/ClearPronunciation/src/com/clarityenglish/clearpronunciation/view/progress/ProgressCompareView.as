@@ -39,6 +39,7 @@ package com.clarityenglish.clearpronunciation.view.progress {
 		public var myBarSeries:BarSeries;
 		
 		[SkinPart]
+
 		public var everyOneBarSeries:BarSeries;
 		
 		[SkinPart]
@@ -61,6 +62,9 @@ package com.clarityenglish.clearpronunciation.view.progress {
 		
 		[SkinPart]
 		public var busyIndicator:BusyIndicator;
+
+		[Bindable]
+		public var units:XMLList;
 		
 		private var _everyoneCourseSummaries:Object;
 		private var _everyoneCourseSummariesChanged:Boolean;
@@ -111,6 +115,16 @@ package com.clarityenglish.clearpronunciation.view.progress {
 			}
 			invalidateProperties();
 		}
+
+		public function getIndex(data:Object):Number {
+			var units:XMLList = data.parent().parent()..unit;
+			for (var i:Number = 0; i < units.length(); i++) {
+				if (units[i].@id == data.@id) {
+					break;
+				}
+			}
+			return i - 1;
+		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
@@ -122,6 +136,8 @@ package com.clarityenglish.clearpronunciation.view.progress {
 				}
 			}
 			if (progressCourseButtonBar) progressCourseButtonBar.courses = courseXMLList;
+
+			units = menu..unit;
 		}
 		
 		protected override function onViewCreationComplete():void {

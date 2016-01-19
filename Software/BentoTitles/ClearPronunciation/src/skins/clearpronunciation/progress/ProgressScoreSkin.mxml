@@ -179,23 +179,26 @@
 												<![CDATA[
 													import spark.components.DataGroup;
 													
-													public function getItemIdexText(value:Object):String {
-														var unit:XML = value.parent();
-														while(unit.name() != "unit") {
-															unit = unit.parent();
+													public function getIndex(data:Object):Number {
+														var units:XMLList = outerDocument.hostComponent.units;
+														var thisUnit:XML = data.parent().parent();
+														for (var i:Number = 0; i < units.length(); i++) {
+															if (units[i].@id == thisUnit.@id) {
+																break;
+															}
 														}
-														
-														if (unit.childIndex() < 9) {
-															return "0" + (unit.childIndex() +1);
-														} else {
-															return unit.childIndex() + 1;
-														}
+														return i;
 													}
 													
 													// hidden function cannot find it in override public function list
 													override public function prepare(hasBeenRecycled:Boolean):void {
-														if (data)
-															unitItemIndexLabel.text = getItemIdexText(data);
+														if (data) {
+															if (getIndex(data) < 9) {
+																unitItemIndexLabel.text = "0" + String(getIndex(data));
+															} else {
+																unitItemIndexLabel.text = String(getIndex(data));
+															}
+														}
 													}
 												]]>
 											</fx:Script>

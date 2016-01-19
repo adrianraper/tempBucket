@@ -80,6 +80,17 @@
 				super.data = value;
 				_dataChanged = true;
 				invalidateProperties();
+
+				if (data) {
+					var units:XMLList = data.parent().parent()..unit;
+					for (var i:Number = 0; i < units.length(); i++) {
+						if (units[i].@id == data.@id) {
+							break;
+						}
+					}
+					// Get the index for whole units.
+					unitItemIndexLabel.text = StringUtils.padLeft((i).toString(), '0', 2);
+				}
 			}
 			
 			override protected function commitProperties():void {
@@ -251,7 +262,7 @@
 		</s:Group>
 
 		<!-- The question number -->
-		<s:Label id="unitItemIndexLabel" text="{StringUtils.padLeft((itemIndex + 1).toString(), '0', 2)}" fontFamily="MyriadPro" fontSize="20" color="#333333" left="15" top="15" visible="{showItemIndex}" />
+		<s:Label id="unitItemIndexLabel" fontFamily="MyriadPro" fontSize="20" color="#333333" left="15" top="15" visible="{showItemIndex}" />
 		
 		<!-- The left item -->
 		<s:Button id="unitItemLeftButton" color="#4e4e4e" scaleX="0.9" scaleY="0.9" left="50"  top="8" />

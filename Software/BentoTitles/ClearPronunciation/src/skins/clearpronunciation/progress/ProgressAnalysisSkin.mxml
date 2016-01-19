@@ -71,9 +71,15 @@
 											
 											[Bindable]
 											private var unitDuration:Number;
-											
+
 											public function getIndex(data:Object):Number {
-												return (owner as DataGroup).dataProvider.getItemIndex(data);
+												var units:XMLList = data.parent().parent()..unit;
+												for (var i:Number = 0; i < units.length(); i++) {
+													if (units[i].@id == data.@id) {
+														break;
+													}
+												}
+												return i;
 											}
 											
 											override public function set data(value:Object):void {
@@ -81,9 +87,9 @@
 												
 												if (data) {
 													if (getIndex(data) < 9) {
-														unitItemIndexLabel.text = "0" + String(getIndex(data) + 1);
+														unitItemIndexLabel.text = "0" + String(getIndex(data));
 													} else {
-														unitItemIndexLabel.text = String(getIndex(data) + 1);
+														unitItemIndexLabel.text = String(getIndex(data));
 													}
 													
 													if (String(data.@rightIcon).length > 0) {

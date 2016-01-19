@@ -46,6 +46,16 @@
 			public function captionLabel(item:Object, prevValue:Object, axis:CategoryAxis, categoryItem:Object):String {
 				return categoryItem.@caption;
 			}
+
+			public function getIndex(data:Object):Number {
+				var units:XMLList = hostComponent.units;
+				for (var i:Number = 0; i < units.length(); i++) {
+					if (units[i].@caption == data.text) {
+						break;
+					}
+				}
+				return i;
+			}
 		]]>
 	</fx:Script>
 	
@@ -131,10 +141,10 @@
 											}
 											
 											// display unit index
-											if (outerDocument.verticalAxisRenderer.getChildIndex(this) < 10) {
-												unitItemIndexLabel.text = "0" + String(outerDocument.verticalAxisRenderer.getChildIndex(this));
+											if (outerDocument.getIndex(data) < 10) {
+												unitItemIndexLabel.text = "0" + String(outerDocument.getIndex(data));
 											} else {
-												unitItemIndexLabel.text = String(outerDocument.verticalAxisRenderer.getChildIndex(this));
+												unitItemIndexLabel.text = String(outerDocument.getIndex(data));
 											}			
 										}	
 									}

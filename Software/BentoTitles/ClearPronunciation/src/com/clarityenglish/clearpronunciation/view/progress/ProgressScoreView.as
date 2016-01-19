@@ -55,6 +55,9 @@ package com.clarityenglish.clearpronunciation.view.progress
 		
 		[SkinPart]
 		public var ScoreEmptyScoreLabelButton:Button;
+
+		[Bindable]
+		public var units:XMLList;
 		
 		private var _courseClass:String;
 		private var _courseChanged:Boolean;
@@ -105,6 +108,8 @@ package com.clarityenglish.clearpronunciation.view.progress
 			}
 			
 			progressCourseButtonBar.courses = courseXMLList;
+
+			units = menu..unit;
 		}
 		
 		protected override function commitProperties():void {
