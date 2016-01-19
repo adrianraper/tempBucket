@@ -396,29 +396,34 @@ package com.clarityenglish.bento.model {
 			var selectedAnswerMap:AnswerMap = getSelectedAnswerMap(question);
 			var markableAnswerMap:AnswerMap = getMarkableAnswerMap(question);
 			
-			// 1. Get all the possible correct answers.  If there are no correct answers for this question do nothing at all.
+			// 1. Get all the possible correct answers. If there are no correct answers for this question do nothing at all.
 			var correctAnswers:Vector.<Answer> = question.getCorrectAnswers();
 			if (correctAnswers.length == 0)
 				return answerMap;
 			
 			// 2. Get the target nodes (these will be the keys in the answer map)
 			var targetNodes:Vector.<XML> = (question.isSelectable()) ? (correctAnswers[0] as NodeAnswer).getSourceNodes(exercise) : question.getSourceNodes(exercise);
-			
+			//trace("there are targetNodes=" + targetNodes.length + "  for question " + question.source);
+
 			// 3. Remove any correct answers from the target nodes and correct answers
+            // gh#1442 If you want the original order of answers, then 'forget' anything the student got right
+            var overwriteAnswers:Boolean = exercise.model.getSettingParam("overwriteCorrectAnswers");
 			if (targetNodes) {
-				targetNodes = targetNodes.filter(function(targetNode:XML, idx:int, vector:Vector.<XML>):Boolean {
-					var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
-					if (selectedAnswer && selectedAnswer.markingClass == Answer.CORRECT) {
-						var idx:int = correctAnswers.indexOf(selectedAnswer);
-						if (idx > -1) {
-							// Remove the correct answer
-							correctAnswers.splice(idx, 1);
-							return false;
-						}
-					}
-					
-					return true;
-				});
+                if (!overwriteAnswers)
+                    targetNodes = targetNodes.filter(function(targetNode:XML, idx:int, vector:Vector.<XML>):Boolean {
+                        var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
+                        if (selectedAnswer && selectedAnswer.markingClass == Answer.CORRECT) {
+                            var idx:int = correctAnswers.indexOf(selectedAnswer);
+                            if (idx > -1) {
+                                // Remove the correct answer
+                                //trace("remove " + targetNode.toXMLString());
+                                correctAnswers.splice(idx, 1);
+                                return false;
+                            }
+                        }
+
+                        return true;
+                    });
 				
 				// For each question
 				for each (var targetNode:XML in targetNodes) {
@@ -426,9 +431,10 @@ package com.clarityenglish.bento.model {
 					var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
 
 					// 5. If the current answer is empty or incorrect then add it to the answer map
-					if (!selectedAnswer || selectedAnswer.markingClass == Answer.INCORRECT) {
+					// gh#1442
+					if (!selectedAnswer || selectedAnswer.markingClass == Answer.INCORRECT || overwriteAnswers) {
 						var correctAnswer:Answer = correctAnswers[0];
-						trace("targetNode: "+targetNode.toXMLString()+", correctAnswer: "+correctAnswer.toXMLString());
+						//trace("targetNode: "+targetNode.toXMLString()+", correctAnswer: "+correctAnswer.toXMLString());
 						answerMap.put(targetNode, correctAnswer);
 						correctAnswers.shift();
 						
@@ -443,8 +449,7 @@ package com.clarityenglish.bento.model {
 								return true;
 							});
 						}
-						
-					}	
+                    }
 				}
 			} else {
 				log.error("Unable to find any target nodes for question {0}", question);

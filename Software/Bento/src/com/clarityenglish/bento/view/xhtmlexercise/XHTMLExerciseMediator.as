@@ -113,6 +113,7 @@ import org.puremvc.as3.interfaces.INotification;
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(view.exercise)) as ExerciseProxy;
 			
 			// Go through the questions marking each of them
+			// gh#1442
 			if (view.exercise.model) {
 				for each (var question:Question in view.exercise.model.questions) {
 					var answerMap:AnswerMap = exerciseProxy.getCorrectAnswerMap(question);
