@@ -14,13 +14,21 @@
 	
 	<fx:Script>
 		<![CDATA[
+		import com.clarityenglish.bento.view.marking.MarkingView;
+		import com.clarityenglish.bento.view.recorder.WaveformView;
+		import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 		import com.clarityenglish.clearpronunciation.view.exercise.ExerciseView;
+		import com.clarityenglish.clearpronunciation.view.exercise.YouWillView;
+		import com.clarityenglish.clearpronunciation.view.exercise.ui.WindowShade;
 		import com.clarityenglish.textLayout.components.AudioPlayer;
 
+		import mx.events.CloseEvent;
+
 		import mx.events.FlexEvent;
+		import mx.managers.PopUpManager;
 
 		import skins.clearpronunciation.ExerciseSkin;
-		import skins.clearpronunciation.controls.video.videoplayer.VideoPlayerSkin;
+		import skins.clearpronunciation.exercise.marking.MarkingSkin;
 
 		import skins.clearpronunciation.exercise.ui.WindowShadeSkin;
 		import skins.clearpronunciation.recorder.RecorderTitleWindowSkin;
@@ -31,7 +39,7 @@
 		import spark.components.VideoPlayer;
 		import spark.events.IndexChangeEvent;
 
-		private var windowShadeSkin:WindowShadeSkin;
+		private var windowShade:WindowShade;
 		private var titleWindow:TitleWindow;
 		private var exerciseSkin:ExerciseSkin;
 
@@ -55,60 +63,41 @@
 		}
 
 		protected function onMouseDown(event:Event):void {
-			var component:Object = event.target;
-
-			while (component.parent) {
-				if (component is WindowShadeSkin) {
-					windowShadeSkin = component as WindowShadeSkin;
-					videoPlayer.visible = false;
-					break;
-				} else if (component is TitleWindow) {
-					titleWindow = component as TitleWindow;
-					videoPlayer.visible = false;
-					break;
-				} else if (component is ExerciseSkin) {
-					exerciseSkin = component as ExerciseSkin;
-					break;
-				} else if (component == videoList) {
-					videoPlayer.visible = true;
-					break;
+			var downComponent:Object = event.target;
+			if (downComponent is Button) {
+				while (downComponent.parent) {
+					if (downComponent is WindowShade) {
+						windowShade = downComponent as WindowShade;
+						videoPlayer.visible = false;
+						break;
+					} else if (downComponent is ExerciseView) {
+						videoPlayer.visible = false;
+						break;
+					} else if (downComponent is WaveformView) {
+						videoPlayer.visible = false;
+						break;
+					}
+					downComponent = downComponent.parent;
 				}
-				component = component.parent;
+
+				if (!downComponent.parent) {
+					videoPlayer.visible = true;
+				}
 			}
 		}
 
 		protected function onMouseUp(event:Event):void {
-			var upComponent:Object = event.target;
-
-			if (windowShadeSkin) {
-				if (!windowShadeSkin.hostComponent.isWindowShadeOpen) {
-					videoPlayer.visible = true;
-					windowShadeSkin = null;
-				}
-			} else {
-				if (exerciseSkin) {
-					// gh#1271
-					if (upComponent == exerciseSkin.recorderButton || upComponent == exerciseSkin.youWillButton || (upComponent == exerciseSkin.makeSoundsExpandButton && !exerciseSkin.isMakeSoundsExpand)) {
+			if (!(event.target is Button)) {
+				if (windowShade) {
+					if (windowShade.isWindowShadeOpen) {
 						videoPlayer.visible = false;
-						exerciseSkin = null;
-					} else if (upComponent == exerciseSkin.makeSoundsCollapseButton && exerciseSkin.isMakeSoundsExpand) {
+					} else {
 						videoPlayer.visible = true;
-						exerciseSkin = null;
+						windowShade = null;
 					}
-				} else if (titleWindow && upComponent == titleWindow.closeButton) {
-					videoPlayer.visible = true;
-					titleWindow = null;
 				}
 			}
 		}
-
-		/*protected function onPlaceholderClick(event:MouseEvent):void {
-		 // For now the default index is 0, but latter we will get index from widgetlist which is user prefered.
-		 videoList.selectedIndex = 0;
-		 videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
-		 // Manually set the focus here, for we manually change the video list index.
-		 focusManager.setFocus(videoList);
-		 }*/
 		]]>
 	</fx:Script>
 	<!--video player black background-->
@@ -139,7 +128,7 @@
 			<s:SolidColor color="0x273A45" />
 		</s:fill>
 	</s:Rect>
-	<s:List id="videoList" top="4" right="-64" width="64" height="100%" horizontalScrollPolicy="off" minHeight="0" minWidth="0" contentBackgroundAlpha="0">
+	<s:List id="videoList" top="4" right="-64" width="64" height="100%" horizontalScrollPolicy="off" minHeight="0" minWidth="0" contentBackgroundAlpha="0" requireSelection="true">
 		<s:itemRenderer>
 			<fx:Component>
 				<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true"> 
