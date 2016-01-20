@@ -22,7 +22,14 @@ package com.clarityenglish.common.view.error {
 		
 		[Bindable]
 		public var error:BentoError;
-		
+
+		private var _title:String;
+		public function set titleCode(value:String):void {
+			_title = value;
+		}
+		public function get titleCode():String {
+			return _title;
+		}
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 		}
@@ -43,9 +50,9 @@ package com.clarityenglish.common.view.error {
 					break;
 				case problemLabel:
 					if (copyProvider.isCopyLoaded()) {
-						instance.text = copyProvider.getCopyForId("stdErrorTitle");
+						instance.text = (titleCode) ? copyProvider.getCopyForId(titleCode) : copyProvider.getCopyForId("stdErrorTitle");
 					} else {
-						instance.text = 'Sorry, there is a problem...';						
+						instance.text = 'There is a problem...';
 					}
 					break;
 			}

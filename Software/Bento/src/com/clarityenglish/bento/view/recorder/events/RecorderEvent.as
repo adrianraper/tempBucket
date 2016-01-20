@@ -16,7 +16,9 @@ package com.clarityenglish.bento.view.recorder.events {
 		public static const SHOW:String = "recorder/show";
 		// gh#456
 		public static const SAVE_COMPLETE:String = "recorder/save_complete";
-		
+		// gh#1438
+		public static const SAVE_ERROR:String = "recorder/save_error";
+
 		public var data:Object;
 		
 		public function RecorderEvent(type:String, data:Object = null, bubbles:Boolean = false, cancelable:Boolean = false) { 

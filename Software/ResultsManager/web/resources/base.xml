@@ -73,15 +73,17 @@
             <lit name="errorUploadNotAuthenticated" code="705">This upload was not authenticated. Please contact support@clarityenglish.com.</lit>
             <lit name="errorUploadNoPOST" code="706">No data was found attached to this upload. Please contact support@clarityenglish.com.</lit>
             <lit name="errorExceedMaxFileSize" code="707">Your file is too big, please upload a file less than {sizeLimit}.</lit>
-            
             <lit name="errorSingleVideoIOS" code="708">Only a single video per unit is currently supported on iOS.</lit>
+            <lit name="errorCantSaveFile" code="709">The file can't be saved, this might happen if you run in a private browser: {message}.</lit>
+
             <lit name="errorSavingCourseToDb" code="888">Your course has been saved, but a problem with the database means the publishing details and settings have not. Please try again in a minute. If the problem persists, please contact support@clarityenglish.com and tell us the course you were editing and the date/time.</lit>
             
             <lit name="supportEmail">support@clarityenglish.com</lit>
             <lit name="problemLabel"></lit> <!-- "Sorry, there is a problem" is hardcoded in ShowErrorCommand -->
             
             <lit name="stdErrorTitle">Sorry, you can’t keep going...</lit>
-            
+            <lit name="stdWarningTitle">FYI...</lit>
+
             <!-- Loading -->
             <lit name="loadingLabel">loading...</lit>
             

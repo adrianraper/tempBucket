@@ -47,6 +47,9 @@ package com.clarityenglish.common.controller {
 			errorView = new ErrorView();
 			//trace("load error message");
 			errorView.error = note.getBody() as BentoError;
+            // gh#1348 Send a specific warning title to the window
+			if (note.getType() == "warning")
+			    errorView.titleCode = 'stdWarningTitle';
 			titleWindow.addElement(errorView);
 			
 			// Create and centre the popup

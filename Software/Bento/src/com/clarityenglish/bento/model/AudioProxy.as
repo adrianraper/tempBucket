@@ -6,8 +6,11 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.RecorderNotifications;
 	import com.clarityenglish.bento.model.adaptor.IRecorderAdaptor;
 	import com.clarityenglish.bento.view.recorder.events.RecorderEvent;
-	
-	import flash.events.ErrorEvent;
+import com.clarityenglish.common.CommonNotifications;
+import com.clarityenglish.common.model.CopyProxy;
+import com.clarityenglish.common.vo.config.BentoError;
+
+import flash.events.ErrorEvent;
 	import flash.events.Event;
 	import flash.events.ProgressEvent;
 	import flash.events.SampleDataEvent;
@@ -25,7 +28,8 @@ package com.clarityenglish.bento.model {
 	
 	import org.davekeen.util.PlayerUtils;
 	import org.puremvc.as3.interfaces.IProxy;
-	import org.puremvc.as3.patterns.proxy.Proxy;
+import org.puremvc.as3.patterns.observer.Notifier;
+import org.puremvc.as3.patterns.proxy.Proxy;
 
 	/**
 	 * A proxy
@@ -292,11 +296,19 @@ package com.clarityenglish.bento.model {
 			recorderAdaptor.saveMp3Data(mp3Data, null);
 			// gh#456
 			recorderAdaptor.addEventListener(RecorderEvent.SAVE_COMPLETE, onSaveComplete);
+            // gh#1348
+			recorderAdaptor.addEventListener(RecorderEvent.SAVE_ERROR, onSaveError);
 		}
 		
 		protected function onSaveComplete(event:RecorderEvent):void {
 			// gh#456
 			_isMp3Saved = true;
+		}
+        // gh#1348
+		protected function onSaveError(event:RecorderEvent):void {
+            var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+            var thisError:BentoError = copyProxy.getBentoErrorForId("errorCantSaveFile", { message: event.data.type + " " + event.data.text }, false);
+            sendNotification(CommonNotifications.BENTO_ERROR, thisError, "warning");
 		}
 		
 		private function mp3SaveComplete(e:Event) : void {
