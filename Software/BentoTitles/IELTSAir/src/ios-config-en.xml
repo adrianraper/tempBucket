@@ -13,17 +13,17 @@
 	<brandingMedia />
 	<language>EN</language>
 	
-	<!--  contentPath>http://dock.contentbench/Content/</contentPath>
-	<remoteDomain>http://dock.projectbench/Software/</remoteDomain>
-	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>-->
-	
-	<!--  contentPath>http://claritydevelop/Content/</contentPath>
-    <remoteDomain> http://claritydevelop/Software/</remoteDomain>
-    <remoteGateway>http://claritydevelop/Software/ResultsManager/web/amfphp/</remoteGateway>-->
-	
 	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
-    <remoteDomain> http://www.clarityenglish.com/Software/</remoteDomain>
-    <remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteDomain>http://www.clarityenglish.com/Software/</remoteDomain>
+	<remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+	
+	<!--  contentPath>http://roadtoielts.chinaielts.org/Content/</contentPath>
+    <remoteDomain> http://roadtoielts.chinaielts.org/Software/</remoteDomain>
+    <remoteGateway>http://roadtoielts.chinaielts.org/Software/ResultsManager/web/amfphp/</remoteGateway>-->
+	
+	<!--  contentPath>http://dock.contentbench/Content/</contentPath>
+    <remoteDomain> http://dock.projectbench/Software/</remoteDomain>
+    <remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>-->
 	
 	<remoteService>IELTSService</remoteService>
 	<assetFolder>ResultsManager/web/resources/assets/</assetFolder>
@@ -36,7 +36,7 @@
     <registerURL>http://takeielts.britishcouncil.org/</registerURL>
     <getAccountURL>http://www.roadtoielts.com/</getAccountURL>
     
-	<checkNetworkAvailabilityUrl>http://www.google.com</checkNetworkAvailabilityUrl>
+	<checkNetworkAvailabilityUrl>http://www.clarityenglish.com</checkNetworkAvailabilityUrl>
 	<checkNetworkAvailabilityInterval>30</checkNetworkAvailabilityInterval>
 	<checkNetworkAvailabilityReconnectInterval>5</checkNetworkAvailabilityReconnectInterval>
 	

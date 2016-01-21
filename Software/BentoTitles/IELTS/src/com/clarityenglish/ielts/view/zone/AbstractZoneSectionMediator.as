@@ -2,6 +2,7 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.ConfigProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -15,6 +16,18 @@ package com.clarityenglish.ielts.view.zone {
 		
 		public function AbstractZoneSectionMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
+		}
+		
+		private function get view():AbstractZoneSectionView {
+			return viewComponent as AbstractZoneSectionView;
+		}
+		
+		
+		override public function onRegister():void {
+			super.onRegister();
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.isPlatformiPad = configProxy.isPlatformiPad();
 		}
 		
 		override public function listNotificationInterests():Array {

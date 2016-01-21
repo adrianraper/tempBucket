@@ -51,6 +51,11 @@ package com.clarityenglish.ielts.view.zone {
 					practiceZoneLabel.text = copyProvider.getCopyForId("practiceZoneLabel");
 					break;
 				case practiceZoneInstructionLabel:
+					if (copyProvider.getLanguageCode() == "JP") {
+						instance.setStyle("fontSize", 12);
+					} else {
+						instance.setStyle("fontSize", 14);
+					}
 					practiceZoneInstructionLabel.text = copyProvider.getCopyForId("practiceZoneInstructionLabel");
 					break;
 				case unitList:

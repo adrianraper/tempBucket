@@ -5,18 +5,40 @@
 -->
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		xmlns:players="com.clarityenglish.controls.video.players.*">
+		xmlns:players="com.clarityenglish.controls.video.players.*" creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.controls.video.VideoSelector")]
 	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import com.googlecode.bindagetools.Bind;
+			
+			import mx.events.FlexEvent;
+			
+			import spark.events.IndexChangeEvent;
+			
+			protected function onCreationComplete(event:FlexEvent):void
+			{
+				Bind.fromProperty(hostComponent, "videoCollection").toFunction(function():void {
+					callLater(
+						function():void {
+							videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+							videoPlayer.visible = false;
+							videoPlayer.placeholderSource = hostComponent.href.rootPath + "/" + hostComponent.videoCollection.getItemAt(videoList.selectedIndex).attribute("poster");
+						}	
+					);			
+				});
+			}
+		]]>
+	</fx:Script>
 	
 	<!-- The video players -->
-	<players:WebViewVideoPlayer id="videoPlayer" width="411" height="231" visible="{videoList.selectedItem != null}" />
+	<players:WebViewVideoPlayer id="videoPlayer" width="411" height="231" visible="false" placeholderSource="{hostComponent.placeholderSource}" />
 	<!--players:OSMFVideoPlayer id="videoPlayer" width="411" height="231" /-->
 	
 	<!-- Placeholder image -->
-	<s:Image id="placeholderImage" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" />
+	<!--s:Image id="placeholderImage" source="{hostComponent.placeholderSource}" visible="{!videoPlayer.visible}"/-->
 	
 	<!-- Channel list -->
 	<s:List id="channelList" left="411" height="160" width="50" horizontalScrollPolicy="off" itemRenderer="spark.components.ButtonBarButton">
@@ -27,7 +49,7 @@
 	<s:Button id="scriptButton" left="411" top="172" width="50" height="45" />
 	
 	<!-- Video list -->
-	<s:List id="videoList" top="234" width="461" height="150" horizontalScrollPolicy="off" minHeight="0" minWidth="0">
+	<s:List id="videoList" top="234" width="461" height="150" horizontalScrollPolicy="off" minHeight="0" minWidth="0" requireSelection="true">
 		<s:layout>
 			<s:TileLayout requestedColumnCount="2" requestedRowCount="3" orientation="columns" columnWidth="230" verticalGap="11" horizontalGap="5" />
 		</s:layout>
@@ -45,7 +67,7 @@
 								videoLabel.text = data.@caption;
 								
 								// #213
-								enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
+								enabled = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8));
 							}
 						]]>
 					</fx:Script>

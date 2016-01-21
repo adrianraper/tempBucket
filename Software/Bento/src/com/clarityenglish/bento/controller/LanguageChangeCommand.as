@@ -1,8 +1,10 @@
 package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.common.model.CopyProxy;
-	
-	import flash.net.SharedObject;
+import com.clarityenglish.common.model.LoginProxy;
+import com.clarityenglish.common.vo.manageable.User;
+
+import flash.net.SharedObject;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -25,7 +27,11 @@ package com.clarityenglish.bento.controller {
 			
 			if (languageCode != CopyProxy.languageCode) {
 				var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
-				settingsSharedObject.data["languageCode"] = languageCode;
+				// gh#612 this needs to be keyed on the userID
+				//settingsSharedObject.data["languageCode"] = languageCode;
+				var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+				var user:User = loginProxy.user; 
+				settingsSharedObject.data["preferences.languageCode." + user.userID] = languageCode;
 				settingsSharedObject.flush();
 				
 				CopyProxy.languageCode = languageCode;

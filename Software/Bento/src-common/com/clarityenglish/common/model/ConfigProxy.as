@@ -106,7 +106,6 @@ package com.clarityenglish.common.model {
 			// gh#1160
 			config.userID = config.username = config.email = config.studentID = config.password = config.startingPoint = config.sessionID = null;
 			config.group = new Group();
-			
 			config.prefix = "";
 			config.noLogin = false;
 			config.isReloadAccount = false;

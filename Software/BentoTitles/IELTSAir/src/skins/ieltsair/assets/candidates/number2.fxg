@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="25.7007" viewWidth="18.5024" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="25.701" d:pageWidth="18.502" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Group ai:seqID="1" flm:knockout="false">
+        <Path winding="nonZero" ai:seqID="2" data="M0.576172 10.1865C0.396484 4.42725 3.67188 0 9.71875 0 14.3262 0 18.3579 2.95166 18.3579 7.88281 18.3579 11.6626 16.3423 13.75 13.8584 15.5142 11.375 17.2778 8.42285 18.7183 6.58691 21.3091L18.5024 21.3091 18.5024 25.7007 0 25.7007C0.0361328 19.8696
+ 3.59961 17.3862 7.95508 14.4341 10.1865 12.9224 13.21 11.3745 13.2461 8.27881 13.2461 5.90332 11.6621 4.39111 9.4668 4.39111 6.44336 4.39111 5.47168 7.52295 5.47168 10.1865L0.576172 10.1865Z">
+          <fill>
+            <SolidColor color="#FFFFFF"/>
+          </fill>
+        </Path>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

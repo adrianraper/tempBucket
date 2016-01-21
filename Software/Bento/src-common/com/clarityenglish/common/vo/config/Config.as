@@ -720,10 +720,21 @@ package com.clarityenglish.common.vo.config {
 			// You can now adjust the sharedMedia path as necessary
 			// Remember that it might look like 
 			// sharedMedia={contentPath}/sharedMedia
-			this.paths.sharedMedia = this.paths.sharedMedia.toString().split('{contentPath}').join(this.paths.content);
-			// gh#224
-			this.paths.brandingMedia = this.paths.brandingMedia.toString().split('{prefix}').join(account.prefix);
-		
+			// gh#599
+			var substitutions:Object = {contentPath: this.paths.content,
+										productVersion: this.productVersion,
+										languageCode: this.languageCode,
+										prefix: data.prefix};
+
+			this.paths.sharedMedia = StringUtils.substitute(this.paths.sharedMedia, substitutions);
+			this.paths.streamingMedia = StringUtils.substitute(this.paths.streamingMedia, substitutions);
+			this.paths.brandingMedia = StringUtils.substitute(this.paths.brandingMedia, substitutions);
+
+			// gh#599 Need to update the channel information now we know contentPaths
+			for each (var channelObject:ChannelObject in channels){			
+				channelObject.streamingMedia = StringUtils.substitute(channelObject.streamingMedia, substitutions);
+			}
+			
 			// gh#356 If there is a local channel available tested if it is accessible
 			localStreamingMedia = getLicenceAttribute('localStreamingMedia');
 			if (localStreamingMedia) {

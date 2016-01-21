@@ -652,6 +652,19 @@ package org.davekeen.util {
 			return trunc;
 		}
 
+		/**
+		 * Clarity function to do substitutions on a string
+		 */
+		public static function substitute(p_string:String, p_replaceObj:Object):String {
+			if (p_replaceObj) {
+				for (var searchString:String in p_replaceObj) {
+					var regExp:RegExp = new RegExp("\{" + searchString + "\}", "g");
+					p_string = p_string.replace(regExp, p_replaceObj[searchString]);
+				}
+			}
+			return p_string;
+		}
+		
 		/* **************************************************************** */
 		/*	These are helper methods used by some of the above methods.		*/
 		/* **************************************************************** */

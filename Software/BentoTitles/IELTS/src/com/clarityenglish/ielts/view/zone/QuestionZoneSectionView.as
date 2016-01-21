@@ -1,5 +1,7 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
+	import com.clarityenglish.ielts.IELTSApplication;
 	
 	import flash.events.MouseEvent;
 	
@@ -28,6 +30,10 @@ package com.clarityenglish.ielts.view.zone {
 		
 		public var exerciseSelect:Signal = new Signal(XML);
 		
+		public function get viewCopyProvider():CopyProvider {
+			return this.copyProvider;
+		}
+		
 		public function QuestionZoneSectionView() {
 			super();
 			actionBarVisible = false;
@@ -53,6 +59,11 @@ package com.clarityenglish.ielts.view.zone {
 					instance.text = copyProvider.getCopyForId("questionVideoLabel");
 					break;
 				case questionVideoInstructionLabel:
+					if (copyProvider.getLanguageCode() == "JP") {
+						instance.setStyle("fontSize", 12);
+					} else {
+						instance.setStyle("fontSize", 14);
+					}
 					instance.text = copyProvider.getCopyForId("questionVideoInstructionLabel");
 					break;
 			}
@@ -65,17 +76,47 @@ package com.clarityenglish.ielts.view.zone {
 			
 			for each (var questionZoneNode:XML in _course.unit.(@["class"] == "question-zone").exercise) {
 				if (questionZoneNode.@href.indexOf(".xml") > 0) {
-					readButton.enabled = !(questionZoneNode.hasOwnProperty("@enabledFlag") && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
+					readButton.enabled = !(questionZoneNode.attribute("enabledFlag").length() > 0 && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
 				}
 				if (questionZoneNode.@href.indexOf(".pdf") > 0) { 
-					downloadButton.enabled = !(questionZoneNode.hasOwnProperty("@enabledFlag") && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
+					downloadButton.enabled = !(questionZoneNode.attribute("enabledFlag").length() > 0 && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
 				}
 				if (questionZoneNode.@href.indexOf(".rss") > 0) { 
-					videoButton.enabled = !(questionZoneNode.hasOwnProperty("@enabledFlag") && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
+					videoButton.enabled = !(questionZoneNode.attribute("enabledFlag").length() > 0 && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
 				}
 			}
+			/*
+			// gh#1161
+			if (downloadButton.enabled) {
+				downloadButton.toolTip = null;
+			} else {
+				downloadButton.toolTip = getToolTip(productVersion);
+			}
+			if (videoButton.enabled) {
+				videoButton.toolTip = null;
+			} else {
+				videoButton.toolTip = getToolTip(productVersion);
+			}
+			*/
 		}
-
+		/*
+		// gh#1161
+		protected function getToolTip(productVersion:String):String {
+			switch (productVersion) {
+				case IELTSApplication.FULL_VERSION:
+					return copyProvider.getCopyForId("notCurAvailable");
+					break;
+				case IELTSApplication.LAST_MINUTE:
+					return copyProvider.getCopyForId("onlyAvailableFV");
+					break;
+				case IELTSApplication.TEST_DRIVE:
+					return copyProvider.getCopyForId("onlyAvailableLM");
+					break;
+				default:
+					return copyProvider.getCopyForId("notAvailble");
+			}
+		}
+		*/
 		protected function onReadButtonClick(event:MouseEvent):void {
 			// Question Zone can have more than one exercise (eBook and pdf), so dangerous to assume order
 			// Also a bit dubious, but can we base it on the file type?

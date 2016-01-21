@@ -7,15 +7,20 @@ package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.account.AccountView;
+	import com.clarityenglish.ielts.view.candidates.CandidatesView;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.support.SupportView;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
 	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
+	import flashx.textLayout.elements.TextFlow;
+	
 	import mx.controls.SWFLoader;
+	import mx.controls.Text;
 	import mx.formatters.DateFormatter;
 	
 	import org.davekeen.util.DateUtil;
@@ -24,8 +29,10 @@ package com.clarityenglish.ielts.view.title {
 	
 	import spark.components.Button;
 	import spark.components.Label;
+	import spark.components.RichEditableText;
 	import spark.components.TabbedViewNavigator;
 	import spark.components.ViewNavigator;
+	import spark.utils.TextFlowUtil;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
 	[SkinState("home")]
@@ -34,6 +41,7 @@ package com.clarityenglish.ielts.view.title {
 	[SkinState("account")]
 	[SkinState("support")]
 	[SkinState("exercise")]
+	[SkinState("candidates")]
 	public class TitleView extends BentoView {
 		
 		[SkinPart]
@@ -70,6 +78,12 @@ package com.clarityenglish.ielts.view.title {
 		public var helpViewNavigator:ViewNavigator;
 		
 		[SkinPart]
+		public var candidatesViewNavigator:ViewNavigator;
+		
+		[SkinPart]
+		public var candidatesViewNavigatorButton1:Button;
+		
+		[SkinPart]
 		public var helpViewNavigatorButton1:Button;
 		
 		[SkinPart]
@@ -103,6 +117,10 @@ package com.clarityenglish.ielts.view.title {
 		public var noticeLabel:Label;
 		
 		[SkinPart]
+		public var topInforButton:InforButton;
+		
+		// gh#383
+		[SkinPart]
 		public var infoButton:SWFLoader;
 		
 		[Bindable]
@@ -114,11 +132,20 @@ package com.clarityenglish.ielts.view.title {
 		[Bindable]
 		public var dateFormatter:DateFormatter;
 		
+		[Bindable]
+		public var isLogoutButtonHide:Boolean;
+		
 		// #337
 		public var candidateOnlyInfo:Boolean = false;
 		
 		// #260 
 		private var shortDelayTimer:Timer;
+		
+		// gh#383
+		private var _infoButtonText:String;
+		private var _inforButtonTextFlow:TextFlow;
+		// gh#761
+		private var _isDirectStartEx:Boolean;
 		
 		public var logout:Signal = new Signal();
 		public var backToMenu:Signal = new Signal();
@@ -154,7 +181,7 @@ package com.clarityenglish.ielts.view.title {
 			switch (value.localName()) {
 				case "course":
 				case "unit":
-					currentState = "zone";			
+					currentState = "zone";
 					break;
 				case "exercise":
 					currentState = "exercise";
@@ -166,7 +193,7 @@ package com.clarityenglish.ielts.view.title {
 			super();
 			
 			// The first one listed will be the default
-			StateUtil.addStates(this, [ "home", "zone", "exercise", "account", "progress", "support" ], true);
+			StateUtil.addStates(this, [ "home", "zone", "exercise", "account", "progress", "support", "candidates" ], true);
 		}
 		
 		// gh#11 Language Code, read pictures from the folder base on the LanguageCode you set
@@ -176,6 +203,35 @@ package com.clarityenglish.ielts.view.title {
 		
 		public function get languageAssetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
+		}
+		
+		// gh#383
+		[Bindable]
+		public function get infoButtonText():String {
+			return _infoButtonText;
+		}
+		
+		public function set infoButtonText(value:String):void {
+			_infoButtonText = value;
+		}
+		
+		// gh#383
+		[Bindable]
+		public function get inforButtonTextFlow():TextFlow {
+			return _inforButtonTextFlow;
+		}
+		
+		public function set inforButtonTextFlow(value:TextFlow):void {
+			_inforButtonTextFlow = value;
+		}
+		
+		[Bindable]
+		public function get isDirectStartEx():Boolean {
+			return _isDirectStartEx;
+		}
+		
+		public function set isDirectStartEx(value:Boolean):void {
+			_isDirectStartEx = value;
 		}
 		
 		[Bindable(event="productCodeChanged")]
@@ -271,6 +327,18 @@ package com.clarityenglish.ielts.view.title {
 			return null;
 		}
 		
+		// gh#383
+		[Bindable(event="productVersionChanged")]
+		public function get productVersionInforButton():Boolean {
+			if (_productVersion == IELTSApplication.LAST_MINUTE) {
+				// assign default value to information button in home menu page
+				infoButtonText = copyProvider.getCopyForId("infoReadingText");
+				inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);
+				return true;
+			} else {
+				return false;
+			}
+		}
 
 		[Bindable(event="licenceTypeChanged")]
 		public function get licenceTypeText():String {
@@ -280,11 +348,18 @@ package com.clarityenglish.ielts.view.title {
 		protected override function onViewCreationComplete():void {
 			super.onViewCreationComplete();
 			
+			// gh#844 If the initial language is JP, change the font familty here
+			if (copyProvider.getLanguageCode() == "JP") {
+				styleManager.getStyleDeclaration("global").setStyle("fontFamily", "KOZGOPR6N");
+			}
 			// Don't show profile tab for network users
+			// gh#603 removing profile tab blocks the logout buttonv
+			/*
 			if (licenceType == Title.LICENCE_TYPE_NETWORK) {
 				var profileIdx:int = sectionNavigator.tabBar.dataProvider.getItemIndex(myProfileViewNavigator);
 				if (profileIdx >= 0) sectionNavigator.tabBar.dataProvider.removeItemAt(profileIdx);
 			}
+			*/
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -298,12 +373,12 @@ package com.clarityenglish.ielts.view.title {
 						exercise: { viewClass: ExerciseView, stack: true },
 						progress: { viewClass: ProgressView },
 						account: { viewClass: AccountView },
-						support: { viewClass: SupportView }
+						support: { viewClass: SupportView },
+						candidates: { viewClass: CandidatesView}
 					});
 					break;
 				case logoutButton:
 					instance.addEventListener(MouseEvent.CLICK, onLogoutButtonClick);
-					instance.label = copyProvider.getCopyForId("LogOut");
 					break;
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
@@ -322,6 +397,10 @@ package com.clarityenglish.ielts.view.title {
 					break;
 				// #299, #337
 				case infoButton:
+					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
+					break;
+				// gh#383
+				case topInforButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
 				case homeViewNavigator:
@@ -352,7 +431,7 @@ package com.clarityenglish.ielts.view.title {
 					instance.label = copyProvider.getCopyForId("LogOut");
 					break;
 				case helpViewNavigator:
-					instance.label = copyProvider.getCopyForId("help");
+					instance.label = copyProvider.getCopyForId("Help");
 					break;
 				case helpViewNavigatorButton1:
 					instance.label = copyProvider.getCopyForId("Home");
@@ -378,6 +457,12 @@ package com.clarityenglish.ielts.view.title {
 				case moreViewNavigatorButton2:
 					instance.label = copyProvider.getCopyForId("LogOut");
 					break;
+				case candidatesViewNavigator:
+					instance.label = copyProvider.getCopyForId("Candidates");
+					break;
+				case candidatesViewNavigatorButton1:
+					instance.label = copyProvider.getCopyForId("Home");
+					break;
 			}
 		}
 		
@@ -391,14 +476,18 @@ package com.clarityenglish.ielts.view.title {
 		 * @param event
 		 */
 		protected function onBackToMenuButtonClick(event:MouseEvent):void {
-			backToMenu.dispatch();
-			
-			// #260 
-			if (logoutButton) logoutButton.enabled = false;
-			shortDelayTimer = new Timer(1000, 60);
-			shortDelayTimer.start();
-			shortDelayTimer.addEventListener(TimerEvent.TIMER, timerHandler);
-			shortDelayTimer.addEventListener(TimerEvent.TIMER_COMPLETE, resetLogoutButton);
+			if (isDirectStartEx) {
+				logout.dispatch();
+			} else {
+				backToMenu.dispatch();
+				
+				// #260 
+				if (logoutButton) logoutButton.enabled = false;
+				shortDelayTimer = new Timer(1000, 60);
+				shortDelayTimer.start();
+				shortDelayTimer.addEventListener(TimerEvent.TIMER, timerHandler);
+				shortDelayTimer.addEventListener(TimerEvent.TIMER_COMPLETE, resetLogoutButton);
+			}		
 		}
 		
 		// #260 
@@ -442,6 +531,32 @@ package com.clarityenglish.ielts.view.title {
 			return currentState;
 		}
 		
+		// gh#383
+		public function getCourseClass(value:XML):void {
+				if (value.localName() == "course") {
+					switch (value.@["class"].toString()) {
+						case "reading":
+							infoButtonText = copyProvider.getCopyForId("infoReadingText");
+							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);						
+							break;
+						case "listening":
+							infoButtonText = copyProvider.getCopyForId("infoListeningText");
+							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);	
+							break;
+						case "speaking":
+							infoButtonText = copyProvider.getCopyForId("infoSpeakingText");
+							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);	
+							break;
+						case "writing":
+							infoButtonText = copyProvider.getCopyForId("infoWritingText");
+							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);	
+							break;
+						default:
+							
+							break;
+					}
+				}			
+		}
 	}
 	
 }

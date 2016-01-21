@@ -2,6 +2,7 @@ package com.clarityenglish.controls.video {
 import com.clarityenglish.bento.events.ExerciseEvent;
 import com.clarityenglish.bento.vo.ExerciseMark;
 import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 import com.clarityenglish.controls.video.events.VideoEvent;
 import com.clarityenglish.controls.video.events.VideoScoreEvent;
 import com.clarityenglish.controls.video.loaders.RssVideoLoader;
@@ -88,7 +89,8 @@ import spark.utils.TextFlowUtil;
 
 		private var currentVideoStartTime:Date;
 		private var isRollOutTextOpen:Boolean;
-
+		private var _copyProvider:CopyProvider;
+		
 		public function VideoSelector() {
 			super();
 
@@ -159,7 +161,15 @@ import spark.utils.TextFlowUtil;
 				invalidateProperties();
 			}
 		}
-
+		
+		[Bindable]
+		public function get copyProvider():CopyProvider {
+			return _copyProvider;
+		}
+		public function set copyProvider(value:CopyProvider):void {
+			_copyProvider = value;
+		}
+		
 		protected override function commitProperties():void {
 			super.commitProperties();
 

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" 
+		xmlns:progress="skins.ielts.assets.progress.*"
+		xmlns:components="com.clarityenglish.components.*" 
+		xmlns:text="com.anychart.axesPlot.axes.text.*"
+		>
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.bento.view.progress.components.ProgressCompareView")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:SolidColorStroke color="0x4D4D4D" weight="3" id="horizontalAxisStroke" />
+	</fx:Declarations>
+	
+	<fx:Style>
+		.labelStyle {
+			labelPosition: inside;
+			labelAlign: top;
+			fontWeight: normal;
+			fontSize: 14;
+			color: white;
+			paddingTop: 10;
+			paddingRight: 10;
+		}
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.textLayout.elements.SelectElement;
+			
+			import flash.globalization.LocaleID;
+			import flash.globalization.NumberFormatter;
+			
+			import mx.charts.ChartItem;
+			import mx.charts.chartClasses.Series;
+			import mx.charts.events.ChartItemEvent;
+			import mx.charts.series.items.ColumnSeriesItem;
+			import mx.collections.XMLListCollection;
+			import mx.events.FlexEvent;
+			import mx.graphics.IFill;
+			import mx.graphics.SolidColor;
+			
+			import spark.components.DropDownList;
+			
+			public function percentageLabel(item:Object, prevValue:Object, axis:LinearAxis):String {
+				return item + "%";
+			}
+			
+			public function captionLabel(item:Object, prevValue:Object, axis:CategoryAxis, categoryItem:Object):String {
+				return categoryItem.@caption;
+			}
+
+			// gh#1161 TODO: I can't get this to reliably display vertically in the column. It would go horizontal if the text is short
+			// But sometimes go horizontal anyway and cut off the bottom of the line.
+			
+			// <mx:ColumnChart id="compareChart" showLabelVertically="true" extendLabelToEnd="false">
+			// <mx:ColumnSeries id="everyScoreColumnSeries" xField="@class" yField="@everyoneAverageScore" styleName="labelStyle" labelFunction="setLabel" >
+			/*
+			private function setLabel(element:ChartItem, series:Series):String {
+				var dataPoint:XML = element.item as XML;
+				var count:int = dataPoint.@everyoneCount;
+				var nf:NumberFormatter = new NumberFormatter(LocaleID.DEFAULT);
+				nf.groupingPattern = '3;*';
+				nf.fractionalDigits = 0;
+				var userSingularOrPlural:String = (count > 1) ? hostComponent.getCopyProvider().getCopyForId("pluralUsers") : hostComponent.getCopyProvider().getCopyForId("singularUser");
+				return hostComponent.getCopyProvider().getCopyForId("compareBasedOnUsers", {count: nf.formatInt(count), singularOrPlural: userSingularOrPlural});
+			}
+			*/
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:SolidColorStroke id="blankStroke" color="#00ff00" weight="0" alpha="0" />
+	</fx:Declarations>
+	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<!--legend-->
+	<s:HGroup top="10" right="20" gap="50" verticalAlign="middle">
+		<s:VGroup gap="10" verticalAlign="middle" horizontalAlign="right">
+			<s:Label id="compareInstructionLabel"  />
+			<components:SpinnerDropDownList id="countrySelection" width="200"/>
+		</s:VGroup>
+		<s:VGroup gap="10">
+			<s:HGroup gap="10">
+				<progress:myscoreBlack />
+				<s:Label id="myScoreLegendLabel" paddingTop="5" fontSize="13" color="0x333333" />
+			</s:HGroup>
+			<s:HGroup gap="10">
+				<progress:everyonescoreBlack />
+				<s:Label id="everyoneScoreLegendLabel" paddingTop="5" fontSize="13" color="0x333333" />
+			</s:HGroup>
+		</s:VGroup>
+	</s:HGroup>
+	
+	<mx:ColumnChart id="compareChart" left="20" right="60" top="80" bottom="140" seriesFilters="[]" showLabelVertically="true" extendLabelToEnd="false">
+		<mx:horizontalAxis>
+			<mx:CategoryAxis id="horizontalAxis" categoryField="@class" labelFunction="captionLabel" />
+		</mx:horizontalAxis>
+		<mx:verticalAxis>
+			<mx:LinearAxis id="verticalAxis" minimum="0" maximum="100" labelFunction="percentageLabel" />
+		</mx:verticalAxis>
+		
+		<mx:horizontalAxisRenderers>
+			<mx:AxisRenderer axis="{horizontalAxis}" axisStroke="{horizontalAxisStroke}" tickStroke="{blankStroke}" 
+							 placement="bottom" fontSize="16" color="0x572300" fontWeight="bold" >
+				<mx:labelRenderer>
+					<fx:Component>
+						<mx:Label color="{labelColor}" >
+							<fx:Script>
+								<![CDATA[
+									[Bindable]
+									private var labelColor:uint;
+									
+									override public function set data(value:Object):void {
+										if (value == null)
+											return;
+										
+										text = value.text;
+										labelColor = getStyle(value.text.toLowerCase() + "ColorDark")
+									}
+								]]>
+							</fx:Script>
+						</mx:Label>
+					</fx:Component>
+				</mx:labelRenderer>
+			</mx:AxisRenderer>
+		</mx:horizontalAxisRenderers>
+		<mx:verticalAxisRenderers>
+			<mx:AxisRenderer axis="{verticalAxis}" fontSize="13" color="0x303030" showLine="false" tickStroke="{blankStroke}" />
+		</mx:verticalAxisRenderers>
+		
+		<mx:annotationElements>
+			<mx:CartesianDataCanvas id="canvas" includeInRanges="true"/>
+			<mx:GridLines horizontalStroke="{blankStroke}" />
+		</mx:annotationElements>
+		
+		<mx:series>
+			<mx:ColumnSeries id="myScoreColumnSeries" xField="@class" yField="@myAverageScore" >
+				<mx:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer>
+							<fx:Script>
+								<![CDATA[
+									import mx.charts.series.items.ColumnSeriesItem;
+									private var _chartItem:ColumnSeriesItem;
+									override public function get data():Object {
+										return _chartItem;
+									}
+									override public function set data(value:Object):void {
+										_chartItem = value as ColumnSeriesItem; 
+										invalidateDisplayList();
+									}
+									override protected function updateDisplayList(unscaledWidth:Number,unscaledHeight:Number):void {
+										super.updateDisplayList(unscaledWidth, unscaledHeight);
+										var g:Graphics = graphics;
+										g.clear();  
+										g.beginFill(getStyle(_chartItem.xValue + "Color"));
+										g.drawRect(0, 0, unscaledWidth, unscaledHeight);
+										g.endFill();
+										
+										myLabel.text = _chartItem.yValue + '%';
+									}
+								]]>
+							</fx:Script>
+							<s:VGroup horizontalAlign="center" left="0" right="0" top="-44" gap="5">
+								<progress:myscoreBlack id="myScoreIcon"/>
+								<s:Label id="myLabel" width="100%" color="0x000000" textAlign="center" fontSize="15" fontWeight="bold" />
+							</s:VGroup>
+						</s:ItemRenderer>
+					</fx:Component>
+				</mx:itemRenderer>
+			</mx:ColumnSeries>
+			<mx:ColumnSeries id="everyScoreColumnSeries" xField="@class" yField="@everyoneAverageScore"  >
+				<mx:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer>
+							<fx:Script>
+								<![CDATA[
+									import mx.charts.series.items.ColumnSeriesItem;
+									private var _chartItem:ColumnSeriesItem;
+									override public function get data():Object {
+										return _chartItem;
+									}
+									override public function set data(value:Object):void {
+										_chartItem = value as ColumnSeriesItem; 
+										invalidateDisplayList();
+									}
+									override protected function updateDisplayList(unscaledWidth:Number,unscaledHeight:Number):void {
+										super.updateDisplayList(unscaledWidth, unscaledHeight);
+										var g:Graphics = graphics;
+										g.clear();  
+										g.beginFill(getStyle(_chartItem.xValue + "ColorDark"));
+										g.drawRect(0, 0, unscaledWidth, unscaledHeight);
+										g.endFill();
+										
+										everyoneLabel.text = _chartItem.yValue + '%';
+									}
+								]]>
+							</fx:Script>
+							<s:VGroup horizontalAlign="center" left="0" right="0" top="-44" gap="5">
+								<progress:everyonescoreBlack id="everyoneScoreIcon"/>
+								<s:Label id="everyoneLabel" width="100%" color="0x000000" textAlign="center" fontSize="15" fontWeight="bold" />
+							</s:VGroup>
+						</s:ItemRenderer>
+					</fx:Component>
+				</mx:itemRenderer>
+			</mx:ColumnSeries>
+		</mx:series>
+	</mx:ColumnChart>
+	
+</s:Skin>

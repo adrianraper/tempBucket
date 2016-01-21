@@ -2,7 +2,10 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:video="com.clarityenglish.controls.video.*"
-		creationComplete="creationComplete(event)">
+		xmlns:zone="skins.ielts.assets.zone.*"
+		xmlns:ui="skins.ielts.assets.zone.ui"
+		creationComplete="creationComplete(event)" 
+		xmlns:ui1="com.clarityenglish.ielts.view.zone.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.AdviceZoneSectionView")]
@@ -10,6 +13,7 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.ielts.IELTSApplication;
 			import com.clarityenglish.ielts.view.zone.DisabledPopupWatcher;
 			
 			import mx.events.FlexEvent;
@@ -35,15 +39,27 @@
 	</s:states>
 	
 	<s:Label id="adviceVideoLabel" fontSize="18" fontWeight="bold" left="20" top="12" />
-	<s:Label id="adviceVideoInstructionLabel" fontSize="14" left="20" top="35" />
+	<s:Label id="adviceVideoInstructionLabel" left="20" top="35" />
+	<s:Group right="17" top="13" visible="{!hostComponent.isPlatformiPad}">
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipTextReading.png')" includeIn="reading" />
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipTextWriting.png')" includeIn="writing" />
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipTextListening.png')" includeIn="listening" />
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipTextSpeaking.png')" includeIn="speaking" />
+	</s:Group>
+	<s:Group right="4" top="33" visible="{!hostComponent.isPlatformiPad}">
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipArrowReading.png')" includeIn="reading" />
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipArrowWriting.png')" includeIn="writing" />
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipArrowListening.png')" includeIn="listening" />
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipArrowSpeaking.png')" includeIn="speaking" />
+	</s:Group>
 	
 	<video:VideoSelector id="videoSelector"
 						 left="20"
-						 top="57"
-						 placeholderSource.reading="@Embed(source='/skins/ielts/assets/zone/advicezone_reading_video.png')"
-						 placeholderSource.writing="@Embed(source='/skins/ielts/assets/zone/advicezone_writing_video.png')"
-						 placeholderSource.listening="@Embed(source='/skins/ielts/assets/zone/advicezone_listening_video.png')"
-						 placeholderSource.speaking="@Embed(source='/skins/ielts/assets/zone/advicezone_speaking_video.png')"
-						 />
+						 top="57" />
+
+	<!-- gh#1161 -->
+	<s:Group top="350" horizontalCenter="0" includeInLayout="{hostComponent.isTestDrive}" visible="{hostComponent.isTestDrive}" >
+		<ui1:InfoLabel caption="{hostComponent.viewCopyProvider.getCopyForId('exampleInSpeaking')}" captionWidth="400" includeIn="reading,listening"/>
+	</s:Group> 
 	
 </s:Skin>

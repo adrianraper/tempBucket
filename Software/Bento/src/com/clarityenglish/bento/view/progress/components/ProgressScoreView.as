@@ -82,7 +82,7 @@ package com.clarityenglish.bento.view.progress.components {
 			if (scoreGridC3) scoreGridC3.headerText = copyProvider.getCopyForId("scoreGridC3");
 			if (scoreGridC4) scoreGridC4.headerText = copyProvider.getCopyForId("scoreGridC4");
 			if (scoreGridC5) scoreGridC5.headerText = copyProvider.getCopyForId("scoreGridC5");
-			ScoreEmptyScoreLabelButton.label = copyProvider.getCopyForId("ScoreEmptyScoreLabelButton");
+			if (ScoreEmptyScoreLabelButton) ScoreEmptyScoreLabelButton.label = copyProvider.getCopyForId("ScoreEmptyScoreLabelButton");
 		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
@@ -120,11 +120,13 @@ package com.clarityenglish.bento.view.progress.components {
 					}
 					
 					tableDataProvider = new XMLListCollection(buildXML);
-					
-					if (buildXML.length() == 0) {
-						ScoreEmptyScoreLabelButton.visible = true;
-					}else {
-						ScoreEmptyScoreLabelButton.visible = false;
+
+					if (ScoreEmptyScoreLabelButton) {
+						if (buildXML.length() == 0) {
+							ScoreEmptyScoreLabelButton.visible = true;
+						}else {
+							ScoreEmptyScoreLabelButton.visible = false;
+						}
 					}
 					
 					//alice: get courseClass in scoreDetailsDataGrid;

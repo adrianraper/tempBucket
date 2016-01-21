@@ -31,13 +31,13 @@
 			
 			// TODO: This is duplicated in IELTS and Rotterdam!!  Refactor!!
 			protected function onInitialize(event:FlexEvent):void {
-				// Determine what platform we are running on
+				// Determine what platform we are running onR
 				var platform:String = Capabilities.version.split(" ")[0];
 				var language:String = Capabilities.language;
 
 				if (language != "en" && language != "zh-CN") {
 					language = "en";
-				}
+				}	
 				
 				switch (platform) {
 					case "IOS":

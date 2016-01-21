@@ -14,6 +14,7 @@
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.observer.Notification;
+	import com.clarityenglish.bento.model.SCORMProxy;
 	
 	/**
 	 * A Mediator
@@ -48,6 +49,19 @@
 			view.upgrade.add(onUpgradeIELTS); 
 			view.register.add(onRegisterIELTS);
 			view.buy.add(onBuyIELTS);
+			
+			// gh#761
+			if (configProxy.getDirectStart()) {
+				var directStart:Object = configProxy.getDirectStart();
+				
+				if (directStart.exerciseID || directStart.groupID) {
+					view.isDirectStartEx = true;
+				}
+			}
+			
+			if (configProxy.isAccountJustAnonymous() && configProxy.isPlatformTablet()) {
+				view.isLogoutButtonHide = true;
+			}
 		}
 		
 		override public function onRemove():void {
@@ -99,6 +113,8 @@
 			switch (note.getName()) {
 				case BBNotifications.SELECTED_NODE_CHANGED:
 					view.selectedNode = note.getBody() as XML;
+					// gh#383
+					view.getCourseClass(note.getBody() as XML);
 					break;
 			}
 		}

@@ -87,7 +87,7 @@
 		
 		<s:Button id="startAgainButton" skinClass="skins.ielts.title.StartAgainButtonSkin" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" />
 		<s:Button id="backButton" skinClass="skins.ielts.title.BackButtonSkin" />
-		<s:Button id="forwardButton" skinClass="skins.ielts.title.ForwardButtonSkin" />
+		<s:Button id="forwardButton" skinClass="skins.ielts.title.ForwardButtonSkin" visible="{!hostComponent.isDirectStartEx}" />
 	</s:HGroup>
 	
 	<!-- Ring binder -->

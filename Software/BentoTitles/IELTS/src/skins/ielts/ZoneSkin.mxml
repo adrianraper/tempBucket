@@ -2,8 +2,10 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:zone="skins.ielts.assets.zone.*"
+		xmlns:zoneui="com.clarityenglish.ielts.view.zone.ui.*"
 		initialize="onInitialize(event)"
 		creationComplete="onCreationComplete(event)"
+		xmlns:title="com.clarityenglish.ielts.view.title.*"
 		xmlns:courseselector="com.clarityenglish.ielts.view.zone.courseselector.*">
 	<!-- host component -->
 	<fx:Metadata>
@@ -51,19 +53,22 @@
 	</s:states>
 	
 	<courseselector:CourseSelector id="courseSelector" course="{hostComponent.course}" left="0" top="100" tabletMode="true" />
+
+	<!-- gh#1161 -->
+	<title:InforButton id="topInforButton" richTextFlow="{hostComponent.inforButtonTextFlow}" left="30" top="560" buttonMode="true" useHandCursor="true" includeIn="testDrive"  />
+
+	<zone:ZonesChrome top="70" right="10" />
+	<zone:ZonesBars top="70" right="10" />
+	<zone:ZonesBinder top="70" right="10" />
 	
-	<zone:ZonesChrome top="50" right="20" />
-	<zone:ZonesBars top="50" right="20" />
-	<zone:ZonesBinder top="50" right="20" />
+	<s:Label text="{hostComponent.course.@caption}" color="#FFFFFF" fontSize="18" fontWeight="bold" top="124" right="30" />
 	
-	<s:Label text="{hostComponent.course.@caption}" color="#FFFFFF" fontSize="18" fontWeight="bold" top="104" right="40" />
-	
-	<s:TabbedViewNavigator id="sectionNavigator" width="518" height="492" top="144" right="20">		
-		<s:ViewNavigator id="questionZoneViewNavigator" width="100%" height="100%" label="Starting out" firstView="com.clarityenglish.ielts.view.zone.QuestionZoneSectionView" firstViewData="{hostComponent.course}" />
-		<s:ViewNavigator id="adviceZoneViewNavigator" width="100%" height="100%" label="Advice and tutorials" firstView="com.clarityenglish.ielts.view.zone.AdviceZoneSectionView" firstViewData="{hostComponent.course}" />
-		<s:ViewNavigator id="practiceZoneViewNavigator" width="100%" height="100%" label="Practice zone" firstView="com.clarityenglish.ielts.view.zone.PracticeZoneSectionView" firstViewData="{hostComponent.course}" />
-		<s:ViewNavigator id="testZoneViewNavigator" width="100%" height="100%" label="Test practice" firstView="com.clarityenglish.ielts.view.zone.ExamPracticeZoneSectionView" firstViewData="{hostComponent.course}" />
-	</s:TabbedViewNavigator>
+	<zoneui:ZoneTabbedViewNavigator id="sectionNavigator" width="518" height="492" top="164" right="10">
+		<s:ViewNavigator id="questionZoneViewNavigator" width="100%" height="100%" firstView="com.clarityenglish.ielts.view.zone.QuestionZoneSectionView" firstViewData="{hostComponent.course}" />
+		<s:ViewNavigator id="adviceZoneViewNavigator" width="100%" height="100%" firstView="com.clarityenglish.ielts.view.zone.AdviceZoneSectionView" firstViewData="{hostComponent.course}" />
+		<s:ViewNavigator id="practiceZoneViewNavigator" width="100%" height="100%" firstView="com.clarityenglish.ielts.view.zone.PracticeZoneSectionView" firstViewData="{hostComponent.course}" />
+		<s:ViewNavigator id="testZoneViewNavigator" width="100%" height="100%" firstView="com.clarityenglish.ielts.view.zone.ExamPracticeZoneSectionView" firstViewData="{hostComponent.course}" />
+	</zoneui:ZoneTabbedViewNavigator>
 	
 	<s:Button id="shortRateButton" bottom="45" left="300" useHandCursor="true" buttonMode="true" visible="{hostComponent.isPlatformTablet}" includeIn="bcStates" />
 	<s:Button id="longRateButton" top="10" right="12" useHandCursor="true" buttonMode="true" visible="{hostComponent.isPlatformTablet}" includeIn="fullVersionStates" />

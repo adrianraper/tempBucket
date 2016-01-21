@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<!--- The default skin class for a Spark ToggleButton component.  
+
+     @see spark.components.ToggleButton
+        
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                   xmlns:s="library://ns.adobe.com/flex/spark" 
+                   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+                   minWidth="21" minHeight="21" 
+                   alpha.disabledStates="0.5">
+	<fx:Metadata>[HostComponent("spark.components.ButtonBarButton")]</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" blurX="3" blurY="3" alpha="0.3" distance="0" angle="180" knockout="false"/>
+	</fx:Declarations>
+    
+    <!-- host component -->
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" stateGroups="overStates" />
+        <s:State name="down" stateGroups="downStates" />
+        <s:State name="disabled" stateGroups="disabledStates" />
+        <s:State name="upAndSelected" stateGroups="selectedStates, selectedUpStates" />
+        <s:State name="overAndSelected" stateGroups="overStates, selectedStates" />
+        <s:State name="downAndSelected" stateGroups="downStates, selectedStates" />
+        <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
+    </s:states>
+    
+   <s:Rect left="0" right="0" top="0" bottom="0" radiusX="8" radiusY="8" filters="{[dropShadowFilter]}">
+	   <s:fill>
+		   <s:LinearGradient rotation="90">
+			   <s:GradientEntry color="#F7F7F7" color.over="#2FB2ED" color.down="#2FB2ED" color.selectedStates="#2FB2ED" ratio="0" />
+			   <s:GradientEntry color="#EDEDED" color.over="#177FBD" color.down="#177FBD" color.selectedStates="#177FBD" ratio="0.13" />
+			   <s:GradientEntry color="#FAFAFA" color.over="#309FD1" color.down="#309FD1" color.selectedStates="#309FD1" ratio="0.51" />
+			   <s:GradientEntry color="#EBEBEB" color.over="#3896CF" color.down="#3896CF" color.selectedStates="#3896CF" ratio="0.84" />
+			   <s:GradientEntry color="#FFFFFF" color.over="#42B5EB" color.down="#42B5EB" color.selectedStates="#42B5EB" ratio="0.93" />
+			   <s:GradientEntry color="#E8E8E8" color.over="#0F90DB" color.down="#0F90DB" color.selectedStates="#0F90DB" ratio="1 "/>
+		   </s:LinearGradient>
+	   </s:fill>
+   </s:Rect>
+    
+    <!-- layer 8: text -->
+    <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
+    <s:Label id="labelDisplay"
+             textAlign="center"
+             verticalAlign="middle"
+             maxDisplayedLines="1"
+             horizontalCenter="0" verticalCenter="1"
+             left="20" right="20" top="12" bottom="18"
+			 color="#333333" color.over="#FFFFFF" color.down="#FFFFFF" color.selectedStates="#FFFFFF">
+    </s:Label>
+    
+</s:SparkButtonSkin>

@@ -3,7 +3,10 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.ielts.IELTSNotifications;
+	
+	import mx.utils.ObjectUtil;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -26,6 +29,17 @@ package com.clarityenglish.ielts.view.zone {
 			view.href = bentoProxy.menuXHTML.href;
 			
 			view.exerciseSelect.add(onExerciseSelect);
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var directStart:Object = configProxy.getDirectStart();
+			if (ObjectUtil.getClassInfo(directStart).properties.length > 0) {
+				view.isDirectLinkStart = true;
+				if (directStart.exerciseID) {
+					view.exerciseID = directStart.exerciseID;
+				}
+			} else {
+				view.isDirectLinkStart = false;
+			}
 		}
 		
 		override public function onRemove():void {

@@ -32,7 +32,6 @@
 	</s:states>
 	
 	<s:Label id="analysisInstructionLabel1" left="20" top="90" />
-	<s:Label id="analysisInstructionLabel2" left="20" top="120" />
 	<s:Label id="analysisTimeLabel" fontSize="16" left="20" top="150" />
 	
 	<ui:StackedBarChart id="stackedChart" top="150" height="35" left="20" width="{durationDataGroup.width}"

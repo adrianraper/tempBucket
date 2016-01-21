@@ -2,146 +2,167 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:login="skins.ielts.assets.login.*">
+		xmlns:login="skins.ielts.assets.login.*"
+		xmlns:assets="skins.assets.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.login.LoginView")]
 	</fx:Metadata>
+	
 	<fx:Script>
 		<![CDATA[ 
-			import flash.net.navigateToURL; 
+			import com.clarityenglish.bento.BentoApplication;
 			import com.clarityenglish.ielts.IELTSApplication;
+			
+			import flash.net.navigateToURL;
+			
+			import mx.events.FlexEvent;
+				
+			protected var signInDetailsMargin:uint = 20;
+			
 			protected function clickHandler(event:MouseEvent):void {
 				// TODO: Use CopyOps
 				var urlReq:URLRequest = new URLRequest("http://www.ieltspractice.com"); 
 				navigateToURL(urlReq, "_blank"); 
-			} 
+			}
+			
 		]]> 
 	</fx:Script>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" blurX="3" blurY="3" alpha="0.3" distance="0" angle="180" knockout="false"/>
+		<s:DropShadowFilter id="dropShadowFilter2" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" inner="true"/>
+	</fx:Declarations>
+	
 	<s:states>
-		<s:State name="disabled" />
 		<s:State name="normal" />
-		
-		<s:State name="login" stateGroups="loginStates" />
-		<s:State name="loginConcurrentTracking" stateGroups="loginStates" />
-		<s:State name="register" stateGroups="registerStates" />
-		<s:State name="registerConcurrentTracking" stateGroups="registerStates" />
-		<s:State name="registerError" stateGroups="registerStates" />
+		<s:State name="register" />
+		<s:State name="error" />
+		<s:State name="disabled" />
 	</s:states>
-
-	<s:Group width="100%" top="3">
-		<s:SWFLoader source="{hostComponent.productVersionLogo}" left="0" top="74" />
-		<s:Label text="{hostComponent.productVersionText}" top="84" left="12" color="#FFFFFF" />
-		<s:Image source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="12" />
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="52" />
+	
+	<!--Header--> 
+	<s:Group width="100%" top="20" left="30">
+		<s:SWFLoader source="{hostComponent.productVersionLogo}" left="0" top="74" visible="{!hostComponent.isPlatformTablet}" />
+		<s:Label text="{hostComponent.productVersionText}" top="84" left="12" color="#FFFFFF" visible="{!hostComponent.isPlatformTablet}" />
+		<login:IELTSLoginLogo left="20" top="22" visible="{hostComponent.isPlatformTablet}" />
+		<s:Image source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="12" visible="{!hostComponent.isPlatformTablet}" />
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="52" visible="{!hostComponent.isPlatformTablet}" />
 		<s:SWFLoader id="upgradeButton" source="{hostComponent.assetFolder}upgrade.jpg" right="0" top="44" 
-					 visible="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
-					 includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
+					 visible="{(hostComponent.productVersion == IELTSApplication.LAST_MINUTE) &amp;&amp; (!hostComponent.isPlatformTablet)}"
+					 includeInLayout="{hostComponent.productVersion == IELTSApplication.LAST_MINUTE}"
 					 click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
 	</s:Group>
 	
-	<!--gh#100 CT login page-->
-	<s:HGroup width="100%" height="100%" top="123">
-		
-	<s:BorderContainer left="20" width="40%" cornerRadius="12" borderColor="0xCCCCCC"  >
-		<s:VGroup paddingLeft="20" paddingBottom="50" paddingRight="20" width="100%" >
-			<s:Label id="CTOption1Label" width="100%" fontSize="16" color="0x0C436B" paddingTop="20" includeIn="loginStates"/>
+	<!-- Sign in details -->
+	<s:Group top="150" left="40" width="460" height="460">
+		<s:VGroup horizontalCenter="0" verticalCenter="0" gap="-5">
+			<s:HGroup paddingLeft="5" visible.register="false" visible.normal="true">
+				<s:ButtonBar id="buttonBar" visible="false" labelField="caption" requireSelection="true" />
+			</s:HGroup>	
 			
-			<s:VGroup id="loginBlock" width="100%" includeIn="loginStates">
-				<s:Label id="loginDetailLabel" width="100%" fontSize="13" color="0x000000" paddingTop="10" />
-				<s:Spacer height="3" />
-				<s:HGroup>
-					<s:Label id="loginKey_lbl" text="{hostComponent.loginKey_lbl}" fontWeight="bold" paddingTop="6" />
-					<s:TextInput id="loginKeyInput" width="180" />
-				</s:HGroup>
-				<s:Spacer height="5" />
-				<s:HGroup id="passwordBlock" includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}">
-					<s:Label id="passwordLabel" fontWeight="bold" paddingTop="6" />
-					<s:TextInput id="passwordInput" displayAsPassword="true" width="180" />
-				</s:HGroup>
-				<s:Spacer height="3" />
-				<s:HGroup>
-					<s:Button id="loginButton" label="loginButton" width="{(hostComponent.selfRegister) ? 140 : 120}"/>
-					<!-- gh#100 
-					<s:Button id="newUserButton" label="New user" visible="{hostComponent.selfRegister > 0}" includeInLayout="{hostComponent.selfRegister > 0}" includeIn="loginStates" />
-					-->
-				</s:HGroup>
-			</s:VGroup>
-			<s:Label id="RegisterOption1Label" fontSize="16" color="0x0C436B" paddingTop="20" includeIn="registerStates"/>
-			<s:VGroup id="registerBlock" width="100%" includeIn="registerStates">
-				<s:Label id="registerDetailLabel" 
-						text.registerConcurrentTracking="This is the first time you have used the program, click New user to confirm." 
-						width="100%" fontSize="13" color="0x000000" paddingTop="10" />
-				<s:Spacer height="3" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}"/>
-				<s:HGroup id="nameGroup" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}">
-					<s:Label id="loginName_lbl" text="{hostComponent.loginName_lbl}" fontWeight="bold" paddingTop="6" />
-					<s:TextInput id="loginNameInput" width="180" text="{hostComponent.savedName}"/>
-				</s:HGroup>
-				<s:Spacer height="3" visible="{hostComponent.selfRegisterID}" includeInLayout="{hostComponent.selfRegisterID}" />
-				<s:HGroup id="idGroup" visible="{hostComponent.selfRegisterID}" includeInLayout="{hostComponent.selfRegisterID}">
-					<s:Label id="loginID_lbl" text="{hostComponent.loginID_lbl}" fontWeight="bold" paddingTop="6" />
-					<s:TextInput id="loginIDInput" width="180" text="{hostComponent.savedName}"/>
-				</s:HGroup>
-				<s:Spacer height="3" visible="{hostComponent.selfRegisterEmail}" includeInLayout="{hostComponent.selfRegisterEmail}" />
-				<s:HGroup id="emailGroup" visible="{hostComponent.selfRegisterEmail}" includeInLayout="{hostComponent.selfRegisterEmail}">
-					<s:Label id="loginEmail_lbl" text="{hostComponent.loginEmail_lbl}" fontWeight="bold" paddingTop="6" />
-					<s:TextInput id="loginEmailInput" width="180" left="500" text="{hostComponent.savedName}" />
-				</s:HGroup>
-				<s:Spacer height="3" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" />
-				<s:HGroup id="passwordGroup" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}">
-					<s:Label text="{hostComponent.loginPassword_lbl}" fontWeight="bold" paddingTop="6" />
-					<s:TextInput id="newPasswordInput" displayAsPassword="true" width="180" text="{hostComponent.savedPassword}" />
-				</s:HGroup>
-				<s:Spacer height="3" />
-				<s:HGroup>
-					<s:Button id="addUserButton" label="New user" />
-					<s:Button id="cancelButton" label="Cancel" />
-				</s:HGroup>
-			</s:VGroup>
+			<s:Group id="signInGroup" excludeFrom="register">
+				<s:Group width="{trackingGroup.width}" height="80" top="{trackingGroup.height - 5}" visible="{hostComponent.isPlatformTablet}" includeInLayout="{hostComponent.isPlatformTablet}">
+					<s:Rect width="100%" height="100%" bottomLeftRadiusX="8" bottomLeftRadiusY="8" bottomRightRadiusX="8" bottomRightRadiusY="8">
+						<s:fill>
+							<s:SolidColor color="#FFFFFF" />
+						</s:fill>
+					</s:Rect>
+					<s:VGroup horizontalAlign="center" horizontalCenter="0" gap="10">
+						<s:Label id="demoButtonCaption" paddingTop="15" color="#333333" fontSize="15" fontWeight="bold" text="{hostComponent.demoButtonCaption}" />
+						<s:HGroup gap="10">
+							<s:Button id="demoButton1" />
+							<s:Button id="demoButton2" />
+						</s:HGroup>
+					</s:VGroup>		
+				</s:Group>
+				<s:SkinnableContainer id="trackingGroup" includeInLayout="{hostComponent.allowLogin}" visible="{hostComponent.allowLogin}">
+					<s:VGroup paddingTop="{2*signInDetailsMargin}" paddingRight="{signInDetailsMargin}" paddingBottom="8" paddingLeft="{signInDetailsMargin}" 
+							  horizontalAlign="center" gap="10">
+						<s:Label text="{hostComponent.loginCaption}" width="200" horizontalCenter="0" textAlign="center" fontWeight="bold" fontSize="18" color="#333333" />
+						<s:Rect height="5" /> <!-- this is a spacer -->
+						<s:Line width="95%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+							<s:stroke>
+								<s:SolidColorStroke color="#9E9E9E" weight="1" caps="square"/>
+							</s:stroke>
+						</s:Line>
+						<s:Rect height="5" /> <!-- this is a spacer -->
+						<s:TextInput id="loginKeyInput" paddingLeft="10" prompt="{hostComponent.loginKeyCaption}" width="250" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+						<s:VGroup visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" gap="10" >
+							<s:TextInput id="passwordInput" paddingLeft="10" displayAsPassword="true" prompt="{hostComponent.passwordCaption}" width="250" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+							<s:HGroup width="100%" horizontalAlign="right">
+								<s:Button id="forgotPasswordButton" label="{hostComponent.forgotPasswordCaption}" useHandCursor="true" buttonMode="true"/>
+							</s:HGroup>
+						</s:VGroup>
+						<s:HGroup width="100%" horizontalAlign="right" >
+							<s:Button id="newUserButton" label="{hostComponent.newUserButtonCaption}"  
+									  includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" />
+						</s:HGroup>
+						<s:Button id="loginButton" label="{hostComponent.loginButtonCaption}" />
+					</s:VGroup>
+				</s:SkinnableContainer>
+				
+				<s:SkinnableContainer id="anonymousGroup" includeInLayout="{hostComponent.allowAnonymous}" visible="{hostComponent.allowAnonymous}" left="{trackingGroup.width+1}" top="50">
+					<s:VGroup paddingTop="{signInDetailsMargin}" paddingRight="30" paddingBottom="8" paddingLeft="30" 
+							  horizontalAlign="center" gap="10">
+						<login:anonymousMask />
+						<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+							<s:stroke>
+								<s:SolidColorStroke color="#999999" weight="1" caps="square"/>
+							</s:stroke>
+						</s:Line>
+						<s:Label text="{hostComponent.anonymousCaption}" fontSize="15" fontWeight="bold" color="#333333" />
+						<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+							<s:stroke>
+								<s:SolidColorStroke color="#999999" weight="1" caps="square"/>
+							</s:stroke>
+						</s:Line>
+						<s:Rect height="10" /> <!-- this is a spacer -->
+						<s:Button id="anonymousStartButton" label="{hostComponent.anonymousStartButtonCaption}" />	
+					</s:VGroup>
+				</s:SkinnableContainer>
+			</s:Group>
 		</s:VGroup>
-	</s:BorderContainer>
-	<s:VGroup width="60%" >
-		<s:HGroup width="100%">
-			<s:Spacer width="20" />
-			<s:BorderContainer width="66%" right="20" cornerRadius="12" borderColor="0xCCCCCC" includeIn="loginConcurrentTracking">
-				<s:VGroup width="100%" paddingLeft="20" paddingBottom="50" paddingRight="20">
-					<s:Label id="CTOption2Label" fontSize="16" color="0x0C436B" paddingTop="20" width="100%"/>
-					<s:Label id="CTDetailLabel" fontSize="13" color="0x000000" paddingTop="10" width="100%"/>
-					<s:Spacer height="10"/>
-					<s:Button id="CTStartButton" width="120"/>
-				</s:VGroup>
-			</s:BorderContainer>
-		</s:HGroup>
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/login/login_graphic.png')" />
-	</s:VGroup>
-		
-	</s:HGroup>
 
-	<!--
-		<s:HGroup id="lastMinute" visible="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
-				  includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}">
-			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='IELTSLogoLastMinute_Icon')" left="0" top="0" width="40" height="40" />
-			<s:VGroup>
-				<s:Label id="LMLabel" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="7"/>	
-				<s:Label id="LMTextLabel" width="92%" paddingLeft="7" lineHeight="18" />
+		<!-- self register screen -->
+		<s:SkinnableContainer id="registerGroup" top="40" horizontalCenter="0" excludeFrom="normal">
+			<s:VGroup paddingTop="{2*signInDetailsMargin}" paddingRight="{signInDetailsMargin}" paddingBottom="8" paddingLeft="{signInDetailsMargin}" 
+					  horizontalAlign="center" gap="10" >
+				<s:Label text="{hostComponent.selfRegisterCaption}" fontSize="16" fontWeight="bold" color="#333333" />
+				<s:Line width="90%" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
+					<s:stroke>
+						<s:SolidColorStroke color="#999999" weight="1" caps="square"/>
+					</s:stroke>
+				</s:Line>
+				<s:Rect height="5" /> <!-- this is a spacer -->
+				<s:TextInput id="selfRegisterName" paddingLeft="10" prompt="{hostComponent.selfRegisterNameCaption}" 
+							 includeInLayout="{hostComponent.selfRegisterNameCaption != null}" visible="{hostComponent.selfRegisterNameCaption != null}"
+							 width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+				<s:TextInput id="selfRegisterId" paddingLeft="10" prompt="{hostComponent.selfRegisterIdCaption}"
+							 includeInLayout="{hostComponent.selfRegisterIdCaption != null}" visible="{hostComponent.selfRegisterIdCaption != null}"
+							 width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+				<s:TextInput id="selfRegisterEmail" paddingLeft="10" prompt="{hostComponent.selfRegisterEmailCaption}" 
+							 includeInLayout="{hostComponent.selfRegisterEmailCaption != null}" visible="{hostComponent.selfRegisterEmailCaption != null}"
+							 width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+				<s:TextInput id="selfRegisterPassword" paddingLeft="10" displayAsPassword="true" prompt="{hostComponent.selfRegisterPasswordCaption}" 
+							 includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}"
+							 width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+				<s:TextInput id="confirmPassword" paddingLeft="10" displayAsPassword="true" prompt="{hostComponent.confirmPasswordCaption}" 
+							 includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}"
+							 width="260" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+				<s:Rect height="10" /> <!-- this is a spacer -->
+				<s:HGroup gap="20">
+					<s:Button id="cancelButton" label="{hostComponent.cancelButtonCaption}" />
+					<s:Button id="addUserButton" label="{hostComponent.addUserButtonCaption}" />
+				</s:HGroup>
 			</s:VGroup>
-		</s:HGroup>
-		
-		<s:HGroup id="fullVersion" visible="{hostComponent.getProductVersion() == IELTSApplication.FULL_VERSION}"
-									includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.FULL_VERSION}">
-			<s:VGroup>
-				<s:Label id="FVLabel" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="0"/>	
-				<s:Label id="FVTextLabel" width="100%" paddingLeft="0" lineHeight="18" />
-			</s:VGroup>
-		</s:HGroup>
-	-->
-	<!--s:Group left="0" top="417" > 
-		<login:InputAreaChrome />
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/login/test_drive.png')" top="20" left="10"/>
-		<s:Label text="Try the FREE Test Drive version" top="42" left="200" width="340" color="0x592A0C" fontWeight="bold" fontSize="16"  />
-		<s:Button id="testDriveAcademicButton" label="Academic" left="170" top="80" width="100" height="44" fontSize="16" />
-		<s:Button id="testDriveGeneralButton" label="General Training" left="280" top="80" width="160" height="44" fontSize="16" />
-	</s:Group-->
+		</s:SkinnableContainer>
+	</s:Group>
 	
+	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/login/login_graphic.png')" top="160" horizontalCenter="250"/>
 	
+	<!--Rate Button-->
+	<s:Button id="longRateButton" right="50" top="70" buttonMode="true" useHandCursor="true" visible="{hostComponent.isPlatformTablet}" includeInLayout="{hostComponent.isPlatformTablet}" />
+	
+	<s:Label id="versionLabel" color="#AAAAAA" right="20" bottom="20" visible="{hostComponent.isPlatformTablet}"/>
 </s:Skin>

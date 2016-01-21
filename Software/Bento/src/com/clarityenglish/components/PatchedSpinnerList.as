@@ -20,7 +20,8 @@ package com.clarityenglish.components {
 			
 			// #410 - match row count to data provider length
 			if (dataGroup && dataGroup.layout)
-				(dataGroup.layout as VerticalSpinnerLayout).requestedRowCount = dataProvider.length;
+				// gh#1161 Not too many!
+				(dataGroup.layout as VerticalSpinnerLayout).requestedRowCount = (dataProvider.length > 10) ? 10 : dataProvider.length;
 		}
 		
 		override protected function dataGroup_rendererAddHandler(event:RendererExistenceEvent):void {

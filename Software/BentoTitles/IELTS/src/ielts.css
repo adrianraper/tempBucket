@@ -1,7 +1,7 @@
 /* CSS file */
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
-@namespace login "com.clarityenglish.ielts.view.login.*";
+@namespace login "com.clarityenglish.bento.view.login.*";
 @namespace credits "com.clarityenglish.bento.view.credits.*";
 @namespace title "com.clarityenglish.ielts.view.title.*";
 @namespace zone "com.clarityenglish.ielts.view.zone.*";
@@ -19,12 +19,13 @@
 @namespace bento "com.clarityenglish.bento.*";
 @namespace marking "com.clarityenglish.bento.view.marking.*";
 @namespace warning "com.clarityenglish.bento.view.warning.*";
-@namespace error "com.clarityenglish.common.view.error.*";
 @namespace components "com.clarityenglish.textLayout.components.*";
 @namespace swfplayer "com.clarityenglish.bento.view.swfplayer.*";
 @namespace ielts "com.clarityenglish.ielts.*";
 @namespace nonetwork "com.clarityenglish.ielts.view.nonetwork.*";
 @namespace video "com.clarityenglish.controls.video.*";
+@namespace candidates "com.clarityenglish.ielts.view.candidates.*";
+@namespace candidatesui "com.clarityenglish.ielts.view.candidates.ui.*";
 
 global {
 	/* This changes the modal popup mask properties */
@@ -40,30 +41,34 @@ global {
 	
 	/* Course colours and icons are used all over the place, so set them globally */
 	writingColor: #7DAB36;
+	writingCompareEveryoneColor: #2B3B13;
+	writingCompareMyColor: #6F9C2D;
 	writingColorDark: #364A17;
 	writingIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconSmall');
 	writingIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconBare');
 	
 	readingColor: #00A2C8;
+	readingCompareEveryoneColor: #303030;
+	readingCompareMyColor: #004657;
 	readingColorDark: #005063;
 	readingIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall');
 	readingIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconBare');
 	
 	speakingColor: #A93087;
+	speakingCompareEveryoneColor: #330F28;
+	speakingCompareMyColor: #A93087;
 	speakingColorDark: #4F173F;
 	speakingIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconSmall');
 	speakingIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconBare');
 	
 	listeningColor: #FF6600;
+	listeningCompareEveryoneColor: #572300;
+	listeningCompareMyColor: #FF6600;
 	listeningColorDark: #7A3100;
 	listeningIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconSmall');
 	listeningIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconBare');
 	
 	disabledColor: #EEEEEE;
-}
-
-s|Button {
-	skinClass: ClassReference("spark.skins.mobile.ButtonSkin");
 }
 
 /* The video selector */
@@ -89,56 +94,76 @@ login|LoginView {
 	skinClass: ClassReference("skins.ielts.LoginSkin");
 }
 
-login|LoginView s|TextInput {
-	skinClass: ClassReference("spark.skins.spark.TextInputSkin");
+s|TextInput {
+	skinClass: ClassReference("skins.ielts.login.TextInputSkin");
 	borderVisible: true;
 	borderColor: #E6E6E6; 
 	contentBackgroundColor: #FFFFFF;
+}
+
+login|LoginView s|SkinnableContainer#trackingGroup,#registerGroup {
+	skinClass: ClassReference("skins.ielts.login.SignInContainerSkin");
+}
+
+login|LoginView s|SkinnableContainer#anonymousGroup {
+	skinClass: ClassReference("skins.ielts.login.AnonymousContainerSkin");
 }
 
 login|LoginView s|Button {
 	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
 }
 
-login|LoginView #testDriveGeneralButton {
+login|LoginView s|ButtonBar {
+	skinClass: ClassReference("skins.ielts.login.LoginButtonBarSkin");
+}
+
+/*login|LoginView #testDriveGeneralButton {
 	skinClass: ClassReference("skins.ielts.login.TestDriveButtonSkin");
 }
 
 login|LoginView #testDriveAcademicButton {
 	skinClass: ClassReference("skins.ielts.login.TestDriveButtonSkin");
+}*/
+
+login|LoginView s|Button#forgotPasswordButton {
+	skinClass: ClassReference("skins.ielts.login.LoginForgotPasswordButton");
 }
 
-login|LoginView #accountMoreButton {
-	skinClass: ClassReference("skins.ielts.login.AccountMoreButtonSkin");
+login|LoginView s|Button#newUserButton {
+	skinClass: ClassReference("skins.ielts.login.LoginForgotPasswordButton");
 }
+
+/*login|LoginView #accountMoreButton {
+	skinClass: ClassReference("skins.ielts.login.AccountMoreButtonSkin");
+}*/
 
 /* Title view styles */
 title|TitleView {
 	skinClass: ClassReference("skins.ielts.TitleSkin");
-	homeIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="HomeIcon");
-	progressIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="ProgressIcon");
-	profileIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="AccountIcon");
-	helpIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="HelpIcon");
+	homeIcon: Embed(source="skins/ielts/assets/title/homeicon.svg");
+	progressIcon: Embed(source="skins/ielts/assets/title/progressicon.svg");
+	profileIcon: Embed(source="skins/ielts/assets/title/profileicon.svg");
+	helpIcon: Embed(source="skins/ielts/assets/title/helpicon.svg");
+	candidatesIcon: Embed(source="skins/ielts/assets/title/candidatesicon.svg");
 }
 
 title|TitleView s|TabbedViewNavigator {
 	skinClass: ClassReference("skins.ielts.title.WebTabbedViewNavigatorSkin");
 }
 
-title|TitleView zone|ZoneView s|TabbedViewNavigator #tabBar {
-	chromeColor: #262526;
-	color: #DDDDDD;
-	fontSize: 10;
+title|TitleView s|TabbedViewNavigator #tabBar {
+	color: #262526;
+	fontSize: 13;
 	fontWeight: normal;
-	iconPlacement: top;
-}
-
-title|TitleView #navBar {
-	skinClass: ClassReference("skins.ielts.title.NavBarSkin");	
+	iconPlacement: left;
 }
 
 title|TitleView #logoutButton {
 	skinClass: ClassReference("skins.ielts.title.LogoutButtonSkin");
+}
+
+title|TitleView #topInforButton {
+	skinClass: ClassReference("skins.ielts.title.InforButtonSkin");
 }
 
 /* Home view styles */
@@ -183,6 +208,13 @@ homeui|CourseBarRenderer {
 	skinClass: ClassReference("skins.ielts.home.CourseBarRendererSkin");
 }
 
+home|HomeView s|Button#findMoreButton {
+	skinClass: ClassReference("skins.ielts.home.FindMoreButtonSkin");
+}
+home|HomeView #topInforButton {
+	skinClass: ClassReference("skins.ielts.title.InforButtonSkin");
+}
+
 /* Zone view styles */
 zone|ZoneView {
 	skinClass: ClassReference("skins.ielts.ZoneSkin");
@@ -190,11 +222,11 @@ zone|ZoneView {
 }
 
 zone|ZoneView #sectionNavigator {
-	skinClass: ClassReference("skins.ielts.zone.SectionNavigatorSkin");
+	skinClass: ClassReference("skins.ielts.zone.ZoneTabbedViewNavigatorSkin");
 }
 
 zone|ZoneView #sectionNavigator #tabBar {
-	skinClass: ClassReference("skins.ielts.zone.ui.SectionNavigatorTabBarSkin");
+	color: #FFFFFF;
 	fontSize: 13;
 }
 
@@ -391,13 +423,37 @@ s|TitleWindow.titleWindowClose {
 	skinClass: ClassReference("skins.ielts.titlewindows.TitleWindowCloseSkin");
 }
 
+candidates|CandidatesView {
+	skinClass: ClassReference("skins.ielts.candidates.CandidatesSkin");
+}
+
+candidates|CandidatesView video|VideoSelector {
+	skinClass: ClassReference("skins.ielts.candidates.VideoSelectorSkin");	
+}
+
+candidates|CandidatesView video|VideoSelector s|Button#videoPlayButton {
+	skinClass: ClassReference("skins.ielts.candidates.VideoPlayButtonSkin");
+}
+
+candidates|CandidatesView video|VideoSelector s|Button#previousVideoButton {
+	skinClass: ClassReference("skins.ielts.candidates.PreviousVideoButtonSkin");
+}
+
+candidates|CandidatesView video|VideoSelector s|Button#nextVideoButton {
+	skinClass: ClassReference("skins.ielts.candidates.NextVideoButtonSkin");
+}
+
+candidatesui|CandidatesChannelListRenderer {
+	skinClass:ClassReference("skins.ielts.candidates.CandidatesChannelButtonBarButtonSkin");
+}
+
 swfplayer|SWFPlayerView {
 	loadingGraphic: Embed(source="skins/ielts/assets/loading.swf");
 }
 /*debugalice: flex4.5 project setting problem?*/
 mx|ToolTip {
 	fontFamily: "Helvetica";
-	fontSize: 12.6;
+	fontSize: 12;
 	color: #FFFFFF;
 	backgroundColor: #000000;
 }

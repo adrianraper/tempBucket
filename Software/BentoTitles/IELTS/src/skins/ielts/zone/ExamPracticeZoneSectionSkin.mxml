@@ -4,6 +4,7 @@
 		xmlns:controls="com.clarityenglish.controls.*"
 		xmlns:zone="skins.ieltsair.assets.zone.*"
 		xmlns:tlfcomponents="com.clarityenglish.textLayout.components.*"
+		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
 		xmlns:components="com.clarityenglish.components.*"
 		creationComplete="onCreationComplete(event)"
 		removedFromStage="onRemoveFromStage(event)">
@@ -13,7 +14,9 @@
 	</fx:Metadata>
 	
 	<fx:Script>
-		<![CDATA[
+		<![CDATA[			
+			import com.clarityenglish.ielts.IELTSApplication;
+			
 			import mx.binding.utils.BindingUtils;
 			import mx.binding.utils.ChangeWatcher;
 			import mx.events.FlexEvent;
@@ -22,6 +25,10 @@
 			
 			protected function onCreationComplete(event:FlexEvent):void {
 				changeWatcher = BindingUtils.bindSetter(onScroll, list.scroller.viewport, "horizontalScrollPosition");
+				
+				// for direct start, scroll to the specified exercise
+				if (list.scroller.horizontalScrollBar)
+					list.scroller.horizontalScrollBar.value += (list.scroller.viewport.width * (hostComponent.pageToScroll - 1));
 			}
 			
 			protected function onScroll(x:* = null):void {
@@ -52,8 +59,8 @@
 	</s:states>
 	
 	<s:Label id="examZoneLabel" fontSize="18" fontWeight="bold" left="20" top="12" />
-	<s:Label id="examZoneInstructionLabel" visible="{list.dataProvider.length > 0 }" fontSize="14" left="20" top="35" right="25"/>
-	<s:Label id="examZoneNoTestLabel" visible="{list.dataProvider.length == 0}" fontSize="14" left="20" top="35" right="25" />
+	<s:Label id="examZoneInstructionLabel" visible="{list.dataProvider.length > 0 }" left="20" top="35" right="25"/>
+	<s:Label id="examZoneNoTestLabel" visible="{list.dataProvider.length == 0}" left="20" top="35" right="25" />
 	
 	<s:List id="list"
 			width="386"
@@ -73,8 +80,10 @@
 				<s:DataRenderer width="386" addedToStage="onAddedToStage(event)" removedFromStage="onRemovedFromStage(event)">
 					<fx:Script>
 						<![CDATA[
+							import com.clarityenglish.bento.BentoApplication;
 							import com.clarityenglish.bento.events.ExerciseEvent;
 							import com.clarityenglish.common.model.interfaces.CopyProvider;
+							import com.clarityenglish.ielts.IELTSApplication;
 							import com.clarityenglish.ielts.view.zone.ZoneView;
 							
 							import flash.utils.setTimeout;
@@ -100,6 +109,10 @@
 								callLater(invalidateDisplayList);
 							}
 							
+							public function getSequenceNumber(data:Object):Number {
+								return (owner as List).dataProvider.getItemIndex(data) + 1;
+							}
+							
 							override public function set data(value:Object):void {
 								super.data = value;
 								
@@ -113,14 +126,54 @@
 									swfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_" + courseClass + (idx + 1) + ".png";
 									
 									// GH #49
-									practiceTestButton.enabled = answerKeyButton.enabled = audioPlayer.enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
+									practiceTestButton.enabled = answerKeyButton.enabled = audioPlayer.enabled = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8));
 									
 									//gh #184
 									if (practiceTestButton.enabled) {
 										practiceLabel.text = data.@caption;
+										practiceTestGroup.toolTip = null;
+										answerKeyGroup.toolTip = null;
+										testDriveInformation.includeInLayout = testDriveInformation.visible = false;
 									} else {
-										practiceLabel.text = outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailblePracticeTest");
+										// gh#1161
+										if (outerDocument.hostComponent.isTestDrive) {
+											practiceLabel.text = '';
+											testDriveInformation.includeInLayout = testDriveInformation.visible = true;
+											if (courseClass == 'reading') {
+												testDriveInfo.caption = outerDocument.hostComponent.getCopyProvider().getCopyForId('exampleInReadingTest1');
+											} else {
+												testDriveInfo.caption = outerDocument.hostComponent.getCopyProvider().getCopyForId('exampleInReading');
+											}
+										} else {
+											practiceLabel.text = outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailblePracticeTest");
+										}
+										// gh#759
+										practiceTestGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion, getSequenceNumber(data));
+										answerKeyGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion, getSequenceNumber(data));
 									}
+								}
+							}
+							
+							// gh#759
+							protected function getToolTip(productVersion:String, sequenceNumber:Number = 0):String {
+								switch (productVersion) {
+									case IELTSApplication.FULL_VERSION:
+										return outerDocument.hostComponent.getCopyProvider().getCopyForId("notCurAvailable");
+										break;
+									case IELTSApplication.LAST_MINUTE:
+										return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableFV");
+										break;
+									case IELTSApplication.TEST_DRIVE:
+										if (sequenceNumber == 3) {
+											return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableFVWebsite");
+										}
+										return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableLM");
+										break;
+									case BentoApplication.DEMO:
+										return outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailbleDemo");
+										break;
+									default:
+										return outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailble");
 								}
 							}
 							
@@ -131,11 +184,20 @@
 					</fx:Script>
 					<s:SWFLoader id="swfLoader" />
 					<s:Label id="practiceLabel" top="268" horizontalCenter="0" fontSize="16" />
-					
+					<!-- gh#1161 -->
+					<s:Group id="testDriveInformation" top="252" horizontalCenter="0" includeInLayout="{outerDocument.hostComponent.isTestDrive}" visible="{outerDocument.hostComponent.isTestDrive}" >
+						<ui:InfoLabel id="testDriveInfo" />
+					</s:Group> 
+
 					<s:HGroup top="295" gap="10" horizontalCenter="0">
-						<tlfcomponents:AudioPlayer id="audioPlayer" visible="{data.hasOwnProperty('@audioHref')}" includeInLayout="{data.hasOwnProperty('@audioHref')}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
-						<s:Button id="practiceTestButton" width="141" height="40" color="#FFFFFF" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='SearchIcon')" label="{data.@caption}" click="onButtonClick(data as XML)" />
-						<s:Button id="answerKeyButton" label="{data.@answerCaption}" width="141" height="40" color="#FFFFFF" chromeColor="#000000" click="onButtonClick(data as XML, 'answerHref')" />
+						<tlfcomponents:AudioPlayer id="audioPlayer" visible="{data.attribute('audioHref').length() > 0}" includeInLayout="{data.attribute('audioHref').length() > 0}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
+						<!--gh#759 using group to show tooltip when button is disabled-->
+						<s:Group id="practiceTestGroup">
+							<s:Button id="practiceTestButton" width="141" height="40" color="#FFFFFF" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='SearchIcon')" label="{data.@caption}" click="onButtonClick(data as XML)" useHandCursor="true" buttonMode="true" />
+						</s:Group>
+						<s:Group id="answerKeyGroup">
+							<s:Button id="answerKeyButton" label="{data.@answerCaption}" width="141" height="40" color="#FFFFFF" chromeColor="#000000" click="onButtonClick(data as XML, 'answerHref')" useHandCursor="true" buttonMode="true" />
+						</s:Group>				
 					</s:HGroup>
 				</s:DataRenderer>
 			</fx:Component>

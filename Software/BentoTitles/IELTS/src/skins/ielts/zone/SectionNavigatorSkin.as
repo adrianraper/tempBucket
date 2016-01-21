@@ -51,6 +51,8 @@ package skins.ielts.zone {
 				tabBar = new ButtonBar();
 				tabBar.id = "tabBar";
 				tabBar.requireSelection = true;
+				tabBar.buttonMode = true;
+				tabBar.useHandCursor = true;
 				addChild(tabBar);
 			}
 		}

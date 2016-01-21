@@ -1,5 +1,6 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
 	
 	import flash.events.Event;
@@ -12,8 +13,23 @@ package com.clarityenglish.ielts.view.zone {
 	 */
 	public class AbstractZoneSectionView extends BentoView {
 		
+		private var _isPlatformiPad:Boolean;
+		
+		[Bindable]
+		public function get isPlatformiPad():Boolean {
+			return _isPlatformiPad;
+		}
+		
+		public function set isPlatformiPad(value:Boolean):void {
+			_isPlatformiPad = value;
+		}
+		
 		public function AbstractZoneSectionView() {
 			super();
+		}
+		
+		public function get isTestDrive():Boolean {
+			return (productVersion == IELTSApplication.TEST_DRIVE);
 		}
 		
 		protected function get _course():XML {

@@ -10,8 +10,10 @@ package com.clarityenglish.ielts.view.home {
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.MouseEvent;
-	import flash.net.navigateToURL;
 	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
+	
+	import flashx.textLayout.elements.TextFlow;
 	
 	import mx.controls.SWFLoader;
 	import mx.formatters.DateFormatter;
@@ -24,6 +26,7 @@ package com.clarityenglish.ielts.view.home {
 	
 	import spark.components.Button;
 	import spark.components.Label;
+	import spark.utils.TextFlowUtil;
 	
 	public class HomeView extends BentoView {
 		
@@ -149,16 +152,16 @@ package com.clarityenglish.ielts.view.home {
 			for each (var course:XML in menu.course) {
 				switch (course.@["class"].toString()) {
 					case "reading":
-						if (readingCourseButton) readingCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						if (readingCourseButton) readingCourseButton.enabled = !(course.attribute("enabledFlag").length() > 0 && (Number(course.@enabledFlag.toString()) & 8));
 						break;
 					case "listening":
-						if (listeningCourseButton) listeningCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						if (listeningCourseButton) listeningCourseButton.enabled = !(course.attribute("enabledFlag").length() > 0 && (Number(course.@enabledFlag.toString()) & 8));
 						break;
 					case "speaking":
-						if (speakingCourseButton) speakingCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						if (speakingCourseButton) speakingCourseButton.enabled = !(course.attribute("enabledFlag").length() > 0 && (Number(course.@enabledFlag.toString()) & 8));
 						break;
 					case "writing":
-						if (writingCourseButton) writingCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						if (writingCourseButton) writingCourseButton.enabled = !(course.attribute("enabledFlag").length() > 0 && (Number(course.@enabledFlag.toString()) & 8));
 						break;
 				}
 			}

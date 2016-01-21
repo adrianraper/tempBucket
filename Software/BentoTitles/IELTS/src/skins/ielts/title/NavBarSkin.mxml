@@ -46,7 +46,7 @@
             @see spark.skins.spark.ButtonBarFirstButtonSkin
         -->
         <fx:Component id="firstButton">
-            <s:ButtonBarButton skinClass="skins.ielts.title.NavBarFirstButtonSkin" />
+            <s:ButtonBarButton skinClass="skins.ielts.title.NavBarFirstButtonSkin" buttonMode="true" useHandCursor="true" />
         </fx:Component>
 
         <!--- 
@@ -55,7 +55,7 @@
             @see spark.skins.spark.ButtonBarMiddleButtonSkin
         -->
         <fx:Component id="middleButton" >
-            <s:ButtonBarButton skinClass="skins.ielts.title.NavBarMiddleButtonSkin" />
+            <s:ButtonBarButton skinClass="skins.ielts.title.NavBarMiddleButtonSkin" buttonMode="true" useHandCursor="true" />
         </fx:Component>
 
         <!--- 
@@ -64,7 +64,7 @@
             @see spark.skins.spark.ButtonBarLastButtonSkin
         -->
         <fx:Component id="lastButton" >
-            <s:ButtonBarButton skinClass="skins.ielts.title.NavBarLastButtonSkin" />
+            <s:ButtonBarButton skinClass="skins.ielts.title.NavBarLastButtonSkin" buttonMode="true" useHandCursor="true" />
         </fx:Component>
 
     </fx:Declarations>

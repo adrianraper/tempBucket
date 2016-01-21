@@ -378,6 +378,14 @@ import flash.events.TimerEvent;
                         // gh#1067 Update our user details held in config
                         configProxy.getConfig().mergeUser(_user);
 
+						// gh#612 If this user already saved a set of preferences, load them up now
+						if (!user.isAnonymous()) {
+							var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
+							if (settingsSharedObject.data["preferences.languageCode." + user.userID]) {
+								var languageCode:String = settingsSharedObject.data["preferences.languageCode." + user.userID];
+								sendNotification(BBNotifications.LANGUAGE_CHANGE, languageCode);
+							}
+						}
                         // gh#21 If login changed the account
                         // save what we now know about the account in Config
                         if (data.account) {
@@ -509,15 +517,13 @@ import flash.events.TimerEvent;
                                 var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
                                 var loginOption:uint = configProxy.getAccount().loginOption;
                                 var verified:Boolean = (configProxy.getAccount().verified == 1);
-                                var configUser:User = new User({
-                                    name: scormProxy.scorm.studentName,
-                                    studentID: scormProxy.scorm.studentID,
-                                    email: scormProxy.email
-                                });
+							    var configUser:User = new User({name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID});
+							    // gh#1227
+							    if (loginOption & Config.LOGIN_BY_EMAIL)
+								    configUser.email = configUser.name + '@scorm.email';
 
                                 var loginEvent:LoginEvent = new LoginEvent(LoginEvent.ADD_USER, configUser, loginOption, verified);
                                 sendNotification(CommonNotifications.ADD_USER, loginEvent);
-
                             } else {
                                 sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault, false)); // GH #3
                             }

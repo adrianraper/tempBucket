@@ -72,9 +72,9 @@ package com.clarityenglish.bento.view.progress {
 				case progressNavBar:
 					// gh#11 Language Code
 					progressNavBar.dataProvider = new ArrayCollection( [
-						{ label: copyProvider.getCopyForId("progressNavBarCoverage"), data: "coverage" },
 						{ label: copyProvider.getCopyForId("progressNavBarCompare"), data: "compare" },
 						{ label: copyProvider.getCopyForId("progressNavBarAnalyse"), data: "analysis" },
+						{ label: copyProvider.getCopyForId("progressNavBarCoverage"), data: "coverage" },					
 						{ label: copyProvider.getCopyForId("progressNavBarScores"), data: "score" },
 					] );
 					
@@ -98,7 +98,7 @@ package com.clarityenglish.bento.view.progress {
 			if (isAnonymousUser)
 				return "anonymous";
 			
-			var state:String = (!progressNavBar || !progressNavBar.selectedItem) ? "coverage" : progressNavBar.selectedItem.data;
+			var state:String = (!progressNavBar || !progressNavBar.selectedItem) ? "compare" : progressNavBar.selectedItem.data;
 			return state + ((productVersion == BentoApplication.DEMO) ? "_demo" : "");
 		}
 		
@@ -113,7 +113,8 @@ package com.clarityenglish.bento.view.progress {
 		
 		protected function onProgressCoverageUpdateComplete(event:Event):void {
 			if (isProgressCoverageCreated) {
-				busyIndicator.visible = false;
+				if (busyIndicator)
+					busyIndicator.visible = false;
 			} else {
 				isProgressCoverageCreated = true;;
 			}

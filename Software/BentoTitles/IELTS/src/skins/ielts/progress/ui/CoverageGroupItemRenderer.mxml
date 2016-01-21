@@ -19,7 +19,7 @@
 				
 				if (data) {
 					// #247. Show disabled menu items as such
-					this.enabled = !(data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8);
+					this.enabled = !(data.attribute("enabledFlag").length() > 0 && data.@enabledFlag & 8);
 					
 					courseColor = getStyle(ProgressCoverageView.horribleHackCourseClass + 'Color');
 					captionLabel.text = data.@caption;

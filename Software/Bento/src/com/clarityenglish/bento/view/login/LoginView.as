@@ -557,7 +557,7 @@ package com.clarityenglish.bento.view.login {
 				case addUserButton:
 					config.signInAs = Title.SIGNIN_TRACKING;
 					var user:User = new User({name:selfRegisterName.text, studentID:selfRegisterId.text, email:selfRegisterEmail.text, password:selfRegisterPassword.text});
-					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
+					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified, selectedProductCode));
 					break;
 				
 				case demoButton1:

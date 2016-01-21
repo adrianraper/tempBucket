@@ -19,6 +19,8 @@
 @namespace nonetwork "com.clarityenglish.bento.view.nonetwork.*";
 @namespace video "com.clarityenglish.controls.video.*";
 @namespace players "com.clarityenglish.controls.video.players.*";
+@namespace candidates "com.clarityenglish.ielts.view.candidates.*";
+@namespace candidates1 "com.clarityenglish.ieltsair.view.candidates.*";
 
 global {
 	interactionMode: touch;
@@ -35,12 +37,6 @@ components|XHTMLExerciseView s|TextInput {
 	paddingLeft: 0;
 	paddingRight: 0;
 }
-
-/*@media (os-platform: "Android") {
-	video|VideoSelector {
-		skinClass: ClassReference("skins.ieltsair.controls.video.WebViewVideoSelectorSkin");
-	}
-}*/
 
 @media (os-platform: "IOS") {
 	video|VideoSelector {
@@ -74,29 +70,18 @@ nonetwork|NoNetworkView {
 	skinClass: ClassReference("skins.ieltsair.NoNetworkSkin");
 }
 
-/* Login view styles */
-login|LoginView {
-	skinClass: ClassReference("skins.ieltsair.LoginSkin");
-}
-
-login|LoginView s|Button#loginButton {
-	skinClass: ClassReference("skins.ieltsair.login.RegisterLoginButtonSkin");
-}
-
 login|LoginView s|TextInput {
-	skinClass: ClassReference("spark.skins.mobile.TextInputSkin");
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 1;
+	paddingLeft: 10;
+	paddingRight: 10;
+	fontSize: 14;
+	showPromptWhenFocused: false;
 }
 
-login|LoginView s|Button {
-	chromeColor: #2793CE;
-}
-
-login|LoginView s|ButtonBar#IPLoginButtonBar {
-	skinClass: ClassReference("skins.ieltsair.login.IPLoginButtonBarSkin");
-}
-
-login|LoginView s|Button#normalLoginForgotPasswordButton {
-	skinClass: ClassReference("skins.ieltsair.login.ForgotPasswordButtonSkin");
+login|LoginView s|Button#demoButton1, #demoButton2 {
+	skinClass: ClassReference("skins.ieltsair.login.TestDriveButtonSkin");
 }
 
 /* Title view styles */
@@ -153,6 +138,9 @@ progress|ProgressView {
 	right: 20;
 	skinClass: ClassReference("skins.ieltsair.ProgressSkin");
 }
+progresscomponents|ProgressCompareView {
+	skinClass: ClassReference("skins.ieltsair.progress.ProgressCompareSkin");
+}
 
 /* Account view styles */
 account|AccountView {
@@ -167,6 +155,26 @@ support|SupportView {
 /* Credits view styles */
 credits|CreditsView {
 	skinClass: ClassReference("skins.ieltsair.CreditsSkin");
+}
+
+@media (os-platform: "IOS") {
+	candidates|CandidatesView video|VideoSelector#tabletVideoSelector {
+		skinClass: ClassReference("skins.ieltsair.candidates.IosVideoSelectorSkin");
+	}
+}
+
+@media (os-platform: "Android") {
+	candidates|CandidatesView video|VideoSelector#tabletVideoSelector {
+		skinClass: ClassReference("skins.ieltsair.candidates.AndroidVideoSelectorSkin");
+	}
+}
+
+candidates|CandidatesView s|Button#videoListExpandButton {
+	skinClass: ClassReference("skins.ieltsair.candidates.VideoListExpandButtonSkin");
+}
+
+candidates|CandidatesView  candidates1|IndexButtonBarButton{
+	skinClass: ClassReference("skins.ieltsair.candidates.IndexButtonBarButtonSkin");
 }
 
 /* More view styles */

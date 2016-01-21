@@ -7,7 +7,7 @@
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 	<platform>tablet|Android</platform>
 	<channel name='android-rackspace' caption='Ch1'>
-		<streamingMedia>http://798a4ab11405fd81be17-42dc242c457c6a62e22482e1bb35342a.r14.cf1.rackcdn.com/</streamingMedia>
+		<streamingMedia>http://c284790.r90.stream.cf1.rackcdn.com/</streamingMedia>
 	</channel>
 	<channel name='vimeo' caption='Ch2'>
 		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
@@ -16,15 +16,13 @@
 	<brandingMedia />
 	<language>EN</language>
 	
-	<!--  
-	<contentPath>http://www.clarityenglish.com/ContentTablet/</contentPath>
-    <remoteDomain> http://www.clarityenglish.com/SoftwareTestbed/</remoteDomain>
-    <remoteGateway>http://www.clarityenglish.com/SoftwareTestbed/ResultsManager/web/amfphp/</remoteGateway>
-	-->
+	<!--  contentPath>http://www.clarityenglish.com/Content/</contentPath>
+    <remoteDomain> http://www.clarityenglish.com/Software/</remoteDomain>
+    <remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>-->
 	
-    <contentPath>http://dock.contentbench/Content/</contentPath>
-    <remoteDomain>http://dock.projectbench/Software/</remoteDomain>
-    <remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+    <contentPath>http://www.clarityenglish.com/Content/</contentPath>
+    <remoteDomain>http://www.clarityenglish.com/Software/</remoteDomain>
+    <remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
 	
 	<!--  contentPath>http://roadtoielts.chinaielts.org/Content/</contentPath>
     <remoteDomain>http://roadtoielts.chinaielts.org/Software/</remoteDomain>
@@ -41,7 +39,7 @@
     <registerURL>http://takeielts.britishcouncil.org/</registerURL>
     <getAccountURL>http://www.roadtoielts.com/</getAccountURL>
 	
-	<checkNetworkAvailabilityUrl>http://www.google.com</checkNetworkAvailabilityUrl>
+	<checkNetworkAvailabilityUrl>http://www.clarityenglish.com</checkNetworkAvailabilityUrl>
 	<checkNetworkAvailabilityInterval>30</checkNetworkAvailabilityInterval>
 	<checkNetworkAvailabilityReconnectInterval>5</checkNetworkAvailabilityReconnectInterval>
 	

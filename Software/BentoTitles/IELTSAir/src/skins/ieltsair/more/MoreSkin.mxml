@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark"
-	    creationComplete="creationComplete()">
+		xmlns:s="library://ns.adobe.com/flex/spark">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ieltsair.view.more.MoreView")]
@@ -21,30 +20,7 @@
 			
 			[Bindable]
 			private var contactUsFlow2:TextFlow;
-			
-		     public function creationComplete(): void{
-				 /*var aboutUsContentString:String = hostComponent.copyProvider.getCopyForId("aboutUsContent");
-				 var contactUsContentString1:String = hostComponent.copyProvider.getCopyForId("contactUsContent1");
-				 var contactUsContentString2:String = hostComponent.copyProvider.getCopyForId("contactUsContent2");
-				 aboutUsFlow = TextFlowUtil.importFromString(aboutUsContentString);
-				 contactUsFlow1 = TextFlowUtil.importFromString(contactUsContentString1);
-				 contactUsFlow2 = TextFlowUtil.importFromString(contactUsContentString2);
-				 
-				 aboutUsFlow.color = "#4E4E4E";
-				 aboutUsFlow.fontSize = 14;
-				 aboutUsFlow.paragraphSpaceAfter = 12;
-				 aboutUsFlow.lineHeight = 22;
-				 
-				 contactUsFlow1.color = "#4E4E4E";
-				 contactUsFlow1.fontSize = 14;
-				 contactUsFlow1.paragraphSpaceAfter = 12;
-				 contactUsFlow1.lineHeight = 22;
-				 
-				 contactUsFlow2.color = "#4E4E4E";
-				 contactUsFlow2.fontSize = 14;
-				 contactUsFlow2.paragraphSpaceAfter = 12;
-				 contactUsFlow2.lineHeight = 22;*/
-			 }
+
 		]]>
 	</fx:Script>
 
@@ -60,15 +36,15 @@
 	<s:ButtonBar id="moreNavBar" width="418" height="43" top="50" right="40" />
 	
 	<s:Group left="40" right="40" top="144" includeIn="about">
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='AboutGraphic')" />		
-		<s:RichText id="aboutUsRichText" left="0" right="0" top="100" height="306" columnCount="2" columnGap="55" />
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='AboutLogos')" right="10" top="330"/>
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='AboutGraphic')" />
+		<s:RichText id="aboutUsRichText" left="0" right="0" top="100" height="306" columnCount="2" columnGap="55" fontFamily="Helvetica" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='AboutLogos')" right="10" top="330"/>
 	</s:Group>
 	
 	<s:Group left="40" right="40" top="170" includeIn="contact">
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ContactTechnicalImage')" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ContactTechnicalImage')" />
 		<s:RichText id="contactUsRichText1" left="0" right="0" top="40" height="375" columnCount="2" />
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ContactContentImage')" top="240" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ContactContentImage')" top="240" />
 		<s:RichText id="contactUsRichText2" left="0" right="0" top="280" height="375" columnCount="2" />
 	</s:Group>
 	

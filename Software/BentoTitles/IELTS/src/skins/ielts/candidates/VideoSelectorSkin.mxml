@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:players="com.clarityenglish.controls.video.players.*" creationComplete="onCreationComplete(event)" width="100%" height="100%" xmlns:candidates="skins.ielts.assets.candidates.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.controls.video.VideoSelector")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:Animate id="openingScreenLeftSlide" duration="600" target="{openingScreenGroup}" effectStart="onSlideStart(event)" effectEnd="onSlideEnd(event)">
+			<s:SimpleMotionPath property="left" valueBy="{-320-width/2}"/>
+		</s:Animate>
+		
+		<s:Animate id="openingScreenRightSlide" duration="600" target="{openingScreenGroup}" effectStart="onSlideStart(event)" effectEnd="onSlideEnd(event)">
+			<s:SimpleMotionPath property="left" valueBy="{320+width/2}"/>
+		</s:Animate>
+		
+		<s:Animate id="openingScreenFadeIn" duration="600">
+			<s:SimpleMotionPath property="alpha" valueFrom="0" valueTo="1" />
+		</s:Animate>
+		
+		<s:Animate id="openingScreenFadeOut" duration="600">
+			<s:SimpleMotionPath property="alpha" valueFrom="1" valueTo="0" />
+		</s:Animate>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.ielts.view.candidates.ui.CandidatesChannelListRenderer;
+			
+			import mx.effects.Tween;
+			import mx.events.EffectEvent;
+			import mx.events.FlexEvent;
+			import mx.events.IndexChangedEvent;
+			import mx.events.ResizeEvent;
+			
+			import spark.events.IndexChangeEvent;
+			
+			[Bindable]
+			private var videoListIndex:Number = 0;
+			
+			protected function onCreationComplete(event:FlexEvent):void {
+				// TODO Auto-generated method stub
+				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
+				addEventListener(Event.RESIZE, onResize);
+				number1Red.visible = true;
+				openingScreenGroup.left = width/2 - 320;			
+				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription0");
+			}
+			
+			protected function previousVideoButtonClick(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				videoListIndex = videoListIndex - 1;
+				openingScreenRightSlide.play();
+				openingScreenFadeIn.target = getopeningScreenSWFLoader(videoListIndex);
+				openingScreenFadeIn.play();
+				openingScreenFadeOut.target = getopeningScreenSWFLoader(videoListIndex + 1);
+				openingScreenFadeOut.play();
+			}
+			
+			protected function nextVideoButtonClick(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				videoListIndex = videoListIndex + 1;
+				openingScreenLeftSlide.play();
+				openingScreenFadeIn.target = getopeningScreenSWFLoader(videoListIndex);
+				openingScreenFadeIn.play();
+				openingScreenFadeOut.target = getopeningScreenSWFLoader(videoListIndex - 1);
+				openingScreenFadeOut.play();
+			}
+			
+			protected function onVideoListIndexChange(event:Event):void {
+				videoPlayer.visible = true;
+				openingScreenGroup.visible = false;
+				videoPlayButton.visible = false;
+				channelList.visible = true;
+				videoListIndex = videoList.selectedIndex;
+				candidatesVideoTitleLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex);
+				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription" + videoListIndex);
+				
+				if (videoList.selectedIndex >= 0)
+					openingScreenGroup.left = -640 - (320 + width/2) * (videoList.selectedIndex - 1);
+				
+				if (videoList.selectedIndex == -1 || videoList.selectedIndex == 0) {
+					previousVideoButton.enabled = false;
+				} else {
+					previousVideoButton.enabled = true;
+				}
+				
+				if (videoList.selectedIndex ==  videoList.dataProvider.length - 1) {
+					nextVideoButton.enabled = false;
+				} else {
+					nextVideoButton.enabled = true;
+				}
+			}
+			
+			protected function onSlideEnd(event:EffectEvent):void
+			{
+				// TODO Auto-generated method stub
+				videoPlayButton.label = "Click here to watch the " + hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex) +  " video.";
+				candidatesVideoTitleLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex);
+				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription" + videoListIndex);
+				videoPlayButton.visible = true;
+				channelList.visible = true;
+				channelMessage.visible = true;
+			}
+			
+			protected function onSlideStart(event:EffectEvent):void
+			{
+				// TODO Auto-generated method stub
+				videoPlayButton.visible = false;
+				videoPlayer.visible = false;
+				openingScreenGroup.visible = true;
+				channelList.visible = false;
+				channelMessage.visible = false;
+				videoList.selectedIndex = -1;
+				
+				if (videoListIndex == 0) {
+					previousVideoButton.enabled = false;
+				} else {
+					previousVideoButton.enabled = true;
+				}
+				
+				if (videoListIndex ==  videoList.dataProvider.length - 1) {
+					nextVideoButton.enabled = false;
+				} else {
+					nextVideoButton.enabled = true;
+				}
+			}
+			
+			protected function onPlayButtonClick(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				videoList.selectedIndex = videoListIndex;
+				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE, true));
+			}
+			
+			protected function onCollapseEnd(event:EffectEvent):void
+			{
+				// TODO Auto-generated method stub
+				videoList.visible = false;
+			}
+			
+			protected function onResize(event:Event):void {
+				if (videoListIndex == 0) {
+					openingScreenGroup.left = width/2 - 320;
+				} else {
+					openingScreenGroup.left = -(640 * videoListIndex + (width/2 - 320) * (videoListIndex - 1));
+				}			
+			}
+			
+			protected function getopeningScreenSWFLoader(index:Number):SWFLoader {
+				switch (index) {
+					case 0:
+						return openingScreen1;
+					case 1:
+						return openingScreen2;
+					case 2:
+						return openingScreen3;
+					case 3:
+						return openingScreen4;
+					case 4:
+						return openingScreen5;
+					case 5:
+						return openingScreen6;
+					case 6:
+						return openingScreen7;
+					default:
+						return null;
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Group verticalCenter="-196" horizontalCenter="-310">
+		<candidates:number1red id="number1Red" visible="{videoList.selectedIndex == 0}" />
+		<candidates:number2red visible="{videoListIndex == 1}" />
+		<candidates:number3red visible="{videoListIndex == 2}" />
+		<candidates:number4red visible="{videoListIndex == 3}" />
+		<candidates:number5red visible="{videoListIndex == 4}" />
+		<candidates:number6red visible="{videoListIndex == 5}" />
+		<candidates:number7red visible="{videoListIndex == 6}" />
+	</s:Group>
+	
+	<!--video title-->
+	<s:HGroup horizontalCenter="-165" verticalCenter="-192" width="250" gap="0">
+		<s:Label id="candidatesVideoTitleFixedLabel" fontSize="16" text="{hostComponent.copyProvider.getCopyForId('candidatesVideoTitleFixedLabel')}" />
+		<s:Label id="candidatesVideoTitleLabel" fontSize="18" fontWeight="bold" text="{hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)}" left="0" />
+	</s:HGroup>
+	
+	<candidates:channelmsg id="channelMessage" horizontalCenter="385" verticalCenter="-178" scaleX="1.1" scaleY="1.1" />
+	
+	<s:Group verticalCenter="-50" horizontalCenter="390">
+		<!-- Channel list -->
+		<s:List id="channelList" height="160" width="100" horizontalScrollPolicy="off" itemRenderer="com.clarityenglish.ielts.view.candidates.ui.CandidatesChannelListRenderer" buttonMode="true" useHandCursor="true">
+			<s:layout>
+				<s:TileLayout columnWidth="50" rowHeight="35" verticalGap="8" />
+			</s:layout>
+		</s:List>
+		<s:Button id="scriptButton" top="172" width="50" height="45" />
+	</s:Group>
+	
+	<s:HGroup verticalCenter="10" horizontalCenter="0" gap="80">
+		<s:VGroup paddingTop="150">
+			<s:Button id="previousVideoButton" verticalCenter="0" click="previousVideoButtonClick(event)" enabled="false" buttonMode="true" useHandCursor="true" />
+		</s:VGroup>		
+		
+		<s:Group>
+			<!-- The video players -->
+			<!--players:WebViewVideoPlayer id="videoPlayer" width="411" height="231" /-->
+			<players:OSMFVideoPlayer id="videoPlayer" width="640" height="360" />
+			
+			<!-- Placeholder image -->
+			<s:Image id="placeholderImage" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" />
+		</s:Group>
+		
+		<s:VGroup paddingTop="150">
+			<s:Button id="nextVideoButton" click="nextVideoButtonClick(event)" buttonMode="true" useHandCursor="true" />
+		</s:VGroup>	
+	</s:HGroup>
+	
+	<s:HGroup id="openingScreenGroup" height="360" verticalCenter="10" gap="{width/2-320}">
+		<s:SWFLoader id="openingScreen1" width="640" height="360" source="@Embed(source='/skins/ielts/assets/candidates/openingScreen1.jpg')" />
+		<s:SWFLoader id="openingScreen2" width="640" height="360" source="@Embed(source='/skins/ielts/assets/candidates/openingScreen2.jpg')" />
+		<s:SWFLoader id="openingScreen3" width="640" height="360" source="@Embed(source='/skins/ielts/assets/candidates/openingScreen3.jpg')" />
+		<s:SWFLoader id="openingScreen4" width="640" height="360" source="@Embed(source='/skins/ielts/assets/candidates/openingScreen4.jpg')" />
+		<s:SWFLoader id="openingScreen5" width="640" height="360" source="@Embed(source='/skins/ielts/assets/candidates/openingScreen5.jpg')" />
+		<s:SWFLoader id="openingScreen6" width="640" height="360" source="@Embed(source='/skins/ielts/assets/candidates/openingScreen6.jpg')" />
+		<s:SWFLoader id="openingScreen7" width="640" height="360" source="@Embed(source='/skins/ielts/assets/candidates/openingScreen7.jpg')" />
+	</s:HGroup>
+	
+	<candidates:videoframe verticalCenter="10" horizontalCenter="0" />
+	
+	<!--video description-->
+	<s:HGroup verticalCenter="230" horizontalCenter="0" width="630" height="50">
+		<s:Label id="candidatesVideoDescriptionLabel" width="100%"/>
+	</s:HGroup>
+
+	<s:VGroup id="videoHolderBackgroundVGroup" bottom="-2" horizontalCenter="0" horizontalAlign="center" gap="0">		
+		<s:Rect width="960" height="85" topLeftRadiusX="12" topLeftRadiusY="12" topRightRadiusX="12" topRightRadiusY="12">
+			<s:fill>
+				<s:SolidColor color="#404041" />
+			</s:fill>
+		</s:Rect>
+	</s:VGroup>
+	
+	<!-- Video list -->
+	<s:List id="videoList" bottom="8" horizontalCenter="-10" horizontalScrollPolicy="off" minHeight="0" minWidth="0">
+		<s:layout>
+			<s:HorizontalLayout gap="5" />
+		</s:layout>
+		
+		<s:itemRenderer>
+			<fx:Component>
+				<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true">
+					<fx:Script>
+						<![CDATA[
+							
+							override public function set data(value:Object):void {
+								super.data = value;
+								
+								videoLabel.text = data.@caption;
+								
+								// #213
+								enabled = !(data.attribute("enabledFlag").length > 0 && (Number(data.@enabledFlag.toString()) & 8));
+							}
+						]]>
+					</fx:Script>
+					
+					<s:states>
+						<s:State name="normal"/>
+						<s:State name="hovered"/>
+						<s:State name="selected"/>
+					</s:states>
+					
+					<s:Group width="125" height="80">
+						<s:Rect id="imageBorder" width="102" height="58" top="19" left="19">
+							<s:fill>
+								<s:SolidColor color="#FFFFFF" />
+							</s:fill>
+						</s:Rect>
+						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb1.jpg')" visible="{itemIndex == 0}" />
+						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb2.jpg')" visible="{itemIndex == 1}" />
+						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb3.jpg')" visible="{itemIndex == 2}" />
+						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb4.jpg')" visible="{itemIndex == 3}" />
+						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb5.jpg')" visible="{itemIndex == 4}" />
+						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb6.jpg')" visible="{itemIndex == 5}" />
+						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb7.jpg')" visible="{itemIndex == 6}" />
+						<s:Group left="20" top="20">
+							<s:Rect width="100" height="56" includeIn="hovered, selected">
+								<s:fill>
+									<s:SolidColor color="#000000" alpha="0.5" />
+								</s:fill>
+							</s:Rect>
+							<candidates:playonthumbnail horizontalCenter="0" top="10" includeIn="hovered, selected" />
+							<s:Label id="videoLabel" width="100" textAlign="center" top="35" fontSize="12" fontWeight="normal" color="#FFFFFF" visible="{currentState != 'normal'}" />
+						</s:Group>
+											
+						<s:Group left="10" top="10">
+							<candidates:number1 visible="{itemIndex == 0}" />
+							<candidates:number2 visible="{itemIndex == 1}" />
+							<candidates:number3 visible="{itemIndex == 2}" />
+							<candidates:number4 visible="{itemIndex == 3}" />
+							<candidates:number5 visible="{itemIndex == 4}" />
+							<candidates:number6 visible="{itemIndex == 5}" />
+							<candidates:number7 visible="{itemIndex == 6}" />
+						</s:Group>
+					</s:Group>
+				</s:ItemRenderer>
+			</fx:Component>
+		</s:itemRenderer>
+	</s:List>
+	<s:Button id="videoPlayButton" click="onPlayButtonClick(event)" horizontalCenter="0" verticalCenter="0" label="Click here to watch the {hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)} video." buttonMode="true" useHandCursor="true" />	
+</s:Skin>

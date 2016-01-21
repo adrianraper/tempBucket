@@ -18,7 +18,7 @@
 					captionLabel.text = data.@caption;
 					
 					// #247. Show disabled menu items as such
-					if (data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8) {
+					if (data.attribute("enabledFlag").length() > 0 && data.@enabledFlag & 8) {
 						// Probably don't need to change the colour as simply setting enabled to false dulls it
 						//captionLabel.setStyle("color", 0xE6E6E6);
 						fillColor.color = 0xE6E6E6;

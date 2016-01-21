@@ -1,5 +1,7 @@
 package com.clarityenglish.bento.view.progress.components {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.view.progress.ui.CoverageGroupRenderer;
+	import com.clarityenglish.bento.view.progress.ui.CoverageUnitRenderer;
 	import com.clarityenglish.bento.view.progress.ui.ProgressBarRenderer;
 	import com.clarityenglish.bento.view.progress.ui.ProgressCourseButtonBar;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -10,8 +12,10 @@ package com.clarityenglish.bento.view.progress.components {
 	import org.davekeen.util.StringUtils;
 	import org.osflash.signals.Signal;
 	
+	import spark.components.DataGroup;
 	import spark.components.Label;
 	import spark.events.IndexChangeEvent;
+	import mx.core.ClassFactory;
 	
 	/**
 	 * TODO: This class is way too specific; we don't want to be specifying course classes in here since we want it to be shared between all titles.
@@ -35,6 +39,9 @@ package com.clarityenglish.bento.view.progress.components {
 		
 		[SkinPart]
 		public var coverageInstructionLabel:Label;
+
+		[SkinPart]
+		public var progressCoverageDateGroup:DataGroup;
 		
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
@@ -97,6 +104,12 @@ package com.clarityenglish.bento.view.progress.components {
 				
 				// #176. Make sure the buttons in the progressCourseBar component reflect current state
 				if (progressCourseButtonBar) progressCourseButtonBar.courseClass = courseClass;
+
+				
+				if (progressCoverageDateGroup) {
+					progressCoverageDateGroup.dataProvider = unitListCollection;
+					progressCoverageDateGroup.itemRendererFunction = getItemRenderer;
+				}
 				
 				_courseChanged = false;
 			}
@@ -131,6 +144,14 @@ package com.clarityenglish.bento.view.progress.components {
 		 */
 		public function onCourseSelect(event:IndexChangeEvent):void {
 			courseSelect.dispatch(event.target.selectedItem.courseClass.toLowerCase());
+		}
+		
+		private function getItemRenderer(item:Object):ClassFactory {
+			if (item.@["class"] == "practice-zone") {
+				return new ClassFactory(CoverageGroupRenderer);
+			} else {
+				return new ClassFactory(CoverageUnitRenderer);
+			}
 		}
 	
 	}
