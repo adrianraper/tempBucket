@@ -140,7 +140,8 @@ package com.clarityenglish.clearpronunciation.view.progress
 							}
 							score.@unitCaption = scoreParent.@caption;
 							score.@unitLeftIcon = scoreParent.@leftIcon;
-							score.@unitRightIcon = scoreParent.@rightIcon;
+							if (scoreParent.@rightIcon.length() > 0)
+								score.@unitRightIcon = scoreParent.@rightIcon;
 						}
 						
 						// #232. Scores of -1 (nothing to mark) should show in the table as ---

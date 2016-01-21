@@ -198,6 +198,21 @@
 															} else {
 																unitItemIndexLabel.text = String(getIndex(data));
 															}
+
+															unitItemLeftButton.label = outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@unitLeftIcon);
+															if (data.attribute("unitRightIcon").length() > 0) {
+																unitItemRightButton.visible = true;
+																unitItemRightLabel.visible = true;
+																unitItemRightButton.label = outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@unitRightIcon);
+															} else {
+																unitItemRightButton.visible = false;
+																unitItemRightLabel.visible = false;
+															}
+
+															var leftIconString:String = String(data.@unitCaption).split(' ')[0];
+															var rightIconString:String = String(data.@unitCaption).split(' ')[1];
+															unitItemLeftLabel.text = leftIconString;
+															unitItemRightLabel.text = rightIconString;
 														}
 													}
 												]]>
@@ -206,12 +221,12 @@
 												<s:Label id="unitItemIndexLabel" fontSize="14" verticalCenter="0" color="#005D5F" />
 												<s:Spacer width="5" />
 												<s:HGroup left="0" width="80" verticalCenter="0" verticalAlign="middle">
-													<s:Button id="unitItemLeftButton" scaleX="0.7" scaleY="0.7" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@unitLeftIcon)}" />
-													<s:Label id="unitItemLeftLabel" text="{data.@unitLeftIcon}" fontSize="14" color="#005D5F" />
+													<s:Button id="unitItemLeftButton" scaleX="0.7" scaleY="0.7" />
+													<s:Label id="unitItemLeftLabel" fontSize="14" color="#005D5F" />
 												</s:HGroup>
 												<s:HGroup width="80" verticalCenter="0" verticalAlign="middle">
-													<s:Button id="unitItemRightButton" scaleX="0.7" scaleY="0.7" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@unitRightIcon)}" />
-													<s:Label id="unitItemRightLabel" text="{data.@unitRightIcon}" fontSize="14" color="#005D5F" />
+													<s:Button id="unitItemRightButton" scaleX="0.7" scaleY="0.7" />
+													<s:Label id="unitItemRightLabel" fontSize="14" color="#005D5F" />
 												</s:HGroup>	
 											</s:HGroup>
 										</s:GridItemRenderer>
