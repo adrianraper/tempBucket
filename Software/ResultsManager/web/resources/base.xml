@@ -172,7 +172,7 @@
             <lit name="demoTooltipLabel2">to see the material in this demo.</lit>
 
             <!-- Footer -->
-            <lit name="copyright">© Clarity Language Consultants Ltd, 1993-2015. All rights reserved.</lit>
+            <lit name="copyright">© Clarity Language Consultants Ltd, 1993-2016. All rights reserved.</lit>
             <lit name="versionLabel">v{versionNumber}</lit>
 
             <!--  Progress literals -->

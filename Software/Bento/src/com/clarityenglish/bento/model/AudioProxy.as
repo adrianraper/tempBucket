@@ -144,7 +144,7 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 			if (isRecordEnabled()) {
 				// v4.0.1.2 But -1 is the default microphone, 0 is simply the 
 				//setMicrophone(0);
-				setMicrophone(-1);
+				var rc:Boolean = setMicrophone(-1);
                 // gh#1438 Is there a better microphone than the default?
 			}
 		}
@@ -403,43 +403,38 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 		 * 
 		 * @param	idx
 		 */
-		public function setMicrophone(idx:int):void {
+		public function setMicrophone(idx:int):Boolean {
 			//if (microphone)
 			//	microphone.removeEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
-			
-			microphone = Microphone.getMicrophone(idx);
-            trace("set Microphone, Microphone.names=" + Microphone.names.toString() + " microphone.name=" + microphone.name + " muted=" + microphone.muted);
-			// v4.0.1.2 Error checking
-			if (microphone == null || Microphone.names.length == 0) {
-				_recordEnabled = false;
-				sendNotification(RecorderNotifications.NO_MICROPHONE);
-				Security.showSettings(SecurityPanel.MICROPHONE);
-			} else if (microphone.muted) {
-				// This is caught, but I still go into the main view, not the warning one
-				sendNotification(RecorderNotifications.NO_MICROPHONE);
-				Security.showSettings(SecurityPanel.PRIVACY);
-			} else {
-                // gh#530
-                _recordEnabled = true;
-                microphone.addEventListener(StatusEvent.STATUS, microphoneStatusHandler);
-                microphone.setSilenceLevel(0);
-                // gh#1438
-                microphone.rate = MICROPHONE_RATE;
-            }
+
+			try {
+				microphone = Microphone.getMicrophone();
+				//trace("set Microphone, Microphone.names=" + Microphone.names.toString() + " microphone.name=" + microphone.name + " muted=" + microphone.muted);
+				// v4.0.1.2 Error checking
+				if (microphone == null || Microphone.names.length == 0 || microphone.muted) {
+					_recordEnabled = false;
+					sendNotification(RecorderNotifications.NO_MICROPHONE);
+					Security.showSettings(SecurityPanel.MICROPHONE);
+				} else {
+					// gh#530
+					_recordEnabled = true;
+					microphone.addEventListener(StatusEvent.STATUS, microphoneStatusHandler);
+					microphone.setSilenceLevel(0);
+					// gh#1438
+					microphone.rate = MICROPHONE_RATE;
+				}
+			} catch (e:Error) {
+                _recordEnabled = false;
+				//trace("Problem trying to run microphone");
+			}
+            return _recordEnabled;
 		}
 		
 		public function record(clearWaveform:Boolean = false):void {
             // gh#1438 Check that the mic has not been denied since we first started
             // and also it might have been allowed, but not properly initialised
-            var tempMic:Microphone = Microphone.getMicrophone();
-            if (tempMic == null || Microphone.names.length == 0 || tempMic.muted) {
-                //trace("caught a mic that has been switched off");
-                sendNotification(RecorderNotifications.NO_MICROPHONE);
+            if (!setMicrophone(-1))
                 return;
-            } else {
-                //trace("just going to reset the mic before you record");
-                setMicrophone(-1);
-            }
 
 			// If we are recording then pressing record stops the recording
 			if (isRecording) {
