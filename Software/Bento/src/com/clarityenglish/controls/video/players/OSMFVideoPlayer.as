@@ -1,8 +1,10 @@
 package com.clarityenglish.controls.video.players {
 	import com.clarityenglish.controls.video.IVideoPlayer;
 	import com.clarityenglish.controls.video.events.VideoEvent;
-	
-	import flash.events.Event;
+
+import flash.display.StageDisplayState;
+
+import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.system.System;
 	
@@ -11,7 +13,8 @@ package com.clarityenglish.controls.video.players {
 	
 	import org.osmf.events.BufferEvent;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
-	import org.osmf.media.MediaPlayerState;
+import org.osmf.events.TimeEvent;
+import org.osmf.media.MediaPlayerState;
 	import org.osmf.utils.OSMFSettings;
 	
 	import spark.components.VideoPlayer;
@@ -36,6 +39,7 @@ package com.clarityenglish.controls.video.players {
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete, false, 0, true);
 			addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onStateChange, false, 0, true);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
+			addEventListener(TimeEvent.COMPLETE, onVideoPlayerComplete);
 		}
 		
 		private function onCreationComplete(event:FlexEvent):void {
@@ -106,6 +110,10 @@ package com.clarityenglish.controls.video.players {
 				super.source = null;
 				System.gc();
 			}
+		}
+
+		protected function onVideoPlayerComplete(event:Event):void {
+			stage.displayState = StageDisplayState.NORMAL;
 		}
 		
 	}
