@@ -36,7 +36,12 @@ package com.clarityenglish.controls.video {
 		 * (Flash) If supported, stop playing the video.
 		 */
 		function stop():void;
-		
+
+		/**
+		 * (Flash) If supported, stop pausing the video.
+		 */
+		function pause():void;
+
 		/**
 		 * This is called before a provider is changed and gives it an opportunity to clean up
 		 */

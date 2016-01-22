@@ -145,6 +145,11 @@ package com.clarityenglish.controls.video {
 		public function stop():void {
 			if (videoPlayer) videoPlayer.stop();
 		}
+
+		// gh#1449
+		public function pause():void {
+			if (videoPlayer) videoPlayer.pause();
+		}
 		
 		public override function set visible(value:Boolean):void {
 			if (videoPlayer) videoPlayer.visible = value;

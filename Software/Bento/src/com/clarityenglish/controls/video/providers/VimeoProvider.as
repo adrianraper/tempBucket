@@ -151,6 +151,12 @@ package com.clarityenglish.controls.video.providers {
 			if (vimeoPlayer)
 				vimeoPlayer.pause();
 		}
+
+		// gh#1449
+		public function pause():void {
+			if (vimeoPlayer)
+				vimeoPlayer.pause();
+		}
 		
 		protected function onClickVideo(event:MouseEvent):void {
 			/*videoPlayer.dispatchEvent(new VideoEvent(VideoEvent.VIDEO_CLICK, true)); // gh#106*/

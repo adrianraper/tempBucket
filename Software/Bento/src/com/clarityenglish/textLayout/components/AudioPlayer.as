@@ -159,6 +159,7 @@ package com.clarityenglish.textLayout.components {
 			switch (soundStatus) {
 				case STOPPED:
 				case PLAYED:
+					dispatchEvent(new AudioPlayerEvent(AudioPlayerEvent.AUDIO_PLAYED, null, true));
 					play();
 					break;
 				case PLAYING:

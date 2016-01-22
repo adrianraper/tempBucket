@@ -73,6 +73,11 @@ package com.clarityenglish.controls.video.players {
 		public function stop():void {
 			if (_provider) _provider.stop();
 		}
+
+		// gh#1449
+		public function pause():void {
+			if (_provider) _provider.pause();
+		}
 		
 	}
 }

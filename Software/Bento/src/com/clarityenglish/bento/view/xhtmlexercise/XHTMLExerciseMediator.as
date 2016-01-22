@@ -13,9 +13,10 @@ import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
-	import com.clarityenglish.textLayout.vo.XHTML;
+import com.clarityenglish.controls.video.events.VideoEvent;
+import com.clarityenglish.textLayout.vo.XHTML;
 
-import flash.geom.Rectangle;
+import flash.events.Event;
 
 import org.puremvc.as3.interfaces.INotification;
 	
@@ -42,6 +43,7 @@ import org.puremvc.as3.interfaces.INotification;
 			view.addEventListener(DictionaryEvent.WORD_CLICK, onWordClick, false, 0, true);
 			view.addEventListener(HintEvent.HINT_SHOW, onHintShow, false, 0, true); // gh#338
 			view.addEventListener(ImageEvent.IMAGE_ENLARGE, onEnlargeImage, false, 0, true); // gh#1219
+			view.addEventListener(VideoEvent.VIDEO_PLAYED, onVideoPlayed, false, 0, true);
 			view.getQuestionFeedback().add(onGotQuestionFeedback); // gh#388, gh#413
 		}
 		
@@ -87,7 +89,6 @@ import org.puremvc.as3.interfaces.INotification;
 				case BBNotifications.EXERCISE_STARTED:
 					var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 					view.courseCaption = bentoProxy.selectedCourseNode.@caption.toLowerCase();
-					
 					view.stopAllAudio();
 					break;
 				case BBNotifications.EXERCISE_TRY_AGAIN:
@@ -203,6 +204,10 @@ import org.puremvc.as3.interfaces.INotification;
 
 		protected function onEnlargeImage(e:ImageEvent):void {
 			sendNotification(BBNotifications.IMAGE_ENLARGE, e.image);
+		}
+
+		protected function onVideoPlayed(event:Event):void {
+			view.stopAllAudio();
 		}
 	}
 	

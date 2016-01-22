@@ -177,6 +177,9 @@ package com.clarityenglish.controls.video.players {
 		public function stop():void {
 			callLater(destroy);
 		}
+
+		// gh#1449
+		public function pause():void { }
 		
 		private function load():void {
 			if (_source && _provider) {

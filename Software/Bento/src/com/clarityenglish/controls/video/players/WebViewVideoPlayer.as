@@ -1,7 +1,6 @@
 package com.clarityenglish.controls.video.players {
 	import com.clarityenglish.controls.video.IVideoPlayer;
 import com.clarityenglish.controls.video.events.VideoEvent;
-import com.clarityenglish.controls.video.events.VideoEvent;
 
 import flash.events.Event;
 import flash.events.FocusEvent;
@@ -79,6 +78,14 @@ import mx.events.FlexEvent;
 			sourceHtml += " <style type='text/css'>";
 			sourceHtml += "		video::-webkit-media-controls-fullscreen-button {display: none;}";
 			sourceHtml += "	</style>";
+			sourceHtml += "	<script>";
+			sourceHtml += "		function pause () {";
+			sourceHtml += "			var video = document.getElementById('myVideo');";
+			sourceHtml += "			if (video) {";
+			sourceHtml += "				video.pause();";
+			sourceHtml += "			}";
+			sourceHtml += "		}";
+			sourceHtml += "	</script>";
 			sourceHtml += "</head>";
 			sourceHtml += "<body style='margin:0;padding:0;border:0;overflow:hidden;'>";
 			sourceHtml += "	<video id='myVideo' width='" + getVideoWidth() + "'";
@@ -218,6 +225,11 @@ import mx.events.FlexEvent;
 				// #1354
 				invalidateDisplayList();
 			}
+		}
+
+		// gh#1449
+		public function pause():void {
+			stageWebView.loadURL("javascript:pause();");
 		}
 		
 		protected function onAddedToStage(event:Event):void {

@@ -4,10 +4,12 @@ package com.clarityenglish.textLayout.events {
 	public class AudioPlayerEvent extends Event {
 		
 		public static var PLAY:String = "audioplayer/play";
+		public static const AUDIO_PLAYED:String = "audioPlayed";
+		public static const AUDIO_PAUSED:String = "audioPaused";
 		
 		private var _src:String;
 		
-		public function AudioPlayerEvent(type:String, src:String, bubbles:Boolean = false, cancelable:Boolean = false) {
+		public function AudioPlayerEvent(type:String, src:String = null, bubbles:Boolean = false, cancelable:Boolean = false) {
 			super(type, bubbles, cancelable);
 			
 			this._src = src;

@@ -168,6 +168,12 @@ package com.clarityenglish.controls.video.providers {
 			if (swfLoader && swfLoader.content && swfLoader.content["stopVideo"])
 				swfLoader.content["stopVideo"]();
 		}
+
+		// gh#1449
+		public function pause():void {
+			if (swfLoader && swfLoader.content && swfLoader.content["pauseVideo"])
+				swfLoader.content["pauseVideo"]();
+		}
 		
 		protected function onClickVideo(event:MouseEvent):void {
 			videoPlayer.dispatchEvent(new VideoEvent(VideoEvent.VIDEO_CLICK, true)); // gh#106

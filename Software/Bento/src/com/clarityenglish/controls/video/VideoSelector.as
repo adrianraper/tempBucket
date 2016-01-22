@@ -5,6 +5,8 @@ import com.clarityenglish.bento.vo.Href;
 import com.clarityenglish.controls.video.events.VideoEvent;
 import com.clarityenglish.controls.video.events.VideoScoreEvent;
 import com.clarityenglish.controls.video.loaders.RssVideoLoader;
+import com.clarityenglish.textLayout.components.AudioPlayer;
+import com.clarityenglish.textLayout.events.AudioPlayerEvent;
 
 import flash.events.Event;
 import flash.events.FocusEvent;
@@ -89,6 +91,9 @@ import spark.utils.TextFlowUtil;
 
 		public function VideoSelector() {
 			super();
+
+			// gh#1449
+			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 
 		[Bindable]
@@ -249,11 +254,15 @@ import spark.utils.TextFlowUtil;
 
 			// Show the script button if there is a @scriptHref attribute
 			scriptButton.visible = (videoList.selectedItem && (videoList.selectedItem.attribute("scriptHref").length() > 0 || videoList.selectedItem.script.length() > 0));
-			if (videoList.selectedItem && videoList.selectedItem.child("script").length() > 0) {
+			/*if (videoList.selectedItem && videoList.selectedItem.child("script").length() > 0) {
 				stage.addEventListener(MouseEvent.CLICK, onStageClick);
-			}
+			}*/
 
 			invalidateProperties();
+		}
+
+		protected function onAddedToStage(event:Event):void {
+			stage.addEventListener(MouseEvent.CLICK, onStageClick);
 		}
 
 		/**
@@ -362,14 +371,19 @@ import spark.utils.TextFlowUtil;
 			while(component) {
 				if (component is VideoSelector) { // detect if user click on window shade
 					break;
+				} else if (component is AudioPlayer) { // gh#1449
+					videoPlayer.pause();
+					break;
 				}
 				component = component.parent;
 			}
 
-			if (!(component is VideoSelector)) {
-				rollOutTextGroup.width = 0;
-				rollOutTextGroup.visible = false;
-				isRollOutTextOpen = false;
+			if (videoList.selectedItem && videoList.selectedItem.child("script").length() > 0) {
+				if (!(component is VideoSelector)) {
+					rollOutTextGroup.width = 0;
+					rollOutTextGroup.visible = false;
+					isRollOutTextOpen = false;
+				}
 			}
 		}
 

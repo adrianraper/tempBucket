@@ -73,7 +73,7 @@ import org.osmf.media.MediaPlayerState;
 						this.pause();
 					break;
 				case MediaPlayerState.PLAYING:
-					dispatchEvent(new VideoEvent(VideoEvent.VIDEO_PLAYED));
+					dispatchEvent(new VideoEvent(VideoEvent.VIDEO_PLAYED, true));
 					break;
 				case MediaPlayerState.PAUSED:
 					dispatchEvent(new VideoEvent(VideoEvent.VIDEO_PAUSED));
@@ -115,7 +115,6 @@ import org.osmf.media.MediaPlayerState;
 		protected function onVideoPlayerComplete(event:Event):void {
 			stage.displayState = StageDisplayState.NORMAL;
 		}
-		
 	}
 }
 import org.osmf.elements.VideoElement;

@@ -8,6 +8,7 @@ package com.clarityenglish.controls.video {
 		
 		function play():void;
 		function stop():void;
+		function pause():void;
 		
 		function get width():Number;
 		function set width(value:Number):void;

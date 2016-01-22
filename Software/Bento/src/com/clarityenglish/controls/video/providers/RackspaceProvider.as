@@ -164,6 +164,12 @@ package com.clarityenglish.controls.video.providers {
 			if (osmfPlayer)
 				osmfPlayer.pause();
 		}
+
+		// gh#1449
+		public function pause():void {
+			if (osmfPlayer)
+				osmfPlayer.pause();
+		}
 		
 		protected function onClickVideo(event:MouseEvent):void {
 			videoPlayer.dispatchEvent(new VideoEvent(VideoEvent.VIDEO_CLICK, true)); // gh#106
