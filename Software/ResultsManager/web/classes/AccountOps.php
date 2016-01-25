@@ -88,7 +88,11 @@ SQL;
 		// Create the account object (just use the first record if multiple ones as they will all be the same account details)
 		$dbObj = $rs->FetchObj();
 		$account = $this->_createAccountFromObj($dbObj);
-				
+
+		// gh#1448 Is the account suspended?
+		if ($account->accountStatus == Account::SUSPENDED)
+            throw $this->copyOps->getExceptionForId("errorAccountSuspended");
+
 		// gh#39 You might have multiple matching titles
 		while ($dbObj = $rs->FetchNextObj()) {
             $title = $this->_createTitleFromObj($dbObj);

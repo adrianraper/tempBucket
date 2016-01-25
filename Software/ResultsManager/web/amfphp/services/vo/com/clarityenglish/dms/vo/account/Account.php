@@ -4,7 +4,11 @@ require_once(dirname(__FILE__)."/../../../common/vo/Reportable.php");
 class Account extends Reportable {
 
 	var $_explicitType = 'com.clarityenglish.dms.vo.account.Account';
-	
+
+	// gh#1448 These are really held in the database
+	const SUSPENDED = 3;
+	const ARCHIVED = 11;
+
 	var $name;
 	var $prefix;
 	// v3.6 Drop AccountRoot F_Email
