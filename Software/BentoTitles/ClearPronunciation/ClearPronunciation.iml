@@ -24,7 +24,7 @@
           <sdk name="13.0_AIR16 (Bento)" />
         </dependencies>
         <compiler-options>
-          <option name="additionalOptions" value="-debug=false" />
+          <option name="additionalOptions" value="-debug=true" />
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android />

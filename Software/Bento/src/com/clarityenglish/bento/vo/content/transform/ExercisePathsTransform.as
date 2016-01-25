@@ -7,10 +7,11 @@ package com.clarityenglish.bento.vo.content.transform {
 
 	[RemoteClass(alias = "com.clarityenglish.bento.vo.content.transform.ExercisePathsTransform")]
 	public class ExercisePathsTransform extends XmlTransform {
-
         private var paths:Object;
 
         public function ExercisePathsTransform(paths:Object) {
+            // gh#1408
+            this.transformName = "ExercisePathsTransform";
             this.paths = paths;
         }
 

@@ -7,7 +7,8 @@ class RandomizedTestTransform extends XmlTransform {
 	public function transform($db, $xml, $href, $service) {
 		
 		$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
-		
+
+        AbstractService::$debugLog->info("loading template " . $href->getUrl());
 		$xmlDoc = new DOMDocument();
 		$xmlDoc->formatOutput = true;
 		$xmlDoc->load($href->getUrl());
@@ -36,6 +37,8 @@ class RandomizedTestTransform extends XmlTransform {
 			$bankHref = new Href();
 			$bankHref->currentDir = $href->currentDir;
 			$bankHref->filename = $questionBank->getAttribute('href');
+
+			AbstractService::$debugLog->info("loading question bank " . $bankHref->getUrl());
 			
 			// gh#1030 Number of questions required from this bank (default to 5)
 			$numQuestionsToUse = $questionBank->getAttribute('use');

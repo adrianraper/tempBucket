@@ -9,7 +9,8 @@ package com.clarityenglish.clearpronunciation.controller {
 	import com.clarityenglish.bento.view.progress.ProgressMediator;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform;
-	import com.clarityenglish.bento.vo.content.transform.HiddenContentTransform;
+import com.clarityenglish.bento.vo.content.transform.ExercisePathsTransform;
+import com.clarityenglish.bento.vo.content.transform.HiddenContentTransform;
 	import com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform;
 	import com.clarityenglish.bento.vo.content.transform.ProgressSummaryTransform;
 	import com.clarityenglish.bento.vo.content.transform.PublicationUnitTransform;
@@ -38,7 +39,7 @@ package com.clarityenglish.clearpronunciation.controller {
 				return (bentoProxy.menuXHTML) ? bentoProxy.menuXHTML..course[1].@["class"].toString() : null;
 			});
 			
-			// Set the transforms that Rotterdam player uses on its menu.xml files
+			// Set the transforms that ClearPronunciation uses on its menu.xml files
 			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			// gh#1444
@@ -47,7 +48,11 @@ package com.clarityenglish.clearpronunciation.controller {
 				new HiddenContentTransform(),
                 /*new DirectStartDisableTransform(configProxy.getDirectStart())*/];
 			xhtmlProxy.registerTransforms(menuTransforms, [ Href.MENU_XHTML ]);
-			
+
+			// gh#1408
+			var exerciseTransforms:Array = [ new ExercisePathsTransform(configProxy.getConfig().paths) ];
+			xhtmlProxy.registerTransforms(exerciseTransforms, [ Href.EXERCISE ]);
+
 			// gh#333
 			ProgressMediator.reloadMenuXHTMLOnProgress = true;
 			

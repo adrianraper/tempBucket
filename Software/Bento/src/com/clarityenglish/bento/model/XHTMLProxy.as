@@ -96,14 +96,14 @@ package com.clarityenglish.bento.model {
 		
 		/**
 		 * Register a set of transforms that will be automatically applied to a server-side xhtmlLoad call based on the href type and the href filename.  If
-		 * forTypes or forFilename is ommitted, then the transforms will match all types and/or filenames.
+		 * forTypes or forFilename is omitted, then the transforms will match all types and/or filenames.
 		 * 
 		 * @param transforms An array of XmlTransforms
 		 * @param forTypes An array of types (these are constants in Href; e.g. Href.MENU_XHTML)
 		 * @param forFilename A regexp that the filename must match
 		 */
 		public function registerTransforms(transforms:Array, forTypes:Array = null, forFilename:RegExp = null):void {
-			transformDefinitions.push(new TransformDefinition(transforms, forTypes, forFilename));
+            transformDefinitions.push(new TransformDefinition(transforms, forTypes, forFilename));
 		}
 		
 		public function reloadXHTML():void {
@@ -152,23 +152,24 @@ package com.clarityenglish.bento.model {
 			if (href.serverSide) {
 				// Determine if the href matches any of the registered transforms and if so add those transforms
 				href.resetTransforms();
-				// gh#761 Because the configProxy.getDirectStart() doesn't be set value in xxStartupCommand, so I put DirectStartDisableTransform here 
+
+				// gh#761 Because the configProxy.getDirectStart() doesn't be set value in xxStartupCommand, so I put DirectStartDisableTransform here
 				if (ObjectUtil.getClassInfo(configProxy.getDirectStart()).properties.length > 0)
 					registerTransforms([new DirectStartDisableTransform(configProxy.getDirectStart())], [ Href.MENU_XHTML ]);				
 				// gh#265				
 				if (href.type == Href.EXERCISE) {
 					// gh#1115 transformDefinitions.splice(0, transformDefinitions.length);
                     // gh#1356 to substitute paths
-					var transforms:Array = [ new RandomizedTestTransform(),
-                                             new ExercisePathsTransform(configProxy.getConfig().paths) ];
+					var transforms:Array = [ new RandomizedTestTransform() ];
+                                            // new ExercisePathsTransform(configProxy.getConfig().paths) ];
 					registerTransforms(transforms, [ Href.EXERCISE ]);
 					// gh#660, gh#1030 pick up from exercise
 					//href.options = {totalNumber: configProxy.getRandomizedTestQuestionTotalNumber()};
 				}
 				for each (var transformDefinition:TransformDefinition in transformDefinitions)
 					transformDefinition.injectTransforms(href);
-					
-				// Load the xml file through an AMFPHP serverside call to xhtmlLoad($href) gh#84
+
+                // Load the xml file through an AMFPHP serverside call to xhtmlLoad($href) gh#84
 				new RemoteDelegate("xhtmlLoad", [ href ]).execute().addResponder(new ResultResponder(
 					function(e:ResultEvent, data:AsyncToken):void {
 						parseAndStoreXHTML(href, e.result.toString());
@@ -204,6 +205,7 @@ package com.clarityenglish.bento.model {
 				log.debug("Loading href {0}", href);
 
                 // gh#1356 Allow substitution of paths in href links
+                /*
                 href.resetTransforms();
                 if (href.type == Href.EXERCISE) {
                     transforms = [ new ExercisePathsTransform(configProxy.getConfig().paths) ];
@@ -211,6 +213,7 @@ package com.clarityenglish.bento.model {
                 }
                 for each (var transform:XmlTransform in transforms)
                     href.transforms.push(transform);
+                */
 
                 // Load it!
 				var urlLoader:URLLoader = new URLLoader();
@@ -316,6 +319,10 @@ package com.clarityenglish.bento.model {
 
 import com.clarityenglish.bento.vo.Href;
 import com.clarityenglish.bento.vo.content.transform.XmlTransform;
+import mx.logging.ILogger;
+import mx.logging.Log;
+
+import org.davekeen.util.ClassUtil;
 
 class TransformDefinition {
 	
@@ -328,8 +335,8 @@ class TransformDefinition {
 		this.forTypes = forTypes;
 		this.forFilename = forFilename;
 	}
-	
-	public function injectTransforms(href:Href):void {
+
+    public function injectTransforms(href:Href):void {
 		// If a type is specified then check that the href matches, otherwise return
 		if (forTypes && forTypes.indexOf(href.type) == -1)
 			return;
@@ -340,7 +347,8 @@ class TransformDefinition {
 		
 		// If we have reached here then we want to add the transforms
 		for each (var transform:XmlTransform in transforms)
-			href.transforms.push(transform);
+            href.transforms.push(transform);
+
 	}
 	
 }
