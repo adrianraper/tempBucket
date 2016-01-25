@@ -83,7 +83,7 @@ package com.clarityenglish.clearpronunciation.view.progress
 		[SkinPart]
 		public var printGroup:spark.components.Group;
 		
-		[Embed(source="/skins/clearpronunciation/assets/progress/certificate/certificate.jpg")]
+		[Embed(source="/skins/clearpronunciation/assets/progress/certificate/certificate.png")]
 		private static var certificate:Class;
 		
 		private var _courseChanged:Boolean;
