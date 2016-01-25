@@ -126,12 +126,10 @@ class BentoService extends AbstractService {
 			return parent::xhtmlLoad($href);
 
         // gh#1172
-		/*
         $updatedURL = $this->updateUrl($href->currentDir);
         if ($updatedURL != $href->currentDir)
-            AbstractService::$debugLog->notice("changed this domain ".$href->currentDir." to $updatedURL");
+            AbstractService::$debugLog->notice("changed this url ".$href->currentDir." to $updatedURL");
         $href->currentDir = $updatedURL;
-		*/
 		return XmlUtils::buildXml($href, $this->db, $this);
 	}
 
@@ -139,8 +137,11 @@ class BentoService extends AbstractService {
     // TODO this is just a hack to stop ezproxy servers not reading content xml files
 	private function updateUrl($url) {
 		// For working with CBuilder locally
-		return $url;
-		// return preg_replace('/http(s?):\/\/[\w\.-]*(:\d+)?/i', "http://www.clarityenglish.com", $url);
+		//return $url;
+		//return preg_replace('/http(s?):\/\/[\w\.-]*(:\d+)?/i', "http://www.clarityenglish.com", $url);
+		// Improve regex to only get rid of subdomains that come after clarityenglish.com
+        // This should leave http://pm.clarityenglish.com, http://www.roadtoielts.com, http:/dock.projectbench alone
+		return preg_replace('/http(s?):\/\/([\w\.]+)?(clarityenglish\.com)([\w\.\-:\d]+)?/i', "http$1://$2$3", $url);
 	}
 	/**
 	 *
