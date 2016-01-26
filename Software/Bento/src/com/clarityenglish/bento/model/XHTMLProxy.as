@@ -147,28 +147,16 @@ package com.clarityenglish.bento.model {
 			var useCacheBuster:Boolean = configProxy.getConfig().useCacheBuster;
 			
 			if (beforeXHTMLLoadFunction !== null) beforeXHTMLLoadFunction(facade, href);
-			// gh#265
+
+            // gh#1444, gh#1408 transforms are prepared in StartupCommand
+            // Determine if the href matches any of the registered transforms and if so add those transforms
+            href.resetTransforms();
+            for each (var transformDefinition:TransformDefinition in transformDefinitions)
+                transformDefinition.injectTransforms(href);
+
+            // gh#265
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			if (href.serverSide) {
-				// Determine if the href matches any of the registered transforms and if so add those transforms
-				href.resetTransforms();
-
-				// gh#761 Because the configProxy.getDirectStart() doesn't be set value in xxStartupCommand, so I put DirectStartDisableTransform here
-				if (ObjectUtil.getClassInfo(configProxy.getDirectStart()).properties.length > 0)
-					registerTransforms([new DirectStartDisableTransform(configProxy.getDirectStart())], [ Href.MENU_XHTML ]);				
-				// gh#265				
-				if (href.type == Href.EXERCISE) {
-					// gh#1115 transformDefinitions.splice(0, transformDefinitions.length);
-                    // gh#1356 to substitute paths
-					var transforms:Array = [ new RandomizedTestTransform() ];
-                                            // new ExercisePathsTransform(configProxy.getConfig().paths) ];
-					registerTransforms(transforms, [ Href.EXERCISE ]);
-					// gh#660, gh#1030 pick up from exercise
-					//href.options = {totalNumber: configProxy.getRandomizedTestQuestionTotalNumber()};
-				}
-				for each (var transformDefinition:TransformDefinition in transformDefinitions)
-					transformDefinition.injectTransforms(href);
-
                 // Load the xml file through an AMFPHP serverside call to xhtmlLoad($href) gh#84
 				new RemoteDelegate("xhtmlLoad", [ href ]).execute().addResponder(new ResultResponder(
 					function(e:ResultEvent, data:AsyncToken):void {
@@ -203,17 +191,6 @@ package com.clarityenglish.bento.model {
 			} else {
 				// Load the xml file normally using a URLLoader
 				log.debug("Loading href {0}", href);
-
-                // gh#1356 Allow substitution of paths in href links
-                /*
-                href.resetTransforms();
-                if (href.type == Href.EXERCISE) {
-                    transforms = [ new ExercisePathsTransform(configProxy.getConfig().paths) ];
-                    registerTransforms(transforms, [ Href.EXERCISE ]);
-                }
-                for each (var transform:XmlTransform in transforms)
-                    href.transforms.push(transform);
-                */
 
                 // Load it!
 				var urlLoader:URLLoader = new URLLoader();

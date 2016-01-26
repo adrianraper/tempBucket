@@ -5,7 +5,13 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.ExternalInterfaceProxy;
 	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.bento.model.XHTMLProxy;
-	import com.clarityenglish.common.CommonNotifications;
+import com.clarityenglish.bento.vo.Href;
+import com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform;
+import com.clarityenglish.bento.vo.content.transform.ExercisePathsTransform;
+import com.clarityenglish.bento.vo.content.transform.HiddenContentTransform;
+import com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform;
+import com.clarityenglish.bento.vo.content.transform.ProgressSummaryTransform;
+import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.LoginProxy;
@@ -48,6 +54,23 @@ package com.clarityenglish.bento.controller {
 			
 			// Start the configuration loading which kicks off the whole app
 			sendNotification(CommonNotifications.CONFIG_LOAD);
+
+			// #gh1444, gh#1408
+            // Set the transforms that all Bento programs use on menu.xml files
+            var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
+            var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+            // gh#1444
+            var menuTransforms:Array = [ new ProgressExerciseScoresTransform(),
+                new ProgressSummaryTransform(),
+                new HiddenContentTransform(),
+                new DirectStartDisableTransform(configProxy.getDirectStart()) ];
+            xhtmlProxy.registerTransforms(menuTransforms, [ Href.MENU_XHTML ]);
+
+            // gh#1408
+            // Set the transforms that all Bento programs use on exercise.xml files
+            var exerciseTransforms:Array = [ new ExercisePathsTransform(configProxy.getConfig().paths) ];
+            xhtmlProxy.registerTransforms(exerciseTransforms, [ Href.EXERCISE ]);
+
 		}
 		
 	}

@@ -8,13 +8,20 @@ class RandomizedTestTransform extends XmlTransform {
 		
 		$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 
-        AbstractService::$debugLog->info("loading template " . $href->getUrl());
+        //AbstractService::$debugLog->info("loading template " . $href->getUrl());
 		$xmlDoc = new DOMDocument();
 		$xmlDoc->formatOutput = true;
 		$xmlDoc->load($href->getUrl());
-        // get the node that we will later fill up with real questions, at the moment it just holds the question bank(s)
-		$xmlQuestions = $xmlDoc->getElementsByTagName("questions")->item(0);
+
+		// gh#1408 Test if this is exercise needs random tests, if not just return the original
 		$questionBanks = $xmlDoc->getElementsByTagName("questionBank");
+		if (!$questionBanks) {
+			AbstractService::$debugLog->info("this is not a random test" . $href->getUrl());
+			return $xml;
+		}
+
+		// get the node that we will later fill up with real questions, at the moment it just holds the question bank(s)
+		$xmlQuestions = $xmlDoc->getElementsByTagName("questions")->item(0);
 		$xmlPath = new DOMXPath($xmlDoc);
 		$xmlPath->registerNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
         // gh#1409 Find the placeholder for question.
@@ -38,8 +45,6 @@ class RandomizedTestTransform extends XmlTransform {
 			$bankHref->currentDir = $href->currentDir;
 			$bankHref->filename = $questionBank->getAttribute('href');
 
-			AbstractService::$debugLog->info("loading question bank " . $bankHref->getUrl());
-			
 			// gh#1030 Number of questions required from this bank (default to 5)
 			$numQuestionsToUse = $questionBank->getAttribute('use');
 			if (!$numQuestionsToUse || $numQuestionsToUse < 1)

@@ -10,7 +10,8 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
 	
 	import flash.events.TimerEvent;
-	import flash.utils.Dictionary;
+import flash.geom.Rectangle;
+import flash.utils.Dictionary;
 	import flash.utils.Timer;
 	
 	import mx.core.FlexGlobals;
@@ -22,8 +23,10 @@ package com.clarityenglish.bento.model {
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.observer.Notification;
 	import org.puremvc.as3.patterns.proxy.Proxy;
-	
-	public class ExerciseProxy extends Proxy implements IProxy {
+
+import spark.components.Group;
+
+public class ExerciseProxy extends Proxy implements IProxy {
 		
 		/**
 		 * This is a bit of a funny function, but the idea is to give a dynamic NAME (based on the exercise) so instead of making it a constant like in
@@ -262,7 +265,7 @@ package com.clarityenglish.bento.model {
 		 * @param disabled If this is true then the only effect of this will be to display feedback, if there is any.  
 		 * 				   This is used when things happen after marking has been shown.
 		 */
-		public function questionAnswer(question:Question, answer:Answer, key:Object = null, disabled:Boolean = false, bounds = null, container = null):void {
+		public function questionAnswer(question:Question, answer:Answer, key:Object = null, disabled:Boolean = false, bounds:Rectangle = null, container:Group = null):void {
 			checkExercise();
 
 			if (!disabled) {
