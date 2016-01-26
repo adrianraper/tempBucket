@@ -73,6 +73,7 @@ import org.osmf.media.MediaPlayerState;
 						this.pause();
 					break;
 				case MediaPlayerState.PLAYING:
+					// gh#1449
 					dispatchEvent(new VideoEvent(VideoEvent.VIDEO_PLAYED, true));
 					break;
 				case MediaPlayerState.PAUSED:

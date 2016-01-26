@@ -40,6 +40,7 @@ package com.clarityenglish.controls.video {
 		/**
 		 * (Flash) If supported, stop pausing the video.
 		 */
+		// gh#1449
 		function pause():void;
 
 		/**

@@ -43,7 +43,7 @@ import org.puremvc.as3.interfaces.INotification;
 			view.addEventListener(DictionaryEvent.WORD_CLICK, onWordClick, false, 0, true);
 			view.addEventListener(HintEvent.HINT_SHOW, onHintShow, false, 0, true); // gh#338
 			view.addEventListener(ImageEvent.IMAGE_ENLARGE, onEnlargeImage, false, 0, true); // gh#1219
-			view.addEventListener(VideoEvent.VIDEO_PLAYED, onVideoPlayed, false, 0, true);
+			view.addEventListener(VideoEvent.VIDEO_PLAYED, onVideoPlayed, false, 0, true); // gh#1449
 			view.getQuestionFeedback().add(onGotQuestionFeedback); // gh#388, gh#413
 		}
 		
@@ -206,6 +206,7 @@ import org.puremvc.as3.interfaces.INotification;
 			sendNotification(BBNotifications.IMAGE_ENLARGE, e.image);
 		}
 
+		// gh#1449
 		protected function onVideoPlayed(event:Event):void {
 			view.stopAllAudio();
 		}

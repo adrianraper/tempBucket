@@ -13,9 +13,6 @@ package com.clarityenglish.textLayout.components {
 	import flash.utils.Timer;
 	
 	import mx.core.UIComponent;
-	import mx.events.FlexEvent;
-	
-	import org.osmf.events.AudioEvent;
 	
 	import spark.components.mediaClasses.ScrubBar;
 	import spark.components.supportClasses.SkinnableComponent;
@@ -159,7 +156,6 @@ package com.clarityenglish.textLayout.components {
 			switch (soundStatus) {
 				case STOPPED:
 				case PLAYED:
-					dispatchEvent(new AudioPlayerEvent(AudioPlayerEvent.AUDIO_PLAYED, null, true));
 					play();
 					break;
 				case PLAYING:
