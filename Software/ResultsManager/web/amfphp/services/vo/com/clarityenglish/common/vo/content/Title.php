@@ -136,10 +136,10 @@ class Title extends Content {
 								prev($unit->exercises);
 								// this is really clumsy, but you can't just return the exercise as you won't know that it is a before rather than after one
 								// so send back the UID on its own if this is the case
-								NetDebug::trace("getNext, found the uid AFTER in the title tree");
+								//NetDebug::trace("getNext, found the uid AFTER in the title tree");
 								return prev($unit->exercises)->uid;
 							} else {
-								NetDebug::trace("getNext, found the uid BEFORE in the title tree");
+								//NetDebug::trace("getNext, found the uid BEFORE in the title tree");
 								return current($unit->exercises);
 							}
 						}
@@ -147,7 +147,7 @@ class Title extends Content {
 				}
 			}
 		}
-		NetDebug::trace("getNext, didn't find the UID");
+		//NetDebug::trace("getNext, didn't find the UID");
 		return false;
 	}
 	function getPrevExercise($uid) {
@@ -171,10 +171,10 @@ class Title extends Content {
 								// we need to get the first
 								// this is really clumsy, but you can't just return the exercise as you won't know that it is a before rather than after one
 								// so send back the UID on its own if this is the case
-								NetDebug::trace("getPrev, found the uid BEFORE in the title tree");
+								//NetDebug::trace("getPrev, found the uid BEFORE in the title tree");
 								return first($unit->exercises)->uid;
 							} else {
-								NetDebug::trace("getPrev, found the uid AFTER in the title tree");
+								//NetDebug::trace("getPrev, found the uid AFTER in the title tree");
 								return current($unit->exercises);
 							}
 						}

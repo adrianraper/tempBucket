@@ -121,6 +121,7 @@
 		</xsl:choose>
 	</xsl:template>
 
+	<!-- gh#1450
     <xsl:template name="generateCourseNameSelector">
         <xsl:param name="component" />
         <select id="{$component}">
@@ -129,6 +130,7 @@
         </xsl:for-each>
         </select>
     </xsl:template>
+    -->
 
 	<!-- generateTable generates an HTML table containing all the results in the XML document -->
 	<xsl:template name="generateTable">
