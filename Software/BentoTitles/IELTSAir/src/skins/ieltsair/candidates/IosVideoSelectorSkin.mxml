@@ -11,11 +11,11 @@
 	</fx:Metadata>
 	
 	<fx:Declarations>
-		<s:Animate id="openingScreenLeftSlide" duration="700" target="{openingScreenGroup}" effectStart="onSlideStart(event)" effectEnd="onSlideEnd(event)">
+		<s:Animate id="openingScreenLeftSlide" duration="700" target="{openingScreenGroup}" effectStart="onSlideStart(event)" effectEnd="onSlideEnd(event)" >
 			<s:SimpleMotionPath property="left" valueBy="{-320-width/2}"/>
 		</s:Animate>
 		
-		<s:Animate id="openingScreenRightSlide" duration="700" target="{openingScreenGroup}" effectStart="onSlideStart(event)" effectEnd="onSlideEnd(event)">
+		<s:Animate id="openingScreenRightSlide" duration="700" target="{openingScreenGroup}" effectStart="onSlideStart(event)" effectEnd="onSlideEnd(event)" >
 			<s:SimpleMotionPath property="left" valueBy="{320+width/2}"/>
 		</s:Animate>
 		
@@ -61,7 +61,7 @@
 				stage.addEventListener(MouseEvent.CLICK, onStageClick);
 				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
 				addEventListener(Event.RESIZE, onResize);
-				
+
 				number1Red.visible = true;
 				openingScreenGroup.left = width/2 - 320;
 				openingScreenGroup.visible = false;
@@ -78,6 +78,14 @@
 							}
 						}
 					);		
+				});
+
+				// For notifying R2I candidate video visible after sliding
+				Bind.fromProperty(videoPlayer, "isLocationChanged").toFunction(function(isLocationChanged:Boolean):void {
+					if (isLocationChanged && videoList.dataProvider) {
+						videoPlayer.visible = true;
+						busyIndicator.visible = false;
+					}
 				});
 			}
 			
@@ -103,15 +111,9 @@
 			}
 			
 			protected function onVideoListIndexChange(event:Event):void {
-				//videoPlayer.createStageWebView();
-				openingScreenGroup.visible = false;
-				//videoPlayButton.visible = false;
 				videoListIndex = videoList.selectedIndex;
 				candidatesVideoTitleLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex);
 				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription" + videoListIndex);
-				
-				if (videoList.selectedIndex >= 0)
-					openingScreenGroup.left = -640 - (320 + width/2) * (videoList.selectedIndex - 1);
 				
 				if (videoList.selectedIndex == -1 || videoList.selectedIndex == 0) {
 					previousVideoButton.enabled = false;
@@ -124,43 +126,27 @@
 				} else {
 					nextVideoButton.enabled = true;
 				}
-				
+
 				videoPlayer.placeholderSource = hostComponent.href.rootPath + "/" + hostComponent.videoCollection.getItemAt(videoListIndex).attribute("poster");
 			}
 			
 			protected function onSlideEnd(event:EffectEvent):void
 			{
-				//videoPlayButton.label = "Click here to watch the " + hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex) +  " video.";
-				candidatesVideoTitleLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex);
-				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription" + videoListIndex);
-				//videoPlayButton.visible = true;
 				openingScreenGroup.visible = false;
-				
-				if (videoListIndex == 0) {
-					previousVideoButton.enabled = false;
-				} else {
-					previousVideoButton.enabled = true;
-				}
-				
-				if (videoListIndex ==  videoList.dataProvider.length - 1) {
-					nextVideoButton.enabled = false;
-				} else {
-					nextVideoButton.enabled = true;
-				}
-				
-				videoList.selectedIndex = videoListIndex;
-				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 				busyIndicator.visible = true;
 			}
 			
 			protected function onSlideStart(event:EffectEvent):void
 			{
-				// TODO Auto-generated method stub
-				busyIndicator.visible = false;
 				openingScreenGroup.visible = true;
 				videoPlayer.visible = false;
 				previousVideoButton.enabled = false;				
 				nextVideoButton.enabled = false;
+				videoPlayer.isLocationChanged = false;
+				busyIndicator.visible = false;
+
+				videoList.selectedIndex = videoListIndex;
+				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 			}
 			
 			protected function onPlayButtonClick(event:MouseEvent):void
@@ -203,7 +189,7 @@
 			{
 				// TODO Auto-generated method stub
 				videoListGroupExpand.play();
-				
+
 				openingScreenGroup.visible = true;
 				//videoPlayButton.visible = true;
 				videoPlayer.visible = false;
@@ -211,7 +197,6 @@
 				previousVideoButton.visible = false;
 				nextVideoButton.visible = false;
 				isExpandListOpen = true;
-				busyIndicator.visible = false;
 			}
 			
 			protected function onStageClick(event:MouseEvent):void {
@@ -226,10 +211,9 @@
 					}		
 				}
 			}
-			
 		]]>
 	</fx:Script>
-	 
+
 	<s:Group verticalCenter="-236" horizontalCenter="-310">
 		<candidates:number1red id="number1Red" visible="{videoListIndex == 0}" />
 		<candidates:number2red visible="{videoListIndex == 1}"/>
@@ -264,7 +248,7 @@
 		<s:Group>
 			<!-- The video players -->
 			<!-- Cannot bind visible with video list selection for the player will keep flashing on screen-->
-			<players:WebViewVideoPlayer id="videoPlayer" width="640" height="360" placeholderSource="{hostComponent.placeholderSource}" visible="false" />
+			<players:WebViewVideoPlayer id="videoPlayer" width="640" height="360" visible="false" />
 			<!--players:OSMFVideoPlayer id="videoPlayer" width="640" height="360" /-->
 			
 			<!-- Placeholder image -->
@@ -312,17 +296,14 @@
 			</s:layout>
 		</s:List>
 	</s:Group>
-	
+
 	<!--s:Button id="videoPlayButton" click="onPlayButtonClick(event)" horizontalCenter="0" verticalCenter="-35" label="Click here to watch the {hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)} video." buttonMode="true" useHandCursor="true" /-->
-	
-	<s:Group id="busyIndicatorGroup" width="100%" height="100%" visible="{videoList.dataProvider == null}">
-		<s:Rect width="100%" height="100%">
-			<s:fill>
-				<s:SolidColor color="0x000000" alpha="0.5" />
-			</s:fill>
-		</s:Rect>
-		<s:BusyIndicator verticalCenter="-30" horizontalCenter="0" symbolColor="0xFFFFFF" />
-	</s:Group>
-	
-	<s:BusyIndicator id="busyIndicator" verticalCenter="-30" horizontalCenter="0" symbolColor="0x333333" visible="false" />	
+
+	<s:Rect width="100%" height="100%" visible="{videoList.dataProvider == null}">
+		<s:fill>
+			<s:SolidColor color="0x000000" alpha="0.5"/>
+		</s:fill>
+	</s:Rect>
+	<s:BusyIndicator id="busyIndicator" verticalCenter="-30" horizontalCenter="0" symbolColor="0x333333" visible="true" />
+
 </s:Skin>

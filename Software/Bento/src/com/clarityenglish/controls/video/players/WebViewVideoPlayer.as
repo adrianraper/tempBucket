@@ -1,5 +1,5 @@
 package com.clarityenglish.controls.video.players {
-	import com.clarityenglish.controls.video.IVideoPlayer;
+import com.clarityenglish.controls.video.IVideoPlayer;
 import com.clarityenglish.controls.video.events.VideoEvent;
 
 import flash.events.Event;
@@ -19,6 +19,9 @@ import mx.events.FlexEvent;
 	import spark.components.Group;
 	
 	public class WebViewVideoPlayer extends Group implements IVideoPlayer {
+
+		[Bindable]
+		public var isLocationChanged:Boolean;
 		
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		// remove static for there maybe two videos in same page.
@@ -27,7 +30,6 @@ import mx.events.FlexEvent;
 		private var _source:Object;
 		private var _sourceChanged:Boolean;
 		private var _placeholderSource:String;
-		
 		private var dpiScaleFactor:Number = 1;
 		
 		public function WebViewVideoPlayer() {
@@ -231,7 +233,7 @@ import mx.events.FlexEvent;
 		public function pause():void {
 			stageWebView.loadURL("javascript:pause();");
 		}
-		
+
 		protected function onAddedToStage(event:Event):void {
 			addEventListener(FlexEvent.HIDE, onHide, false, 0, true);
 			addEventListener(FlexEvent.SHOW, onShow, false, 0, true);
@@ -244,6 +246,7 @@ import mx.events.FlexEvent;
 				stageWebView = new StageWebView();
 				// gh#1399
 				stageWebView.addEventListener(FocusEvent.FOCUS_IN, onFocusIn);
+				stageWebView.addEventListener(Event.LOCATION_CHANGE, onLocationChange);
 			}
 
 			// Make sure that commitProperties runs when the component is added to the stage so that stageWebView.stage can be set
@@ -294,7 +297,11 @@ import mx.events.FlexEvent;
 				stageWebView.viewPort = new Rectangle(globalPos.x, globalPos.y, stageWebView.viewPort.width, stageWebView.viewPort.height);
 			}
 		}
-		
+
+		// For notifying R2I candidate video visible after sliding
+		protected function onLocationChange(event:Event):void {
+			isLocationChanged = true;
+		}
 	}
 	
 }
