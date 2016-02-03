@@ -7,7 +7,8 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.title.InforButton;
 	import com.clarityenglish.ielts.view.zone.courseselector.CourseSelector;
-	import com.clarityenglish.textLayout.vo.XHTML;
+import com.clarityenglish.ielts.view.zone.ui.ZoneTabbedViewNavigator;
+import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -25,7 +26,8 @@ package com.clarityenglish.ielts.view.zone {
 	import spark.components.Button;
 	import spark.components.Label;
 	import spark.components.NavigatorContent;
-	import spark.components.ViewNavigator;
+import spark.components.TabbedViewNavigator;
+import spark.components.ViewNavigator;
 	import spark.utils.TextFlowUtil;
 	
 	public class ZoneView extends BentoView {
@@ -34,7 +36,7 @@ package com.clarityenglish.ielts.view.zone {
 		public var courseSelector:CourseSelector;
 		
 		[SkinPart(required="true")]
-		public var sectionNavigator:ISelectableList;
+		public var sectionNavigator:ZoneTabbedViewNavigator;
 		
 		[SkinPart(required="true")]
 		public var questionZoneViewNavigator:ViewNavigator;
@@ -290,6 +292,10 @@ package com.clarityenglish.ielts.view.zone {
 						if (testZoneViewNavigator) testZoneViewNavigator.enabled = false;
 					}
 				}
+			}
+
+			if (_courseChanged) {
+				sectionNavigator.selectedColor = getStyle(course.@['class'] + "ColorDark");
 			}
 			inforButtonTextFlow = TextFlowUtil.importFromString(copyProvider.getCopyForId("infoReadingText"));
 		}
