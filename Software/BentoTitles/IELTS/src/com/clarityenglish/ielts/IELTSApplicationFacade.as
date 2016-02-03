@@ -3,7 +3,7 @@
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.bento.view.exercise.ExerciseMediator;
 	import com.clarityenglish.bento.view.exercise.ExerciseView;
-	import com.clarityenglish.common.view.login.LoginMediator;
+import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.ielts.controller.IELTSRegisterCommand;
 	import com.clarityenglish.ielts.controller.IELTSStartupCommand;
 	import com.clarityenglish.ielts.view.account.AccountMediator;
@@ -13,7 +13,9 @@
 	import com.clarityenglish.ielts.view.home.HomeMediator;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.login.LoginView;
-	import com.clarityenglish.ielts.view.support.SupportMediator;
+import com.clarityenglish.ielts.view.progress.ProgressMediator;
+import com.clarityenglish.ielts.view.progress.ProgressView;
+import com.clarityenglish.ielts.view.support.SupportMediator;
 	import com.clarityenglish.ielts.view.support.SupportView;
 	import com.clarityenglish.ielts.view.title.TitleMediator;
 	import com.clarityenglish.ielts.view.title.TitleView;
@@ -54,6 +56,7 @@
 			mapView(SupportView, SupportMediator);
 			mapView(ExerciseView, ExerciseMediator);
 			mapView(CandidatesView, CandidatesMediator);
+			mapView(ProgressView, ProgressMediator);
 			
 			mapView(ZoneView, ZoneMediator);
 			mapView(AdviceZoneSectionView, AdviceZoneSectionMediator);
