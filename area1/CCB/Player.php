@@ -14,7 +14,7 @@
 	// For this product
 	$productCode = 54; // Rotterdam
 	$swfName = 'Player.swf';
-	$startControl = '/Software/BentoTitles/RotterdamPlayer/bin-debug/';
+	$startControl = '/Software/BentoTitles/RotterdamPlayer/bin-release/';
 	$version = '1107';
 	$coordsMinWidth = '990';
 	$coordsMaxWidth = '1200';

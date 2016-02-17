@@ -22,7 +22,7 @@
 				return new SolidColor(getStyle(element.item.@["class"] + "ColorDark"));
 			}
 			
-			public function percentageLabel(item:Object, prevValue:Object, axis:LinearAxis):String {
+			public function percentageLabel(item:Object, prevValue:Object, axis:CategoryAxis):String {
 				return item + "%";
 			}
 			
@@ -44,9 +44,9 @@
 	<s:Label id="compareInstructionLabel" left="20" top="60" />
 	
 	<s:Label id="chartCaptionLabel" textAlign="center" fontSize="13" left="0" right="0" top="105" />
-	<mx:BarChart id="compareChart" left="20" right="60" top="130" bottom="140">
+	<mx:ColumnChart id="compareChart" left="20" right="60" top="130" bottom="140">
 		<mx:horizontalAxis>
-			<mx:LinearAxis id="horizontalAxis" minimum="0" maximum="100" labelFunction="percentageLabel" />
+			<mx:CategoryAxis id="horizontalAxis" labelFunction="percentageLabel" />
 		</mx:horizontalAxis>
 		<mx:verticalAxis>
 			<mx:CategoryAxis id="verticalAxis" categoryField="@class" labelFunction="captionLabel" />
@@ -67,6 +67,6 @@
 			<mx:BarSeries yField="@class" xField="@myAverageScore" displayName="My scores" fillFunction="myAverageScoreFill" />
 			<mx:BarSeries yField="@class" xField="@everyoneAverageScore" fillFunction="everyoneAverageScoreFill" displayName="Everyone's scores" />
 		</mx:series>
-	</mx:BarChart>
+	</mx:ColumnChart>
 	
 </s:Skin>

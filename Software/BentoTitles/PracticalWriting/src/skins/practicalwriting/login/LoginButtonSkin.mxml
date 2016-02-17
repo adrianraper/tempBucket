@@ -70,7 +70,7 @@
              maxDisplayedLines="1"
              horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
              left="10" right="10" top="2" bottom="2"
-			 color="0xFFFFFF">
+			 color="0xFFFFFF" >
     </s:Label>
     
 </s:SparkButtonSkin>

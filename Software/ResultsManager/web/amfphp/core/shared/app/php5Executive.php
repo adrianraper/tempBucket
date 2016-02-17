@@ -56,6 +56,13 @@ class Executive {
 	{
 		try
 		{
+			// Clarity - logging of calls to gateway
+			$logFile = AMFPHP_BASE . '../../../../Common/logs/gateway.log';
+			if ($method != "beforeFilter") {
+				$timeNow = new DateTime();
+				file_put_contents($logFile, "operation=$method PHPSessionID=" . session_id() . " time=" . $timeNow->format('Y-m-d H:i:s') . "\r\n", FILE_APPEND);
+			}
+
 			$output = Executive::deferredMethodCall($bodyObj, $object, $method, $args);
 			
 			// A simple upgrade to add an 'afterFilter' call at the end (if it exists)

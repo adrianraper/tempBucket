@@ -166,10 +166,6 @@ login|LoginView s|SkinnableContainer {
 	skinClass: ClassReference("skins.tensebuster.login.SignInContainerSkin");
 }
 
-login|LoginView s|SkinnableContainer#anonymousGroup {
-	skinClass: ClassReference("skins.tensebuster.login.AnonymousContainerSkin");
-}
-
 login|LoginView s|Button {
 	skinClass: ClassReference("skins.tensebuster.login.LoginButtonSkin");
 }

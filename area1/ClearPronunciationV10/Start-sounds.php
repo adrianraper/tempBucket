@@ -16,9 +16,9 @@
 	$swfName = 'ClearPronunciation.swf';
 	$startControl = '/Software/BentoTitles/ClearPronunciation/bin-release/';
 	$version = '12';
-	$coordsMinWidth = '1100';
-	$coordsMaxWidth = '1100';
-	$coordsMinHeight = '760';
+	$coordsMinWidth = '990';
+	$coordsMaxWidth = '1024';
+	$coordsMinHeight = '860';
 	$coordsMaxHeight = null;
 	$locationFile = "config.xml";
 	
@@ -54,10 +54,11 @@
 	<script type="text/javascript">
 		swfobject.embedSWF(jsWebShare + jsStartControl + jsSwfName + argList, "altContent", "100%", "100%", "10.2.0", expressInstall, flashvars, params, attr);
 	</script>
-	
-<style type="text/css">
-	body {margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px}
-</style>
+
+	<link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />
+	<style type="text/css">
+		body {margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px}
+	</style>
 </head>
 <body onload="onLoad()">
 <?php require_once '../bentoAltContent.php';?>

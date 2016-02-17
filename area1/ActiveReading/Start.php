@@ -14,7 +14,7 @@
 	// For this product
 	$productCode = 56;
 	$swfName = 'ActiveReading.swf';
-	$startControl = '/Software/BentoTitles/ActiveReading/bin-debug/';
+	$startControl = '/Software/BentoTitles/ActiveReading/bin-release/';
 	$version = '1107';
 	$coordsMinWidth = '990';
 	$coordsMaxWidth = '1200';

@@ -160,10 +160,6 @@ login|LoginView s|SkinnableContainer {
 	skinClass: ClassReference("skins.clearpronunciation.login.SignInContainerSkin");
 }
 
-login|LoginView s|SkinnableContainer#anonymousGroup {
-	skinClass: ClassReference("skins.clearpronunciation.login.AnonymousContainerSkin");
-}
-
 login|LoginView s|Button {
 	skinClass: ClassReference("skins.clearpronunciation.ui.LoginButtonSkin");
 }

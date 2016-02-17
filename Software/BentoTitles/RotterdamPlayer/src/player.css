@@ -43,9 +43,6 @@ login|LoginView s|SkinnableContainer {
 	skinClass: ClassReference("skins.rotterdam.login.SignInContainerSkin");
 }
 
-login|LoginView s|SkinnableContainer#anonymousGroup {
-	skinClass: ClassReference("skins.rotterdam.login.AnonymousContainerSkin");
-}
 login|LoginView s|TextInput {
 	skinClass: ClassReference("skins.rotterdam.login.LoginTextInputSkin");
 	cornerRadius: 5;

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <activereading:ActiveReadingApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
-			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:activereading="com.clarityenglish.activereading.*"
 			   minWidth="990" minHeight="760"
 			   initialize="onInitialize(event)"
@@ -43,7 +41,7 @@
 			import com.clarityenglish.activereading.ActiveReadingApplicationFacade;
 
 			protected function onInitialize(event:FlexEvent):void {
-				versionNumber = "10.0.30E";
+				versionNumber = "10.0.32E";
 
 				facade = ActiveReadingApplicationFacade.getInstance();
 			}

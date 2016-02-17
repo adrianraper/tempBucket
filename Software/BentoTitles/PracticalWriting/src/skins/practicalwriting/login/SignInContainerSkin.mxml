@@ -39,7 +39,8 @@
     ]]>
     </fx:Metadata> 
 	<fx:Declarations>
-		<s:DropShadowFilter id="dropShadowFilter" blurX="3" blurY="3" alpha="0.3" distance="0" angle="180" knockout="false"/>
+		<!-- gh#1441 -->
+		<s:DropShadowFilter id="dropShadowFilter" blurX="3" blurY="3" alpha="0.5" distance="0" knockout="false"/>
 	</fx:Declarations>
 
     <s:states>
@@ -63,10 +64,12 @@
 	<s:Rect top="8" right="8" bottom="8" left="8" width="100%" height="100%" radiusX="24" radiusY="24">
 		<s:fill>
 			<s:LinearGradient rotation="90">
-				<s:GradientEntry color="#EAEAEB" ratio="0" />
-				<s:GradientEntry color="#FFFFFF" ratio="0.37" />
-				<s:GradientEntry color="#E5E5E5" ratio="0.86"/>
-				<s:GradientEntry color="#E2E3E2" ratio="1"/>
+                <!-- gh#1441 -->
+				<s:GradientEntry color="#CCCCCC" ratio="0" />
+				<s:GradientEntry color="#FFFFFF" ratio="0.35" />
+				<s:GradientEntry color="#EEEEEE" ratio="0.5"/>
+				<s:GradientEntry color="#E6E6E6" ratio="0.75"/>
+				<s:GradientEntry color="#CCCCCC" ratio="1"/>
 			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>

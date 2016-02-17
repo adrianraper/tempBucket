@@ -66,11 +66,11 @@ login|LoginView s|TextInput {
 login|LoginView s|SkinnableContainer {
     skinClass: ClassReference("skins.practicalwriting.login.SignInContainerSkin");
 }
-
+/*
 login|LoginView s|SkinnableContainer#anonymousGroup {
     skinClass: ClassReference("skins.practicalwriting.login.AnonymousContainerSkin");
 }
-
+*/
 title|TitleView {
     skinClass: ClassReference("skins.practicalwriting.TitleSkin");
 }

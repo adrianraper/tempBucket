@@ -23,7 +23,7 @@ in accordance with the terms of the license agreement accompanying it.
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				   xmlns:s="library://ns.adobe.com/flex/spark" 
 				   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-				   minWidth="125" minHeight="50" 
+				   minWidth="100" minHeight="50"
 				   alpha.disabled="0.5">
 	
 	<fx:Metadata>
@@ -58,7 +58,7 @@ in accordance with the terms of the license agreement accompanying it.
 		
 	</s:transitions>
 	
-	<s:Rect left="0" right="0" height="50" width="125"  topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" filters="{dropShadowFilter}" >
+	<s:Rect left="0" right="0" height="50" width="100" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" filters="{dropShadowFilter}" >
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry id="color1" color="#315D6B" color.over="#FFE6A9" color.down="#FFE6A9" />
