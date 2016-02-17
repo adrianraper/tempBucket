@@ -34,7 +34,8 @@ class AuthenticationOps {
 	
 	/**
 	 * This is a security check (used by most methods) which ensures that the given group ids belong to one of the logged in users groups.
-	 * It works by comparing against Session::get('valid_groupIDs') which is set every time getAllManageables is called. 
+	 * It works by comparing against Session::get('valid_groupIDs') which is set every time getAllManageables is called.
+	 * NO - not set by getAllManageables - how about login?
 	 */
 	public static function authenticateGroupIDs($groupIdArray) {
 		if (!AuthenticationOps::$useAuthentication) return;

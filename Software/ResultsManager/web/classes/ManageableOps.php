@@ -247,7 +247,38 @@ EOD;
 		// Return the newly created user object
 		return $user;
 	}
-	
+
+	/*
+	 * Add $user to $parentGroup where user is an instance of User and $parentGroup is an instance of Group
+	 * This does not do any authentication or duplicate checking - for use with bulk processes that have already done that
+	 */
+	function minimalAddUser($user, $parentGroup, $rootID = null, $loginOption = null) {
+
+		$rc = $this->db->Execute($user->toSQLInsert(), $user->toBindingParams());
+		if (!$rc)
+			throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
+
+		// Add the auto-generated id to the original user object
+		$user->userID = $this->db->Insert_ID();
+		$user->id = (string)$parentGroup->id.'.'.$user->userID;
+
+		// Now insert a record in the group membership table to say which parent group the user belongs to
+		$sql = <<<EOD
+			INSERT INTO T_Membership (F_UserID,F_GroupID,F_RootID)
+			VALUES (?,?,?)
+EOD;
+		$bindingParams = array($user->userID, $parentGroup->id, ($rootID) ? $rootID : Session::get('rootID'));
+		$rc = $this->db->Execute($sql, $bindingParams);
+		if (!$rc)
+			throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
+
+		// gh#448
+		AbstractService::$controlLog->info('userID '.Session::get('userID').' minimally added a user with id='.$user->userID.' to group '.$parentGroup->id);
+
+		// Return the newly created user object
+		return $user;
+	}
+
 	/*
 	 * Move $user to $parentGroup where user is an instance of User and $parentGroup is an instance of Group
 	 */
@@ -509,19 +540,17 @@ EOD;
 	}
 	
 	function moveUsers($usersArray, $parentGroup, $userDetails = null) {
-        //$time_start_1 = microtime(true);
 		if (sizeof($usersArray) == 0) return;
-
+		
 		// Ensure that this root context has permission to access all these users
 		AuthenticationOps::authenticateUsers($usersArray);
 		
 		// Ensure that this root context has permission to access all these groups
 		AuthenticationOps::authenticateGroups(array($parentGroup));
-
+		
         // gh#1275 Seems very little benefit in running these calls in a transaction, so remove the overhead
 		//$this->db->StartTrans();
-        //$time_start = microtime(true);
-
+		
 		// gh#653 Since each user might be coming from a different group, need to do multiple sql updates
 		// each of which references the old group as well as the userID. 
 		foreach ($usersArray as $user) {
@@ -532,12 +561,10 @@ EOD;
 				   AND F_UserID=?
 EOD;
 			$rs = $this->db->GetRow($sql, array($parentGroup->id, $user->userID));
-            //AbstractService::$debugLog->info("userid=" . $user->userID . " in groupid=" . $parentGroup->id . "count=" . $rs['count']);
 			// Does this user already exist in the target group? If so, just delete them from their old group(s).
 			if ($rs['count'] > 0) {
 				$thisGroupId = $user->getMultiUserGroupID();
 				// gh#717 But NOT if you are (accidentally) moving the user within one group
-                //$time_start_5 = microtime(true);
 				if ($thisGroupId && $thisGroupId > 0 && $thisGroupId != $parentGroup->id) {
 					$bindingParams = array($thisGroupId, $user->userID);
 					$this->db->Execute("DELETE FROM T_Membership WHERE F_GroupID=? AND F_UserID=?", $bindingParams);
@@ -555,14 +582,12 @@ EOD;
                         $this->db->Execute("DELETE FROM T_Membership WHERE NOT F_GroupID=? AND F_UserID=?", $bindingParams);
                     }
 				}
-                //AbstractService::$debugLog->info("delete=" . sprintf('%f', microtime(true) - $time_start_5));
-			} else {
+			} else { 
 				// Otherwise update T_Membership
 				// During import, if you are moving a user you will have got their data from the database
 				// so you will NOT have the group portion of id. You could just update based on userID
 				// but this will crash if there the user is already in here twice. In that case you need
 				// to delete then insert.
-                //$time_start_3 = microtime(true);
 				$thisGroupId = $user->getMultiUserGroupID();
 				if ($thisGroupId && $thisGroupId > 0) {
 					// make sure you only move this one instance of the user
@@ -580,13 +605,11 @@ EOD;
 					$rc = $this->db->Execute($sql, $bindingParams);
 					if (!$rc)
 						throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
-				}
-                //AbstractService::$debugLog->info("update 1=" . sprintf('%f', microtime(true) - $time_start_3));
+				}					
 			}
 			
 			// gh#653 Since a moved user might have updated some details, check to see if need an update too
 			if ($userDetails) {
-                //$time_start_4 = microtime(true);
 				// It is safe to update all relevant fields as conflict with loginOption key field will have already been resolved
 				if (($userDetails->email != $user->email) ||
 					($userDetails->studentID != $user->studentID) ||
@@ -598,7 +621,6 @@ EOD;
 					$user->password = $userDetails->password;
 					$this->db->AutoExecute("T_User", $user->toAssocArray(), "UPDATE", "F_UserID=".$user->userID);
 				}
-                //AbstractService::$debugLog->info("update 2=" . sprintf('%f', microtime(true) - $time_start_4));
 			}
 
             // gh#1275 Report which users moved
@@ -610,7 +632,6 @@ EOD;
 		
 		// gh#448
 		AbstractService::$controlLog->info('userID '.Session::get('userID').' moved a user(s) with id='.implode(',',$userIds).' to group '.$parentGroup->id);
-        //AbstractService::$debugLog->info("for moveUsers=" . (microtime(true) - $time_start_1));
 	}
 	
 	function moveGroups($groupsArray, $parentGroup) {
@@ -1120,7 +1141,6 @@ SQL;
 			// If they do and the control parameter=simple - then report an error
 			$rc = $this->isUserConflicted($manageable);
 			if ($rc['returnCode'] > 0) {
-				//AbstractService::$debugLog->info("move/copy user " . $manageable->studentID . " into group " . $parentGroup->id);
                 // gh#1275 Catch permission problem exceptions so you can keep going
                 try {
                     if ($controlExistingStudents == self::EXCEL_MOVE_IMPORT) {
@@ -1141,7 +1161,6 @@ SQL;
                     $success = false;
                 }
 			} else {
-				//AbstractService::$debugLog->info("try to add " . $manageable->studentID . " into group " . $parentGroup->id);
 				$addedMsg = "added";
 				// gh#769 record source of registration
 				$today = new DateTime();
@@ -1167,7 +1186,7 @@ SQL;
         // gh#1275
         return $success;
 	}
-	
+
 	/**
 	 * This function reads account root information
 	 */
@@ -2154,7 +2173,7 @@ EOD;
 			$checkClause
 EOD;
 		$rs = $this->db->Execute($sql, $bindingParams);
-		//AbstractService::$debugLog->info("conflicted sql=" . $sql . " params=" . implode(',', $bindingParams));
+
 		$rc['returnCode'] = 0;
 		switch ($rs->RecordCount()) {
 			case 0:
@@ -2176,7 +2195,7 @@ EOD;
 		
 		return $rc;
 	}
-	
+
 	/**
 	 * Determine if a user is valid.  A user is valid (i.e. can be updated / created) if no user with the same name exists in this
 	 * rootID context. Administrator users are a special case - these have to have username / password unique across every root.

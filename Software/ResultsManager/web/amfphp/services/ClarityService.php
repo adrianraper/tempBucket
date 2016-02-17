@@ -197,7 +197,10 @@ class ClarityService extends AbstractService {
 			// gh#769
 			if ((int)$accountRoot->accountType == 5)
 				Session::set('distributorTrial', true);
-				
+
+			// gh#1275
+			Session::set('loginOption', $accountRoot->loginOption);
+
 			// v3.4 Get some more information about the user (and their group/parent groups)
 			// Keep this in session so that reports can use it for editedContent
 			$parentGroups = array_reverse($this->manageableOps->getGroupParents($loginObj->F_GroupID));

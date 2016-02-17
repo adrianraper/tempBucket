@@ -156,7 +156,7 @@ class CopyOps {
 	}
 	
 	function getExceptionForId($id, $replaceObj = null, $languageCode = null) {
-        $copy = $this->getCopyForId($id, $replaceObj, $languageCode);
+		$copy = $this->getCopyForId($id, $replaceObj, $languageCode);
 		$code = $this->getCodeForId($id, $languageCode);
 		return new Exception($copy, $code);
 	}
