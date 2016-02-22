@@ -64,7 +64,7 @@
 
 		protected function onLoginSoftKeyboardActivating(event:Event):void {
 			if (height < 700 && hostComponent.isPlatformAndroid)
-				signInGroup.verticalCenter = registerGroup.verticalCenter = -70;
+				signInGroup.verticalCenter = registerGroup.verticalCenter = -100;
 		}
 
 		protected function onLoginSoftKeyboardDeactivate(event:Event):void {
@@ -96,7 +96,7 @@
 	<assets:header id="header" top="10" visible="false" includeInLayout="false" />
 	<assets:longHeader id="longHeader" top="10" visible="false" includeInLayout="false" />
 
-	<login:LoginSlogen right="40" bottom="340"/>
+	<login:LoginSlogen right="440" bottom="150"/>
 	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/login/loginFooterLT.png')" bottom="0" left="0" />
 	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/login/loginFooterRT.png')" bottom="0" right="0"/>
 
@@ -107,7 +107,7 @@
 	<s:BitmapImage id="brandingImage4" visible="{hostComponent.branding}" includeInLayout="{hostComponent.branding}"/>
 
 	<!-- Sign in details -->
-	<s:Group id="signInGroup" excludeFrom="register" verticalCenter="-70" left="100">
+	<s:Group id="signInGroup" excludeFrom="register" verticalCenter="-100" horizontalCenter="-100">
 		<s:SkinnableContainer id="anonymousGroup" includeInLayout="{hostComponent.allowAnonymous}" visible="{hostComponent.allowAnonymous}">
 			<s:VGroup paddingTop="{1.5*signInDetailsMargin}" paddingRight="{2*signInDetailsMargin}" paddingBottom="8" paddingLeft="{2*signInDetailsMargin}"
 					  horizontalAlign="center" gap="10">
@@ -150,7 +150,7 @@
 	</s:Group>
 
 	<!-- self register screen -->
-	<s:SkinnableContainer id="registerGroup" excludeFrom="normal" verticalCenter="-70" left="100" >
+	<s:SkinnableContainer id="registerGroup" excludeFrom="normal" verticalCenter="-100" horizontalCenter="-100">
 		<s:VGroup paddingTop="{1.5*signInDetailsMargin}" paddingRight="{signInDetailsMargin}" paddingBottom="8" paddingLeft="{signInDetailsMargin}"
 				  horizontalAlign="center" gap="10" >
 			<bentoassets:loginlogoCE horizontalCenter="0" />

@@ -13,7 +13,8 @@ package com.clarityenglish.tensebuster.controller {
 	import com.clarityenglish.bento.vo.content.transform.HiddenContentTransform;
 	import com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform;
 	import com.clarityenglish.bento.vo.content.transform.ProgressSummaryTransform;
-	import com.clarityenglish.common.model.ConfigProxy;
+import com.clarityenglish.bento.vo.content.transform.RandomizedTestTransform;
+import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.tensebuster.view.TenseBusterApplicationMediator;
 	
 	import org.davekeen.util.PlayerUtils;
@@ -38,16 +39,12 @@ package com.clarityenglish.tensebuster.controller {
 				return (bentoProxy.menuXHTML) ? bentoProxy.menuXHTML..course[0].@["class"].toString() : null;
 			});
 			
-			// Set the transforms that TenseBuster uses on its menu.xml files
-			// TODO: currently these are the same as IELTS
+			// gh#1455, gh#1444, gh#1408 shift most transforms to BentoStartupCommand as generic
+			// Set the transforms that Tense Buster uses on exercise.xml files
 			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;			
-			var transforms:Array = [ new ProgressExerciseScoresTransform(),
-									 new ProgressSummaryTransform(),
-									 new HiddenContentTransform(),
-									 /*new DirectStartDisableTransform(configProxy.getDirectStart())*/ ];
-			xhtmlProxy.registerTransforms(transforms, [ Href.MENU_XHTML ]);
-			
+			var exerciseTransforms:Array = [ new RandomizedTestTransform() ];
+			xhtmlProxy.registerTransforms(exerciseTransforms, [ Href.EXERCISE ]);
+
 			facade.registerMediator(new TenseBusterApplicationMediator(note.getBody()));
 		}
 

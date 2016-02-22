@@ -10,6 +10,7 @@ if ($plainView) {
 	header ('Content-Type: text/plain');
 	$newline = "\n";
 } else {
+    //header ('Content-Type: text/xml');
 	$newline = "<br/>";
 }
 
@@ -24,9 +25,11 @@ if ($plainView) {
  * but is much more flexible as a model.
  */
 $scriptPurpose = "addNetworkChannelToVideoRSS";
+$scriptPurpose = "validateExerciseXML";
 $scriptTitle = "CP1";
 $scriptTitle = "AR";
 $scriptTitle = "R2I";
+$scriptTitle = "TB";
 
 switch ($scriptTitle) {
     case "CP1":
@@ -36,6 +39,11 @@ switch ($scriptTitle) {
     case "AR":
         $contentFolder = dirname(__FILE__).'/../../../../ContentBench/Content/ActiveReading10-NAmerican';
         //$contentFolder = dirname(__FILE__).'/../../../../ContentBench/Content/ActiveReading10-International';
+        $menu = "menu-FullVersion.xml";
+        break;
+    case "TB":
+        //$contentFolder = dirname(__FILE__).'/../../../../ContentBench/Content/TenseBuster10-NAmerican';
+        $contentFolder = dirname(__FILE__).'/../../../../ContentBench/Content/TenseBuster10-International';
         $menu = "menu-FullVersion.xml";
         break;
     case "R2I":
@@ -54,53 +62,54 @@ if ($batch) {
     // this is our usual starting point
     $menuXML = $fullXML->head->script->menu;
 
-    if ($scriptTitle == "CP1") {
-        // CP1 also has video rss files directly in the menu videoHref
-        $courseNodes = $fullXML->xpath("//xmlns:course");
-        foreach ($courseNodes as $courseNode) {
-            $rssFile = $contentFolder . '/' . $courseNode['videoHref'];
-            echo $courseNode['videoHref'] . ": ";
-            try {
-                updateRSSFile($rssFile);
-                echo " updated";
-            } catch (Exception $e) {
-                echo $e->getMessage();
+    if ($scriptPurpose == 'addNetworkChannelToVideoRSS') {
+        if ($scriptTitle == "CP1") {
+            // CP1 also has video rss files directly in the menu videoHref
+            $courseNodes = $fullXML->xpath("//xmlns:course");
+            foreach ($courseNodes as $courseNode) {
+                $rssFile = $contentFolder . '/' . $courseNode['videoHref'];
+                echo $courseNode['videoHref'] . ": ";
+                try {
+                    updateRSSFile($rssFile);
+                    echo " updated";
+                } catch (Exception $e) {
+                    echo $e->getMessage();
+                }
+                echo "$newline";
             }
-            echo "$newline";
+        }
+        if ($scriptTitle == "R2I") {
+            // R2I also has video rss files directly in the menu
+            $exerciseNodes = $fullXML->xpath("//xmlns:exercise[contains(@href,'.rss')]");
+            foreach ($exerciseNodes as $exerciseNode) {
+                $rssFile = $contentFolder . '/' . $exerciseNode['href'];
+                echo $exerciseNode['href'] . ": ";
+                try {
+                    updateRSSFile($rssFile);
+                    echo " updated";
+                } catch (Exception $e) {
+                    echo $e->getMessage();
+                }
+                echo "$newline";
+            }
+            // And it has a second file, links.xml, with candidates videos in.
+            $extraFile = $contentFolder . '/links.xml';
+            echo "processing $extraFile $newline";
+            $extraXML = simplexml_load_file($extraFile);
+            $extraNodes = $extraXML->xpath("//link");
+            foreach ($extraNodes as $extraNode) {
+                $rssFile = $contentFolder . '/' . $extraNode['href'];
+                echo $extraNode['href'] . ": ";
+                try {
+                    updateRSSFile($rssFile);
+                    echo " updated";
+                } catch (Exception $e) {
+                    echo $e->getMessage();
+                }
+                echo "$newline";
+            }
         }
     }
-    if ($scriptTitle == "R2I") {
-        // R2I also has video rss files directly in the menu
-        $exerciseNodes = $fullXML->xpath("//xmlns:exercise[contains(@href,'.rss')]");
-        foreach ($exerciseNodes as $exerciseNode) {
-            $rssFile = $contentFolder . '/' . $exerciseNode['href'];
-            echo $exerciseNode['href'] . ": ";
-            try {
-                updateRSSFile($rssFile);
-                echo " updated";
-            } catch (Exception $e) {
-                echo $e->getMessage();
-            }
-            echo "$newline";
-        }
-        // And it has a second file, links.xml, with candidates videos in.
-        $extraFile = $contentFolder.'/links.xml';
-        echo "processing $extraFile $newline";
-        $extraXML = simplexml_load_file($extraFile);
-        $extraNodes = $extraXML->xpath("//link");
-        foreach ($extraNodes as $extraNode) {
-            $rssFile = $contentFolder . '/' . $extraNode['href'];
-            echo $extraNode['href'] . ": ";
-            try {
-                updateRSSFile($rssFile);
-                echo " updated";
-            } catch (Exception $e) {
-                echo $e->getMessage();
-            }
-            echo "$newline";
-        }
-    }
-
     /**
      * Next section reads each exercise.xml from the menu and opens the exercise.xml
      *
@@ -131,11 +140,31 @@ if ($batch) {
                     echo "$newline";
                 }
                 break;
+
+            case "validateExerciseXML";
+                $randomTests = $fullExerciseXML->xpath("//xmlns:questionBank");
+                foreach ($randomTests as $randomTest) {
+                    $questionBank = $contentFolder . '/' . $randomTest['href'];
+                    //echo "checking $questionBank $newline";
+                    try {
+                        validateXML($questionBank);
+                    } catch (Exception $e) {
+                        echo "Could not load " . $randomTest['href'] . " from " . $exerciseNode['href'] . "$newline";
+                    }
+                }
+                break;
         }
 	}
 
 	// In batch mode you have no interest in viewing an html rendering of the xml
 	exit(0);
+}
+
+function validateXML($inFile) {
+    global $newline;
+    $fullXML = simplexml_load_file($inFile);
+    if ($fullXML === false)
+        throw new Exception("Could not load");
 }
 
 function updateRSSFile($inFile) {
