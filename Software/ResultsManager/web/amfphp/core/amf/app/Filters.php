@@ -104,9 +104,14 @@ function authenticationFilter (&$amf) {
 	}
 	
 	if (isset($_GET['PHPSESSID'])) session_id($_GET['PHPSESSID']); // gh#32
-	
-	session_start();
+
+	// gh#1331
+	try {
+		session_start();
+	} catch (Exception $e) {
+	}
 	$session_id = session_id();
+
 	if(!strpos($_SERVER['QUERY_STRING'], $session_id) !== FALSE)
 	{
 		/**
