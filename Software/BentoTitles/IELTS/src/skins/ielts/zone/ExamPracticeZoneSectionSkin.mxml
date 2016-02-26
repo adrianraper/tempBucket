@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		xmlns:controls="com.clarityenglish.controls.*"
-		xmlns:zone="skins.ieltsair.assets.zone.*"
+		xmlns:speakingtest="com.clarityenglish.ielts.view.zone.speakingtest.*"
 		xmlns:tlfcomponents="com.clarityenglish.textLayout.components.*"
 		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
 		xmlns:components="com.clarityenglish.components.*"
@@ -24,8 +23,8 @@
 			private var changeWatcher:ChangeWatcher;
 			
 			protected function onCreationComplete(event:FlexEvent):void {
-				changeWatcher = BindingUtils.bindSetter(onScroll, list.scroller.viewport, "horizontalScrollPosition");
-				
+				changeWatcher = (hostComponent.courseClass != 'speaking')? BindingUtils.bindSetter(onScroll, list.scroller.viewport, "horizontalScrollPosition") : null;
+
 				// for direct start, scroll to the specified exercise
 				if (list.scroller.horizontalScrollBar)
 					list.scroller.horizontalScrollBar.value += (list.scroller.viewport.width * (hostComponent.pageToScroll - 1));
@@ -58,13 +57,12 @@
 		<s:State name="speaking" />
 	</s:states>
 	
-	<s:Label id="examZoneLabel" fontSize="18" fontWeight="bold" left="20" top="12" />
-	<s:Label id="examZoneInstructionLabel" visible="{list.dataProvider.length > 0 }" left="20" top="35" right="25"/>
-	<s:Label id="examZoneNoTestLabel" visible="{list.dataProvider.length == 0}" left="20" top="35" right="25" />
+
+	<!--s:Label id="examZoneNoTestLabel" visible="{list.dataProvider.length == 0}" left="20" top="35" right="25" /-->
 	
 	<s:List id="list"
-			width="386"
-			top="80"
+			width="514"
+			top="0"
 			bottom="0"
 			horizontalCenter="0"
 			contentBackgroundColor="#FFFFFF"
@@ -77,11 +75,12 @@
 		</s:layout>
 		<s:itemRenderer>
 			<fx:Component>
-				<s:DataRenderer width="386" addedToStage="onAddedToStage(event)" removedFromStage="onRemovedFromStage(event)">
+				<s:DataRenderer width="516" height="100%" addedToStage="onAddedToStage(event)" removedFromStage="onRemovedFromStage(event)">
 					<fx:Script>
 						<![CDATA[
 							import com.clarityenglish.bento.BentoApplication;
 							import com.clarityenglish.bento.events.ExerciseEvent;
+							import com.clarityenglish.bento.vo.Href;
 							import com.clarityenglish.common.model.interfaces.CopyProvider;
 							import com.clarityenglish.ielts.IELTSApplication;
 							import com.clarityenglish.ielts.view.zone.ZoneView;
@@ -182,14 +181,15 @@
 							}
 						]]>
 					</fx:Script>
-					<s:SWFLoader id="swfLoader" />
-					<s:Label id="practiceLabel" top="268" horizontalCenter="0" fontSize="16" />
+					<s:SWFLoader id="swfLoader" verticalCenter="-20" horizontalCenter="0" />
+					<s:Label id="practiceLabel" top="340" horizontalCenter="0" fontSize="16" visible="{data.attribute('href').length() > 0}" />
+
 					<!-- gh#1161 -->
 					<s:Group id="testDriveInformation" top="252" horizontalCenter="0" includeInLayout="{outerDocument.hostComponent.isTestDrive}" visible="{outerDocument.hostComponent.isTestDrive}" >
 						<ui:InfoLabel id="testDriveInfo" />
 					</s:Group> 
 
-					<s:HGroup top="295" gap="10" horizontalCenter="0">
+					<s:HGroup top="365" gap="10" horizontalCenter="0" visible="{data.attribute('href').length() > 0}">
 						<tlfcomponents:AudioPlayer id="audioPlayer" visible="{data.attribute('audioHref').length() > 0}" includeInLayout="{data.attribute('audioHref').length() > 0}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
 						<!--gh#759 using group to show tooltip when button is disabled-->
 						<s:Group id="practiceTestGroup">
@@ -197,19 +197,23 @@
 						</s:Group>
 						<s:Group id="answerKeyGroup">
 							<s:Button id="answerKeyButton" label="{data.@answerCaption}" width="141" height="40" color="#FFFFFF" chromeColor="#000000" click="onButtonClick(data as XML, 'answerHref')" useHandCursor="true" buttonMode="true" />
-						</s:Group>				
+						</s:Group>
 					</s:HGroup>
 				</s:DataRenderer>
 			</fx:Component>
 		</s:itemRenderer>
 	</s:List>
+
+	<components:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="12" dataProvider="{list.dataProvider}" excludeFrom="speaking" />
 	
-	<components:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="12" dataProvider="{list.dataProvider}" />
-	
-	<s:SWFLoader visible="{list.dataProvider.length == 0}" source="{hostComponent.assetFolder}testpractice_empty.png" width="386" top="90" horizontalCenter="0" />
-	
+	<!--s:SWFLoader visible="{list.dataProvider.length == 0}" source="{hostComponent.assetFolder}testpractice_empty.png" width="386" top="90" horizontalCenter="0" /-->
+
 	<!-- These buttons are only enabled (by CSS) in the web version -->
-	<s:SWFLoader click="scrollBy(-1)" visible="{getStyle('showArrows')}" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ExamPracticeArrow')" left="22" top="233" scaleX="-1" mouseEnabled="true" buttonMode="true" />
-	<s:SWFLoader click="scrollBy(1)" visible="{getStyle('showArrows')}" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ExamPracticeArrow')" right="22" top="233" mouseEnabled="true" buttonMode="true" />
-	
+	<s:SWFLoader id="leftArrow" click="scrollBy(-1)" visible="{getStyle('showArrows')}" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ExamPracticeArrow')" left="22" top="233" scaleX="-1" mouseEnabled="true" buttonMode="true" excludeFrom="speaking" />
+	<s:SWFLoader id="rightArrow" click="scrollBy(1)" visible="{getStyle('showArrows')}" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ExamPracticeArrow')" right="22" top="233" mouseEnabled="true" buttonMode="true" excludeFrom="speaking" />
+
+	<s:Label id="examZoneLabel" fontSize="18" fontWeight="bold" left="20" top="12" excludeFrom="speaking" />
+	<s:Label id="examZoneInstructionLabel" visible="{list.dataProvider.length > 0}" text="{hostComponent.examZoneInstructionText}" left="20" top="35" right="25" excludeFrom="speaking" />
+
+	<speakingtest:SpeakingTestView id="speakingTestView" href="{hostComponent.href}" testXMLListCollection="{hostComponent.speakingTestXMLListCollection}" top="0" bottom="0" right="0" left="0" includeIn="speaking"  />
 </s:Skin>

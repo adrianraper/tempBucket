@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:timer="com.clarityenglish.bento.view.timer.*"
+        xmlns:components="com.clarityenglish.components.*"
+        xmlns:recorder="com.clarityenglish.bento.view.recorder.*"
+        xmlns:mx="library://ns.adobe.com/flex/mx"
+        creationComplete="onCreationComplete(event)">
+
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.ielts.view.zone.speakingtest.SpeakingTestView")]
+    </fx:Metadata>
+
+    <fx:Script>
+        <![CDATA[
+        import com.clarityenglish.textLayout.components.AudioPlayer;
+
+        import mx.binding.utils.BindingUtils;
+        import mx.binding.utils.ChangeWatcher;
+        import mx.events.FlexEvent;
+
+        private var changeWatcher:ChangeWatcher;
+
+        protected function onCreationComplete(event:FlexEvent):void {
+            changeWatcher = BindingUtils.bindSetter(onScroll, list.scroller.viewport, "horizontalScrollPosition");
+
+            playAudio(list.dataProvider.getItemAt(0) as XML);
+        }
+
+        protected function onScroll(x:* = null):void {
+            if (list.scroller.horizontalScrollBar) {
+                pageNumberDisplay.selectedIndex = Math.floor(list.scroller.horizontalScrollBar.value / list.scroller.viewport.width);
+                hostComponent.selectedPageNumber = pageNumberDisplay.selectedIndex;
+
+                playAudio(list.dataProvider.getItemAt(hostComponent.selectedPageNumber) as XML);
+            }
+        }
+
+        protected function playAudio(node:XML):void {
+            var audioPlayer:AudioPlayer = new AudioPlayer();
+            audioPlayer.src = hostComponent.href.createRelativeHref(null, node.@audioHref).url;
+            audioPlayer.autoplay = audioPlayer.playComponentEnable = true;
+            stage.addChild(audioPlayer);
+        }
+
+        protected function scrollBy(pages:int):void {
+            AudioPlayer.stopAllAudio();
+            list.scroller.horizontalScrollBar.value += (list.scroller.viewport.width * pages);
+        }
+
+        protected function onRemoveFromStage(event:Event):void {
+            if (changeWatcher) changeWatcher.unwatch();
+            changeWatcher = null;
+        }
+
+        ]]>
+    </fx:Script>
+
+    <!-- states -->
+    <s:states>
+        <s:State name="disabled" />
+        <s:State name="normal" />
+        
+        <s:State name="normalState" />
+        <s:State name="testState" />
+    </s:states>
+
+    <s:Group top="0" bottom="0" left="0" right="0">
+        <s:List id="list" width="514" top="0" bottom="0" horizontalCenter="0" contentBackgroundColor="#FFFFFF" verticalScrollPolicy="off" pageScrollingEnabled="true" scrollSnappingMode="leadingEdge" borderVisible="false" dataProvider="{hostComponent.testXMLListCollection}">
+            <s:layout>
+                <s:HorizontalLayout gap="0" useVirtualLayout="true" />
+            </s:layout>
+            <s:itemRenderer>
+                <fx:Component>
+                    <s:DataRenderer width="514" height="100%" removedFromStage="onRemovedFromStage(event)">
+                        <fx:Declarations>
+                            <s:Parallel id="rotateImages" >
+                                <s:Rotate3D id="rotate1"
+                                            target="{fontSwfLoader}"
+                                            angleYFrom="0" angleYTo="180"
+                                            autoCenterTransform="true" />
+                                <s:Rotate3D id="rotate2"
+                                            target="{backSwfLoader}"
+                                            angleYFrom="180" angleYTo="360"
+                                            autoCenterTransform="true" />
+                                <mx:AnimateProperty target="{fontSwfLoader}"
+                                                    property="depth"
+                                                    fromValue="2"
+                                                    toValue="0" />
+                                <mx:AnimateProperty target="{backSwfLoader}"
+                                                    property="depth"
+                                                    fromValue="0"
+                                                    toValue="2" />
+                            </s:Parallel>
+                            <s:Parallel id="rotateImages2" >
+                                <s:Rotate3D target="{backSwfLoader}"
+                                            angleYFrom="360" angleYTo="180"
+                                            autoCenterTransform="true" />
+                                <s:Rotate3D target="{fontSwfLoader}"
+                                            angleYFrom="180" angleYTo="0"
+                                            autoCenterTransform="true" />
+                                <mx:AnimateProperty target="{backSwfLoader}"
+                                                    property="depth"
+                                                    fromValue="2"
+                                                    toValue="0" />
+                                <mx:AnimateProperty target="{fontSwfLoader}"
+                                                    property="depth"
+                                                    fromValue="0"
+                                                    toValue="2" />
+                            </s:Parallel>
+                        </fx:Declarations>
+                        <fx:Script>
+                            <![CDATA[
+                            import com.clarityenglish.textLayout.components.AudioPlayer;
+
+                            import mx.binding.utils.ChangeWatcher;
+                            import mx.collections.ListCollectionView;
+
+                            import spark.components.List;
+
+                            private var changeWatcher:ChangeWatcher;
+
+                            protected function onRemovedFromStage(event:Event):void {
+                                if (changeWatcher) changeWatcher.unwatch();
+                                changeWatcher = null;
+                            }
+
+                            override public function set data(value:Object):void {
+                                super.data = value;
+
+                                if (data) {
+                                    var idx:int = ((owner as List).dataProvider as ListCollectionView).getItemIndex(data);
+                                    trace("assetFolder: "+outerDocument.hostComponent.assetFolder);
+                                    fontSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speaking" + (idx + 1) + ".png";
+                                    backSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_reading" + (idx + 1) + ".png";
+                                }
+                            }
+                            protected function onStartButtonClick(event:Event):void {
+                                AudioPlayer.stopAllAudio();
+                                rotateImages.play();
+                                dispatchEvent(new Event("startButtonClickEvent", true));
+                                speakingStartButton.visible = false;
+                                speakingBackButton.visible = true;
+                            }
+
+                            protected function onBackButtonClick(event:Event):void {
+                                rotateImages2.play();
+                                dispatchEvent(new Event("backButtonClickEvent", true));
+                                speakingStartButton.visible = true;
+                                speakingBackButton.visible = false;
+                            }
+
+                            ]]>
+                        </fx:Script>
+
+                        <s:SWFLoader id="backSwfLoader" top="20" horizontalCenter="0"/>
+                        <s:SWFLoader id="fontSwfLoader" top="20" horizontalCenter="0"/>
+                        <s:Button id="speakingStartButton" bottom="40" left="30" right="30" height="40" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingStartButton')}" color="#333333" click="onStartButtonClick(event)" useHandCursor="true" buttonMode="true"  />
+                        <s:Button id="speakingBackButton" width="50" height="20" top="0" left="0" label="Back" visible="false" click="{onBackButtonClick(event)}" />
+                    </s:DataRenderer>
+                </fx:Component>
+            </s:itemRenderer>
+        </s:List>
+
+        <s:Group id="actionGroup" left="30" right="30" height="50" horizontalCenter="0" bottom="75" includeIn="testState">
+            <s:Group id="planningGroup" left="0" right="0" height="30" verticalCenter="0">
+                <s:Rect width="100%" height="100%" radiusX="4" radiusY="4">
+                    <s:fill>
+                        <s:SolidColor color="#F4F4F4" />
+                    </s:fill>
+                </s:Rect>
+                <s:Label id="planningLabel" horizontalCenter="0" verticalCenter="0" text="Please prepare your answer in 1 mins." />
+            </s:Group>
+            <s:Group id="recorderGroup" width="100%" height="30" verticalCenter="0">
+                <recorder:RecorderView id="recorderView" left="0" right="0" top="0" bottom="0" />
+            </s:Group>
+        </s:Group>
+
+        <s:Group top="0" bottom="0" left="0" right="0" excludeFrom="normalState">
+            <s:Group id="timerGroup" width="100%" bottom="0">
+                <timer:TimerComponent id="timer" bottom="0" timerTotalTime="{String(hostComponent.testXML.attribute('totalTime')).split(',')}"
+                                      timerSectionLabels="{String(hostComponent.testXML.attribute('timerSectionLabels')).split(',')}"
+                                      audios="{String(hostComponent.testXML.attribute('audios')).split(',')}"
+                                      copyProvider="{hostComponent.getCopyProvider()}"
+                                      contentPath="{hostComponent.href.rootPath}"
+                                      textSize="17" trackColor="#F3F3F3" trackHighLightColor="#A6A6A6"
+                                      timerWidth="400" timerHeight="25" width="100%" height="74"
+                                      isTimeFixed="true"
+                                      isTimerAutoControl="true" />
+            </s:Group>
+        </s:Group>
+
+        <components:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="12" dataProvider="{list.dataProvider}" includeIn="normalState" />
+        <s:SWFLoader id="leftArrow" click="scrollBy(-1)" visible="true" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ExamPracticeArrow')" left="22" top="233" scaleX="-1" mouseEnabled="true" buttonMode="true" includeIn="normalState" />
+        <s:SWFLoader id="rightArrow" click="scrollBy(1)" visible="true" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ExamPracticeArrow')" right="22" top="233" mouseEnabled="true" buttonMode="true" includeIn="normalState" />
+    </s:Group>
+</s:Skin>

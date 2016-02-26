@@ -461,14 +461,14 @@ mx|ToolTip {
 	backgroundColor: #000000;
 }
 
+speakingtest|SpeakingTestView {
+	skinClass: ClassReference("skins.ielts.zone.speakingtest.SpeakingTestSkin");
+}
+
 timer|TimerComponent {
 	skinClass: ClassReference("skins.bento.timer.TimerSkin");
 }
 
 timer|TimerComponent s|Button {
 	skinClass: ClassReference("skins.bento.timer.TimerButtonSkin");
-}
-
-timer|TimerComponent mx|HSlider {
-	skinClass: ClassReference("skins.bento.timer.HSliderSkin");
 }

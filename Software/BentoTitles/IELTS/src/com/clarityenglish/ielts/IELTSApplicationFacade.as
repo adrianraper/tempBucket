@@ -33,8 +33,10 @@ import com.clarityenglish.ielts.view.support.SupportMediator;
 	import com.clarityenglish.ielts.view.zone.QuestionZoneVideoSectionView;
 	import com.clarityenglish.ielts.view.zone.ZoneMediator;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
-	
-	/**
+import com.clarityenglish.ielts.view.zone.speakingtest.SpeakingTestMediator;
+import com.clarityenglish.ielts.view.zone.speakingtest.SpeakingTestView;
+
+/**
 	* ...
 	* @author Dave Keen
 	*/
@@ -65,13 +67,14 @@ import com.clarityenglish.ielts.view.support.SupportMediator;
 			mapView(PracticeZoneSectionView, PracticeZoneSectionMediator);
 			mapView(PracticeZonePopoutView, PracticeZonePopoutMediator);
 			mapView(ExamPracticeZoneSectionView, ExamPracticeZoneSectionMediator);
+			mapView(SpeakingTestView, SpeakingTestMediator);
 			
 			// Upgrade, register and buy
 			// registerCommand(IELTSNotifications.IELTS_UPGRADE_WINDOW_SHOW, IELTSUpgradeWindowShowCommand);
 			registerCommand(IELTSNotifications.IELTS_REGISTER, IELTSRegisterCommand);
 			
 			registerCommand(BBNotifications.STARTUP, IELTSStartupCommand);
-			
+
 			// Common ones are done in BentoFacade
 			// AR And I would have thought that LoggedIn should be common too, but RM and DMS both have their own...
 			//registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
