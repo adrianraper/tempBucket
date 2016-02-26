@@ -27,6 +27,8 @@
 @namespace video "com.clarityenglish.controls.video.*";
 @namespace candidates "com.clarityenglish.ielts.view.candidates.*";
 @namespace candidatesui "com.clarityenglish.ielts.view.candidates.ui.*";
+@namespace timer "com.clarityenglish.bento.view.timer.*";
+@namespace speakingtest "com.clarityenglish.ielts.view.zone.speakingtest.*";
 
 global {
 	/* This changes the modal popup mask properties */
@@ -457,4 +459,16 @@ mx|ToolTip {
 	fontSize: 12;
 	color: #FFFFFF;
 	backgroundColor: #000000;
+}
+
+timer|TimerComponent {
+	skinClass: ClassReference("skins.bento.timer.TimerSkin");
+}
+
+timer|TimerComponent s|Button {
+	skinClass: ClassReference("skins.bento.timer.TimerButtonSkin");
+}
+
+timer|TimerComponent mx|HSlider {
+	skinClass: ClassReference("skins.bento.timer.HSliderSkin");
 }

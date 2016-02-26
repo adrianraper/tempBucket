@@ -2,10 +2,12 @@ package com.clarityenglish.bento.view.timer {
 import com.clarityenglish.bento.BBNotifications;
 import com.clarityenglish.bento.BentoFacade;
 import com.clarityenglish.common.model.interfaces.CopyProvider;
+import com.clarityenglish.common.vo.content.Bookmark;
 import com.clarityenglish.textLayout.components.AudioPlayer;
 
 import flash.events.Event;
 import flash.events.FocusEvent;
+import flash.events.MouseEvent;
 import flash.events.MouseEvent;
 import flash.events.TimerEvent;
 import flash.media.Sound;
@@ -18,8 +20,10 @@ import mx.core.FlexGlobals;
 import mx.events.FlexEvent;
 
 import mx.events.SliderEvent;
+import mx.utils.StringUtil;
 
 import org.davekeen.util.StateUtil;
+import org.osmf.events.AudioEvent;
 
 import spark.components.Button;
 
@@ -29,6 +33,10 @@ import spark.components.TextInput;
 import spark.components.supportClasses.SkinnableComponent;
 import spark.primitives.Rect;
 
+    [SkinState("startState")]
+    [SkinState("pauseState")]
+    [SkinState("resumeState")]
+    [SkinState("completeState")]
     public class TimerComponent extends SkinnableComponent{
 
         [SkinPart]
@@ -88,6 +96,12 @@ import spark.primitives.Rect;
         [SkinPart]
         public var resetCompleteButton:Button;
 
+        [SkinPart]
+        public var initialTimeLabelText:String;
+
+        /*[SkinPart]
+        public var audioPlayer:AudioPlayer;*/
+
         [Bindable]
         public var totalTimeLabelText:String;
 
@@ -110,10 +124,43 @@ import spark.primitives.Rect;
         public var firstRightRadius:Number;
 
         [Bindable]
-        public var sliderWidth:Number;
+        public var contentPath:String;
 
         [Bindable]
-        public var contentPath:String;
+        public var isTimeFixed:Boolean;
+
+        [Bindable]
+        public var isTimerAutoControl:Boolean;
+
+        [Bindable]
+        public var hoursText:String;
+
+        [Bindable]
+        public var minsText:String;
+
+        [Bindable]
+        public var textSize:Number = 20;
+
+        [Bindable]
+        public var trackColor:uint = 0x15516D;
+
+        [Bindable]
+        public var trackHighLightColor:uint = 0x0681A8;
+
+        [Bindable]
+        public var progressLeftColor:uint = 0xFEEA8E;
+
+        [Bindable]
+        public var progressMidColor:uint = 0xF4A738;
+
+        [Bindable]
+        public var progressRightColor:uint = 0xED1F24;
+
+        [Bindable]
+        public var timeTextColor:uint = 0xED1F24;
+
+        [Bindable]
+        public var audios:Array = [];
 
         private var timer:Timer;
         private var defaultTotalTime:Number;
@@ -127,6 +174,9 @@ import spark.primitives.Rect;
         private var _isTimerSectionLabelsChange:Boolean;
         private var _isFirstTimeChange:Boolean;
         private var _copyProvider:CopyProvider;
+        private var _sliderWidth:Number;
+        private var _timerWidth:Number;
+        private var _timerHeight:Number;
         private var audioPlayer:AudioPlayer;
         private const timterSectionInitialLabels:Array = ["Planning", "Writing", "Proofreading"];
 
@@ -139,11 +189,13 @@ import spark.primitives.Rect;
             _isFirstTimeChange = true;
 
             // For smaller android device.
+            /*trace("sliderWidth: "+sliderWidth);
             if (FlexGlobals.topLevelApplication.width > 999) {
                 sliderWidth = 676;
             } else {
                 sliderWidth = FlexGlobals.topLevelApplication.width * 0.696 - 20;
-            }
+            }*/
+
         }
 
         public function set totalTime(value:Number):void {
@@ -196,6 +248,50 @@ import spark.primitives.Rect;
             return _copyProvider;
         }
 
+        public function set timerWidth(value:Number):void {
+            _timerWidth = value;
+
+            dispatchEvent(new Event("timerWidthChange"));
+        }
+
+        [Bindable]
+        public function get timerWidth():Number {
+            if (!_timerWidth) {
+                if (FlexGlobals.topLevelApplication.width > 999) {
+                    _timerWidth = 696;
+
+                } else {
+                    _timerWidth = FlexGlobals.topLevelApplication.width * 0.696;
+                }
+            }
+            return _timerWidth;
+        }
+
+        [Bindable(event='timerWidthChange')]
+        public function get sliderWidth():Number {
+            return timerWidth - 20;
+        }
+
+        public function set timerHeight(value:Number):void {
+            _timerHeight = value;
+
+            dispatchEvent(new Event("timerHeightChange"));
+        }
+
+        [Bindable]
+        public function get timerHeight():Number {
+            if (!_timerHeight) {
+                _timerHeight = 38;
+            }
+
+            return _timerHeight;
+        }
+
+        [Bindable(event="timerHeightChange")]
+        public function get sliderHeight():Number {
+            return timerHeight * 0.5;
+        }
+
         public function stopTimer():void {
             if (timer) {
                 onStopButtonClick();
@@ -211,7 +307,7 @@ import spark.primitives.Rect;
 
             firstTipLabel.text = timerSectionLabels[0] + ' ' + timeConvert(timerSlider.values[0]);
             midTipLabel.text = timerSectionLabels[1] + ' ' + timeConvert(timerSlider.values[1] - timerSlider.values[0]);
-            lastTipLabel.text = timerSectionLabels[2] + ' ' + timeConvert(timerSlider.maximum - timerSlider.values[1]);
+            lastTipLabel.text = timerSectionLabels[2] + ' ' + timeConvert(timerSlider.values[2] - timerSlider.values[1]);
 
             midTipLabel.left = 100;
             lastTipLabel.left = sliderWidth - 100;
@@ -230,18 +326,21 @@ import spark.primitives.Rect;
                     timerTotalTime[i] = Number(timerTotalTime[i]);
                     time += timerTotalTime[i];
                 }
-                totalTime = defaultTotalTime = time;
+                if (time >= 0)
+                    totalTime = defaultTotalTime = time;
 
                 // Get the default proportion of timer sessions.
                 time = 0;
-                for (i = 0; i < timerTotalTime.length - 1; i++) {
+                for (i = 0; i < timerTotalTime.length; i++) {
                     time += timerTotalTime[i];
                     valuesArray[i] = time / totalTime;
                 }
 
-                hoursTextInput.text = formatTime(Math.floor(totalTime / 3600));
-                minsTextInput.text = formatTime(Math.floor(totalTime / 60));
+                hoursText = formatTime(Math.floor(totalTime / 3600));
+                minsText = formatTime(Math.floor(totalTime / 60));
 
+                initialTimeLabelText = hoursText+':'+minsText+':00';
+                totalTimeLabelText = hoursText+':'+minsText+':00';
             }
 
             if (_isTimerSectionLabelsChange) {
@@ -255,9 +354,8 @@ import spark.primitives.Rect;
                 }
             }
 
-            if (_isTotalTimeChange)  {
+            if (_isTotalTimeChange && timerSlider)  {
                 _isTotalTimeChange = false;
-
                 initializeValue(totalTime);
             }
         }
@@ -284,11 +382,21 @@ import spark.primitives.Rect;
                     resetButton.addEventListener(MouseEvent.CLICK, onResetButtonClick);
                     break;
                 case stopButton:
-                case resetCompleteButton:
                     instance.addEventListener(MouseEvent.CLICK, onStopButtonClick);
+                    break;
+                case resetCompleteButton:
+                    if (isTimerAutoControl) {
+                        instance.addEventListener(MouseEvent.CLICK, onRestartTimer);
+                    } else {
+                        instance.addEventListener(MouseEvent.CLICK, onStopButtonClick);
+                    }
+                    break;
+                case timerSlider:
+                    timerSlider.setStyle("disabledAlpha", 1);
                     break;
             }
         }
+
 
         protected override function getCurrentSkinState():String {
             return _currentState? _currentState : "startState";
@@ -302,7 +410,7 @@ import spark.primitives.Rect;
 
         protected function onStageClick(event:Event):void {
             // The input only will be commited when user click the outside of components
-           if (event.target is Group || event.target is Button)
+           if ((event.target is Group || event.target is Button) && !isTimeFixed)
                onValueCommit();
         }
 
@@ -332,10 +440,13 @@ import spark.primitives.Rect;
                 }
             }
 
+            initialTimeLabelText = hoursTextInput.text+":"+minsTextInput.text+":00";
+            totalTimeLabelText = hoursTextInput.text+":"+minsTextInput.text+":00";
             totalTime = time;
         }
 
         protected function onTimerUpdate(event:TimerEvent):void {
+            trace("timer currentCount: "+timer.currentCount);
             // Shrink the width of specific cover bar to make the progress bar appear.
             var unit:Number = sliderWidth / totalTime;
             if (timerTotalTime.length == 1) {
@@ -344,7 +455,7 @@ import spark.primitives.Rect;
                 if (timer.currentCount <= timerSlider.values[0] * 60) {
                     firstProgressCoverRect.width = timer.currentCount < timerSlider.values[0] * 60 ? (firstProgressCoverRect.width - unit) : 0;
                     firstProgressCoverRect.topLeftRadiusX = firstProgressCoverRect.topLeftRadiusY = firstProgressCoverRect.bottomLeftRadiusX = firstProgressCoverRect.bottomLeftRadiusY = 0;
-                } else if (timer.currentCount <= timerSlider.values[1] * 60) {
+                } else if (timer.currentCount > timerSlider.values[0] * 60 && timer.currentCount <= timerSlider.values[1] * 60) {
                     midProgressCoverRect.width = timer.currentCount < timerSlider.values[1] * 60 ? (midProgressCoverRect.width - unit) : 0;
                 } else {
                     lastProgressCoverRect.width = timer.currentCount < timerSlider.maximum * 60 ? (lastProgressCoverRect.width - unit) : 0;
@@ -357,6 +468,25 @@ import spark.primitives.Rect;
             var hour:String = formatTime(Math.floor(totalMSeconds / (60 * 60)));
             totalTimeLabelText = String(hour + ":" + min + ":" + sec);
 
+            // detect the time when any of the section of timer is complete
+            if (timerTotalTime.length > 1) {
+                if (timer.currentCount == timerSlider.values[0] * 60) {
+                    if (audios.length > 1 && audios[1] != "") {
+                        onPauseButtonClick();
+                        audioPlayer = new AudioPlayer();
+                        audioPlayer.addEventListener("soundCompleteEvent", onFirstSectionAudioComplete);
+                        audioPlayer.autoplay = audioPlayer.playComponentEnable = true;
+                        audioPlayer.src = contentPath + "/" + StringUtil.trim(audios[1]);
+                        this.stage.addChild(audioPlayer);
+                    }
+                }
+            } else if (timerTotalTime.length > 2) {
+                if (timer.currentCount == timerSlider.values[1] * 60) {
+                    dispatchEvent(new Event("TimerSecondSectionCompleteEvent"));
+                }
+            }
+
+
             // gh#1342 The timer running acts like someone clicking to keep the session/licence updated
             // Maybe need to do this by dispatching an event?
             //facade.sendNotification(BBNotifications.USER_ACTIVE);
@@ -367,29 +497,59 @@ import spark.primitives.Rect;
 
             audioPlayer = new AudioPlayer();
             audioPlayer.autoplay = audioPlayer.playComponentEnable = true;
-            audioPlayer.src = contentPath + "/../media/beep.mp3";
+            audioPlayer.src = contentPath + "/media/beep.mp3";
             this.stage.addChild(audioPlayer);
+
+            if(isTimerAutoControl)
+                dispatchEvent(new Event('TimerCompleteEvent'));
         }
 
-        protected function onStartButtonClick(event:MouseEvent):void {
+        protected function onStartButtonClick(event:MouseEvent = null):void {
+            if (isTimerAutoControl) {
+                if (audios.length!= 0 && audios[0] != "") {
+                    audioPlayer = new AudioPlayer();
+                    audioPlayer.addEventListener("soundCompleteEvent", onAudioComplete);
+                    audioPlayer.autoplay = audioPlayer.playComponentEnable = true;
+                    audioPlayer.src = contentPath + "/" + StringUtil.trim(audios[0]);
+                    this.stage.addChild(audioPlayer);
+                } else {
+                    var initialTimer:Timer = new Timer(1000, 1);
+                    initialTimer.start();
+                    initialTimer.addEventListener(TimerEvent.TIMER_COMPLETE, startTimer);
+                }
+            } else {
+                startTimer();
+            }
+        }
+
+        protected function onAudioComplete(event:Event):void {
+            audioPlayer.removeEventListener("soundCompleteEvent", onAudioComplete);
+            if (_currentState != "completeState") {
+                startTimer();
+            }
+        }
+
+        protected function onFirstSectionAudioComplete(event:Event):void {
+            audioPlayer.removeEventListener("soundCompleteEvent", onFirstSectionAudioComplete);
+            onResumeButtonClick();
+            dispatchEvent(new Event("TimerFirstSectionCompleteEvent"));
+        }
+
+        protected function startTimer(event:Event = null):void {
             initializeTimer();
             initializeSlider();
-            totalTimeLabelText = hoursTextInput.text + ":" +minsTextInput.text + ":" + secondsTextLabel.text;
 
             setState("pauseState");
             timer.reset();
             timer.start();
-
-            if(audioPlayer)
-                this.stage.removeChild(audioPlayer);
         }
 
-        protected function onPauseButtonClick(event:MouseEvent):void {
+        protected function onPauseButtonClick(event:MouseEvent = null):void {
             setState("resumeState");
             timer.stop();
         }
 
-        protected function onResumeButtonClick(event:MouseEvent):void {
+        protected function onResumeButtonClick(event:MouseEvent = null):void {
             setState("pauseState");
             timer.start();
         }
@@ -402,8 +562,18 @@ import spark.primitives.Rect;
 
         protected function onStopButtonClick(event:MouseEvent = null):void {
             resetSlider();
-            setState("startState");
             timer.stop();
+            totalTimeLabelText = initialTimeLabelText;
+            setState("startState");
+        }
+
+        protected function onRestartTimer(event:MouseEvent = null):void {
+            onStopButtonClick();
+
+            if (isTimerAutoControl)
+                onStartButtonClick();
+
+            dispatchEvent(new Event("TimerRestartEvent"));
         }
 
         public function setState(state:String):void {

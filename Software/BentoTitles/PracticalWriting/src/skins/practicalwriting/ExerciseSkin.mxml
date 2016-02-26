@@ -176,6 +176,7 @@
                               timerSectionLabels="{hostComponent.timerSectionLabels}"
                               contentPath="{hostComponent.href.rootPath}"
                               copyProvider="{hostComponent.copyProvider}"
+                              textSize="20" trackColor="#15516D" trackHighLightColor="#0681A8"
                               visible="{hostComponent.timerTotalTime.length > 0}"
                               includeInLayout="{hostComponent.timerTotalTime.length > 0}"/>
 

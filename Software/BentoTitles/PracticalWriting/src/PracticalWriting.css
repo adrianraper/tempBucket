@@ -296,11 +296,11 @@ closing|ClosingView {
 }
 
 timer|TimerComponent {
-    skinClass: ClassReference("skins.practicalwriting.exercise.timer.TimerSkin");
+    skinClass: ClassReference("skins.bento.timer.TimerSkin");
 }
 
 timer|TimerComponent s|Button {
-    skinClass: ClassReference("skins.practicalwriting.exercise.timer.TimerButtonSkin");
+    skinClass: ClassReference("skins.bento.timer.TimerButtonSkin");
 }
 
 video|VideoSelector {
