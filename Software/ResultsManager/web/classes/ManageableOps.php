@@ -1810,6 +1810,58 @@ EOD;
 		return $this->setExtraGroups($teacher, $existingGroups);
 	}
 	
+	// gh#1424 Function that gets all manageables for a root
+	function getAllManageablesFromRoot() {
+	    $rootId = Session::get('rootID');
+	    
+	    // First get all the groups in this root
+	    $onlyGroups = true;
+	    $manageables = $this->getManageables(array(Session::get('rootGroupID')), false, !$onlyGroups, $onlyGroups);
+	    
+	    // Then get all the users from the root in the membership table, organised by groupID
+	    $sql = <<<"SQL"
+	    SELECT u.*, m.F_GroupID from T_User u, T_Membership m
+	    WHERE u.F_UserID = m.F_UserID
+	    AND m.F_RootID = ?
+	    ORDER BY m.F_GroupID ASC, u.F_UserType ASC, u.F_UserName DESC
+SQL;
+	    $bindingParams = array($rootId);
+	    $usersRS = $this->db->Execute($sql, $bindingParams);
+        // Is it more efficent to get all the records into a simple array now, or to use the recordSet for looping many times?
+        // Try to make an array keyed on the group id so easy to grab the users later
+        $users = array();
+        while ($userObj = $usersRS->FetchNextObj()) {
+            $groupId = $userObj->F_GroupID;
+            $user = $this->_createUserFromObj($userObj);
+            // v3.3 Multi-group users.
+            $user->id = (string)$groupId.'.'.$user->userID;
+            $users[$groupId][] = $user;
+        }
+
+	    // Now go through each group in the manageables tree and add in the the users extracted from the recordset
+	    $this->_addUsersToManageable($manageables[0], $users);
+
+        return $manageables;
+	}
+	
+	private function _addUsersToManageable($group, $users) {
+        if (get_class($group) == "Group") {
+            $thisGroupID = $group->id;
+
+            // Recurse on any subgroups
+            foreach ($group->manageables as $manageable)
+                if (get_class($manageable) == "Group")
+                    $this->_addUsersToManageable($manageable, $users);
+
+            // Are there any users in this group?
+            $atEnd = true;
+            if (isset($users[$thisGroupID]))
+                $group->addManageables(array_reverse($users[$thisGroupID]), $atEnd);
+
+	    }
+        return $group->manageables;
+	}
+	
 	function getAllManageables($onlyGroups = false) {
 		// Get manageables for all the given groups.  If $onlyGroups is set (i.e. only get groups) then do not store authentication details or we end up with no
 		// validated users in the session and we can't use any functions.
@@ -1868,23 +1920,26 @@ EOD;
 	private function _getManageables($group, $onlyGroups = false) {
 		$result = array();
 
-		$childrenArray = $this->_getChildrenOfGroups($group);
-		
+		// gh#1424 pass down the onlyGroups
+		$childrenArray = $this->_getChildrenOfGroups($group, $onlyGroups);
 		$groupsRS = $childrenArray["groups"];
-		$usersRS = $childrenArray["users"];
 		
 		// Add the groups
 		if ($groupsRS->RecordCount() > 0) {
 			while ($childGroupObj = $groupsRS->FetchNextObj()) {
-				$childGroup = $this->_createGroupFromObj($childGroupObj);
-				$childGroup->addManageables($this->_getManageables($childGroup, $onlyGroups));
-				$result[] = $childGroup;
+			    // gh#1275 Check that you are not adding a group into itself
+			    if ($childGroupObj->F_GroupID != $group->id) {
+    				$childGroup = $this->_createGroupFromObj($childGroupObj);
+    				$childGroup->addManageables($this->_getManageables($childGroup, $onlyGroups));
+    				$result[] = $childGroup;
+			    }
 			}
 		}
 
 		// Add the users
 		if (!$onlyGroups) {
-			if ($usersRS->RecordCount() > 0) {
+		    $usersRS = $childrenArray["users"];
+		    if ($usersRS->RecordCount() > 0) {
 				while ($userObj = $usersRS->FetchNextObj()) {
 					$user = $this->_createUserFromObj($userObj);
 					// v3.3 Multi-group users.
@@ -1999,8 +2054,7 @@ EOD;
 		}
 	}
 	
-	
-	private function _getChildrenOfGroups($group) {
+	private function _getChildrenOfGroups($group, $onlyGroups = false) {
 		// RootID is not set by DMS, and is not necessary in this function anyway
 		//$rootID = Session::get('rootID');
 		$groupID = $group->id;
@@ -2011,34 +2065,35 @@ EOD;
 		// v3.5 I want the groups to display ordered by name.
 		// v3.6.2 This is a slow query in MySQL. Why do we need DISTINCT? Should we index in F_GroupParent too?
 		//$sql  = "SELECT DISTINCT ".Group::getSelectFields($this->db);
+		// gh#1275 Let the calling loop get rid of the self-referencing group
 		$sql  = "SELECT ".Group::getSelectFields($this->db);
 		$sql .= <<<EOD
 				FROM T_Groupstructure g
 				WHERE g.F_GroupParent=?
-				AND g.F_GroupID!=?
 				ORDER BY g.F_GroupParent, g.F_GroupName ASC
 EOD;
+		$groupsRS = $this->db->Execute($sql, array($groupID));
 
-		$groupsRS = $this->db->Execute($sql, array($groupID, $groupID));
-
-		// Now get all the users in this group
-		// AR Why are we adding root to this query? Ha ha, especially as DMS doesn't use or set this session variable!
-		//		AND m.F_RootID=?
-		$sql  = "SELECT DISTINCT ".User::getSelectFields($this->db);
-		$sql .= <<<EOD
-				FROM T_User u, T_Membership m
-				WHERE u.F_UserID=m.F_UserID
-				AND m.F_GroupID=?
-				AND u.F_UserType>=?
-				ORDER BY u.F_UserType ASC, u.F_UserName DESC
+		// gh#1424
+		if (!$onlyGroups) {
+    		// Now get all the users in this group
+    		// AR Why are we adding root to this query? Ha ha, especially as DMS doesn't use or set this session variable!
+    		//		AND m.F_RootID=?
+    		$sql  = "SELECT DISTINCT ".User::getSelectFields($this->db);
+    		$sql .= <<<EOD
+    				FROM T_User u, T_Membership m
+    				WHERE u.F_UserID=m.F_UserID
+    				AND m.F_GroupID=?
+    				AND u.F_UserType>=?
+    				ORDER BY u.F_UserType ASC, u.F_UserName DESC
 EOD;
 		
-		// Special functionality for RM.  If Session::get('no_students') is set then get users with type > 1 (i.e. not learners) otherwise > 0 (all)
-		$userTypeMinimum = (Session::get('no_students')) ? 1 : 0;
-		//NetDebug::trace('ManageableOps.getChildren group='.$groupID.' type='.$userTypeMinimum.' sql='.$sql);
-		//$usersRS = $this->db->Execute($sql, array($rootID, $groupID, $userTypeMinimum));
-		$usersRS = $this->db->Execute($sql, array($groupID, $userTypeMinimum));
-		//NetDebug::trace('ManageableOps.getChildren usersRS='.$usersRS->RecordCount());
+    		// Special functionality for RM.  If Session::get('no_students') is set then get users with type > 1 (i.e. not learners) otherwise > 0 (all)
+    		$userTypeMinimum = (Session::get('no_students')) ? 1 : 0;
+    		$usersRS = $this->db->Execute($sql, array($groupID, $userTypeMinimum));
+		} else {
+		    $usersRS = null;
+		}
 		return array("groups" => $groupsRS, "users" => $usersRS);
 	}
 

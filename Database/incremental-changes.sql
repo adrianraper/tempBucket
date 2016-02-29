@@ -1384,3 +1384,8 @@ INSERT INTO T_ProductLanguage VALUES
 
 -- gh#1342 Add field so a licence can be hibernating
 ALTER TABLE T_Licences ADD COLUMN F_Hibernating BOOLEAN NULL DEFAULT FALSE AFTER F_UserID;
+
+-- gh#1275 Performance
+ALTER TABLE T_Membership
+ADD INDEX `Index_4` (`F_UserID`);
+

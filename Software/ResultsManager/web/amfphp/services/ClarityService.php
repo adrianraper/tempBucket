@@ -101,6 +101,9 @@ class ClarityService extends AbstractService {
         $this->accountOps = new AccountOps($this->db);
 
 	}
+	public function changeDB($dbHost) {
+		$this->initDbHost($dbHost);
+	}
 
 	/**
 	 * This function should be called by the first call you make to this service to set the dbHost
@@ -272,7 +275,16 @@ class ClarityService extends AbstractService {
 		$rc = set_time_limit(120);
         if (!$rc)
             AbstractService::$debugLog->info("Could not set the time limit");
-		return $this->manageableOps->getAllManageables();
+        
+        // gh#1424 Different call if you want everything for the top level group
+        // Actually, it might make no difference to use new code for all calls
+        if (Session::get('rootGroupID') == Session::get('groupIDs')[0]) {
+			AbstractService::$debugLog->info("New code");
+		    return $this->manageableOps->getAllManageablesFromRoot();
+        } else {
+			AbstractService::$debugLog->info("Going with the old method");
+		    return $this->manageableOps->getAllManageables();
+        }
 	}
 	
 	public function getContent() {

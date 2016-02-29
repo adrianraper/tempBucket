@@ -102,9 +102,19 @@ class AuthenticationOps {
 		if (sizeof($userIdArray) == 0) return;
 
 		$valid_userIDs = Session::is_set('valid_userIDs') ? Session::get('valid_userIDs') : array();
-		$diff = array_diff($userIdArray, $valid_userIDs);
 		
-		if (sizeof($diff) == 0) {
+		// gh#1275 Very slow call, if you are only validating one user, is there a quicker search?
+		if (count($userIdArray) > 1) {
+		  $diff = array_diff($userIdArray, $valid_userIDs);
+		} else {
+		  if (in_array($userIdArray[0], $valid_userIDs)) {
+		      return;
+		  } else {
+		      $diff = $userIdArray;
+		  }
+		}
+		
+		if (count($diff) == 0) {
 			return;
 		} else {
 			// Get the user access error message from the literals and substitute in the ids to help with debugging

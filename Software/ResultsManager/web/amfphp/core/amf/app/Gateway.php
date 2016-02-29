@@ -188,7 +188,11 @@ class Gateway {
 			//Send content length header
 			//Thanks to Alec Horley for pointing out the necessity
 			//of this for FlashComm support
-			header(AMFPHP_CONTENT_TYPE); // define the proper header
+			try {
+				header(AMFPHP_CONTENT_TYPE); // define the proper header
+			} catch (Exception $e) {
+
+			}
 			
 			if(Headers::getHeader('serviceBrowser') == true)
 			{
@@ -211,10 +215,14 @@ class Gateway {
 			//documented the bug
 			//Finally to Gary who appears to have find a solution which works even more reliably
 			$dateStr = date("D, j M Y ") . date("H:i:s", strtotime("-2 days"));
-			header("Expires: $dateStr GMT");
-			header("Pragma: no-store");
-			header("Cache-Control: no-store");
-				
+			try {
+				header("Expires: $dateStr GMT");
+				header("Pragma: no-store");
+				header("Cache-Control: no-store");
+			} catch (Exception $e) {
+
+			}
+
 			//else don't send any special headers at all
 
 			if($this->outgoingMessagesFolder != NULL)
@@ -240,7 +248,11 @@ class Gateway {
 				}
 				else
 				{
-					header("Content-length: " . strlen($output));
+					try {
+						header("Content-length: " . strlen($output));
+					} catch (Exception $e) {
+
+					}
 				}
 			}
 			
@@ -249,7 +261,10 @@ class Gateway {
 			if($doCompress)
 			{
 				ob_end_flush();
-				header("Content-length: " . ob_get_length());
+				try {
+					header("Content-length: " . ob_get_length());
+				} catch (Exception $e) {
+				}
 				ob_end_flush();
 			}
 		}

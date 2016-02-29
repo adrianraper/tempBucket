@@ -19,9 +19,10 @@ class Group extends Manageable {
 
     /*
      * Concatenate the parameter array onto our current array
+     * gh#1424 option to add after other manageables not before
      */
-	function addManageables($m) {
-		$this->manageables = array_merge($m, $this->manageables);
+	function addManageables($m, $atEnd=false) {
+		$this->manageables = ($atEnd) ? array_merge($this->manageables, $m) : array_merge($m, $this->manageables);
 	}
 	
 	/**
