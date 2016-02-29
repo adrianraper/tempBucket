@@ -5,52 +5,53 @@
 require_once(dirname(__FILE__)."/RotterdamService.php");
 
 class RotterdamBuilderService extends RotterdamService {
-	
-	function __construct() {
-		// gh#341 A unique ID to distinguish sessions between multiple Clarity applications
-		Session::setSessionName("RotterdamBuilder");
-		
-		parent::__construct();
 
-		// If a user is logged in then get the content folder
-		if (Session::is_set('userID')) {
-			
-			// AbstractService::$log->info('accountFolder='.$this->accountFolder);
-			
-			// gh#338 This is a check that the account content folder has a good structure
-			// Look for a media file (which implies the full folder structure exists)
-			if (!file_exists($this->accountFolder."/media/media.xml")) {
-				// If there is no content folder for this user then create one
-				if (!is_dir($this->accountFolder)){
-					$this->createAccountFolder();
-				}
-				if (!is_dir($this->accountFolder."/media")){
-					$this->createMediaFolder();
-				}
-				$this->createMediaXML();
-			}
-			// Also look for a courses file in the account folder
-			if (!file_exists($this->accountFolder."/courses.xml")) {
-				$this->createCoursesXML();
-			}
-		}
-	}
+    function __construct() {
+        // gh#341 A unique ID to distinguish sessions between multiple Clarity applications
+        Session::setSessionName("RotterdamBuilder");
 
-	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null) {
-		// gh#66 
-		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
-								  User::USER_TYPE_ADMINISTRATOR,
-								  User::USER_TYPE_AUTHOR);
+        parent::__construct();
+        // If a user is logged in then get the content folder
+        if (Session::is_set('userID')) {
 
-		// gh#66 Builder treats all accounts as LT as teachers must login
-		$licence->licenceType = Title::LICENCE_TYPE_LT;
-		
-		return parent::login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID, $productCode, $dbHost, $allowedUserTypes);
-	}
-	
+            // AbstractService::$log->info('accountFolder='.$this->accountFolder);
+
+            // gh#338 This is a check that the account content folder has a good structure
+            // Look for a media file (which implies the full folder structure exists)
+            if (!file_exists($this->accountFolder . "/media/media.xml")) {
+                // If there is no content folder for this user then create one
+                if (!is_dir($this->accountFolder)) {
+                    $this->createAccountFolder();
+                }
+
+                if (!is_dir($this->accountFolder . "/media")) {
+                    $this->createMediaFolder();
+                }
+                $this->createMediaXML();
+            }
+            // Also look for a courses file in the account folder
+            if (!file_exists($this->accountFolder . "/courses.xml")) {
+                $this->createCoursesXML();
+            }
+        }
+    }
+
+    // gh#1331 PHP5.6 Reacts badly if a parameter is missing
+    public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null, $allowedUserTypes = null) {
+        // gh#66
+        $allowedUserTypes = array(User::USER_TYPE_TEACHER,
+            User::USER_TYPE_ADMINISTRATOR,
+            User::USER_TYPE_AUTHOR);
+
+        // gh#66 Builder treats all accounts as LT as teachers must login
+        $licence->licenceType = Title::LICENCE_TYPE_LT;
+
+        return parent::login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID, $productCode, $dbHost, $allowedUserTypes);
+    }
+
 	public function xhtmlLoad($href) {
 		$xhtml = parent::xhtmlLoad($href);
-		
+
 		// gh#142
 		// gh#91 You only need to consider concurrency if this user can edit the course
 		if ($href->type == Href::MENU_XHTML && 
@@ -103,7 +104,6 @@ EOD;
 	public function courseDelete($course) {
 		return $this->courseOps->courseDelete($course);
 	}
-	
 	/**
 	 * Create a blank account folder with all required directories and an empty course.xml (for now we're not sure there are any required directories)
 	 */
@@ -123,21 +123,21 @@ EOD;
 		// Create a media folder
 		return mkdir($this->accountFolder."/media");
 	}
-	
 	private function createMediaXML() {
 		// Create a default meta.xml
 		if (is_dir($this->accountFolder."/media")) {
-			$mediaXML = <<<XML
+            // gh#1331 Syntax marked wrong unless quotes used with heredoc delimiter
+			$mediaXML = <<<"XML"
 <?xml version="1.0" encoding="utf-8"?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 	<files />
-</bento>	
+</bento>
 XML;
 			file_put_contents($this->accountFolder."/media/media.xml", $mediaXML);
-		}		
+		}
 	}
 	private function createCoursesXML() {
-		$courseXML = <<<XML
+		$courseXML = <<<"XML"
 <?xml version="1.0" encoding="utf-8"?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 	<courses />
@@ -155,7 +155,7 @@ XML;
 	public function writeScore($user, $sessionID, $dateNow, $scoreObj) {
 		return new Score();
 	}
-	
+
 	// gh#122
 	public function sendWelcomeEmail($courseXML, $groupID) {
 		// This will send a welcome email to any student in this group for this course

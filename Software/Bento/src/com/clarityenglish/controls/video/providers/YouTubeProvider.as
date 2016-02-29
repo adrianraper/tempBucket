@@ -153,9 +153,10 @@ package com.clarityenglish.controls.video.providers {
 		protected function onReady(e:Event):void {
 			resize();
 		}
-		
+
+        // gh#1456
 		public function resize():void {
-			if (swfLoader && swfLoader.content && swfLoader.content["setSize"])
+			if (swfLoader && swfLoader.content && swfLoader.content.hasOwnProperty('setSize') && swfLoader.content["setSize"])
 				swfLoader.content["setSize"](videoPlayer.width, videoPlayer.height);
 		}
 		
