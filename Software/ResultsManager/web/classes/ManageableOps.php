@@ -1910,7 +1910,7 @@ EOD;
 				AuthenticationOps::addValidUserIds($rootGroup->getSubUserIds());
 				AuthenticationOps::addValidGroupIds($rootGroup->getSubGroupIds());
 			}
-			
+
 			$manageables[] = $rootGroup;
 		}
 		

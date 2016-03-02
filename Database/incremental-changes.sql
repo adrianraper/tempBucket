@@ -1395,3 +1395,7 @@ INSERT INTO `T_Triggers` (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_Templ
 VALUES 
 (60,'Upgrade product announcement',NULL,NULL,'rti2_announce_4','method=getAccounts&accountType=1&notLicenceType=5&productCode=52,53&active=true',NULL,NULL,'email','oneoff',4),
 (61,'Upgrade product announcement',NULL,NULL,'rti2_announce_5','method=getAccounts&accountType=1&licenceType=5&productCode=52,53&active=true',NULL,NULL,'email','oneoff',4);
+
+-- gh#1275 Performance
+ALTER TABLE T_Groupstructure DROP INDEX `Index_01`;
+ALTER TABLE T_Groupstructure ADD INDEX `Index_01` (`F_GroupParent`);

@@ -88,6 +88,8 @@ if ($queryMethod=="authenticateUser") {
 	
 	// Execute the cURL session
 	$contents = curl_exec ($ch);
+    if ($debugLog)
+        error_log("back with $contents\n", 3, $debugFile);
 	if($contents === false){
 		$errorCode = 1;
 		$failReason = curl_error($ch);

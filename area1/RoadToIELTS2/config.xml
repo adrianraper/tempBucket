@@ -6,6 +6,7 @@
 	<productCode>52,53</productCode>
 	<language>EN</language>
 	<platform>browser</platform>
+	<useCacheBuster>true</useCacheBuster>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 	<channel name="ios-azure" caption="Ch1">
         <streamingMedia>http://portalvhds99k5w60hsxq1q.blob.core.chinacloudapi.cn/</streamingMedia>

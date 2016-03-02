@@ -93,8 +93,11 @@ try {
             // Login needs rootID rather than prefix
             if (!$apiInformation->rootID)
                 $apiInformation->rootID = $thisService->getRootIDFromPrefix($apiInformation);
-            $user = $thisService->login($apiInformation->name, $apiInformation->password, $apiInformation->rootID);
-            AbstractService::$debugLog->info("got user id = " . $user->userID);
+            // gh#1424 But this returns an array, not a user object!
+            $temp = $thisService->login($apiInformation->name, $apiInformation->password, $apiInformation->rootID);
+			$user = User::createFromArray($temp);
+
+			AbstractService::$debugLog->info("got user id = " . $user->userID);
             if ($user==false) {
                 // Return the key information you used to search
                 switch ($apiInformation->loginOption) {
@@ -131,7 +134,7 @@ try {
     // gh#1171
     if ($apiInformation->encryptData)
         $returnInfo['encryptedData'] = $apiInformation->toEncryptedString();
-    if ($subscription)
+    if (isset($subscription) && $subscription)
         $returnInfo['subscription'] = $subscription;
 
     // gh#1275 Send back the session id this authentication was done under

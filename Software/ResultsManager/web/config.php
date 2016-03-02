@@ -60,7 +60,7 @@ require_once($GLOBALS['common_dir'].'/../../Database/dbDetails.php');
 if (isset($_SESSION['dbHost']) && $_SESSION['dbHost'] > 0) {
 	$dbHost = intval($_SESSION['dbHost']);
 } else {
-	$dbHost=0; // Pick up default from dbDetails.
+	$dbHost=101; // Pick up default from dbDetails.
 }
 $dbDetails = new DBDetails($dbHost);
 $GLOBALS['dbms'] = $dbDetails->driver;

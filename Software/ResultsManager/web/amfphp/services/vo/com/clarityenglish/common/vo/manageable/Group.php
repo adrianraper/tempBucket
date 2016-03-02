@@ -55,14 +55,14 @@ class Group extends Manageable {
 	}
 	
 	/**
-	 * Recursively get all the ids of the users below this level.  This is used when authenticating manageables.
+	 * Recursively get all the ids of the users below this level. This is used when authenticating manageables.
 	 */
 	function getSubUserIds() {
 		$subUserIds = array();
 		
 		foreach ($this->manageables as $m)
 			$subUserIds = array_merge($m->getSubUserIds(), $subUserIds);
-			
+
 		return $subUserIds;
 	}
 	/**

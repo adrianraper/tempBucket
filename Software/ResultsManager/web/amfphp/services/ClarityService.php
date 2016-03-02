@@ -146,8 +146,8 @@ class ClarityService extends AbstractService {
 		$loginObj = $this->loginOps->login($username, $password, $allowedUserTypes, $rootID, 2);
 		
 		if ($loginObj) {
-			// gh#1424
-			AuthenticationOps::clearValidUsersAndGroups();
+			// gh#1424 Clearing this causes problems for bulkImport
+			//AuthenticationOps::clearValidUsersAndGroups();
 			
 			// RM specific setup values for this root
 			if (isset($loginObj->F_LangaugeCode) && strlength($loginObj->F_LanguageCode)>0) {
@@ -156,7 +156,7 @@ class ClarityService extends AbstractService {
 				Session::set('languageCode', 'EN');
 			}
             // gh#1275
-            AbstractService::$debugLog->info("try to set sesssion userid=" . $loginObj->F_UserID);
+            //AbstractService::$debugLog->info("try to set session userid=" . $loginObj->F_UserID);
             Session::set('userID', $loginObj->F_UserID);
 
             Session::set('rootID', $loginObj->F_RootID);
@@ -194,7 +194,7 @@ class ClarityService extends AbstractService {
 				Session::set('no_students', ($manageablesCount > $GLOBALS['max_manageables_for_student_display']));
 			}
 		//	NetDebug::trace("for root ".(int)$loginObj->F_RootID.", users=$manageablesCount");
-			
+
 			// v3.4 I would like to send back (some) account root information as well (remember that accounts in RM means titles)
 			// v3.6 Maybe it is better to do a separate getAccount call as I also want things like adminUser's email
 			$accountRoot = $this->manageableOps->getAccountRoot($loginObj->F_RootID);
