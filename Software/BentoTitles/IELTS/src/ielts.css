@@ -106,7 +106,7 @@ login|LoginView s|TextInput {
 	contentBackgroundColor: #FFFFFF;
 }
 
-login|LoginView s|SkinnableContainer#trackingGroup,#registerGroup,#anonymousGroup {
+login|LoginView s|SkinnableContainer#trackingGroup,#registerGroup,#anonymousGroup,#demoButtonsGroup {
 	skinClass: ClassReference("skins.ielts.login.SignInContainerSkin");
 }
 

@@ -63,20 +63,6 @@
 			</s:HGroup>	
 			
 			<s:Group id="signInGroup" excludeFrom="register">
-				<s:Group width="{trackingGroup.width}" height="80" top="{trackingGroup.height - 5}" visible="{hostComponent.isPlatformTablet}" includeInLayout="{hostComponent.isPlatformTablet}">
-					<s:Rect width="100%" height="100%" bottomLeftRadiusX="8" bottomLeftRadiusY="8" bottomRightRadiusX="8" bottomRightRadiusY="8">
-						<s:fill>
-							<s:SolidColor color="#FFFFFF" />
-						</s:fill>
-					</s:Rect>
-					<s:VGroup horizontalAlign="center" horizontalCenter="0" gap="10">
-						<s:Label id="demoButtonCaption" paddingTop="15" color="#333333" fontSize="15" fontWeight="bold" text="{hostComponent.demoButtonCaption}" />
-						<s:HGroup gap="10">
-							<s:Button id="demoButton1" />
-							<s:Button id="demoButton2" />
-						</s:HGroup>
-					</s:VGroup>		
-				</s:Group>
 				<s:SkinnableContainer id="anonymousGroup" includeInLayout="{hostComponent.allowAnonymous}" visible="{hostComponent.allowAnonymous}">
 					<s:VGroup paddingTop="{signInDetailsMargin}" paddingRight="30" paddingBottom="8" paddingLeft="30" 
 							  horizontalAlign="center" gap="10">
@@ -113,14 +99,22 @@
 							</s:HGroup>
 						</s:VGroup>
 						<s:VGroup width="100%" gap="0" includeInLayout="{hostComponent.allowSelfRegister}" visible="{hostComponent.allowSelfRegister}" >
-							<s:Button id="newUserButton" label="{hostComponent.newUserButtonCaption}"  useHandCursor="true" buttonMode="true"/>
+							<s:Button id="newUserButton" label="{hostComponent.newUserButtonCaption}" useHandCursor="true" buttonMode="true"/>
 							<s:Label id="loginDetail" text="{hostComponent.loginDetail}" fontSize="11" width="250" />
 						</s:VGroup>
 						<s:Rect height="2" /> <!-- this is a spacer -->
 						<s:Button id="loginButton" label="{hostComponent.loginButtonCaption}" />
 					</s:VGroup>
 				</s:SkinnableContainer>
-				
+				<s:SkinnableContainer id="demoButtonsGroup" left="{anonymousGroup.width+10}" width="{trackingGroup.width}" top="{trackingGroup.height + 10}" visible="{hostComponent.isPlatformTablet}" includeInLayout="{hostComponent.isPlatformTablet}">					
+					<s:VGroup horizontalAlign="center" horizontalCenter="0" gap="10" paddingBottom="8" >
+						<s:Label id="demoButtonCaption" paddingTop="20" color="#333333" fontSize="15" fontWeight="bold" text="{hostComponent.demoButtonCaption}" />
+						<s:HGroup gap="10">
+							<s:Button id="demoButton1" useHandCursor="true" buttonMode="true"/>
+							<s:Button id="demoButton2" useHandCursor="true" buttonMode="true"/>
+						</s:HGroup>
+					</s:VGroup>		
+				</s:SkinnableContainer>
 			</s:Group>
 		</s:VGroup>
 
