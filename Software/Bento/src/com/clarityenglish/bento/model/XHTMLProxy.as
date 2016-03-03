@@ -247,7 +247,7 @@ package com.clarityenglish.bento.model {
 				
 				// Run all the transforms client side (these might well be empty methods)
 				for each (var xmlTransform:XmlTransform in href.transforms) {
-                    log.info("Run client side transform {0}", xmlTransform);
+                    //log.info("Run client side transform {0}", xmlTransform);
                     xmlTransform.transform(xml);
                 }
 

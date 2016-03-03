@@ -12,7 +12,7 @@ package com.clarityenglish.textLayout.conversion {
 	import com.newgonzo.web.css.CSS;
 	import com.newgonzo.web.css.CSSComputedStyle;
 	
-	import flashx.textLayout.conversion.BaseTextLayoutImporter;
+	//import flashx.textLayout.conversion.BaseTextLayoutImporter;
 	import flashx.textLayout.conversion.TextLayoutImporter;
 	import flashx.textLayout.elements.ContainerFormattedElement;
 	import flashx.textLayout.elements.DivElement;
