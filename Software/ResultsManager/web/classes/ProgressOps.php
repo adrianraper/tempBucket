@@ -63,8 +63,20 @@ class ProgressOps {
 		AND u.F_UserID = s.F_UserID
 		AND u.F_Country = @country
 		GROUP BY F_CourseID;
+
+		// For Practical Writing we have to preset the course and unit otherwise query runs forever
+		SET @productCode = 61;
+		SET @courseId = '2015061010000';
+		SET @unitId =   '2015061010200';
+		INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_UnitId, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
+		SELECT @productCode, F_CourseID, @unitId, AVG(F_Score) as AverageScore, AVG(if(F_Duration>3600,3600,F_Duration)) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide'
+		FROM T_Score
+		WHERE F_ProductCode = @productCode
+		AND F_Score>=0
+		AND F_CourseID = @courseId;
+
 		*/
-		
+
 		// Work off cached results
 		// gh#1014 Only take the latest datestamped result
 		// gh#1166
