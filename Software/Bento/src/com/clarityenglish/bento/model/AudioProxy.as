@@ -85,6 +85,8 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 		 * Whether or not the sound is currently paused
 		 */
 		private var isPaused:Boolean;
+
+		private var isSeek:Boolean;
 		
 		/**
 		 * A temporary fix to get around a problem with the display head rendering in the wrong place after a pause.  If the user has paused
@@ -167,7 +169,7 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 		 */
 		private function onSoundSampleData(e:SampleDataEvent):void {
 			if (soundChannel)
-				sendNotification(RecorderNotifications.PLAYHEAD_POSITION, (suppressPlayheadNotifications) ? -1 : msToSamplePosition(soundChannel.position), getProxyName());
+				sendNotification(RecorderNotifications.PLAYHEAD_POSITION, {playHeadPosition: (suppressPlayheadNotifications) ? -1 : msToSamplePosition(soundChannel.position), samplePosition: currentSamplesPosition}, getProxyName());
 			
 			// If we have reached stopPlayingAtSample (used when playing a selection) then stop playing
 			if (stopPlayingAtSample > 0 && currentSamplesPosition >= stopPlayingAtSample) {
@@ -335,16 +337,18 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 			}
 			
 			samples.position = currentSamplesPosition;
-			
+
 			soundChannel = sound.play();
+
 			isPlaying = true;
 			isPaused = false;
+			isSeek = false;
 			soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundChannelComplete, false, 0, true);
 		}
 		
 		public function pause():void {
 			if (soundChannel) {
-				if (isPaused) {
+				if (isPaused && !isSeek) {
 					trace("I am paused, so start playing again");
 					// Unpause
 					play();
@@ -366,21 +370,28 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 				soundChannel.stop();
 				currentSamplesPosition = stopPlayingAtSample = 0;
 				suppressPlayheadNotifications = isPlaying = isPaused = false;
-				sendNotification(RecorderNotifications.PLAYHEAD_POSITION, -1, getProxyName());
+				sendNotification(RecorderNotifications.PLAYHEAD_POSITION, {playHeadPosition: -1}, getProxyName());
 				// Bug 16. 17 July 2010. AR
 				// When you stop the play, this has the same impact as playing complete.
 				// But you can't do this here as it screws up regular play. I don't know why.
 				//sendNotification(ApplicationFacade.PLAYING_COMPLETE, null, getProxyName());
 			}
-			
+
 			// Stop recording if we were recording
 			if (microphone && isRecording) {
 				isRecording = false;
-				sendNotification(RecorderNotifications.RECORDING_STOPPED, null, getProxyName());
+				sendNotification(RecorderNotifications.RECORDING_STOPPED, samples.length, getProxyName());
 			}
 			
 			// Stop listening
 			if (microphone) microphone.removeEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
+		}
+
+		// For scrub bar in recorder playback skin. Seeking the audio play position when drag the scrub bar button
+		public function seek(time:Number):void {
+			isSeek = true;
+			pause();
+			samples.position = time;
 		}
 		
 		/**
@@ -393,7 +404,7 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 			soundChannel.removeEventListener(Event.SOUND_COMPLETE, onSoundChannelComplete);
 			currentSamplesPosition = 0;
 			suppressPlayheadNotifications = isPlaying = isPaused = false;
-			sendNotification(RecorderNotifications.PLAYHEAD_POSITION, -1, getProxyName());
+			sendNotification(RecorderNotifications.PLAYHEAD_POSITION, {playHeadPosition: -1}, getProxyName());
 			// v3.4 Also tell anyone else that the sound finished playing
 			//trace("audio proxy playing complete");
 			sendNotification(RecorderNotifications.PLAYING_COMPLETE, null, getProxyName());

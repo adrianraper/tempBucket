@@ -15,12 +15,15 @@
         import com.clarityenglish.bento.view.recorder.ui.WaveformRenderer;
         import com.clarityenglish.common.model.interfaces.CopyProvider;
 
+        import org.osmf.net.metrics.RecentSwitchMetric;
+
         import spark.components.Button;
         import spark.components.Group;
         import spark.components.HSlider;
         import spark.components.RichText;
         import spark.components.TextArea;
         import spark.components.VSlider;
+        import spark.components.mediaClasses.ScrubBar;
 
         private static const SECONDS_TO_SHOW:Number = 5;
 
@@ -95,6 +98,9 @@
         [SkinPart]
         public var richText:RichText;
 
+        [SkinPart]
+        public var scrubBar:ScrubBar;
+
         [Bindable]
         public var mp3FileSizeText:String = "-";
 
@@ -113,6 +119,7 @@
         private var cutContextMenuItem:ContextMenuItem;
         // gh#683
         private var _isSaveEnabled:Boolean;
+        private var _isRecorHide:Boolean;
 
         [Bindable]
         public function set isRecordEnabled(value:Boolean):void {
@@ -122,6 +129,17 @@
 
         public function get isRecordEnabled():Boolean {
             return _isRecordEnabled;
+        }
+
+        // gh#1459
+        [Bindable]
+        public function set isRecorHide(value:Boolean):void {
+            _isRecorHide = value;
+            invalidateSkinState();
+        }
+
+        public function get isRecorHide():Boolean {
+            return _isRecorHide;
         }
 
         [Bindable]
@@ -231,25 +249,26 @@
                     playButton.addEventListener(MouseEvent.CLICK, function ():void {
                         dispatchEvent(new WaveformEvent(WaveformEvent.PLAY));
                     });
-                    playButton.toolTip = copyProvider.getCopyForId("recorderPlayToolTip");
+                        trace("recorderPlayToolTip: "+copyProvider.getCopyForId("recorderPlayToolTip")+", equal? "+(copyProvider.getCopyForId("recorderPlayToolTip") == ""));
+                    playButton.toolTip = copyProvider.getCopyForId("recorderPlayToolTip") == ""? null : copyProvider.getCopyForId("recorderPlayToolTip");
                     break;
                 case pauseButton:
                     pauseButton.addEventListener(MouseEvent.CLICK, function ():void {
                         dispatchEvent(new WaveformEvent(WaveformEvent.PAUSE));
                     });
-                    pauseButton.toolTip = copyProvider.getCopyForId("recorderPauseToolTip");
+                    pauseButton.toolTip = copyProvider.getCopyForId("recorderPauseToolTip") == ""? null : copyProvider.getCopyForId("recorderPauseToolTip");
                     break;
                 case stopButton:
                     stopButton.addEventListener(MouseEvent.CLICK, function ():void {
                         dispatchEvent(new WaveformEvent(WaveformEvent.STOP));
                     });
-                    stopButton.toolTip = copyProvider.getCopyForId("recorderStopToolTip");
+                    stopButton.toolTip = copyProvider.getCopyForId("recorderStopToolTip") == ""? null : copyProvider.getCopyForId("recorderStopToolTip");
                     break;
                 case saveButton:
                     saveButton.addEventListener(MouseEvent.CLICK, function ():void {
                         dispatchEvent(new WaveformEvent(WaveformEvent.SAVE_MP3));
                     });
-                    saveButton.toolTip = copyProvider.getCopyForId("recorderSaveToolTip");
+                    saveButton.toolTip = copyProvider.getCopyForId("recorderSaveToolTip") == ""? null : copyProvider.getCopyForId("recorderSaveToolTip");
                     break;
                 case openButton:
                     openButton.addEventListener(MouseEvent.CLICK, function ():void {
@@ -260,7 +279,7 @@
                     newButton.addEventListener(MouseEvent.CLICK, function ():void {
                         dispatchEvent(new WaveformEvent(WaveformEvent.NEW_WAVE));
                     });
-                    newButton.toolTip = copyProvider.getCopyForId("recorderNewToolTip");
+                    newButton.toolTip = copyProvider.getCopyForId("recorderNewToolTip") == ""? null : copyProvider.getCopyForId("recorderNewToolTip");
                     break;
                 case compareButton:
                     compareButton.addEventListener(MouseEvent.CLICK, function ():void {
@@ -290,6 +309,11 @@
                 case richText:
                     richText.textFlow = textFlow;
                     break;
+                case scrubBar:
+                    scrubBar.addEventListener(Event.CHANGE, function () :void {
+                        dispatchEvent(new WaveformEvent(WaveformEvent.SEEK));
+                    });
+                    break;
             }
         }
 
@@ -298,7 +322,8 @@
         }
 
         override protected function getCurrentSkinState():String {
-            return ((isRecordEnabled) ? "record" : "playback") + "_" + ((_isMinimized) ? "minimized" : "full");
+            // gh#1459
+            return ((isRecordEnabled && !isRecorHide) ? "record" : "playback") + "_" + ((_isMinimized) ? "minimized" : "full");
         }
         ]]>
 	</fx:Script>

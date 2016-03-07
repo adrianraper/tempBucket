@@ -29,6 +29,7 @@
 @namespace candidatesui "com.clarityenglish.ielts.view.candidates.ui.*";
 @namespace timer "com.clarityenglish.bento.view.timer.*";
 @namespace speakingtest "com.clarityenglish.ielts.view.zone.speakingtest.*";
+@namespace recorder "com.clarityenglish.bento.view.recorder.*";
 
 global {
 	/* This changes the modal popup mask properties */
@@ -472,3 +473,12 @@ timer|TimerComponent {
 timer|TimerComponent s|Button {
 	skinClass: ClassReference("skins.bento.timer.TimerButtonSkin");
 }
+
+speakingtest|SpeakingTestView recorder|RecorderView {
+	skinClass: ClassReference("skins.ielts.zone.speakingtest.recorder.SpeakingTestRecorderSkin");
+}
+
+speakingtest|SpeakingTestView recorder|RecorderView recorder|WaveformView {
+	skinClass: ClassReference("skins.ielts.zone.speakingtest.recorder.SpeakingTestWaveformSkin");
+}
+

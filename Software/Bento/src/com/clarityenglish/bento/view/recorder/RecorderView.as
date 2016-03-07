@@ -16,7 +16,7 @@ package com.clarityenglish.bento.view.recorder {
 		[SkinPart(required="true")]
 		public var recordWaveformView:WaveformView;
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var compareWaveformView:WaveformView;
 		
 		[SkinPart(required="true")]

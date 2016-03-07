@@ -47,6 +47,8 @@ package com.clarityenglish.bento.view.recorder {
 			//view.addEventListener(WaveformEvent.LOAD_MP3, onLoadMP3);
 			view.addEventListener(WaveformEvent.NEW_WAVE, onNewWave);
 			view.addEventListener(WaveformRangeEvent.CUT, onCut);
+			// For scrub bar in playback skin
+			view.addEventListener(WaveformEvent.SEEK, onSeek);
 			
 			// Inject variables into the view
 			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
@@ -118,8 +120,10 @@ package com.clarityenglish.bento.view.recorder {
 					prepareView();
 					break;
 				case RecorderNotifications.PLAYHEAD_POSITION:
-					if (note.getType() == view.audioProxyName)
-						view.waveformRenderer.playheadPosition = note.getBody() as Number;
+					if (note.getType() == view.audioProxyName) {
+						view.waveformRenderer.playheadPosition = note.getBody().playHeadPosition as Number;
+						view.scrubBar.value = note.getBody().samplePosition as Number;
+					}
 					break;
 				case RecorderNotifications.INPUT_LEVEL:
 					if (note.getType() == view.audioProxyName)
@@ -157,6 +161,9 @@ package com.clarityenglish.bento.view.recorder {
 							if (view.newButton) view.newButton.enabled = true;
 							if (view.saveButton) view.saveButton.enabled = true;
 						}
+
+						if (view.scrubBar)
+							view.scrubBar.maximum = note.getBody() as Number;
 					}
 					break;
 				case RecorderNotifications.CLEAR_WAVEFORM:
@@ -207,7 +214,6 @@ package com.clarityenglish.bento.view.recorder {
 		}
 		
 		private function onRecord(e:WaveformEvent):void {
-			//trace("on record");
 			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
             //view.debugInfo = audioProxy.getMicrophoneInfo();
 			// Bug 4. 27 July 2010. AR
@@ -237,6 +243,11 @@ package com.clarityenglish.bento.view.recorder {
 			} else {
 				sendNotification(RecorderNotifications.CLEAR_WAVEFORM, null, view.audioProxyName);
 			}
+		}
+
+		private function onSeek(e:WaveformEvent):void {
+			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
+			audioProxy.seek(view.scrubBar.value);
 		}
 		
 		/*
