@@ -4,6 +4,7 @@ import com.clarityenglish.bento.BentoFacade;
 import com.clarityenglish.common.model.interfaces.CopyProvider;
 import com.clarityenglish.common.vo.content.Bookmark;
 import com.clarityenglish.textLayout.components.AudioPlayer;
+import com.clarityenglish.textLayout.events.AudioCompleteEvent;
 
 import flash.events.Event;
 import flash.events.FocusEvent;
@@ -474,7 +475,7 @@ import spark.primitives.Rect;
                     if (audios.length > 1 && audios[1] != "") {
                         onPauseButtonClick();
                         audioPlayer = new AudioPlayer();
-                        audioPlayer.addEventListener("soundCompleteEvent", onFirstSectionAudioComplete);
+                        audioPlayer.addEventListener(AudioCompleteEvent.Audio_Complete, onFirstSectionAudioComplete);
                         audioPlayer.autoplay = audioPlayer.playComponentEnable = true;
                         audioPlayer.src = contentPath + "/" + StringUtil.trim(audios[1]);
                         this.stage.addChild(audioPlayer);
@@ -508,7 +509,7 @@ import spark.primitives.Rect;
             if (isTimerAutoControl) {
                 if (audios.length!= 0 && audios[0] != "") {
                     audioPlayer = new AudioPlayer();
-                    audioPlayer.addEventListener("soundCompleteEvent", onAudioComplete);
+                    audioPlayer.addEventListener(AudioCompleteEvent.Audio_Complete, onAudioComplete);
                     audioPlayer.autoplay = audioPlayer.playComponentEnable = true;
                     audioPlayer.src = contentPath + "/" + StringUtil.trim(audios[0]);
                     this.stage.addChild(audioPlayer);
@@ -522,17 +523,22 @@ import spark.primitives.Rect;
             }
         }
 
-        protected function onAudioComplete(event:Event):void {
-            audioPlayer.removeEventListener("soundCompleteEvent", onAudioComplete);
-            if (_currentState != "completeState") {
-                startTimer();
+        protected function onAudioComplete(event:AudioCompleteEvent):void {
+            audioPlayer.removeEventListener(AudioCompleteEvent.Audio_Complete, onAudioComplete);
+
+            if (!event.isStopAllAudio) {
+                if (_currentState != "completeState") {
+                    startTimer();
+                }
             }
         }
 
-        protected function onFirstSectionAudioComplete(event:Event):void {
-            audioPlayer.removeEventListener("soundCompleteEvent", onFirstSectionAudioComplete);
-            onResumeButtonClick();
-            dispatchEvent(new Event("TimerFirstSectionCompleteEvent"));
+        protected function onFirstSectionAudioComplete(event:AudioCompleteEvent):void {
+            audioPlayer.removeEventListener(AudioCompleteEvent.Audio_Complete, onFirstSectionAudioComplete);
+            if (!event.isStopAllAudio) {
+                onResumeButtonClick();
+                dispatchEvent(new Event("TimerFirstSectionCompleteEvent"));
+            }
         }
 
         protected function startTimer(event:Event = null):void {

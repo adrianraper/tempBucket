@@ -1,5 +1,6 @@
 package com.clarityenglish.textLayout.components {
-	import com.clarityenglish.textLayout.events.AudioPlayerEvent;
+import com.clarityenglish.textLayout.events.AudioCompleteEvent;
+import com.clarityenglish.textLayout.events.AudioPlayerEvent;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -55,6 +56,9 @@ package com.clarityenglish.textLayout.components {
 		
 		[Bindable]
 		public var playComponentEnable:Boolean;
+
+		[Bindable]
+		public static var isStopAllAudio:Boolean;
 		
 		/**
 		 * A timer for updating the scrub bar as the sound plays 
@@ -140,6 +144,7 @@ package com.clarityenglish.textLayout.components {
 		}
 		
 		public static function stopAllAudio():void {
+			isStopAllAudio = true;
 			if (soundChannel) {
 				// Stop any currently playing sound, and dispatch a SOUND_COMPLETE event so that the previous audio player changes from PLAYING to the appropriate state
 				soundChannel.stop();
@@ -302,7 +307,9 @@ package com.clarityenglish.textLayout.components {
 			soundStatus = (played) ? PLAYED : STOPPED;
 			invalidateSkinState();
 
-			dispatchEvent(new Event("soundCompleteEvent", true));
+
+			dispatchEvent(new AudioCompleteEvent(AudioCompleteEvent.Audio_Complete, isStopAllAudio));
+			isStopAllAudio = false;
 		}
 	}
 	
