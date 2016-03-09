@@ -301,6 +301,8 @@ package com.clarityenglish.textLayout.components {
 			// Change the status and invalidate the skin state
 			soundStatus = (played) ? PLAYED : STOPPED;
 			invalidateSkinState();
+
+			dispatchEvent(new Event("soundCompleteEvent", true));
 		}
 	}
 	
