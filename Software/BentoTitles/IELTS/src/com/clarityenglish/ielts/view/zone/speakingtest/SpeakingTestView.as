@@ -100,15 +100,16 @@ public class SpeakingTestView extends BentoView{
         isPlanningComplete = true;
         planningGroup.visible = false;
         recorderGroup.visible = true;
-
-        recorderView.recordWaveformView.isRecordEnabled = true;
+        // gh#1459
+        recorderView.recordWaveformView.isRecorHide = false;
         recorderView.recordWaveformView.isSaveEnabled = false;
         recorderView.recordWaveformView.recordButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
     }
 
     protected function onTimerComplete(event:Event):void {
         // Manually change the recorder skin state
-        recorderView.recordWaveformView.isRecordEnabled = false;
+        // gh#1459
+        recorderView.recordWaveformView.isRecorHide = true;
         // Stop the recorder
         callLater(function () {
             recorderView.recordWaveformView.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
