@@ -24,17 +24,22 @@
         <s:State name="nomic" />
     </s:states>
 
-    <recorder:WaveformView id="recordWaveformView" audioProxyName="{RecorderNotifications.RECORD_PROXY_NAME}" left="0" right="0" top="0" bottom="0" minimized="true" visible.progress="false" excludeFrom="nomic" />
+    <recorder:WaveformView id="recordWaveformView" audioProxyName="{RecorderNotifications.RECORD_PROXY_NAME}" left="0" right="0" top="0" bottom="0" minimized="true" visible="true" visible.progress="false" excludeFrom="nomic" />
 
-    <s:Group horizontalCenter="0" verticalCenter="0" visible="false" visible.progress="true">
-        <s:VGroup>
+    <s:Group left="0" right="0" top="0" bottom="0" horizontalCenter="0" verticalCenter="0" visible="false" visible.progress="true">
+        <s:Rect width="100%" height="100%" radiusX="4" radiusY="4">
+            <s:fill>
+                <s:SolidColor color="#F4F4F4" />
+            </s:fill>
+        </s:Rect>
+        <s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
             <s:Label id="progressLabel" text="Doing stuff..." />
-            <mx:ProgressBar id="progressBar"
+            <mx:ProgressBar id="progressBar" height="4"
                             mode="manual"
                             barSkin="mx.skins.halo.ProgressBarSkin"
                             indeterminateSkin="mx.skins.halo.ProgressIndeterminateSkin"
                             maskSkin="mx.skins.halo.ProgressMaskSkin"
                             trackSkin="mx.skins.halo.ProgressTrackSkin" />
-        </s:VGroup>
+        </s:HGroup>
     </s:Group>
 </s:Skin>

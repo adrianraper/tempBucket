@@ -51,23 +51,22 @@
         <s:State name="disabled" />
     </s:states>
 
-	<s:Path x="12" y="8" winding="nonZero" data="M0 17.1582 0 0 14.8613 8.58301 0 17.1582Z">
-		<s:fill>
-			<s:LinearGradient rotation="-40">
-				<s:GradientEntry color.over="#79AB39" color.down="#79AB39" color="#303030"/>
-				<s:GradientEntry color.over="#BBD539" color.down="#BBD539" color="#303030"/>
-				<s:GradientEntry color.over="#A0CC3D" color.down="#A0CC3D" color="#303030"/>
-			</s:LinearGradient>
-		</s:fill>
-	</s:Path>
-	
-    <!-- layer 8: text -->
-    <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
-    <s:Label id="labelDisplay"
-             textAlign="center"
-             maxDisplayedLines="1"
-             horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
-             left="10" right="10" top="2" bottom="2">
-    </s:Label>
+   <s:Group width="100%" height="100%">
+       <s:Path horizontalCenter="0" verticalCenter="0" winding="nonZero" data="M0 17.1582 0 0 14.8613 8.58301 0 17.1582Z">
+           <s:fill>
+               <s:SolidColor color="#333333" color.over="#555555" color.down="#555555" />
+           </s:fill>
+       </s:Path>
+
+       <!-- layer 8: text -->
+       <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
+       <s:Label id="labelDisplay"
+                textAlign="center"
+                maxDisplayedLines="1"
+                horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
+                left="10" right="10" top="2" bottom="2">
+       </s:Label>
+   </s:Group>
+
     
 </s:SparkButtonSkin>

@@ -19,30 +19,30 @@
 -->
 
 
-<!--- The default skin class for the Spark Button component.  
+<!--- The default skin class for the Spark Button component.
 
-       @see spark.components.Button
-        
-      @langversion 3.0
-      @playerversion Flash 10
-      @playerversion AIR 1.5
-      @productversion Flex 4
+ @see spark.components.Button
+
+ @langversion 3.0
+ @playerversion Flash 10
+ @playerversion AIR 1.5
+ @productversion Flex 4
 -->
-<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-             xmlns:s="library://ns.adobe.com/flex/spark" 
-             xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-             minWidth="21" minHeight="21" 
-             alpha.disabled="0.5">
-     
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:s="library://ns.adobe.com/flex/spark"
+                   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+                   minWidth="21" minHeight="21"
+                   alpha.disabled="0.5">
+
     <fx:Metadata>
-        <![CDATA[ 
-        /** 
+        <![CDATA[
+        /**
          * @copy spark.skins.spark.ApplicationSkin#hostComponent
          */
         [HostComponent("spark.components.Button")]
         ]]>
     </fx:Metadata>
-    
+
     <!-- states -->
     <s:states>
         <s:State name="up" />
@@ -51,15 +51,14 @@
         <s:State name="disabled" />
     </s:states>
 
-	<s:Group width="100%" height="100%">
-        <s:Rect width="13.1016" height="13.5928" verticalCenter="0" horizontalCenter="0">
+    <s:Group left="0" right="0" height="3">
+        <s:Rect width="100%" height="100%" radiusX="5" radiusY="5">
             <s:fill>
-                <s:SolidColor color="#333333" color.over="#555555" color.down="#555555" />
+                <s:SolidColor color="#D8D8D8"/>
             </s:fill>
         </s:Rect>
     </s:Group>
 
-    
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
     <s:Label id="labelDisplay"
@@ -68,5 +67,5 @@
              horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
              left="10" right="10" top="2" bottom="2">
     </s:Label>
-    
+
 </s:SparkButtonSkin>

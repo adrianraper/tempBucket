@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="1.0" viewHeight="39.7949" viewWidth="44.625" ai:appVersion="14.0.0.367" d:id="1" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ai="http://ns.adobe.com/ai/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
+  <Group x="2.9126" y="3.42969" d:id="2" d:type="layer" d:userLabel="Layer 1">
+    <Group>
+      <Group>
+        <Group>
+          <Path winding="nonZero" ai:knockout="0" data="M34.3403 23.8838C37.2222 20.6826 38.7993 16.9282 38.7993 13.2749 38.7993 4.09619 29.3364 -1.39795 18.7578 0.310059 9.18213 1.85693 1.20264 8.98096 0.124512 16.7017 -1.01709 24.873 5.79395 31.8467 16.3374 31.7861 19.1294 31.7695 21.9302
+ 31.2695 24.6528 30.2813L31.9937 32.7822C32.2729 32.8779 32.5649 32.9238 32.8569 32.9238 33.4712 32.9238 34.0845 32.7178 34.5747 32.3232 35.3032 31.7393 35.6509 30.8398 35.4878 29.9736L34.3403 23.8838Z" >
+            <fill>
+              <SolidColor color="#a53183"/>
+            </fill>
+          </Path>
+          <Path winding="nonZero" ai:knockout="0" data="M12.6719 22.2617C12.5605 23.4775 11.501 24.5107 10.3193 24.5605 9.15186 24.6123 8.3208 23.6807 8.44824 22.4932 8.57471 21.3115 9.60156 20.3027 10.7539 20.2275 11.9185 20.1494 12.7847 21.0566 12.6719 22.2617Z" >
+            <fill>
+              <SolidColor color="#ffffff"/>
+            </fill>
+          </Path>
+          <Path winding="nonZero" ai:knockout="0" data="M18.9863 21.9189C18.8984 23.1689 17.7954 24.2393 16.5352 24.2949 15.2939 24.3467 14.3828 23.3896 14.4883 22.1631 14.5933 20.9482 15.6592 19.9063 16.8843 19.8252 18.127 19.7441 19.0747 20.6748 18.9863 21.9189Z" >
+            <fill>
+              <SolidColor color="#ffffff"/>
+            </fill>
+          </Path>
+          <Path winding="nonZero" ai:knockout="0" data="M25.7212 21.5527C25.6616 22.8447 24.5093 23.9482 23.1655 24.0068 21.8394 24.0615 20.8423 23.0771 20.9214 21.8154 21.0015 20.5576 22.1128 19.4834 23.4194 19.3975 24.7427 19.3105 25.7808 20.2666 25.7212 21.5527Z" >
+            <fill>
+              <SolidColor color="#ffffff"/>
+            </fill>
+          </Path>
+        </Group>
+      </Group>
+    </Group>
+  </Group>
+  <Private>
+    <ai:PrivateElement d:ref="#1">
+      <ai:SaveOptions>
+        <ai:Dictionary>
+          <ai:DictEntry name="clipToActiveArtboard" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="downsampleLinkedImages" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="rasterizeResolution" value="72" valueType="Integer"/>
+          <ai:DictEntry name="preserveGradientPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveFilterPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveTextPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="writeImages" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="includeXMP" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="includeSymbol" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="aiEditCap" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="versionKey" value="1" valueType="Integer"/>
+        </ai:Dictionary>
+      </ai:SaveOptions>
+      <ai:DocData base="Speaking-11.assets/images"/>
+      <ai:Artboards originOffsetH="275.328" originOffsetV="440.843" rulerCanvasDiffH="297.64" rulerCanvasDiffV="-420.945" zoom="0.083">
+        <ai:Artboard active="1" bottom="401.048" index="0" left="275.328" right="319.953" top="440.843"/>
+        <ai:ArtboardsParam all="0" range="" type="0"/>
+      </ai:Artboards>
+    </ai:PrivateElement>
+    <ai:PrivateElement d:ref="#2">
+      <ai:LayerOptions colorType="ThreeColor">
+        <ai:ThreeColor blue="257" green="128.502" red="79.31"/>
+      </ai:LayerOptions>
+    </ai:PrivateElement>
+  </Private>
+</Graphic>

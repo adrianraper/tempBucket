@@ -4,6 +4,7 @@
         xmlns:timer="com.clarityenglish.bento.view.timer.*"
         xmlns:components="com.clarityenglish.components.*"
         xmlns:recorder="com.clarityenglish.bento.view.recorder.*"
+        xmlns:assets="skins.ielts.assets.zone.*"
         xmlns:mx="library://ns.adobe.com/flex/mx"
         creationComplete="onCreationComplete(event)">
 
@@ -74,7 +75,7 @@
                 <fx:Component>
                     <s:DataRenderer width="514" height="100%" removedFromStage="onRemovedFromStage(event)">
                         <fx:Declarations>
-                            <s:Parallel id="rotateImages" >
+                            <s:Parallel id="flipFont" effectEnd="onFlipFontEnd(event)">
                                 <s:Rotate3D id="rotate1"
                                             target="{fontSwfLoader}"
                                             angleYFrom="0" angleYTo="180"
@@ -92,7 +93,7 @@
                                                     fromValue="0"
                                                     toValue="2" />
                             </s:Parallel>
-                            <s:Parallel id="rotateImages2" >
+                            <s:Parallel id="flipBack" effectStart="onFlipBackStart(event)">
                                 <s:Rotate3D target="{backSwfLoader}"
                                             angleYFrom="360" angleYTo="180"
                                             autoCenterTransform="true" />
@@ -130,68 +131,73 @@
 
                                 if (data) {
                                     var idx:int = ((owner as List).dataProvider as ListCollectionView).getItemIndex(data);
-                                    trace("assetFolder: "+outerDocument.hostComponent.assetFolder);
-                                    fontSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speaking" + (idx + 1) + ".png";
-                                    backSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_reading" + (idx + 1) + ".png";
+                                    fontSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingfont" + (idx + 1) + ".png";
+                                    backSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingback" + (idx + 1) + ".png";
                                 }
                             }
                             protected function onStartButtonClick(event:Event):void {
                                 AudioPlayer.stopAllAudio();
-                                rotateImages.play();
+                                flipFont.play();
                                 dispatchEvent(new Event("startButtonClickEvent", true));
                                 speakingStartButton.visible = false;
+                            }
+
+                            protected function onFlipFontEnd(event:Event):void {
                                 speakingBackButton.visible = true;
                             }
 
                             protected function onBackButtonClick(event:Event):void {
-                                rotateImages2.play();
+                                flipBack.play();
                                 dispatchEvent(new Event("backButtonClickEvent", true));
                                 speakingStartButton.visible = true;
                                 speakingBackButton.visible = false;
                             }
 
+                            protected function onFlipBackStart(event:Event):void {
+                                speakingBackButton.visible = false;
+                            }
                             ]]>
                         </fx:Script>
 
-                        <s:SWFLoader id="backSwfLoader" top="20" horizontalCenter="0"/>
-                        <s:SWFLoader id="fontSwfLoader" top="20" horizontalCenter="0"/>
-                        <s:Button id="speakingStartButton" bottom="40" left="30" right="30" height="40" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingStartButton')}" color="#333333" click="onStartButtonClick(event)" useHandCursor="true" buttonMode="true"  />
-                        <s:Button id="speakingBackButton" width="50" height="20" top="0" left="0" label="Back" visible="false" click="{onBackButtonClick(event)}" />
+                        <s:SWFLoader id="backSwfLoader" top="17" scaleX="0.5" scaleY="0.51" horizontalCenter="0"/>
+                        <s:SWFLoader id="fontSwfLoader" top="17" scaleX="0.5" scaleY="0.51" horizontalCenter="0"/>
+                        <s:Button id="speakingStartButton" bottom="55" width="446" height="53" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingStartButton')}" color="#333333" click="onStartButtonClick(event)"
+                                  useHandCursor="true" buttonMode="true"  />
+                        <s:Button id="speakingBackButton"  top="2" left="37" label="Back" visible="false" click="{onBackButtonClick(event)}" useHandCursor="true" buttonMode="true" />
                     </s:DataRenderer>
                 </fx:Component>
             </s:itemRenderer>
         </s:List>
 
-        <s:Group id="actionGroup" left="30" right="30" height="50" horizontalCenter="0" bottom="75" includeIn="testState">
-            <s:Group id="planningGroup" left="0" right="0" height="30" verticalCenter="0">
+        <s:Group id="actionGroup" width="446" height="40" horizontalCenter="0" bottom="68" includeIn="testState">
+            <s:Group id="planningGroup" width="100%" height="100%" horizontalCenter="0" verticalCenter="0">
                 <s:Rect width="100%" height="100%" radiusX="4" radiusY="4">
                     <s:fill>
-                        <s:SolidColor color="#F4F4F4" />
+                        <s:SolidColor color="#A93087" />
                     </s:fill>
                 </s:Rect>
-                <s:Label id="planningLabel" horizontalCenter="0" verticalCenter="0" text="Please prepare your answer in 1 mins." />
+                <s:Label id="planningLabel" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" text="Please prepare your answer in 1 mins." />
             </s:Group>
-            <s:Group id="recorderGroup" width="100%" height="30" verticalCenter="0">
+            <s:Group id="recorderGroup" width="100%" height="100%" verticalCenter="0">
                 <recorder:RecorderView id="recorderView" left="0" right="0" top="0" bottom="0" />
             </s:Group>
         </s:Group>
 
-        <s:Group top="0" bottom="0" left="0" right="0" excludeFrom="normalState">
+        <s:Group top="0" bottom="0" left="1" right="1" excludeFrom="normalState">
             <s:Group id="timerGroup" width="100%" bottom="0">
                 <timer:TimerComponent id="timer" bottom="0" timerTotalTime="{String(hostComponent.testXML.attribute('totalTime')).split(',')}"
                                       timerSectionLabels="{String(hostComponent.testXML.attribute('timerSectionLabels')).split(',')}"
                                       audios="{String(hostComponent.testXML.attribute('audios')).split(',')}"
-                                      copyProvider="{hostComponent.getCopyProvider()}"
-                                      contentPath="{hostComponent.href.rootPath}"
-                                      textSize="17" trackColor="#F3F3F3" trackHighLightColor="#A6A6A6"
-                                      timerWidth="400" timerHeight="25" width="100%" height="74"
+                                      copyProvider="{hostComponent.getCopyProvider()}" contentPath="{hostComponent.href.rootPath}" textSize="17"
+                                      trackColor="#D8D8D8" trackHighLightColor="#A8A8A8" progressLeftColor="#A93087" progressMidColor="#A93087" progressRightColor="#A93087"
+                                      timerWidth="400" timerHeight="25" width="100%" height="60"
                                       isTimeFixed="true"
                                       isTimerAutoControl="true" />
             </s:Group>
         </s:Group>
 
-        <components:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="12" dataProvider="{list.dataProvider}" includeIn="normalState" />
-        <s:SWFLoader id="leftArrow" click="scrollBy(-1)" visible="true" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ExamPracticeArrow')" left="22" top="233" scaleX="-1" mouseEnabled="true" buttonMode="true" includeIn="normalState" />
-        <s:SWFLoader id="rightArrow" click="scrollBy(1)" visible="true" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ExamPracticeArrow')" right="22" top="233" mouseEnabled="true" buttonMode="true" includeIn="normalState" />
+        <components:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="20" dataProvider="{list.dataProvider}" includeIn="normalState" />
+        <assets:speakingarrow id="leftArrow" click="scrollBy(-1)" visible="true" left="12" top="160" rotation="180" scaleX="0.7" scaleY="0.7" mouseEnabled="true" buttonMode="true" includeIn="normalState" />
+        <assets:speakingarrow id="rightArrow" click="scrollBy(1)" visible="true" right="12" top="163" scaleX="0.7" scaleY="0.7" mouseEnabled="true" buttonMode="true" includeIn="normalState" />
     </s:Group>
 </s:Skin>

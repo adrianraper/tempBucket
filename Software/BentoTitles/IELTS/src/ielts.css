@@ -470,6 +470,10 @@ timer|TimerComponent {
 	skinClass: ClassReference("skins.bento.timer.TimerSkin");
 }
 
+timer|TimerComponent s|Button#resetCompleteButton{
+	skinClass: ClassReference("skins.ielts.zone.speakingtest.ResetCompleteButtonSkin");
+}
+
 timer|TimerComponent s|Button {
 	skinClass: ClassReference("skins.bento.timer.TimerButtonSkin");
 }
@@ -482,3 +486,10 @@ speakingtest|SpeakingTestView recorder|RecorderView recorder|WaveformView {
 	skinClass: ClassReference("skins.ielts.zone.speakingtest.recorder.SpeakingTestWaveformSkin");
 }
 
+speakingtest|SpeakingTestView s|Button#speakingStartButton {
+	skinClass: ClassReference("skins.ielts.zone.speakingtest.SpeakingStartButtonSkin");
+}
+
+speakingtest|SpeakingTestView s|Button#speakingBackButton {
+	skinClass: ClassReference("skins.ielts.zone.speakingtest.SpeakingBackButtonSkin");
+}

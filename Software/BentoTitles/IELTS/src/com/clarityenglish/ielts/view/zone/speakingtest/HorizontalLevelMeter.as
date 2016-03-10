@@ -14,13 +14,13 @@ public class HorizontalLevelMeter extends LevelMeter{
         super.updateDisplayList(unscaledWidth, unscaledHeight);
 
         track.graphics.clear();
-        track.graphics.beginFill(0xFF000000, 1);
-        track.graphics.drawRect(0, 10, unscaledWidth, unscaledHeight - 10);
+        track.graphics.beginFill(0xD1D1D1, 1);
+        track.graphics.drawRoundRect(0, 10, unscaledWidth, unscaledHeight - 10, 3, 3);
         track.graphics.endFill();
 
         levelGradient.graphics.clear();
-        levelGradient.graphics.beginGradientFill(GradientType.LINEAR, [ 0xFFFFFF00, 0xFF0000 ], [ 1.0, 1.0 ], [ 0, 220 ], verticalGradientMatrix(0, - unscaledHeight / 4, unscaledWidth, unscaledHeight - 10), SpreadMethod.PAD, InterpolationMethod.LINEAR_RGB);
-        levelGradient.graphics.drawRect(0, 0, unscaledWidth, unscaledHeight - 10);
+        levelGradient.graphics.beginGradientFill(GradientType.LINEAR, [ 0xFFFF00, 0xD11800 ], [ 1.0, 1.0 ], [ 0, 220 ], verticalGradientMatrix(0, - unscaledHeight / 4, unscaledWidth, unscaledHeight - 10), SpreadMethod.PAD, InterpolationMethod.LINEAR_RGB);
+        levelGradient.graphics.drawRoundRect(0, 0, unscaledWidth, unscaledHeight - 10, 3, 3);
         levelGradient.graphics.endFill();
     }
 }
