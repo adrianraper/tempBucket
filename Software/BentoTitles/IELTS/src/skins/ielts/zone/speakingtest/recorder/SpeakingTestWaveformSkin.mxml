@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:ui="com.clarityenglish.bento.view.recorder.ui.*" creationComplete="onCreationComplete(event)">
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:ui="com.clarityenglish.ielts.view.zone.speakingtest.*" creationComplete="onCreationComplete(event)">
 
     <!-- host component -->
     <fx:Metadata>
@@ -51,8 +51,8 @@
                         enabled="{!hostComponent.isRecording}" width="280" includeIn="playback" />
         </s:HGroup>
 
-        <ui:LevelMeter id="levelMeter" width="5" height="350" verticalCenter="0"
-                       top="10" bottom="15" left="90"
+        <ui:HorizontalLevelMeter id="levelMeter" width="3" height="360" verticalCenter="0"
+                       top="11" bottom="16" left="90"
                        visible="{hostComponent.isRecording}" rotation="90"
                        includeIn="record" />
     </s:Group>

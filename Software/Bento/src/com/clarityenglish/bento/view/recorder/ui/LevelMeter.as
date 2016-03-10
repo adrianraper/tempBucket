@@ -13,9 +13,9 @@ package com.clarityenglish.bento.view.recorder.ui {
 		
 		private var amplitude:Number;
 		
-		private var track:Sprite;
-		private var clipIndicator:Sprite;
-		private var levelGradient:Sprite;
+		protected var track:Sprite;
+		protected var clipIndicator:Sprite;
+		protected var levelGradient:Sprite;
 		
 		private var gradientMask:Sprite;
 		
