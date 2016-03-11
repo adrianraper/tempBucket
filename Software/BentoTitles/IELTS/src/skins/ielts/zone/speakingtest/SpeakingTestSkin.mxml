@@ -78,36 +78,32 @@
                             <s:Parallel id="flipFont" effectEnd="onFlipFontEnd(event)">
                                 <s:Rotate3D id="rotate1"
                                             target="{fontSwfLoader}"
-                                            angleYFrom="0" angleYTo="180"
-                                            autoCenterTransform="true" />
+                                            angleYFrom="0" angleYTo="180" applyLocalProjection="false"
+                                            autoCenterTransform="true" autoCenterProjection="true"/>
                                 <s:Rotate3D id="rotate2"
                                             target="{backSwfLoader}"
-                                            angleYFrom="180" angleYTo="360"
-                                            autoCenterTransform="true" />
-                                <mx:AnimateProperty target="{fontSwfLoader}"
-                                                    property="depth"
-                                                    fromValue="2"
-                                                    toValue="0" />
-                                <mx:AnimateProperty target="{backSwfLoader}"
-                                                    property="depth"
-                                                    fromValue="0"
-                                                    toValue="2" />
+                                            angleYFrom="180" angleYTo="360" applyLocalProjection="false"
+                                            autoCenterTransform="true" autoCenterProjection="true"/>
+                                <s:Animate target="{fontSwfLoader}">
+                                    <s:SimpleMotionPath property="depth" valueFrom="1" valueTo="0"/>
+                                </s:Animate>
+                                <s:Animate target="{backSwfLoader}">
+                                    <s:SimpleMotionPath property="depth" valueFrom="0" valueTo="1"/>
+                                </s:Animate>
                             </s:Parallel>
                             <s:Parallel id="flipBack" effectStart="onFlipBackStart(event)">
                                 <s:Rotate3D target="{backSwfLoader}"
-                                            angleYFrom="360" angleYTo="180"
-                                            autoCenterTransform="true" />
+                                            angleYFrom="360" angleYTo="180" applyLocalProjection="false"
+                                            autoCenterTransform="true" autoCenterProjection="true"/>
                                 <s:Rotate3D target="{fontSwfLoader}"
-                                            angleYFrom="180" angleYTo="0"
-                                            autoCenterTransform="true" />
-                                <mx:AnimateProperty target="{backSwfLoader}"
-                                                    property="depth"
-                                                    fromValue="2"
-                                                    toValue="0" />
-                                <mx:AnimateProperty target="{fontSwfLoader}"
-                                                    property="depth"
-                                                    fromValue="0"
-                                                    toValue="2" />
+                                            angleYFrom="180" angleYTo="0" applyLocalProjection="false"
+                                            autoCenterTransform="true" autoCenterProjection="true"/>
+                                <s:Animate target="{backSwfLoader}">
+                                    <s:SimpleMotionPath property="depth" valueFrom="1" valueTo="0"/>
+                                </s:Animate>
+                                <s:Animate target="{fontSwfLoader}">
+                                    <s:SimpleMotionPath property="depth" valueFrom="0" valueTo="1"/>
+                                </s:Animate>
                             </s:Parallel>
                         </fx:Declarations>
                         <fx:Script>
@@ -135,6 +131,7 @@
                                     backSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingback" + (idx + 1) + ".png";
                                 }
                             }
+
                             protected function onStartButtonClick(event:Event):void {
                                 AudioPlayer.stopAllAudio();
                                 flipFont.play();
@@ -159,11 +156,12 @@
                             ]]>
                         </fx:Script>
 
-                        <s:SWFLoader id="backSwfLoader" top="17" scaleX="0.5" scaleY="0.51" horizontalCenter="0"/>
-                        <s:SWFLoader id="fontSwfLoader" top="17" scaleX="0.5" scaleY="0.51" horizontalCenter="0"/>
                         <s:Button id="speakingStartButton" bottom="55" width="446" height="53" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingStartButton')}" color="#333333" click="onStartButtonClick(event)"
                                   useHandCursor="true" buttonMode="true"  />
                         <s:Button id="speakingBackButton"  top="2" left="37" label="Back" visible="false" click="{onBackButtonClick(event)}" useHandCursor="true" buttonMode="true" />
+
+                        <s:SWFLoader id="backSwfLoader" top="17" scaleX="0.5" scaleY="0.5" horizontalCenter="0"/>
+                        <s:SWFLoader id="fontSwfLoader" top="17" scaleX="0.5" scaleY="0.5" horizontalCenter="0"/>
                     </s:DataRenderer>
                 </fx:Component>
             </s:itemRenderer>
