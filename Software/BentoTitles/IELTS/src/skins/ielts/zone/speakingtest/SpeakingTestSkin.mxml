@@ -24,7 +24,6 @@
 
         protected function onCreationComplete(event:FlexEvent):void {
             changeWatcher = BindingUtils.bindSetter(onScroll, list.scroller.viewport, "horizontalScrollPosition");
-
             playAudio(list.dataProvider.getItemAt(0) as XML);
         }
 
@@ -158,7 +157,7 @@
 
                         <s:Button id="speakingStartButton" bottom="55" width="446" height="53" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingStartButton')}" color="#333333" click="onStartButtonClick(event)"
                                   useHandCursor="true" buttonMode="true"  />
-                        <s:Button id="speakingBackButton"  top="2" left="37" label="Back" visible="false" click="{onBackButtonClick(event)}" useHandCursor="true" buttonMode="true" />
+                        <s:Button id="speakingBackButton"  top="2" left="37" visible="false" click="{onBackButtonClick(event)}" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('Back')}" useHandCursor="true" buttonMode="true" />
 
                         <s:SWFLoader id="backSwfLoader" top="17" scaleX="0.5" scaleY="0.5" horizontalCenter="0"/>
                         <s:SWFLoader id="fontSwfLoader" top="17" scaleX="0.5" scaleY="0.5" horizontalCenter="0"/>
@@ -174,7 +173,7 @@
                         <s:SolidColor color="#A93087" />
                     </s:fill>
                 </s:Rect>
-                <s:Label id="planningLabel" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" text="Please prepare your answer in 1 mins." />
+                <s:Label id="planningLabel" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" />
             </s:Group>
             <s:Group id="recorderGroup" width="100%" height="100%" verticalCenter="0">
                 <recorder:RecorderView id="recorderView" left="0" right="0" top="0" bottom="0" />

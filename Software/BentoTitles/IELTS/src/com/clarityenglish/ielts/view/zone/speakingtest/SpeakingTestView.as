@@ -20,6 +20,7 @@ import skins.ielts.assets.candidates.videoframe;
 
 import spark.components.Button;
 import spark.components.Group;
+import spark.components.Label;
 import spark.components.List;
 
 public class SpeakingTestView extends BentoView{
@@ -38,6 +39,9 @@ public class SpeakingTestView extends BentoView{
 
     [SkinPart]
     public var recorderView:RecorderView;
+
+    [SkinPart]
+    public var planningLabel:Label;
 
     [Bindable]
     public var testXMLListCollection:XMLListCollection;
@@ -82,6 +86,9 @@ public class SpeakingTestView extends BentoView{
                 timer.addEventListener("TimerFirstSectionCompleteEvent", onPlanningComplete);
                 timer.addEventListener("TimerCompleteEvent", onTimerComplete);
                 timer.addEventListener("TimerRestartEvent", onTimerRestart);
+                break;
+            case planningLabel:
+                planningLabel.text = copyProvider.getCopyForId("planningLabel");
                 break;
         }
 
