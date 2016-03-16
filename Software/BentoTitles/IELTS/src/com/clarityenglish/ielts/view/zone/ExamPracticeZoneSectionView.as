@@ -14,8 +14,9 @@ import flash.utils.setTimeout;
 	import mx.collections.XMLListCollection;
 	import mx.controls.SWFLoader;
 	import mx.events.ScrollEvent;
-	
-	import org.osflash.signals.Signal;
+import mx.events.StateChangeEvent;
+
+import org.osflash.signals.Signal;
 
 import spark.components.Button;
 
@@ -27,12 +28,6 @@ import spark.components.Label;
 		
 		[SkinPart(required="true")]
 		public var list:List;
-		
-		[SkinPart]
-		public var leftArrow:SWFLoader;
-		
-		[SkinPart]
-		public var rightArrow:SWFLoader;
 		
 		[SkinPart]
 		public var examZoneLabel:Label;
@@ -48,6 +43,9 @@ import spark.components.Label;
 
 		[SkinPart]
 		public var speakingTestView:SpeakingTestView;
+
+		[SkinPart]
+		public var timerComponent:TimerComponent;
 
 		[Bindable]
 		public var speakingTestXMLListCollection:XMLListCollection;
@@ -111,6 +109,14 @@ import spark.components.Label;
 		public function ExamPracticeZoneSectionView() {
 			super();
 			actionBarVisible = false;
+		}
+
+		public override function set data(value:Object):void {
+			super.data = value;
+
+			if (timerComponent && timerComponent.stopButton){
+				timerComponent.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+			}
 		}
 		
 		protected override function commitProperties():void {
@@ -176,6 +182,12 @@ import spark.components.Label;
 			// TODO: This calls stopAllAudio for every point of the scroll which is a little inefficient.  If we get performance issue this needs to be looked at
 			// (but unfortunately there is no easy way to detect a scroll in Flex 4 which is why we are going for a ChangeWatcher).
 			AudioPlayer.stopAllAudio(); // gh#12
+
+			// Stop the timer when scroll to another paper.
+			if (courseClass == 'writing') {
+				if (timerComponent && timerComponent.stopButton)
+					timerComponent.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+			}
 		}
 		
 		protected function onExerciseSelected(event:ExerciseEvent):void {
@@ -190,6 +202,9 @@ import spark.components.Label;
 			super.onRemovedFromStage(event);
 			if (viewportPropertyWatcher) viewportPropertyWatcher.unwatch();
 			stopAllAudio();
+
+			if (timerComponent && timerComponent.stopButton)
+				timerComponent.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
 		}
 		
 	}

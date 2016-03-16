@@ -289,6 +289,14 @@ zone|ExamPracticeZoneSectionView #list {
 	horizontalScrollPolicy: off;
 }
 
+zone|ExamPracticeZoneSectionView #leftArrowButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.LeftArrowButtonSkin");
+}
+
+zone|ExamPracticeZoneSectionView #rightArrowButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.RightArrowButtonSkin");
+}
+
 /* Exercise view styles */
 exercise|ExerciseView {
 	skinClass: ClassReference("skins.ielts.ExerciseSkin");

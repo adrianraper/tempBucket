@@ -5,6 +5,8 @@
 		xmlns:tlfcomponents="com.clarityenglish.textLayout.components.*"
 		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
 		xmlns:components="com.clarityenglish.components.*"
+		xmlns:timer="com.clarityenglish.bento.view.timer.*"
+		xmlns:assets="skins.ielts.assets.zone.*"
 		creationComplete="onCreationComplete(event)"
 		removedFromStage="onRemoveFromStage(event)">
 	<!-- host component -->
@@ -80,19 +82,17 @@
 						<![CDATA[
 							import com.clarityenglish.bento.BentoApplication;
 							import com.clarityenglish.bento.events.ExerciseEvent;
-							import com.clarityenglish.bento.vo.Href;
-							import com.clarityenglish.common.model.interfaces.CopyProvider;
 							import com.clarityenglish.ielts.IELTSApplication;
-							import com.clarityenglish.ielts.view.zone.ZoneView;
-							
-							import flash.utils.setTimeout;
-							
+
 							import mx.binding.utils.ChangeWatcher;
 							import mx.collections.ListCollectionView;
 							
 							import spark.components.List;
 							
 							private var changeWatcher:ChangeWatcher;
+
+							[Bindable]
+							private var courseClass:String;
 							
 							protected function onAddedToStage(event:Event):void {
 								//var zoneView:ZoneView = outerDocument.parentDocument["hostComponent"];
@@ -117,7 +117,7 @@
 								
 								if (data) {
 									var idx:int = ((owner as List).dataProvider as ListCollectionView).getItemIndex(data);
-									var courseClass:String = outerDocument.hostComponent.courseClass;
+									courseClass = outerDocument.hostComponent.courseClass;
 									practiceTestButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
 									answerKeyButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
 									// gh#51
@@ -150,6 +150,7 @@
 										practiceTestGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion, getSequenceNumber(data));
 										answerKeyGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion, getSequenceNumber(data));
 									}
+
 								}
 							}
 							
@@ -181,15 +182,16 @@
 							}
 						]]>
 					</fx:Script>
-					<s:SWFLoader id="swfLoader" verticalCenter="-20" horizontalCenter="0" />
-					<s:Label id="practiceLabel" top="340" horizontalCenter="0" fontSize="16" visible="{data.attribute('href').length() > 0}" />
+					
+					<s:SWFLoader id="swfLoader" scaleX="0.95" scaleY="0.95" verticalCenter="{courseClass == 'writing' ? -45 : -20}" horizontalCenter="0" />
+					<s:Label id="practiceLabel" top="{courseClass == 'writing' ? 305 : 330}" horizontalCenter="0" fontSize="16" visible="{data.attribute('href').length() > 0}" />
 
 					<!-- gh#1161 -->
 					<s:Group id="testDriveInformation" top="252" horizontalCenter="0" includeInLayout="{outerDocument.hostComponent.isTestDrive}" visible="{outerDocument.hostComponent.isTestDrive}" >
 						<ui:InfoLabel id="testDriveInfo" />
 					</s:Group> 
 
-					<s:HGroup top="365" gap="10" horizontalCenter="0" visible="{data.attribute('href').length() > 0}">
+					<s:HGroup top="{courseClass == 'writing' ? 325 : 350}" gap="10" horizontalCenter="0" visible="{data.attribute('href').length() > 0}">
 						<tlfcomponents:AudioPlayer id="audioPlayer" visible="{data.attribute('audioHref').length() > 0}" includeInLayout="{data.attribute('audioHref').length() > 0}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
 						<!--gh#759 using group to show tooltip when button is disabled-->
 						<s:Group id="practiceTestGroup">
@@ -204,13 +206,16 @@
 		</s:itemRenderer>
 	</s:List>
 
-	<components:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="12" dataProvider="{list.dataProvider}" excludeFrom="speaking" />
-	
+	<components:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="{hostComponent.courseClass == 'writing' ? 57 : 32}" dataProvider="{list.dataProvider}" excludeFrom="speaking" />
+
 	<!--s:SWFLoader visible="{list.dataProvider.length == 0}" source="{hostComponent.assetFolder}testpractice_empty.png" width="386" top="90" horizontalCenter="0" /-->
+	<!--Writing timer-->
+	<timer:TimerComponent id="timerComponent" width="100%" height="50" timerWidth="310" timerHeight="26" bottom="0" timerTotalTime="{String(list.dataProvider.getItemAt(pageNumberDisplay.selectedIndex).attribute('totalTime')).split(',')}"
+						  isTimeFixed="true" textSize="16" timeTextColor="#333333" includeIn="writing"/>
 
 	<!-- These buttons are only enabled (by CSS) in the web version -->
-	<s:SWFLoader id="leftArrow" click="scrollBy(-1)" visible="{getStyle('showArrows')}" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ExamPracticeArrow')" left="22" top="233" scaleX="-1" mouseEnabled="true" buttonMode="true" excludeFrom="speaking" />
-	<s:SWFLoader id="rightArrow" click="scrollBy(1)" visible="{getStyle('showArrows')}" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ExamPracticeArrow')" right="22" top="233" mouseEnabled="true" buttonMode="true" excludeFrom="speaking" />
+	<s:Button id="leftArrowButton" click="scrollBy(-1)" visible="true" left="12" top="160"  mouseEnabled="true" buttonMode="true" excludeFrom="speaking" />
+	<s:Button id="rightArrowButton" click="scrollBy(1)" visible="true" right="12" top="163" mouseEnabled="true" buttonMode="true" excludeFrom="speaking" />
 
 	<s:Label id="examZoneLabel" fontSize="18" fontWeight="bold" left="20" top="12" excludeFrom="speaking" />
 	<s:Label id="examZoneInstructionLabel" visible="{list.dataProvider.length > 0}" text="{hostComponent.examZoneInstructionText}" left="20" top="35" right="25" excludeFrom="speaking" />
