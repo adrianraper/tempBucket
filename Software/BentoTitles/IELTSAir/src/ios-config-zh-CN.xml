@@ -6,8 +6,8 @@
 	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 	<platform>tablet|iPad</platform>
-	<channel name="ios-vimeo" caption="vimeo">
-        <streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+	<channel name="ios-azure" caption="azure">
+        <streamingMedia>http://portalvhds99k5w60hsxq1q.blob.core.chinacloudapi.cn/</streamingMedia>
     </channel>
 	<sharedMedia />
 	<brandingMedia />
