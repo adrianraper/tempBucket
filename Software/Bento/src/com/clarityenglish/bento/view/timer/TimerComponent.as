@@ -44,6 +44,9 @@ import spark.primitives.Rect;
         public var timerSlider:HSlider;
 
         [SkinPart]
+        public var planningBar:Rect;
+
+        [SkinPart]
         public var firstTipLabel:Label;
 
         [SkinPart]
@@ -80,22 +83,22 @@ import spark.primitives.Rect;
         public var totalTimeLabel:Label;
 
         [SkinPart]
-        public var startButton:Button;
+        public var startButton:TimerButton;
 
         [SkinPart]
-        public var pauseButton:Button;
+        public var pauseButton:TimerButton;
 
         [SkinPart]
-        public var resumeButton:Button;
+        public var resumeButton:TimerButton;
 
         [SkinPart]
-        public var resetButton:Button;
+        public var resetButton:TimerButton;
 
         [SkinPart]
-        public var stopButton:Button;
+        public var stopButton:TimerButton;
 
         [SkinPart]
-        public var resetCompleteButton:Button;
+        public var resetCompleteButton:TimerButton;
 
         [SkinPart]
         public var initialTimeLabelText:String;
@@ -159,6 +162,12 @@ import spark.primitives.Rect;
 
         [Bindable]
         public var timeTextColor:uint = 0xED1F24;
+
+        [Bindable]
+        public var buttonColor:uint = 0xFFFFFF;
+
+        [Bindable]
+        public var buttonDownOverColor:uint = 0xFFFFFF;
 
         [Bindable]
         public var audios:Array = [];
@@ -338,7 +347,7 @@ import spark.primitives.Rect;
                 }
 
                 hoursText = formatTime(Math.floor(totalTime / 3600));
-                minsText = formatTime(Math.floor(totalTime / 60));
+                minsText = formatTime(Math.floor(totalTime / 60)) == "60"? "00" : formatTime(Math.floor(totalTime / 60));
 
                 initialTimeLabelText = hoursText+':'+minsText+':00';
                 totalTimeLabelText = hoursText+':'+minsText+':00';
@@ -451,7 +460,7 @@ import spark.primitives.Rect;
             // Shrink the width of specific cover bar to make the progress bar appear.
             var unit:Number = sliderWidth / totalTime;
             if (timerTotalTime.length == 1) {
-                firstProgressCoverRect.width = timer.currentCount < timerTotalTime[0] * 60 ? (firstProgressCoverRect.width - unit) : 0
+                firstProgressCoverRect.width = timer.currentCount < timerTotalTime[0] ? (firstProgressCoverRect.width - unit) : 0;
             } else {
                 if (timer.currentCount <= timerSlider.values[0] * 60) {
                     firstProgressCoverRect.width = timer.currentCount < timerSlider.values[0] * 60 ? (firstProgressCoverRect.width - unit) : 0;
@@ -548,6 +557,14 @@ import spark.primitives.Rect;
             setState("pauseState");
             timer.reset();
             timer.start();
+
+            callLater(function() {
+                if (timerTotalTime.length == 1) {
+                    planningBar.radiusX = planningBar.radiusY = 4;
+                } else {
+                    planningBar.topLeftRadiusX = planningBar.topLeftRadiusY = planningBar.bottomLeftRadiusX = planningBar.bottomLeftRadiusY = 4;
+                }
+            });
         }
 
         protected function onPauseButtonClick(event:MouseEvent = null):void {

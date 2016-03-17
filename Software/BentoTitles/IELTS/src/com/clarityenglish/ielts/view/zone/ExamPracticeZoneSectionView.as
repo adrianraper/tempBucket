@@ -1,5 +1,6 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.events.ExerciseEvent;
+import com.clarityenglish.bento.view.timer.TimerButton;
 import com.clarityenglish.bento.view.timer.TimerComponent;
 import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
@@ -44,8 +45,14 @@ import spark.components.Label;
 		[SkinPart]
 		public var speakingTestView:SpeakingTestView;
 
+		/*[SkinPart]
+		public var timerComponent:TimerComponent;*/
+
 		[SkinPart]
-		public var timerComponent:TimerComponent;
+		public var readingTimer:TimerComponent;
+
+		[SkinPart]
+		public var writingTimer:TimerComponent;
 
 		[Bindable]
 		public var speakingTestXMLListCollection:XMLListCollection;
@@ -114,8 +121,12 @@ import spark.components.Label;
 		public override function set data(value:Object):void {
 			super.data = value;
 
-			if (timerComponent && timerComponent.stopButton){
-				timerComponent.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+			if (readingTimer) {
+				readingTimer.stopTimer();
+			}
+
+			if (writingTimer) {
+				writingTimer.stopTimer();
 			}
 		}
 		
@@ -184,9 +195,14 @@ import spark.components.Label;
 			AudioPlayer.stopAllAudio(); // gh#12
 
 			// Stop the timer when scroll to another paper.
-			if (courseClass == 'writing') {
-				if (timerComponent && timerComponent.stopButton)
-					timerComponent.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+			if (courseClass == 'reading') {
+				if (readingTimer) {
+					readingTimer.stopTimer();
+				}
+			} else if (courseClass == 'writing') {
+				if (writingTimer) {
+					writingTimer.stopTimer();
+				}
 			}
 		}
 		
@@ -197,14 +213,19 @@ import spark.components.Label;
 		public function stopAllAudio():void {
 			AudioPlayer.stopAllAudio();
 		}
-		
+
 		protected override function onRemovedFromStage(event:Event):void {
 			super.onRemovedFromStage(event);
 			if (viewportPropertyWatcher) viewportPropertyWatcher.unwatch();
 			stopAllAudio();
 
-			if (timerComponent && timerComponent.stopButton)
-				timerComponent.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+			if (readingTimer) {
+				readingTimer.stopTimer();
+			}
+
+			if (writingTimer) {
+				writingTimer.stopTimer();
+			}
 		}
 		
 	}

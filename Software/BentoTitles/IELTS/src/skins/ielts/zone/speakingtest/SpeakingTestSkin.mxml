@@ -32,6 +32,15 @@
                 pageNumberDisplay.selectedIndex = Math.floor(list.scroller.horizontalScrollBar.value / list.scroller.viewport.width);
                 hostComponent.selectedPageNumber = pageNumberDisplay.selectedIndex;
 
+                if (pageNumberDisplay.selectedIndex == list.dataProvider.length - 1) {
+                    rightArrowButton.enabled = false;
+                } else if (pageNumberDisplay.selectedIndex == 0) {
+                    leftArrowButton.enabled = false;
+                } else {
+                    leftArrowButton.enabled = true;
+                    rightArrowButton.enabled = true;
+                }
+
                 playAudio(list.dataProvider.getItemAt(hostComponent.selectedPageNumber) as XML);
             }
         }
@@ -74,7 +83,7 @@
                 <fx:Component>
                     <s:DataRenderer width="514" height="100%" removedFromStage="onRemovedFromStage(event)">
                         <fx:Declarations>
-                            <s:Parallel id="flipFont" effectEnd="onFlipFontEnd(event)">
+                            <s:Parallel id="flipFont" effectStart="onFlipFondStart(event)" effectEnd="onFlipFontEnd(event)">
                                 <s:Rotate3D id="rotate1"
                                             target="{fontSwfLoader}"
                                             angleYFrom="0" angleYTo="180" applyLocalProjection="false"
@@ -90,7 +99,7 @@
                                     <s:SimpleMotionPath property="depth" valueFrom="0" valueTo="1"/>
                                 </s:Animate>
                             </s:Parallel>
-                            <s:Parallel id="flipBack" effectStart="onFlipBackStart(event)">
+                            <s:Parallel id="flipBack" effectStart="onFlipBackStart(event)" effectEnd="onFlipBackEnd(event)">
                                 <s:Rotate3D target="{backSwfLoader}"
                                             angleYFrom="360" angleYTo="180" applyLocalProjection="false"
                                             autoCenterTransform="true" autoCenterProjection="true"/>
@@ -138,11 +147,15 @@
                                 speakingStartButton.visible = false;
                             }
 
+                            protected function onFlipFondStart(event:Event):void {
+                                backSwfLoader.visible = true;
+                            }
+
                             protected function onFlipFontEnd(event:Event):void {
                                 speakingBackButton.visible = true;
                             }
 
-                            protected function onBackButtonClick(event:Event):void {
+                            protected function onBackButtonClick(event:Event = null):void {
                                 flipBack.play();
                                 dispatchEvent(new Event("backButtonClickEvent", true));
                                 speakingStartButton.visible = true;
@@ -152,21 +165,25 @@
                             protected function onFlipBackStart(event:Event):void {
                                 speakingBackButton.visible = false;
                             }
+
+                            protected function onFlipBackEnd(event:Event):void {
+                                backSwfLoader.visible = false;
+                            }
                             ]]>
                         </fx:Script>
 
                         <s:Button id="speakingStartButton" bottom="55" width="446" height="53" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingStartButton')}" color="#333333" click="onStartButtonClick(event)"
                                   useHandCursor="true" buttonMode="true"  />
-                        <s:Button id="speakingBackButton"  top="2" left="37" visible="false" click="{onBackButtonClick(event)}" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('Back')}" useHandCursor="true" buttonMode="true" />
+                        <s:Button id="speakingBackButton"  top="2" left="38" click="{onBackButtonClick(event)}" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('Back')}" useHandCursor="true" buttonMode="true" visible="false"/>
 
-                        <s:SWFLoader id="backSwfLoader" top="17" scaleX="0.5" scaleY="0.5" horizontalCenter="0"/>
-                        <s:SWFLoader id="fontSwfLoader" top="17" scaleX="0.5" scaleY="0.5" horizontalCenter="0"/>
+                        <s:SWFLoader id="backSwfLoader" scaleX="0.5" scaleY="0.5" top="17" horizontalCenter="0" visible="false" />
+                        <s:SWFLoader id="fontSwfLoader" scaleX="0.5" scaleY="0.5" top="17" horizontalCenter="0" />
                     </s:DataRenderer>
                 </fx:Component>
             </s:itemRenderer>
         </s:List>
 
-        <s:Group id="actionGroup" width="446" height="40" horizontalCenter="0" bottom="68" includeIn="testState">
+        <s:Group id="actionGroup" width="452" height="40" horizontalCenter="0" bottom="68" includeIn="testState">
             <s:Group id="planningGroup" width="100%" height="100%" horizontalCenter="0" verticalCenter="0">
                 <s:Rect width="100%" height="100%" radiusX="4" radiusY="4">
                     <s:fill>
@@ -174,10 +191,12 @@
                     </s:fill>
                 </s:Rect>
                 <s:Label id="planningLabel" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" />
+                <s:Label id="recordingLabel" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" />
+                <s:Label id="completeLabel" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" />
             </s:Group>
-            <s:Group id="recorderGroup" width="100%" height="100%" verticalCenter="0">
+            <!--s:Group id="recorderGroup" width="100%" height="100%" verticalCenter="0">
                 <recorder:RecorderView id="recorderView" left="0" right="0" top="0" bottom="0" />
-            </s:Group>
+            </s:Group-->
         </s:Group>
 
         <s:Group top="0" bottom="0" left="1" right="1" excludeFrom="normalState">
@@ -185,16 +204,15 @@
                 <timer:TimerComponent id="timer" bottom="0" timerTotalTime="{String(hostComponent.testXML.attribute('totalTime')).split(',')}"
                                       timerSectionLabels="{String(hostComponent.testXML.attribute('timerSectionLabels')).split(',')}"
                                       audios="{String(hostComponent.testXML.attribute('audios')).split(',')}"
-                                      copyProvider="{hostComponent.getCopyProvider()}" contentPath="{hostComponent.href.rootPath}" textSize="17"
-                                      trackColor="#D8D8D8" trackHighLightColor="#A8A8A8" progressLeftColor="#A93087" progressMidColor="#A93087" progressRightColor="#A93087"
-                                      timerWidth="400" timerHeight="25" width="100%" height="60"
-                                      isTimeFixed="true"
-                                      isTimerAutoControl="true" />
+                                      copyProvider="{hostComponent.getCopyProvider()}" contentPath="{hostComponent.href.rootPath}" textSize="17" timeTextColor="#333333"
+                                      trackColor="#D8D8D8" trackHighLightColor="#A8A8A8" progressLeftColor="#A93087" progressMidColor="#A93087" progressRightColor="#A93087" buttonColor="#A93087" buttonDownOverColor="#4F173F"
+                                      timerWidth="380" timerHeight="25" width="100%" height="60"
+                                      isTimeFixed="true" isTimerAutoControl="true" />
             </s:Group>
         </s:Group>
 
         <components:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="20" dataProvider="{list.dataProvider}" includeIn="normalState" />
-        <assets:speakingarrow id="leftArrow" click="scrollBy(-1)" visible="true" left="12" top="160" rotation="180" scaleX="0.7" scaleY="0.7" mouseEnabled="true" buttonMode="true" includeIn="normalState" />
-        <assets:speakingarrow id="rightArrow" click="scrollBy(1)" visible="true" right="12" top="163" scaleX="0.7" scaleY="0.7" mouseEnabled="true" buttonMode="true" includeIn="normalState" />
+        <s:Button id="leftArrowButton" click="scrollBy(-1)" visible="true" left="5" top="160" mouseEnabled="true" buttonMode="true" includeIn="normalState" enabled="false" />
+        <s:Button id="rightArrowButton" click="scrollBy(1)" visible="true" right="5" top="163" mouseEnabled="true" buttonMode="true" includeIn="normalState" />
     </s:Group>
 </s:Skin>

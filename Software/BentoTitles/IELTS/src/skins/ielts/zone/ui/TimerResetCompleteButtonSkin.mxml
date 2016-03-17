@@ -28,7 +28,7 @@
  @playerversion AIR 1.5
  @productversion Flex 4
 -->
-<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
                    xmlns:s="library://ns.adobe.com/flex/spark"
                    minWidth="21" minHeight="21"
                    alpha.disabled="0.5">
@@ -38,7 +38,7 @@
         /**
          * @copy spark.skins.spark.ApplicationSkin#hostComponent
          */
-        [HostComponent("spark.components.Button")]
+        [HostComponent("com.clarityenglish.bento.view.timer.TimerButton")]
         ]]>
     </fx:Metadata>
 
@@ -57,7 +57,7 @@
     <s:Group top="0" bottom="0" left="0" right="0" >
         <s:Rect top="0" bottom="0" left="0" right="0" filters="{[dropShadowFilter]}">
             <s:fill>
-                <s:SolidColor color="#A93087" color.down="#4F173F" color.over="#4F173F"/>
+                <s:SolidColor color="{hostComponent.buttonColor}" color.down="{hostComponent.buttonDownOverColor}" color.over="{hostComponent.buttonDownOverColor}"/>
             </s:fill>
         </s:Rect>
 
@@ -91,4 +91,4 @@ C1.78467 6.04883 0 9.78418 0 13.8145 0 21.1611 5.97852 27.1367 13.3252 27.1367 2
         </s:VGroup>
     </s:Group>
 
-</s:SparkButtonSkin>
+</s:Skin>

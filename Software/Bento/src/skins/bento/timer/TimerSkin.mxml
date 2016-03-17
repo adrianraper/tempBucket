@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
-        xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:assets="skins.assets.*" xmlns:tlfcomponents="com.clarityenglish.textLayout.components.*">
+        xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:assets="skins.assets.*" xmlns:ui="com.clarityenglish.bento.view.timer.*">
 
     <fx:Metadata>
         [HostComponent("com.clarityenglish.bento.view.timer.TimerComponent")]
@@ -70,20 +70,20 @@
             </s:fill>
         </s:Rect>
         <s:HGroup percentWidth="{hostComponent.isTimerAutoControl? 100 : 87}" height="100%" gap="0" horizontalAlign="center" verticalAlign="middle">
-            <s:Group id="timerSessionGroup" width="82%" height="100%">
+            <s:Group id="timerSessionGroup" width="78%" height="100%">
                 <!--Fake HSlider-->
-                <s:Group width="{hostComponent.timerWidth}" height="{hostComponent.timerHeight}" verticalCenter="10" horizontalCenter="0" excludeFrom="startState">
-                    <s:Rect width="100%" height="100%" radiusX="6" radiusY="6">
+                <s:Group width="{hostComponent.timerWidth}" height="{hostComponent.timerHeight}" verticalCenter="{hostComponent.timerSectionLabels.length >0 ? 10 : 4}" horizontalCenter="0" excludeFrom="startState">
+                    <s:Rect width="100%" height="100%" radiusX="4" radiusY="4">
                         <s:fill>
                             <s:SolidColor color="#DDDDDC" />
                         </s:fill>
                     </s:Rect>
-                    <s:Rect width="98.5%" height="70%" verticalCenter="0" horizontalCenter="0" radiusX="6" radiusY="6">
+                    <s:Rect left="4" right="4" top="4" bottom="4" verticalCenter="0" horizontalCenter="0" radiusX="4" radiusY="4">
                         <s:fill>
                             <s:SolidColor color="#FFFFFF" />
                         </s:fill>
                     </s:Rect>
-                    <s:HGroup width="{hostComponent.sliderWidth}" height="{hostComponent.sliderHeight}" verticalCenter="0" horizontalCenter="0" gap="0">
+                    <s:HGroup width="{hostComponent.sliderWidth + 4}" height="{hostComponent.sliderHeight}" verticalCenter="0" horizontalCenter="0" gap="0">
                         <s:Rect id="planningBar" height="100%" percentWidth="{hostComponent.firstRectPercentWidth}" topLeftRadiusX="4" topLeftRadiusY="4" bottomLeftRadiusX="4" bottomLeftRadiusY="4">
                             <s:fill>
                                 <s:SolidColor color="{hostComponent.trackColor}" />
@@ -104,20 +104,20 @@
                     </s:HGroup>
                 </s:Group>
                 <!--Real HSlider-->
-                <s:Group width="{hostComponent.timerWidth}" height="{hostComponent.timerHeight}" verticalCenter="10" horizontalCenter="0" includeIn="startState">
-                    <s:Rect width="100%" height="100%" radiusX="5" radiusY="5">
+                <s:Group width="{hostComponent.timerWidth}" height="{hostComponent.timerHeight}" verticalCenter="{hostComponent.timerSectionLabels.length >0 ? 10 : 4}" horizontalCenter="0" includeIn="startState">
+                    <s:Rect width="100%" height="100%" radiusX="4" radiusY="4">
                         <s:fill>
                             <s:SolidColor color="#222222" />
                         </s:fill>
                     </s:Rect>
                     <assets:sideindicator left="10" verticalCenter="0" visible="{!hostComponent.isTimeFixed}" />
                     <assets:sideindicator right="10" verticalCenter="0" visible="{!hostComponent.isTimeFixed}" />
-                    <mx:HSlider id="timerSlider" width="{hostComponent.timerWidth + 10}" height="{hostComponent.timerHeight}" verticalCenter="0" horizontalCenter="0" thumbCount="2" snapInterval="1" minimum="0" showDataTip="false" liveDragging="true" change="onSliderChange(event)" dataTipStyleName="dataTipStyle"
+                    <mx:HSlider id="timerSlider" width="{hostComponent.timerWidth + 18}" height="{hostComponent.timerHeight}" verticalCenter="0" horizontalCenter="0" thumbCount="2" snapInterval="1" minimum="0" showDataTip="false" liveDragging="true" change="onSliderChange(event)" dataTipStyleName="dataTipStyle"
                                 trackSkin="skins.bento.timer.HSliderTrackSkin"
                                 trackHighlightSkin="skins.bento.timer.HSliderTrackHighlightSkin" showTrackHighlight="true"
                                 thumbSkin="skins.bento.timer.HSliderThumbSkin" enabled="{!hostComponent.isTimeFixed}"
                                 visible="{hostComponent.timerTotalTime.length > 1}"/>
-                    <s:Rect left="10" right="10" height="{hostComponent.sliderHeight}" verticalCenter="0" horizontalCenter="0" radiusX="4" radiusY="4" visible="{hostComponent.timerTotalTime.length == 1}">
+                    <s:Rect left="6" right="6" height="{hostComponent.sliderHeight}" verticalCenter="0" horizontalCenter="0" radiusX="4" radiusY="4" visible="{hostComponent.timerTotalTime.length == 1}">
                         <s:fill>
                             <s:SolidColor color="{hostComponent.trackColor}" />
                         </s:fill>
@@ -130,7 +130,7 @@
                     <s:Label id="lastTipLabel" color="#333333" text="{hostComponent.timerSectionLabels[2] + ' ' + timeConvert(timerSlider.maximum - timerSlider.values[1])}" fontSize="{hostComponent.textSize - 7}"  visible="{hostComponent.timerTotalTime.length > 2}" />
                 </s:Group>
                 <!--Progress Bar-->
-                <s:Group id="progressBarGroup" width="{hostComponent.sliderWidth}" height="{hostComponent.sliderHeight}" horizontalCenter="0" verticalCenter="10" excludeFrom="startState">
+                <s:Group id="progressBarGroup" width="{hostComponent.sliderWidth + 4}" height="{hostComponent.sliderHeight}" horizontalCenter="0" verticalCenter="{hostComponent.timerSectionLabels.length >0 ? 10 : 4}" excludeFrom="startState">
                     <s:Rect id="progressBar" height="{hostComponent.sliderHeight * 0.4}" width="100%" horizontalCenter="0" verticalCenter="0">
                         <s:fill>
                             <s:LinearGradient>
@@ -164,7 +164,7 @@
                 </s:Group>
             </s:Group>
 
-            <s:Group width="18%" height="100%">
+            <s:Group width="20%" height="100%">
                 <s:Group left="0" width="90%" height="100%">
                     <s:HGroup width="100%" height="100%" gap="{hostComponent.isTimeFixed? 3 : 6}" horizontalAlign="center" verticalAlign="middle" verticalCenter="{hostComponent.sliderHeight * -1}" includeIn="startState">
                         <s:Rect percentWidth="{hostComponent.isTimeFixed? 12 : 16}" height="1">
@@ -179,7 +179,7 @@
                             </s:fill>
                         </s:Rect>
                     </s:HGroup>
-                    <s:Group width="100%" verticalCenter="10"  horizontalCenter="0" includeIn="startState">
+                    <s:Group width="100%" verticalCenter="{hostComponent.timerSectionLabels.length >0 ? 10 : 7}"  horizontalCenter="0" includeIn="startState">
                         <s:HGroup horizontalCenter="0" horizontalAlign="center" verticalAlign="middle" visible="{!hostComponent.isTimeFixed}" includeInLayout="{!hostComponent.isTimeFixed}">
                             <s:TextInput id="hoursTextInput" width="38" height="40" text="{hostComponent.hoursText}" textAlign="center" color="0xFFFFFF" fontSize="{hostComponent.textSize}" contentBackgroundColor="#0A789D" focusAlpha="0" softKeyboardType="number" restrict="0-9" />
                             <s:Label text=":" />
@@ -188,30 +188,30 @@
                             <s:Label id="secondsTextLabel" text="00" width="28" height="40" verticalAlign="middle" color="0x333333" fontSize="{hostComponent.textSize}" />
                             <!--s:TextInput id="secondsTextInput" width="38" height="40" text="00" textAlign="center" color="0xFFFFFF" fontSize="20" contentBackgroundColor="#0A789D" focusAlpha="0" softKeyboardType="number" restrict="0-9" editable="false" /-->
                         </s:HGroup>
-                        <s:Label id="staticTimeLabel" text="{hostComponent.totalTimeLabelText}" horizontalCenter="0" verticalCenter="0" color="#ED1F24" fontSize="{hostComponent.textSize}" visible="{hostComponent.isTimeFixed}" includeInLayout="{hostComponent.isTimeFixed}" />
+                        <s:Label id="staticTimeLabel" text="{hostComponent.totalTimeLabelText}" horizontalCenter="0" verticalCenter="0" color="{hostComponent.timeTextColor}" fontSize="{hostComponent.textSize}" visible="{hostComponent.isTimeFixed}" includeInLayout="{hostComponent.isTimeFixed}" />
                     </s:Group>
 
-                    <s:Label id="totalTimeLabel" verticalCenter="10" horizontalCenter="0" color="#ED1F24" text="{hostComponent.totalTimeLabelText}" fontSize="{hostComponent.textSize}" excludeFrom="startState" />
+                    <s:Label id="totalTimeLabel" verticalCenter="{hostComponent.timerSectionLabels.length >0 ? 10 : 7}" horizontalCenter="0" color="{hostComponent.timeTextColor}" text="{hostComponent.totalTimeLabelText}" fontSize="{hostComponent.textSize}" excludeFrom="startState" />
                 </s:Group>
             </s:Group>
         </s:HGroup>
 
-        <s:Group width="13%" height="100%" right="0" visible="{!hostComponent.isTimerAutoControl}" includeInLayout="{!hostComponent.isTimerAutoControl}">
+        <s:Group width="15%" height="100%" right="0"  visible="{!hostComponent.isTimerAutoControl}" includeInLayout="{!hostComponent.isTimerAutoControl}">
             <s:HGroup width="100%" height="100%" gap="0" verticalAlign="middle" includeIn="startState">
-                <s:Button id="startButton" percentWidth="{hostComponent.isTimeFixed? 100 : 50}" height="100%" color="0x333333" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="Start" enabled="true" />
-                <s:Button id="resetButton" width="50%" height="100%" color="0x333333" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="Reset" visible="{!hostComponent.isTimeFixed}" includeInLayout="{!hostComponent.isTimeFixed}" />
+                <ui:TimerButton id="startButton" percentWidth="{hostComponent.isTimeFixed? 100 : 50}" height="100%" color="0x333333" buttonColor="{hostComponent.buttonColor}" buttonDownOverColor="{hostComponent.buttonDownOverColor}" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="Start" enabled="true" />
+                <ui:TimerButton id="resetButton" width="50%" height="100%" color="0x333333" buttonColor="{hostComponent.buttonColor}" buttonDownOverColor="{hostComponent.buttonDownOverColor}" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="Reset" visible="{!hostComponent.isTimeFixed}" includeInLayout="{!hostComponent.isTimeFixed}" />
             </s:HGroup>
             <s:HGroup width="100%" height="100%" gap="0" verticalAlign="middle" includeIn="pauseState, resumeState">
                 <s:Group width="50%" height="100%">
-                    <s:Button id="pauseButton" width="100%" height="100%" color="0x333333" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="Pause" includeIn="pauseState"/>
-                    <s:Button id="resumeButton" width="100%" height="100%" color="0x333333" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="Resume" includeIn="resumeState"/>
+                    <ui:TimerButton id="pauseButton" width="100%" height="100%" color="0x333333" buttonColor="{hostComponent.buttonColor}" buttonDownOverColor="{hostComponent.buttonDownOverColor}" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="Pause" includeIn="pauseState"/>
+                    <ui:TimerButton id="resumeButton" width="100%" height="100%" color="0x333333" buttonColor="{hostComponent.buttonColor}" buttonDownOverColor="{hostComponent.buttonDownOverColor}" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="Resume" includeIn="resumeState"/>
                 </s:Group>
-                <s:Button id="stopButton" width="50%" height="100%" color="0x333333" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="Stop" includeIn="pauseState, resumeState"/>
+                <ui:TimerButton id="stopButton" width="50%" height="100%" color="0x333333" buttonColor="{hostComponent.buttonColor}" buttonDownOverColor="{hostComponent.buttonDownOverColor}" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="Stop" includeIn="pauseState, resumeState"/>
             </s:HGroup>
         </s:Group>
 
-        <s:Group width="17%" height="100%" right="0" includeIn="completeState">
-            <s:Button id="resetCompleteButton" width="100%" height="100%" color="#333333" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="Reset" />
+        <s:Group width="15%" height="100%" right="0" includeIn="completeState">
+            <ui:TimerButton id="resetCompleteButton" width="100%" height="100%" color="#333333" buttonColor="{hostComponent.buttonColor}" buttonDownOverColor="{hostComponent.buttonDownOverColor}" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="Reset" />
         </s:Group>
     </s:Group>
     <!--tlfcomponents:AudioPlayer id="audioPlayer" visible="false" /-->

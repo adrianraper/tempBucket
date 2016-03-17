@@ -470,20 +470,28 @@ mx|ToolTip {
 	backgroundColor: #000000;
 }
 
+timer|TimerComponent timer|TimerButton#startButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.TimerStartButtonSkin");
+}
+
+timer|TimerComponent timer|TimerButton#pauseButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.TimerPauseButtonSkin");
+}
+
+timer|TimerComponent timer|TimerButton#stopButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.TimerStopButtonSkin");
+}
+
+timer|TimerComponent timer|TimerButton#resumeButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.TimerResumeButtonSkin");
+}
+
+timer|TimerComponent timer|TimerButton#resetCompleteButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.TimerResetCompleteButtonSkin");
+}
+
 speakingtest|SpeakingTestView {
 	skinClass: ClassReference("skins.ielts.zone.speakingtest.SpeakingTestSkin");
-}
-
-timer|TimerComponent {
-	skinClass: ClassReference("skins.bento.timer.TimerSkin");
-}
-
-timer|TimerComponent s|Button#resetCompleteButton{
-	skinClass: ClassReference("skins.ielts.zone.speakingtest.ResetCompleteButtonSkin");
-}
-
-timer|TimerComponent s|Button {
-	skinClass: ClassReference("skins.bento.timer.TimerButtonSkin");
 }
 
 speakingtest|SpeakingTestView recorder|RecorderView {
