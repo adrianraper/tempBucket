@@ -110,8 +110,31 @@
                             <s:SolidColor color="#222222" />
                         </s:fill>
                     </s:Rect>
-                    <assets:sideindicator left="10" verticalCenter="0" visible="{!hostComponent.isTimeFixed}" />
-                    <assets:sideindicator right="10" verticalCenter="0" visible="{!hostComponent.isTimeFixed}" />
+                    <!--Timer slider side indicator-->
+                    <s:Group width="100%" height="100%">
+                        <s:Rect height="{(hostComponent.timerHeight - hostComponent.sliderHeight) * 0.2}" width="1" left="5" top="0">
+                            <s:fill>
+                                <s:SolidColor color="#FFFFFF" />
+                            </s:fill>
+                        </s:Rect>
+                        <s:Rect height="{(hostComponent.timerHeight - hostComponent.sliderHeight) * 0.2}" width="1" left="5" bottom="0">
+                            <s:fill>
+                                <s:SolidColor color="#FFFFFF" />
+                            </s:fill>
+                        </s:Rect>
+                        <s:Rect height="{(hostComponent.timerHeight - hostComponent.sliderHeight) * 0.2}" width="1" right="5" top="0">
+                            <s:fill>
+                                <s:SolidColor color="#FFFFFF" />
+                            </s:fill>
+                        </s:Rect>
+                        <s:Rect height="{(hostComponent.timerHeight - hostComponent.sliderHeight) * 0.2}" width="1" right="5" bottom="0">
+                            <s:fill>
+                                <s:SolidColor color="#FFFFFF" />
+                            </s:fill>
+                        </s:Rect>
+                    </s:Group>
+                    <!--assets:sideindicator left="5" verticalCenter="0" />
+                    <assets:sideindicator right="5" verticalCenter="0" /-->
                     <mx:HSlider id="timerSlider" width="{hostComponent.timerWidth + 18}" height="{hostComponent.timerHeight}" verticalCenter="0" horizontalCenter="0" thumbCount="2" snapInterval="1" minimum="0" showDataTip="false" liveDragging="true" change="onSliderChange(event)" dataTipStyleName="dataTipStyle"
                                 trackSkin="skins.bento.timer.HSliderTrackSkin"
                                 trackHighlightSkin="skins.bento.timer.HSliderTrackHighlightSkin" showTrackHighlight="true"
@@ -125,9 +148,9 @@
                 </s:Group>
                 <!--Data Tip-->
                 <s:Group id="tipLabelGroup" width="{hostComponent.sliderWidth}" horizontalCenter="0" verticalCenter="{hostComponent.sliderHeight * -1}">
-                    <s:Label id="firstTipLabel" color="#333333" text="{hostComponent.timerSectionLabels[0] + ' ' + timeConvert(timerSlider.values[0])}" fontSize="{hostComponent.textSize - 7}" visible="{hostComponent.timerTotalTime.length > 1}" />
-                    <s:Label id="midTipLabel" color="#333333" text="{hostComponent.timerSectionLabels[1] + ' ' + timeConvert(timerSlider.values[1] - timerSlider.values[0])}" fontSize="{hostComponent.textSize - 7}"  visible="{hostComponent.timerTotalTime.length > 1}" />
-                    <s:Label id="lastTipLabel" color="#333333" text="{hostComponent.timerSectionLabels[2] + ' ' + timeConvert(timerSlider.maximum - timerSlider.values[1])}" fontSize="{hostComponent.textSize - 7}"  visible="{hostComponent.timerTotalTime.length > 2}" />
+                    <s:Label id="firstTipLabel" color="#333333" text="{hostComponent.firstTipString.length > 0 ? hostComponent.firstTipString :  hostComponent.timerSectionLabels[0] + ' ' + timeConvert(timerSlider.values[0])}" fontSize="{hostComponent.textSize - 7}" visible="{hostComponent.timerTotalTime.length > 1}" />
+                    <s:Label id="midTipLabel" color="#333333" text="{hostComponent.midTipString.length > 0 ? hostComponent.midTipString : hostComponent.timerSectionLabels[1] + ' ' + timeConvert(timerSlider.values[1] - timerSlider.values[0])}" fontSize="{hostComponent.textSize - 7}"  visible="{hostComponent.timerTotalTime.length > 1}" />
+                    <s:Label id="lastTipLabel" color="#333333" text="{hostComponent.lastTipString.length > 0 ? hostComponent.lastTipString : hostComponent.timerSectionLabels[2] + ' ' + timeConvert(timerSlider.maximum - timerSlider.values[1])}" fontSize="{hostComponent.textSize - 7}"  visible="{hostComponent.timerTotalTime.length > 2}" />
                 </s:Group>
                 <!--Progress Bar-->
                 <s:Group id="progressBarGroup" width="{hostComponent.sliderWidth + 4}" height="{hostComponent.sliderHeight}" horizontalCenter="0" verticalCenter="{hostComponent.timerSectionLabels.length >0 ? 10 : 4}" excludeFrom="startState">
@@ -211,7 +234,7 @@
         </s:Group>
 
         <s:Group width="15%" height="100%" right="0" includeIn="completeState">
-            <ui:TimerButton id="resetCompleteButton" width="100%" height="100%" color="#333333" buttonColor="{hostComponent.buttonColor}" buttonDownOverColor="{hostComponent.buttonDownOverColor}" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="Reset" />
+            <ui:TimerButton id="resetCompleteButton" width="100%" height="100%" visible="{!hostComponent.isTimerAutoControl}" color="#333333" buttonColor="{hostComponent.buttonColor}" buttonDownOverColor="{hostComponent.buttonDownOverColor}" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="Reset" />
         </s:Group>
     </s:Group>
     <!--tlfcomponents:AudioPlayer id="audioPlayer" visible="false" /-->

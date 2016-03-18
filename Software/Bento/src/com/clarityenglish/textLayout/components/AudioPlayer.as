@@ -57,7 +57,6 @@ import com.clarityenglish.textLayout.events.AudioPlayerEvent;
 		[Bindable]
 		public var playComponentEnable:Boolean;
 
-		[Bindable]
 		public static var isStopAllAudio:Boolean;
 		
 		/**
@@ -105,6 +104,8 @@ import com.clarityenglish.textLayout.events.AudioPlayerEvent;
 
 			scrubBarTimer = new Timer(500, 0);
 			scrubBarTimer.addEventListener(TimerEvent.TIMER, onScrubBarTimer);
+
+			isStopAllAudio = false;
 		}
 		
 		protected function onAddedToStage(event:Event):void {
@@ -306,7 +307,6 @@ import com.clarityenglish.textLayout.events.AudioPlayerEvent;
 			// Change the status and invalidate the skin state
 			soundStatus = (played) ? PLAYED : STOPPED;
 			invalidateSkinState();
-
 
 			dispatchEvent(new AudioCompleteEvent(AudioCompleteEvent.Audio_Complete, isStopAllAudio));
 			isStopAllAudio = false;

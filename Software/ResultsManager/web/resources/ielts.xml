@@ -19,9 +19,9 @@
 			<lit name="errorNoSuchGroup" code="210">No such group exists. Please contact your administrator.</lit>
 			<lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorGetInstanceId" code="212">Can't get the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
-			<lit name="errorFailedInstanceCheck" code="213">Someone else has logged in with your details. Please try again. ({instanceID})</lit>
-			<lit name="errorInvalidLoginOption" code="214">This account has not set the login options ({loginOption})</lit>
-			<lit name="errorLoginKeyEmpty" code="215">You must type your login details. ({loginOption})</lit>
+			<lit name="errorFailedInstanceCheck" code="213">Someone else has signed in with your details. Please try again. ({instanceID})</lit>
+			<lit name="errorInvalidLoginOption" code="214">This account has not set the sign in options ({loginOption})</lit>
+			<lit name="errorLoginKeyEmpty" code="215">You must type your details. ({loginOption})</lit>
 			<lit name="errorTitleBlockedByHiddenContent" code="216">Your group has been blocked from using this program. Please contact your teacher or administrator for help.</lit>
 			<lit name="errorDuplicateUser" code="217">Sorry, these details have already been used, please try again. (login option {loginOption})</lit>		
 			<lit name="errorLicenceHasntStartedYet" code="300">Your account hasn't started yet. Please contact your administrator.</lit>
@@ -92,7 +92,7 @@
 			<lit name="IDLoginDetail">ID</lit>
 			<lit name="emailLoginDetail">email</lit>
 			<lit name="yourName">Your name:</lit>
-			<lit name="loginID">Login ID:</lit>
+			<lit name="loginID">Sign in ID:</lit>
 			<lit name="yourID">Your ID:</lit>
 			<lit name="yourEmail">Your email:</lit>
 			<lit name="longRateButton">Rate and review this app</lit>
@@ -212,8 +212,22 @@
 			<lit name="worldwide">Worldwide</lit>  
 			<lit name="compareBasedOnUsers">based on {count} {singularOrPlural}</lit>  
 			<lit name="singularUser">user</lit>  
-			<lit name="pluralUsers">users</lit>  
-			
+			<lit name="pluralUsers">users</lit>
+            <!-- Clarity recorder captions -->
+            <lit name="recorderRecordToolTip"></lit>
+            <lit name="recorderPlayToolTip"></lit>
+            <lit name="recorderStopToolTip"></lit>
+            <lit name="recorderPauseToolTip"></lit>
+            <lit name="recorderSaveToolTip"></lit>
+			<!--Test practice-->
+			<lit name="planningLabel">You have one minute to prepare your answer.</lit>
+            <lit name="recordingLabel">Now give your talk.</lit>
+            <lit name="completeLabel">This Speaking Part 2 practice test is over.</lit>
+			<lit name="speakingStartButton">Click to start.</lit>
+			<lit name="speakingBackButton">Click to finish.</lit>
+			<lit name="timerFirstTipString">Planning (1 minute)</lit>
+			<lit name="timerMidTipString">Speaking (1-2 minutes)</lit>
+
 			<lit name="currentPwdLabel">Current password:</lit>
 			<lit name="newPwdLabel">New password:</lit>
 			<lit name="confirmPwdLabel">Confirm password:</lit>
@@ -371,7 +385,7 @@
 			<lit name="loseAnswerWarning2">(You will lose your work in this exercise.)</lit>
 			<lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
 			<lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>
-			<lit name="footerLabel">Data © The British Council 2006-2014. Software © Clarity Language Consultants Ltd, 2014. All rights reserved.</lit>
+			<lit name="footerLabel">Data © The British Council 2006-2016. Software © Clarity Language Consultants Ltd, 2016. All rights reserved.</lit>
 			<lit name="thankYouLabel">Thank you for using Road to IELTS.</lit>
 			<lit name="weWouldLabel">We would love to know what you think.</lit>
 			<lit name="creditCaptionLabel">Credits and acknowledgements</lit>

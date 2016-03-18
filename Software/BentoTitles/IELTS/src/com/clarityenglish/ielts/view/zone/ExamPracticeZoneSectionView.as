@@ -128,6 +128,10 @@ import spark.components.Label;
 			if (writingTimer) {
 				writingTimer.stopTimer();
 			}
+
+			if (speakingTestView){
+				dispatchEvent(new Event("exitTestEvent"));
+			}
 		}
 		
 		protected override function commitProperties():void {

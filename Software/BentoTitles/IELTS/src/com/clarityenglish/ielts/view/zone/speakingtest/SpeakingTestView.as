@@ -26,7 +26,7 @@ import spark.components.List;
 public class SpeakingTestView extends BentoView{
 
     [SkinPart]
-    public var planningGroup:Group;
+    public var actionTextGroup:Group;
 
     [SkinPart]
     public var recorderGroup:Group;
@@ -91,7 +91,8 @@ public class SpeakingTestView extends BentoView{
             case timer:
                 timer.addEventListener("TimerFirstSectionCompleteEvent", onPlanningComplete);
                 timer.addEventListener("TimerCompleteEvent", onTimerComplete);
-                timer.addEventListener("TimerRestartEvent", onTimerRestart);
+                //timer.addEventListener("TimerRestartEvent", onTimerRestart);
+                timer.addEventListener("LastAudioCompleteEvent", onLastAudioComplete);
                 break;
             case planningLabel:
                 planningLabel.text = copyProvider.getCopyForId("planningLabel");
@@ -120,8 +121,9 @@ public class SpeakingTestView extends BentoView{
         callLater(function () {
             testXML = list.dataProvider.getItemAt(selectedPageNumber) as XML;
             timer.startButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
-            /*planningGroup.visible = true;
+            /*actionTextGroup.visible = true;
              recorderGroup.visible = false;*/
+            actionTextGroup.visible = true;
             planningLabel.visible = true;
             recordingLabel.visible = false;
             completeLabel.visible = false;
@@ -130,7 +132,7 @@ public class SpeakingTestView extends BentoView{
 
     protected function onPlanningComplete(event:Event):void {
         isPlanningComplete = true;
-        /*planningGroup.visible = false;
+        /*actionTextGroup.visible = false;
         recorderGroup.visible = true;*/
         planningLabel.visible = false;
         recordingLabel.visible = true;
@@ -143,8 +145,6 @@ public class SpeakingTestView extends BentoView{
     }
 
     protected function onTimerComplete(event:Event):void {
-        timer.totalTimeLabel.visible = false;
-
         planningLabel.visible = false;
         recordingLabel.visible = false;
         completeLabel.visible = true;
@@ -158,19 +158,21 @@ public class SpeakingTestView extends BentoView{
         });*/
     }
 
-    protected function onTimerRestart(event:Event):void {
+    protected function onLastAudioComplete(event:Event):void {
+        dispatchEvent(new Event("flipToReflectionEvent"));
+        actionTextGroup.visible = false;
+    }
+
+    /*protected function onTimerRestart(event:Event):void {
         isPlanningComplete = false;
-        /*planningGroup.visible = true;
-        recorderGroup.visible = false;*/
-        planningLabel.visible = true;
-        recordingLabel.visible = false;
+        actionTextGroup.visible = true;
+        recorderGroup.visible = false;
         completeLabel.visible = false;
-        timer.totalTimeLabel.visible = true;
 
         // Stop the recorder and reset recorded audio
-        /*recorderView.recordWaveformView.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
-        recorderView.recordWaveformView.newButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));*/
-    }
+        recorderView.recordWaveformView.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+        recorderView.recordWaveformView.newButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+    }*/
 
     protected function onBackButtonClick(event:Event):void {
         setState('normalState');
@@ -186,8 +188,8 @@ public class SpeakingTestView extends BentoView{
     private function restTestState():void {
         AudioPlayer.stopAllAudio();
 
-        if (timer && timer.stopButton)
-            timer.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+        if (timer)
+            timer.stopTimer();
 
         if (isPlanningComplete) {
             isPlanningComplete = false;

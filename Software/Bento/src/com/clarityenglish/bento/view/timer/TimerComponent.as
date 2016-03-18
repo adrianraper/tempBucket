@@ -143,6 +143,15 @@ import spark.primitives.Rect;
         public var minsText:String;
 
         [Bindable]
+        public var firstTipString:String;
+
+        [Bindable]
+        public var midTipString:String;
+
+        [Bindable]
+        public var lastTipString:String;
+
+        [Bindable]
         public var textSize:Number = 20;
 
         [Bindable]
@@ -174,7 +183,7 @@ import spark.primitives.Rect;
 
         private var timer:Timer;
         private var defaultTotalTime:Number;
-        private var valuesArray:Array = [];
+        private var ratios:Array = [];
         private var _currentState:String;
         private var _totalTime:Number;
         private var _isTotalTimeChange:Boolean;
@@ -311,16 +320,22 @@ import spark.primitives.Rect;
 
         public function initializeValue(value:Number):void {
             timerSlider.maximum = value / 60;
-            for (var i:uint = 0; i < valuesArray.length; i++) {
-                timerSlider.values[i] = timerSlider.maximum * valuesArray[i];
+            for (var i:uint = 0; i < ratios.length; i++) {
+                timerSlider.values[i] = timerSlider.maximum * ratios[i];
             }
 
-            firstTipLabel.text = timerSectionLabels[0] + ' ' + timeConvert(timerSlider.values[0]);
-            midTipLabel.text = timerSectionLabels[1] + ' ' + timeConvert(timerSlider.values[1] - timerSlider.values[0]);
-            lastTipLabel.text = timerSectionLabels[2] + ' ' + timeConvert(timerSlider.values[2] - timerSlider.values[1]);
+            firstTipLabel.text = firstTipString ? firstTipString : timerSectionLabels[0] + ' ' + timeConvert(timerSlider.values[0]);
+            midTipLabel.text = midTipString ? midTipString : timerSectionLabels[1] + ' ' + timeConvert(timerSlider.values[1] - timerSlider.values[0]);
+            lastTipLabel.text = lastTipString ? lastTipString : timerSectionLabels[2] + ' ' + timeConvert(timerSlider.values[2] - timerSlider.values[1]);
 
-            midTipLabel.left = 100;
-            lastTipLabel.left = sliderWidth - 100;
+            midTipLabel.left = sliderWidth * ratios[0];
+            // If the last tip is too long it will exceed the timer slider, however I fail to get the specific length of the last tool tip (lastTipLabel.width = null).
+            // So I use the following formula to get the estimated length of last tool tip.
+            if (lastTipLabel.text.length * lastTipLabel.getStyle('fontSize') * 0.5 > sliderWidth - sliderWidth * ratios[1]) {
+                lastTipLabel.right = 0
+            } else {
+                lastTipLabel.left = sliderWidth * ratios[1];
+            }
         }
 
         protected override function commitProperties():void {
@@ -343,7 +358,7 @@ import spark.primitives.Rect;
                 time = 0;
                 for (i = 0; i < timerTotalTime.length; i++) {
                     time += timerTotalTime[i];
-                    valuesArray[i] = time / totalTime;
+                    ratios[i] = time / totalTime;
                 }
 
                 hoursText = formatTime(Math.floor(totalTime / 3600));
@@ -456,7 +471,6 @@ import spark.primitives.Rect;
         }
 
         protected function onTimerUpdate(event:TimerEvent):void {
-            trace("timer currentCount: "+timer.currentCount);
             // Shrink the width of specific cover bar to make the progress bar appear.
             var unit:Number = sliderWidth / totalTime;
             if (timerTotalTime.length == 1) {
@@ -506,8 +520,13 @@ import spark.primitives.Rect;
             setState("completeState");
 
             audioPlayer = new AudioPlayer();
+            audioPlayer.addEventListener(AudioCompleteEvent.Audio_Complete, onLastAudioComplete);
             audioPlayer.autoplay = audioPlayer.playComponentEnable = true;
-            audioPlayer.src = contentPath + "/media/beep.mp3";
+            if (audios[timerTotalTime.length - 1]) {
+                audioPlayer.src = contentPath + "/" + StringUtil.trim(audios[audios.length - 1]);
+            } else {
+                audioPlayer.src = contentPath + "/media/beep.mp3";
+            }
             this.stage.addChild(audioPlayer);
 
             if(isTimerAutoControl)
@@ -518,7 +537,7 @@ import spark.primitives.Rect;
             if (isTimerAutoControl) {
                 if (audios.length!= 0 && audios[0] != "") {
                     audioPlayer = new AudioPlayer();
-                    audioPlayer.addEventListener(AudioCompleteEvent.Audio_Complete, onAudioComplete);
+                    audioPlayer.addEventListener(AudioCompleteEvent.Audio_Complete, onFirstAudioComplete);
                     audioPlayer.autoplay = audioPlayer.playComponentEnable = true;
                     audioPlayer.src = contentPath + "/" + StringUtil.trim(audios[0]);
                     this.stage.addChild(audioPlayer);
@@ -532,8 +551,8 @@ import spark.primitives.Rect;
             }
         }
 
-        protected function onAudioComplete(event:AudioCompleteEvent):void {
-            audioPlayer.removeEventListener(AudioCompleteEvent.Audio_Complete, onAudioComplete);
+        protected function onFirstAudioComplete(event:AudioCompleteEvent):void {
+            audioPlayer.removeEventListener(AudioCompleteEvent.Audio_Complete, onFirstAudioComplete);
 
             if (!event.isStopAllAudio) {
                 if (_currentState != "completeState") {
@@ -549,6 +568,15 @@ import spark.primitives.Rect;
                 dispatchEvent(new Event("TimerFirstSectionCompleteEvent"));
             }
         }
+
+        protected function onLastAudioComplete(event:AudioCompleteEvent):void {
+            audioPlayer.removeEventListener(AudioCompleteEvent.Audio_Complete, onLastAudioComplete);
+
+            if (!event.isStopAllAudio) {
+                dispatchEvent(new Event("LastAudioCompleteEvent"));
+            }
+        }
+
 
         protected function startTimer(event:Event = null):void {
             initializeTimer();
@@ -650,13 +678,13 @@ import spark.primitives.Rect;
 
         private function resetSlider():void {
             if (timerTotalTime.length == 1) {
-                firstProgressCoverRect.width = sliderWidth;
+                firstProgressCoverRect.width = (sliderWidth + 4);
                 midProgressCoverRect.width = lastProgressCoverRect.width = 0;
             } else {
-                firstProgressCoverRect.width = sliderWidth * timerSlider.values[0] / timerSlider.maximum;
-                midProgressCoverRect.width = sliderWidth * (timerSlider.values[1] - timerSlider.values[0]) / timerSlider.maximum;
+                firstProgressCoverRect.width = (sliderWidth + 4) * timerSlider.values[0] / timerSlider.maximum;
+                midProgressCoverRect.width = (sliderWidth + 4) * (timerSlider.values[1] - timerSlider.values[0]) / timerSlider.maximum;
                 if (timerTotalTime.length > 2)
-                    lastProgressCoverRect.width = sliderWidth * (timerSlider.maximum - timerSlider.values[1]) / timerSlider.maximum;
+                    lastProgressCoverRect.width = (sliderWidth + 4) * (timerSlider.maximum - timerSlider.values[1]) / timerSlider.maximum;
             }
         }
     }
