@@ -68,7 +68,8 @@ package com.clarityenglish.bento.view.base {
 		 */
 		public var config:Config;
 		
-		protected var copyProvider:CopyProvider;
+		[Bindable]
+		public var copyProvider:CopyProvider;
 		
 		public function BentoView() {
 			super();

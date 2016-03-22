@@ -13,7 +13,8 @@ package com.clarityenglish.ielts.view.account {
 	import flashx.textLayout.elements.TextFlow;
 	
 	import mx.collections.ArrayCollection;
-	import mx.controls.Alert;
+import mx.collections.ArrayList;
+import mx.controls.Alert;
 	import mx.controls.DateField;
 	import mx.controls.SWFLoader;
 	import mx.core.FlexGlobals;
@@ -26,21 +27,22 @@ package com.clarityenglish.ielts.view.account {
 	import spark.components.Button;
 	import spark.components.DropDownList;
 	import spark.components.Label;
-	import spark.components.NumericStepper;
+import spark.components.List;
+import spark.components.NumericStepper;
 	import spark.components.RichText;
 	import spark.components.TextInput;
 	import spark.utils.TextFlowUtil;
 	
 	public class AccountView extends BentoView {
 			
-		[SkinPart]
+		/*[SkinPart]
 		public var currentPassword:TextInput;
 		
 		[SkinPart]
 		public var newPassword:TextInput;
 		
 		[SkinPart]
-		public var confirmPassword:TextInput;
+		public var confirmPassword:TextInput;*/
 		
 		[SkinPart]
 		public var countdownLabel:Label;
@@ -60,8 +62,8 @@ package com.clarityenglish.ielts.view.account {
 		[SkinPart]
 		public var registerInfoButton:Button;
 		
-		[SkinPart]
-		public var IELTSApp1:SWFLoader;
+		/*[SkinPart]
+		public var IELTSApp1:SWFLoader;*/
 		
 		[SkinPart]
 		public var countdownDisplay:CountdownDisplay;
@@ -119,9 +121,12 @@ package com.clarityenglish.ielts.view.account {
 		
 		[SkinPart]
 		public var myProfileLabel:Label;
-		
+
 		[SkinPart]
-		public var IELTSAppsLabel:Label;
+		public var myToolsLabel:Label;
+
+		[SkinPart]
+		public var calculatorLabel:Label;
 		
 		[SkinPart]
 		public var registerInfoRichText:Label;
@@ -134,6 +139,12 @@ package com.clarityenglish.ielts.view.account {
 		
 		[SkinPart]
 		public var hourRichText:Label;
+
+		[SkinPart]
+		public var studyGuideList:List;
+
+		[SkinPart]
+		public var studyGuideLabel:Label;
 
 		public var updateUser:Signal = new Signal(Object);
 		public var register:Signal = new Signal();
@@ -251,7 +262,9 @@ package com.clarityenglish.ielts.view.account {
 			if (newPwdLabel) newPwdLabel.text = copyProvider.getCopyForId("newPwdLabel");
 			if (confirmPwdLabel) confirmPwdLabel.text = copyProvider.getCopyForId("confirmPwdLabel");
 			if (myProfileLabel) myProfileLabel.text = copyProvider.getCopyForId("myProfile");
-			if (IELTSAppsLabel) IELTSAppsLabel.text = copyProvider.getCopyForId("IELTSAppsLabel");
+			if (myToolsLabel) myToolsLabel.text = copyProvider.getCopyForId("myToolsLabel");
+			if (calculatorLabel) calculatorLabel.text = copyProvider.getCopyForId("calculatorLabel");
+			if (studyGuideLabel) studyGuideLabel.text = copyProvider.getCopyForId("studyGuideLabel");
 			
 			if (registerInfoRichText) {
 				var registerInfoString:String = this.copyProvider.getCopyForId("registerInfoButton");
@@ -280,6 +293,8 @@ package com.clarityenglish.ielts.view.account {
 				//mockTestRichText.textFlow = mockTestFlow;
 				mockTestRichText.text = mockTestString;
 			}
+
+			studyGuideList.dataProvider = new ArrayList(new Array(6));
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -292,9 +307,9 @@ package com.clarityenglish.ielts.view.account {
 				case examDateField:
 					instance.addEventListener(CalendarLayoutChangeEvent.CHANGE, onExamDateChange);
 					break;
-				case newPassword:
+				/*case newPassword:
 					instance.addEventListener(Event.CHANGE, onPasswordChange);
-					break;
+					break;*/
 				case examHours:
 				case examMinutes:
 					instance.addEventListener(Event.CHANGE, onExamTimeChange);
@@ -351,9 +366,9 @@ package com.clarityenglish.ielts.view.account {
 		 * The user simply changed the password field.
 		 * TODO. Check whether it is empty, in which case no longer isDirty 
 		 */
-		protected function onPasswordChange(eventObj:Event):void {
+		/*protected function onPasswordChange(eventObj:Event):void {
 			isDirty = true;
-		}
+		}*/
 		
 		/**
 		 * The user changed the exam date.  
@@ -412,7 +427,7 @@ package com.clarityenglish.ielts.view.account {
 				}
 				
 				// gh#163
-				isDirty = true;
+				//isDirty = true;
 			}
 			
 		}
@@ -424,25 +439,25 @@ package com.clarityenglish.ielts.view.account {
 		 */
 		protected function onUpdateButtonClick(event:MouseEvent):void {
 			// Any validation to do here?
-			if (newPassword && confirmPassword && (newPassword.text != confirmPassword.text)) {
+			/*if (newPassword && confirmPassword && (newPassword.text != confirmPassword.text)) {
 				//issue:#11
 				showUpdateError(copyProvider.getCopyForId("updateError"));
-			} else {
+			} else {*/
 				// Trigger the update command. Use an Event or a Signal?
 				// Do I really need to pass anything at all since the mediator can get it all anyway?
 				// Or I could use a form and pass that?
 				var updatedUserDetails:Object = new Object();
 				
-				if (currentPassword && currentPassword.text)
-					updatedUserDetails.currentPassword = currentPassword.text;
-				if (newPassword && newPassword.text)
-					updatedUserDetails.password = newPassword.text;
+				/*if (currentPassword && currentPassword.text)
+					updatedUserDetails.currentPassword = currentPassword.text;*/
+				/*if (newPassword && newPassword.text)
+					updatedUserDetails.password = newPassword.text;*/
 				if (user.examDate) {
 					updatedUserDetails.examDate = DateUtil.formatDate(user.examDate, "yyyy-MM-dd") + " " + examHours.value.toString() + ":" + examMinutes.value.toString();
 				}
 				
 				updateUser.dispatch(updatedUserDetails);
-			}
+			//}
 		}
 		
 		public function showUpdateError(msg:String = ""):void {

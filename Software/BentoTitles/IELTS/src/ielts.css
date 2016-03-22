@@ -10,6 +10,7 @@
 @namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 @namespace progressui "com.clarityenglish.bento.view.progress.ui.*";
 @namespace account "com.clarityenglish.ielts.view.account.*";
+@namespace accountui "com.clarityenglish.ielts.view.account.ui.*";
 @namespace support "com.clarityenglish.ielts.view.support.*";
 @namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace home "com.clarityenglish.ielts.view.home.*";
@@ -27,6 +28,7 @@
 @namespace video "com.clarityenglish.controls.video.*";
 @namespace candidates "com.clarityenglish.ielts.view.candidates.*";
 @namespace candidatesui "com.clarityenglish.ielts.view.candidates.ui.*";
+
 
 global {
 	/* This changes the modal popup mask properties */
@@ -355,6 +357,10 @@ progressui|CoverageGroupRenderer {
 /* Account view styles */
 account|AccountView {
 	skinClass: ClassReference("skins.ielts.AccountSkin");
+}
+
+accountui|StudyGuideButton {
+	skinClass: ClassReference("skins.ielts.account.StudyGuideButtonSkin");
 }
 
 account|AccountView #saveChangesButton {

@@ -1,4 +1,4 @@
-package com.clarityenglish
+﻿package com.clarityenglish
 {
 	/**
 	 * ...
@@ -125,7 +125,8 @@ package com.clarityenglish
 			if (paramObj['widgetdatawidth']>0 && paramObj['widgetdataheight']>0) {
 				this.widgetLayout(paramObj['widgetdatawidth'], paramObj['widgetdataheight']);
 			} else {
-				this.widgetLayout(this.stage.stageWidth, this.stage.stageHeight);
+				//this.widgetLayout(this.stage.stageWidth, this.stage.stageHeight);
+				this.widgetLayout(240, 300);
 			}
 			
 			// And we need to make the origin in the top left corner

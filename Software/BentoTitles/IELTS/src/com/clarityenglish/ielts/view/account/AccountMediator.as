@@ -72,7 +72,7 @@
 		public override function onRemove():void {
 			super.onRemove();
 			
-			view.updateUser.remove(onUpdateUser);
+			//view.updateUser.remove(onUpdateUser);
 			view.register.remove(onInfoRequested);
 			view.languageChange.remove(onLanguageChange);
 		}
@@ -108,19 +108,19 @@
 		 */
 		private function onUpdateUser(userDetails:Object):void {
 			// Validate the data that you can first
-			if (userDetails.currentPassword) {
+			/*if (userDetails.currentPassword) {
 				var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 				if (userDetails.currentPassword != loginProxy.user.password) {
 					view.showUpdateError("Your current password doesn't match, please try again.");
 					return;
 				}
-			}
+			}*/
 			if (userDetails.examDate) {
 				// It must be a valid date in the future
 			}
 
 			var passedDetails:Object = new Object();
-			passedDetails.password = userDetails.password;
+			//passedDetails.password = userDetails.password;
 			passedDetails.examDate = userDetails.examDate;
 			
 			// dispatch a notification, which will trigger the command
