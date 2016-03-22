@@ -30,14 +30,19 @@
 			embedAsCFF: true;
 			advancedAntiAliasing: true;
 		}
-		
+
+		@font-face {
+			src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
+			fontFamily: HelveticaMX;
+			fontStyle: normal;
+			fontWeight: bold;
+			embedAsCFF: false;
+			advancedAntiAliasing: true;
+		}
+
 		global {
 			fontFamily: Helvetica;
 			fontLookup: embeddedCFF;
-			fontAntiAliasType: advanced;
-			fontSharpness: 400;
-			fontThickness: -200;
-			focusThickness: 0;
 		}
 		
 		/* Make the web version use IconItemRenderer such that it looks the same as the mobile version */
@@ -61,7 +66,7 @@
 			import mx.events.FlexEvent;
 			
 			protected function onInitialize(event:FlexEvent):void {
-				versionNumber = "2.10.23";
+				versionNumber = "2.10.26";
 				
 				facade = IELTSApplicationFacade.getInstance();
 			}

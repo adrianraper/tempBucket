@@ -13,7 +13,8 @@ package com.clarityenglish.ielts.view.account {
 	import flashx.textLayout.elements.TextFlow;
 	
 	import mx.collections.ArrayCollection;
-	import mx.controls.Alert;
+import mx.collections.ArrayList;
+import mx.controls.Alert;
 	import mx.controls.DateField;
 	import mx.controls.SWFLoader;
 	import mx.core.FlexGlobals;
@@ -26,7 +27,8 @@ package com.clarityenglish.ielts.view.account {
 	import spark.components.Button;
 	import spark.components.DropDownList;
 	import spark.components.Label;
-	import spark.components.NumericStepper;
+import spark.components.List;
+import spark.components.NumericStepper;
 	import spark.components.RichText;
 	import spark.components.TextInput;
 	import spark.utils.TextFlowUtil;
@@ -60,8 +62,8 @@ package com.clarityenglish.ielts.view.account {
 		[SkinPart]
 		public var registerInfoButton:Button;
 		
-		[SkinPart]
-		public var IELTSApp1:SWFLoader;
+		/*[SkinPart]
+		public var IELTSApp1:SWFLoader;*/
 		
 		[SkinPart]
 		public var countdownDisplay:CountdownDisplay;
@@ -119,9 +121,12 @@ package com.clarityenglish.ielts.view.account {
 		
 		[SkinPart]
 		public var myProfileLabel:Label;
-		
+
 		[SkinPart]
-		public var IELTSAppsLabel:Label;
+		public var myToolsLabel:Label;
+
+		[SkinPart]
+		public var calculatorLabel:Label;
 		
 		[SkinPart]
 		public var registerInfoRichText:Label;
@@ -134,6 +139,12 @@ package com.clarityenglish.ielts.view.account {
 		
 		[SkinPart]
 		public var hourRichText:Label;
+
+		[SkinPart]
+		public var studyGuideList:List;
+
+		[SkinPart]
+		public var studyGuideLabel:Label;
 
 		public var updateUser:Signal = new Signal(Object);
 		public var register:Signal = new Signal();
@@ -251,7 +262,9 @@ package com.clarityenglish.ielts.view.account {
 			if (newPwdLabel) newPwdLabel.text = copyProvider.getCopyForId("newPwdLabel");
 			if (confirmPwdLabel) confirmPwdLabel.text = copyProvider.getCopyForId("confirmPwdLabel");
 			if (myProfileLabel) myProfileLabel.text = copyProvider.getCopyForId("myProfile");
-			if (IELTSAppsLabel) IELTSAppsLabel.text = copyProvider.getCopyForId("IELTSAppsLabel");
+			if (myToolsLabel) myToolsLabel.text = copyProvider.getCopyForId("myToolsLabel");
+			if (calculatorLabel) calculatorLabel.text = copyProvider.getCopyForId("calculatorLabel");
+			if (studyGuideLabel) studyGuideLabel.text = copyProvider.getCopyForId("studyGuideLabel");
 			
 			if (registerInfoRichText) {
 				var registerInfoString:String = this.copyProvider.getCopyForId("registerInfoButton");
@@ -280,6 +293,8 @@ package com.clarityenglish.ielts.view.account {
 				//mockTestRichText.textFlow = mockTestFlow;
 				mockTestRichText.text = mockTestString;
 			}
+
+			studyGuideList.dataProvider = new ArrayList(new Array(6));
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

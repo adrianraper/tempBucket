@@ -11,6 +11,7 @@
 @namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 @namespace progressui "com.clarityenglish.bento.view.progress.ui.*";
 @namespace account "com.clarityenglish.ielts.view.account.*";
+@namespace accountui "com.clarityenglish.ielts.view.account.ui.*";
 @namespace support "com.clarityenglish.ielts.view.support.*";
 @namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace home "com.clarityenglish.ielts.view.home.*";
@@ -73,6 +74,10 @@ global {
 	listeningIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconBare');
 	
 	disabledColor: #EEEEEE;
+}
+
+mx|Alert {
+	fontFamily: HelveticaMX;
 }
 
 /* The video selector */
@@ -361,6 +366,10 @@ progressui|CoverageGroupRenderer {
 /* Account view styles */
 account|AccountView {
 	skinClass: ClassReference("skins.ielts.AccountSkin");
+}
+
+accountui|StudyGuideButton {
+	skinClass: ClassReference("skins.ielts.account.StudyGuideButtonSkin");
 }
 
 account|AccountView #saveChangesButton {
