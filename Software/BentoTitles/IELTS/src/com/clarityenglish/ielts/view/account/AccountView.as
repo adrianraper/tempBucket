@@ -35,14 +35,14 @@ import spark.components.NumericStepper;
 	
 	public class AccountView extends BentoView {
 			
-		[SkinPart]
+		/*[SkinPart]
 		public var currentPassword:TextInput;
 		
 		[SkinPart]
 		public var newPassword:TextInput;
 		
 		[SkinPart]
-		public var confirmPassword:TextInput;
+		public var confirmPassword:TextInput;*/
 		
 		[SkinPart]
 		public var countdownLabel:Label;
@@ -307,9 +307,9 @@ import spark.components.NumericStepper;
 				case examDateField:
 					instance.addEventListener(CalendarLayoutChangeEvent.CHANGE, onExamDateChange);
 					break;
-				case newPassword:
+				/*case newPassword:
 					instance.addEventListener(Event.CHANGE, onPasswordChange);
-					break;
+					break;*/
 				case examHours:
 				case examMinutes:
 					instance.addEventListener(Event.CHANGE, onExamTimeChange);
@@ -366,9 +366,9 @@ import spark.components.NumericStepper;
 		 * The user simply changed the password field.
 		 * TODO. Check whether it is empty, in which case no longer isDirty 
 		 */
-		protected function onPasswordChange(eventObj:Event):void {
+		/*protected function onPasswordChange(eventObj:Event):void {
 			isDirty = true;
-		}
+		}*/
 		
 		/**
 		 * The user changed the exam date.  
@@ -427,7 +427,7 @@ import spark.components.NumericStepper;
 				}
 				
 				// gh#163
-				isDirty = true;
+				//isDirty = true;
 			}
 			
 		}
@@ -439,25 +439,25 @@ import spark.components.NumericStepper;
 		 */
 		protected function onUpdateButtonClick(event:MouseEvent):void {
 			// Any validation to do here?
-			if (newPassword && confirmPassword && (newPassword.text != confirmPassword.text)) {
+			/*if (newPassword && confirmPassword && (newPassword.text != confirmPassword.text)) {
 				//issue:#11
 				showUpdateError(copyProvider.getCopyForId("updateError"));
-			} else {
+			} else {*/
 				// Trigger the update command. Use an Event or a Signal?
 				// Do I really need to pass anything at all since the mediator can get it all anyway?
 				// Or I could use a form and pass that?
 				var updatedUserDetails:Object = new Object();
 				
-				if (currentPassword && currentPassword.text)
-					updatedUserDetails.currentPassword = currentPassword.text;
-				if (newPassword && newPassword.text)
-					updatedUserDetails.password = newPassword.text;
+				/*if (currentPassword && currentPassword.text)
+					updatedUserDetails.currentPassword = currentPassword.text;*/
+				/*if (newPassword && newPassword.text)
+					updatedUserDetails.password = newPassword.text;*/
 				if (user.examDate) {
 					updatedUserDetails.examDate = DateUtil.formatDate(user.examDate, "yyyy-MM-dd") + " " + examHours.value.toString() + ":" + examMinutes.value.toString();
 				}
 				
 				updateUser.dispatch(updatedUserDetails);
-			}
+			//}
 		}
 		
 		public function showUpdateError(msg:String = ""):void {
@@ -477,7 +477,7 @@ import spark.components.NumericStepper;
 				Alert.show(copyProvider.getCopyForId("updateSuccess"), "Your profile");				
 			}
 		}
-		
+
 		private function onRequestInfoClick(event:MouseEvent):void {
 			register.dispatch();
 		}
