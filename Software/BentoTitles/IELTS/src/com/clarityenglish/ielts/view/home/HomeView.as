@@ -90,6 +90,15 @@ package com.clarityenglish.ielts.view.home {
 		
 		[SkinPart]
 		public var longRateButton:Button;
+
+		[SkinPart]
+		public var studyPlannerCaptionLabel:Label;
+
+		[SkinPart]
+		public var studyPalnnerDescriptionLabel:Label;
+
+		[SkinPart]
+		public var studyPlannerDownloadButton:Button;
 		
 		[Bindable]
 		public var dataProvider:XML;
@@ -184,6 +193,9 @@ package com.clarityenglish.ielts.view.home {
 			
 			if (noProgressText) noProgressText.text = copyProvider.getCopyForId("noProgressText");
 			if (colorBarIntroLabel) colorBarIntroLabel.text = copyProvider.getCopyForId("colorBarIntroLabel");
+			if (studyPlannerCaptionLabel) studyPlannerCaptionLabel.text = copyProvider.getCopyForId("studyPlannerCaptionLabel");
+			if (studyPalnnerDescriptionLabel) studyPalnnerDescriptionLabel.text = copyProvider.getCopyForId("studyPalnnerDescriptionLabel");
+			if (studyPlannerDownloadButton) studyPlannerDownloadButton.label = copyProvider.getCopyForId("studyPlannerDownloadButton");
 			
 			// gh#100 CT
 			if (welcomeLabel) {
@@ -268,6 +280,9 @@ package com.clarityenglish.ielts.view.home {
 					longRateButton.label = copyProvider.getCopyForId("longRateButton");
 					longRateButton.addEventListener(MouseEvent.CLICK, onLongRateButtonClick);
 					break;
+				case studyPlannerDownloadButton:
+					studyPlannerDownloadButton.addEventListener(MouseEvent.CLICK, onStudyPlannerDownloadButtonClick);
+					break;
 			}
 		}
 				
@@ -348,6 +363,11 @@ package com.clarityenglish.ielts.view.home {
 			
 			var urlRequest:URLRequest = new URLRequest(urlString);
 			navigateToURL(urlRequest, "_blank");
+		}
+
+		protected function onStudyPlannerDownloadButtonClick(event:MouseEvent):void {
+			var url:String = copyProvider.getCopyForId("studyPlannerDownloadLink");
+			navigateToURL(new URLRequest(url), "_blank");
 		}
 
 	}
