@@ -17,6 +17,10 @@
 		<s:State name="homeUser" />
 		<s:State name="testDrive" stateGroups="bcStates" />
 	</s:states>
+
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" color="#CCCCCC" blurX="5" blurY="5" alpha="0.75" distance="1" angle="180" knockout="false"/>
+	</fx:Declarations>
 	
 	<s:layout>
 		<s:HorizontalLayout paddingTop="0" />
@@ -90,7 +94,39 @@
 				</s:Group>
 				
 			</s:VGroup>			
-		</s:HGroup>		
+		</s:HGroup>
+
+		<s:HGroup width="100%" paddingTop="7" horizontalAlign="right" includeIn="fullVersion">
+			<s:Group width="100%" height="166" filters="{dropShadowFilter}">
+				<s:Rect left="0" right="0" top="0" bottom="0" radiusX="6" radiusY="6">
+					<s:fill>
+						<s:SolidColor color="#F1F1F3"/>
+					</s:fill>
+					<s:stroke>
+						<s:LinearGradientStroke rotation="90" weight="3">
+							<s:GradientEntry color="#FFFFFF" ratio="0.3" />
+							<s:GradientEntry color="#E0E0E0" ratio="1" />
+						</s:LinearGradientStroke>
+					</s:stroke>
+				</s:Rect>
+				<s:Image source="@Embed(source='/skins/ielts/assets/studyplannerBackground.png')" left="3" right="3" top="3" fillMode="clip" />
+				<s:HGroup width="100%" height="100%" verticalAlign="middle">
+					<s:VGroup paddingLeft="30" width="60%" gap="15">
+						<s:VGroup gap="2">
+							<s:Label id="studyPlannerCaptionLabel" fontSize="19" fontWeight="bold" color="#08446B" />
+							<s:Label id="studyPalnnerDescriptionLabel" fontSize="12" color="#08446B" />
+						</s:VGroup>
+						<s:Rect height="1" width="250">
+							<s:fill>
+								<s:SolidColor color="#A3A3A2" />
+							</s:fill>
+						</s:Rect>
+						<s:Button id="studyPlannerDownloadButton" width="250" height="40" useHandCursor="true" buttonMode="true"/>
+					</s:VGroup>
+					<s:SWFLoader width="40%" source="@Embed(source='/skins/ielts/assets/studyPlanner.png')" scaleX="0.5" scaleY="0.5" verticalCenter="0"/>
+				</s:HGroup>
+			</s:Group>
+		</s:HGroup>
 	</s:VGroup>	
 
 </s:Skin>
