@@ -184,15 +184,16 @@ import mx.utils.StringUtil;
 				// disable gapText and gapAfterPadding and just set the underlying text to the value.
 				super.text = value;
 			} else {
-				// Pad the hidden text with _ characters (this is set using the after-pad CSS property).  If css: gap-text is set, then we just use that.
+				// Pad the hidden text with a few _ characters (this is set using the after-pad CSS property).
+                // If css: gap-text is set, then we just use that.
 				// gh#1457 make sure that the longest correct answer will fit if you are using a fixed length gap
-				// How many extra spaces to make the gaps the preset length (roughly), or do you need even more for a long answer?
+				// The text that you add here will never be seen, so it is just about getting the right sort of length.
+				// Using the x character in the css is better than _.
 				if (_gapText) {
-                    var extraGapSpace:uint = (_gapText.length <= textValue.length) ? textValue.length - _gapText.length + 1 : _gapText.length - textValue.length;
-                } else {
-                    extraGapSpace = _gapAfterPadding;
+                    if (_gapText.length < textValue.length)
+                        _gapText = textValue + StringUtil.repeat("_", _gapAfterPadding);
                 }
-				super.text = textValue + StringUtil.repeat("_", extraGapSpace);
+				super.text = (_gapText) ? _gapText : textValue + StringUtil.repeat("_", _gapAfterPadding);
 			}
 		}
 		
