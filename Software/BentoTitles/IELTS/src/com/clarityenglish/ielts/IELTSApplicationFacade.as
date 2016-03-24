@@ -31,8 +31,10 @@
 	import com.clarityenglish.ielts.view.zone.QuestionZoneVideoSectionView;
 	import com.clarityenglish.ielts.view.zone.ZoneMediator;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
-	
-	/**
+import com.clarityenglish.ielts.view.zone.speakingtest.SpeakingTestMediator;
+import com.clarityenglish.ielts.view.zone.speakingtest.SpeakingTestView;
+
+/**
 	* ...
 	* @author Dave Keen
 	*/
@@ -62,6 +64,7 @@
 			mapView(PracticeZoneSectionView, PracticeZoneSectionMediator);
 			mapView(PracticeZonePopoutView, PracticeZonePopoutMediator);
 			mapView(ExamPracticeZoneSectionView, ExamPracticeZoneSectionMediator);
+			mapView(SpeakingTestView, SpeakingTestMediator);
 			
 			// Upgrade, register and buy
 			// registerCommand(IELTSNotifications.IELTS_UPGRADE_WINDOW_SHOW, IELTSUpgradeWindowShowCommand);

@@ -18,8 +18,12 @@ package com.clarityenglish.textLayout.elements {
 		
 		private var _autoplay:Boolean;
 		
+		private var _playComponentEnable:Boolean;
 		// gh#348
 		private var _type:String;
+		
+		[Bindable]
+		public var className:String;
 		
 		public function AudioElement() {
 			super();
@@ -43,6 +47,11 @@ package com.clarityenglish.textLayout.elements {
 			return _type
 		}
 		
+		// disable playComponent for feedback audio before click "see answer"
+		public function set playComponentEnable(value:Boolean):void {
+			_playComponentEnable = value;
+		}
+		
 		public function set autoplay(value:String):void {
 			// autoplay="autoplay" and autoplay="" are both 'on' values in HTML5 syntax so set autoplay if its anything but null
 			_autoplay = (value != null);
@@ -61,6 +70,7 @@ package com.clarityenglish.textLayout.elements {
 			(component as AudioPlayer).src = _src;
 			(component as AudioPlayer).controls = _controls;
 			(component as AudioPlayer).autoplay = _autoplay;
+			(component as AudioPlayer).playComponentEnable = (className == "audio-feedback")? _playComponentEnable : true;
 			
 			component.addEventListener(FlexEvent.CREATION_COMPLETE, onComponentCreationComplete);
 		}
@@ -71,6 +81,7 @@ package com.clarityenglish.textLayout.elements {
 			(component as AudioPlayer).src = null;
 			(component as AudioPlayer).controls = null;
 			(component as AudioPlayer).autoplay = false;
+			(component as AudioPlayer).playComponentEnable = false;
 		}
 		
 		protected function onComponentCreationComplete(event:FlexEvent):void {

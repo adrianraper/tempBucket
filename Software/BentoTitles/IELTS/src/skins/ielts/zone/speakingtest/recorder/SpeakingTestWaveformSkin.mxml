@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:ui="com.clarityenglish.ielts.view.zone.speakingtest.*" creationComplete="onCreationComplete(event)">
+
+    <!-- host component -->
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.bento.view.recorder.WaveformView")]
+    </fx:Metadata>
+
+    <fx:Script>
+        <![CDATA[
+        import mx.events.FlexEvent;
+
+        protected function onCreationComplete(event:FlexEvent):void {
+            recordButtonFade.play();
+        }
+
+        protected function onPlayerButtonClick(event:Event):void {
+            playButton.visible = false;
+            pauseButton.visible = true;
+        }
+
+        protected function onPauseButtonClick(event:Event):void {
+            playButton.visible = true;
+            pauseButton.visible = false;
+        }
+        ]]>
+    </fx:Script>
+
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+
+        <s:State name="record_minimized" stateGroups="record,minimized" />
+        <s:State name="playback_minimized" stateGroups="playback,minimized" />
+        <s:State name="record_full" stateGroups="record,full" />
+        <s:State name="playback_full" stateGroups="playback,full" />
+    </s:states>
+
+    <fx:Declarations>
+        <s:Fade id="recordButtonFade" alphaFrom="1" alphaTo="0" target="{recordingHintButton}" repeatCount="0" duration="500" repeatDelay="300" />
+    </fx:Declarations>
+
+    <s:Group left="0" right="0" top="0" bottom="0">
+        <s:Rect width="100%" height="100%" radiusX="4" radiusY="4">
+            <s:fill>
+                <s:SolidColor color="#F4F4F4" />
+            </s:fill>
+        </s:Rect>
+        <s:Group left="0" right="0" top="0" bottom="0">
+            <s:Button id="recordButton" skinClass="skins.ielts.zone.speakingtest.recorder.RecorderButtonSkin" left="30" verticalCenter="0"
+                      visible="false" includeIn="record"/>
+            <s:Button id="recordingHintButton" skinClass="skins.ielts.zone.speakingtest.recorder.RecordingHintButton" left="30" verticalCenter="0"
+                      includeIn="record"/>
+            <s:Button id="playButton" skinClass="skins.ielts.zone.speakingtest.recorder.PlayButtonSkin" left="0" width="40" height="100%" verticalCenter="0" click="onPlayerButtonClick(event)"
+                      toolTip="null" useHandCursor="true" buttonMode="true" includeIn="playback"/>
+            <s:Button id="stopButton" skinClass="skins.ielts.zone.speakingtest.recorder.StopButtonSkin" left="40" width="40" height="100%" verticalCenter="0"
+                      toolTip="null" useHandCursor="true" buttonMode="true" visible.record="false" visible.playback="true"/>
+            <s:Button id="pauseButton" skinClass="skins.ielts.zone.speakingtest.recorder.PauseButtonSkin" left="0" width="40" height="100%" verticalCenter="0" click="onPauseButtonClick(event)"
+                      toolTip="null" useHandCursor="true" buttonMode="true" includeIn="playback" visible="false"/>
+            <s:Button id="saveButton" skinClass="skins.ielts.zone.speakingtest.recorder.SaveButtonSkin" left="80" width="40" height="100%" verticalCenter="0"
+                      toolTip="null" useHandCursor="true" buttonMode="true" includeIn="playback"  />
+            <s:Button id="newButton" skinClass="skins.bento.recorder.buttons.NewButtonSkin" visible="false" includeInLayout="false"/>
+            <s:ScrubBar id="scrubBar" skinClass="skins.ielts.zone.speakingtest.recorder.ScrubBarSkin" right="20" verticalCenter="0"
+                        enabled="{!hostComponent.isRecording}" width="300" includeIn="playback" />
+        </s:Group>
+
+        <ui:HorizontalLevelMeter id="levelMeter" width="3" height="350" verticalCenter="0"
+                       top="16" bottom="21" left="80"
+                       visible="{hostComponent.isRecording}" rotation="90"
+                       includeIn="record" />
+    </s:Group>
+
+</s:Skin>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:Rect left="0" right="0" height="{parentDocument.hostComponent.sliderHeight}" verticalCenter="0" horizontalCenter="0" radiusY="3" radiusX="3">
+        <s:fill>
+            <s:SolidColor color="{parentDocument.hostComponent.trackColor}" />
+        </s:fill>
+    </s:Rect>
+
+</s:Skin>

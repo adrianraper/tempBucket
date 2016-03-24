@@ -13,6 +13,8 @@
 @namespace components2 "com.clarityenglish.components.*";
 @namespace warning "com.clarityenglish.bento.view.warning.*";
 @namespace tink "ws.tink.spark.controls.*";
+@namespace recorder "com.clarityenglish.bento.view.recorder.*";
+@namespace timer "com.clarityenglish.bento.view.timer.*";
 
 global {
 	correctIcon: Embed(source="skins/assets/correctIcon.swf");
@@ -88,6 +90,14 @@ s|TitleWindow {
 	skinClass: ClassReference("skins.bento.BentoTitleWindowSkin");
 }
 
+recorder|RecorderView {
+	skinClass: ClassReference("skins.bento.recorder.RecorderSkin");
+}
+
+recorder|WaveformView {
+	skinClass: ClassReference("skins.bento.recorder.WaveformSkin")
+}
+
 components|XHTMLExerciseView s|TextInput {
 	focusAlpha: 0;
 	skinClass: ClassReference("skins.bento.exercise.ExerciseTextInputSkin");
@@ -111,3 +121,12 @@ mx|ToolTip {
 tink|Alert {
 	skinClass: ClassReference("ws.tink.spark.skins.controls.AlertSkin");
 }
+
+timer|TimerComponent {
+	skinClass: ClassReference("skins.bento.timer.TimerSkin");
+}
+
+timer|TimerComponent timer|TimerButton {
+	skinClass: ClassReference("skins.bento.timer.TimerButtonSkin");
+}
+

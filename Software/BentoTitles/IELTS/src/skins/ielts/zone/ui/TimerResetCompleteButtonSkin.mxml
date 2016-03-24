@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<!--- The default skin class for the Spark Button component.
+
+ @see spark.components.Button
+
+ @langversion 3.0
+ @playerversion Flash 10
+ @playerversion AIR 1.5
+ @productversion Flex 4
+-->
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:s="library://ns.adobe.com/flex/spark"
+                   minWidth="21" minHeight="21"
+                   alpha.disabled="0.5">
+
+    <fx:Metadata>
+        <![CDATA[
+        /**
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("com.clarityenglish.bento.view.timer.TimerButton")]
+        ]]>
+    </fx:Metadata>
+
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" color="#B2B2B2" blurX="3" blurY="3" alpha="0.4" distance="0" angle="90" knockout="false"/>
+    </fx:Declarations>
+
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" />
+        <s:State name="down" />
+        <s:State name="disabled" />
+    </s:states>
+
+    <s:Group top="0" bottom="0" left="0" right="0" >
+        <s:Rect top="0" bottom="0" left="0" right="0" filters="{[dropShadowFilter]}">
+            <s:fill>
+                <s:SolidColor color="{hostComponent.buttonColor}" color.down="{hostComponent.buttonDownOverColor}" color.over="{hostComponent.buttonDownOverColor}"/>
+            </s:fill>
+        </s:Rect>
+
+        <s:VGroup width="100%" height="100%" gap="3" horizontalAlign="center" verticalAlign="middle">
+            <s:Group scaleX="0.5" scaleY="0.5">
+                <s:Path winding="nonZero" data="M20.4116 2.53223C19.6001 2.02148 18.5264 2.26563 18.0166 3.07813 17.5024 3.8877 17.7476 4.96191 18.5591 5.47461 21.4497 7.29004 23.1753 10.4102 23.1753 13.8145 23.1753 19.2432 18.7559 23.6611 13.3267 23.6611 7.89502 23.6611 3.47705 19.2461
+ 3.47559 13.8145 3.47705 10.7217 4.91211 7.87891 7.33398 6.01855L9.93164 8.61816C10.457 9.1416 10.8862 8.96289 10.8877 8.21777L10.8877 1.35059C10.8862 0.608398 10.2773 0 9.53516 0L2.66553 0C1.92188 0 1.74219 0.430664 2.26904 0.957031L4.84814 3.53418
+C1.78467 6.04883 0 9.78418 0 13.8145 0 21.1611 5.97852 27.1367 13.3252 27.1367 20.6709 27.1367 26.6494 21.1611 26.6494 13.8145 26.6509 9.20703 24.3169 4.9873 20.4116 2.53223Z">
+                    <s:fill>
+                        <s:SolidColor color="#ffffff"/>
+                    </s:fill>
+                </s:Path>
+                <s:Path winding="nonZero" data="M20.2036 2.8916C19.4175 2.39551 18.3765 2.63379 17.8818 3.4209 17.3848 4.20605 17.624 5.24707 18.4102 5.74316 21.209 7.50195 22.8818 10.5234 22.8818 13.8262 22.8818 19.0879 18.6001 23.3672 13.3364 23.3672 8.07324 23.3701 3.7915 19.0908
+ 3.7915 13.8262 3.79004 10.8271 5.18115 8.07129 7.5293 6.27051L10.0479 8.78809C10.5576 9.29785 10.9741 9.125 10.9741 8.40234L10.9741 1.74707C10.9741 1.02539 10.3838 0.435547 9.6626 0.435547L3.00391 0.435547C2.28467 0.435547 2.11182 0.852539 2.62012
+ 1.3623L5.12012 3.86035C2.15283 6.30078 0.421875 9.9209 0.421875 13.8262 0.421875 20.9453 6.21484 26.7373 13.3364 26.7373 20.4585 26.7373 26.2515 20.9453 26.2515 13.8262 26.2515 9.3623 23.9883 5.27344 20.2036 2.8916Z">
+                    <s:fill>
+                        <s:SolidColor color="#ffffff"/>
+                    </s:fill>
+                </s:Path>
+            </s:Group>
+
+            <!-- layer 8: text -->
+            <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
+            <s:Label id="labelDisplay"
+                     textAlign="center"
+                     verticalAlign="middle"
+                     maxDisplayedLines="1"
+                     verticalCenter="0" horizontalCenter="0" fontWeight="normal"
+                     color="#FFFFFF" fontSize="12">
+            </s:Label>
+        </s:VGroup>
+    </s:Group>
+
+</s:Skin>

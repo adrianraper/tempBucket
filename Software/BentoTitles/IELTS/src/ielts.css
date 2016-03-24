@@ -28,7 +28,9 @@
 @namespace video "com.clarityenglish.controls.video.*";
 @namespace candidates "com.clarityenglish.ielts.view.candidates.*";
 @namespace candidatesui "com.clarityenglish.ielts.view.candidates.ui.*";
-
+@namespace timer "com.clarityenglish.bento.view.timer.*";
+@namespace speakingtest "com.clarityenglish.ielts.view.zone.speakingtest.*";
+@namespace recorder "com.clarityenglish.bento.view.recorder.*";
 
 global {
 	/* This changes the modal popup mask properties */
@@ -297,6 +299,14 @@ zone|ExamPracticeZoneSectionView #list {
 	horizontalScrollPolicy: off;
 }
 
+zone|ExamPracticeZoneSectionView #leftArrowButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.LeftArrowButtonSkin");
+}
+
+zone|ExamPracticeZoneSectionView #rightArrowButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.RightArrowButtonSkin");
+}
+
 /* Exercise view styles */
 exercise|ExerciseView {
 	skinClass: ClassReference("skins.ielts.ExerciseSkin");
@@ -472,4 +482,44 @@ mx|ToolTip {
 	fontSize: 12;
 	color: #FFFFFF;
 	backgroundColor: #000000;
+}
+
+timer|TimerComponent timer|TimerButton#startButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.TimerStartButtonSkin");
+}
+
+timer|TimerComponent timer|TimerButton#pauseButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.TimerPauseButtonSkin");
+}
+
+timer|TimerComponent timer|TimerButton#stopButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.TimerStopButtonSkin");
+}
+
+timer|TimerComponent timer|TimerButton#resumeButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.TimerResumeButtonSkin");
+}
+
+timer|TimerComponent timer|TimerButton#resetCompleteButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.TimerResetCompleteButtonSkin");
+}
+
+speakingtest|SpeakingTestView {
+	skinClass: ClassReference("skins.ielts.zone.speakingtest.SpeakingTestSkin");
+}
+
+speakingtest|SpeakingTestView recorder|RecorderView {
+	skinClass: ClassReference("skins.ielts.zone.speakingtest.recorder.SpeakingTestRecorderSkin");
+}
+
+speakingtest|SpeakingTestView recorder|RecorderView recorder|WaveformView {
+	skinClass: ClassReference("skins.ielts.zone.speakingtest.recorder.SpeakingTestWaveformSkin");
+}
+
+speakingtest|SpeakingTestView s|Button#speakingStartButton {
+	skinClass: ClassReference("skins.ielts.zone.speakingtest.SpeakingStartButtonSkin");
+}
+
+speakingtest|SpeakingTestView s|Button#speakingBackButton {
+	skinClass: ClassReference("skins.ielts.zone.speakingtest.SpeakingBackButtonSkin");
 }

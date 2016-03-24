@@ -1,42 +1,61 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.events.ExerciseEvent;
-	import com.clarityenglish.bento.vo.Href;
+import com.clarityenglish.bento.view.timer.TimerButton;
+import com.clarityenglish.bento.view.timer.TimerComponent;
+import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
-	import com.clarityenglish.textLayout.components.AudioPlayer;
+import com.clarityenglish.ielts.view.zone.speakingtest.SpeakingTestView;
+import com.clarityenglish.textLayout.components.AudioPlayer;
 	
 	import flash.events.Event;
-	import flash.utils.setTimeout;
+import flash.events.MouseEvent;
+import flash.utils.setTimeout;
 	
 	import mx.binding.utils.ChangeWatcher;
 	import mx.collections.XMLListCollection;
 	import mx.controls.SWFLoader;
 	import mx.events.ScrollEvent;
-	
-	import org.osflash.signals.Signal;
-	
-	import spark.components.Label;
+import mx.events.StateChangeEvent;
+
+import org.osflash.signals.Signal;
+
+import spark.components.Button;
+
+import spark.components.Label;
 	import spark.components.List;
 	import spark.events.IndexChangeEvent;
-	
+
 	public class ExamPracticeZoneSectionView extends AbstractZoneSectionView {
 		
 		[SkinPart(required="true")]
 		public var list:List;
 		
 		[SkinPart]
-		public var leftArrow:SWFLoader;
-		
-		[SkinPart]
-		public var rightArrow:SWFLoader;
-		
-		[SkinPart(required="true")]
 		public var examZoneLabel:Label;
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var examZoneInstructionLabel:Label;
 		
 		[SkinPart]
 		public var examZoneNoTestLabel:Label;
+
+		[SkinPart]
+		public var speakingStartButton:Button;
+
+		[SkinPart]
+		public var speakingTestView:SpeakingTestView;
+
+		/*[SkinPart]
+		public var timerComponent:TimerComponent;*/
+
+		[SkinPart]
+		public var readingTimer:TimerComponent;
+
+		[SkinPart]
+		public var writingTimer:TimerComponent;
+
+		[Bindable]
+		public var speakingTestXMLListCollection:XMLListCollection;
 		
 		public var exerciseSelect:Signal = new Signal(XML, String);
 		
@@ -84,29 +103,62 @@ package com.clarityenglish.ielts.view.zone {
 		public function set pageToScroll(value:Number) {
 			_pageToScroll = value;
 		}
+
+		[Bindable(event="dataChange")]
+		public function get examZoneInstructionText():String {
+			if (this.courseClass == 'listening') {
+				return copyProvider.getCopyForId("examZoneInstructionLabel1");
+			} else {
+				return copyProvider.getCopyForId("examZoneInstructionLabel2");
+			}
+		}
 		
 		public function ExamPracticeZoneSectionView() {
 			super();
 			actionBarVisible = false;
-		} 
+		}
+
+		public override function set data(value:Object):void {
+			super.data = value;
+
+			if (readingTimer) {
+				readingTimer.stopTimer();
+			}
+
+			if (writingTimer) {
+				writingTimer.stopTimer();
+			}
+
+			if (speakingTestView){
+				dispatchEvent(new Event("exitTestEvent"));
+			}
+		}
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
-			
-			list.dataProvider = new XMLListCollection(_course.unit.(attribute("class") == "exam-practice").exercise);
-			
+
+			if (_course.@['class'] != 'speaking') {
+				list.dataProvider = new XMLListCollection(_course.unit.(attribute("class") == "exam-practice").exercise);
+			} else {
+				speakingTestXMLListCollection = new XMLListCollection(_course.unit.(attribute("class") == "exam-practice").exercise);
+			}
+
 			// get the exercise index in order to scroll to certain page when open the direct link
 			if (isDirectLinkStart) {
 				if (exerciseID) {
 					pageToScroll = _course.unit.(attribute("class") == "exam-practice").exercise.(attribute("id") == exerciseID).childIndex();
 				}
 			}
-			
-			if (this.courseClass == "listening") {
-				examZoneInstructionLabel.text = copyProvider.getCopyForId("examZoneInstructionLabel1");
-			} else {
-				examZoneInstructionLabel.text = copyProvider.getCopyForId("examZoneInstructionLabel2");
-			}
+
+			/*if (examZoneInstructionLabel) {
+				if (this.courseClass == "listening") {
+					examZoneInstructionLabel.text = copyProvider.getCopyForId("examZoneInstructionLabel1");
+				} else {
+					if (this.courseClass != "speaking") {
+						examZoneInstructionLabel.text = copyProvider.getCopyForId("examZoneInstructionLabel2");
+					}
+				}
+			}*/
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -145,6 +197,17 @@ package com.clarityenglish.ielts.view.zone {
 			// TODO: This calls stopAllAudio for every point of the scroll which is a little inefficient.  If we get performance issue this needs to be looked at
 			// (but unfortunately there is no easy way to detect a scroll in Flex 4 which is why we are going for a ChangeWatcher).
 			AudioPlayer.stopAllAudio(); // gh#12
+
+			// Stop the timer when scroll to another paper.
+			if (courseClass == 'reading') {
+				if (readingTimer) {
+					readingTimer.stopTimer();
+				}
+			} else if (courseClass == 'writing') {
+				if (writingTimer) {
+					writingTimer.stopTimer();
+				}
+			}
 		}
 		
 		protected function onExerciseSelected(event:ExerciseEvent):void {
@@ -154,11 +217,19 @@ package com.clarityenglish.ielts.view.zone {
 		public function stopAllAudio():void {
 			AudioPlayer.stopAllAudio();
 		}
-		
+
 		protected override function onRemovedFromStage(event:Event):void {
 			super.onRemovedFromStage(event);
 			if (viewportPropertyWatcher) viewportPropertyWatcher.unwatch();
 			stopAllAudio();
+
+			if (readingTimer) {
+				readingTimer.stopTimer();
+			}
+
+			if (writingTimer) {
+				writingTimer.stopTimer();
+			}
 		}
 		
 	}
