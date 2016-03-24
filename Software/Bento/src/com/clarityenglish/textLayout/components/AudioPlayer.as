@@ -113,16 +113,8 @@ import com.clarityenglish.textLayout.events.AudioPlayerEvent;
 			
 			stop();
 			loaderContext = new SoundLoaderContext(2500);
-			// gh#1066
-			if (src) {
-				sound = new Sound(new URLRequest(src), loaderContext);
-				sound.addEventListener(ProgressEvent.PROGRESS, onSoundLoadProgress, false, 0, true);
-				sound.addEventListener(Event.COMPLETE, onSoundLoadComplete, false, 0, true);
-				// gh#1055
-				sound.addEventListener(IOErrorEvent.IO_ERROR, onSoundLoadError);
-				// gh#614 add 
-				if (autoplay && playComponentEnable) play();
-			}	
+
+			if (autoplay && playComponentEnable) play();
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -219,40 +211,44 @@ import com.clarityenglish.textLayout.events.AudioPlayerEvent;
 			// Work out the start position (based on whether we are paused or not)
 			var startTime:Number = (soundStatus == PAUSED) ? pausePosition : null;
 
-			currentSrc = src;
+			// gh#1066
+			if (src) {
+				currentSrc = src;
 
-			// Stop any previously playing sound and play the new one
-			stop();
-			// gh#1055 Why am I reloading sound?
-			/*
-			loaderContext = new SoundLoaderContext(2500);
-			sound = new Sound(new URLRequest(src), loaderContext);
-			
-			// Attach listeners to update the scrub bar maximum as the sound loads
-			sound.addEventListener(ProgressEvent.PROGRESS, onSoundLoadProgress, false, 0, true);
-			sound.addEventListener(Event.COMPLETE, onSoundLoadComplete, false, 0, true);
-			*/
-			try {
-				soundChannel = sound.play(startTime);
-				soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete, false, 0, false);
-				played = true;
+				// Stop any previously playing sound and play the new one
+				stop();
+				// gh#1055 Why am I reloading sound?
+				loaderContext = new SoundLoaderContext(2500);
+				sound = new Sound(new URLRequest(src), loaderContext);
 
-				scrubBarTimer.reset();
-				scrubBarTimer.start();
-				// gh#1124 only start the timer for full audio
-				/*if (controls == "full") {
-					scrubBarTimer.addEventListener(TimerEvent.TIMER, onScrubBarTimer);
+				// Attach listeners to update the scrub bar maximum as the sound loads
+				sound.addEventListener(ProgressEvent.PROGRESS, onSoundLoadProgress, false, 0, true);
+				sound.addEventListener(Event.COMPLETE, onSoundLoadComplete, false, 0, true);
+				// gh#1055
+				sound.addEventListener(IOErrorEvent.IO_ERROR, onSoundLoadError);
+
+				try {
+					soundChannel = sound.play(startTime);
+					soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete, false, 0, false);
+					played = true;
+
 					scrubBarTimer.reset();
 					scrubBarTimer.start();
-				}*/
-				
-				// Change the status and invalidate the skin state
-				soundStatus = PLAYING;
-				invalidateSkinState();
-				
-				dispatchEvent(new AudioPlayerEvent(AudioPlayerEvent.PLAY, src, true));
-			} catch (error:Error) {
-				trace('Error playing sound ' + sound.url + ': ' + error.message);
+					// gh#1124 only start the timer for full audio
+					/*if (controls == "full") {
+					 scrubBarTimer.addEventListener(TimerEvent.TIMER, onScrubBarTimer);
+					 scrubBarTimer.reset();
+					 scrubBarTimer.start();
+					 }*/
+
+					// Change the status and invalidate the skin state
+					soundStatus = PLAYING;
+					invalidateSkinState();
+
+					dispatchEvent(new AudioPlayerEvent(AudioPlayerEvent.PLAY, src, true));
+				} catch (error:Error) {
+					trace('Error playing sound ' + sound.url + ': ' + error.message);
+				}
 			}
 		}
 		
