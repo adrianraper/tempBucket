@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:assets="skins.assets.*" useHandCursor="true" buttonMode="true">
+    <fx:Metadata>
+        [HostComponent("spark.components.Button")]
+    </fx:Metadata>
+
     <!-- states -->
     <s:states>
         <s:State name="up" />
@@ -8,7 +12,7 @@
         <s:State name="disabled" />
     </s:states>
 
-    <s:Group width="30" height="100%" verticalCenter="0" useHandCursor="true" buttonMode="true">
+    <s:Group width="30" height="{parentDocument.hostComponent.sliderHeight}" top="0" useHandCursor="true" buttonMode="true">
         <s:Rect width="100%" height="100%">
             <s:fill>
                 <s:SolidColor color="#FFFFFF" alpha="0" />

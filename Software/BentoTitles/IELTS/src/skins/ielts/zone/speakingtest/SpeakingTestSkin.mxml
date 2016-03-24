@@ -248,8 +248,8 @@
                                       copyProvider="{hostComponent.getCopyProvider()}" contentPath="{hostComponent.href.rootPath}" textSize="17" timeTextColor="#333333"
                                       trackColor="#D8D8D8" trackHighLightColor="#A8A8A8" progressLeftColor="#A93087" progressMidColor="#A93087" progressRightColor="#A93087" buttonColor="#A93087" buttonDownOverColor="#4F173F"
                                       firstTipString="{hostComponent.getCopyProvider().getCopyForId('timerFirstTipString')}" midTipString="{hostComponent.getCopyProvider().getCopyForId('timerMidTipString')}"
-                                      timerWidth="380" timerHeight="25" width="100%" height="60"
-                                      isTimeFixed="true" isTimerAutoControl="true" />
+                                      timerWidth="380" timerHeight="24" width="100%" height="60"
+                                      isTimeFixed="true" isTimerAutoControl="true" isPlatformTablet="{hostComponent.isPlatformTablet}"/>
             </s:Group>
         </s:Group>
 

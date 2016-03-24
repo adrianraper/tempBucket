@@ -61,6 +61,9 @@ public class SpeakingTestView extends BentoView{
     [Bindable]
     public var isPlanningComplete:Boolean;
 
+    [Bindable]
+    public var isPlatformTablet:Boolean;
+
     private var _currentState:String;
 
     public function SpeakingTestView() {

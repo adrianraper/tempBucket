@@ -181,6 +181,9 @@ import spark.primitives.Rect;
         [Bindable]
         public var audios:Array = [];
 
+        [Bindable]
+        public var isPlatformTablet:Boolean;
+
         private var timer:Timer;
         private var defaultTotalTime:Number;
         private var ratios:Array = [];

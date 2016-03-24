@@ -63,11 +63,3 @@ components|XHTMLExerciseView s|TextInput {
 components|XHTMLExerciseView s|Scroller {
     skinClass: ClassReference("skins.practicalwritingair.exercise.AlwaysVisibleScrollerSkin");
 }
-
-timer|TimerComponent {
-    skinClass: ClassReference("skins.practicalwritingair.exercise.timer.TimerSkin");
-}
-
-timer|TimerComponent s|TextInput {
-    skinClass: ClassReference("skins.practicalwritingair.exercise.timer.TimerTextInputSkin");
-}

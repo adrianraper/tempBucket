@@ -295,14 +295,6 @@ closing|ClosingView {
     skinClass: ClassReference("skins.practicalwriting.ClosingSkin");
 }
 
-timer|TimerComponent {
-    skinClass: ClassReference("skins.bento.timer.TimerSkin");
-}
-
-timer|TimerComponent s|Button {
-    skinClass: ClassReference("skins.bento.timer.TimerButtonSkin");
-}
-
 video|VideoSelector {
     skinClass: ClassReference("skins.practicalwriting.controls.video.VideoSelectorSkin");
 }

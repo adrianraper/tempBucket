@@ -135,11 +135,11 @@
                     </s:Group>
                     <!--assets:sideindicator left="5" verticalCenter="0" />
                     <assets:sideindicator right="5" verticalCenter="0" /-->
-                    <mx:HSlider id="timerSlider" width="{hostComponent.timerWidth + 18}" height="{hostComponent.timerHeight}" verticalCenter="0" horizontalCenter="0" thumbCount="2" snapInterval="1" minimum="0" showDataTip="false" liveDragging="true" change="onSliderChange(event)" dataTipStyleName="dataTipStyle"
-                                trackSkin="skins.bento.timer.HSliderTrackSkin"
-                                trackHighlightSkin="skins.bento.timer.HSliderTrackHighlightSkin" showTrackHighlight="true"
-                                thumbSkin="skins.bento.timer.HSliderThumbSkin" enabled="{!hostComponent.isTimeFixed}"
-                                visible="{hostComponent.timerTotalTime.length > 1}"/>
+                        <mx:HSlider id="timerSlider" width="{hostComponent.timerWidth + 18}" height="{hostComponent.sliderHeight}" verticalCenter="0" horizontalCenter="0" thumbCount="2" snapInterval="1" minimum="0" showDataTip="false" liveDragging="true" change="onSliderChange(event)" dataTipStyleName="dataTipStyle"
+                                    trackSkin="skins.bento.timer.HSliderTrackSkin"
+                                    trackHighlightSkin="skins.bento.timer.HSliderTrackHighlightSkin" showTrackHighlight="true"
+                                    thumbSkin="skins.bento.timer.HSliderThumbSkin" enabled="{!hostComponent.isTimeFixed}"
+                                    visible="{hostComponent.timerTotalTime.length > 1}"/>
                     <s:Rect left="6" right="6" height="{hostComponent.sliderHeight}" verticalCenter="0" horizontalCenter="0" radiusX="4" radiusY="4" visible="{hostComponent.timerTotalTime.length == 1}">
                         <s:fill>
                             <s:SolidColor color="{hostComponent.trackColor}" />
