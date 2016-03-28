@@ -38,8 +38,11 @@
 		</s:VGroup>
 	</s:Group>
 	
-	<s:Group horizontalCenter="0" verticalCenter="0" includeIn="nomic">
-		<s:Label id="warningLabel" width="100%" textAlign="center" text="Sorry, the Recorder either can't find a microphone attached to your computer, or you have denied access to it. Please use the settings panel to change this, or plug a microphone in." />
-	</s:Group>
+	<s:VGroup horizontalCenter="0" verticalCenter="0" includeIn="nomic">
+		<!-- gh#1464
+		<s:Label id="warningLabel" width="100%" textAlign="center" text="The Recorder either can't find a microphone attached to your computer, or you have denied access to it. Please use the settings panel to change this, or plug a microphone in." />
+		-->
+		<s:Label id="moreDetailsLabel" width="100%" textAlign="left" />
+	</s:VGroup>
 	
 </s:Skin>

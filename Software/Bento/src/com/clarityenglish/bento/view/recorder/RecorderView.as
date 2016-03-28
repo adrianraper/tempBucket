@@ -24,7 +24,12 @@ package com.clarityenglish.bento.view.recorder {
 		
 		[SkinPart(required="true")]
 		public var progressBar:ProgressBar;
-		
+
+		[SkinPart]
+        [Bindable]
+		public var moreDetailsLabel:Label;
+		public var micDetails:String;
+
 		public function RecorderView() {
 			StateUtil.addStates(this, [ "minimized", "full", "compare", "progress", "nomic" ], true);
 		}
@@ -44,6 +49,9 @@ package com.clarityenglish.bento.view.recorder {
                 case compareWaveformView:
                     // gh#1348
                     compareWaveformView.setCopyProvider(copyProvider);
+                    break;
+                case moreDetailsLabel:
+                    moreDetailsLabel.text = copyProvider.getCopyForId(micDetails);
                     break;
 			}
 		}

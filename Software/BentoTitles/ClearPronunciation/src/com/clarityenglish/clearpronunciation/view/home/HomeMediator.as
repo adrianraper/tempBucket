@@ -6,8 +6,10 @@ package com.clarityenglish.clearpronunciation.view.home {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.googlecode.bindagetools.Bind;
-	
-	import mx.collections.ArrayCollection;
+
+import flash.utils.setTimeout;
+
+import mx.collections.ArrayCollection;
 	
 	public class HomeMediator extends BentoMediator {
 		
@@ -42,6 +44,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 			/*setTimeout(function():void {
 				sendNotification(BBNotifications.SELECTED_NODE_CHANGE, bentoProxy.menuXHTML..exercise.(@id == "1250740678061")[0]);
 			}, 500);*/
+            //setTimeout(function():void {sendNotification(BBNotifications.RECORDER_SHOW);}, 500);
 		}
 		
 		override public function onRemove():void {

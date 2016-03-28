@@ -40,7 +40,17 @@
 			
 			var audioProxy:AudioProxy = facade.retrieveProxy(RecorderNotifications.RECORD_PROXY_NAME) as AudioProxy;
 			if (!audioProxy.isRecordEnabled()) {
-				view.currentState = "nomic";
+                view.currentState = "nomic";
+                // Build up a description of the mic problem for the user
+                if (!audioProxy.hasMicrophone()) {
+                    view.micDetails = "flashPlayerNoMicrophone";
+                } else if (!audioProxy.hasMicrophones()) {
+                    view.micDetails = "flashPlayerNoMicrophones";
+                } else if (audioProxy.isMicrophoneMuted()) {
+                    view.micDetails = "flashPlayerMicrophoneMuted";
+                } else {
+                    view.micDetails = "flashPlayerMicrophoneError";
+                }
 			}
 		}
 		
@@ -72,12 +82,13 @@
 			switch (note.getName()) {
 				case RecorderNotifications.NO_MICROPHONE:
 					view.setCurrentState("nomic");
+                    //view.moreDetailsLabel.text = "got no mic mate in mediator";
 					break;
 				case RecorderNotifications.GOT_MICROPHONE:
                     // gh#1438
                     var audioProxy:AudioProxy = facade.retrieveProxy(RecorderNotifications.RECORD_PROXY_NAME) as AudioProxy;
                     trace("got a microphone " + audioProxy.getMicrophoneName());
-                    audioProxy.setMicrophone(-1);
+                    audioProxy.setMicrophone();
 					//view.setCurrentState("minimized");
 					break;
 				case RecorderNotifications.MP3_LOAD_START:

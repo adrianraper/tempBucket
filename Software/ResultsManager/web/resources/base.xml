@@ -76,6 +76,10 @@
             <lit name="errorExceedMaxFileSize" code="707">Your file is too big, please upload a file less than {sizeLimit}.</lit>
             <lit name="errorSingleVideoIOS" code="708">Only a single video per unit is currently supported on iOS.</lit>
             <lit name="errorCantSaveFile" code="709">The file can't be saved, this might happen if you run in a private browser: {message}.</lit>
+            <lit name="flashPlayerNoMicrophone" code="710">Flash Player thinks there is no microphone. If you do have one plugged in, then you may need to go into your browser settings and make sure this website is not blocked for access.</lit>
+            <lit name="flashPlayerNoMicrophones" code="711">Flash Player doesn't think you have any microphones enabled on your computer.</lit>
+            <lit name="flashPlayerMicrophoneMuted" code="712">You have denied access to your microphone. Right click anywhere and choose Settings. Then allow Adobe Flash Player to access your microphone. If your browser is private or incognito you might need to refresh after doing this.</lit>
+            <lit name="flashPlayerMicrophoneError" code="713">Something is stopping us using your microphone. Please check it is on and not blocked in privacy settings.</lit>
 
             <lit name="errorSavingCourseToDb" code="888">Your course has been saved, but a problem with the database means the publishing details and settings have not. Please try again in a minute. If the problem persists, please contact support@clarityenglish.com and tell us the course you were editing and the date/time.</lit>
             
