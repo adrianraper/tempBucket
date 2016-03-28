@@ -210,11 +210,11 @@
 								import skins.clearpronunciation.assets.home.yellowDot;
 								import skins.clearpronunciation.assets.home.yellowDotOutline;
 
-							override public function set data(value:Object):void {
-								super.data = value;
+								override public function set data(value:Object):void {
+									super.data = value;
 
-								this.enabled = Exercise.exerciseEnabledInMenu(value as XML);
-							}
+									this.enabled = Exercise.exerciseEnabledInMenu(value as XML);
+								}
 
 								private function getIcon(item:Object):Object {
 									return item.attribute("done").length() > 0 && parseInt(item.@done) > 0 ? new yellowDot() : new yellowDotOutline();
@@ -226,8 +226,9 @@
 									} else {
 										labelDisplay.setStyle("color", 0x789E97);
 									}
+									// gh#1465
+									labelDisplay.setStyle("fontFamily", 'Helvetica');
 
-									
 									super.updateDisplayList(unscaledWidth, unscaledHeight);
 								}
 								
