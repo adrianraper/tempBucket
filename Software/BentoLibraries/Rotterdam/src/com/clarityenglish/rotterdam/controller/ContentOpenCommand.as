@@ -58,7 +58,8 @@ package com.clarityenglish.rotterdam.controller {
 				var progName:String = uid.titleName;
 			} else {
 				log.error("title productCode " + uid.title + " is new");
-				progName = uid.title as String;
+				// gh#1451
+				progName = String(uid.title);
 			}
 			var startFolder:String = copyProvider.getCopyForId("path" + progName) + "/";
 

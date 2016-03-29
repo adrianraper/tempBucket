@@ -13,7 +13,12 @@
 	
 	// For this product
 	$productCode = 49; // StudySkillsSuccess
-	
+	$version = '1107';
+	$coordsMinWidth = '990';
+	$coordsMaxWidth = '990';
+	$coordsMinHeight = '760';
+	$coordsMaxHeight = '970';
+
 	// Picking up IP and referrer for security checking
 	require_once '../securityCheck.php';
 	

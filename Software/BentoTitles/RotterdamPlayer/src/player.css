@@ -43,6 +43,10 @@ login|LoginView s|SkinnableContainer {
 	skinClass: ClassReference("skins.rotterdam.login.SignInContainerSkin");
 }
 
+/* gh#1451 Necessary to make C-Player work from Intellij and latest Flash */
+s|TextInput {
+	skinClass: ClassReference("spark.skins.mobile.TextInputSkin");
+}
 login|LoginView s|TextInput {
 	skinClass: ClassReference("skins.rotterdam.login.LoginTextInputSkin");
 	cornerRadius: 5;

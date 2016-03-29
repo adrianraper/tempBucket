@@ -14,11 +14,17 @@
             <entry library-name="Mobile components" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry module-name="OSMF" build-configuration-name="OSMF">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="textLayout" build-configuration-name="textLayout">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="13.0_AIR16 (Bento)" />
         </dependencies>
         <compiler-options>
-          <option name="additionalOptions" value="-debug=false" />
+          <option name="additionalOptions" value="--swf-version=20 -debug=true" />
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
@@ -31,6 +37,9 @@
               <dependency linkage="Merged" />
             </entry>
             <entry module-name="Rotterdam" build-configuration-name="Rotterdam">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="MX components" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -60,5 +69,8 @@
     <orderEntry type="module" module-name="Bento" exported="" />
     <orderEntry type="module" module-name="Rotterdam" exported="" />
     <orderEntry type="library" exported="" name="Mobile components" level="project" />
+    <orderEntry type="module" module-name="textLayout" exported="" />
+    <orderEntry type="module" module-name="OSMF" exported="" />
+    <orderEntry type="library" exported="" name="MX components" level="project" />
   </component>
 </module>

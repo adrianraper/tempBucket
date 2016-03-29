@@ -12,7 +12,15 @@
 	}
 	
 	// For this product
-	$productCode = 33; // Active Reading
+	$productCode = 56;
+	$swfName = 'ActiveReading.swf';
+	$startControl = '/Software/BentoTitles/ActiveReading/bin-release/';
+	$version = '1107';
+	$coordsMinWidth = '990';
+	$coordsMaxWidth = '1200';
+	$coordsMinHeight = '760';
+	$coordsMaxHeight = null;
+	$locationFile = "config.xml";
 	
 	// Picking up IP and referrer for security checking
 	require_once '../securityCheck.php';
@@ -30,16 +38,21 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
+	<link rel="stylesheet" type="text/css" href="/Software/Common/ielts.css" />
+
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
+
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/ielts.js"></script>
 	<?php require '../phpToJavascriptVars.php'; ?>
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/loadOrchid.js"></script>
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/loadBento.js"></script>
 
 	<!-- 
 		Add any extra parameters to the flashvars array here 
 	 -->
 	<script type="text/javascript">
-		swfobject.embedSWF(jsStartControl + jsSwfName + argList, "altContent", "100%", "100%", "9.0.28", expressInstall, flashvars, params, attr);
+		swfobject.embedSWF(jsWebShare + jsStartControl + jsSwfName + argList, "altContent", "100%", "100%", "10.2.0", expressInstall, flashvars, params, attr);
 	</script>
 	
 <!--CSS pop up layout box-->
@@ -49,6 +62,6 @@
 </style>
 </head>
 <body onload="onLoad()">
-<?php require_once '../orchidAltContent.php';?>
+<?php require_once '../bentoAltContent.php';?>
 </body>
 </html>

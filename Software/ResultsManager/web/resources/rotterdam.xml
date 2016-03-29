@@ -48,8 +48,7 @@
             <lit name="pathAuthorPlus">AuthorPlus</lit>
             <lit name="pathnull">AuthorPlus</lit>
             <!--  if you release a new title without compiling Rotterdam, use this for the productCode -->
-            <lit name="path55">NewTitle</lit>
-            <lit name="pathTenseBuster10">TenseBuster</lit>
+            <lit name="pathPracticalWriting">PracticalWriting</lit>
             
 			<lit name="hmmmLabel">Hmmm, that didn't work either:</lit>
 			

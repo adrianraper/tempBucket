@@ -22,25 +22,13 @@ package com.clarityenglish.rotterdam.player.controller {
 
 		public override function execute(note:INotification):void {
 			super.execute(note);
-			
+
+			// gh#1444 BentoStartupCommand sets generic transforms
 			// Set the transforms that Rotterdam player uses on its menu.xml files
 			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;			
-			var menuTransforms:Array = [ new ProgressExerciseScoresTransform(),
-									 new ProgressSummaryTransform(),
-									 new HiddenContentTransform(),
-									 new DirectStartDisableTransform(configProxy.getDirectStart()),
-									 new PublicationUnitTransform() ];
-			
-			// gh#294
-			/*
-			if (Capabilities.version.split(" ")[0] == "IOS") {
-				transforms.push(new SingleVideoNodeTransform());
-			}
-			*/
-			
+			var menuTransforms:Array = [ new PublicationUnitTransform() ];
 			xhtmlProxy.registerTransforms(menuTransforms, [ Href.MENU_XHTML ]);
-			
+
 			// Set the transforms that Rotterdam player uses when loading its courses.xml files (gh#144)
 			// gh#689, gh#882
 			var courseTransforms:Array = [ new CourseEnabledTransform(), 

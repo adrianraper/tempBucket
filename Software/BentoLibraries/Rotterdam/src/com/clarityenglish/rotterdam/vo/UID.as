@@ -65,18 +65,23 @@ package com.clarityenglish.rotterdam.vo {
 					return 'AuthorPlus';
 					break;
 				case 9:
+                case 55:
 					return 'TenseBuster';
 					break;
 				case 10:
+				case 62:
 					return 'BusinessWriting';
 					break;
 				case 33:
+				case 56:
 					return 'ActiveReading';
 					break;
 				case 39:
+				case 57:
 					return 'ClearPronunciation1';
 					break;
 				case 50:
+                case 58:
 					return 'ClearPronunciation2';
 					break;
 				case 52:
@@ -84,6 +89,7 @@ package com.clarityenglish.rotterdam.vo {
 					return 'RoadToIELTS';
 					break;
 				case 49:
+                case 60:
 					return 'StudySkillsSuccess';
 					break;
 				case 20:
@@ -115,8 +121,9 @@ package com.clarityenglish.rotterdam.vo {
 					break;
 				case 46:
 					return 'ConnectedSpeech';
-				case 55:
-					return 'TenseBuster10';
+					break;
+				case 61:
+					return 'PracticalWriting';
 					break;
 			}
 			
