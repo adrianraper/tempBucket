@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Graphic version="2.0" viewHeight="400" viewWidth="550" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+<Graphic version="2.0" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
   <Library>
-    <Definition name="ipad_1_4_ai_My_Profile_Path__2" flm:originalName="ipad 1.4.ai/My Profile/&lt;Path&gt;_2">
+    <Definition name="ipad_1_4_ai_My_Profile_Path__2">
       <Group>
         <Group d:type="layer" d:userLabel="Layer 1">
           <Path data="M100.9 21.3Q112.05 31.55 116.6 45.95L133.7 54.45 119.2 64.05Q119.1 69.15 118.1 74.05 113.5 96.9 94.05 109.8 74.65 122.7 51.75 118.1 28.85 113.5 15.95 94.05 3.05 74.55 7.7 51.7 12.3 28.85 31.75 15.95 51.2 3.05 74.05 7.65 89.4 10.8 100.9 21.3">
