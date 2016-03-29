@@ -17,10 +17,12 @@ package com.clarityenglish.rotterdam.player.controller {
 		override public function execute(note:INotification):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var progressProxy:ProgressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
-			
-			if (configProxy.getConfig().sessionID != note.getBody().sessionID)
-				progressProxy.sessionIdChanged(note.getBody().sessionID);
 
+			// TODO gh#1452 though nothing to do with that fix - when you stay on a course for >1 min
+			// this is called, but not with a note
+			if (note)
+			    if (configProxy.getConfig().sessionID != note.getBody().sessionID)
+    				progressProxy.sessionIdChanged(note.getBody().sessionID);
 		}
 		
 	}
