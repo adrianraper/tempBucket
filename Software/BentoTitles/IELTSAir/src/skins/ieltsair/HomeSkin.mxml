@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:anychart="com.anychart.*" 
+		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:ui="com.clarityenglish.ielts.view.home.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
@@ -11,15 +9,16 @@
 	
 	<fx:Script>
 		<![CDATA[
+		import mx.core.FlexGlobals;
 
-			import org.alivepdf.layout.Unit;
+		import org.alivepdf.layout.Unit;
 			/**
 			 * Push items around the screen
 			 */
 			protected function floatCourses(top:uint, pv:String):uint {
 				// gh#166
 				// I really can't see why I can't access hostComponent directly in this function!
-				if (pv == 'R2ITD') {
+				if (pv == 'R2ITD' || FlexGlobals.topLevelApplication.height < 768) {
 					return top - 60;
 				} else {
 					return top;
@@ -27,7 +26,11 @@
 			}
 		]]>
 	</fx:Script>
-	
+
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" color="#CCCCCC" blurX="5" blurY="5" alpha="0.75" distance="1" angle="180" knockout="false"/>
+	</fx:Declarations>
+
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
@@ -58,12 +61,44 @@
 	<ui:CourseBarRenderer id="speakingCoverageBar" data="{hostComponent.dataProvider}" courseClass="speaking" left="39" top="333" width="375" />
 	<ui:CourseBarRenderer id="writingCoverageBar" data="{hostComponent.dataProvider}" courseClass="writing" left="39" top="407" width="375" />
 	
-	<s:Button id="readingCourseButton" right="20" top="{this.floatCourses(142, hostComponent.productVersion)}" />
-	<s:Button id="listeningCourseButton" right="20" top="{this.floatCourses(248, hostComponent.productVersion)}" />
-	<s:Button id="speakingCourseButton" right="20" top="{this.floatCourses(354, hostComponent.productVersion)}" />
-	<s:Button id="writingCourseButton" right="20" top="{this.floatCourses(460, hostComponent.productVersion)}" />
-	<s:Button id="registerInfoButton" visible="{hostComponent.productVersion == 'R2ITD'}" 
-			  includeInLayout="{hostComponent.productVersion == 'R2ITD'}" right="20" top="{this.floatCourses(566, hostComponent.productVersion)}" useHandCursor="true"  />
-	
-	<s:Button id="longRateButton" useHandCursor="true" buttonMode="true" bottom.testDrive="130" left.testDrive="39" right.rateStates="20" top.lastMinute="80" top.fullversionStates="20"/>
+	<s:VGroup right="20" width="100%" height="100%" horizontalAlign="right" gap="10">
+		<s:Group width="100%">
+			<s:Button id="readingCourseButton" width="45%" right="0" top="{this.floatCourses(142, hostComponent.productVersion)}" />
+			<s:Button id="listeningCourseButton" width="45%" right="0" top="{this.floatCourses(248, hostComponent.productVersion)}" />
+			<s:Button id="speakingCourseButton" width="45%" right="0" top="{this.floatCourses(354, hostComponent.productVersion)}" />
+			<s:Button id="writingCourseButton" width="45%" right="0" top="{this.floatCourses(460, hostComponent.productVersion)}" />
+			<s:Button id="registerInfoButton" visible="{hostComponent.productVersion == 'R2ITD'}"
+					  includeInLayout="{hostComponent.productVersion == 'R2ITD'}" right="20" top="{this.floatCourses(566, hostComponent.productVersion)}" useHandCursor="true"  />
+
+			<s:Button id="longRateButton" useHandCursor="true" buttonMode="true" bottom.testDrive="130" left.testDrive="39" right.rateStates="20" top.lastMinute="80" top.fullversionStates="20"/>
+		</s:Group>
+
+		<s:HGroup width="45%" right="20" paddingTop="7" horizontalAlign="right" includeIn="fullVersion">
+			<s:Group width="100%" height="85" filters="{dropShadowFilter}">
+				<s:Rect left="0" right="0" top="0" bottom="0" radiusX="6" radiusY="6">
+					<s:fill>
+						<s:SolidColor color="#F1F1F3"/>
+					</s:fill>
+					<s:stroke>
+						<s:LinearGradientStroke rotation="90" weight="3">
+							<s:GradientEntry color="#FFFFFF" ratio="0.3" />
+							<s:GradientEntry color="#E0E0E0" ratio="1" />
+						</s:LinearGradientStroke>
+					</s:stroke>
+				</s:Rect>
+				<s:Image source="@Embed(source='skins/ielts/assets/studyplannerBackground.png')" left="3" right="3" top="3" bottom="3" fillMode="clip" />
+				<s:HGroup width="100%" height="100%" verticalAlign="middle">
+					<s:VGroup paddingLeft="30" width="60%" gap="6">
+						<s:VGroup gap="2">
+							<s:Label id="studyPlannerCaptionLabel" fontSize="16" fontWeight="bold" color="#08446B" />
+							<s:Label id="studyPalnnerDescriptionLabel" fontSize="9" color="#08446B" />
+						</s:VGroup>
+						<s:Button id="studyPlannerDownloadButton" width="250" height="30" useHandCursor="true" buttonMode="true"/>
+					</s:VGroup>
+					<s:SWFLoader width="40%" source="@Embed(source='/skins/ieltsair/assets/studyplanner.png')" scaleX="0.5" scaleY="0.5" horizontalAlign="center" verticalCenter="0"/>
+				</s:HGroup>
+			</s:Group>
+		</s:HGroup>
+	</s:VGroup>
+
 </s:Skin>
