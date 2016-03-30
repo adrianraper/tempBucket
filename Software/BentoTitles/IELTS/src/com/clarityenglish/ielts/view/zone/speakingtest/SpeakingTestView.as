@@ -67,6 +67,9 @@ public class SpeakingTestView extends BentoView{
     [Bindable]
     public var isRecordEnabled:Boolean;
 
+    [Bindable]
+    public var isReflectionShow:Boolean;
+
     private var _currentState:String;
 
     public function SpeakingTestView() {
@@ -175,6 +178,8 @@ public class SpeakingTestView extends BentoView{
         actionTextGroup.visible = false;
         completeLabel.visible = false;
         timer.visible = false;
+
+        isReflectionShow = true;
     }
 
     protected function onBackButtonClick(event:Event):void {
@@ -190,6 +195,7 @@ public class SpeakingTestView extends BentoView{
 
     private function restTestState():void {
         AudioPlayer.stopAllAudio();
+        isReflectionShow = false;
 
         if (timer)
             timer.stopTimer();
