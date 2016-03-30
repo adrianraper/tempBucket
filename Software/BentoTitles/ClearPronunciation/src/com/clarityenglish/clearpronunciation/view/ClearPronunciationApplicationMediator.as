@@ -3,7 +3,8 @@ package com.clarityenglish.clearpronunciation.view
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BBStates;
 	import com.clarityenglish.bento.model.BentoProxy;
-	import com.clarityenglish.common.model.ConfigProxy;
+import com.clarityenglish.bento.model.SCORMProxy;
+import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.view.AbstractApplicationMediator;
 	import com.clarityenglish.clearpronunciation.ClearPronunciationApplication;
 	
@@ -80,34 +81,64 @@ package com.clarityenglish.clearpronunciation.view
 		}
 		
 		/**
-		 * Handle the various options for direct start. IELTS supports:
+		 * Handle the various options for direct start.
 		 * 
-		 * courseClass, courseID
-		 * unitID, exerciseID
-		 * 
-		 * @return 
+		 * gh#1467 This is probably common to all bento programs
+		 *
 		 */
-		private function handleDirectStart():Boolean {
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			var directStart:Object = configProxy.getDirectStart();
-			
-			if (!directStart) return false;
-			
-			// gh#92
-			// If courseID is defined go straight into that course.
-			// But this is more complex than you think because we haven't loaded course.xml yet
-			if (directStart.courseID) {
-				
-				// One possibility is to simply try to load the course that you are told and just 
-				// suffer the consequences if this course doesn't exist. Which will be fine if
-				// you can catch the exception nicely.
-				var menu:String = directStart.courseID + '/menu.xml';
-				sendNotification(BBNotifications.MENU_XHTML_LOAD, { filename: menu } );
-				return true;
-			}
-			
-			return false;
-		}
-	}
+        private function handleDirectStart():Boolean {
+            var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+            var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+            var directStart:Object = configProxy.getDirectStart();
+
+            if (!directStart) return false;
+
+            // #338
+            // If exerciseID is defined go straight into an exercise.
+            if (!directStart.scorm) {
+                if (directStart.exerciseID) {
+                    var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);
+
+                    if (exercise) {
+                        sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
+                        return true;
+                    }
+                } else {
+                    // gh#1328
+                    if (directStart.unitID) {
+                        unit = bentoProxy.menuXHTML.getElementById(directStart.unitID);
+                        sendNotification(BBNotifications.SELECTED_NODE_CHANGE, unit);
+                    } else if (directStart.courseID) {
+                        var course:XML = bentoProxy.menuXHTML.getElementById(directStart.courseID);
+                        sendNotification(BBNotifications.SELECTED_NODE_CHANGE, course);
+                    }
+                }
+            } else {
+                var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+                // gh#858
+                if (directStart.exerciseID) {
+                    var unit:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID).parent();
+                    var unitLength:Number = unit.exercise.length();
+                    var exerciseIndex:Number = unit.exercise.(@id == directStart.exerciseID).childIndex();
+                    // gh#879
+                    scormProxy.setTotalExercise(unitLength);
+                    // Currently, the bookmark will not empty when last exercise ID stored, so here we need to force it open the first exercise manually.
+                    var nextExercise:XML = (exerciseIndex + 1 == unitLength) ? unit.exercise[0] : unit.exercise[exerciseIndex + 1];
+
+                    if (nextExercise)
+                        sendNotification(BBNotifications.SELECTED_NODE_CHANGE, nextExercise);
+                } else if (directStart.unitID) {
+                    unit = bentoProxy.menuXHTML.getElementById(directStart.unitID);
+                    // gh#879
+                    scormProxy.setTotalExercise(unit.exercise.length());
+
+                    if (unit) {
+                        sendNotification(BBNotifications.SELECTED_NODE_CHANGE, unit.exercise[0]);
+                    }
+                }
+            }
+
+            return false;
+        }
+    }
 }
