@@ -64,6 +64,9 @@ public class SpeakingTestView extends BentoView{
     [Bindable]
     public var isPlatformTablet:Boolean;
 
+    [Bindable]
+    public var isRecordEnabled:Boolean;
+
     private var _currentState:String;
 
     public function SpeakingTestView() {
@@ -94,7 +97,6 @@ public class SpeakingTestView extends BentoView{
             case timer:
                 timer.addEventListener("TimerFirstSectionCompleteEvent", onPlanningComplete);
                 timer.addEventListener("TimerCompleteEvent", onTimerComplete);
-                //timer.addEventListener("TimerRestartEvent", onTimerRestart);
                 timer.addEventListener("LastAudioCompleteEvent", onLastAudioComplete);
                 break;
             case planningLabel:
@@ -124,9 +126,11 @@ public class SpeakingTestView extends BentoView{
         callLater(function () {
             testXML = list.dataProvider.getItemAt(selectedPageNumber) as XML;
             timer.startButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
-            /*actionTextGroup.visible = true;
-             recorderGroup.visible = false;*/
+            timer.visible = true;
+
             actionTextGroup.visible = true;
+            recorderGroup.visible = false;
+
             planningLabel.visible = true;
             recordingLabel.visible = false;
             completeLabel.visible = false;
@@ -135,47 +139,43 @@ public class SpeakingTestView extends BentoView{
 
     protected function onPlanningComplete(event:Event):void {
         isPlanningComplete = true;
-        /*actionTextGroup.visible = false;
-        recorderGroup.visible = true;*/
+        if (isRecordEnabled){
+            recorderGroup.visible = true;
+            // gh#1459
+            recorderView.recordWaveformView.isRecordHide = false;
+            recorderView.recordWaveformView.isSaveEnabled = false;
+            recorderView.recordWaveformView.recordButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+        } else {
+            recordingLabel.visible = true;
+        }
         planningLabel.visible = false;
-        recordingLabel.visible = true;
-        completeLabel.visible = false;
-
-        // gh#1459
-        /*recorderView.recordWaveformView.isRecorHide = false;
-        recorderView.recordWaveformView.isSaveEnabled = false;
-        recorderView.recordWaveformView.recordButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));*/
     }
 
     protected function onTimerComplete(event:Event):void {
-        planningLabel.visible = false;
-        recordingLabel.visible = false;
+        if (isRecordEnabled) {
+            // Manually change the recorder skin state
+            // gh#1459
+            recorderGroup.visible = false;
+            recorderView.recordWaveformView.isRecordHide = true;
+            // Stop the recorder
+            callLater(function () {
+                recorderView.recordWaveformView.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+            });
+        } else {
+            recordingLabel.visible = false;
+        }
         completeLabel.visible = true;
-
-        // Manually change the recorder skin state
-        // gh#1459
-        //recorderView.recordWaveformView.isRecorHide = true;
-        // Stop the recorder
-        /*callLater(function () {
-            recorderView.recordWaveformView.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
-        });*/
     }
 
     protected function onLastAudioComplete(event:Event):void {
         dispatchEvent(new Event("flipToReflectionEvent"));
+        if (isRecordEnabled) {
+            recorderGroup.visible = true;
+        }
         actionTextGroup.visible = false;
-    }
-
-    /*protected function onTimerRestart(event:Event):void {
-        isPlanningComplete = false;
-        actionTextGroup.visible = true;
-        recorderGroup.visible = false;
         completeLabel.visible = false;
-
-        // Stop the recorder and reset recorded audio
-        recorderView.recordWaveformView.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
-        recorderView.recordWaveformView.newButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
-    }*/
+        timer.visible = false;
+    }
 
     protected function onBackButtonClick(event:Event):void {
         setState('normalState');
@@ -197,8 +197,10 @@ public class SpeakingTestView extends BentoView{
         if (isPlanningComplete) {
             isPlanningComplete = false;
 
-            /*recorderView.recordWaveformView.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
-            recorderView.recordWaveformView.newButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));*/
+            if (isRecordEnabled) {
+                recorderView.recordWaveformView.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+                recorderView.recordWaveformView.newButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+            }
         }
     }
 

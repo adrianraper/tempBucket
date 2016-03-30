@@ -143,7 +143,11 @@
 
                                 if (data) {
                                     var idx:int = ((owner as List).dataProvider as ListCollectionView).getItemIndex(data);
-                                    fontSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingfont" + (idx + 1) + ".png";
+                                    if (outerDocument.hostComponent.isRecordEnabled) {
+                                        fontSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingNormalRecordingFront" + (idx + 1) + ".png";
+                                    } else {
+                                        fontSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingPhoneRecordingFront" + (idx + 1) + ".png";
+                                    }
                                     backSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingback" + (idx + 1) + ".png";
                                 }
                             }
@@ -214,7 +218,7 @@
 
                         <s:Button id="speakingStartButton" bottom="55" width="452" height="53" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingStartButton')}"  click="onStartButtonClick(event)"
                                   useHandCursor="true" buttonMode="true"  />
-                        <s:Button id="speakingBackButton" bottom="68" width="452" height="40" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingBackButton')}" useHandCursor="true" buttonMode="true" visible="false" click="onBackButtonClick(event)"/>
+                        <s:Button id="speakingBackButton" bottom="{outerDocument.hostComponent.isRecordEnabled? 10 : 55}" width="452" height="40" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingBackButton')}" useHandCursor="true" buttonMode="true" visible="false" click="onBackButtonClick(event)"/>
 
                         <s:SWFLoader id="reflectionSWFLoader" scaleX="0.5" scaleY="0.5" top="17" horizontalCenter="0" source="{outerDocument.hostComponent.assetFolder + 'testpractice_speakingreflection.png'}" visible="false" />
                         <s:SWFLoader id="backSwfLoader" scaleX="0.5" scaleY="0.5" top="17" horizontalCenter="0" visible="false" />
@@ -235,9 +239,9 @@
                 <s:Label id="recordingLabel" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" />
                 <s:Label id="completeLabel" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" />
             </s:Group>
-            <!--s:Group id="recorderGroup" width="100%" height="100%" verticalCenter="0">
+            <s:Group id="recorderGroup" width="100%" height="100%" verticalCenter="0">
                 <recorder:RecorderView id="recorderView" left="0" right="0" top="0" bottom="0" />
-            </s:Group-->
+            </s:Group>
         </s:Group>
 
         <s:Group top="0" bottom="0" left="1" right="1" excludeFrom="normalState">

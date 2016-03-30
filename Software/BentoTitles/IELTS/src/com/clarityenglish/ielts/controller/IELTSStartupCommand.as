@@ -26,8 +26,8 @@ import org.puremvc.as3.interfaces.INotification;
 		public override function execute(note:INotification):void {
 			super.execute(note);
 
-			/*var recorderAdaptor:IRecorderAdaptor = (PlayerUtils.isAirApplication()) ? new AIRRecorderAdaptor() : new WebRecorderAdaptor();
-			facade.registerProxy(new AudioProxy(RecorderNotifications.RECORD_PROXY_NAME, true, recorderAdaptor));*/
+			var recorderAdaptor:IRecorderAdaptor = (PlayerUtils.isAirApplication()) ? new AIRRecorderAdaptor() : new WebRecorderAdaptor();
+			facade.registerProxy(new AudioProxy(RecorderNotifications.RECORD_PROXY_NAME, true, recorderAdaptor));
 			
 			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
 			
