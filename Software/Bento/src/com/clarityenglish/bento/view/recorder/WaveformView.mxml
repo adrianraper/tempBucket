@@ -110,6 +110,9 @@
         [Bindable]
         public var debugInfo:String;
 
+        [Bindable]
+        public var isPlatformiPad:Boolean
+
         // v4.0.1.1 Small step to help trouble shoot
         public var microphoneName:String;
         public var audioStatus:String;

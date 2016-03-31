@@ -51,13 +51,13 @@
                       visible="false" includeIn="record"/>
             <s:Button id="recordingHintButton" skinClass="skins.ielts.zone.speakingtest.recorder.RecordingHintButton" left="30" verticalCenter="0"
                       includeIn="record"/>
-            <s:Button id="playButton" skinClass="skins.ielts.zone.speakingtest.recorder.PlayButtonSkin" left="0" width="40" height="100%" verticalCenter="0" click="onPlayButtonClick(event)"
+            <s:Button id="playButton" skinClass="skins.ielts.zone.speakingtest.recorder.PlayButtonSkin" left="{hostComponent.isPlatformiPad ? 30 : 0}" width="40" height="100%" verticalCenter="0" click="onPlayButtonClick(event)"
                       toolTip="null" useHandCursor="true" buttonMode="true" includeIn="playback"/>
-            <s:Button id="stopButton" skinClass="skins.ielts.zone.speakingtest.recorder.StopButtonSkin" left="40" width="40" height="100%" verticalCenter="0"
+            <s:Button id="stopButton" skinClass="skins.ielts.zone.speakingtest.recorder.StopButtonSkin" left="{hostComponent.isPlatformiPad ? 70 : 40}" width="40" height="100%" verticalCenter="0"
                       toolTip="null" useHandCursor="true" buttonMode="true" visible.record="false" visible.playback="true"/>
-            <s:Button id="pauseButton" skinClass="skins.ielts.zone.speakingtest.recorder.PauseButtonSkin" left="0" width="40" height="100%" verticalCenter="0" click="onPauseButtonClick(event)"
+            <s:Button id="pauseButton" skinClass="skins.ielts.zone.speakingtest.recorder.PauseButtonSkin" left="{hostComponent.isPlatformiPad ? 30 : 0}" width="40" height="100%" verticalCenter="0" click="onPauseButtonClick(event)"
                       toolTip="null" useHandCursor="true" buttonMode="true" includeIn="playback" visible="false"/>
-            <s:Button id="saveButton" skinClass="skins.ielts.zone.speakingtest.recorder.SaveButtonSkin" left="80" width="40" height="100%" verticalCenter="0"
+            <s:Button id="saveButton" skinClass="skins.ielts.zone.speakingtest.recorder.SaveButtonSkin" left="80" width="40" height="100%" verticalCenter="0" visible="{!hostComponent.isPlatformiPad}"
                       toolTip="null" useHandCursor="true" buttonMode="true" includeIn="playback"  />
             <s:Button id="newButton" skinClass="skins.bento.recorder.buttons.NewButtonSkin" visible="false" includeInLayout="false"/>
             <s:ScrubBar id="scrubBar" skinClass="skins.ielts.zone.speakingtest.recorder.ScrubBarSkin" right="20" verticalCenter="0"

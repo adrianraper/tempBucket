@@ -68,6 +68,7 @@ package com.clarityenglish.bento.view.recorder {
 			} else {
 				view.isSaveEnabled = true;
 			}
+			view.isPlatformiPad = configProxy.isPlatformiPad();
 			// Prepare the view
 			prepareView();
 		}

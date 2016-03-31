@@ -18,6 +18,7 @@
 
         import mx.binding.utils.BindingUtils;
         import mx.binding.utils.ChangeWatcher;
+        import mx.core.FlexGlobals;
         import mx.events.FlexEvent;
 
         private var changeWatcher:ChangeWatcher;
@@ -64,7 +65,7 @@
     </s:states>
 
     <s:Group top="0" bottom="0" left="0" right="0">
-        <s:List id="list" width="514" top="0" bottom="0" horizontalCenter="0" contentBackgroundColor="#FFFFFF" verticalScrollPolicy="off" pageScrollingEnabled="true" scrollSnappingMode="leadingEdge" borderVisible="false" dataProvider="{hostComponent.testXMLListCollection}">
+        <s:List id="list" width="514" top="14" bottom="0" horizontalCenter="0" contentBackgroundColor="#FFFFFF" verticalScrollPolicy="off" pageScrollingEnabled="true" scrollSnappingMode="leadingEdge" borderVisible="false" dataProvider="{hostComponent.testXMLListCollection}">
             <s:layout>
                 <s:HorizontalLayout gap="0" useVirtualLayout="true" />
             </s:layout>
@@ -215,13 +216,13 @@
                             ]]>
                         </fx:Script>
 
-                        <s:Button id="speakingStartButton" bottom="55" width="452" height="53" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingStartButton')}"  click="onStartButtonClick(event)"
+                        <s:Button id="speakingStartButton" top="325" width="452" height="53" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingStartButton')}"  click="onStartButtonClick(event)"
                                   useHandCursor="true" buttonMode="true"  />
-                        <s:Button id="speakingBackButton" bottom="{outerDocument.hostComponent.isRecordEnabled? 10 : 55}" width="452" height="40" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingBackButton')}" useHandCursor="true" buttonMode="true" visible="false" click="onBackButtonClick(event)"/>
+                        <s:Button id="speakingBackButton" top="{outerDocument.hostComponent.isRecordEnabled? 370 : 325}" width="452" height="45" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingBackButton')}" useHandCursor="true" buttonMode="true" visible="false" click="onBackButtonClick(event)"/>
 
-                        <s:SWFLoader id="reflectionSWFLoader" scaleX="0.5" scaleY="0.5" top="17" horizontalCenter="0" source="{outerDocument.hostComponent.assetFolder + 'testpractice_speakingreflection.png'}" visible="false" />
-                        <s:SWFLoader id="backSwfLoader" scaleX="0.5" scaleY="0.5" top="17" horizontalCenter="0" visible="false" />
-                        <s:SWFLoader id="fontSwfLoader" scaleX="0.5" scaleY="0.5" top="17" horizontalCenter="0" />
+                        <s:SWFLoader id="reflectionSWFLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" source="{outerDocument.hostComponent.assetFolder + 'testpractice_speakingreflection.png'}" visible="false" />
+                        <s:SWFLoader id="backSwfLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" visible="false" />
+                        <s:SWFLoader id="fontSwfLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" />
                     </s:DataRenderer>
                 </fx:Component>
             </s:itemRenderer>
@@ -243,21 +244,25 @@
             </s:Group>
         </s:Group>
 
-        <s:Group top="0" bottom="0" left="1" right="1" excludeFrom="normalState">
-            <s:Group id="timerGroup" width="100%" bottom="0">
-                <timer:TimerComponent id="timer" bottom="0" timerTotalTime="{String(hostComponent.testXML.attribute('totalTime')).split(',')}"
-                                      timerSectionLabels="{String(hostComponent.testXML.attribute('timerSectionLabels')).split(',')}"
-                                      audios="{String(hostComponent.testXML.attribute('audios')).split(',')}"
-                                      copyProvider="{hostComponent.getCopyProvider()}" contentPath="{hostComponent.href.rootPath}" textSize="17" timeTextColor="#333333"
-                                      trackColor="#D8D8D8" trackHighLightColor="#A8A8A8" progressLeftColor="#A93087" progressMidColor="#A93087" progressRightColor="#A93087" buttonColor="#A93087" buttonDownOverColor="#4F173F"
-                                      firstTipString="{hostComponent.getCopyProvider().getCopyForId('timerFirstTipString')}" midTipString="{hostComponent.getCopyProvider().getCopyForId('timerMidTipString')}"
-                                      timerWidth="380" timerHeight="24" width="100%" height="60"
-                                      isTimeFixed="true" isTimerAutoControl="true" isPlatformTablet="{hostComponent.isPlatformTablet}"/>
-            </s:Group>
+        <s:Group id="timerGroup" width="100%" top="0" bottom="0" left="1" right="1" excludeFrom="normalState">
+            <timer:TimerComponent id="timer" bottom="0"
+                                  timerTotalTime="{String(hostComponent.testXML.attribute('totalTime')).split(',')}"
+                                  timerSectionLabels="{String(hostComponent.testXML.attribute('timerSectionLabels')).split(',')}"
+                                  audios="{String(hostComponent.testXML.attribute('audios')).split(',')}"
+                                  copyProvider="{hostComponent.getCopyProvider()}"
+                                  contentPath="{hostComponent.href.rootPath}" textSize="17" timeTextColor="#333333"
+                                  trackColor="#D8D8D8" trackHighLightColor="#A8A8A8" progressLeftColor="#A93087"
+                                  progressMidColor="#A93087" progressRightColor="#A93087" buttonColor="#A93087"
+                                  buttonDownOverColor="#4F173F"
+                                  firstTipString="{hostComponent.getCopyProvider().getCopyForId('timerFirstTipString')}"
+                                  midTipString="{hostComponent.getCopyProvider().getCopyForId('timerMidTipString')}"
+                                  timerWidth="380" timerHeight="24" width="100%" height="60"
+                                  isTimeFixed="true" isTimerAutoControl="true"
+                                  isPlatformTablet="{hostComponent.isPlatformTablet}"/>
         </s:Group>
 
         <components:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="20" dataProvider="{list.dataProvider}" includeIn="normalState" />
-        <s:Button id="leftArrowButton" click="scrollBy(-1)" visible="true" left="5" top="160" mouseEnabled="true" buttonMode="true" includeIn="normalState" enabled="false" />
-        <s:Button id="rightArrowButton" click="scrollBy(1)" visible="true" right="5" top="165" mouseEnabled="true" buttonMode="true" includeIn="normalState" />
+        <s:Button id="leftArrowButton" click="scrollBy(-1)" visible="{getStyle('showArrows')}" left="5" top="160" mouseEnabled="true" buttonMode="true" includeIn="normalState" enabled="false" />
+        <s:Button id="rightArrowButton" click="scrollBy(1)" visible="{getStyle('showArrows')}" right="5" top="165" mouseEnabled="true" buttonMode="true" includeIn="normalState" />
     </s:Group>
 </s:Skin>
