@@ -66,8 +66,8 @@
                 <s:SolidColorStroke color="#E1E1E1" />
             </s:stroke>
         </s:Rect>
-        <s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle" gap="5">
-            <s:Group scaleX="0.5" scaleY="0.5">
+        <s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle" gap="7">
+            <s:Group scaleX="0.55" scaleY="0.55">
                 <s:Path winding="nonZero" data="M20.4116 2.53223C19.6001 2.02148 18.5264 2.26563 18.0166 3.07813 17.5024 3.8877 17.7476 4.96191 18.5591 5.47461 21.4497 7.29004 23.1753 10.4102 23.1753 13.8145 23.1753 19.2432 18.7559 23.6611 13.3267 23.6611 7.89502 23.6611 3.47705 19.2461
  3.47559 13.8145 3.47705 10.7217 4.91211 7.87891 7.33398 6.01855L9.93164 8.61816C10.457 9.1416 10.8862 8.96289 10.8877 8.21777L10.8877 1.35059C10.8862 0.608398 10.2773 0 9.53516 0L2.66553 0C1.92188 0 1.74219 0.430664 2.26904 0.957031L4.84814 3.53418
 C1.78467 6.04883 0 9.78418 0 13.8145 0 21.1611 5.97852 27.1367 13.3252 27.1367 20.6709 27.1367 26.6494 21.1611 26.6494 13.8145 26.6509 9.20703 24.3169 4.9873 20.4116 2.53223Z">
@@ -80,11 +80,11 @@ C1.78467 6.04883 0 9.78418 0 13.8145 0 21.1611 5.97852 27.1367 13.3252 27.1367 2
             <!-- layer 8: text -->
             <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
             <s:VGroup>
-                <s:Spacer height="2" />
+                <s:Spacer height="1" />
                 <s:Label id="labelDisplay"
                          textAlign="center"
                          maxDisplayedLines="1"
-                         color="#A93087" fontWeight="bold" fontSize="14"
+                         color="#A93087" fontWeight="bold" fontSize="15"
                          horizontalCenter="0" verticalCenter="0" verticalAlign="middle"
                          left="10" right="10" top="2" bottom="2">
                 </s:Label>

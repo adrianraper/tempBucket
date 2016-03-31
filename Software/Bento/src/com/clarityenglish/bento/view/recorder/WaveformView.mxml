@@ -110,6 +110,9 @@
         [Bindable]
         public var debugInfo:String;
 
+        [Bindable]
+        public var isPlatformiPad:Boolean
+
         // v4.0.1.1 Small step to help trouble shoot
         public var microphoneName:String;
         public var audioStatus:String;
@@ -267,7 +270,7 @@
                     saveButton.addEventListener(MouseEvent.CLICK, function ():void {
                         dispatchEvent(new WaveformEvent(WaveformEvent.SAVE_MP3));
                     });
-                    //saveButton.toolTip = copyProvider.getCopyForId("recorderSaveToolTip") == ""? null : copyProvider.getCopyForId("recorderSaveToolTip");
+                    saveButton.toolTip = copyProvider.getCopyForId("recorderSaveToolTip") == ""? null : copyProvider.getCopyForId("recorderSaveToolTip");
                     break;
                 case openButton:
                     openButton.addEventListener(MouseEvent.CLICK, function ():void {
@@ -292,7 +295,7 @@
                     minButton.addEventListener(MouseEvent.CLICK, function ():void {
                         dispatchEvent(new RecorderEvent(RecorderEvent.MINIMIZE));
                     });
-                   	minButton.toolTip = copyProvider.getCopyForId("recorderMinToolTip");
+                    minButton.toolTip = copyProvider.getCopyForId("recorderMinToolTip");
                     break;
                 case maxButton:
                     maxButton.addEventListener(MouseEvent.CLICK, function ():void {

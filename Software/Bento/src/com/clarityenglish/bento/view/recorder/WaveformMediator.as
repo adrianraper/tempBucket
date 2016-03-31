@@ -53,7 +53,6 @@ package com.clarityenglish.bento.view.recorder {
 			// Inject variables into the view
 			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
 			view.isRecordEnabled = audioProxy.isRecordEnabled();
-			trace("isRecordEnabled: "+view.isRecordEnabled);
 			view.sampleRate = AudioProxy.SAMPLE_RATE;
 			// v4.0.1.1 Small step to help trouble shoot
 			// which microphone are we recording from?
@@ -69,6 +68,7 @@ package com.clarityenglish.bento.view.recorder {
 			} else {
 				view.isSaveEnabled = true;
 			}
+			view.isPlatformiPad = configProxy.isPlatformiPad();
 			// Prepare the view
 			prepareView();
 		}

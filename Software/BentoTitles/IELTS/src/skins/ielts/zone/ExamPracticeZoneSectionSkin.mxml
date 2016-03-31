@@ -233,8 +233,8 @@
 						  includeIn="writing"/>
 
 	<!-- These buttons are only enabled (by CSS) in the web version -->
-	<s:Button id="leftArrowButton" click="scrollBy(-1)" visible="true" left="12" top="160"  mouseEnabled="true" buttonMode="true" enabled="false" excludeFrom="speaking" />
-	<s:Button id="rightArrowButton" click="scrollBy(1)" visible="true" right="12" top="163" mouseEnabled="true" buttonMode="true" excludeFrom="speaking" />
+	<s:Button id="leftArrowButton" click="scrollBy(-1)" visible="{getStyle('showArrows')}" left="12" top="160"  mouseEnabled="true" buttonMode="true" enabled="false" excludeFrom="speaking" />
+	<s:Button id="rightArrowButton" click="scrollBy(1)" visible="{getStyle('showArrows')}" right="12" top="163" mouseEnabled="true" buttonMode="true" excludeFrom="speaking" />
 
 	<s:Label id="examZoneLabel" fontSize="18" fontWeight="bold" left="20" top="12" excludeFrom="speaking" />
 	<s:Label id="examZoneInstructionLabel" visible="{list.dataProvider.length > 0}" text="{hostComponent.examZoneInstructionText}" left="20" top="35" right="25" excludeFrom="speaking" />
