@@ -135,11 +135,11 @@
                     </s:Group>
                     <!--assets:sideindicator left="5" verticalCenter="0" />
                     <assets:sideindicator right="5" verticalCenter="0" /-->
-                    <mx:HSlider id="timerSlider" width="{hostComponent.timerWidth + 18}" height="{hostComponent.timerHeight}" verticalCenter="0" horizontalCenter="0" thumbCount="2" snapInterval="1" minimum="0" showDataTip="false" liveDragging="true" change="onSliderChange(event)" dataTipStyleName="dataTipStyle"
-                                trackSkin="skins.bento.timer.HSliderTrackSkin"
-                                trackHighlightSkin="skins.bento.timer.HSliderTrackHighlightSkin" showTrackHighlight="true"
-                                thumbSkin="skins.bento.timer.HSliderThumbSkin" enabled="{!hostComponent.isTimeFixed}"
-                                visible="{hostComponent.timerTotalTime.length > 1}"/>
+                        <mx:HSlider id="timerSlider" width="{hostComponent.timerWidth + 18}" height="{hostComponent.sliderHeight}" verticalCenter="0" horizontalCenter="0" thumbCount="2" snapInterval="1" minimum="0" showDataTip="false" liveDragging="true" change="onSliderChange(event)" dataTipStyleName="dataTipStyle"
+                                    trackSkin="skins.bento.timer.HSliderTrackSkin"
+                                    trackHighlightSkin="skins.bento.timer.HSliderTrackHighlightSkin" showTrackHighlight="true"
+                                    thumbSkin="skins.bento.timer.HSliderThumbSkin" enabled="{!hostComponent.isTimeFixed}"
+                                    visible="{hostComponent.timerTotalTime.length > 1}"/>
                     <s:Rect left="6" right="6" height="{hostComponent.sliderHeight}" verticalCenter="0" horizontalCenter="0" radiusX="4" radiusY="4" visible="{hostComponent.timerTotalTime.length == 1}">
                         <s:fill>
                             <s:SolidColor color="{hostComponent.trackColor}" />
@@ -208,7 +208,7 @@
                             <s:Label text=":" />
                             <s:TextInput id="minsTextInput" width="38" height="40" text="{hostComponent.minsText}" textAlign="center" color="0xFFFFFF" fontSize="{hostComponent.textSize}" contentBackgroundColor="#0A789D" focusAlpha="0" softKeyboardType="number" restrict="0-9" />
                             <s:Label text=":" />
-                            <s:Label id="secondsTextLabel" text="00" width="28" height="40" verticalAlign="middle" color="0x333333" fontSize="{hostComponent.textSize}" />
+                            <s:Label id="secondsTextLabel"  width="28" height="40" text="{hostComponent.secondsText}" verticalAlign="middle" color="0x333333" fontSize="{hostComponent.textSize}" />
                             <!--s:TextInput id="secondsTextInput" width="38" height="40" text="00" textAlign="center" color="0xFFFFFF" fontSize="20" contentBackgroundColor="#0A789D" focusAlpha="0" softKeyboardType="number" restrict="0-9" editable="false" /-->
                         </s:HGroup>
                         <s:Label id="staticTimeLabel" text="{hostComponent.totalTimeLabelText}" horizontalCenter="0" verticalCenter="0" color="{hostComponent.timeTextColor}" fontSize="{hostComponent.textSize}" visible="{hostComponent.isTimeFixed}" includeInLayout="{hostComponent.isTimeFixed}" />

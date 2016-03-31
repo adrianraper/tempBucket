@@ -43,7 +43,8 @@ package com.clarityenglish.bento {
 		
 		public static const NO_MICROPHONE:String = "recorder/no_microphone";
 		public static const GOT_MICROPHONE:String = "recorder/got_microphone";
-		
+		public static const MICROPHONE_NOT_SUPPORTED:String = "recorder/microphone_not_supported";
+
 	}
 	
 }

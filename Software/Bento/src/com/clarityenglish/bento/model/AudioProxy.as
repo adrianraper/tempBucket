@@ -104,6 +104,7 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 		 * Proxies can be record enabled or not (configured in the constructor)
 		 */
 		private var _recordEnabled:Boolean;
+		private var _saveThisPlease:Boolean;
 		
 		// gh#456
 		[Bindable]
@@ -118,11 +119,6 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 		}
 		
 		public function isRecordEnabled():Boolean { return _recordEnabled; }
-		/*
-		 * v4.0.1.1 Small step to help trouble shoot
-		 * If you want microphone details
-		 */
-		public function getMicrophoneName():String { return microphone.name; }
 		public var audioStatus:String;
 		
 		public function AudioProxy(name:String, recordEnabled:Boolean = false, recorderAdaptor:IRecorderAdaptor = null) {
@@ -133,31 +129,36 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 		}
 		
 		override public function onRegister():void {
-			super.onRegister();
-			
-			// Initialize the samples to an empty bytearray
-			samples = new ByteArray();
-			
-			// Initialize the sound
-			sound = new Sound();
-			sound.addEventListener(SampleDataEvent.SAMPLE_DATA, onSoundSampleData);
+            super.onRegister();
 
-			// If this proxy is record enabled then setup the default microphone
-			if (isRecordEnabled()) {
-				// v4.0.1.2 But -1 is the default microphone, 0 is simply the 
-				//setMicrophone(0);
-				var rc:Boolean = setMicrophone(-1);
+            // Initialize the samples to an empty bytearray
+            samples = new ByteArray();
+
+            // Initialize the sound
+            sound = new Sound();
+            sound.addEventListener(SampleDataEvent.SAMPLE_DATA, onSoundSampleData);
+
+            // If this proxy is record enabled then setup the default microphone
+            if (isRecordEnabled() && Microphone.isSupported) {
+                // v4.0.1.2 But -1 is the default microphone, 0 is simply the
                 // gh#1438 Is there a better microphone than the default?
-			}
-		}
+                //setMicrophone(0);
+                setTimeout(function():void {
+                    var rc:Boolean = setMicrophone();
+                }, 500);
+            }
+        }
+
 		private function microphoneStatusHandler(e:StatusEvent):void {
 			trace("micStatusEvent " + e.code + " mic is " + getMicrophoneName());
 			if (e.code == "Microphone.Muted") {
 				sendNotification(RecorderNotifications.NO_MICROPHONE);
 				//throw new Error("You have blocked the Recorder from using your microphone. Please use Settings to clear this.");
-				Security.showSettings(SecurityPanel.PRIVACY);
+				//Security.showSettings(SecurityPanel.PRIVACY);
+                _recordEnabled = false;
 			} else if (e.code == "Microphone.Unmuted") {
 				sendNotification(RecorderNotifications.GOT_MICROPHONE);
+                _recordEnabled = true;
 			}
 		}
 		
@@ -414,29 +415,34 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 		 * 
 		 * @param	idx
 		 */
-		public function setMicrophone(idx:int):Boolean {
+		public function setMicrophone():Boolean {
 			//if (microphone)
 			//	microphone.removeEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
 
 			try {
 				microphone = Microphone.getMicrophone();
-				//trace("set Microphone, Microphone.names=" + Microphone.names.toString() + " microphone.name=" + microphone.name + " muted=" + microphone.muted);
+                trace("set microphone, Microphone.names=" + Microphone.names.toString() + " microphone.name=" + microphone.name + " muted=" + microphone.muted);
 				// v4.0.1.2 Error checking
-				if (microphone == null || Microphone.names.length == 0 || microphone.muted) {
-					_recordEnabled = false;
-					sendNotification(RecorderNotifications.NO_MICROPHONE);
-					Security.showSettings(SecurityPanel.MICROPHONE);
+                if (!Microphone.isSupported || microphone == null) {
+                    _recordEnabled = false;
+					// gh#1464 This notification has no effect as mediator not complete yet
+					// when this is called from onRegister
+					//sendNotification(RecorderNotifications.NO_MICROPHONE);
+					//Security.showSettings(SecurityPanel.MICROPHONE);
 				} else {
 					// gh#530
-					_recordEnabled = true;
-					microphone.addEventListener(StatusEvent.STATUS, microphoneStatusHandler);
+                    // gh#1464 Even a muted microphone needs a status handler in case the user unmutes it
+                    if (!microphone.hasEventListener(StatusEvent.STATUS))
+					    microphone.addEventListener(StatusEvent.STATUS, microphoneStatusHandler);
 					microphone.setSilenceLevel(0);
 					// gh#1438
 					microphone.rate = MICROPHONE_RATE;
+                    if (microphone.muted)
+                        Security.showSettings(SecurityPanel.MICROPHONE);
+                    _recordEnabled = (!microphone.muted);
 				}
 			} catch (e:Error) {
                 _recordEnabled = false;
-				//trace("Problem trying to run microphone");
 			}
             return _recordEnabled;
 		}
@@ -444,7 +450,7 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 		public function record(clearWaveform:Boolean = false):void {
             // gh#1438 Check that the mic has not been denied since we first started
             // and also it might have been allowed, but not properly initialised
-            if (!setMicrophone(-1))
+            if (!setMicrophone())
                 return;
 
 			// If we are recording then pressing record stops the recording
@@ -552,8 +558,10 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 		public function getMicrophoneInfo():String {
 			return "codec=" + microphone.codec + "\n" + "rate=" + microphone.rate;
 		}
-        public function getMicrophoneRate():uint {
-            return (microphone) ? microphone.rate : 0;
-        }
-	}
+        public function getMicrophoneRate():uint { return (microphone) ? microphone.rate : 0; }
+        public function getMicrophoneName():String { return microphone.name; }
+        public function hasMicrophone():Boolean { return (microphone != null); }
+        public function hasMicrophones():Boolean { return (Microphone.names.length > 0); }
+        public function isMicrophoneMuted():Boolean { return (microphone.muted); }
+    }
 }

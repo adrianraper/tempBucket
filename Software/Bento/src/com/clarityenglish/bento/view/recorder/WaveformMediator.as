@@ -53,6 +53,7 @@ package com.clarityenglish.bento.view.recorder {
 			// Inject variables into the view
 			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
 			view.isRecordEnabled = audioProxy.isRecordEnabled();
+			trace("isRecordEnabled: "+view.isRecordEnabled);
 			view.sampleRate = AudioProxy.SAMPLE_RATE;
 			// v4.0.1.1 Small step to help trouble shoot
 			// which microphone are we recording from?
@@ -123,6 +124,13 @@ package com.clarityenglish.bento.view.recorder {
 					if (note.getType() == view.audioProxyName) {
 						view.waveformRenderer.playheadPosition = note.getBody().playHeadPosition as Number;
 						view.scrubBar.value = note.getBody().samplePosition as Number;
+						if (view.scrubBar.value == 0) {
+							view.playButton.visible = true;
+							view.pauseButton.visible = false;
+						} else {
+							view.playButton.visible = false;
+							view.pauseButton.visible = true;
+						}
 					}
 					break;
 				case RecorderNotifications.INPUT_LEVEL:

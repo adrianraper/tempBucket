@@ -119,7 +119,7 @@
         private var cutContextMenuItem:ContextMenuItem;
         // gh#683
         private var _isSaveEnabled:Boolean;
-        private var _isRecorHide:Boolean;
+        private var _isRecordHide:Boolean;
 
         [Bindable]
         public function set isRecordEnabled(value:Boolean):void {
@@ -133,13 +133,13 @@
 
         // gh#1459
         [Bindable]
-        public function set isRecorHide(value:Boolean):void {
-            _isRecorHide = value;
+        public function set isRecordHide(value:Boolean):void {
+            _isRecordHide = value;
             invalidateSkinState();
         }
 
-        public function get isRecorHide():Boolean {
-            return _isRecorHide;
+        public function get isRecordHide():Boolean {
+            return _isRecordHide;
         }
 
         [Bindable]
@@ -267,7 +267,7 @@
                     saveButton.addEventListener(MouseEvent.CLICK, function ():void {
                         dispatchEvent(new WaveformEvent(WaveformEvent.SAVE_MP3));
                     });
-                    saveButton.toolTip = copyProvider.getCopyForId("recorderSaveToolTip") == ""? null : copyProvider.getCopyForId("recorderSaveToolTip");
+                    //saveButton.toolTip = copyProvider.getCopyForId("recorderSaveToolTip") == ""? null : copyProvider.getCopyForId("recorderSaveToolTip");
                     break;
                 case openButton:
                     openButton.addEventListener(MouseEvent.CLICK, function ():void {
@@ -292,7 +292,7 @@
                     minButton.addEventListener(MouseEvent.CLICK, function ():void {
                         dispatchEvent(new RecorderEvent(RecorderEvent.MINIMIZE));
                     });
-                    minButton.toolTip = copyProvider.getCopyForId("recorderMinToolTip");
+                   	minButton.toolTip = copyProvider.getCopyForId("recorderMinToolTip");
                     break;
                 case maxButton:
                     maxButton.addEventListener(MouseEvent.CLICK, function ():void {
@@ -310,6 +310,8 @@
                     break;
                 case scrubBar:
                     scrubBar.addEventListener(Event.CHANGE, function () :void {
+                        playButton.visible = true;
+                        pauseButton.visible = false;
                         dispatchEvent(new WaveformEvent(WaveformEvent.SEEK));
                     });
                     break;
@@ -322,7 +324,7 @@
 
         override protected function getCurrentSkinState():String {
             // gh#1459
-            return ((isRecordEnabled && !isRecorHide) ? "record" : "playback") + "_" + ((_isMinimized) ? "minimized" : "full");
+            return ((isRecordEnabled && !isRecordHide) ? "record" : "playback") + "_" + ((_isMinimized) ? "minimized" : "full");
         }
         ]]>
 	</fx:Script>

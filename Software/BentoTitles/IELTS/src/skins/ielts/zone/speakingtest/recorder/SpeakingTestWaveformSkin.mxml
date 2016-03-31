@@ -14,7 +14,7 @@
             recordButtonFade.play();
         }
 
-        protected function onPlayerButtonClick(event:Event):void {
+        protected function onPlayButtonClick(event:Event):void {
             playButton.visible = false;
             pauseButton.visible = true;
         }
@@ -51,7 +51,7 @@
                       visible="false" includeIn="record"/>
             <s:Button id="recordingHintButton" skinClass="skins.ielts.zone.speakingtest.recorder.RecordingHintButton" left="30" verticalCenter="0"
                       includeIn="record"/>
-            <s:Button id="playButton" skinClass="skins.ielts.zone.speakingtest.recorder.PlayButtonSkin" left="0" width="40" height="100%" verticalCenter="0" click="onPlayerButtonClick(event)"
+            <s:Button id="playButton" skinClass="skins.ielts.zone.speakingtest.recorder.PlayButtonSkin" left="0" width="40" height="100%" verticalCenter="0" click="onPlayButtonClick(event)"
                       toolTip="null" useHandCursor="true" buttonMode="true" includeIn="playback"/>
             <s:Button id="stopButton" skinClass="skins.ielts.zone.speakingtest.recorder.StopButtonSkin" left="40" width="40" height="100%" verticalCenter="0"
                       toolTip="null" useHandCursor="true" buttonMode="true" visible.record="false" visible.playback="true"/>

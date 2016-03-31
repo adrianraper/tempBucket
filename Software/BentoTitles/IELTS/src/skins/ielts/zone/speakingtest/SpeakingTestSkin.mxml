@@ -118,6 +118,7 @@
                         <fx:Script>
                             <![CDATA[
                             import com.clarityenglish.textLayout.components.AudioPlayer;
+                            import com.googlecode.bindagetools.Bind;
 
                             import mx.binding.utils.ChangeWatcher;
                             import mx.collections.ListCollectionView;
@@ -129,8 +130,14 @@
                             private var changeWatcher:ChangeWatcher;
 
                             public function onCreationComplete(event:Event):void {
-                                systemManager.addEventListener("flipToReflectionEvent", onFlipToReflection, true);
+                                trace("on creation complete");
                                 systemManager.addEventListener("exitTestEvent", onExitTest, true);
+
+                                Bind.fromProperty(outerDocument.hostComponent, "isReflectionShow").toFunction(function (isReflectionShow:Boolean) {
+                                    if (isReflectionShow) {
+                                        flipToReflection.play();
+                                    }
+                                })
                             }
 
                             protected function onRemovedFromStage(event:Event):void {
@@ -143,14 +150,18 @@
 
                                 if (data) {
                                     var idx:int = ((owner as List).dataProvider as ListCollectionView).getItemIndex(data);
-                                    fontSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingfont" + (idx + 1) + ".png";
+                                    fontSwfLoader.rotationY = 0;
+                                    if (outerDocument.hostComponent.isRecordEnabled) {
+                                        fontSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingNormalRecordingFront" + (idx + 1) + ".png";
+                                    } else {
+                                        fontSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingPhoneRecordingFront" + (idx + 1) + ".png";
+                                    }
                                     backSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingback" + (idx + 1) + ".png";
                                 }
                             }
 
                             protected function onStartButtonClick(event:Event):void {
                                 AudioPlayer.stopAllAudio();
-                                fontSwfLoader.rotationY = 0;
                                 flipFont.play();
                                 dispatchEvent(new Event("startButtonClickEvent", true));
                                 speakingStartButton.visible = false;
@@ -202,23 +213,16 @@
                                 reflectionSWFLoader.visible = false;
                             }
 
-                            protected function onFlipToReflection(event:Event):void {
-                                // Using the capture phrase and hence the function will be called twice, so stop the event propagting after calling it at first time.
-                                event.stopImmediatePropagation();
-
-                                flipToReflection.play();
-                            }
-
                             ]]>
                         </fx:Script>
 
                         <s:Button id="speakingStartButton" bottom="55" width="452" height="53" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingStartButton')}"  click="onStartButtonClick(event)"
                                   useHandCursor="true" buttonMode="true"  />
-                        <s:Button id="speakingBackButton" bottom="68" width="452" height="40" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingBackButton')}" useHandCursor="true" buttonMode="true" visible="false" click="onBackButtonClick(event)"/>
+                        <s:Button id="speakingBackButton" bottom="{outerDocument.hostComponent.isRecordEnabled? 10 : 55}" width="452" height="40" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingBackButton')}" useHandCursor="true" buttonMode="true" visible="false" click="onBackButtonClick(event)"/>
 
                         <s:SWFLoader id="reflectionSWFLoader" scaleX="0.5" scaleY="0.5" top="17" horizontalCenter="0" source="{outerDocument.hostComponent.assetFolder + 'testpractice_speakingreflection.png'}" visible="false" />
                         <s:SWFLoader id="backSwfLoader" scaleX="0.5" scaleY="0.5" top="17" horizontalCenter="0" visible="false" />
-                        <s:SWFLoader id="fontSwfLoader" scaleX="0.5" scaleY="0.5" top="17" horizontalCenter="0" transformX="468" transformY="150" />
+                        <s:SWFLoader id="fontSwfLoader" scaleX="0.5" scaleY="0.5" top="17" horizontalCenter="0" />
                     </s:DataRenderer>
                 </fx:Component>
             </s:itemRenderer>
@@ -235,9 +239,9 @@
                 <s:Label id="recordingLabel" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" />
                 <s:Label id="completeLabel" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" />
             </s:Group>
-            <!--s:Group id="recorderGroup" width="100%" height="100%" verticalCenter="0">
+            <s:Group id="recorderGroup" width="100%" height="100%" verticalCenter="0">
                 <recorder:RecorderView id="recorderView" left="0" right="0" top="0" bottom="0" />
-            </s:Group-->
+            </s:Group>
         </s:Group>
 
         <s:Group top="0" bottom="0" left="1" right="1" excludeFrom="normalState">
@@ -248,8 +252,8 @@
                                       copyProvider="{hostComponent.getCopyProvider()}" contentPath="{hostComponent.href.rootPath}" textSize="17" timeTextColor="#333333"
                                       trackColor="#D8D8D8" trackHighLightColor="#A8A8A8" progressLeftColor="#A93087" progressMidColor="#A93087" progressRightColor="#A93087" buttonColor="#A93087" buttonDownOverColor="#4F173F"
                                       firstTipString="{hostComponent.getCopyProvider().getCopyForId('timerFirstTipString')}" midTipString="{hostComponent.getCopyProvider().getCopyForId('timerMidTipString')}"
-                                      timerWidth="380" timerHeight="25" width="100%" height="60"
-                                      isTimeFixed="true" isTimerAutoControl="true" />
+                                      timerWidth="380" timerHeight="24" width="100%" height="60"
+                                      isTimeFixed="true" isTimerAutoControl="true" isPlatformTablet="{hostComponent.isPlatformTablet}"/>
             </s:Group>
         </s:Group>
 
