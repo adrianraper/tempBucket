@@ -21,6 +21,7 @@
 @namespace players "com.clarityenglish.controls.video.players.*";
 @namespace candidates "com.clarityenglish.ielts.view.candidates.*";
 @namespace candidates1 "com.clarityenglish.ieltsair.view.candidates.*";
+@namespace speakingtest "com.clarityenglish.ielts.view.zone.speakingtest.*";
 
 global {
 	interactionMode: touch;
@@ -198,4 +199,8 @@ s|Button#longRateButton {
 
 s|Button#shortRateButton {
 	skinClass: ClassReference("skins.ieltsair.rate.ShortRateButtonSkin");
+}
+
+speakingtest|SpeakingTestView {
+	showArrows: false;
 }

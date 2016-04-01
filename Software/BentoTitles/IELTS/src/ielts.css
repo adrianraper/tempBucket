@@ -505,6 +505,7 @@ timer|TimerComponent timer|TimerButton#resetCompleteButton {
 }
 
 speakingtest|SpeakingTestView {
+	showArrows: true;
 	skinClass: ClassReference("skins.ielts.zone.speakingtest.SpeakingTestSkin");
 }
 
