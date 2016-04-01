@@ -73,17 +73,31 @@
                 <fx:Component>
                     <s:DataRenderer width="514" height="100%" removedFromStage="onRemovedFromStage(event)" creationComplete="onCreationComplete(event)">
                         <fx:Declarations>
-                            <s:Parallel id="flipFont" effectStart="onFlipFondStart(event)" effectEnd="onFlipFontEnd(event)">
-                                <s:Rotate3D target="{fontSwfLoader}"
+                            <s:Parallel id="flipFront" effectEnd="onFlipFrontEnd(event)">
+                                <s:Rotate3D target="{frontSwfLoader}"
                                             angleYFrom="0" angleYTo="180" applyLocalProjection="false"
                                             autoCenterTransform="true" autoCenterProjection="true"/>
                                 <s:Rotate3D target="{backSwfLoader}"
                                             angleYFrom="180" angleYTo="360" applyLocalProjection="false"
                                             autoCenterTransform="true" autoCenterProjection="true"/>
-                                <s:Animate target="{fontSwfLoader}">
+                                <s:Animate target="{frontSwfLoader}">
                                     <s:SimpleMotionPath property="depth" valueFrom="2" valueTo="0"/>
                                 </s:Animate>
                                 <s:Animate target="{backSwfLoader}">
+                                    <s:SimpleMotionPath property="depth" valueFrom="0" valueTo="2"/>
+                                </s:Animate>
+                            </s:Parallel>
+                            <s:Parallel id="flipFrontReverse">
+                                <s:Rotate3D target="{backSwfLoader}"
+                                            angleYFrom="360" angleYTo="180" applyLocalProjection="false"
+                                            autoCenterTransform="true" autoCenterProjection="true"/>
+                                <s:Rotate3D target="{frontSwfLoader}"
+                                            angleYFrom="180" angleYTo="0" applyLocalProjection="false"
+                                            autoCenterTransform="true" autoCenterProjection="true"/>
+                                <s:Animate target="{backSwfLoader}">
+                                    <s:SimpleMotionPath property="depth" valueFrom="2" valueTo="0"/>
+                                </s:Animate>
+                                <s:Animate target="{frontSwfLoader}">
                                     <s:SimpleMotionPath property="depth" valueFrom="0" valueTo="2"/>
                                 </s:Animate>
                             </s:Parallel>
@@ -105,13 +119,13 @@
                                 <s:Rotate3D target="{reflectionSWFLoader}"
                                             angleYFrom="0" angleYTo="180" applyLocalProjection="false"
                                             autoCenterTransform="true" autoCenterProjection="true"/>
-                                <s:Rotate3D target="{fontSwfLoader}"
+                                <s:Rotate3D target="{frontSwfLoader}"
                                             angleYFrom="180" angleYTo="360" applyLocalProjection="false"
                                             autoCenterTransform="true" autoCenterProjection="true"/>
                                 <s:Animate target="{reflectionSWFLoader}">
                                     <s:SimpleMotionPath property="depth" valueFrom="2" valueTo="0"/>
                                 </s:Animate>
-                                <s:Animate target="{fontSwfLoader}">
+                                <s:Animate target="{frontSwfLoader}">
                                     <s:SimpleMotionPath property="depth" valueFrom="0" valueTo="2"/>
                                 </s:Animate>
                             </s:Parallel>
@@ -127,6 +141,12 @@
                             import mx.core.UIComponent;
 
                             import spark.components.List;
+
+                            [Bindable]
+                            public var isBackSwfLoaderShow:Boolean;
+
+                            [Bindable]
+                            public var isReflectSwfLoaderShow:Boolean;
 
                             private var changeWatcher:ChangeWatcher;
 
@@ -150,19 +170,26 @@
 
                                 if (data) {
                                     var idx:int = ((owner as List).dataProvider as ListCollectionView).getItemIndex(data);
-                                    fontSwfLoader.rotationY = 0;
+                                    frontSwfLoader.rotationY = 0;
                                     if (outerDocument.hostComponent.isRecordEnabled) {
-                                        fontSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingNormalRecordingFront" + (idx + 1) + ".png";
+                                        frontSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingNormalRecordingFront" + (idx + 1) + ".png";
                                     } else {
-                                        fontSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingPhoneRecordingFront" + (idx + 1) + ".png";
+                                        frontSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingPhoneRecordingFront" + (idx + 1) + ".png";
                                     }
                                     backSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingback" + (idx + 1) + ".png";
+
+                                    // Each item will be rendered only when scroll to it, so we can put initial setting of visibility here.
+                                    frontSwfLoader.visible = true;
+                                    backSwfLoader.visible = true;
+                                    reflectionSWFLoader.visible = false;
+                                    speakingStartButton.visible = true;
+                                    speakingBackButton.visible = false;
                                 }
                             }
 
                             protected function onStartButtonClick(event:Event):void {
                                 AudioPlayer.stopAllAudio();
-                                flipFont.play();
+                                flipFront.play();
                                 dispatchEvent(new Event("startButtonClickEvent", true));
                                 speakingStartButton.visible = false;
                             }
@@ -175,24 +202,22 @@
                             }
 
                             protected function onExitTest(event:Event):void {
-                                fontSwfLoader.visible = true;
-                                fontSwfLoader.depth = 2;
-                                fontSwfLoader.rotationY = -180;
-
-                                backSwfLoader.visible = false;
-                                backSwfLoader.depth = 0;
-
-                                dispatchEvent(new Event("backButtonClickEvent", true));
-                                speakingStartButton.visible = true;
-                                speakingBackButton.visible = false;
+                                if (isBackSwfLoaderShow) {
+                                    isBackSwfLoaderShow = false;
+                                    flipFrontReverse.play();
+                                    dispatchEvent(new Event("backButtonClickEvent", true));
+                                    speakingStartButton.visible = true;
+                                    speakingBackButton.visible = false;
+                                }
+                                
+                                if (isReflectSwfLoaderShow) {
+                                    onBackButtonClick();
+                                }
                             }
 
-                            protected function onFlipFondStart(event:Event):void {
-                                backSwfLoader.visible = true;
-                            }
-
-                            protected function onFlipFontEnd(event:Event):void {
-                                fontSwfLoader.visible = false;
+                            protected function onFlipFrontEnd(event:Event):void {
+                                frontSwfLoader.visible = false;
+                                isBackSwfLoaderShow = true;
                             }
 
                             protected function onFlipToReflectionStart(event:Event):void {
@@ -202,15 +227,18 @@
                             protected function onFlipToReflectionEnd(event:Event):void {
                                 speakingBackButton.visible = true;
                                 backSwfLoader.visible = false;
+                                isReflectSwfLoaderShow = true;
                             }
 
                             protected function onFlipBackStart(event:Event):void {
                                 speakingBackButton.visible = false;
-                                fontSwfLoader.visible = true;
+                                frontSwfLoader.visible = true;
                             }
 
                             protected function onFlipBackEnd(event:Event):void {
                                 reflectionSWFLoader.visible = false;
+                                isBackSwfLoaderShow = false;
+                                isReflectSwfLoaderShow = false;
                             }
 
                             ]]>
@@ -218,11 +246,11 @@
 
                         <s:Button id="speakingStartButton" top="325" width="452" height="53" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingStartButton')}"  click="onStartButtonClick(event)"
                                   useHandCursor="true" buttonMode="true"  />
-                        <s:Button id="speakingBackButton" top="{outerDocument.hostComponent.isRecordEnabled? 370 : 325}" width="452" height="45" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingBackButton')}" useHandCursor="true" buttonMode="true" visible="false" click="onBackButtonClick(event)"/>
+                        <s:Button id="speakingBackButton" top="{outerDocument.hostComponent.isRecordEnabled? 370 : 325}" width="452" height="45" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingBackButton')}" useHandCursor="true" buttonMode="true" click="onBackButtonClick(event)"/>
 
-                        <s:SWFLoader id="reflectionSWFLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" source="{outerDocument.hostComponent.assetFolder + 'testpractice_speakingreflection.png'}" visible="false" />
-                        <s:SWFLoader id="backSwfLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" visible="false" />
-                        <s:SWFLoader id="fontSwfLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" />
+                        <s:SWFLoader id="reflectionSWFLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" source="{outerDocument.hostComponent.assetFolder + 'testpractice_speakingreflection.png'}" />
+                        <s:SWFLoader id="backSwfLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" />
+                        <s:SWFLoader id="frontSwfLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" />
                     </s:DataRenderer>
                 </fx:Component>
             </s:itemRenderer>
