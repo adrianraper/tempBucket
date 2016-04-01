@@ -73,7 +73,7 @@
                 <fx:Component>
                     <s:DataRenderer width="514" height="100%" removedFromStage="onRemovedFromStage(event)" creationComplete="onCreationComplete(event)">
                         <fx:Declarations>
-                            <s:Parallel id="flipFront" effectEnd="onFlipFrontEnd(event)">
+                            <s:Parallel id="flipFront" effectStart="onFlipFrontStart(event)" effectEnd="onFlipFrontEnd(event)">
                                 <s:Rotate3D target="{frontSwfLoader}"
                                             angleYFrom="0" angleYTo="180" applyLocalProjection="false"
                                             autoCenterTransform="true" autoCenterProjection="true"/>
@@ -135,6 +135,8 @@
                             import com.clarityenglish.textLayout.components.AudioPlayer;
                             import com.googlecode.bindagetools.Bind;
 
+                            import flashx.textLayout.container.ScrollPolicy;
+
                             import mx.binding.utils.ChangeWatcher;
                             import mx.collections.ListCollectionView;
                             import mx.controls.listClasses.BaseListData;
@@ -157,7 +159,7 @@
                                     if (isReflectionShow) {
                                         flipToReflection.play();
                                     }
-                                })
+                                });
                             }
 
                             protected function onRemovedFromStage(event:Event):void {
@@ -180,10 +182,11 @@
 
                                     // Each item will be rendered only when scroll to it, so we can put initial setting of visibility here.
                                     frontSwfLoader.visible = true;
-                                    backSwfLoader.visible = true;
                                     reflectionSWFLoader.visible = false;
                                     speakingStartButton.visible = true;
                                     speakingBackButton.visible = false;
+
+                                    speakingStartButton.enabled = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8));
                                 }
                             }
 
@@ -192,6 +195,8 @@
                                 flipFront.play();
                                 dispatchEvent(new Event("startButtonClickEvent", true));
                                 speakingStartButton.visible = false;
+
+                                (owner as List).setStyle("horizontalScrollPolicy", "off");
                             }
 
                             protected function onBackButtonClick(event:Event = null):void {
@@ -199,20 +204,26 @@
                                 dispatchEvent(new Event("backButtonClickEvent", true));
                                 speakingStartButton.visible = true;
                                 speakingBackButton.visible = false;
+                                (owner as List).setStyle("horizontalScrollPolicy", "on");
                             }
 
                             protected function onExitTest(event:Event):void {
                                 if (isBackSwfLoaderShow) {
                                     isBackSwfLoaderShow = false;
+                                    (owner as List).setStyle("horizontalScrollPolicy", "on");
                                     flipFrontReverse.play();
                                     dispatchEvent(new Event("backButtonClickEvent", true));
                                     speakingStartButton.visible = true;
                                     speakingBackButton.visible = false;
                                 }
-                                
+
                                 if (isReflectSwfLoaderShow) {
                                     onBackButtonClick();
                                 }
+                            }
+
+                            protected function onFlipFrontStart(event:Event):void {
+                                backSwfLoader.visible = true;
                             }
 
                             protected function onFlipFrontEnd(event:Event):void {
