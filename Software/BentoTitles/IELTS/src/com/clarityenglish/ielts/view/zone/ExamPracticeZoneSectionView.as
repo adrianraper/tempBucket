@@ -4,6 +4,7 @@ import com.clarityenglish.bento.view.timer.TimerButton;
 import com.clarityenglish.bento.view.timer.TimerComponent;
 import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
+import com.clarityenglish.components.PageNumberDisplay;
 import com.clarityenglish.ielts.view.zone.speakingtest.SpeakingTestView;
 import com.clarityenglish.textLayout.components.AudioPlayer;
 	
@@ -44,6 +45,15 @@ import spark.components.Label;
 
 		[SkinPart]
 		public var speakingTestView:SpeakingTestView;
+
+		[SkinPart]
+		public var pageNumberDisplay:PageNumberDisplay;
+
+		[SkinPart]
+		public var rightArrowButton:Button;
+
+		[SkinPart]
+		public var leftArrowButton:Button;
 
 		/*[SkinPart]
 		public var timerComponent:TimerComponent;*/
@@ -128,10 +138,6 @@ import spark.components.Label;
 			if (writingTimer) {
 				writingTimer.stopTimer();
 			}
-
-			if (speakingTestView){
-				dispatchEvent(new Event("exitTestEvent"));
-			}
 		}
 		
 		protected override function commitProperties():void {
@@ -208,6 +214,20 @@ import spark.components.Label;
 					writingTimer.stopTimer();
 				}
 			}
+
+			if (list.scroller.horizontalScrollBar) {
+				pageNumberDisplay.selectedIndex = Math.floor(list.scroller.horizontalScrollBar.value / list.scroller.viewport.width);
+
+				if (pageNumberDisplay.selectedIndex == list.dataProvider.length - 1) {
+					rightArrowButton.enabled = false;
+				} else if (pageNumberDisplay.selectedIndex == 0) {
+					leftArrowButton.enabled = false;
+					rightArrowButton.enabled = true;
+				} else {
+					leftArrowButton.enabled = true;
+					rightArrowButton.enabled = true;
+				}
+			}
 		}
 		
 		protected function onExerciseSelected(event:ExerciseEvent):void {
@@ -220,6 +240,7 @@ import spark.components.Label;
 
 		protected override function onRemovedFromStage(event:Event):void {
 			super.onRemovedFromStage(event);
+
 			if (viewportPropertyWatcher) viewportPropertyWatcher.unwatch();
 			stopAllAudio();
 

@@ -70,6 +70,12 @@ public class SpeakingTestView extends BentoView{
     [Bindable]
     public var isReflectionShow:Boolean;
 
+    [Bindable]
+    public var horizontalScrollPolicy:String;
+
+    [Bindable]
+    public var isCurrentCourseSpeaking:Boolean;
+
     private var _currentState:String;
 
     public function SpeakingTestView() {
@@ -126,6 +132,10 @@ public class SpeakingTestView extends BentoView{
 
     protected function onStartButtonClick(event:Event):void {
         setState('testState');
+
+        if (isPlatformTablet)
+            list.setStyle("horizontalScrollPolicy", "off");
+
         callLater(function () {
             testXML = list.dataProvider.getItemAt(selectedPageNumber) as XML;
             timer.startButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
@@ -137,7 +147,7 @@ public class SpeakingTestView extends BentoView{
             planningLabel.visible = true;
             recordingLabel.visible = false;
             completeLabel.visible = false;
-        })
+        });
     }
 
     protected function onPlanningComplete(event:Event):void {
@@ -184,6 +194,10 @@ public class SpeakingTestView extends BentoView{
 
     protected function onBackButtonClick(event:Event):void {
         setState('normalState');
+
+        if (isPlatformTablet)
+            list.setStyle("horizontalScrollPolicy", "on");
+
         restTestState();
     }
 
