@@ -244,17 +244,18 @@ import spark.components.ViewNavigator;
 		}
 		
 		protected override function getCurrentSkinState():String {
+			var platform:String = isPlatformTablet? "tablet" : "browser";
 			switch (productVersion) {
 				case BentoApplication.DEMO:
-					return "demo";
+					return "demo_" + platform;
 				case IELTSApplication.TEST_DRIVE:
-					return "testDrive";
+					return "testDrive_" + platform;
 				case IELTSApplication.FULL_VERSION:
-					return "fullVersion";
+					return "fullVersion_" + platform;
 				case IELTSApplication.LAST_MINUTE:
-					return "lastMinute";
+					return "lastMinute_" + platform;
 				case IELTSApplication.HOME_USER:
-					return "homeUser";
+					return "homeUser_" + platform;
 				default:
 					return super.getCurrentSkinState();
 			}
