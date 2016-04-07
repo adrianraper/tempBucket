@@ -105,7 +105,7 @@
                     </s:stroke>
                 </s:Rect>
 
-                <s:VGroup left="30" top="20" width="120" height="100%">
+                <s:VGroup left="30" top="20" width="320" height="100%">
                     <s:Label id="countdownHeadingLabel" fontWeight="bold" />
                     <s:Spacer height="2"/>
                     <s:HGroup>
@@ -136,32 +136,30 @@
                     <s:Spacer height="5"/>
 
                     <s:VGroup width="100%" top="96">
+                        <s:SWFLoader width="100%" height="100%"
+                                     source="{hostComponent.assetFolder}profile_demo.png"
+                                     includeIn="demo"/>
+
                         <s:VGroup paddingLeft="-5" paddingRight="-5" width="100%" height="10">
-                            <s:Rect left="0" right="0" top="0" bottom="0" width="100%" height="1">
+                            <s:Rect width="100%" height="1">
                                 <s:fill>
                                     <s:SolidColor color="0x999999"/>
                                 </s:fill>
                             </s:Rect>
                         </s:VGroup>
 
-                        <s:SWFLoader width="100%" height="100%"
-                                     source="{hostComponent.assetFolder}profile_demo.png"
-                                     includeIn="demo"/>
-
                         <!-- This is the user's details section -->
-                        <s:VGroup excludeFrom="anonymousStates">
+                        <s:VGroup excludeFrom="anonymousStates" gap="15">
                             <s:HGroup width="320">
                                 <s:Label id="registeredNameLabel"/>
                                 <s:Spacer width="100%"/>
                                 <s:Label text="{hostComponent.user.fullName}" fontWeight="bold"/>
                             </s:HGroup>
-                            <s:Spacer height="3"/>
                             <s:HGroup width="320">
                                 <s:Label id="emailLabel"/>
                                 <s:Spacer width="100%"/>
                                 <s:Label text="{hostComponent.user.email}" fontWeight="bold"/>
                             </s:HGroup>
-                            <s:Spacer height="3"/>
                             <!-- gh#38 -->
                             <s:HGroup width="320" visible="{hostComponent.startDate != null}"
                                       includeInLayout="{hostComponent.startDate != null}">
@@ -169,14 +167,12 @@
                                 <s:Spacer width="100%"/>
                                 <s:Label id="startDateLabel" fontWeight="bold"/>
                             </s:HGroup>
-                            <s:Spacer height="3"/>
                             <s:HGroup width="320" visible="{hostComponent.expiryDate != null}"
                                       includeInLayout="{hostComponent.expiryDate != null}">
                                 <s:Label id="accountExpiryDateLabel"/>
                                 <s:Spacer width="100%"/>
                                 <s:Label id="endDateLabel" fontWeight="bold"/>
                             </s:HGroup>
-                            <s:Spacer height="3"/>
                             <!-- gh#163 -->
                             <!--s:VGroup>
                                 <s:HGroup width="320">
@@ -200,14 +196,14 @@
                             </s:VGroup-->
                         </s:VGroup>
                         <!-- gh#166 Everyone can see the language selection -->
-                        <s:VGroup>
+                        <!--s:VGroup>
                             <s:HGroup width="320">
                                 <s:Label id="languageLabel" left="20" top="10"/>
                                 <s:Spacer width="100%"/>
                                 <s:DropDownList id="languageDropDownList" fontSize="15" left="180" top="10"
                                                 width="150"/>
                             </s:HGroup>
-                        </s:VGroup>
+                        </s:VGroup-->
                     </s:VGroup>
 
                     <s:Spacer height="3"/>

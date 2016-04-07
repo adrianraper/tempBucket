@@ -95,8 +95,8 @@ import spark.components.NumericStepper;
 		[SkinPart]
 		public var languageLabel:Label;
 		
-		[SkinPart]
-		public var languageDropDownList:DropDownList;
+		/*[SkinPart]
+		public var languageDropDownList:DropDownList;*/
 		
 		[SkinPart]
 		public var countdownHeadingLabel:Label;
@@ -317,7 +317,7 @@ import spark.components.NumericStepper;
 				case registerInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
-				case languageDropDownList:
+				/*case languageDropDownList:
 					instance.dataProvider = new ArrayCollection([
 						{ label: "English", data: "EN" },
 						{ label: "Chinese", data: "ZH" },
@@ -329,7 +329,7 @@ import spark.components.NumericStepper;
 					
 					instance.addEventListener(Event.CHANGE, onLanguageChange);
 					instance.addEventListener(MouseEvent.CLICK, onLanguageChange);
-					break;
+					break;*/
 			}
 		}
 		
@@ -415,7 +415,7 @@ import spark.components.NumericStepper;
 			
 		}
 		
-		protected function onLanguageChange(e:Event):void {
+		/*protected function onLanguageChange(e:Event):void {
 			if (languageDropDownList.selectedItem) {
 				var languageCode:String = languageDropDownList.selectedItem.data;
 				languageChange.dispatch(languageCode);
@@ -430,7 +430,7 @@ import spark.components.NumericStepper;
 				//isDirty = true;
 			}
 			
-		}
+		}*/
 		
 		/**
 		 * The user has clicked the update button
