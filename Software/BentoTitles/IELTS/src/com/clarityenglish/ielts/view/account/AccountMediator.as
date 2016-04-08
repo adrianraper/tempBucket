@@ -32,7 +32,7 @@
 			// listen for this signal
 			view.updateUser.add(onUpdateUser);
 			view.register.add(onInfoRequested);
-			view.languageChange.add(onLanguageChange);
+			//view.languageChange.add(onLanguageChange);
 			
 			// Inject some data to the screen.
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
@@ -74,14 +74,14 @@
 			
 			//view.updateUser.remove(onUpdateUser);
 			view.register.remove(onInfoRequested);
-			view.languageChange.remove(onLanguageChange);
+			//view.languageChange.remove(onLanguageChange);
 		}
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				CommonNotifications.UPDATE_FAILED,
 				BBNotifications.USER_UPDATED,
-				BBNotifications.LANGUAGE_CHANGED,
+				//BBNotifications.LANGUAGE_CHANGED,
 			]);
 		}
 		
@@ -96,9 +96,9 @@
 					view.showUpdateSuccess();
 					view.isDirty = false;
 					break;
-				case BBNotifications.LANGUAGE_CHANGED:
+				/*case BBNotifications.LANGUAGE_CHANGED:
 					view.reloadCopy(); // gh#72
-					break;
+					break;*/
 			}
 		}
 		
@@ -134,9 +134,9 @@
 			sendNotification(IELTSNotifications.IELTS_REGISTER, registerPage);
 		}
 		
-		private function onLanguageChange(languageCode:String):void {
+		/*private function onLanguageChange(languageCode:String):void {
 			sendNotification(BBNotifications.LANGUAGE_CHANGE, languageCode);
-		}
+		}*/
 		
 	}
 }
