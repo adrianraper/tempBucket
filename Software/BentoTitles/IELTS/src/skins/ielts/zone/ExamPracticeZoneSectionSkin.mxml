@@ -25,26 +25,10 @@
 			private var changeWatcher:ChangeWatcher;
 			
 			protected function onCreationComplete(event:FlexEvent):void {
-				changeWatcher = (hostComponent.courseClass != 'speaking')? BindingUtils.bindSetter(onScroll, list.scroller.viewport, "horizontalScrollPosition") : null;
-
 				// for direct start, scroll to the specified exercise
 				if (list.scroller.horizontalScrollBar)
 					list.scroller.horizontalScrollBar.value += (list.scroller.viewport.width * (hostComponent.pageToScroll - 1));
-			}
-			
-			protected function onScroll(x:* = null):void {
-				if (list.scroller.horizontalScrollBar) {
-					pageNumberDisplay.selectedIndex = Math.floor(list.scroller.horizontalScrollBar.value / list.scroller.viewport.width);
 
-					if (pageNumberDisplay.selectedIndex == list.dataProvider.length - 1) {
-						rightArrowButton.enabled = false;
-					} else if (pageNumberDisplay.selectedIndex == 0) {
-						leftArrowButton.enabled = false;
-					} else {
-						leftArrowButton.enabled = true;
-						rightArrowButton.enabled = true;
-					}
-				}
 			}
 			
 			protected function scrollBy(pages:int):void {
@@ -239,5 +223,5 @@
 	<s:Label id="examZoneLabel" fontSize="18" fontWeight="bold" left="20" top="12" excludeFrom="speaking" />
 	<s:Label id="examZoneInstructionLabel" visible="{list.dataProvider.length > 0}" text="{hostComponent.examZoneInstructionText}" left="20" top="35" right="25" excludeFrom="speaking" />
 
-	<speakingtest:SpeakingTestView id="speakingTestView" href="{hostComponent.href}" testXMLListCollection="{hostComponent.speakingTestXMLListCollection}" top="0" bottom="0" right="0" left="0" visible="{currentState == 'speaking'}" />
+	<speakingtest:SpeakingTestView id="speakingTestView" href="{hostComponent.href}" testXMLListCollection="{hostComponent.speakingTestXMLListCollection}" isCurrentCourseSpeaking="{hostComponent.courseClass != 'speaking'}" top="0" bottom="0" right="0" left="0" visible="{currentState == 'speaking'}" />
 </s:Skin>

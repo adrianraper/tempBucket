@@ -28,7 +28,7 @@
         }
 
         protected function onScroll(x:* = null):void {
-            if (list.scroller.horizontalScrollBar) {
+            if (list.scroller.horizontalScrollBar && list.dataProvider) {
                 pageNumberDisplay.selectedIndex = Math.floor(list.scroller.horizontalScrollBar.value / list.scroller.viewport.width);
                 hostComponent.selectedPageNumber = pageNumberDisplay.selectedIndex;
 
@@ -36,6 +36,7 @@
                     rightArrowButton.enabled = false;
                 } else if (pageNumberDisplay.selectedIndex == 0) {
                     leftArrowButton.enabled = false;
+                    rightArrowButton.enabled = true;
                 } else {
                     leftArrowButton.enabled = true;
                     rightArrowButton.enabled = true;
@@ -51,7 +52,6 @@
             if (changeWatcher) changeWatcher.unwatch();
             changeWatcher = null;
         }
-
         ]]>
     </fx:Script>
 
@@ -65,7 +65,7 @@
     </s:states>
 
     <s:Group top="0" bottom="0" left="0" right="0">
-        <s:List id="list" width="514" top="14" bottom="0" horizontalCenter="0" contentBackgroundColor="#FFFFFF" verticalScrollPolicy="off" pageScrollingEnabled="true" scrollSnappingMode="leadingEdge" borderVisible="false" dataProvider="{hostComponent.testXMLListCollection}">
+        <s:List id="list" width="514" top="14" bottom="0" horizontalCenter="0" contentBackgroundColor="#FFFFFF" verticalScrollPolicy="off" pageScrollingEnabled="true" scrollSnappingMode="leadingEdge" dataProvider="{hostComponent.testXMLListCollection}" borderVisible="false">
             <s:layout>
                 <s:HorizontalLayout gap="0" useVirtualLayout="true" />
             </s:layout>
@@ -153,11 +153,25 @@
                             private var changeWatcher:ChangeWatcher;
 
                             public function onCreationComplete(event:Event):void {
-                                systemManager.addEventListener("exitTestEvent", onExitTest, true);
-
-                                Bind.fromProperty(outerDocument.hostComponent, "isReflectionShow").toFunction(function (isReflectionShow:Boolean) {
+                                Bind.fromProperty(outerDocument.hostComponent, "isReflectionShow").toFunction(function(isReflectionShow:Boolean) {
                                     if (isReflectionShow) {
                                         flipToReflection.play();
+                                    }
+                                });
+
+                                Bind.fromProperty(outerDocument.hostComponent, "isCurrentCourseSpeaking").toFunction(function(isCurrentCourseSpeaking:Boolean) {
+                                    if (isCurrentCourseSpeaking) {
+                                        if (isBackSwfLoaderShow) {
+                                            isBackSwfLoaderShow = false;
+                                            flipFrontReverse.play();
+                                            dispatchEvent(new Event("backButtonClickEvent", true));
+                                            speakingStartButton.visible = true;
+                                            speakingBackButton.visible = false;
+                                        }
+
+                                        if (isReflectSwfLoaderShow) {
+                                            onBackButtonClick();
+                                        }
                                     }
                                 });
                             }
@@ -195,8 +209,6 @@
                                 flipFront.play();
                                 dispatchEvent(new Event("startButtonClickEvent", true));
                                 speakingStartButton.visible = false;
-
-                                (owner as List).setStyle("horizontalScrollPolicy", "off");
                             }
 
                             protected function onBackButtonClick(event:Event = null):void {
@@ -204,22 +216,6 @@
                                 dispatchEvent(new Event("backButtonClickEvent", true));
                                 speakingStartButton.visible = true;
                                 speakingBackButton.visible = false;
-                                (owner as List).setStyle("horizontalScrollPolicy", "on");
-                            }
-
-                            protected function onExitTest(event:Event):void {
-                                if (isBackSwfLoaderShow) {
-                                    isBackSwfLoaderShow = false;
-                                    (owner as List).setStyle("horizontalScrollPolicy", "on");
-                                    flipFrontReverse.play();
-                                    dispatchEvent(new Event("backButtonClickEvent", true));
-                                    speakingStartButton.visible = true;
-                                    speakingBackButton.visible = false;
-                                }
-
-                                if (isReflectSwfLoaderShow) {
-                                    onBackButtonClick();
-                                }
                             }
 
                             protected function onFlipFrontStart(event:Event):void {
@@ -279,7 +275,7 @@
                 <s:Label id="completeLabel" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" />
             </s:Group>
             <s:Group id="recorderGroup" width="100%" height="100%" verticalCenter="0">
-                <recorder:RecorderView id="recorderView" left="0" right="0" top="0" bottom="0" />
+                <!--recorder:RecorderView id="recorderView" left="0" right="0" top="0" bottom="0" /-->
             </s:Group>
         </s:Group>
 
