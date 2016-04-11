@@ -193,10 +193,7 @@ package com.clarityenglish.ielts.view.home {
 			
 			if (noProgressText) noProgressText.text = copyProvider.getCopyForId("noProgressText");
 			if (colorBarIntroLabel) colorBarIntroLabel.text = copyProvider.getCopyForId("colorBarIntroLabel");
-			if (studyPlannerCaptionLabel) studyPlannerCaptionLabel.text = copyProvider.getCopyForId("studyPlannerCaptionLabel");
-			if (studyPalnnerDescriptionLabel) studyPalnnerDescriptionLabel.text = copyProvider.getCopyForId("studyPalnnerDescriptionLabel");
-			if (studyPlannerDownloadButton) studyPlannerDownloadButton.label = copyProvider.getCopyForId("studyPlannerDownloadButton");
-			
+
 			// gh#100 CT
 			if (welcomeLabel) {
 				if ((licenceType == Title.LICENCE_TYPE_AA) || 
@@ -281,7 +278,14 @@ package com.clarityenglish.ielts.view.home {
 					longRateButton.addEventListener(MouseEvent.CLICK, onLongRateButtonClick);
 					break;
 				case studyPlannerDownloadButton:
+					studyPlannerDownloadButton.label = copyProvider.getCopyForId("studyPlannerDownloadButton");
 					studyPlannerDownloadButton.addEventListener(MouseEvent.CLICK, onStudyPlannerDownloadButtonClick);
+					break;
+				case studyPalnnerDescriptionLabel:
+					studyPalnnerDescriptionLabel.text = copyProvider.getCopyForId("studyPalnnerDescriptionLabel");
+					break;
+				case studyPlannerCaptionLabel:
+					studyPlannerCaptionLabel.text = copyProvider.getCopyForId("studyPlannerCaptionLabel");
 					break;
 			}
 		}
