@@ -37,8 +37,8 @@ public class SpeakingTestView extends BentoView{
     [SkinPart]
     public var timer:TimerComponent;
 
-    /*[SkinPart]
-    public var recorderView:RecorderView;*/
+    [SkinPart]
+    public var recorderView:RecorderView;
 
     [SkinPart]
     public var planningLabel:Label;
@@ -152,20 +152,20 @@ public class SpeakingTestView extends BentoView{
 
     protected function onPlanningComplete(event:Event):void {
         isPlanningComplete = true;
-        /*if (isRecordEnabled){
+        if (isRecordEnabled){
             recorderGroup.visible = true;
             // gh#1459
-            .recordWaveformView.isRecordHide = false;
+            recorderView.recordWaveformView.isRecordHide = false;
             recorderView.recordWaveformView.isSaveEnabled = false;
             recorderView.recordWaveformView.recordButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
-        } else {*/
+        } else {
             recordingLabel.visible = true;
-        //}
+        }
         planningLabel.visible = false;
     }
 
     protected function onTimerComplete(event:Event):void {
-        /*if (isRecordEnabled) {
+        if (isRecordEnabled) {
             // Manually change the recorder skin state
             // gh#1459
             recorderGroup.visible = false;
@@ -174,9 +174,9 @@ public class SpeakingTestView extends BentoView{
             callLater(function () {
                 recorderView.recordWaveformView.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
             });
-        } else {*/
+        } else {
             recordingLabel.visible = false;
-        //}
+        }
         completeLabel.visible = true;
     }
 
@@ -217,10 +217,10 @@ public class SpeakingTestView extends BentoView{
         if (isPlanningComplete) {
             isPlanningComplete = false;
 
-            /*if (isRecordEnabled) {
+            if (isRecordEnabled) {
                 recorderView.recordWaveformView.stopButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
                 recorderView.recordWaveformView.newButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
-            }*/
+            }
         }
     }
 

@@ -89,8 +89,8 @@
 			mapView(ProgressAnalysisView, ProgressAnalysisMediator);
 			mapView(ProgressCoverageView, ProgressCoverageMediator);
 			
-			mapView(RecorderView, RecorderMediator);
-			mapView(WaveformView, WaveformMediator);
+			/*mapView(RecorderView, RecorderMediator);
+			mapView(WaveformView, WaveformMediator);*/
 			
 			// Initial config loading before the state machine is initialized
 			registerCommand(CommonNotifications.CONFIG_LOAD, ConfigLoadCommand);
