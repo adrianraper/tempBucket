@@ -159,10 +159,11 @@
                                     }
                                 });
 
-                                Bind.fromProperty(outerDocument.hostComponent, "isCurrentCourseSpeaking").toFunction(function(isCurrentCourseSpeaking:Boolean) {
-                                    if (isCurrentCourseSpeaking) {
+                                Bind.fromProperty(outerDocument.hostComponent, "isExitSpeaking").toFunction(function(isExitSpeaking:Boolean) {
+                                    if (isExitSpeaking) {
                                         if (isBackSwfLoaderShow) {
                                             isBackSwfLoaderShow = false;
+                                            backSwfLoader.visible = false;
                                             flipFrontReverse.play();
                                             dispatchEvent(new Event("backButtonClickEvent", true));
                                             speakingStartButton.visible = true;
@@ -256,7 +257,7 @@
                         <s:Button id="speakingBackButton" top="{outerDocument.hostComponent.isRecordEnabled? 370 : 325}" width="452" height="45" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingBackButton')}" useHandCursor="true" buttonMode="true" click="onBackButtonClick(event)"/>
 
                         <s:SWFLoader id="reflectionSWFLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" source="{outerDocument.hostComponent.assetFolder + 'testpractice_speakingreflection.png'}" />
-                        <s:SWFLoader id="backSwfLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" />
+                        <s:SWFLoader id="backSwfLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" visible="false" />
                         <s:SWFLoader id="frontSwfLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" />
                     </s:DataRenderer>
                 </fx:Component>

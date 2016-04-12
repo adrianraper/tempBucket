@@ -117,7 +117,6 @@
 									// gh#51
 									//swfLoader.source = "/skins/ielts/assets/zone/testpractice_" + courseClass + (idx + 1) + ".png";
 									swfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_" + courseClass + (idx + 1) + ".png";
-									
 									// GH #49
 									practiceTestButton.enabled = answerKeyButton.enabled = audioPlayer.enabled = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8));
 									
@@ -223,5 +222,5 @@
 	<s:Label id="examZoneLabel" fontSize="18" fontWeight="bold" left="20" top="12" excludeFrom="speaking" />
 	<s:Label id="examZoneInstructionLabel" visible="{list.dataProvider.length > 0}" text="{hostComponent.examZoneInstructionText}" left="20" top="35" right="25" excludeFrom="speaking" />
 
-	<speakingtest:SpeakingTestView id="speakingTestView" href="{hostComponent.href}" testXMLListCollection="{hostComponent.speakingTestXMLListCollection}" isCurrentCourseSpeaking="{hostComponent.courseClass != 'speaking'}" top="0" bottom="0" right="0" left="0" visible="{currentState == 'speaking'}" />
+	<speakingtest:SpeakingTestView id="speakingTestView" href="{hostComponent.href}" testXMLListCollection="{hostComponent.speakingTestXMLListCollection}" isExitSpeaking="{hostComponent.courseClass != 'speaking'}" top="0" bottom="0" right="0" left="0" visible="{currentState == 'speaking'}" />
 </s:Skin>
