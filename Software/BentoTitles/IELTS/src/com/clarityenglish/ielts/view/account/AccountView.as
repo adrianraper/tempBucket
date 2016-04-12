@@ -9,8 +9,10 @@ package com.clarityenglish.ielts.view.account {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	
-	import flashx.textLayout.elements.TextFlow;
+import flash.net.URLRequest;
+import flash.net.navigateToURL;
+
+import flashx.textLayout.elements.TextFlow;
 	
 	import mx.collections.ArrayCollection;
 import mx.collections.ArrayList;
@@ -31,7 +33,8 @@ import spark.components.List;
 import spark.components.NumericStepper;
 	import spark.components.RichText;
 	import spark.components.TextInput;
-	import spark.utils.TextFlowUtil;
+import spark.events.DropDownEvent;
+import spark.utils.TextFlowUtil;
 	
 	public class AccountView extends BentoView {
 			
@@ -56,8 +59,8 @@ import spark.components.NumericStepper;
 		[SkinPart(required="true")]
 		public var examMinutes:NumericStepper;
 		
-		[SkinPart(required="true")]
-		public var saveChangesButton:Button;
+//		[SkinPart(required="true")]
+//		public var saveChangesButton:Button;
 
 		[SkinPart]
 		public var registerInfoButton:Button;
@@ -111,15 +114,6 @@ import spark.components.NumericStepper;
 		public var minuteLabel:Label;
 		
 		[SkinPart]
-		public var currentPwdLabel:Label;
-		
-		[SkinPart]
-		public var newPwdLabel:Label;
-		
-		[SkinPart]
-		public var confirmPwdLabel:Label;
-		
-		[SkinPart]
 		public var myProfileLabel:Label;
 
 		[SkinPart]
@@ -146,6 +140,18 @@ import spark.components.NumericStepper;
 		[SkinPart]
 		public var studyGuideLabel:Label;
 
+		[SkinPart]
+		public var studyPlannerCaptionLabel:Label;
+
+		[SkinPart]
+		public var studyPalnnerDescriptionLabel:Label;
+
+		[SkinPart]
+		public var studyPlannerDownloadButton:Button;
+
+		[SkinPart]
+		public var studyPlannerLabel:Label;
+
 		public var updateUser:Signal = new Signal(Object);
 		public var register:Signal = new Signal();
 		public var languageChange:Signal = new Signal(String);
@@ -167,6 +173,9 @@ import spark.components.NumericStepper;
 		
 		[Bindable]
 		public var hostCopyProvider:CopyProvider;
+
+		[Bindable]
+		public var isPlatformiPad:Boolean;
 		
 		override public function setCopyProvider(copyProvider:CopyProvider):void {
 			super.setCopyProvider(copyProvider);
@@ -193,8 +202,8 @@ import spark.components.NumericStepper;
 		
 		protected override function onViewCreationComplete():void {
 			super.onViewCreationComplete();
-			
-			if (saveChangesButton) saveChangesButton.label = copyProvider.getCopyForId("saveChangesButton");
+
+//			if (saveChangesButton) saveChangesButton.label = copyProvider.getCopyForId("saveChangesButton");
 			
 			if (countdownLabel) {
 				// We will only tell the user about the countdown if they have confirmed their exam date
@@ -258,9 +267,6 @@ import spark.components.NumericStepper;
 			if (dateLabel) dateLabel.text = copyProvider.getCopyForId("testDateLabel");
 			if (hourLabel) hourLabel.text = copyProvider.getCopyForId("hourLabel");
 			if (minuteLabel) minuteLabel.text = copyProvider.getCopyForId("minuteLabel");
-			if (currentPwdLabel) currentPwdLabel.text = copyProvider.getCopyForId("currentPwdLabel");
-			if (newPwdLabel) newPwdLabel.text = copyProvider.getCopyForId("newPwdLabel");
-			if (confirmPwdLabel) confirmPwdLabel.text = copyProvider.getCopyForId("confirmPwdLabel");
 			if (myProfileLabel) myProfileLabel.text = copyProvider.getCopyForId("myProfile");
 			if (myToolsLabel) myToolsLabel.text = copyProvider.getCopyForId("myToolsLabel");
 			if (calculatorLabel) calculatorLabel.text = copyProvider.getCopyForId("calculatorLabel");
@@ -301,21 +307,29 @@ import spark.components.NumericStepper;
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case saveChangesButton:
-					instance.addEventListener(MouseEvent.CLICK, onUpdateButtonClick);
-					break;
+//				case saveChangesButton:
+//					instance.addEventListener(MouseEvent.CLICK, onUpdateButtonClick);
+//					break;
 				case examDateField:
 					instance.addEventListener(CalendarLayoutChangeEvent.CHANGE, onExamDateChange);
 					break;
-				/*case newPassword:
-					instance.addEventListener(Event.CHANGE, onPasswordChange);
-					break;*/
 				case examHours:
 				case examMinutes:
 					instance.addEventListener(Event.CHANGE, onExamTimeChange);
 					break; 
 				case registerInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
+					break;
+				case studyPlannerLabel:
+				case studyPlannerCaptionLabel:
+					instance.text = copyProvider.getCopyForId("studyPlannerCaptionLabel");
+					break;
+				case studyPalnnerDescriptionLabel:
+					instance.text = copyProvider.getCopyForId("studyPalnnerDescriptionLabel");
+					break;
+				case studyPlannerDownloadButton:
+					instance.label = copyProvider.getCopyForId("studyPlannerDownloadButton");
+					instance.addEventListener(MouseEvent.CLICK, onStudyPlannerClicked);
 					break;
 				/*case languageDropDownList:
 					instance.dataProvider = new ArrayCollection([
@@ -361,15 +375,6 @@ import spark.components.NumericStepper;
 		}
 		
 		// TODO. Unload the countdownDisplay.swc when you don't need it anymore.
-		
-		/** 
-		 * The user simply changed the password field.
-		 * TODO. Check whether it is empty, in which case no longer isDirty 
-		 */
-		/*protected function onPasswordChange(eventObj:Event):void {
-			isDirty = true;
-		}*/
-		
 		/**
 		 * The user changed the exam date.  
 		 * @param event
@@ -411,8 +416,12 @@ import spark.components.NumericStepper;
 				//trace("exam date changed to " + DateUtil.formatDate(user.examDate, "yyyy-MM-dd hh:mm"));
 				
 			}
-			isDirty = true;
-			
+			//isDirty = true;
+			var updatedUserDetails:Object = new Object();
+			if (user.examDate) {
+				updatedUserDetails.examDate = DateUtil.formatDate(user.examDate, "yyyy-MM-dd") + " " + examHours.value.toString() + ":" + examMinutes.value.toString();
+			}
+			updateUser.dispatch(updatedUserDetails);
 		}
 		
 		/*protected function onLanguageChange(e:Event):void {
@@ -438,28 +447,25 @@ import spark.components.NumericStepper;
 		 * @param event
 		 */
 		protected function onUpdateButtonClick(event:MouseEvent):void {
-			// Any validation to do here?
-			/*if (newPassword && confirmPassword && (newPassword.text != confirmPassword.text)) {
-				//issue:#11
-				showUpdateError(copyProvider.getCopyForId("updateError"));
-			} else {*/
-				// Trigger the update command. Use an Event or a Signal?
-				// Do I really need to pass anything at all since the mediator can get it all anyway?
-				// Or I could use a form and pass that?
 				var updatedUserDetails:Object = new Object();
-				
-				/*if (currentPassword && currentPassword.text)
-					updatedUserDetails.currentPassword = currentPassword.text;*/
-				/*if (newPassword && newPassword.text)
-					updatedUserDetails.password = newPassword.text;*/
+
 				if (user.examDate) {
 					updatedUserDetails.examDate = DateUtil.formatDate(user.examDate, "yyyy-MM-dd") + " " + examHours.value.toString() + ":" + examMinutes.value.toString();
 				}
 				
 				updateUser.dispatch(updatedUserDetails);
-			//}
 		}
-		
+
+		protected function onStudyPlannerClicked(event:Event):void {
+			var url:String;
+			if (productVersion == IELTSApplication.FULL_VERSION) {
+				url = copyProvider.getCopyForId("studyPlannerFVDownloadLink");
+			} else if (productVersion == IELTSApplication.LAST_MINUTE){
+				url = copyProvider.getCopyForId("studyPlannerLMDownloadLink");
+			}
+			navigateToURL(new URLRequest(url), "_blank");
+		}
+
 		public function showUpdateError(msg:String = ""):void {
 			if (msg) {
 				Alert.show(msg, "Update problem");

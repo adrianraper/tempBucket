@@ -148,6 +148,14 @@ account|AccountView {
 	skinClass: ClassReference("skins.ieltsair.AccountSkin");
 }
 
+account|AccountView  s|TextInput {
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 1;
+	paddingLeft: 0;
+	paddingRight: 0;
+}
+
 /* Support view styles */
 support|SupportView {
 	skinClass: ClassReference("skins.ieltsair.SupportSkin");

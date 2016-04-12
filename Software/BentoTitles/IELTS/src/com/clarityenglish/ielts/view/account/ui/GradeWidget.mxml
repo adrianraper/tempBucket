@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx">
-	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
-		<!--s:NumberValidator id="listeingValidator" property="text" source="{numberListening}"/>
-		<s:NumberValidator id="readingValidator" property="text" source="{numberReading}"/-->
-	</fx:Declarations>
-
 	<fx:Script>
 		<![CDATA[
 			import mx.events.ValidationResultEvent;
@@ -34,12 +28,10 @@
 					if (listeningNumber < 0 || listeningNumber > 40) {
 						listeningError.includeInLayout = true;
 						listeningError.visible = true;
-						errorItem1.includeInLayout = true;
 						currentState = "question";
 					} else {
 						listeningError.includeInLayout = false;
 						listeningError.visible = false;
-						errorItem1.includeInLayout = false;
 					}
 				}
 				
@@ -47,12 +39,10 @@
 					if (readingNumber < 0 || readingNumber > 40) {
 						readingError.includeInLayout = true;
 						readingError.visible = true;
-						errorItem2.includeInLayout = true;
 						currentState = "question";
 					} else {
 						readingError.includeInLayout = false;
 						readingError.visible = false;
-						errorItem2.includeInLayout = false;
 					}
 				}
 				
@@ -216,87 +206,71 @@
 				listeningError.includeInLayout = false;
 				readingError.visible = false;
 				readingError.includeInLayout = false;
-				errorItem1.includeInLayout = false;
-				errorItem2.includeInLayout = false;
 			}
 		]]>
 	</fx:Script>
+
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" inner="true"/>
+	</fx:Declarations>
+
 	<s:states>
 		<s:State name="question" />
 		<s:State name="answer" />
 	</s:states>
 
 	<s:Group>
-		<s:Image id="caculatorBackground" source="@Embed(source='/skins/ielts/assets/rtiv2_widget.png')" />
-		<s:Form id="GradeCaculate" includeIn="question" x="30" y="70" width="344" height="300">
-			<s:layout>
-				<s:FormLayout gap="0" />
-			</s:layout>
-			<s:Label color="#D52039" fontSize="12.5" fontWeight="bold" paddingLeft="12" text="How many questions do you think you will get right?" />
-			<s:FormItem width="293" label="Listening:" fontWeight="normal">
-				<s:HGroup width="186">
-					<s:TextInput id="numberListening" width="40" maxChars="2" restrict="0123456789" />
-					<s:Label width="43" paddingTop="14" fontSize="12" text="of 40" />
-				</s:HGroup>
-			</s:FormItem>
-			<s:FormItem id="errorItem1" includeInLayout="false">
-				<s:layout>
-					<s:VerticalLayout paddingLeft="-60" paddingTop="-30" />
-				</s:layout>
+		<s:Image id="caculatorBackground" source="@Embed(source='/skins/ielts/assets/rtiv2_widget.png')" scaleX="0.72" scaleY="0.52" />
+		<s:VGroup id="GradeCaculate" includeIn="question" paddingLeft="30" paddingTop="45" width="240" height="173" gap="4">
+			<s:Label color="#D52039" fontSize="10" fontWeight="bold"
+					 text="How many questions do you think you will get right?"/>
+			<s:HGroup width="220" height="30" paddingLeft="11" verticalAlign="middle">
+				<s:Label text="Listening:" fontWeight="bold" fontSize="11" />
+				<s:TextInput id="numberListening" width="24" paddingLeft="8" maxChars="2" fontSize="10" restrict="0123456789" borderVisible="false" filters="{[dropShadowFilter]}" />
+				<s:Label width="28" fontSize="10" text="of 40"/>
 				<s:Label id="listeningError"
-						 width="252"
+						 width="120"
 						 backgroundColor="#D52039"
 						 color="#FFFCFC"
-						 includeInLayout="false"
 						 paddingBottom="5"
 						 paddingTop="5"
 						 text="please input a number between 0 and 40"
 						 textAlign="center"
-						 verticalAlign="middle" />
-			</s:FormItem>
-			<s:FormItem label="Reading: " verticalCenter="0">
-				<s:HGroup width="186" verticalCenter="0">
-					<s:TextInput id="numberReading" width="40" maxChars="2" restrict="0123456789" />
-					<s:Label width="43" paddingTop="14" fontSize="12" text="of 40" />
-				</s:HGroup>
-			</s:FormItem>
-			<s:FormItem id="errorItem2" includeInLayout="false">
-				<s:layout>
-					<s:VerticalLayout paddingLeft="-60" paddingTop="-30" />
-				</s:layout>
+						 fontSize="10"
+						 verticalAlign="middle" visible="false" includeInLayout="false" />
+			</s:HGroup>
+			<s:HGroup width="220" height="30" paddingLeft="11" verticalAlign="middle">
+				<s:Label text="Reading:" fontWeight="bold" fontSize="11" />
+				<s:TextInput id="numberReading" width="24" paddingLeft="8" maxChars="2" fontSize="10" restrict="0123456789" borderVisible="false" filters="{[dropShadowFilter]}" />
+				<s:Label width="28" fontSize="10" text="of 40"/>
 				<s:Label id="readingError"
-						 width="252"
+						 width="120"
 						 backgroundColor="#D52039"
 						 color="#FFFCFC"
-						 includeInLayout="false"
 						 paddingBottom="5"
 						 paddingTop="5"
 						 text="please input a number between 0 and 40"
 						 textAlign="center"
-						 verticalAlign="middle" />
-			</s:FormItem>
-			<s:Label color="#D52039" fontSize="12.5" fontWeight="bold" paddingLeft="12" paddingTop="10" text="For which exam?" />
-			<s:FormItem textAlign="left">
-				<s:layout>
-					<s:VerticalLayout horizontalAlign="left" paddingLeft="-60" />
-				</s:layout>
-				<s:RadioButton label="Academic" id="AC" selected="true" />
-				<s:RadioButton label="General Training" id="GT" />
-			</s:FormItem>
-			<s:FormItem>
-				<s:layout>
-					<s:VerticalLayout paddingLeft="-60" />
-				</s:layout>
-				<s:Button id="calculateButton" label="Calculate" click="calculateGrade(numberListening.text, numberReading.text)" fontSize="16" fontWeight="bold" skinClass="skins.ielts.account.GradeWidgetButtonSkin" />
-			</s:FormItem>
-		</s:Form>
+						 fontSize="10"
+						 verticalAlign="middle" visible="false" includeInLayout="false" />
+			</s:HGroup>
+			<s:Label color="#D52039" fontSize="11" fontWeight="bold" paddingLeft="12"
+					 text="For which exam?"/>
+			<s:VGroup paddingLeft="11" paddingTop="3">
+				<s:RadioButton label="Academic" id="AC" selected="true" scaleX="0.7" scaleY="0.7" />
+				<s:RadioButton label="General Training" id="GT" scaleX="0.7" scaleY="0.7" />
+			</s:VGroup>
+			<s:VGroup paddingLeft="11">
+				<s:Button id="calculateButton" label="Calculate" click="calculateGrade(numberListening.text, numberReading.text)" fontWeight="bold" skinClass="skins.ielts.account.GradeWidgetButtonSkin" />
+			</s:VGroup>
+		</s:VGroup>
 
-		<s:Form id="GradResult" includeIn="answer" x="30" y="109" width="344" height="300" backgroundAlpha="0">
+		<s:Form id="GradResult" includeIn="answer" x="19" y="45" width="200" height="180" backgroundAlpha="0">
 			<s:Label color="#D52039" fontSize="12.5" fontWeight="bold" paddingLeft="12" text="Your scores" />
-			<s:FormItem label="Listening:">
+			<s:FormItem label="Listening:" fontSize="12">
 				<s:Label id="resulListeningText" text="{resultListening}" />
 			</s:FormItem>
-			<s:FormItem label="Reading:">
+			<s:FormItem label="Reading:" fontSize="12">
 				<s:Label id="resulReadingText" text="{resultReading}" />
 			</s:FormItem>
 			<s:Label paddingLeft="12" paddingTop="10" text="These scores are estimates only." />
