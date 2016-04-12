@@ -74,7 +74,7 @@ public class SpeakingTestView extends BentoView{
     public var horizontalScrollPolicy:String;
 
     [Bindable]
-    public var isCurrentCourseSpeaking:Boolean;
+    public var isExitSpeaking:Boolean;
 
     private var _currentState:String;
 

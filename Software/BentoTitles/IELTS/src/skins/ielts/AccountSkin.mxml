@@ -112,7 +112,7 @@
                         <s:VGroup width="100%" height="100%" top="150">
                             <s:Label id="dateLabel" verticalAlign="bottom"/>
                             <mx:DateField id="examDateField" creationComplete="dateChooserInit(hostComponent.user);"
-                                          labelFunction="formatScreenDate" fontFamily="HelveticaMX"/>
+                                          labelFunction="formatScreenDate" />
                         </s:VGroup>
 
                         <s:VGroup>
