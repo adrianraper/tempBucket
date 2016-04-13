@@ -53,6 +53,9 @@ package com.clarityenglish.bento.controller {
 							// We write a record when they click the pdf itself in openMedia
 							sendNotification(BBNotifications.PDF_SHOW, href);
 							break;
+						case "png":
+							sendNotification(BBNotifications.IMAGE_SHOW, href);
+							break;
 						default:
 							log.error("Attempt to load href with unknown extension {0} - {1}", href.extension, href);
 							break;

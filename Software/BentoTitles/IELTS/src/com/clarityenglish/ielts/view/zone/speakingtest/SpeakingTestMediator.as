@@ -1,4 +1,5 @@
 package com.clarityenglish.ielts.view.zone.speakingtest {
+import com.clarityenglish.bento.BBNotifications;
 import com.clarityenglish.bento.RecorderNotifications;
 import com.clarityenglish.bento.model.AudioProxy;
 import com.clarityenglish.bento.model.BentoProxy;
@@ -22,6 +23,8 @@ public class SpeakingTestMediator extends BentoMediator implements IMediator {
     override public function onRegister():void {
         super.onRegister();
 
+        view.exerciseSelect.add(onExerciseSelect);
+
         var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
         if (bentoProxy.menuXHTML) view.href = bentoProxy.menuXHTML.href;
 
@@ -42,6 +45,10 @@ public class SpeakingTestMediator extends BentoMediator implements IMediator {
 
     override public function handleNotification(note:INotification):void {
         super.handleNotification(note);
+    }
+
+    protected function onExerciseSelect(node:XML, attribute:String = null):void {
+        sendNotification(BBNotifications.SELECTED_NODE_CHANGE, node, attribute);
     }
 }
 }

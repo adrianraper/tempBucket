@@ -130,6 +130,7 @@
 			registerCommand(BBNotifications.EXERCISE_TRY_AGAIN, ExerciseTryAgainCommand);
 			registerCommand(BBNotifications.EXERCISE_RESTART, ExerciseRestartCommand);
 			registerCommand(BBNotifications.PDF_SHOW, PdfShowCommand);
+			registerCommand(BBNotifications.IMAGE_SHOW, ImageShowCommand);
 			registerCommand(BBNotifications.WORD_CLICK, WordClickCommand);
 			// gh#338
 			registerCommand(BBNotifications.HINT_SHOW, HintShowCommand);
