@@ -44,6 +44,8 @@
 			view.productCode = configProxy.getProductCode();
 			view.licenceType = configProxy.getLicenceType();
 
+			view.isPlatformiPad = configProxy.isPlatformiPad();
+
 			// The start and end date depend on the type of account, and whether you expire or not
 			// Start date is either account start date, or user registration date whichever is later
 			// Expiry date is either account end date, or user expiry date whichever is earlier
@@ -89,16 +91,16 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case CommonNotifications.UPDATE_FAILED:
-					view.showUpdateError();
-					break;
-				case BBNotifications.USER_UPDATED:
-					view.showUpdateSuccess();
-					view.isDirty = false;
-					break;
-				/*case BBNotifications.LANGUAGE_CHANGED:
-					view.reloadCopy(); // gh#72
-					break;*/
+//				case CommonNotifications.UPDATE_FAILED:
+//					view.showUpdateError();
+//					break;
+//				case BBNotifications.USER_UPDATED:
+//					view.showUpdateSuccess();
+//					view.isDirty = false;
+//					break;
+//				case BBNotifications.LANGUAGE_CHANGED:
+//					view.reloadCopy(); // gh#72
+//					break;
 			}
 		}
 		

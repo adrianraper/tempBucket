@@ -370,7 +370,7 @@ package com.clarityenglish.ielts.view.home {
 		}
 
 		protected function onStudyPlannerDownloadButtonClick(event:MouseEvent):void {
-			var url:String = copyProvider.getCopyForId("studyPlannerDownloadLink");
+			var url:String = copyProvider.getCopyForId("studyPlannerFVDownloadLink");
 			navigateToURL(new URLRequest(url), "_blank");
 		}
 

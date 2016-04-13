@@ -225,7 +225,7 @@ home|HomeView InforButton#topInforButton {
 	skinClass: ClassReference("skins.ielts.title.InforButtonSkin");
 }
 
-home|HomeView #studyPlannerDownloadButton {
+s|Button#studyPlannerDownloadButton {
 	skinClass: ClassReference("skins.ielts.title.SaveChangesButtonSkin");
 }
 

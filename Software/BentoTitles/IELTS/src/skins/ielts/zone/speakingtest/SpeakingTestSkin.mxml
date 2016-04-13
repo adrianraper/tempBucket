@@ -276,7 +276,7 @@
                 <s:Label id="completeLabel" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" />
             </s:Group>
             <s:Group id="recorderGroup" width="100%" height="100%" verticalCenter="0">
-                <recorder:RecorderView id="recorderView" left="0" right="0" top="0" bottom="0" />
+                <!--recorder:RecorderView id="recorderView" left="0" right="0" top="0" bottom="0" /-->
             </s:Group>
         </s:Group>
 
