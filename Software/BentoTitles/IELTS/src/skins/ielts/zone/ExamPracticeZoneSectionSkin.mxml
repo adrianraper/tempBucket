@@ -71,7 +71,7 @@
 		</s:layout>
 		<s:itemRenderer>
 			<fx:Component>
-				<s:DataRenderer width="516" height="100%" addedToStage="onAddedToStage(event)" removedFromStage="onRemovedFromStage(event)">
+				<s:DataRenderer width="514" height="100%" addedToStage="onAddedToStage(event)" removedFromStage="onRemovedFromStage(event)">
 					<fx:Script>
 						<![CDATA[
 							import com.clarityenglish.bento.BentoApplication;

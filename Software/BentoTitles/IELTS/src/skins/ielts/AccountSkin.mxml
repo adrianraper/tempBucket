@@ -270,6 +270,36 @@
 							<s:itemRenderer>
 								<fx:Component>
 									<s:ItemRenderer autoDrawBackground="false">
+										<fx:Script>
+											<![CDATA[
+												import com.clarityenglish.bento.BentoApplication;
+												import com.clarityenglish.ielts.IELTSApplication;
+												
+												override public function set data(value:Object):void {
+													super.data = value;
+													
+													switch (outerDocument.hostComponent.productVersion) {
+														case IELTSApplication.LAST_MINUTE:
+															if (itemIndex > 0 && itemIndex < 5) {
+																studyGuideButton.enabled = true;
+															} else {
+																studyGuideButton.enabled = false;
+															}
+															break;
+														case IELTSApplication.TEST_DRIVE:
+														case BentoApplication.DEMO:
+															if (itemIndex == 1) {
+																studyGuideButton.enabled = true;
+															} else {
+																studyGuideButton.enabled = false;
+															}
+															break;
+														default:
+															studyGuideButton.enabled = true;
+													}
+												}
+											]]>
+										</fx:Script>
 										<ui:StudyGuideButton id="studyGuideButton" itemIndex="{itemIndex}"
 															 linkSource="{outerDocument.hostComponent.copyProvider.getCopyForId('studyGuideButtonLink' + (itemIndex + 1))}" buttonMode="true" useHandCursor="true"/>
 									</s:ItemRenderer>
