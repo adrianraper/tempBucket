@@ -7,6 +7,7 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.title.InforButton;
 	import com.clarityenglish.ielts.view.zone.courseselector.CourseSelector;
+	import com.clarityenglish.ielts.view.zone.ui.ZoneTabbedViewNavigator;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -34,7 +35,7 @@ package com.clarityenglish.ielts.view.zone {
 		public var courseSelector:CourseSelector;
 		
 		[SkinPart(required="true")]
-		public var sectionNavigator:ISelectableList;
+		public var sectionNavigator:ZoneTabbedViewNavigator;
 		
 		[SkinPart(required="true")]
 		public var questionZoneViewNavigator:ViewNavigator;
@@ -291,6 +292,10 @@ package com.clarityenglish.ielts.view.zone {
 						if (testZoneViewNavigator) testZoneViewNavigator.enabled = false;
 					}
 				}
+			}
+
+			if (_courseChanged) {
+				sectionNavigator.selectedColor = getStyle(course.@['class'] + "ColorDark");
 			}
 			inforButtonTextFlow = TextFlowUtil.importFromString(copyProvider.getCopyForId("infoReadingText"));
 		}

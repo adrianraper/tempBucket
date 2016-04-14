@@ -236,11 +236,11 @@ zone|ZoneView {
 }
 
 zone|ZoneView #sectionNavigator {
-	skinClass: ClassReference("skins.ielts.zone.SectionNavigatorSkin");
+	skinClass: ClassReference("skins.ielts.zone.ZoneTabbedViewNavigatorSkin");
 }
 
 zone|ZoneView #sectionNavigator #tabBar {
-	skinClass: ClassReference("skins.ielts.zone.ui.SectionNavigatorTabBarSkin");
+	color: #FFFFFF;
 	fontSize: 13;
 }
 
