@@ -41,7 +41,7 @@
 			}
 			
 			private function dateChooserInit(user:User):void {
-				examDateField.selectedDate = user.examDate;
+				examDateField.selectedDate = user.examDate < new Date() ? null : user.examDate;
 				// Registration might be a long time ago - not much point being able to select anything in the past
 				var selectStartDate:Date = new Date();
 				var selectEndDate:Date = DateUtil.dateAdd(selectStartDate, "y", 1);

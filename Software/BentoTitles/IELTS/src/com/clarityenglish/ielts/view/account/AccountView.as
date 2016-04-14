@@ -358,7 +358,7 @@ import spark.utils.TextFlowUtil;
 				case IELTSApplication.FULL_VERSION:
 					var currentState:String = "fullVersion";
 					// gh#38 userID is from user not config
-					if (licenceType == Title.LICENCE_TYPE_AA ||
+					if (/*licenceType == Title.LICENCE_TYPE_AA ||*/
 						Number(user.userID) < 1)
 						currentState += "_anonymous";
 					return currentState;
