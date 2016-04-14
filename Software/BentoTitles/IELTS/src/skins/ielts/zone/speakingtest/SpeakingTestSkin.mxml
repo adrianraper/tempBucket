@@ -132,6 +132,7 @@
                         </fx:Declarations>
                         <fx:Script>
                             <![CDATA[
+                            import com.clarityenglish.bento.events.ExerciseEvent;
                             import com.clarityenglish.textLayout.components.AudioPlayer;
                             import com.googlecode.bindagetools.Bind;
 
@@ -205,10 +206,11 @@
                                 }
                             }
 
-                            protected function onStartButtonClick(event:Event):void {
+                            protected function onStartButtonClick(node:XML, attribute:String = "href"):void {
                                 AudioPlayer.stopAllAudio();
                                 flipFront.play();
-                                dispatchEvent(new Event("startButtonClickEvent", true));
+                                //dispatchEvent(new Event("startButtonClickEvent", true));
+                                dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, node.@href, node, attribute));
                                 speakingStartButton.visible = false;
                             }
 
@@ -252,7 +254,7 @@
                             ]]>
                         </fx:Script>
 
-                        <s:Button id="speakingStartButton" top="325" width="452" height="53" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingStartButton')}"  click="onStartButtonClick(event)"
+                        <s:Button id="speakingStartButton" top="325" width="452" height="53" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingStartButton')}"  click="onStartButtonClick(data as XML)"
                                   useHandCursor="true" buttonMode="true"  />
                         <s:Button id="speakingBackButton" top="{outerDocument.hostComponent.isRecordEnabled? 370 : 325}" width="452" height="45" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingBackButton')}" useHandCursor="true" buttonMode="true" click="onBackButtonClick(event)"/>
 

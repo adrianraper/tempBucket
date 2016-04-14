@@ -53,6 +53,7 @@
 		public static const EXERCISE_STOPPED:String = "bb/exercise_stopped";
 		
 		public static const PDF_SHOW:String = "bb/pdf_show";
+		public static const IMAGE_SHOW:String = "bb/image_show";
 		
 		// Account notifications
 		public static const USER_UPDATE:String = "bb/user_update";

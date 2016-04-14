@@ -48,6 +48,9 @@ package com.clarityenglish.bento.controller {
 						case "pdf":
 							sendNotification(BBNotifications.PDF_SHOW, href);
 							break;
+						case "png":
+							sendNotification(BBNotifications.IMAGE_SHOW, href);
+							break;
 						default:
 							log.error("Attempt to load href with unknown extension {0} - {1}", href.extension, href);
 							break;

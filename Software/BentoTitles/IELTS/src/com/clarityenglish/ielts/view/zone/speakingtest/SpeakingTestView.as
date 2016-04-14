@@ -1,4 +1,5 @@
 package com.clarityenglish.ielts.view.zone.speakingtest {
+import com.clarityenglish.bento.events.ExerciseEvent;
 import com.clarityenglish.bento.view.base.BentoView;
 import com.clarityenglish.bento.view.recorder.RecorderView;
 import com.clarityenglish.bento.view.timer.TimerComponent;
@@ -15,6 +16,7 @@ import mx.events.FlexEvent;
 import mx.events.StateChangeEvent;
 
 import org.davekeen.util.StateUtil;
+import org.osflash.signals.Signal;
 
 import skins.ielts.assets.candidates.videoframe;
 
@@ -76,6 +78,8 @@ public class SpeakingTestView extends BentoView{
     [Bindable]
     public var isExitSpeaking:Boolean;
 
+    public var exerciseSelect:Signal = new Signal(XML, String);
+
     private var _currentState:String;
 
     public function SpeakingTestView() {
@@ -103,6 +107,9 @@ public class SpeakingTestView extends BentoView{
         super.partAdded(partName, instance);
 
         switch (instance) {
+            case list:
+                list.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onStartButtonClick);
+                break;
             case timer:
                 timer.addEventListener("TimerFirstSectionCompleteEvent", onPlanningComplete);
                 timer.addEventListener("TimerCompleteEvent", onTimerComplete);
@@ -130,7 +137,7 @@ public class SpeakingTestView extends BentoView{
         return currentState;
     }
 
-    protected function onStartButtonClick(event:Event):void {
+    protected function onStartButtonClick(event:ExerciseEvent):void {
         setState('testState');
 
         if (isPlatformTablet)
@@ -148,6 +155,8 @@ public class SpeakingTestView extends BentoView{
             recordingLabel.visible = false;
             completeLabel.visible = false;
         });
+
+        exerciseSelect.dispatch(event.node, event.attribute);
     }
 
     protected function onPlanningComplete(event:Event):void {
