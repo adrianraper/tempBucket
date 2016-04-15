@@ -57,7 +57,7 @@ import spark.components.ViewNavigator;
 		public var longRateButton:Button;
 		
 		[SkinPart]
-		public var topInforButton:InforButton;
+		public var bottomInforButton:InforButton;
 		
 		[Bindable]
 		public var user:User;
@@ -237,7 +237,7 @@ import spark.components.ViewNavigator;
 					longRateButton.label = copyProvider.getCopyForId("longRateButton");
 					longRateButton.addEventListener(MouseEvent.CLICK, onRateButtonClick);
 					break;
-				case topInforButton:
+				case bottomInforButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
 			}
@@ -346,7 +346,9 @@ import spark.components.ViewNavigator;
 
 		// #337
 		private function onRequestInfoClick(event:MouseEvent):void {
-			upgrade.dispatch();
+			//upgrade.dispatch();
+			var url:String = copyProvider.getCopyForId("TDBottomBlueBannerLink");
+			navigateToURL(new URLRequest(url), "_blank");
 		}
 	}
 	

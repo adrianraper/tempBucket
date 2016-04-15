@@ -7,8 +7,10 @@ package com.clarityenglish.ielts.view.support {
 	import com.clarityenglish.ielts.IELTSApplication;
 	
 	import flash.events.MouseEvent;
-	
-	import flashx.textLayout.elements.ParagraphElement;
+import flash.net.URLRequest;
+import flash.net.navigateToURL;
+
+import flashx.textLayout.elements.ParagraphElement;
 	import flashx.textLayout.elements.SpanElement;
 	import flashx.textLayout.elements.TextFlow;
 	
@@ -228,7 +230,9 @@ package com.clarityenglish.ielts.view.support {
 		}
 		
 		private function onBuyInfoClick(event:MouseEvent):void {
-			buy.dispatch();
+			//buy.dispatch();
+			var url:String = copyProvider.getCopyForId("TDHelpBlueBannerLink");
+			navigateToURL(new URLRequest(url), "_blank");
 		}
 		
 		private function onUserManualClick(event:MouseEvent):void {

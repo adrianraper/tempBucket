@@ -15,7 +15,9 @@ package com.clarityenglish.ielts.view.title {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
-	import flash.utils.Timer;
+import flash.net.URLRequest;
+import flash.net.navigateToURL;
+import flash.utils.Timer;
 	
 	import flashx.textLayout.elements.TextFlow;
 	
@@ -514,7 +516,9 @@ package com.clarityenglish.ielts.view.title {
 		private function onRequestInfoClick(event:MouseEvent):void {
 			switch (_productVersion) {
 				case IELTSApplication.LAST_MINUTE:
-					upgrade.dispatch();
+					//upgrade.dispatch();
+					var url:String = copyProvider.getCopyForId("LMTopBlueBannerLink");
+					navigateToURL(new URLRequest(url), "_blank");
 					break;
 				case IELTSApplication.TEST_DRIVE:
 					register.dispatch();
