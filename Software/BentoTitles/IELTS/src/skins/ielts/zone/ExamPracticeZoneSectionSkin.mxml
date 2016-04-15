@@ -119,7 +119,8 @@
 									swfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_" + courseClass + (idx + 1) + ".png";
 									// GH #49
 									practiceTestButton.enabled = answerKeyButton.enabled = audioPlayer.enabled = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8));
-									
+									swfLoader.alpha = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8)) ? 1 : 0.5;
+
 									//gh #184
 									if (practiceTestButton.enabled) {
 										practiceLabel.text = data.@caption;
@@ -180,7 +181,7 @@
 					<s:Label id="practiceLabel" top="{courseClass != 'listening' ? 305 : 330}" horizontalCenter="0" fontSize="16" visible="{data.attribute('href').length() > 0}" />
 
 					<!-- gh#1161 -->
-					<s:Group id="testDriveInformation" top="252" horizontalCenter="0" includeInLayout="{outerDocument.hostComponent.isTestDrive}" visible="{outerDocument.hostComponent.isTestDrive}" >
+					<s:Group id="testDriveInformation" verticalCenter="0" horizontalCenter="0" includeInLayout="{outerDocument.hostComponent.isTestDrive}" visible="{outerDocument.hostComponent.isTestDrive}" >
 						<ui:InfoLabel id="testDriveInfo" />
 					</s:Group> 
 
