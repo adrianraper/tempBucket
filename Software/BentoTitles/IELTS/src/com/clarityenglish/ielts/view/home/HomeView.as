@@ -354,7 +354,9 @@ package com.clarityenglish.ielts.view.home {
 		
 		// gh#383
 		protected function onFindMoreClicked(event:MouseEvent):void {
-			findMore.dispatch();
+			//findMore.dispatch();
+			var url:String = copyProvider.getCopyForId("LMFindOutMoreLink");
+			navigateToURL(new URLRequest(url), "_blank");
 		}
 		
 		protected function onLongRateButtonClick(event:MouseEvent):void {

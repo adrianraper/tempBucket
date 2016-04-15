@@ -23,7 +23,7 @@
 	<brandingMedia />
     <upgradeURL>http://www.ieltspractice.com</upgradeURL>
     <pricesURL>http://www.clarityenglish.com/prices.php</pricesURL>
-    <registerURL>http://takeielts.britishcouncil.org/</registerURL>
+    <registerURL>http://takeielts.britishcouncil.org/book-your-test/book-now</registerURL>
     <getAccountURL>http://www.roadtoielts.com/</getAccountURL>
     
 	<contentPath>http://192.168.8.82/Content/</contentPath>

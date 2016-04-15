@@ -57,10 +57,10 @@
 		<s:State name="testDrive_tablet" stateGroups="bcStates, testDrive" />
 	</s:states>
 	
-	<courseselector:CourseSelector id="courseSelector" course="{hostComponent.course}" left="0" top="100" tabletMode="true" />
+	<courseselector:CourseSelector id="courseSelector" course="{hostComponent.course}" left="-30" top="100" tabletMode="true" />
 
 	<!-- gh#1161 -->
-	<title:InforButton id="topInforButton" richTextFlow="{hostComponent.inforButtonTextFlow}" left="30" top="560" buttonMode="true" useHandCursor="true" includeIn="testDrive"  />
+	<title:InforButton id="bottomInforButton" richTextFlow="{hostComponent.inforButtonTextFlow}" left="30" top="540" buttonMode="true" useHandCursor="true" includeIn="testDrive"  />
 
 	<zone:ZonesChrome top="40" top.lastMinute_browser="70" right="10" />
 	<zone:ZonesBars top="40" top.lastMinute_browser="70" right="10" />

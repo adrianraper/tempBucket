@@ -56,7 +56,7 @@ package com.clarityenglish.ielts.view.zone {
 		public var longRateButton:Button;
 		
 		[SkinPart]
-		public var topInforButton:InforButton;
+		public var bottomInforButton:InforButton;
 		
 		[Bindable]
 		public var user:User;
@@ -236,7 +236,7 @@ package com.clarityenglish.ielts.view.zone {
 					longRateButton.label = copyProvider.getCopyForId("longRateButton");
 					longRateButton.addEventListener(MouseEvent.CLICK, onRateButtonClick);
 					break;
-				case topInforButton:
+				case bottomInforButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
 			}
@@ -345,7 +345,9 @@ package com.clarityenglish.ielts.view.zone {
 
 		// #337
 		private function onRequestInfoClick(event:MouseEvent):void {
-			upgrade.dispatch();
+			//upgrade.dispatch();
+			var url:String = copyProvider.getCopyForId("TDBottomBlueBannerLink");
+			navigateToURL(new URLRequest(url), "_blank");
 		}
 	}
 	

@@ -244,6 +244,10 @@ zone|ZoneView #sectionNavigator #tabBar {
 	fontSize: 13;
 }
 
+zone|ZoneView #bottomInforButton {
+	skinClass: ClassReference("skins.ielts.title.InforButtonSkin");
+}
+
 zone|AdviceZoneSectionView {
 	skinClass: ClassReference("skins.ielts.zone.AdviceZoneSectionSkin");
 }
