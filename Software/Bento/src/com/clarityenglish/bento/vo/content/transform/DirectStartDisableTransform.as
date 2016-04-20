@@ -16,6 +16,11 @@ package com.clarityenglish.bento.vo.content.transform {
 			// #338 - If courseID is defined, disable the other courses.  If you get back a unit, get it's course too for inverted-hiding as well as the other units.
 			// Road to IELTS has a group ID within a unit for an extra level of interface grouping.  Pick that up too.
 			if (directStart) {
+
+				// gh#1469 If navigation is allowed from this direct start call, don't hide anything
+				if (directStart.navigation)
+                    return;
+
 				if (directStart.exerciseID) {
 					//directStart.unitID = xml..unit.(descendants("exercise").@id.contains(directStart.exerciseID))[0].@id.toString();
 					var exerciseXML:XML = xml..unit.exercise.(@id == directStart.exerciseID)[0];

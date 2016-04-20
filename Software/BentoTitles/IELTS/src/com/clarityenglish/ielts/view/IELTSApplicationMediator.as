@@ -122,21 +122,21 @@ package com.clarityenglish.ielts.view {
 							} else {
 								var groupID:Number = unit.exercise.(@id == directStart.exerciseID).@group;
 								var unitLength:Number = unit.exercise.(@group == groupID).length();
-								var exexerciseGroupXMLList:XMLList = unit.exercise.(@group == groupID);
+								var exerciseGroupXMLList:XMLList = unit.exercise.(@group == groupID);
 								var exerciseIndex:Number = 0;
 								
 								// gh#879
 								scormProxy.setTotalExercise(unitLength);
-								
-								for (var index:String in exexerciseGroupXMLList) {
-									if (exexerciseGroupXMLList.@id[index] == directStart.exerciseID) {
+
+								// gh#1469 unrelated to issue, but just a strange loop?
+								for (var exerciseGroup in exerciseGroupXMLList) {
+									if (exerciseGroup.@id == directStart.exerciseID)
 										break;
-									}
 									exerciseIndex++;
 								}
 
 								// Currently, the bookmark will not empty when last exercise ID stored, so here we need to force it open the first exercise manually.
-								var nextExercise:XML = (exerciseIndex + 1 == unitLength)? unit.exercise.(@group == groupID)[0] : exexerciseGroupXMLList[exerciseIndex + 1];
+								var nextExercise:XML = (exerciseIndex + 1 == unitLength)? unit.exercise.(@group == groupID)[0] : exerciseGroupXMLList[exerciseIndex + 1];
 								if(nextExercise)
 									sendNotification(BBNotifications.SELECTED_NODE_CHANGE, nextExercise);
 							}
@@ -170,7 +170,7 @@ package com.clarityenglish.ielts.view {
 			// In general, I think that if you go to directStart you want to skip as much menu as possible
 			// leaving the student with no choices.
 			if (directStart.unitID) {
-				var unit:XML = bentoProxy.menuXHTML..unit.(@id == directStart.unitID)[0];
+				unit = bentoProxy.menuXHTML..unit.(@id == directStart.unitID)[0];
 				
 				if (unit) {
 					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, unit.parent());

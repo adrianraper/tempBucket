@@ -73,6 +73,10 @@ package com.clarityenglish.common.vo.config {
 		public var password:String;
 		public var courseID:String;
 		public var startingPoint:String;
+
+		// gh#1469
+		public var navigation:Boolean = false;
+
 		public var userID:String;
 		public var courseFile:String;
 		// language determines what string literal language is used
@@ -314,7 +318,12 @@ package com.clarityenglish.common.vo.config {
 						if (this.hasOwnProperty(property))
 							this[property] = parameters[property];
 						break;
-					// #338 Legacy has parameter called course not courseID
+                    // gh#1469
+                    case 'navigation':
+                        if (this.hasOwnProperty(property))
+                            this[property] = (parameters[property] == "true");
+                        break;
+                    // #338 Legacy has parameter called course not courseID
 					case 'course':
 					case 'courseID':
 						this.courseID = parameters[property];

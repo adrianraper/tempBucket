@@ -23,6 +23,7 @@
 		
 		// see whether variables have come from command line or, preferentially, session variables
 		// the rest can come from other kinds of integration
+        // gh#1469 add navigation parameter
 		var flashvars = {
 			username: jsUserName,
 			password: jsPassword,
@@ -32,6 +33,7 @@
 			instanceID: jsInstanceID,
 			course: queryStringCourseID,
 			startingPoint: queryStringStartingPoint,
+            navigation: queryStringNavigation,
 			action: swfobject.getQueryParamValue("action"),
 			startTime: jsStartTime,
 			referrer: jsReferrer,

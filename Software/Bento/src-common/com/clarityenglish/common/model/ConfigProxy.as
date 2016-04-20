@@ -479,6 +479,10 @@ package com.clarityenglish.common.model {
                     dataProxy.set("currentCourseClass", courseClass);
                 }
             }
+
+			// gh#1469
+			directStartObject.navigation = config.navigation;
+
 			return directStartObject;
 		}
 		// gh#853

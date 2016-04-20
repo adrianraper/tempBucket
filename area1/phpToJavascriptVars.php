@@ -74,6 +74,13 @@ if ($startingPoint) {
 } else {
 	echo 'swfobject.getQueryParamValue("startingPoint");';
 }
+// gh#1469
+echo 'var queryStringNavigation=';
+if ($navigation) {
+	echo '"'.$navigation.'";';
+} else {
+	echo 'swfobject.getQueryParamValue("navigation");';
+}
 echo 'var jsResize=';
 if ($resize) {
 	echo '"'.$resize.'";';
