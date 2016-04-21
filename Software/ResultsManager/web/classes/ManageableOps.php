@@ -1816,8 +1816,8 @@ EOD;
 	    
 	    // First get all the groups in this root
 	    $onlyGroups = true;
-	    $manageables = $this->getManageables(array(Session::get('rootGroupID')), false, !$onlyGroups, $onlyGroups);
-	    
+        $manageables = $this->getManageables(array(Session::get('rootGroupID')), false, true, $onlyGroups);
+        	    
 	    // Then get all the users from the root in the membership table, organised by groupID
 	    $sql = <<<"SQL"
 	    SELECT u.*, m.F_GroupID from T_User u, T_Membership m
@@ -1832,6 +1832,8 @@ SQL;
         $users = array();
         while ($userObj = $usersRS->FetchNextObj()) {
             $groupId = $userObj->F_GroupID;
+            // gh#1424 Do I need this here?
+            AuthenticationOps::addValidGroupIds(array($groupId));
             $user = $this->_createUserFromObj($userObj);
             // v3.3 Multi-group users.
             $user->id = (string)$groupId.'.'.$user->userID;
@@ -1855,9 +1857,10 @@ SQL;
 
             // Are there any users in this group?
             $atEnd = true;
-            if (isset($users[$thisGroupID]))
-                $group->addManageables(array_reverse($users[$thisGroupID]), $atEnd);
-
+            if (isset($users[$thisGroupID])) {
+				$group->addManageables(array_reverse($users[$thisGroupID]), $atEnd);
+				AuthenticationOps::addValidUserIds($group->getSubUserIds());
+			}
 	    }
         return $group->manageables;
 	}

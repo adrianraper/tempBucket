@@ -146,6 +146,9 @@ class ClarityService extends AbstractService {
 		$loginObj = $this->loginOps->login($username, $password, $allowedUserTypes, $rootID, 2);
 		
 		if ($loginObj) {
+			// gh#1424
+			AuthenticationOps::clearValidUsersAndGroups();
+			
 			// RM specific setup values for this root
 			if (isset($loginObj->F_LangaugeCode) && strlength($loginObj->F_LanguageCode)>0) {
 				Session::set('languageCode', $loginObj->F_LanguageCode);
@@ -278,14 +281,16 @@ class ClarityService extends AbstractService {
         
         // gh#1424 Different call if you want everything for the top level group
         // Actually, it might make no difference to use new code for all calls
-        if (Session::get('rootGroupID') == Session::get('groupIDs')[0]) {
-			AbstractService::$debugLog->info("New code");
-		    return $this->manageableOps->getAllManageablesFromRoot();
-        } else {
-			AbstractService::$debugLog->info("Going with the old method");
-		    return $this->manageableOps->getAllManageables();
-        }
-	}
+		// There is some wastage if you are a teacher for one small group in a big account - but I think insignificant
+        //$groupIds = Session::get('groupIDs');
+        //if (Session::get('rootGroupID') == $groupsIds[0]) {
+		//	AbstractService::$debugLog->info("New code");
+		return $this->manageableOps->getAllManageablesFromRoot();
+        //} else {
+		//	AbstractService::$debugLog->info("Going with the old method");
+		//   return $this->manageableOps->getAllManageables();
+        //}
+    }
 	
 	public function getContent() {
 		return $this->contentOps->getContent();
