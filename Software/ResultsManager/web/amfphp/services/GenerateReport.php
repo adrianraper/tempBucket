@@ -119,6 +119,7 @@ $template = preg_replace($pattern, $replacement, $template);
 $reportDom = $clarityService->getReport($onReportablesIDObjects, $onClass, $forReportableIDObjects, $forClass, $opts, $template);
 // AR If I want to see the XML before it gets processed?
 //$reportDom->formatOutput = true; 
+//header("Content-Type: text/xml; charset=utf-8"); echo $reportDom; exit(0);
 //header("Content-Type: text/xml; charset=utf-8"); echo $reportDom->saveXML(); exit(0);
 //header("Content-Type: text/xml; charset=utf-8"); echo utf8_encode($reportDom->saveXML()); exit(0);
 //header("Content-Type: text/xml; charset=utf-8"); echo htmlspecialchars($reportDom->saveXML(), ENT_COMPAT, 'UTF-8'); exit(0);
@@ -161,4 +162,3 @@ if ($template == "export") {
 echo $proc->transformToXML($reportDom);
 flush();
 exit();
-?>

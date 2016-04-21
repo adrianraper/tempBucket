@@ -234,6 +234,7 @@
 			<lit name="generateReportWindowTitle">What do you want to include in the report?</lit>
 			<lit name="generateGridReport">Interactive version</lit>
 			<lit name="generatePrintReport">Print version</lit>
+            <lit name="generateLicenceReport">Licence use</lit>
 			<lit name="generateExcelReport">Export the results</lit>
 			<lit name="reportOnManageables">{item}. Select the content.</lit>
 			<lit name="reportOnContent">{item}. Select the group or users.</lit>
@@ -252,6 +253,7 @@
 			<lit name="allCourses">Course report</lit>
 			<lit name="allUnits">Unit report</lit>
 			<lit name="allExercises">Exercise report</lit>
+            <lit name="allLicences">Licence use report</lit>
 			<lit name="allGroups">Group report</lit>
 			<lit name="allUsers">User report</lit>
 			<lit name="reset">Reset</lit>
@@ -278,6 +280,8 @@
 			<lit name="CEFSummary">CEF Summary</lit>
 			<lit name="SummaryReport">Summary</lit>
 			<lit name="includeInactiveUsersCheckBox">Show users with no records?</lit>
+			
+            <lit name="unallocatedLicences">* Licences used by deleted learners. *</lit>
 			
 			<lit name="userType">User type:</lit>
 			<lit name="student">Learner</lit>
@@ -444,6 +448,8 @@
 			<lit name="report_totalTime">Total time (hours : mins)</lit>
 			<lit name="report_totalTime_secs">Total time (seconds)</lit>
 			<lit name="report_noResults">No results</lit>
+            <lit name="report_licences">Licences used</lit>
+            <lit name="report_sessions">Times run</lit>
 			
 			<lit name="report_report">Report for</lit>
 			<lit name="report_dateRange">Date range</lit>

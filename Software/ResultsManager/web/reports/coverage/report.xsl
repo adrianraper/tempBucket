@@ -8,13 +8,14 @@
     <!--
     <xsl:include href="../functions.xsl" />
 	-->
-    <!-- http://stackoverflow.com/questions/586231/how-can-i-convert-a-string-to-upper-or-lower-case-with-xslt -->
+    <!-- http://stackoverflow.com/questions/586231/how-can-i-convert-a-string-to-upper-or-lower-case-with-xslt
     <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
     <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
     <xsl:template match="/">
         <xsl:value-of select="translate(doc, $uppercase, $lowercase)" />
     </xsl:template>
-
+    -->
+    
     <xsl:template name="addSelectOption">
         <xsl:param name="id" />
         <xsl:param name="caption" />

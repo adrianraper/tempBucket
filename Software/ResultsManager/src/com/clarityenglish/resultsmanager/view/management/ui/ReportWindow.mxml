@@ -56,6 +56,7 @@
 		private var includeStudentID:Boolean;
 			
 		// gh#28
+		[Bindable]
 		private var forClass:String;
 		private var testOnClass:Object; 
 		
@@ -68,6 +69,8 @@
 			generateExcelReportButton.label = copyProvider.getCopyForId("generateExcelReport");
 			generateGridReportButton.label = copyProvider.getCopyForId("generateGridReport");
 			generatePrintReportButton.label = copyProvider.getCopyForId("generatePrintReport");
+			// gh#1470
+			generateLicenceReportButton.label = copyProvider.getCopyForId("generateLicenceReport");
 			selectAllLabel.text = copyProvider.getCopyForId("selectAll");
 			toDateCheckBox.label = copyProvider.getCopyForId("toDate");
 			fromDateCheckBox.label = copyProvider.getCopyForId("fromDate");
@@ -146,6 +149,7 @@
 				forReportables.removeAll();
 			} else {
 				// Otherwise the window is of the same type as last time it was opened so select the same value in reportTypeComboBox
+				// gh#1470 Need to make sure the forReportable check boxes are correctly filled in
 				reportTypeComboBox.value = lastReportType;
 			}
 
@@ -164,6 +168,7 @@
 										  { label: copyProvider.getCopyForId("allUnits"), data: Unit },
 										  { label: copyProvider.getCopyForId("allExercises"), data: Exercise } ];
 				*/
+				// gh#1470
 				reportTypeDataProvider = [ { label: copyProvider.getCopyForId("allTitles"), data: Title },
 										  { label: copyProvider.getCopyForId("allCourses"), data: Course },
 										  { label: copyProvider.getCopyForId("allUnits"), data: Unit },
@@ -380,7 +385,6 @@
 			
 			//return (reportTypeComboBox.selectedItem && reportTypeComboBox.selectedItem.data && data is reportTypeComboBox.selectedItem.data);
 			
-			
 			// Simply doing this stops my second attempt at a report.
 			
 			if (!reportTypeComboBox.selectedItem || !reportTypeComboBox.selectedItem.data) return false;
@@ -439,6 +443,7 @@
 			var forArray:Array = new Array();
 			//gh:#28
 			if (testOnClass is Manageable) {
+				// gh#1424 Wouldn't it be easier to say that you are checking against Title, Course etc?
 				if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[1].data) {
 					forClass = ClassUtils.getClassAsString( reportTypeComboBox.selectedItem.data);
 					forArray = reportable.getSubChildrenOfClass(reportTypeDataProvider[3].data);
@@ -455,8 +460,6 @@
 				forClass = ClassUtils.getClassAsString( reportTypeComboBox.selectedItem.data);
 			}
 			
-			
-			//TraceUtils.myTrace("got " + forArray.length + " children " + reportTypeComboBox.selectedItem.data);
 			for each (var newReportable:Reportable in forArray) {
 				if (selected) {
 					if (!forReportables.contains(newReportable)) {
@@ -518,7 +521,8 @@
 				//Alice:"testOnClass is Mangeable" is not correct expression, and changed to "_onReportables[0] is Manageable"				
 				//gh:#28
 				if (_onReportables[0] is Manageable) {
-					if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[1].data || reportTypeComboBox.selectedItem.data == reportTypeDataProvider[2].data ) {
+					if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[1].data || 
+						reportTypeComboBox.selectedItem.data == reportTypeDataProvider[2].data ) {
 						if (reportable is reportTypeDataProvider[3].data) {
 							newForReportables.push(reportable);
 						}
@@ -566,7 +570,12 @@
 					fromDateChooser.selectedDate = new Date(); // Set to today
 				}
 				reportEvent.fromDate = fromDateChooser.selectedDate;
+				
+			// gh#1470 If no specific dates chosen, send the licenceClearanceDate as the from
+			//} else if (template == 'licence') {
+			//	reportEvent.fromDate = licenceClearanceDate;
 			}
+			
 			//if (toDateCheckBox.selected) reportEvent.toDate = toDateChooser.selectedDate;
 			if (toDateCheckBox.selected) {
 				// v3.0.6 Bug #227 If the check box is selected, but no date is selected, default to today
@@ -606,8 +615,8 @@
 			// But at this stage I don't know how many rows there will be.
 			
 			// Dispatch it in order to generate the report
-			//gh:#28
-			reportEvent.forClass = forClass as String;
+			//gh#28, gh#1470
+			reportEvent.forClass = (template == 'licence') ? 'Licence' : forClass as String;
 			parentView.dispatchEvent(reportEvent);
 		}
 		
@@ -727,12 +736,12 @@
 			</mx:VBox>
 		</mx:VBox>
 	</mx:HBox>
-	
 	<mx:ControlBar width="100%" horizontalAlign="right">
 		<mx:Button id="closeWindowButton" click="removePopup()" />
 		<mx:Button id="generateGridReportButton" click="onGenerateReport()" enabled="{forReportables.length > 0}" />
 		<mx:Button id="generatePrintReportButton" click="onGenerateReport('printable')" enabled="{forReportables.length > 0}" />
 		<mx:Button id="generateExcelReportButton" click="onGenerateReport('export')" enabled="{forReportables.length > 0}" />
+		<mx:Button id="generateLicenceReportButton" click="onGenerateReport('licence')" enabled="{forReportables.length > 0 &amp;&amp; forClass == 'Title'}" />
 		<mx:Button id="generateSpecialReportButton" click="onClickSpecialReport()" includeInLayout="false" visible="false" enabled="{forReportables.length > 0}" />
 	</mx:ControlBar>
 	

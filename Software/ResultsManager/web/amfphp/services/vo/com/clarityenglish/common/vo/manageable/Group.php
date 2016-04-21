@@ -185,7 +185,13 @@ class Group extends Manageable {
 		$opts = array();
 		
 		$opts[ReportBuilder::GROUPED] = true;
-		
+		$opts[ReportBuilder::SHOW_GROUPNAME] = true; // and I do want to see the group name (at least for multi group reports)
+		$opts[ReportBuilder::SHOW_USERNAME] = true;
+		$opts[ReportBuilder::SHOW_AVERAGE_SCORE] = true;
+		$opts[ReportBuilder::SHOW_COMPLETE] = true;
+		$opts[ReportBuilder::SHOW_AVERAGE_TIME] = true;
+		$opts[ReportBuilder::SHOW_TOTAL_TIME] = true;
+					  
 		switch ($forClass) {
 			case "Title":
 				// At present there isn't really a way to get statistics on more than one title at a time... ask Adrian about this
@@ -207,21 +213,23 @@ class Group extends Manageable {
 			case "Exercise":
 				$opts[ReportBuilder::SHOW_EXERCISE] = true;
 				break;
+			// gh#1470
+			case "Licence":
+				// Override defaults as they are not wanted
+				$opts[ReportBuilder::SHOW_USERNAME] = false;
+				$opts[ReportBuilder::SHOW_AVERAGE_SCORE] = false;
+				$opts[ReportBuilder::SHOW_COMPLETE] = false;
+				$opts[ReportBuilder::SHOW_AVERAGE_TIME] = false;
+				
+				$opts[ReportBuilder::SHOW_LICENCES_USED] = true;
+				$opts[ReportBuilder::SHOW_SESSIONS_USED] = true;
+				break;
 			default:
 				throw new Exception("Class not implemented");
 		}
 		//echo "Group.showCourse=".$opts[ReportBuilder::SHOW_COURSE]."         ";		
 		
-		$opts[ReportBuilder::SHOW_GROUPNAME] = true; // and I do want to see the group name (at least for multi group reports)
-		$opts[ReportBuilder::SHOW_USERNAME] = true;
-		$opts[ReportBuilder::SHOW_AVERAGE_SCORE] = true;
-		$opts[ReportBuilder::SHOW_COMPLETE] = true;
-		$opts[ReportBuilder::SHOW_AVERAGE_TIME] = true;
-		$opts[ReportBuilder::SHOW_TOTAL_TIME] = true;
-					  
 		return $opts;
 	}
 	
 }
-
-?>

@@ -43,6 +43,10 @@ class ReportBuilder {
 	
 	const SHOW_AVERAGE_TIME = "show_average_time";
 	const SHOW_TOTAL_TIME = "show_total_time";
+
+	// gh#1470
+	const SHOW_LICENCES_USED = "show_licences_used";
+	const SHOW_SESSIONS_USED = "show_sessions_used";
 	
 	const DETAILED_REPORT = "detailed_report"; // boolean
 	const ATTEMPTS = "attempts"; // Can be empty (i.e. all), "first" or "last"

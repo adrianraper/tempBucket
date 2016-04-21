@@ -48,16 +48,8 @@ package com.clarityenglish.resultsmanager.model {
 			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 			//TraceUtils.myTrace("reportProxy.getReport opts.detailedReport=" + opts.detailedReport);
 			
-			// Get the on reportable class
+			// Derive the on reportable class
 			var onClass:String = ClassUtils.getClassAsString(onReportables[0]) as String;
-			//gh:#28
-			trace("onClass is "+onClass);
-			
-			//gh:#28
-			// Get the for reportable class
-			//var forClass:String = ClassUtils.getClassAsString(forReportables[0]) as String;
-			var forClass:String = forClass;
-			trace("forClass is "+forClass);
 			
 			// Create the report header. You can pretty much put what you want in here.
 			var headers:Object = new Object();
@@ -65,7 +57,6 @@ package com.clarityenglish.resultsmanager.model {
 			// Make a string of all onReportable names. ie selected groups or users or content
 			// This pretty much works the same for both types of report.
 			//TraceUtils.myTrace("onReportables=" + onReportables.toString());
-			TraceUtils.myTrace("opts.includeStudentID=" + opts.includeStudentID);
 			headers.onReport = onReportables.map(
 					function(reportable:Reportable, index:int, array:Array):String { 
 						//TraceUtils.myTrace(reportable.reportableLabel);
@@ -78,7 +69,6 @@ package com.clarityenglish.resultsmanager.model {
 							return reportable.reportableLabel; 
 						}
 					} ).join(", ");
-			TraceUtils.myTrace(onClass + ": headers.onReport=" + headers.onReport);
 			headers.onReportLabel = onClass + "(s)"; // Note that this is the name of the literal, it will be looked up later. No it won't!
 			
 			// Build up header for the forReports. This is reportClass based.
@@ -117,13 +107,13 @@ package com.clarityenglish.resultsmanager.model {
 					//var titleID:Number = reportable.toIDObject()["Title"];
 					//var titleID:Number = reportable.uid.split(".")[0];
 					titleArray.push(reportable.toCaptionObject()["Title"]);
-					if (forClass != "Title") {
+					// gh#1424 Add licence use report
+					if (forClass != "Title" || forClass != "Licence")
 						courseArray.push(reportable.toCaptionObject()["Course"]);
-					}
+					
 					// I only want details for manageables lower than course.
-					if (forClass == "Unit" || forClass == "Exercise") {
+					if (forClass == "Unit" || forClass == "Exercise")
 						detailArray.push(reportable.reportableLabel); 
-					}
 				}
 				headers.forReportDetail = detailArray.join(", ");
 				
@@ -134,9 +124,9 @@ package com.clarityenglish.resultsmanager.model {
 				} else {
 					delete headers.courses;
 				}
-				TraceUtils.myTrace("headers.titles=" + headers.titles);
-				TraceUtils.myTrace("headers.courses=" + headers.courses);
-				TraceUtils.myTrace("headers.forReport=" + headers.forReport);
+				//TraceUtils.myTrace("headers.titles=" + headers.titles);
+				//TraceUtils.myTrace("headers.courses=" + headers.courses);
+				//TraceUtils.myTrace("headers.forReport=" + headers.forReport);
 			} else {
 				headers.forReportDetail = forReportables.map(function(reportable:Reportable, index:int, array:Array):String { 
 											return reportable.reportableLabel; } ).join(", ");
@@ -158,6 +148,7 @@ package com.clarityenglish.resultsmanager.model {
 			//trace("opts detailed report"+ opts.detailedReport);
 			
 			// If the forReportables are Title then replace them with their sub courses as titles don't really exist
+			// gh#1424 TODO But we DO want a title summary report - for TB, AR, R2I etc it will be useful
 			if (forClass == "Title") {
 				var courseReportables:Array = new Array();
 				for each (var title:Title in forReportables)

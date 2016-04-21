@@ -226,7 +226,7 @@ EOD;
 			if ($newRows)
 				$rows = array_merge($rows, $newRows);
 		}
-		
+
 		// v3.4 If a particular report needs score details (as the Clarity test does), this would seem like a good place to get the data.
 		// Build a second SQL and get the data from it into another array. Then you can process this array below too.
 		// Once all the data you need is in the dom, you can let the xsl pick it up.
@@ -547,6 +547,228 @@ EOD;
 		$buildRow['selfAssessment'] = $selfAssessmentScore;
 		
 		return $buildRow;
+	}
+	
+	// gh#1470 Special reports
+	function generateSpecialReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template) {
+
+		$contentOps = new ContentOps($this->db);
+		$licenceOps = new LicenceOps($this->db);
+		$copyOps = new CopyOps();
+		
+		$manageableOps = new ManageableOps($this->db);
+		$this->contentMap = $contentOps->getContentMap();
+		
+		// variable initialises
+		$needUnallocatedLicences = false;
+		$totalLicencesAllocated = 0;	
+		
+		// initialise output
+		$dom = new DOMDocument("1.0", "UTF-8");
+		$reportXML = $dom->createElement("report");
+		
+		$debug = '';
+		switch (strtolower($template)) {
+			case 'licence':
+		        $tempOnClass = new Group();
+		        // TODO Not sure if there is any value in using ReportBuilder->opts...
+				$opts = $tempOnClass->getReportBuilderOpts($forClass, $reportOpts, $template);
+
+				// get all the titles that are our targets (probably just one)
+				$pcs = array();				
+			    foreach ($forReportableIDObjects as $idObject) {
+			    	$thisTitle = $this->getTitle($idObject['Title']);
+			        $thisTitle->licenceClearanceDate = $licenceOps->getLicenceClearanceDate($thisTitle);
+			    	$titles[] = $thisTitle;
+			        $pcs[] = $idObject['Title'];
+			    }
+			    
+				// get all the groups that are our targets (probably just one)
+				$ids = array();				
+			    foreach ($onReportableIDObjects as $idObject)
+			        $ids[] = $idObject['Group'];
+					
+			    // Then get all groups under these so you can tally up their licences
+				// Any heirarchy under the first level is irrelevant.
+			    // For each group you target we will end up with 
+			    //   one count for users directly in that group,
+			    //   one count for each sub-group (not recursive)
+			    // Then additionally
+			    //   one count for deleted users (if our target is the top group in the root)
+			    // $targetGroups[10379=>[]]
+			    // $targetGroups[54256=>[]]
+			    // $targetGroups[21560=>[35026,54234]]
+				
+				$groups = $manageableOps->getManageables($ids, false);
+				
+				break;
+			default:
+		}
+		
+		// Add in all supported reportOpts
+		foreach ($reportOpts as $reportOpt => $reportOptValue) {
+			switch ($reportOpt) {
+				case "fromDate":
+					$opts[ReportBuilder::FROM_DATE] = $reportOptValue;
+					break;
+				case "toDate":
+					$opts[ReportBuilder::TO_DATE] = $reportOptValue;
+					break;
+				case "headers":
+					// Headers are just included in the root xml element for the XSL to do whatever it likes with them
+					$headers = $reportOptValue;
+					break;
+				default:
+			}
+		}
+		
+		// Default from date is the licenceClearanceDate if you didn't pass one
+		// TODO It is a problem if you are reporting on multiple licences that don't share one clearance date, but it is unlikely
+		if (!isset($opts[ReportBuilder::FROM_DATE])) {
+			$opts[ReportBuilder::FROM_DATE] = strftime('%Y-%m-%d 00:00:00',$titles[0]->licenceClearanceDate);
+			$dateFormat = (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') ? 'From %#d %b %Y' : 'From %e %b %Y';
+			$headers['dateRange'] = strftime($dateFormat,$titles[0]->licenceClearanceDate);
+		}
+		
+		// Create the ReportBuilder and set the options
+		$reportBuilder = new ReportBuilder($this->db);
+		foreach ($opts as $opt => $value)
+			$reportBuilder->setOpt($opt, $value);
+		
+	    // Count all the licences in the root and total by group
+	    // Missing info - rootID, licenceClearanceDate
+	    $rootId = Session::get('rootID');
+	    $pcList = implode(',', $pcs);
+	    //$debug .= "root=$rootId" . ' ';
+		$sql = <<<SQL
+			SELECT s.F_ProductCode as productCode, m.F_GroupID as groupId, g.F_GroupName as groupName, g.F_RootDominant as topGroup, 
+			       COUNT(s.F_SessionID) as sessions, SUM(s.F_Duration) as totalTime, COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
+			FROM T_Session s, T_Membership m, T_Groupstructure g
+			WHERE s.F_UserID = m.F_UserID
+			AND m.F_RootID = ?
+			AND s.F_RootID = ?
+			AND m.F_GroupID = g.F_GroupID
+			AND s.F_StartDateStamp >= ?
+			AND s.F_Duration > 15
+			AND s.F_ProductCode IN ($pcList)
+			GROUP BY s.F_ProductCode, groupId;
+SQL;
+		$bindingParams = array($rootId, $rootId, $opts[ReportBuilder::FROM_DATE]);
+	    //$debug .= 'sql=' . $sql . ' ';
+	    //$debug .= 'params=' . implode(',', $bindingParams) . ' ';
+	    $rs = $this->db->GetArray($sql, $bindingParams);
+
+		$rows = array();
+		foreach ($pcs as $pc) {
+			//$debug .= 'check for pc='.$pc.' ';
+			$rows[$pc] = array();
+			
+			// and group combination
+			foreach ($groups as $group) {
+				//$debug .= 'check for group='.$group->id.' ';
+				$rows[$pc][$group->id] = array('groupName' => $group->name, 'licences' => 0, 'sessions' => 0, 'totalTime' => 0);
+				
+				// What data matches this group?
+				foreach($rs as $record) {
+					if ($record['productCode']==$pc && $record['groupId']==$group->id) {
+						$rows[$pc][$group->id]['licences'] += $record['licencesUsed'];
+						$rows[$pc][$group->id]['sessions'] += $record['sessions'];
+						$rows[$pc][$group->id]['totalTime'] += $record['totalTime'];
+						$totalLicencesAllocated += $record['licencesUsed'];
+						//$debug .= 'add in '.$record['licencesUsed'].' for it ';
+						// Is this the top level group? If yes, add a row for unallocated licences
+						if ($record['topGroup']) {
+						    $needUnallocatedLicences = true;
+						    //$debug .= 'and we are matching on the top group ';
+						}
+						continue;
+					}
+				}
+				// Then for each of its child groups, (including their children), but no more recursively than that
+				foreach ($group->manageables as $m) {
+				    if (get_class($m) == "Group") {
+				    	//$debug .= 'check for main group='.$m->id.' ';
+				    	$rows[$pc][$m->id] = array('groupName' => $m->name, 'licences' => 0, 'sessions' => 0, 'totalTime' => 0);
+						foreach($rs as $record) {
+							if ($record['productCode']==$pc && $record['groupId']==$m->id) {
+								$rows[$pc][$m->id]['licences'] += $record['licencesUsed'];
+								$rows[$pc][$m->id]['sessions'] += $record['sessions'];
+								$rows[$pc][$m->id]['totalTime'] += $record['totalTime'];
+								$totalLicencesAllocated += $record['licencesUsed'];
+								//$debug .= 'add in '.$record['licencesUsed'].' for it ';
+								continue;
+							}
+						}
+				    	$subGroups = $m->getSubGroupIds();
+				    	//$debug .= 'and its subgroups='.implode(',', $subGroups).' ';
+						foreach($rs as $record) {
+							if ($record['productCode']==$pc && in_array($record['groupId'], $subGroups)) {
+								$rows[$pc][$m->id]['licences'] += $record['licencesUsed'];
+								$rows[$pc][$m->id]['sessions'] += $record['sessions'];
+								$rows[$pc][$m->id]['totalTime'] += $record['totalTime'];
+								$totalLicencesAllocated += $record['licencesUsed'];								
+								//$debug .= 'add in '.$record['licencesUsed'].' bubble up from gid '.$m->id;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// Then pick up the unallocated licences if we are dealing with a top level group
+		if ($needUnallocatedLicences) {
+		$sqlInner = <<<SQL
+			SELECT count(DISTINCT(s.F_UserID)) AS licencesUsed
+				FROM T_Session s
+				WHERE s.F_RootID = ?
+				AND s.F_UserID > 0
+				AND s.F_StartDateStamp >= ?
+				AND s.F_Duration > 15
+				AND s.F_ProductCode in ($pcList);
+SQL;
+			$bindingParamsInner = array($rootId, $opts[ReportBuilder::FROM_DATE]);
+		    //$debug .= 'innersql=' . $sql . ' ';
+		    //$debug .= 'params=' . implode(',', $bindingParams) . ' ';
+		    $rsInner = $this->db->Execute($sqlInner, $bindingParamsInner);
+		    if ($rsInner && $rsInner->RecordCount()==1) {
+		    	$totalLicences = $rsInner->FetchNextObj()->licencesUsed;
+		    	//$debug .= 'totalLicencecs=' . $totalLicences . ' and allocatedTotal= ' . $totalLicencesAllocated;
+		    	if (($totalLicences - $totalLicencesAllocated) > 0) {
+		    		$literal = $copyOps->getCopyForId("unallocatedLicences");
+					$rows[$pc][0] = array('groupName' => $literal, 'licences' => ($totalLicences - $totalLicencesAllocated), 'sessions' => 0, 'totalTime' => 0);		    		
+		    	}
+		    }
+
+		}
+		
+		foreach ($rows as $pcKey => $value) {
+			$pc = $pcKey;
+			$title = $this->getTitle($pc);
+			foreach ($value as $gidKey => $data) {
+				$rowXML = $dom->createElement("row");
+				if (isset($title->name)) {
+					$rowXML->setAttribute('titleName', $title->name);
+				} else if (isset($title->caption)) {
+					$rowXML->setAttribute('titleName', $title->caption);
+				}
+					
+				$rowXML->setAttribute('groupID', $gidKey);
+				$rowXML->setAttribute('groupName', $data['groupName']);
+				$rowXML->setAttribute('licences', $data['licences']);
+				$rowXML->setAttribute('sessions', $data['sessions']);
+				$rowXML->setAttribute('total_time', $data['totalTime']);
+				$reportXML->appendChild($rowXML);
+			}
+		}
+		
+		// Add in the headers to the root XML object
+		foreach ($headers as $header => $headerValue)
+			$reportXML->setAttribute($header, (!mb_check_encoding($headerValue, 'UTF-8')) ? $headerValue : utf8_encode($headerValue));
+		
+		//$debugXML = $dom->createElement("debug", $debug);
+		//$reportXML->appendChild($debugXML);
+		$dom->appendChild($reportXML);
+		return $dom;
 	}
 	
 	function getReportFilters($class, $idObjects) {

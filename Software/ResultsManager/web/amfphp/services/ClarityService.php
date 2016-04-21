@@ -407,7 +407,12 @@ class ClarityService extends AbstractService {
 	// v3.0.4 Include the template as well
 	public function getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template='standard') {
 		// Since we are potentially passing a lot of reportables to this from the client pass IDs instead of VOs to save on transfer overhead
-		return $this->reportOps->getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template);
+		// gh#1470 Special reports are built in a one-off way
+		if (strtolower($template) == 'licence') {
+			return $this->reportOps->generateSpecialReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template);
+		} else {
+			return $this->reportOps->getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template);
+		}
 	}
 	
 	public function getHiddenContent() {

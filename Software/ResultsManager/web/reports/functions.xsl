@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 							 xmlns:xdt="http://www.w3.org/2005/04/xpath-datatype"
+							 xmlns:xs="http://www.w3.org/2001/XMLSchema"
 							 xmlns:date="http://exslt.org/dates-and-times"
 							 xmlns:php="http://php.net/xsl"
 							 xmlns:exslt="http://exslt.org/common"
@@ -168,6 +169,9 @@
 				
 				<xsl:if test="report/row/@average_time"><th type="ro" width="100px"><xsl:value-of select="report/language//lit[@name='report_averageTime']"/></th></xsl:if>
 				<xsl:if test="report/row/@total_time"><th type="ro" width="100px"><xsl:value-of select="report/language//lit[@name='report_totalTime']"/></th></xsl:if>
+				<!--  gh#1470 -->
+                <xsl:if test="report/row/@licences"><th type="ro" width="100px"><xsl:value-of select="report/language//lit[@name='report_licences']"/></th></xsl:if>
+                <xsl:if test="report/row/@sessions"><th type="ro" width="100px"><xsl:value-of select="report/language//lit[@name='report_sessions']"/></th></xsl:if>
 			</tr>
 			<xsl:for-each select="report/row">
 				<tr>
@@ -216,6 +220,9 @@
 					
 					<xsl:if test="@average_time"><td><xsl:value-of select="php:function('XSLTFunctions::secondsToMinutes', string(@average_time))"/></td></xsl:if>
 					<xsl:if test="@total_time"><td><xsl:value-of select="php:function('XSLTFunctions::secondsToHours', string(@total_time))"/></td></xsl:if>
+                    <!--gh#23-->
+                    <xsl:if test="@licences"><td><xsl:value-of select="@licences"/></td></xsl:if>
+                    <xsl:if test="@sessions"><td><xsl:value-of select="@sessions"/></td></xsl:if>
 				</tr>
 			</xsl:for-each>
 		</table>
