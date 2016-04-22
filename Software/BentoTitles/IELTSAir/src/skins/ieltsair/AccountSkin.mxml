@@ -165,7 +165,7 @@
 						</s:HGroup>
 					</s:VGroup>
 
-					<s:VGroup width="100%" includeIn="fullVersion, lastMinute">
+					<s:VGroup width="100%" includeIn="fullVersionStates, lastMinute">
 						<s:VGroup paddingLeft="-5" paddingRight="-5" paddingTop="3" width="100%" height="10">
 							<s:Rect width="100%" height="1">
 								<s:fill>

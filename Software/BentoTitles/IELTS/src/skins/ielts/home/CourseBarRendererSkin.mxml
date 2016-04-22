@@ -23,7 +23,7 @@
 					</s:fill>
 				</s:Rect>
 			</s:VGroup>
-			<s:Label id="commentLabel" color="#303030" width="200" paddingTop="35" />
+			<s:Label id="commentLabel" color="#303030" width="200" paddingTop="35" paddingBottom="2" />
 		</s:Group>
 	
 </s:Group>
