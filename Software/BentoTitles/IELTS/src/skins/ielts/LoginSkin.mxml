@@ -43,8 +43,27 @@
 	
 	<!--Header--> 
 	<s:Group width="100%" top="20" left="30">
-		<s:SWFLoader source="{hostComponent.productVersionLogo}" left="0" top="74" visible="{!hostComponent.isPlatformTablet}" />
-		<s:Label text="{hostComponent.productVersionText}" top="84" left="12" color="#FFFFFF" visible="{!hostComponent.isPlatformTablet}" />
+		<s:Group left="0" top="74" visible="{!hostComponent.isPlatformTablet}" >
+			<s:Group left="{hostComponent.productVersion != BentoApplication.DEMO ? 2 : 35}" top="3" height="23">
+				<s:Rect left="0" right="0" top="0" bottom="0" radiusX="10" radiusY="10">
+					<s:fill>
+						<s:SolidColor color="#08416B"/>
+					</s:fill>
+				</s:Rect>
+				<s:Label left="{hostComponent.productVersion != IELTSApplication.FULL_VERSION ? 55 : 40}" right="40"
+						 verticalCenter="{hostComponent.copyProvider.getLanguageCode() != 'ZH' ? 2 : 0}"
+						 text="{hostComponent.productVersionText}" color="#FFFFFF"/>
+			</s:Group>
+			<s:SWFLoader source="{hostComponent.lastMinuteLogo}" left="0" top="0"
+						 visible="{hostComponent.productVersion == IELTSApplication.LAST_MINUTE}"
+						 includeInLayout="{hostComponent.productVersion == IELTSApplication.LAST_MINUTE}"/>
+			<s:SWFLoader source="{hostComponent.testDriveLogo}" left="0" top="0"
+						 visible="{hostComponent.productVersion == IELTSApplication.TEST_DRIVE}"
+						 includeInLayout="{hostComponent.productVersion == IELTSApplication.TEST_DRIVE}"/>
+			<s:SWFLoader source="{hostComponent.demoLogo}" left="0" top="0"
+						 visible="{hostComponent.productVersion == BentoApplication.DEMO}"
+						 includeInLayout="{hostComponent.productVersion == BentoApplication.DEMO}"/>
+		</s:Group>
 		<login:IELTSLoginLogo left="20" top="22" visible="{hostComponent.isPlatformTablet}" />
 		<s:Image source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="12" visible="{!hostComponent.isPlatformTablet}" />
 		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="52" visible="{!hostComponent.isPlatformTablet}" />

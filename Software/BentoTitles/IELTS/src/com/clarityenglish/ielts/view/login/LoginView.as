@@ -38,72 +38,20 @@ package com.clarityenglish.ielts.view.login {
 		
 		[SkinPart]
 		public var longRateButton:Button;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
-		private var fullVersionAcademicLogo:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
-		private var fullVersionGeneralTrainingLogo:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
-		private var tenHourAcademicLogo:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
-		private var tenHourGeneralTrainingLogo:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
-		private var lastMinuteAcademicLogo:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
-		private var lastMinuteGeneralTrainingLogo:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
-		private var demoAcademicLogo:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
-		private var demoGeneralTrainingLogo:Class;
-		
+
+		[Embed(source="/skins/ielts/assets/LMLogo.png")]
+		public var lastMinuteLogo:Class;
+
+		[Embed(source="/skins/ielts/assets/TDLogo.png")]
+		public var testDriveLogo:Class;
+
+		[Embed(source="/skins/ielts/assets/DEMOLogo.png")]
+		public var demoLogo:Class;
+
 		public var buttonBarArrayCollection:ArrayCollection = new ArrayCollection();
 		
 		public function get assetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
-		}
-		
-		public function get productVersionLogo():Class {
-			switch (_productCode) {
-				case IELTSApplication.ACADEMIC_MODULE:
-					switch (productVersion) {
-						case IELTSApplication.FULL_VERSION:
-							return fullVersionAcademicLogo;
-						case IELTSApplication.LAST_MINUTE:
-							return lastMinuteAcademicLogo;
-						case IELTSApplication.TEST_DRIVE:
-							return tenHourAcademicLogo;
-						case BentoApplication.DEMO:
-							return demoAcademicLogo;
-						default:
-							return fullVersionAcademicLogo;
-					}
-					break;
-				case IELTSApplication.GENERAL_TRAINING_MODULE:
-					switch (productVersion) {
-						case IELTSApplication.FULL_VERSION:
-							return fullVersionGeneralTrainingLogo;
-						case IELTSApplication.LAST_MINUTE:
-							return lastMinuteAcademicLogo;
-						case IELTSApplication.TEST_DRIVE:
-							return tenHourGeneralTrainingLogo;
-						case BentoApplication.DEMO:
-							return demoAcademicLogo;
-						default:
-							return fullVersionGeneralTrainingLogo;
-					}
-					break;
-				default:
-					// No product code set yet so don't set the logo
-					return null;
-			}
-			return null;
 		}
 		
 		public function get productVersionText():String {
@@ -111,11 +59,11 @@ package com.clarityenglish.ielts.view.login {
 				case IELTSApplication.ACADEMIC_MODULE:
 					switch (_productVersion) {
 						case IELTSApplication.LAST_MINUTE:
-							return "       "+copyProvider.getCopyForId("lastTimeAC");
+							return copyProvider.getCopyForId("lastTimeAC");
 						case IELTSApplication.TEST_DRIVE:
-							return "       "+copyProvider.getCopyForId("testDriveAC");
+							return copyProvider.getCopyForId("testDriveAC");
 						case BentoApplication.DEMO:
-							return "                 "+copyProvider.getCopyForId("AC");
+							return copyProvider.getCopyForId("AC");
 						case IELTSApplication.FULL_VERSION:
 						default:
 							return copyProvider.getCopyForId("AC");
@@ -124,11 +72,11 @@ package com.clarityenglish.ielts.view.login {
 				case IELTSApplication.GENERAL_TRAINING_MODULE:
 					switch (productVersion) {
 						case IELTSApplication.LAST_MINUTE:
-							return "       "+copyProvider.getCopyForId("lastTimeGT");
+							return copyProvider.getCopyForId("lastTimeGT");
 						case IELTSApplication.TEST_DRIVE:
-							return "       "+copyProvider.getCopyForId("testDriveGT");
+							return copyProvider.getCopyForId("testDriveGT");
 						case BentoApplication.DEMO:
-							return "                 "+copyProvider.getCopyForId("GT");
+							return copyProvider.getCopyForId("GT");
 						case IELTSApplication.FULL_VERSION:
 						default:
 							return copyProvider.getCopyForId("GT");

@@ -45,140 +45,125 @@ import flash.utils.Timer;
 	[SkinState("exercise")]
 	[SkinState("candidates")]
 	public class TitleView extends BentoView {
-		
+
 		[SkinPart]
 		public var sectionNavigator:TabbedViewNavigator;
-		
+
 		[SkinPart]
 		public var homeViewNavigator:ViewNavigator;
-		
+
 		[SkinPart]
 		public var homeViewNavigatorButton1:Button;
-		
+
 		[SkinPart]
 		public var homeViewNavigatorButton2:Button;
-		
+
 		[SkinPart]
 		public var myProgressViewNavigator:ViewNavigator;
-		
+
 		[SkinPart]
 		public var myProgressViewNavigatorButton1:Button;
-		
+
 		[SkinPart]
 		public var myProgressViewNavigatorButton2:Button;
-		
+
 		[SkinPart]
 		public var myProfileViewNavigator:ViewNavigator;
-		
+
 		[SkinPart]
 		public var myProfileViewNavigatorButton1:Button;
-		
+
 		[SkinPart]
 		public var myProfileViewNavigatorButton2:Button;
-		
+
 		[SkinPart]
 		public var helpViewNavigator:ViewNavigator;
-		
+
 		[SkinPart]
 		public var candidatesViewNavigator:ViewNavigator;
-		
+
 		[SkinPart]
 		public var candidatesViewNavigatorButton1:Button;
-		
+
 		[SkinPart]
 		public var helpViewNavigatorButton1:Button;
-		
+
 		[SkinPart]
 		public var helpViewNavigatorButton2:Button;
-		
+
 		[SkinPart]
 		public var creditsViewNavigator:ViewNavigator;
-		
+
 		[SkinPart]
 		public var creditsViewNavigatorButton1:Button;
-		
+
 		[SkinPart]
 		public var creditsViewNavigatorButton2:Button;
-		
+
 		[SkinPart]
 		public var moreViewNavigator:ViewNavigator;
-		
+
 		[SkinPart]
 		public var moreViewNavigatorButton1:Button;
-		
+
 		[SkinPart]
 		public var moreViewNavigatorButton2:Button;
-		
+
 		[SkinPart]
 		public var logoutButton:Button;
-		
+
 		[SkinPart]
 		public var backToMenuButton:Button;
-		
+
 		[SkinPart]
 		public var noticeLabel:Label;
-		
+
 		[SkinPart]
 		public var topInforButton:InforButton;
-		
+
 		// gh#383
 		[SkinPart]
 		public var infoButton:SWFLoader;
-		
+
 		[Bindable]
 		public var user:User;
-		
+
 		[Bindable]
 		public var configID:String;
-		
+
 		[Bindable]
 		public var dateFormatter:DateFormatter;
-		
+
 		[Bindable]
 		public var isLogoutButtonHide:Boolean;
-		
+
 		// #337
 		public var candidateOnlyInfo:Boolean = false;
-		
-		// #260 
+
+		// #260
 		private var shortDelayTimer:Timer;
-		
+
 		// gh#383
 		private var _infoButtonText:String;
 		private var _inforButtonTextFlow:TextFlow;
 		// gh#761
 		private var _isDirectStartEx:Boolean;
-		
+
 		public var logout:Signal = new Signal();
 		public var backToMenu:Signal = new Signal();
 		public var register:Signal = new Signal();
 		public var upgrade:Signal = new Signal();
 		public var buy:Signal = new Signal();
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
-		private var fullVersionAcademicLogo:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
-		private var fullVersionGeneralTrainingLogo:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
-		private var tenHourAcademicLogo:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
-		private var tenHourGeneralTrainingLogo:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
-		private var lastMinuteAcademicLogo:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
-		private var lastMinuteGeneralTrainingLogo:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
-		private var demoAcademicLogo:Class;
 
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
-		private var demoGeneralTrainingLogo:Class;
-		
+		[Embed(source="/skins/ielts/assets/LMLogo.png")]
+		public var lastMinuteLogo:Class;
+
+		[Embed(source="/skins/ielts/assets/TDLogo.png")]
+		public var testDriveLogo:Class;
+
+		[Embed(source="/skins/ielts/assets/DEMOLogo.png")]
+		public var demoLogo:Class;
+
 		public function set selectedNode(value:XML):void {
 			switch (value.localName()) {
 				case "course":
@@ -190,88 +175,50 @@ import flash.utils.Timer;
 					break;
 			}
 		}
-		
+
 		public function TitleView() {
 			super();
-			
+
 			// The first one listed will be the default
 			StateUtil.addStates(this, [ "home", "zone", "exercise", "account", "progress", "support", "candidates" ], true);
 		}
-		
+
 		// gh#11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
 		}
-		
+
 		public function get languageAssetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
 		}
-		
+
 		// gh#383
 		[Bindable]
 		public function get infoButtonText():String {
 			return _infoButtonText;
 		}
-		
+
 		public function set infoButtonText(value:String):void {
 			_infoButtonText = value;
 		}
-		
+
 		// gh#383
 		[Bindable]
 		public function get inforButtonTextFlow():TextFlow {
 			return _inforButtonTextFlow;
 		}
-		
+
 		public function set inforButtonTextFlow(value:TextFlow):void {
 			_inforButtonTextFlow = value;
 		}
-		
+
 		[Bindable]
 		public function get isDirectStartEx():Boolean {
 			return _isDirectStartEx;
 		}
-		
+
 		public function set isDirectStartEx(value:Boolean):void {
 			_isDirectStartEx = value;
-		}
-		
-		[Bindable(event="productCodeChanged")]
-		[Bindable(event="productVersionChanged")]
-		public function get productVersionLogo():Class {
-			switch (_productCode) {
-				case IELTSApplication.ACADEMIC_MODULE:
-					switch (_productVersion) {
-						case IELTSApplication.LAST_MINUTE:
-							return lastMinuteAcademicLogo;
-						case IELTSApplication.TEST_DRIVE:
-							return tenHourAcademicLogo;
-						case BentoApplication.DEMO:
-							return demoAcademicLogo;
-						case IELTSApplication.FULL_VERSION:
-							
-						default:
-							return fullVersionAcademicLogo;
-					}
-					break;
-				case IELTSApplication.GENERAL_TRAINING_MODULE:
-					switch (_productVersion) {
-						case IELTSApplication.LAST_MINUTE:
-							return lastMinuteAcademicLogo;
-						case IELTSApplication.TEST_DRIVE:
-							return tenHourGeneralTrainingLogo;
-						case BentoApplication.DEMO:
-							return demoGeneralTrainingLogo;
-						case IELTSApplication.FULL_VERSION:
-						default:
-							return fullVersionGeneralTrainingLogo;
-					}
-					break;
-				default:
-					// No product code set yet so don't set the logo
-					return null;
-			}
-			return null;
 		}
 
 		[Bindable(event="productCodeChanged")]
@@ -328,7 +275,7 @@ import flash.utils.Timer;
 			}
 			return null;
 		}
-		
+
 		// gh#383
 		[Bindable(event="productVersionChanged")]
 		public function get productVersionInforButton():Boolean {
@@ -346,16 +293,16 @@ import flash.utils.Timer;
 		public function get licenceTypeText():String {
 			return Title.getLicenceTypeText(_licenceType);
 		}
-		
+
 		protected override function onViewCreationComplete():void {
 			super.onViewCreationComplete();
-			
+
 			// gh#844 If the initial language is JP, change the font familty here
 			if (copyProvider.getLanguageCode() == "JP") {
 				styleManager.getStyleDeclaration("global").setStyle("fontFamily", "KOZGOPR6N");
 			}
 			// Don't show profile tab for network users
-			// gh#603 removing profile tab blocks the logout button
+			// gh#603 removing profile tab blocks the logout buttonv
 			/*
 			if (licenceType == Title.LICENCE_TYPE_NETWORK) {
 				var profileIdx:int = sectionNavigator.tabBar.dataProvider.getItemIndex(myProfileViewNavigator);
@@ -363,10 +310,10 @@ import flash.utils.Timer;
 			}
 			*/
 		}
-		
+
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
-			
+
 			switch (instance) {
 				case sectionNavigator:
 					setNavStateMap(sectionNavigator, {
@@ -467,14 +414,14 @@ import flash.utils.Timer;
 					break;
 			}
 		}
-		
+
 		protected function onLogoutButtonClick(event:MouseEvent):void {
 			logout.dispatch();
 		}
-		
+
 		/**
 		 * The user has clicked the back button to get out of an exercise, so clear the current exercise
-		 * 
+		 *
 		 * @param event
 		 */
 		protected function onBackToMenuButtonClick(event:MouseEvent):void {
@@ -482,23 +429,23 @@ import flash.utils.Timer;
 				logout.dispatch();
 			} else {
 				backToMenu.dispatch();
-				
-				// #260 
+
+				// #260
 				if (logoutButton) logoutButton.enabled = false;
 				shortDelayTimer = new Timer(1000, 60);
 				shortDelayTimer.start();
 				shortDelayTimer.addEventListener(TimerEvent.TIMER, timerHandler);
 				shortDelayTimer.addEventListener(TimerEvent.TIMER_COMPLETE, resetLogoutButton);
-			}		
+			}
 		}
-		
-		// #260 
+
+		// #260
 		// This function enables logoutButton no matter what
 		private function resetLogoutButton(event:TimerEvent):void {
 			if (logoutButton) logoutButton.enabled = true;
 		}
-		
-		// #260 
+
+		// #260
 		// If the ZoneView is mediated, then enable the logoutButton and stop the Timer
 		private function timerHandler(event:TimerEvent):void {
 			// gh#278 This was removed because zoneView no longer exists, but the functionality is still required!
@@ -511,7 +458,7 @@ import flash.utils.Timer;
 				shortDelayTimer.stop();
 			}
 		}
-		
+
 		// #337
 		private function onRequestInfoClick(event:MouseEvent):void {
 			switch (_productVersion) {
@@ -530,36 +477,36 @@ import flash.utils.Timer;
 				default:
 			}
 		}
-		
+
 		protected override function getCurrentSkinState():String {
 			return currentState;
 		}
-		
+
 		// gh#383
 		public function getCourseClass(value:XML):void {
 				if (value.localName() == "course") {
 					switch (value.@["class"].toString()) {
 						case "reading":
 							infoButtonText = copyProvider.getCopyForId("infoReadingText");
-							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);						
+							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);
 							break;
 						case "listening":
 							infoButtonText = copyProvider.getCopyForId("infoListeningText");
-							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);	
+							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);
 							break;
 						case "speaking":
 							infoButtonText = copyProvider.getCopyForId("infoSpeakingText");
-							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);	
+							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);
 							break;
 						case "writing":
 							infoButtonText = copyProvider.getCopyForId("infoWritingText");
-							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);	
+							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);
 							break;
 						default:
-							
+
 							break;
 					}
-				}			
+				}
 		}
 	}
 	

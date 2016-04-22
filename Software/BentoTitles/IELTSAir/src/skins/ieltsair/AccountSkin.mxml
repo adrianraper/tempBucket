@@ -49,17 +49,21 @@
 			}
 			
 			private function formatScreenDate(date:Date):String {
-				if (date && CopyProxy.languageCode != "ZH") {
+				if (date) {
 					var objReplace:Object = new Object();
 					//trace("date's day is "+date.date);
 					//trace("date's month is "+date.month);
 					objReplace.day = date.date;
-					objReplace.month = DateUtil.formatDate(date, 'MMMM');
+					if (hostComponent.copyProvider.getLanguageCode() != "ZH") {
+						objReplace.month = DateUtil.formatDate(date, 'MMMM');
+					} else {
+						objReplace.month = DateUtil.formatDate(date, 'MM');
+					}
 					objReplace.year = date.fullYear;
 					return hostComponent.hostCopyProvider.getCopyForId("dateFormatLabel", objReplace);
-				} else {
-					return DateUtil.formatDate(date, 'd MM yyyy');
 				}
+				
+				return '';
 			}
 		]]>
 	</fx:Script>
