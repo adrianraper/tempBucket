@@ -212,7 +212,8 @@
 			<lit name="worldwide">Worldwide</lit>  
 			<lit name="compareBasedOnUsers">based on {count} {singularOrPlural}</lit>  
 			<lit name="singularUser">user</lit>  
-			<lit name="pluralUsers">users</lit>  
+			<lit name="pluralUsers">users</lit>
+			<lit name="noNetWorkLabel">An internet connection is required, but it has been lost.</lit>  
 			
 			<lit name="currentPwdLabel">Current password:</lit>
 			<lit name="newPwdLabel">New password:</lit>
