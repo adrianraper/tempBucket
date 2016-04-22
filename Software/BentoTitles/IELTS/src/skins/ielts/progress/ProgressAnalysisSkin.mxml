@@ -62,7 +62,7 @@
 							}
 						]]>
 					</fx:Script>
-					<s:Label text="{data.@caption}" fontSize="21" />
+					<s:Label text="{copyProvider.getCopyForId(data.@caption)}" fontSize="21" />
 					
 					<s:Rect left="0" right="0" top="21" bottom="0">
 						<s:fill>

@@ -120,7 +120,7 @@
 										if (value == null)
 											return;
 										
-										text = value.text;
+										text = outerDocument.hostComponent.copyProvider.getCopyForId(value.text);
 										labelColor = getStyle(value.text.toLowerCase() + "ColorDark")
 									}
 								]]>

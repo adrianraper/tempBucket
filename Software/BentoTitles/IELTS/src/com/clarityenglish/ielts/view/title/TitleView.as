@@ -281,11 +281,11 @@ import flash.utils.Timer;
 				case IELTSApplication.ACADEMIC_MODULE:
 					switch (_productVersion) {
 						case IELTSApplication.LAST_MINUTE:
-							return "       " + copyProvider.getCopyForId("lastTimeAC");
+							return copyProvider.getCopyForId("lastTimeAC");
 						case IELTSApplication.TEST_DRIVE:
-							return "       " + copyProvider.getCopyForId("testDriveAC");
+							return copyProvider.getCopyForId("testDriveAC");
 						case BentoApplication.DEMO:
-							return "                 " + copyProvider.getCopyForId("AC");
+							return copyProvider.getCopyForId("AC");
 						case IELTSApplication.FULL_VERSION:
 						default:
 							return copyProvider.getCopyForId("AC");
@@ -294,11 +294,11 @@ import flash.utils.Timer;
 				case IELTSApplication.GENERAL_TRAINING_MODULE:
 					switch (_productVersion) {
 						case IELTSApplication.LAST_MINUTE:
-							return "       " + copyProvider.getCopyForId("lastTimeGT");
+							return copyProvider.getCopyForId("lastTimeGT");
 						case IELTSApplication.TEST_DRIVE:
-							return "       " + copyProvider.getCopyForId("testDriveGT");
+							return copyProvider.getCopyForId("testDriveGT");
 						case BentoApplication.DEMO:
-							return "                 " + copyProvider.getCopyForId("GT");
+							return copyProvider.getCopyForId("GT");
 						case IELTSApplication.FULL_VERSION:
 						default:
 							return copyProvider.getCopyForId("GT");

@@ -237,7 +237,11 @@ package com.clarityenglish.ielts.view.account {
 					/*if (CopyProxy.languageCode == "ZH") {
 						repObject.month = thisDate.month + 1;
 					} else {*/
-						repObject.month = DateUtil.formatDate(thisDate, 'MMMM');
+						if (copyProvider.getLanguageCode() != "ZH") {
+							repObject.month = DateUtil.formatDate(thisDate, 'MMMM');
+						} else {
+							repObject.month = DateUtil.formatDate(thisDate, 'MM');
+						}
 					//}
 					startDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", repObject);
 				}
@@ -253,7 +257,11 @@ package com.clarityenglish.ielts.view.account {
 					/*if (CopyProxy.languageCode == "ZH") {
 						repObject.month = thisDate.month + 1;
 					} else {*/
-						repObject.month = DateUtil.formatDate(thisDate, 'MMMM');
+						if (copyProvider.getLanguageCode() != "ZH") {
+							repObject.month = DateUtil.formatDate(thisDate, 'MMMM');
+						} else {
+							repObject.month = DateUtil.formatDate(thisDate, 'MM');
+						}
 					//}
 					endDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", repObject);
 				}

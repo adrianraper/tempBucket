@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx">
+	
 	<fx:Script>
 		<![CDATA[
 			import mx.events.ValidationResultEvent;
@@ -223,11 +224,11 @@
 		<s:Image id="caculatorBackground" source="@Embed(source='/skins/ielts/assets/rtiv2_widget.png')" scaleX="0.72" scaleY="0.52" />
 		<s:VGroup id="GradeCaculate" includeIn="question" paddingLeft="30" paddingTop="45" width="240" height="173" gap="4">
 			<s:Label color="#D52039" fontSize="10" fontWeight="bold"
-					 text="How many questions do you think you will get right?"/>
+					 text="How many questions do you think you will get right?" fontFamily="Helvetica"/>
 			<s:HGroup width="220" height="30" paddingLeft="11" verticalAlign="middle">
-				<s:Label text="Listening:" fontWeight="bold" fontSize="11" />
+				<s:Label text="Listening:" fontWeight="bold" fontSize="11" fontFamily="Helvetica" />
 				<s:TextInput id="numberListening" width="24" paddingLeft="8" maxChars="2" fontSize="10" restrict="0123456789" borderVisible="false" filters="{[dropShadowFilter]}" />
-				<s:Label width="28" fontSize="10" text="of 40"/>
+				<s:Label width="28" fontSize="10" text="of 40" fontFamily="Helvetica" />
 				<s:Label id="listeningError"
 						 width="120"
 						 backgroundColor="#D52039"
@@ -236,13 +237,13 @@
 						 paddingTop="5"
 						 text="please input a number between 0 and 40"
 						 textAlign="center"
-						 fontSize="10"
+						 fontSize="10" fontFamily="Helvetica"
 						 verticalAlign="middle" visible="false" includeInLayout="false" />
 			</s:HGroup>
 			<s:HGroup width="220" height="30" paddingLeft="11" verticalAlign="middle">
-				<s:Label text="Reading:" fontWeight="bold" fontSize="11" />
+				<s:Label text="Reading:" fontWeight="bold" fontSize="11" fontFamily="Helvetica" />
 				<s:TextInput id="numberReading" width="24" paddingLeft="8" maxChars="2" fontSize="10" restrict="0123456789" borderVisible="false" filters="{[dropShadowFilter]}" />
-				<s:Label width="28" fontSize="10" text="of 40"/>
+				<s:Label width="28" fontSize="10" text="of 40" fontFamily="Helvetica" />
 				<s:Label id="readingError"
 						 width="120"
 						 backgroundColor="#D52039"
@@ -251,34 +252,34 @@
 						 paddingTop="5"
 						 text="please input a number between 0 and 40"
 						 textAlign="center"
-						 fontSize="10"
+						 fontSize="10" fontFamily="Helvetica"
 						 verticalAlign="middle" visible="false" includeInLayout="false" />
 			</s:HGroup>
 			<s:Label color="#D52039" fontSize="11" fontWeight="bold" paddingLeft="12"
-					 text="For which exam?"/>
+					 text="For which exam?" fontFamily="Helvetica" />
 			<s:VGroup paddingLeft="11" paddingTop="3">
-				<s:RadioButton label="Academic" id="AC" selected="true" scaleX="0.7" scaleY="0.7" />
-				<s:RadioButton label="General Training" id="GT" scaleX="0.7" scaleY="0.7" />
+				<s:RadioButton label="Academic" id="AC" selected="true" scaleX="0.7" scaleY="0.7" fontFamily="Helvetica" />
+				<s:RadioButton label="General Training" id="GT" scaleX="0.7" scaleY="0.7" fontFamily="Helvetica" />
 			</s:VGroup>
 			<s:VGroup paddingLeft="11">
-				<s:Button id="calculateButton" label="Calculate" click="calculateGrade(numberListening.text, numberReading.text)" fontWeight="bold" skinClass="skins.ielts.account.GradeWidgetButtonSkin" />
+				<s:Button id="calculateButton" label="Calculate" click="calculateGrade(numberListening.text, numberReading.text)" fontWeight="bold" fontFamily="Helvetica" skinClass="skins.ielts.account.GradeWidgetButtonSkin" />
 			</s:VGroup>
 		</s:VGroup>
 
 		<s:Form id="GradResult" includeIn="answer" x="19" y="45" width="200" height="180" backgroundAlpha="0">
-			<s:Label color="#D52039" fontSize="12.5" fontWeight="bold" paddingLeft="12" text="Your scores" />
-			<s:FormItem label="Listening:" fontSize="12">
-				<s:Label id="resulListeningText" text="{resultListening}" />
+			<s:Label color="#D52039" fontSize="12.5" fontWeight="bold" fontFamily="Helvetica" paddingLeft="12" text="Your scores" />
+			<s:FormItem label="Listening:" fontSize="12" fontFamily="Helvetica">
+				<s:Label id="resulListeningText" text="{resultListening}" fontFamily="Helvetica" />
 			</s:FormItem>
 			<s:FormItem label="Reading:" fontSize="12">
-				<s:Label id="resulReadingText" text="{resultReading}" />
+				<s:Label id="resulReadingText" text="{resultReading}" fontFamily="Helvetica" />
 			</s:FormItem>
-			<s:Label paddingLeft="12" paddingTop="10" text="These scores are estimates only." />
+			<s:Label paddingLeft="12" paddingTop="10" text="These scores are estimates only." fontFamily="Helvetica" />
 			<s:FormItem>
 				<s:layout>
 					<s:VerticalLayout paddingLeft="-70" />
 				</s:layout>
-				<s:Button id="again" label="Do it again" click="backToCaculator()" fontSize="16" fontWeight="bold" skinClass="skins.ielts.account.GradeWidgetButtonSkin" />
+				<s:Button id="again" label="Do it again" click="backToCaculator()" fontSize="16" fontWeight="bold" fontFamily="Helvetica" skinClass="skins.ielts.account.GradeWidgetButtonSkin" />
 			</s:FormItem>
 		</s:Form>
 	</s:Group>

@@ -2,7 +2,10 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:players="com.clarityenglish.controls.video.players.*" creationComplete="onCreationComplete(event)" width="100%" height="100%" xmlns:candidates="skins.ielts.assets.candidates.*">
+		xmlns:players="com.clarityenglish.controls.video.players.*" 
+		xmlns:assets="skins.ielts.assets.*"
+		xmlns:candidates="skins.ielts.assets.candidates.*"
+		creationComplete="onCreationComplete(event)" width="100%" height="100%">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.controls.video.VideoSelector")]
@@ -192,7 +195,11 @@
 		<s:Label id="candidatesVideoTitleLabel" fontSize="18" fontWeight="bold" text="{hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)}" left="0" />
 	</s:HGroup>
 	
-	<candidates:channelmsg id="channelMessage" horizontalCenter="385" verticalCenter="-178" scaleX="1.1" scaleY="1.1" />
+	<!--candidates:channelmsg id="channelMessage" scaleX="1.1" scaleY="1.1" /-->
+	<s:Group id="channelMessage" horizontalCenter="345" verticalCenter="-188">
+		<assets:videotip visible="{hostComponent.copyProvider.getLanguageCode() != 'ZH'}" />
+		<assets:videotipchinese visible="{hostComponent.copyProvider.getLanguageCode() == 'ZH'}" />
+	</s:Group>
 	
 	<s:Group verticalCenter="-50" horizontalCenter="390">
 		<!-- Channel list -->
