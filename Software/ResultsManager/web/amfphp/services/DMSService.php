@@ -311,6 +311,9 @@ class DMSService extends AbstractService {
 	 * Very specific function to return the first student in an account. Used for AA student passwords.
 	 */
 	public function getFirstStudentInAccount($rootID) {
-		return array_shift($this->manageableOps->getAllLearners($rootID));
+        // gh#1472 avoid PHP strict warning
+		$learners = $this->manageableOps->getAllLearners($rootID);
+        if ($learners)
+		    return array_shift($learners);
 	}
 }

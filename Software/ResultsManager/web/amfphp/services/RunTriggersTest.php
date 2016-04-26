@@ -135,7 +135,10 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 					}
 					
 				} else {
-					foreach ($triggerResults as $result) {
+					$startCounter = 0;
+					for ($idx = $startCounter; $idx <= $startCounter + 199; $idx++) {
+						$result = $triggerResults[$idx];
+					//foreach ($triggerResults as $result) {
 						// gh#733
 						try {
 							// v3.6 You now get email addresses from T_AccountEmails.
@@ -326,7 +329,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 echo $GLOBALS['db'].$newLine;
 // If you want to run specific triggers for specific days (to catch up for days when this was not run for instance)
 $testingTriggers = "";
-$testingTriggers .= "subscription reminders";
+//$testingTriggers .= "subscription reminders";
 //$testingTriggers .= "usage stats";
 //$testingTriggers .= "support";
 //$testingTriggers .= "quotations";
@@ -334,6 +337,7 @@ $testingTriggers .= "subscription reminders";
 //$testingTriggers .= "terms and conditions";
 //$testingTriggers .= "EmailMe";
 //$testingTriggers = "justThese";
+$testingTriggers .= "oneoffActions";
 
 $fixedDateShift = 0;
 
@@ -348,6 +352,11 @@ if (date("j")==1) {
 // Is today Monday (considered first day of the week by Clarity for everyone - apologies to UAE)
 if (date("w")==1) {
 	$testingTriggers .= "weeklyActions";
+}
+if (stripos($testingTriggers, "oneoffActions")!==false) {
+    $triggerList = array(61);
+    $msgType = 4; // Nothing useful to send
+    runTriggers($msgType, $triggerList, null, "oneoff");
 }
 if (stripos($testingTriggers, "weeklyActions")!==false) {
 	$triggerList = null; // find all weekly ones

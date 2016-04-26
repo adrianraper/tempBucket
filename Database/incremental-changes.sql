@@ -1389,3 +1389,9 @@ ALTER TABLE T_Licences ADD COLUMN F_Hibernating BOOLEAN NULL DEFAULT FALSE AFTER
 ALTER TABLE T_Membership
 ADD INDEX `Index_4` (`F_UserID`);
 
+-- gh#1472
+DELETE FROM T_Triggers WHERE F_TriggerID in (60,61);
+INSERT INTO `T_Triggers` (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`) 
+VALUES 
+(60,'Upgrade product announcement',NULL,NULL,'rti2_announce_4','method=getAccounts&accountType=1&notLicenceType=5&productCode=52,53&active=true',NULL,NULL,'email','oneoff',4),
+(61,'Upgrade product announcement',NULL,NULL,'rti2_announce_5','method=getAccounts&accountType=1&licenceType=5&productCode=52,53&active=true',NULL,NULL,'email','oneoff',4);

@@ -57,11 +57,14 @@ $accountEmailArray = array();
 foreach ($emailArray as $email) {
 	$accountEmail = array();
 	// Pick up the full account info from the database
-	$accountEmail['data']['account'] = array_shift($dmsService->getAccounts(array($email['data']['account_id'])));
+    // gh#1472 avoid PHP strict warning
+    $accounts = $dmsService->getAccounts(array($email['data']['account_id']));
+    $accountEmail['data']['account'] = array_shift($accounts);
 	
 	// Has to include licence attributes
 	// gh#721
-	$attributes = $dmsService->getAccountDetails(array($email['data']['account_id']));
+	// gh#1472 Just an account id, not an array
+	$attributes = $dmsService->getAccountDetails($email['data']['account_id']);
 	$attributesAsObject = array();
 	foreach ($attributes as $attribute) {
 		$attributesAsObject[] = new Attribute($attribute['licenceKey'], $attribute['licenceValue']);

@@ -897,8 +897,9 @@ EOD;
 		// Remember that the admin email is NOT stored here, you have to get that from T_User
 		// But there IS a record for the admin user storing rootID messageType and adminUser
 		$sql = "SELECT u.F_Email FROM T_User u, T_AccountRoot a WHERE a.F_RootID=? AND u.F_UserID = a.F_AdminUserID";
-		$rs = $this->db->Execute($sql, $bindingParams); 
-		if ($rs)
+		$rs = $this->db->Execute($sql, $bindingParams);
+		// gh#1472
+		if ($rs && $rs->RecordCount()>0)
 			$adminUserEmail = $rs->FetchNextObj()->F_Email;
 			
 		// msgType from the table is sequential, but used as a binary flag in RM
@@ -918,13 +919,15 @@ EOD;
 		if ($accountsRS->RecordCount() > 0) {
 			while ($emailObj = $accountsRS->FetchNextObj()) {
 				if ($emailObj->F_AdminUser) {
-					$result[] = $adminUserEmail;
+                    // gh#1472
+					$result[] = ($adminUserEmail) ? $adminUserEmail : $emailObj->F_Email;
 				} else {
 					$result[] = $emailObj->F_Email;
 				}
 			}
 		} else if ($accountsRS->RecordCount() == 0) {
-			$result[] = $adminUserEmail;
+            // gh#1472
+            $result = ($adminUserEmail) ? array($adminUserEmail) : array();
 		}
 		return $result;
 	}
