@@ -622,11 +622,9 @@ package com.clarityenglish.common.vo.config {
 			// gh#11 thisTitle.language changed to thisTitle.productVersion due to Alice local database add F_ProductVersion column			
 			// The account holds the languageCode - which in Bento terms is productVersion
 			// #524
-			if (thisTitle.languageCode) {
+			if (thisTitle.languageCode)
 				this.languageCode = thisTitle.languageCode;
-				if (this.languageCode == "ZH")
-					StyleManager.getStyleDeclaration("global").setStyle("fontFamily","SimHei");
-			}
+				
 			if (thisTitle.productVersion) 
 				this.productVersion = thisTitle.productVersion;
 			// gh#39

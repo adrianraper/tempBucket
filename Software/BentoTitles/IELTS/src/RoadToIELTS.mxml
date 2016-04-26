@@ -41,16 +41,6 @@
 			fontThickness: 200;
 		}
 		
-		@font-face {
-			src: url("skins/ielts/assets/SimHeiBold.TTF");
-			fontFamily: SimHei;
-			fontStyle: normal;
-			fontWeight: bold;
-			embedAsCFF: true;
-			advancedAntiAliasing: true;
-		}
-
-		
 		global {
 			fontFamily: Helvetica;
 			fontLookup: embeddedCFF;

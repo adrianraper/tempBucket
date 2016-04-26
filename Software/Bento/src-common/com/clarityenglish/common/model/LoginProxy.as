@@ -15,10 +15,9 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Licence;
-
-import flash.events.Event;
-
-import flash.events.TimerEvent;
+	
+	import flash.events.Event;
+	import flash.events.TimerEvent;
 	import flash.net.SharedObject;
 	import flash.utils.Timer;
 	
