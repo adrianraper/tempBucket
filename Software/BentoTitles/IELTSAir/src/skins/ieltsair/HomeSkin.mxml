@@ -73,7 +73,7 @@
 			<s:Button id="longRateButton" useHandCursor="true" buttonMode="true" bottom.testDrive="130" left.testDrive="39" right.rateStates="20" top.lastMinute="80" top.fullversionStates="20"/>
 		</s:Group>
 
-		<s:HGroup width="45%" right="20" paddingTop="7" horizontalAlign="right" includeIn="fullVersion">
+		<s:HGroup width="45%" right="20" paddingTop="7" horizontalAlign="right" includeIn="fullversionStates">
 			<s:Group width="100%" height="85" filters="{dropShadowFilter}">
 				<s:Rect left="0" right="0" top="0" bottom="0" radiusX="6" radiusY="6">
 					<s:fill>
