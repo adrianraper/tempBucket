@@ -20,9 +20,9 @@
     <remoteDomain> http://www.clarityenglish.com/Software/</remoteDomain>
     <remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>-->
 	
-    <contentPath>http://www.clarityenglish.com/Content/</contentPath>
-    <remoteDomain>http://www.clarityenglish.com/Software/</remoteDomain>
-    <remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+   	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
+	<remoteDomain>http://www.clarityenglish.com/Software/</remoteDomain>
+	<remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
 	
 	<!--  contentPath>http://roadtoielts.chinaielts.org/Content/</contentPath>
     <remoteDomain>http://roadtoielts.chinaielts.org/Software/</remoteDomain>

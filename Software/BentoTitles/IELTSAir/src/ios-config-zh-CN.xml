@@ -13,9 +13,9 @@
 	<brandingMedia />
 	<language>ZHO</language>
 	
-	<!-- contentPath>http://192.168.8.82/Content/</contentPath>
-	<remoteDomain>http://192.168.8.82/Software/</remoteDomain>
-	<remoteGateway>http://192.168.8.82/Software/ResultsManager/web/amfphp/</remoteGateway>-->
+	<!--contentPath>http://192.168.8.103/Content/</contentPath>
+	<remoteDomain>http://192.168.8.103/Software/</remoteDomain>
+	<remoteGateway>http://192.168.8.103/Software/ResultsManager/web/amfphp/</remoteGateway-->
 	
 	<contentPath>http://roadtoielts.chinaielts.org/Content/</contentPath>
     <remoteDomain> http://roadtoielts.chinaielts.org/Software/</remoteDomain>
