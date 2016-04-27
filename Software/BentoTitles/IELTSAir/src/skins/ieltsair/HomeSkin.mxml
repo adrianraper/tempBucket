@@ -18,7 +18,7 @@
 			protected function floatCourses(top:uint, pv:String):uint {
 				// gh#166
 				// I really can't see why I can't access hostComponent directly in this function!
-				if (pv == 'R2ITD' || (pv == 'R2IFV' && FlexGlobals.topLevelApplication.height < 768)) {
+				if (pv == 'R2ITD' || ((pv == 'R2IFV' || pv == 'R2IHU') && FlexGlobals.topLevelApplication.height < 768)) {
 					return top - 60;
 				} else {
 					return top;
