@@ -231,13 +231,13 @@
 	</s:HGroup>
 	
 	<s:HGroup id="openingScreenGroup" height="360" verticalCenter="10" gap="{width/2-320}">
-		<s:SWFLoader id="openingScreen1" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen1.jpg')" />
-		<s:SWFLoader id="openingScreen2" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen2.jpg')" />
-		<s:SWFLoader id="openingScreen3" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen3.jpg')" />
-		<s:SWFLoader id="openingScreen4" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen4.jpg')" />
-		<s:SWFLoader id="openingScreen5" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen5.jpg')" />
-		<s:SWFLoader id="openingScreen6" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen6.jpg')" />
-		<s:SWFLoader id="openingScreen7" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen7.jpg')" />
+		<s:SWFLoader id="openingScreen1" width="640" height="360" source="@Embed(source='/skins/ielts/assets/candidates/openingScreen1.jpg')" />
+		<s:SWFLoader id="openingScreen2" width="640" height="360" source="@Embed(source='/skins/ielts/assets/candidates/openingScreen2.jpg')" />
+		<s:SWFLoader id="openingScreen3" width="640" height="360" source="@Embed(source='/skins/ielts/assets/candidates/openingScreen3.jpg')" />
+		<s:SWFLoader id="openingScreen4" width="640" height="360" source="@Embed(source='/skins/ielts/assets/candidates/openingScreen4.jpg')" />
+		<s:SWFLoader id="openingScreen5" width="640" height="360" source="@Embed(source='/skins/ielts/assets/candidates/openingScreen5.jpg')" />
+		<s:SWFLoader id="openingScreen6" width="640" height="360" source="@Embed(source='/skins/ielts/assets/candidates/openingScreen6.jpg')" />
+		<s:SWFLoader id="openingScreen7" width="640" height="360" source="@Embed(source='/skins/ielts/assets/candidates/openingScreen7.jpg')" />
 	</s:HGroup>
 	
 	<candidates:videoframe verticalCenter="10" horizontalCenter="0" />
