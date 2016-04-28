@@ -9,14 +9,14 @@ package com.clarityenglish.ielts.view.account {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-import flash.net.URLRequest;
-import flash.net.navigateToURL;
-
-import flashx.textLayout.elements.TextFlow;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
+	
+	import flashx.textLayout.elements.TextFlow;
 	
 	import mx.collections.ArrayCollection;
-import mx.collections.ArrayList;
-import mx.controls.Alert;
+	import mx.collections.ArrayList;
+	import mx.controls.Alert;
 	import mx.controls.DateField;
 	import mx.controls.SWFLoader;
 	import mx.core.FlexGlobals;
@@ -29,12 +29,12 @@ import mx.controls.Alert;
 	import spark.components.Button;
 	import spark.components.DropDownList;
 	import spark.components.Label;
-import spark.components.List;
-import spark.components.NumericStepper;
+	import spark.components.List;
+	import spark.components.NumericStepper;
 	import spark.components.RichText;
 	import spark.components.TextInput;
-import spark.events.DropDownEvent;
-import spark.utils.TextFlowUtil;
+	import spark.events.DropDownEvent;
+	import spark.utils.TextFlowUtil;
 	
 	public class AccountView extends BentoView {
 			
@@ -237,7 +237,11 @@ import spark.utils.TextFlowUtil;
 					/*if (CopyProxy.languageCode == "ZH") {
 						repObject.month = thisDate.month + 1;
 					} else {*/
-						repObject.month = DateUtil.formatDate(thisDate, 'MMMM');
+						if (copyProvider.getLanguageCode() != "ZH") {
+							repObject.month = DateUtil.formatDate(thisDate, 'MMMM');
+						} else {
+							repObject.month = DateUtil.formatDate(thisDate, 'MM');
+						}
 					//}
 					startDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", repObject);
 				}
@@ -253,7 +257,11 @@ import spark.utils.TextFlowUtil;
 					/*if (CopyProxy.languageCode == "ZH") {
 						repObject.month = thisDate.month + 1;
 					} else {*/
-						repObject.month = DateUtil.formatDate(thisDate, 'MMMM');
+						if (copyProvider.getLanguageCode() != "ZH") {
+							repObject.month = DateUtil.formatDate(thisDate, 'MMMM');
+						} else {
+							repObject.month = DateUtil.formatDate(thisDate, 'MM');
+						}
 					//}
 					endDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", repObject);
 				}

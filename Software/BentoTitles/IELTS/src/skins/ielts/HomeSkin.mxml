@@ -51,9 +51,11 @@
 						 visible="{(hostComponent.isDemo())}"
 						 includeInLayout="{(hostComponent.isDemo())}"/>			
 			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/home_coursebar.png')" 
-						 visible="{(!hostComponent.isDemo())}"
-						 includeInLayout="{(!hostComponent.isDemo())}"/>			
-			
+						 visible="{(!hostComponent.isDemo() &amp;&amp; hostComponent.copyProvider.getLanguageCode() != 'ZH')}"
+						 includeInLayout="{(!hostComponent.isDemo() &amp;&amp; hostComponent.copyProvider.getLanguageCode() != 'ZH')}"/>			
+			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/home_coursebar_zh.png')" 
+						 visible="{(!hostComponent.isDemo() &amp;&amp; hostComponent.copyProvider.getLanguageCode() == 'ZH')}"
+						 includeInLayout="{(!hostComponent.isDemo() &amp;&amp; hostComponent.copyProvider.getLanguageCode() == 'ZH')}"/>		
 			<s:Spacer height="10"/>
 			<s:Label id="noProgressText" 
 					 width="80%" lineHeight="18" 
@@ -112,7 +114,7 @@
 				<s:Image source="@Embed(source='/skins/ielts/assets/studyplannerBackground.png')" left="3" right="3" top="3" fillMode="clip" />
 				<s:HGroup width="100%" height="100%" verticalAlign="middle">
 					<s:VGroup paddingLeft="30" width="60%" gap="15">
-						<s:VGroup gap="2">
+						<s:VGroup gap="6">
 							<s:Label id="studyPlannerCaptionLabel" fontSize="19" fontWeight="bold" color="#08446B" />
 							<s:Label id="studyPalnnerDescriptionLabel" fontSize="12" color="#08446B" />
 						</s:VGroup>

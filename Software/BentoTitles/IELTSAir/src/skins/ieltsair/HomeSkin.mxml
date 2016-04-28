@@ -68,7 +68,7 @@
 			<s:Button id="speakingCourseButton" width="45%" right="0" top="{this.floatCourses(354, hostComponent.productVersion)}" />
 			<s:Button id="writingCourseButton" width="45%" right="0" top="{this.floatCourses(460, hostComponent.productVersion)}" />
 			<s:Button id="registerInfoButton" visible="{hostComponent.productVersion == 'R2ITD'}"
-					  includeInLayout="{hostComponent.productVersion == 'R2ITD'}" right="20" top="{this.floatCourses(566, hostComponent.productVersion)}" useHandCursor="true"  />
+					  includeInLayout="{hostComponent.productVersion == 'R2ITD'}" right="0" top="{this.floatCourses(566, hostComponent.productVersion)}" useHandCursor="true"  />
 
 			<s:Button id="longRateButton" useHandCursor="true" buttonMode="true" bottom.testDrive="130" left.testDrive="39" right.rateStates="20" top.lastMinute="80" top.fullversionStates="20"/>
 		</s:Group>
@@ -89,7 +89,7 @@
 				<s:Image source="@Embed(source='skins/ielts/assets/studyplannerBackground.png')" left="3" right="3" top="3" bottom="3" fillMode="clip" />
 				<s:HGroup width="100%" height="100%" verticalAlign="middle">
 					<s:VGroup paddingLeft="30" width="60%" gap="6">
-						<s:VGroup gap="2">
+						<s:VGroup gap="6">
 							<s:Label id="studyPlannerCaptionLabel" fontSize="16" fontWeight="bold" color="#08446B" />
 							<s:Label id="studyPalnnerDescriptionLabel" fontSize="9" color="#08446B" />
 						</s:VGroup>

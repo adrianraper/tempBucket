@@ -4,6 +4,7 @@
 		xmlns:candidates="skins.ielts.assets.candidates.*" 
 		xmlns:players="com.clarityenglish.controls.video.players.*" 
 		xmlns:candidates1="skins.ieltsair.assets.candidates.*"
+		xmlns:assets="skins.ielts.assets.*"
 		creationComplete="onCreationComplete(event)" width="100%" height="100%" xmlns:candidates2="com.clarityenglish.ieltsair.view.candidates.*">
 	<!-- host component -->
 	<fx:Metadata>
@@ -222,7 +223,11 @@
 		<s:Label id="candidatesVideoTitleLabel" fontSize="18" fontWeight="bold" text="{hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)}" left="0" />
 	</s:HGroup>
 	
-	<candidates:channelmsg id="channelMessage" horizontalCenter="380" verticalCenter="-208" scaleX="1.2" scaleY="1.2" />
+	<!--candidates:channelmsg id="channelMessage" scaleX="1.1" scaleY="1.1" /-->
+	<s:Group id="channelMessage" horizontalCenter="345" verticalCenter="-218">
+		<assets:videotip visible="{hostComponent.copyProvider.getLanguageCode() != 'ZH'}" />
+		<assets:videotipchinese visible="{hostComponent.copyProvider.getLanguageCode() == 'ZH'}" />
+	</s:Group>
 	
 	<s:Group verticalCenter="-80" horizontalCenter="390">
 		<!-- Channel list -->

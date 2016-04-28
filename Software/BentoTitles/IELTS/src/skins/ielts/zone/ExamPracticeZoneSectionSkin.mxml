@@ -123,14 +123,15 @@
 
 									//gh #184
 									if (practiceTestButton.enabled) {
-										practiceLabel.text = data.@caption;
+										//practiceLabel.text = data.@caption;
+										practiceLabel.text = "";
 										practiceTestGroup.toolTip = null;
 										answerKeyGroup.toolTip = null;
 										testDriveInformation.includeInLayout = testDriveInformation.visible = false;
 									} else {
 										// gh#1161
 										if (outerDocument.hostComponent.isTestDrive) {
-											practiceLabel.text = '';
+											practiceLabel.text = "";
 											testDriveInformation.includeInLayout = testDriveInformation.visible = true;
 											if (courseClass == 'reading') {
 												testDriveInfo.caption = outerDocument.hostComponent.getCopyProvider().getCopyForId('exampleInReadingTest1');
@@ -207,13 +208,13 @@
 	<timer:TimerComponent id="readingTimer" left="1" right="1" height="50" timerWidth="310" timerHeight="26" bottom="0" timerTotalTime="{String(list.dataProvider.getItemAt(pageNumberDisplay.selectedIndex).attribute('totalTime')).split(',')}"
 						  isTimeFixed="true" textSize="16" timeTextColor="#333333" trackColor="#D8D8D8"
 						  progressLeftColor="#009DC3" progressMidColor="#009DC3" progressRightColor="#009DC3"
-						  buttonColor="0x009DC3" buttonDownOverColor="0x00495A"
+						  buttonColor="0x009DC3" buttonDownOverColor="0x00495A" copyProvider="{hostComponent.copyProvider}"
 						  includeIn="reading"/>
 
 	<timer:TimerComponent id="writingTimer" left="1" right="1" height="50" timerWidth="310" timerHeight="26" bottom="0" timerTotalTime="{String(list.dataProvider.getItemAt(pageNumberDisplay.selectedIndex).attribute('totalTime')).split(',')}"
 						  isTimeFixed="true" textSize="16" timeTextColor="#333333" trackColor="#D8D8D8"
 						  progressLeftColor="#7DAB36" progressMidColor="#7DAB36" progressRightColor="#7DAB36"
-						  buttonColor="0x7DAB36" buttonDownOverColor="0x354a17"
+						  buttonColor="0x7DAB36" buttonDownOverColor="0x354a17" copyProvider="{hostComponent.copyProvider}"
 						  includeIn="writing"/>
 
 	<!-- These buttons are only enabled (by CSS) in the web version -->

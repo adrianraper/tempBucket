@@ -49,17 +49,21 @@
 			}
 			
 			private function formatScreenDate(date:Date):String {
-				if (date && CopyProxy.languageCode == "ZH") {
+				if (date) {
 					var objReplace:Object = new Object();
 					//trace("date's day is "+date.date);
 					//trace("date's month is "+date.month);
 					objReplace.day = date.date;
-					objReplace.month = date.month + 1;
+					if (hostComponent.copyProvider.getLanguageCode() != "ZH") {
+						objReplace.month = DateUtil.formatDate(date, 'MMMM');
+					} else {
+						objReplace.month = DateUtil.formatDate(date, 'MM');
+					}
 					objReplace.year = date.fullYear;
 					return hostComponent.hostCopyProvider.getCopyForId("dateFormatLabel", objReplace);
-				} else {
-					return DateUtil.formatDate(date, 'd MMMM yyyy');
 				}
+				
+				return '';
 			}
 		]]>
 	</fx:Script>
@@ -186,7 +190,7 @@
 									 right="0" top="3" bottom="3" fillMode="clip"/>
 							<s:HGroup width="100%" height="100%" verticalAlign="middle">
 								<s:VGroup paddingLeft="15" width="68%" height="100%" verticalAlign="middle" gap="10">
-									<s:VGroup gap="2">
+									<s:VGroup gap="6">
 										<s:Label id="studyPlannerCaptionLabel" fontSize="12" fontWeight="bold"
 												 color="#08446B"/>
 										<s:Label id="studyPalnnerDescriptionLabel" fontSize="9" color="#08446B"/>
@@ -196,7 +200,7 @@
 											<s:SolidColor color="#A3A3A2"/>
 										</s:fill>
 									</s:Rect>
-									<s:Button id="studyPlannerDownloadButton" width="180" height="20" fontSize="10"
+									<s:Button id="studyPlannerDownloadButton" width="180" height="25" fontSize="10"
 											  useHandCursor="true" buttonMode="true"/>
 								</s:VGroup>
 								<s:SWFLoader width="32%" source="@Embed(source='skins/ielts/assets/studyPlanner.png')"

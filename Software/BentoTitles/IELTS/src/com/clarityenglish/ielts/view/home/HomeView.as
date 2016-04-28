@@ -214,7 +214,7 @@ package com.clarityenglish.ielts.view.home {
 				if ((licenceType == Title.LICENCE_TYPE_AA) || 
 					((licenceType == Title.LICENCE_TYPE_NETWORK) && (Number(user.id) < 1)) ||
 					((licenceType == Title.LICENCE_TYPE_CT) && (Number(user.id) < 1))) {
-					noticeLabel.text = "Licenced to " + accountName + ".";
+					noticeLabel.text = copyProvider.getCopyForId("licenceText") + " " + accountName + ".";
 				} else {
 					if (user.examDate) {
 						var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
