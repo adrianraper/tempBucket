@@ -133,7 +133,7 @@ import flashx.textLayout.elements.ParagraphElement;
 			if (paragraphContentSpan1) paragraphContentSpan1.text = copyProvider.getCopyForId("paragraphContentSpan1");
 			if (paragraphContentSpan2) paragraphContentSpan2.text = copyProvider.getCopyForId("paragraphContentSpan1");
 			if (paragraphContentSpan3) paragraphContentSpan3.text = copyProvider.getCopyForId("paragraphContentSpan1");
-			if (helpLabel) helpLabel.text = copyProvider.getCopyForId("help");
+			if (helpLabel) helpLabel.text = copyProvider.getCopyForId("Help");
 			if (keyScreenSpan) keyScreenSpan.text = copyProvider.getCopyForId("keyScreenSpan");
 			if (homeScreenIntroSpan) homeScreenIntroSpan.text = copyProvider.getCopyForId("homeScreenIntroSpan");
 			if (skillScreenIntroSpan) skillScreenIntroSpan.text = copyProvider.getCopyForId("skillScreenIntroSpan");

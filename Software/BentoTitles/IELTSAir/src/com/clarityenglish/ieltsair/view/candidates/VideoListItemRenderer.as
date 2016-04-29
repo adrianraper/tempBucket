@@ -1,6 +1,8 @@
 package com.clarityenglish.ieltsair.view.candidates
 {
 	
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
+	
 	import spark.components.LabelItemRenderer;
 	
 	
@@ -10,11 +12,18 @@ package com.clarityenglish.ieltsair.view.candidates
 	 * 
 	 */
 	public class VideoListItemRenderer extends IndexButtonBarButton
-	{
+	{	
+		
+		private var _copyProvider:CopyProvider;
+		
 		public function VideoListItemRenderer()
 		{
 			//TODO: implement function
 			super();
+		}
+		
+		public function set copyProvider(value:CopyProvider):void {
+			_copyProvider = value;	
 		}
 		
 		/**
@@ -26,8 +35,8 @@ package com.clarityenglish.ieltsair.view.candidates
 		{
 			super.data = value;
 			// the data has changed.  push these changes down in to the 
-			// subcomponents here   
-			this.label = data.@caption;
+			// subcomponents here
+			this.label = _copyProvider.getCopyForId('candidatesVideoTitle' + itemIndex);
 			this.index = itemIndex;
 		} 
 		
