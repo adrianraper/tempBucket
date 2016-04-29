@@ -213,10 +213,12 @@
 			<lit name="compareBasedOnUsers">based on {count} {singularOrPlural}</lit>  
 			<lit name="singularUser">user</lit>  
 			<lit name="pluralUsers">users</lit>
+			<lit name="noNetWorkLabel">An internet connection is required, but it has been lost.</lit> 
 			<!-- Banner Link-->
 			<lit name="LMFindOutMoreLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=IP_link&utm_source=RTI_LM&utm_medium=LM_frontpage_findoutmore]]></lit>
 			<lit name="LMTopBlueBannerLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=RTI_FV&utm_source=RTI_LM&utm_medium=LM_topright_bluebanner]]></lit>
 			<lit name="TDHelpBlueBannerLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=RTI_FV&utm_source=RTI_TD&utm_medium=help_bluebanner]]></lit>
+			<lit name="TDBottomBlueBannerLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=RTI_FV&utm_source=RTI_TD&utm_medium=TD_succeed_banner]]></lit>
             <!-- Clarity recorder captions -->
             <lit name="recorderRecordToolTip"></lit>
             <lit name="recorderPlayToolTip"></lit>

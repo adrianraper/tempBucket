@@ -8,7 +8,7 @@ import spark.components.Label;
 	public class NoNetworkView extends BentoView {
 
 		[SkinPart]
-		public var nonetworkCaptionLabel:Label;
+		public var noNetWorkLabel:Label;
 
 		[SkinPart]
 		public var nonetworkContentLabel:Label;
@@ -23,8 +23,8 @@ import spark.components.Label;
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case nonetworkCaptionLabel:
-					nonetworkCaptionLabel.text = copyProvider.getCopyForId("nonetworkCaptionLabel");
+				case noNetWorkLabel:
+					noNetWorkLabel.text = copyProvider.getCopyForId("noNetWorkLabel");
 					break;
 				case nonetworkContentLabel:
 					nonetworkContentLabel.text = copyProvider.getCopyForId("nonetworkContentLabel");
