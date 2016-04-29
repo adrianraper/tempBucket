@@ -309,7 +309,7 @@ package com.clarityenglish.ielts.view.home {
 		
 		// #299
 		public function isFullVersion():Boolean {
-			return (productVersion == IELTSApplication.FULL_VERSION);
+			return (productVersion == IELTSApplication.FULL_VERSION || productVersion == IELTSApplication.HOME_USER);
 		}
 		
 		public function isDemo():Boolean {

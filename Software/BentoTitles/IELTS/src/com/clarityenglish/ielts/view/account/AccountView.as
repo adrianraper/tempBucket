@@ -466,7 +466,7 @@ package com.clarityenglish.ielts.view.account {
 
 		protected function onStudyPlannerClicked(event:Event):void {
 			var url:String;
-			if (productVersion == IELTSApplication.FULL_VERSION) {
+			if (productVersion == IELTSApplication.FULL_VERSION || productVersion == IELTSApplication.HOME_USER) {
 				url = copyProvider.getCopyForId("studyPlannerFVDownloadLink");
 			} else if (productVersion == IELTSApplication.LAST_MINUTE){
 				url = copyProvider.getCopyForId("studyPlannerLMDownloadLink");
