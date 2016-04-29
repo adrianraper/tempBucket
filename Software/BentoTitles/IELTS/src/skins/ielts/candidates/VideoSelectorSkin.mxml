@@ -321,5 +321,5 @@
 			</fx:Component>
 		</s:itemRenderer>
 	</s:List>
-	<s:Button id="videoPlayButton" click="onPlayButtonClick(event)" horizontalCenter="0" verticalCenter="0" label="Click here to watch the {hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)} video." buttonMode="true" useHandCursor="true" />	
+	<s:Button id="videoPlayButton" click="onPlayButtonClick(event)" horizontalCenter="0" verticalCenter="0" label="{hostComponent.copyProvider.getCopyForId('candidatesVideoPlayLabel', {videoTitle: hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)})}" buttonMode="true" useHandCursor="true" />	
 </s:Skin>

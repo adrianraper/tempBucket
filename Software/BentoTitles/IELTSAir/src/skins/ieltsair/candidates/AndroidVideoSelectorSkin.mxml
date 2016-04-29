@@ -294,7 +294,7 @@
 		</s:List>
 	</s:Group>
 	
-	<s:Button id="videoPlayButton" click="onPlayButtonClick(event)" horizontalCenter="0" verticalCenter="-35" label="Click here to watch the {hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)} video." buttonMode="true" useHandCursor="true" />
+	<s:Button id="videoPlayButton" click="onPlayButtonClick(event)" horizontalCenter="0" verticalCenter="-35" label="{hostComponent.copyProvider.getCopyForId('candidatesVideoPlayLabel', {videoTitle: hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)})}" buttonMode="true" useHandCursor="true" />
 	
 	<s:Group width="100%" height="100%" visible="{videoList.dataProvider == null}">
 		<s:Rect width="100%" height="100%">
