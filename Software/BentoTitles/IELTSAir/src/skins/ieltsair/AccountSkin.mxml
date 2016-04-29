@@ -76,7 +76,7 @@
 		<s:State name="fullVersion_anonymous" stateGroups="anonymousStates,fullVersionStates" />
 		<s:State name="fullVersion" stateGroups="fullVersionStates" />
 		<s:State name="lastMinute" />
-		<s:State name="homeUser" />
+		<s:State name="homeUser" stateGroups="fullVersionStates" />
 		<s:State name="testDrive" stateGroups="anonymousStates" />
 	</s:states>
 
