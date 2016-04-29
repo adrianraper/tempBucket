@@ -3,16 +3,17 @@
 	<id>/area1/RoadToIELTS2 in localhost</id>
 	<developer>none</developer>
 	<dbHost>2</dbHost>
-	<language>ZH</language>
-	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
+	<productCode>52,53</productCode>
+	<language>EN</language>
 	<platform>browser</platform>
-	<channel name='vimeo' caption='Vimeo'>
-		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
-	</channel>	
-	<channel name='rackspace' caption='Rack'>
+	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
+	<channel name="ios-azure" caption="Ch1">
+        <streamingMedia>http://portalvhds99k5w60hsxq1q.blob.core.chinacloudapi.cn/</streamingMedia>
+    </channel>	
+	<channel name='rackspace' caption='Ch2'>
 		<streamingMedia>http://c284790.r90.stream.cf1.rackcdn.com/</streamingMedia>
 	</channel>  
-	<channel name='aws' caption='AWS'>
+	<channel name='aws' caption='Ch3'>
 		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
 	</channel>
 	<!--channel name='network' caption='network'>
@@ -20,14 +21,14 @@
 	</channel-->
 	<sharedMedia />
 	<brandingMedia />
-    <upgradeURL>http://www.ieltspractice.com/</upgradeURL>
+    <upgradeURL>http://www.ieltspractice.com</upgradeURL>
     <pricesURL>http://www.clarityenglish.com/prices.php</pricesURL>
     <registerURL>http://takeielts.britishcouncil.org/book-your-test/book-now</registerURL>
     <getAccountURL>http://www.roadtoielts.com/</getAccountURL>
     
-	<contentPath>http://192.168.8.82/Content/</contentPath>
-	<remoteDomain>http://192.168.8.82/Software/</remoteDomain>
-	<remoteGateway>http://192.168.8.82/Software/ResultsManager/web/amfphp/</remoteGateway>>
+	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
+	<remoteDomain>http://www.clarityenglish.com/Software/</remoteDomain>
+	<remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>>
 	<remoteService>IELTSService</remoteService>
 	<assetFolder>ResultsManager/web/resources/assets/</assetFolder>
 </config>

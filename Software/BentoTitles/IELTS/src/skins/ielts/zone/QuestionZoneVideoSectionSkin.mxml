@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:zone="skins.ielts.assets.zone.*"
 		xmlns:video="com.clarityenglish.controls.video.*" creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
@@ -36,17 +37,11 @@
 		<s:State name="speaking" />
 	</s:states>
 	
-	<s:Group right="17" top="13" visible="{!hostComponent.isPlatformiPad}">
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipTextReading.png')" includeIn="reading" />
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipTextWriting.png')" includeIn="writing" />
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipTextListening.png')" includeIn="listening" />
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipTextSpeaking.png')" includeIn="speaking" />
+	<s:Group right="4" top="13" visible="{!hostComponent.isPlatformiPad &amp;&amp; hostComponent.copyProvider.getLanguageCode() != 'ZH'}">
+		<zone:VideoTip />
 	</s:Group>
-	<s:Group right="4" top="33" visible="{!hostComponent.isPlatformiPad}">
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipArrowReading.png')" includeIn="reading" />
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipArrowWriting.png')" includeIn="writing" />
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipArrowListening.png')" includeIn="listening" />
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipArrowSpeaking.png')" includeIn="speaking" />
+	<s:Group right="4" top="13" visible="{!hostComponent.isPlatformiPad &amp;&amp; hostComponent.copyProvider.getLanguageCode() == 'ZH'}">
+		<zone:VideoChineseTip />
 	</s:Group>
 	
 	<video:VideoSelector id="videoSelector"
