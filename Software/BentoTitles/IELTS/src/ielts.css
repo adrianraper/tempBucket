@@ -481,7 +481,7 @@ swfplayer|SWFPlayerView {
 }
 /*debugalice: flex4.5 project setting problem?*/
 mx|ToolTip {
-	fontFamily: "Helvetica";
+	fontFamily: Helvetia;
 	fontSize: 12;
 	color: #FFFFFF;
 	backgroundColor: #000000;
