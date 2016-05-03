@@ -157,21 +157,28 @@
 
 	<!-- layer 8: text -->
 	<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
-	<s:Label id="labelDisplay"
-			 textAlign="center"
-			 maxDisplayedLines="3"
-			 horizontalCenter="0"
-			 verticalCenter="1"
-			 verticalAlign="middle"
-			 left="10"
-			 right="10"
-			 top="2"
-			 bottom="2">
-	</s:Label>
+	
 	
 	<!-- layer 9: IELTS course button specific stuff -->
 	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/register_big.png')" right="-1" />
 	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" left="20" top="158" />
-	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/register_button.png')" left="134" top="153" />
+	<s:Group left="134" top="153" width="120" height="30">
+		<s:Rect width="100%" height="100%" radiusX="3" radiusY="3">
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="#FCAE3A" />
+					<s:GradientEntry color="#F89926" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		<s:Label id="labelDisplay"
+				 textAlign="center"
+				 maxDisplayedLines="3"
+				 horizontalCenter="0"
+				 verticalAlign="middle"
+				 left="10" right="10" top="2" bottom="2"
+				 fontWeight="bold">
+		</s:Label>
+	</s:Group>
 
 </s:SparkButtonSkin>

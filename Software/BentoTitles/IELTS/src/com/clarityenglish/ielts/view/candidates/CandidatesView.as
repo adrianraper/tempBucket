@@ -87,6 +87,12 @@ package com.clarityenglish.ielts.view.candidates {
 			return super.getCurrentSkinState();
 		}
 		
+		override protected function onRemovedFromStage(event:Event):void {
+			super.onRemovedFromStage(event);
+			
+			this.stage.removeEventListener(Event.RESIZE, onScreenResize);
+		}
+		
 		protected function onScreenResize(event:Event):void {
 			if (videoSelector)
 				videoSelector.width = stage.stageWidth;

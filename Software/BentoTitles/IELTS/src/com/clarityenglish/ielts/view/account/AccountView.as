@@ -326,6 +326,7 @@ package com.clarityenglish.ielts.view.account {
 					instance.addEventListener(Event.CHANGE, onExamTimeChange);
 					break; 
 				case registerInfoButton:
+					instance.label = copyProvider.getCopyForId("RegisterNowButton");
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
 				case studyPlannerLabel:

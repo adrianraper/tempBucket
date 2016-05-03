@@ -39,6 +39,7 @@
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.ielts.view.candidates.ui.CandidatesChannelListRenderer;
+			import com.clarityenglish.ieltsair.view.candidates.VideoListItemRenderer;
 			import com.googlecode.bindagetools.Bind;
 			
 			import mx.effects.Tween;
@@ -60,8 +61,11 @@
 			protected function onCreationComplete(event:FlexEvent):void {
 				stage.addEventListener(MouseEvent.CLICK, onStageClick);
 				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
+				var videoListItemRenderer:ClassFactory = new ClassFactory(VideoListItemRenderer);
+				videoListItemRenderer.properties = {copyProvider: hostComponent.copyProvider};
+				videoList.itemRenderer = videoListItemRenderer;
 				addEventListener(Event.RESIZE, onResize);
-
+				
 				number1Red.visible = true;
 				openingScreenGroup.left = width/2 - 320;
 				openingScreenGroup.visible = false;
@@ -290,7 +294,7 @@
 		
 		<s:Label id="videoListCaptionLabel" top="50" horizontalCenter="0" color="#FFFFFF" fontSize="13" />
 		<!-- Video list -->
-		<s:List id="videoList" left="0" top="70" bottom="100" minHeight="0" minWidth="0" itemRenderer="com.clarityenglish.ieltsair.view.candidates.VideoListItemRenderer" requireSelection="true" selectedIndex="0">
+		<s:List id="videoList" left="0" top="70" bottom="100" minHeight="0" minWidth="0" requireSelection="true" selectedIndex="0">
 			<s:layout>
 				<s:VerticalLayout gap="5" />
 			</s:layout>

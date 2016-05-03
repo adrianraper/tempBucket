@@ -32,7 +32,7 @@
 		}
 		
 		@font-face {
-			src: url("skins/ielts/assets/SimHei.TTF");
+			src: url("skins/ielts/assets/SimHei.ttf");
 			fontFamily: SimHei;
 			fontStyle: normal;
 			fontWeight: normal;

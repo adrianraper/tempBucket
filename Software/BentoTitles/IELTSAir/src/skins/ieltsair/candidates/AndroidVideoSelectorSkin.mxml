@@ -40,6 +40,7 @@
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.ielts.view.candidates.ui.CandidatesChannelListRenderer;
+			import com.clarityenglish.ieltsair.view.candidates.VideoListItemRenderer;
 			
 			import mx.effects.Tween;
 			import mx.events.EffectEvent;
@@ -58,6 +59,9 @@
 			protected function onCreationComplete(event:FlexEvent):void {
 				stage.addEventListener(MouseEvent.CLICK, onStageClick);
 				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
+				var videoListItemRenderer:ClassFactory = new ClassFactory(VideoListItemRenderer);
+				videoListItemRenderer.properties = {copyProvider: hostComponent.copyProvider};
+				videoList.itemRenderer = videoListItemRenderer;
 				addEventListener(Event.RESIZE, onResize);
 				
 				number1Red.visible = true;
@@ -116,7 +120,7 @@
 			protected function onSlideEnd(event:EffectEvent):void
 			{
 				// TODO Auto-generated method stub
-				videoPlayButton.label = "Click here to watch the " + hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex) +  " video.";
+				videoPlayButton.label = hostComponent.copyProvider.getCopyForId('candidatesVideoPlayLabel', {videoTitle: hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)});
 				candidatesVideoTitleLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex);
 				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription" + videoListIndex);
 				videoPlayButton.visible = true;

@@ -103,7 +103,7 @@
 			protected function onSlideEnd(event:EffectEvent):void
 			{
 				// TODO Auto-generated method stub
-				videoPlayButton.label = "Click here to watch the " + hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex) +  " video.";
+				videoPlayButton.label = hostComponent.copyProvider.getCopyForId('candidatesVideoPlayLabel', {videoTitle: hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)});
 				candidatesVideoTitleLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex);
 				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription" + videoListIndex);
 				videoPlayButton.visible = true;
@@ -270,7 +270,7 @@
 							override public function set data(value:Object):void {
 								super.data = value;
 								
-								videoLabel.text = data.@caption;
+								videoLabel.text = outerDocument.hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + itemIndex);
 								
 								// #213
 								enabled = !(data.attribute("enabledFlag").length > 0 && (Number(data.@enabledFlag.toString()) & 8));
