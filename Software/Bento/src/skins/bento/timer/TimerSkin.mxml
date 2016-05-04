@@ -110,29 +110,6 @@
                             <s:SolidColor color="#222222" />
                         </s:fill>
                     </s:Rect>
-                    <!--Timer slider side indicator-->
-                    <s:Group width="100%" height="100%">
-                        <s:Rect height="{(hostComponent.timerHeight - hostComponent.sliderHeight) * 0.2}" width="1" left="5" top="0">
-                            <s:fill>
-                                <s:SolidColor color="#FFFFFF" />
-                            </s:fill>
-                        </s:Rect>
-                        <s:Rect height="{(hostComponent.timerHeight - hostComponent.sliderHeight) * 0.2}" width="1" left="5" bottom="0">
-                            <s:fill>
-                                <s:SolidColor color="#FFFFFF" />
-                            </s:fill>
-                        </s:Rect>
-                        <s:Rect height="{(hostComponent.timerHeight - hostComponent.sliderHeight) * 0.2}" width="1" right="5" top="0">
-                            <s:fill>
-                                <s:SolidColor color="#FFFFFF" />
-                            </s:fill>
-                        </s:Rect>
-                        <s:Rect height="{(hostComponent.timerHeight - hostComponent.sliderHeight) * 0.2}" width="1" right="5" bottom="0">
-                            <s:fill>
-                                <s:SolidColor color="#FFFFFF" />
-                            </s:fill>
-                        </s:Rect>
-                    </s:Group>
                     <!--assets:sideindicator left="5" verticalCenter="0" />
                     <assets:sideindicator right="5" verticalCenter="0" /-->
                         <mx:HSlider id="timerSlider" width="{hostComponent.timerWidth + 18}" height="{hostComponent.sliderHeight}" verticalCenter="0" horizontalCenter="0" thumbCount="2" snapInterval="1" minimum="0" showDataTip="false" liveDragging="true" change="onSliderChange(event)" dataTipStyleName="dataTipStyle"
