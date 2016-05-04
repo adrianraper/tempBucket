@@ -206,13 +206,13 @@
 	<!--s:SWFLoader visible="{list.dataProvider.length == 0}" source="{hostComponent.assetFolder}testpractice_empty.png" width="386" top="90" horizontalCenter="0" /-->
 	<!--Writing timer-->
 	<timer:TimerComponent id="readingTimer" left="1" right="1" height="50" timerWidth="310" timerHeight="26" bottom="0" timerTotalTime="{String(list.dataProvider.getItemAt(pageNumberDisplay.selectedIndex).attribute('totalTime')).split(',')}"
-						  isTimeFixed="true" textSize="16" timeTextColor="#333333" trackColor="#D8D8D8"
+						  isTimeFixed="true" isNoPause="true" textSize="16" timeTextColor="#333333" trackColor="#D8D8D8"
 						  progressLeftColor="#009DC3" progressMidColor="#009DC3" progressRightColor="#009DC3"
 						  buttonColor="0x009DC3" buttonDownOverColor="0x00495A" copyProvider="{hostComponent.copyProvider}"
 						  includeIn="reading"/>
 
 	<timer:TimerComponent id="writingTimer" left="1" right="1" height="50" timerWidth="310" timerHeight="26" bottom="0" timerTotalTime="{String(list.dataProvider.getItemAt(pageNumberDisplay.selectedIndex).attribute('totalTime')).split(',')}"
-						  isTimeFixed="true" textSize="16" timeTextColor="#333333" trackColor="#D8D8D8"
+						  isTimeFixed="true" isNoPause="true" textSize="16" timeTextColor="#333333" trackColor="#D8D8D8"
 						  progressLeftColor="#7DAB36" progressMidColor="#7DAB36" progressRightColor="#7DAB36"
 						  buttonColor="0x7DAB36" buttonDownOverColor="0x354a17" copyProvider="{hostComponent.copyProvider}"
 						  includeIn="writing"/>
