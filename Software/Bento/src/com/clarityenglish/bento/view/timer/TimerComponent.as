@@ -137,6 +137,9 @@ import spark.primitives.Rect;
         public var isTimerAutoControl:Boolean;
 
         [Bindable]
+        public var isNoPause:Boolean;
+
+        [Bindable]
         public var hoursText:String;
 
         [Bindable]

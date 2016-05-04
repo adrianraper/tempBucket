@@ -202,11 +202,11 @@
                 <ui:TimerButton id="resetButton" width="50%" height="100%" color="0x333333" buttonColor="{hostComponent.buttonColor}" buttonDownOverColor="{hostComponent.buttonDownOverColor}" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="{hostComponent.copyProvider.getCopyForId('timerResetButton')}" visible="{!hostComponent.isTimeFixed}" includeInLayout="{!hostComponent.isTimeFixed}" />
             </s:HGroup>
             <s:HGroup width="100%" height="100%" gap="0" verticalAlign="middle" includeIn="pauseState, resumeState">
-                <s:Group width="50%" height="100%">
+                <s:Group width="50%" height="100%" visible="{!hostComponent.isNoPause}" includeInLayout="{!hostComponent.isNoPause}">
                     <ui:TimerButton id="pauseButton" width="100%" height="100%" color="0x333333" buttonColor="{hostComponent.buttonColor}" buttonDownOverColor="{hostComponent.buttonDownOverColor}" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="{hostComponent.copyProvider.getCopyForId('timerPauseButton')}" includeIn="pauseState"/>
                     <ui:TimerButton id="resumeButton" width="100%" height="100%" color="0x333333" buttonColor="{hostComponent.buttonColor}" buttonDownOverColor="{hostComponent.buttonDownOverColor}" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="{hostComponent.copyProvider.getCopyForId('timerResumeButton')}" includeIn="resumeState"/>
                 </s:Group>
-                <ui:TimerButton id="stopButton" width="50%" height="100%" color="0x333333" buttonColor="{hostComponent.buttonColor}" buttonDownOverColor="{hostComponent.buttonDownOverColor}" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="{hostComponent.copyProvider.getCopyForId('timerStopButton')}" includeIn="pauseState, resumeState"/>
+                <ui:TimerButton id="stopButton" percentWidth="{hostComponent.isNoPause ? 100 : 50}" height="100%" color="0x333333" buttonColor="{hostComponent.buttonColor}" buttonDownOverColor="{hostComponent.buttonDownOverColor}" fontSize="{hostComponent.textSize - 5}" buttonMode="true" useHandCursor="true" label="{hostComponent.copyProvider.getCopyForId('timerStopButton')}" includeIn="pauseState, resumeState"/>
             </s:HGroup>
         </s:Group>
 
