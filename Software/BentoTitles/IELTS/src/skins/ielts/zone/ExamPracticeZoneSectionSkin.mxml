@@ -159,7 +159,7 @@
 										return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableFV");
 										break;
 									case IELTSApplication.TEST_DRIVE:
-										if (sequenceNumber == 3) {
+										if (sequenceNumber >= 3) {
 											return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableFVWebsite");
 										}
 										return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableLM");

@@ -4,7 +4,7 @@
         xmlns:timer="com.clarityenglish.bento.view.timer.*"
         xmlns:components="com.clarityenglish.components.*"
         xmlns:recorder="com.clarityenglish.bento.view.recorder.*"
-        xmlns:assets="skins.ielts.assets.zone.*"
+        xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
         xmlns:mx="library://ns.adobe.com/flex/mx"
         creationComplete="onCreationComplete(event)">
 
@@ -132,7 +132,9 @@
                         </fx:Declarations>
                         <fx:Script>
                             <![CDATA[
+                            import com.clarityenglish.bento.BentoApplication;
                             import com.clarityenglish.bento.events.ExerciseEvent;
+                            import com.clarityenglish.ielts.IELTSApplication;
                             import com.clarityenglish.textLayout.components.AudioPlayer;
                             import com.googlecode.bindagetools.Bind;
 
@@ -178,6 +180,10 @@
                                 });
                             }
 
+                            public function getSequenceNumber(data:Object):Number {
+                                return (owner as List).dataProvider.getItemIndex(data) + 1;
+                            }
+
                             protected function onRemovedFromStage(event:Event):void {
                                 if (changeWatcher) changeWatcher.unwatch();
                                 changeWatcher = null;
@@ -203,6 +209,34 @@
 
                                     speakingStartButton.enabled = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8));
                                     frontSwfLoader.alpha = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8)) ? 1 : 0.5;
+
+                                    if (data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8)) {
+                                        speakingStartGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion, getSequenceNumber(data));
+                                    } else {
+                                        speakingStartGroup.toolTip = null;
+                                    }
+                                }
+                            }
+
+                            protected function getToolTip(productVersion:String, sequenceNumber:Number = 0):String {
+                                switch (productVersion) {
+                                    case IELTSApplication.FULL_VERSION:
+                                        return outerDocument.hostComponent.getCopyProvider().getCopyForId("notCurAvailable");
+                                        break;
+                                    case IELTSApplication.LAST_MINUTE:
+                                        return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableFV");
+                                        break;
+                                    case IELTSApplication.TEST_DRIVE:
+                                        if (sequenceNumber >= 3) {
+                                            return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableFVWebsite");
+                                        }
+                                        return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableLM");
+                                        break;
+                                    case BentoApplication.DEMO:
+                                        return outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailbleDemo");
+                                        break;
+                                    default:
+                                        return outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailble");
                                 }
                             }
 
@@ -253,14 +287,18 @@
 
                             ]]>
                         </fx:Script>
-
-                        <s:Button id="speakingStartButton" top="325" width="452" height="53" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingStartButton')}"  click="onStartButtonClick(data as XML)"
-                                  useHandCursor="true" buttonMode="true"  />
-                        <s:Button id="speakingBackButton" top="{outerDocument.hostComponent.isRecordEnabled? 370 : 325}" width="452" height="45" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingBackButton')}" useHandCursor="true" buttonMode="true" click="onBackButtonClick(event)"/>
+                        <s:Group id="speakingStartGroup" horizontalCenter="0">
+                            <s:Button id="speakingStartButton" top="335" width="452" height="53" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingStartButton')}"  click="onStartButtonClick(data as XML)"
+                                      useHandCursor="true" buttonMode="true"   />
+                        </s:Group>
+                        <s:Button id="speakingBackButton" top="{outerDocument.hostComponent.isRecordEnabled? 370 : 335}" width="452" height="45" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingBackButton')}" useHandCursor="true" buttonMode="true" click="onBackButtonClick(event)"/>
 
                         <s:SWFLoader id="reflectionSWFLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" source="{outerDocument.hostComponent.assetFolder + 'testpractice_speakingreflection.png'}" />
                         <s:SWFLoader id="backSwfLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" visible="false" />
                         <s:SWFLoader id="frontSwfLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" />
+
+                        <s:Label id="notAvailableLabel" top="317" horizontalCenter="0" fontSize="16" text="{outerDocument.hostComponent.copyProvider.getCopyForId('notAvailblePracticeTest')}" visible="{(data.attribute('enabledFlag').length() > 0 &amp;&amp; (Number(data.@enabledFlag.toString()) &amp; 8)) &amp;&amp; !outerDocument.hostComponent.isTestDrive}"  />
+                        <ui:InfoLabel id="testDriveInfo" verticalCenter="0" horizontalCenter="0" caption="{outerDocument.hostComponent.copyProvider.getCopyForId('exampleInReading')}" visible="{(data.attribute('enabledFlag').length() > 0 &amp;&amp; (Number(data.@enabledFlag.toString()) &amp; 8)) &amp;&amp; outerDocument.hostComponent.isTestDrive}"  />
                     </s:DataRenderer>
                 </fx:Component>
             </s:itemRenderer>
@@ -299,7 +337,7 @@
                                   isPlatformTablet="{hostComponent.isPlatformTablet}"/>
         </s:Group>
 
-        <components:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="20" dataProvider="{list.dataProvider}" includeIn="normalState" />
+        <components:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="15" dataProvider="{list.dataProvider}" includeIn="normalState" />
         <s:Button id="leftArrowButton" click="scrollBy(-1)" visible="{getStyle('showArrows')}" left="5" top="160" mouseEnabled="true" buttonMode="true" includeIn="normalState" enabled="false" />
         <s:Button id="rightArrowButton" click="scrollBy(1)" visible="{getStyle('showArrows')}" right="5" top="165" mouseEnabled="true" buttonMode="true" includeIn="normalState" />
     </s:Group>

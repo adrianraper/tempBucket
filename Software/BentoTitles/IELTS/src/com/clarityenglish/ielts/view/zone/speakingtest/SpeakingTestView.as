@@ -4,6 +4,7 @@ import com.clarityenglish.bento.view.base.BentoView;
 import com.clarityenglish.bento.view.recorder.RecorderView;
 import com.clarityenglish.bento.view.timer.TimerComponent;
 import com.clarityenglish.common.model.interfaces.CopyProvider;
+import com.clarityenglish.ielts.IELTSApplication;
 import com.clarityenglish.textLayout.components.AudioPlayer;
 import com.clarityenglish.textLayout.vo.XHTML;
 
@@ -95,6 +96,10 @@ public class SpeakingTestView extends BentoView{
 
     public function get assetFolder():String {
         return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
+    }
+
+    public function get isTestDrive():Boolean {
+        return (productVersion == IELTSApplication.TEST_DRIVE);
     }
 
     public function setState(state:String):void {
