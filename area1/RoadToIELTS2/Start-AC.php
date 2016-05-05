@@ -25,8 +25,6 @@
 	// Picking up IP and referrer for security checking
 	require_once '../securityCheck.php';
 	
-	// There is a strange bug that squishes everything up if the page is empty apart from the swf
-	echo "<p/>";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>

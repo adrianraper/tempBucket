@@ -111,7 +111,7 @@ package com.clarityenglish.ielts.view {
 						if (href.extension == "rss") {
 							directStart.unitID = exercise.parent().@id;
 						} else if (href.extension == "pdf") {
-							// go to certian tab and open pdf pop up window
+							// go to certain tab and open pdf pop up window
 							directStart.unitID = exercise.parent().@id;
 							sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
 						} else {

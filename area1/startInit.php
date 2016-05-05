@@ -13,7 +13,7 @@
 	$userName = $password = $extraParam = $licenceFile = $version = '';
 	$studentID = $email = $userID = $instanceID = '';
 	$referrer = $ip = $server = $productCode = $accountName = '';
-	$course = $startingPoint = $resize = '';
+	$course = $startingPoint = $resize = $navigation = '';
 
 	$locationFile = 'location.txt';
 	$courseFile = 'course.xml';
