@@ -288,9 +288,10 @@ package com.clarityenglish.ielts.view.zone {
 						}
 					}
 					
+					/* gh#1475
 					if (course.@["class"] == "speaking" && isDirectLinkStart) {
 						if (testZoneViewNavigator) testZoneViewNavigator.enabled = false;
-					}
+					}*/
 				}
 			}
 
