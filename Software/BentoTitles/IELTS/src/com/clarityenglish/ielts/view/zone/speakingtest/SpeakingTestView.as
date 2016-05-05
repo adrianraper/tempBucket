@@ -4,6 +4,7 @@ import com.clarityenglish.bento.view.base.BentoView;
 import com.clarityenglish.bento.view.recorder.RecorderView;
 import com.clarityenglish.bento.view.timer.TimerComponent;
 import com.clarityenglish.common.model.interfaces.CopyProvider;
+import com.clarityenglish.components.PageNumberDisplay;
 import com.clarityenglish.ielts.IELTSApplication;
 import com.clarityenglish.textLayout.components.AudioPlayer;
 import com.clarityenglish.textLayout.vo.XHTML;
@@ -12,7 +13,6 @@ import flash.events.Event;
 import flash.events.MouseEvent;
 
 import mx.collections.XMLListCollection;
-
 import mx.events.FlexEvent;
 import mx.events.StateChangeEvent;
 
@@ -51,6 +51,9 @@ public class SpeakingTestView extends BentoView{
 
     [SkinPart]
     public var completeLabel:Label;
+	
+	[SkinPart]
+	public var pageNumberDisplay:PageNumberDisplay;
 
     [Bindable]
     public var testXMLListCollection:XMLListCollection;
@@ -78,6 +81,15 @@ public class SpeakingTestView extends BentoView{
 
     [Bindable]
     public var isExitSpeaking:Boolean;
+	
+	[Bindable]
+	public var isDirectLinkStart:Boolean;
+	
+	[Bindable]
+	public var exerciseID:Number;
+	
+	[Bindable]
+	public var pageToScroll:Number;
 
     public var exerciseSelect:Signal = new Signal(XML, String);
 
@@ -107,6 +119,16 @@ public class SpeakingTestView extends BentoView{
         _currentState = state;
         invalidateSkinState();
     }
+	
+	override protected function commitProperties():void {
+		super.commitProperties();
+		
+		if (testXMLListCollection && isDirectLinkStart) {
+			if (exerciseID) {
+				pageToScroll = testXMLListCollection.source.(attribute("id") == exerciseID).childIndex();
+			}
+		}
+	}
 
     override protected function partAdded(partName:String, instance:Object):void {
         super.partAdded(partName, instance);

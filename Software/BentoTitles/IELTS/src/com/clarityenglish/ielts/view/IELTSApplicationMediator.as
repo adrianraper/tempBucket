@@ -110,7 +110,7 @@ package com.clarityenglish.ielts.view {
 						var href:Href = bentoProxy.createRelativeHref(Href.EXERCISE, exercise.@href);
 						if (href.extension == "rss") {
 							directStart.unitID = exercise.parent().@id;
-						} else if (href.extension == "pdf") {
+						} else if (href.extension == "pdf" || href.extension == "png") {
 							// go to certian tab and open pdf pop up window
 							directStart.unitID = exercise.parent().@id;
 							sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);

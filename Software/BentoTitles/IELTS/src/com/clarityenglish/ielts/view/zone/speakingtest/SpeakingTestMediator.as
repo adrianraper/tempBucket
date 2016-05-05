@@ -7,6 +7,8 @@ import com.clarityenglish.bento.view.base.BentoMediator;
 import com.clarityenglish.bento.view.base.BentoView;
 import com.clarityenglish.common.model.ConfigProxy;
 
+import mx.utils.ObjectUtil;
+
 import org.puremvc.as3.interfaces.IMediator;
 import org.puremvc.as3.interfaces.INotification;
 
@@ -30,6 +32,17 @@ public class SpeakingTestMediator extends BentoMediator implements IMediator {
 
         var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
         view.isPlatformTablet = configProxy.isPlatformTablet();
+		
+		var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+		var directStart:Object = configProxy.getDirectStart();
+		if (ObjectUtil.getClassInfo(directStart).properties.length > 0) {
+			view.isDirectLinkStart = true;
+			if (directStart.exerciseID) {
+				view.exerciseID = directStart.exerciseID;
+			}
+		} else {
+			view.isDirectLinkStart = false;
+		}
 
         /*var audioProxy:AudioProxy = facade.retrieveProxy(RecorderNotifications.RECORD_PROXY_NAME) as AudioProxy;
         view.isRecordEnabled = audioProxy.isRecordEnabled();*/
