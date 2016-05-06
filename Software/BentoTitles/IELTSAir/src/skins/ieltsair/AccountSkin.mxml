@@ -47,24 +47,6 @@
 				var selectEndDate:Date = DateUtil.dateAdd(selectStartDate, "y", 1);
 				examDateField.selectableRange = {rangeStart: selectStartDate, rangeEnd: selectEndDate};
 			}
-			
-			private function formatScreenDate(date:Date):String {
-				if (date) {
-					var objReplace:Object = new Object();
-					//trace("date's day is "+date.date);
-					//trace("date's month is "+date.month);
-					objReplace.day = date.date;
-					if (hostComponent.copyProvider.getLanguageCode() != "ZH") {
-						objReplace.month = DateUtil.formatDate(date, 'MMMM');
-					} else {
-						objReplace.month = DateUtil.formatDate(date, 'MM');
-					}
-					objReplace.year = date.fullYear;
-					return hostComponent.hostCopyProvider.getCopyForId("dateFormatLabel", objReplace);
-				}
-				
-				return '';
-			}
 		]]>
 	</fx:Script>
 
@@ -105,8 +87,7 @@
 					<s:HGroup>
 						<s:VGroup width="100%" height="100%" top="150">
 							<s:Label id="dateLabel" verticalAlign="bottom" fontSize="11" />
-							<mx:DateField id="examDateField" width="150" creationComplete="dateChooserInit(hostComponent.user);"
-										  labelFunction="formatScreenDate" />
+							<mx:DateField id="examDateField" width="150" creationComplete="dateChooserInit(hostComponent.user);" formatString="DD/MM/YY" />
 						</s:VGroup>
 						<s:Spacer width="25" />
 						<s:VGroup>
