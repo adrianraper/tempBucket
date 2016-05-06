@@ -110,9 +110,9 @@ package com.clarityenglish.ielts.view {
 						var href:Href = bentoProxy.createRelativeHref(Href.EXERCISE, exercise.@href);
 						if (href.extension == "rss") {
 							directStart.unitID = exercise.parent().@id;
-						} else if (href.extension == "pdf") {
+						} else if (href.extension == "pdf" || href.extension == "png") {
 							// go to certian tab and open pdf pop up window
-							directStart.unitID = exercise.parent().@id;
+							//directStart.unitID = exercise.parent().@id;
 							sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
 						} else {
 							// gh#877
@@ -154,7 +154,6 @@ package com.clarityenglish.ielts.view {
 					unit = bentoProxy.menuXHTML..unit.(@id == directStart.unitID)[0];
 					
 					if (unit) {
-						trace("exercise length: "+unit.exercise.(@group == directStart.groupID).length());
 						scormProxy.setTotalExercise(unit.exercise.(@group == directStart.groupID).length());
 						exercise = unit.exercise.(@group == directStart.groupID)[0];
 						if (exercise) {
