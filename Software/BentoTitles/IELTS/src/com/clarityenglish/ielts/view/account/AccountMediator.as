@@ -94,10 +94,11 @@
 //				case CommonNotifications.UPDATE_FAILED:
 //					view.showUpdateError();
 //					break;
-//				case BBNotifications.USER_UPDATED:
-//					view.showUpdateSuccess();
-//					view.isDirty = false;
-//					break;
+				case BBNotifications.USER_UPDATED:
+					//view.showUpdateSuccess();
+					//view.isDirty = false;
+					view.updateCountDownLabel();
+					break;
 //				case BBNotifications.LANGUAGE_CHANGED:
 //					view.reloadCopy(); // gh#72
 //					break;

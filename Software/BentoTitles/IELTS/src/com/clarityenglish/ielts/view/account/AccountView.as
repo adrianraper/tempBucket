@@ -200,6 +200,21 @@ package com.clarityenglish.ielts.view.account {
 			onViewCreationComplete();
 		}
 		
+		public function updateCountDownLabel():void {
+			if (user.examDate) {
+				var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
+				if (daysLeft > 0) {
+					countdownLabel.text = copyProvider.getCopyForId("countDownLabel1");
+				} else if (daysLeft == 0) {
+					countdownLabel.text = copyProvider.getCopyForId("countDownLabel2");
+				} else {
+					countdownLabel.text = copyProvider.getCopyForId("countDownLabel3");
+				}
+			} else {
+				countdownLabel.text = copyProvider.getCopyForId("alertEmptyDateLabel");
+			}
+		}
+		
 		protected override function onViewCreationComplete():void {
 			super.onViewCreationComplete();
 
@@ -207,18 +222,7 @@ package com.clarityenglish.ielts.view.account {
 			
 			if (countdownLabel) {
 				// We will only tell the user about the countdown if they have confirmed their exam date
-				if (user.examDate) {
-					var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
-					if (daysLeft > 0) {
-						countdownLabel.text = copyProvider.getCopyForId("countDownLabel1");
-					} else if (daysLeft == 0) {
-						countdownLabel.text = copyProvider.getCopyForId("countDownLabel2");
-					} else {
-						countdownLabel.text = copyProvider.getCopyForId("countDownLabel3");
-					}
-				} else {
-					countdownLabel.text = copyProvider.getCopyForId("alertEmptyDateLabel");
-				}
+				updateCountDownLabel();
 			}
 			
 			//if (setTestDateLabel) setTestDateLabel.text = copyProvider.getCopyForId("setTestDateLabel");
