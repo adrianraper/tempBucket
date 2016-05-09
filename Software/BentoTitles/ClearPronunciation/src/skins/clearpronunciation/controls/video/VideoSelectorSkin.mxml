@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:players="com.clarityenglish.controls.video.players.*" creationComplete="onCreationComplete(event)">
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:players="com.clarityenglish.controls.video.players.*"
+		xmlns:assets="skins.clearpronunciation.assets.exercise.*"
+		creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.controls.video.VideoSelector")]
@@ -8,19 +11,35 @@
 	
 	<fx:Declarations>
 		<s:DropShadowFilter id="dropShadowFilter" angle="260" distance="1.5" alpha="0.5" blurX="8" blurY="5" />
+		<s:DropShadowFilter id="dropShadowTopFilter" angle="90" distance="1.5" alpha="0.5" blurX="8" blurY="5" />
+
+		<s:Animate id="scriptRollOut" target="{scriptGroup}">
+			<s:SimpleMotionPath property="top" valueFrom="15" valueTo="240" />
+		</s:Animate>
+
+		<s:Animate id="scriptRollUp" target="{scriptGroup}">
+			<s:SimpleMotionPath property="top" valueFrom="240" valueTo="15" />
+		</s:Animate>
 	</fx:Declarations>
 	
 	<fx:Script>
 		<![CDATA[
+		import com.googlecode.bindagetools.Bind;
+
+			import flashx.textLayout.elements.TextFlow;
+
 			import mx.events.FlexEvent;
 			import mx.managers.FocusManager;
+
+			import org.osmf.events.TimeEvent;
 
 			import skins.clearpronunciation.controls.video.videoplayer.VideoPlayerSkin;
 
 			import spark.components.VideoPlayer;
 			import spark.events.IndexChangeEvent;
-			
-			protected function onCreationComplete(event:FlexEvent):void {
+		import spark.utils.TextFlowUtil;
+
+		protected function onCreationComplete(event:FlexEvent):void {
 				var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
 				if (settingsSharedObject.data["channelIndex"]) {
 					channelList.selectedIndex = settingsSharedObject.data["channelIndex"];
@@ -36,23 +55,74 @@
 				}
 				
 				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
+				Bind.fromProperty(hostComponent, "isScriptOpen").toFunction(function (isScriptOpen:Boolean):void {
+					if (isScriptOpen) {
+						scriptRollOut.play();
+					} else {
+						scriptRollUp.play();
+					}
+				});
+
+				videoPlayerBackRect.width = hostComponent.width + 5;
+				videoPlayerBackRect.height = hostComponent.height + 5;
+				videoPlayer.width = hostComponent.width
+				videoPlayer.height = hostComponent.height;
 			}
 			
 			protected function onPlaceholderClick(event:MouseEvent):void {
 				// For now the default index is 0, but latter we will get index from widgetlist which is user prefered.
-				videoList.selectedIndex = 0;
+				videoList.selectedIndex = hostComponent.videoReplayIndex ? hostComponent.videoReplayIndex : 0;
 				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+				if (videoList.dataProvider.getItemAt(hostComponent.videoReplayIndex).script.length() > 0 && !hostComponent.isScriptOpen) {
+					hostComponent.isScriptOpen = true;
+				}
 				// Manually set the focus here, for we manually change the video list index.
 				focusManager.setFocus(videoList);
 			}
-			
+
 			protected function onVideoListIndexChange(event:Event):void {
-				videoPlayer.visible = true; 
+				videoPlayer.visible = true;
+				// Click the video without script after video with script selected.
+				if (hostComponent.videoList.selectedItem.script.length() <= 0 && hostComponent.isScriptOpen) {
+					hostComponent.isScriptOpen = false;
+				}
 			}
 		]]>
 	</fx:Script>
+
+	<!-- Animation text-->
+	<s:Group id="scriptGroup" left="0" width="325" filters="{[dropShadowTopFilter]}" visible="{hostComponent.isVideoListHasScript}">
+		<s:Group width="322" height="230">
+			<s:Rect width="100%" height="100%" bottomRightRadiusX="12" bottomRightRadiusY="12">
+				<s:fill>
+					<s:SolidColor color="#F2F2F2" />
+				</s:fill>
+			</s:Rect>
+			<s:VGroup width="100%" height="100%" paddingLeft="26" paddingRight="26" paddingTop="16" paddingBottom="0" gap="10">
+				<s:VGroup height="150" width="100%" paddingLeft="4" paddingRight="4">
+					<s:RichEditableText id="scriptRichEditableText" height="100%" width="100%" verticalAlign="middle" editable="false" selectable="false" fontSize="13" />
+				</s:VGroup>
+				<s:Rect width="100%" height="1">
+					<s:fill>
+						<s:SolidColor color="#333333" />
+					</s:fill>
+				</s:Rect>
+				<s:VGroup paddingLeft="4" paddingRight="4" paddingTop="2" gap="8">
+					<s:HGroup gap="8">
+						<assets:redArrow />
+						<s:RichEditableText id="voicedRichEditableText" textFlow="{TextFlowUtil.importFromString(hostComponent.copyProvider.getCopyForId('voicedRichEditableText'))}" fontSize="10" color="#23565A" />
+					</s:HGroup>
+					<s:HGroup gap="8">
+						<assets:yellowArrow />
+						<s:RichEditableText id="unvoicedRichEditableText" textFlow="{TextFlowUtil.importFromString(hostComponent.copyProvider.getCopyForId('unvoicedRichEditableText'))}" fontSize="10" color="#23565A" />
+					</s:HGroup>
+				</s:VGroup>
+			</s:VGroup>
+		</s:Group>
+	</s:Group>
+
 	<!--video player black background-->
-	<s:Rect left="0" top="0" width="{hostComponent.width + 5}" height="{hostComponent.height + 5 }" filters="{[dropShadowFilter]}">
+	<s:Rect id="videoPlayerBackRect" left="0" top="0" filters="{[dropShadowFilter]}">
 		<s:fill>
 			<s:SolidColor color="0x273A45" />
 		</s:fill>
@@ -60,7 +130,7 @@
 		
 	<!-- The video players -->
 	<!--players:WebViewVideoPlayer id="videoPlayer" left="30" width="320" height="240" visible="{videoList.selectedItem != null}" /-->
-	<players:OSMFVideoPlayer id="videoPlayer" left="0" width="{hostComponent.width}" height="{hostComponent.height}" visible="{videoList.selectedItem != null}" />
+	<players:OSMFVideoPlayer id="videoPlayer" left="0" visible="{videoList.selectedItem != null}"  />
 	
 	<!-- Placeholder image -->
 	<s:Image id="placeholderImage" left="0" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
@@ -71,8 +141,7 @@
 			<s:HorizontalLayout />
 		</s:layout>
 	</s:List>
-	<s:Button id="scriptButton" left="411" top="172" width="50" height="45" />
-	
+
 	<!-- Video list -->
 	<s:Rect id="videoListRect" top="2" right="-75" width="71" height="236" topRightRadiusX="18" topRightRadiusY="18" bottomRightRadiusX="18" bottomRightRadiusY="18">
 		<s:fill>
@@ -82,26 +151,32 @@
 	<s:List id="videoList" top="4" right="-69" width="64" height="100%" horizontalScrollPolicy="off" minHeight="0" minWidth="0" borderVisible="false" contentBackgroundAlpha="0">
 		<s:itemRenderer>
 			<fx:Component>
-				<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true"> 
+				<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true">
 					<fx:Script>
 						<![CDATA[
-							[Bindable]
-							private var iconPath:String;
-							
-							[Bindable]
-							private var selectedIconPath:String;
-							
-							override public function set data(value:Object):void {
-								super.data = value;
-								
-								if (data) {
-									iconPath = outerDocument.hostComponent.href.rootPath + "/media/video/SoundVideoOff" + (itemIndex + 1) + ".png";
-									selectedIconPath = outerDocument.hostComponent.href.rootPath + "/media/video/SoundVideoOn" + (itemIndex + 1) + ".png";
-								}
-								
-								// #213
-								enabled = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8));
+						[Bindable]
+						private var iconPath:String;
+
+						[Bindable]
+						private var selectedIconPath:String;
+
+						override public function set data(value:Object):void {
+							super.data = value;
+
+							if (data) {
+								iconPath = outerDocument.hostComponent.href.rootPath + "/media/video/SoundVideoOff" + (itemIndex + 1) + ".png";
+								selectedIconPath = outerDocument.hostComponent.href.rootPath + "/media/video/SoundVideoOn" + (itemIndex + 1) + ".png";
 							}
+
+							// #213
+							enabled = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8));
+						}
+
+						protected function onScriptVideoClick(event:Event):void {
+							if (data.script.length() > 0 && !outerDocument.hostComponent.isScriptOpen) {
+								//outerDocument.hostComponent.isScriptOpen = true;
+							}
+						}
 						]]>
 					</fx:Script>
 					
@@ -110,14 +185,13 @@
 						<s:State name="hovered" />
 						<s:State name="selected" />
 					</s:states>
-					
-					<s:Group top="3">
+
+					<s:Group top="3" click="onScriptVideoClick(event)">
 						<s:BitmapImage source="{iconPath}" visible="{currentState == 'normal' || currentState == 'hovered'}" />
 						<s:BitmapImage source="{selectedIconPath}" visible="{currentState == 'selected'}" />
 					</s:Group>
-					
 				</s:ItemRenderer>
 			</fx:Component>
 		</s:itemRenderer>
-	</s:List>	
+	</s:List>
 </s:Skin>

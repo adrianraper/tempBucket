@@ -7,6 +7,7 @@ import com.clarityenglish.controls.video.events.VideoEvent;
 import com.clarityenglish.controls.video.events.VideoScoreEvent;
 import com.clarityenglish.controls.video.loaders.RssVideoLoader;
 import com.clarityenglish.textLayout.components.AudioPlayer;
+import com.clarityenglish.textLayout.elements.VideoElement;
 import com.clarityenglish.textLayout.events.AudioPlayerEvent;
 
 import flash.events.Event;
@@ -28,6 +29,7 @@ import org.osmf.events.TimeEvent;
 import spark.components.Button;
 import spark.components.Group;
 import spark.components.Image;
+import spark.components.Label;
 import spark.components.List;
 import spark.components.RichEditableText;
 import spark.components.supportClasses.SkinnableComponent;
@@ -59,10 +61,19 @@ import spark.utils.TextFlowUtil;
 		public var scriptButton:Button;
 
 		[SkinPart]
-		public var rollOutTextGroup:Group;
+		public var scriptRichEditableText:RichEditableText;
 
-		[SkinPart]
-		public var rollOutRichEditableText:RichEditableText;
+		[Bindable]
+		public var isScriptOpen:Boolean;
+
+		[Bindable]
+		public var isDependentScript: Boolean;
+
+		[Bindable]
+		public var videoReplayIndex:Number;
+
+		[Bindable]
+		public var isVideoListHasScript:Boolean;
 
 		public var href:Href;
 
@@ -88,7 +99,6 @@ import spark.utils.TextFlowUtil;
 		protected var _videoChanged:Boolean;
 
 		private var currentVideoStartTime:Date;
-		private var isRollOutTextOpen:Boolean;
 		private var _copyProvider:CopyProvider;
 		
 		public function VideoSelector() {
@@ -191,6 +201,11 @@ import spark.utils.TextFlowUtil;
 			if (_videoCollectionChanged) {
 				_videoCollectionChanged = false;
 				if (videoList) videoList.dataProvider = _videoCollection;
+				for each (var item:Object in _videoCollection) {
+					if (item.script.length() > 0) {
+						isVideoListHasScript = true;
+					}
+				}
 			}
 
 			if (_placeholderSourceChanged) {
@@ -261,12 +276,19 @@ import spark.utils.TextFlowUtil;
 
 		protected function onVideoSelected(event:Event):void {
 			_videoChanged = true;
+			videoReplayIndex = videoList.selectedIndex;
 
 			// Show the script button if there is a @scriptHref attribute
-			scriptButton.visible = (videoList.selectedItem && (videoList.selectedItem.attribute("scriptHref").length() > 0 || videoList.selectedItem.script.length() > 0));
-			/*if (videoList.selectedItem && videoList.selectedItem.child("script").length() > 0) {
-				stage.addEventListener(MouseEvent.CLICK, onStageClick);
-			}*/
+			if (scriptButton)
+				scriptButton.visible = (videoList.selectedItem.attribute("scriptHref").length() > 0 || videoList.selectedItem.script.length() > 0);
+
+			if (scriptRichEditableText && videoList.selectedItem.script.length() > 0) {
+				var scriptString:String = videoList.selectedItem.script;
+				var scriptTextFlow:TextFlow = TextFlowUtil.importFromString(scriptString);
+				scriptRichEditableText.textFlow = scriptTextFlow;
+			}
+
+			isDependentScript = videoList.selectedItem.attribute("isDependentScript").length() > 0;
 
 			invalidateProperties();
 		}
@@ -296,6 +318,10 @@ import spark.utils.TextFlowUtil;
 		 * @param event
 		 */
 		protected function onVideoStarted(event:VideoEvent):void {
+			if (!isScriptOpen && videoList.dataProvider.getItemAt(videoReplayIndex).script.length() > 0) {
+				isScriptOpen = true;
+				videoList.selectedIndex = videoReplayIndex;
+			}
 			currentVideoStartTime = new Date()
 		}
 
@@ -358,19 +384,6 @@ import spark.utils.TextFlowUtil;
 		protected function onScriptButtonClicked(event:MouseEvent):void {
 			if (videoList.selectedItem && videoList.selectedItem.attribute("scriptHref").length() > 0) {
 				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, videoList.selectedItem.@scriptHref, videoList.selectedItem, "scriptHref"));
-			} else if (videoList.selectedItem.script.length() > 0) { //gh#1164
-				if (!isRollOutTextOpen) {
-					rollOutTextGroup.width = 500;
-					rollOutTextGroup.visible = true;
-					var rollOutTextString:String = videoList.selectedItem.script;
-					var textFlow:TextFlow = TextFlowUtil.importFromString(rollOutTextString);
-					rollOutRichEditableText.textFlow = textFlow;
-					isRollOutTextOpen = true;
-				} else {
-					rollOutTextGroup.width = 0;
-					rollOutTextGroup.visible = false;
-					isRollOutTextOpen = false;
-				}
 			}
 		}
 
@@ -388,11 +401,13 @@ import spark.utils.TextFlowUtil;
 				component = component.parent;
 			}
 
-			if (videoList.selectedItem && videoList.selectedItem.child("script").length() > 0) {
-				if (!(component is VideoSelector)) {
-					rollOutTextGroup.width = 0;
-					rollOutTextGroup.visible = false;
-					isRollOutTextOpen = false;
+			if (!(component is VideoSelector)) {
+				if (isScriptOpen) {
+					isScriptOpen = false;
+					if (isDependentScript) {
+						videoPlayer.stop();
+						videoList.selectedItem = null;
+					}
 				}
 			}
 		}

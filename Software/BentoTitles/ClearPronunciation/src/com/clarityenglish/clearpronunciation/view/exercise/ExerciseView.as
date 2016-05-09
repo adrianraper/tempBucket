@@ -49,42 +49,6 @@ import mx.core.ClassFactory;
 		[SkinPart]
 		public var youWillButton:Button;
 
-		[SkinPart]
-		public var makeSoundsLabel:Label;
-
-		[SkinPart]
-		public var tabletAnimationAlertLabel:Label;
-
-		[SkinPart]
-		public var makeSoundsGroup:spark.components.Group;
-
-		[SkinPart]
-		public var instructionLabel:Label;
-
-		[SkinPart]
-		public var redArrowTitleLabel:Label;
-
-		[SkinPart]
-		public var redArrowLabel:Label;
-
-		[SkinPart]
-		public var yellowArrowLabel:Label;
-
-		[SkinPart]
-		public var yellowArrowTileLabel:Label;
-
-		[SkinPart]
-		public var leftAnimation:SWFLoader;
-
-		[SkinPart]
-		public var leftAnimationLabel:Label;
-
-		[SkinPart]
-		public var rightAnimation:SWFLoader;
-
-		[SkinPart]
-		public var rightAnimationLabel:Label;
-
 		[Bindable]
 		public var selectedExerciseNode:XML;
 
@@ -101,31 +65,6 @@ import mx.core.ClassFactory;
 
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
-
-			if (xhtml && !isPlatformTablet) {
-                var replaceObj:Object = {newline: '\n'};
-				if (selectedExerciseNode.parent().hasOwnProperty('@leftAnimation')) {
-					leftAnimation.source = xhtml.rootPath + '../../media/' + selectedExerciseNode.parent().@leftAnimation  + '.swf';
-					leftAnimationLabel.visible = true;
-                    replaceObj.ipa = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('leftIcon'));
-                    replaceObj.compareipa = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('rightIcon'));
-					leftAnimationLabel.text = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('leftIcon') + "Instruction", replaceObj);
-				} else {
-					leftAnimation.source = null;
-					leftAnimationLabel.visible = false;
-				}
-
-				if (selectedExerciseNode.parent().hasOwnProperty('@rightAnimation')) {
-					rightAnimation.source = xhtml.rootPath + '../../media/' + selectedExerciseNode.parent().@rightAnimation  + '.swf';
-					rightAnimationLabel.visible = true;
-                    replaceObj.ipa = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('rightIcon'));
-                    replaceObj.compareipa = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('leftIcon'));
-					rightAnimationLabel.text = copyProvider.getCopyForId(selectedExerciseNode.parent().attribute('rightIcon') + "Instruction", replaceObj);
-				} else {
-					rightAnimation.source = null;
-					rightAnimationLabel.visible = false;
-				}
-			}
 
 		}
 
@@ -168,27 +107,6 @@ import mx.core.ClassFactory;
 					break;
 				case youWillButton:
 					youWillButton.addEventListener(MouseEvent.CLICK, onYouWillButtonClick);
-					break;
-				case makeSoundsLabel:
-					makeSoundsLabel.text = copyProvider.getCopyForId("makeSoundsLabel");
-					break;
-				case instructionLabel:
-					instructionLabel.text = copyProvider.getCopyForId("instructionLabel");
-					break;
-				case redArrowTitleLabel:
-					redArrowTitleLabel.text = copyProvider.getCopyForId("redArrowTitleLabel");
-					break;
-				case redArrowLabel:
-					redArrowLabel.text = copyProvider.getCopyForId("redArrowLabel");
-					break;
-				case yellowArrowLabel:
-					yellowArrowLabel.text = copyProvider.getCopyForId("yellowArrowLabel");
-					break;
-				case yellowArrowTileLabel:
-					yellowArrowTileLabel.text = copyProvider.getCopyForId("yellowArrowTileLabel");
-					break;
-				case tabletAnimationAlertLabel:
-					tabletAnimationAlertLabel.text = copyProvider.getCopyForId("tabletAnimationAlertLabel");
 					break;
 			}
 		}

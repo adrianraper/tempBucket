@@ -58,7 +58,7 @@ VScrollBarThumbSkin and VScrollBarTrackSkin classes, respectively.
     <!---  The default skin class is VScrollBarTrackSkin.  
             @copy spark.components.supportClasses.TrackBase#track 
             @see spark.skins.spark.VScrollBarTrackSkin -->
-    <s:Button id="track" top="16" bottom="15" height="54"
+    <s:Button id="track" top="0" bottom="0" height="54"
               focusEnabled="false" tabEnabled="false" visible="false"
               skinClass="spark.skins.spark.VScrollBarTrackSkin" />
     

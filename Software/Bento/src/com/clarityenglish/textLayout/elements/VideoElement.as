@@ -1,7 +1,9 @@
 package com.clarityenglish.textLayout.elements {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.common.model.ConfigProxy;
-	import com.clarityenglish.controls.video.VideoSelector;
+import com.clarityenglish.common.model.CopyProxy;
+import com.clarityenglish.common.model.interfaces.CopyProvider;
+import com.clarityenglish.controls.video.VideoSelector;
 	import com.clarityenglish.controls.video.players.OSMFVideoPlayer;
 	
 	import flash.events.Event;
@@ -172,9 +174,11 @@ package com.clarityenglish.textLayout.elements {
 					var facade:IFacade = Facade.getInstance();
 					var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+					var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 					videoSelector.href = bentoProxy.menuXHTML.href;
 					videoSelector.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
 					videoSelector.videoCollection = new XMLListCollection(items);
+					videoSelector.copyProvider = copyProvider;
 					if (poster) videoSelector.placeholderSource = bentoProxy.menuXHTML.href.rootPath + "/" + poster;
 					
 					component = videoSelector;

@@ -12,12 +12,15 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import mx.events.FlexEvent;
+		import flashx.textLayout.elements.TextFlow;
+
+		import mx.events.FlexEvent;
 			
 			import spark.components.VideoPlayer;
 			import spark.events.IndexChangeEvent;
-			
-			protected function onCreationComplete(event:FlexEvent):void {
+		import spark.utils.TextFlowUtil;
+
+		protected function onCreationComplete(event:FlexEvent):void {
 				channelList.visible = false;
 				
 				videoList.selectedIndex = 0;
@@ -28,6 +31,8 @@
 				} else {
 					videoList.visible = false;
 				}
+
+				scriptButton.addEventListener(MouseEvent.CLICK, onScriptButtonClicked);
 			}
 			
 			protected override function commitProperties():void {
@@ -37,6 +42,19 @@
 					videoList.selectedIndex = 0;
 					videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 					hostComponent.autoPlay = false;
+				}
+			}
+
+			protected function onScriptButtonClicked(event:MouseEvent):void {
+				if (videoList.selectedItem.script.length() > 0) { //gh#1164
+					if (!hostComponent.isScriptOpen) {
+						var scriptString:String = videoList.selectedItem.script;
+						var scriptTextFlow:TextFlow = TextFlowUtil.importFromString(scriptString);
+						scriptRichEditableText.textFlow = scriptTextFlow;
+						hostComponent.isScriptOpen = true;
+					} else {
+						hostComponent.isScriptOpen = false;
+					}
 				}
 			}
 		]]>
@@ -56,11 +74,11 @@
 		</s:layout>
 	</s:List>
 
-	<s:HGroup id="rollOutHGroup" right="155" top="30" gap="-6">
+	<s:HGroup right="155" top="30" gap="-6">
 		<s:VGroup paddingTop="10" width="50">
 			<s:Button id="scriptButton" buttonMode="true" useHandCursor="true" label="Read" />
 		</s:VGroup>
-		<s:Group id="rollOutTextGroup" width="0" height="450">
+		<s:Group height="450" width="{hostComponent.isScriptOpen? 500 : 0}" visible="{hostComponent.isScriptOpen}">
 			<s:Rect width="100%" height="100%" filters="{[dropShadowFilter]}" bottomLeftRadiusX="8" bottomLeftRadiusY="8" bottomRightRadiusX="8" bottomRightRadiusY="8" topLeftRadiusX="8" topLeftRadiusY="8">
 				<s:fill>
 					<s:SolidColor color="#FFFFFF" />
@@ -72,7 +90,7 @@
 				</s:fill>
 			</s:Rect>
 			<s:Scroller width="85%" height="85%" verticalCenter="20" horizontalCenter="0">
-				<s:RichEditableText id="rollOutRichEditableText" editable="false" selectable="false" verticalAlign="middle"/>
+				<s:RichEditableText id="scriptRichEditableText" editable="false" selectable="false" verticalAlign="middle"/>
 			</s:Scroller>
 		</s:Group>
 	</s:HGroup>

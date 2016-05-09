@@ -5,7 +5,8 @@ package com.clarityenglish.controls.video.players {
 import flash.display.StageDisplayState;
 
 import flash.events.Event;
-	import flash.events.MouseEvent;
+import flash.events.FullScreenEvent;
+import flash.events.MouseEvent;
 	import flash.system.System;
 	
 	import mx.core.mx_internal;
@@ -64,13 +65,14 @@ import org.osmf.media.MediaPlayerState;
 			event.target.bufferTime = BUFFER_TIME;
 		}
 		
-		protected function onStateChange(event:MediaPlayerStateChangeEvent):void {		
+		protected function onStateChange(event:MediaPlayerStateChangeEvent):void {
 			switch (event.state) {
 				case MediaPlayerState.READY:
 					dispatchEvent(new VideoEvent(VideoEvent.VIDEO_READY));
 					//gh#145 replay
-					if (endVideo)
+					if (endVideo) {
 						this.pause();
+					}
 					break;
 				case MediaPlayerState.PLAYING:
 					// gh#1449
@@ -114,7 +116,8 @@ import org.osmf.media.MediaPlayerState;
 		}
 
 		protected function onVideoPlayerComplete(event:Event):void {
-			stage.displayState = StageDisplayState.NORMAL;
+			if (stage.displayState == StageDisplayState.FULL_SCREEN)
+				fullScreenButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
 		}
 	}
 }
