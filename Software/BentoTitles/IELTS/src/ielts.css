@@ -49,6 +49,8 @@ global {
 	writingCompareEveryoneColor: #2B3B13;
 	writingCompareMyColor: #6F9C2D;
 	writingColorDark: #364A17;
+	writingExamPracticeColor: #7DAB36;
+	writingExamPracticeDarkColor: #2E4C11;
 	writingIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconSmall');
 	writingIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconBare');
 	
@@ -56,6 +58,8 @@ global {
 	readingCompareEveryoneColor: #303030;
 	readingCompareMyColor: #004657;
 	readingColorDark: #005063;
+	readingExamPracticeColor: #009DC3;
+	readingExamPracticeDarkColor: #00495A;
 	readingIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall');
 	readingIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconBare');
 	
@@ -70,6 +74,8 @@ global {
 	listeningCompareEveryoneColor: #572300;
 	listeningCompareMyColor: #FF6600;
 	listeningColorDark: #7A3100;
+	listeningExamPracticeColor: #FF6600;
+	listeningExamPracticeDarkColor: #712D00;
 	listeningIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconSmall');
 	listeningIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconBare');
 	
@@ -310,6 +316,11 @@ zone|ExamPracticeZoneSectionView #leftArrowButton {
 zone|ExamPracticeZoneSectionView #rightArrowButton {
 	skinClass: ClassReference("skins.ielts.zone.ui.RightArrowButtonSkin");
 }
+
+zone|ExamPracticeZoneSectionView zoneui|ExamPracticeButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.ExamPracticeButtonSkin");
+}
+
 
 /* Exercise view styles */
 exercise|ExerciseView {
