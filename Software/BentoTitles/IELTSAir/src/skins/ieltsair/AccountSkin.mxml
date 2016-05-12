@@ -279,7 +279,7 @@
 											]]>
 										</fx:Script>
 										<ui:StudyGuideButton id="studyGuideButton" itemIndex="{itemIndex}"
-															 linkSource="{outerDocument.hostComponent.copyProvider.getCopyForId('studyGuideButtonLink' + (itemIndex + 1))}" buttonMode="true" useHandCursor="true"/>
+															 linkSource="{outerDocument.hostComponent.copyProvider.getCopyForId('studyGuideButtonLink' + outerDocument.hostComponent.productVersion + (itemIndex + 1))}" buttonMode="true" useHandCursor="true"/>
 									</s:ItemRenderer>
 								</fx:Component>
 							</s:itemRenderer>
