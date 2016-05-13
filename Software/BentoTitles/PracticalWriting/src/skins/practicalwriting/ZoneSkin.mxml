@@ -80,7 +80,10 @@
 
         <s:VGroup gap="15">
             <s:SWFLoader id="priceBannerSWFLoader" source="@Embed(source='/skins/practicalwriting/assets/zone/priceBanner.png')" useHandCursor="true" buttonMode="true" includeIn="demo" />
-            <s:SWFLoader id="tabletPhoneBanner" source="@Embed(source='/skins/practicalwriting/assets/zone/tabletPhoneBanner.png')" includeIn="demo" />
+            <s:Group>
+                <s:SWFLoader id="tabletPhoneBanner" source="@Embed(source='/skins/practicalwriting/assets/zone/tabletPhoneBanner.png')" scaleX="0.5" scaleY="0.5" visible="{!hostComponent.isPlatformTablet}" />
+                <s:SWFLoader id="phoneBanner" source="@Embed(source='/skins/practicalwriting/assets/zone/phoneBanner.png')" scaleX="0.5" scaleY="0.5" visible="{hostComponent.isPlatformTablet}" />
+            </s:Group>
         </s:VGroup>
 
     </s:VGroup>

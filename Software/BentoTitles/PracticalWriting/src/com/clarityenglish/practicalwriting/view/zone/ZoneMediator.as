@@ -9,6 +9,7 @@ import com.clarityenglish.bento.view.base.BentoMediator;
 import com.clarityenglish.bento.view.base.BentoView;
 import com.clarityenglish.common.CommonNotifications;
 import com.clarityenglish.common.events.MemoryEvent;
+import com.clarityenglish.common.model.ConfigProxy;
 import com.clarityenglish.common.model.CopyProxy;
 import com.clarityenglish.common.model.LoginProxy;
 import com.clarityenglish.common.model.MemoryProxy;
@@ -68,6 +69,9 @@ import org.puremvc.as3.interfaces.INotification;
             }
 
             view.writeMemory.add(onMemoryWrite);
+            
+            var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+            view.isPlatformTablet = configProxy.isPlatformTablet();
         }
 
         override public function onRemove():void {

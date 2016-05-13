@@ -83,6 +83,9 @@ import spark.primitives.Rect;
 
         [SkinPart]
         public var backwardButton:Button;
+        
+        [Bindable]
+        public var isPlatformTablet:Boolean;
 
         public var backHome:Signal = new Signal();
         public var writeMemory:Signal = new Signal(MemoryEvent);
