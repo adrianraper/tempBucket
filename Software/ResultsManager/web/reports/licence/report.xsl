@@ -36,8 +36,7 @@
 					function onLoaded() {
 						
 						<xsl:if test="count(report/row) = 0">return</xsl:if>
-						<xsl:if test="count(report/row) = 0">return</xsl:if>
-						
+
 						grid = dhtmlXGridFromTable("reportTable");
 						grid.setImagePath("../../reports/standard/dhtmlx/dhtmlxGrid/codebase/imgs/");
 						grid.setSkin("light");
@@ -59,22 +58,18 @@
 						var headerString = [];
 						var sortTypes = [];
 						
-						<xsl:if test="report/row/@titleName">headerString.push("#text_filter");sortTypes.push("str");addGroupingOptions("<xsl:value-of select="report/language//lit[@name='report_title']"/>");</xsl:if>
-						<xsl:if test="report/row/@userName">headerString.push("#text_filter");sortTypes.push("str");addGroupingOptions("<xsl:value-of select="report/language//lit[@name='report_student']"/>");</xsl:if>
-                        <xsl:if test="report/row/@licences">headerString.push("#text_filter");sortTypes.push("str");addGroupingOptions("<xsl:value-of select="report/language//lit[@name='report_licences']"/>");</xsl:if>
-						
-						<xsl:if test="report/row/@score">sortTypes.push("int");</xsl:if>
-						<xsl:if test="report/row/@duration">sortTypes.push("duration_custom");</xsl:if>
-						<xsl:if test="report/row/@start_date">sortTypes.push("date");</xsl:if>
-						
-						// Change average score to be a number not a string
-						<xsl:if test="report/row/@average_score">sortTypes.push("int");</xsl:if>
-						<xsl:if test="report/row/@licences">sortTypes.push("int");</xsl:if>
-						
+						/* gh#1470
+                         * Clearly not really understanding how grids are setup. This report is fixed, so no need for this lot...
+                        <xsl:if test="report/row/@titleName">headerString.push("#text_filter");sortTypes.push("str");addGroupingOptions("<xsl:value-of select="report/language//lit[@name='report_title']"/>");</xsl:if>
+						<xsl:if test="report/row/@groupName">headerString.push("#text_filter");sortTypes.push("str");addGroupingOptions("<xsl:value-of select="report/language//lit[@name='report_group']"/>");</xsl:if>
+
 						<xsl:if test="report/row/@total_time">sortTypes.push("duration_custom");</xsl:if>
-						
-						grid.attachHeader(headerString.join(","));
-						grid.setColSorting(sortTypes.join(","));
+						<xsl:if test="report/row/@licences">sortTypes.push("int");</xsl:if>
+						<xsl:if test="report/row/@sessions">sortTypes.push("int");</xsl:if>
+                        grid.attachHeader(headerString.join(","));
+                        grid.setColSorting(sortTypes.join(","));
+						*/
+                        grid.setColSorting("str,str,duration_custom,int,int");
 						
 						grid.enableBlockSelection();
 						
