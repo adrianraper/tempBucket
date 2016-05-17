@@ -45,7 +45,7 @@
     </s:Rect>
 
     <!--Left column-->
-    <s:VGroup left="5" width="255" height="80%" top="130" top.demo="{height > 990 ? 130 : 110}" horizontalAlign="center" gap="40" gap.demo="{height > 990 ? 40 : 12}">
+    <s:VGroup left="5" width="255" height="80%" top="130" top.demo="{height > 990 ? 130 : 110}" horizontalAlign="center" gap="30" gap.demo="{height > 990 ? 30 : 12}">
         <vo:PieChartButton id="pieChartButton" width="200" height="200" node="{hostComponent.course}" fillColor="{getStyle('pieChartFillColor')[hostComponent.course.childIndex()]}" bottomColor="{getStyle('pieChartBottomColor')[hostComponent.course.childIndex()]}" backgroundColor="#EEEFF0"/>
 
         <!-- Remove stats until we have a sensible number of data points
