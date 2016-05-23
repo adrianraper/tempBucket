@@ -160,7 +160,8 @@ class ClarityService extends AbstractService {
             Session::set('userID', $loginObj->F_UserID);
 
             Session::set('rootID', $loginObj->F_RootID);
-			Session::set('rootGroupID', $loginObj->F_GroupID);
+            // gh#671 This is actually the current user's group, not the top group
+			//Session::set('rootGroupID', $loginObj->F_GroupID);
 			Session::set('groupIDs', array_merge(array($loginObj->F_GroupID), $this->manageableOps->getExtraGroups($loginObj->F_UserID)));
 			Session::set('max'.User::USER_TYPE_TEACHER, $loginObj->F_MaxTeachers);
 			Session::set('max'.User::USER_TYPE_AUTHOR, $loginObj->F_MaxAuthors);
@@ -193,12 +194,13 @@ class ClarityService extends AbstractService {
 			} else {
 				Session::set('no_students', ($manageablesCount > $GLOBALS['max_manageables_for_student_display']));
 			}
-		//	NetDebug::trace("for root ".(int)$loginObj->F_RootID.", users=$manageablesCount");
 
 			// v3.4 I would like to send back (some) account root information as well (remember that accounts in RM means titles)
 			// v3.6 Maybe it is better to do a separate getAccount call as I also want things like adminUser's email
 			$accountRoot = $this->manageableOps->getAccountRoot($loginObj->F_RootID);
-			//NetDebug::trace('accountRoot='.$accountRoot->prefix);
+
+            // gh#671
+            Session::set('rootGroupID', $this->manageableOps->getGroupIdForUserId($accountRoot->getAdminUserID()));
 
 			// gh#769
 			if ((int)$accountRoot->accountType == 5)
@@ -282,14 +284,15 @@ class ClarityService extends AbstractService {
         // gh#1424 Different call if you want everything for the top level group
         // Actually, it might make no difference to use new code for all calls
 		// There is some wastage if you are a teacher for one small group in a big account - but I think insignificant
-        //$groupIds = Session::get('groupIDs');
-        //if (Session::get('rootGroupID') == $groupsIds[0]) {
-		//	AbstractService::$debugLog->info("New code");
-		return $this->manageableOps->getAllManageablesFromRoot();
-        //} else {
-		//	AbstractService::$debugLog->info("Going with the old method");
-		//   return $this->manageableOps->getAllManageables();
-        //}
+		// gh#671 No. The new method does NOT pick up for extra teacher groups. So revert back if you are not at the root
+        $groupIds = Session::get('groupIDs');
+        if (Session::get('rootGroupID') == $groupIds[0]) {
+			//AbstractService::$debugLog->info("New code as root group=".Session::get('rootGroupID')." and top group=".$groupIds[0]);
+			return $this->manageableOps->getAllManageablesFromRoot();
+        } else {
+			//AbstractService::$debugLog->info("Going with the old method as root group=".Session::get('rootGroupID')." and top group=".$groupIds[0]);
+			return $this->manageableOps->getAllManageables();
+        }
     }
 	
 	public function getContent() {
