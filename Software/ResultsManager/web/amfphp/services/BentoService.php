@@ -102,7 +102,8 @@ class BentoService extends AbstractService {
 			AbstractService::$debugLog->setIdent(Session::get('userID'));
 			AbstractService::$controlLog->setIdent(Session::get('userID'));
 			
-			$this->loginOps->setTimeZoneForUser(Session::get('userID')); // gh#156
+			// gh#156 No - we don't want to set the php timezone to anything other than utc
+			//$this->loginOps->setTimeZoneForUser(Session::get('userID')); // gh#156
 		}
 		
 		if (Session::is_set('rootID')) {
@@ -286,7 +287,7 @@ class BentoService extends AbstractService {
 	//function login($username, $studentID, $email, $password, $loginOption, $instanceID) {
 	// gh#46 This first call might change the dbHost that the session uses
 	// gh#66 RotterdamBuilder will send allowedUserTypes and change licence
-	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null, $allowedUserTypes = null) {
+	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null, $allowedUserTypes = null, $clientTimezoneOffset = null) {
 		if ($dbHost)
 			$this->initDbHost($dbHost);
 
@@ -339,7 +340,7 @@ class BentoService extends AbstractService {
 				($loginOption & User::LOGIN_BY_ANONYMOUS && $loginObj == NULL)) {
 				$userObj = $this->loginOps->anonymousUser($rootID);
 			} else {
-				$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $verified, $allowedUserTypes, $rootID, $productCode);
+				$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $verified, $allowedUserTypes, $rootID, $productCode, $clientTimezoneOffset);
 			}
 		} elseif ($licence->signInAs == Title::SIGNIN_ANONYMOUS) {
 			//AbstractService::$debugLog->notice ("licence->signInAs=" . $licence->signInAs);
@@ -350,7 +351,7 @@ class BentoService extends AbstractService {
 		} else {
 			//AbstractService::$debugLog->notice ("licence->signInAs=" . $licence->signInAs);
 			// Confirm that the user details are correct
-			$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $verified, $allowedUserTypes, $rootID, $productCode);
+			$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $verified, $allowedUserTypes, $rootID, $productCode, $clientTimezoneOffset);
 		}
 		
 		$user = new User();
@@ -623,7 +624,8 @@ class BentoService extends AbstractService {
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param dateNow - used to get client time
 	 */
-	public function writeScore($user, $sessionId, $dateNow, $scoreObj) {
+	// gh#156 Send client timezoneOffset with every score 
+	public function writeScore($user, $sessionId, $dateNow, $scoreObj, $clientTimezoneOffset = null) {
 		// Manipulate the score object from Bento into PHP format
 		// TODO Surely we should be trying to keep the format and names the same!
 		$score = new Score();
@@ -639,13 +641,28 @@ class BentoService extends AbstractService {
 		} else {
 			$score->score = -1;
 		}
-		
-		$score->duration = $scoreObj['duration'];
-		
+
+		// gh#1231 Reasonableness test on durations from the client (upper limit 14400 = 4 hours, 60 seconds is default if actual is -ve)
+		$score->duration = ($scoreObj['duration'] > 14400) ? 14400 : ($scoreObj['duration'] < 0) ? 60 : $scoreObj['duration'];
+
+		// gh#156 If we know a timezoneOffset, use server time (UTC) + this to get an accurate local time and ignore the sent time
+        // php version differences have big impact on -ve passed integer from amfphp, so split into number and sign
+        // How about tablets?
+		if ($clientTimezoneOffset !== null && isset($clientTimezoneOffset['minutes'])) {
+            $offset = $clientTimezoneOffset['minutes'];
+            $negative = (boolean)$clientTimezoneOffset['negative'];
+			$serverDateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+            $clientDifference = new DateInterval('PT'.strval($offset).'M');
+            if ($negative) {
+                $dateNow = $serverDateStampNow->add($clientDifference)->format('Y-m-d H:i:s');
+            } else {
+                $dateNow = $serverDateStampNow->sub($clientDifference)->format('Y-m-d H:i:s');
+            }
+		}
 		$score->dateStamp = $dateNow;
 		$score->sessionID = $sessionId;
 		$score->userID = $user->userID;
-		
+
 		// Write the score record
 		$score = $this->progressOps->insertScore($score, $user);
 		

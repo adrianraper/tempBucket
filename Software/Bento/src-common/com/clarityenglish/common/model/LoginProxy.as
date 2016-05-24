@@ -118,9 +118,9 @@ import flash.events.TimerEvent;
             if (loginObj && configProxy.getConfig().ip)
                 loginObj.ip = configProxy.getConfig().ip;
 
-            // gh#156, gh#1231
-            if (loginObj)
-                loginObj.timezoneOffset = new Date().timezoneOffset.toString();
+            // gh#156, gh#1231 Update to pass alone, not part of loginObj. Will be number of minutes, including -ve numbers
+            // Just send this with writeScore, no need during login
+            //var clientTimezoneOffset:Number = new Date().timezoneOffset;
 
             // #340
             // Network allows anonymous entry if all fields are blank
@@ -191,6 +191,7 @@ import flash.events.TimerEvent;
 
             // gh#39 You might not know an exact productCode, in which case we have to send comma delimited list
             // gh#36 Also need dbHost if this is the first call
+            // gh#156 Drop timezoneOffset
             var params:Array = [loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, rootID, configProxy.getProductCode(), configProxy.getConfig().dbHost];
             new RemoteDelegate("login", params, this).execute();
         }

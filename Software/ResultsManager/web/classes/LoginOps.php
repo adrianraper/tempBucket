@@ -25,7 +25,8 @@ class LoginOps {
 	// Bento login has different options than RM
 	// For now write this as a different function so it can exist in the same file yet be completely different
 	// #503 rootID is now an array or rootIDs, although there will only be more than one if subRoots is set in the licence
-	function loginBento($loginObj, $loginOption, $verified, $userTypes, $rootID, $productCode = null) {
+	// gh#156 separate timezoneOffset
+	function loginBento($loginObj, $loginOption, $verified, $userTypes, $rootID, $productCode = null, $clientTimezoneOffset = null) {
 		// Pull out the relevant login details from the passed object
 		// loginOption controls what fields you use to login with.
 		// TODO. The code below doesn't properly do username+studentID at the moment
@@ -278,10 +279,6 @@ EOD;
 				throw $this->copyOps->getExceptionForId("errorUserExpired", array("expiryDate" => date("d M Y", strtotime($dbLoginObj->F_ExpiryDate))));
 		}
 		
-		//$logMessage = "login $keyValue success";
-		//if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
-		//AbstractService::$debugLog->info($logMessage);
-		
 		// Authenticate the user with the session
 		// gh#1140 In case name is null
 		$sessionName = (string)$dbLoginObj->F_UserID.$dbLoginObj->F_UserName;
@@ -290,26 +287,26 @@ EOD;
 		// gh#156 - update the timezone difference for this user in the database
 		// gh#1231
 		// Should come in as number of minutes needed to be added to local time to get UTC. So HKG will be -480.
-		//	Here we convert to save in db as number of hours ahead of UTC. So HKG will be 8
-		// TODO It might be neater to save as number of minutes that you should add to local time to get UTC - mirroring as3/ECMA
-		// especially as rare locations are 15/45 mins apart from UTC which float 3.1 in MySQL can't do.
-        //AbstractService::$debugLog->info("set user ".$dbLoginObj->F_UserID." timezone to ".$loginObj["timezoneOffset"]);
-        // gh#1231 Cope with the Number cast as uint from as3 Flash Player bug
-        if ($loginObj["timezoneOffset"] > 4294966500) {
-            $loginObj["timezoneOffset"] = -(4294967296 - $loginObj["timezoneOffset"]);
-        }
-        $timezoneOffset = -(intval($loginObj["timezoneOffset"])/60);
+		// gh#156 Realize that better to include timezoneOffset separate from loginObj as this is often null
+		// But there is no point saving in T_User if we send the same offset with each score, which is the only place we use it
+		/*
+        AbstractService::$debugLog->info("will check existing timezone offset as new one is $clientTimezoneOffset");
+        if ($clientTimezoneOffset !== null) {
+	        // gh#1231 Cope with the Number cast as uint from as3 Flash Player bug
+            if ($clientTimezoneOffset > 4294966500)
+                $clientTimezoneOffset = -(4294967296 - $clientTimezoneOffset);
 
-        // Sanity check
-        if ($timezoneOffset > 12 || $timezoneOffset < -12)
-            $timezoneOffset = 0;
+            // Sanity check
+            if ($clientTimezoneOffset < 660 && $clientTimezoneOffset > -840) {
+                AbstractService::$debugLog->info("update as old was ". $dbLoginObj->F_TimeZoneOffset);
 
-		// Only update if needed
-		if ($timezoneOffset != $dbLoginObj->F_TimeZoneOffset) {
-            //AbstractService::$debugLog->info("updated time zone in db to $timezoneOffset from ".$dbLoginObj->F_TimeZoneOffset);
-            $this->db->Execute("UPDATE T_User SET F_TimeZoneOffset=? WHERE F_UserID=?", array($timezoneOffset, $dbLoginObj->F_UserID));
+                // Update if different from before
+                if ($clientTimezoneOffset != $dbLoginObj->F_TimeZoneOffset)
+                    $this->db->Execute("UPDATE T_User SET F_TimeZoneOffset=? WHERE F_UserID=?", array($clientTimezoneOffset, $dbLoginObj->F_UserID));
+            }
         }
-		
+		*/
+
 		// Return the $dbLoginObj so the specific service can continue with whatever action it likes
 		return $dbLoginObj;
 
@@ -923,43 +920,48 @@ SQL;
 		return $account;
 	}
 	
-	// gh#156
+	// gh#156 not used anymore
 	public function setTimeZoneForUser($userID) {
 		$zones = array(
-	        'Kwajalein' => -12.00,
-	        'Pacific/Midway' => -11.00,
-	        'Pacific/Honolulu' => -10.00,
-	        'America/Anchorage' => -9.00,
-	        'America/Los_Angeles' => -8.00,
-	        'America/Denver' => -7.00,
-	        'America/Tegucigalpa' => -6.00,
-	        'America/New_York' => -5.00,
-	        'America/Caracas' => -4.30,
-	        'America/Halifax' => -4.00,
-	        'America/St_Johns' => -3.30,
-	        'America/Argentina/Buenos_Aires' => -3.00,
-	        'America/Sao_Paulo' => -3.00,
-	        'Atlantic/South_Georgia' => -2.00,
-	        'Atlantic/Azores' => -1.00,
-	        'Europe/Dublin' => 0,
-	        'Europe/Belgrade' => 1.00,
-	        'Europe/Minsk' => 2.00,
-	        'Asia/Kuwait' => 3.00,
-	        'Asia/Tehran' => 3.30,
-	        'Asia/Muscat' => 4.00,
-	        'Asia/Yekaterinburg' => 5.00,
-	        'Asia/Kolkata' => 5.30,
-	        'Asia/Katmandu' => 5.45,
-	        'Asia/Dhaka' => 6.00,
-	        'Asia/Rangoon' => 6.30,
-	        'Asia/Krasnoyarsk' => 7.00,
-	        'Asia/Brunei' => 8.00,
-	        'Asia/Seoul' => 9.00,
-	        'Australia/Darwin' => 9.30,
-	        'Australia/Canberra' => 10.00,
-	        'Asia/Magadan' => 11.00,
-	        'Pacific/Fiji' => 12.00,
-	        'Pacific/Tongatapu' => 13.00
+	        'Pacific/Midway' => 660,
+	        'Pacific/Honolulu' => 600,
+            'Pacific/Marquesas' => 570,
+	        'America/Anchorage' => 540,
+	        'America/Los_Angeles' => 480,
+	        'America/Denver' => 420,
+	        'America/Tegucigalpa' => 360,
+	        'America/New_York' => 300,
+	        'America/Caracas' => 270,
+	        'America/Belize' => 240,
+	        'America/St_Johns' => 210,
+	        'America/Sao_Paulo' => 180,
+	        'Atlantic/South_Georgia' => 120,
+	        'Atlantic/Azores' => 60,
+	        'Europe/London' => 0,
+	        'Europe/Belgrade' => -60,
+	        'Europe/Minsk' => -120,
+	        'Asia/Kuwait' => -180,
+	        'Asia/Tehran' => -210,
+	        'Asia/Muscat' => -240,
+            'Asia/Kabul' => -270,
+            'Asia/Karachi' => -300,
+	        'Asia/Kolkata' => -330,
+	        'Asia/Katmandu' => -345,
+	        'Asia/Dhaka' => -360,
+	        'Asia/Rangoon' => -390,
+	        'Asia/Krasnoyarsk' => -420,
+	        'Asia/Hong_Kong' => -480,
+            'Australia/Eucla' => -525,
+	        'Asia/Tokyo' => -540,
+	        'Australia/Darwin' => -570,
+	        'Australia/Canberra' => -600,
+            'Australia/Lord_Howe' => -630,
+	        'Asia/Vladivostok' => -660,
+            'Pacific/Norfolk' => -690,
+	        'Pacific/Fiji' => -720,
+            'Pacific/Chatham' => -765,
+	        'Pacific/Tongatapu' => -780,
+            'Pacific/Kiritimati' => -840
     	);
     	
     	$cols = $this->db->getCol("SELECT F_TimeZoneOffset FROM T_User WHERE F_UserID=?", array($userID));

@@ -880,8 +880,8 @@ INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (1143, NOW(), 'pending emails');
 
-ALTER TABLE T_User ADD COLUMN F_TimeZoneOffset FLOAT(3,1) NULL DEFAULT 0;
-ALTER TABLE T_User_Expiry ADD COLUMN F_TimeZoneOffset FLOAT(3,1) NULL DEFAULT 0;
+--ALTER TABLE T_User ADD COLUMN F_TimeZoneOffset FLOAT(3,1) NULL DEFAULT 0;
+--ALTER TABLE T_User_Expiry ADD COLUMN F_TimeZoneOffset FLOAT(3,1) NULL DEFAULT 0;
 
 INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
@@ -1228,7 +1228,6 @@ CREATE TABLE `T_User_Deleted` (
   `F_RegisterMethod` char(16) DEFAULT NULL,
   `F_ContactMethod` varchar(255) DEFAULT NULL,
   `F_InstanceID` text,
-  `F_TimeZoneOffset` float(3,1) DEFAULT '0.0',
   `F_Memory` mediumtext,
   PRIMARY KEY (`F_UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1399,3 +1398,6 @@ VALUES
 -- gh#1275 Performance
 ALTER TABLE T_Groupstructure DROP INDEX `Index_01`;
 ALTER TABLE T_Groupstructure ADD INDEX `Index_01` (`F_GroupParent`);
+
+-- gh#1231
+ALTER TABLE T_User DROP COLUMN F_TimeZoneOffset;

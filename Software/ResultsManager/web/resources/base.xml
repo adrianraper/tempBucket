@@ -168,7 +168,7 @@
             <lit name="markingSecondTimeShown">Your saved score is based on your first attempt.</lit>
             <lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
             
-            <lit name="footerLabel"> © Clarity Language Consultants Ltd, 2014-15. All rights reserved.</lit>
+            <lit name="footerLabel"> © Clarity Language Consultants Ltd, 2014-16. All rights reserved.</lit>
             <lit name="printButton">Print</lit>
             <lit name="noButton">No</lit>
             <lit name="yesButton">Yes</lit>
@@ -277,7 +277,15 @@
             <!--Closing-->
             <lit name="closingCaptionLabel">Thank you</lit>
             <lit name="closingContentLabel">for using</lit>
-		</group>
+			
+			<!-- Timer -->
+			<lit name="timerStartButton">Start</lit>
+			<lit name="timerResetButton">Reset</lit>
+			<lit name="timerPauseButton">Pause</lit>
+			<lit name="timerResumeButton">Resume</lit>
+			<lit name="timerStopButton">Stop</lit>
+			<lit name="timerRestartButton">Restart</lit>
+			</group>
 	</language>
 
     <language name="North American" code="NAMEN" mediaFolder="NAMEN">
@@ -291,6 +299,12 @@
     
 	<language name="Simplified Chinese" code="ZH" mediaFolder="ZH">
 		<group name="group">
+		<lit name="timerStartButton">开始</lit>
+			<lit name="timerResetButton">Reset</lit>
+			<lit name="timerPauseButton">暂停</lit>
+			<lit name="timerResumeButton">恢复</lit>
+			<lit name="timerStopButton">终止</lit>
+			<lit name="timerRestartButton">Restart</lit>
 		</group>
 	</language>
 	

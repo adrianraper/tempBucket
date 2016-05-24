@@ -131,7 +131,7 @@ public class ExerciseProxy extends Proxy implements IProxy {
 			if (!_exerciseMarked) sendNotification(BBNotifications.MARKING_SHOW, { exercise: exercise } );
 		}
 		
-		public function get duration():int {
+		public function get duration():Number {
 			return new Date().getTime() - _startTime;
 		}
 		

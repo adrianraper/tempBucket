@@ -27,6 +27,9 @@
 			<lit name="skillContent8">You will learn to be formal and informal in texts, reply in an appropriate style, use common Textspeak vocabulary, and make your texts sound like speech.</lit>
 			<lit name="skillContent9">You will learn to lay out an official letter, use formal language in an official letter, write a cover letter for a job application, and choose the correct tense in a cover letter.</lit>
 
+			<!--Tool tip-->
+			<lit name="demoTooltipLabel">Click the coloured units to preview Practical Writing.</lit>
+
 			<!--Zone-->
 			<lit name="demoPriceURL">http://www.clarityenglish.com/PracticalWriting/get-the-price.html?pw-program</lit>
 
