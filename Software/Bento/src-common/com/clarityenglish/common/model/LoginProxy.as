@@ -116,8 +116,9 @@ package com.clarityenglish.common.model {
 			if (loginObj && configProxy.getConfig().ip)
 				loginObj.ip = configProxy.getConfig().ip;
 			
-			if (loginObj)
-				loginObj.timezoneOffset = new Date().timezoneOffset; // gh#156
+			// gh#156, gh#1231 Update to pass alone, not part of loginObj. Will be number of minutes, including -ve numbers
+			// Just send this with writeScore, no need during login
+			//var clientTimezoneOffset:Number = new Date().timezoneOffset;
 			
 			// #340
 			// Network allows anonymous entry if all fields are blank

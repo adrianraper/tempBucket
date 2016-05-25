@@ -85,19 +85,25 @@ package com.clarityenglish.common.model {
 		 * 
 		 */
 		public function writeScore(mark:ExerciseMark):void {
-			log.debug("Writing the score for exercise to the database");
+			//log.debug("Writing the score for exercise to the database");
 			
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
 			// We have always passed dates between AS and PHP as strings
+			// gh#1231 If this goes over midnight, issues?
 			var dateFormatter:DateFormatter = new DateFormatter();
 			dateFormatter.formatString = "YYYY-MM-DD JJ:NN:SS";
 			var dateNow:String = dateFormatter.format(new Date());
 			
+			// gh#156, gh#1231 Pass timezone offset with all scores -  will be number of minutes, including -ve numbers
+			// But amfphp and various php versions struggle with -ve numbers, so split it up
+			var offset:Number = new Date().timezoneOffset;
+			var clientTimezoneOffset:Object = {minutes: Math.abs(offset), negative: (offset < 0)};
+			
 			// Just send whole user
 			//var params:Array = [ (loginProxy.user) ? loginProxy.user.id : null, sessionID, dateNow, mark ];
-			var params:Array = [ loginProxy.user, configProxy.getConfig().sessionID, dateNow, mark ];
+			var params:Array = [ loginProxy.user, configProxy.getConfig().sessionID, dateNow, mark, clientTimezoneOffset ];
 			new RemoteDelegate("writeScore", params, this).execute();
 		}
 		
