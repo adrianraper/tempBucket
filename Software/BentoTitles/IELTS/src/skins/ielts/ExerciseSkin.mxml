@@ -41,11 +41,6 @@
 		</s:fill>
 	</s:Rect>
 	
-	<!-- Top buttons -->
-	<s:VGroup right="-15" top="40" includeIn="exercise">
-		<s:Button id="printButton" skinClass="skins.ielts.title.PrintButtonSkin" visible="{hostComponent.hasPrintStylesheet}" includeInLayout="{hostComponent.hasPrintStylesheet}" />
-	</s:VGroup>
-	
 	<!-- Ring binder shadow -->
 	<s:Group left="-10" top="34" bottom="0" clipAndEnableScrolling="true" includeIn="exercise">
 		<s:Rect width="50" height="100%">
@@ -94,5 +89,10 @@
 			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
+
+	<!-- Top buttons -->
+	<s:VGroup right="-25" top="40" includeIn="exercise">
+		<s:Button id="printButton" skinClass="skins.ielts.title.PrintButtonSkin" visible="{hostComponent.hasPrintStylesheet}" includeInLayout="{hostComponent.hasPrintStylesheet}" />
+	</s:VGroup>
 	
 </s:Skin>

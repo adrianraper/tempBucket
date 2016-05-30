@@ -86,6 +86,10 @@ mx|Alert {
 	fontFamily: HelveticaMX;
 }
 
+s|VScrollBar {
+	skinClass: ClassReference("skins.ielts.ui.VScrollBarSkin");
+}
+
 /* The video selector */
 video|VideoSelector {
 	skinClass: ClassReference("skins.ielts.controls.video.OSMFVideoSelectorSkin");
