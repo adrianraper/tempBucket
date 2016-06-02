@@ -28,8 +28,12 @@ class AuthenticationOps {
 	 */
 	public static function addValidGroupIDs($groupIdArray) {
 		if (!AuthenticationOps::$useAuthentication) return;
-	
-		Session::set('valid_groupIDs', array_merge(Session::get('valid_groupIDs'), $groupIdArray));
+		// gh#1275
+		if (Session::get('valid_groupIDs') == null) {
+			Session::set('valid_groupIDs', $groupIdArray);
+		} else {
+			Session::set('valid_groupIDs', array_merge(Session::get('valid_groupIDs'), $groupIdArray));
+		}
 	}
 	
 	/**
