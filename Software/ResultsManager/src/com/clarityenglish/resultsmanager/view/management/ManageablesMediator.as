@@ -61,7 +61,7 @@ package com.clarityenglish.resultsmanager.view.management {
 		 */
 		override public function onRegister():void {
 			super.onRegister();
-			
+			TraceUtils.myTrace("ManageablesMediator here");
 			manageablesView.addEventListener(ManageableEvent.ADD_GROUP, onAddGroup);
 			manageablesView.addEventListener(ManageableEvent.ADD_USER, onAddUser);
 			manageablesView.addEventListener(ManageableEvent.UPDATE_GROUPS, onUpdateGroups);
@@ -173,7 +173,7 @@ package com.clarityenglish.resultsmanager.view.management {
 					manageablesView.setCopyProvider(copyProvider);
 					break;
 				case RMNotifications.MANAGEABLES_LOADED:
-					//MonsterDebugger.trace(this, note.getBody());
+					TraceUtils.myTrace("managablesMediator, loaded managables");
 					manageablesView.setTreeDataProvider(note.getBody());
 					manageablesView.setTreeDataDescriptor(filterDataDescriptor);
 					// v3.4 Can I also select the top level group to kick things off?
@@ -331,9 +331,6 @@ package com.clarityenglish.resultsmanager.view.management {
 		}
 		
 		private function onChange(e:Event):void {
-			//TraceUtils.myTrace("manageablesMediator send MANAGEABLE_SELECTED"); 
-			//MonsterDebugger.trace(this, "mediator.onChange");
-			//MonsterDebugger.trace(this, manageablesView.tree.selectedIndex);
 			sendNotification(RMNotifications.MANAGEABLE_SELECTED, manageablesView.getSelectedManageables());
 		}
 

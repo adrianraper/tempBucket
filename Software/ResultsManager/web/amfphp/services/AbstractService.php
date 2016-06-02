@@ -190,7 +190,7 @@ class AbstractService {
             AbstractService::$debugLog->info('authenticate fail '.$function_called.' from '.Session::getSessionName().' sessionId='.session_id());
             return false;
         } else {
-            AbstractService::$debugLog->info('authenticate ok '.$function_called.' from '.Session::getSessionName().' as '.(string)Authenticate::getAuthUser().' sessionId='.session_id());
+            //AbstractService::$debugLog->info('authenticate ok '.$function_called.' from '.Session::getSessionName().' as '.(string)Authenticate::getAuthUser().' sessionId='.session_id());
         }
 		
 		// Now check the user roles against the permissions for the method we are calling (if none are set then we succeed).

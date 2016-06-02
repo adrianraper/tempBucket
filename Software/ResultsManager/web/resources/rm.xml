@@ -16,6 +16,7 @@
 			
 			<lit name="userManagementTab">Management Centre</lit>
 			<lit name="licenceManagementTab">Licences</lit>
+            <lit name="testadminTab">Test admin</lit>
 			<lit name="usageStatisticsTab">Usage Statistics</lit>
 			<lit name="loginOptionsTab">Control Centre</lit>
 			
@@ -606,6 +607,37 @@
 			<lit name="pdfPreview">Click the PDF image below to preview </lit>
 			<lit name="exePreview">Click the exercise image to preview </lit>
 			<lit name="hiddenContentLabel">Allow hidden content changes</lit>
+			
+			<!--  Test Platform -->
+            <lit name="listOfTestsLabel">Tests for: </lit>
+            <lit name="addTest">Add new test</lit>
+            <lit name="updateTestDetail">Update</lit>
+            <lit name="addTestDetail">Add</lit>
+            <lit name="deleteTest">Delete</lit>
+            <lit name="generateReport">See test results</lit>
+            <lit name="sendResultsEmail">Email test results</lit>
+            <lit name="sendInvitationEmail">Email test invitations</lit>
+            <lit name="selectGroup">Select a group on the left to see the tests scheduled for them.</lit>
+            <lit name="testDetailPanel">Details of the test</lit>
+            <lit name="testStartTimeLabel">Open time:</lit>
+            <lit name="testEndTimeLabel">Close time:</lit>
+            <lit name="testStartConditionLabel">Start with:</lit>
+            <lit name="testCodeLabel">Access code</lit>
+            <lit name="testTimeLabel">Time based</lit>
+            <lit name="testCaptionLabel">Description:</lit>
+            <lit name="testShowResultLabel">Show test taker their result:</lit>
+            
+            <lit name="testAdminFirstStep">Step 1</lit>
+
+            <lit name="licenceUse">Your tests</lit>
+            <lit name="licencesScheduled">Tests scheduled</lit>
+            <lit name="licencesPurchased">Tests purchased</lit>
+            <lit name="licencesUsed">Tests used</lit>
+            
+            <lit name="generateReport">See test results</lit>
+            <lit name="sendWelcomeEmail">Send invitation email</lit>
+            <lit name="sendResultEmail">Send result email</lit>
+
 		</group>
 	</language>
 </literals>

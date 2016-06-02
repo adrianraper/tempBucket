@@ -69,7 +69,7 @@
 			public function setCopyProvider(copyProvider:CopyProvider):void {
 				this.copyProvider = copyProvider;
 				if (mainStack.contains(managementView)) managementView.label = copyProvider.getCopyForId("userManagementTab");
-				//if (mainStack.contains(licenceView)) licenceView.label = copyProvider.getCopyForId("licenceManagementTab");
+				if (mainStack.contains(testadminView)) testadminView.label = copyProvider.getCopyForId("testadminTab");
 				// For testing Sam's initializing problem
 				if (mainStack.contains(usageView)) usageView.label = copyProvider.getCopyForId("usageStatisticsTab");
 				if (mainStack.contains(loginOptsView)) loginOptsView.label = copyProvider.getCopyForId("loginOptionsTab");
@@ -91,14 +91,12 @@
 				if (Constants.userType == User.USER_TYPE_ADMINISTRATOR) {
 					//if (!(mainStack.contains(loginOptsView)))
 					//	mainStack.addChild(loginOptsView);
-					//if (!(mainStack.contains(licenceView)))
-					//	mainStack.addChild(licenceView);
+					//if (!(mainStack.contains(testadminView)))
+					//	mainStack.addChild(testadminView);
 				} else {
 					if ((mainStack.contains(loginOptsView)))
 						mainStack.removeChild(loginOptsView);
 						
-					//if ((mainStack.contains(licenceView)))
-					//	mainStack.removeChild(licenceView);
 				}
 				// v3.4 Add a note about who you are.
 				// v3.5 And what account you are in?
@@ -176,7 +174,7 @@
 					*/
 				} else {
 					if ((mainStack.contains(managementView))) {
-						//mainStack.addChild(managementView);
+						mainStack.addChild(managementView);
 					}
 				}
 			}
@@ -209,6 +207,15 @@
 					}
 					// And how to make this the initially shown tab?
 					mainStack.selectedIndex = 2;
+					
+				} else if (directStart.toLowerCase()=="testadmin") {
+					TraceUtils.myTrace("Direct start to test admin");
+					if (!(mainStack.contains(testadminView))) {
+						mainStack.addChild(testadminView);
+					}
+					if (mainStack.contains(managementView)) {
+						mainStack.removeChild(managementView);
+					}
 					
 				} else {
 					showAlert("Sorry, there is no direct access to Results Manager for " + directStart, "Starting problem");
@@ -249,6 +256,7 @@
 			<mx:Spacer height="4"/>
 			<mx:TabNavigator id="mainStack" width="100%" height="100%" borderStyle="solid">
 				<management:ManagementView id="managementView" width="100%" height="100%"/>
+				<management:TestadminView id="testadminView" width="100%" height="100%"/>
 				<usage:UsageView id="usageView" width="100%" height="100%"/>
 				<loginopts:LoginOptsView id="loginOptsView" width="100%" height="100%" />
 			</mx:TabNavigator>

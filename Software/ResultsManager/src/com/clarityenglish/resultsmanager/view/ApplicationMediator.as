@@ -3,25 +3,24 @@
  */
 package com.clarityenglish.resultsmanager.view {
 	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.resultsmanager.RMNotifications;
-	import com.clarityenglish.common.view.AbstractApplicationMediator;
-	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
-	import com.clarityenglish.resultsmanager.Constants;
-	// v3.5 Not used anymore
-	//import com.clarityenglish.resultsmanager.view.licence.LicenceMediator;
+	import com.clarityenglish.common.view.AbstractApplicationMediator;
 	import com.clarityenglish.common.view.login.LoginMediator;
+	import com.clarityenglish.resultsmanager.ApplicationFacade;
+	import com.clarityenglish.resultsmanager.Constants;
+	import com.clarityenglish.resultsmanager.RMNotifications;
+	import com.clarityenglish.resultsmanager.ResultsManager;
 	import com.clarityenglish.resultsmanager.view.loginopts.LoginOptsMediator;
 	import com.clarityenglish.resultsmanager.view.management.ManagementMediator;
-	// For testing Sam's initializing problem
+	import com.clarityenglish.resultsmanager.view.management.TestadminMediator;
 	import com.clarityenglish.resultsmanager.view.usage.UsageMediator;
+	import com.clarityenglish.utils.TraceUtils;
 	import com.flexiblexperiments.ListItemGroupedDragProxy;
+	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
-	import com.clarityenglish.resultsmanager.ResultsManager;
-	import com.clarityenglish.utils.TraceUtils;
 	
 	/**
 	 * A Mediator
@@ -31,9 +30,12 @@ package com.clarityenglish.resultsmanager.view {
 		// Cannonical name of the Mediator
 		public static const NAME:String = "ApplicationMediator";
 		
-		public function ApplicationMediator(viewComponent:Object) {
+		private var _directStart:String;
+		
+		public function ApplicationMediator(viewComponent:Object, directStart:String) {
 			// pass the viewComponent to the superclass where
 			// it will be stored in the inherited viewComponent property
+			_directStart = directStart;
 			super(NAME, viewComponent);
 		}
 		
@@ -47,9 +49,14 @@ package com.clarityenglish.resultsmanager.view {
 		override public function onRegister():void {
 			super.onRegister();
 			
-			facade.registerMediator(new ManagementMediator(application.managementView));
-			//facade.registerMediator(new LicenceMediator(application.licenceView));
-			// For testing Sam's initializing problem
+			// gh#1487 Can't register managementView as well as testadminView to their respective mediators
+			// or you can, but the test admin view has no manageables in it. Whichever you do first works.
+			TraceUtils.myTrace("appMediator.directStart=" + this._directStart);
+			if (this._directStart = 'testadmin') {
+				facade.registerMediator(new TestadminMediator(application.testadminView));				
+			} else {
+				facade.registerMediator(new ManagementMediator(application.managementView));
+			}
 			facade.registerMediator(new UsageMediator(application.usageView));
 			facade.registerMediator(new LoginOptsMediator(application.loginOptsView));
 		}

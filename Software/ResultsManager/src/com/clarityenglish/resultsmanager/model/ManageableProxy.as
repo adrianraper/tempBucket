@@ -45,7 +45,7 @@ package com.clarityenglish.resultsmanager.model {
 			// v3.4 In a bid to not overload AMF or anything else, lets getContent after we have got manageables, not at the same time.
 			// gh#1171
 			var directStart:String = Application.application.parameters.directStart;
-			if (!directStart)
+			//if (!directStart)
 				getAllManageables();
 		}
 		

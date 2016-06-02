@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
-		   xmlns:ui="com.clarityenglish.resultsmanager.view.licence.ui.*"
+		   xmlns:view="com.clarityenglish.resultsmanager.view.management.components.*"
+		   xmlns:ui="com.clarityenglish.resultsmanager.view.managment.ui.*"
 		   xmlns:controls="org.davekeen.controls.*"
 		   implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>
@@ -30,14 +31,11 @@
 			this.copyProvider = copyProvider;
 			
 			manageablesLabel.text = copyProvider.getCopyForId("manageables");
-			titlesLabel.text = copyProvider.getCopyForId("titles");
 			showAllButton.label = copyProvider.getCopyForId("showAll");
 			showSelectedButton.label = copyProvider.getCopyForId("showSelected");
 			showUnassignedButton.label = copyProvider.getCopyForId("showUnassigned");
-			helpTextArea.htmlText = copyProvider.getCopyForId("licenceManagementHelp");
 			
 			dkTreeControlBar.setCopyProvider(copyProvider);
-			licenceChart.setCopyProvider(copyProvider);
 		}
 		
 		/**
@@ -65,39 +63,6 @@
 			licencesTree.itemRenderer = ReportableTreeItemRenderer.getRendererFactory(true, checkBoxRendererProvider, true, checkBoxToolTips);
 		}
 		
-		public function setLicenceFigures(assigned:uint, unassigned:uint):void {
-			currentState = "titleSelected";
-			
-			licenceChart.dataProvider = { assigned: assigned, unassigned: unassigned };
-		}
-		
-		private function onTitleChange(e:Event):void {
-			var selectedTitle:Title = titleList.selectedItem as Title;
-			
-			// Only enable show selected and show unassigned if a title is selected
-			showSelectedButton.enabled = showUnassignedButton.enabled = (selectedTitle != null);
-			
-			// Refresh the item renderers
-			licencesTree.invalidateList();
-			
-			// Fill in the LicenceInfo box using CopyProvider's substitution to fill in the variables
-			var replaceObj:Object = new Object();
-			//replaceObj.title = selectedTitle.caption;
-			replaceObj.title = selectedTitle.name;
-			replaceObj.maxStudents = selectedTitle.maxStudents;
-			replaceObj.maxAuthors = selectedTitle.maxAuthors;
-			replaceObj.maxReporters = selectedTitle.maxReporters;
-			replaceObj.maxTeachers = selectedTitle.maxTeachers;
-			
-			//replaceObj.expiryDate = new Date(selectedTitle.expiryDate).toDateString();
-			// Ticket #95 - ignore timezones
-			replaceObj.expiryDate = DateUtils.ansiStringToDate(selectedTitle.expiryDate).toDateString();
-			
-			licenceInfoTextArea.htmlText = copyProvider.getCopyForId("licenceInfo", replaceObj);
-			
-			dispatchEvent(new TitleEvent(TitleEvent.TITLE_CHANGE, selectedTitle, null, null, true));
-		}
-		
 		private function onShowTypeChange():void {
 			dispatchEvent(new LicenceShowTypeEvent(showTypeGroup.selectedValue as String));
 			
@@ -112,19 +77,7 @@
 		<mx:VBox width="50%" height="100%">
 	-->
 	<mx:HDividedBox width="100%" height="100%" paddingLeft="4" paddingRight="4" paddingBottom="4">
-		<mx:VDividedBox width="50%" height="100%">
-			<mx:VBox width="100%" height="70%">
-				<mx:Label id="titlesLabel" styleName="subHeadingLabelBlack" />
-				<mx:List id="titleList"
-						 width="100%"
-						 height="100%"
-						 labelField="caption"
-						 itemRenderer="com.clarityenglish.resultsmanager.view.shared.ui.ContentListItemRenderer"
-						 change="onTitleChange(event)" />
-						<!-- labelField="caption" -->
-			</mx:VBox>
-			<mx:TextArea id="helpTextArea" condenseWhite="true" selectable="true" editable="false" width="100%" height="30%" />
-		</mx:VDividedBox>
+		<view:ManageablesView id="manageablesView" width="40%" height="100%"/>
 		<mx:VBox width="50%" height="100%" id="vbox">
 			<mx:VBox width="100%" height="70%">
 				<mx:Label id="manageablesLabel" styleName="subHeadingLabelBlack" />
@@ -147,21 +100,5 @@
 			<mx:TextArea id="licenceInfoTextArea" condenseWhite="true" selectable="true" editable="false" width="100%" height="30%" />
 		</mx:VBox>
 	</mx:HDividedBox>
-	
-	<mx:states>
-		<mx:State name="titleSelected">
-			<mx:AddChild relativeTo="{vbox}" position="lastChild" creationPolicy="all">
-				<ui:LicenceChart id="licenceChart" width="100%" height="30" />
-			</mx:AddChild>
-		</mx:State>
-	</mx:states>
-	
-	<mx:transitions>
-		<mx:Transition fromState="" toState="titleSelected">
-			<mx:Parallel targets="{[licencesTree, licenceChart, this]}">
-				<mx:Resize duration="400"/>
-			</mx:Parallel>
-		</mx:Transition>
-	</mx:transitions>
 	
 </mx:Canvas>

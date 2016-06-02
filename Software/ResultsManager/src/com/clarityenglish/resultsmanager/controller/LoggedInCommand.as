@@ -13,6 +13,7 @@ package com.clarityenglish.resultsmanager.controller {
 	import com.clarityenglish.resultsmanager.model.ReportProxy;
 	import com.clarityenglish.resultsmanager.model.UploadProxy;
 	import com.clarityenglish.resultsmanager.model.UsageProxy;
+	import com.clarityenglish.resultsmanager.model.TestDetailsProxy;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	import org.puremvc.as3.patterns.observer.Notification;
@@ -59,6 +60,7 @@ package com.clarityenglish.resultsmanager.controller {
 			facade.registerProxy(new UsageProxy());
 			facade.registerProxy(new LoginOptsProxy());
 			facade.registerProxy(new EmailOptsProxy());
+			facade.registerProxy(new TestDetailsProxy());
 			
 			// Send another COPY_LOADED notification in case the language has changed (this forces everything to update its copy)
 			sendNotification(CommonNotifications.COPY_LOADED);

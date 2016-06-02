@@ -1162,5 +1162,14 @@ EOD;
 		}
 	}
 	*/
+	
+	// gh#1487 Count tests purchased, used, scheduled
+	public function getTestUse($pc) {
+		$usage = array();
+		$usage['purchased'] = 1250; 
+		$usage['used'] = 712; 
+		$usage['scheduled'] = 0; 
+		return $usage;
+	}
 }
-?>
+

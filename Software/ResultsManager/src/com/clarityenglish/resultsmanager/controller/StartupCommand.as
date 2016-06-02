@@ -51,7 +51,8 @@ package com.clarityenglish.resultsmanager.controller {
 			facade.registerProxy(new LoginProxy());
 			
 			// Register the main mediator
-			facade.registerMediator(new ApplicationMediator(note.getBody() as ResultsManager));
+			// gh#1487 hack to work out if we want test admin view or regular management view
+			facade.registerMediator(new ApplicationMediator(note.getBody() as ResultsManager, Application.application.parameters.directStart));
 			//TraceUtils.myTrace("RM.StartUpCommand.4");
 			
 			// If the username/password are defined as FlashVars then automate the login

@@ -24,6 +24,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/Reportable.php"
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Manageable.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/User.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Group.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/TestDetail.php");
 
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Content.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Title.php");
@@ -41,6 +42,7 @@ require_once(dirname(__FILE__)."/../../classes/LoginOps.php");
 require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
+require_once(dirname(__FILE__)."/../../classes/TestDetailOps.php");
 
 // v3.6 What happens if I want to add in AccountOps so that I can pull back the account object?
 // I already getContent - will that clash or duplicate?
@@ -99,7 +101,9 @@ class ClarityService extends AbstractService {
 		$this->reportOps = new ReportOps($this->db);
         // gh#1275
         $this->accountOps = new AccountOps($this->db);
-
+        // gh#1487
+        $this->testDetailOps = new TestDetailOps($this->db);
+        
 	}
 	public function changeDB($dbHost) {
 		$this->initDbHost($dbHost);
@@ -397,6 +401,27 @@ class ClarityService extends AbstractService {
 	
 	public function setExtraGroups($user, $groupsArray) {
 		return $this->manageableOps->setExtraGroups($user, $groupsArray);
+	}
+
+	// gh#1487
+	public function getTestDetails($group) {
+		return $this->testDetailOps->getTestDetails($group->id);
+	}
+	public function addTestDetail($testDetail) {
+		$this->testDetailOps->addTestDetail($testDetail);		
+		return $this->testDetailOps->getTestDetails($testDetail->groupId);
+	}
+	public function updateTestDetail($testDetail) {
+		$this->testDetailOps->updateTestDetail($testDetail);
+		AbstractService::$debugLog->info("return testdetails for group ".$testDetail->groupId);
+		return $this->testDetailOps->getTestDetails($testDetail->groupId);
+	}
+	public function deleteTestDetail($testDetail) {
+		$this->testDetailOps->deleteTestDetail($testDetail);
+		return $this->testDetailOps->getTestDetails($testDetail->groupId);
+	}
+	public function getTestUse($pc) {
+		return $this->usageOps->getTestUse($pc);
 	}
 	
 	public function getUsageForTitle($title, $fromDate, $toDate) {

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+		  horizontalScrollPolicy="off"
+		  horizontalAlign="left"
+		  paddingRight="10"
+		  creationComplete="creationComplete()"
+		  implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			import com.clarityenglish.common.vo.tests.TestDetail;
+			import com.clarityenglish.resultsmanager.Constants;
+			import com.clarityenglish.resultsmanager.view.shared.events.TestDetailEvent;
+			import com.clarityenglish.utils.TraceUtils;
+			
+			import flash.display.*;
+			import flash.display.Loader;
+			import flash.display.Sprite;
+			import flash.events.Event;
+			import flash.system.ApplicationDomain;
+			import flash.system.LoaderContext;
+			
+			import mx.formatters.DateFormatter;
+			import mx.managers.SystemManager;
+			import mx.utils.ObjectUtil;
+			
+			import org.davekeen.utils.DateUtils;
+		
+			private var copyProvider:CopyProvider;
+			[Bindable]
+			private var _isDirty:Boolean = false;
+			[Bindable]
+			private var _errorText:String;
+			
+			private var dataProvider:TestDetail;
+	
+			private function creationComplete():void {
+				captionData.addEventListener(Event.CHANGE, onDataChange); 
+				startTimeData.addEventListener(Event.CHANGE, onDataChange); 
+				endTimeData.addEventListener(Event.CHANGE, onDataChange); 
+				codeData.addEventListener(Event.CHANGE, onDataChange); 
+				startByCode.addEventListener(Event.CHANGE, onDataChange); 
+				startByTimer.addEventListener(Event.CHANGE, onDataChange); 
+				showResultData.addEventListener(Event.CHANGE, onDataChange); 
+			}
+			
+			public function setCopyProvider(copyProvider:CopyProvider):void {
+				this.copyProvider = copyProvider;
+				title = copyProvider.getCopyForId("testDetailPanel");
+				captionLabel.text = copyProvider.getCopyForId("testCaptionLabel");
+				startTimeLabel.text = copyProvider.getCopyForId("testStartTimeLabel");
+				endTimeLabel.text = copyProvider.getCopyForId("testEndTimeLabel");
+				startByCode.label = copyProvider.getCopyForId("testCodeLabel");
+				startByTimer.label = copyProvider.getCopyForId("testTimeLabel");
+				startConditionsLabel.text = copyProvider.getCopyForId("testStartConditionLabel");
+				showResultLabel.text = copyProvider.getCopyForId("testShowResultLabel");
+				updateButton.label = copyProvider.getCopyForId("updateTestDetail");
+				addButton.label = copyProvider.getCopyForId("addTestDetail");
+			}
+
+			public function setDataProvider(testDetail:TestDetail):void {
+				dataProvider = testDetail;
+				startTimeData.text = dataProvider.scheduledStartTime;
+				endTimeData.text = dataProvider.closeTime;
+				codeData.text = dataProvider.startData;
+				captionData.text = dataProvider.caption;
+				if (dataProvider.startType == 'code') {
+					startByCode.selected = true;
+				} else {
+					startByTimer.selected = true;
+				}
+				showResultData.selected = dataProvider.showResult;
+				_isDirty = false;
+			}
+			public function onDataChange(e:Event):void {
+				// If this is adding a new test detail, don't need an update
+				var tdA:TestDetail = getTestDetailFromScreen();
+				_isDirty = (addButton.visible) ? false : !_isEqual(tdA, dataProvider);
+			}
+			private function getTestDetailFromScreen():TestDetail {
+				var updatedDetail:TestDetail = new TestDetail();
+				
+				// Some data can't be changed on this screen
+				updatedDetail.testDetailId = dataProvider.testDetailId;
+				updatedDetail.testId = dataProvider.testId;
+				updatedDetail.groupId = dataProvider.groupId;
+				updatedDetail.language = dataProvider.language;
+				
+				updatedDetail.scheduledStartTime = startTimeData.text;
+				updatedDetail.closeTime = endTimeData.text;
+				updatedDetail.caption = captionData.text;
+				updatedDetail.showResult = showResultData.selected;
+				updatedDetail.startType = (startByCode.selected) ? 'code' : 'timer';
+				updatedDetail.startData = (startByCode.selected) ? codeData.text : null;
+				return updatedDetail;
+			}
+			// Have the user editable details changed?
+			private function _isEqual(tdA:TestDetail, tdB:TestDetail):Boolean {
+				return ((tdA.scheduledStartTime == tdB.scheduledStartTime) &&
+						(tdA.closeTime == tdB.closeTime) &&
+						(tdA.startData == tdB.startData) &&
+						(tdA.caption == tdB.caption) &&
+						(tdA.showResult == tdB.showResult) &&
+						(tdA.startType == tdB.startType));
+			}
+			// Have enough details been added?
+			private function isComplete():Boolean {
+				// Check the start time
+				if (startTimeData.text == "") {
+					_errorText = "There must be a start time.";
+					return false;
+				}
+				var dateInterim:Number = Date.parse(startTimeData.text);
+				if (isNaN(dateInterim)) {
+					_errorText = "The start date/time is not understood. Try something like 2016-09-17 09:30";
+					return false;
+				}
+				var startTime:Date = new Date(dateInterim);
+				if (ObjectUtil.dateCompare(startTime, new Date()) < 0) {
+					_errorText = "The start must be in the future.";
+					return false;
+				}
+				
+				// Check the close time
+				if (endTimeData.text != "") {
+					dateInterim = Date.parse(endTimeData.text);
+					if (isNaN(dateInterim)) {
+						_errorText = "The close date/time is not understood. Try something like 2016-09-17 09:30";
+						return false;
+					}
+					var endTime:Date = new Date(dateInterim);
+					if (ObjectUtil.dateCompare(startTime, endTime) >= 0) {
+						_errorText = "The close must be after the start.";
+						return false;
+					}
+				}
+				
+				// Check the code
+				if (startByCode.selected) {
+					if (codeData.text.length < 4) {
+						_errorText = "The code must be at least 4 characters long.";
+						return false;
+					}
+				}
+				
+				return true;
+			}
+			
+			// Trigger events from user action
+			private function onUpdate():void {
+				_isDirty = false;
+				dispatchEvent(new TestDetailEvent(TestDetailEvent.UPDATE, getTestDetailFromScreen()))				
+			}
+			private function onAdd():void {
+				if (isComplete())
+					dispatchEvent(new TestDetailEvent(TestDetailEvent.ADD, getTestDetailFromScreen()))
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:VBox width="100%" height="100%">
+		<mx:HBox>
+			<mx:Label id="captionLabel" />
+			<mx:TextInput id="captionData" enabled="true" />
+		</mx:HBox>
+		<mx:HBox>
+			<mx:Label id="startTimeLabel" />
+			<mx:TextInput id="startTimeData" enabled="true" />
+		</mx:HBox>
+		<mx:HBox>
+			<mx:Label id="endTimeLabel" />
+			<mx:TextInput id="endTimeData" enabled="true" />
+		</mx:HBox>
+		<mx:HBox>
+			<mx:Label id="startConditionsLabel" />
+			<mx:VBox>
+				<mx:RadioButton id="startByCode" groupName="startConditions" labelPlacement="right" />
+				<mx:RadioButton id="startByTimer" groupName="startConditions" labelPlacement="right" />
+			</mx:VBox>
+			<mx:TextInput id="codeData" enabled="{startByCode.selected}" />
+		</mx:HBox>
+		<mx:HBox>
+			<mx:Label id="showResultLabel" />
+			<mx:CheckBox id="showResultData" enabled="true" />
+		</mx:HBox>
+		<mx:Label id="errorTextLabel" text="{_errorText}" />
+		<mx:Button id="updateButton" visible="{_isDirty}" includeInLayout="{_isDirty}" click="onUpdate()" />
+		<mx:Button id="addButton" visible="false" includeInLayout="false" click="onAdd()" />
+	</mx:VBox>
+
+</mx:TitleWindow>

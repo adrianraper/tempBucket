@@ -1401,3 +1401,46 @@ ALTER TABLE T_Groupstructure ADD INDEX `Index_01` (`F_GroupParent`);
 
 -- gh#1231
 ALTER TABLE T_User DROP COLUMN F_TimeZoneOffset;
+
+-- gh#1487
+DELETE FROM T_Product WHERE F_ProductCode = 63;
+DELETE FROM T_Product WHERE F_ProductCode = 64;
+INSERT INTO `T_Product` VALUES
+(63,'Practical Placement Test v2',NULL,1),
+(64,'LearnEnglish Level Test v2',NULL,1);
+
+DELETE FROM T_ProductLanguage WHERE F_ProductCode = 63;
+DELETE FROM T_ProductLanguage WHERE F_ProductCode = 64;
+INSERT INTO `T_ProductLanguage` VALUES 
+(63,'EN','PracticalPlacementTest-International'),
+(63,'NAMEN','PracticalPlacementTest-NAmerican'),
+(64,'EN','LearnEnglishLevelTest');
+
+DELETE FROM T_ProductVersion WHERE F_ProductCode = 63;
+DELETE FROM T_ProductVersion WHERE F_ProductCode = 64;
+INSERT INTO `T_ProductVersion` VALUES 
+(63,'DEMO'),
+(63,'FV'),
+(64,'DEMO'),
+(64,'FV');
+
+DROP TABLE IF EXISTS `T_TestDetail`;
+CREATE TABLE `T_TestDetail` (
+  `F_TestDetailID` int(10) NOT NULL AUTO_INCREMENT,
+  `F_TestID` int(10) NOT NULL,
+  `F_GroupID` int(10) NOT NULL,
+  `F_Caption` TEXT NULL,
+  `F_StartConditions` TEXT NOT NULL,
+  `F_ScheduledStartTime` DATETIME NOT NULL,
+  `F_CloseTime` DATETIME NULL,
+  `F_Language` VARCHAR(16) NOT NULL DEFAULT 'EN',
+  `F_ShowResult` TINYINT(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`F_TestDetailID`),
+  INDEX `Index_1` (`F_TestID`, `F_GroupID`, `F_ScheduledStartTime`)
+)  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO `T_TestDetail`
+(`F_TestID`,`F_GroupID`,`F_Caption`,`F_StartConditions`,`F_ScheduledStartTime`,`F_CloseTime`,`F_Language`)
+VALUES 
+(63,10757,'2016 summer school','{ "type": "code", "value": "12345" }','2016-09-14 11:00','2016-09-14 17:00','EN'),
+(63,10757,'2015 summer school','{ "type": "code", "value": "8842G" }','2015-09-12 11:00','2015-09-12 17:00','EN');

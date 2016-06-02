@@ -128,7 +128,7 @@ package com.clarityenglish.resultsmanager.view.management {
 		 * @param INotification a notification 
 		 */
 		override public function handleNotification(note:INotification):void {
-			//TraceUtils.myTrace("contentMediator:" + note.getName());
+			TraceUtils.myTrace("handle notification ContentMediator=" + note.getName());
 			switch (note.getName()) {
 				//v3.4 Trigger getContent separately from the main proxy creation to try and asynch it a bit
 				// Well, this works but it still gets bundled into the same call.

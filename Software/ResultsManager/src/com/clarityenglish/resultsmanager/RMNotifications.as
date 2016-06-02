@@ -40,6 +40,19 @@
 		//public static const COPY_LOADED:String = "copy_loaded";
 		public static const CONTENT_LOADED:String = "content_loaded";
 		public static const MANAGEABLES_LOADED:String = "manageables_loaded";
+		
+		// gh#1487
+		public static const TEST_DETAILS_LOADED:String = "test_details_loaded";
+		public static const UPDATE_TEST_DETAIL:String = "update_test_detail";
+		public static const DELETE_TEST_DETAIL:String = "delete_test_detail";
+		public static const ADD_TEST_DETAIL:String = "add_test_detail";
+		public static const TEST_DETAIL_UPDATED:String = "test_detail_updated";
+		public static const TEST_DETAIL_ADDED:String = "test_detail_added";
+		public static const TEST_DETAIL_DELETED:String = "test_detail_deleted";
+		public static const TEST_LICENCES_LOADED:String = "test_licences_loaded";
+		
+		
+		
 		// v3.4 Editing Clarity Content
 		public static const EDIT_EXERCISE:String = "edit_exercise";
 		public static const DELETE_EXERCISE:String = "delete_exercise";

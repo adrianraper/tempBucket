@@ -425,10 +425,7 @@
 		 * correct menu items can be enabled/disabled based on the current selection.
 		 */
 		private function onChange():void {
-			//MonsterDebugger.trace(this, "view.onChange");
-			//MonsterDebugger.trace(this, tree.selectedItems);
 			manageableCMManager.enableBySelectedManageables(tree.selectedItems);
-			
 			dispatchEvent(new Event(Event.CHANGE));
 		}
 		
