@@ -1,364 +1,484 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <literals progam="Author Plus" version="6.4.1.5">
-<language name="English International" code="EN" mediaFolder="EN">
-<group name="buttons">
-<lit name="exit">Exit</lit>
-<lit name="help">Help</lit>
-<lit name="scratchPad">Notepad</lit>
-<lit name="progress">Progress</lit>
-<lit name="media">Media</lit>
-<lit name="resources">Resources</lit>
-<lit name="marking">Marking</lit>
-<lit name="feedback">Feedback</lit>
-<lit name="print">Print</lit>
-<lit name="forward">Forward</lit>
-<lit name="back">Back</lit>
-<lit name="menu">Menu</lit>
-<lit name="rule">Rule</lit>
-<lit name="instant">As I work</lit>
-<lit name="delayed">At the end</lit>
-<lit name="test">Test</lit>
-<lit name="logOn">Start</lit>
-<lit name="newUser">New user</lit>
-<lit name="yes">Yes</lit>
-<lit name="no">No</lit>
-<lit name="tryAgain">Try again</lit>
-<lit name="seeTheAnswer">See the answers</lit>
-<lit name="finish">Finish</lit>
-<lit name="createTest">Create test</lit>
-<lit name="ok">OK</lit>
-<lit name="courseList">Restart</lit>
-<lit name="startAgain">Start again</lit>
-<lit name="guessWord">Type a word</lit>
-<lit name="stats">Stats</lit>
-<lit name="text">Text</lit>
-<lit name="record">Record</lit>
-<lit name="play">Play</lit>
-<lit name="stop">Stop</lit>
-<lit name="recording">Recorder</lit>
-<lit name="hint">Hint</lit>
-<lit name="submit">Enter</lit>
-<lit name="saving">Saving...</lit>
-<lit name="moreUnits">More...</lit>
-<lit name="guess">Guess</lit>
-<lit name="weblink">Weblinks</lit>
-<lit name="certificate">Your certificate</lit>
-<lit name="anonymousName">you</lit>
-<lit name="changePassword">Change password</lit>
-<lit name="setupRecorder">Recorder</lit>
-<lit name="recorder">Recorder</lit>
-<lit name="save">Save</lit>
-<lit name="pause">Pause</lit>
-<lit name="playing">Playing</lit>
-<lit name="compareWaveforms">Compare</lit>
-</group>
-<group name="labels">
-<lit name="languageName">English</lit>
-<lit name="makeActivity">Choose topics for your test.</lit>
-<lit name="useQuestions">A test of [x] questions.</lit>
-<lit name="useOneQuestion">A test of just 1 question!</lit>
-<lit name="name">Name:</lit>
-<lit name="studentID">Student ID:</lit>
-<lit name="password">Password:</lit>
-<lit name="email">Email:</lit>
-<lit name="country">Country:</lit>
-<lit name="chooseCourse">Please choose a course.</lit>
-<lit name="marking">Marking</lit>
-<lit name="correct">Correct</lit>
-<lit name="wrong">Wrong</lit>
-<lit name="missed">Missed</lit>
-<lit name="loadingPicture">Loading picture.</lit>
-<lit name="loading">Loading...</lit>
-<lit name="downloading">Downloading...</lit>
-<lit name="loadMediaFail">Cannot load media.</lit>
-<lit name="loadFail">Cannot load [x].</lit>
-<lit name="hint">Hint</lit>
-<lit name="feedback">Feedback</lit>
-<lit name="wellDone">Well done...</lit>
-<lit name="sorry">Sorry...</lit>
-<lit name="rule">Rule</lit>
-<lit name="scratchPad">Notepad</lit>
-<lit name="complete">[x]% complete</lit>
-<lit name="selectLiteral">Please select your screen language:</lit>
-<lit name="confirmAction">Are you sure?</lit>
-<lit name="dictionary">Cambridge Learners's Dictionary</lit>
-<lit name="testRubric">Please select or type the correct answer.</lit>
-<lit name="markedRubric">Look at the [green]correct answers[/green]. The ones you got right are ticked.</lit>
-<lit name="clickLimit">Warning</lit>
-<lit name="warning">Warning</lit>
-<lit name="progressTitle">Progress for [y] (in [x])</lit>
-<lit name="progressHeader">Progress: [x] (for [y])</lit>
-<lit name="progressExercise">Exercise</lit>
-<lit name="progressScore">Score</lit>
-<lit name="progressDate">Date</lit>
-<lit name="progressTime">Time (mins)</lit>
-<lit name="tests">Tests</lit>
-<lit name="printedFrom">Printed from [x].</lit>
-<lit name="printedFromAPO">Printed from Author Plus.</lit>
-<lit name="resultsFor">Results for [x]</lit>
-<lit name="version">Version [x]</lit>
-<lit name="markedRubricProofReading">Look at [red]the mistakes[/red]. The ones you found are ticked.</lit>
-<lit name="glossary">Hints</lit>
-<lit name="testUnits">Test from units</lit>
-<lit name="timeLeft"></lit>
-<lit name="oneMinute">1 min</lit>
-<lit name="minutes">[x] mins</lit>
-<lit name="seconds">[x] secs</lit>
-<lit name="stats">Countdown statistics</lit>
-<lit name="word">Word</lit>
-<lit name="loginHeading">Please log in.</lit>
-<lit name="registrationHeading">Your details</lit>
-<lit name="progressAnon">Progress for you (in [x]).</lit>
-<lit name="loadScores">Load scores...</lit>
-<lit name="loadUser">Checking...</lit>
-<lit name="loadContent">Loading content...</lit>
-<lit name="loadFeedback">Feedback...</lit>
-<lit name="loadMarking">Marking...</lit>
-<lit name="loadPrinting">Printing...</lit>
-<lit name="loadPreview">Preview...</lit>
-<lit name="markedRubricGaps">Look at the [green]correct answers[/green]. The ones you got right are ticked.</lit>
-<lit name="markedRubricOptions">Look at the [green]correct answers[/green]. The ones you got right are ticked.</lit>
-<lit name="markedRubricCountdown">The words you missed are [green]green[/green].</lit>
-<lit name="previewRubric">Read this text then close the window to start.</lit>
-<lit name="licencedTo">Licensed to: [x]</lit>
-<lit name="tip">Exam tip</lit>
-<lit name="streaming">Streaming...</lit>
-<lit name="feedbackFrom">Feedback from:</lit>
-<lit name="clickForFeedback">Click on any answer to see feedback (if available).</lit>
-<lit name="editedBy"> - edited for </lit>
-<lit name="loadingTest">Build the test...</lit>
-<lit name="fbQuestionNumber">Question [x]</lit>
-<lit name="specialIntroduction">Introduction</lit>
-<lit name="timeLeftSubUnit"></lit>
-<lit name="newPassword">New one</lit>
-<lit name="confirmPassword">Confirm it</lit>
-<lit name="changePassword">Change your password.</lit>
-</group>
-<group name="messages">
-<lit name="seeFeedback">Would you like to see some feedback for that exercise?</lit>
-<lit name="goMenu">Do you want to go straight to the menu?</lit>
-<lit name="goPrevious">Do you want to go to the previous exercise?</lit>
-<lit name="goNext">Do you want to go to the next exercise?</lit>
-<lit name="goTest">Do you want to create a test?</lit>
-<lit name="loseWork">(You will lose your work in this exercise.)</lit>
-<lit name="blankNameID">Sorry, the name and/or ID cannot be blank.</lit>
-<lit name="noSuchUser">Sorry, that name is not registered, please try again.</lit>
-<lit name="wrongPassword">Sorry, that password and name do not match, please try again.</lit>
-<lit name="noLicences">Sorry, there are no licences at the moment, please try again later.</lit>
-<lit name="userExists">Sorry, that user name is already taken, please try another.</lit>
-<lit name="newUser">Please type your details.</lit>
-<lit name="exerciseResult">You scored [x]% in this exercise.</lit>
-<lit name="upgradeFlash">Please upgrade to the latest Flash player as you may get problems with your current version [x].</lit>
-<lit name="noHint">Sorry, there is no hint for this question.</lit>
-<lit name="noFeedback">Sorry, there is no feedback for this question.</lit>
-<lit name="licenceExpired">The licence has expired (on [x]).</lit>
-<lit name="licenceAltered">The licence has been altered or corrupted.</lit>
-<lit name="licenceBlock">Sorry, the licence will not let you run the program.</lit>
-<lit name="ctrl-click">To look up a word in an online dictionary, hold down the Control (CTRL) key while you click on the word.[newline]Or [x] for a direct link.</lit>
-<lit name="clickLimitWarning">You have already clicked on [x] words or phrases, and this is the limit. Click on one of them again to clear it and then try again.</lit>
-<lit name="cannotPrint">Sorry, your Flash player cannot print. Please upgrade to at least version 7.</lit>
-<lit name="months">Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec</lit>
-<lit name="noSuchUserTryNew">Sorry, that name is not registered. Please click New user to register.</lit>
-<lit name="logOn">Please type your name and click Start.</lit>
-<lit name="logOnSelfRegister">Please type your name and click Start, or click New user if it is your first time.</lit>
-<lit name="logOnAnon">For anonymous use, just click Start.</lit>
-<lit name="blankFields">Please fill in all the information.</lit>
-<lit name="noTotalLicences">Sorry, the licence is full. To add a new user, please ask the administrator to remove someone else.</lit>
-<lit name="noSuchID">Sorry, that ID is not registered, please try again.</lit>
-<lit name="noSuchIDTryNew">Sorry, that ID is not registered. Please click New user to register.</lit>
-<lit name="cannotRecord">Sorry, your computer has not been set up for recording from the browser. [x] shows you how to make it work. If you have already downloaded the Clarity Recorder, run it now and you will be able to record.</lit>
-<lit name="noGlossaryEntry">Sorry, there is no entry in the glossary for [x].</lit>
-<lit name="typePassword">Please type the password for this account.</lit>
-<lit name="noExercise">This unit has no exercises in it.</lit>
-<lit name="countdownHint">To help you guess this word, here are the letters in it:[newline][tab][x]</lit>
-<lit name="Dictionary.com#glossaryURL">http://dictionary.reference.com/search?q=[x]</lit>
-<lit name="CALD#glossaryURL">http://dictionary.cambridge.org/search/british/?q=[x]</lit>
-<lit name="CLD#glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
-<lit name="OALD#glossaryURL">http://www.oxfordadvancedlearnersdictionary.com/dictionary/[x]</lit>
-<lit name="Merriam-Webster#glossaryURL">http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&amp;va=[x]</lit>
-<lit name="WordCentral#glossaryURL">http://www.wordcentral.com/cgi-bin/Search?book=Student&amp;va=[x]</lit>
-<lit name="ChinaLanguage.com#glossaryURL">http://www.chinalanguage.com/cgi-bin/ecdict.php?query=[x]&amp;dbase=ec</lit>
-<lit name="glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
-<lit name="neutralFeedback">You clicked #ca#.</lit>
-<lit name="userOrIDExists">Sorry, that name or ID is already taken, please try others.</lit>
-<lit name="French-English#glossaryURL">http://www.wordreference.com/fren/[x]</lit>
-<lit name="English-French#glossaryURL">http://www.wordreference.com/enfr/[x]</lit>
-<lit name="allCorrect">Click a correct answer to see feedback for that question.</lit>
-<lit name="wellDoneNoFeedback">Yes, that is correct.</lit>
-<lit name="sorryNoFeedback">No, that is not correct.</lit>
-<lit name="noFeedbackAfterMarking">There is no feedback for this question.</lit>
-<lit name="goHome">Do you want to go straight home?</lit>
-<lit name="goExit">Do you want to exit the program?</lit>
-<lit name="goComplete">This is the end of the course. Do you want to exit?</lit>
-<lit name="optionalLogOn">You must type your name if you want your own Scratch Pad and progress charts.</lit>
-<lit name="confirmNewUser">This is the first time this name has been used, please click New user to confirm.</lit>
-<lit name="notInDemo">Please look for *DEMO* to see the material in this demo.</lit>
-<lit name="certificateFooter">This test is copyright of The British Council 2009-2011.</lit>
-<lit name="anonScratchPad">You have not signed in with a registered name, so you cannot save your Scratch Pad.</lit>
-<lit name="progress_global_noScoredEx">You have not completed any scored exercises yet.</lit>
-<lit name="progress_global_title1">Your scores</lit>
-<lit name="progress_global_title2">Compare!</lit>
-<lit name="progress_global_title3">Analysis</lit>
-<lit name="progress_global_score">Score</lit>
-<lit name="progress_your_scores_headline">Your records in detail.</lit>
-<lit name="progress_your_scores_grid_t1">Unit</lit>
-<lit name="progress_your_scores_grid_t2">Exercise</lit>
-<lit name="progress_your_scores_grid_t3">Score</lit>
-<lit name="progress_your_scores_grid_t4">Date</lit>
-<lit name="progress_your_scores_grid_t5">Time (mins)</lit>
-<lit name="progress_compare_label1">You</lit>
-<lit name="progress_compare_label2">Other learners</lit>
-<lit name="progress_compare_title">Compare your average score to other learners.</lit>
-<lit name="progress_analysis_score_title">What is your average score in each unit?</lit>
-<lit name="progress_analysis_time_title">How long have you spent working on each unit?</lit>
-<lit name="progress_analysis_time_subtitle">Time in minutes</lit>
-<lit name="progress_analysis_combo_box1">score</lit>
-<lit name="progress_analysis_combo_box2">time</lit>
-<lit name="progress_analysis_warn_part1">Units with zero</lit>
-<lit name="progress_analysis_warn_part2">are not shown.</lit>
-<lit name="userExpired">Sorry, your account has expired. Please contact your administrator if you need it reset.</lit>
-<lit name="licenceAllocationFailed">Sorry, your account has not been allocated a licence for this program. Please contact your administrator.</lit>
-<lit name="licenceFull">Sorry, the licence for this program is full. Please contact your administrator.</lit>
-<lit name="changePassword">Type your new password in both boxes. Then click to start.[newline]If you don't want to change your password, leave both boxes empty.</lit>
-<lit name="passwordsDifferent">The passwords you have typed are different. Please try again.[newline]If you don't want to change your password, leave both boxes empty.</lit>
-<lit name="passwordChanged">Your password has been changed.</lit>
-<lit name="xxcourseLimitReached">Your licence lets you run [courseLimit] levels of Active Reading. You have already done that, so you can't start a different one.</lit>
-<lit name="courseLimitReached">Sorry, you can't work on this level because you've reached the maximum number of levels ([courseLimit]) allowed to run on this licence.</lit>
-<lit name="multipleUsers">Sorry, your name or id has been used more than once. Please contact your administrator.</lit>
-<lit name="cannotSkipMarkingSCORM">You can only move forward by finishing the exercise and clicking Marking.</lit>
+    <language name="English International" code="EN" mediaFolder="EN">
+        <group name="buttons">
+            <lit name="exit">Exit</lit>
+            <lit name="help">Help</lit>
+            <lit name="scratchPad">Notepad</lit>
+            <lit name="progress">Progress</lit>
+            <lit name="media">Media</lit>
+            <lit name="resources">Resources</lit>
+            <lit name="marking">Marking</lit>
+            <lit name="feedback">Feedback</lit>
+            <lit name="print">Print</lit>
+            <lit name="forward">Forward</lit>
+            <lit name="back">Back</lit>
+            <lit name="menu">Menu</lit>
+            <lit name="rule">Rule</lit>
+            <lit name="instant">As I work</lit>
+            <lit name="delayed">At the end</lit>
+            <lit name="test">Test</lit>
+            <lit name="logOn">Start</lit>
+            <lit name="newUser">New user</lit>
+            <lit name="yes">Yes</lit>
+            <lit name="no">No</lit>
+            <lit name="tryAgain">Try again</lit>
+            <lit name="seeTheAnswer">See the answers</lit>
+            <lit name="finish">Finish</lit>
+            <lit name="createTest">Create test</lit>
+            <lit name="ok">OK</lit>
+            <lit name="courseList">Restart</lit>
+            <lit name="startAgain">Start again</lit>
+            <lit name="guessWord">Type a word</lit>
+            <lit name="stats">Stats</lit>
+            <lit name="text">Text</lit>
+            <lit name="record">Record</lit>
+            <lit name="play">Play</lit>
+            <lit name="stop">Stop</lit>
+            <lit name="recording">Recorder</lit>
+            <lit name="hint">Hint</lit>
+            <lit name="submit">Enter</lit>
+            <lit name="saving">Saving...</lit>
+            <lit name="moreUnits">More...</lit>
+            <lit name="guess">Guess</lit>
+            <lit name="weblink">Weblinks</lit>
+            <lit name="certificate">Your certificate</lit>
+            <lit name="anonymousName">you</lit>
+            <lit name="changePassword">Change password</lit>
+            <lit name="setupRecorder">Recorder</lit>
+            <lit name="recorder">Recorder</lit>
+            <lit name="save">Save</lit>
+            <lit name="pause">Pause</lit>
+            <lit name="playing">Playing</lit>
+            <lit name="compareWaveforms">Compare</lit>
+        </group>
+        <group name="labels">
+            <lit name="languageName">English</lit>
+            <lit name="makeActivity">Choose topics for your test.</lit>
+            <lit name="useQuestions">A test of [x] questions.</lit>
+            <lit name="useOneQuestion">A test of just 1 question!</lit>
+            <lit name="name">Name:</lit>
+            <lit name="studentID">Student ID:</lit>
+            <lit name="password">Password:</lit>
+            <lit name="email">Email:</lit>
+            <lit name="country">Country:</lit>
+            <lit name="chooseCourse">Please choose a course.</lit>
+            <lit name="marking">Marking</lit>
+            <lit name="correct">Correct</lit>
+            <lit name="wrong">Wrong</lit>
+            <lit name="missed">Missed</lit>
+            <lit name="loadingPicture">Loading picture.</lit>
+            <lit name="loading">Loading...</lit>
+            <lit name="downloading">Downloading...</lit>
+            <lit name="loadMediaFail">Cannot load media.</lit>
+            <lit name="loadFail">Cannot load [x].</lit>
+            <lit name="hint">Hint</lit>
+            <lit name="feedback">Feedback</lit>
+            <lit name="wellDone">Well done...</lit>
+            <lit name="sorry">Sorry...</lit>
+            <lit name="rule">Rule</lit>
+            <lit name="scratchPad">Notepad</lit>
+            <lit name="complete">[x]% complete</lit>
+            <lit name="selectLiteral">Please select your screen language:</lit>
+            <lit name="confirmAction">Are you sure?</lit>
+            <lit name="dictionary">Cambridge Learners's Dictionary</lit>
+            <lit name="testRubric">Please select or type the correct answer.</lit>
+            <lit name="markedRubric">Look at the [green]correct answers[/green]. The ones you got right are ticked.</lit>
+            <lit name="clickLimit">Warning</lit>
+            <lit name="warning">Warning</lit>
+            <lit name="progressTitle">Progress for [y] (in [x])</lit>
+            <lit name="progressHeader">Progress: [x] (for [y])</lit>
+            <lit name="progressExercise">Exercise</lit>
+            <lit name="progressScore">Score</lit>
+            <lit name="progressDate">Date</lit>
+            <lit name="progressTime">Time (mins)</lit>
+            <lit name="tests">Tests</lit>
+            <lit name="printedFrom">Printed from [x].</lit>
+            <lit name="printedFromAPO">Printed from Author Plus.</lit>
+            <lit name="resultsFor">Results for [x]</lit>
+            <lit name="version">Version [x]</lit>
+            <lit name="markedRubricProofReading">Look at [red]the mistakes[/red]. The ones you found are ticked.</lit>
+            <lit name="glossary">Hints</lit>
+            <lit name="testUnits">Test from units</lit>
+            <lit name="timeLeft"/>
+            <lit name="oneMinute">1 min</lit>
+            <lit name="minutes">[x] mins</lit>
+            <lit name="seconds">[x] secs</lit>
+            <lit name="stats">Countdown statistics</lit>
+            <lit name="word">Word</lit>
+            <lit name="loginHeading">Please log in.</lit>
+            <lit name="registrationHeading">Your details</lit>
+            <lit name="progressAnon">Progress for you (in [x]).</lit>
+            <lit name="loadScores">Load scores...</lit>
+            <lit name="loadUser">Checking...</lit>
+            <lit name="loadContent">Loading content...</lit>
+            <lit name="loadFeedback">Feedback...</lit>
+            <lit name="loadMarking">Marking...</lit>
+            <lit name="loadPrinting">Printing...</lit>
+            <lit name="loadPreview">Preview...</lit>
+            <lit name="markedRubricGaps">Look at the [green]correct answers[/green]. The ones you got right are ticked.</lit>
+            <lit name="markedRubricOptions">Look at the [green]correct answers[/green]. The ones you got right are ticked.</lit>
+            <lit name="markedRubricCountdown">The words you missed are [green]green[/green].</lit>
+            <lit name="previewRubric">Read this text then close the window to start.</lit>
+            <lit name="licencedTo">Licensed to: [x]</lit>
+            <lit name="tip">Exam tip</lit>
+            <lit name="streaming">Streaming...</lit>
+            <lit name="feedbackFrom">Feedback from:</lit>
+            <lit name="clickForFeedback">Click on any answer to see feedback (if available).</lit>
+            <lit name="editedBy"> - edited for </lit>
+            <lit name="loadingTest">Build the test...</lit>
+            <lit name="fbQuestionNumber">Question [x]</lit>
+            <lit name="specialIntroduction">Introduction</lit>
+            <lit name="timeLeftSubUnit"/>
+            <lit name="newPassword">New one</lit>
+            <lit name="confirmPassword">Confirm it</lit>
+            <lit name="changePassword">Change your password.</lit>
+        </group>
+        <group name="messages">
+            <lit name="seeFeedback">Would you like to see some feedback for that exercise?</lit>
+            <lit name="goMenu">Do you want to go straight to the menu?</lit>
+            <lit name="goPrevious">Do you want to go to the previous exercise?</lit>
+            <lit name="goNext">Do you want to go to the next exercise?</lit>
+            <lit name="goTest">Do you want to create a test?</lit>
+            <lit name="loseWork">(You will lose your work in this exercise.)</lit>
+            <lit name="blankNameID">Sorry, the name and/or ID cannot be blank.</lit>
+            <lit name="noSuchUser">Sorry, that name is not registered, please try again.</lit>
+            <lit name="wrongPassword">Sorry, that password and name do not match, please try again.</lit>
+            <lit name="noLicences">Sorry, there are no licences at the moment, please try again later.</lit>
+            <lit name="userExists">Sorry, that user name is already taken, please try another.</lit>
+            <lit name="newUser">Please type your details.</lit>
+            <lit name="exerciseResult">You scored [x]% in this exercise.</lit>
+            <lit name="upgradeFlash">Please upgrade to the latest Flash player as you may get problems with your current version [x].</lit>
+            <lit name="noHint">Sorry, there is no hint for this question.</lit>
+            <lit name="noFeedback">Sorry, there is no feedback for this question.</lit>
+            <lit name="licenceExpired">The licence has expired (on [x]).</lit>
+            <lit name="licenceAltered">The licence has been altered or corrupted.</lit>
+            <lit name="licenceBlock">Sorry, the licence will not let you run the program.</lit>
+            <lit name="ctrl-click">To look up a word in an online dictionary, hold down the Control (CTRL) key while you click on the word.[newline]Or [x] for a direct link.</lit>
+            <lit name="clickLimitWarning">You have already clicked on [x] words or phrases, and this is the limit. Click on one of them again to clear it and then try again.</lit>
+            <lit name="cannotPrint">Sorry, your Flash player cannot print. Please upgrade to at least version 7.</lit>
+            <lit name="months">Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec</lit>
+            <lit name="noSuchUserTryNew">Sorry, that name is not registered. Please click New user to register.</lit>
+            <lit name="logOn">Please type your name and click Start.</lit>
+            <lit name="logOnSelfRegister">Please type your name and click Start, or click New user if it is your first time.</lit>
+            <lit name="logOnAnon">For anonymous use, just click Start.</lit>
+            <lit name="blankFields">Please fill in all the information.</lit>
+            <lit name="noTotalLicences">Sorry, the licence is full. To add a new user, please ask the administrator to remove someone else.</lit>
+            <lit name="noSuchID">Sorry, that ID is not registered, please try again.</lit>
+            <lit name="noSuchIDTryNew">Sorry, that ID is not registered. Please click New user to register.</lit>
+            <lit name="cannotRecord">Sorry, your computer has not been set up for recording from the browser. [x] shows you how to make it work. If you have already downloaded the Clarity Recorder, run it now and you will be able to record.</lit>
+            <lit name="noGlossaryEntry">Sorry, there is no entry in the glossary for [x].</lit>
+            <lit name="typePassword">Please type the password for this account.</lit>
+            <lit name="noExercise">This unit has no exercises in it.</lit>
+            <lit name="countdownHint">To help you guess this word, here are the letters in it:[newline][tab][x]</lit>
+            <lit name="Dictionary.com#glossaryURL">http://dictionary.reference.com/search?q=[x]</lit>
+            <lit name="CALD#glossaryURL">http://dictionary.cambridge.org/search/british/?q=[x]</lit>
+            <lit name="CLD#glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+            <lit name="OALD#glossaryURL">http://www.oxfordadvancedlearnersdictionary.com/dictionary/[x]</lit>
+            <lit name="Merriam-Webster#glossaryURL">http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&amp;va=[x]</lit>
+            <lit name="WordCentral#glossaryURL">http://www.wordcentral.com/cgi-bin/Search?book=Student&amp;va=[x]</lit>
+            <lit name="ChinaLanguage.com#glossaryURL">http://www.chinalanguage.com/cgi-bin/ecdict.php?query=[x]&amp;dbase=ec</lit>
+            <lit name="glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+            <lit name="neutralFeedback">You clicked #ca#.</lit>
+            <lit name="userOrIDExists">Sorry, that name or ID is already taken, please try others.</lit>
+            <lit name="French-English#glossaryURL">http://www.wordreference.com/fren/[x]</lit>
+            <lit name="English-French#glossaryURL">http://www.wordreference.com/enfr/[x]</lit>
+            <lit name="allCorrect">Click a correct answer to see feedback for that question.</lit>
+            <lit name="wellDoneNoFeedback">Yes, that is correct.</lit>
+            <lit name="sorryNoFeedback">No, that is not correct.</lit>
+            <lit name="noFeedbackAfterMarking">There is no feedback for this question.</lit>
+            <lit name="goHome">Do you want to go straight home?</lit>
+            <lit name="goExit">Do you want to exit the program?</lit>
+            <lit name="goComplete">This is the end of the course. Do you want to exit?</lit>
+            <lit name="optionalLogOn">You must type your name if you want your own Scratch Pad and progress charts.</lit>
+            <lit name="confirmNewUser">This is the first time this name has been used, please click New user to confirm.</lit>
+            <lit name="notInDemo">Please look for *DEMO* to see the material in this demo.</lit>
+            <lit name="certificateFooter">This test is copyright of The British Council 2009-2011.</lit>
+            <lit name="anonScratchPad">You have not signed in with a registered name, so you cannot save your Scratch Pad.</lit>
+            <lit name="progress_global_noScoredEx">You have not completed any scored exercises yet.</lit>
+            <lit name="progress_global_title1">Your scores</lit>
+            <lit name="progress_global_title2">Compare!</lit>
+            <lit name="progress_global_title3">Analysis</lit>
+            <lit name="progress_global_score">Score</lit>
+            <lit name="progress_your_scores_headline">Your records in detail.</lit>
+            <lit name="progress_your_scores_grid_t1">Unit</lit>
+            <lit name="progress_your_scores_grid_t2">Exercise</lit>
+            <lit name="progress_your_scores_grid_t3">Score</lit>
+            <lit name="progress_your_scores_grid_t4">Date</lit>
+            <lit name="progress_your_scores_grid_t5">Time (mins)</lit>
+            <lit name="progress_compare_label1">You</lit>
+            <lit name="progress_compare_label2">Other learners</lit>
+            <lit name="progress_compare_title">Compare your average score to other learners.</lit>
+            <lit name="progress_analysis_score_title">What is your average score in each unit?</lit>
+            <lit name="progress_analysis_time_title">How long have you spent working on each unit?</lit>
+            <lit name="progress_analysis_time_subtitle">Time in minutes</lit>
+            <lit name="progress_analysis_combo_box1">score</lit>
+            <lit name="progress_analysis_combo_box2">time</lit>
+            <lit name="progress_analysis_warn_part1">Units with zero</lit>
+            <lit name="progress_analysis_warn_part2">are not shown.</lit>
+            <lit name="userExpired">Sorry, your account has expired. Please contact your administrator if you need it reset.</lit>
+            <lit name="licenceAllocationFailed">Sorry, your account has not been allocated a licence for this program. Please contact your administrator.</lit>
+            <lit name="licenceFull">Sorry, the licence for this program is full. Please contact your administrator.</lit>
+            <lit name="changePassword">Type your new password in both boxes. Then click to start.[newline]If you don't want to change your password, leave both boxes empty.</lit>
+            <lit name="passwordsDifferent">The passwords you have typed are different. Please try again.[newline]If you don't want to change your password, leave both boxes empty.</lit>
+            <lit name="passwordChanged">Your password has been changed.</lit>
+            <lit name="xxcourseLimitReached">Your licence lets you run [courseLimit] levels of Active Reading. You have already done that, so you can't start a different one.</lit>
+            <lit name="courseLimitReached">Sorry, you can't work on this level because you've reached the maximum number of levels ([courseLimit]) allowed to run on this licence.</lit>
+            <lit name="multipleUsers">Sorry, your name or id has been used more than once. Please contact your administrator.</lit>
+            <lit name="cannotSkipMarkingSCORM">You can only move forward by finishing the exercise and clicking Marking.</lit>
 
-<lit name="specialIntroduction">El examen de nivel comienza con 15 preguntas generales. (7min)
+            <lit name="specialIntroduction">El examen de nivel comienza con 15 preguntas generales. (7min)
 Luego harás el examen principal (30-40min).[newline]Consta de 3 partes:[newline]1. Gramática [newline]2. Vocabulario[newline]3. Lectura
 Por favor lee con atención las instrucciones de cada pantalla.  Las instrucciones te indicarán cuántas preguntas y pantallas hay.   A la derecha de la pantalla hay un cronómetro que te indica cuántos minutos te quedan para terminar el examen.
 Este examen de nivel se diseñó para que tengas una idea de cuál es tu nivel de inglés. Para evaluar tu nivel con exactitud, es importante que no uses diccionarios ni material de consulta ni pidas ayuda. 
 Una vez que termines el examen, verás los resultados en la pantalla y podrás imprimirlos. 
 Ahora, haz clic en el botón 'Comenzar el examen' que aparece a la izquierda.
-</lit>
-<lit name="certificateCEFLevelA0"><![CDATA[A0 (Breakthrough):<br/>Basic user]]></lit>
-<lit name="certificateCEFLevelA1"><![CDATA[A1 (Breakthrough):<br/>Basic user]]></lit>
-<lit name="certificateCEFLevelA2"><![CDATA[A2 (Waystage):<br/>Basic user]]></lit>
-<lit name="certificateCEFLevelB1"><![CDATA[B1 (Threshold):<br/>Independent User]]></lit>
-<lit name="certificateCEFLevelB2"><![CDATA[B2 (Vantage):<br/>Independent User]]></lit>
-<lit name="certificateCEFLevelC1"><![CDATA[C1 (Effective Operational Proficiency):<br/>Proficient User]]></lit>
-<lit name="certificateCEFLevelC2"><![CDATA[C2 (Mastery):<br/>Proficient User]]></lit>
-<lit name="xxcertificateCEFDetailA0"><![CDATA[• Understand and use familiar everyday expressions and very basic phrases.<br />• Introduce him/herself and others and can ask and answer questions about personal details such as where he/she lives, people he/she knows and things he/she has.<br />• Interact in a simple way provided the other person talks slowly and clearly and is prepared to help.]]></lit>
-<lit name="xxcertificateCEFDetailA1"><![CDATA[• Understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type. <br />• Introduce him/herself and others and can ask and answer questions about personal details such as where he/she lives, people he/she knows and things he/she has. <br />• Interact in a simple way provided the other person talks slowly and clearly and is prepared to help.]]></lit>
-<lit name="xxcertificateCEFDetailA2"><![CDATA[• Understand sentences and frequently used expressions related to areas of most immediate relevance (e.g. very basic personal and family information, shopping, local geography, employment). <br />• Communicate in simple and routine tasks requiring a simple and direct exchange of information on familiar and routine matters. <br />• Describe in simple terms aspects of his/her background, immediate environment and matters in areas of immediate need.]]></lit>
-<lit name="xxcertificateCEFDetailB1"><![CDATA[• Understand the main points of clear standard input on familiar matters regularly encountered in work, school, leisure, etc. <br />• Deal with most situations likely to arise whilst travelling in an area where the language is spoken. <br />• Produce simple connected text on topics which are familiar or of personal interest. <br />• Describe experiences and events, dreams, hopes and ambitions and briefly give reasons and explanations for opinions and plans.]]></lit>
-<lit name="xxcertificateCEFDetailB2"><![CDATA[• Understand the main ideas of complex text on both concrete and abstract topics, including technical discussions in his/her field of specialisation. <br />• Interact with a degree of fluency and spontaneity that makes regular interaction with native speakers quite possible without strain for either party. <br />• Produce clear, detailed text on a wide range of subjects and explain a viewpoint on a topical issue giving the advantages and disadvantages of various options.<br />• Describe experiences and events, dreams, hopes & ambitions and give brief reasons for opinions and plans.]]></lit>
-<lit name="xxcertificateCEFDetailC1"><![CDATA[• Understand a wide range of demanding, longer texts, and recognise implicit meaning. <br />• Express him/herself fluently and spontaneously without much obvious searching for expressions. <br />• Use language flexibly and effectively for social, academic and professional purposes. <br />• Produce clear, well-structured, detailed text on complex subjects, showing controlled use of organisational patterns, connectors and cohesive devices.]]></lit>
-<lit name="xxcertificateCEFDetailC2"><![CDATA[• Understand with ease virtually everything heard or read. <br />• Can summarise information from different spoken and written sources, reconstructing arguments and accounts in a coherent presentation. <br />• Express him/herself spontaneously, very fluently and precisely, differentiating finer shades of meaning even in the most complex situations.]]></lit>
-<lit name="certificateCEFDetailA0"><![CDATA[<ul><li>Understand and use familiar everyday expressions and very basic phrases.</li><li>Introduce him/herself and others and can ask and answer questions about personal details such as where he/she lives, people he/she knows and things he/she has.</li><li>Interact in a simple way provided the other person talks slowly and clearly and is prepared to help.</li></ul>]]></lit>
-<lit name="certificateCEFDetailA1"><![CDATA[<ul><li>Understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type.</li><li>Introduce him/herself and others and can ask and answer questions about personal details such as where he/she lives, people he/she knows and things he/she has.</li><li>Interact in a simple way provided the other person talks slowly and clearly and is prepared to help.</li></ul>]]></lit>
-<lit name="certificateCEFDetailA2"><![CDATA[<ul><li>Understand sentences and frequently used expressions related to areas of most immediate relevance (e.g. very basic personal and family information, shopping, local geography, employment).</li><li>Communicate in simple and routine tasks requiring a simple and direct exchange of information on familiar and routine matters.</li><li>Describe in simple terms aspects of his/her background, immediate environment and matters in areas of immediate need.</li></ul>]]></lit>
-<lit name="certificateCEFDetailB1"><![CDATA[<ul><li>Understand the main points of clear standard input on familiar matters regularly encountered in work, school, leisure, etc.</li><li>Deal with most situations likely to arise whilst travelling in an area where the language is spoken.</li><li>Produce simple connected text on topics which are familiar or of personal interest.</li><li>Describe experiences and events, dreams, hopes and ambitions and briefly give reasons and explanations for opinions and plans.</li></ul>]]></lit>
-<lit name="certificateCEFDetailB2"><![CDATA[<ul><li>Understand the main ideas of complex text on both concrete and abstract topics, including technical discussions in his/her field of specialisation.</li><li>Interact with a degree of fluency and spontaneity that makes regular interaction with native speakers quite possible without strain for either party.</li><li>Produce clear, detailed text on a wide range of subjects and explain a viewpoint on a topical issue giving the advantages and disadvantages of various options.</li><li>Describe experiences and events, dreams, hopes & ambitions and give brief reasons for opinions and plans.</li></ul>]]></lit>
-<lit name="certificateCEFDetailC1"><![CDATA[<ul><li>Understand a wide range of demanding, longer texts, and recognise implicit meaning.</li><li>Express him/herself fluently and spontaneously without much obvious searching for expressions.</li><li>Use language flexibly and effectively for social, academic and professional purposes.</li><li>Produce clear, well-structured, detailed text on complex subjects, showing controlled use of organisational patterns, connectors and cohesive devices.</li></ul>]]></lit>
-<lit name="certificateCEFDetailC2"><![CDATA[<ul><li>Understand with ease virtually everything heard or read.</li><li>Can summarise information from different spoken and written sources, reconstructing arguments and accounts in a coherent presentation.</li><li>Express him/herself spontaneously, very fluently and precisely, differentiating finer shades of meaning even in the most complex situations.</li></ul>]]></lit>
-<lit name="certificateCEFSummary"><![CDATA[<font size="13"><b>CEF Level: [CEFLevel]</b><br/>grammar=[grammarCEF]<br/>vocabulary=[vocabCEF]<br/>reading=[readingCEF]<font>]]></lit>
-<lit name="certificateBCSummary"><![CDATA[<font size="13">Según este examen, tu nivel es:</font>]]></lit>
-<lit name="certificateBCContact"><![CDATA[Call to action section.]]></lit>
-<lit name="certificateBCDisclaimer"><![CDATA[<font size="9">Disclaimer: This online test has been administered under unsupervised conditions and the identity of candidates has not been verified. The British Council takes no responsibility for ensuring that the test taker's personal details given above are correct or that they are those of the person who actually completed the test.<br/><br/>This level test offers an approximate indication of level based primarily of grammar, vocabulary and reading skills. For a comprehensive assessment of English proficiency across all skills the British Council would recommend a more detailed assessment such as that offered by the International English Language Testing System (IELTS).</font>]]></lit>
-<lit name="certificateCEFDetail"><![CDATA[<font size="12">Someone at your level can usually:<br/><br/>[CEFLevelDetail]</font>]]></lit>
-<lit name="certificateHeader">[unit] - [name]</lit>
-<lit name="certificateBCLevel-Starter">Starter</lit>
-<lit name="certificateBCLevel-Elementary">Elementary</lit>
-<lit name="certificateBCLevel-Pre-Intermediate">Pre-Intermediate</lit>
-<lit name="certificateBCLevel-Intermediate">Intermediate</lit>
-<lit name="certificateBCLevel-Upper-Intermediate">Upper Intermediate</lit>
-<lit name="certificateBCLevel-Advanced">Advanced</lit>
-<lit name="certificateBCLevel-Advanced-Plus">Advanced Plus</lit>
-<lit name="certificateLayout"><![CDATA[[BCSummary]<br/>[CEFSummary]]]></lit>
-</group>
-<group name="can only be displayed in English at present">
-<lit name="notActivatedTooLong">This program has been unregistered for too long (since [x]).</lit>
-<lit name="wrongComputer">The licence has been registered on a different computer.</lit>
-<lit name="wrongIP">The licence can only run from a limited range of computers (IP address).</lit>
-<lit name="notInSCORM">This course should be run from an LMS, but the SCORM api is not running. Please tell a technician if this makes no sense!</lit>
-<lit name="blockedAccess">This application has been blocked from your website link. Please start from www.ClarityEnglish.com.</lit>
-<lit name="licenceMissing">The licence can't be found. Some webservers hide the file licence.ini. Try renaming it to licence.txt and restart.</lit>
-<lit name="noDBConnection">The database cannot be read, please try again later or contact your support team.</lit>
-<lit name="cannotLoadXML">[x] cannot be read, please contact your support team.</lit>
-</group>
-</language>
-<language name="Spanish" code="ES" mediaFolder="EN">
-<group name="labels">
-<lit name="specialIntroduction">Introducción</lit>
-</group>
-<group name="messages">
-<lit name="specialIntroduction">El examen de nivel comienza con 15 preguntas generales. (7min)
+            </lit>
+            <lit name="certificateCEFLevelA0">
+                <![CDATA[A0 (Breakthrough):<br/>Basic user]]>
+            </lit>
+            <lit name="certificateCEFLevelA1">
+                <![CDATA[A1 (Breakthrough):<br/>Basic user]]>
+            </lit>
+            <lit name="certificateCEFLevelA2">
+                <![CDATA[A2 (Waystage):<br/>Basic user]]>
+            </lit>
+            <lit name="certificateCEFLevelB1">
+                <![CDATA[B1 (Threshold):<br/>Independent User]]>
+            </lit>
+            <lit name="certificateCEFLevelB2">
+                <![CDATA[B2 (Vantage):<br/>Independent User]]>
+            </lit>
+            <lit name="certificateCEFLevelC1">
+                <![CDATA[C1 (Effective Operational Proficiency):<br/>Proficient User]]>
+            </lit>
+            <lit name="certificateCEFLevelC2">
+                <![CDATA[C2 (Mastery):<br/>Proficient User]]>
+            </lit>
+            <lit name="xxcertificateCEFDetailA0">
+                <![CDATA[• Understand and use familiar everyday expressions and very basic phrases.<br />• Introduce him/herself and others and can ask and answer questions about personal details such as where he/she lives, people he/she knows and things he/she has.<br />• Interact in a simple way provided the other person talks slowly and clearly and is prepared to help.]]>
+            </lit>
+            <lit name="xxcertificateCEFDetailA1">
+                <![CDATA[• Understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type. <br />• Introduce him/herself and others and can ask and answer questions about personal details such as where he/she lives, people he/she knows and things he/she has. <br />• Interact in a simple way provided the other person talks slowly and clearly and is prepared to help.]]>
+            </lit>
+            <lit name="xxcertificateCEFDetailA2">
+                <![CDATA[• Understand sentences and frequently used expressions related to areas of most immediate relevance (e.g. very basic personal and family information, shopping, local geography, employment). <br />• Communicate in simple and routine tasks requiring a simple and direct exchange of information on familiar and routine matters. <br />• Describe in simple terms aspects of his/her background, immediate environment and matters in areas of immediate need.]]>
+            </lit>
+            <lit name="xxcertificateCEFDetailB1">
+                <![CDATA[• Understand the main points of clear standard input on familiar matters regularly encountered in work, school, leisure, etc. <br />• Deal with most situations likely to arise whilst travelling in an area where the language is spoken. <br />• Produce simple connected text on topics which are familiar or of personal interest. <br />• Describe experiences and events, dreams, hopes and ambitions and briefly give reasons and explanations for opinions and plans.]]>
+            </lit>
+            <lit name="xxcertificateCEFDetailB2">
+                <![CDATA[• Understand the main ideas of complex text on both concrete and abstract topics, including technical discussions in his/her field of specialisation. <br />• Interact with a degree of fluency and spontaneity that makes regular interaction with native speakers quite possible without strain for either party. <br />• Produce clear, detailed text on a wide range of subjects and explain a viewpoint on a topical issue giving the advantages and disadvantages of various options.<br />• Describe experiences and events, dreams, hopes & ambitions and give brief reasons for opinions and plans.]]>
+            </lit>
+            <lit name="xxcertificateCEFDetailC1">
+                <![CDATA[• Understand a wide range of demanding, longer texts, and recognise implicit meaning. <br />• Express him/herself fluently and spontaneously without much obvious searching for expressions. <br />• Use language flexibly and effectively for social, academic and professional purposes. <br />• Produce clear, well-structured, detailed text on complex subjects, showing controlled use of organisational patterns, connectors and cohesive devices.]]>
+            </lit>
+            <lit name="xxcertificateCEFDetailC2">
+                <![CDATA[• Understand with ease virtually everything heard or read. <br />• Can summarise information from different spoken and written sources, reconstructing arguments and accounts in a coherent presentation. <br />• Express him/herself spontaneously, very fluently and precisely, differentiating finer shades of meaning even in the most complex situations.]]>
+            </lit>
+            <lit name="certificateCEFDetailA0">
+                <![CDATA[<ul><li>Understand and use familiar everyday expressions and very basic phrases.</li><li>Introduce him/herself and others and can ask and answer questions about personal details such as where he/she lives, people he/she knows and things he/she has.</li><li>Interact in a simple way provided the other person talks slowly and clearly and is prepared to help.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailA1">
+                <![CDATA[<ul><li>Understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type.</li><li>Introduce him/herself and others and can ask and answer questions about personal details such as where he/she lives, people he/she knows and things he/she has.</li><li>Interact in a simple way provided the other person talks slowly and clearly and is prepared to help.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailA2">
+                <![CDATA[<ul><li>Understand sentences and frequently used expressions related to areas of most immediate relevance (e.g. very basic personal and family information, shopping, local geography, employment).</li><li>Communicate in simple and routine tasks requiring a simple and direct exchange of information on familiar and routine matters.</li><li>Describe in simple terms aspects of his/her background, immediate environment and matters in areas of immediate need.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailB1">
+                <![CDATA[<ul><li>Understand the main points of clear standard input on familiar matters regularly encountered in work, school, leisure, etc.</li><li>Deal with most situations likely to arise whilst travelling in an area where the language is spoken.</li><li>Produce simple connected text on topics which are familiar or of personal interest.</li><li>Describe experiences and events, dreams, hopes and ambitions and briefly give reasons and explanations for opinions and plans.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailB2">
+                <![CDATA[<ul><li>Understand the main ideas of complex text on both concrete and abstract topics, including technical discussions in his/her field of specialisation.</li><li>Interact with a degree of fluency and spontaneity that makes regular interaction with native speakers quite possible without strain for either party.</li><li>Produce clear, detailed text on a wide range of subjects and explain a viewpoint on a topical issue giving the advantages and disadvantages of various options.</li><li>Describe experiences and events, dreams, hopes & ambitions and give brief reasons for opinions and plans.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailC1">
+                <![CDATA[<ul><li>Understand a wide range of demanding, longer texts, and recognise implicit meaning.</li><li>Express him/herself fluently and spontaneously without much obvious searching for expressions.</li><li>Use language flexibly and effectively for social, academic and professional purposes.</li><li>Produce clear, well-structured, detailed text on complex subjects, showing controlled use of organisational patterns, connectors and cohesive devices.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailC2">
+                <![CDATA[<ul><li>Understand with ease virtually everything heard or read.</li><li>Can summarise information from different spoken and written sources, reconstructing arguments and accounts in a coherent presentation.</li><li>Express him/herself spontaneously, very fluently and precisely, differentiating finer shades of meaning even in the most complex situations.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFSummary">
+                <![CDATA[<font size="13"><b>CEF Level: [CEFLevel]</b><br/>grammar=[grammarCEF]<br/>vocabulary=[vocabCEF]<br/>reading=[readingCEF]<font>]]>
+            </lit>
+            <lit name="certificateBCSummary">
+                <![CDATA[<font size="13">Según este examen, tu nivel es:</font>]]>
+            </lit>
+            <lit name="certificateBCContact">
+                <![CDATA[Call to action section.]]>
+            </lit>
+            <lit name="certificateBCDisclaimer">
+                <![CDATA[<font size="9">Disclaimer: This online test has been administered under unsupervised conditions and the identity of candidates has not been verified. The British Council takes no responsibility for ensuring that the test taker's personal details given above are correct or that they are those of the person who actually completed the test.<br/><br/>This level test offers an approximate indication of level based primarily of grammar, vocabulary and reading skills. For a comprehensive assessment of English proficiency across all skills the British Council would recommend a more detailed assessment such as that offered by the International English Language Testing System (IELTS).</font>]]>
+            </lit>
+            <lit name="certificateCEFDetail">
+                <![CDATA[<font size="12">Someone at your level can usually:<br/><br/>[CEFLevelDetail]</font>]]>
+            </lit>
+            <lit name="certificateHeader">[unit] - [name]</lit>
+            <lit name="certificateBCLevel-Starter">Starter</lit>
+            <lit name="certificateBCLevel-Elementary">Elementary</lit>
+            <lit name="certificateBCLevel-Pre-Intermediate">Pre-Intermediate</lit>
+            <lit name="certificateBCLevel-Intermediate">Intermediate</lit>
+            <lit name="certificateBCLevel-Upper-Intermediate">Upper Intermediate</lit>
+            <lit name="certificateBCLevel-Advanced">Advanced</lit>
+            <lit name="certificateBCLevel-Advanced-Plus">Advanced Plus</lit>
+            <lit name="certificateLayout">
+                <![CDATA[[BCSummary]<br/>[CEFSummary]]]>
+            </lit>
+        </group>
+        <group name="can only be displayed in English at present">
+            <lit name="notActivatedTooLong">This program has been unregistered for too long (since [x]).</lit>
+            <lit name="wrongComputer">The licence has been registered on a different computer.</lit>
+            <lit name="wrongIP">The licence can only run from a limited range of computers (IP address).</lit>
+            <lit name="notInSCORM">This course should be run from an LMS, but the SCORM api is not running. Please tell a technician if this makes no sense!</lit>
+            <lit name="blockedAccess">This application has been blocked from your website link. Please start from www.ClarityEnglish.com.</lit>
+            <lit name="licenceMissing">The licence can't be found. Some webservers hide the file licence.ini. Try renaming it to licence.txt and restart.</lit>
+            <lit name="noDBConnection">The database cannot be read, please try again later or contact your support team.</lit>
+            <lit name="cannotLoadXML">[x] cannot be read, please contact your support team.</lit>
+        </group>
+    </language>
+    <language name="Spanish" code="ES" mediaFolder="EN">
+        <group name="labels">
+            <lit name="specialIntroduction">Introducción</lit>
+        </group>
+        <group name="messages">
+            <lit name="specialIntroduction">El examen de nivel comienza con 15 preguntas generales. (7min)
 Luego harás el examen principal (30-40min).[newline]Consta de 3 partes:[newline]1. Gramática[newline]2. Vocabulario[newline]3. Lectura
 Por favor lee con atención las instrucciones de cada pantalla. Las instrucciones te indicarán cuántas preguntas y pantallas hay.  A la derecha de la pantalla hay un cronómetro que te indica cuántos minutos te quedan para terminar el examen.
 Este examen de nivel se diseñó para que tengas una idea de cuál es tu nivel de inglés. Para evaluar tu nivel con exactitud, es importante que no uses diccionarios ni material de consulta ni pidas ayuda. 
 Una vez que termines el examen, verás los resultados en la pantalla y podrás imprimirlos. 
 Ahora, haz clic en el botón 'Comenzar el examen' que aparece a la izquierda. 
-</lit>
-<lit name="certificateCEFLevelA0"><![CDATA[A0 (Acceso):<br/>Usuario básico]]></lit>
-<lit name="certificateCEFLevelA1"><![CDATA[A1 (Acceso):<br/>Usuario básico]]></lit>
-<lit name="certificateCEFLevelA2"><![CDATA[A2 (Plataforma):<br/>Usuario básico]]></lit>
-<lit name="certificateCEFLevelB1"><![CDATA[B1 (Umbral):<br/>Usuario independiente]]></lit>
-<lit name="certificateCEFLevelB2"><![CDATA[B2 (Avanzado):<br/>Usuario independiente]]></lit>
-<lit name="certificateCEFLevelC1"><![CDATA[C1 (Dominio operativo eficaz):<br/>Usuario competente]]></lit>
-<lit name="certificateCEFLevelC2"><![CDATA[C2 (Maestría):<br/>Usuario competente]]></lit>
-<lit name="certificateCEFDetailA0"><![CDATA[<ul><li>Comprender y utilizar expresiones coloquiales cotidianas y frases muy básicas.</li><li>Presentarse y presentar a otras personas, hacer y contestar preguntas personales sobre el lugar donde vive, las personas que conoce y las cosas que posee.</li><li>Relacionarse de forma sencilla siempre que la otra persona hable lentamente y con claridad y esté dispuesta a ayudar.</li></ul>]]></lit>
-<lit name="certificateCEFDetailA1"><![CDATA[<ul><li>Comprender y utilizar expresiones coloquiales cotidianas y frases muy básicas destinadas a satisfacer necesidades concretas.</li><li>Presentarse y presentar a otras personas, hacer y contestar preguntas personales sobre el lugar donde vive, las personas que conoce y las cosas que posee.</li><li>Relacionarse de forma sencilla siempre que la otra persona hable lentamente y con claridad y esté dispuesta a ayudar.</li></ul>]]></lit>
-<lit name="certificateCEFDetailA2"><![CDATA[<ul><li>Comprender frases y expresiones de uso frecuente relacionadas con áreas que le son especialmente relevantes (por ejemplo, información personal y familiar muy básica, compras, lugares de interés, empleo).</li><li>Comunicarse en actividades simples y cotidianas que requieren un intercambio de información sencillo y directo sobre cuestiones familiares y cotidianas.</li><li>Describir en términos sencillos aspectos de su pasado y su entorno y también de cuestiones relacionadas con sus necesidades inmediatas.</li></ul>]]></lit>
-<lit name="certificateCEFDetailB1"><![CDATA[<ul><li>Comprender las ideas principales de conversaciones en lengua clara y estándar sobre cuestiones que se le presentan a menudo en el trabajo, la escuela, el tiempo libre, etc.</li><li>Desenvolverse en la mayoría de situaciones que pueden surgir cuando viaja a un lugar donde se utiliza la lengua.</li><li>Redactar textos sencillos y coherentes sobre temas que le son familiares o le interesan.</li><li>Describir experiencias, hechos, sueños, esperanzas y aspiraciones y justificar brevemente sus opiniones y planes.</li></ul>]]></lit>
-<lit name="certificateCEFDetailB2"><![CDATA[<ul><li>Comprender las ideas principales de los textos complejos que traten temas tanto concretos como abstractos, incluso de carácter técnico dentro de su campo de especialización.</li><li>Relacionarse con hablantes nativos con un grado de fluidez y naturalidad que permite que la comunicación se realice sin el esfuerzo de los participantes.</li><li>Redactar textos claros y detallados sobre temas diversos y exponer su punto de vista indicando los pros y los contra de las distintas opciones.</li><li>Describir experiencias, hechos, sueños, esperanzas y aspiraciones y justificar brevemente sus opiniones y planes.</li></ul>]]></lit>
-<lit name="certificateCEFDetailC1"><![CDATA[<ul><li>Comprender una gran variedad de textos complicados y extensos y reconocer el significado implícito.</li><li>Expresarse con fluidez y naturalidad sin recurrir a la búsqueda evidente de expresiones.</li><li>Hacer un uso flexible y efectivo del idioma para fines sociales, académicos y profesionales.</li><li> Redactar textos claros, bien estructurados y detallados sobre temas complejos, haciendo uso de pautas de organización, conectores y mecanismos de cohesión.</li></ul>]]></lit>
-<lit name="certificateCEFDetailC2"><![CDATA[<ul><li>Comprender con facilidad prácticamente todo lo que oye o lee.</li><li>Resumir información proveniente de distintas fuentes orales y escritas y reconstruir argumentos y relatos de manera coherente.</li><li>Expresarse con naturalidad, gran fluidez y precisión, lo que le permite diferenciar pequeños matices de significado incluso en las situaciones más complejas.</li></ul>]]></lit>
-<lit name="certificateCEFSummary"><![CDATA[<font size="13"><b>CEF Nivel: [CEFLevel]</b><br/>grammar=[grammarCEF]<br/>vocabulary=[vocabCEF]<br/>reading=[readingCEF]<font>]]></lit>
-<lit name="certificateBCSummary"><![CDATA[<font size="13">Según este examen, tu nivel es:</font>]]></lit>
-<lit name="certificateBCContact"><![CDATA[Call to action section.]]></lit>
-<lit name="certificateBCDisclaimer"><![CDATA[<font size="9">Descargo de responsabilidad: Este examen en línea se efectúa sin supervisión y la identidad de los candidatos no ha sido verificada. El British Council no se hace responsable de verificar que los datos personales de quien rinde el examen sean correctos o correspondan a la persona que realmente lo completó.<br/>Este examen indica el nivel aproximado principalmente en función de las habilidades de gramática, vocabulario y lectura. Para una evaluación exhaustiva de la competencia en inglés en todas las habilidades, el British Council recomienda una evaluación más detallada como la que ofrece el International English Language Testing System (IELTS).</font>]]></lit>
-<lit name="certificateCEFDetail"><![CDATA[<font size="12">Alguien de tu nivel habitualmente es capaz de:<br/><br/>[CEFLevelDetail]</font>]]></lit>
-<lit name="certificateHeader">[unit] - [name]</lit>
-<lit name="certificateBCLevel-Starter">Starter</lit>
-<lit name="certificateBCLevel-Elementary">Elementary</lit>
-<lit name="certificateBCLevel-Pre-Intermediate">Pre-Intermediate</lit>
-<lit name="certificateBCLevel-Intermediate">Intermediate</lit>
-<lit name="certificateBCLevel-Upper-Intermediate">Upper Intermediate</lit>
-<lit name="certificateBCLevel-Advanced">Advanced</lit>
-<lit name="certificateBCLevel-Advanced-Plus">Advanced Plus</lit>
-<lit name="certificateLayout"><![CDATA[[BCSummary]<br/>[CEFSummary]<br/>]]></lit>
-</group>
-</language>
-<language name="French" code="FR" mediaFolder="EN">
-<group name="labels">
-<lit name="specialIntroduction">Bonjour</lit>
-</group>
-<group name="messages">
-<lit name="specialIntroduction">El examen de nivel comienza con 15 preguntas generales.[newline]1. Gramática[newline]2. Vocabulario[newline]3. Lectura
+            </lit>
+            <lit name="certificateCEFLevelA0">
+                <![CDATA[A0 (Acceso):<br/>Usuario básico]]>
+            </lit>
+            <lit name="certificateCEFLevelA1">
+                <![CDATA[A1 (Acceso):<br/>Usuario básico]]>
+            </lit>
+            <lit name="certificateCEFLevelA2">
+                <![CDATA[A2 (Plataforma):<br/>Usuario básico]]>
+            </lit>
+            <lit name="certificateCEFLevelB1">
+                <![CDATA[B1 (Umbral):<br/>Usuario independiente]]>
+            </lit>
+            <lit name="certificateCEFLevelB2">
+                <![CDATA[B2 (Avanzado):<br/>Usuario independiente]]>
+            </lit>
+            <lit name="certificateCEFLevelC1">
+                <![CDATA[C1 (Dominio operativo eficaz):<br/>Usuario competente]]>
+            </lit>
+            <lit name="certificateCEFLevelC2">
+                <![CDATA[C2 (Maestría):<br/>Usuario competente]]>
+            </lit>
+            <lit name="certificateCEFDetailA0">
+                <![CDATA[<ul><li>Comprender y utilizar expresiones coloquiales cotidianas y frases muy básicas.</li><li>Presentarse y presentar a otras personas, hacer y contestar preguntas personales sobre el lugar donde vive, las personas que conoce y las cosas que posee.</li><li>Relacionarse de forma sencilla siempre que la otra persona hable lentamente y con claridad y esté dispuesta a ayudar.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailA1">
+                <![CDATA[<ul><li>Comprender y utilizar expresiones coloquiales cotidianas y frases muy básicas destinadas a satisfacer necesidades concretas.</li><li>Presentarse y presentar a otras personas, hacer y contestar preguntas personales sobre el lugar donde vive, las personas que conoce y las cosas que posee.</li><li>Relacionarse de forma sencilla siempre que la otra persona hable lentamente y con claridad y esté dispuesta a ayudar.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailA2">
+                <![CDATA[<ul><li>Comprender frases y expresiones de uso frecuente relacionadas con áreas que le son especialmente relevantes (por ejemplo, información personal y familiar muy básica, compras, lugares de interés, empleo).</li><li>Comunicarse en actividades simples y cotidianas que requieren un intercambio de información sencillo y directo sobre cuestiones familiares y cotidianas.</li><li>Describir en términos sencillos aspectos de su pasado y su entorno y también de cuestiones relacionadas con sus necesidades inmediatas.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailB1">
+                <![CDATA[<ul><li>Comprender las ideas principales de conversaciones en lengua clara y estándar sobre cuestiones que se le presentan a menudo en el trabajo, la escuela, el tiempo libre, etc.</li><li>Desenvolverse en la mayoría de situaciones que pueden surgir cuando viaja a un lugar donde se utiliza la lengua.</li><li>Redactar textos sencillos y coherentes sobre temas que le son familiares o le interesan.</li><li>Describir experiencias, hechos, sueños, esperanzas y aspiraciones y justificar brevemente sus opiniones y planes.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailB2">
+                <![CDATA[<ul><li>Comprender las ideas principales de los textos complejos que traten temas tanto concretos como abstractos, incluso de carácter técnico dentro de su campo de especialización.</li><li>Relacionarse con hablantes nativos con un grado de fluidez y naturalidad que permite que la comunicación se realice sin el esfuerzo de los participantes.</li><li>Redactar textos claros y detallados sobre temas diversos y exponer su punto de vista indicando los pros y los contra de las distintas opciones.</li><li>Describir experiencias, hechos, sueños, esperanzas y aspiraciones y justificar brevemente sus opiniones y planes.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailC1">
+                <![CDATA[<ul><li>Comprender una gran variedad de textos complicados y extensos y reconocer el significado implícito.</li><li>Expresarse con fluidez y naturalidad sin recurrir a la búsqueda evidente de expresiones.</li><li>Hacer un uso flexible y efectivo del idioma para fines sociales, académicos y profesionales.</li><li> Redactar textos claros, bien estructurados y detallados sobre temas complejos, haciendo uso de pautas de organización, conectores y mecanismos de cohesión.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailC2">
+                <![CDATA[<ul><li>Comprender con facilidad prácticamente todo lo que oye o lee.</li><li>Resumir información proveniente de distintas fuentes orales y escritas y reconstruir argumentos y relatos de manera coherente.</li><li>Expresarse con naturalidad, gran fluidez y precisión, lo que le permite diferenciar pequeños matices de significado incluso en las situaciones más complejas.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFSummary">
+                <![CDATA[<font size="13"><b>CEF Nivel: [CEFLevel]</b><br/>Posteriormente se informará  por correo electrónico si ha sido seleccionado para iniciar un curso a distancia e-learning. Este está alineado con el estándar de nivelación internacional MCER (Marco Común Europeo de Referencia de las Lenguas), y cuenta con el apoyo de tutores asincrónicos.<font>]]>
+            </lit>
+            <lit name="certificateBCSummary">
+                <![CDATA[<font size="13">LearnEnglish Level Test rendido por [email] ha finalizado con los siguientes resultados:</font>]]>
+            </lit>
+            <lit name="certificateBCContact">
+                <![CDATA[Call to action section.]]>
+            </lit>
+            <lit name="certificateBCDisclaimer">
+                <![CDATA[<font size="9">Descargo de responsabilidad: Este examen en línea se efectúa sin supervisión y la identidad de los candidatos no ha sido verificada. El British Council no se hace responsable de verificar que los datos personales de quien rinde el examen sean correctos o correspondan a la persona que realmente lo completó.<br/>Este examen indica el nivel aproximado principalmente en función de las habilidades de gramática, vocabulario y lectura. Para una evaluación exhaustiva de la competencia en inglés en todas las habilidades, el British Council recomienda una evaluación más detallada como la que ofrece el International English Language Testing System (IELTS).</font>]]>
+            </lit>
+            <lit name="certificateCEFDetail">
+                <![CDATA[<font size="12">[CEFLevelDetail]</font>]]>
+            </lit>
+            <lit name="certificateHeader">[unit] - [name]</lit>
+            <lit name="certificateBCLevel-Starter">Starter</lit>
+            <lit name="certificateBCLevel-Elementary">Elementary</lit>
+            <lit name="certificateBCLevel-Pre-Intermediate">Pre-Intermediate</lit>
+            <lit name="certificateBCLevel-Intermediate">Intermediate</lit>
+            <lit name="certificateBCLevel-Upper-Intermediate">Upper Intermediate</lit>
+            <lit name="certificateBCLevel-Advanced">Advanced</lit>
+            <lit name="certificateBCLevel-Advanced-Plus">Advanced Plus</lit>
+            <lit name="certificateLayout">
+                <![CDATA[[BCSummary]<br/>[CEFSummary]<br/>]]>
+            </lit>
+        </group>
+    </language>
+    <language name="French" code="FR" mediaFolder="EN">
+        <group name="labels">
+            <lit name="specialIntroduction">Bonjour</lit>
+        </group>
+        <group name="messages">
+            <lit name="specialIntroduction">El examen de nivel comienza con 15 preguntas generales.[newline]1. Gramática[newline]2. Vocabulario[newline]3. Lectura
 Start the test.
-</lit>
-<lit name="certificateCEFLevelA0">A0 (Acceso): Usuario básico</lit>
-<lit name="certificateCEFLevelA1">A1 (Acceso): Usuario básico</lit>
-<lit name="certificateCEFLevelA2">A2 (Plataforma): Usuario básico</lit>
-<lit name="certificateCEFLevelB1">B1 (Umbral): Usuario independiente</lit>
-<lit name="certificateCEFLevelB2">B2 (Avanzado): Usuario independiente</lit>
-<lit name="certificateCEFLevelC1">C1 (Dominio operativo eficaz): Usuario competente</lit>
-<lit name="certificateCEFLevelC2">C2 (Maestría): Usuario competente</lit>
-<lit name="certificateCEFDetailA0"><![CDATA[<ul><li>Comprender y utilizar expresiones coloquiales cotidianas y frases muy básicas.</li><li>Presentarse y presentar a otras personas, hacer y contestar preguntas personales sobre el lugar donde vive, las personas que conoce y las cosas que posee.</li><li>Relacionarse de forma sencilla siempre que la otra persona hable lentamente y con claridad y esté dispuesta a ayudar.</li></ul>]]></lit>
-<lit name="certificateCEFDetailA1"><![CDATA[<ul><li>Comprender y utilizar expresiones coloquiales cotidianas y frases muy básicas destinadas a satisfacer necesidades concretas.</li><li>Presentarse y presentar a otras personas, hacer y contestar preguntas personales sobre el lugar donde vive, las personas que conoce y las cosas que posee.</li><li>Relacionarse de forma sencilla siempre que la otra persona hable lentamente y con claridad y esté dispuesta a ayudar.</li></ul>]]></lit>
-<lit name="certificateCEFDetailA2"><![CDATA[<ul><li>Comprender frases y expresiones de uso frecuente relacionadas con áreas que le son especialmente relevantes (por ejemplo, información personal y familiar muy básica, compras, lugares de interés, empleo).</li><li>Comunicarse en actividades simples y cotidianas que requieren un intercambio de información sencillo y directo sobre cuestiones familiares y cotidianas.</li><li>Describir en términos sencillos aspectos de su pasado y su entorno, y también cuestiones relacionadas con sus necesidades inmediatas.</li></ul>]]></lit>
-<lit name="certificateCEFDetailB1"><![CDATA[<ul><li>Comprender las ideas principales de conversaciones en lengua clara y estándar sobre cuestiones que se le presentan a menudo en el trabajo, la escuela, el tiempo libre, etc.</li><li>Desenvolverse en la mayoría de las situaciones que pueden surgir cuando viaja a un lugar donde se utiliza la lengua.</li><li>Redactar textos sencillos y coherentes sobre temas que le son familiares o le interesan.</li><li>Describir experiencias, hechos, sueños, esperanzas y aspiraciones y justificar y explicar brevemente sus opiniones y planes.</li></ul>]]></lit>
-<lit name="certificateCEFDetailB2"><![CDATA[<ul><li>Comprender las ideas principales de textos complejos que traten temas tanto concretos como abstractos, incluso de carácter técnico en un campo de especialización.</li><li>Relacionarse con hablantes nativos con un grado de fluidez y naturalidad permitiendo que la comunicación se realice sin el esfuerzo de los participantes.</li><li>Redactar textos claros y detallados sobre temas diversos y exponer su posición indicando los pros y los contra de las opciones.</li><li>Describir experiencias, hechos, sueños, esperanzas y aspiraciones.</li></ul>]]></lit>
-<lit name="certificateCEFDetailC1"><![CDATA[<ul><li>Comprender una gran variedad de textos complicados y extensos, y reconocer el significado implícito.</li><li>Expresarse con fluidez y naturalidad sin recurrir a la búsqueda evidente de expresiones.</li><li>Hacer un uso flexible y efectivo del idioma con fines sociales, académicos y profesionales.</li><li>Redactar textos claros, bien estructurados y detallados sobre temas complejos, haciendo uso de pautas de organización, conectores y mecanismos de cohesión.</li></ul>]]></lit>
-<lit name="certificateCEFDetailC2"><![CDATA[<ul><li>Comprender con facilidad prácticamente todo lo que oye o lee.</li><li>Resumir información proveniente de distintas fuentes orales y escritas y reconstruir argumentos y relatos de manera coherente.</li><li>Expresarse con naturalidad, gran fluidez y precisión, lo que le permite diferenciar pequeños matices de significado incluso en las situaciones más complejas.</li></ul>]]></lit>
-<lit name="certificateCEFSummary"><![CDATA[<b>CEF Nivel: [CEFLevel]</b><br/>(Gramática=[grammarCEF], Vocabulario=[vocabCEF], Lectura=[readingCEF])]]></lit>
-<lit name="certificateBCSummary"><![CDATA[<font size="10">Según este examen, tu nivel es: [BCLevel]</b>]]></lit>
-<lit name="certificateBCContact"><![CDATA[このあと、ブリティッシュ・カウンシルで、講師による無料の英語インタビュー、カウンセリングを受けるとレベルチェックが全て完了します。[newline]英語インタビュー及びカウンセリングはEメールまたはお電話でご予約ください。<font size="4"><br/><br/></font><u><a href='mailTo:courses@britishcouncil.or.jp'>courses@britishcouncil.or.jp</a></u>, 03-3235-8011<font size="4"><br/><br/></font><font size="10">スピーキングテストを受けて頂いた後、総合的な英語力の詳細、及び最適なコースを講師がご案内させて頂きます。</font>]]></lit>
-<lit name="certificateBCDisclaimer"><![CDATA[<font size="10">Descargo de responsabilidad: Este examen en línea se efectúa sin supervisión y la identidad de los candidatos no ha sido verificada. El British Council no se hace responsable de verificar que los datos personales de quien rinde el examen sean correctos o correspondan a la persona que realmente lo completó.<br/><br/>Este examen indica el nivel aproximado principalmente en función de las habilidades de gramática, vocabulario y lectura. Para una evaluación exhaustiva de la competencia en inglés en todas las habilidades, el British Council recomienda una evaluación más detallada como la que ofrece el International English Language Testing System (IELTS).</font>]]></lit>
-<lit name="certificateCEFDetail"><![CDATA["><font size="12">Alguien de tu nivel habitualmente es capaz de:<br/>[CEFLevelDetail]]]></lit>
-<lit name="certificateHeader">[unit]    User name: [name]</lit>
-<lit name="certificateBCLevel-Starter">Starter</lit>
-<lit name="certificateBCLevel-Elementary">Elementary</lit>
-<lit name="certificateBCLevel-Pre-Intermediate">Pre-Intermediate</lit>
-<lit name="certificateBCLevel-Intermediate">Intermediate</lit>
-<lit name="certificateBCLevel-Upper-Intermediate">Upper Intermediate</lit>
-<lit name="certificateBCLevel-Advanced">Advanced</lit>
-<lit name="certificateBCLevel-Advanced-Plus">Advanced Plus</lit>
-<lit name="certificateLayout"><![CDATA[[BCSummary]<br/><br/>[BCDetail]<br/><br/>[CEFSummary]<br/><br/>[CEFDetail]<br/><br/>[BCDisclaimer]<br/><br/>]]></lit>
-</group>
-</language>
+            </lit>
+            <lit name="certificateCEFLevelA0">A0 (Acceso): Usuario básico</lit>
+            <lit name="certificateCEFLevelA1">A1 (Acceso): Usuario básico</lit>
+            <lit name="certificateCEFLevelA2">A2 (Plataforma): Usuario básico</lit>
+            <lit name="certificateCEFLevelB1">B1 (Umbral): Usuario independiente</lit>
+            <lit name="certificateCEFLevelB2">B2 (Avanzado): Usuario independiente</lit>
+            <lit name="certificateCEFLevelC1">C1 (Dominio operativo eficaz): Usuario competente</lit>
+            <lit name="certificateCEFLevelC2">C2 (Maestría): Usuario competente</lit>
+            <lit name="certificateCEFDetailA0">
+                <![CDATA[<ul><li>Comprender y utilizar expresiones coloquiales cotidianas y frases muy básicas.</li><li>Presentarse y presentar a otras personas, hacer y contestar preguntas personales sobre el lugar donde vive, las personas que conoce y las cosas que posee.</li><li>Relacionarse de forma sencilla siempre que la otra persona hable lentamente y con claridad y esté dispuesta a ayudar.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailA1">
+                <![CDATA[<ul><li>Comprender y utilizar expresiones coloquiales cotidianas y frases muy básicas destinadas a satisfacer necesidades concretas.</li><li>Presentarse y presentar a otras personas, hacer y contestar preguntas personales sobre el lugar donde vive, las personas que conoce y las cosas que posee.</li><li>Relacionarse de forma sencilla siempre que la otra persona hable lentamente y con claridad y esté dispuesta a ayudar.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailA2">
+                <![CDATA[<ul><li>Comprender frases y expresiones de uso frecuente relacionadas con áreas que le son especialmente relevantes (por ejemplo, información personal y familiar muy básica, compras, lugares de interés, empleo).</li><li>Comunicarse en actividades simples y cotidianas que requieren un intercambio de información sencillo y directo sobre cuestiones familiares y cotidianas.</li><li>Describir en términos sencillos aspectos de su pasado y su entorno, y también cuestiones relacionadas con sus necesidades inmediatas.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailB1">
+                <![CDATA[<ul><li>Comprender las ideas principales de conversaciones en lengua clara y estándar sobre cuestiones que se le presentan a menudo en el trabajo, la escuela, el tiempo libre, etc.</li><li>Desenvolverse en la mayoría de las situaciones que pueden surgir cuando viaja a un lugar donde se utiliza la lengua.</li><li>Redactar textos sencillos y coherentes sobre temas que le son familiares o le interesan.</li><li>Describir experiencias, hechos, sueños, esperanzas y aspiraciones y justificar y explicar brevemente sus opiniones y planes.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailB2">
+                <![CDATA[<ul><li>Comprender las ideas principales de textos complejos que traten temas tanto concretos como abstractos, incluso de carácter técnico en un campo de especialización.</li><li>Relacionarse con hablantes nativos con un grado de fluidez y naturalidad permitiendo que la comunicación se realice sin el esfuerzo de los participantes.</li><li>Redactar textos claros y detallados sobre temas diversos y exponer su posición indicando los pros y los contra de las opciones.</li><li>Describir experiencias, hechos, sueños, esperanzas y aspiraciones.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailC1">
+                <![CDATA[<ul><li>Comprender una gran variedad de textos complicados y extensos, y reconocer el significado implícito.</li><li>Expresarse con fluidez y naturalidad sin recurrir a la búsqueda evidente de expresiones.</li><li>Hacer un uso flexible y efectivo del idioma con fines sociales, académicos y profesionales.</li><li>Redactar textos claros, bien estructurados y detallados sobre temas complejos, haciendo uso de pautas de organización, conectores y mecanismos de cohesión.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFDetailC2">
+                <![CDATA[<ul><li>Comprender con facilidad prácticamente todo lo que oye o lee.</li><li>Resumir información proveniente de distintas fuentes orales y escritas y reconstruir argumentos y relatos de manera coherente.</li><li>Expresarse con naturalidad, gran fluidez y precisión, lo que le permite diferenciar pequeños matices de significado incluso en las situaciones más complejas.</li></ul>]]>
+            </lit>
+            <lit name="certificateCEFSummary">
+                <![CDATA[<b>CEF Nivel: [CEFLevel]</b><br/>(Gramática=[grammarCEF], Vocabulario=[vocabCEF], Lectura=[readingCEF])]]>
+            </lit>
+            <lit name="certificateBCSummary">
+                <![CDATA[<font size="10">Según este examen, tu nivel es: [BCLevel]</b>]]>
+            </lit>
+            <lit name="certificateBCContact">
+                <![CDATA[このあと、ブリティッシュ・カウンシルで、講師による無料の英語インタビュー、カウンセリングを受けるとレベルチェックが全て完了します。[newline]英語インタビュー及びカウンセリングはEメールまたはお電話でご予約ください。<font size="4"><br/><br/></font><u><a href='mailTo:courses@britishcouncil.or.jp'>courses@britishcouncil.or.jp</a></u>, 03-3235-8011<font size="4"><br/><br/></font><font size="10">スピーキングテストを受けて頂いた後、総合的な英語力の詳細、及び最適なコースを講師がご案内させて頂きます。</font>]]>
+            </lit>
+            <lit name="certificateBCDisclaimer">
+                <![CDATA[<font size="10">Descargo de responsabilidad: Este examen en línea se efectúa sin supervisión y la identidad de los candidatos no ha sido verificada. El British Council no se hace responsable de verificar que los datos personales de quien rinde el examen sean correctos o correspondan a la persona que realmente lo completó.<br/><br/>Este examen indica el nivel aproximado principalmente en función de las habilidades de gramática, vocabulario y lectura. Para una evaluación exhaustiva de la competencia en inglés en todas las habilidades, el British Council recomienda una evaluación más detallada como la que ofrece el International English Language Testing System (IELTS).</font>]]>
+            </lit>
+            <lit name="certificateCEFDetail">
+                <![CDATA["><font size="12">Alguien de tu nivel habitualmente es capaz de:<br/>[CEFLevelDetail]]]>
+            </lit>
+            <lit name="certificateHeader">[unit]    User name: [name]</lit>
+            <lit name="certificateBCLevel-Starter">Starter</lit>
+            <lit name="certificateBCLevel-Elementary">Elementary</lit>
+            <lit name="certificateBCLevel-Pre-Intermediate">Pre-Intermediate</lit>
+            <lit name="certificateBCLevel-Intermediate">Intermediate</lit>
+            <lit name="certificateBCLevel-Upper-Intermediate">Upper Intermediate</lit>
+            <lit name="certificateBCLevel-Advanced">Advanced</lit>
+            <lit name="certificateBCLevel-Advanced-Plus">Advanced Plus</lit>
+            <lit name="certificateLayout">
+                <![CDATA[[BCSummary]<br/><br/>[BCDetail]<br/><br/>[CEFSummary]<br/><br/>[CEFDetail]<br/><br/>[BCDisclaimer]<br/><br/>]]>
+            </lit>
+        </group>
+    </language>
 </literals>

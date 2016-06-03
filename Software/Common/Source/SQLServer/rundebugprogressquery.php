@@ -33,7 +33,7 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 	$replace = '\1://\2:********@\4/\5';
 	echo preg_replace($pattern, $replace, $dbDetails->dsn);
 	
-	$db = &ADONewConnection($dbDetails->dsn);
+	$db = ADONewConnection($dbDetails->dsn);
 	if (!$db) die("Connection failed");
 	// Put this line on to see all sql calls before they are made
 	$db->debug = true;

@@ -44,7 +44,7 @@ require_once(dirname(__FILE__)."/dbProgress.php");
 		$node .= '@'.$dbDetails->host.'/';
 	if (isset($dbDetails->dbname))
 		$node .= $dbDetails->dbname.'</note>';
-	$db = &ADONewConnection($dbDetails->dsn);
+	$db = ADONewConnection($dbDetails->dsn);
 	if (!$db) die("Connection failed");
 	//$db->debug = true;
 	// v3.6 UTF8 character mismatch between PHP and MySQL

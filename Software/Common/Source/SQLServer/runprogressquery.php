@@ -25,7 +25,7 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 	$vars['DBDRIVER']=$dbDetails->driver;
 	
 	//echo $dbDetails->dsn;
-	$db = &ADONewConnection($dbDetails->dsn);
+	$db = ADONewConnection($dbDetails->dsn);
 	if (!$db) die("Connection failed");
 	// Put this line on to see all sql calls before they are made
 	//$db->debug = true;
