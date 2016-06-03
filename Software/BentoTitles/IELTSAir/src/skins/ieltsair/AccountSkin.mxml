@@ -10,6 +10,30 @@
 		[HostComponent("com.clarityenglish.ielts.view.account.AccountView")]
 	</fx:Metadata>
 
+	<fx:Style>
+		.dfStyle
+		{
+			skin: ClassReference("skins.ieltsair.account.DateFieldSkin");
+			upSkin: ClassReference(null);
+			overSkin: ClassReference(null);
+			downSkin: ClassReference(null);
+			disabledSkin: ClassReference(null);
+			contentBackgroundColor: #FFFFFF;
+			paddingLeft: 5;
+			paddingRight: 5;
+			paddingTop: 5;
+			paddingBottom: 5;
+		}
+
+		.myDateChooserStyles {
+			/* Previous Month */
+			prevMonthSkin: ClassReference("skins.ieltsair.account.PrevMonthSkin");
+
+			/* Next Month */
+			nextMonthSkin: ClassReference("skins.ieltsair.account.NextMonthSkin");
+		}
+	</fx:Style>
+
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.common.model.CopyProxy;
@@ -105,10 +129,19 @@
 					<s:HGroup>
 						<s:VGroup width="100%" height="100%" top="150">
 							<s:Label id="dateLabel" verticalAlign="bottom" fontSize="11" />
-							<mx:DateField id="examDateField" width="150" creationComplete="dateChooserInit(hostComponent.user);"
-										  labelFunction="formatScreenDate" />
+							<s:Group>
+								<s:Rect width="150" height="22">
+									<s:fill>
+										<s:SolidColor color="#FFFFFF" />
+									</s:fill>
+									<s:stroke>
+										<mx:SolidColorStroke color="#333333" />
+									</s:stroke>
+								</s:Rect>
+								<mx:DateField id="examDateField" width="180" creationComplete="dateChooserInit(hostComponent.user);" formatString="DD MMMM YYYY" fontFamily="Verdana" interactionMode="touch" styleName="dfStyle" dateChooserStyleName="myDateChooserStyles" todayColor="#FFFFFF" />
+							</s:Group>
 						</s:VGroup>
-						<s:Spacer width="25" />
+						<s:Spacer width="5" />
 						<s:VGroup>
 							<s:Label id="hourLabel" verticalAlign="bottom" fontSize="11" />
 							<s:NumericStepper id="examHours" minimum="0" maximum="23" stepSize="1"

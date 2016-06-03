@@ -116,22 +116,21 @@
 					<s:HGroup>
 						<s:VGroup width="100%" height="100%" top="150">
 							<s:Label id="dateLabel" verticalAlign="bottom"/>
-							<mx:DateField id="examDateField" creationComplete="dateChooserInit(hostComponent.user);"
-										  labelFunction="formatScreenDate"/>
+							<mx:DateField id="examDateField" creationComplete="dateChooserInit(hostComponent.user);" formatString="DD MMMM YYYY" fontFamily="Verdana"/>
 						</s:VGroup>
 						
 						<s:VGroup>
-							<s:Label id="hourLabel" verticalAlign="bottom"/>
+							<s:Label id="hourLabel" verticalAlign="bottom" />
 							<s:NumericStepper id="examHours" minimum="0" maximum="23" stepSize="1"
 											  value="{Number(formatExamDetails(hostComponent.user, 'hours'))}"
-											  textAlign="center"/>
+											  textAlign="center" fontFamily="Verdana"/>
 						</s:VGroup>
 						
 						<s:VGroup>
 							<s:Label id="minuteLabel" verticalAlign="bottom"/>
 							<s:NumericStepper id="examMinutes" minimum="0" maximum="45" stepSize="15"
 											  value="{Number(formatExamDetails(hostComponent.user, 'mins'))}"
-											  textAlign="center"/>
+											  textAlign="center" fontFamily="Verdana"/>
 						</s:VGroup>
 					</s:HGroup>
 					<s:Spacer height="5"/>

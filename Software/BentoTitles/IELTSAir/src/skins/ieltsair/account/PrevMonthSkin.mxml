@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" width="30">
+
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" />
+        <s:State name="down" />
+        <s:State name="disabled" />
+    </s:states>
+
+    <!--- @private -->
+        <s:Path id="arrow" left="4" verticalCenter="-1" data="M 0 4 L 1 4 L 1 3 L 2 3 L 2 2 L 3 2 L 3 1 L 4 1 L 4 0 L 5 0 L 5 9 L 4 9 L 4 8 L 3 8 L 3 7 L 2 7 L 2 6 L 1 6 L 1 5 L 0 5 L 0 4 Z">
+            <s:fill>
+                <!--- @private -->
+                <s:SolidColor id="arrowFill" color="#666666" />
+            </s:fill>
+        </s:Path>
+
+</s:Skin>
