@@ -591,11 +591,11 @@ EOD;
 				$thisGroupId = $user->getMultiUserGroupID();
 				if ($thisGroupId && $thisGroupId > 0) {
 					// make sure you only move this one instance of the user
-					$bindingParams[] = array($parentGroup->id, $thisGroupId, $user->userID);
+					$bindingParams = array($parentGroup->id, $thisGroupId, $user->userID);
 					$this->db->Execute("UPDATE T_Membership SET F_GroupID=? WHERE F_GroupID=? AND F_UserID=?", $bindingParams);
 				} else {
 					// delete all memberships and then add this one
-					$bindingParams[] = array($user->userID);
+					$bindingParams = array($user->userID);
 					$this->db->Execute("DELETE FROM T_Membership WHERE F_UserID=?", $bindingParams);
 					$bindingParams = array($user->userID, $parentGroup->id, Session::get('rootID'));
 					$sql = <<<EOD
