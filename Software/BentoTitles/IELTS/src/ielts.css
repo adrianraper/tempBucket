@@ -342,11 +342,11 @@ s|VideoPlayer {
 }
 
 /* Progress view styles */
-progressr2i|ProgressView {
+progress|ProgressView {
 	skinClass: ClassReference("skins.ielts.ProgressSkin");
 }
 
-progressr2i|ProgressView #progressNavBar {
+progress|ProgressView #progressNavBar {
 	skinClass: ClassReference("skins.ielts.progress.ui.ProgressNavBarSkin");
 }
 
