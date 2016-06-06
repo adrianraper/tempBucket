@@ -335,10 +335,12 @@ exercise|ExerciseView s|VScrollBar {
 }
 
 components|AudioPlayer {
-	compactStoppedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="AudioUp");
-	compactPlayedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="AudioUp");
-	compactPausedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="AudioUp");
-	compactPlayingIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="AudioPlaying");
+	compactStoppedIcon: Embed(source="skins/ielts/assets/exercise/audio/play.png");
+	compactPlayedIcon: Embed(source="skins/ielts/assets/exercise/audio/played.png");
+	compactPausedIcon: Embed(source="skins/ielts/assets/exercise/audio/pause.png");
+	compactPlayingIcon: Embed(source="skins/ielts/assets/exercise/audio/playing.png");
+	fullPlayIcon: Embed(source="skins/ielts/assets/exercise/audio/play.png");
+	fullPauseIcon: Embed(source="skins/ielts/assets/exercise/audio/pause.png");
 }
 
 s|VideoPlayer {
