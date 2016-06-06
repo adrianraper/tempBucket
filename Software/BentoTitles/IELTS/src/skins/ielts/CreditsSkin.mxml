@@ -127,9 +127,9 @@
 			<s:VGroup width="100%" horizontalAlign="center" paddingTop="80">
 				<s:SWFLoader source="@Embed(source='/skins/ielts/assets/credits.png')" horizontalAlign="center" horizontalCenter="0" />
 				<s:Spacer height="10" />
-				<s:Label id="thankYouLabel" fontSize="21" color="0X174A7D" fontWeight="bold" horizontalCenter="0" />
+				<s:Label id="thankYouLabel" fontSize="21" color="0x174A7D" fontWeight="bold" horizontalCenter="0" />
 				<s:Spacer height="0" />
-				<s:Label id="weWouldLabel" fontSize="21" color="0X174A7D" fontWeight="bold" click="clickHandler(event)" horizontalCenter="0" />
+				<s:Label id="weWouldLabel" fontSize="21" color="0x174A7D" fontWeight="bold" click="clickHandler(event)" horizontalCenter="0" />
 				<s:Spacer height="0" />
 				<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='QuestionnairekButton')" click="clickHandler(event)" buttonMode="true" useHandCursor="true" width="313" horizontalCenter="0" />
 				<s:Spacer height="10" />
@@ -166,7 +166,7 @@
 			<s:VGroup width="100%" horizontalAlign="center" paddingTop="80">
 				<s:SWFLoader source="@Embed(source='/skins/ielts/assets/credits.png')" horizontalAlign="center" horizontalCenter="0" />
 				<s:Spacer height="10" />
-				<s:Label id="thankYouLabel2" fontSize="21" color="0X174A7D" fontWeight="bold" horizontalCenter="0" />
+				<s:Label id="thankYouLabel2" fontSize="21" color="0x174A7D" fontWeight="bold" horizontalCenter="0" />
 				<s:Spacer height="10" />
 				<s:HGroup>
 					<s:Label id="upgradeLabel" fontSize="21" fontFamily="Segoe Print" fontWeight="bold" color="#0094D5" horizontalCenter="0" />
