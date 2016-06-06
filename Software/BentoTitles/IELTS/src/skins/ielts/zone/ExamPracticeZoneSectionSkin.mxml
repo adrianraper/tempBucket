@@ -112,7 +112,7 @@
 								if (data) {
 									var idx:int = ((owner as List).dataProvider as ListCollectionView).getItemIndex(data);
 									courseClass = outerDocument.hostComponent.courseClass;
-									practiceTestButton.thumbnailSource =  outerDocument.hostComponent.assetFolder + "testpractice_" + courseClass + (idx + 1) + ".png";
+									practiceTestButton.thumbnailSource =  outerDocument.hostComponent.assetFolder + "testpracticequestion_" + courseClass + (idx + 1) + ".png";
 									practiceTestButton.textBackgroundColor = getStyle(courseClass + "ExamPracticeColor");
 									answerKeyButton.thumbnailSource = outerDocument.hostComponent.assetFolder + "testpracticekey_" + courseClass + (idx + 1) + ".png";
 									answerKeyButton.textBackgroundColor = getStyle(courseClass + "ExamPracticeColor");
