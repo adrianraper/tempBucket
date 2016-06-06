@@ -3,8 +3,6 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx" 
 		xmlns:progress="skins.ielts.assets.progress.*"
-		xmlns:components="com.clarityenglish.components.*" 
-		xmlns:text="com.anychart.axesPlot.axes.text.*"
 		>
 	<!-- host component -->
 	<fx:Metadata>
