@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:components="com.clarityenglish.components.*" creationComplete="onCreationComplete(event)">
+
+    <fx:Script>
+        <![CDATA[
+        import com.clarityenglish.common.model.interfaces.CopyProvider;
+
+        import mx.collections.ArrayCollection;
+
+        import skins.ielts.assets.account.Restart;
+
+            [Bindable]
+            public var copyProvider:CopyProvider;
+
+            [Bindable]
+            public var result:Number;
+
+            [Bindable]
+            public var isPlatformTablet:Boolean;
+
+            private var scoresArrayCollection:ArrayCollection = new ArrayCollection([4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0]);
+
+            protected function onCreationComplete(event:Event):void {
+                currentState = 'calculate';
+            }
+
+            protected function onCalculateClick(event:Event):void {
+                result = (listeningDownList.selectedItem + readingDropDownList.selectedItem + speakingDropDownList.selectedItem + writingDropDownList.selectedItem) / 4;
+                result = Math.round(result * 2) / 2;
+                currentState = 'result';
+            }
+
+            protected function onResetCalculatorClick(event:Event):void {
+                currentState = 'calculate';
+
+                listeningDownList.selectedIndex = readingDropDownList.selectedIndex = speakingDropDownList.selectedIndex = writingDropDownList.selectedIndex = 3;
+            }
+
+            protected function onRegisterIELTSClick(event:Event):void {
+                var url:String = copyProvider.getCopyForId('registerIELTSLink');
+                navigateToURL(new URLRequest(url), "_blank");
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" color="#CCCCCC" blurX="5" blurY="5" alpha="0.75" distance="1" angle="270" knockout="false"/>
+        <s:DropShadowFilter id="dropShadowFilter2" color="#CCCCCC" blurX="5" blurY="5" alpha="0.75" distance="1" angle="90" knockout="false"/>
+    </fx:Declarations>
+
+    <s:states>
+        <s:State name="calculate" />
+        <s:State name="result" />
+    </s:states>
+
+    <s:Group width="100%" height="100%" filters="{[dropShadowFilter]}">
+        <s:Rect width="100%" height="100%" radiusX="10" radiusY="10">
+            <s:fill>
+                <s:SolidColor color="#F1F1F3" />
+            </s:fill>
+            <s:stroke>
+                <s:LinearGradientStroke rotation="90" weight="2">
+                    <s:GradientEntry color="#FFFFFF" ratio="0.3"/>
+                    <s:GradientEntry color="#E0E0E0" ratio="1"/>
+                </s:LinearGradientStroke>
+            </s:stroke>
+        </s:Rect>
+
+        <s:VGroup width="100%" height="100%" gap="16">
+            <s:Group width="100%" height="15%" filters="{[dropShadowFilter2]}">
+                <s:Rect width="100%" height="100%" radiusX="10" radiusY="10">
+                    <s:fill>
+                        <s:SolidColor color="#FFFFFF" />
+                    </s:fill>
+                </s:Rect>
+                <s:Label id="OverallScoreCalculatorLabel" horizontalCenter="0" verticalCenter="0" fontSize="13" fontWeight="bold" text="{copyProvider.getCopyForId('OverallScoreCalculatorLabel')}" />
+            </s:Group>
+
+            <s:VGroup width="100%" horizontalCenter="0" horizontalAlign="center" gap="19" includeIn="calculate">
+                <s:Label id="overallScoreCalculatorQuestionLabel" fontSize="11" fontWeight="bold" text="{copyProvider.getCopyForId('overallScoreCalculatorQuestionLabel')}" />
+                <s:Group width="87%">
+                    <s:HGroup height="20" verticalAlign="middle">
+                        <s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ListeningIcon')" scaleY="0.4" scaleX="0.4" />
+                        <s:Label text="{copyProvider.getCopyForId('Listening')}" fontSize="13" fontWeight="bold" />
+                    </s:HGroup>
+                    <s:DropDownList id="listeningDownList" right="0" width="50%" dataProvider="{scoresArrayCollection}" selectedIndex="3" textAlign="center" useHandCursor="true" buttonMode="true" visible="{!isPlatformTablet}" includeInLayout="{!isPlatformTablet}" />
+                    <components:SpinnerDropDownList id="listeningDropDownList" right="0" width="50%" dataProvider="{scoresArrayCollection}" selectedIndex="3" textAlign="center" useHandCursor="true" buttonMode="true" visible="{isPlatformTablet}" includeInLayout="{isPlatformTablet}" />
+                </s:Group>
+                <s:Group width="87%">
+                    <s:HGroup height="20" verticalAlign="middle">
+                        <s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ReadingIcon')" scaleY="0.4" scaleX="0.4" />
+                        <s:Label text="{copyProvider.getCopyForId('Reading')}" fontSize="13" fontWeight="bold" />
+                    </s:HGroup>
+                    <s:DropDownList id="readingDropDownList" right="0" width="50%" dataProvider="{scoresArrayCollection}" selectedIndex="3" textAlign="center" useHandCursor="true" buttonMode="true" visible="{!isPlatformTablet}" includeInLayout="{!isPlatformTablet}" />
+                    <components:SpinnerDropDownList id="readingSpinnerDropDownList" right="0" width="50%" dataProvider="{scoresArrayCollection}" selectedIndex="3" textAlign="center" useHandCursor="true" buttonMode="true" visible="{isPlatformTablet}" includeInLayout="{isPlatformTablet}" />
+                </s:Group>
+                <s:Group width="87%">
+                    <s:HGroup height="20" verticalAlign="middle">
+                        <s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='SpeakingIcon')" scaleY="0.4" scaleX="0.4" />
+                        <s:Label text="{copyProvider.getCopyForId('Speaking')}" fontSize="13" fontWeight="bold" />
+                    </s:HGroup>
+                    <s:DropDownList id="speakingDropDownList" right="0" width="50%" dataProvider="{scoresArrayCollection}" selectedIndex="3" textAlign="center" useHandCursor="true" buttonMode="true" visible="{!isPlatformTablet}" includeInLayout="{!isPlatformTablet}" />
+                    <components:SpinnerDropDownList id="speakingSpinnerDropDownList" right="0" width="50%" dataProvider="{scoresArrayCollection}" selectedIndex="3" textAlign="center" useHandCursor="true" buttonMode="true" visible="{isPlatformTablet}" includeInLayout="{isPlatformTablet}" />
+                </s:Group>
+                <s:Group width="87%">
+                    <s:HGroup height="20" verticalAlign="middle">
+                        <s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='WritingIcon')" scaleY="0.4" scaleX="0.4" />
+                        <s:Label text="{copyProvider.getCopyForId('Writing')}" fontSize="13" fontWeight="bold" />
+                    </s:HGroup>
+                    <s:DropDownList id="writingDropDownList" right="0" width="50%" dataProvider="{scoresArrayCollection}" selectedIndex="3" textAlign="center" useHandCursor="true" buttonMode="true" visible="{!isPlatformTablet}" includeInLayout="{!isPlatformTablet}" />
+                    <components:SpinnerDropDownList id="writingSpinnerDropDownList" right="0" width="50%" dataProvider="{scoresArrayCollection}" selectedIndex="3" textAlign="center" useHandCursor="true" buttonMode="true" visible="{isPlatformTablet}" includeInLayout="{isPlatformTablet}" />
+                </s:Group>
+                <s:Group width="87%">
+                    <s:Button id="calculateButton" right="0" height="35" width="130" label="{copyProvider.getCopyForId('calculateButton')}" buttonMode="true" useHandCursor="true" click="onCalculateClick(event)" />
+                </s:Group>
+            </s:VGroup>
+
+            <s:VGroup width="100%" paddingTop="10" horizontalAlign="center" gap="18" includeIn="result">
+                <s:VGroup width="100%" horizontalAlign="center" gap="32">
+                    <s:Label id="yourScoreLabel" fontSize="13" fontWeight="bold" text="{copyProvider.getCopyForId('yourScoreLabel')}" />
+                    <s:Label id="resultLabel" text="{result}" fontSize="30" fontWeight="bold" />
+                    <s:Label id="estimateScoreLabel" fontSize="13" fontWeight="bold" text="{copyProvider.getCopyForId('estimateScoreLabel')}" toolTip="{copyProvider.getCopyForId('calculatorToolTip')}" />
+                </s:VGroup>
+                <s:VGroup gap="10">
+                    <s:Button id="registerIELTSButton" width="180" height="35" label="{copyProvider.getCopyForId('registerIELTSButton')}" useHandCursor="true" buttonMode="true" click="onRegisterIELTSClick(event)" />
+                    <s:Button id="resetCalculatorButton"  width="180" height="35" label="{copyProvider.getCopyForId('resetCalculatorButton')}" icon="{skins.ielts.assets.account.Restart}" useHandCursor="true" buttonMode="true" click="onResetCalculatorClick(event)" />
+                </s:VGroup>
+            </s:VGroup>
+        </s:VGroup>
+    </s:Group>
+
+</s:Group>

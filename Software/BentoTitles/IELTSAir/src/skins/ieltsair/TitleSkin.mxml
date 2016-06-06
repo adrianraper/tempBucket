@@ -51,10 +51,10 @@
 		<s:State name="candidates" />
 	</s:states>
 	
-	<title:IELTSLogo x="39" y="74" excludeFrom="exercise" />
+	<title:IELTSLogo x="39" x.account="25" y="74" excludeFrom="exercise" />
 	<!--s:SWFLoader source="{hostComponent.productVersionLogo}" x="39" y="140" excludeFrom="exercise" />
 	<s:Label text="{hostComponent.productVersionText}" x="51" y="150" color="#FFFFFF" excludeFrom="exercise" /-->
-	<s:Group left="39" top="140">
+	<s:Group left="39" left.account="25" top="140">
 		<s:Group left="{hostComponent.productVersion != BentoApplication.DEMO ? 2 : 35}" top="3" height="23">
 			<s:Rect left="0" right="0" top="0" bottom="0" radiusX="10" radiusY="10">
 				<s:fill>
@@ -78,8 +78,8 @@
 	<!-- gh#167 -->
 	<s:SWFLoader id="infoButton" source="{hostComponent.productVersionInfo}" right="20" top="44" excludeFrom="exercise" buttonMode="true" useHandCursor="true" />
 	
-	<assets:BritishCouncilClarityLogo bottom="51" excludeFrom="exercise" />
-	<assets:GreyCircles bottom="51" right="0" excludeFrom="exercise" />
+	<assets:BritishCouncilClarityLogo bottom="51" excludeFrom="exercise, account" />
+	<assets:GreyCircles bottom="51" right="0" excludeFrom="exercise, account" />
 	
 	<zone:PracticeZonePopoutView id="practiceZonePopoutView" right="457" y="104" />
 	

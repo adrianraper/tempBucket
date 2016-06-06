@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" creationComplete="onCreationComplete(event)">
+
+
+    <fx:Script>
+        <![CDATA[
+        import com.clarityenglish.common.model.interfaces.CopyProvider;
+
+        import mx.events.ValidationResultEvent;
+        import mx.validators.ValidationResult;
+
+        import skins.ielts.assets.account.Restart;
+
+        [Bindable]
+        public var copyProvider:CopyProvider;
+
+        [Bindable]
+        public var listeningBand:Number;
+
+        [Bindable]
+        public var readingBand:Number;
+
+        [Bindable]
+        public var isListeningValidatorEnable:Boolean;
+
+        [Bindable]
+        public var isReadingValidatorEnable:Boolean;
+
+        protected function onCreationComplete(event:Event):void {
+            currentState = 'calculate';
+        }
+
+        protected function onCalculateClick(event:Event):void {
+            // Make the calculator work when only get a single input.
+            if (listeningTextInput.text != "" ) {
+                isListeningValidatorEnable = true;
+            } else {
+                isListeningValidatorEnable = false;
+                listeningTextInput.errorString = "";
+            }
+
+            if (readingTextInput.text != "" ) {
+                isReadingValidatorEnable = true;
+            } else {
+                isReadingValidatorEnable = false;
+                readingTextInput.errorString = "";
+            }
+
+            if (modelGroup.selectedValue == null) {
+                acRadioButton.setStyle('color', 0xFF0000);
+                gtRadioButton.setStyle('color', 0xFF0000);
+            } else {
+                acRadioButton.setStyle('color', 0x000000);
+                gtRadioButton.setStyle('color', 0x000000);
+            }
+
+            if (modelGroup.selectedValue != null && (
+                    ((isListeningValidatorEnable && listeningNumberValidator.validate().type == ValidationResultEvent.VALID) && !isReadingValidatorEnable) ||
+                    ((isReadingValidatorEnable && readingNumberValidator.validate().type == ValidationResultEvent.VALID) && !isListeningValidatorEnable) ||
+                    ((isListeningValidatorEnable && listeningNumberValidator.validate().type == ValidationResultEvent.VALID) && (isReadingValidatorEnable && readingNumberValidator.validate().type == ValidationResultEvent.VALID)))){
+                currentState = 'result';
+
+                var listeningNumber:Number = Number(listeningTextInput.text);
+                var readingNumber:Number = Number(readingTextInput.text);
+                switch (true) {
+                    case listeningNumber >= 39:
+                        listeningBand = 9.0;
+                        break;
+                    case listeningNumber >= 37:
+                        listeningBand = 8.5;
+                        break;
+                    case listeningNumber >= 35:
+                        listeningBand = 8.0;
+                        break;
+                    case listeningNumber >= 33:
+                        listeningBand = 7.5;
+                        break;
+                    case listeningNumber >= 30:
+                        listeningBand = 7.0;
+                        break;
+                    case listeningNumber >= 27:
+                        listeningBand = 6.5;
+                        break;
+                    case listeningNumber >= 23:
+                        listeningBand = 6.0;
+                        break;
+                    case listeningNumber >= 20:
+                        listeningBand = 5.5;
+                        break;
+                    case listeningNumber >= 16:
+                        listeningBand = 5.0;
+                        break;
+                    case listeningNumber >= 13:
+                        listeningBand = 4.5;
+                        break;
+                    case listeningNumber >= 9:
+                        listeningBand = 4.0;
+                        break;
+                    case listeningNumber >= 5:
+                        listeningBand = 3.0;
+                        break;
+                    case listeningNumber >= 3:
+                        listeningBand = 2.0;
+                        break;
+                    case listeningNumber >= 1:
+                        listeningBand = 1.0;
+                        break;
+                    default:
+                        listeningBand = 0.0;
+                }
+
+                if (modelGroup.selectedValue == "Academic") {
+                    switch (true) {
+                        case readingNumber >= 39:
+                            readingBand = 9.0;
+                            break;
+                        case readingNumber >= 37:
+                            readingBand = 8.5;
+                            break;
+                        case readingNumber >= 35:
+                            readingBand = 8.0;
+                            break;
+                        case readingNumber >= 33:
+                            readingBand = 7.5;
+                            break;
+                        case readingNumber >= 30:
+                            readingBand = 7.0;
+                            break;
+                        case readingNumber >= 27:
+                            readingBand = 6.5;
+                            break;
+                        case readingNumber >= 23:
+                            readingBand = 6.0;
+                            break;
+                        case readingNumber >= 19:
+                            readingBand = 5.5;
+                            break;
+                        case readingNumber >= 15:
+                            readingBand = 5.0;
+                            break;
+                        case readingNumber >= 12:
+                            readingBand = 4.5;
+                            break;
+                        case readingNumber >= 9:
+                            readingBand = 4.0;
+                            break;
+                        case readingNumber >= 5:
+                            readingBand = 3.0;
+                            break;
+                        case readingNumber >= 3:
+                            readingBand = 2.0;
+                            break;
+                        case readingNumber >= 1:
+                            readingBand = 1.0;
+                            break;
+                        default:
+                            readingBand = 0.0;
+                    }
+                } else {
+                    switch (true) {
+                        case readingNumber >= 39:
+                            readingBand = 9.0;
+                            break;
+                        case readingNumber >= 38:
+                            readingBand = 8.5;
+                            break;
+                        case readingNumber >= 37:
+                            readingBand = 8.0;
+                            break;
+                        case readingNumber >= 36:
+                            readingBand = 7.5;
+                            break;
+                        case readingNumber >= 34:
+                            readingBand = 7.0;
+                            break;
+                        case readingNumber >= 32:
+                            readingBand = 6.5;
+                            break;
+                        case readingNumber >= 30:
+                            readingBand = 6.0;
+                            break;
+                        case readingNumber >= 27:
+                            readingBand = 5.5;
+                            break;
+                        case readingNumber >= 23:
+                            readingBand = 5.0;
+                            break;
+                        case readingNumber >= 19:
+                            readingBand = 4.5;
+                            break;
+                        case readingNumber >= 15:
+                            readingBand = 4.0;
+                            break;
+                        case readingNumber >= 12:
+                            readingBand = 3.0;
+                            break;
+                        case readingNumber >= 8:
+                            readingBand = 2.0;
+                            break;
+                        case readingNumber >= 4:
+                            readingBand = 1.0;
+                            break;
+                        default:
+                            readingBand = 0.0;
+                    }
+                }
+            } else {
+                return;
+            }
+        }
+
+        protected function onResetCalculatorClick(event:Event):void {
+            currentState = 'calculate';
+
+            isListeningValidatorEnable = isReadingValidatorEnable = false;
+            listeningTextInput.text = readingTextInput.text = "";
+        }
+
+        protected function onRegisterIELTSClick(event:Event):void {
+            var url:String = copyProvider.getCopyForId('registerIELTSLink');
+            navigateToURL(new URLRequest(url), "_blank");
+        }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" color="#CCCCCC" blurX="5" blurY="5" alpha="0.75" distance="1" angle="270" knockout="false" />
+        <s:DropShadowFilter id="dropShadowFilter2" color="#CCCCCC" blurX="5" blurY="5" alpha="0.75" distance="1" angle="90" knockout="false" />
+        <s:DropShadowFilter id="inputTextDropShadowFilter" blurX="3" blurY="3" alpha="0.3" distance="0" angle="180" knockout="false" />
+        <mx:NumberValidator id="listeningNumberValidator" source="{listeningTextInput}" property="text" minValue="0" maxValue="40" domain="int" trigger="{calculateButton}" triggerEvent="click" enabled="{isListeningValidatorEnable}" />
+        <mx:NumberValidator id="readingNumberValidator" source="{readingTextInput}" property="text" minValue="0" maxValue="40" domain="int" trigger="{calculateButton}" triggerEvent="click" enabled="{isReadingValidatorEnable}" />
+        <s:RadioButtonGroup id="modelGroup" />
+    </fx:Declarations>
+
+    <s:states>
+        <s:State name="calculate" />
+        <s:State name="result" />
+    </s:states>
+
+    <s:Group width="100%" height="100%" filters="{[dropShadowFilter]}">
+        <s:Rect width="100%" height="100%" radiusX="10" radiusY="10">
+            <s:fill>
+                <s:SolidColor color="#F1F1F1"/>
+            </s:fill>
+            <s:stroke>
+                <s:LinearGradientStroke rotation="90" weight="2">
+                    <s:GradientEntry color="#FFFFFF" ratio="0.3"/>
+                    <s:GradientEntry color="#E0E0E0" ratio="1"/>
+                </s:LinearGradientStroke>
+            </s:stroke>
+        </s:Rect>
+
+        <s:VGroup width="100%" height="100%" gap="16">
+            <s:Group width="100%" height="15%" filters="{[dropShadowFilter2]}">
+                <s:Rect width="100%" height="100%" radiusX="10" radiusY="10">
+                    <s:fill>
+                        <s:SolidColor color="#FFFFFF"/>
+                    </s:fill>
+                </s:Rect>
+                <s:Label id="listeningReadingCalculatorLabel" horizontalCenter="0" verticalCenter="0" fontSize="13" fontWeight="bold" text="{copyProvider.getCopyForId('listeningReadingCalculatorLabel')}" />
+            </s:Group>
+
+            <s:VGroup width="100%" gap="14" horizontalAlign="center" includeIn="calculate">
+                <s:Label id="listeningReadingCalculatorQuestionLabel" width="100%" textAlign="center" fontSize="11" fontWeight="bold" text="{copyProvider.getCopyForId('listeningReadingCalculatorQuestionLabel')}" />
+                <s:Group width="90%" height="28" horizontalCenter="0">
+                    <s:HGroup height="30" verticalAlign="middle">
+                        <s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ListeningIcon')" scaleY="0.4" scaleX="0.4" />
+                        <s:Label text="{copyProvider.getCopyForId('Listening')}" fontSize="13" fontWeight="bold" />
+                    </s:HGroup>
+                    <s:HGroup height="30" right="0" gap="6" verticalAlign="middle">
+                        <s:TextInput id="listeningTextInput" width="50" textAlign="center" borderVisible="false" filters="{[inputTextDropShadowFilter]}" focusAlpha="0" />
+                        <s:Label id="listeningInputLabel" fontSize="13" fontWeight="bold" text="{copyProvider.getCopyForId('inputLabel')}" />
+                        <s:Spacer width="20" />
+                    </s:HGroup>
+                </s:Group>
+                <s:Group width="90%">
+                    <s:HGroup height="28" verticalAlign="middle">
+                        <s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ReadingIcon')" scaleY="0.4" scaleX="0.4" />
+                        <s:Label text="{copyProvider.getCopyForId('Reading')}" fontSize="13" fontWeight="bold" />
+                    </s:HGroup>
+                    <s:HGroup height="30" right="0" gap="6" verticalAlign="middle">
+                        <s:TextInput id="readingTextInput" width="50" textAlign="center" borderVisible="false" filters="{[inputTextDropShadowFilter]}" focusAlpha="0" />
+                        <s:Label id="readingInputLabel" fontSize="13" fontWeight="bold" text="{copyProvider.getCopyForId('inputLabel')}" />
+                        <s:Spacer width="20" />
+                    </s:HGroup>
+                </s:Group>
+                <s:Group width="90%">
+                    <s:Group left="0">
+                        <s:Label id="examTypeQuestionLabel" text="{copyProvider.getCopyForId('examTypeQuestionLabel')}" fontWeight="bold" />
+                        <s:VGroup top="20" height="45">
+                            <s:RadioButton id="acRadioButton" left="60" label="{copyProvider.getCopyForId('demoButton1')}" fontWeight="bold" group="{modelGroup}" />
+                            <s:RadioButton id="gtRadioButton" left="60" label="{copyProvider.getCopyForId('demoButton2')}" fontWeight="bold" group="{modelGroup}" />
+                        </s:VGroup>
+                    </s:Group>
+                </s:Group>
+                <s:Group width="90%">
+                    <s:Button id="calculateButton" right="0" height="35" width="130" label="{copyProvider.getCopyForId('calculateButton')}" buttonMode="true" useHandCursor="true" click="onCalculateClick(event)"  />
+                </s:Group>
+            </s:VGroup>
+
+            <s:VGroup width="100%" paddingTop="10" horizontalAlign="center" gap="18"  includeIn="result">
+                <s:VGroup width="100%" horizontalAlign="center" gap="14">
+                    <s:Label id="yourScoreLabel" fontSize="13" fontWeight="bold" text="{copyProvider.getCopyForId('yourScoreLabel')}" />
+                    <s:HGroup width="160" height="26" verticalAlign="middle">
+                        <s:HGroup width="70%"  verticalAlign="middle">
+                            <s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ListeningIcon')" scaleY="0.4" scaleX="0.4" />
+                            <s:Label id="resultListeningLabel" text="{copyProvider.getCopyForId('Listening')}" fontWeight="bold" />
+                        </s:HGroup>
+                        <s:Label id="listeningBandLabel" width="30%" text="{listeningBand}" textAlign="center" fontWeight="bold" fontSize="30" />
+                    </s:HGroup>
+                    <s:HGroup width="160" height="26" verticalAlign="middle">
+                        <s:HGroup width="70%"  verticalAlign="middle">
+                            <s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ReadingIcon')" scaleY="0.4" scaleX="0.4" />
+                            <s:Label id="resultReadingLabel" text="{copyProvider.getCopyForId('Reading')}" fontWeight="bold" />
+                        </s:HGroup>
+                        <s:Label id="readingBandLabel" width="30%" text="{readingBand}" textAlign="center" fontWeight="bold" fontSize="30" />
+                    </s:HGroup>
+                    <s:Label id="estimateScoreLabel" fontSize="13" fontWeight="bold" text="{copyProvider.getCopyForId('estimateScoreLabel')}" toolTip="{copyProvider.getCopyForId('calculatorToolTip')}" />
+                    <s:VGroup paddingTop="4" gap="10">
+                        <s:Button id="registerIELTSButton" width="180" height="35" label="{copyProvider.getCopyForId('registerIELTSButton')}" useHandCursor="true" buttonMode="true" click="onRegisterIELTSClick(event)" />
+                        <s:Button id="resetCalculatorButton"  width="180" height="35" label="{copyProvider.getCopyForId('resetCalculatorButton')}" icon="{skins.ielts.assets.account.Restart}" useHandCursor="true" buttonMode="true" click="onResetCalculatorClick(event)" />
+                    </s:VGroup>
+                </s:VGroup>
+            </s:VGroup>
+        </s:VGroup>
+    </s:Group>
+</s:Group>

@@ -232,7 +232,7 @@
 
     <!-- fill -->
     <!--- Defines the appearance of the TextInput component's background. -->
-    <s:Rect id="background" left="1" right="1" top="1" bottom="1" radiusX="8" radiusY="8">
+    <s:Rect id="background" left="1" right="1" top="1" bottom="1" radiusX="6" radiusY="6">
         <s:fill>
             <!--- @private Defines the background fill color. -->
             <s:SolidColor id="bgFill" color="0xFFFFFF" />
@@ -241,7 +241,7 @@
     
     <!-- shadow -->
     <!--- @private -->
-    <s:Rect left="1" top="1" right="1" height="1" id="shadow" radiusX="8" radiusY="8">
+    <s:Rect left="1" top="1" right="1" height="1" id="shadow" radiusX="6" radiusY="6">
         <s:fill>
             <s:SolidColor color="0x000000" alpha="0.12" />
         </s:fill>

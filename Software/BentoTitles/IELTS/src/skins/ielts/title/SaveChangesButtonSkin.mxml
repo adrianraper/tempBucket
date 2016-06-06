@@ -20,7 +20,7 @@
       @playerversion AIR 1.5
       @productversion Flex 4
 -->
-<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
              xmlns:s="library://ns.adobe.com/flex/spark" 
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
              minWidth="21" minHeight="21" 
@@ -53,17 +53,17 @@
             </s:LinearGradient>
         </s:fill>
     </s:Rect>
+
+    <s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+        <s:BitmapImage id="iconDisplay" scaleX="0.4" scaleY="0.4" />
+        <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
+        <!-- layer 8: text -->
+        <s:Label id="labelDisplay"
+                 color="0xFFFFFF"
+                 fontWeight="bold"
+                 maxDisplayedLines="1"
+                 horizontalCenter="0" verticalCenter="0">
+        </s:Label>
+    </s:HGroup>
     
-    <!-- layer 8: text -->
-    <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
-    <s:Label id="labelDisplay" 
-			 color="0xFFFFFF" 
-			 fontWeight="bold"
-             textAlign="center"
-             maxDisplayedLines="1"
-             horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
-			 width="98" height="20"
-             left="10" right="10" top="2" bottom="2">
-    </s:Label>
-    
-</s:SparkButtonSkin>
+</s:Skin>

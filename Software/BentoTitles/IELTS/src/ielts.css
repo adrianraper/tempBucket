@@ -364,6 +364,10 @@ progresscomponents|ProgressCompareView {
 	skinClass: ClassReference("skins.ielts.progress.ProgressCompareSkin");
 }
 
+progresscomponents|ProgressCompareView s|DropDownList {
+	skinClass: ClassReference("skins.ielts.account.DropDownListSkin");
+}
+
 progresscomponents|ProgressCoverageView {
 	skinClass: ClassReference("skins.ielts.progress.ProgressCoverageSkin");
 }
@@ -399,6 +403,18 @@ account|AccountView {
 
 accountui|StudyGuideButton {
 	skinClass: ClassReference("skins.ielts.account.StudyGuideButtonSkin");
+}
+
+accountui|OverallScoreCalculator s|Button {
+	skinClass: ClassReference("skins.ielts.title.SaveChangesButtonSkin");
+}
+
+accountui|OverallScoreCalculator s|DropDownList {
+	skinClass: ClassReference("skins.ielts.account.DropDownListSkin");
+}
+
+accountui|ListeningReadingScoreCalculator s|Button {
+	skinClass: ClassReference("skins.ielts.title.SaveChangesButtonSkin");
 }
 
 account|AccountView #saveChangesButton {
