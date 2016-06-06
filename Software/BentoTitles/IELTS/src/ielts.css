@@ -86,10 +86,6 @@ mx|Alert {
 	fontFamily: HelveticaMX;
 }
 
-s|VScrollBar {
-	skinClass: ClassReference("skins.ielts.ui.VScrollBarSkin");
-}
-
 /* The video selector */
 video|VideoSelector {
 	skinClass: ClassReference("skins.ielts.controls.video.OSMFVideoSelectorSkin");
@@ -282,6 +278,10 @@ zone|PracticeZoneSectionView {
 	skinClass: ClassReference("skins.ielts.zone.PracticeZoneSectionSkin");
 }
 
+zone|PracticeZoneSectionView s|VScrollBar {
+	skinClass: ClassReference("skins.ielts.ui.VScrollBarSkin");
+}
+
 zone|PracticeZonePopoutView {
 	skinClass: ClassReference("skins.ielts.zone.PracticeZonePopoutSkin");
 }
@@ -328,6 +328,10 @@ zone|ExamPracticeZoneSectionView zoneui|ExamPracticeButton {
 /* Exercise view styles */
 exercise|ExerciseView {
 	skinClass: ClassReference("skins.ielts.ExerciseSkin");
+}
+
+exercise|ExerciseView s|VScrollBar {
+	skinClass: ClassReference("skins.ielts.ui.VScrollBarSkin");
 }
 
 components|AudioPlayer {
@@ -406,6 +410,10 @@ account|AccountView #registerInfoButton {
 /* Support view styles */
 support|SupportView {
 	skinClass: ClassReference("skins.ielts.SupportSkin");
+}
+
+support|SupportView s|VScrollBar {
+	skinClass: ClassReference("skins.ielts.ui.VScrollBarSkin");
 }
 
 support|SupportView #registerInfoButton {

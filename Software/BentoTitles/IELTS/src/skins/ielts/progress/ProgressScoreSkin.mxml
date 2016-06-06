@@ -145,7 +145,7 @@
 							left="0"
 							right="0" />
 	
-	<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="0" right="0" top="137" bottom="0">
+	<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="0" right="0" top="137" bottom="15">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn id="scoreGridC1" dataField="@unitCaption" sortCompareFunction="sortUnits" />
