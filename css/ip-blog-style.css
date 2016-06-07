@@ -1,0 +1,817 @@
+/*
+Theme Name: 2015 Child Right Sidebar
+Theme URI: https://www.tipsandtricks-hq.com/wordpress-twenty-fifteen-2015-child-theme-with-right-sidebar-7732
+Author: Tips and Tricks HQ
+Author URI: https://www.tipsandtricks-hq.com/
+Template: twentyfifteen
+Description: Our 2015 child theme is clean, blog-focused, and designed for clarity. It's simple, straightforward typography is readable on a wide variety of screen sizes, and suitable for multiple languages. We designed it using a mobile-first approach, meaning your content takes center-stage, regardless of whether your visitors arrive by smartphone, tablet, laptop, or desktop computer.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: black, blue, gray, pink, purple, white, yellow, dark, light, two-columns, left-sidebar, fixed-layout, responsive-layout, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready
+
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+@import url("../twentyfifteen/style.css");
+
+body#tips_page {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	margin:0;
+	padding:0;
+	color: #333333;
+	background:#ffffff url(http://www.ieltspractice.com/images/header_bg.jpg) repeat-x top;
+}
+
+a {
+outline: 0 none !important;
+}
+/* -- Header -- */
+h1#title {
+color: #174A7C;
+font-size: 19px;
+font-weight: bold;
+margin: 20px 4% 0 4%;
+padding: 0;
+line-height: 20px;
+}
+a#subscribe-now-mobile {
+	display:none;
+}
+#tip-header {
+	max-width:1021px;
+	margin:0 auto;
+
+	padding:45px 0 0 0;
+	height:190px;
+		
+}
+
+#tip-header-top {
+	width:100%;
+	height:93px;
+}
+
+#tip-header-top a#banner {
+	float:left;
+}
+#tip-header-top a#subscribe-now {
+	background-image:url(http://www.ieltspractice.com/images/btn_prices_off.png);
+	width:254px;
+	height:39px;
+	margin: 0;
+	padding:0;
+	float: right;
+	margin-top: 12px;
+	margin-right: 1%;
+	display:block;
+}
+
+#tip-header-top a#subscribe-now:hover {
+		background-image:url(http://www.ieltspractice.com/images/btn_prices_on.png);
+}
+
+
+#tip-header-menu {
+	width:100%;
+	height: 52px;
+	padding: 3px 0 0 21px;
+	margin: 0;
+}
+a.btn_menu_right span {
+	background:url(http://www.ieltspractice.com/images/btn_menu_mid_long.jpg) no-repeat;
+	display: block;
+	line-height: 43px;
+	padding: 0 16px 0 31px;
+}
+
+
+
+#click-menu  {	
+	background:url(http://www.ieltspractice.com/images/button-menu-square-off.png) no-repeat !important;
+	width:39px !important;
+	height:38px !important;
+
+	position:absolute;
+	
+	top:12px !important;
+	
+
+}
+#click-menu:hover {
+	background:url(http://www.ieltspractice.com/images/button-menu-square-on.png) no-repeat !important;
+
+}
+#click-menu .threeLines {
+	display:none;
+}
+/* -- Categories Menu -- */
+.main-navigation {
+	background:url(http://www.ieltspractice.com/images/btm_line.jpg) repeat-x bottom;
+	padding:10px 0 20px 0;
+	margin: 0 26px;
+}
+.menu-categories-menu-container {
+	background:url(http://www.ieltspractice.com/images/menu_arrow.jpg) no-repeat left center;
+	padding:0 0 0 32px;
+	margin:5px 0 0 0;
+}
+.main-navigation ul  {
+	margin:0 !important;
+	padding:0 !important;
+	border:0 !important;
+	height:22px;
+}
+.main-navigation ul li {
+	margin:0 16px;
+	padding:0;
+	height:22px;
+	line-height:22px;
+	float:left;
+		border:0 !important;
+}
+
+.main-navigation ul li a {
+	display:block;
+	color: #666666;
+	text-decoration:none;
+	font-size:14px;
+	margin:0 !important;
+	padding:0 !important;
+}
+.main-navigation ul li a:hover {
+		color: #0493D5;
+}
+.main-navigation ul li:hover {
+	background:url(http://www.ieltspractice.com/images/subline_blue.jpg) repeat-x center bottom;
+	color: #0493D5;
+}
+.main-navigation ul li.current-menu-item {
+	height:22px;
+	line-height:22px;
+	display:block;
+	float:left;
+	color: #0493D5 !important;
+	margin:0 16px;
+	padding:0;
+	text-decoration:none;
+	font-size:14px;
+	background:url(http://www.ieltspractice.com/images/subline_blue.jpg) repeat-x center bottom;
+	font-weight:bold;
+}
+.main-navigation ul li.current-menu-item a {
+	color: #0493D5 !important;
+}
+/* -- Content -- */
+#tips-container-outter {
+	max-width:1021px;
+	margin:-6px auto 0 auto; 
+}
+#tips-container {
+	border:1px #cccccc solid;
+
+	margin:0 10px;
+	border-top-left-radius: 0.4em;
+	border-top-right-radius: 0.4em;
+	
+	-webkit-box-shadow: 0px -1px 5px 0px rgba(84,84,84,1);
+	-moz-box-shadow: 0px -1px 5px 0px rgba(84,84,84,1);
+	box-shadow: 0px -1px 5px 0px rgba(84,84,84,1);
+}
+body.single .imgshadow {
+	display:none;
+}
+body.home.blog p img.size-full {
+	display:none;
+}
+.post-thumbnail {
+	display:none;
+}
+.imgshadow {
+	float:left;
+	margin-right:10px;
+	margin-top:8px;
+}
+.site-main {
+	padding:2% 4%;
+	margin:0;
+}
+.hentry {
+	margin:0;
+	padding:20px 0 0 0;
+}
+.hentry.has-post-thumbnail {
+	padding-top:20px;
+}
+.hentry + .hentry, .page-header + .hentry, .page-header + .page-content {
+	margin-top:3%;
+}
+.entry-title {
+	font-size:1.4em;
+	margin:0 0 5px 0;
+	padding:0 0 0 46px;
+}
+.entry-header {
+	margin:0;
+	padding:0;
+}
+.entry-content, .entry-summary {
+	padding:0 0 0 46px;
+}
+.entry-content p {
+	font-size:1.1em;
+	margin:0 30px 10px 0;
+}
+.entry-content .more-link:after, .entry-summary .more-link:after {
+	top:-3px !important;
+}
+.entry-footer {
+	margin:10px 0 0 0;
+	padding:10px 46px;
+	font-size:1em;
+}
+.posted-on:before, .byline:before, .cat-links:before, .tags-links:before, .comments-link:before, .entry-format:before, .edit-link:before, .full-size-link:before {
+	top:0px !important;
+}
+ul, ol {
+	margin-left:20px;
+}
+/* -- Sidebar -- */
+.sidebar {
+float: right;
+max-width: 413px;
+position: relative !important;
+width: 30%;
+background: #fff;
+box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+	top:0px !important;
+	margin:15px 0 0 0;
+box-shadow:none !important;
+}
+
+#subscribe-to-road-to-ielts {
+	background-image:url(../twentyfifteen/subscribe-to-road-to-ielts.png);
+	width:315px;
+	height:156px;
+	display: block;
+	float:right;
+	border:0;
+	margin: -50px -14px 40px 0;
+}
+
+
+
+#subscribe-to-road-to-ielts span#txt {
+margin: 0;
+padding: 68px 0 0 130px;
+color: #FFFFFF;
+font-weight: bold;
+font-size: 13px;
+display: block;
+width: 100%;
+text-align: center;
+line-height:1.4em;
+}
+
+/* -- Content -- */
+.site-content {
+display: block;
+float: left;
+margin: 0px;
+padding:0 0 20px 0;
+width: 70%;
+}
+.site-footer {
+clear:both;
+margin: 0;
+padding: 0;
+width: 100%;
+}
+
+
+
+
+
+
+.post-thumbnail img {
+display: block;
+margin: 0 auto;
+width: 100%;
+}
+
+/* -- Widget --*/
+.widget {
+	margin:0;
+	padding:0 30px 30px 15px;
+	font-size:1em;
+	letter-spacing:normal;
+text-transform:none;
+}
+.widget-title {
+color: #0493D5;
+	font-family:Arial, Helvetica, sans-serif;
+margin: 0;
+
+font-size:1.4em;
+	letter-spacing:normal;
+text-transform:none;
+padding:0 0 5px 0;
+
+}
+.search-field {
+	font-family:Arial, Helvetica, sans-serif;
+}
+/* -- Single page --*/
+.page-header {
+	margin:0;
+	padding-top:20px;
+		padding-bottom:20px;
+
+}
+.page-title {
+	font-size:1.6em;
+
+	color:#333333;
+
+}
+blockquote {
+	font-size:1em;
+	line-height:1.4em;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#333333;
+	font-weight:normal;
+}
+/* -- footer --*/
+.pagination .nav-links {
+	margin-top:10px;
+}
+.pagination .prev, .pagination .next {
+	height:100%;
+}
+
+
+	
+
+.site-info {
+	margin:0 !important;
+	padding:0 !important;
+}
+
+#tips-footer {
+	background: #1C1C1C url(http://www.ieltspractice.com/images/footer_btm_grey.jpg) repeat-x top;
+
+}
+
+#tips-footer a {
+	color:#FFFFFF;
+	text-decoration:underline;
+	line-height:1.6em;
+}
+#tips-footer-box {
+	width:1021px;
+	margin:0 auto;
+	font-size:12px;
+	
+}
+#tips-footer-box-table {
+	display: table-cell;
+    vertical-align: middle;
+		height:71px;
+	
+}
+
+
+
+#tips-footer-box img {
+	float:left;
+	margin-right:20px;
+}
+#tips-footer-box .txt_area {
+
+	color:#FFFFFF;
+	font-size:1em;
+	float:left;
+}
+/** responsive code start **/
+
+@media only screen 
+and (max-width : 954px) {
+
+
+#tip-header-top a#subscribe-now {
+	margin-right:53px;
+}
+
+#click-menu  {	
+	top:56px !important;
+}
+#tip-header {
+	height:140px;
+}
+#tip-header-menu
+{
+	display:none  !important;
+}
+.main-navigation {
+	display:none;
+}
+
+.entry-content .more-link:after, .entry-summary .more-link:after {
+	top:0 !important;
+}
+.site-content {
+display: block;
+float: left;
+margin-left: 0px;
+width: 100%;
+}
+
+
+
+}
+
+@media only screen 
+and (max-width : 768px) {
+
+#click-menu  {	
+	top:56px !important;
+}
+
+.sidebar {
+float: none !important;
+margin-right: 0px;
+max-width: 100%;
+position: relative !important;
+width: 100% !important;
+background: #fff;
+box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+}
+.entry-content .more-link:after, .entry-summary .more-link:after {
+	top:0 !important;
+}
+.site-content {
+display: block;
+float: left;
+margin-left: 0px;
+width: 100%;
+}
+.main-navigation {
+	display:none;
+}
+.site-footer {
+float: left;
+margin: auto;
+padding: 0;
+width: 100%;
+text-align: center;
+}
+#tips-footer-box {
+	max-width:500px;
+	padding:10px;
+	margin:0 auto;
+	font-size:12px;
+}
+#tips-footer-box-table {
+	display: table-cell;
+    vertical-align: middle;
+	text-align:center;
+}
+#tips-footer-box img {
+	float:none;
+	margin:10px;
+}
+
+
+
+.site-info a {
+border-bottom: 1px solid transparent;
+color: #707070;
+color: rgba(51, 51, 51, 0.7);
+line-height: 69px;
+}
+}
+@media only screen 
+and (max-width : 736px) {
+
+#click-menu  {	
+	top:56px !important;
+}
+
+
+
+
+.sidebar {
+float: none !important;
+margin-right: 0px;
+max-width: 100%;
+position: relative !important;
+width: 100% !important;
+background: #fff;
+box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+}
+.site-content {
+display: block;
+float: left;
+margin-left: 0px;
+width: 100%;
+}
+.main-navigation {
+	display:none;
+}
+
+.entry-content .more-link:after, .entry-summary .more-link:after {
+	top:0 !important;
+}
+.entry-title {
+	font-size:1.4em;
+	margin:0 0 5px 0;
+	padding:0 0 0 5%;
+}
+.entry-content, .entry-summary {
+	padding:0 0 0 5%;
+}
+.entry-footer {
+	margin:10px 0 0 0;
+	padding:10px 5%;
+}
+#tips-footer-box {
+	max-width:500px;
+	padding:10px;
+	margin:0 auto;
+	font-size:12px;
+}
+#tips-footer-box-table {
+	display: table-cell;
+    vertical-align: middle;
+	text-align:center;
+}
+#tips-footer-box img {
+	float:none;
+	margin:10px;
+}
+
+
+
+.site-footer {
+float: left;
+margin: auto;
+padding: 0;
+width: 100%;
+text-align: center;
+}
+.site-info a {
+border-bottom: 1px solid transparent;
+color: #707070;
+color: rgba(51, 51, 51, 0.7);
+line-height: 69px;
+}
+}
+@media only screen 
+and (max-width : 667px) {
+#click-menu {
+	top:3px !important;
+	background:url(http://www.ieltspractice.com/images/button-menu-square-sm-off.png) no-repeat !important;
+	width:33px !important;
+	height:32px !important;
+}
+#click-menu:hover {
+	background:url(http://www.ieltspractice.com/images/button-menu-square-sm-on.png) no-repeat !important;
+}
+
+
+
+
+
+#tip-header {
+	height:140px;
+	background: #ffffff url(http://www.ieltspractice.com/images/header_bg.jpg) repeat-x top;
+}
+a#subscribe-now, #tip-header-menu
+{
+	display:none  !important;
+}
+a#subscribe-now-mobile {
+	display:block;
+	height:39px;
+	width:100%;
+	line-height:39px;
+	color:#FFFFFF;
+	background-color:#F07D23;
+	text-align:center;
+	font-size:1.1em;
+	
+}
+.main-navigation {
+	display:none;
+}
+.entry-content .more-link:after, .entry-summary .more-link:after {
+	top:0 !important;
+}
+.entry-title {
+	font-size:1.4em;
+	margin:0 0 5px 0;
+	padding:0 0 0 5%;
+}
+.entry-content, .entry-summary {
+	padding:0 0 0 5%;
+}
+.entry-footer {
+	margin:10px 0 0 0;
+	padding:10px 5%;
+}
+.sidebar {
+float: none !important;
+margin-right: 0px;
+max-width: 100%;
+position: relative !important;
+width: 100% !important;
+background: #fff;
+box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+}
+#tips-footer-box {
+	max-width:500px;
+	padding:10px;
+	margin:0 auto;
+	font-size:12px;
+}
+#tips-footer-box-table {
+	display: table-cell;
+    vertical-align: middle;
+	text-align:center;
+}
+#tips-footer-box img {
+	float:none;
+	margin:10px;
+}
+
+
+
+.site-content {
+display: block;
+float: left;
+margin-left: 0px;
+width: 100%;
+}
+.site-footer {
+float: left;
+margin: auto;
+padding: 0;
+width: 100%;
+text-align: center;
+}
+.site-info a {
+border-bottom: 1px solid transparent;
+color: #707070;
+color: rgba(51, 51, 51, 0.7);
+line-height: 69px;
+}
+}
+
+@media only screen 
+and (max-width : 568px) {
+
+
+
+
+
+#tip-header {
+	height:140px;
+	background: #ffffff url(http://www.ieltspractice.com/images/header_bg.jpg) repeat-x top;
+}
+a#subscribe-now, #tip-header-menu
+
+{
+	display:none  !important;
+}
+
+
+
+
+a#subscribe-now-mobile {
+	display:block;
+	height:5%;
+	width:100%;
+	line-height:39px;
+	color:#FFFFFF;
+	background-color:#F07D23;
+	text-align:center;
+	font-size:1.1em;
+}
+.sidebar {
+float: none !important;
+margin-right: 0px;
+max-width: 100%;
+position: relative !important;
+width: 100% !important;
+background: #fff;
+box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.site-content {
+display: block;
+float: left;
+margin-left: 0px;
+width: 100%;
+}
+
+
+.main-navigation {
+	display:none;
+}
+.entry-content .more-link:after, .entry-summary .more-link:after {
+	top:0 !important;
+}
+.entry-title {
+	font-size:1.4em;
+	margin:0 0 5px 0;
+	padding:0 0 0 5%;
+}
+.entry-content, .entry-summary {
+	padding:0 0 0 5%;
+}
+.entry-footer {
+	margin:10px 0 0 0;
+	padding:10px 5%;
+}
+#tips-footer-box {
+	width:100%;
+	padding:10px;
+	margin:0 auto;
+	font-size:12px;
+	
+
+}
+#tips-footer-box-table {
+	display: table-cell;
+    vertical-align: middle;
+	text-align:center;
+}
+#tips-footer-box img {
+	float:none;
+
+	margin:10px;
+}
+
+.pagination .prev:before {
+	content: "\f430";
+	left: -1px;
+	top:-12%;
+}
+.pagination .next:before {
+	content: "\f429";
+	right: -1px;
+	top:-12%;
+}
+
+
+
+}
+@media only screen 
+and (max-width : 450px) {
+.imgshadow {
+	display:block;
+	margin-bottom:10px;
+	float:none;
+}
+}
+
+
+
+@media only screen 
+and (max-width : 320px) {
+
+
+.sidebar {
+float: none !important;
+margin-right: 0px;
+max-width: 413px;
+position: relative !important;
+width: 100% !important;
+background: #fff;
+box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+}
+.site-content {
+display: block;
+float: left;
+margin-left: 0px;
+width: 100%;
+}
+.site-footer {
+float: left;
+margin: auto;
+padding: 0;
+width: 100%;
+text-align: center;
+}
+.site-info a {
+border-bottom: 1px solid transparent;
+color: #707070;
+color: rgba(51, 51, 51, 0.7);
+line-height: 69px;
+}
+}
+
+/** responsive code end **/

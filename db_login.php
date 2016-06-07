@@ -14,7 +14,7 @@ global $db;
 global 	$current_subsite;
 $dbDetails = new DBDetails(2);
 //print($dbDetails->dsn);
-$db = &ADONewConnection($dbDetails->dsn);
+$db = ADONewConnection($dbDetails->dsn);
  
  // v3.6 UTF8 character mismatch between PHP and MySQL
  if ($dbDetails->driver == 'mysql') {
