@@ -271,13 +271,20 @@ class Smarty_Compiler extends Smarty {
         reset($this->_folded_blocks);
 
         /* replace special blocks by "{php}" */
+        // gh#1126 php 5.6 deprecated /e modifier
+        // TODO How to confirm this is really a correct replacement function?
         $source_content = preg_replace($search.'e', "'"
                                        . $this->_quote_replace($this->left_delimiter) . 'php'
                                        . "' . str_repeat(\"\n\", substr_count('\\0', \"\n\")) .'"
                                        . $this->_quote_replace($this->right_delimiter)
                                        . "'"
                                        , $source_content);
-
+        /*
+        $source_content = preg_replace_callback($search, function($m) {
+                    return "'{php ' . str_repeat(\"\n\", " . substr_count($m[0], '\n') .") . '}'";
+            }
+            , $source_content);
+        */
         /* Gather all template tags. */
         preg_match_all("~{$ldq}\s*(.*?)\s*{$rdq}~s", $source_content, $_match);
         $template_tags = $_match[1];

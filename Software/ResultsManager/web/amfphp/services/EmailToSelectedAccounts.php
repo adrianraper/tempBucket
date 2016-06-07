@@ -13,8 +13,10 @@ ini_set('max_execution_time', 300); // 5 minutes
 
 if (isset($_SESSION['dbHost'])) unset($_SESSION['dbHost']);
 
-require_once(dirname(__FILE__)."/DMSService.php");
-$dmsService = new DMSService();
+require_once(dirname(__FILE__)."/MinimalService.php");
+require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
+
+$thisService = new MinimalService();
 
 // Set up line breaks for whether this is outputting to html page or a text file
 if (isset($_SERVER["SERVER_NAME"])) {
@@ -28,17 +30,17 @@ function addDaysToTimestamp($timestamp, $days) {
 }
 
 function specificEmail($account, $messageType, $templateID, $addReseller = false) {
-	global $dmsService;
+	global $thisService;
 	global $emailArray;
 	global $newLine;
-	$accountEmails = $dmsService->accountOps->getEmailsForMessageType($account->id, $messageType);
+	$accountEmails = $thisService->accountOps->getEmailsForMessageType($account->id, $messageType);
 	//echo 'accountEmails='.count($accountEmails).'-'.implode(',',$accountEmails).$newLine;
 	// If there is a reseller they are also 'ccd.
 	// Unless it is a service email, because that would deluge them. 
 	// Actually most emails you send like this probably shouldn't go to the reseller as they are global
 	//if ($messageType!=Trigger::TRIGGER_TYPE_SERVICE) {
 	if ($addReseller) {
-		$resellerEmail = array($dmsService->accountOps->getResellerEmail($account->resellerCode));
+		$resellerEmail = array($thisService->accountOps->getResellerEmail($account->resellerCode));
 	} else {
 		$resellerEmail = array();
 	}
@@ -67,8 +69,8 @@ $testingTriggers = "RM-welcome";
 
 if (stristr($testingTriggers, "RM-welcome")) {
 	// Email to all users in a group
-	$groupId = 10379;
-	$templateID = 'user/RM-welcome';
+	$groupId = 35026;
+	$templateID = 'user/CPEIP-LELT-welcome';
 	$emailArray = $thisService->dailyJobOps->getEmailsForGroup($groupId);
 	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 		// Send the emails
@@ -181,7 +183,7 @@ if (stristr($testingTriggers, "RM-welcome")) {
 		$messageType = Trigger::TRIGGER_TYPE_UPGRADE;
 	}
 
-	$accounts = $dmsService->accountOps->getAccounts($rootList, $conditions);
+	$accounts = $thisService->accountOps->getAccounts($rootList, $conditions);
 	if ($accounts) {
 		// Build up an array of emails that need to be sent
 		$emailArray = array();
@@ -231,7 +233,7 @@ if (stristr($testingTriggers, "RM-welcome")) {
 		// }
 		if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 			// Send the emails
-			$dmsService-> emailOps->sendEmails("", $templateID, $emailArray);
+			$thisService-> emailOps->sendEmails("", $templateID, $emailArray);
 			echo "Trying to send ".count($emailArray)." emails";
 		} else {
 			// Or print on screen
@@ -241,9 +243,9 @@ if (stristr($testingTriggers, "RM-welcome")) {
 				echo "<b>".$email['data']['account']->name." to: ".$email["to"]."</b>".$newLine;
 				*/
 				if ($email["cc"]) {
-					echo "<b>".$email['data']['account']->name." to: ".$email["to"].", cc: ".implode(',',$email["cc"])."</b>".$newLine.$dmsService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
+					echo "<b>".$email['data']['account']->name." to: ".$email["to"].", cc: ".implode(',',$email["cc"])."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
 				} else {
-					echo "<b>".$email['data']['account']->name." to: ".$email["to"]."</b>".$newLine.$dmsService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
+					echo "<b>".$email['data']['account']->name." to: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
 				}
 			}
 		}

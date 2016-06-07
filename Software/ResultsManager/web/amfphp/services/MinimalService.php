@@ -39,6 +39,7 @@ require_once(dirname(__FILE__)."/../../classes/CourseOps.php");
 require_once(dirname(__FILE__)."/../../classes/TriggerOps.php");
 require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php");
 require_once(dirname(__FILE__)."/../../classes/MemoryOps.php");
+require_once(dirname(__FILE__)."/../../classes/DailyJobObs.php");
 
 require_once(dirname(__FILE__)."/AbstractService.php");
 
