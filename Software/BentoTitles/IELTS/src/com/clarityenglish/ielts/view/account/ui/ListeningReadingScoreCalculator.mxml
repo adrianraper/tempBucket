@@ -215,11 +215,6 @@
             isListeningValidatorEnable = isReadingValidatorEnable = false;
             listeningTextInput.text = readingTextInput.text = "";
         }
-
-        protected function onRegisterIELTSClick(event:Event):void {
-            var url:String = copyProvider.getCopyForId('registerIELTSLink');
-            navigateToURL(new URLRequest(url), "_blank");
-        }
         ]]>
     </fx:Script>
 
@@ -317,7 +312,6 @@
                     </s:HGroup>
                     <s:Label id="estimateScoreLabel" fontSize="13" fontWeight="bold" text="{copyProvider.getCopyForId('estimateScoreLabel')}" toolTip="{copyProvider.getCopyForId('calculatorToolTip')}" />
                     <s:VGroup paddingTop="4" gap="10">
-                        <s:Button id="registerIELTSButton" width="180" height="35" label="{copyProvider.getCopyForId('registerIELTSButton')}" useHandCursor="true" buttonMode="true" click="onRegisterIELTSClick(event)" />
                         <s:Button id="resetCalculatorButton"  width="180" height="35" label="{copyProvider.getCopyForId('resetCalculatorButton')}" icon="{skins.ielts.assets.account.Restart}" useHandCursor="true" buttonMode="true" click="onResetCalculatorClick(event)" />
                     </s:VGroup>
                 </s:VGroup>
