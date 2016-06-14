@@ -1,6 +1,10 @@
 <?php
 /*
  * http://www.zedia.net/2009/as3crypto-and-php-what-a-fun-ride/
+ * 
+ * $crypt = new Crypt();
+ * $parameters = 'rootID='.$rootID.'&prefix='.$prefix.'&studentID='.$studentID.'&teacherID='.$teacherID.'&unitName='.$unitName;
+ * $startProgram = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));
  */
 class Crypt {
 	var $key = NULL;		

@@ -20,10 +20,6 @@
 		if (isset($_SESSION['InstanceID'])) $instanceID = $_SESSION['InstanceID'];
 		if (isset($_SESSION['AccountName'])) $accountName = $_SESSION['AccountName'];
 			
-		// If we do not know the prefix, the page shouldn't run.
-		// The prefix might come from session variables or from the URL parameters
-		// Read URL first in case session variables are lingering
-		// allow case insensitive parameters
 		if (isset($_GET['prefix'])) {
 			$prefix = $_GET['prefix'];
 		} elseif (isset($_GET['Prefix'])) {
@@ -32,3 +28,16 @@
 			$prefix = $_SESSION['Prefix'];
 		}
 	}
+
+    // gh#1458 If a portal is involved in running the start page, share a common session
+    if (isset($PHPSESSID) && ($PHPSESSID!='')) {
+        session_id($PHPSESSID);
+    } elseif (isset($_GET['PHPSESSID']) && ($_GET['PHPSESSID']!='')) {
+        session_id($_GET['PHPSESSID']);
+        
+    // gh#1314 This can be removed once all start pages link to v27 Bento apps
+    } elseif (isset($_GET['session'])) {
+        session_id($_GET['session']);
+    }
+	session_start();
+	$currentSessionID = session_id();
