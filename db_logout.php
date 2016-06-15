@@ -15,12 +15,9 @@ if (isset($_SESSION['UserID']) OR (isset($_SESSION['UserName'])=="iyjguest")){
 	session_unset();
 	session_destroy();
 }
-?>
 
-<?php 
 if (stripos($_SERVER["SERVER_NAME"], 'online.nas.ca')!==false) {
 	header("location: http://online.nas.ca/NASindex.php");
 } else {
 	header("location: /");
 }
-?>

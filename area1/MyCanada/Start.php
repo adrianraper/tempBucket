@@ -1,8 +1,21 @@
 <?php	
+	/*
+    // gh#1314
+	if (isset($_GET['session'])) {
+		session_id($_GET['session']);
+	}
 	session_start();
+	$currentSessionID = session_id();
+	
 	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
 	$studentID = $Email = $userID = $instanceID = '';
 	$referrer = $ip = $server = $productCode = '';
+	*/
+    // Initialisation
+	require_once '../startInit.php';
+	
+	// Picking up passed data
+	require_once '../readPassedVariables.php';
 	
 	// For this product
 	$productCode = 20; // MyCanada

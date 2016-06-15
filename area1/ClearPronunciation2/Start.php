@@ -1,5 +1,7 @@
 <?php
 	
+	/*
+    // gh#1314
 	if (isset($_GET['session'])) {
 		session_id($_GET['session']);
 	}
@@ -9,6 +11,12 @@
 	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
 	$studentID = $Email = $userID = $instanceID = '';
 	$referrer = $ip = $server = $productCode = '';
+	*/
+    // Initialisation
+	require_once '../startInit.php';
+	
+	// Picking up passed data
+	require_once '../readPassedVariables.php';
 	
 	// For this product
 	$productCode = 50; // Clear Pronunciation 2

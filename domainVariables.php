@@ -8,7 +8,7 @@ if ($_SERVER['SERVER_PORT']!=80) {
 } else {
 	$port='';
 }
-$pageURI  = ereg_replace("/(.+)", "", $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]);
+$pageURI  = preg_replace("/(.+)/", "", $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]);
 // Why remove www?
 //$domain  = 'http'.'://'.str_replace("www.", "", $pageURI).$port.'/'; 
 // Make sure that there is no ending slash on this as we will add it below
@@ -20,4 +20,4 @@ echo '<script type="text/javascript">';
 echo 'var domain = "'.$domain.'";';
 echo 'var commonPortal = "'.$CommonPortalPath.'";';
 echo '</script>';
-?>
+

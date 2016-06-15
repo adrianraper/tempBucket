@@ -9,7 +9,7 @@ if (isset($_GET['resize']) || $resize) {
 	echo '<div id="load_program_original">';
 }
 ?>
-<div id="altContent">
+<div align="center" id="altContent">
 	<p>This application requires Adobe's Flash player, running at least version 9.</p>
 	<p>It seems your browser doesn't have this.</p>
 	<p>Please download the latest Adobe Flash Player.</p>
