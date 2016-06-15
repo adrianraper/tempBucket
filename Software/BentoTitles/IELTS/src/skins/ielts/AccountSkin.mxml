@@ -94,9 +94,6 @@
 	
 	<s:HGroup width="100%" gap="15">
 		<s:VGroup paddingTop="20" filters="{dropShadowFilter}">
-			
-			<s:Label id="myProfileLabel" fontSize="20" fontWeight="bold" width="100%" paddingLeft="5"/>
-			
 			<s:Group width="338" height="505">
 				<s:Rect left="0" right="0" top="0" bottom="0" radiusX="6" radiusY="6">
 					<s:fill>
@@ -185,8 +182,7 @@
 								</s:fill>
 							</s:Rect>
 						</s:VGroup>
-						<s:Label id="studyPlannerLabel" fontWeight="bold"/>
-						<s:Group width="295" height="105" left="0" filters="{dropShadowFilter}">
+						<s:Group width="295" height="115" left="0" filters="{dropShadowFilter}">
 							<s:Rect left="-5" right="-5" top="0" bottom="0" radiusX="6" radiusY="6">
 								<s:fill>
 									<s:SolidColor color="#F1F1F3"/>
@@ -200,23 +196,25 @@
 							</s:Rect>
 							<s:Image source="@Embed(source='/skins/ielts/assets/studyplannerBackground.png')" left="3"
 									 right="0" top="3" bottom="3" fillMode="clip"/>
-							<s:HGroup width="100%" height="100%" verticalAlign="middle">
-								<s:VGroup paddingLeft="15" width="65%" height="100%" verticalAlign="middle" gap="10">
-									<s:VGroup gap="6">
-										<s:Label id="studyPlannerCaptionLabel" fontSize="14" fontWeight="bold"
+							<s:HGroup width="100%" height="100%" paddingLeft="10" paddingRight="10" gap="15" verticalAlign="middle">
+								<s:VGroup width="62%" height="100%" verticalAlign="middle" gap="7">
+									<s:VGroup width="100%" gap="3">
+										<s:Label id="studyPlannerCaptionLabel" fontSize="15" fontWeight="bold"
 												 color="#08446B"/>
-										<s:Label id="studyPalnnerDescriptionLabel" fontSize="9" color="#08446B"/>
+										<s:Label id="studyPalnnerDescriptionLabel" width="90%" fontSize="11" color="#08446B"/>
 									</s:VGroup>
-									<s:Rect height="1" width="180">
+									<s:Rect height="1" width="160">
 										<s:fill>
 											<s:SolidColor color="#A3A3A2"/>
 										</s:fill>
 									</s:Rect>
-									<s:Button id="studyPlannerDownloadButton" width="140" height="25" fontSize="10"
+									<s:Button id="studyPlannerDownloadButton" width="160" height="30" fontSize="11"
 											  useHandCursor="true" buttonMode="true"/>
 								</s:VGroup>
-								<s:SWFLoader width="35%" source="@Embed(source='/skins/ielts/assets/studyPlanner.png')"
-											 scaleX="0.28" scaleY="0.28" verticalCenter="0"/>
+								<s:VGroup width="35%" height="100%" verticalAlign="middle" horizontalAlign="center">
+									<s:SWFLoader source="@Embed(source='/skins/ielts/assets/studyPlanner.png')"
+												 scaleX="0.3" scaleY="0.3" />
+								</s:VGroup>
 							</s:HGroup>
 						</s:Group>
 					</s:VGroup>
@@ -229,8 +227,6 @@
 		</s:VGroup>
 		
 		<s:VGroup paddingTop="20" filters="{dropShadowFilter}">
-			<s:Label id="myToolsLabel" fontSize="20" fontWeight="bold" width="50%" paddingLeft="5"/>
-			
 			<s:Group width="643" height="505">
 				<s:Rect left="0" right="0" top="0" bottom="0" radiusX="6" radiusY="6">
 					<s:fill>

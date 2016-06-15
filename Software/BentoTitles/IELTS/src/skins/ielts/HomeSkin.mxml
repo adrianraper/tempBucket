@@ -123,7 +123,7 @@
 								<s:SolidColor color="#A3A3A2" />
 							</s:fill>
 						</s:Rect>
-						<s:Button id="studyPlannerDownloadButton" width="250" height="40" fontSize="12.6" useHandCursor="true" buttonMode="true"/>
+						<s:Button id="studyPlannerDownloadButton" width="250" height="40" fontSize="14" useHandCursor="true" buttonMode="true"/>
 					</s:VGroup>
 					<s:SWFLoader width="40%" source="@Embed(source='/skins/ielts/assets/studyPlanner.png')" scaleX="0.5" scaleY="0.5" verticalCenter="0"/>
 				</s:HGroup>
