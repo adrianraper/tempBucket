@@ -1,8 +1,8 @@
 <?php
-    session_start();
     include_once "variables.php";
 
-// Picking up passed data
+    // Picking up passed data
+    require_once '../startInit.php';
     require_once '../readPassedVariables.php';
 
     // Handling no prefix

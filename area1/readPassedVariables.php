@@ -37,7 +37,7 @@
         if (isset($_SESSION['AccountName'])) $accountName = $_SESSION['AccountName'];
     }
     
-    if ($prefix!='') {
+    if ($prefix=='') {
         if (isset($_GET['prefix'])) {
             $prefix = $_GET['prefix'];
         } elseif (isset($_GET['Prefix'])) {
