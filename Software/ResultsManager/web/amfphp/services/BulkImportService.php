@@ -129,6 +129,9 @@ class UploadException extends Exception {
                         break;
                     case "id":
                     case "studentid":
+                    case "learnerid":
+                    case "learner id":
+                    case "student id":
                         $idCol = $field;
                         break;
                     case "email":
