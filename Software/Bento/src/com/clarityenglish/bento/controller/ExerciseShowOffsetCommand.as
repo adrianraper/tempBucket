@@ -39,11 +39,12 @@ package com.clarityenglish.bento.controller {
 					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exerciseNode);
 				} else {
 					// gh#853
-					if (configProxy.getConfig().scorm) {
-						sendNotification(CommonNotifications.LOGOUT);
-					} else {
+					// gh#1491 SCORM might want you to go to unit menu, especially R2I. 
+					//if (configProxy.getConfig().scorm) {					
+					//	sendNotification(CommonNotifications.LOGOUT);
+					//} else {
 						sendNotification(BBNotifications.SELECTED_NODE_UP);
-					}
+					//}
 				}
 			}
 		}
