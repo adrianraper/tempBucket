@@ -575,14 +575,15 @@ EOD;
 				$opts = $tempOnClass->getReportBuilderOpts($forClass, $reportOpts, $template);
 
 				// get all the titles that are our targets (probably just one)
-				$pcs = array();				
+                // TODO It would be much cleaner to simply limit this report to just one title at a time
+                // so just take the first one
 			    foreach ($forReportableIDObjects as $idObject) {
 			    	$thisTitle = $this->getTitle($idObject['Title']);
 			        $thisTitle->licenceClearanceDate = $licenceOps->getLicenceClearanceDate($thisTitle);
-			    	$titles[] = $thisTitle;
-			        $pcs[] = $idObject['Title'];
+                    break;
 			    }
-			    
+                //AbstractService::$debugLog->info('doing it for ' . $thisTitle->productCode . ' ' . $thisTitle->name);
+
 				// get all the groups that are our targets (probably just one)
 				$ids = array();				
 			    foreach ($onReportableIDObjects as $idObject)
@@ -623,11 +624,10 @@ EOD;
 		}
 		
 		// Default from date is the licenceClearanceDate if you didn't pass one
-		// TODO It is a problem if you are reporting on multiple licences that don't share one clearance date, but it is unlikely
 		if (!isset($opts[ReportBuilder::FROM_DATE])) {
-			$opts[ReportBuilder::FROM_DATE] = strftime('%Y-%m-%d 00:00:00',$titles[0]->licenceClearanceDate);
+			$opts[ReportBuilder::FROM_DATE] = strftime('%Y-%m-%d 00:00:00',$thisTitle->licenceClearanceDate);
 			$dateFormat = (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') ? 'From %#d %b %Y' : 'From %e %b %Y';
-			$headers['dateRange'] = strftime($dateFormat,$titles[0]->licenceClearanceDate);
+			$headers['dateRange'] = strftime($dateFormat,$thisTitle->licenceClearanceDate);
 		}
 		
 		// Create the ReportBuilder and set the options
@@ -642,127 +642,98 @@ EOD;
 			FROM T_Groupstructure g
 			WHERE g.F_GroupID = ?;
 SQL;
-        AbstractService::$debugLog->info("try to see if topGroup for " . $groups[0]->id);
 		$bindingParams = array($groups[0]->id);
 		$rs = $this->db->Execute($sql, $bindingParams);
-		if ($rs && $rs->RecordCount()==1) {
-            $thisParentGroup = $rs->FetchNextObj()->topGroup;
-            $needUnallocatedLicences = ($thisParentGroup == $groups[0]->id);
-            AbstractService::$debugLog->info("parent is " . $thisParentGroup);
-        } else {
-            AbstractService::$debugLog->info("sql got nothing " . $sql);
-        }
+		if ($rs && $rs->RecordCount()==1)
+            $needUnallocatedLicences = ($rs->FetchNextObj()->topGroup == $groups[0]->id);
 
 		// Count all the licences in the root and total by group
 	    // Missing info - rootID, licenceClearanceDate
 	    $rootId = Session::get('rootID');
-	    $pcList = implode(',', $pcs);
-	    //$debug .= "root=$rootId" . ' ';
 		$sql = <<<SQL
 			SELECT s.F_ProductCode as productCode, m.F_GroupID as groupId, g.F_GroupName as groupName, g.F_RootDominant as topGroup, 
 			       COUNT(s.F_SessionID) as sessions, SUM(s.F_Duration) as totalTime, COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
 			FROM T_Session s, T_Membership m, T_Groupstructure g
 			WHERE s.F_UserID = m.F_UserID
 			AND m.F_RootID = ?
-			AND s.F_RootID = ?
 			AND m.F_GroupID = g.F_GroupID
 			AND s.F_StartDateStamp >= ?
 			AND s.F_Duration > 15
-			AND s.F_ProductCode IN ($pcList)
+			AND s.F_ProductCode = ?
 			GROUP BY s.F_ProductCode, groupId;
 SQL;
-		$bindingParams = array($rootId, $rootId, $opts[ReportBuilder::FROM_DATE]);
-	    //$debug .= 'sql=' . $sql . ' ';
-	    //$debug .= 'params=' . implode(',', $bindingParams) . ' ';
+		$bindingParams = array($rootId, $opts[ReportBuilder::FROM_DATE], $thisTitle->productCode);
+		//AbstractService::$debugLog->info('sql=' . $sql);
+		//AbstractService::$debugLog->info('params=' . implode(',', $bindingParams));
 	    $rs = $this->db->GetArray($sql, $bindingParams);
 
-		$rows = array();
-		foreach ($pcs as $pc) {
-			//$debug .= 'check for pc='.$pc.' ';
-			$rows[$pc] = array();
-			
-			// and group combination
-			foreach ($groups as $group) {
-				//$debug .= 'check for group='.$group->id.' ';
-				$rows[$pc][$group->id] = array('groupName' => $group->name, 'licences' => 0, 'sessions' => 0, 'totalTime' => 0);
-				
-				// What data matches this group?
-				foreach($rs as $record) {
-					if ($record['productCode']==$pc && $record['groupId']==$group->id) {
-						$rows[$pc][$group->id]['licences'] += $record['licencesUsed'];
-						$rows[$pc][$group->id]['sessions'] += $record['sessions'];
-						$rows[$pc][$group->id]['totalTime'] += $record['totalTime'];
-						$totalLicencesAllocated += $record['licencesUsed'];
-						//$debug .= 'add in '.$record['licencesUsed'].' for it ';
-						continue;
-					}
-				}
-				// Then for each of its child groups, (including their children), but no more recursively than that
-				foreach ($group->manageables as $m) {
-				    if (get_class($m) == "Group") {
-				    	//$debug .= 'check for main group='.$m->id.' ';
-				    	$rows[$pc][$m->id] = array('groupName' => $m->name, 'licences' => 0, 'sessions' => 0, 'totalTime' => 0);
-						foreach($rs as $record) {
-							if ($record['productCode']==$pc && $record['groupId']==$m->id) {
-								$rows[$pc][$m->id]['licences'] += $record['licencesUsed'];
-								$rows[$pc][$m->id]['sessions'] += $record['sessions'];
-								$rows[$pc][$m->id]['totalTime'] += $record['totalTime'];
-								$totalLicencesAllocated += $record['licencesUsed'];
-								//$debug .= 'add in '.$record['licencesUsed'].' for it ';
-								continue;
-							}
-						}
-				    	$subGroups = $m->getSubGroupIds();
-				    	//$debug .= 'and its subgroups='.implode(',', $subGroups).' ';
-						foreach($rs as $record) {
-							if ($record['productCode']==$pc && in_array($record['groupId'], $subGroups)) {
-								$rows[$pc][$m->id]['licences'] += $record['licencesUsed'];
-								$rows[$pc][$m->id]['sessions'] += $record['sessions'];
-								$rows[$pc][$m->id]['totalTime'] += $record['totalTime'];
-								$totalLicencesAllocated += $record['licencesUsed'];								
-								//$debug .= 'add in '.$record['licencesUsed'].' bubble up from gid '.$m->id;
-							}
-						}
-					}
-				}
-			}
-		}
+        $rows = array();
+        $rows[$thisTitle->productCode] = array();
 
-		// Then pick up the unallocated licences if we are dealing with a top level group
-		if ($needUnallocatedLicences) {
-		$sqlInner = <<<SQL
-			SELECT count(DISTINCT(s.F_UserID)) AS licencesUsed
-				FROM T_Session s
-				WHERE s.F_RootID = ?
-				AND s.F_UserID > 0
-				AND s.F_StartDateStamp >= ?
-				AND s.F_Duration > 15
-				AND s.F_ProductCode in ($pcList);
-SQL;
-			$bindingParamsInner = array($rootId, $opts[ReportBuilder::FROM_DATE]);
-		    //$debug .= 'innersql=' . $sql . ' ';
-		    //$debug .= 'params=' . implode(',', $bindingParams) . ' ';
-		    $rsInner = $this->db->Execute($sqlInner, $bindingParamsInner);
-		    if ($rsInner && $rsInner->RecordCount()==1) {
-		    	$totalLicences = $rsInner->FetchNextObj()->licencesUsed;
-		    	//$debug .= 'totalLicencecs=' . $totalLicences . ' and allocatedTotal= ' . $totalLicencesAllocated;
-		    	if (($totalLicences - $totalLicencesAllocated) > 0) {
-		    		$literal = $copyOps->getCopyForId("unallocatedLicences");
-					$rows[$pc][0] = array('groupName' => $literal, 'licences' => ($totalLicences - $totalLicencesAllocated), 'sessions' => 0, 'totalTime' => 0);		    		
-		    	}
-		    }
+        // and group combination
+        foreach ($groups as $group) {
+            //$debug .= 'check for group='.$group->id.' ';
+            $rows[$thisTitle->productCode][$group->id] = array('groupName' => $group->name, 'licences' => 0, 'sessions' => 0, 'totalTime' => 0);
 
-		}
-		
+            // What data matches this group?
+            foreach($rs as $record) {
+                if ($record['productCode']==$thisTitle->productCode && $record['groupId']==$group->id) {
+                    $rows[$thisTitle->productCode][$group->id]['licences'] += $record['licencesUsed'];
+                    $rows[$thisTitle->productCode][$group->id]['sessions'] += $record['sessions'];
+                    $rows[$thisTitle->productCode][$group->id]['totalTime'] += $record['totalTime'];
+                    $totalLicencesAllocated += $record['licencesUsed'];
+                    //$debug .= 'add in '.$record['licencesUsed'].' for it ';
+                    continue;
+                }
+            }
+            // Then for each of its child groups, (including their children), but no more recursively than that
+            foreach ($group->manageables as $m) {
+                if (get_class($m) == "Group") {
+                    //$debug .= 'check for main group='.$m->id.' ';
+                    $rows[$thisTitle->productCode][$m->id] = array('groupName' => $m->name, 'licences' => 0, 'sessions' => 0, 'totalTime' => 0);
+                    foreach($rs as $record) {
+                        if ($record['productCode']==$thisTitle->productCode && $record['groupId']==$m->id) {
+                            $rows[$thisTitle->productCode][$m->id]['licences'] += $record['licencesUsed'];
+                            $rows[$thisTitle->productCode][$m->id]['sessions'] += $record['sessions'];
+                            $rows[$thisTitle->productCode][$m->id]['totalTime'] += $record['totalTime'];
+                            $totalLicencesAllocated += $record['licencesUsed'];
+                            //$debug .= 'add in '.$record['licencesUsed'].' for it ';
+                            continue;
+                        }
+                    }
+                    $subGroups = $m->getSubGroupIds();
+                    //$debug .= 'and its subgroups='.implode(',', $subGroups).' ';
+                    foreach($rs as $record) {
+                        if ($record['productCode']==$thisTitle->productCode && in_array($record['groupId'], $subGroups)) {
+                            $rows[$thisTitle->productCode][$m->id]['licences'] += $record['licencesUsed'];
+                            $rows[$thisTitle->productCode][$m->id]['sessions'] += $record['sessions'];
+                            $rows[$thisTitle->productCode][$m->id]['totalTime'] += $record['totalTime'];
+                            $totalLicencesAllocated += $record['licencesUsed'];
+                            //$debug .= 'add in '.$record['licencesUsed'].' bubble up from gid '.$m->id;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Then pick up the unallocated licences if we are dealing with a top level group
+        if ($needUnallocatedLicences) {
+            // This will always do it from licence clearance date, not any date you pass to this function
+            $totalLicences = $licenceOps->countLicencesUsed($thisTitle, $rootId);
+            //AbstractService::$debugLog->info('$totalLicences=' . $totalLicences . ' and allocated=' . $totalLicencesAllocated);
+            if (($totalLicences - $totalLicencesAllocated) > 0) {
+                $literal = $copyOps->getCopyForId("unallocatedLicences");
+                $rows[$thisTitle->productCode][0] = array('groupName' => $literal, 'licences' => ($totalLicences - $totalLicencesAllocated), 'sessions' => 0, 'totalTime' => 0);
+            }
+        }
+
 		foreach ($rows as $pcKey => $value) {
-			$pc = $pcKey;
-			$title = $this->getTitle($pc);
 			foreach ($value as $gidKey => $data) {
 				$rowXML = $dom->createElement("row");
-				if (isset($title->name)) {
-					$rowXML->setAttribute('titleName', $title->name);
-				} else if (isset($title->caption)) {
-					$rowXML->setAttribute('titleName', $title->caption);
+				if (isset($thisTitle->name)) {
+					$rowXML->setAttribute('titleName', $thisTitle->name);
+				} else if (isset($thisTitle->caption)) {
+					$rowXML->setAttribute('titleName', $thisTitle->caption);
 				}
 					
 				$rowXML->setAttribute('groupID', $gidKey);
