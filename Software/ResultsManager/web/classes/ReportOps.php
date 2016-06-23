@@ -634,8 +634,26 @@ EOD;
 		$reportBuilder = new ReportBuilder($this->db);
 		foreach ($opts as $opt => $value)
 			$reportBuilder->setOpt($opt, $value);
-		
-	    // Count all the licences in the root and total by group
+
+		// Quick and simple check to see if you are reporting on the top group
+        // Note that F_RootDominant is an unreliable field, rarely filled in.
+		$sql = <<<SQL
+			SELECT g.F_GroupParent as topGroup 
+			FROM T_Groupstructure g
+			WHERE g.F_GroupID = ?;
+SQL;
+        AbstractService::$debugLog->info("try to see if topGroup for " . $groups[0]->id);
+		$bindingParams = array($groups[0]->id);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs && $rs->RecordCount()==1) {
+            $thisParentGroup = $rs->FetchNextObj()->topGroup;
+            $needUnallocatedLicences = ($thisParentGroup == $groups[0]->id);
+            AbstractService::$debugLog->info("parent is " . $thisParentGroup);
+        } else {
+            AbstractService::$debugLog->info("sql got nothing " . $sql);
+        }
+
+		// Count all the licences in the root and total by group
 	    // Missing info - rootID, licenceClearanceDate
 	    $rootId = Session::get('rootID');
 	    $pcList = implode(',', $pcs);
@@ -676,11 +694,6 @@ SQL;
 						$rows[$pc][$group->id]['totalTime'] += $record['totalTime'];
 						$totalLicencesAllocated += $record['licencesUsed'];
 						//$debug .= 'add in '.$record['licencesUsed'].' for it ';
-						// Is this the top level group? If yes, add a row for unallocated licences
-						if ($record['topGroup']) {
-						    $needUnallocatedLicences = true;
-						    //$debug .= 'and we are matching on the top group ';
-						}
 						continue;
 					}
 				}
