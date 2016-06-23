@@ -634,7 +634,7 @@ class BentoService extends AbstractService {
 		$score->scoreCorrect = $scoreObj['correctCount'];
 		$score->scoreWrong = $scoreObj['incorrectCount'];
 		$score->scoreMissed = $scoreObj['missedCount'];
-		
+
 		$totalQuestions = $score->scoreCorrect + $score->scoreWrong + $score->scoreMissed;
 		if ($totalQuestions > 0) {
 			$score->score = intval(100 * $score->scoreCorrect / $totalQuestions);
@@ -666,10 +666,10 @@ class BentoService extends AbstractService {
 		// Write the score record
 		$score = $this->progressOps->insertScore($score, $user);
 		
-		// and update the session
-		$this->updateSession($sessionId);
-		
-		return $score;
+		// gh#954 and update the session, which might trigger a new session if course changes
+        $sessionId = $this->updateSession($sessionId, $score->courseID);
+        $score->sessionID = $sessionId;
+        return $score;
 	}
 
 	/**

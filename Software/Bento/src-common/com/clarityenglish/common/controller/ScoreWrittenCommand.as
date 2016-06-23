@@ -5,7 +5,9 @@ package com.clarityenglish.common.controller {
 	
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.vo.content.transform.ProgressSummaryTransform;
-	import com.clarityenglish.common.vo.progress.Score;
+import com.clarityenglish.common.model.ConfigProxy;
+import com.clarityenglish.common.model.ProgressProxy;
+import com.clarityenglish.common.vo.progress.Score;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
@@ -22,7 +24,13 @@ package com.clarityenglish.common.controller {
 				return;
 			
 			var score:Score = note.getBody() as Score;
-			
+
+			// gh#954 We might have updated the sessionId
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var progressProxy:ProgressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
+			if (configProxy.getConfig().sessionID != score.sessionID)
+				progressProxy.sessionIdChanged(score.sessionID);
+
 			// #109 When a score has been successfully written we want to update the menu XML on the client.  Although this
 			// would be neater on the server, its much more efficient to do it this way.
 			
