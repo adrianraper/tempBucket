@@ -190,8 +190,7 @@ EOD;
     /**
      * Count how many licences are currently in use
      */
-    private function countCurrentLicences($productCode, $rootId)
-    {
+    private function countCurrentLicences($productCode, $rootId) {
         $sql = <<<EOD
             SELECT COUNT(F_LicenceID) as i FROM T_Licences
         	WHERE F_ProductCode=?

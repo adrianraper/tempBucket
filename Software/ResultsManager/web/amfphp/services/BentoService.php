@@ -545,12 +545,12 @@ class BentoService extends AbstractService {
 	 *  
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param dateNow - used to get client time. Ignored now
-	 * gh@#954 Optional courseId
+	 * gh@#954 Optional courseId - only used by C-Builder
 	 */
 	public function startSession($user, $rootId, $productCode, $courseId = null) {
 		
 		// A successful session start will return a new ID
-		$sessionId = $this->progressOps->startSession($user, $rootId, $productCode, $courseId);
+		$sessionId = $this->progressOps->startSession($user, $rootId, $productCode, (strtolower(AbstractService::$title) == "rotterdam") ? $courseId : null);
 		return array("sessionID" => $sessionId);
 	}
 	
@@ -561,7 +561,7 @@ class BentoService extends AbstractService {
 	 *  @param $sessionId - key to the table. If this is not available (perhaps to do with closing the browser?)
 	 *  	maybe we can use $userID and $rootID from session variables
 	 *  @param dateNow - used to get client time. Ignored now.
-	 * gh@#954 Optional courseId
+	 *  gh@#954 Optional courseId - probably only used by C-Builder
 	 */
 	public function updateSession($sessionId, $courseId = null) {
 		// A successful session stop will not generate an error
@@ -578,10 +578,10 @@ class BentoService extends AbstractService {
 	 *  @param sessionID - key to the table. If this is not available (perhaps to do with closing the browser?)
 	 *  	maybe we can use $userID and $rootID from session variables
 	 *  @param dateNow - used to get client time
-	 * gh@#954 Optional courseId
+     * gh@#954 Optional courseId - only used by C-Builder
 	 */
 	public function stopSession($sessionId, $courseId = null) {
-		return $this->updateSession($sessionId, $courseId);
+		return $this->updateSession($sessionId, (strtolower(AbstractService::$title) == "rotterdam") ? $courseId : null);
 	}
 	
 	/**
@@ -637,11 +637,13 @@ class BentoService extends AbstractService {
 		// Write the score record
 		$score = $this->progressOps->insertScore($score, $user);
 		
-		// and update the session
-		$this->updateSession($sessionId);
-		
-		return $score;
-	}
+        // gh#954 and update the session, which might trigger a new session if course changes
+        // This is ONLY done for C-Builder
+        $sessionId = $this->updateSession($sessionId, (strtolower(AbstractService::$title) == "rotterdam") ? $score->courseID : null);
+        $score->sessionID = $sessionId;
+        return $score;
+
+    }
 
 	/**
 	 * The program wants to update the user's information.

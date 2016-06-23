@@ -312,8 +312,11 @@ EOD;
 
             // gh#604 Is the session record out of date?
             // gh#954 Do we have a passed courseId that is different from the existing record?
+            // TODO Until the Flash Bento programs update the sessionId if it is sent back differently, this will keep
+            // triggering new session records whenever anyone changes course and then for every exercise after that
+            AbstractService::$debugLog->info("update session? $sessionId as courseId=$courseId and last one is " . $rsObj->F_CourseID);
             if (($interval > self::SESSION_IDLE_THRESHOLD) ||
-                ($courseId && (!is_null($rsObj->F_CourseID)) && ($rsObj->F_CourseID != $courseId)))  {
+                ($courseId && $rsObj->F_CourseID && ($rsObj->F_CourseID != $courseId))) {
                 $newSessionId = $this->startSession($userId, $rootId, $productCode, $courseId);
                 AbstractService::$debugLog->info("change session record $sessionId to $newSessionId - last updated at " . $lastUpdateAt->format('Y-m-d H:i:s') . ", $interval seconds ago");
                 return $newSessionId;
@@ -335,7 +338,8 @@ EOD;
                 } else {
                     $sql .=	" F_Duration=DATEDIFF(s,F_StartDateStamp,?) ";
                 }
-                if ($courseId) {
+				// gh#954 No need to update courseId unless it was null
+                if ($courseId && is_null($rsObj->F_CourseID)) {
                     $bindingParams = array($dateNow, $dateNow, $courseId, $sessionId);
                     $sql .= ", F_CourseID=? ";
                 }
