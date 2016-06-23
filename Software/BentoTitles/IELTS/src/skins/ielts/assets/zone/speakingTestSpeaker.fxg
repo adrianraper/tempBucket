@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="1.0" viewHeight="55.25" viewWidth="42.25" ai:appVersion="14.0.0.367" d:id="1" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ai="http://ns.adobe.com/ai/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
+  <Group d:id="2" d:type="layer" d:userLabel="Layer 1">
+    <Group>
+      <mask>
+        <Group ai:spare="1">
+          <Rect width="42.25" height="55.25" ai:knockout="0">
+            <fill>
+              <SolidColor color="#ffffff"/>
+            </fill>
+          </Rect>
+        </Group>
+      </mask>
+      <Group>
+        <mask>
+          <Group ai:spare="1">
+            <Rect width="42.25" height="55.25" ai:knockout="0">
+              <fill>
+                <SolidColor color="#ffffff"/>
+              </fill>
+            </Rect>
+          </Group>
+        </mask>
+        <Group x="0.445801" y="0.00683594" alpha="0.350006" blendMode="multiply" ai:alphaIsShape="1" ai:knockout="0">
+          <Group>
+            <mask>
+              <Group ai:spare="1">
+                <Rect width="41.9995" height="42" ai:knockout="0">
+                  <fill>
+                    <SolidColor color="#ffffff"/>
+                  </fill>
+                </Rect>
+              </Group>
+            </mask>
+            <Group>
+              <mask>
+                <Group ai:spare="1">
+                  <Rect width="41.9995" height="42" ai:knockout="0">
+                    <fill>
+                      <SolidColor color="#ffffff"/>
+                    </fill>
+                  </Rect>
+                </Group>
+              </mask>
+            </Group>
+          </Group>
+        </Group>
+        <Path winding="nonZero" ai:knockout="0" data="M39.3262 20.9468C39.3262 30.8545 31.2939 38.8867 21.3862 38.8867 11.478 38.8867 3.4458 30.8545 3.4458 20.9468 3.4458 11.0386 11.478 3.00684 21.3862 3.00684 31.2939 3.00684 39.3262 11.0386 39.3262 20.9468" >
+          <fill>
+            <SolidColor color="#ffffff"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M22.7598 12.6719L16.6064 17.478 12.3364 17.478C12.2705 17.478 12.2046 17.4819 12.1396 17.4878L11.6484 17.6089C10.9404 17.8838 10.4375 18.5708 10.4375 19.377L10.4375 22.7949C10.4375 23.6011 10.9404 24.2881 11.6484 24.564L12.1343 24.6831
+C12.2007 24.6899 12.2686 24.6938 12.3364 24.6938L16.6064 24.6938 22.7598 29.5 22.7598 12.6719Z" >
+          <fill>
+            <SolidColor color="#a53183"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M27.0654 27.9277C26.916 27.9277 26.7656 27.8779 26.6416 27.7749 26.3584 27.5396 26.3193 27.1206 26.5547 26.8389 27.8184 25.3159 28.5146 23.3848 28.5146 21.4019 28.5146 19.1265 27.6289 16.9878 26.0195 15.3789 25.7598 15.1196 25.7598 14.6987
+ 26.0195 14.4399 26.2783 14.1797 26.7002 14.1797 26.96 14.4385 28.8193 16.2988 29.8447 18.7715 29.8447 21.4019 29.8447 23.6938 29.0391 25.9268 27.5781 27.6875 27.4453 27.8457 27.2568 27.9277 27.0654 27.9277" >
+          <fill>
+            <SolidColor color="#a53183"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M29.6387 30.1416C29.4883 30.1416 29.3389 30.0918 29.2148 29.9893 28.9326 29.7539 28.8936 29.3359 29.127 29.0527 30.8799 26.9419 31.8457 24.2646 31.8457 21.5156 31.8457 18.3608 30.6162 15.396 28.3867 13.165 28.126 12.9058 28.126 12.4849
+ 28.3867 12.2246 28.6455 11.9658 29.0664 11.9658 29.3252 12.2246 31.8076 14.707 33.1748 18.0059 33.1748 21.5156 33.1748 24.5737 32.1006 27.5518 30.1504 29.9014 30.0186 30.0605 29.8291 30.1416 29.6387 30.1416" >
+          <fill>
+            <SolidColor color="#a53183"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M25.0449 24.8823C24.8945 24.8823 24.7441 24.8325 24.6201 24.7295 24.3389 24.4946 24.2988 24.0762 24.5332 23.7935 25.126 23.0796 25.4512 22.1753 25.4512 21.2466 25.4512 20.1802 25.0361 19.1782 24.2822 18.4243 24.0234 18.1646 24.0234 17.7432
+ 24.2822 17.4844 24.543 17.2256 24.9639 17.2256 25.2227 17.4844 26.2285 18.4893 26.7813 19.8252 26.7813 21.2466 26.7813 22.4844 26.3467 23.6904 25.5566 24.6426 25.4258 24.8003 25.2354 24.8823 25.0449 24.8823" >
+          <fill>
+            <SolidColor color="#a53183"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M16.606 17.1338L12.3364 17.1338C12.27 17.1338 12.2041 17.1377 12.1392 17.144L11.6494 17.2637C10.9404 17.54 10.437 18.2271 10.437 19.0327L10.437 19.377C10.437 18.5708 10.9404 17.8838 11.6494 17.6089L12.1392 17.4878C12.2041 17.4819 12.27
+ 17.478 12.3364 17.478L16.606 17.478 22.7588 12.6719 22.7588 12.3281 16.606 17.1338Z" >
+          <fill>
+            <SolidColor color="#702161"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M26.0195 14.4395C26.2783 14.1792 26.7002 14.1792 26.96 14.4395 28.7822 16.2603 29.8008 18.6694 29.8418 21.2383 29.8438 21.1782 29.8447 21.1182 29.8447 21.0576 29.8447 18.4272 28.8193 15.9546 26.96 14.0942 26.7002 13.8354 26.2783 13.8354
+ 26.0195 14.0942 25.8457 14.2686 25.7891 14.5156 25.8477 14.7373 25.8779 14.6284 25.9346 14.5244 26.0195 14.4395" >
+          <fill>
+            <SolidColor color="#702161"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M28.5146 21.4023C28.5146 21.3481 28.5137 21.293 28.5127 21.2393 28.4717 23.1582 27.7803 25.0171 26.5537 26.4941 26.4111 26.666 26.3711 26.8892 26.4238 27.0913 26.4492 27.001 26.4912 26.915 26.5537 26.8389 27.8193 25.3149 28.5146 23.3853
+ 28.5146 21.4023" >
+          <fill>
+            <SolidColor color="#702161"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M28.3857 12.2251C28.6455 11.9648 29.0664 11.9658 29.3262 12.2251 31.7695 14.668 33.1309 17.9038 33.1719 21.3521 33.1729 21.292 33.1738 21.231 33.1738 21.1709 33.1738 17.6611 31.8076 14.3618 29.3262 11.8799 29.0664 11.6211 28.6455 11.6211
+ 28.3857 11.8799 28.2119 12.0542 28.1553 12.3008 28.2139 12.5229 28.2441 12.4141 28.3008 12.311 28.3857 12.2251" >
+          <fill>
+            <SolidColor color="#702161"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M31.8457 21.5156C31.8457 21.4604 31.8447 21.4067 31.8438 21.3525 31.8027 24.0376 30.8418 26.6436 29.127 28.709 28.9844 28.8809 28.9434 29.1035 28.9971 29.3057 29.0215 29.2158 29.0645 29.1299 29.127 29.0527 30.8799 26.9414 31.8457 24.2646
+ 31.8457 21.5156" >
+          <fill>
+            <SolidColor color="#702161"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M24.2832 17.4844C24.543 17.2251 24.9639 17.2251 25.2227 17.4844 26.1895 18.4512 26.7363 19.7231 26.7764 21.083 26.7803 21.0234 26.7813 20.9624 26.7813 20.9023 26.7813 19.4814 26.2275 18.145 25.2227 17.1392 24.9639 16.8804 24.543 16.8804
+ 24.2832 17.1392 24.1084 17.314 24.0527 17.5601 24.1113 17.7822 24.1406 17.6733 24.1982 17.5703 24.2832 17.4844" >
+          <fill>
+            <SolidColor color="#702161"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M25.4521 21.2461C25.4521 21.1904 25.4502 21.1353 25.4482 21.0791 25.4092 21.9453 25.0879 22.7813 24.5342 23.4492 24.3906 23.6211 24.3496 23.8442 24.4043 24.0454 24.4277 23.9565 24.4697 23.8691 24.5342 23.7935 25.126 23.0801 25.4521 22.1753
+ 25.4521 21.2461" >
+          <fill>
+            <SolidColor color="#702161"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M12.3364 24.3496C12.2681 24.3496 12.2012 24.3457 12.1343 24.3384L11.6494 24.2197C10.9404 23.9434 10.4375 23.2563 10.4375 22.4507L10.4375 22.7954C10.4375 23.6006 10.9404 24.2876 11.6494 24.5635L12.1343 24.6826C12.2012 24.6895 12.2681 24.6943
+ 12.3364 24.6943L16.6064 24.6943 22.7598 29.501 22.7598 29.1553 16.6064 24.3496 12.3364 24.3496Z" >
+          <fill>
+            <SolidColor color="#a54d8c"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M28.5146 21.0576C28.5146 18.7827 27.6289 16.6436 26.0205 15.0347 25.9346 14.9497 25.877 14.8457 25.8477 14.7368 25.7891 14.9585 25.8457 15.2056 26.0205 15.3784 27.5908 16.9497 28.4717 19.0244 28.5127 21.2388 28.5137 21.1787 28.5146 21.1187
+ 28.5146 21.0576" >
+          <fill>
+            <SolidColor color="#a54d8c"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M27.5771 27.3428C27.4453 27.501 27.2568 27.583 27.0654 27.583 26.916 27.583 26.7656 27.5332 26.6416 27.4302 26.5313 27.3389 26.459 27.2192 26.4248 27.0908 26.3594 27.334 26.4355 27.603 26.6416 27.7739 26.7656 27.8779 26.916 27.9282 27.0654
+ 27.9282 27.2568 27.9282 27.4453 27.8462 27.5771 27.687 29.0391 25.9258 29.8447 23.6938 29.8447 21.4019 29.8447 21.3481 29.8438 21.293 29.8428 21.2388 29.8008 23.4668 29.001 25.6279 27.5771 27.3428" >
+          <fill>
+            <SolidColor color="#a54d8c"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M31.8457 21.1709C31.8457 18.0171 30.6162 15.0508 28.3867 12.8208 28.3008 12.7349 28.2441 12.6318 28.2148 12.5229 28.1553 12.7451 28.2119 12.9907 28.3867 13.165 30.5781 15.3569 31.8018 18.2588 31.8438 21.3521 31.8447 21.292 31.8457 21.2319
+ 31.8457 21.1709" >
+          <fill>
+            <SolidColor color="#a54d8c"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M30.1504 29.5576C30.0186 29.7158 29.8291 29.7979 29.6377 29.7979 29.4893 29.7979 29.3379 29.7471 29.2139 29.6436 29.1045 29.5527 29.0322 29.4336 28.9971 29.3057 28.9316 29.5488 29.0078 29.8174 29.2139 29.9883 29.3379 30.0918 29.4893 30.1416
+ 29.6377 30.1416 29.8291 30.1416 30.0186 30.0605 30.1504 29.9014 32.0996 27.5522 33.1738 24.5732 33.1738 21.5156 33.1738 21.4614 33.1729 21.4063 33.1719 21.3525 33.1309 24.3462 32.0625 27.2534 30.1504 29.5576" >
+          <fill>
+            <SolidColor color="#a54d8c"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M25.4521 20.9019C25.4521 19.8359 25.0371 18.834 24.2832 18.0796 24.1973 17.9937 24.1406 17.8906 24.1123 17.7817 24.0518 18.0039 24.1094 18.25 24.2832 18.4238 24.998 19.1387 25.4072 20.0757 25.4482 21.0796 25.4512 21.021 25.4521 20.9609
+ 25.4521 20.9019" >
+          <fill>
+            <SolidColor color="#a54d8c"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M25.5566 24.2979C25.4248 24.4561 25.2354 24.5381 25.0439 24.5381 24.8955 24.5381 24.7441 24.4878 24.6201 24.3848 24.5098 24.2939 24.4385 24.1738 24.4033 24.0459 24.3379 24.2891 24.4141 24.5581 24.6201 24.729 24.7441 24.832 24.8955 24.8818
+ 25.0439 24.8818 25.2354 24.8818 25.4248 24.8008 25.5566 24.6421 26.3467 23.6909 26.7813 22.4849 26.7813 21.2461 26.7813 21.1919 26.7793 21.1372 26.7773 21.083 26.7373 22.2578 26.3076 23.3931 25.5566 24.2979" >
+          <fill>
+            <SolidColor color="#a54d8c"/>
+          </fill>
+        </Path>
+        <Path winding="nonZero" ai:knockout="0" data="M33.668 50.6582C33.668 51.7588 32.7676 52.6582 31.668 52.6582L9.83887 52.6582C8.73877 52.6582 7.83887 51.7588 7.83887 50.6582L7.83887 47.04C7.83887 45.9404 8.73877 45.04 9.83887 45.04L31.668 45.04C32.7676 45.04 33.668 45.9404 33.668 47.04
+L33.668 50.6582Z" >
+          <fill>
+            <SolidColor color="#a53183"/>
+          </fill>
+        </Path>
+      </Group>
+      <Group x="26.3496" y="44.1377">
+        <mask>
+          <Group ai:spare="1">
+            <Path winding="nonZero" ai:knockout="0" data="M0 4.71094C0 7.31445 2.11035 9.42285 4.71191 9.42285 7.31445 9.42285 9.42383 7.31445 9.42383 4.71094 9.42383 2.10938 7.31445 0 4.71191 0 2.11035 0 0 2.10938 0 4.71094" >
+              <fill>
+                <SolidColor color="#ffffff"/>
+              </fill>
+            </Path>
+          </Group>
+        </mask>
+        <Group d:id="3">
+          <Rect width="9.42383" height="9.42285" ai:knockout="0">
+            <fill>
+              <RadialGradient x="4.71293" y="4.71069" scaleX="9.42535" scaleY="-9.42535">
+                <GradientEntry color="#ffffff" ratio="0"/>
+                <GradientEntry color="#ffffff" ratio="0.858578"/>
+                <GradientEntry color="#cdcccc" ratio="1"/>
+              </RadialGradient>
+            </fill>
+          </Rect>
+        </Group>
+      </Group>
+      <Group>
+        <mask>
+          <Group ai:spare="1">
+            <Rect width="42.25" height="55.25" ai:knockout="0">
+              <fill>
+                <SolidColor color="#ffffff"/>
+              </fill>
+            </Rect>
+          </Group>
+        </mask>
+        <Path winding="nonZero" ai:knockout="0" data="M32.4473 48.8496C32.4473 49.6143 31.8271 50.2344 31.0625 50.2344 30.2959 50.2344 29.6768 49.6143 29.6768 48.8496 29.6768 48.085 30.2959 47.4648 31.0625 47.4648 31.8271 47.4648 32.4473 48.085 32.4473 48.8496" >
+          <fill>
+            <SolidColor color="#454546"/>
+          </fill>
+        </Path>
+      </Group>
+      <TextGraphic fontFamily="HelveticaNeueLT Std" fontSize="6.3394" fontWeight="bold" lineHeight="120%" color="#ffffff" whiteSpaceCollapse="preserve" kerning="off" rotation="360" x="13.1411" y="46.5577" ai:knockout="0">
+        <content><p><span>ON</span></p></content>
+      </TextGraphic>
+    </Group>
+  </Group>
+  <Private>
+    <ai:PrivateElement d:ref="#1">
+      <ai:SaveOptions>
+        <ai:Dictionary>
+          <ai:DictEntry name="clipToActiveArtboard" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="downsampleLinkedImages" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="rasterizeResolution" value="72" valueType="Integer"/>
+          <ai:DictEntry name="preserveGradientPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveFilterPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveTextPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="writeImages" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="includeXMP" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="includeSymbol" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="aiEditCap" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="versionKey" value="1" valueType="Integer"/>
+        </ai:Dictionary>
+      </ai:SaveOptions>
+      <ai:DocData base="speaker.assets/images"/>
+      <ai:AutoGenImageList>
+        <ai:Dictionary>
+          <ai:DictEntry name="0" value="ai14657985473.png" valueType="UnicodeString"/>
+        </ai:Dictionary>
+      </ai:AutoGenImageList>
+      <ai:Artboards originOffsetH="0" originOffsetV="55.25" rulerCanvasDiffH="21.125" rulerCanvasDiffV="-27.625" zoom="1">
+        <ai:Artboard active="1" index="0" right="42.25" top="55.25"/>
+        <ai:ArtboardsParam all="1" range="" type="1"/>
+      </ai:Artboards>
+    </ai:PrivateElement>
+    <ai:PrivateElement d:ref="#2">
+      <ai:LayerOptions colorType="ThreeColor">
+        <ai:ThreeColor blue="257" green="128.502" red="79.31"/>
+      </ai:LayerOptions>
+    </ai:PrivateElement>
+    <ai:PrivateElement ai:hashcode="9df6142c244c2e5a0e75731231754d76" d:ref="#3">
+      <ai:Rect height="9.423" knockout="0" width="9.424" x="0" y="0">
+        <ai:Fill colorType="Gradient">
+          <ai:Gradient gradientType="radial" length="4.713" originX="4.713" originY="4.711">
+            <ai:GradientStops>
+              <ai:GradientStop colorType="FourColor" rampPoint="0">
+                <ai:FourColor/>
+              </ai:GradientStop>
+              <ai:GradientStop colorType="FourColor" rampPoint="85.858">
+                <ai:FourColor/>
+              </ai:GradientStop>
+              <ai:GradientStop colorType="FourColor" rampPoint="100">
+                <ai:FourColor cyan="0.191" magenta="0.148" yellow="0.156"/>
+              </ai:GradientStop>
+            </ai:GradientStops>
+          </ai:Gradient>
+        </ai:Fill>
+        <ai:ArtStyle/>
+      </ai:Rect>
+    </ai:PrivateElement>
+  </Private>
+</Graphic>

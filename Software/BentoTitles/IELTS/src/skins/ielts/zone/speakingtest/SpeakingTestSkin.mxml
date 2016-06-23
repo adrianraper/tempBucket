@@ -5,6 +5,7 @@
         xmlns:components="com.clarityenglish.components.*"
         xmlns:recorder="com.clarityenglish.bento.view.recorder.*"
         xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
+        xmlns:assets="skins.ielts.assets.zone.*"
         xmlns:mx="library://ns.adobe.com/flex/mx"
         creationComplete="onCreationComplete(event)">
 
@@ -77,61 +78,63 @@
                     <s:DataRenderer width="514" height="100%" removedFromStage="onRemovedFromStage(event)" creationComplete="onCreationComplete(event)">
                         <fx:Declarations>
                             <s:Parallel id="flipFront" effectStart="onFlipFrontStart(event)" effectEnd="onFlipFrontEnd(event)">
-                                <s:Rotate3D target="{frontSwfLoader}"
+                                <s:Rotate3D target="{coverGroup}"
                                             angleYFrom="0" angleYTo="180" applyLocalProjection="false"
                                             autoCenterTransform="true" autoCenterProjection="true"/>
-                                <s:Rotate3D target="{backSwfLoader}"
+                                <s:Rotate3D target="{taskGroup}"
                                             angleYFrom="180" angleYTo="360" applyLocalProjection="false"
                                             autoCenterTransform="true" autoCenterProjection="true"/>
-                                <s:Animate target="{frontSwfLoader}">
+                                <s:Animate target="{coverGroup}">
                                     <s:SimpleMotionPath property="depth" valueFrom="2" valueTo="0"/>
                                 </s:Animate>
-                                <s:Animate target="{backSwfLoader}">
+                                <s:Animate target="{taskGroup}">
                                     <s:SimpleMotionPath property="depth" valueFrom="0" valueTo="2"/>
                                 </s:Animate>
                             </s:Parallel>
                             <s:Parallel id="flipFrontReverse">
-                                <s:Rotate3D target="{backSwfLoader}"
+                                <s:Rotate3D target="{taskGroup}"
                                             angleYFrom="360" angleYTo="180" applyLocalProjection="false"
                                             autoCenterTransform="true" autoCenterProjection="true"/>
-                                <s:Rotate3D target="{frontSwfLoader}"
+                                <s:Rotate3D target="{coverGroup}"
                                             angleYFrom="180" angleYTo="0" applyLocalProjection="false"
                                             autoCenterTransform="true" autoCenterProjection="true"/>
-                                <s:Animate target="{backSwfLoader}">
+                                <s:Animate target="{taskGroup}">
                                     <s:SimpleMotionPath property="depth" valueFrom="2" valueTo="0"/>
                                 </s:Animate>
-                                <s:Animate target="{frontSwfLoader}">
+                                <s:Animate target="{coverGroup}">
                                     <s:SimpleMotionPath property="depth" valueFrom="0" valueTo="2"/>
                                 </s:Animate>
                             </s:Parallel>
                             <s:Parallel id="flipToReflection" effectStart="onFlipToReflectionStart(event)" effectEnd="onFlipToReflectionEnd(event)">
-                                <s:Rotate3D target="{backSwfLoader}"
+                                <s:Rotate3D target="{taskGroup}"
                                             angleYFrom="0" angleYTo="180" applyLocalProjection="false"
                                             autoCenterTransform="true" autoCenterProjection="true"/>
-                                <s:Rotate3D target="{reflectionSWFLoader}"
+                                <s:Rotate3D target="{reflectionGroup}"
                                             angleYFrom="180" angleYTo="360" applyLocalProjection="false"
                                             autoCenterTransform="true" autoCenterProjection="true"/>
-                                <s:Animate target="{backSwfLoader}">
+                                <s:Animate target="{taskGroup}">
                                     <s:SimpleMotionPath property="depth" valueFrom="2" valueTo="0"/>
                                 </s:Animate>
-                                <s:Animate target="{reflectionSWFLoader}">
+                                <s:Animate target="{reflectionGroup}">
                                     <s:SimpleMotionPath property="depth" valueFrom="0" valueTo="2"/>
                                 </s:Animate>
                             </s:Parallel>
                             <s:Parallel id="flipBack" effectStart="onFlipBackStart(event)" effectEnd="onFlipBackEnd(event)">
-                                <s:Rotate3D target="{reflectionSWFLoader}"
+                                <s:Rotate3D target="{reflectionGroup}"
                                             angleYFrom="0" angleYTo="180" applyLocalProjection="false"
                                             autoCenterTransform="true" autoCenterProjection="true"/>
-                                <s:Rotate3D target="{frontSwfLoader}"
+                                <s:Rotate3D target="{coverGroup}"
                                             angleYFrom="180" angleYTo="360" applyLocalProjection="false"
                                             autoCenterTransform="true" autoCenterProjection="true"/>
-                                <s:Animate target="{reflectionSWFLoader}">
+                                <s:Animate target="{reflectionGroup}">
                                     <s:SimpleMotionPath property="depth" valueFrom="2" valueTo="0"/>
                                 </s:Animate>
-                                <s:Animate target="{frontSwfLoader}">
+                                <s:Animate target="{coverGroup}">
                                     <s:SimpleMotionPath property="depth" valueFrom="0" valueTo="2"/>
                                 </s:Animate>
                             </s:Parallel>
+                            <s:DropShadowFilter id="dropShadowFilterBottom" color="#CCCCCC" blurX="7" blurY="7" alpha="0.75" distance="2" angle="270"  />
+                            <s:DropShadowFilter id="dropShadowFilterTop" color="#CCCCCC" blurX="7" blurY="7" alpha="0.75" distance="2" angle="90" />
                         </fx:Declarations>
                         <fx:Script>
                             <![CDATA[
@@ -142,6 +145,7 @@
                             import com.googlecode.bindagetools.Bind;
 
                             import flashx.textLayout.container.ScrollPolicy;
+                            import flashx.textLayout.elements.TextFlow;
 
                             import mx.binding.utils.ChangeWatcher;
                             import mx.collections.ListCollectionView;
@@ -149,6 +153,7 @@
                             import mx.core.UIComponent;
 
                             import spark.components.List;
+                            import spark.utils.TextFlowUtil;
 
                             [Bindable]
                             public var isBackSwfLoaderShow:Boolean;
@@ -169,7 +174,7 @@
                                     if (isExitSpeaking) {
                                         if (isBackSwfLoaderShow) {
                                             isBackSwfLoaderShow = false;
-                                            backSwfLoader.visible = false;
+                                            taskGroup.visible = false;
                                             flipFrontReverse.play();
                                             dispatchEvent(new Event("backButtonClickEvent", true));
                                             speakingStartButton.visible = true;
@@ -197,27 +202,39 @@
 
                                 if (data) {
                                     var idx:int = ((owner as List).dataProvider as ListCollectionView).getItemIndex(data);
-                                    frontSwfLoader.rotationY = 0;
-                                    if (outerDocument.hostComponent.isRecordEnabled) {
-                                        frontSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingNormalRecordingFront" + (idx + 1) + ".png";
+                                    coverGroup.rotationY = 0;
+                                    /*if (outerDocument.hostComponent.isRecordEnabled) {
+                                        coverGroup.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingNormalRecordingFront" + (idx + 1) + ".png";
                                     } else {
-                                        frontSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingPhoneRecordingFront" + (idx + 1) + ".png";
-                                    }
-                                    backSwfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingback" + (idx + 1) + ".png";
+                                        coverGroup.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingPhoneRecordingFront" + (idx + 1) + ".png";
+                                    }*/
+                                    //taskGroup.source = outerDocument.hostComponent.assetFolder + "testpractice_speakingback" + (idx + 1) + ".png";
+                                    var speakingTestInstructionString:String = outerDocument.hostComponent.getCopyProvider().getCopyForId("speakingTestInstructionRichEditableText");
+                                    var speakingTestInstructionTextFlow:TextFlow = TextFlowUtil.importFromString(speakingTestInstructionString);
+                                    speakingTestInstructionRichEditableText.textFlow = speakingTestInstructionTextFlow;
+
+                                    var taskRequirementString:String = outerDocument.hostComponent.getCopyProvider().getCopyForId("taskRequirementEditableText" + getSequenceNumber(data));
+                                    var taskRequirementTextFlow:TextFlow = TextFlowUtil.importFromString(taskRequirementString);
+                                    taskRequirementEditableText.textFlow = taskRequirementTextFlow;
+
+                                    var reflectionString:String = outerDocument.hostComponent.getCopyProvider().getCopyForId("reflectionEditableText");
+                                    var reflectionTextFlow:TextFlow = TextFlowUtil.importFromString(reflectionString);
+                                    reflectionEditableText.textFlow = reflectionTextFlow;
 
                                     // Each item will be rendered only when scroll to it, so we can put initial setting of visibility here.
-                                    frontSwfLoader.visible = true;
-                                    reflectionSWFLoader.visible = false;
+                                    coverGroup.visible = true;
+                                    reflectionGroup.visible = false;
                                     speakingBackButton.visible = false;
 
                                     speakingStartButton.enabled = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8));
-                                    frontSwfLoader.alpha = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8)) ? 1 : 0.5;
+                                    coverGroup.alpha = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8)) ? 1 : 0.5;
 
                                     if (data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8)) {
                                         speakingStartGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion, getSequenceNumber(data));
                                     } else {
                                         speakingStartGroup.toolTip = null;
                                     }
+
                                 }
                             }
 
@@ -259,31 +276,32 @@
                             }
 
                             protected function onFlipFrontStart(event:Event):void {
-                                backSwfLoader.visible = true;
+                                taskGroup.visible = true;
                             }
 
                             protected function onFlipFrontEnd(event:Event):void {
-                                frontSwfLoader.visible = false;
+                                coverGroup.visible = false;
                                 isBackSwfLoaderShow = true;
                             }
 
                             protected function onFlipToReflectionStart(event:Event):void {
-                                reflectionSWFLoader.visible = true;
+                                reflectionGroup.visible = true;
+                                coverGroup.visible = false;
                             }
 
                             protected function onFlipToReflectionEnd(event:Event):void {
                                 speakingBackButton.visible = true;
-                                backSwfLoader.visible = false;
+                                taskGroup.visible = false;
                                 isReflectSwfLoaderShow = true;
                             }
 
                             protected function onFlipBackStart(event:Event):void {
                                 speakingBackButton.visible = false;
-                                frontSwfLoader.visible = true;
+                                coverGroup.visible = true;
                             }
 
                             protected function onFlipBackEnd(event:Event):void {
-                                reflectionSWFLoader.visible = false;
+                                reflectionGroup.visible = false;
                                 isBackSwfLoaderShow = false;
                                 isReflectSwfLoaderShow = false;
                             }
@@ -296,9 +314,125 @@
                         </s:Group>
                         <s:Button id="speakingBackButton" top="{outerDocument.hostComponent.isRecordEnabled? 370 : 335}" width="452" height="45" horizontalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingBackButton')}" useHandCursor="true" buttonMode="true" click="onBackButtonClick(event)"/>
 
-                        <s:SWFLoader id="reflectionSWFLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" source="{outerDocument.hostComponent.assetFolder + 'testpractice_speakingreflection.png'}" />
-                        <s:SWFLoader id="backSwfLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" visible="false" />
-                        <s:SWFLoader id="frontSwfLoader" scaleX="0.5" scaleY="0.5" top="0" horizontalCenter="0" />
+                        <!-- Speaking reflection card -->
+                        <s:Group id="reflectionGroup" top="0" horizontalCenter="0" width="455" height="305">
+                            <s:Group width="448" height="297" verticalCenter="0" horizontalCenter="0" filters="{[dropShadowFilterBottom, dropShadowFilterTop]}">
+                                <s:Rect width="100%" height="100%">
+                                    <s:fill>
+                                        <s:SolidColor color="#FFFFFF" />
+                                    </s:fill>
+                                </s:Rect>
+                                <s:VGroup top="20" left="44" right="44" gap="15">
+                                    <s:Group width="100%">
+                                        <s:Rect width="180" height="21" horizontalCenter="0" radiusX="5" radiusY="5">
+                                            <s:fill>
+                                                <s:SolidColor color="#a53183" />
+                                            </s:fill>
+                                        </s:Rect>
+                                        <s:Rect top="10" width="100%" height="1" horizontalCenter="0">
+                                            <s:fill>
+                                                <s:SolidColor color="#a53183" />
+                                            </s:fill>
+                                        </s:Rect>
+                                        <s:Label id="reflectionHeaderLabel" top="6" horizontalCenter="0" fontSize="12" fontWeight="bold" color="#FFFFFF" text="{outerDocument.hostComponent.getCopyProvider().getCopyForId('reflectionHeaderLabel')}" />
+                                    </s:Group>
+                                    <s:RichEditableText id="reflectionEditableText" width="100%" right="0" fontSize="11" />
+                                </s:VGroup>
+                            </s:Group>
+                        </s:Group>
+
+                        <!-- Speaking test task card -->
+                        <s:Group id="taskGroup" top="0" horizontalCenter="0" width="455" height="305" visible="false">
+                            <s:Group width="448" height="297" verticalCenter="0" horizontalCenter="0" filters="{[dropShadowFilterBottom, dropShadowFilterTop]}">
+                                <s:Rect width="100%" height="100%">
+                                    <s:fill>
+                                        <s:SolidColor color="#FFFFFF" />
+                                    </s:fill>
+                                </s:Rect>
+                                <s:VGroup top="25" left="30" right="30" gap="16">
+                                    <s:Label id="taskHeaderLabel" fontSize="13" fontWeight="bold" text="{outerDocument.hostComponent.getCopyProvider().getCopyForId('taskHeaderLabel')}" />
+                                    <s:VGroup paddingLeft="-13">
+                                        <s:Rect width="412" height="1">
+                                            <s:fill>
+                                                <s:SolidColor color="#333333" />
+                                            </s:fill>
+                                        </s:Rect>
+                                    </s:VGroup>
+                                    <s:RichEditableText id="taskRequirementEditableText" paddingTop="3" fontSize="11" fontWeight="bold" editable="false" selectable="false" />
+                                </s:VGroup>
+                            </s:Group>
+                        </s:Group>
+
+                        <!-- Speaking test cover card -->
+                        <s:Group id="coverGroup" top="0" horizontalCenter="0" width="455" height="305">
+                            <s:SWFLoader id="frontBackgroundSwfLoader" verticalCenter="0" horizontalCenter="0" source="@Embed(source='/skins/ielts/assets/zone/speakingTestBackground.png')" filters="{[dropShadowFilterBottom, dropShadowFilterTop]}" />
+                            <!-- Header -->
+                            <s:Rect width="382" height="1" horizontalCenter="0" top="63">
+                                <s:fill>
+                                    <s:SolidColor color="#a53183" />
+                                </s:fill>
+                            </s:Rect>
+                            <s:Group width="180" height="21" horizontalCenter="0" top="53" >
+                                <s:Rect width="100%" height="100%" radiusX="5" radiusY="5">
+                                    <s:fill>
+                                        <s:SolidColor color="#a53183" />
+                                    </s:fill>
+                                </s:Rect>
+                                <s:HGroup gap="10" horizontalAlign="center" verticalAlign="middle" height="100%" width="100%">
+                                    <s:Label id="speakingTestHeaderLeftLabel" paddingTop="3" fontSize="13" fontWeight="bold" left="10" color="#FFFFFF" text="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingTestHeaderLeftLabel')}" />
+                                    <s:Rect width="1" height="12">
+                                        <s:fill>
+                                            <s:SolidColor color="#FFFFFF" />
+                                        </s:fill>
+                                    </s:Rect>
+                                    <s:Label id="speakingTestHeaderRightLabel" paddingTop="3" fontSize="13" right="10" color="#FFFFFF" text="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingTestHeaderRightLabel', {index: getSequenceNumber(data)})}" />
+                                </s:HGroup>
+                            </s:Group>
+
+                            <!-- Instruction -->
+                            <s:Group width="382" height="163"  horizontalCenter="0" top="83">
+                                <s:Rect width="100%" height="100%" radiusX="5" radiusY="5">
+                                    <s:fill>
+                                        <s:SolidColor color="#f7edf5" />
+                                    </s:fill>
+                                </s:Rect>
+                                <s:RichEditableText id="speakingTestInstructionRichEditableText" left="26" right="26" top="15" fontSize="13" color="#a53183" editable="false" selectable="false" />
+                                <s:HGroup top="70" left="26" right="26" gap="16">
+                                    <!-- Speaker Group -->
+                                    <s:Group width="160" height="78">
+                                        <s:Rect width="100%" height="0.8" left="0" top="4">
+                                            <s:fill>
+                                                <s:SolidColor color="#a53183" />
+                                            </s:fill>
+                                        </s:Rect>
+                                        <s:Label width="16" height="10" top="0" horizontalCenter="0" text="1" fontSize="10" fontWeight="bold" color="#a53183" backgroundColor="#f7edf5" textAlign="center" />
+                                        <assets:speakingTestSpeaker top="13" />
+                                        <s:Label id="speakingTestSpeakerLabel" top="13" right="0" width="110" fontSize="13" color="#a53183" text="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingTestSpeakerLabel')}" />
+                                        <s:Rect width="100%" height="0.8" left="0" bottom="0">
+                                            <s:fill>
+                                                <s:SolidColor color="#a53183" />
+                                            </s:fill>
+                                        </s:Rect>
+                                    </s:Group>
+                                    <!-- Phone Group -->
+                                    <s:Group width="160" height="78">
+                                        <s:Rect width="100%" height="0.8" left="0" top="4">
+                                            <s:fill>
+                                                <s:SolidColor color="#a53183" />
+                                            </s:fill>
+                                        </s:Rect>
+                                        <s:Label width="16" height="10" top="0" horizontalCenter="0" text="2" fontSize="10" fontWeight="bold" color="#a53183" backgroundColor="#f7edf5" textAlign="center" />
+                                        <assets:speakingTestPhone top="13" />
+                                        <s:Label id="speakingTestPhoneLabel" top="13" right="0" width="110" fontSize="13" color="#a53183" text="{outerDocument.hostComponent.getCopyProvider().getCopyForId('speakingTestPhoneLabel')}" />
+                                        <s:Rect width="100%" height="0.8" left="0" bottom="0">
+                                            <s:fill>
+                                                <s:SolidColor color="#a53183" />
+                                            </s:fill>
+                                        </s:Rect>
+                                    </s:Group>
+                                </s:HGroup>
+                            </s:Group>
+                        </s:Group>
 
                         <s:Label id="notAvailableLabel" top="317" horizontalCenter="0" fontSize="16" text="{outerDocument.hostComponent.copyProvider.getCopyForId('notAvailblePracticeTest')}" visible="{(data.attribute('enabledFlag').length() > 0 &amp;&amp; (Number(data.@enabledFlag.toString()) &amp; 8)) &amp;&amp; !outerDocument.hostComponent.isTestDrive}"  />
                         <ui:InfoLabel id="testDriveInfo" verticalCenter="0" horizontalCenter="0" caption="{outerDocument.hostComponent.copyProvider.getCopyForId('exampleInReading')}" visible="{(data.attribute('enabledFlag').length() > 0 &amp;&amp; (Number(data.@enabledFlag.toString()) &amp; 8)) &amp;&amp; outerDocument.hostComponent.isTestDrive}"  />
@@ -319,7 +453,7 @@
                 <s:Label id="completeLabel" horizontalCenter="0" verticalCenter="0" color="#FFFFFF" />
             </s:Group>
             <s:Group id="recorderGroup" width="100%" height="100%" verticalCenter="0">
-                <recorder:RecorderView id="recorderView" left="0" right="0" top="0" bottom="0" />
+                <!--recorder:RecorderView id="recorderView" left="0" right="0" top="0" bottom="0" /-->
             </s:Group>
         </s:Group>
 

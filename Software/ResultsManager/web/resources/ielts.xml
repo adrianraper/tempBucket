@@ -6,8 +6,8 @@
 			<lit name="applicationVersion">Version {version}</lit>
 			
 			<lit name="errorUnknown" code="100">Unknown error</lit>			
-			<lit name="errorNoSuchUser" code="200">Your login details are not registered. Please contact your administrator. (option {loginOption})</lit>
-			<lit name="errorNoProductCode" code="201">No productCode sent.</lit>
+			<lit name="errorNoSuchUser" code="200">Your details are not registered. Please contact your administrator. (option {loginOption})</lit>
+			<lit name="errorNoProductCode" code="201">No product code sent.</lit>
 			<lit name="errorNoPrefixOrRoot" code="202">No account details found.</lit>
 			<lit name="errorNoPrefixForRoot" code="203">No account matches the prefix {prefix}. Please check your URL.</lit>
 			<lit name="errorMultipleProductCodeInRoot" code="204">Duplicated titles in this account (productCode={productCode})</lit>
@@ -23,7 +23,7 @@
 			<lit name="errorInvalidLoginOption" code="214">This account has not set the sign in options ({loginOption})</lit>
 			<lit name="errorLoginKeyEmpty" code="215">You must type your details. ({loginOption})</lit>
 			<lit name="errorTitleBlockedByHiddenContent" code="216">Your group has been blocked from using this program. Please contact your teacher or administrator for help.</lit>
-			<lit name="errorDuplicateUser" code="217">Sorry, these details have already been used, please try again. (login option {loginOption})</lit>		
+			<lit name="errorDuplicateUser" code="217">Sorry, these details have already been used, please try again. (detail={loginOption})</lit>		
 			<lit name="errorLicenceHasntStartedYet" code="300">Your account hasn't started yet. Please contact your administrator.</lit>
 			<lit name="errorLicenceExpired" code="301">Your account expired on {expiryDate}. Please contact your administrator.</lit>
 			<lit name="errorCantClearLicences" code="302">Unable to clear old licences.</lit>
@@ -56,7 +56,7 @@
 			<lit name="errorParsingExerciseDetection1">The direct start link of Road to IELTS is invalid.</lit>
 			
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
-			
+			<lit name="anonymousCaption">No tracking.</lit>
 			<lit name="demoButton1">Academic</lit>
 			<lit name="demoButton2">General Training</lit>
 			<lit name="accountMoreButton">To find out how to get an account, tap here.</lit>
@@ -99,6 +99,7 @@
 			<lit name="shortRateButton">Rate this app</lit>
 			<lit name="ipadRateLink"><![CDATA[https://itunes.apple.com/us/app/road-to-ielts/id560055517?mt=8&ign-mpt=uo%3D4]]></lit>
 			<lit name="androidRateLink"><![CDATA[https://play.google.com/store/apps/details?id=air.com.clarityenglish.ielts.app]]></lit>
+			<lit name="RegisterNowButton">Register Now</lit>
 			<lit name="registerInfoButton">Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
 			<lit name="noProgressText">Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
 			<lit name="colorBarIntroLabel">The colour bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
@@ -123,6 +124,7 @@
 			<lit name="welcomeLabel">Welcome, {fullname}</lit>
 			<lit name="demoWelcomeLabel">Welcome to the Road to IELTS demo.</lit>
 			<lit name="confirmTestDate">Please confirm your test date on the My Profile page.</lit>
+			<lit name="licenceText">Licenced to </lit>
 			<lit name="leftTestDate1">You have fewer than</lit>
 			<lit name="leftTestDate2">until your test.</lit>
 			<lit name="goodLuck">Good luck with your test!</lit>
@@ -130,6 +132,9 @@
 			<lit name="overallCoverage"> - overall coverage</lit>
 			<lit name="myProgress">My Progress</lit>
 			<lit name="myProfile">My Profile</lit>
+			<lit name="myToolsLabel">My Tools</lit>
+			<lit name="calculatorLabel">Calculators</lit>
+			<lit name="studyGuideLabel">Study Guides</lit>
 			<lit name="help">Help</lit>
 			<lit name="credits">Credits</lit>
 			<lit name="more">More</lit>
@@ -214,11 +219,16 @@
 			<lit name="singularUser">user</lit>  
 			<lit name="pluralUsers">users</lit>
 			<lit name="noNetWorkLabel">An internet connection is required, but it has been lost.</lit> 
-			<!-- Banner Link-->
-			<lit name="LMFindOutMoreLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=IP_link&utm_source=RTI_LM&utm_medium=LM_frontpage_findoutmore]]></lit>
-			<lit name="LMTopBlueBannerLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=RTI_FV&utm_source=RTI_LM&utm_medium=LM_topright_bluebanner]]></lit>
-			<lit name="TDHelpBlueBannerLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=RTI_FV&utm_source=RTI_TD&utm_medium=help_bluebanner]]></lit>
-			<lit name="TDBottomBlueBannerLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=RTI_FV&utm_source=RTI_TD&utm_medium=TD_succeed_banner]]></lit>
+			<lit name="studyPlannerCaptionLabel">Study Planner</lit>
+			<lit name="studyPalnnerDescriptionLabel">Click to get started on your test preparation.</lit>
+			<lit name="studyPlannerDownloadButton">Download</lit>
+			<lit name="studyPlannerFVDownloadLink"><![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyplanner/StudyPlannerFV.pdf]]></lit>
+            <lit name="studyPlannerLMDownloadLink"><![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyplanner/StudyPlannerLM.pdf]]></lit>
+            <!-- Banner Link -->
+            <lit name="LMFindOutMoreLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=IP_link&utm_source=RTI_LM&utm_medium=LM_frontpage_findoutmore]]></lit>
+            <lit name="LMTopBlueBannerLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=RTI_FV&utm_source=RTI_LM&utm_medium=LM_topright_bluebanner]]></lit>
+            <lit name="TDHelpBlueBannerLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=RTI_FV&utm_source=RTI_TD&utm_medium=help_bluebanner]]></lit>
+            <lit name="TDBottomBlueBannerLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=RTI_FV&utm_source=RTI_TD&utm_medium=TD_succeed_banner]]></lit>
             <!-- Clarity recorder captions -->
             <lit name="recorderRecordToolTip"></lit>
             <lit name="recorderPlayToolTip"></lit>
@@ -233,6 +243,101 @@
 			<lit name="speakingBackButton">Click to finish.</lit>
 			<lit name="timerFirstTipString">Planning (1 minute)</lit>
 			<lit name="timerMidTipString">Speaking (1-2 minutes)</lit>
+			<lit name="speakingTestHeaderLeftLabel">Part 2</lit>
+			<lit name="speakingTestHeaderRightLabel">Practice Test {index}</lit>
+			<lit name="speakingTestInstructionRichEditableText"><![CDATA[<p>Your IELTS Speaking test has <span fontWeight="bold">three parts.</span> In <span fontWeight="bold">Parts 1</span> and 3 you talk to an examiner. This screen helps you practise for <span fontWeight="bold">Part 2</span> where you give a short talk.</p>]]></lit>
+			<lit name="speakingTestSpeakerLabel">Make sure you have headphones or speakers switched on.</lit>
+			<lit name="speakingTestPhoneLabel">Record yourself on your phone. Then listen. How well didi you do?</lit>
+			<lit name="taskHeaderLabel">Candidate Task Card</lit>
+			<lit name="taskDescribeLabel1">Describe something you own which is very important to you.</lit>
+			<lit name="taskDescribeLabel2">Describe something you own which is very important to you.</lit>
+			<lit name="taskDescribeLabel3">Describe something you own which is very important to you.</lit>
+			<lit name="taskDescribeLabel4">Describe something you own which is very important to you.</lit>
+			<lit name="taskDescribeLabel5">Describe something you own which is very important to you.</lit>
+			<lit name="taskDescribeLabel6">Describe something you own which is very important to you.</lit>
+			<lit name="taskYouShouldLabel">You should say:</lit>
+			<lit name="taskYouShouldEditableText1"><![CDATA[<p>where you go it from</p><p>how long you have had it</p><p>what you use it for</p>]]></lit>
+			<lit name="taskYouShouldEditableText2"><![CDATA[<p>where you go it from</p><p>how long you have had it</p><p>what you use it for</p>]]></lit>
+			<lit name="taskYouShouldEditableText3"><![CDATA[<p>where you go it from</p><p>how long you have had it</p><p>what you use it for</p>]]></lit>
+			<lit name="taskYouShouldEditableText4"><![CDATA[<p>where you go it from</p><p>how long you have had it</p><p>what you use it for</p>]]></lit>
+			<lit name="taskYouShouldEditableText5"><![CDATA[<p>where you go it from</p><p>how long you have had it</p><p>what you use it for</p>]]></lit>
+			<lit name="taskYouShouldEditableText6"><![CDATA[<p>where you go it from</p><p>how long you have had it</p><p>what you use it for</p>]]></lit>
+			<lit name="taskExplainLabel1">and explain why it is important to you.</lit>
+			<lit name="taskExplainLabel2">and explain why it is important to you.</lit>
+			<lit name="taskExplainLabel3">and explain why it is important to you.</lit>
+			<lit name="taskExplainLabel4">and explain why it is important to you.</lit>
+			<lit name="taskExplainLabel5">and explain why it is important to you.</lit>
+			<lit name="taskExplainLabel6">and explain why it is important to you.</lit>
+			<lit name="taskRequirementEditableText"><![CDATA[
+				<p>Describe something you own which is very important to you.</p>
+				<p lineHeight="28">You should say:</p>
+				<p lineHeight="28">where you go it from</p>
+				<p>how long you have had it</p>
+				<p>what you use it for</p>
+				<p lineHeight="28">and explain why it is important to you.</p>
+				<br/>
+				<p>You will have to talk about the topic for 1 to 2 minutes.</p>
+				<p>You have one minute to think about what you're going to say.</p>
+				<p>You can make some notes to help you if you wish.</p>]]>
+			</lit>
+			<lit name="reflectionHeaderLabel">Reflection</lit>
+			<lit name="reflectionEditableText">
+				<![CDATA[
+					<p>If you recorded your talk, listen to it and reflect on how well you did. Focus on these five areas:</p>
+					<list listAutoPadding="15" tabStops="e10 s8">
+						<listMarkerFormat>
+							<ListMarkerFormat afterContent="&#x9;" beforeContent="&#x9;" />
+						</listMarkerFormat>
+						<li><p><span fontWeight="bold" lineHeight="20">Fluency</span><br/>Do you speak easily, reasonably quickly and without having to stop and pause a lot?</p></li>
+				 		<li><p><span fontWeight="bold" lineHeight="20">Vocabulary</span><br/>Do you use a good range of vocabulary. Is your choice of vocabulary accurate?</p></li>
+				 		<li><p><span fontWeight="bold" lineHeight="20">Grammar</span><br/>How well you use English grammar? Do you use a variety of grammatical structures?</p></li>
+				 		<li><p><span fontWeight="bold" lineHeight="20">Pronunciation</span><br/>How easy it for the examiner to understand what you are saying?</p></li>
+				 	</list>
+				]]>
+			</lit>
+			<!--My Profile-->
+			<lit name="studyGuideButtonLink1"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG1rule.pdf]]></lit>
+			<lit name="studyGuideButtonLink2"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG2rds.pdf]]></lit>
+			<lit name="studyGuideButtonLink3"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG3spf.pdf]]></lit>
+			<lit name="studyGuideButtonLink4"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG4lic.pdf]]></lit>
+			<lit name="studyGuideButtonLink5"> <![CDATA[http://www.clarityenglish.com//Content/RoadToIELTS2-International/studyguides/SG5wrx.pdf]]></lit>
+			<lit name="studyGuideButtonLink6"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG6prp.pdf]]></lit>
+			<!-- Calculator -->
+			<lit name="OverallScoreCalculatorLabel">Overall Score Calculator</lit>
+			<lit name="overallScoreCalculatorQuestionLabel">What score do you think you will get in each test?</lit>
+			<lit name="calculateButton">Calculate</lit>
+			<lit name="yourScoreLabel">Your Score</lit>
+			<lit name="estimateScoreLabel">This score is an estimate only.</lit>
+			<lit name="registerIELTSButton">Register for IELTS</lit>
+			<lit name="resetCalculatorButton">Do it again</lit>
+			<lit name="registerIELTSLink">http://takeielts.britishcouncil.org/book-your-test/book-now</lit>
+			<lit name="calculatorToolTip">Please remember that we calculate these scores based on your own assessment of your strengths and weaknesses in different parts of the IELTS test. You are not guaranteed to get these score results in the actual test.</lit>
+            <lit name="listeningReadingCalculatorLabel">Listening and Reading Score Calculator</lit>
+			<lit name="listeningReadingCalculatorQuestionLabel">How many questions do you think you will get right?</lit>
+			<lit name="inputLabel">of 40</lit>
+			<lit name="examTypeQuestionLabel">Which exam you are doing?</lit>
+			<!--Study guides for R2IFV-->
+			<lit name="studyGuideButtonLinkR2IFV1"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG1rule.pdf]]></lit>
+			<lit name="studyGuideButtonLinkR2IFV2"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG2rds.pdf]]></lit>
+			<lit name="studyGuideButtonLinkR2IFV3"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG3spf.pdf]]></lit>
+			<lit name="studyGuideButtonLinkR2IFV4"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG4lic.pdf]]></lit>
+			<lit name="studyGuideButtonLinkR2IFV5"> <![CDATA[http://www.clarityenglish.com//Content/RoadToIELTS2-International/studyguides/SG5wrx.pdf]]></lit>
+			<lit name="studyGuideButtonLinkR2IFV6"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG6prp.pdf]]></lit>
+			<!--Study guides for R2IHU-->
+			<lit name="studyGuideButtonLinkR2IHU1"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG1rule.pdf]]></lit>
+			<lit name="studyGuideButtonLinkR2IHU2"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG2rds.pdf]]></lit>
+			<lit name="studyGuideButtonLinkR2IHU3"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG3spf.pdf]]></lit>
+			<lit name="studyGuideButtonLinkR2IHU4"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG4lic.pdf]]></lit>
+			<lit name="studyGuideButtonLinkR2IHU5"> <![CDATA[http://www.clarityenglish.com//Content/RoadToIELTS2-International/studyguides/SG5wrx.pdf]]></lit>
+			<lit name="studyGuideButtonLinkR2IHU6"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG6prp.pdf]]></lit>
+			
+            <!--Study guides for R2ILM-->
+            <lit name="studyGuideButtonLinkR2ILM2"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SGL2rds.pdf]]></lit>
+            <lit name="studyGuideButtonLinkR2ILM3"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SGL3spf.pdf]]></lit>
+            <lit name="studyGuideButtonLinkR2ILM4"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SGL4lic.pdf]]></lit>
+            <lit name="studyGuideButtonLinkR2ILM5"> <![CDATA[http://www.clarityenglish.com//Content/RoadToIELTS2-International/studyguides/SGL5wrx.pdf]]></lit>
+            <!--Study guides for R2ITD-->
+            <lit name="studyGuideButtonLinkR2ITD2"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SGT2rds.pdf]]></lit>
 
 			<lit name="currentPwdLabel">Current password:</lit>
 			<lit name="newPwdLabel">New password:</lit>
@@ -244,7 +349,7 @@
 			<lit name="hourRichText">30 hours of interactive practice activities</lit>
 			<lit name="buyInfoButton">Subscribe to the Full Version of Road to IELTS for 120 hours of IELTS practice materials!</lit>
 			<lit name="supportCaptionSpan1">How to use Road to IELTS</lit>
-			<lit name="paragraphContentSpan1">Road to IELTS is organised into four skill areas, one for each paper in IELTS.In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from experts onvideo, and practising specific question types using the interactive practice exercises and the mock papers.</lit>
+			<lit name="paragraphContentSpan1">Road to IELTS is organised into four skill areas, one for each paper in IELTS.In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from experts on video, and practising specific question types using the interactive practice exercises and the mock papers.</lit>
 			<lit name="creditsRichText">
 			    <![CDATA[
 			            <p><span fontWeight="bold">Project Managers</span><br/>
@@ -375,7 +480,7 @@
 					<p><span fontWeight="bold">Upgrade?</span><br/>If you would like to enquire about purchasing the full version of Road to IELTS, please contact Clarity.</p>					
 				 ]]>
 			</lit>
-			<lit name="testDriveSpan">This Test Drive version of Road to IELTS is much smaller than:</lit>
+			<lit name="testDriveSpan">This Test Drive version of Road to IELTS gives you all the IELTS basics.</lit>
 			<lit name="userManualLabel">Click here for a detailed user manual.</lit>
 			<lit name="exerciseBackToMenuButton">Back to Menu</lit>
 			<lit name="exerciseStartAgainButton">Start again</lit>
@@ -422,35 +527,62 @@
 			<lit name="candidatesVideoPlayLabel">Click here to watch the {videoTitle} video.</lit>
 			
 			<lit name="exampleInSpeaking">Look at speaking or writing for examples.</lit>
-			<lit name="exampleInReading">Look at reading for an example.</lit>
+			<lit name="exampleInReading">Look at test 1 for an example.</lit>
 			<lit name="exampleInReadingTest1">Look at test 1 for an example.</lit>
 			<lit name="justEBookInTestDrive">Just the eBook is in Test Drive.</lit>
 			<lit name="countryList">Afghanistan|Aland Islands|Albania|Algeria|American Samoa|Andorra|Angola|Anguilla|Antarctica|Antigua and Barbuda|Argentina|Armenia|Aruba|Australia|Austria|Azerbaijan|Bahamas|Bahrain|Bangladesh|Barbados|Belarus|Belgium|Belize|Benin|Bermuda|Bhutan|Bolivia|Bosnia and Herzegovina|Botswana|Bouvet Island|Brazil|British Indian Ocean Territory|Brunei|Bulgaria|Burkina Faso|Burundi|Cambodia|Cameroon|Canada|Cape Verde|Cayman Islands|Central African Republic|Chad|Chile|China|Christmas Island|Cocos (Keeling) Islands|Colombia|Comoros|Congo|Congo, Democratic Republic|Cook Islands|Costa Rica|Cote D'Ivoire|Croatia|Cuba|Cyprus|Czech Republic|Denmark|Djibouti|Dominica|Dominican Republic|Ecuador|Egypt|El Salvador|Equatorial Guinea|Eritrea|Estonia|Ethiopia|Falkland Islands|Faroe Islands|Fiji|Finland|France|French Guiana|French Polynesia|French Southern Territories|Gabon|Gambia|Georgia|Germany|Ghana|Gibraltar|Greece|Greenland|Grenada|Guadeloupe|Guam|Guatemala|Guernsey|Guinea|Guinea-Bissau|Guyana|Haiti|Heard Island|Honduras|Hong Kong|Hungary|Iceland|India|Indonesia|Iran|Iraq|Ireland|Isle Of Man|Israel|Italy|Jamaica|Japan|Jersey|Jordan|Kazakhstan|Kenya|Kiribati|Korea, North|Korea, South|Kuwait|Kyrgyzstan|Laos|Latvia|Lebanon|Lesotho|Liberia|Libya|Liechtenstein|Lithuania|Luxembourg|Macao|Macedonia|Madagascar|Malawi|Malaysia|Maldives|Mali|Malta|Marshall Islands|Martinique|Mauritania|Mauritius|Mayotte|Mexico|Micronesia|Moldova|Monaco|Mongolia|Montenegro|Montserrat|Morocco|Mozambique|Myanmar|Namibia|Nauru|Nepal|Netherlands|Netherlands Antilles|New Caledonia|New Zealand|Nicaragua|Niger|Nigeria|Niue|Norfolk Island|Northern Mariana Islands|Norway|Oman|Pakistan|Palau|Palestine|Panama|Papua New Guinea|Paraguay|Peru|Philippines|Pitcairn Islands|Poland|Portugal|Puerto Rico|Qatar|Reunion|Romania|Russia|Rwanda|Saint Barthelemy|Saint Helena|Saint Kitts and Nevis|Saint Lucia|Saint Martin|Saint Pierre and Miquelon|Saint Vincent and The Grenadines|Samoa|San Marino|Sao Tome and Principe|Saudi Arabia|Senegal|Serbia|Seychelles|Sierra Leone|Singapore|Slovakia|Slovenia|Solomon Islands|Somalia|South Africa|The South Sandwich Islands|Spain|Sri Lanka|Sudan|Suriname|Svalbard and Jan Mayen|Swaziland|Sweden|Switzerland|Syria|Taiwan|Tajikistan|Tanzania|Thailand|Timor-Leste|Togo|Tokelau|Tonga|Trinidad and Tobago|Tunisia|Turkey|Turkmenistan|Turks and Caicos Islands|Tuvalu|Uganda|Ukraine|United Arab Emirates|United Kingdom|United States|Uruguay|Uzbekistan|Vanuatu|Vatican City|Venezuela|Vietnam|Virgin Islands, British|Virgin Islands, U.S.|Wallis and Futuna|Western Sahara|Yemen|Zambia|Zimbabwe</lit>
+            <lit name="SpeakingPracticeTest1">
+                <![CDATA[
+                    <p><span fontWeight="bold">Describe a book that has had a great influence on you.</span></p>
+                    <p><span fontWeight="bold">You should say:</span></p>
+                    <p><span fontWeight="bold">when you read it</span></p>
+                    <p><span fontWeight="bold">what it is about</span></p>
+                    <p><span fontWeight="bold">why it is special</span></p>
+                    <p><span fontWeight="bold">and explain the effect it has had on your life.</span></p>
+                    <p>You will have to talk about the topic for 1 to 2 minutes.</p>
+                    <p>You have one minute to think about what you’re going to say.</p>
+                    <p>You can make some notes to help you if you wish.</p>
+                ]]>
+            </lit>
+            <lit name="SpeakingPracticeTest2">
+                <![CDATA[
+                    <p><span fontWeight="bold">Describe a recent invention that has had a major impact on your life.</span></p>
+                    <p><span fontWeight="bold">You should say:</span></p>
+                    <p><span fontWeight="bold">when it was invented</span></p>
+                    <p><span fontWeight="bold">what it does</span></p>
+                    <p><span fontWeight="bold">how it has affected your life</span></p>
+                    <p><span fontWeight="bold">and explain the effect you think this invention has on society as a whole.</span></p>
+                    <p>You will have to talk about the topic for 1 to 2 minutes.</p>
+                    <p>You have one minute to think about what you’re going to say.</p>
+                    <p>You can make some notes to help you if you wish.</p>
+                ]]>
+            </lit>
 		</group>
 	</language>
 
 	<language name="Simplified Chinese" code="ZH" mediaFolder="ZH">
 		<group name="group">
             <lit name="loginIDLabel">您需要已经注册了你的学校或者你的电子邮件，与英国文化协会，进行登录。</lit>		
-			<lit name="colorBarIntroLabel">彩色条形图显示了您在各个技能单元中的完成情况。详情请查看My Progress。</lit>
+			<lit name="colorBarIntroLabel">彩色条形图显示了您在各个技能单元中的完成情况。详情请查看"我的进度"。</lit>
 	        <lit name="Reading">阅读</lit>
 			<lit name="Listening">听力</lit>
 			<lit name="Speaking">口语</lit>
 			<lit name="Writing">写作</lit>
 			<lit name="welcomeLabel">{fullname}，欢迎您！</lit>
-			<lit name="confirmTestDate">请在My Profile中确认您的考试日期。</lit>
+			<lit name="confirmTestDate">请在"我的档案"中确认您的考试日期。</lit>
 			<lit name="leftTestDate1">距离考试还有</lit>
 			<lit name="leftTestDate2">天。</lit>
 			<lit name="goodLuck">祝你考试成功！</lit>
-			<lit name="hopeTestWell">祝你考试顺利......</lit>
+			<lit name="hopeTestWell">祝你考试顺利!</lit>
 			<lit name="lessThan">距离考试还有少于</lit>
 			<lit name="leftUntil">天。</lit>
+			<lit name="noProgressText">欢迎使用雅思之路，请点击右侧的学习资源进入单项练习。</lit>
 			<lit name="questionVideoInstructionLabel">首先，可在线阅读电子书或下载PDF版文档，之后，请点击观看关于本部分考试核心介绍的视频。</lit>
 			<lit name="adviceVideoInstructionLabel">请点击缩略图，播放视频。</lit>
 			<lit name="practiceZoneInstructionLabel">选择一套试题，开始进行雅思测试练习。</lit>
 			<lit name="examZoneInstructionLabel1">下载完整试题。点击音频按钮，进行听力模拟测试。在测试过程中，一旦点击开始播放就不能暂停。</lit>
 			<lit name="examZoneInstructionLabel2">下载完整试题及答案。</lit>
-		    <lit name="examZoneNoTestLabel">本部分不包含可下载的测试练习资料。请观看Advice and tutorials中的视频教程，了解口语考试中的实际情形。</lit>
+		    <lit name="examZoneNoTestLabel">本部分不包含可下载的测试练习资料。请观看"建议与指导"中的视频教程，了解口语考试中的实际情形。</lit>
 			<lit name="onlyAvailableLM">仅在冲刺版本內才能打开此内容。点击上图按钮进行升级。</lit>
 			<lit name="onlyAvailableFV">仅在完整版本內才能打开此内容。点击上图按钮进行升级。</lit>
 			<lit name="onlyAvailableFVWebsite">仅在完整版本內才能打开此内容，詳情請瀏覽www.ieltspractice.com。</lit>
@@ -458,22 +590,111 @@
 			<lit name="progressNavBarCompare">比较</lit>
 			<lit name="progressNavBarAnalyse">分析</lit>
 			<lit name="progressNavBarScores">我的分数</lit>
-			<lit name="compareInstructionLabel">下表将你的各项分数与全球其他Road to IELTS使用者的分数进行了比较。</lit>
+			<lit name="compareInstructionLabel">下表将你的各项分数与全球其他雅思之路使用者的分数进行了比较。</lit>
 			<lit name="analysisInstructionLabel1">此处显示你如何分配了你的时间。</lit>
 			<lit name="analysisInstructionLabel2">每项技能所花费时间</lit>
 			<lit name="analysisTime">你总共花费了{x}分钟。</lit>
 			<lit name="testDateLabel">日期:</lit>
-			<lit name="hourLabel">几点:</lit>
-			<lit name="minuteLabel">几分:</lit>
+			<lit name="hourLabel">时:</lit>
+			<lit name="minuteLabel">分:</lit>
 			<lit name="dateFormatLabel">{year} 年 {month} 月 {day} 日</lit>	
-			<lit name="countdownHeading">距离我的考试还有多长时间？</lit>
+			<!--			<lit name="countdownHeading">距离我的考试还有多长时间？</lit>-->
 			<lit name="setTestDateLabel">请在下方设置你的考试日期:</lit>
-			<lit name="supportCaptionSpan1">如何使用Road to IELTS</lit>
-			<lit name="paragraphContentSpan1">Road to IELTS分为四个技能单元，与雅思考试的四项内容一一对应。在各个技能单元中，学习者可通过阅读相关考试介绍，观看雅思考试专家指导视频，并通过互动练习和模拟试题对特定题型进行操练，行之有效地准备雅思考试。</lit>
+			<lit name="alertEmptyDateLabel">请在下方设置你的考试日期:</lit>
+			<lit name="supportCaptionSpan1">如何使用雅思之路</lit>
+			<lit name="paragraphContentSpan1">雅思之路分为四个技能单元，与雅思考试的四项内容一一对应。在各个技能单元中，学习者可通过阅读相关考试介绍，观看雅思考试专家指导视频，并通过互动练习和模拟试题对特定题型进行操练，行之有效地准备雅思考试。</lit>
 			<lit name="keyScreenSpan">主要页面</lit>
 			<lit name="homeScreenIntroSpan">主页面——您可以在这里选择自己想要练习的技能单元。</lit>
 			<lit name="skillScreenIntroSpan">技能单元页面——您可以在这里查阅电子书，观看专家指导视频，并进行互动练习活动。</lit>
 			<lit name="exerciseSreenIntroSpan">练习页面——当您选择在练习区进行相关练习的时候，您将看到此页面。</lit>
+			<lit name="lastTimeAC">冲刺版: 学术类</lit>
+			<lit name="testDriveAC">体验版: 学术类</lit>
+			<lit name="AC">学术类</lit>
+			<lit name="lastTimeGT">冲刺版: 培训类</lit>
+			<lit name="testDriveGT">体验版: 培训类</lit>
+			<lit name="GT">培训类</lit>
+			<lit name="myProgress">我的进度</lit>
+			<lit name="myProfile">我的档案</lit>
+			<lit name="myToolsLabel">我的工具</lit>
+			<lit name="calculatorLabel">分数计算器</lit>
+			<lit name="studyGuideLabel">学习指南</lit>
+			<lit name="Help">帮助</lit>
+			<lit name="credits">Credits</lit>
+			<lit name="more">更多</lit>
+			<lit name="Home">主页</lit>
+			<lit name="Back">向后</lit>
+			<lit name="Candidates">考生视频</lit>
+			<lit name="questionZoneViewNavigator">新手上路</lit>
+			<lit name="adviceZoneViewNavigator">建议与指导</lit>
+			<lit name="practiceZoneViewNavigator">练习题</lit>
+			<lit name="testZoneViewNavigator">模拟试卷</lit>
+			<lit name="downloadButton">阅读电子书</lit>
+			<lit name="pdfButton">下载PDF文档</lit>
+			<lit name="videoButton">观看视频</lit>
+			<lit name="questionVideoLabel">新手上路</lit>
+			<lit name="adviceVideoLabel">建议与指导</lit>
+			<lit name="practiceZoneLabel">练习题</lit>
+     		<lit name="difficulty">难度等级:</lit>
+			<lit name="examZoneLabel">模拟试卷</lit>
+			<lit name="progressAnonymousLabel">您尚未登陆，所以您的进度将无法被保存。</lit>
+			<lit name="countdownHeading">您的考试日期:</lit>
+			<lit name="countDownLabel1">距离您的雅思考试还有：</lit>
+			<lit name="countdownHeadingLabel">您的考试日期:</lit>
+			<lit name="registerInfoButton">通过英国文化协会报名参加雅思考试，您将免费获得雅思之路冲刺版！</lit>
+			<lit name="overallCoverage">: 您目前的完成率</lit>
+			<lit name="progressBarCoverage">{course}: 您目前的完成率</lit>
+			<lit name="progressBarScore">{course}: 您的平均分</lit>
+			<lit name="myScoreLegendLabel">您的平均分</lit>
+			<lit name="everyoneScoreLegendLabel">{country} 用户的平均分</lit> 
+			<lit name="courseDurationRenderLabel">您的学习时间</lit>
+			<lit name="courseDurationRenderTime">{time} 分钟</lit>
+			<lit name="scoreGridC1">技能单元</lit>
+			<lit name="scoreGridC2">练习题</lit>
+			<lit name="scoreGridC3">分数</lit>
+			<lit name="scoreGridC4">花费时间</lit>
+			<lit name="scoreGridC5">日期</lit>
+			<lit name="exampleInSpeaking">请参阅写作与口语的例子。</lit>
+			<lit name="exampleInReading">请参阅模拟练习一。</lit>
+			<lit name="exampleInReadingTest1">请参阅模拟试卷一。</lit>
+			<lit name="justEBookInTestDrive">体验版不包含考生须知视频。</lit>
+			<lit name="candidatesCaptionLabel">考生视频</lit>
+			<lit name="candidatesVideoTitleFixedLabel">考生们的建议与分享:</lit>
+			<lit name="candidatesVideoTitle0">“考试准备”</lit>
+			<lit name="candidatesVideoTitle1">“考试当天”</lit>
+			<lit name="candidatesVideoTitle2">“写作”</lit>
+			<lit name="candidatesVideoTitle3">“阅读”</lit>
+			<lit name="candidatesVideoTitle4">“口语”</lit>
+			<lit name="candidatesVideoTitle5">“听力”</lit>
+			<lit name="candidatesVideoTitle6">“考试结束后”</lit>
+			<lit name="videoListCaptionLabel">考生们的建议与分享:</lit>
+			<lit name="candidatesVideoDescription0">来看看其他考生如何备战雅思考试。</lit>
+			<lit name="candidatesVideoDescription1">来看看其他考生分享他们的雅思考试过程。</lit>
+			<lit name="candidatesVideoDescription2">来看看其他考生分享他们对于写作单元的看法。</lit>
+			<lit name="candidatesVideoDescription3">来看看其他考生分享他们对于阅读单元的看法。</lit>
+			<lit name="candidatesVideoDescription4">来看看其他考生分享他们对于口语单元的看法。</lit>
+			<lit name="candidatesVideoDescription5">来看看其他考生分享他们对于听力单元的看法。</lit>
+			<lit name="candidatesVideoDescription6">观看其他考生讨论雅思考试结束后会发生什么，和有什么需要注意地方。</lit>
+			<lit name="candidatesVideoPlayLabel">点击观看 {videoTitle}。</lit>
+			<lit name="planningLabel">您有一分钟去准备你的答案。</lit>
+            <lit name="recordingLabel">请现在开始谈话</lit>
+            <lit name="completeLabel">口语测试第2部分现在结束。</lit>
+			<lit name="speakingStartButton">点击开始</lit>
+			<lit name="speakingBackButton">点击结束模拟练习</lit>
+			<lit name="timerFirstTipString">Planning (1 minute)</lit>
+			<lit name="timerMidTipString">Speaking (1-2 minutes)</lit>
+			<lit name="videoRichText">11道英国文化协会专家们对雅思考试专业分析视频</lit>
+			<lit name="mockTestRichText">模拟试卷配合建议答案</lit>
+			<lit name="hourRichText">30小时的互动练习</lit>
+			<lit name="buyInfoButton">立即注册雅思之路完整版，享用120小时课程。</lit>
+			<lit name="userManualLabel">点击这里查看详细的使用指南。</lit>
+			<lit name="licenceText">您的使用权限为:  </lit>
+			<lit name="upGradeRichText">
+			    <![CDATA[
+					<p><span fontWeight="bold">购买完整版</span><br/>如您希望购买雅思之路完整版，请访问全球官方网站www.ieltspractice.com购买。中国大陆雅思考生亦可登录教育部雅思考试报名网站ielts.etest.net.cn购买中文界面完整版。</p>					
+				 ]]>
+			</lit>
+			<lit name="testDriveSpan">此体验版课程可为您提供所有关于雅思考试之基本须知。</lit>
+
 			<lit name="contactUsContent1">
 			    <![CDATA[
 				    <p><span fontWeight="bold">技术问题</span><br/>Clarity愿帮助您解决任何技术难题。请描述您遇到的难题，将您登陆本课程时的网页地址或网站，一起发送至
@@ -486,6 +707,21 @@
 					<p><span fontWeight="bold">内容问题</span><br/>如果您在内容方面存在疑问（例如：对练习题中的某个答案存在疑问），请联系英国文化协会。</p>					
 				 ]]>
 			</lit>
+			<lit name="studyPlannerCaptionLabel">学习计划</lit>
+			<lit name="studyPalnnerDescriptionLabel">请点击这里开始备战雅思。</lit>
+			<lit name="studyPlannerDownloadButton">下载</lit>
+			<lit name="registeredNameLabel">用户名：</lit>
+			<lit name="emailLabel">电子邮件：</lit>
+			<lit name="accountStartDateLabel">账户起始日：</lit>
+			<lit name="accountExpiryDateLabel">账户到期日：</lit>
+			<lit name="infoReadingText"> <![CDATA[<p>想要在雅思考试获得成功?</p><p>马上登记雅思之路完整版。</p>]]></lit>
+			<lit name="infoListeningText"><![CDATA[<p>登记雅思之路完整版，取得更高成绩</p>]]></lit>
+			<lit name="infoSpeakingText"><![CDATA[<p>需要更多练习和准备?</p><p>马上登记雅思之路完整版。</p>]]></lit>
+			<lit name="infoWritingText"><![CDATA[<p>对于考试成绩心存忧虑?</p><p>马上登记雅思之路完整版!</p>]]></lit>
+			<lit name="countDownLabel2">今天便是你的考试天了 — 加油!</lit>
+			<lit name="countDownLabel3">考试考得还好吗? </lit>
+						<lit name="RegisterNowButton">立即注册</lit>
+						<lit name="notAvailblePracticeTest">如您需要更多模拟试卷，请登记雅思之路完整版。</lit>
 		</group>
 	</language>
 	
