@@ -6,7 +6,8 @@ class ProgressOps {
 
 	// gh#604 Seconds before the session record is considered too old and a new one started
 	const SESSION_IDLE_THRESHOLD = 100;
-	const MINIMUM_DURATION = 15; // Minimum seconds used as duration for new session records
+    // gh#954 All licence counting is > 15, so for new users this will help accurate reflection
+	const MINIMUM_DURATION = 16; // Minimum seconds used as duration for new session records
 
 	function ProgressOps($db) {
 		$this->db = $db;

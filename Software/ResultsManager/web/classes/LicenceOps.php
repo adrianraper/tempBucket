@@ -470,7 +470,7 @@ EOD;
 	 * Moved from UsageOps when updated to using simple T_Session count.
 	 * gh#125 duplicate of countUsedLicences, so merge into that 
 	 */
-	public function countLicencesUsed($title, $rootID, $fromDateStamp) {
+	public function countLicencesUsed($title, $rootID, $fromDateStamp = null) {
 		// gh#125 convert types of passed object
 		$productCode = $title->productCode;
 		$licence = new Licence();
