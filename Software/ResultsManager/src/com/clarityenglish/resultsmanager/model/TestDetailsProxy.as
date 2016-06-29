@@ -28,7 +28,9 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		public function getTestDetails(group:Group):void {
-			new RemoteDelegate("getTestDetails", [ group ], this).execute();
+			var contentProxy:ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
+			var thisTitle:Title = contentProxy.titles[0] as Title;
+			new RemoteDelegate("getTestDetails", [ group, thisTitle.id ], this).execute();
 		}
 		public function addTestDetail(testDetail:TestDetail):void {
 			new RemoteDelegate("addTestDetail", [ testDetail ], this).execute();

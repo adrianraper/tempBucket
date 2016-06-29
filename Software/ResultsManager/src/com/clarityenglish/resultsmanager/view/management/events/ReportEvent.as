@@ -9,6 +9,8 @@
 		
 		public static const GENERATE:String = "generate";
 		public static const SHOW_REPORT_WINDOW:String = "show_report_window";
+		// gh#1487
+		public static const SHOW_TEST_REPORT_WINDOW:String = "show_test_report_window";
 		
 		// These are possible values for attempts and should not be used as event types
 		public static const ALL:String = "all";

@@ -6,6 +6,7 @@ package com.clarityenglish.resultsmanager.view.management {
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.content.Content;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.*;
 	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.RMNotifications;
@@ -34,6 +35,8 @@ package com.clarityenglish.resultsmanager.view.management {
 	
 		// Cannonical name of the Mediator
 		public static const NAME:String = "TestadminMediator";
+		// TODO How to get the productCode nicely here?
+		public var productCode:String = '44';
 		
 		public function TestadminMediator(viewComponent:Object) {
 			// pass the viewComponent to the superclass where 
@@ -53,7 +56,8 @@ package com.clarityenglish.resultsmanager.view.management {
 			testadminView.testDetailPanel.addEventListener(TestDetailEvent.UPDATE, onTestDetailUpdate);
 			testadminView.testDetailPanel.addEventListener(TestDetailEvent.ADD, onTestDetailAdd);
 			testadminView.addEventListener(TestDetailEvent.DELETE, onTestDetailDelete);
-
+			
+			//testadminView.addEventListener(ReportEvent.SHOW_TEST_REPORT_WINDOW, onShowReportWindow);
 		}
 		
 		private function get testadminView():TestadminView {
@@ -94,6 +98,7 @@ package com.clarityenglish.resultsmanager.view.management {
 					RMNotifications.TEST_DETAIL_ADDED,
 					RMNotifications.TEST_DETAIL_DELETED,
 					RMNotifications.TEST_LICENCES_LOADED,
+					RMNotifications.CONTENT_LOADED,
 				];
 		}
 
@@ -112,20 +117,27 @@ package com.clarityenglish.resultsmanager.view.management {
 					testadminView.manageables = note.getBody() as Array;
 					// gh#1487 Need to trigger get content if the management tab is not being loaded
 					var contentProxy:ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
-					contentProxy.getContent();
+					contentProxy.getContent(new Array(productCode));
+					
 					// Also need to find how many licences have been used
 					var usageProxy:UsageProxy = facade.retrieveProxy(UsageProxy.NAME) as UsageProxy;
-					usageProxy.getTestUse(61);
+					usageProxy.getTestUse(productCode);
 					break;
-				case RMNotifications.SHOW_REPORT_WINDOW:
-					// TODO: Need to remove generateReport from this CMMenu as we have our own report generator button
-					// and we don't have content to hand for the main one
-					testadminView.showReportWindow(note.getBody() as ReportEvent);
-					break;
+				
 				case CommonNotifications.COPY_LOADED:
 					var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 					testadminView.setCopyProvider(copyProvider);
 					break;
+				
+				case RMNotifications.CONTENT_LOADED:
+					var titles:Array = note.getBody() as Array;
+					// If all goes well, there will only be one title coming back anyway
+					for each (var title:Title in titles) {
+						if (title.id == productCode) 
+							testadminView.selectedTitle = title;
+					}
+					break;
+				
 				case RMNotifications.MANAGEABLE_SELECTED:
 					// Make sure that just one group is selected
 					var selectedManageables:Array = note.getBody() as Array;
@@ -142,6 +154,7 @@ package com.clarityenglish.resultsmanager.view.management {
 						testadminView.selectedGroup = null;
 					}
 					break;
+				
 				// This will send back an array of testDetails
 				case RMNotifications.TEST_DETAILS_LOADED:
 				case RMNotifications.TEST_DETAIL_DELETED:

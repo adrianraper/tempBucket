@@ -299,8 +299,8 @@ class ClarityService extends AbstractService {
         }
     }
 	
-	public function getContent() {
-		return $this->contentOps->getContent();
+	public function getContent($productCodes = null) {
+		return $this->contentOps->getContent($productCodes);
 	}
 	
 	// CCB
@@ -404,8 +404,8 @@ class ClarityService extends AbstractService {
 	}
 
 	// gh#1487
-	public function getTestDetails($group) {
-		return $this->testDetailOps->getTestDetails($group->id);
+	public function getTestDetails($group, $productCode) {
+		return $this->testDetailOps->getTestDetails($group->id, $productCode);
 	}
 	public function addTestDetail($testDetail) {
 		$this->testDetailOps->addTestDetail($testDetail);		

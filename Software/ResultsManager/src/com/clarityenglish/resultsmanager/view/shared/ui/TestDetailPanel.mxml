@@ -60,7 +60,7 @@
 
 			public function setDataProvider(testDetail:TestDetail):void {
 				dataProvider = testDetail;
-				startTimeData.text = dataProvider.scheduledStartTime;
+				startTimeData.text = dataProvider.startTime;
 				endTimeData.text = dataProvider.closeTime;
 				codeData.text = dataProvider.startData;
 				captionData.text = dataProvider.caption;
@@ -86,7 +86,7 @@
 				updatedDetail.groupId = dataProvider.groupId;
 				updatedDetail.language = dataProvider.language;
 				
-				updatedDetail.scheduledStartTime = startTimeData.text;
+				updatedDetail.startTime = startTimeData.text;
 				updatedDetail.closeTime = endTimeData.text;
 				updatedDetail.caption = captionData.text;
 				updatedDetail.showResult = showResultData.selected;
@@ -96,7 +96,7 @@
 			}
 			// Have the user editable details changed?
 			private function _isEqual(tdA:TestDetail, tdB:TestDetail):Boolean {
-				return ((tdA.scheduledStartTime == tdB.scheduledStartTime) &&
+				return ((tdA.startTime == tdB.startTime) &&
 						(tdA.closeTime == tdB.closeTime) &&
 						(tdA.startData == tdB.startData) &&
 						(tdA.caption == tdB.caption) &&

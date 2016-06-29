@@ -64,8 +64,8 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		// v3.4 Refresh all content from files - optional for the learner after they do some editing
-		public function getContent():void {
-			new RemoteDelegate("getContent", [], this).execute();
+		public function getContent(productCodes:Array = null):void {
+			new RemoteDelegate("getContent", [ productCodes ], this).execute();
 		}
 		
 		// v3.4 To help with refreshing the tree - go back to the original data and then pick up editedContent
@@ -323,7 +323,6 @@ package com.clarityenglish.resultsmanager.model {
 											TraceUtils.myTrace("found related title " + relatedTitle.name);
 											relatedCourse = ArrayUtils.searchArrayForObject(relatedTitle.children, relatedMappedIds[1], "id") as Course;
 											if (relatedCourse) {
-												TraceUtils.myTrace("found related course " + relatedCourse.name);
 												// so this is the Author Plus course. We don't know which unit it is in, but we know the exerciseID so 
 												// just need to search them all
 												moveOuterLoop: for each (relatedUnit in relatedCourse.children) {

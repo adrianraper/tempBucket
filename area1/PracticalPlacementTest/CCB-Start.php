@@ -7,7 +7,7 @@
 	
 	// Handling no prefix
 	if (!$prefix) {
-		header("location: /error/noPrefix.htm");
+		echo "prefix not set";
 		exit;
 	}
 	

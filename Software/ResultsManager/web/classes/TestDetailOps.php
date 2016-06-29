@@ -5,19 +5,23 @@ class TestDetailOps {
 
 	function TestDetailOps($db) {
 		$this->db = $db;
+		$this->manageableOps = new ManageableOps($db);
 	}
 	function changeDB($db) {
 		$this->db = $db;
 	}
 	
 	// Return all tests that this groups is scheduled to take
-	// TODO I do know the testId as well, since it is fixed for (this RM?)
-	function getTestDetails($groupId) {
+	function getTestDetails($groupId, $productCode) {
 		
-		$bindingParams = array($groupId);
+		// We also want any tests that parents of this group are scheduled to take as they will apply to us too
+		$groupList = implode(',', $this->manageableOps->getGroupParents($groupId));
 		
+		$bindingParams = array($productCode);
 		$sql = <<<SQL
-			SELECT * FROM T_TestDetail WHERE F_GroupID=?
+			SELECT * FROM T_TestDetail 
+			WHERE F_GroupID IN ($groupList)
+			AND F_TestID=?
 SQL;
 		$rs = $this->db->Execute($sql, $bindingParams);
 		//AbstractService::$debugLog->info("got ". $rs->RecordCount()." records for group " . $group->id);

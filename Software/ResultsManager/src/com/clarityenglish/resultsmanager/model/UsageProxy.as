@@ -37,7 +37,7 @@ package com.clarityenglish.resultsmanager.model {
 			new RemoteDelegate("getFixedUsageForTitle", [ title, DateUtils.dateToAnsiString(fromFixDate), DateUtils.dateToAnsiString(toFixDate) ], this).execute();
 		}
 		// gh#1487
-		public function getTestUse(productCode:uint):void {
+		public function getTestUse(productCode:String):void {
 			new RemoteDelegate("getTestUse", [ productCode ], this).execute();
 		}
 		

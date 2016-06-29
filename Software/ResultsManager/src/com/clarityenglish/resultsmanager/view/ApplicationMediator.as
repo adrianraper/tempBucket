@@ -51,7 +51,7 @@ package com.clarityenglish.resultsmanager.view {
 			
 			// gh#1487 Can't register managementView as well as testadminView to their respective mediators
 			// or you can, but the test admin view has no manageables in it. Whichever you do first works.
-			TraceUtils.myTrace("appMediator.directStart=" + this._directStart);
+			// TraceUtils.myTrace("appMediator.directStart=" + this._directStart);
 			if (this._directStart = 'testadmin') {
 				facade.registerMediator(new TestadminMediator(application.testadminView));				
 			} else {

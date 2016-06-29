@@ -6,11 +6,12 @@
 	<mx:Script>
 		<![CDATA[
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			import com.clarityenglish.common.vo.content.Title;
 			import com.clarityenglish.common.vo.manageable.Manageable;
 			import com.clarityenglish.common.vo.tests.TestDetail;
 			import com.clarityenglish.resultsmanager.Constants;
 			import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
-			import com.clarityenglish.resultsmanager.view.management.ui.ReportWindow;
+			import com.clarityenglish.resultsmanager.view.management.ui.TestadminReportWindow;
 			import com.clarityenglish.resultsmanager.view.shared.events.TestDetailEvent;
 			import com.clarityenglish.utils.TraceUtils;
 			
@@ -26,10 +27,11 @@
 			
 			public var manageables:Array;
 			
-			private var reportWindow:ReportWindow;
+			private var reportWindow:TestadminReportWindow;
 				
 			[Bindable]
 			public var selectedGroup:Manageable;
+			public var selectedTitle:Title;
 			
 			public function setCopyProvider(copyProvider:CopyProvider):void {
 				this.copyProvider = copyProvider;
@@ -60,25 +62,23 @@
 				sendResultEmailButton.label = copyProvider.getCopyForId("sendResultEmail");
 			}
 			
-			private function onGenerateReport(e:Event):void {				
-			}
 			private function onSendWelcomeEmail(e:Event):void {				
 			}
-			private function onSendResultEmail(e:Event):void {				
+			private function onSendResultEmail(e:Event):void {
 			}
-			public function showReportWindow(e:ReportEvent):void {
+			// Show limited report filtering window
+			public function onGenerateReport(e:Event):void {
 				if (!reportWindow) {
-					reportWindow = PopUpManager.createPopUp(UIComponent(parentApplication), ReportWindow, true) as ReportWindow;
+					reportWindow = PopUpManager.createPopUp(UIComponent(parentApplication), TestadminReportWindow, true) as TestadminReportWindow;
 				} else {
 					PopUpManager.addPopUp(reportWindow, UIComponent(parentApplication), true);
 				}
 				
 				reportWindow.setCopyProvider(copyProvider);
 				reportWindow.parentView = this;
-				reportWindow.onReportables = e.onReportables;
-				
-				var testClass:Object = new (ClassUtils.checkObjectClasses(e.onReportables))();
-				
+				reportWindow.onReportables = new Array(selectedTitle);
+				reportWindow.forReportables = new Array(selectedGroup); 
+				PopUpManager.centerPopUp(reportWindow);
 			}
 				
 			public function showLicencesUsed(purchased:uint, used:uint, scheduled:uint):void {
@@ -90,6 +90,19 @@
 				var selectedTest:TestDetail = testList.selectedItem as TestDetail;
 				testDetailPanel.setDataProvider(selectedTest);
 				testDetailPanel.addButton.visible = testDetailPanel.addButton.includeInLayout = false;
+				
+				// You can send out the result email once the test is closed
+				sendResultEmailButton.visible = sendResultEmailButton.includeInLayout = selectedTest.isTestClosed();
+				// You can send out the invitation email only before it is open 
+				sendWelcomeEmailButton.visible = sendWelcomeEmailButton.includeInLayout = !selectedTest.isTestStarted();
+				// You can see the results any time after it opens 
+				generateReportButton.visible = generateReportButton.includeInLayout = selectedTest.isTestStarted();
+				
+				// You can only delete a test if it was set for the currently selected group
+				// This is to stop you deleting a test set for a parent when you are in a child
+				// And it has not yet started
+				deleteTestButton.visible = deleteTestButton.includeInLayout = (selectedTest.groupId == selectedGroup.id) && !selectedTest.isTestStarted();
+				
 			}
 			private function onNewTestButtonClick(e:Event):void {
 				var newTestDetail:TestDetail = new TestDetail();
@@ -104,6 +117,7 @@
 				var selectedTest:TestDetail = testList.selectedItem as TestDetail;
 				dispatchEvent(new TestDetailEvent(TestDetailEvent.DELETE, selectedTest))				
 			}
+			
 		]]>
 	</mx:Script>
 	<!--
@@ -130,14 +144,14 @@
 					 change="onTestChange(event)" />
 			<mx:HBox width="100%" >
 				<mx:Button id="newTestButton" visible="true" includeInLayout="true" height="18" click="onNewTestButtonClick(event)" />
-				<mx:Button id="deleteTestButton" visible="{testList.selectedItem != null}" includeInLayout="{testList.selectedItem != null}" height="18" click="onDeleteTestButtonClick(event)" />
+				<mx:Button id="deleteTestButton" visible="false" includeInLayout="false" height="18" click="onDeleteTestButtonClick(event)" />
 			</mx:HBox>
 			<mx:Spacer height="5" />
 			<ui:TestDetailPanel width="99%" id="testDetailPanel" visible="{testList.selectedItem != null}" includeInLayout="{testList.selectedItem != null}" />
 			<mx:Spacer height="5" />
-			<mx:Button id="generateReportButton" visible="{testList.selectedItem != null}" includeInLayout="{testList.selectedItem != null}" height="18" click="onGenerateReport(event)" />
-			<mx:Button id="sendWelcomeEmailButton" visible="{testList.selectedItem != null}" includeInLayout="{testList.selectedItem != null}" height="18" click="onSendWelcomeEmail(event)" />
-			<mx:Button id="sendResultEmailButton" visible="{testList.selectedItem != null}" includeInLayout="{testList.selectedItem != null}" height="18" click="onSendResultEmail(event)" />
+			<mx:Button id="generateReportButton" visible="false" includeInLayout="false" height="18" click="onGenerateReport(event)" />
+			<mx:Button id="sendWelcomeEmailButton" visible="false" includeInLayout="false" height="18" click="onSendWelcomeEmail(event)" />
+			<mx:Button id="sendResultEmailButton" visible="false" includeInLayout="false" height="18" click="onSendResultEmail(event)" />
 		</mx:VBox>
 		<mx:VBox width="20%" height="100%">
 			<mx:TitleWindow id="licenceUseLabel" paddingTop="20" width="100%" height="300" verticalAlign="top" >

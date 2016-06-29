@@ -11,7 +11,7 @@ class TestDetail {
 	var $groupId;
 	var $caption;
 	var $startConditions;
-	var $scheduledStartTime;
+	var $startTime;
 	var $closeTime;
 	var $language;
 	var $showResult;
@@ -32,7 +32,7 @@ class TestDetail {
 		$this->groupId = intval($obj->F_GroupID);
 		$this->caption = $obj->F_Caption;
 		$this->startConditions = $obj->F_StartConditions;
-		$this->scheduledStartTime = $obj->F_ScheduledStartTime;
+		$this->startTime = $obj->F_ScheduledStartTime;
 		$this->closeTime = $obj->F_CloseTime;
 		$this->language = $obj->F_Language;
 		$this->showResult = filter_var($obj->F_ShowResult, FILTER_VALIDATE_BOOLEAN);
@@ -52,7 +52,7 @@ class TestDetail {
 		$array['F_TestID'] = $this->testId;
 		$array['F_Caption'] = $this->caption;
 		$array['F_StartConditions'] = $this->startConditions;
-		$array['F_ScheduledStartTime'] = $this->scheduledStartTime;
+		$array['F_ScheduledStartTime'] = $this->startTime;
 		$array['F_CloseTime'] = $this->closeTime;
 		$array['F_Language'] = $this->language;
 		$array['F_ShowResult'] = intval($this->showResult);
