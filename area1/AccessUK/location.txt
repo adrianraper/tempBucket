@@ -1,0 +1,1 @@
+dbHost=2&mainMovies=/Software/Common&interfaceMovies=/Software/AccessUK&dbPath=/Database&help=/Software/AccessUK/Help/help.htm&content=http://dock.contentbench/Content&scripting=PHP&database=SQLServer&MGSRoot=/ap&sharedMedia=/Software/AuthorPlus/SharedMedia&end=1

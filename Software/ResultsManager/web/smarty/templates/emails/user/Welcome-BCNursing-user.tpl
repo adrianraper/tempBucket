@@ -1,5 +1,5 @@
-{* Name: R2iV2 BC HK registration welcome *}
-{* Description: Email sent when you have first used R2iV2. *}
+{* Name: R2iV2 BC registration welcome *}
+{* Description: Email sent when you have first clicked Road to IELTS 2 *}
 {* Parameters: $user, $api *}
 {if $api->rootID==100} 
 	{assign var='prefix' value='India'}
@@ -36,10 +36,6 @@
 </head>
 
 <body>
-
-<div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; margin: 0; padding:0 0 10px 0; text-align: center; color:#333333; line-height:16px;">If the content of this message is not displayed properly, please click<br />
-<a href="http://www.roadtoielts.com/email/welcome-ielts-last-minute.php?prefix={$prefix}&module={$module}&studentID={$user->studentID}&email={$user->email}&password={$password}" target="_blank">http://www.roadtoielts.com/email/welcome-ielts-last-minute.php</a></div>
-
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="0" style="font-family:Arial, Helvetica, sans-serif; color:#333333; font-size:14px; min-width:600px; line-height:16px;" background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-bg.jpg">
   <tr>
     <td background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-bg.jpg">
@@ -47,7 +43,7 @@
   </tr>
   <tr valign="middle">
     <td background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-header.jpg" height="47" style="font-weight:bold; text-align:center; color:#FFFFFF;" bgcolor="#00426B" valign="middle">
-    	Free IELTS test preparation from the British Council
+    	IELTS test preparation from the British Council
     </td>
   </tr>
   
@@ -78,11 +74,7 @@
             <td background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-bg.jpg" >
             	<div style="padding:10px 40px; color:#333333; line-height:1.4em; font-family:Arial, Helvetica, sans-serif; font-size:1em;">
                 	<strong>Your sign in details:</strong><br />
-                    {if $api->rootID==14030} 
-					email: {$user->email}<br />
-					{else} 
-                    login ID: {$user->studentID}<br />
-					{/if}
+                    email: {$user->email}<br />
                     password: {$password}
                  </div>
             	
@@ -98,7 +90,7 @@
           
              <tr> 
             <td align="center" style="padding-top:5px;">
-            	<a href="http://www.clarityenglish.com/area1/RoadToIELTS2/Start-{$module}.php?prefix={$prefix}" target="_blank" style="line-height:30px;  color:#3B2314; text-align:center; font-size:1.3em; font-weight:bold; text-align:center;"><img src="http://www.clarityenglish.com/images/email/rti2/ielts-lm-start.jpg" alt="Start" width="367" height="30" border="0" style="border:0; margin:0; background-color:#FFD300; color:#3B2314; text-align:center;"/></a></td>
+            	<a href="http://www.ieltspractice.com/Nursing/login.php" target="_blank" style="line-height:30px;  color:#3B2314; text-align:center; font-size:1.3em; font-weight:bold; text-align:center;"><img src="http://www.clarityenglish.com/images/email/rti2/ielts-lm-start.jpg" alt="Start" width="367" height="30" border="0" style="border:0; margin:0; background-color:#FFD300; color:#3B2314; text-align:center;"/></a></td>
           </tr>
          
           <tr>

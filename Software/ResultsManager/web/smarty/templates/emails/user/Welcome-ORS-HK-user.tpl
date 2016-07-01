@@ -28,7 +28,7 @@
    	  <div style="margin:0; padding:0;">
         <p style="font-family: Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">你好,</p>
              <p style="font-family: Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">歡迎使用革新的 IELTS 網上備試平台，以享更佳的瀏覽經驗，並能體驗有趣兼實用的 IELTS 應試練習。</p>
-             <a href="http://ielts.britishcouncil.org.hk" target="_blank" style="font-family: Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px;"><img src="http://www.clarityenglish.com/images/email/rti2/btn_welcome_chi.jpg" width="200" height="45"  border="0" style="display:block; margin:10px 0;" alt="立即使用 IELTS 網上備試平台"/></a>
+             <a href="http://ielts.britishcouncil.org.hk" target="_blank" style="font-family: Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px;"><img src="http://www.clarityenglish.com/images/email/rti2/btn_welcome_chi_new.jpg" width="242" height="44"  border="0" style="display:block; margin:10px 0;" alt="立即使用雅思之路"/></a>
             
             <p style="font-family:  Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">課程鏈結: <a href="http://ielts.britishcouncil.org.hk" target="_blank">ielts.britishcouncil.org.hk</a></p>
             
@@ -44,7 +44,7 @@
         <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">Dear candidate,</p>
              <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">Welcome to the new Road to IELTS online preparation platform. This platform has been recently revamped for a more user-friendly navigation.</p>
              
-             <a href="http://ielts.britishcouncil.org.hk" target="_blank" style="font-family: Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px;"><img src="http://www.clarityenglish.com/images/email/rti2/btn_welcome_eng.jpg" width="225" height="45"  border="0" style="display:block; margin:10px 0;" alt="Start using Road to IELTS now"/></a>
+             <a href="http://ielts.britishcouncil.org.hk" target="_blank" style="font-family: Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px;"><img src="http://www.clarityenglish.com/images/email/rti2/btn_welcome_eng_new.jpg" width="242" height="44"  border="0" style="display:block; margin:10px 0;" alt="Start using Road to IELTS now"/></a>
              <p style="font-family:  Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">Course link: <a href="http://ielts.britishcouncil.org.hk" target="_blank">ielts.britishcouncil.org.hk</a></p>
              
              <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">We hope you will find the training useful and the site easy to use. Please contact us at <a href="mailto:examinations@britishcouncil.org.hk?subject=New Road to IELTS enquiry">examinations@britishcouncil.org.hk</a> if you have any comments or queries regarding the new platform.</p>

@@ -1,6 +1,7 @@
-{* Name: R2iV2 BC HK registration welcome *}
-{* Description: Email sent when you have first used R2iV2. *}
+{* Name: R2iV2 BC registration welcome *}
+{* Description: Email sent when you someone registers for R2IV2 using a serial number/password. *}
 {* Parameters: $user, $api *}
+
 {if $api->rootID==100} 
 	{assign var='prefix' value='India'}
 {elseif $api->rootID==167} 
@@ -78,11 +79,7 @@
             <td background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-bg.jpg" >
             	<div style="padding:10px 40px; color:#333333; line-height:1.4em; font-family:Arial, Helvetica, sans-serif; font-size:1em;">
                 	<strong>Your sign in details:</strong><br />
-                    {if $api->rootID==14030} 
-					email: {$user->email}<br />
-					{else} 
                     login ID: {$user->studentID}<br />
-					{/if}
                     password: {$password}
                  </div>
             	

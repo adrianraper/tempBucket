@@ -28,18 +28,18 @@
    	  <div style="margin:0; padding:0;">
         <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:5px 0 5px 0; padding:0; color:#000000; line-height:18px;">Dear {$user->name},</p>
              <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">You asked us to remind you of your password, so here it is.</p>
-             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><a href="http://www.roadtoielts.com/BritishCouncil/login.php?loginID={$user->studentID}" target="_blank">www.roadtoielts.com/BritishCouncil/R2IV2/</a></p>
-			<div style="margin:10px 50px 30px 10px; padding:0; background-color:#999999; ">
-             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:10px 0 0 0; margin:10px 20px 5px 20px; color:#000000; line-height:18px; ">Login ID: {$user->studentID}</p>
+             
+			<div style="margin:20px 50px 20px 10px; padding:10px 0; background-color:#CCCCCC; ">
+             
              <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:0 0 0 0; margin:0 20px 5px 20px; line-height:18px; ">Password: {$user->password}</p>
-             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:0 0 10px 0; margin:0 20px 5px 20px; line-height:18px; ">Expiry date: {$user->expiryDate}</p>
+             
 			</div>
-             <a href="http://www.roadtoielts.com/BritishCouncil/R2IV2/login.php" target="_blank" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px;"><img src="http://www.clarityenglish.com/images/email/rti2/btn_welcome_eng.jpg" width="225" height="45"  border="0" style="display:block; margin:10px 0;" alt="Start using Road to IELTS now"/></a>
+             
              
              <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:20px  0 0 0; padding:0; color:#000000; line-height:18px;">If you didn't request this password, please don't worry as no-one else has been told it.</p>
-             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:5px  0 5px 0; padding:0; color:#000000; line-height:18px;">Please do <a href="mailto:support@roadtoielts.com?subject=Road to IELTS enquiry">contact us</a> if you have any queries.</p>
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:20px 0 0 0; padding:0; color:#000000; line-height:18px;">Examinations Services</p>
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">The British Council</p>
+             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:5px  0 5px 0; padding:0; color:#000000; line-height:18px;">Please do <a href="mailto:support@roadtoielts.com?subject=Road to IELTS password enquiry">contact us</a> if you have any queries.</p>
+            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:20px 0 0 0; padding:0; color:#000000; line-height:18px;">Road to IELTS support team</p>
+            
        </div>
         
         

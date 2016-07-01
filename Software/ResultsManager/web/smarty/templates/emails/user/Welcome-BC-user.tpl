@@ -1,63 +1,199 @@
 {* Name: R2iV2 BC registration welcome *}
-{* Description: Email sent when you someone registers for R2IV2 using a serial number/password. *}
-{* Parameters: $user *}
+{* Description: Email sent when you have first clicked Road to IELTS 2 *}
+{* Parameters: $user, $api *}
+{if $api->rootID==100} 
+	{assign var='prefix' value='India'}
+{elseif $api->rootID==167} 
+	{assign var='prefix' value='AMESA'}
+{elseif $api->rootID==168} 
+	{assign var='prefix' value='SEAsia'}
+{elseif $api->rootID==169} 
+	{assign var='prefix' value='Europe'}
+{elseif $api->rootID==170} 
+	{assign var='prefix' value='Americas'}
+{elseif $api->rootID==14030} 
+	{assign var='prefix' value='GLOBAL'}
+{else} 
+	{assign var='prefix' value='Error'}
+{/if}
+{if $api->productCode==12 || $api->productCode==52} 
+	{assign var='module' value='AC'}
+{else} 
+	{assign var='module' value='GT'}
+{/if}
+{if $user->password==""} 
+	{assign var='password' value='(no password necessary)'}
+{else} 
+	{assign var='password' value=$user->password}
+{/if}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Welcome to the new Road to IELTS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IELTS test preparation from the British Council</title>
 	<!-- <from>support@roadtoielts.com</from> -->
 </head>
+
 <body>
-<div style="margin: 8px;">
-<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+
+<div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; margin: 0; padding:0 0 10px 0; text-align: center; color:#333333; line-height:16px;">If the content of this message is not displayed properly, please click<br />
+<a href="http://www.roadtoielts.com/email/welcome-ielts-last-minute.php?prefix={$prefix}&module={$module}&studentID={$user->studentID}&email={$user->email}&password={$password}" target="_blank">http://www.roadtoielts.com/email/welcome-ielts-last-minute.php</a></div>
+
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0" style="font-family:Arial, Helvetica, sans-serif; color:#333333; font-size:14px; min-width:600px; line-height:16px;" background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-bg.jpg">
   <tr>
-    <td>
-	<div style="padding:10px; margin:0;">
-	<img src="http://www.clarityenglish.com/images/email/rti2/welcome_banner.jpg" alt="Road to IELTS" width="586" height="117" style="border:0; display:block; text-align:center;"/>
-<div style="margin:0; padding:0;">
-	<div style="width:290px; float:left;">
-	<img src="http://www.clarityenglish.com/images/email/rti2/welcome_left_top.jpg" alt="Advice and tutorials" width="278" height="200" border="0" style="display:block;"/><br style="display:none;"/>
-    <img src="http://www.clarityenglish.com/images/email/rti2/welcome_left_mid.jpg" alt="Starting out" width="278" height="167" border="0" style="display:block;"/><br style="display:none;"/>
-	</div>    
-    <div style="width:300px; float:right; padding:10px 0 10px 0;">
-   	  <div style="margin:0; padding:0;">
-        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:5px 0 5px 0; padding:0; color:#000000; line-height:18px;">Dear {$user->name},</p>
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">Welcome to the new Road to IELTS online preparation platform. You can login at the following URL with your ID and password.</p>
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><a href="http://www.roadtoielts.com/BritishCouncil/login.php" target="_blank">www.roadtoielts.com/BritishCouncil</a></p>
-			<div style="margin:10px 50px 30px 10px; padding:0; background-color:#999999;">
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:10px 0 0 0; margin:10px 20px 5px 20px; color:#000000; line-height:18px; ">Login ID: {$user->studentID}</p>
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:0 0 10px 0; margin:0 20px 5px 20px; line-height:18px; ">Password: {$user->password}</p>
-			</div>
-            <a href="http://www.roadtoielts.com/BritishCouncil/login.php?loginID={$user->studentID}" target="_blank" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px;"><img src="http://www.clarityenglish.com/images/email/rti2/btn_welcome_eng.jpg" width="225" height="45"  border="0" style="display:block; margin:10px 0;" alt="Start using Road to IELTS now"/></a>
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:20px 0 5px 0; padding:0; color:#000000; line-height:18px;">We hope you will find the training useful. Please contact us at <a href="mailto:examinations@britishcouncil.org?subject=New Road to IELTS enquiry">examinations@britishcouncil.org</a> if you have any comments or queries regarding the new platform.</p>
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:20px 0 0 0; padding:0; color:#000000; line-height:18px;">Examinations Services</p>
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">The British Council</p>
-       </div>
-    </div>
-    <div style="clear:both;"></div>
-</div>
-   <table width="586"  border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="425" height="50" valign="top" nowrap="nowrap" background="http://www.clarityenglish.com/images/email/rti2/welcome_foot_bg.jpg" >
-        <div style="padding:0 0 0 30px; margin:0; line-height:40px; color:#FFFFFF;">
-        <a href="http://www.takeielts.britishcouncil.org" target="_blank" style="color:#FFFFFF; text-decoration:none; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; ">www.takeielts.britishcouncil.org</a>        
-		</div>
-    </td>
-    <td width="79" height="50" valign="top">
-    	<a href="http://www.britishcouncil.org" target="_blank" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px;">
-        <img src="http://www.clarityenglish.com/images/email/rti2/welcome_foot_bc.jpg" alt="British Council" width="79" height="40" border="0" style="display:block;"/>        </a>
-    </td>
-    <td width="82" height="50" valign="top">
-    	<a href="http://www.clarityenglish.com/" target="_blank" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px;">
-    	<img src="http://www.clarityenglish.com/images/email/rti2/welcome_foot_clarity.jpg" alt="Clarity" width="82" height="40" border="0" style="display:block;"/>        </a>        
-	</td>
+    <td background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-bg.jpg">
+    	<img src="http://www.clarityenglish.com/images/email/rti2/ielts-lm-banner.jpg" alt="Road to IELTS: IELTS preparation and practice" width="600" height="160"/>    </td>
   </tr>
-</table>
-    </div>
+  <tr valign="middle">
+    <td background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-header.jpg" height="47" style="font-weight:bold; text-align:center; color:#FFFFFF;" bgcolor="#00426B" valign="middle">
+    	Free IELTS test preparation from the British Council
     </td>
   </tr>
+  
+  
+  
+  
+  <tr>
+    <td background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-bg.jpg">
+    <table width="600" border="0" cellspacing="0" cellpadding="0" style="font-family:Arial, Helvetica, sans-serif; color:#333333; font-size:14px; line-height:16px;">
+  <tr>
+    <td width="41"></td>
+    <td width="515">
+    
+    
+    <div style="margin:12px 8px; line-height:1.4em;">Dear Candidate,</div>
+
+<div style="margin:0 8px 12px 8px; line-height:1.4em;">Welcome to the Road to IELTS online preparation platform. Road to IELTS is designed to help you get the best possible band score in IELTS. Read the instructions below to sign in to your account and start accessing exercises, practice tests and videos designed by IELTS examiners and experts.</div>
+    
+		<table width="505" border="0" cellspacing="0" cellpadding="0" background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-bg.jpg"  style="font-family:Arial, Helvetica, sans-serif; color:#333333; font-size:14px; margin-bottom:10px;">
+          <tr>
+            <td background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-top.jpg" height="35" valign="middle" align="center" bgcolor="#00426B" style="padding-top:8px;">
+            	<img src="http://www.clarityenglish.com/images/email/rti2/ico-desktop.png"  style="vertical-align:middle; margin-right:5px;"/><span style="margin-left:5px; color:#FFFFFF; font-weight:bold;">Starting the laptop/desktop version</span>
+            
+            
+            </td>
+          </tr>
+          <tr> 
+            <td background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-bg.jpg" >
+            	<div style="padding:10px 40px; color:#333333; line-height:1.4em; font-family:Arial, Helvetica, sans-serif; font-size:1em;">
+                	<strong>Your sign in details:</strong><br />
+                    {if $api->rootID==14030} 
+					email: {$user->email}<br />
+					{else} 
+                    login ID: {$user->studentID}<br />
+					{/if}
+                    password: {$password}
+                 </div>
+            	
+            
+            </td>
+          </tr>
+          
+           <tr> 
+            <td height="16">
+            	<img src="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-border.jpg" />
+            </td>
+          </tr>
+          
+             <tr> 
+            <td align="center" style="padding-top:5px;">
+            	<a href="http://www.clarityenglish.com/area1/RoadToIELTS2/Start-{$module}.php?prefix={$prefix}" target="_blank" style="line-height:30px;  color:#3B2314; text-align:center; font-size:1.3em; font-weight:bold; text-align:center;"><img src="http://www.clarityenglish.com/images/email/rti2/ielts-lm-start.jpg" alt="Start" width="367" height="30" border="0" style="border:0; margin:0; background-color:#FFD300; color:#3B2314; text-align:center;"/></a></td>
+          </tr>
+         
+          <tr>
+            <td colspan="4" background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-tablet-btm.jpg" height="16">
+            </td>
+          </tr>
+        </table>
+        
+        <table width="505" border="0" cellspacing="0" cellpadding="0" style="font-family:Arial, Helvetica, sans-serif; color:#333333; font-size:14px; line-height:16px;"  background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-bg.jpg">
+          <tr>
+            <td height="35" colspan="4" align="center" valign="middle" background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-top.jpg" bgcolor="#00426B" style="padding-top:8px;">
+            	<img src="http://www.clarityenglish.com/images/email/rti2/ico-tablet.png"  style="vertical-align:middle; margin-right:5px;"/><span style="margin-left:5px;  color:#FFFFFF; font-weight:bold;">Starting the tablet version*</span>            </td>
+          </tr>
+          <tr> 
+            <td colspan="4" background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-bg.jpg">
+            	<div style="padding:10px 40px; color:#333333; line-height:1.4em; font-family:Arial, Helvetica, sans-serif; font-size:1em;">
+                	<strong>Your sign in details:</strong><br />
+                    email: {$user->email}<br />
+                    password: {$password}                </div>
+               </td>
+          </tr>
+          
+           <tr> 
+            <td height="16" colspan="4">
+            	<img src="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-border.jpg" />
+            </td>
+          </tr>
+          
+             <tr > 
+            <td width="40"></td>
+            <td width="268" style="color:#333333; line-height:1.2em; font-family:Arial, Helvetica, sans-serif; font-size:0.9em;">*First download the app from the App Store or Google Play Store and install the app onto your tablet.</td>
+            <td width="182" align="right">
+            	<a href="https://itunes.apple.com/us/app/road-to-ielts/id560055517?mt=8&amp;ign-mpt=uo%3D4" target="_blank" style=" font-size:0.9em;"><img src="http://www.clarityenglish.com/images/email/rti2/ielts-lm-apple-store.jpg" alt="App store" width="90" height="27" border="0"/></a>
+                <a href="https://play.google.com/store/apps/details?id=air.com.clarityenglish.ielts.app" target="_blank" style=" font-size:0.9em;"><img src="http://www.clarityenglish.com/images/email/rti2/ielts-lm-google-play.jpg" alt="Google play" width="79" height="27" border="0"/></a>           </td>
+            <td width="22"></td>
+             </tr>
+         
+          <tr >
+            <td colspan="4" background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-tablet-btm.jpg" height="16">
+            	        </td>
+          </tr>
+        </table>
+
+    	
+    	<div style="margin:12px 8px; line-height:1.4em;">We hope you will find the training useful and easy to use. Please contact us at <a href="mailto:support@roadtoielts.com">support@roadtoielts.com</a> if you have any comments or queries regarding Road to IELTS.</div>
+
+	<div style="margin:0 8px; line-height:1.4em;">Good luck with your IELTS test!</div>
+
+
+    	
+    
+    </td>
+    <td width="44"></td>
+  </tr>
+  
+  
+  
+  
 </table>
-</div>
+
+    
+    </td>
+  </tr>
+  <tr>
+    <td background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-footer-img.jpg" height="83">
+    
+    
+    <table width="600" border="0" cellspacing="0" cellpadding="0" style="font-family:Arial, Helvetica, sans-serif; color:#333333; font-size:14px; line-height:16px;">
+  <tr valign="top">
+    <td width="41"></td>
+    <td width="515">
+    
+ 	<div style="margin:0 8px; line-height:1.4em;">Best wishes,</div>
+  <div style="margin:0 8px; line-height:1.4em;">Road to IELTS Support Team</div>
+    
+    </td>
+    <td width="44"></td>
+  </tr>
+</table>
+
+    
+ 	
+    
+    
+    </td>
+  </tr>
+  
+  <tr>
+    <td height="70" background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-footer-line-bg.jpg">
+    	<a href="http://www.clarityenglish.com/" target="_blank" style="text-align:center; font-size:1em; margin:0;" ><img src="http://www.clarityenglish.com/images/email/rti2/ielts-lm-footer-line.jpg" alt="www.ClarityEnglish.com" width="600" height="70" border="0" /></a></td>
+  </tr>
+  
+</table>
+
+
+
 </body>
 </html>

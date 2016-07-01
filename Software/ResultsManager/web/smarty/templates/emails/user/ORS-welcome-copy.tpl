@@ -1,5 +1,5 @@
-{* Name: R2iV2 BC HK registration welcome *}
-{* Description: Email sent when you have first used R2iV2. *}
+{* Name: R2iV2 BC ORS welcome *}
+{* Description: Email sent when you have first clicked Road to IELTS 2 from ORS *}
 {* Parameters: $user, $api *}
 {if $api->rootID==100} 
 	{assign var='prefix' value='India'}
@@ -64,12 +64,12 @@
     
     <div style="margin:12px 8px; line-height:1.4em;">Dear Candidate,</div>
 
-<div style="margin:0 8px 12px 8px; line-height:1.4em;">Welcome to the Road to IELTS online preparation platform. Road to IELTS is designed to help you get the best possible band score in IELTS. Read the instructions below to sign in to your account and start accessing exercises, practice tests and videos designed by IELTS examiners and experts.</div>
+<div style="margin:0 8px 12px 8px; line-height:1.4em;">Welcome to the new Road to IELTS online preparation platform. Our platform is designed to help you get the best possible band score in IELTS. Read the instructions below to log in to your account and start accessing exercises, practice tests and eBooks designed by IELTS examiners and experts.</div>
     
 		<table width="505" border="0" cellspacing="0" cellpadding="0" background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-bg.jpg"  style="font-family:Arial, Helvetica, sans-serif; color:#333333; font-size:14px; margin-bottom:10px;">
           <tr>
             <td background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-top.jpg" height="35" valign="middle" align="center" bgcolor="#00426B" style="padding-top:8px;">
-            	<img src="http://www.clarityenglish.com/images/email/rti2/ico-desktop.png"  style="vertical-align:middle; margin-right:5px;"/><span style="margin-left:5px; color:#FFFFFF; font-weight:bold;">Starting the laptop/desktop version</span>
+            	<img src="http://www.clarityenglish.com/images/email/rti2/ico-desktop.png"  style="vertical-align:middle; margin-right:5px;"/><span style="margin-left:5px; color:#FFFFFF; font-weight:bold;">Accessing the laptop/desktop version</span>
             
             
             </td>
@@ -77,12 +77,8 @@
           <tr> 
             <td background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-bg.jpg" >
             	<div style="padding:10px 40px; color:#333333; line-height:1.4em; font-family:Arial, Helvetica, sans-serif; font-size:1em;">
-                	<strong>Your sign in details:</strong><br />
-                    {if $api->rootID==14030} 
-					email: {$user->email}<br />
-					{else} 
+                	<strong>Your login details:</strong><br />
                     login ID: {$user->studentID}<br />
-					{/if}
                     password: {$password}
                  </div>
             	
@@ -110,12 +106,12 @@
         <table width="505" border="0" cellspacing="0" cellpadding="0" style="font-family:Arial, Helvetica, sans-serif; color:#333333; font-size:14px; line-height:16px;"  background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-bg.jpg">
           <tr>
             <td height="35" colspan="4" align="center" valign="middle" background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-top.jpg" bgcolor="#00426B" style="padding-top:8px;">
-            	<img src="http://www.clarityenglish.com/images/email/rti2/ico-tablet.png"  style="vertical-align:middle; margin-right:5px;"/><span style="margin-left:5px;  color:#FFFFFF; font-weight:bold;">Starting the tablet version*</span>            </td>
+            	<img src="http://www.clarityenglish.com/images/email/rti2/ico-tablet.png"  style="vertical-align:middle; margin-right:5px;"/><span style="margin-left:5px;  color:#FFFFFF; font-weight:bold;">Accessing the tablet version*</span>            </td>
           </tr>
           <tr> 
             <td colspan="4" background="http://www.clarityenglish.com/images/email/rti2/ielts-lm-table-bg.jpg">
             	<div style="padding:10px 40px; color:#333333; line-height:1.4em; font-family:Arial, Helvetica, sans-serif; font-size:1em;">
-                	<strong>Your sign in details:</strong><br />
+                	<strong>Your login details:</strong><br />
                     email: {$user->email}<br />
                     password: {$password}                </div>
                </td>
@@ -129,7 +125,7 @@
           
              <tr > 
             <td width="40"></td>
-            <td width="268" style="color:#333333; line-height:1.2em; font-family:Arial, Helvetica, sans-serif; font-size:0.9em;">*First download the app from the App Store or Google Play Store and install the app onto your tablet.</td>
+            <td width="268" style="color:#333333; line-height:1.2em; font-family:Arial, Helvetica, sans-serif; font-size:0.9em;">*You must first download the app from Apple App Store or Google Play Store and install the app onto your tablet.</td>
             <td width="182" align="right">
             	<a href="https://itunes.apple.com/us/app/road-to-ielts/id560055517?mt=8&amp;ign-mpt=uo%3D4" target="_blank" style=" font-size:0.9em;"><img src="http://www.clarityenglish.com/images/email/rti2/ielts-lm-apple-store.jpg" alt="App store" width="90" height="27" border="0"/></a>
                 <a href="https://play.google.com/store/apps/details?id=air.com.clarityenglish.ielts.app" target="_blank" style=" font-size:0.9em;"><img src="http://www.clarityenglish.com/images/email/rti2/ielts-lm-google-play.jpg" alt="Google play" width="79" height="27" border="0"/></a>           </td>
@@ -143,7 +139,7 @@
         </table>
 
     	
-    	<div style="margin:12px 8px; line-height:1.4em;">We hope you will find the training useful and easy to use. Please contact us at <a href="mailto:support@roadtoielts.com">support@roadtoielts.com</a> if you have any comments or queries regarding Road to IELTS.</div>
+    	<div style="margin:12px 8px; line-height:1.4em;">We hope you will find the training useful and the site easy to use. Please contact us at <a href="mailto:support@roadtoielts.com">support@roadtoielts.com</a> if you have any comments or queries regarding Road to IELTS.</div>
 
 	<div style="margin:0 8px; line-height:1.4em;">Good luck with your IELTS test!</div>
 

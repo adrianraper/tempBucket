@@ -274,31 +274,30 @@ EOD;
 					}
 					break;
 				*/
-				$toClarity = sendEmail(28);
-				if ($data['sector'] == "Home user" || $data['sector'] == "Student") {
-					$toCustomer = sendEmail(29) && sendEmail(22);
-					//if ( ($toClarity) AND ($toCustomer) )
-					//	$returnPage = "http://www.ClarityLifeSkills.com";
-					//$returnTopPage = true;
-				} else if ($data['sector'] == "IELTS candidate") {
-					$toCustomer = sendEmail(29);
-					//if ( ($toClarity) AND ($toCustomer) )
-					//	$returnPage = "http://www.ieltspractice.com";
-					//$returnTopPage = true;
-				} else {
-					$toCustomer = sendEmail(29);			
-					//if ( ($toClarity) AND ($toCustomer) )
-					//	$returnPage = "$serverLocation/email/enquiry_thanks.php";
-					//else
-					//	$returnPage = "$serverLocation/email/enquiry_oops.php";
-					//$returnTopPage = false;
-				}
-				if ( ($toClarity) AND ($toCustomer) ) {
-						echo 'true';
-					}
-					else {
-						echo 'false';
-					}
+                    $toClarity = sendEmail(28);
+                    if ($data['sector'] == "Home user" || $data['sector'] == "Student") {
+                        $toCustomer = sendEmail(29) && sendEmail(22);
+                        //if ( ($toClarity) AND ($toCustomer) )
+                        //	$returnPage = "http://www.ClarityLifeSkills.com";
+                        //$returnTopPage = true;
+                    } else if ($data['sector'] == "IELTS candidate") {
+                        $toCustomer = sendEmail(29);
+                        //if ( ($toClarity) AND ($toCustomer) )
+                        //	$returnPage = "http://www.ieltspractice.com";
+                        //$returnTopPage = true;
+                    } else {
+                        $toCustomer = sendEmail(29);
+                        //if ( ($toClarity) AND ($toCustomer) )
+                        //	$returnPage = "$serverLocation/email/enquiry_thanks.php";
+                        //else
+                        //	$returnPage = "$serverLocation/email/enquiry_oops.php";
+                        //$returnTopPage = false;
+                    }
+                    if (($toClarity) AND ($toCustomer)) {
+                            echo 'true';
+                    } else {
+                            echo 'false';
+                    }
 					break;
 				case "20": #ieltspractice.com support site enquiry form
 					$toClarity = sendEmail(30);
@@ -339,7 +338,7 @@ EOD;
 						echo 'false';
 					}
 					break;
-				case "24": #201415 Loud and Clear 37
+				case "24": #201415 Loud and Clear 38
 					$toClarity = sendEmail(37);
 					$toCustomer = sendEmail(38);
 					if ( ($toClarity) AND ($toCustomer) ) {
@@ -469,25 +468,18 @@ function sendEmail($templateID) {
 	
 	// Set common variables
 	$clarityTest = "Clarity Testing <unfrankie@gmail.com>";
-	$clarityNicole = "Nicole Lung <nicole.lung@clarityenglish.com>";
 	$clarityVivi = "Vivying Cheng<vivying.cheng@clarityenglish.com>";
 	$claritySales = "ClarityEnglish <sales@clarityenglish.com>";
 	$clarityNews = "Clarity English <news@clarityenglish.com>";
 	$clarityInfo = "Clarity Info <info@clarityenglish.com>";
-	#not used
-	//$clarityAdmin = "Clarity Admin <news@clarityenglish.com>";
 	$claritySupport = "Clarity Support <support@clarityenglish.com>";
 	$clarityAccount = "Clarity Accounts <accounts@clarityenglish.com>";
 	$clarityCLSSupport = "ClarityLifeSkills <support@claritylifeskills.com>";
 	$clarityIELTSSupport = "IELTS Practice<support@ieltspractice.com>";
 	$clarityIELTSSupportNoreply = "IELTS Practice <noreply@ieltspractice.com>";
 	$clarityR2ISupport = "Road To IELTS Support Team<support@roadtoielts.com>";
-	#not used
-	//$clarityCLSAdmin = "ClarityLifeSkills Admin <support@claritylifeskills.com>";
-	
-	// Why do I need to specify the full URL?
-	//$templateFolder = "/email/template";	
-	$templateFolder = $serverLocation."email/template";	
+
+	$templateFolder = $serverLocation."email/template";
 	
 	// For each template, format it and add the variables you need
 	switch ($templateID) {
@@ -534,14 +526,24 @@ function sendEmail($templateID) {
 			} else if($data['sector']=="IELTS candidate") { //for IELTS Candidates
 				$body = file_get_contents("$templateFolder/email_enquiry_toIELTScandidates_byEmail.htm");
 				$from = $clarityIELTSSupport;
+			} else if($data['sector']=="Librarian") { //for Librarian
+				$body = file_get_contents("$templateFolder/email_enquiry_toCustomer_header.htm");
+				//if ( ($data['deliveryMethod']=="email, post") OR ($data['deliveryMethod']=="post") ) {
+					$body .= file_get_contents("$templateFolder/email_enquiry_toLibrary_byEmail.htm");
+				//}
+				//if ( ($data['deliveryMethod']=="email, post") OR ($data['deliveryMethod']=="email") ) {
+					//$body .= file_get_contents("$templateFolder/email_enquiry_toLibrary_byEmail.htm");
+				//}
+				$from = $clarityNews;
+				$body .= file_get_contents("$templateFolder/email_enquiry_toCustomer_footer.htm");
 			} else { //not student
 				$body = file_get_contents("$templateFolder/email_enquiry_toCustomer_header.htm");
-				if ( ($data['deliveryMethod']=="email, post") OR ($data['deliveryMethod']=="post") ) {
-					$body .= file_get_contents("$templateFolder/email_enquiry_toCustomer_byPost.htm");
-				}
-				if ( ($data['deliveryMethod']=="email, post") OR ($data['deliveryMethod']=="email") ) {
-					$body .= file_get_contents("$templateFolder/email_enquiry_toCustomer_byEmail.htm");
-				}
+				//if ( ($data['deliveryMethod']=="email, post") OR ($data['deliveryMethod']=="post") ) {
+					$body .= file_get_contents("$templateFolder/email_enquiry_toSchool_byEmail.htm");
+				//}
+				//if ( ($data['deliveryMethod']=="email, post") OR ($data['deliveryMethod']=="email") ) {
+					//$body .= file_get_contents("$templateFolder/email_enquiry_toSchool_byEmail.htm");
+				//}
 				$from = $clarityNews;
 				$body .= file_get_contents("$templateFolder/email_enquiry_toCustomer_footer.htm");
 			}
@@ -777,23 +779,58 @@ function sendEmail($templateID) {
 			//$to = "'".$data['customerName']."' <".$data['customerEmail'].">";
 			$to = $data['email'];
 			
-			$subject = "Clarity English information request"; 
-
+			$subject = "Clarity English information request";
 			break;
+
 		case 30: # ieltspractice.com contact us - to Clarity
 			$body = file_get_contents("$templateFolder/email_IPS_contactus_toClarity.htm");
 			$to = $clarityIELTSSupport;
-			$subject = "IELTSpractice.com, contact us [". $data['category'] . "] (" . date(DATE_RFC822).")"; 
-
+            switch ($data['category']) {
+                case 2:
+                    $data['category'] = 'Tell me more about Road to IELTS';
+                    break;
+                case 3:
+                    $data['category'] = 'Whats in Road to IELTS?';
+                    break;
+                case 4:
+                    $data['category'] = 'Accounts / Payment';
+                    break;
+                case 5:
+                    $data['category'] = 'Technical';
+                    break;
+                case 6:
+                    $data['category'] = 'I have Road to IELTS and a question';
+                    break;
+                default:
+            }
+			$subject = "IELTSpractice.com, contact us [". $data['category'] . "] (" . date(DATE_RFC822).")";
 			$from = $clarityIELTSSupport;
 			break;
 			
 		case 31: #  ieltspractice.com contact us - to Customer
-			$body = file_get_contents("$templateFolder/email_IPS_contactus_toCustomer.htm");
 			$to = $data['email'];
-			$subject = "IELTSpractice.com enquiry acknowledgement";
+            $category = $data['category'];
+            $subject = "IELTSpractice.com enquiry acknowledgement";
+            switch ($category) {
+                case 6:
+                    $templateFile = "email_IPS_question_about_R2I.htm";
+                    break;
+                case 5:
+                    $templateFile = "email_IPS_technical_question.htm";
+                    break;
+                case 4:
+                    $templateFile = "email_IPS_payment_question.htm";
+                    break;
+                case 2:
+                case 3:
+                default:
+                    $templateFile = "email_IPS_more_about_R2I.htm";
+                    break;
+            }
+            $body = file_get_contents("$templateFolder/$templateFile");
 			$from = $clarityIELTSSupport;
-			break;	
+			break;
+
 		case 32: # ce.com new support site contact us - to Clarity
 			$body = file_get_contents("$templateFolder/form_enquiry_supportsite_toClarity.htm");
 			$subject = $data['userType'] . " enquiry: Support enquiry [". $data['subject'] . "] (" . date(DATE_RFC822).")"; 
@@ -810,7 +847,6 @@ function sendEmail($templateID) {
 			break;
 			
 		case 33: #  ce.com new support site contact us - to Customer
-		
 			if($data['userType']=="Student") { 
 				$body = file_get_contents("$templateFolder/form_enquiry_toHomeUser_master.htm");
 				$from = $clarityCLSSupport;
@@ -887,19 +923,44 @@ function sendEmail($templateID) {
 			
 			
 			break;
-		case 37: #1415 Loud and Clear 37 - to Clarity
+		case 37: #Clarity Guide 2015 - 16 - to Clarity
 			$body = file_get_contents("$templateFolder/trial_enquiry_toClarity_byEmail.htm");
 			$to = $claritySales;
-			$subject = $data['sector'] ." enquiry: Trial request from Loud and Clear 37(" . date(DATE_RFC822).")"; 
+			$subject = $data['sector'] ." enquiry: Trial request from Clarity Guide 2015 - 16 (" . date(DATE_RFC822).")"; 
 
 			$from = $claritySales;
 			break;
-		case 38: #1415 Loud and Clear 37 - to Customer
-			$body = file_get_contents("$templateFolder/trial_enquiry_toCustomer_byEmail.htm");
+		case 38: #1415 Loud and Clear 38 - to Customer
+			/*$body = file_get_contents("$templateFolder/trial_enquiry_toCustomer_byEmail.htm");
 			$to = $data['email'];
 			$subject = "ClarityEnglish trial request acknowledgement"; 
 
 			$from = $claritySales;
+			break;*/
+			if($data['sector']=="Home user"||$data['sector']=="Student") { //for student
+				// The home user/student email doesn't need a header or footer
+				//$body = file_get_contents("$templateFolder/email_enquiry_toHomeUser_header.htm");
+				//$body .= file_get_contents("$templateFolder/email_enquiry_toHomeUser_contents.htm");
+				$body = file_get_contents("$templateFolder/email_enquiry_toHomeUser_master.htm");
+				$from = $clarityCLSSupport;
+			} else if($data['sector']=="IELTS candidate") { //for IELTS Candidates
+				$body = file_get_contents("$templateFolder/email_enquiry_toIELTScandidates_byEmail.htm");
+				$from = $clarityIELTSSupport;
+			} else if($data['sector']=="Librarian") { //for Librarian
+				$body = file_get_contents("$templateFolder/email_enquiry_toCustomer_header.htm");
+				$body .= file_get_contents("$templateFolder/email_enquiry_toLibrary_byEmail.htm");
+				$from = $clarityNews;
+				$body .= file_get_contents("$templateFolder/email_enquiry_toCustomer_footer.htm");
+			} else { //not student
+				$body = file_get_contents("$templateFolder/email_enquiry_toCustomer_header.htm");
+				$body .= file_get_contents("$templateFolder/email_enquiry_toSchool_byEmail.htm");
+				$from = $clarityNews;
+				$body .= file_get_contents("$templateFolder/email_enquiry_toCustomer_footer.htm");
+			}
+			// This only leads to complications
+			//$to = "'".$data['customerName']."' <".$data['customerEmail'].">";
+			$to = $data['customerEmail'];
+			$subject = "ClarityEnglish trial request acknowledgement"; 
 			break;
 		case 39: #China Road to IELTS FV Welcome Email - to Customer
 			$to = $data['customerEmail'];
@@ -923,6 +984,9 @@ function sendEmail($templateID) {
 
 			$emailData = array(	'name'=>$data['customerName'],
 								'email'=>$data['customerEmail'],
+								'studentID'=>$data['studentID'],
+								'password'=>$data['password'],
+								'productCode'=>$data['productCode'],
 								'expiryDate'=>$data['expiryDate']);
 			$emailArray = array("to" => $to, "data" => $emailData);
 			$templateID = 'user/Welcome-BCChina-lastmin';
@@ -944,39 +1008,44 @@ function sendEmail($templateID) {
 			break;
 		case 98: # server alert
 			$body = file_get_contents("$templateFolder/website_monitoring.htm");
-			$to = $clarityTest;
+			$to = "Adrian <adrian.raper@clarityenglish.com>";
 			$cc = "Vivying <vivying@clarityenglish.com>";
+			$bcc = $clarityTest;
 			$subject = "S3 upload status report(" . date(DATE_RFC822).")"; 
 			$from = $claritySupport;
 			break;			
 		case 996: # China server alert
 			$body = file_get_contents("$templateFolder/website_monitoring.htm");
-			$to = $clarityTest;
+			$to = "Adrian <adrian.raper@clarityenglish.com>";
 			$cc = "Vivying <vivying@clarityenglish.com>";
+			$bcc = $clarityTest;
 			$subject = "CHINA - Website status report(" . date(DATE_RFC822).")"; 
 
 			$from = $claritySupport;
 			break;
 		case 997: # China server warning
 			$body = file_get_contents("$templateFolder/website_monitoring.htm");
-			$to = $clarityTest;
+			$to = "Adrian <adrian.raper@clarityenglish.com>";
 			$cc = "Vivying <vivying@clarityenglish.com>";
+			$bcc = $clarityTest;
 			$subject = "CHINA - URGENT: Website status warning(" . date(DATE_RFC822).")"; 
 
 			$from = $claritySupport;
 			break;			
 		case 998: # Europe server alert
 			$body = file_get_contents("$templateFolder/website_monitoring.htm");
-			$to = $clarityTest;
+			$to = "Adrian <adrian.raper@clarityenglish.com>";
 			$cc = "Vivying <vivying@clarityenglish.com>";
+			$bcc = $clarityTest;
 			$subject = "Europe - Website status report(" . date(DATE_RFC822).")"; 
 
 			$from = $claritySupport;
 			break;
 		case 999: # Europe server warning
 			$body = file_get_contents("$templateFolder/website_monitoring.htm");
-			$to = $clarityTest;
+			$to = "Adrian <adrian.raper@clarityenglish.com>";
 			$cc = "Vivying <vivying@clarityenglish.com>";
+			$bcc = $clarityTest;
 			$subject = "Europe - URGENT: Website status warning(" . date(DATE_RFC822).")"; 
 
 			$from = $claritySupport;
@@ -985,7 +1054,7 @@ function sendEmail($templateID) {
 			return false;
 	}
 	
-	# Do some replacement on variables
+	// Do some replacement on variables
 	foreach ($data as $key => $value) {
 		$body = str_replace("{".$key."}", $value, $body);
 	}
@@ -994,6 +1063,7 @@ function sendEmail($templateID) {
 	$emailAPI['from'] = $from;
 	$emailAPI['to'] = $to;
 	$emailAPI['cc'] = $cc;
+	$emailAPI['bcc'] = $bcc;
 	$emailAPI['subject'] = $subject;
 	$emailAPI['body'] = $body;
 	$emailAPI['transactionTest'] = false;
@@ -1006,18 +1076,9 @@ function sendEmail($templateID) {
 		return false;
 	}
 	/*
-	# Do some replacement on variables
-	Foreach ($data as $key => $value) {
-		$body = str_replace("{".$key."}", $value, $body);
-	}
-	
-	# Send it out
-	return mail( $to, $subject, $body, $headers );
-	
-	# debug
-	//echo $to."<br>".$subject."<br>".$headers."<br>".$body."<br><br>";
+	// debug
+	// echo $to."<br>".$subject."<br>".$headers."<br>".$body."<br><br>";
 	*/
 }
 flush();
 exit(0);
-?>
