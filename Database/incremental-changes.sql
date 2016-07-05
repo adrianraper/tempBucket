@@ -1430,7 +1430,8 @@ CREATE TABLE `T_TestDetail` (
   `F_TestID` int(10) NOT NULL,
   `F_GroupID` int(10) NOT NULL,
   `F_Caption` TEXT NULL,
-  `F_StartConditions` TEXT NOT NULL,
+  `F_StartType` TEXT NOT NULL,
+  `F_StartData` TEXT NULL,
   `F_ScheduledStartTime` DATETIME NOT NULL,
   `F_CloseTime` DATETIME NULL,
   `F_Language` VARCHAR(16) NOT NULL DEFAULT 'EN',
@@ -1440,7 +1441,10 @@ CREATE TABLE `T_TestDetail` (
 )  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 INSERT INTO `T_TestDetail`
-(`F_TestID`,`F_GroupID`,`F_Caption`,`F_StartConditions`,`F_ScheduledStartTime`,`F_CloseTime`,`F_Language`)
+(`F_TestID`,`F_GroupID`,`F_Caption`,`F_StartType`,`F_StartData`,`F_ScheduledStartTime`,`F_CloseTime`,`F_Language`)
 VALUES 
-(63,10757,'2016 summer school','{ "type": "code", "value": "12345" }','2016-09-14 11:00','2016-09-14 17:00','EN'),
-(63,10757,'2015 summer school','{ "type": "code", "value": "8842G" }','2015-09-12 11:00','2015-09-12 17:00','EN');
+(44,10757,'2016 summer school','code','12345','2016-09-14 11:00','2016-09-14 17:00','EN'),
+(44,10757,'2015 summer school','code','8842G','2015-09-12 11:00','2015-09-12 17:00','EN');
+insert into T_Memory
+(F_UserID, F_ProductCode, F_Key, F_Value);
+values (253947, 44, 'CEF', "B1");

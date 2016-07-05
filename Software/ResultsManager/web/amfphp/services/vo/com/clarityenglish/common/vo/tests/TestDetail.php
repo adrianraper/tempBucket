@@ -10,7 +10,8 @@ class TestDetail {
 	var $testId;
 	var $groupId;
 	var $caption;
-	var $startConditions;
+	var $startType;
+	var $startData;
 	var $startTime;
 	var $closeTime;
 	var $language;
@@ -31,7 +32,8 @@ class TestDetail {
 		$this->testId = $obj->F_TestID;
 		$this->groupId = intval($obj->F_GroupID);
 		$this->caption = $obj->F_Caption;
-		$this->startConditions = $obj->F_StartConditions;
+		$this->startType = $obj->F_StartType;
+		$this->startData = $obj->F_StartData;
 		$this->startTime = $obj->F_ScheduledStartTime;
 		$this->closeTime = $obj->F_CloseTime;
 		$this->language = $obj->F_Language;
@@ -51,7 +53,8 @@ class TestDetail {
 		$array['F_GroupID'] = $this->groupId;
 		$array['F_TestID'] = $this->testId;
 		$array['F_Caption'] = $this->caption;
-		$array['F_StartConditions'] = $this->startConditions;
+		$array['F_StartType'] = $this->startType;
+		$array['F_StartData'] = $this->startD;
 		$array['F_ScheduledStartTime'] = $this->startTime;
 		$array['F_CloseTime'] = $this->closeTime;
 		$array['F_Language'] = $this->language;

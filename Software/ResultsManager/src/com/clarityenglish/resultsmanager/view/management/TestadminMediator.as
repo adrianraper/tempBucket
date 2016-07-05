@@ -3,6 +3,7 @@
  */
 package com.clarityenglish.resultsmanager.view.management {
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.events.EmailEvent;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.content.Content;
@@ -57,7 +58,7 @@ package com.clarityenglish.resultsmanager.view.management {
 			testadminView.testDetailPanel.addEventListener(TestDetailEvent.ADD, onTestDetailAdd);
 			testadminView.addEventListener(TestDetailEvent.DELETE, onTestDetailDelete);
 			
-			//testadminView.addEventListener(ReportEvent.SHOW_TEST_REPORT_WINDOW, onShowReportWindow);
+			testadminView.addEventListener(EmailEvent.SEND_EMAIL, onSendEmail);
 		}
 		
 		private function get testadminView():TestadminView {
@@ -99,6 +100,7 @@ package com.clarityenglish.resultsmanager.view.management {
 					RMNotifications.TEST_DETAIL_DELETED,
 					RMNotifications.TEST_LICENCES_LOADED,
 					RMNotifications.CONTENT_LOADED,
+					CommonNotifications.EMAIL_SENT,
 				];
 		}
 
@@ -208,6 +210,10 @@ package com.clarityenglish.resultsmanager.view.management {
 		}
 		private function onTestDetailAdd(e:TestDetailEvent):void {			
 			sendNotification(RMNotifications.ADD_TEST_DETAIL, e);
+		}
+		
+		private function onSendEmail(e:EmailEvent):void {
+			sendNotification(CommonNotifications.SEND_EMAIL, e);
 		}
 	}
 }

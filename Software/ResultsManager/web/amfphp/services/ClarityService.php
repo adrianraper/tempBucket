@@ -31,7 +31,8 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Title.p
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Course.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Unit.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Exercise.php");
-
+// gh#1487
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/email/TemplateDefinition.php");
 // v3.4 To allow the account root information to be passed back to RM
 // gh#125
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Account.php");
@@ -43,6 +44,10 @@ require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
 require_once(dirname(__FILE__)."/../../classes/TestDetailOps.php");
+require_once(dirname(__FILE__)."/../../classes/DailyJobObs.php"); // TODO Correct spelling!!
+require_once(dirname(__FILE__)."/../../classes/CourseOps.php"); //
+require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php"); //
+require_once(dirname(__FILE__)."/../../classes/MemoryOps.php"); //
 
 // v3.6 What happens if I want to add in AccountOps so that I can pull back the account object?
 // I already getContent - will that clash or duplicate?
@@ -103,6 +108,8 @@ class ClarityService extends AbstractService {
         $this->accountOps = new AccountOps($this->db);
         // gh#1487
         $this->testDetailOps = new TestDetailOps($this->db);
+        $this->dailyJobOps = new DailyJobObs($this->db);
+        $this->emailOps = new EmailOps($this->db);
         
 	}
 	public function changeDB($dbHost) {

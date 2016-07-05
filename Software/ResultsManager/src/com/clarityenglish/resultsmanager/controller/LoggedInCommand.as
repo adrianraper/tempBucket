@@ -3,21 +3,23 @@ Simple Command - PureMVC
  */
 package com.clarityenglish.resultsmanager.controller {
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.EmailProxy;
 	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.Constants;
 	import com.clarityenglish.resultsmanager.model.ContentProxy;
+	import com.clarityenglish.resultsmanager.model.EmailOptsProxy;
 	import com.clarityenglish.resultsmanager.model.LicenceProxy;
 	import com.clarityenglish.resultsmanager.model.LoginOptsProxy;
-	import com.clarityenglish.resultsmanager.model.EmailOptsProxy;
 	import com.clarityenglish.resultsmanager.model.ManageableProxy;
 	import com.clarityenglish.resultsmanager.model.ReportProxy;
+	import com.clarityenglish.resultsmanager.model.TestDetailsProxy;
 	import com.clarityenglish.resultsmanager.model.UploadProxy;
 	import com.clarityenglish.resultsmanager.model.UsageProxy;
-	import com.clarityenglish.resultsmanager.model.TestDetailsProxy;
+	import com.clarityenglish.utils.TraceUtils;
+	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	import org.puremvc.as3.patterns.observer.Notification;
-	import com.clarityenglish.utils.TraceUtils;
 
 	/**
 	 * SimpleCommand
@@ -47,9 +49,9 @@ package com.clarityenglish.resultsmanager.controller {
 			// v3.6 For RM licence type
 			Constants.licenceType = data.licenceType as Number;
 			
-			TraceUtils.myTrace("prefix is "+Constants.prefix);
-			TraceUtils.myTrace("loggedInCommand for " + Constants.userID + " as " + Constants.userType + " called " + Constants.userName); // + " data.userID=" + data.userID);
-			TraceUtils.myTrace("member of group(s) " + Constants.groupID.toString() + "=" + Constants.parentGroupIDs.toString());
+			//TraceUtils.myTrace("prefix is "+Constants.prefix);
+			//TraceUtils.myTrace("loggedInCommand for " + Constants.userID + " as " + Constants.userType + " called " + Constants.userName); // + " data.userID=" + data.userID);
+			//TraceUtils.myTrace("member of group(s) " + Constants.groupID.toString() + "=" + Constants.parentGroupIDs.toString());
 			
 			// Configure the result manager proxies
 			facade.registerProxy(new UploadProxy());
@@ -61,6 +63,7 @@ package com.clarityenglish.resultsmanager.controller {
 			facade.registerProxy(new LoginOptsProxy());
 			facade.registerProxy(new EmailOptsProxy());
 			facade.registerProxy(new TestDetailsProxy());
+			facade.registerProxy(new EmailProxy());
 			
 			// Send another COPY_LOADED notification in case the language has changed (this forces everything to update its copy)
 			sendNotification(CommonNotifications.COPY_LOADED);

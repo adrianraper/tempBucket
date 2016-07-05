@@ -145,7 +145,7 @@ foreach ($emailArray as $email) {
 			document.write('<div id="loading"><br>Sending emails...<br><br>Do not refresh this page!</div>');
 			window.onload=function() {
 				$("loading").style.display = "none";
-			}
+			};
 		</script>
 		
 		<h1>DMS Email Merge</h1>

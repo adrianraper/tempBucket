@@ -8,7 +8,7 @@
 		<![CDATA[
 		import com.clarityenglish.common.model.interfaces.CopyProvider;
 		import com.clarityenglish.common.vo.email.TemplateDefinition;
-		import com.clarityenglish.dms.view.email.events.EmailEvent;
+		import com.clarityenglish.common.events.EmailEvent;
 		import flash.events.Event;
 		import mx.collections.ArrayCollection;
 			

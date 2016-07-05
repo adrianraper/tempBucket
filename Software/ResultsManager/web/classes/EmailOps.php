@@ -29,7 +29,7 @@ class EmailOps {
 	 * Since this can send more than one email $emailsArray is an array of objects, with each object having:
 	 * 
 	 * o from: the email address to send from (currently unused - from is taken directly from config.php)
-	 * o templateName: the template to send
+	 * o templateName the template to send
 	 * o emailArray: an array of 'to' and 'data' objects, one per email to be sent.  This also has an optional 'attachments' array which
 	 * will be used for attaching licence files, etc.  An example use might be:
 	 *
@@ -66,6 +66,7 @@ class EmailOps {
 				// No, you can't use the cache otherwise all emails in this batch get the same data
 				$useCache = false;
 				
+				// TODO Find better way to not hardcode emails folder here
 				$emailHTML = $this->templateOps->fetchTemplate("emails/".$templateName, $email['data'], $useCache);
 				
 				// Get the subject of the email from the <title></title> tag

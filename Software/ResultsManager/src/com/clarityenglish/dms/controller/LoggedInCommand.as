@@ -4,7 +4,7 @@ Simple Command - PureMVC
 package com.clarityenglish.dms.controller {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.DictionaryProxy;
-	import com.clarityenglish.dms.model.EmailProxy;
+	import com.clarityenglish.common.model.EmailProxy;
 	import com.clarityenglish.dms.Constants;
 	import com.clarityenglish.dms.model.AccountProxy;
 	import org.puremvc.as3.interfaces.INotification;

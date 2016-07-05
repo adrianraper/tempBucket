@@ -45,7 +45,6 @@ class MemoryOps {
     		
         $value = $this->db->GetOne("SELECT F_Value FROM T_Memory WHERE F_UserID=? AND F_ProductCode=? AND F_Key=?",
             array($userId, $productCode, $key));
-
         // Return arrays rather than objects. Could use serialize if we really want both. 
         // Or use the fact that _explictType will be set for our Bento classes
         // http://stackoverflow.com/questions/2281973/json-encode-json-decode-returns-stdclass-instead-of-array-in-php 

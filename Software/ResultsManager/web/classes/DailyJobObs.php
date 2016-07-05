@@ -6,6 +6,8 @@ class DailyJobObs {
 	var $db;
 	var $server;
 	
+	// TODO Spelling!!!
+	
 	function DailyJobObs($db = null) {
 		// gh#1137 This doesn't work from a cronjob
 		$this->server = (isset($_SERVER['HTTP_HOST'])) ? $_SERVER['HTTP_HOST'] : 'www.clarityenglish.com';
@@ -661,13 +663,18 @@ SQL;
 	 * Would be more useful if you could include other information in the emailArray
 	 * 
 	 */
-	public function getEmailsForGroup($groupId) {
+	public function getEmailsForGroup($groupIdArray, $templateDefinition=null) {
 
 		// Initialise
-		$emailArray = array();
+		$emailArray = array();		
+		$groups = array();
 		
-		$groups = $this->manageableOps->getGroupSubgroups($groupId);
+		foreach ($groupIdArray as $groupId) {
+			AbstractService::$debugLog->info("get subgroups for $groupId");
+			$groups = array_merge($groups, $this->manageableOps->getGroupSubgroups($groupId));
+		}
 		$groupList = implode(',', $groups);
+		//AbstractService::$debugLog->info("end up asking for users in " . $groupList);
 		
 		$sql = <<<SQL
 			SELECT u.*
@@ -679,6 +686,7 @@ SQL;
 		$rs = $this->db->Execute($sql, $bindingParams);
 
 		if ($rs->RecordCount() > 0) {
+			$noEmailCount = 0;
 			while ($dbObj = $rs->FetchNextObj()) {
 				$user = new User();
 				$user->fromDatabaseObj($dbObj);
@@ -687,10 +695,26 @@ SQL;
 				if (isset($user->email) && $user->email) {
 					$toEmail = $user->email;
 					$emailData = array("user" => $user);
+					
+					// Based on the template, you might need to query the database for extra information
+					switch ($templateDefinition->filename) {
+						case "user/PPT-with-result":
+							// We need to get the pre-saved test result for this user
+							$emailData['testResult'] = $this->memoryOps->get('CEF', 44, $user->id);
+							break;
+						default:
+					}
+					
+					// gh#1487
+					if (!is_null($templateDefinition->data))
+						$emailData['templateData'] = $templateDefinition->data;
 					$thisEmail = array("to" => $toEmail, "data" => $emailData);
 					$emailArray[] = $thisEmail;
+				} else {
+					$noEmailCount++;
 				}
 			}
+			AbstractService::$debugLog->info("got $noEmailCount users with no email");
 		}
 		return $emailArray;
 	}

@@ -6,8 +6,8 @@ package com.clarityenglish.dms.view.email {
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.dms.DMSNotifications;
-	import com.clarityenglish.dms.model.EmailProxy;
-	import com.clarityenglish.dms.view.email.events.EmailEvent;
+	import com.clarityenglish.common.model.EmailProxy;
+	import com.clarityenglish.common.events.EmailEvent;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;

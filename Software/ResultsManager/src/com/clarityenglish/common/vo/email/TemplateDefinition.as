@@ -17,6 +17,9 @@
 		// Added to PHP by Adrian
 		public var templateID:String;
 		public var name:String;
+		
+		// gh#1487 Data to go in the template that is the same for this whole batch
+		public var data:Object;
 	}
 	
 }

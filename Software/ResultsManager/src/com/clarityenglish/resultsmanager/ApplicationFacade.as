@@ -61,6 +61,7 @@
 			registerCommand(RMNotifications.UPDATE_TEST_DETAIL, UpdateTestDetailCommand);
 			registerCommand(RMNotifications.DELETE_TEST_DETAIL, UpdateTestDetailCommand);
 			registerCommand(RMNotifications.ADD_TEST_DETAIL, UpdateTestDetailCommand);
+			registerCommand(CommonNotifications.SEND_EMAIL, SendEmailCommand);
 			
 		}
 	}

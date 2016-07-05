@@ -133,16 +133,15 @@ class TemplateOps {
 		}
 		// Add in the data arrays
 		foreach ($dataArray as $key => $value) {
-			//echo "fetchTemplate has data for ".$key;
 			$smarty->assign($key, $value);
 		}
+		AbstractService::$debugLog->info("fetchTemplate has testResult=" .  $dataArray['testDetail']->caption);
 		
 		// Always add in the copy array
 		$smarty->assign("copy", $this->copyOps->getCopyArray());
 		
 		// v3.4 And the template folder? This to allow you to do file_exists within a template.
 		$smarty->assign("template_dir", $smarty->template_dir);
-		
 		return $smarty->fetch($templateName.".tpl");
 	}
 	

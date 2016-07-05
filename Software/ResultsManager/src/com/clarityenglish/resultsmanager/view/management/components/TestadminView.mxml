@@ -5,9 +5,12 @@
 		   implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>
 		<![CDATA[
+			import com.clarityenglish.common.events.EmailEvent;
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
 			import com.clarityenglish.common.vo.content.Title;
+			import com.clarityenglish.common.vo.email.TemplateDefinition;
 			import com.clarityenglish.common.vo.manageable.Manageable;
+			import com.clarityenglish.common.vo.manageable.User;
 			import com.clarityenglish.common.vo.tests.TestDetail;
 			import com.clarityenglish.resultsmanager.Constants;
 			import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
@@ -17,7 +20,9 @@
 			
 			import flash.text.StyleSheet;
 			
+			import mx.controls.Alert;
 			import mx.core.UIComponent;
+			import mx.events.CloseEvent;
 			import mx.events.ListEvent;
 			import mx.managers.PopUpManager;
 			
@@ -28,23 +33,18 @@
 			public var manageables:Array;
 			
 			private var reportWindow:TestadminReportWindow;
-				
+							
 			[Bindable]
 			public var selectedGroup:Manageable;
 			public var selectedTitle:Title;
 			
+			// Icon for the alert window
+			[Embed(source="/../assets/warning_icon.swf")]
+			private var alertWarningIcon:Class;	
+			
 			public function setCopyProvider(copyProvider:CopyProvider):void {
 				this.copyProvider = copyProvider;
 				
-				var replaceObj:Object = new Object();
-				replaceObj.helpFolder = Constants.HOST + Constants.HELP_FOLDER;
-				replaceObj.helpFile = replaceObj.helpFolder + copyProvider.getCopyForId("guide");
-				// I can directly link to a destination with #tutorials. But this is not the same as bookmarks which Word will build for me.
-				replaceObj.iconsRef = copyProvider.getCopyForId("helpPageIconsRef");
-				replaceObj.pdfBookmarks = "&pagemode=bookmarks";
-				replaceObj.searchAnimation = "http://www.viewletcentral.com/vc/viewlet/463414924/";
-				replaceObj.hiddenContentAnimation = replaceObj.helpFolder + copyProvider.getCopyForId("tutorialHiddenContent");
-	
 				testDetailPanel.setCopyProvider(copyProvider);
 				listOfTestsLabel.text = copyProvider.getCopyForId("listOfTestsLabel");
 				newTestButton.label = copyProvider.getCopyForId("addTest");
@@ -62,10 +62,52 @@
 				sendResultEmailButton.label = copyProvider.getCopyForId("sendResultEmail");
 			}
 			
-			private function onSendWelcomeEmail(e:Event):void {				
+			private function onSendWelcomeEmail(e:Event):void {
+				// TODO where should this be set. rm.xml, config.xml?
+				var testDetail:TestDetail = testList.selectedItem as TestDetail;
+				var welcomeEmailTemplate:TemplateDefinition = new TemplateDefinition();
+				welcomeEmailTemplate.filename = "user/PPT-welcome";
+				welcomeEmailTemplate.name = "invitation";
+				welcomeEmailTemplate.data = {testDetail: testDetail};
+
+				showSendEmailDialog(function(e:CloseEvent):void {
+					if (e.detail == Alert.YES)
+						dispatchEvent(new EmailEvent(EmailEvent.SEND_EMAIL, welcomeEmailTemplate, new Array(selectedGroup)));
+				}, welcomeEmailTemplate );
 			}
 			private function onSendResultEmail(e:Event):void {
+				// TODO where should this be set. rm.xml, config.xml?
+				var testDetail:TestDetail = testList.selectedItem as TestDetail;
+				var resultEmailTemplate:TemplateDefinition = new TemplateDefinition();
+				resultEmailTemplate.filename = (testDetail.showResult) ? "user/PPT-with-result" : "user/PPT-without-result";
+				resultEmailTemplate.name = "result";
+				resultEmailTemplate.data = {testDetail: testDetail};
+				
+				showSendEmailDialog(function(e:CloseEvent):void {
+					if (e.detail == Alert.YES)
+						dispatchEvent(new EmailEvent(EmailEvent.SEND_EMAIL, resultEmailTemplate, new Array(selectedGroup)));
+				}, resultEmailTemplate );
 			}
+			private function showSendEmailDialog(alertListener:Function, template:TemplateDefinition):void {
+				var userCount:uint = 0;
+				var usersWithoutEmail:uint = 0;
+				var manageables:Array = selectedGroup.getSubUsers();
+				
+				// Count how many users, and note how many don't have emails
+				for each (var manageable:Manageable in manageables) {
+					if (manageable is User) {
+						if ((manageable as User).email) {
+							userCount++;
+						} else {
+							usersWithoutEmail++;
+						}
+					}
+				}
+				var alertVersion:String = (usersWithoutEmail == 0) ? "sendEmailAlert" : "sendEmailWarnAboutNoEmail";
+				var text:String = copyProvider.getCopyForId(alertVersion, {userCount: userCount, emailType: template.name, noEmailCount: usersWithoutEmail});
+				Alert.show(text, "Confirm", Alert.YES | Alert.NO, this, alertListener, alertWarningIcon);
+			}
+			
 			// Show limited report filtering window
 			public function onGenerateReport(e:Event):void {
 				if (!reportWindow) {

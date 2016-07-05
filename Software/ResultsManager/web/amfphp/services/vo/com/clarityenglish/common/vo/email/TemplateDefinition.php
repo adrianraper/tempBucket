@@ -12,13 +12,12 @@ class TemplateDefinition {
 	var $filename;
 	var $description;
 	
-	function TemplateDefinition($templateID=null, $title = null, $filename = null, $description = null) {
+	function TemplateDefinition($templateID=null, $title = null, $filename = null, $description = null, $data = null) {
 		$this->templateID = $templateID;
 		$this->title = $title;
 		$this->filename = $filename;
 		$this->description = $description;
-	}
-	
+		// gh#1487
+		$this->data = $data;
+	}	
 }
-
-?>

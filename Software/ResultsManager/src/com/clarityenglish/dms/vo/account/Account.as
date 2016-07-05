@@ -3,7 +3,7 @@
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.common.vo.Reportable;
 	import com.clarityenglish.dms.ApplicationFacade;
-	import com.clarityenglish.dms.model.EmailProxy;
+	import com.clarityenglish.common.model.EmailProxy;
 	
 	/**
 	* ...

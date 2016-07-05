@@ -2,7 +2,7 @@
 Simple Command - PureMVC
  */
 package com.clarityenglish.dms.controller {
-	import com.clarityenglish.dms.model.EmailProxy;
+	import com.clarityenglish.common.model.EmailProxy;
 	import com.clarityenglish.dms.view.account.events.AccountEvent;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;

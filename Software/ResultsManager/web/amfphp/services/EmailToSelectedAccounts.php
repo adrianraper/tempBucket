@@ -69,9 +69,10 @@ $testingTriggers = "RM-welcome";
 
 if (stristr($testingTriggers, "RM-welcome")) {
 	// Email to all users in a group
-	$groupId = 35026;
+	// Note, changed without testing that array is ok
+	$groupIds = array('35026');
 	$templateID = 'user/CPEIP-LELT-welcome';
-	$emailArray = $thisService->dailyJobOps->getEmailsForGroup($groupId);
+	$emailArray = $thisService->dailyJobOps->getEmailsForGroups($groupIds);
 	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 		// Send the emails
 		$thisService->emailOps->sendEmails("", $templateID, $emailArray);

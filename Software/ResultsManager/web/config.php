@@ -39,7 +39,7 @@ $GLOBALS['rmail_smtp_port'] = 25;
 $GLOBALS['rmail_smtp_helo'] = "localhost";
 $GLOBALS['rmail_smtp_auth'] = true;
 $GLOBALS['rmail_smtp_username'] = "adrian.raper@clarityenglish.com";
-$GLOBALS['rmail_smtp_password'] = "Smtp4Ce!com";
+$GLOBALS['rmail_smtp_password'] = "Ce2015@smtp";
 
 /* The 'from' field of auto-sent emails */
 $GLOBALS['rmail_from'] = "Clarity English <support@clarityenglish.com>";

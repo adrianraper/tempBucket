@@ -28,7 +28,6 @@
 		/**
 		 * How the test can be started and stopped
 		 */
-		private var _startConditions:String; // {"type": "code", "value": "xxxx"}
 		public var startType:String;
 		public var startData:String;
 		private var _startTime:Date;
@@ -36,17 +35,6 @@
 		
 		public function TestDetail() {}
 		
-		public function set startConditions(value:String):void {
-			// TODO how to catch JSON errors?
-			var data:Object = JSON.decode(value);
-     		this.startType = data.type
-			if (data.value)
-				this.startData = data.value;
-		}
-		public function get startConditions():String {
-			var data:Object = { type: this.startType, value: this.startData };
-			return JSON.encode(data);
-		}
 		public function set closeTime(value:String):void {
 			_closeTime = DateUtils.ansiStringToDate(value);
 		}
