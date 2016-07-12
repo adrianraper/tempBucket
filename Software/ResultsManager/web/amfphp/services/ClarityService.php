@@ -228,6 +228,7 @@ class ClarityService extends AbstractService {
 			// v3.5 Checking on data types. F_UserID is converted to string in LoggedInCommand
 			// noStudents means don't display students, not number of students! So it is converted to boolean
 			// v3.5 You really need to send this back as a user or account or title or something rather than all these variables.
+           // AbstractService::$debugLog->info("successful login for $loginObj->F_UserName");
 			return array("userID" => (int)$loginObj->F_UserID,
 						 "userType" => (int)$loginObj->F_UserType,
 						 "languageCode" => $loginObj->F_LanguageCode,

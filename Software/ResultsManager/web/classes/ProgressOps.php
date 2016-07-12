@@ -301,8 +301,48 @@ EOD;
         }
         return false;
     }
-	
-	/**
+
+    /**
+     * This method is called to insert a session record for a test
+     */
+    function startTestSession($user, $rootId, $productCode, $testId = null) {
+
+        // gh#604 You might start with user as a plain userId
+        if ($user instanceof User) {
+            // For teachers we will set rootID to -1 in the session record, so, are you a teacher?
+            // Or more specifically are you NOT a student
+            if (!$user->userType == User::USER_TYPE_STUDENT)
+                $rootId = -1;
+            $userId = $user->userID;
+        } else {
+            $userId = $user;
+        }
+
+        $dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+        $dateNow = $dateStampNow->format('Y-m-d H:i:s');
+
+        $sql = <<<SQL
+			INSERT INTO T_TestSession (F_UserID, F_RootID, F_ProductCode, F_TestID, F_ReadyDateStamp)
+			VALUES (?, ?, ?, ?, ?)
+SQL;
+
+        // We want to return the newly created F_SessionID (or the SQL error)
+        $bindingParams = array($userId, $rootId, $productCode, $testId, $dateNow);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs) {
+            $sessionId = $this->db->Insert_ID();
+            if ($sessionId) {
+                return $sessionId;
+            } else {
+                // The database probably doesn't support the Insert_ID function
+                throw $this->copyOps->getExceptionForId("errorCantFindAutoIncrementSessionId");
+            }
+        } else {
+            throw $this->copyOps->getExceptionForId("errorDatabaseWriting");
+        }
+    }
+
+    /**
 	 * This method is called to insert a score record to the database 
 	 */
 	function insertScore($score, $user) {
@@ -343,8 +383,35 @@ EOD;
 		// gh#119
 		return $score;
 	}
-	
-	/**
+
+    /**
+     * This method is called to insert a score record to the database
+     */
+    function insertScoreDetails($scoreDetails, $user) {
+        // For teachers we will not save any score details
+        if (!$user->userType == 0)
+            return;
+
+        $rootID = null; // I don't think this needs to be in T_ScoreDetail does it?
+        $sqlData = array();
+        foreach($scoreDetails as $scoreDetail) {
+            $sqlData[] = '("'.$user->userID.'", "'.$rootID.'", "'.$scoreDetail->sessionID.
+                '", "'.$scoreDetail->unitID.'", "'.$scoreDetail->exerciseID.
+                '", "'.$scoreDetail->itemID.'", "'.$scoreDetail->detail.'", "'.$scoreDetail->dateStamp.'")';
+        }
+        $sql = <<<EOD
+			INSERT INTO T_ScoreDetail (F_UserID,F_RootID,F_SessionID,F_UnitID,F_ExerciseID,F_ItemID,F_Score,F_Detail,F_DateStamp)
+			VALUES 
+EOD;
+        $sql .= implode(',', $sqlData);
+
+        $rc = $this->db->Execute($sql);
+        if (!$rc)
+            throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
+
+    }
+
+    /**
 	 * Get hidden content records from the database that describe which bits of content users in this group should see.
 	 *
 	 */

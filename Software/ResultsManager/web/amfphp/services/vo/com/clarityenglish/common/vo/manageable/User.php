@@ -347,7 +347,16 @@ EOD;
 				return $value;
 		}
 	}
-	
+
+	// ctp#47 Hide any information that a normal app doesn't need to see
+    public function publicView() {
+        // This will permanently remove sensitive fields from this object
+        $this->password = null;
+        $this->registerMethod = null;
+        $this->birthday = null;
+        $this->registrationDate= null;
+    }
+
 	/**
 	 * Unserialize a manageable from an xml document and return it
 	 */
@@ -427,4 +436,3 @@ EOD;
 	}
 	
 }
-?>

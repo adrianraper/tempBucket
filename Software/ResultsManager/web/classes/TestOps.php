@@ -50,7 +50,7 @@ SQL;
 
     function addTest($test) {
         $dbObj = $test->toAssocArray();
-        $rs = $this->db->AutoExecute("T_ScheduledTests", $dbObj, "INSERT");
+        $this->db->AutoExecute("T_ScheduledTests", $dbObj, "INSERT");
     }
     function updateTest($test) {
         $dbObj = $test->toAssocArray();

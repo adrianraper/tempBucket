@@ -24,7 +24,7 @@ class LicenceOps {
 	}
 	
 	/**
-	 * Check that this user can get a licence slot right now 
+	 * Check that this user can get a licence slot right now
 	 */
 	function getLicenceSlot($user, $rootID, $productCode, $licence, $ip = '') {
 		// Whilst rootID might be a comma delimited list, you can treat
@@ -148,27 +148,34 @@ EOD;
 					$licenceID = 0;
 					
 				} else {
-					// Has this user got an existing licence we can use?
-					if ($this->checkExistingLicence($user, $productCode, $licence)) {
-						$licenceID = $user->userID;
-												
-						// If so, update their use of it
-						// Deprecated as the session record is effectively the last licence use
-						//$rc = $this->updateLicence($licence);
-					} else {
-						// How many licences have been used?
-						if ($this->countUsedLicences($singleRootID, $productCode, $licence) < $licence->maxStudents) {
-							// Grab one
-							// Deprecated as the session record is effectively the last licence use
-							//$licenceID = $this->allocateNewLicence($user, $rootID, $productCode);
-							$licenceID = $user->userID;
-						} else {
-							// Write a record to the failure table
-							$this->failLicenceSlot($user, $singleRootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorTrackingLicenceFull"));
-							
-							throw $this->copyOps->getExceptionForId("errorTrackingLicenceFull");
-						}
-					}
+                    // gh#1496 Clarity Tests never block you from signing in due to licence issues
+                    if (Session::getSessionName() == "CTPService") {
+                        $licenceID = $user->userID;
+                    } else {
+                        // Has this user got an existing licence we can use?
+                        $existingUser = $this->checkExistingLicence($user, $productCode, $licence);
+                        if ($existingUser) {
+                            $licenceID = $user->userID;
+
+                            // If so, update their use of it
+                            // Deprecated as the session record is effectively the last licence use
+                            //$rc = $this->updateLicence($licence);
+                        } else {
+                            // How many licences have been used?
+                            $licenceCount = $this->countUsedLicences($singleRootID, $productCode, $licence);
+                            if ($licenceCount < $licence->maxStudents) {
+                                // Grab one
+                                // Deprecated as the session record is effectively the last licence use
+                                //$licenceID = $this->allocateNewLicence($user, $rootID, $productCode);
+                                $licenceID = $user->userID;
+                            } else {
+                                // Write a record to the failure table
+                                $this->failLicenceSlot($user, $singleRootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorTrackingLicenceFull"));
+
+                                throw $this->copyOps->getExceptionForId("errorTrackingLicenceFull");
+                            }
+                        }
+                    }
 				}
 				break;
 			default:
@@ -194,6 +201,7 @@ EOD;
         $rs = $this->db->Execute($sql, $bindingParams);
         return $rs->FetchNextObj()->i;
     }
+
 	/**
 	 * 
 	 * Does this user already have a licence for this product?

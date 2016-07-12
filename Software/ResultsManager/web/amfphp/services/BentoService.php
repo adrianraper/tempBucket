@@ -4,7 +4,8 @@
  */
 
 require_once(dirname(__FILE__)."/../../config.php");
- 
+
+$thisLib = $GLOBALS['adodb_libs'];
 require_once($GLOBALS['adodb_libs']."adodb-exceptions.inc.php");
 require_once($GLOBALS['adodb_libs']."adodb.inc.php");
 
@@ -627,39 +628,9 @@ class BentoService extends AbstractService {
 	// gh#156 Send client timezoneOffset with every score 
 	public function writeScore($user, $sessionId, $dateNow, $scoreObj, $clientTimezoneOffset = null) {
 		// Manipulate the score object from Bento into PHP format
-		// TODO Surely we should be trying to keep the format and names the same!
-		$score = new Score();
-		$score->setUID($scoreObj['UID']);
-		
-		$score->scoreCorrect = $scoreObj['correctCount'];
-		$score->scoreWrong = $scoreObj['incorrectCount'];
-		$score->scoreMissed = $scoreObj['missedCount'];
-		
-		$totalQuestions = $score->scoreCorrect + $score->scoreWrong + $score->scoreMissed;
-		if ($totalQuestions > 0) {
-			$score->score = intval(100 * $score->scoreCorrect / $totalQuestions);
-		} else {
-			$score->score = -1;
-		}
-
-		// gh#1231 Reasonableness test on durations from the client (upper limit 14400 = 4 hours, 60 seconds is default if actual is -ve)
-		$score->duration = ($scoreObj['duration'] > 14400) ? 14400 : ($scoreObj['duration'] < 0) ? 60 : $scoreObj['duration'];
-
-		// gh#156 If we know a timezoneOffset, use server time (UTC) + this to get an accurate local time and ignore the sent time
-        // php version differences have big impact on -ve passed integer from amfphp, so split into number and sign
-        // How about tablets?
-		if ($clientTimezoneOffset !== null && isset($clientTimezoneOffset['minutes'])) {
-            $offset = $clientTimezoneOffset['minutes'];
-            $negative = (boolean)$clientTimezoneOffset['negative'];
-			$serverDateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
-            $clientDifference = new DateInterval('PT'.strval($offset).'M');
-            if ($negative) {
-                $dateNow = $serverDateStampNow->add($clientDifference)->format('Y-m-d H:i:s');
-            } else {
-                $dateNow = $serverDateStampNow->sub($clientDifference)->format('Y-m-d H:i:s');
-            }
-		}
-		$score->dateStamp = $dateNow;
+        if (!isset($scoreObj['dateStamp']))
+            $scoreObj['dateStamp'] = $dateNow;
+		$score = new Score($scoreObj, $clientTimezoneOffset);
 		$score->sessionID = $sessionId;
 		$score->userID = $user->userID;
 

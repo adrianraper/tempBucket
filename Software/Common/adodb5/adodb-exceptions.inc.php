@@ -14,9 +14,7 @@
  *
  * Exception-handling code using PHP5 exceptions (try-catch-throw).
  */
-
-
-if (!defined('ADODB_ERROR_HANDLER_TYPE')) define('ADODB_ERROR_HANDLER_TYPE',E_USER_ERROR);
+if (!defined('ADODB_ERROR_HANDLER_TYPE')) define('ADODB_ERROR_HANDLER_TYPE', E_USER_ERROR);
 define('ADODB_ERROR_HANDLER','adodb_throw');
 
 class ADODB_Exception extends Exception {

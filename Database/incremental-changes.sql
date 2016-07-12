@@ -1424,27 +1424,45 @@ INSERT INTO `T_ProductVersion` VALUES
 (64,'DEMO'),
 (64,'FV');
 
+-- gh#1496
 DROP TABLE IF EXISTS `T_TestDetail`;
 CREATE TABLE `T_TestDetail` (
-  `F_TestDetailID` int(10) NOT NULL AUTO_INCREMENT,
-  `F_TestID` int(10) NOT NULL,
+  `F_TestID` int(10) NOT NULL AUTO_INCREMENT,
+  `F_ProductCode` smallint(5) NOT NULL,
   `F_GroupID` int(10) NOT NULL,
   `F_Caption` TEXT NULL,
   `F_StartType` TEXT NOT NULL,
   `F_StartData` TEXT NULL,
-  `F_ScheduledStartTime` DATETIME NOT NULL,
+  `F_OpenTime` DATETIME NOT NULL,
   `F_CloseTime` DATETIME NULL,
   `F_Language` VARCHAR(16) NOT NULL DEFAULT 'EN',
   `F_ShowResult` TINYINT(1) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`F_TestDetailID`),
-  INDEX `Index_1` (`F_TestID`, `F_GroupID`, `F_ScheduledStartTime`)
+  PRIMARY KEY (`F_TestID`),
+  INDEX `Index_1` (`F_TestID`, `F_GroupID`)
 )  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+/*
 INSERT INTO `T_TestDetail`
 (`F_TestID`,`F_GroupID`,`F_Caption`,`F_StartType`,`F_StartData`,`F_ScheduledStartTime`,`F_CloseTime`,`F_Language`)
 VALUES 
-(44,10757,'2016 summer school','code','12345','2016-09-14 11:00','2016-09-14 17:00','EN'),
-(44,10757,'2015 summer school','code','8842G','2015-09-12 11:00','2015-09-12 17:00','EN');
+(63,10757,'2016 summer school','code','12345','2016-09-14 11:00','2016-09-14 17:00','EN'),
+(63,10757,'2015 summer school','code','8842G','2015-09-12 11:00','2015-09-12 17:00','EN');
 insert into T_Memory
 (F_UserID, F_ProductCode, F_Key, F_Value);
-values (253947, 44, 'CEF', "B1");
+values (253947, 63, 'CEF', "B1");
+*/
+
+DROP TABLE IF EXISTS `T_TestSession`;
+CREATE TABLE `T_TestSession` (
+  `F_SessionID` int(11) NOT NULL AUTO_INCREMENT,
+  `F_UserID` int(11) NOT NULL,
+  `F_TestDetailID` int(10) NOT NULL,
+  `F_RootID` int(11) DEFAULT 0,
+  `F_ProductCode` smallint(5) NOT NULL DEFAULT 0,
+  `F_ReadyDateStamp` datetime DEFAULT NULL,
+  `F_CompletedDateStamp` datetime DEFAULT NULL,
+  `F_Duration` int(11) DEFAULT NULL,
+  PRIMARY KEY (`F_SessionID`,`F_ProductCode`, `F_RootID`),
+  KEY `Index_1` (`F_RootID`,`F_ProductCode`),
+  KEY `Index_2` (`F_TestDetailID`,`F_UserID`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;

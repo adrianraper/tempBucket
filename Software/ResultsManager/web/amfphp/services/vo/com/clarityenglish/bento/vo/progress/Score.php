@@ -22,9 +22,57 @@ class Score {
 	public $scoreMissed;
 	public $duration;
 	public $uid;
-	
-	function Score() {
-	}
+
+    // gh#1496 Create a standard score from a passed object
+	function Score($scoreObj = null, $clientTimezoneOffset = null) {
+	    // Set product, course, unit, exercise from the UID
+        if (isset($scoreObj['UID']))
+            $this->setUID($scoreObj['UID']);
+
+        if (isset($scoreObj['correctCount'])) {
+            $this->scoreCorrect = $scoreObj['correctCount'];
+        } elseif (isset($scoreObj['scoreCorrect'])) {
+            $this->scoreCorrect = $scoreObj['scoreCorrect'];
+        }
+        if (isset($scoreObj['incorrectCount'])) {
+            $this->scoreWrong = $scoreObj['incorrectCount'];
+        } elseif (isset($scoreObj['scoreWrong'])) {
+            $this->scoreWrong = $scoreObj['scoreWrong'];
+        }
+        if (isset($scoreObj['missedCount'])) {
+            $this->scoreMissed = $scoreObj['missedCount'];
+        } elseif (isset($scoreObj['scoreMissed'])) {
+            $this->scoreMissed = $scoreObj['scoreMissed'];
+        }
+
+        $totalQuestions = $this->scoreCorrect + $this->scoreWrong + $this->scoreMissed;
+        if ($totalQuestions > 0) {
+            $this->score = intval(100 * $this->scoreCorrect / $totalQuestions);
+        } else {
+            $this->score = -1;
+        }
+
+        // gh#1231 Reasonableness test on durations from the client (upper limit 14400 = 4 hours, 60 seconds is default if actual is -ve)
+        $this->duration = ($scoreObj['duration'] > 14400) ? 14400 : ($scoreObj['duration'] < 0) ? 60 : $scoreObj['duration'];
+
+        // gh#156 If we know a timezoneOffset, use server time (UTC) + this to get an accurate local time and ignore the sent time
+        // php version differences have big impact on -ve passed integer from amfphp, so split into number and sign
+        // How about tablets?
+        $serverDateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+        if ($clientTimezoneOffset !== null && isset($clientTimezoneOffset['minutes'])) {
+            $offset = $clientTimezoneOffset['minutes'];
+            $negative = (boolean)$clientTimezoneOffset['negative'];
+            $clientDifference = new DateInterval('PT'.strval($offset).'M');
+            if ($negative) {
+                $dateNow = $serverDateStampNow->add($clientDifference)->format('Y-m-d H:i:s');
+            } else {
+                $dateNow = $serverDateStampNow->sub($clientDifference)->format('Y-m-d H:i:s');
+            }
+        } else {
+            $dateNow = (isset($scoreObj['dateStamp'])) ? $scoreObj['dateStamp'] : $serverDateStampNow->format('Y-m-d H:i:s');
+        }
+        $this->dateStamp = $dateNow;
+    }
 	
 	public function setUID($value) {
 		$UIDArray = explode('.', $value);
@@ -117,4 +165,3 @@ class Score {
 	}
 	
 }
-?>
