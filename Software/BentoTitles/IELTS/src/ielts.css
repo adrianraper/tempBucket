@@ -2,7 +2,8 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace login "com.clarityenglish.bento.view.login.*";
-@namespace credits "com.clarityenglish.bento.view.credits.*";
+/*@namespace credits "com.clarityenglish.bento.view.credits.*";*/
+@namespace creditsr2i "com.clarityenglish.ielts.view.credits.*";
 @namespace title "com.clarityenglish.ielts.view.title.*";
 @namespace zone "com.clarityenglish.ielts.view.zone.*";
 @namespace zoneui "com.clarityenglish.ielts.view.zone.ui.*";
@@ -13,6 +14,7 @@
 @namespace account "com.clarityenglish.ielts.view.account.*";
 @namespace accountui "com.clarityenglish.ielts.view.account.ui.*";
 @namespace support "com.clarityenglish.ielts.view.support.*";
+@namespace help "com.clarityenglish.ielts.view.help.*";
 @namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace home "com.clarityenglish.ielts.view.home.*";
 @namespace homeui "com.clarityenglish.ielts.view.home.ui.*";
@@ -430,26 +432,42 @@ support|SupportView {
 	skinClass: ClassReference("skins.ielts.SupportSkin");
 }
 
-support|SupportView s|VScrollBar {
+support|SupportView s|TabbedViewNavigator {
+	skinClass: ClassReference("skins.ielts.support.SupportTabbedViewNavigatorSkin");
+}
+
+help|HelpView {
+	skinClass: ClassReference("skins.ielts.HelpSkin");
+}
+
+help|HelpView s|VScrollBar {
 	skinClass: ClassReference("skins.ielts.ui.VScrollBarSkin");
 }
 
-support|SupportView #registerInfoButton {
+help|HelpView #registerInfoButton {
 	skinClass: ClassReference("skins.ielts.title.RegisterMediumButton");
 }
 
-support|SupportView #buyInfoButton {
+help|HelpView  #buyInfoButton {
 	skinClass: ClassReference("skins.ielts.title.SubscribeMediumButton");
 }
 
+creditsr2i|CreditsView {
+	skinClass: ClassReference("skins.ielts.CreditsSkin");
+}
+
+creditsr2i|CreditsView s|VScrollBar {
+	skinClass: ClassReference("skins.ielts.ui.VScrollBarSkin");
+}
+
 /* Credit view styles */
-credits|CreditsView {
+/*credits|CreditsView {
 	skinClass: ClassReference("skins.ielts.CreditsSkin");
 }
 
 credits|CreditsView s|Button#moreButton {
 	skinClass: ClassReference("skins.ielts.credits.CreditsButtonSkin");
-}
+}*/
 
 /* Marking view styles (this overwrites the default skin) */
 marking|MarkingView {

@@ -1,7 +1,8 @@
 ﻿package com.clarityenglish.ielts {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
-	import com.clarityenglish.bento.view.exercise.ExerciseMediator;
+import com.clarityenglish.bento.view.credits.CreditsView;
+import com.clarityenglish.bento.view.exercise.ExerciseMediator;
 	import com.clarityenglish.bento.view.exercise.ExerciseView;
 import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.ielts.controller.IELTSRegisterCommand;
@@ -10,7 +11,10 @@ import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.candidates.CandidatesMediator;
 	import com.clarityenglish.ielts.view.candidates.CandidatesView;
-	import com.clarityenglish.ielts.view.home.HomeMediator;
+import com.clarityenglish.ielts.view.credits.CreditsMediator;
+import com.clarityenglish.ielts.view.help.HelpMediator;
+import com.clarityenglish.ielts.view.help.HelpView;
+import com.clarityenglish.ielts.view.home.HomeMediator;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.login.LoginView;
 import com.clarityenglish.ielts.view.progress.ProgressMediator;
@@ -41,25 +45,27 @@ import com.clarityenglish.ielts.view.zone.speakingtest.SpeakingTestView;
 	* @author Dave Keen
 	*/
 	public class IELTSApplicationFacade extends BentoFacade {
-		
+
 		public static function getInstance():BentoFacade {
 			if (instance == null) instance = new IELTSApplicationFacade();
 			return instance as BentoFacade;
 		}
-		
+
 		override protected function initializeController():void {
 			super.initializeController();
-			
+
 			// Map IELTS specific views to their mediators
 			mapView(LoginView, LoginMediator);
 			mapView(TitleView, TitleMediator);
 			mapView(HomeView, HomeMediator);
 			mapView(AccountView, AccountMediator);
 			mapView(SupportView, SupportMediator);
+			mapView(HelpView, HelpMediator);
+			mapView(com.clarityenglish.ielts.view.credits.CreditsView, CreditsMediator);
 			mapView(ExerciseView, ExerciseMediator);
 			mapView(CandidatesView, CandidatesMediator);
 			mapView(ProgressView, ProgressMediator);
-			
+
 			mapView(ZoneView, ZoneMediator);
 			mapView(AdviceZoneSectionView, AdviceZoneSectionMediator);
 			mapView(QuestionZoneVideoSectionView, QuestionZoneVideoSectionMediator);
@@ -68,18 +74,18 @@ import com.clarityenglish.ielts.view.zone.speakingtest.SpeakingTestView;
 			mapView(PracticeZonePopoutView, PracticeZonePopoutMediator);
 			mapView(ExamPracticeZoneSectionView, ExamPracticeZoneSectionMediator);
 			mapView(SpeakingTestView, SpeakingTestMediator);
-			
+
 			// Upgrade, register and buy
 			// registerCommand(IELTSNotifications.IELTS_UPGRADE_WINDOW_SHOW, IELTSUpgradeWindowShowCommand);
 			registerCommand(IELTSNotifications.IELTS_REGISTER, IELTSRegisterCommand);
-			
+
 			registerCommand(BBNotifications.STARTUP, IELTSStartupCommand);
 
 			// Common ones are done in BentoFacade
 			// AR And I would have thought that LoggedIn should be common too, but RM and DMS both have their own...
 			//registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
 		}
-		
+
 	}
-	
+
 }

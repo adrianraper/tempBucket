@@ -109,7 +109,7 @@
 			</s:navigationContent>
 		</s:ViewNavigator>
 		
-		<s:ViewNavigator id="helpViewNavigator" firstView="com.clarityenglish.ielts.view.support.SupportView" title="Road to IELTS" left="0" right="0" height="100%">
+		<s:ViewNavigator id="helpViewNavigator" firstView="com.clarityenglish.ielts.view.help.HelpView" title="Road to IELTS" left="0" right="0" height="100%">
 			<s:navigationContent>
 				<s:Button id="helpViewNavigatorButton1" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>

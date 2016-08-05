@@ -4,180 +4,135 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.bento.view.credits.CreditsView")]
+		[HostComponent("com.clarityenglish.ielts.view.credits.CreditsView")]
 	</fx:Metadata>
-	
-	<!--fx:Declarations>
-		<fx:String id="creditsTextAsHTML">
-			<![CDATA[					
-			<p align='left'>
-			<b>Project Managers</b><br />
-			Clarity: Joe Law<br /> 
-			British Council: Greg Selby</p>
-			
-			<p align='left'>
-			<b>Lead Programmer</b><br />
-			Dave Keen</p>
-			
-			<p align='left'>
-			<b>Video recordings</b><br />
-			Andy Lewis</p>
-			
-			<p align='left'>
-			<b>Sources of original articles and images</b></p>
-			<p align='left'>
-			Photo images are taken from Shutterstock with permission.</p>
-			<p align='left'>
-			Graphic of a windup radio. Reproduced by kind permission of the Freeplay Energy Group. <br />
-			Tapescript: Alex Mackarow.
-			</p>
-			
-			<p align='left'>
-			Authentic articles are taken from the following publications or organisations:<br />
-			Abolishing Management, One Slice at a Time<br />
-			ACTA<br />
-			American Artist Magazine<br />
-			Amnesty International USA<br />
-			Books, etc., Christmas Catalogue<br />
-			BritainUSA.com<br />
-			British Medical Journal<br />
-			Canada's International Development Research Centre<br />
-			Country Living Magazine<br />
-			Directory of International Voluntary Work<br />
-			ERIC Digest<br />
-			Games on Playing Cards (Totem, PIT, Games of Rebellion, Black Peter, Game of Poems)<br />
-			Guns, Germs and Steel<br />
-			Heathrow Express<br />
-			Her Majesty's Stationery Office<br />
-			History Today<br />
-			Learndirect <br />
-			Management Today<br />
-			National Geographic<br />
-			New Internationalist<br />
-			New Statesman<br />
-			Play: An Endangered Species<br />
-			Prospect Magazine<br />
-			RECOUP<br />
-			Royal Mail<br />
-			Success in Four Minutes or Less<br />
-			The Articulate Mammal<br />
-			The Australian Film Television & Radio School<br />
-			The Economist<br />
-			The Futurist<br />
-			The Guardian<br />
-			The Independent<br />
-			The Language Instinct<br />
-			The Observer<br />
-			The Pocket Guide to the Birds of Britain and North-West Europe<br />
-			The Sunday Times<br />
-			The Times<br />
-			The US Geological Survey (USGS)<br />
-			Time Europe<br />
-			To Drink Without Risk: The Use of Ultraviolet Light to Disinfect Drinking Water in Developing Countries<br />
-			Twenty Species We May Lose in the Next 20 Years<br />
-			UNESCO<br />
-			Valleyfair, Cedar Fair, L.P.<br />
-			Vanishing Languages<br />
-			Why Newspapers Will Flourish in the Years Ahead<br />
-			Why Study Ancient World Cultures?
-			</p>
-			
-			<p align='left'>
-			Every effort has been made to trace owners of copyright, but if any omissions can be rectified, the British Council will be pleased    <br /> to make the necessary arrangements.
-			</p>]]>
-		</fx:String>
-	</fx:Declarations-->
-	
-	<fx:Script>
-		<![CDATA[
-			import flash.net.navigateToURL;
-			
-			protected function clickHandler(event:MouseEvent):void {
-				
-				var urlReq:URLRequest = new URLRequest("http://www.clarityenglish.com/questionnaire/rtiv2feedback.php");
-				navigateToURL(urlReq, "_self");
-			}
-			
-			protected function onMoreClicked(event:MouseEvent):void {
-				var urlReq:URLRequest = new URLRequest(hostComponent.getCopyProvider().getCopyForId("moreURL"));
-				navigateToURL(urlReq, "_self");
-			}
-		]]>
-		<![CDATA[
-			import flashx.textLayout.conversion.TextConverter;
-		]]>
-	</fx:Script>
 	
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
-		
-		<s:State name="lastMinute" stateGroups="bcStates" />
-		<s:State name="testDrive" stateGroups="bcStates" />
 	</s:states>
-	
-	<s:BorderContainer horizontalCenter="0" borderAlpha="0" backgroundAlpha="0" width="90%" includeIn="normal">
-		<s:layout>
-			<s:VerticalLayout paddingTop="30" horizontalAlign="center"/>
-		</s:layout>
-		
-		<s:Group width="100%" height="440" top="30">
-			<s:SWFLoader id="endLogo" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='CreditGraphic')" autoLoad="true" horizontalAlign="center" horizontalCenter="0" />
-			<s:Spacer height="0" />
-			<s:VGroup width="100%" horizontalAlign="center" paddingTop="80">
-				<s:SWFLoader source="@Embed(source='/skins/ielts/assets/credits.png')" horizontalAlign="center" horizontalCenter="0" />
-				<s:Spacer height="10" />
-				<s:Label id="thankYouLabel" fontSize="21" color="0x174A7D" fontWeight="bold" horizontalCenter="0" />
-				<s:Spacer height="0" />
-				<s:Label id="weWouldLabel" fontSize="21" color="0x174A7D" fontWeight="bold" click="clickHandler(event)" horizontalCenter="0" />
-				<s:Spacer height="0" />
-				<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='QuestionnairekButton')" click="clickHandler(event)" buttonMode="true" useHandCursor="true" width="313" horizontalCenter="0" />
-				<s:Spacer height="10" />
-				<s:RichText id="creditCaptionLabel" fontSize="21" horizontalCenter="0" />
-			</s:VGroup>
-		</s:Group>
-		
-		<s:VGroup>
-			<s:Rect left="100" right="0" top="100" bottom="0" width="100%" height="1">
-				<s:fill>
-					<s:SolidColor color="0x999999" />
-				</s:fill>
-			</s:Rect>
-			<s:Scroller width="800" height="20%">
-				<s:Group>
-					<s:RichText id="creditsRichText" />
+
+	<s:Scroller width="100%" height="100%">
+		<s:VGroup width="100%" height="100%" horizontalAlign="center">
+			<s:VGroup width="960" height="100%" gap="10">
+				<s:List id="teamList" left="20" right="20" width="100%" height="60" borderAlpha="0">
+					<s:layout>
+						<s:HorizontalLayout gap="20"/>
+					</s:layout>
+					<s:itemRenderer>
+						<fx:Component>
+							<s:ItemRenderer autoDrawBackground="false">
+								<fx:Script><![CDATA[
+									import mx.collections.ArrayCollection;
+									]]>
+						</fx:Script>
+								<s:VGroup>
+									<s:Label text="{data.@title}" fontWeight="bold"  color="#08416B" />
+									<s:List height="35" borderAlpha="0" dataProvider="{new ArrayCollection((data.@name).split(';'))}">
+										<s:itemRenderer>
+											<fx:Component>
+												<s:ItemRenderer autoDrawBackground="false">
+													<s:Label text="{data}" paddingBottom="5" />
+												</s:ItemRenderer>
+											</fx:Component>
+										</s:itemRenderer>
+									</s:List>
+								</s:VGroup>
+							</s:ItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:List>
+
+				<s:Label id="authenticityLabel" fontWeight="bold"/>
+
+				<s:List id="authenticityList" width="100%" contentBackgroundAlpha="0" borderAlpha="0" useVirtualLayout="false">
+					<s:layout>
+						<s:HorizontalLayout gap="10" />
+					</s:layout>
+					<s:itemRenderer>
+						<fx:Component>
+							<s:ItemRenderer autoDrawBackground="false">
+								<fx:Script>
+									<![CDATA[
+										import mx.collections.XMLListCollection;
+
+										[Bindable]
+										public var listVerticalGap:Number = 10;
+
+										override public function set data(value:Object):void {
+											super.data = value;
+
+											if (itemIndex == 0) {
+												listVerticalGap = 17;
+											} else {
+												listVerticalGap = 10;
+											}
+										}
+									]]>
+								</fx:Script>
+								<s:List width="312" borderAlpha="0" contentBackgroundAlpha="0" verticalScrollPolicy="off" horizontalScrollPolicy="off" dataProvider="{new XMLListCollection(data.member)}">
+									<s:layout>
+										<s:VerticalLayout gap="{listVerticalGap}" />
+									</s:layout>
+									<s:itemRenderer>
+										<fx:Component>
+											<s:ItemRenderer width="100%" autoDrawBackground="false">
+												<fx:Script>
+													<![CDATA[
+														import mx.collections.ArrayCollection;
+													]]>
+												</fx:Script>
+
+												<fx:Declarations>
+													<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.75" distance="0" angle="180" color="#CCCCCC"/>
+												</fx:Declarations>
+
+												<s:Group width="100%" left="0" right="0">
+													<s:Rect left="2" top="2" right="2" bottom="2" radiusX="5" radiusY="5" filters="{[dropShadowFilter]}">
+														<s:fill>
+															<s:SolidColor color="#F1F1F3" />
+														</s:fill>
+														<s:stroke>
+															<s:LinearGradientStroke rotation="-90">
+																<s:GradientEntry color="#E0E0E0" />
+																<s:GradientEntry color="#FFFFFF" />
+															</s:LinearGradientStroke>
+														</s:stroke>
+													</s:Rect>
+													<s:VGroup width="100%" id="itemVGroup" paddingLeft="12" paddingRight="12" paddingTop="14" paddingBottom="14">
+														<s:Label text="{data.@title}" fontWeight="bold" color="#08416B" />
+														<s:List width="100%" borderAlpha="0" contentBackgroundAlpha="0" dataProvider="{new ArrayCollection((data.@name).split(';'))}" useVirtualLayout="false">
+															<s:layout>
+																<s:VerticalLayout gap="7" />
+															</s:layout>
+															<s:itemRenderer>
+																<fx:Component>
+																	<s:ItemRenderer width="100%" autoDrawBackground="false">
+																		<s:Label width="100%" text="{data}" fontSize="11" lineHeight="15"/>
+																	</s:ItemRenderer>
+																</fx:Component>
+															</s:itemRenderer>
+														</s:List>
+													</s:VGroup>
+												</s:Group>
+											</s:ItemRenderer>
+										</fx:Component>
+									</s:itemRenderer>
+								</s:List>
+							</s:ItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:List>
+				<s:Spacer height="5" />
+				<s:Group width="100%" height="23">
+					<s:Rect width="100%" height="100%" radiusX="10" radiusY="10">
+						<s:fill>
+							<s:SolidColor color="#BFD6E2" />
+						</s:fill>
+					</s:Rect>
+					<s:Label id="creditsDeclarationLabel" horizontalCenter="0" verticalCenter="1" color="#08416B" />
 				</s:Group>
-			</s:Scroller>
-			
-			
-			
-			<s:Rect width="100%" height="1" horizontalCenter="0">
-				<s:fill>
-					<s:SolidColor color="0x999999" />
-				</s:fill>
-			</s:Rect>
+			</s:VGroup>
 		</s:VGroup>
-	</s:BorderContainer>
-	
-	<s:BorderContainer horizontalCenter="0" borderAlpha="0" backgroundAlpha="0" width="90%" includeIn="bcStates">
-		<s:Group width="100%" height="440" top="150">
-			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='CreditGraphic')" autoLoad="true" horizontalAlign="center" horizontalCenter="0" />
-			<s:Spacer height="0" />
-			<s:VGroup width="100%" horizontalAlign="center" paddingTop="80">
-				<s:SWFLoader source="@Embed(source='/skins/ielts/assets/credits.png')" horizontalAlign="center" horizontalCenter="0" />
-				<s:Spacer height="10" />
-				<s:Label id="thankYouLabel2" fontSize="21" color="0x174A7D" fontWeight="bold" horizontalCenter="0" />
-				<s:Spacer height="10" />
-				<s:HGroup>
-					<s:Label id="upgradeLabel" fontSize="21" fontFamily="Segoe Print" fontWeight="bold" color="#0094D5" horizontalCenter="0" />
-					<s:Label id="fullVersionLabel" fontSize="21" fontFamily="Segoe Print" fontWeight="bold" color="#E86C1F" horizontalCenter="0" paddingLeft="3" />
-				</s:HGroup>
-				<s:Spacer height="10" />
-				<s:HGroup paddingLeft="-100">
-					<s:SWFLoader source="@Embed(source='/skins/ielts/assets/credits/click_here.png')"/>
-					<s:Button useHandCursor="true" buttonMode="true" id="moreButton" click="onMoreClicked(event)" width="200" height="40" />
-				</s:HGroup>				
-			</s:VGroup>			
-		</s:Group>
-	</s:BorderContainer>	
+	</s:Scroller>
 </s:Skin>

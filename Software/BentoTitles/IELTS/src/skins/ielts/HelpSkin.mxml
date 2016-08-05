@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:mx="library://ns.adobe.com/flex/mx">
+    <!-- host component -->
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.ielts.view.help.HelpView")]
+    </fx:Metadata>
+    <fx:Script>
+		<![CDATA[
+        import flashx.textLayout.conversion.TextConverter;
+        ]]>
+	</fx:Script>
+
+    <fx:Declarations>
+
+    </fx:Declarations>
+
+    <s:states>
+        <s:State name="disabled" />
+        <s:State name="normal" />
+
+        <s:State name="demo" />
+        <s:State name="fullVersion" />
+        <s:State name="lastMinute" stateGroups="bcStates" />
+        <s:State name="homeUser" />
+        <s:State name="testDrive" stateGroups="bcStates" />
+    </s:states>
+
+    <s:VGroup width="100%" paddingTop="0" height="100%" top="0">
+        <s:Scroller width="100%" height="100%" >
+            <s:HGroup>
+                <s:VGroup id="userGuide" width="70%" paddingBottom="30">
+                    <s:RichText width="650" paddingLeft="0" paddingTop="0" includeIn="testDrive">
+                        <s:p><s:span id="testDriveSpan" /></s:p>
+                    </s:RichText>
+                    <s:RichText width="650" paddingLeft="0" paddingTop="0" excludeFrom="testDrive">
+                        <s:p><s:span fontWeight="bold" id="supportCaptionSpan1"/></s:p>
+                        <s:p><s:span id="paragraphContentSpan1"/></s:p>
+                    </s:RichText>
+                    <s:Button id="registerInfoButton" width="95%" includeIn="testDrive" useHandCursor="true" buttonMode="true"/>
+                    <s:Button id="buyInfoButton" width="95%" includeIn="testDrive" useHandCursor="true" buttonMode="true"/>
+                    <s:Label id="userManualLabel" textDecoration="underline" color="#2B3990" excludeFrom="testDrive" useHandCursor="true" buttonMode="true"/>
+
+                    <s:RichText width="650" paddingLeft="0" paddingTop="10" excludeFrom="testDrive">
+                        <s:p><s:span id="keyScreenSpan" fontWeight="bold"/></s:p>
+                    </s:RichText>
+
+                    <s:VGroup id="homeScreen" paddingTop="10" excludeFrom="testDrive">
+                        <s:SWFLoader width="680" height="325" source="{hostComponent.languageAssetFolder}help_home.png" />
+                    </s:VGroup>
+                    <s:RichText excludeFrom="testDrive">
+                        <s:p><s:span id="homeScreenIntroSpan"/></s:p>
+                    </s:RichText>
+
+                    <s:VGroup id="skillScreen" paddingTop="20" excludeFrom="testDrive" >
+                        <s:SWFLoader width="680" height="341" source="{hostComponent.languageAssetFolder}help_skill.png" />
+                    </s:VGroup>
+                    <s:RichText excludeFrom="testDrive">
+                        <s:p><s:span id="skillScreenIntroSpan"/></s:p>
+                    </s:RichText>
+
+                    <s:VGroup id="exerciseScreen" paddingTop="20" excludeFrom="testDrive">
+                        <s:SWFLoader width="680" height="374" source="{hostComponent.languageAssetFolder}help_exercise.png" />
+                    </s:VGroup>
+                    <s:RichText excludeFrom="testDrive">
+                        <s:p><s:span id="exerciseSreenIntroSpan"/></s:p>
+                    </s:RichText>
+                </s:VGroup>
+
+                <s:VGroup id="contacts" width="30%">
+                    <s:RichText id="upGradeRichText" width="96%" paddingTop="10" visible="true" excludeFrom="fullVersion,homeUser,testDrive">
+                    </s:RichText>
+
+                    <s:RichText id="upGradeTestRichText" width="96%" paddingTop="10" visible="true" includeIn="testDrive">
+                    </s:RichText>
+
+                    <s:VGroup width="100%" paddingTop="20">
+                        <s:SWFLoader width="39" height="42" source="@Embed(source='/skins/ielts/assets/support/technical.png')" />
+                        <s:RichText id="techProRichText" width="90%" paddingBottom="5" >
+                        </s:RichText>
+                        <s:SWFLoader width="70" height="23"
+                                     source="@Embed(source='/skins/ielts/assets/support/claritylogo.png')"/>
+                        <s:RichText id="clarityRichText" width="90%" >
+                        </s:RichText>
+                    </s:VGroup>
+                    <s:VGroup width="100%" paddingTop="20">
+                        <s:SWFLoader width="39" height="42"
+                                     source="@Embed(source='/skins/ielts/assets/support/content.png')" />
+                        <s:RichText id="contentProRichText" width="90%" >
+                        </s:RichText>
+                        <s:SWFLoader width="87" height="33"
+                                     source="@Embed(source='/skins/ielts/assets/support/bc_logo.png')"/>
+                    </s:VGroup>
+                </s:VGroup>
+            </s:HGroup>
+        </s:Scroller>
+    </s:VGroup>
+
+
+</s:Skin>

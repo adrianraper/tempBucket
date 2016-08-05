@@ -350,6 +350,44 @@
 			<lit name="buyInfoButton">Subscribe to the Full Version of Road to IELTS for 120 hours of IELTS practice materials!</lit>
 			<lit name="supportCaptionSpan1">How to use Road to IELTS</lit>
 			<lit name="paragraphContentSpan1">Road to IELTS is organised into four skill areas, one for each paper in IELTS.In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from experts on video, and practising specific question types using the interactive practice exercises and the mock papers.</lit>
+			<lit name="creditsString">
+				<credit>
+					<team>
+						<member title="Project Manager" name="Clarity: Joe Law;British Council: Greg Selby" />
+						<member title="Lead Programmer" name="Dave Keen" />
+						<member title="Video recordings" name="Andy Lewis" />
+						<member title="Tapescript" name="Alex Mackarow" />
+						<member title="Images" name="Photo images are taken from Shutterstock with permission;Graphic of a windup radio;Reproduced by kind permission of the Freeplay Energy Group" />
+					</team>
+					<authenticity>
+						<column>
+							<member title="A" name="Abolishing Management, One Slice at a Time;ACTA;American Artist Magazine;Amnesty International USA"/>
+							<member title="B" name="Books, etc., Christmas Catalogu;BritainUSA.com;British Medical Journal"/>
+							<member title="C" name="Canada's International Development Research Centre;Country Living Magazine"/>
+							<member title="D" name="Directory of International Voluntary Work"/>
+							<member title="E" name="ERIC Digest"/>
+							<member title="G" name="Games on Playing Cards (Totem, PIT, Games of Rebellion, Black Peter, Game of Poems);Guns, Germs and Steel"/>
+						</column>
+						<column>
+							<member title="H" name="Heathrow Express;Her Majesty's Stationery Office;History Today"/>
+							<member title="L" name="Learndirect"/>
+							<member title="M" name="Management Today"/>
+							<member title="N" name="National Geographic;New Internationalist;New Statesman"/>
+							<member title="P" name="Play: An Endangered Species;Prospect Magazine"/>
+							<member title="R" name="RECOUP;Royal Mail"/>
+							<member title="S" name="Success in Four Minutes or Les"/>
+						</column>
+						<column>
+							<member title="T" name="The Articulate Mammal;The Australian Film Television &amp; Radio School;The Economist;The Futurist;The Guardian;The Independent;The Language Instinct;The Observer;The Pocket Guide to the Birds of Britain and North-West Europe;The Sunday Times;The Times;The US Geological Survey (USGS);Time Europe;To Drink Without Risk: The Use of Ultraviolet Light to Disinfect Drinking Water in Developing Countries;Twenty Species We May Lose in the Next 20 Years"/>
+							<member title="U" name="UNESCO"/>
+							<member title="V" name="Valleyfair, Cedar Fair, L.P.;Vanishing Languages"/>
+							<member title="W" name="Why Newspapers Will Flourish in the Years Ahead;Why Study Ancient World Cultures?"/>
+						</column>
+					</authenticity>
+				</credit>
+			</lit>
+			<lit name="authenticityLabel">Authentic articles are taken from the following publications or organisations:</lit>
+			<lit name="creditsDeclarationLabel">Every effort has been made to trace owners of copyright, but if any omissions can be rectified, we will be pleased to make the necessary arrangements.</lit>
 			<lit name="creditsRichText">
 			    <![CDATA[
 			            <p><span fontWeight="bold">Project Managers</span><br/>
