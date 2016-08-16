@@ -135,11 +135,13 @@ EOD;
 	// Why do I want to get anything from the subgroups? If an author is editing, her changes always impact her group.
 	// Sub-groups will pick this up unless they too have an author who overrules the parent.
 	function getEditedContent($groupIDs) {
+		
+		// gh#1487
+		if (is_null($groupIDs)) return array();
 		if (!Session::is_set('valid_groupIDs'))
 			throw new Exception("Unable to get edited content until manageables have been read for the first time.");
 		
-		// v3.5 Don't pull in subgroups
-		
+		// v3.5 Don't pull in subgroups		
 		$groupIDArray = $groupIDs;
 		//$groupIDArray = array_unique(array_merge($groupIDs, Session::get('valid_groupIDs')));
 		

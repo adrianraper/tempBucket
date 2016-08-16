@@ -60,8 +60,10 @@
 
 			public function setDataProvider(testDetail:TestDetail):void {
 				dataProvider = testDetail;
-				startTimeData.text = dataProvider.startTime;
-				endTimeData.text = dataProvider.closeTime;
+				if (dataProvider.startTime)
+					startTimeData.selectedDate = DateUtils.ansiStringToDate(dataProvider.startTime);
+				if (dataProvider.closeTime)
+					endTimeData.selectedDate = DateUtils.ansiStringToDate(dataProvider.closeTime);
 				codeData.text = dataProvider.startData;
 				captionData.text = dataProvider.caption;
 				if (dataProvider.startType == 'code') {
@@ -86,8 +88,11 @@
 				updatedDetail.groupId = dataProvider.groupId;
 				updatedDetail.language = dataProvider.language;
 				
-				updatedDetail.startTime = startTimeData.text;
-				updatedDetail.closeTime = endTimeData.text;
+				// Data validation on times
+				if (startTimeData.selectedDate)
+					updatedDetail.startTime = DateUtils.dateToAnsiString(startTimeData.selectedDate);
+				if (endTimeData.selectedDate)
+					updatedDetail.closeTime = DateUtils.dateToAnsiString(endTimeData.selectedDate);
 				updatedDetail.caption = captionData.text;
 				updatedDetail.showResult = showResultData.selected;
 				updatedDetail.startType = (startByCode.selected) ? 'code' : 'timer';
@@ -106,30 +111,19 @@
 			// Have enough details been added?
 			private function isComplete():Boolean {
 				// Check the start time
-				if (startTimeData.text == "") {
+				if (!startTimeData.selectedDate) {
 					_errorText = "There must be a start time.";
 					return false;
 				}
-				var dateInterim:Number = Date.parse(startTimeData.text);
-				if (isNaN(dateInterim)) {
-					_errorText = "The start date/time is not understood. Try something like 2016-09-17 09:30";
-					return false;
-				}
-				var startTime:Date = new Date(dateInterim);
-				if (ObjectUtil.dateCompare(startTime, new Date()) < 0) {
-					_errorText = "The start must be in the future.";
-					return false;
-				}
-				
 				// Check the close time
-				if (endTimeData.text != "") {
-					dateInterim = Date.parse(endTimeData.text);
-					if (isNaN(dateInterim)) {
-						_errorText = "The close date/time is not understood. Try something like 2016-09-17 09:30";
-						return false;
-					}
-					var endTime:Date = new Date(dateInterim);
-					if (ObjectUtil.dateCompare(startTime, endTime) >= 0) {
+				if (endTimeData.selectedDate) {
+					//dateInterim = endTimeData.selectedDate;
+					//if (isNaN(dateInterim)) {
+					//	_errorText = "The close date/time is not understood. Try something like 2016-09-17 09:30";
+					//	return false;
+					//}
+					//var endTime:Date = new Date(dateInterim);
+					if (ObjectUtil.dateCompare(startTimeData.selectedDate, endTimeData.selectedDate) >= 0) {
 						_errorText = "The close must be after the start.";
 						return false;
 					}
@@ -165,11 +159,13 @@
 		</mx:HBox>
 		<mx:HBox>
 			<mx:Label id="startTimeLabel" />
-			<mx:TextInput id="startTimeData" enabled="true" />
+			<mx:DateField id="startTimeData" enabled="true" editable="true" 
+						  selectableRange="{{rangeStart : new Date()}}" formatString="DD/MM/YYYY" yearNavigationEnabled="true" />
 		</mx:HBox>
 		<mx:HBox>
 			<mx:Label id="endTimeLabel" />
-			<mx:TextInput id="endTimeData" enabled="true" />
+			<mx:DateField id="endTimeData" editable="true" enabled="true" 
+						  selectableRange="{{rangeStart : new Date()}}" formatString="DD/MM/YYYY" yearNavigationEnabled="true" />
 		</mx:HBox>
 		<mx:HBox>
 			<mx:Label id="startConditionsLabel" />

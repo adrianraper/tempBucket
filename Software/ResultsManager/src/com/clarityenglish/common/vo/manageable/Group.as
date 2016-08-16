@@ -1,7 +1,11 @@
 ﻿package com.clarityenglish.common.vo.manageable {
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.model.ContentProxy;
-	import com.clarityenglish.common.vo.content.Title;
+	
+	import flash.utils.getQualifiedClassName;
+	
+	import mx.core.Application;
 	import mx.core.IUID;
 	
 	/**
@@ -101,8 +105,14 @@
 		public function hasHiddenContent():Boolean {
 			// We shouldn't really be retrieving proxies from value objects, but the alternatives are much messier and we know
 			// we are doing it for a good reason :)
-			var contentProxy:ContentProxy = ApplicationFacade.getInstance().retrieveProxy(ContentProxy.NAME) as ContentProxy;
-			return (contentProxy && contentProxy.hasHiddenContent(this));
+			// gh#1487 Hackety hack - due to above, we need to scrap this if this is TestAdmin not ResultsManager
+			var thisApplication:String = flash.utils.getQualifiedClassName(Application.application);
+			if (thisApplication.toLowerCase().indexOf('testadmin') < 0) {
+				var contentProxy:ContentProxy = ApplicationFacade.getInstance().retrieveProxy(ContentProxy.NAME) as ContentProxy;
+				return (contentProxy && contentProxy.hasHiddenContent(this));
+			} else {
+				return false;
+			}
 		}
 		// v3.4 duplicate the above in case we want to show which groups have got edited content.
 		// Don't need this. Better to do it through an interface in the itemRenderer.

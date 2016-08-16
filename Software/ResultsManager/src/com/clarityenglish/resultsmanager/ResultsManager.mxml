@@ -59,6 +59,12 @@
 				//var flashvarsRootID:String = Application.application.parameters.rootID;
 				//TraceUtils.myTrace("flashvars username=" + flashvarsName);
 				//if (flashvarsName) loginView.passedVars(flashvarsName, flashvarsPassword, flashvarsRootID);
+				
+				// gh#1492 Only use test admin if specifically added in direct start
+				/* 
+					if (mainStack.contains(testadminView))
+					mainStack.removeChild(testadminView);
+				*/
 			}
 			
 			private function onLogout():void {
@@ -173,15 +179,16 @@
 					}
 					*/
 				} else {
-					if ((mainStack.contains(managementView))) {
-						mainStack.addChild(managementView);
-					}
+					//if ((mainStack.contains(managementView))) {
+					//	mainStack.addChild(managementView);
+					//}
 				}
 			}
 			/**
-			 * Show just one tab if you are running with directStart. Currently just for usage stats.
+			 * Show special tabs if you are running with directStart.
 			 * The main reason to hide other tabs is for security because you will not need to login for this.
 			 * Just click a link from email, which will pick up username/password from a time limited row in a security table.
+			 * gh#1492 But for test admin, there is conflict with the management tab, so you can only have one or other
 			 */
 			public function configureTabsForDirectStart(directStart:String):void {
 				// Which tab do they want? If it is blocked by user type or title types, go to it
@@ -216,7 +223,6 @@
 					if (mainStack.contains(managementView)) {
 						mainStack.removeChild(managementView);
 					}
-					
 				} else {
 					showAlert("Sorry, there is no direct access to Results Manager for " + directStart, "Starting problem");
 				}
