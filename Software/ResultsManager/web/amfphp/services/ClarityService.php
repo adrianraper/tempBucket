@@ -414,18 +414,18 @@ class ClarityService extends AbstractService {
 	public function getTestDetails($group, $productCode) {
 		return $this->testDetailOps->getTestDetails($group->id, $productCode);
 	}
-	public function addTestDetail($testDetail) {
+	public function addTestDetail($testDetail, $productCode) {
 		$this->testDetailOps->addTestDetail($testDetail);		
-		return $this->testDetailOps->getTestDetails($testDetail->groupId);
+		return $this->testDetailOps->getTestDetails($testDetail->groupId, $productCode);
 	}
-	public function updateTestDetail($testDetail) {
+	public function updateTestDetail($testDetail, $productCode) {
 		$this->testDetailOps->updateTestDetail($testDetail);
-		AbstractService::$debugLog->info("return testdetails for group ".$testDetail->groupId);
-		return $this->testDetailOps->getTestDetails($testDetail->groupId);
+		//AbstractService::$debugLog->info("return testdetails for group ".$testDetail->groupId);
+		return $this->testDetailOps->getTestDetails($testDetail->groupId, $productCode);
 	}
-	public function deleteTestDetail($testDetail) {
+	public function deleteTestDetail($testDetail, $productCode) {
 		$this->testDetailOps->deleteTestDetail($testDetail);
-		return $this->testDetailOps->getTestDetails($testDetail->groupId);
+		return $this->testDetailOps->getTestDetails($testDetail->groupId, $productCode);
 	}
 	public function getTestUse($pc) {
 		return $this->usageOps->getTestUse($pc);

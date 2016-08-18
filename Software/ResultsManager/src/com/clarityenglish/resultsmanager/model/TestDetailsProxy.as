@@ -33,13 +33,22 @@ package com.clarityenglish.resultsmanager.model {
 			new RemoteDelegate("getTestDetails", [ group, thisTitle.id ], this).execute();
 		}
 		public function addTestDetail(testDetail:TestDetail):void {
-			new RemoteDelegate("addTestDetail", [ testDetail ], this).execute();
+			// TODO This can't be the best way to pass the productCode
+			var contentProxy:ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
+			var thisTitle:Title = contentProxy.titles[0] as Title;
+			new RemoteDelegate("addTestDetail", [ testDetail, thisTitle.id ], this).execute();
 		}
 		public function updateTestDetail(testDetail:TestDetail):void {
-			new RemoteDelegate("updateTestDetail", [ testDetail ], this).execute();
+			// TODO This can't be the best way to pass the productCode
+			var contentProxy:ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
+			var thisTitle:Title = contentProxy.titles[0] as Title;
+			new RemoteDelegate("updateTestDetail", [ testDetail, thisTitle.id ], this).execute();
 		}
 		public function deleteTestDetail(testDetail:TestDetail):void {
-			new RemoteDelegate("deleteTestDetail", [ testDetail ], this).execute();
+			// TODO This can't be the best way to pass the productCode
+			var contentProxy:ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
+			var thisTitle:Title = contentProxy.titles[0] as Title;
+			new RemoteDelegate("deleteTestDetail", [ testDetail, thisTitle.id ], this).execute();
 		}
 		
 		public function onDelegateResult(operation:String, data:Object):void{

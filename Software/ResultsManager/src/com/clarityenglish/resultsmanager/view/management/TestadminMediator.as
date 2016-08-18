@@ -59,6 +59,10 @@ package com.clarityenglish.resultsmanager.view.management {
 			testadminView.addEventListener(TestDetailEvent.DELETE, onTestDetailDelete);
 			
 			testadminView.addEventListener(EmailEvent.SEND_EMAIL, onSendEmail);
+			
+			// Inject fixed test data into the view
+			testadminView.testId = productCode;
+			testadminView.defaultLanguage = 'EN';
 		}
 		
 		private function get testadminView():TestadminView {

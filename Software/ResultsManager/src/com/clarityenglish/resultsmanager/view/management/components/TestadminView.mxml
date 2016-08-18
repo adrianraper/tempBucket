@@ -33,6 +33,9 @@
 			public var manageables:Array;
 			
 			private var reportWindow:TestadminReportWindow;
+			
+			public var defaultLanguage:String;
+			public var testId:String;
 							
 			[Bindable]
 			public var selectedGroup:Manageable;
@@ -149,8 +152,9 @@
 			private function onNewTestButtonClick(e:Event):void {
 				var newTestDetail:TestDetail = new TestDetail();
 				newTestDetail.groupId = selectedGroup.id;
-				newTestDetail.testId = (testList.dataProvider[0] as TestDetail).testId;
-				newTestDetail.language = (testList.dataProvider[0] as TestDetail).language;
+				
+				newTestDetail.testId = testId;
+				newTestDetail.language = defaultLanguage;
 				testDetailPanel.setDataProvider(newTestDetail);
 				testDetailPanel.addButton.visible = testDetailPanel.addButton.includeInLayout = true;
 				testDetailPanel.visible = true;
