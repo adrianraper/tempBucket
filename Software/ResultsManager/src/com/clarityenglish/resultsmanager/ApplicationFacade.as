@@ -58,9 +58,9 @@
 			registerCommand(RMNotifications.RESET_CONTENT, EditedContentCommand);
 			registerCommand(RMNotifications.CHECK_FOLDER, EditedContentCommand);
 			// gh#1487
-			registerCommand(RMNotifications.UPDATE_TEST_DETAIL, UpdateTestDetailCommand);
-			registerCommand(RMNotifications.DELETE_TEST_DETAIL, UpdateTestDetailCommand);
-			registerCommand(RMNotifications.ADD_TEST_DETAIL, UpdateTestDetailCommand);
+			registerCommand(RMNotifications.UPDATE_TEST, UpdateTestCommand);
+			registerCommand(RMNotifications.DELETE_TEST, UpdateTestCommand);
+			registerCommand(RMNotifications.ADD_TEST, UpdateTestCommand);
 			registerCommand(CommonNotifications.SEND_EMAIL, SendEmailCommand);
 			
 		}

@@ -3,15 +3,15 @@ class TestOps {
 
 	/**
 	 * This class helps with creating and marking tests.
-	 * 
-	 * TODO Could this all be in ContentOps?
-	 * TODO encryption should be in a utility function
+	 *
+     * Merge with TestOps as basically the same thing
 	 */
 	var $db;
 	
 	function TestOps($db) {
 		$this->db = $db;
 		$this->copyOps = new CopyOps();
+        $this->manageableOps = new ManageableOps($db);
 	}
 	
 	/**
@@ -22,7 +22,71 @@ class TestOps {
 		$this->db = $db;
 	}
 
-	// TODO The content folder should be picked up from the normal way we do this...
+    // Return all tests that this groups is scheduled to take
+    function getTests($groupId, $productCode) {
+
+        // We also want any tests that parents of this group are scheduled to take as they will apply to us too
+        $groupList = implode(',', $this->manageableOps->getGroupParents($groupId));
+
+        $bindingParams = array($productCode);
+        $sql = <<<SQL
+			SELECT * FROM T_ScheduledTests 
+			WHERE F_GroupID IN ($groupList)
+			AND F_ProductCode=?
+SQL;
+        $rs = $this->db->Execute($sql, $bindingParams);
+        //AbstractService::$debugLog->info("got ". $rs->RecordCount()." records for group " . $group->id);
+        switch ($rs->RecordCount()) {
+            case 0:
+                // There are no records
+                return false;
+            default:
+                $tests = array();
+                while ($dbObj = $rs->FetchNextObj())
+                    $tests[] = new ScheduledTest($dbObj);
+        }
+        return $tests;
+    }
+
+    function addTest($test) {
+        $dbObj = $test->toAssocArray();
+        $rs = $this->db->AutoExecute("T_ScheduledTests", $dbObj, "INSERT");
+    }
+    function updateTest($test) {
+        $dbObj = $test->toAssocArray();
+        $this->db->AutoExecute("T_ScheduledTests", $dbObj, "UPDATE", 'F_TestID='.$test->testId);
+    }
+    function deleteTest($test) {
+        $bindingParams = array($test->testId);
+        $sql = <<<SQL
+			DELETE FROM T_ScheduledTests WHERE F_TestID=?
+SQL;
+        $rc = $this->db->Execute($sql, $bindingParams);
+    }
+
+    // This will list all the scheduled tests a user has completed
+    function getCompletedTests($userId) {
+        $bindingParams = array($userId);
+        $sql = <<<SQL
+			SELECT * FROM T_TestSession
+            WHERE F_UserID = ?
+            AND F_CompletedDateStamp is not null 
+SQL;
+        $rs = $this->db->Execute($sql, $bindingParams);
+        switch ($rs->RecordCount()) {
+            case 0:
+                // There are no records
+                return false;
+            default:
+                $tests = array();
+                while ($dbObj = $rs->FetchNextObj())
+                    $testSessions[] = new TestSession($dbObj);
+        }
+        return $testSessions;
+    }
+
+    // The rest of the class is related to Bento
+    // TODO The content folder should be picked up from the normal way we do this...
 	public function getQuestions($exercise) {
 	
 		// Get the test definition
@@ -391,27 +455,6 @@ class TestOps {
 		return 0;
 	}
 
-	public function encrypt($data)	{
-		$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
-        $securekey = hash('sha256', 'ClarityLanguageConsultantsLtd', TRUE);
-        $iv = mcrypt_create_iv($iv_size);
-		return base64_encode($iv . mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $securekey, $data, MCRYPT_MODE_CBC, $iv));
-	}
-	public function decrypt($data)	{
-		$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
-        $securekey = hash('sha256', 'ClarityLanguageConsultantsLtd', TRUE);
-        $input = base64_decode($data);
-        $iv = substr($input, 0, $iv_size);
-        $cipher = substr($input, $iv_size);
-		return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $securekey, $cipher, MCRYPT_MODE_CBC, $iv));
-	}
-	function decodeSafeChars($text) {
-		return strtr($text, '-_~', '+/=');
-	}
-	function encodeSafeChars($text) {
-		return strtr($text, '+/=', '-_~');
-	}
-
 	// gh#1170 Correction process for an editor to mark up questions
 	public function correct1170Markup($exercise) {
 
@@ -497,4 +540,25 @@ class TestOps {
 		return $data;
 	}
 
+    // TODO These should surely be in a utility class
+    public function encrypt($data)	{
+        $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
+        $securekey = hash('sha256', 'ClarityLanguageConsultantsLtd', TRUE);
+        $iv = mcrypt_create_iv($iv_size);
+        return base64_encode($iv . mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $securekey, $data, MCRYPT_MODE_CBC, $iv));
+    }
+    public function decrypt($data)	{
+        $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
+        $securekey = hash('sha256', 'ClarityLanguageConsultantsLtd', TRUE);
+        $input = base64_decode($data);
+        $iv = substr($input, 0, $iv_size);
+        $cipher = substr($input, $iv_size);
+        return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $securekey, $cipher, MCRYPT_MODE_CBC, $iv));
+    }
+    function decodeSafeChars($text) {
+        return strtr($text, '-_~', '+/=');
+    }
+    function encodeSafeChars($text) {
+        return strtr($text, '+/=', '-_~');
+    }
 }

@@ -14,12 +14,12 @@ package com.clarityenglish.resultsmanager.view.management {
 	import com.clarityenglish.resultsmanager.model.ContentProxy;
 	import com.clarityenglish.resultsmanager.model.LicenceProxy;
 	import com.clarityenglish.resultsmanager.model.ReportProxy;
-	import com.clarityenglish.resultsmanager.model.TestDetailsProxy;
+	import com.clarityenglish.resultsmanager.model.TestProxy;
 	import com.clarityenglish.resultsmanager.model.UsageProxy;
 	import com.clarityenglish.resultsmanager.view.*;
 	import com.clarityenglish.resultsmanager.view.management.components.*;
 	import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
-	import com.clarityenglish.resultsmanager.view.shared.events.TestDetailEvent;
+	import com.clarityenglish.resultsmanager.view.shared.events.TestEvent;
 	import com.clarityenglish.utils.TraceUtils;
 	
 	import flash.events.Event;
@@ -54,14 +54,14 @@ package com.clarityenglish.resultsmanager.view.management {
 			
 			testadminView.addEventListener(ReportEvent.GENERATE, onGenerateReport);
 			
-			testadminView.testDetailPanel.addEventListener(TestDetailEvent.UPDATE, onTestDetailUpdate);
-			testadminView.testDetailPanel.addEventListener(TestDetailEvent.ADD, onTestDetailAdd);
-			testadminView.addEventListener(TestDetailEvent.DELETE, onTestDetailDelete);
+			testadminView.testDetailPanel.addEventListener(TestEvent.UPDATE, onTestUpdate);
+			testadminView.testDetailPanel.addEventListener(TestEvent.ADD, onTestAdd);
+			testadminView.addEventListener(TestEvent.DELETE, onTestDelete);
 			
 			testadminView.addEventListener(EmailEvent.SEND_EMAIL, onSendEmail);
 			
 			// Inject fixed test data into the view
-			testadminView.testId = productCode;
+			testadminView.productCode = productCode;
 			testadminView.defaultLanguage = 'EN';
 		}
 		
@@ -98,10 +98,10 @@ package com.clarityenglish.resultsmanager.view.management {
 					CommonNotifications.COPY_LOADED,
 					RMNotifications.MANAGEABLES_LOADED,
 					RMNotifications.MANAGEABLE_SELECTED,
-					RMNotifications.TEST_DETAILS_LOADED,
-					RMNotifications.TEST_DETAIL_UPDATED,
-					RMNotifications.TEST_DETAIL_ADDED,
-					RMNotifications.TEST_DETAIL_DELETED,
+					RMNotifications.TESTS_LOADED,
+					RMNotifications.TEST_UPDATED,
+					RMNotifications.TEST_ADDED,
+					RMNotifications.TEST_DELETED,
 					RMNotifications.TEST_LICENCES_LOADED,
 					RMNotifications.CONTENT_LOADED,
 					CommonNotifications.EMAIL_SENT,
@@ -153,8 +153,8 @@ package com.clarityenglish.resultsmanager.view.management {
 						selectedManageable = selectedManageables[0] as Manageable;
 					}
 					if (selectedManageable is Group) {
-						var testDetailsProxy:TestDetailsProxy = facade.retrieveProxy(TestDetailsProxy.NAME) as TestDetailsProxy;
-						testDetailsProxy.getTestDetails(selectedManageable as Group);
+						var testProxy:TestProxy = facade.retrieveProxy(TestProxy.NAME) as TestProxy;
+						testProxy.getTests(selectedManageable as Group);
 						testadminView.selectedGroup = selectedManageable;
 					} else {
 						testadminView.selectedGroup = null;
@@ -162,15 +162,15 @@ package com.clarityenglish.resultsmanager.view.management {
 					break;
 				
 				// This will send back an array of testDetails
-				case RMNotifications.TEST_DETAILS_LOADED:
-				case RMNotifications.TEST_DETAIL_DELETED:
+				case RMNotifications.TESTS_LOADED:
+				case RMNotifications.TEST_DELETED:
 					testadminView.testList.dataProvider = note.getBody() as Array;
 					break;
-				case RMNotifications.TEST_DETAIL_ADDED:
+				case RMNotifications.TEST_ADDED:
 					testadminView.testList.dataProvider = note.getBody() as Array;
 					testadminView.testList.selectedIndex = testadminView.testList.dataProvider.length - 1;
 					break;
-				case RMNotifications.TEST_DETAIL_UPDATED:
+				case RMNotifications.TEST_UPDATED:
 					var currentIdx:uint = testadminView.testList.selectedIndex;
 					testadminView.testList.dataProvider = note.getBody() as Array;
 					testadminView.testList.selectedIndex = currentIdx;
@@ -206,14 +206,14 @@ package com.clarityenglish.resultsmanager.view.management {
 			reportProxy.getReport(e.forReportables, e.forClass, e.onReportables, opts, e.template);
 		}
 
-		private function onTestDetailUpdate(e:TestDetailEvent):void {			
-			sendNotification(RMNotifications.UPDATE_TEST_DETAIL, e);
+		private function onTestUpdate(e:TestEvent):void {			
+			sendNotification(RMNotifications.UPDATE_TEST, e);
 		}
-		private function onTestDetailDelete(e:TestDetailEvent):void {			
-			sendNotification(RMNotifications.DELETE_TEST_DETAIL, e);
+		private function onTestDelete(e:TestEvent):void {			
+			sendNotification(RMNotifications.DELETE_TEST, e);
 		}
-		private function onTestDetailAdd(e:TestDetailEvent):void {			
-			sendNotification(RMNotifications.ADD_TEST_DETAIL, e);
+		private function onTestAdd(e:TestEvent):void {			
+			sendNotification(RMNotifications.ADD_TEST, e);
 		}
 		
 		private function onSendEmail(e:EmailEvent):void {

@@ -24,7 +24,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/Reportable.php"
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Manageable.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/User.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Group.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/TestDetail.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/ScheduledTest.php");
 
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Content.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Title.php");
@@ -43,7 +43,7 @@ require_once(dirname(__FILE__)."/../../classes/LoginOps.php");
 require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
-require_once(dirname(__FILE__)."/../../classes/TestDetailOps.php");
+require_once(dirname(__FILE__)."/../../classes/TestOps.php");
 require_once(dirname(__FILE__)."/../../classes/DailyJobObs.php"); // TODO Correct spelling!!
 require_once(dirname(__FILE__)."/../../classes/CourseOps.php"); //
 require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php"); //
@@ -107,7 +107,7 @@ class ClarityService extends AbstractService {
         // gh#1275
         $this->accountOps = new AccountOps($this->db);
         // gh#1487
-        $this->testDetailOps = new TestDetailOps($this->db);
+        $this->testOps = new TestOps($this->db);
         $this->dailyJobOps = new DailyJobObs($this->db);
         $this->emailOps = new EmailOps($this->db);
         
@@ -411,21 +411,21 @@ class ClarityService extends AbstractService {
 	}
 
 	// gh#1487
-	public function getTestDetails($group, $productCode) {
-		return $this->testDetailOps->getTestDetails($group->id, $productCode);
+	public function getTests($group, $productCode) {
+		return $this->testOps->getTests($group->id, $productCode);
 	}
-	public function addTestDetail($testDetail, $productCode) {
-		$this->testDetailOps->addTestDetail($testDetail);		
-		return $this->testDetailOps->getTestDetails($testDetail->groupId, $productCode);
+	public function addTest($test) {
+		$this->testOps->addTest($test);		
+		return $this->testOps->getTests($test->groupId, $test->productCode);
 	}
-	public function updateTestDetail($testDetail, $productCode) {
-		$this->testDetailOps->updateTestDetail($testDetail);
-		//AbstractService::$debugLog->info("return testdetails for group ".$testDetail->groupId);
-		return $this->testDetailOps->getTestDetails($testDetail->groupId, $productCode);
+	public function updateTest($test) {
+		$this->testOps->updateTest($test);
+		//AbstractService::$debugLog->info("return testdetails for group ".$test->groupId);
+		return $this->testOps->getTests($test->groupId, $test->productCode);
 	}
-	public function deleteTestDetail($testDetail, $productCode) {
-		$this->testDetailOps->deleteTestDetail($testDetail);
-		return $this->testDetailOps->getTestDetails($testDetail->groupId, $productCode);
+	public function deleteTest($test) {
+		$this->testOps->deleteTest($test);
+		return $this->testOps->getTests($test->groupId, $test->productCode);
 	}
 	public function getTestUse($pc) {
 		return $this->usageOps->getTestUse($pc);

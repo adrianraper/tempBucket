@@ -12,7 +12,7 @@ package com.clarityenglish.resultsmanager.controller {
 	import com.clarityenglish.resultsmanager.model.LoginOptsProxy;
 	import com.clarityenglish.resultsmanager.model.ManageableProxy;
 	import com.clarityenglish.resultsmanager.model.ReportProxy;
-	import com.clarityenglish.resultsmanager.model.TestDetailsProxy;
+	import com.clarityenglish.resultsmanager.model.TestProxy;
 	import com.clarityenglish.resultsmanager.model.UploadProxy;
 	import com.clarityenglish.resultsmanager.model.UsageProxy;
 	import com.clarityenglish.utils.TraceUtils;
@@ -62,7 +62,7 @@ package com.clarityenglish.resultsmanager.controller {
 			facade.registerProxy(new UsageProxy());
 			facade.registerProxy(new LoginOptsProxy());
 			facade.registerProxy(new EmailOptsProxy());
-			facade.registerProxy(new TestDetailsProxy());
+			facade.registerProxy(new TestProxy());
 			facade.registerProxy(new EmailProxy());
 			
 			// Send another COPY_LOADED notification in case the language has changed (this forces everything to update its copy)

@@ -6,7 +6,7 @@ package com.clarityenglish.resultsmanager.view.shared.ui {
 	 * ...
 	 * @author Clarity
 	 */
-	public class TestDetailsItemRenderer extends ListItemRenderer {
+	public class ScheduledTestsItemRenderer extends ListItemRenderer {
 		
 	}
 	

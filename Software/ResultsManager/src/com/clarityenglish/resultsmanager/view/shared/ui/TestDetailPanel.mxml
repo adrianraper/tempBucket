@@ -8,9 +8,9 @@
 	<mx:Script>
 		<![CDATA[
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
-			import com.clarityenglish.common.vo.tests.TestDetail;
+			import com.clarityenglish.common.vo.tests.ScheduledTest;
 			import com.clarityenglish.resultsmanager.Constants;
-			import com.clarityenglish.resultsmanager.view.shared.events.TestDetailEvent;
+			import com.clarityenglish.resultsmanager.view.shared.events.TestEvent;
 			import com.clarityenglish.utils.TraceUtils;
 			
 			import flash.display.*;
@@ -32,13 +32,13 @@
 			[Bindable]
 			private var _errorText:String;
 			
-			private var dataProvider:TestDetail;
+			private var dataProvider:ScheduledTest;
 	
 			private function creationComplete():void {
 				captionData.addEventListener(Event.CHANGE, onDataChange); 
-				startTimeData.addEventListener(Event.CHANGE, onDataChange); 
+				openTimeData.addEventListener(Event.CHANGE, onDataChange); 
 				endTimeData.addEventListener(Event.CHANGE, onDataChange); 
-				codeData.addEventListener(Event.CHANGE, onDataChange); 
+				startData.addEventListener(Event.CHANGE, onDataChange); 
 				startByCode.addEventListener(Event.CHANGE, onDataChange); 
 				startByTimer.addEventListener(Event.CHANGE, onDataChange); 
 				showResultData.addEventListener(Event.CHANGE, onDataChange); 
@@ -46,25 +46,25 @@
 			
 			public function setCopyProvider(copyProvider:CopyProvider):void {
 				this.copyProvider = copyProvider;
-				title = copyProvider.getCopyForId("testDetailPanel");
+				title = copyProvider.getCopyForId("testPanel");
 				captionLabel.text = copyProvider.getCopyForId("testCaptionLabel");
-				startTimeLabel.text = copyProvider.getCopyForId("testStartTimeLabel");
+				openTimeLabel.text = copyProvider.getCopyForId("testOpenTimeLabel");
 				endTimeLabel.text = copyProvider.getCopyForId("testEndTimeLabel");
 				startByCode.label = copyProvider.getCopyForId("testCodeLabel");
 				startByTimer.label = copyProvider.getCopyForId("testTimeLabel");
 				startConditionsLabel.text = copyProvider.getCopyForId("testStartConditionLabel");
 				showResultLabel.text = copyProvider.getCopyForId("testShowResultLabel");
-				updateButton.label = copyProvider.getCopyForId("updateTestDetail");
-				addButton.label = copyProvider.getCopyForId("addTestDetail");
+				updateButton.label = copyProvider.getCopyForId("updateTest");
+				addButton.label = copyProvider.getCopyForId("addTest");
 			}
 
-			public function setDataProvider(testDetail:TestDetail):void {
-				dataProvider = testDetail;
-				if (dataProvider.startTime)
-					startTimeData.selectedDate = DateUtils.ansiStringToDate(dataProvider.startTime);
+			public function setDataProvider(test:ScheduledTest):void {
+				dataProvider = test;
+				if (dataProvider.openTime)
+					openTimeData.selectedDate = DateUtils.ansiStringToDate(dataProvider.openTime);
 				if (dataProvider.closeTime)
 					endTimeData.selectedDate = DateUtils.ansiStringToDate(dataProvider.closeTime);
-				codeData.text = dataProvider.startData;
+				startData.text = dataProvider.startData;
 				captionData.text = dataProvider.caption;
 				if (dataProvider.startType == 'code') {
 					startByCode.selected = true;
@@ -75,33 +75,33 @@
 				_isDirty = false;
 			}
 			public function onDataChange(e:Event):void {
-				// If this is adding a new test detail, don't need an update
-				var tdA:TestDetail = getTestDetailFromScreen();
+				// If this is adding a new test, don't need an update
+				var tdA:ScheduledTest = getTestFromScreen();
 				_isDirty = (addButton.visible) ? false : !_isEqual(tdA, dataProvider);
 			}
-			private function getTestDetailFromScreen():TestDetail {
-				var updatedDetail:TestDetail = new TestDetail();
+			private function getTestFromScreen():ScheduledTest {
+				var updatedTest:ScheduledTest = new ScheduledTest();
 				
 				// Some data can't be changed on this screen
-				updatedDetail.testDetailId = dataProvider.testDetailId;
-				updatedDetail.testId = dataProvider.testId;
-				updatedDetail.groupId = dataProvider.groupId;
-				updatedDetail.language = dataProvider.language;
+				updatedTest.testId = dataProvider.testId;
+				updatedTest.productCode = dataProvider.productCode;
+				updatedTest.groupId = dataProvider.groupId;
+				updatedTest.language = dataProvider.language;
 				
 				// Data validation on times
-				if (startTimeData.selectedDate)
-					updatedDetail.startTime = DateUtils.dateToAnsiString(startTimeData.selectedDate);
+				if (openTimeData.selectedDate)
+					updatedTest.openTime = DateUtils.dateToAnsiString(openTimeData.selectedDate);
 				if (endTimeData.selectedDate)
-					updatedDetail.closeTime = DateUtils.dateToAnsiString(endTimeData.selectedDate);
-				updatedDetail.caption = captionData.text;
-				updatedDetail.showResult = showResultData.selected;
-				updatedDetail.startType = (startByCode.selected) ? 'code' : 'timer';
-				updatedDetail.startData = (startByCode.selected) ? codeData.text : null;
-				return updatedDetail;
+					updatedTest.closeTime = DateUtils.dateToAnsiString(endTimeData.selectedDate);
+				updatedTest.caption = captionData.text;
+				updatedTest.showResult = showResultData.selected;
+				updatedTest.startType = (startByCode.selected) ? 'code' : 'timer';
+				updatedTest.startData = (startByCode.selected) ? startData.text : null;
+				return updatedTest;
 			}
 			// Have the user editable details changed?
-			private function _isEqual(tdA:TestDetail, tdB:TestDetail):Boolean {
-				return ((tdA.startTime == tdB.startTime) &&
+			private function _isEqual(tdA:ScheduledTest, tdB:ScheduledTest):Boolean {
+				return ((tdA.openTime == tdB.openTime) &&
 						(tdA.closeTime == tdB.closeTime) &&
 						(tdA.startData == tdB.startData) &&
 						(tdA.caption == tdB.caption) &&
@@ -111,7 +111,7 @@
 			// Have enough details been added?
 			private function isComplete():Boolean {
 				// Check the start time
-				if (!startTimeData.selectedDate) {
+				if (!openTimeData.selectedDate) {
 					_errorText = "There must be a start time.";
 					return false;
 				}
@@ -123,7 +123,7 @@
 					//	return false;
 					//}
 					//var endTime:Date = new Date(dateInterim);
-					if (ObjectUtil.dateCompare(startTimeData.selectedDate, endTimeData.selectedDate) >= 0) {
+					if (ObjectUtil.dateCompare(openTimeData.selectedDate, endTimeData.selectedDate) >= 0) {
 						_errorText = "The close must be after the start.";
 						return false;
 					}
@@ -131,7 +131,7 @@
 				
 				// Check the code
 				if (startByCode.selected) {
-					if (codeData.text.length < 4) {
+					if (startData.text.length < 4) {
 						_errorText = "The code must be at least 4 characters long.";
 						return false;
 					}
@@ -143,11 +143,11 @@
 			// Trigger events from user action
 			private function onUpdate():void {
 				_isDirty = false;
-				dispatchEvent(new TestDetailEvent(TestDetailEvent.UPDATE, getTestDetailFromScreen()))				
+				dispatchEvent(new TestEvent(TestEvent.UPDATE, getTestFromScreen()))				
 			}
 			private function onAdd():void {
 				if (isComplete())
-					dispatchEvent(new TestDetailEvent(TestDetailEvent.ADD, getTestDetailFromScreen()))
+					dispatchEvent(new TestEvent(TestEvent.ADD, getTestFromScreen()))
 			}
 		]]>
 	</mx:Script>
@@ -158,8 +158,8 @@
 			<mx:TextInput id="captionData" enabled="true" />
 		</mx:HBox>
 		<mx:HBox>
-			<mx:Label id="startTimeLabel" />
-			<mx:DateField id="startTimeData" enabled="true" editable="true" 
+			<mx:Label id="openTimeLabel" />
+			<mx:DateField id="openTimeData" enabled="true" editable="true" 
 						  selectableRange="{{rangeStart : new Date()}}" formatString="DD/MM/YYYY" yearNavigationEnabled="true" />
 		</mx:HBox>
 		<mx:HBox>
@@ -173,7 +173,7 @@
 				<mx:RadioButton id="startByCode" groupName="startConditions" labelPlacement="right" />
 				<mx:RadioButton id="startByTimer" groupName="startConditions" labelPlacement="right" />
 			</mx:VBox>
-			<mx:TextInput id="codeData" enabled="{startByCode.selected}" />
+			<mx:TextInput id="startData" enabled="{startByCode.selected}" />
 		</mx:HBox>
 		<mx:HBox>
 			<mx:Label id="showResultLabel" />

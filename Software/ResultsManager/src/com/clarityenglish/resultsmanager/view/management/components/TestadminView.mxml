@@ -11,11 +11,11 @@
 			import com.clarityenglish.common.vo.email.TemplateDefinition;
 			import com.clarityenglish.common.vo.manageable.Manageable;
 			import com.clarityenglish.common.vo.manageable.User;
-			import com.clarityenglish.common.vo.tests.TestDetail;
+			import com.clarityenglish.common.vo.tests.ScheduledTest;
 			import com.clarityenglish.resultsmanager.Constants;
 			import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
 			import com.clarityenglish.resultsmanager.view.management.ui.TestadminReportWindow;
-			import com.clarityenglish.resultsmanager.view.shared.events.TestDetailEvent;
+			import com.clarityenglish.resultsmanager.view.shared.events.TestEvent;
 			import com.clarityenglish.utils.TraceUtils;
 			
 			import flash.text.StyleSheet;
@@ -35,7 +35,7 @@
 			private var reportWindow:TestadminReportWindow;
 			
 			public var defaultLanguage:String;
-			public var testId:String;
+			public var productCode:String;
 							
 			[Bindable]
 			public var selectedGroup:Manageable;
@@ -67,11 +67,11 @@
 			
 			private function onSendWelcomeEmail(e:Event):void {
 				// TODO where should this be set. rm.xml, config.xml?
-				var testDetail:TestDetail = testList.selectedItem as TestDetail;
+				var test:ScheduledTest = testList.selectedItem as ScheduledTest;
 				var welcomeEmailTemplate:TemplateDefinition = new TemplateDefinition();
 				welcomeEmailTemplate.filename = "user/PPT-welcome";
 				welcomeEmailTemplate.name = "invitation";
-				welcomeEmailTemplate.data = {testDetail: testDetail};
+				welcomeEmailTemplate.data = {test: test};
 
 				showSendEmailDialog(function(e:CloseEvent):void {
 					if (e.detail == Alert.YES)
@@ -80,11 +80,11 @@
 			}
 			private function onSendResultEmail(e:Event):void {
 				// TODO where should this be set. rm.xml, config.xml?
-				var testDetail:TestDetail = testList.selectedItem as TestDetail;
+				var test:ScheduledTest = testList.selectedItem as ScheduledTest;
 				var resultEmailTemplate:TemplateDefinition = new TemplateDefinition();
-				resultEmailTemplate.filename = (testDetail.showResult) ? "user/PPT-with-result" : "user/PPT-without-result";
+				resultEmailTemplate.filename = (test.showResult) ? "user/PPT-with-result" : "user/PPT-without-result";
 				resultEmailTemplate.name = "result";
-				resultEmailTemplate.data = {testDetail: testDetail};
+				resultEmailTemplate.data = {test: test};
 				
 				showSendEmailDialog(function(e:CloseEvent):void {
 					if (e.detail == Alert.YES)
@@ -132,7 +132,7 @@
 				licencesScheduledData.text = scheduled.toString();
 			}
 			private function onTestChange(e:ListEvent):void {
-				var selectedTest:TestDetail = testList.selectedItem as TestDetail;
+				var selectedTest:ScheduledTest = testList.selectedItem as ScheduledTest;
 				testDetailPanel.setDataProvider(selectedTest);
 				testDetailPanel.addButton.visible = testDetailPanel.addButton.includeInLayout = false;
 				
@@ -150,18 +150,18 @@
 				
 			}
 			private function onNewTestButtonClick(e:Event):void {
-				var newTestDetail:TestDetail = new TestDetail();
-				newTestDetail.groupId = selectedGroup.id;
+				var newScheduledTest:ScheduledTest = new ScheduledTest();
+				newScheduledTest.groupId = selectedGroup.id;
 				
-				newTestDetail.testId = testId;
-				newTestDetail.language = defaultLanguage;
-				testDetailPanel.setDataProvider(newTestDetail);
+				newScheduledTest.productCode = productCode;
+				newScheduledTest.language = defaultLanguage;
+				testDetailPanel.setDataProvider(newScheduledTest);
 				testDetailPanel.addButton.visible = testDetailPanel.addButton.includeInLayout = true;
 				testDetailPanel.visible = true;
 			}
 			private function onDeleteTestButtonClick(e:Event):void {
-				var selectedTest:TestDetail = testList.selectedItem as TestDetail;
-				dispatchEvent(new TestDetailEvent(TestDetailEvent.DELETE, selectedTest))				
+				var selectedTest:ScheduledTest = testList.selectedItem as ScheduledTest;
+				dispatchEvent(new TestEvent(TestEvent.DELETE, selectedTest))				
 			}
 			
 		]]>
@@ -186,7 +186,7 @@
 					 width="100%"
 					 height="50%"
 					 labelField="caption"
-					 itemRenderer="com.clarityenglish.resultsmanager.view.shared.ui.TestDetailsItemRenderer"
+					 itemRenderer="com.clarityenglish.resultsmanager.view.shared.ui.ScheduledTestsItemRenderer"
 					 change="onTestChange(event)" />
 			<mx:HBox width="100%" >
 				<mx:Button id="newTestButton" visible="true" includeInLayout="true" height="18" click="onNewTestButtonClick(event)" />

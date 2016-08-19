@@ -44,16 +44,14 @@
 		public static const MANAGEABLES_LOADED:String = "manageables_loaded";
 		
 		// gh#1487
-		public static const TEST_DETAILS_LOADED:String = "test_details_loaded";
-		public static const UPDATE_TEST_DETAIL:String = "update_test_detail";
-		public static const DELETE_TEST_DETAIL:String = "delete_test_detail";
-		public static const ADD_TEST_DETAIL:String = "add_test_detail";
-		public static const TEST_DETAIL_UPDATED:String = "test_detail_updated";
-		public static const TEST_DETAIL_ADDED:String = "test_detail_added";
-		public static const TEST_DETAIL_DELETED:String = "test_detail_deleted";
+		public static const TESTS_LOADED:String = "tests_loaded";
+		public static const UPDATE_TEST:String = "update_test";
+		public static const DELETE_TEST:String = "delete_test";
+		public static const ADD_TEST:String = "add_test";
+		public static const TEST_UPDATED:String = "test_updated";
+		public static const TEST_ADDED:String = "test_added";
+		public static const TEST_DELETED:String = "test_deleted";
 		public static const TEST_LICENCES_LOADED:String = "test_licences_loaded";
-		
-		
 		
 		// v3.4 Editing Clarity Content
 		public static const EDIT_EXERCISE:String = "edit_exercise";

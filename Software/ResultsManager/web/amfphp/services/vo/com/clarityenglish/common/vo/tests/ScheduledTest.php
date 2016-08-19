@@ -1,23 +1,23 @@
 <?php
-class TestDetail {
+class ScheduledTest {
 	
 	/*
 	 * AMFPHP Custom Class mapping
 	 */
-	var $_explicitType = 'com.clarityenglish.common.vo.tests.TestDetail';
+	var $_explicitType = 'com.clarityenglish.common.vo.tests.ScheduledTest';
 	
-	var $testDetailId;
 	var $testId;
+	var $productCode;
 	var $groupId;
 	var $caption;
 	var $startType;
 	var $startData;
-	var $startTime;
+	var $openTime;
 	var $closeTime;
 	var $language;
 	var $showResult;
 	
-	function TestDetail($dbObj = null) {
+	function ScheduledTest($dbObj = null) {
 		if ($dbObj)
 			$this->fromDatabaseObj($dbObj);
 	}
@@ -28,13 +28,13 @@ class TestDetail {
 	 * @param obj The object returned for the record by FetchNextObject()
 	 */
 	function fromDatabaseObj($obj) {
-		$this->testDetailId = intval($obj->F_TestDetailID);
-		$this->testId = $obj->F_TestID;
+		$this->testId = intval($obj->F_TestID);
+		$this->productCode = $obj->F_ProductCode;
 		$this->groupId = intval($obj->F_GroupID);
 		$this->caption = $obj->F_Caption;
 		$this->startType = $obj->F_StartType;
 		$this->startData = $obj->F_StartData;
-		$this->startTime = $obj->F_ScheduledStartTime;
+		$this->openTime = $obj->F_OpenTime;
 		$this->closeTime = $obj->F_CloseTime;
 		$this->language = $obj->F_Language;
 		$this->showResult = filter_var($obj->F_ShowResult, FILTER_VALIDATE_BOOLEAN);
@@ -48,14 +48,14 @@ class TestDetail {
 	function toAssocArray() {
 		$array = array();
 		
-		if ($this->testDetailId)
-		    $array['F_TestDetailID'] = $this->testDetailId;
+		if ($this->testId)
+		    $array['F_TestID'] = $this->testId;
 		$array['F_GroupID'] = $this->groupId;
-		$array['F_TestID'] = $this->testId;
+		$array['F_ProductCode'] = $this->productCode;
 		$array['F_Caption'] = $this->caption;
 		$array['F_StartType'] = $this->startType;
-		$array['F_StartData'] = $this->startD;
-		$array['F_ScheduledStartTime'] = $this->startTime;
+		$array['F_StartData'] = $this->startData;
+		$array['F_OpenTime'] = $this->openTime;
 		$array['F_CloseTime'] = $this->closeTime;
 		$array['F_Language'] = $this->language;
 		$array['F_ShowResult'] = intval($this->showResult);

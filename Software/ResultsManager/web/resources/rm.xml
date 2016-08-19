@@ -619,7 +619,7 @@
             <lit name="sendInvitationEmail">Email test invitations</lit>
             <lit name="selectGroup">Select a group on the left to see the tests scheduled for them.</lit>
             <lit name="testDetailPanel">Details of the test</lit>
-            <lit name="testStartTimeLabel">Open time:</lit>
+            <lit name="testOpenTimeLabel">Open time:</lit>
             <lit name="testEndTimeLabel">Close time:</lit>
             <lit name="testStartConditionLabel">Start with:</lit>
             <lit name="testCodeLabel">Access code</lit>
