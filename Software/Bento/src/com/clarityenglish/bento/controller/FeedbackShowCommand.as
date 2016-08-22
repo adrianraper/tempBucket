@@ -103,7 +103,7 @@ import com.clarityenglish.bento.model.ExerciseProxy;
 				scroller.bottom = 20;
 				// gh#701
 				scroller.minWidth = 0;
-				scroller.maxHeight = 320;
+				scroller.maxHeight = 620;
 				scroller.viewport = xhtmlRichText;
 				titleWindow.addElement(scroller);
 				
