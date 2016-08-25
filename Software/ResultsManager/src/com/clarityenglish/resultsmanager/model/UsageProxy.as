@@ -38,7 +38,7 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		// gh#1487
 		public function getTestUse(productCode:String):void {
-			new RemoteDelegate("getTestUse", [ productCode ], this).execute();
+			new RemoteDelegate("getUsageForTest", [ productCode ], this).execute();
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
@@ -48,7 +48,7 @@ package com.clarityenglish.resultsmanager.model {
 				case "getUsageForTitle":
 					sendNotification(RMNotifications.USAGE_LOADED, data);
 					break;
-				case "getTestUse":
+				case "getUsageForTest":
 					sendNotification(RMNotifications.TEST_LICENCES_LOADED, data);
 					break;
 				case "getFixedUsageForTitle":
@@ -65,7 +65,7 @@ package com.clarityenglish.resultsmanager.model {
 			switch (operation) {
 				case "getUsageForTitle":
 				case "getFixedUsageForTitle":
-				case "getTestUse":
+				case "getUsageForTest":
 					break;
 				default:
 					sendNotification(CommonNotifications.TRACE_ERROR, "Fault from unknown operation: " + operation);

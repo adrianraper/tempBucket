@@ -427,8 +427,8 @@ class ClarityService extends AbstractService {
 		$this->testOps->deleteTest($test);
 		return $this->testOps->getTests($test->groupId, $test->productCode);
 	}
-	public function getTestUse($pc) {
-		return $this->usageOps->getTestUse($pc);
+	public function getUsageForTest($pc) {
+		return $this->usageOps->getTestsUsed($pc);
 	}
 	
 	public function getUsageForTitle($title, $fromDate, $toDate) {

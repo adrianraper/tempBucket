@@ -7,6 +7,7 @@ class UsageOps {
 	function UsageOps($db) {
 		$this->db = $db;
 		$this->licenceOps = new LicenceOps($db);
+		$this->manageableOps = new ManageableOps($db);
 	}
 	
 	/**
@@ -16,6 +17,7 @@ class UsageOps {
 	function changeDB($db) {
 		$this->db = $db;
 		$this->licenceOps->changeDB($db);
+		$this->manageableOps->changeDB($db);
 	}
 	
 	function getUsageForTitle($title, $fromDate, $toDate) {
@@ -1164,11 +1166,103 @@ EOD;
 	*/
 	
 	// gh#1487 Count tests purchased, used, scheduled
-	public function getTestUse($pc) {
+	public function getTestsUsed($pc) {
+		$rootID = Session::get('rootID');
+		
+		// Tests purchased is currently T_Accounts.F_MaxStudents - we will manually have to add this with any incremental purchases
+	    $bindingParams = array($pc, $rootID);
+        $sql = <<<SQL
+			SELECT * FROM T_Accounts
+            WHERE F_ProductCode=?
+            AND F_RootID=? 
+SQL;
+        $rs = $this->db->Execute($sql, $bindingParams);
+        switch ($rs->RecordCount()) {
+            case 0:
+                // There are no records
+                $purchased = 0;
+                break;
+            default:
+            	// Just ignore anything more than one
+                $dbObj = $rs->FetchNextObj();
+                $purchased = $dbObj->F_MaxStudents;
+        }
+        
+        // Tests completed is based on T_TestSession
+        $sql = <<<SQL
+			SELECT COUNT(*) as testsUsed FROM T_TestSession
+            WHERE F_ProductCode=?
+            AND F_RootID=?
+            AND F_CompletedDateStamp is not null
+			GROUP BY F_UserID, F_TestID;
+SQL;
+        $rs = $this->db->Execute($sql, $bindingParams);
+        switch ($rs->RecordCount()) {
+            case 0:
+                // There are no records
+                $completed = 0;
+                break;
+            default:
+            	// Just ignore anything more than one
+                $dbObj = $rs->FetchNextObj();
+                $completed = $dbObj->testsUsed;
+        }
+        
+        // Find all the scheduled tests for groups in this root that have not closed.
+        // TODO would it be worth saving F_RootID in T_ScheduledTests?
+        $date = new DateTime();
+		$dateNow = $date->format('Y-m-d H:i:s');
+        $sql = <<<SQL
+			SELECT * FROM T_ScheduledTests t, T_Membership m
+            WHERE t.F_ProductCode=?
+            AND t.F_GroupID = m.F_GroupID
+            AND m.F_RootID=?
+            AND t.F_CloseTime < '$dateNow'
+			GROUP BY t.F_TestID
+SQL;
+        $rs = $this->db->Execute($sql, $bindingParams);
+        switch ($rs->RecordCount()) {
+            case 0:
+                // There are no records
+                $scheduled = 0;
+                break;
+            default:
+            	// Include duplicate groups if they have multiple scheduled tests
+            	$testList = array();
+                while($dbObj = $rs->FetchNextObj())
+                	$testList[] = new ScheduledTest($dbObj);
+
+             	// Count number of students in each group
+               	foreach ($testList as $test) {
+               		$testId = $test->testId;
+               		$groupId = $test->groupId;
+               		$usersInGroup = $this->manageableOps->countUsersInGroup(array($groupId));
+	               	// You should really see if any of them have completed this particular test
+	               	$bindingParams1 = array($testId);
+    		        $sql1 = <<<SQL
+						SELECT COUNT(DISTINCT(F_UserID)) as testsUsed FROM T_TestSession
+			            WHERE F_TestID=? 
+			            AND F_CompletedDateStamp is not null
+SQL;
+			        $rs1 = $this->db->Execute($sql1, $bindingParams1);
+			        switch ($rs1->RecordCount()) {
+			            case 0:
+			                // There are no records
+			                $alreadyCompleted = 0;
+			                break;
+			            default:
+			            	// Just ignore anything more than one
+			                $dbObj1 = $rs1->FetchNextObj();
+			                $alreadyCompleted = $dbObj1->testsUsed;
+			        }
+			        $scheduled += $usersInGroup - $alreadyCompleted;
+               	}
+        }
+        
 		$usage = array();
-		$usage['purchased'] = 1250; 
-		$usage['used'] = 712; 
-		$usage['scheduled'] = 0; 
+		$usage['purchased'] = $purchased; 
+		$usage['used'] = $completed; 
+		$usage['scheduled'] = $scheduled; 
 		return $usage;
 	}
 }
