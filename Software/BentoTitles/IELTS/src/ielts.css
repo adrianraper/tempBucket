@@ -69,6 +69,7 @@ global {
 	speakingCompareEveryoneColor: #330F28;
 	speakingCompareMyColor: #A93087;
 	speakingColorDark: #4F173F;
+	speakingExamPracticeColor: #9D3293;
 	speakingIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconSmall');
 	speakingIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconBare');
 	
@@ -286,6 +287,10 @@ zone|PracticeZoneSectionView s|VScrollBar {
 
 zone|PracticeZonePopoutView {
 	skinClass: ClassReference("skins.ielts.zone.PracticeZonePopoutSkin");
+}
+
+zone|PracticeZonePopoutView s|VScrollBar {
+	skinClass: ClassReference("skins.ielts.ui.VScrollBarSkin");
 }
 
 zoneui|DifficultyRenderer {

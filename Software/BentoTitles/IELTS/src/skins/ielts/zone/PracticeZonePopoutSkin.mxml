@@ -22,25 +22,49 @@
 	<zone:PopoutChrome />
 	
 	<s:Label id="captionLabel" left="40" top="20" />
-	<s:List id="exerciseList" left="40" top="50" right="40" height="{height - 70}" contentBackgroundColor="#FFFFFF" borderVisible="false">
+	<s:List id="exerciseList" left="25" top="50" right="80" height="{height - 70}" contentBackgroundColor="#FFFFFF" borderVisible="false">
 		<s:itemRenderer>
 			<fx:Component>
-				<s:IconItemRenderer labelField="@caption"
-									iconFunction="getIconURL"
-									iconWidth="44"
-									iconHeight="44"
-									verticalAlign="middle">
+				<s:ItemRenderer>
 					<fx:Script>
 						<![CDATA[
-							/**
-							 * Get an absolute path to the thumbnail to use in the IconItemRenderer
-							 */
-							private function getIconURL(exercise:XML):String {
-								return (exercise.@thumbnail.toString() != "") ? outerDocument.hostComponent.href.createRelativeHref(null, exercise.@thumbnail.toString()).url : null;
+							[Bindable]
+							private var courseClass:String;
+
+							override public function set data(value:Object):void {
+								super.data = value;
+
+								if (data) {
+									courseClass = data.parent().parent().@['class'].toString();
+									indexLabel.setStyle("color", getStyle(courseClass + "ExamPracticeColor"));
+									exerciseSetGroup.addEventListener(MouseEvent.CLICK, onExerciseGroupClick);
+								}
+							}
+
+							protected function onExerciseGroupClick(event:Event):void {
+								var url:String = (data.@thumbnail.toString() != "") ? outerDocument.hostComponent.href.createRelativeHref(null, data.@thumbnail.toString()).url : null;
 							}
 						]]>
 					</fx:Script>
-				</s:IconItemRenderer>
+					<s:VGroup width="100%">
+						<s:HGroup id="exerciseSetGroup" verticalAlign="middle" paddingTop="5" paddingLeft="15" height="70" gap="10">
+							<s:Group width="30" height="30">
+								<s:Rect width="100%" height="100%" radiusX="6" radiusY="6">
+									<s:fill>
+										<s:SolidColor color="#F2F2F2" />
+									</s:fill>
+								</s:Rect>
+								<s:Label id="indexLabel" text="{this.itemIndex + 1}" fontSize="20" horizontalCenter="0" paddingTop="7" trackingRight="-1"/>
+							</s:Group>
+							<s:Label text="{data.@caption}" paddingTop="5" />
+						</s:HGroup>
+						<s:Rect width="100%" height="1">
+							<s:fill>
+								<s:SolidColor color="#F2F2F2" />
+							</s:fill>
+						</s:Rect>
+					</s:VGroup>
+				</s:ItemRenderer>
 			</fx:Component>
 		</s:itemRenderer>
 	</s:List>
