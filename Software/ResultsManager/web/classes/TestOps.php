@@ -85,6 +85,23 @@ SQL;
         return $testSessions;
     }
 
+    // This function should only be called by the Couloir Password Server
+    public function getTestAccessCode($testId) {
+        $bindingParams = array($testId);
+        $sql = <<<SQL
+			SELECT * FROM T_ScheduledTests 
+			WHERE F_TestID=?
+SQL;
+        $rs = $this->db->Execute($sql, $bindingParams);
+        switch ($rs->RecordCount()) {
+            case 1:
+                $test = new ScheduledTest($rs->FetchNextObj());
+                return ($test->startType == "code") ? $test->startData : $test->groupId;
+            default:
+                return false;
+        }
+    }
+
     // The rest of the class is related to Bento
     // TODO The content folder should be picked up from the normal way we do this...
 	public function getQuestions($exercise) {
