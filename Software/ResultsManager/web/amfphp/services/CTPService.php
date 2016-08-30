@@ -40,7 +40,16 @@ class CTPService extends BentoService {
 
         // Get the tests that the user's group can take part in
         // But remember that you DON'T pass the security access code back to the app
-        $tests = $this->getTestsSecure($login['group'], $productCode);
+        if ($rootID==163 && preg_match('/(track\w{1})(@ppt)/i', $user->email, $matches)) {
+            $fakeTest = new ScheduledTest();
+            $fakeTest->id = '1';
+            $fakeTest->testId = '1';
+            $fakeTest->startTime = '2016-01-01';
+            $fakeTest->contentName = $matches[1];
+            $tests[] = $fakeTest;
+        } else {
+            $tests = $this->getTestsSecure($login['group'], $productCode);
+        }
 
         if ($tests) {
             // Create a T_TestSession record here. Fill in the TestId when I do first writeScore if not known now

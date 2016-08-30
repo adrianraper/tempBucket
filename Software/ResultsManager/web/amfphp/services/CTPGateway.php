@@ -13,9 +13,9 @@ set_time_limit(360);
 
 try {
     // Decode the body
-    $json = json_decode(file_get_contents('php://input'));
-    $json->productCode = 63;
-    //$json = json_decode('{"command":"login","email":"dandy@email","password":"password","productCode":63}');
+    //$json = json_decode(file_get_contents('php://input'));
+    //$json->productCode = 63;
+    $json = json_decode('{"command":"login","email":"tracka@ppt","password":"ppt","productCode":63}');
 
     echo json_encode(router($json));
 } catch (UserAccessException $e) {

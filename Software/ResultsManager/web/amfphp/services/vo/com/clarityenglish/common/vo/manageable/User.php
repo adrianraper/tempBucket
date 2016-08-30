@@ -355,6 +355,7 @@ EOD;
         $this->registerMethod = null;
         $this->birthday = null;
         $this->registrationDate= null;
+        return $this;
     }
 
 	/**
