@@ -46,6 +46,9 @@ class User extends Manageable {
 	const LOGIN_BY_NAME_AND_ID = 4;
 	const LOGIN_BY_ANONYMOUS = 8;
 	const LOGIN_BY_EMAIL = 128;
+
+    // gh#ctp#80
+    const LOGIN_HASHED = 256;
 	
 	/**
 	 * Get all the ids of the users below this level.  This is used when authenticating manageables.

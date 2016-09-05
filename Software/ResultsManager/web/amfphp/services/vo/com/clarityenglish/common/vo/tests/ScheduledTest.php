@@ -16,10 +16,17 @@ class ScheduledTest {
 	var $closeTime;
 	var $language;
 	var $showResult;
-	
+    // ctp#68
+    var $menuFilename;
+    const DEFAULT_NAME = "menu.json";
+
 	function ScheduledTest($dbObj = null) {
-		if ($dbObj)
-			$this->fromDatabaseObj($dbObj);
+        if ($dbObj) {
+            $this->fromDatabaseObj($dbObj);
+        } else {
+            // ctp#68 Default, will only be overridden in special cases, like demos or for testing
+            $this->menuFilename = ScheduledTest::DEFAULT_NAME;
+        }
 	}
 	
 	/*
@@ -38,6 +45,8 @@ class ScheduledTest {
 		$this->closeTime = $obj->F_CloseTime;
 		$this->language = $obj->F_Language;
 		$this->showResult = filter_var($obj->F_ShowResult, FILTER_VALIDATE_BOOLEAN);
+        // ctp#68
+        $this->menuFilename = (!$obj->F_MenuFilename) ? ScheduledTest::DEFAULT_NAME : $obj->F_MenuFilename;
 	}
 	
 	/**
@@ -59,9 +68,9 @@ class ScheduledTest {
 		$array['F_CloseTime'] = $this->closeTime;
 		$array['F_Language'] = $this->language;
 		$array['F_ShowResult'] = intval($this->showResult);
-		
+        // ctp#68
+        $array['F_MenuFilename'] = ($this->menuFilename == ScheduledTest::DEFAULT_NAME) ? null : $this->menuFilename;
+
 		return $array;
 	}
-	
-	
 }

@@ -1425,8 +1425,8 @@ INSERT INTO `T_ProductVersion` VALUES
 (64,'FV');
 
 -- gh#1496
-DROP TABLE IF EXISTS `T_TestDetail`;
-CREATE TABLE `T_TestDetail` (
+DROP TABLE IF EXISTS `T_ScheduledTests`;
+CREATE TABLE `T_ScheduledTests` (
   `F_TestID` int(10) NOT NULL AUTO_INCREMENT,
   `F_ProductCode` smallint(5) NOT NULL,
   `F_GroupID` int(10) NOT NULL,
@@ -1437,6 +1437,7 @@ CREATE TABLE `T_TestDetail` (
   `F_CloseTime` DATETIME NULL,
   `F_Language` VARCHAR(16) NOT NULL DEFAULT 'EN',
   `F_ShowResult` TINYINT(1) NOT NULL DEFAULT 1,
+  `F_MenuFilename` TEXT NULL DEFAULT NULL,
   PRIMARY KEY (`F_TestID`),
   INDEX `Index_1` (`F_TestID`, `F_GroupID`)
 )  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -1456,7 +1457,7 @@ DROP TABLE IF EXISTS `T_TestSession`;
 CREATE TABLE `T_TestSession` (
   `F_SessionID` int(11) NOT NULL AUTO_INCREMENT,
   `F_UserID` int(11) NOT NULL,
-  `F_TestDetailID` int(10) NOT NULL,
+  `F_TestID` int(10) NULL,
   `F_RootID` int(11) DEFAULT 0,
   `F_ProductCode` smallint(5) NOT NULL DEFAULT 0,
   `F_ReadyDateStamp` datetime DEFAULT NULL,
@@ -1464,5 +1465,12 @@ CREATE TABLE `T_TestSession` (
   `F_Duration` int(11) DEFAULT NULL,
   PRIMARY KEY (`F_SessionID`,`F_ProductCode`, `F_RootID`),
   KEY `Index_1` (`F_RootID`,`F_ProductCode`),
-  KEY `Index_2` (`F_TestDetailID`,`F_UserID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  KEY `Index_2` (`F_TestID`,`F_UserID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+/*
+ALTER TABLE `T_ScheduledTests` ADD COLUMN `F_MenuFilename` TEXT NULL DEFAULT NULL AFTER `F_ShowResult`;
+update T_ScheduledTests set F_MenuFilename='menu-track-a.json' where F_TestID=3;
+update T_ScheduledTests set F_MenuFilename='menu-track-b.json' where F_TestID=4;
+update T_ScheduledTests set F_MenuFilename='menu-gauge.json' where F_TestID=2;
+*/

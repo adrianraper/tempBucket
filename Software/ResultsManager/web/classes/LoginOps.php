@@ -57,9 +57,10 @@ class LoginOps {
 		} else {
 			throw $this->copyOps->getExceptionForId("errorInvalidLoginOption", array("loginOption" => $loginOption));
 		}
-		if (isset($loginObj['password']))
-			$password = $loginObj['password'];
-			
+		// gh#ctp#80 This might be the hashed version that has been passed
+        if (isset($loginObj['password']))
+            $password = $loginObj['password'];
+
 		// #503
 		$selectFields = array("g.F_GroupID as groupID",
 							  "m.F_RootID as rootID",
@@ -140,11 +141,13 @@ EOD;
 				//AbstractService::$debugLog->info($logMessage);
 				
 				// 1. Does the password match just one of them?
-				$matches = 0;
+                $matches = 0;
 				// gh#741
 				$rs->MoveFirst();
 				while ($userObj = $rs->FetchNextObj()) {
-					if ($password == $userObj->F_Password) {
+                    // ctp#80
+                    $dbPassword = ($loginOption & User::LOGIN_HASHED) ? md5($userObj->F_Email . $userObj->F_Password) : $userObj->F_Password;
+					if ($password == $dbPassword) {
 						$dbLoginObj = $userObj;
 						$matches++;
 					}
@@ -253,7 +256,9 @@ EOD;
 		// A special case to check that the password matches the case (by default MSSQL and MYSQL are case-insensitive)
 		// #341 Only check password if you have set this to be the case 
 		if ($verified) {
-			if ($password != $dbLoginObj->F_Password) {
+		    // ctp#80
+            $dbPassword = ($loginOption & User::LOGIN_HASHED) ? md5($dbLoginObj->F_Email . $dbLoginObj->F_Password) : $dbLoginObj->F_Password;
+			if ($password != $dbPassword) {
 				//$logMessage = "login $keyValue wrong password, they typed $password, should be ".$dbLoginObj->F_Password;
 				//if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
 				//AbstractService::$debugLog->info($logMessage);

@@ -135,10 +135,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 					}
 					
 				} else {
-					$startCounter = 0;
-					for ($idx = $startCounter; $idx <= $startCounter + 199; $idx++) {
-						$result = $triggerResults[$idx];
-					//foreach ($triggerResults as $result) {
+					foreach ($triggerResults as $result) {
 						// gh#733
 						try {
 							// v3.6 You now get email addresses from T_AccountEmails.
@@ -354,7 +351,8 @@ if (date("w")==1) {
 	$testingTriggers .= "weeklyActions";
 }
 if (stripos($testingTriggers, "oneoffActions")!==false) {
-    $triggerList = array(61);
+    //$triggerList = array(61);
+    $triggerList = null; // find all weekly ones
     $msgType = 4; // Nothing useful to send
     runTriggers($msgType, $triggerList, null, "oneoff");
 }

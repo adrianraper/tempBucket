@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<id>/area1/TenseBuster in localhost</id>
+	<dbHost>2</dbHost>
+	<productCode>55</productCode>
+	<useCacheBuster>true</useCacheBuster>
+	<courseFile>menu-{productVersion}.xml</courseFile>
+	<platform>browser</platform>
+
+	<sharedMedia />
+	<brandingMedia />
+	<language>EN</language>
+
+	<contentPath>https://scorm.clarityenglish.com/Content/</contentPath>
+	<remoteDomain>http://scorm.clarityenglish.com/</remoteDomain>
+	<remoteGateway>http://scorm.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteService>TenseBusterService</remoteService>
+	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+</config>
+

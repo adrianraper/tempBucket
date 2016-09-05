@@ -20,7 +20,6 @@ class CTPService extends BentoService {
 		AbstractService::$title = "ctp";
 
         $this->testOps = new TestOps($this->db);
-        $this->progressOps = new ProgressOps($this->db);
 	}
 
 	// Login checks the user, account and returns valid tests
@@ -28,28 +27,35 @@ class CTPService extends BentoService {
         $rootID = null;
 
         // Check the user, which includes licence slot checking (though there currently is none)
+        // ctp#80
         $login = $this->login(
             [ "email" => $email, "password" => $password ],
-            User::LOGIN_BY_EMAIL,
+            User::LOGIN_BY_EMAIL + User::LOGIN_HASHED,
             true,
             microtime(true) * 10000, // instanceId - is this used for anything?
             new Licence(), null, $productCode, null, null, null
         );
+        // Make sure you only pass back public/reasonable information about the user
         $user = $login['group']->manageables[0]->publicView();
         $rootID = $login['account']->id;
 
         // Get the tests that the user's group can take part in
-        // But remember that you DON'T pass the security access code back to the app
-        if ($rootID==163 && preg_match('/(track\w{1})(@ppt)/i', $user->email, $matches)) {
+        // There are some fake tests used for checking content
+        /*
+        if ($rootID==163 && preg_match('/(track\w+)(@ppt)/i', $user->email, $matches)) {
             $fakeTest = new ScheduledTest();
             $fakeTest->id = '1';
             $fakeTest->testId = '1';
-            $fakeTest->startTime = '2016-01-01';
+            $fakeTest->startTimestamp = '2016-01-01';
+            $fakeTest->endTimestamp = null;
             $fakeTest->contentName = $matches[1];
+            $fakeTest->description = 'Testing track '.$matches[1];
             $tests[] = $fakeTest;
         } else {
+        */
+            // But remember that you DON'T pass the security access code back to the app
             $tests = $this->getTestsSecure($login['group'], $productCode);
-        }
+        //}
 
         if ($tests) {
             // Create a T_TestSession record here. Fill in the TestId when I do first writeScore if not known now
@@ -92,18 +98,18 @@ class CTPService extends BentoService {
                     }
 
             // Strip out any security information
-            // TODO This is, of course, the wrong way round at the moment!
+            $test->startData = null;
+
+            // Get names in sync
+            $test->id = (string)$test->testId;
             switch ($productCode) {
                 case 63:
-                    $test->contentName = "ila";
-                    break;
-                case 64:
                     $test->contentName = "ppt";
                     break;
+                case 64:
+                    $test->contentName = "lelt";
+                    break;
             }
-            $test->startData = null;
-            $test->id = (string)$test->testId;
-
             $test->description = $test->caption;
             $test->startTimestamp = $test->openTime;
             $test->endTimestamp = $test->closeTime;
@@ -116,25 +122,54 @@ class CTPService extends BentoService {
         return $this->progressOps->startTestSession($user, $rootId, $productCode, $testId);
     }
 
-    // Write a score record and many score detail records
-    public function scoreWrite($user, $session, $scoreObj, $clientTimezoneOffset=null) {
-        // If this is the first score, make sure the session includes the testDetailId
-        $session->testId = ($session->testId) ? ($session->testId) : $scoreObj->testId;
-        $this->progressOps->updateTestSession($session);
+    public function scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffset) {
+        $session = $this->testOps->getTestSession($sessionId);
+        if (!$session)
+            throw new Exception("No such saved session");
+
+        // To avoid authentication, dummy use of session variables
+        Session::set('userID', $session->userId);
+        $user = $this->manageableOps->getUserById($session->userId);
+        if (!$session)
+            throw new Exception("No such saved user");
 
         // Manipulate the score object from Couloir into Bento format
-        $score = new Score($scoreObj, $clientTimezoneOffset);
+        $score = new Score(null, $clientTimezoneOffset);
+        $score->scoreCorrect = $scoreObj->exerciseScore->exerciseMark->correctCount;
+        $score->scoreWrong = $scoreObj->exerciseScore->exerciseMark->incorrectCount;
+        $score->scoreMissed = $scoreObj->exerciseScore->exerciseMark->missedCount;
+        $score->duration = $scoreObj->exerciseScore->duration;
+
         $score->sessionID = $session->sessionId;
         $score->userID = $user->userID;
+        $score->setUID($scoreObj->uid);
 
-        // Write the score record
+        // Write the summary score record
         $this->progressOps->insertScore($score, $user);
 
         // Write each score detail
+        /*
         $scoreDetails = array();
-        foreach ($scoreObj->answers as $answer) {
+
+        foreach ($scoreObj->questionScores as $answer) {
             $scoreDetails[] = new ScoreDetail($answer, $clientTimezoneOffset);
         }
-        $this->progressOps->insertScoreDetail($scoreDetails, $user);
+        $this->progressOps->insertScoreDetails($scoreDetails, $user);
+        */
+
+        // If this is the first score, make sure the session includes the testId
+        $session->testId = ($session->testId) ? ($session->testId) : $scoreObj->testId;
+        $this->progressOps->updateTestSession($session);
+
     }
+
+    public function getResult($sessionId) {
+        $session = $this->testOps->getTestSession($sessionId);
+
+        Session::set('userID', $session->userId);
+        $user = $this->manageableOps->getUserById($session->userId);
+
+        return $this->progressOps->getResult($user, $session->productCode);
+    }
+
 }

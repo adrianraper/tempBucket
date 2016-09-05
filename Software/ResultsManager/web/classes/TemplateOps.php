@@ -135,7 +135,7 @@ class TemplateOps {
 		foreach ($dataArray as $key => $value) {
 			$smarty->assign($key, $value);
 		}
-		AbstractService::$debugLog->info("fetchTemplate has testResult=" .  $dataArray['testDetail']->caption);
+		//AbstractService::$debugLog->info("fetchTemplate has testResult=" .  $dataArray['testDetail']->caption);
 		
 		// Always add in the copy array
 		$smarty->assign("copy", $this->copyOps->getCopyArray());

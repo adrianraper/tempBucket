@@ -13,17 +13,37 @@ set_time_limit(360);
 
 try {
     // Decode the body
-    //$json = json_decode(file_get_contents('php://input'));
-    //$json->productCode = 63;
-    $json = json_decode('{"command":"login","email":"tracka@ppt","password":"ppt","productCode":63}');
+    $json = json_decode(file_get_contents('php://input'));
+    /*
+    $json = json_decode('{"command":"login","email":"tracka@ppt","password":"eecea6bb1dd86ecb255f070b9b263f7c","productCode":63}');
+    $json = json_decode('{"command":"scoreWrite",
+                "score":{
+                  "sessionID":"7",
+                  "uid":"63.2015063020000.2015063020100.2015063020101",
+                  "testID":"1",
+                  "exerciseScore":{
+                    "duration":373109,
+                    "questionScores":[{"id":"d8bf84df-502f-4203-8c63-18549a183a1e","score":0}],
+                    "exerciseMark":{"correctCount":0, "incorrectCount":0, "missedCount":1}
+                  }
+                },
+                "localTimestamp":1473066576911,
+                "timezoneOffset":-480}');
+    */
+    if (!$json)
+        throw new Exception("Empty request");
+
+    // Some data adjustment until the app and server are in sync with names etc
+    //if (!isset($json->productCode)) $json->productCode = 63;
+    if (!isset($json->sessionID) && isset($json->score)) $json->sessionID = $json->score->sessionID;
 
     echo json_encode(router($json));
 } catch (UserAccessException $e) {
     header(':', false, 403);
-    echo json_encode(array("error" => $e->getMessage()));
+    echo json_encode(array("error" => $e->getMessage(), "code" => $e->getCode()));
 } catch (Exception $e) {
     header(':', false, 500);
-    echo json_encode(array("error" => $e->getMessage()));
+    echo json_encode(array("error" => $e->getMessage(), "code" => $e->getCode()));
 }
 
 // Router
@@ -37,7 +57,7 @@ function router($json) {
     switch ($json->command) {
         case "login": return login($json->email, $json->password, $json->productCode);
         case "getResult": return getResult($json->sessionID);
-        case "scoreWrite": return scoreWrite($json->sessionID, $json->scoreObj, $json->clientTimezoneOffset);
+        case "scoreWrite": return scoreWrite($json->sessionID, $json->score, $json->localTimestamp, $json->timezoneOffset);
         default: throw new Exception("Unknown command");
     }
 }
@@ -48,18 +68,13 @@ function login($email, $password, $productCode) {
     return $service->testLogin($email, $password, $productCode);
 }
 
-function getMastery($sessionId) {
+function getResult($sessionId) {
     global $service;
-    $session = new TestSession($sessionId);
-    $user = $service->manageableOps->getUserById($session->userId);
-
-    return $service->progressOps->getResult($user, $session->productCode);
+    return $service->getResult($sessionId);
 }
 
-function scoreWrite($sessionId, $scoreObj, $clientTimezoneOffset=null) {
+function scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffset=null) {
     global $service;
-    $session = new TestSession($sessionId);
-    $user = $service->manageableOps->getUserById($session->userId);
-
-    return $service->scoreWrite($user, $session, $scoreObj, $clientTimezoneOffset);
+    $service->scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffset);
+    return array("sessionID" => $sessionId);
 }

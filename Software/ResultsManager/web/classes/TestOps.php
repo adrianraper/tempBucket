@@ -25,6 +25,9 @@ class TestOps {
     // Return all tests that this groups is scheduled to take
     function getTests($groupId, $productCode) {
 
+        $dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+        $dateNow = $dateStampNow->format('Y-m-d H:i:s');
+
         // We also want any tests that parents of this group are scheduled to take as they will apply to us too
         $groupList = implode(',', $this->manageableOps->getGroupParents($groupId));
 
@@ -42,8 +45,12 @@ SQL;
                 return false;
             default:
                 $tests = array();
-                while ($dbObj = $rs->FetchNextObj())
+                while ($dbObj = $rs->FetchNextObj()) {
+                    // Check that the test has not closed
+                    if ($dbObj->F_CloseTime < $dateNow)
+                        continue;
                     $tests[] = new ScheduledTest($dbObj);
+                }
         }
         return $tests;
     }
@@ -80,7 +87,7 @@ SQL;
             default:
                 $tests = array();
                 while ($dbObj = $rs->FetchNextObj())
-                    $testSessions[] = new TestSession($dbObj);
+                    $testSessions[] = new TestSession($dbObj, $this->db);
         }
         return $testSessions;
     }
@@ -101,6 +108,24 @@ SQL;
                 return false;
         }
     }
+
+    function getTestSession($sessionId) {
+        $sql = <<<EOD
+			SELECT * 
+			FROM T_TestSession
+			WHERE F_SessionID=?
+EOD;
+        $bindingParams = array($sessionId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs && $rs->RecordCount() > 0) {
+            $testSession = new TestSession();
+            $testSession->fromDatabaseObj($rs->FetchNextObj());
+            return $testSession;
+        } else {
+            return false;
+        }
+    }
+
 
     // The rest of the class is related to Bento
     // TODO The content folder should be picked up from the normal way we do this...

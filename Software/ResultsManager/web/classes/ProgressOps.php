@@ -343,6 +343,20 @@ SQL;
     }
 
     /**
+     * Update a session record for a test - make sure it includes the test id and any updated status
+     *
+     */
+    public function updateTestSession($session, $completed=false) {
+        $dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+        $dateNow = $dateStampNow->format('Y-m-d H:i:s');
+
+        if ($completed)
+            $session->completedDateStamp = $dateNow;
+
+        $this->db->AutoExecute("T_TestSession", $session->toAssocArray(), "UPDATE", "F_SessionID=".$session->sessionId);
+
+    }
+    /**
 	 * This method is called to insert a score record to the database 
 	 */
 	function insertScore($score, $user) {
