@@ -19,6 +19,13 @@ class ScheduledTest {
     // ctp#68
     var $menuFilename;
     const DEFAULT_NAME = "menu.json";
+    
+    var $status;
+    const STATUS_PRERELEASE = 0;
+    const STATUS_RELEASED = 1;
+    const STATUS_OPEN = 2;
+    const STATUS_CLOSED = 3;
+    const STATUS_DELETED = 4;
 
 	function ScheduledTest($dbObj = null) {
         if ($dbObj) {
@@ -47,6 +54,7 @@ class ScheduledTest {
 		$this->showResult = filter_var($obj->F_ShowResult, FILTER_VALIDATE_BOOLEAN);
         // ctp#68
         $this->menuFilename = (!$obj->F_MenuFilename) ? ScheduledTest::DEFAULT_NAME : $obj->F_MenuFilename;
+        $this->status = intval($obj->F_Status);
 	}
 	
 	/**
@@ -70,7 +78,8 @@ class ScheduledTest {
 		$array['F_ShowResult'] = intval($this->showResult);
         // ctp#68
         $array['F_MenuFilename'] = ($this->menuFilename == ScheduledTest::DEFAULT_NAME) ? null : $this->menuFilename;
-
+		$array['F_Status'] = $this->status;
+        
 		return $array;
 	}
 }

@@ -1212,12 +1212,14 @@ SQL;
         // TODO would it be worth saving F_RootID in T_ScheduledTests?
         $date = new DateTime();
 		$dateNow = $date->format('Y-m-d H:i:s');
+		$deletedStatus = ScheduledTest::STATUS_DELETED;
         $sql = <<<SQL
 			SELECT * FROM T_ScheduledTests t, T_Membership m
             WHERE t.F_ProductCode=?
             AND t.F_GroupID = m.F_GroupID
             AND m.F_RootID=?
-            AND t.F_CloseTime < '$dateNow'
+            AND t.F_CloseTime > '$dateNow'
+            AND t.F_Status != $deletedStatus
 			GROUP BY t.F_TestID
 SQL;
         $rs = $this->db->Execute($sql, $bindingParams);
@@ -1237,7 +1239,8 @@ SQL;
                		$testId = $test->testId;
                		$groupId = $test->groupId;
                		$usersInGroup = $this->manageableOps->countUsersInGroup(array($groupId));
-	               	// You should really see if any of them have completed this particular test
+
+               		// See if any of them have completed this particular test
 	               	$bindingParams1 = array($testId);
     		        $sql1 = <<<SQL
 						SELECT COUNT(DISTINCT(F_UserID)) as testsUsed FROM T_TestSession

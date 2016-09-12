@@ -923,6 +923,7 @@ EOD;
 	 * Currently only applies to Author Plus.
 	 */
 	function getContentFolder($contentLocation, $productCode=null) {
+		//NetDebug::trace("myBase=".__FILE__);
 		switch ($productCode) {
 			case 1:
 				$folder = "../../".$GLOBALS['ap_data_dir']."/".$contentLocation;
@@ -933,7 +934,7 @@ EOD;
 			default:
 				$folder =  "../../".$GLOBALS['data_dir']."/".$contentLocation;
 		}
-        AbstractService::$debugLog->info("getContentFolder=".$folder);
+		//NetDebug::trace("getContentFolder=$folder");
 		return $folder;
 	}
 	
@@ -944,12 +945,11 @@ EOD;
 	 * gh#81 Due to php 5.2 version, array_reduce with an inline function cannot be used in ClarityDevelop.
 	 */
 	public function parseContent($generateMaps, $rootID = null, $forDMS = false, $onExpiryDate = null, $productCodes = null) {
-
+			
 		// If the rootID is not given then default to the session root (this is normal behaviour except for DMS)
 		if (!$rootID) $rootID = Session::get('rootID');
 		$bindingParams = array($rootID);
-        AbstractService::$debugLog->info("parseContent rootID=$rootID and pc=$productCodes");
-
+		
 		// Get all the titles this rootID is registered to use from t_accounts
 		// AR.DK suggests joining this on T_Product
 		// DK. rather than joining on T_Product we use getTitleCaptionFromProductCode in _buildTitle to get the names
@@ -1044,20 +1044,18 @@ EOD;
 		// Perform the query and create a Group object from the results
 		//NetDebug::trace("parseContent=".$sql."with ".implode(", ",$bindingParams));
 		//echo $sql;
-        AbstractService::$debugLog->info("parseContent sql=$sql");
 		$titlesRS = $this->db->Execute($sql, $bindingParams);
-        AbstractService::$debugLog->info("rs count=".$titlesRS->RecordCount());
 		//NetDebug::trace("records=".$titlesRS->RecordCount());
 		
 		$titles = array();
-
+		
 		// v3.1 Add in emus as well as courses. Currently this is based on F_ProductCode>1000 is an Emu.
 		// TODO: would be better to have F_ProductType
 		if ($titlesRS->RecordCount() > 0) {
 			while ($titleObj = $titlesRS->FetchNextObj()) {
 				// v3.3 There are some details we need from T_Product and T_ProductLanguage
 				
-                AbstractService::$debugLog->info("getDetails for =".$titleObj->F_ProductCode." and ".$titleObj->F_LanguageCode);
+				//NetDebug::trace("getDetails for =".$titleObj->F_ProductCode." and ".$titleObj->F_LanguageCode);
 				$productDetails = $this->getDetailsFromProductCode($titleObj->F_ProductCode, $titleObj->F_LanguageCode);
 				$titleObj->name = $productDetails['name'];
 				// v3.3 This will now usually be picked up from T_ProductLanguage as the default
@@ -1145,12 +1143,11 @@ EOD;
 					$courseType = 'bento';
 					$titleObj->indexFile = "menu-Speech-FullVersion.xml";
 					break;
-                case ($pid == 63):
-                case ($pid == 64):
-                    $courseType = 'couloir';
-                    // TODO work through how you load a couloir content index...
-                    $titleObj->indexFile = "course.xml";
-                    break;
+				case ($pid == 63): 
+				case ($pid == 64): 
+					$courseType = 'couloir';
+					$titleObj->indexFile = "course.xml";
+					break;
 				default:
 					$courseType = 'bento';
 					$titleObj->indexFile = "menu-FullVersion.xml";

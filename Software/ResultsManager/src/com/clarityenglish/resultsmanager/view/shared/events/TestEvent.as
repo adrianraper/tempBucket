@@ -11,6 +11,8 @@
 		public static const UPDATE:String = "testupdate";
 		public static const DELETE:String = "testdelete";
 		public static const ADD:String = "testadd";
+		//public static const RELEASE:String = "testrelease";
+		public static const CANCEL:String = "testcancel";
 		
 		public var test:ScheduledTest;
 		

@@ -11,7 +11,6 @@
 			import com.clarityenglish.common.vo.tests.ScheduledTest;
 			import com.clarityenglish.resultsmanager.Constants;
 			import com.clarityenglish.resultsmanager.view.shared.events.TestEvent;
-			import com.clarityenglish.utils.TraceUtils;
 			
 			import flash.display.*;
 			import flash.display.Loader;
@@ -27,21 +26,30 @@
 			import org.davekeen.utils.DateUtils;
 		
 			private var copyProvider:CopyProvider;
-			[Bindable]
-			private var _isDirty:Boolean = false;
+			//[Bindable]
+			//private var _isDirty:Boolean = false;
 			[Bindable]
 			private var _errorText:String;
 			
 			private var dataProvider:ScheduledTest;
+			
+			private var _openDate:Date;
+			private var _closeDate:Date;
 	
 			private function creationComplete():void {
+				/*
 				captionData.addEventListener(Event.CHANGE, onDataChange); 
-				openTimeData.addEventListener(Event.CHANGE, onDataChange); 
-				endTimeData.addEventListener(Event.CHANGE, onDataChange); 
 				startData.addEventListener(Event.CHANGE, onDataChange); 
 				startByCode.addEventListener(Event.CHANGE, onDataChange); 
 				startByTimer.addEventListener(Event.CHANGE, onDataChange); 
 				showResultData.addEventListener(Event.CHANGE, onDataChange); 
+				*/
+				openTimeDataDate.addEventListener(Event.CHANGE, dateChanged); 
+				closeTimeDataDate.addEventListener(Event.CHANGE, dateChanged); 
+				openTimeDataHours.addEventListener(Event.CHANGE, dateChanged); 
+				openTimeDataMins.addEventListener(Event.CHANGE, dateChanged); 
+				closeTimeDataHours.addEventListener(Event.CHANGE, dateChanged); 
+				closeTimeDataMins.addEventListener(Event.CHANGE, dateChanged);
 			}
 			
 			public function setCopyProvider(copyProvider:CopyProvider):void {
@@ -49,36 +57,83 @@
 				title = copyProvider.getCopyForId("testPanel");
 				captionLabel.text = copyProvider.getCopyForId("testCaptionLabel");
 				openTimeLabel.text = copyProvider.getCopyForId("testOpenTimeLabel");
-				endTimeLabel.text = copyProvider.getCopyForId("testEndTimeLabel");
+				closeTimeLabel.text = copyProvider.getCopyForId("testCloseTimeLabel");
 				startByCode.label = copyProvider.getCopyForId("testCodeLabel");
 				startByTimer.label = copyProvider.getCopyForId("testTimeLabel");
 				startConditionsLabel.text = copyProvider.getCopyForId("testStartConditionLabel");
 				showResultLabel.text = copyProvider.getCopyForId("testShowResultLabel");
-				updateButton.label = copyProvider.getCopyForId("updateTest");
-				addButton.label = copyProvider.getCopyForId("addTest");
+				//cancelButton.label = copyProvider.getCopyForId("cancelButton");
+				saveButton.label = copyProvider.getCopyForId("saveTestDetail");
 			}
 
 			public function setDataProvider(test:ScheduledTest):void {
-				dataProvider = test;
-				if (dataProvider.openTime)
-					openTimeData.selectedDate = DateUtils.ansiStringToDate(dataProvider.openTime);
-				if (dataProvider.closeTime)
-					endTimeData.selectedDate = DateUtils.ansiStringToDate(dataProvider.closeTime);
-				startData.text = dataProvider.startData;
-				captionData.text = dataProvider.caption;
-				if (dataProvider.startType == 'code') {
-					startByCode.selected = true;
-				} else {
-					startByTimer.selected = true;
+				if (test) {
+					
+					dataProvider = test;
+					if (dataProvider.openTime) {
+						var openDate:Date = DateUtils.ansiStringToDate(dataProvider.openTime)
+						openTimeDataDate.selectedDate = openDate;
+						openTimeDataHours.value = openDate.hours;
+						openTimeDataMins.value = openDate.minutes;
+						_openDate = openDate;
+					} else {
+						openTimeDataDate.selectedDate = null;
+						openTimeDataHours.value = 0;
+						openTimeDataMins.value = 0;
+						_openDate = null;
+					}
+					if (dataProvider.closeTime) {
+						var closeDate:Date = DateUtils.ansiStringToDate(dataProvider.closeTime)
+						closeTimeDataDate.selectedDate = closeDate;
+						closeTimeDataHours.value = closeDate.hours;
+						closeTimeDataMins.value = closeDate.minutes;
+						_closeDate = closeDate;
+					} else {
+						closeTimeDataDate.selectedDate = null;
+						closeTimeDataHours.value = 0;
+						closeTimeDataMins.value = 0;
+						_closeDate = null;
+					}
+					startData.text = dataProvider.startData;
+					captionData.text = dataProvider.caption;
+					if (dataProvider.startType == 'code') {
+						startByCode.selected = true;
+					} else {
+						startByTimer.selected = true;
+					}
+					showResultData.selected = dataProvider.showResult;
+					
+					// Is the data editable?
+					setDataEditable(dataProvider.status == ScheduledTest.STATUS_PRERELEASE);
+						
+					//_isDirty = false;
 				}
-				showResultData.selected = dataProvider.showResult;
-				_isDirty = false;
 			}
-			public function onDataChange(e:Event):void {
-				// If this is adding a new test, don't need an update
-				var tdA:ScheduledTest = getTestFromScreen();
-				_isDirty = (addButton.visible) ? false : !_isEqual(tdA, dataProvider);
+			private function setDataEditable(editable:Boolean):void {
+				captionData.editable = startData.editable = editable; 
+				openTimeDataDate.enabled = closeTimeDataDate.enabled = editable;
+				openTimeDataHours.enabled = openTimeDataMins.enabled = closeTimeDataHours.enabled = closeTimeDataMins.enabled = editable; 
+				showResultData.enabled = startByCode.enabled = startByTimer.enabled = editable;
+				saveButton.enabled = editable;
 			}
+			public function dateChanged(e:Event):void {
+				if (closeTimeDataDate.selectedDate)
+					_closeDate = closeTimeDataDate.selectedDate;
+				if (openTimeDataDate.selectedDate)
+					_openDate = openTimeDataDate.selectedDate;
+				if (_closeDate) {
+					_closeDate.hours = closeTimeDataHours.value;
+					_closeDate.minutes = closeTimeDataMins.value;
+				}
+				if (_openDate) {
+					_openDate.hours = openTimeDataHours.value;
+					_openDate.minutes = openTimeDataMins.value;
+				}
+			}
+			//public function onDataChange(e:Event):void {
+			//	var tdA:ScheduledTest = getTestFromScreen();
+			//	_isDirty = !_isEqual(tdA, dataProvider);
+			//}
 			private function getTestFromScreen():ScheduledTest {
 				var updatedTest:ScheduledTest = new ScheduledTest();
 				
@@ -87,18 +142,20 @@
 				updatedTest.productCode = dataProvider.productCode;
 				updatedTest.groupId = dataProvider.groupId;
 				updatedTest.language = dataProvider.language;
+				updatedTest.status = dataProvider.status;
 				
 				// Data validation on times
-				if (openTimeData.selectedDate)
-					updatedTest.openTime = DateUtils.dateToAnsiString(openTimeData.selectedDate);
-				if (endTimeData.selectedDate)
-					updatedTest.closeTime = DateUtils.dateToAnsiString(endTimeData.selectedDate);
+				if (_openDate)
+					updatedTest.openTime = DateUtils.dateAndTimeToString(_openDate, openTimeDataHours.value, openTimeDataMins.value);
+				if (_closeDate)
+					updatedTest.closeTime = DateUtils.dateAndTimeToString(_closeDate, closeTimeDataHours.value, closeTimeDataMins.value);
 				updatedTest.caption = captionData.text;
 				updatedTest.showResult = showResultData.selected;
 				updatedTest.startType = (startByCode.selected) ? 'code' : 'timer';
 				updatedTest.startData = (startByCode.selected) ? startData.text : null;
 				return updatedTest;
 			}
+			
 			// Have the user editable details changed?
 			private function _isEqual(tdA:ScheduledTest, tdB:ScheduledTest):Boolean {
 				return ((tdA.openTime == tdB.openTime) &&
@@ -110,21 +167,29 @@
 			}
 			// Have enough details been added?
 			private function isComplete():Boolean {
+				_errorText = "";
+				
+				if (!_closeDate) {
+					_errorText = "There must be a close time.";
+					return false;
+				}
+					
 				// Check the start time
-				if (!openTimeData.selectedDate) {
+				if (!_openDate) {
 					_errorText = "There must be a start time.";
 					return false;
 				}
 				// Check the close time
-				if (endTimeData.selectedDate) {
+				if (_closeDate) {
 					//dateInterim = endTimeData.selectedDate;
 					//if (isNaN(dateInterim)) {
 					//	_errorText = "The close date/time is not understood. Try something like 2016-09-17 09:30";
 					//	return false;
 					//}
 					//var endTime:Date = new Date(dateInterim);
-					if (ObjectUtil.dateCompare(openTimeData.selectedDate, endTimeData.selectedDate) >= 0) {
-						_errorText = "The close must be after the start.";
+					// TODO This comparison should include the times as well as days part
+					if (ObjectUtil.dateCompare(_openDate, _closeDate) >= 0) {
+						_errorText = "The close must be after the open.";
 						return false;
 					}
 				}
@@ -141,34 +206,57 @@
 			}
 			
 			// Trigger events from user action
+			/*
 			private function onUpdate():void {
 				_isDirty = false;
-				dispatchEvent(new TestEvent(TestEvent.UPDATE, getTestFromScreen()))				
-			}
-			private function onAdd():void {
 				if (isComplete())
-					dispatchEvent(new TestEvent(TestEvent.ADD, getTestFromScreen()))
+					dispatchEvent(new TestEvent(TestEvent.UPDATE, getTestFromScreen()));				
+			}
+			*/
+			//private function onCancel():void {
+			//	dispatchEvent(new TestEvent(TestEvent.CANCEL, null));
+			//}
+			private function onAdd():void {
+				if (isComplete()) {
+					dataProvider.status = ScheduledTest.STATUS_RELEASED;
+					dispatchEvent(new TestEvent(TestEvent.ADD, getTestFromScreen()));
+				}
+			}
+			private function formatDateTime(date:Date):String {
+				return DateUtils.formatDate(date, "D MMM YYYY");
 			}
 		]]>
 	</mx:Script>
 	
 	<mx:VBox width="100%" height="100%">
 		<mx:HBox>
-			<mx:Label id="captionLabel" />
-			<mx:TextInput id="captionData" enabled="true" />
+			<mx:Label id="captionLabel" width="200"/>
+			<mx:TextInput id="captionData" enabled="true" width="200" />
 		</mx:HBox>
 		<mx:HBox>
-			<mx:Label id="openTimeLabel" />
-			<mx:DateField id="openTimeData" enabled="true" editable="true" 
-						  selectableRange="{{rangeStart : new Date()}}" formatString="DD/MM/YYYY" yearNavigationEnabled="true" />
+			<mx:Text id="openTimeLabel" width="200"/>
+			<mx:HBox>			
+				<mx:DateField width="120" id="openTimeDataDate" enabled="true" editable="false" 
+						  selectableRange="{{rangeStart : new Date()}}" labelFunction="formatDateTime" yearNavigationEnabled="true" />
+				<mx:NumericStepper id="openTimeDataHours" enabled="true" width="50"   
+						   minimum="0" maximum="23" stepSize="1" value="9" />
+				<mx:NumericStepper id="openTimeDataMins" enabled="true" width="50"   
+								   minimum="0" maximum="55" stepSize="5" value="0" />
+			</mx:HBox>
 		</mx:HBox>
 		<mx:HBox>
-			<mx:Label id="endTimeLabel" />
-			<mx:DateField id="endTimeData" editable="true" enabled="true" 
-						  selectableRange="{{rangeStart : new Date()}}" formatString="DD/MM/YYYY" yearNavigationEnabled="true" />
+			<mx:Text id="closeTimeLabel" width="200"/>
+			<mx:HBox>			
+				<mx:DateField width="120" id="closeTimeDataDate" enabled="true" editable="false" 
+							  selectableRange="{{rangeStart : new Date()}}" labelFunction="formatDateTime" yearNavigationEnabled="true" />
+				<mx:NumericStepper id="closeTimeDataHours" enabled="true" width="50"   
+								   minimum="0" maximum="23" stepSize="1" value="12" />
+				<mx:NumericStepper id="closeTimeDataMins" enabled="true" width="50"   
+								   minimum="0" maximum="55" stepSize="5" value="0" />
+			</mx:HBox>
 		</mx:HBox>
 		<mx:HBox>
-			<mx:Label id="startConditionsLabel" />
+			<mx:Text id="startConditionsLabel" width="200" />
 			<mx:VBox>
 				<mx:RadioButton id="startByCode" groupName="startConditions" labelPlacement="right" />
 				<mx:RadioButton id="startByTimer" groupName="startConditions" labelPlacement="right" />
@@ -176,12 +264,12 @@
 			<mx:TextInput id="startData" enabled="{startByCode.selected}" />
 		</mx:HBox>
 		<mx:HBox>
-			<mx:Label id="showResultLabel" />
+			<mx:Text id="showResultLabel" width="200"/>
 			<mx:CheckBox id="showResultData" enabled="true" />
 		</mx:HBox>
-		<mx:Label id="errorTextLabel" text="{_errorText}" />
-		<mx:Button id="updateButton" visible="{_isDirty}" includeInLayout="{_isDirty}" click="onUpdate()" />
-		<mx:Button id="addButton" visible="false" includeInLayout="false" click="onAdd()" />
+		<mx:Label id="errorTextLabel" text="{_errorText}" visible="true" includeInLayout="true" />
+		<mx:Button id="saveButton" click="onAdd()" />
+		<!-- <mx:Button id="cancelButton" enabled="{_isDirty}" click="onCancel()" /> -->
 	</mx:VBox>
 
 </mx:TitleWindow>

@@ -38,24 +38,24 @@ package com.clarityenglish.resultsmanager.model {
 		public function updateTest(test:ScheduledTest):void {
 			new RemoteDelegate("updateTest", [ test ], this).execute();
 		}
-		public function deleteTest(test:ScheduledTest):void {
-			new RemoteDelegate("deleteTest", [ test ], this).execute();
-		}
+		//public function deleteTest(test:ScheduledTest):void {
+		//	new RemoteDelegate("deleteTest", [ test ], this).execute();
+		//}
 		
 		public function onDelegateResult(operation:String, data:Object):void{
 			switch (operation) {
 				case "getTests":
 					sendNotification(RMNotifications.TESTS_LOADED, data);
 					break;
-				case "updateTest":
+				case "updateTest":					
 					sendNotification(RMNotifications.TEST_UPDATED, data);
 					break;
 				case "addTest":
 					sendNotification(RMNotifications.TEST_ADDED, data);
 					break;
-				case "deleteTest":
-					sendNotification(RMNotifications.TEST_DELETED, data);
-					break;
+				//case "deleteTest":
+				//	sendNotification(RMNotifications.TEST_DELETED, data);
+				//	break;
 				default:
 					sendNotification(CommonNotifications.TRACE_ERROR, "Result from unknown operation: " + operation);
 			}
@@ -66,7 +66,7 @@ package com.clarityenglish.resultsmanager.model {
 			
 			switch (operation) {
 				case "updateTest":
-				case "deleteTest":
+				//case "deleteTest":
 				case "addTest":
 				case "getTests":
 					break;

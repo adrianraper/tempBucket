@@ -611,8 +611,8 @@
 			<!--  Test Platform -->
             <lit name="listOfTestsLabel">Tests for: </lit>
             <lit name="addTest">Add new test</lit>
-            <lit name="updateTestDetail">Update</lit>
-            <lit name="addTestDetail">Add</lit>
+            <lit name="saveTestDetail">Save</lit>
+            <lit name="cancelButton">Cancel</lit>
             <lit name="deleteTest">Delete</lit>
             <lit name="generateReport">See test results</lit>
             <lit name="sendResultsEmail">Email test results</lit>

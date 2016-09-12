@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<view:GradientCanvas xmlns:mx="http://www.adobe.com/2006/mxml"
+		   xmlns:view="com.clarityenglish.resultsmanager.view.login.components.*"
+		   xmlns:comps="com.clarityenglish.testadmin.view.login.components.*"
+		   implements="com.clarityenglish.common.view.login.interfaces.LoginComponent, com.clarityenglish.common.view.interfaces.CopyReceiver"
+		   initialize="onInitialize(event)"
+		   >
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.resultsmanager.Constants;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.common.events.LoginEvent;
+		import mx.controls.Alert;
+		import com.clarityenglish.utils.TraceUtils;
+		import com.clarityenglish.resultsmanager.view.login.components.*;
+		import mx.events.FlexEvent;
+		
+		private var copyProvider:CopyProvider;
+		
+		protected function onInitialize(event:FlexEvent):void {
+			this.setStyle('fillColors', [0xffffff, 0xd4d4d3]);
+			this.setStyle('cornerRadius',0);			
+		}
+			
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+			
+			usernameFormItem.text = copyProvider.getCopyForId("loginUsername");
+			passwordFormItem.text = copyProvider.getCopyForId("loginPassword");
+			loginButton.label = copyProvider.getCopyForId("loginButton");
+			forgotPassword.text = copyProvider.getCopyForId("forgotPassword");
+			var substTags:Object = {version: Constants.version};
+			version.text = copyProvider.getCopyForId("applicationVersion", substTags);
+			copyright.text = copyProvider.getCopyForId("copyright");
+			setInputFocus();
+		}
+		
+		private function setInputFocus():void {
+			usernameTextInput.setFocus();
+			usernameTextInput.setSelection(0, usernameTextInput.text.length);
+		}
+		
+		private function login():void {
+			dispatchEvent(new LoginEvent(LoginEvent.LOGIN, usernameTextInput.text, passwordTextInput.text, true));
+		}
+		
+		public function showInvalidLogin():void {
+			Alert.show(copyProvider.getCopyForId("invalidLogin"), copyProvider.getCopyForId("invalidLoginWindowTitle"), Alert.OK, this);
+		}
+
+		// AR added to clear out data from the fields once you have logged in.
+		public function clearData():void {
+			usernameTextInput.text = "";
+			passwordTextInput.text = "";
+		}
+		// AR for use with flashvars or other passed data
+		public function passedVars(name:String, password:String, root:String):void {
+			//TraceUtils.myTrace("loginView, try login");
+			dispatchEvent(new LoginEvent(LoginEvent.LOGIN, name, password, true))
+		}
+		
+		public function onForgotPassword(event:MouseEvent):void {
+			var substTags:Object = { productCode: 1 };
+			substTags.loginOption = 1;
+			substTags.rootID = 0;
+			var urlReq:URLRequest = new URLRequest(copyProvider.getCopyForId("forgotPasswordLink", substTags));
+			navigateToURL(urlReq, "_new");
+		}
+			
+		protected function loginKeyUp(event:KeyboardEvent):void {
+			if (event.keyCode == Keyboard.ENTER) {
+				if (passwordTextInput.text.length == 0) {
+					passwordTextInput.setFocus();
+				} else {
+					if (usernameTextInput.text.length == 0) {
+						usernameTextInput.setFocus();
+					} else {
+						loginButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+					}
+				}				
+			}
+		}
+			
+		]]>
+	</mx:Script>
+	<mx:Image id="RMlogo" maintainAspectRatio="true" verticalCenter="0" horizontalCenter="0" scaleContent="false" 
+				  source="@Embed('/../assets/TA_login_bg_smaller.png')" />		
+
+		<!-- gh#747 Very clumsy component, struggling with mx to get it nicer! -->
+		<comps:LoginPanelBackgroundSkin width="430" height="404" 
+										horizontalCenter="0" verticalCenter="0"	/>
+		<mx:VBox id="loginWindow" width="250" height="243" horizontalCenter="0" verticalCenter="80" horizontalAlign="center"  >
+			<mx:VBox horizontalAlign="left" verticalGap="0">
+				<mx:Label id="usernameFormItem" styleName="prompt" />
+				<mx:TextInput id="usernameTextInput" width="225" text="" styleName="promptEntry" keyUp="loginKeyUp(event)" />
+				<mx:Spacer height="5" />
+				<mx:Label id="passwordFormItem" styleName="prompt" />
+				<mx:TextInput id="passwordTextInput" width="225" displayAsPassword="true" text="" styleName="promptEntry" keyUp="loginKeyUp(event)" />
+			</mx:VBox>
+			<mx:Spacer height="10" />
+			<mx:Label id="forgotPassword" styleName="forgotPassword" click="onForgotPassword(event)" useHandCursor="true" buttonMode="true" />
+			<mx:Spacer height="100%" />
+			<mx:Button id="loginButton" horizontalCenter="0" verticalCenter="400" click="login()" width="100" height="50"
+					   overSkin="{ButtonUpSkin}" upSkin="{ButtonUpSkin}" downSkin="{ButtonUpSkin}"
+					   styleName="loginButton" textRollOverColor="0xffffff" useHandCursor="true" buttonMode="true"/>
+		</mx:VBox>
+		<mx:VBox id="about" horizontalCenter="0" verticalCenter="360" horizontalAlign="center" verticalGap="0" >
+			<mx:Image maintainAspectRatio="true" scaleContent="false" source="@Embed('/../assets/TA_login_CElogo.png')" />
+			<mx:Label id="version" styleName="smallText" />
+			<mx:Label id="copyright" styleName="smallText" />
+		</mx:VBox>
+</view:GradientCanvas>
+

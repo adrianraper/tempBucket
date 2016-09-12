@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
-				xmlns:login="com.clarityenglish.resultsmanager.view.login.components.*"
+				xmlns:login="com.clarityenglish.testadmin.view.login.components.*"
 				xmlns:management="com.clarityenglish.resultsmanager.view.management.components.*"
 				xmlns:loginopts="com.clarityenglish.resultsmanager.view.loginopts.components.*"
 				xmlns:usage="com.clarityenglish.resultsmanager.view.usage.components.*"
@@ -224,7 +224,7 @@
 			<mx:TabNavigator id="mainStack" width="100%" height="100%" borderStyle="solid">
 				<management:TestadminView id="testadminView" width="100%" height="100%"/>
 				<usage:UsageView id="usageView" width="100%" height="100%"/>
-				<loginopts:LoginOptsView id="loginOptsView" width="100%" height="100%" />
+				<loginopts:LoginOptsView id="loginOptsView" width="100%" height="100%"/>
 			</mx:TabNavigator>
 
 		</mx:VBox>
