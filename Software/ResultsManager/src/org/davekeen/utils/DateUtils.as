@@ -30,6 +30,12 @@
 			return new Date(ansiString.replace(/-/g, "/"));
 		}
 		
+		public static function dateAndTimeToString(date:Date, hours:Number, minutes:Number, seconds:Number=0):String {
+			date.hours = hours;
+			date.minutes = minutes;
+			date.seconds = seconds;
+			return DateUtils.dateToAnsiString(date);
+		}
 	}
 	
 }

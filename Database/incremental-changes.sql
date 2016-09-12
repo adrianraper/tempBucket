@@ -1438,6 +1438,7 @@ CREATE TABLE `T_ScheduledTests` (
   `F_Language` VARCHAR(16) NOT NULL DEFAULT 'EN',
   `F_ShowResult` TINYINT(1) NOT NULL DEFAULT 1,
   `F_MenuFilename` TEXT NULL DEFAULT NULL,
+  `F_Status` smallint(5) NOT NULL DEFAULT 0,
   PRIMARY KEY (`F_TestID`),
   INDEX `Index_1` (`F_TestID`, `F_GroupID`)
 )  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -1473,6 +1474,7 @@ ALTER TABLE `T_ScheduledTests` ADD COLUMN `F_MenuFilename` TEXT NULL DEFAULT NUL
 update T_ScheduledTests set F_MenuFilename='menu-track-a.json' where F_TestID=3;
 update T_ScheduledTests set F_MenuFilename='menu-track-b.json' where F_TestID=4;
 update T_ScheduledTests set F_MenuFilename='menu-gauge.json' where F_TestID=2;
+ALTER TABLE `T_ScheduledTests` ADD COLUMN `F_Status` smallint(5) NOT NULL DEFAULT 0 AFTER `F_MenuFilename`;
 */
 
 -- Clarity Test Platform

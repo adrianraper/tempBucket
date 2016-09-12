@@ -41,9 +41,28 @@
 			public var selectedGroup:Manageable;
 			public var selectedTitle:Title;
 			
+			// gh#1499
+			[Bindable]
+			public var licencesPurchased:uint;
+			[Bindable]
+			public var licencesUsed:uint;
+			[Bindable]
+			public var _licencesScheduled:uint;
+			[Bindable]
+			public var licencesNeeded:int;
+			
 			// Icon for the alert window
 			[Embed(source="/../assets/warning_icon.swf")]
 			private var alertWarningIcon:Class;	
+			
+			public function set licencesScheduled(value:uint):void {
+				_licencesScheduled = value;
+				licencesNeeded = (licencesUsed + _licencesScheduled) - licencesPurchased;
+			}
+			[Bindable]
+			public function get licencesScheduled():uint {
+				return _licencesScheduled;
+			}
 			
 			public function setCopyProvider(copyProvider:CopyProvider):void {
 				this.copyProvider = copyProvider;
@@ -53,6 +72,7 @@
 				newTestButton.label = copyProvider.getCopyForId("addTest");
 				selectGroupLabel.text = copyProvider.getCopyForId("selectGroup");
 				deleteTestButton.label = copyProvider.getCopyForId("deleteTest");
+				//releaseTestButton.label = copyProvider.getCopyForId("releaseTest");
 				
 				firstStepWindow.title = copyProvider.getCopyForId("testAdminFirstStep");
 				licenceUseLabel.title = copyProvider.getCopyForId("licenceUse");
@@ -78,6 +98,7 @@
 						dispatchEvent(new EmailEvent(EmailEvent.SEND_EMAIL, welcomeEmailTemplate, new Array(selectedGroup)));
 				}, welcomeEmailTemplate );
 			}
+			// This function will probably be suppressed
 			private function onSendResultEmail(e:Event):void {
 				// TODO where should this be set. rm.xml, config.xml?
 				var test:ScheduledTest = testList.selectedItem as ScheduledTest;
@@ -126,94 +147,195 @@
 				PopUpManager.centerPopUp(reportWindow);
 			}
 				
-			public function showLicencesUsed(purchased:uint, used:uint, scheduled:uint):void {
-				licencesPurchasedData.text = purchased.toString();
-				licencesUsedData.text = used.toString();
-				licencesScheduledData.text = scheduled.toString();
+			public function setLicencesUsed(purchased:uint, used:uint, scheduled:uint):void {
+				licencesPurchased = purchased;
+				licencesUsed = used;
+				licencesScheduled = scheduled;
+				buyMoreButton.label = licencesNeededLink();
 			}
+			
 			private function onTestChange(e:ListEvent):void {
 				var selectedTest:ScheduledTest = testList.selectedItem as ScheduledTest;
 				testDetailPanel.setDataProvider(selectedTest);
-				testDetailPanel.addButton.visible = testDetailPanel.addButton.includeInLayout = false;
-				
-				// You can send out the result email once the test is closed
-				sendResultEmailButton.visible = sendResultEmailButton.includeInLayout = selectedTest.isTestClosed();
-				// You can send out the invitation email only before it is open 
-				sendWelcomeEmailButton.visible = sendWelcomeEmailButton.includeInLayout = !selectedTest.isTestStarted();
-				// You can see the results any time after it opens 
-				generateReportButton.visible = generateReportButton.includeInLayout = selectedTest.isTestStarted();
-				
-				// You can only delete a test if it was set for the currently selected group
-				// This is to stop you deleting a test set for a parent when you are in a child
-				// And it has not yet started
-				deleteTestButton.visible = deleteTestButton.includeInLayout = (selectedTest.groupId == selectedGroup.id) && !selectedTest.isTestStarted();
-				
+				resetButtons();				
 			}
+			
 			private function onNewTestButtonClick(e:Event):void {
 				var newScheduledTest:ScheduledTest = new ScheduledTest();
 				newScheduledTest.groupId = selectedGroup.id;
 				
 				newScheduledTest.productCode = productCode;
 				newScheduledTest.language = defaultLanguage;
+				
+				// defaults for a new test
+				newScheduledTest.caption = "new test";
+				newScheduledTest.status = ScheduledTest.STATUS_PRERELEASE;
+				
+				// Put it temporarily into the list
+				testList.dataProvider.addItem(newScheduledTest);
+				testList.selectedIndex++;
+				
 				testDetailPanel.setDataProvider(newScheduledTest);
-				testDetailPanel.addButton.visible = testDetailPanel.addButton.includeInLayout = true;
-				testDetailPanel.visible = true;
-			}
-			private function onDeleteTestButtonClick(e:Event):void {
-				var selectedTest:ScheduledTest = testList.selectedItem as ScheduledTest;
-				dispatchEvent(new TestEvent(TestEvent.DELETE, selectedTest))				
+				testDetailPanel.visible = true;			
 			}
 			
+			private function onDeleteTestButtonClick(e:Event):void {
+				var selectedTest:ScheduledTest = testList.selectedItem as ScheduledTest;
+				// If this test is not really saved, delete just removes it from the list
+				switch (selectedTest.status) {
+					case ScheduledTest.STATUS_PRERELEASE:
+						var currentSelectedIndex:int = testList.selectedIndex;
+						testList.dataProvider.removeItemAt(currentSelectedIndex);
+						testList.selectedIndex = currentSelectedIndex - 1;
+						break;
+					// Delete the test, and if it is active reduce the scheduled test count
+					case ScheduledTest.STATUS_OPEN:
+					case ScheduledTest.STATUS_CLOSED:
+					case ScheduledTest.STATUS_RELEASED:
+					default:
+						if (selectedTest.status != ScheduledTest.STATUS_CLOSED)
+							clearLicencesScheduled();
+						selectedTest.status = ScheduledTest.STATUS_DELETED;
+						dispatchEvent(new TestEvent(TestEvent.DELETE, selectedTest));
+				}
+				resetSelection();
+			}
+			
+			/*
+			private function onReleaseTestButtonClick(e:Event):void {
+				var selectedTest:ScheduledTest = testList.selectedItem as ScheduledTest;
+				selectedTest.status = ScheduledTest.STATUS_RELEASED;
+				dispatchEvent(new TestEvent(TestEvent.UPDATE, selectedTest));
+			}
+			*/
+			// gh#1499
+			public function addLicencesScheduled():void {
+				licencesScheduled += selectedGroup.userCount;
+				if (licencesNeeded > 0) {
+					var text:String = copyProvider.getCopyForId("notEnoughLicences", {licencesAvailable: (licencesPurchased - licencesUsed), licencesScheduled: licencesScheduled});
+					Alert.show(text, "Please note", Alert.OK, this, null, alertWarningIcon);
+				}
+				buyMoreButton.label = licencesNeededLink();
+			}
+			// gh#1499 Reduce the number of scheduled tests
+			// As a test can be deleted at any point, this makes the scheduled count an estimate if the test is active
+			// so you don't need a complex counting basis
+			public function clearLicencesScheduled():void {
+				licencesScheduled -= selectedGroup.userCount;
+			}
+			private function licencesNeededLink():String {
+				return copyProvider.getCopyForId('buyMoreLicences', {licencesNeeded: licencesNeeded.toString()});
+			}
+			
+			public function resetButtons():void {
+				newTestButton.visible = newTestButton.includeInLayout = true;
+				var selectedTest:ScheduledTest = testList.selectedItem as ScheduledTest;
+
+				if (selectedTest) {
+					// You can send out the result email once the test is closed
+					//sendResultEmailButton.visible = sendResultEmailButton.includeInLayout = selectedTest.isTestClosed();
+
+					// You can release a prerelease test
+					//releaseTestButton.visible = releaseTestButton.includeInLayout = selectedTest.isTestDraft();
+					
+					// You can send out the invitation email anytime before it closes 
+					sendWelcomeEmailButton.visible = sendWelcomeEmailButton.includeInLayout = (selectedTest.isTestReleased() || !selectedTest.isTestStarted());
+					
+					// You can see the results any time after it opens 
+					generateReportButton.visible = generateReportButton.includeInLayout = selectedTest.isTestStarted();
+					
+					// You can delete a test if it was set for the currently selected group
+					// This is to stop you deleting a test set for a parent when you are in a child
+					// You can delete a test at any time. 
+					if (selectedGroup)
+					    deleteTestButton.visible = deleteTestButton.includeInLayout = (selectedTest.groupId == selectedGroup.id);
+				} else {
+					sendWelcomeEmailButton.visible = sendWelcomeEmailButton.includeInLayout = false;
+					generateReportButton.visible = generateReportButton.includeInLayout = false;
+					deleteTestButton.visible = deleteTestButton.includeInLayout = false; 
+				}
+			}
+			public function resetSelection():void {
+				onTestChange(null);
+			}
+			
+			public function showCaption(item:Object):String {
+				switch (item.status) {
+					case ScheduledTest.STATUS_PRERELEASE:
+						var statusString:String = 'not saved';
+						break;
+					case ScheduledTest.STATUS_RELEASED:
+						statusString = 'ready';
+						break;
+					case ScheduledTest.STATUS_OPEN:
+						statusString = 'in progress';
+						break;
+					case ScheduledTest.STATUS_CLOSED:
+						statusString = 'complete';
+						break;
+					// This is not anticipated being used
+					case ScheduledTest.STATUS_DELETED:
+						statusString = 'archived';
+						break;
+				}	 
+				return item.caption + " (" + statusString + ")"; 
+			}
 		]]>
 	</mx:Script>
 	<!--
 				
 	-->
-	<mx:HDividedBox width="100%" height="100%" paddingLeft="4" paddingRight="4" paddingBottom="4" >
-		<view:ManageablesView id="manageablesView" width="40%" height="100%"/>
-		<mx:VBox width="30%" height="100%" visible="{selectedGroup == null}" includeInLayout="{selectedGroup == null}">
-			<mx:Spacer height="50" />
-			<mx:TitleWindow id="firstStepWindow" paddingTop="20" width="100%" height="100" verticalAlign="top" >
-				<mx:Label id="selectGroupLabel" fontWeight="bold" />
-			</mx:TitleWindow>
-		</mx:VBox>
-		<mx:VBox width="30%" height="100%" visible="{selectedGroup != null}" includeInLayout="{selectedGroup != null}">
-			<mx:HBox width="100%" >
-  				<mx:Label id="listOfTestsLabel" styleName="subHeadingLabelBlack" />			
-				<mx:Label id="testListLabel" text="{selectedGroup.name}" styleName="subHeadingLabelBlack" />
-			</mx:HBox>
-			<mx:List id="testList"
-					 width="100%"
-					 height="50%"
-					 labelField="caption"
-					 itemRenderer="com.clarityenglish.resultsmanager.view.shared.ui.ScheduledTestsItemRenderer"
-					 change="onTestChange(event)" />
-			<mx:HBox width="100%" >
-				<mx:Button id="newTestButton" visible="true" includeInLayout="true" height="18" click="onNewTestButtonClick(event)" />
+	<mx:HBox width="100%" height="100%" paddingLeft="4" paddingRight="4" paddingBottom="4" >
+		<view:ManageablesView id="manageablesView" width="30%" height="100%"/>
+		<mx:HBox width="70%" height="100%" >
+			<mx:VBox>
+				<mx:VBox width="100%" minWidth="300" height="300">
+					<mx:TitleWindow id="licenceUseLabel" paddingTop="20" width="100%" height="300" verticalAlign="top" >
+						<mx:HBox>
+							<mx:Label id="licencesPurchasedLabel" />
+							<mx:Label id="licencesPurchasedData" text="{licencesPurchased.toString()}" />
+						</mx:HBox>
+						<mx:HBox>
+							<mx:Label id="licencesUsedLabel" />
+							<mx:Label id="licencesUsedData" text="{licencesUsed.toString()}" />
+						</mx:HBox>
+						<mx:HBox>
+							<mx:Label id="licencesScheduledLabel" />
+							<mx:Label id="licencesScheduledData" text="{licencesScheduled.toString()}"/>
+						</mx:HBox>
+						<mx:HRule width="90%" />
+						<mx:Button id="buyMoreButton" visible="{licencesNeeded > 0}"/>
+					</mx:TitleWindow>
+				</mx:VBox>
+				<mx:VBox width="100%" height="100%" visible="{selectedGroup == null}" includeInLayout="{selectedGroup == null}">
+					<mx:Spacer height="50" />
+					<mx:TitleWindow id="firstStepWindow" paddingTop="20" width="100%" height="100" verticalAlign="top" >
+						<mx:Label id="selectGroupLabel" fontWeight="bold" />
+					</mx:TitleWindow>
+				</mx:VBox>
+				<mx:VBox width="100%" minWidth="300" visible="{selectedGroup != null}" includeInLayout="{selectedGroup != null}">					
+					<mx:Button id="newTestButton" visible="true" includeInLayout="true" height="18" click="onNewTestButtonClick(event)" />
+					<mx:HBox width="100%" >
+						<mx:Label id="listOfTestsLabel" styleName="subHeadingLabelBlack" />			
+						<mx:Label id="testListLabel" text="{selectedGroup.name}" styleName="subHeadingLabelBlack" />
+					</mx:HBox>
+					<mx:List id="testList"
+							 width="100%"
+							 height="50%"
+							 labelFunction="showCaption"
+							 itemRenderer="com.clarityenglish.resultsmanager.view.shared.ui.ScheduledTestsItemRenderer"
+							 change="onTestChange(event)" />
+					<mx:Spacer height="5" />
+				</mx:VBox>
+			</mx:VBox>
+			<mx:VBox width="100%">
+				<ui:TestDetailPanel width="99%" height="100%" id="testDetailPanel" visible="{testList.selectedItem != null}" includeInLayout="{testList.selectedItem != null}" />
+				<!-- <mx:Button id="releaseTestButton" visible="false" includeInLayout="false" height="18" click="onReleaseTestButtonClick(event)" /> -->
 				<mx:Button id="deleteTestButton" visible="false" includeInLayout="false" height="18" click="onDeleteTestButtonClick(event)" />
-			</mx:HBox>
-			<mx:Spacer height="5" />
-			<ui:TestDetailPanel width="99%" id="testDetailPanel" visible="{testList.selectedItem != null}" includeInLayout="{testList.selectedItem != null}" />
-			<mx:Spacer height="5" />
-			<mx:Button id="generateReportButton" visible="false" includeInLayout="false" height="18" click="onGenerateReport(event)" />
-			<mx:Button id="sendWelcomeEmailButton" visible="false" includeInLayout="false" height="18" click="onSendWelcomeEmail(event)" />
-			<mx:Button id="sendResultEmailButton" visible="false" includeInLayout="false" height="18" click="onSendResultEmail(event)" />
-		</mx:VBox>
-		<mx:VBox width="20%" height="100%">
-			<mx:TitleWindow id="licenceUseLabel" paddingTop="20" width="100%" height="300" verticalAlign="top" >
-				<mx:HBox>
-					<mx:Label id="licencesPurchasedLabel" />
-					<mx:TextInput id="licencesPurchasedData" enabled="false" />
-				</mx:HBox>
-				<mx:HBox>
-					<mx:Label id="licencesUsedLabel" />
-					<mx:TextInput id="licencesUsedData" enabled="false" />
-				</mx:HBox>
-				<mx:HBox>
-					<mx:Label id="licencesScheduledLabel" />
-					<mx:TextInput id="licencesScheduledData" enabled="false" />
-				</mx:HBox>
-			</mx:TitleWindow>
-		</mx:VBox>
-	</mx:HDividedBox>
+				<mx:Button id="generateReportButton" visible="false" includeInLayout="false" height="18" click="onGenerateReport(event)" />
+				<mx:Button id="sendWelcomeEmailButton" visible="false" includeInLayout="false" height="18" click="onSendWelcomeEmail(event)" />
+				<mx:Button id="sendResultEmailButton" visible="false" includeInLayout="false" height="18" click="onSendResultEmail(event)" />
+			</mx:VBox>
+		</mx:HBox>
+	</mx:HBox>
 </mx:Canvas>

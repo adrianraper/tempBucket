@@ -10,7 +10,7 @@
 		/**
 		 * The version of the software, used to tie bugs and version control together.
 		 */
-		public static var version:String = "1.0.3";
+		public static var version:String = "1.0.2";
 		
 		/** Making this false activates various debug and test friendly attributes in the application */
 		public static function get DEBUG_MODE():Boolean {
@@ -27,6 +27,7 @@
 		
 		public static function get HOST():String {
 			if (_host) return _host;
+			
 			include "/../../../return_test_host.txt";
 		}
 		

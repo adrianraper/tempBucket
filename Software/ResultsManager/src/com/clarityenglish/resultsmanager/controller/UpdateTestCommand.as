@@ -23,14 +23,15 @@ package com.clarityenglish.resultsmanager.controller {
 			
 			switch (testEvent.type) {
 				case TestEvent.UPDATE:
+				case TestEvent.DELETE:
 					testProxy.updateTest(testEvent.test);
 					break;
 				case TestEvent.ADD:
 					testProxy.addTest(testEvent.test);
 					break;
-				case TestEvent.DELETE:
-					testProxy.deleteTest(testEvent.test);
-					break;
+				//case TestEvent.DELETE:
+				//	testProxy.deleteTest(testEvent.test);
+				//	break;
 			}
 		}
 		

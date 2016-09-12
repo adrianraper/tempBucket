@@ -250,7 +250,7 @@ SQL;
                 $result = "A0";
         }
         // {"result":"A2"}
-        return ["result" => $result];
+        return array("result" => $result);
     }
 
     /**

@@ -37,7 +37,7 @@ package com.clarityenglish.resultsmanager.view.management {
 		// Cannonical name of the Mediator
 		public static const NAME:String = "TestadminMediator";
 		// TODO How to get the productCode nicely here?
-		public var productCode:String = '44';
+		public var productCode:String = '63';
 		
 		public function TestadminMediator(viewComponent:Object) {
 			// pass the viewComponent to the superclass where 
@@ -54,9 +54,11 @@ package com.clarityenglish.resultsmanager.view.management {
 			
 			testadminView.addEventListener(ReportEvent.GENERATE, onGenerateReport);
 			
-			testadminView.testDetailPanel.addEventListener(TestEvent.UPDATE, onTestUpdate);
+			//testadminView.testDetailPanel.addEventListener(TestEvent.UPDATE, onTestUpdate);
 			testadminView.testDetailPanel.addEventListener(TestEvent.ADD, onTestAdd);
-			testadminView.addEventListener(TestEvent.DELETE, onTestDelete);
+			//testadminView.testDetailPanel.addEventListener(TestEvent.CANCEL, onTestCancel);
+			testadminView.addEventListener(TestEvent.DELETE, onTestUpdate);
+			testadminView.addEventListener(TestEvent.UPDATE, onTestUpdate);
 			
 			testadminView.addEventListener(EmailEvent.SEND_EMAIL, onSendEmail);
 			
@@ -159,27 +161,40 @@ package com.clarityenglish.resultsmanager.view.management {
 					} else {
 						testadminView.selectedGroup = null;
 					}
+					testadminView.resetSelection();
 					break;
 				
 				// This will send back an array of testDetails
 				case RMNotifications.TESTS_LOADED:
-				case RMNotifications.TEST_DELETED:
 					testadminView.testList.dataProvider = note.getBody() as Array;
 					break;
+				
+				//case RMNotifications.TEST_DELETED:
+				//	testadminView.testList.dataProvider = note.getBody() as Array;
+				//	testadminView.resetSelection();
+				//	// gh#1499 
+				//	testadminView.clearLicencesScheduled();
+				//	break;
+				
 				case RMNotifications.TEST_ADDED:
 					testadminView.testList.dataProvider = note.getBody() as Array;
 					testadminView.testList.selectedIndex = testadminView.testList.dataProvider.length - 1;
+					
+					// gh#1499 
+					testadminView.addLicencesScheduled();
 					break;
+				
 				case RMNotifications.TEST_UPDATED:
 					var currentIdx:uint = testadminView.testList.selectedIndex;
 					testadminView.testList.dataProvider = note.getBody() as Array;
 					testadminView.testList.selectedIndex = currentIdx;
+					testadminView.resetSelection();
 					break;
 				
 				// For the number of licences
 				case RMNotifications.TEST_LICENCES_LOADED:
 					var data:Object = note.getBody();
-					testadminView.showLicencesUsed(data.purchased, data.used, data.scheduled);
+					testadminView.setLicencesUsed(data.purchased, data.used, data.scheduled);
 					break;
 				
 				default:
@@ -209,9 +224,9 @@ package com.clarityenglish.resultsmanager.view.management {
 		private function onTestUpdate(e:TestEvent):void {			
 			sendNotification(RMNotifications.UPDATE_TEST, e);
 		}
-		private function onTestDelete(e:TestEvent):void {			
-			sendNotification(RMNotifications.DELETE_TEST, e);
-		}
+		//private function onTestCancel(e:TestEvent):void {			
+		//	testadminView.resetSelection();
+		//}
 		private function onTestAdd(e:TestEvent):void {			
 			sendNotification(RMNotifications.ADD_TEST, e);
 		}

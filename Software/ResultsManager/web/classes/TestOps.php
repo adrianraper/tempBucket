@@ -22,8 +22,15 @@ class TestOps {
 		$this->db = $db;
 	}
 
-    // Return all tests that this groups is scheduled to take
-    function getTests($groupId, $productCode) {
+    /**
+     * Return all tests that this group is scheduled to take
+     *  - admin panel will want all
+     *  - app will only want active ones, so add overcall
+     */ 
+	function getActiveTests($groupId, $productCode) {
+		return $this->getTests($groupId, $productCode, true);
+	}
+    function getTests($groupId, $productCode, $justActive = false) {
 
         $dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
         $dateNow = $dateStampNow->format('Y-m-d H:i:s');
@@ -46,10 +53,23 @@ SQL;
             default:
                 $tests = array();
                 while ($dbObj = $rs->FetchNextObj()) {
-                    // Check that the test has not closed
-                    if ($dbObj->F_CloseTime < $dateNow)
+                    // Check that the test has not been deleted - only kept in the table for reporting purposes
+                    if ($dbObj->F_Status >= ScheduledTest::STATUS_DELETED)
                         continue;
-                    $tests[] = new ScheduledTest($dbObj);
+                        
+                	// Set the status based on the start and close dates
+                	if ($dbObj->F_CloseTime < $dateNow)
+                		$dbObj->F_Status = ScheduledTest::STATUS_CLOSED;
+                	if ($dateNow >= $dbObj->F_OpenTime && $dbObj->F_CloseTime >= $dateNow)
+                		$dbObj->F_Status = ScheduledTest::STATUS_OPEN;
+                	
+                	// Filter out ones that are not valid to download or start
+                	if ($justActive) {
+	                    // Check that the test has been released and not yet closed
+	                    if ($dbObj->F_Status == ScheduledTest::STATUS_CLOSED || $dbObj->F_Status == ScheduledTest::STATUS_PRERELEASE)
+	                        continue;
+                	}
+                	$tests[] = new ScheduledTest($dbObj);
                 }
         }
         return $tests;

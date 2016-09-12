@@ -11,6 +11,12 @@
 	[Bindable]
 	public class ScheduledTest  {
 		
+		public static const STATUS_PRERELEASE:uint = 0;
+		public static const STATUS_RELEASED:uint = 1;
+		public static const STATUS_OPEN:uint = 2;
+		public static const STATUS_CLOSED:uint = 3;
+		public static const STATUS_DELETED:uint = 4;
+		
 		/**
 		 * ids as keys
 		 */
@@ -33,6 +39,11 @@
 		private var _openTime:Date;
 		private var _closeTime:Date;
 		
+		/**
+		 * Status of the test to control what you can to do it
+		 */
+		public var status:uint;
+		
 		public function ScheduledTest() {}
 		
 		public function set closeTime(value:String):void {
@@ -53,6 +64,12 @@
 		}
 		public function isTestStarted():Boolean {
 			return (ObjectUtil.dateCompare(_openTime, new Date()) <= 0);
+		}
+		public function isTestReleased():Boolean {
+			return (status > ScheduledTest.STATUS_PRERELEASE);
+		}
+		public function isTestDraft():Boolean {
+			return (status == ScheduledTest.STATUS_PRERELEASE);
 		}
 	}
 	
