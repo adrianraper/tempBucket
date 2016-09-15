@@ -3,10 +3,11 @@
  * This is not really an AMFPHP service but its in this folder to maintain path integrity in all of the require_once calls.
  * Since there are no classes or methods here it does not represent a security risk.
  */
-ini_set('max_execution_time', 300); // 5 minutes
 
 require_once(dirname(__FILE__)."/ClarityService.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
+
+ini_set('max_execution_time', 300); // 5 minutes
 
 class XSLTFunctions {
 	// This is really secondsToMinutes($seconds).
@@ -87,26 +88,30 @@ class XSLTFunctions {
 // This has to moved before authentication check
 $clarityService = new ClarityService();
 
+/*
 if (!Authenticate::isAuthenticated()) {
 	// TODO: Replace with text from literals
 	echo "<h2>You are not logged in</h2>";
 	exit(0);
 }
+*/
 
-// AR To avoid php Notice warnings:
-if (!isset($_REQUEST['template'])) $_REQUEST['template'] = "";
-if (!isset($_REQUEST['opts'])) $_REQUEST['opts'] = "";
-if (!isset($_REQUEST['onReportablesIDObjects'])) $_REQUEST['onReportablesIDObjects'] = "";
-if (!isset($_REQUEST['forReportablesIDObjects'])) $_REQUEST['forReportablesIDObjects'] = "";
-if (!isset($_REQUEST['onClass'])) $_REQUEST['onClass'] = "";
-if (!isset($_REQUEST['forClass'])) $_REQUEST['forClass'] = "";
+$template = (isset($_REQUEST['template'])) ? $_REQUEST['template'] : "standard";
+$opts = json_decode(stripslashes((isset($_REQUEST['opts'])) ? $_REQUEST['opts'] : ""), true);
+$onReportablesIDObjects = (isset($_REQUEST['onReportablesIDObjects'])) ? json_decode(stripslashes($_REQUEST['onReportablesIDObjects']), true) : array();
+$forReportableIDObjects = (isset($_REQUEST['forReportablesIDObjects'])) ? json_decode(stripslashes($_REQUEST['forReportablesIDObjects']), true) : array();
+$onClass = (isset($_REQUEST['onClass'])) ? $_REQUEST['onClass'] : "";
+$forClass = (isset($_REQUEST['forClass'])) ? $_REQUEST['forClass'] : "";
 
-$onReportablesIDObjects = $_REQUEST['onReportablesIDObjects'] == "" ? array() : json_decode(stripslashes($_REQUEST['onReportablesIDObjects']), true);
-$onClass = $_REQUEST['onClass'];
-$forReportableIDObjects = $_REQUEST['forReportablesIDObjects'] == "" ? array() : json_decode(stripslashes($_REQUEST['forReportablesIDObjects']), true);
-$forClass = $_REQUEST['forClass'];
-$opts = json_decode(stripslashes($_REQUEST['opts']), true);
-$template = $_REQUEST['template'] == "" ? "standard" : $_REQUEST['template'];
+/**
+ * This for testing and debugging reports
+ */
+$template = "standard";
+$opts = json_decode(stripslashes('{"detailedReport":true,"attempts":"all","headers":{"onReport":"Practical Placement Test v2","onReportLabel":"Title(s)","forReportDetail":"EfHS","attempts":"All attempts","forReportLabel":"Group(s)","dateRange":""},"includeInactiveUsers":true,"includeStudentID":false}'), true);
+$forReportablesIDObjects = json_decode(stripslashes('[{"Group":"74533"}]'), true);
+$onReportableIDObjects = json_decode(stripslashes('[{"Title":"63","Course":"1216948569658"}]'), true);
+$onClass = "Title";
+$forClass = "Group";
 
 // Protect against directory traversal
 // PHP 5.3

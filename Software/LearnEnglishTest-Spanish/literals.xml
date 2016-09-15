@@ -339,6 +339,9 @@ Ahora, haz clic en el botón 'Comenzar el examen' que aparece a la izquierda.
         <group name="labels">
             <lit name="specialIntroduction">Introducción</lit>
         </group>
+<group name="buttons">
+  <lit name="submit">Siuguiente</lit>
+</group>
         <group name="messages">
             <lit name="specialIntroduction">El examen de nivel comienza con 15 preguntas generales. (7min)
 Luego harás el examen principal (30-40min).[newline]Consta de 3 partes:[newline]1. Gramática[newline]2. Vocabulario[newline]3. Lectura

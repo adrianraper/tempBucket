@@ -1474,3 +1474,8 @@ update T_ScheduledTests set F_MenuFilename='menu-track-a.json' where F_TestID=3;
 update T_ScheduledTests set F_MenuFilename='menu-track-b.json' where F_TestID=4;
 update T_ScheduledTests set F_MenuFilename='menu-gauge.json' where F_TestID=2;
 */
+
+-- Clarity Test Platform
+INSERT INTO `T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (2496, '2016-09-08 00:00:00', 'Clarity Test Platform tables');

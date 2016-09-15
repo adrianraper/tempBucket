@@ -56,7 +56,7 @@ function router($json) {
     
     switch ($json->command) {
         case "login": return login($json->email, $json->password, $json->productCode);
-        case "getResult": return getResult($json->sessionID);
+        case "getTestResult": return getResult($json->sessionID);
         case "scoreWrite": return scoreWrite($json->sessionID, $json->score, $json->localTimestamp, $json->timezoneOffset);
         default: throw new Exception("Unknown command");
     }
@@ -69,8 +69,9 @@ function login($email, $password, $productCode) {
 }
 
 function getResult($sessionId) {
-    global $service;
-    return $service->getResult($sessionId);
+    return false;
+    //global $service;
+    //return $service->getResult($sessionId);
 }
 
 function scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffset=null) {

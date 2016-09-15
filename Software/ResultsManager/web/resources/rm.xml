@@ -619,13 +619,14 @@
             <lit name="sendInvitationEmail">Email test invitations</lit>
             <lit name="selectGroup">Select a group on the left to see the tests scheduled for them.</lit>
             <lit name="testDetailPanel">Details of the test</lit>
-            <lit name="testOpenTimeLabel">Open time:</lit>
-            <lit name="testEndTimeLabel">Close time:</lit>
-            <lit name="testStartConditionLabel">Start with:</lit>
+            <lit name="testOpenTimeLabel">The test can be downloaded at anytime, but not started until:</lit>
+            <lit name="testCloseTimeLabel">Test closes at:</lit>
+            <lit name="testStartConditionLabel">Start the test by telling takers the access code, or just after the above time:</lit>
             <lit name="testCodeLabel">Access code</lit>
             <lit name="testTimeLabel">Time based</lit>
             <lit name="testCaptionLabel">Description:</lit>
             <lit name="testShowResultLabel">Show test taker their result:</lit>
+            <lit name="testPanel">Test schedule details</lit>
             
             <lit name="testAdminFirstStep">Step 1</lit>
 
@@ -633,6 +634,8 @@
             <lit name="licencesScheduled">Tests scheduled</lit>
             <lit name="licencesPurchased">Tests purchased</lit>
             <lit name="licencesUsed">Tests used</lit>
+            <lit name="notEnoughLicences">You have {licencesAvailable} tests left from your purchased supply. You have scheduled up to {licencesScheduled} people to take tests. It is best to buy some more now.</lit>
+            <lit name="buyMoreLicences">Buy {licencesNeeded} tests now</lit>
             
             <lit name="generateReport">See test results</lit>
             <lit name="sendWelcomeEmail">Send invitation email</lit>

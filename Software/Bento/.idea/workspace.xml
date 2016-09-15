@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c308fa4b-549f-45df-98ec-0cd715bd540a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../BritishCouncil/LearnEnglish/Chile/Start-Spanish.php" afterPath="$PROJECT_DIR$/../../BritishCouncil/LearnEnglish/Chile/Start-Spanish.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Database/incremental-changes.sql" afterPath="$PROJECT_DIR$/../../Database/incremental-changes.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LearnEnglishTest-Spanish/literals.xml" afterPath="$PROJECT_DIR$/../LearnEnglishTest-Spanish/literals.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ResultsManager/web/amfphp/services/CTPGateway.php" afterPath="$PROJECT_DIR$/../ResultsManager/web/amfphp/services/CTPGateway.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ResultsManager/web/classes/TestOps.php" afterPath="$PROJECT_DIR$/../ResultsManager/web/classes/TestOps.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ResultsManager/web/amfphp/services/GenerateReport.php" afterPath="$PROJECT_DIR$/../ResultsManager/web/amfphp/services/GenerateReport.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ResultsManager/web/resources/rm.xml" afterPath="$PROJECT_DIR$/../ResultsManager/web/resources/rm.xml" />
     </list>
     <ignored path="Bento.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,7 +59,7 @@
       <file leaf-file-name="TestOps.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../ResultsManager/web/classes/TestOps.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
+            <state relative-caret-position="17">
               <caret line="119" column="41" selection-start-line="119" selection-start-column="41" selection-end-line="119" selection-end-column="41" />
               <folding>
                 <marker date="1473307119984" expanded="true" signature="954:1043" ph="SELECT * FRO... T_ScheduledTests" />
@@ -67,22 +71,53 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CTPGateway.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/CTPGateway.php">
+      <file leaf-file-name="GenerateReport.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/GenerateReport.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="166">
+              <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+              <folding>
+                <element signature="e#6#221#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClarityService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/ClarityService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="449" column="0" selection-start-line="449" selection-start-column="0" selection-end-line="449" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestSession.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/vo/com/clarityenglish/common/vo/tests/TestSession.php">
+      <file leaf-file-name="ReportOps.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../ResultsManager/web/classes/ReportOps.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="157">
+              <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+              <folding>
+                <marker date="1468293673614" expanded="true" signature="26578:26665" ph="SELECT g.F_G... T_Groupstructure" />
+                <marker date="1468293673614" expanded="true" signature="27060:27566" ph="SELECT s.F_P... T_Session" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContentOps.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../ResultsManager/web/classes/ContentOps.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="166">
+              <caret line="948" column="0" selection-start-line="948" selection-start-column="0" selection-end-line="948" selection-end-column="0" />
+              <folding>
+                <marker date="1473208849428" expanded="true" signature="3769:3839" ph="DELETE FROM " />
+                <marker date="1473208849428" expanded="true" signature="79672:79729" ph="SELECT F_Pro... T_Product" />
+                <marker date="1473208849428" expanded="true" signature="80518:80563" ph="SELECT * FRO... T_Product" />
+                <marker date="1473208849428" expanded="true" signature="80935:80988" ph="SELECT * FRO... T_ProductLanguage" />
+                <marker date="1473208849428" expanded="true" signature="81715:81768" ph="SELECT * FRO... T_ProductLanguage" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,34 +143,9 @@
       <file leaf-file-name="CTPService.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/CTPService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
+            <state relative-caret-position="2499">
               <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScheduledTest.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/vo/com/clarityenglish/common/vo/tests/ScheduledTest.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1207">
-              <caret line="71" column="86" selection-start-line="71" selection-start-column="86" selection-end-line="71" selection-end-column="86" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProgressOps.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../ResultsManager/web/classes/ProgressOps.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-              <folding>
-                <marker date="1473208849469" expanded="true" signature="5516:5636" ph="SELECT s.* F... T_Score" />
-                <marker date="1473208849469" expanded="true" signature="5990:6139" ph="SELECT F_Exe... T_Score" />
-                <marker date="1473208849469" expanded="true" signature="7964:8111" ph="INSERT INTO T_Session... " />
-                <marker date="1473208849469" expanded="true" signature="12796:12911" ph="INSERT INTO T_TestSession... " />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -148,7 +158,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src-common/com/clarityenglish/common/model/LoginProxy.as" />
         <option value="$PROJECT_DIR$/../ResultsManager/web/classes/AuthenticationOps.php" />
         <option value="$PROJECT_DIR$/../../area1/PracticalWriting/Preview.php" />
         <option value="$PROJECT_DIR$/../../area1/PracticalWriting/Start.php" />
@@ -199,6 +208,7 @@
         <option value="$PROJECT_DIR$/../ResultsManager/web/classes/TemplateOps.php" />
         <option value="$PROJECT_DIR$/../ResultsManager/web/classes/TestOps.php" />
         <option value="$PROJECT_DIR$/../ResultsManager/web/amfphp/services/CTPGateway.php" />
+        <option value="$PROJECT_DIR$/../ResultsManager/web/amfphp/services/GenerateReport.php" />
       </list>
     </option>
   </component>
@@ -246,9 +256,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -353,8 +362,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bento" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bento" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bento" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -379,7 +413,7 @@
       <recent name="D:\ProjectBench\Software\ResultsManager\web\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="PHP HTTP Request.CTPGateway 1">
+  <component name="RunManager" selected="PHP HTTP Request.GenerateReport">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -660,18 +694,18 @@
       <option name="usbDebugPort" value="7936" />
       <method />
     </configuration>
-    <configuration default="false" name="CTPGateway 1" type="PhpHttpRequestRunConfigurationType" factoryName="PHP HTTP Request" server_name="dock.projectbench" url="/Software/ResultsManager/web/amfphp/services/CTPGateway.php">
+    <configuration default="false" name="GenerateReport" type="PhpHttpRequestRunConfigurationType" factoryName="PHP HTTP Request" server_name="dock.projectbench" url="/Software/ResultsManager/web/amfphp/services/GenerateReport.php">
       <method />
     </configuration>
-    <configuration default="false" name="TestAdmin" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" singleton="true" server_name="dock.projectbench" start_url="http://dock.projectbench/area1/ResultsManager/TestAdmin.php">
+    <configuration default="false" name="CTPGateway" type="PhpHttpRequestRunConfigurationType" factoryName="PHP HTTP Request" server_name="dock.projectbench" url="/Software/ResultsManager/web/amfphp/services/CTPGateway.php">
       <method />
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Flash App.Road to IELTS" />
       <item index="1" class="java.lang.String" itemvalue="Flash App.Practical Writing" />
       <item index="2" class="java.lang.String" itemvalue="Flash App.TB tablet" />
-      <item index="3" class="java.lang.String" itemvalue="PHP HTTP Request.CTPGateway 1" />
-      <item index="4" class="java.lang.String" itemvalue="PHP Web Application.TestAdmin" />
+      <item index="3" class="java.lang.String" itemvalue="PHP HTTP Request.GenerateReport" />
+      <item index="4" class="java.lang.String" itemvalue="PHP HTTP Request.CTPGateway" />
     </list>
     <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
@@ -766,19 +800,23 @@
       <workItem from="1473054775481" duration="12176000" />
       <workItem from="1473131107681" duration="8172000" />
       <workItem from="1473212837239" duration="4613000" />
-      <workItem from="1473306601469" duration="577000" />
+      <workItem from="1473306601469" duration="2432000" />
+      <workItem from="1473665630014" duration="1479000" />
+      <workItem from="1473732014135" duration="2775000" />
+      <workItem from="1473899830658" duration="80000" />
+      <workItem from="1473899923374" duration="2918000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="260014000" />
+    <option name="totallyTimeSpent" value="269121000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3619403" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37846482" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997833" sideWeight="0.5021322" order="10" side_tool="true" content_ui="tabs" />
@@ -788,7 +826,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29211086" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3997833" sideWeight="0.4978678" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3997833" sideWeight="0.4978678" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -846,7 +884,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/CTPGateway.php</url>
-          <line>77</line>
+          <line>78</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -864,29 +902,25 @@
           <line>59</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/GenerateReport.php</url>
+          <line>123</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/../ResultsManager/web/classes/ReportOps.php</url>
+          <line>774</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="48" />
+      <option name="time" value="51" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/clarityenglish/textLayout/elements/InputElement.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="528" column="8" selection-start-line="528" selection-start-column="8" selection-end-line="528" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clarityenglish/bento/view/xhtmlexercise/components/behaviours/DraggableBehaviour.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="98" column="23" selection-start-line="98" selection-start-column="23" selection-end-line="98" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/skins/bento/exercise/XHTMLExerciseSkin.mxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
@@ -1063,28 +1097,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/classes/ContentOps.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="795" column="21" selection-start-line="795" selection-start-column="17" selection-end-line="795" selection-end-column="21" />
-          <folding>
-            <marker date="1473208849428" expanded="true" signature="3769:3839" ph="DELETE FROM " />
-            <marker date="1473208849428" expanded="true" signature="79672:79729" ph="SELECT F_Pro... T_Product" />
-            <marker date="1473208849428" expanded="true" signature="80518:80563" ph="SELECT * FRO... T_Product" />
-            <marker date="1473208849428" expanded="true" signature="80935:80988" ph="SELECT * FRO... T_ProductLanguage" />
-            <marker date="1473208849428" expanded="true" signature="81715:81768" ph="SELECT * FRO... T_ProductLanguage" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/ClarityService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="26" column="77" selection-start-line="26" selection-start-column="77" selection-end-line="26" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/CouloirPasswordServer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1099,18 +1111,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/classes/Log/handlers/file.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="158" column="0" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/vo/com/clarityenglish/bento/vo/progress/Score.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="29" column="25" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1133,7 +1137,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
           <caret line="200" column="25" selection-start-line="200" selection-start-column="25" selection-end-line="200" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1175,40 +1178,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/RunTriggers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-612">
-          <caret line="122" column="70" selection-start-line="122" selection-start-column="70" selection-end-line="122" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../ResultsManager/web/classes/TemplateOps.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="110" column="26" selection-start-line="110" selection-start-column="26" selection-end-line="110" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/RunTriggersTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="144" column="24" selection-start-line="144" selection-start-column="24" selection-end-line="144" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Common/adodb5/adodb.inc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="4047" column="0" selection-start-line="4047" selection-start-column="0" selection-end-line="4047" selection-end-column="0" />
-          <folding>
-            <marker date="1464832831289" expanded="true" signature="40855:40876" ph="SELECT MAX($... ${$table}" />
-            <marker date="1464832831289" expanded="true" signature="48847:48875" ph="select count... ${$table}" />
-            <marker date="1464832831289" expanded="true" signature="48986:49029" ph="select ${$fi... ${$table}" />
-            <marker date="1464832831289" expanded="true" signature="60620:60634" ph="SELECT * FRO... ${$table}" />
-            <marker date="1464832831289" expanded="true" signature="63686:63720" ph="UPDATE ${$ta... " />
-            <marker date="1464832831289" expanded="true" signature="107662:107690" ph="SELECT COUNT... ${$table}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1224,40 +1197,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="344">
           <caret line="1201" column="34" selection-start-line="1201" selection-start-column="16" selection-end-line="1201" selection-end-column="34" />
-          <folding>
-            <marker date="1465871972280" expanded="true" signature="3182:3243" ph="UPDATE T_Gro... " />
-            <marker date="1465871972280" expanded="true" signature="22931:22988" ph="DELETE FROM " />
-            <marker date="1465871972280" expanded="true" signature="23625:23686" ph="DELETE FROM " />
-            <marker date="1465871972280" expanded="true" signature="24348:24416" ph="UPDATE T_Mem... " />
-            <marker date="1465871972280" expanded="true" signature="24571:24612" ph="DELETE FROM " />
-            <marker date="1465871972280" expanded="true" signature="26869:26954" ph="UPDATE T_Gro... " />
-            <marker date="1465871972280" expanded="true" signature="32869:32977" ph="INSERT INTO T_Groupstructure_Deleted... " />
-            <marker date="1465871972280" expanded="true" signature="32909:32977" ph="SELECT * FRO... T_Groupstructure" />
-            <marker date="1465871972280" expanded="true" signature="33037:33103" ph="DELETE FROM " />
-            <marker date="1465871972280" expanded="true" signature="33219:33325" ph="INSERT INTO T_HiddenContent_Deleted... " />
-            <marker date="1465871972280" expanded="true" signature="33258:33325" ph="SELECT * FRO... T_HiddenContent" />
-            <marker date="1465871972280" expanded="true" signature="33385:33450" ph="DELETE FROM " />
-            <marker date="1465871972280" expanded="true" signature="33605:33670" ph="DELETE FROM " />
-            <marker date="1465871972280" expanded="true" signature="33752:33868" ph="INSERT INTO T_ExtraTeacherGroups_Deleted... " />
-            <marker date="1465871972280" expanded="true" signature="33796:33868" ph="SELECT * FRO... T_ExtraTeacherGroups" />
-            <marker date="1465871972280" expanded="true" signature="33928:33998" ph="DELETE FROM " />
-            <marker date="1465871972280" expanded="true" signature="35240:35337" ph="INSERT INTO T_Membership_Deleted... " />
-            <marker date="1465871972280" expanded="true" signature="35278:35337" ph="SELECT * FRO... T_Membership" />
-            <marker date="1465871972280" expanded="true" signature="35419:35476" ph="DELETE FROM " />
-            <marker date="1465871972280" expanded="true" signature="35693:35762" ph="INSERT INTO T_User_Deleted... " />
-            <marker date="1465871972280" expanded="true" signature="35725:35762" ph="SELECT * FRO... T_User" />
-            <marker date="1465871972280" expanded="true" signature="35844:35879" ph="DELETE FROM " />
-            <marker date="1465871972280" expanded="true" signature="35966:36047" ph="INSERT INTO T_Membership_Deleted... " />
-            <marker date="1465871972280" expanded="true" signature="36004:36047" ph="SELECT * FRO... T_Membership" />
-            <marker date="1465871972280" expanded="true" signature="36129:36170" ph="DELETE FROM " />
-            <marker date="1465871972280" expanded="true" signature="36257:36328" ph="INSERT INTO T_Score_Deleted... " />
-            <marker date="1465871972280" expanded="true" signature="36290:36328" ph="SELECT * FRO... T_Score" />
-            <marker date="1465871972280" expanded="true" signature="36410:36446" ph="DELETE FROM " />
-            <marker date="1465871972280" expanded="true" signature="36548:36621" ph="INSERT INTO T_Memory_Deleted... " />
-            <marker date="1465871972280" expanded="true" signature="36582:36621" ph="SELECT * FRO... T_Memory" />
-            <marker date="1465871972280" expanded="true" signature="36703:36740" ph="DELETE FROM " />
-            <marker date="1465871972280" expanded="true" signature="66186:66235" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1274,9 +1213,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/CTPService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2499">
+          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/RunTriggersTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="336" column="36" selection-start-line="336" selection-start-column="36" selection-end-line="336" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/RunTriggers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1875">
+          <caret line="415" column="0" selection-start-line="415" selection-start-column="0" selection-end-line="415" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/CTPGateway.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../ResultsManager/web/classes/TestOps.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="17">
           <caret line="119" column="41" selection-start-line="119" selection-start-column="41" selection-end-line="119" selection-end-column="41" />
           <folding>
             <marker date="1473307119984" expanded="true" signature="954:1043" ph="SELECT * FRO... T_ScheduledTests" />
@@ -1287,19 +1256,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/CTPService.php">
+    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/ClarityService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+        <state relative-caret-position="226">
+          <caret line="449" column="0" selection-start-line="449" selection-start-column="0" selection-end-line="449" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/CTPGateway.php">
+    <entry file="file://$PROJECT_DIR$/../Common/adodb5/adodb.inc.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="192">
+          <caret line="3252" column="0" selection-start-line="3252" selection-start-column="0" selection-end-line="3252" selection-end-column="0" />
+          <folding>
+            <marker date="1464832831289" expanded="true" signature="40855:40876" ph="SELECT MAX($... ${$table}" />
+            <marker date="1464832831289" expanded="true" signature="48847:48875" ph="select count... ${$table}" />
+            <marker date="1464832831289" expanded="true" signature="48986:49029" ph="select ${$fi... ${$table}" />
+            <marker date="1464832831289" expanded="true" signature="60620:60634" ph="SELECT * FRO... ${$table}" />
+            <marker date="1464832831289" expanded="true" signature="63686:63720" ph="UPDATE ${$ta... " />
+            <marker date="1464832831289" expanded="true" signature="107662:107690" ph="SELECT COUNT... ${$table}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/classes/Log/handlers/file.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/amfphp/services/GenerateReport.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#221#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/classes/ContentOps.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="948" column="0" selection-start-line="948" selection-start-column="0" selection-end-line="948" selection-end-column="0" />
+          <folding>
+            <marker date="1473208849428" expanded="true" signature="3769:3839" ph="DELETE FROM " />
+            <marker date="1473208849428" expanded="true" signature="79672:79729" ph="SELECT F_Pro... T_Product" />
+            <marker date="1473208849428" expanded="true" signature="80518:80563" ph="SELECT * FRO... T_Product" />
+            <marker date="1473208849428" expanded="true" signature="80935:80988" ph="SELECT * FRO... T_ProductLanguage" />
+            <marker date="1473208849428" expanded="true" signature="81715:81768" ph="SELECT * FRO... T_ProductLanguage" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ResultsManager/web/classes/ReportOps.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <folding>
+            <marker date="1468293673614" expanded="true" signature="26578:26665" ph="SELECT g.F_G... T_Groupstructure" />
+            <marker date="1468293673614" expanded="true" signature="27060:27566" ph="SELECT s.F_P... T_Session" />
+          </folding>
         </state>
       </provider>
     </entry>
