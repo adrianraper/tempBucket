@@ -138,11 +138,18 @@ class CTPService extends BentoService {
         $score->scoreCorrect = $scoreObj->exerciseScore->exerciseMark->correctCount;
         $score->scoreWrong = $scoreObj->exerciseScore->exerciseMark->incorrectCount;
         $score->scoreMissed = $scoreObj->exerciseScore->exerciseMark->missedCount;
+        $totalQuestions = $score->scoreCorrect + $score->scoreWrong + $score->scoreMissed;
+        if ($totalQuestions > 0) {
+            $score->score = 100 * $score->scoreCorrect / ($totalQuestions);
+        } else {
+            $score->score = -1;
+        }
         $score->duration = $scoreObj->exerciseScore->duration;
 
         $score->sessionID = $session->sessionId;
         $score->userID = $user->userID;
         $score->setUID($scoreObj->uid);
+        $score->dateStamp =
 
         // Write the summary score record
         $this->progressOps->insertScore($score, $user);
@@ -151,25 +158,27 @@ class CTPService extends BentoService {
         /*
         $scoreDetails = array();
 
-        foreach ($scoreObj->questionScores as $answer) {
+        foreach ($scoreObj->exerciseScore->questionScores as $answer) {
             $scoreDetails[] = new ScoreDetail($answer, $clientTimezoneOffset);
         }
         $this->progressOps->insertScoreDetails($scoreDetails, $user);
         */
 
         // If this is the first score, make sure the session includes the testId
-        $session->testId = ($session->testId) ? ($session->testId) : $scoreObj->testId;
-        $this->progressOps->updateTestSession($session);
+        if (!$session->testId) {
+            $session->testId = $scoreObj->testID;
+            $this->progressOps->updateTestSession($session);
+        }
 
     }
 
-    public function getResult($sessionId) {
+    public function getTestResult($sessionId) {
         $session = $this->testOps->getTestSession($sessionId);
 
-        Session::set('userID', $session->userId);
-        $user = $this->manageableOps->getUserById($session->userId);
+        //Session::set('userID', $session->userId);
+        //$user = $this->manageableOps->getUserById($session->userId);
 
-        return $this->progressOps->getResult($user, $session->productCode);
+        return $this->progressOps->getTestResult($session);
     }
 
 }

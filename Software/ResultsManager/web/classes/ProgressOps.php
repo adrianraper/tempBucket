@@ -174,6 +174,51 @@ SQL;
 		// cast the values to integers and remove 0 entries
 		return array_filter(array_map('intval', $rs));
 	}
+
+    /**
+     * This is for calculating the placement test result.
+     * With full complexity this will require access to detailed scores so you can look at question tags (A2 etc)
+     * as well as the number correct.
+     *
+     */
+    function getTestResult($session) {
+        // 1. Count all the correct answers in this session
+        // sessionId is an index of the table, so a reasonable search
+        $sql = <<<SQL
+			SELECT SUM(F_ScoreCorrect) as totalCorrect
+			FROM T_Score
+			WHERE F_SessionID=?
+SQL;
+        $bindingParams = array($session->sessionId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs)
+            $totalCorrect = $rs->FetchNextObj()->totalCorrect;
+
+        switch (true) {
+            case ($totalCorrect > 80):
+                $result = "C2";
+                break;
+            case ($totalCorrect > 60):
+                $result = "C1";
+                break;
+            case ($totalCorrect > 50):
+                $result = "B2";
+                break;
+            case ($totalCorrect > 40):
+                $result = "B1";
+                break;
+            case ($totalCorrect > 30):
+                $result = "A2";
+                break;
+            case ($totalCorrect > 20):
+                $result = "A1";
+                break;
+            default:
+                $result = "A0";
+        }
+        // {"result":"A2"}
+        return ["result" => $result];
+    }
 	
 	/**
 	 * This method is called to insert a session record when a user starts a program
