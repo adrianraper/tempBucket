@@ -23,23 +23,29 @@
 		<s:State name="compare" stateGroups="normalStates,compareStates"/>
 		<s:State name="analysis" stateGroups="normalStates,analysisStates"/>
 		<s:State name="score" stateGroups="normalStates,scoreStates"/>
-		
+
+		<s:State name="coverage_anonymous" stateGroups="anonymousStates,coverageStates"/>
+		<s:State name="compare_anonymous" stateGroups="anonymousStates,compareStates"/>
+		<s:State name="analysis_anonymous" stateGroups="anonymousStates,analysisStates"/>
+		<s:State name="score_anonymous" stateGroups="anonymousStates,scoreStates"/>
+
+
 		<s:State name="coverage_demo" stateGroups="demoStates,coverageStates"/>
 		<s:State name="compare_demo" stateGroups="demoStates,compareStates"/>
 		<s:State name="analysis_demo" stateGroups="demoStates,analysisStates"/>
 		<s:State name="score_demo" stateGroups="demoStates,scoreStates"/>
 	</s:states>
-	
+
 	<s:Label id="progressAnonymousLabel" left="18" height="14" top="130" visible="{hostComponent.isAnonymousUser}" includeInLayout="{hostComponent.isAnonymousUser}" />
-	
+
 	<s:ButtonBar id="progressNavBar" height="43" top="30" right="0" />
 	
 	<s:Group top="85" left="0" right="0" bottom="0">
-		<s:Group width="100%" height="100%" includeIn="normalStates">
-			<components:ProgressCoverageView id="progressCoverageView" width="100%" height="100%" includeIn="coverage" />
-			<components:ProgressCompareView id="progressCompareView" width="100%" height="100%" includeIn="compare" />
-			<components:ProgressAnalysisView id="progressAnalysisView" width="100%" height="100%" includeIn="analysis" />
-			<components:ProgressScoreView id="progressScoreView" width="100%" height="100%" includeIn="score" />
+		<s:Group width="100%" height="100%" includeIn="normalStates, anonymousStates">
+			<components:ProgressCoverageView id="progressCoverageView" width="100%" height="100%" includeIn="coverage, coverage_anonymous" />
+			<components:ProgressCompareView id="progressCompareView" width="100%" height="100%" includeIn="compare, compare_anonymous" />
+			<components:ProgressAnalysisView id="progressAnalysisView" width="100%" height="100%" includeIn="analysis, analysis_anonymous" />
+			<components:ProgressScoreView id="progressScoreView" width="100%" height="100%" includeIn="score, score_anonymous" />
 		</s:Group>
 		
 		<s:Image id="demoImage" width="954" height="516" 
