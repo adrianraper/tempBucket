@@ -111,8 +111,8 @@ class CTPService extends BentoService {
                     break;
             }
             $test->description = $test->caption;
-            $test->startTimestamp = $test->openTime;
-            $test->endTimestamp = $test->closeTime;
+            $test->startTimestamp = $this->ansiStringToTimestamp($test->openTime);
+            $test->endTimestamp = $this->ansiStringToTimestamp($test->closeTime);
         }
         return $tests;
     }
@@ -149,7 +149,7 @@ class CTPService extends BentoService {
         $score->sessionID = $session->sessionId;
         $score->userID = $user->userID;
         $score->setUID($scoreObj->uid);
-        $score->dateStamp =
+        $score->dateStamp = $this->timestampToAnsiString($localTimestamp);
 
         // Write the summary score record
         $this->progressOps->insertScore($score, $user);

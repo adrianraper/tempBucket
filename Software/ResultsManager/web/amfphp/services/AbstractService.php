@@ -214,5 +214,16 @@ class AbstractService {
 			$n++;
 		}
 	}
-	
+
+	/*
+	 * For converting unix timestamps (milliseconds since epoch) to strings for the database
+	 */
+    public function timestampToAnsiString($timestamp) {
+        return date("Y-m-d H:i:s", ($timestamp/1000));
+    }
+    public function ansiStringToTimestamp($date) {
+        $dateTime = DateTime::createFromFormat('Y-m-d H:i:s', $date);
+        return $dateTime->getTimestamp() * 1000;
+    }
+
 }

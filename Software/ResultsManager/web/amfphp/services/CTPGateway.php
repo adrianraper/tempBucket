@@ -14,11 +14,14 @@ set_time_limit(360);
 try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
-    $json = json_decode('{"command":"getTestResult","sessionID":"47"}');
     /*
-    $json = json_decode('{"command": "scoreWrite",
+    $json = json_decode('{"command":"login","email":"tracka@ppt","password":"eecea6bb1dd86ecb255f070b9b263f7c","productCode":63}');
+    $json = json_decode('{"command":"getTestResult","sessionID":"47"}');
+    */
+    /*
+    $json = json_decode('{"command":"scoreWrite",
+            "sessionID": "47",
             "score": {
-                "sessionID": "47",
                 "uid": "63.20160630.201606301.20160630001",
                 "testID": "2",
                 "exerciseScore": {
@@ -76,7 +79,6 @@ try {
             "localTimestamp": ' . time()*1000 . ',
             "timezoneOffset": -480
         }');
-    $json = json_decode('{"command":"login","email":"tracka@ppt","password":"eecea6bb1dd86ecb255f070b9b263f7c","productCode":63}');
     */
     if (!$json)
         throw new Exception("Empty request");
