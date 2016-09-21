@@ -230,22 +230,23 @@ class UploadException extends Exception {
             $thisGroup = $thisService->manageableOps->addGroup($stubGroup, $parentGroup, false);
 
             // Build a list of the key ids for each student
+            // gh#1502 no case sensitivity
             $idArray = array();
             foreach ($users as $user) {
                 switch ($loginOption) {
                     case User::LOGIN_BY_ID:
                         if (isset($user['id']))
-                            $idArray[] = "'" . $user['id'] . "'";
+                            $idArray[] = "'" . strtolower($user['id']) . "'";
                         $checkClause = "u.F_StudentID";
                         break;
                     case User::LOGIN_BY_EMAIL:
                         if (isset($user['email']))
-                            $idArray[] = $user['email'];
+                            $idArray[] = strtolower($user['email']);
                         $checkClause = "u.F_Email";
                         break;
                     case User::LOGIN_BY_NAME:
                         if (isset($user['name']))
-                            $idArray[] = $user['name'];
+                            $idArray[] = strtolower($user['name']);
                         $checkClause = "u.F_UserName";
                         break;
                     default:
@@ -254,12 +255,13 @@ class UploadException extends Exception {
             $idList = implode(',', $idArray);
 
             // Get existing student details for this list
+            // gh#1502 no case sensitivity
             $sql = <<<EOD
                 SELECT u.*, m.F_GroupID, g.F_GroupName as groupName
                 FROM T_User u, T_Membership m, T_Groupstructure g
                 WHERE u.F_UserID = m.F_UserID
                 AND m.F_GroupID = g.F_GroupID
-                AND $checkClause in ($idList)
+                AND lcase($checkClause) in ($idList)
                 AND m.F_RootID = ?
 EOD;
             $bindingParams = array($rootID);
@@ -272,11 +274,12 @@ EOD;
             // NOTE: Does it matter that you might get two records for a student in two groups? I think it doesn't
             $newUsers = array();
             foreach ($users as $user) {
-                $thisId = $user['id'];
+                $thisId = strtolower($user['id']);
                 AbstractService::$controlLog->info('look for user ' . $thisId);
 
                 foreach ($records as $record) {
-                    if ($record['F_StudentID'] == $thisId) {
+                    // gh#1502 no case sensitivity
+                    if (strtolower($record['F_StudentID']) == $thisId) {
                         // This is an existing student, any changes necessary?
                         if ($record['groupName'] != $groupName) {
                             // move this user (means delete membership records and insert new one)
