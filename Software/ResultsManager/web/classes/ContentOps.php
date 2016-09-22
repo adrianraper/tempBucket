@@ -1149,7 +1149,7 @@ EOD;
                 case ($pid == 64):
                     $courseType = 'couloir';
                     // TODO work through how you load a couloir content index...
-                    $titleObj->indexFile = "course.xml";
+                    $titleObj->indexFile = "course.xml"; // "menu.json"
                     break;
 				default:
 					$courseType = 'bento';
@@ -1170,7 +1170,9 @@ EOD;
 						$rs = $this->_buildBentoTitle($this->_createTitleFromObj($titleObj), $folder, $generateMaps, $forDMS, $courseType);
 					} else if ($courseType == 'rotterdam') {
 						$rs = $this->_buildRotterdamTitle($this->_createTitleFromObj($titleObj), $folder, $generateMaps, $forDMS, $courseType);
-					} else {	
+                    } else if ($courseType == 'couloir') {
+                        $rs = $this->_buildTitle($this->_createTitleFromObj($titleObj), $folder, $generateMaps, $forDMS, $courseType);
+					} else {
 						$rs = $this->_buildTitle($this->_createTitleFromObj($titleObj), $folder, $generateMaps, $forDMS, $courseType);
 					}
 					if ($generateMaps) {

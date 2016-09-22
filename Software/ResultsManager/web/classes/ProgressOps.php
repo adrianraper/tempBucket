@@ -176,12 +176,12 @@ SQL;
 	}
 
     /**
-     * This is for calculating the placement test result.
+     * This is for calculating the placement test result and saving it
      * With full complexity this will require access to detailed scores so you can look at question tags (A2 etc)
      * as well as the number correct.
      *
      */
-    function getTestResult($session) {
+    function saveTestResult($session) {
         // 1. Count all the correct answers in this session
         // sessionId is an index of the table, so a reasonable search
         $sql = <<<SQL
@@ -216,6 +216,11 @@ SQL;
             default:
                 $result = "A0";
         }
+
+        // gh#1505 Save the result to the database so that it can be checked later
+        $session->result = json_encode(["CEF" => $result]);
+        $this->updateTestSession($session, false, true);
+
         // {"result":"A2"}
         return ["result" => $result];
     }
@@ -391,10 +396,12 @@ SQL;
      * Update a session record for a test - make sure it includes the test id and any updated status
      *
      */
-    public function updateTestSession($session, $completed=false) {
+    public function updateTestSession($session, $started=false, $completed=false) {
         $dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
         $dateNow = $dateStampNow->format('Y-m-d H:i:s');
 
+        if ($started)
+            $session->startedDateStamp = $dateNow;
         if ($completed)
             $session->completedDateStamp = $dateNow;
 

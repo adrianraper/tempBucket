@@ -70,6 +70,9 @@ class ReportBuilder {
 	// gh#777
 	const SHOW_INACTIVE_USERS = "show_inactive_users";
 
+    // gh#1505
+    const SHOW_CEF = 'show_cef';
+
 	function ReportBuilder($db = null) {
 		$this->db = $db;
 		$this->opts = array();
@@ -121,6 +124,8 @@ class ReportBuilder {
 		if (!isset($this->opts[ReportBuilder::SHOW_SESSIONID])) $this->opts[ReportBuilder::SHOW_SESSIONID] = "";
 		// gh#777
 		if (!isset($this->opts[ReportBuilder::SHOW_INACTIVE_USERS])) $this->opts[ReportBuilder::SHOW_INACTIVE_USERS] = "";
+        // gh#1505
+        if (!isset($this->opts[ReportBuilder::SHOW_CEF])) $this->opts[ReportBuilder::SHOW_CEF] = "";
 	}
 	
 	function setOpt($opt, $value) {
@@ -165,7 +170,69 @@ class ReportBuilder {
 		}
 		
 	}
-	
+
+	// gh#1505 For test summary report
+	function buildCTPReportSQL() {
+		$this->selectBuilder = new SelectBuilder();
+		$fromClause = <<<EOD
+						T_TestSession s
+						INNER JOIN T_User u ON s.F_UserID=u.F_UserID
+						INNER JOIN T_Membership m ON s.F_UserID=m.F_UserID
+						INNER JOIN T_Groupstructure g on g.F_GroupID = m.F_GroupID
+EOD;
+		$this->selectBuilder->setFrom($fromClause);
+
+        // Selection of name columns
+        if ($this->getOpt(ReportBuilder::SHOW_GROUPNAME)) $this->addColumn("g.F_GroupName", "groupName");
+        if ($this->getOpt(ReportBuilder::SHOW_USERNAME)) $this->addColumn("u.F_UserName", "userName");
+        if ($this->getOpt(ReportBuilder::SHOW_STUDENTID)) $this->addColumn("u.F_StudentID", "studentID");
+        if ($this->getOpt(ReportBuilder::SHOW_EMAIL)) $this->addColumn("u.F_Email", "email");
+
+        // Selection of ungrouped columns
+        if ($this->getOpt(ReportBuilder::SHOW_CEF)) $this->addColumn("s.F_Result", "result");
+        if ($this->getOpt(ReportBuilder::SHOW_DURATION)) $this->addColumn("s.F_Duration", "duration");
+        if ($this->getOpt(ReportBuilder::SHOW_STARTDATE)) $this->addColumn("s.F_StartedDateStamp", "start_date");
+
+        // From date
+        if ($fromDate = $this->getOpt(ReportBuilder::FROM_DATE))
+            $this->selectBuilder->addWhere("s.F_DateStamp >= '$fromDate'");
+        if ($toDate = $this->getOpt(ReportBuilder::TO_DATE))
+            $this->selectBuilder->addWhere("s.F_DateStamp <= '$toDate'");
+
+        // v3.4 For summary reports, you want to use sessionID
+        $this->addColumn("s.F_SessionID", "sessionID");
+        $this->addColumn("u.F_UserID", "userID");
+
+        // For idObjects (e.g. CourseID=? AND UnitID=? AND ExerciseID=?)
+        if ($idObjects = $this->getOpt(ReportBuilder::FOR_IDOBJECTS)) {
+                foreach ($idObjects as $idObject) {
+                    $wheres = array();
+                    foreach ($idObject as $class => $id) {
+                        switch ($class) {
+                            case "Title":
+                                $wheres[] = "s.F_ProductCode=".$id;
+                                break;
+                        }
+                    }
+                    // Passing true as a parameter to addWhere marks these as OR clauses instead of the default AND
+                    //gh#28
+                    $this->selectBuilder->addWhere("(".implode(" AND ", $wheres).")", true);
+                }
+        }
+
+        // v3.0.4 If you want special ordering
+        if ($this->getOpt(ReportBuilder::ORDERBY_USERS)) $this->selectBuilder->addOrder('s.F_UserID');
+        if ($this->getOpt(ReportBuilder::ORDERBY_UNIT)) $this->selectBuilder->addOrder('s.F_UnitID');
+
+        // v3.4 Get last session results first
+        if ($this->getOpt(ReportBuilder::SHOW_SESSIONID)) $this->selectBuilder->addOrder('s.F_SessionID', 'DESC');
+
+        // AR To only pick up results for learners - ignore teachers etc
+        $this->selectBuilder->addWhere("u.F_UserType=".USER::USER_TYPE_STUDENT);
+
+        return $this->selectBuilder->toSQL();
+    }
+
 	// TODO: This needs to check against $_SESSION['rootID'] too otherwise it could pick up students in multiple roots (maybe)
 	function buildReportSQL() {
 		$this->selectBuilder = new SelectBuilder();
@@ -631,35 +698,3 @@ EOD;
 		return $user;
 	}
 }
-
-/*
-$reportBuilder = new ReportBuilder();
-
-$reportBuilder->setOpt(ReportBuilder::GROUPED, true);
-
-$reportBuilder->setOpt(ReportBuilder::SHOW_COURSE, true);
-$reportBuilder->setOpt(ReportBuilder::SHOW_UNIT, true);
-$reportBuilder->setOpt(ReportBuilder::SHOW_EXERCISE, true);
-
-$reportBuilder->setOpt(ReportBuilder::SHOW_GROUPNAME, true);
-$reportBuilder->setOpt(ReportBuilder::SHOW_USERNAME, true);
-
-//$reportBuilder->setOpt(ReportBuilder::SHOW_SCORE, true);
-//$reportBuilder->setOpt(ReportBuilder::SHOW_DURATION, true);
-//$reportBuilder->setOpt(ReportBuilder::SHOW_STARTDATE, true);
-
-$reportBuilder->setOpt(ReportBuilder::SHOW_AVERAGE_SCORE, true);
-$reportBuilder->setOpt(ReportBuilder::SHOW_COMPLETE, true);
-$reportBuilder->setOpt(ReportBuilder::SHOW_AVERAGE_TIME, true);
-$reportBuilder->setOpt(ReportBuilder::SHOW_TOTAL_TIME, true);
-
-//$reportBuilder->setOpt(ReportBuilder::ATTEMPTS, "first");
-//$reportBuilder->setOpt(ReportBuilder::ATTEMPTS, "last");
-
-//$reportBuilder->setOpt(ReportBuilder::FOR_USERS, array(9003));
-$reportBuilder->setOpt(ReportBuilder::FOR_GROUPS, array(163));
-//$reportBuilder->setOpt(ReportBuilder::FOR_COURSES, array(1150976390861, 1150899874890, 1150911222467));
-//$reportBuilder->setOpt(ReportBuilder::FOR_EXERCISES, array(1156165919420, 1156165919770));
-
-echo $reportBuilder->buildReportSQL();*/
-?>

@@ -99,19 +99,21 @@ if (!Authenticate::isAuthenticated()) {
 $template = (isset($_REQUEST['template'])) ? $_REQUEST['template'] : "standard";
 $opts = json_decode(stripslashes((isset($_REQUEST['opts'])) ? $_REQUEST['opts'] : ""), true);
 $onReportablesIDObjects = (isset($_REQUEST['onReportablesIDObjects'])) ? json_decode(stripslashes($_REQUEST['onReportablesIDObjects']), true) : array();
-$forReportableIDObjects = (isset($_REQUEST['forReportablesIDObjects'])) ? json_decode(stripslashes($_REQUEST['forReportablesIDObjects']), true) : array();
+$forReportablesIDObjects = (isset($_REQUEST['forReportablesIDObjects'])) ? json_decode(stripslashes($_REQUEST['forReportablesIDObjects']), true) : array();
 $onClass = (isset($_REQUEST['onClass'])) ? $_REQUEST['onClass'] : "";
 $forClass = (isset($_REQUEST['forClass'])) ? $_REQUEST['forClass'] : "";
 
 /**
  * This for testing and debugging reports
- */
-$template = "standard";
-$opts = json_decode(stripslashes('{"detailedReport":true,"attempts":"all","headers":{"onReport":"Practical Placement Test v2","onReportLabel":"Title(s)","forReportDetail":"EfHS","attempts":"All attempts","forReportLabel":"Group(s)","dateRange":""},"includeInactiveUsers":true,"includeStudentID":false}'), true);
-$forReportablesIDObjects = json_decode(stripslashes('[{"Group":"74533"}]'), true);
-$onReportableIDObjects = json_decode(stripslashes('[{"Title":"63","Course":"1216948569658"}]'), true);
+
+$template = "DPTSummary";
+$opts = json_decode(stripslashes('{"attempts":"all","detailedReport":true,"includeStudentID":false,"includeInactiveUsers":false,"headers":{"onReportLabel":"Title(s)","forReportLabel":"Group(s)","forReportDetail":"PPT track B","dateRange":"","attempts":"All attempts","onReport":"Practical Placement Test v2"}}'), true);
+$forReportablesIDObjects = json_decode(stripslashes('[{"Group":"74532"}]'), true);
+$onReportablesIDObjects = json_decode(stripslashes('[{"Course":"2015063030000","Title":"63"}]'), true);
 $onClass = "Title";
 $forClass = "Group";
+Session::set('rootID', 163);
+ */
 
 // Protect against directory traversal
 // PHP 5.3
@@ -121,7 +123,7 @@ $template = preg_replace($pattern, $replacement, $template);
 
 // Generate the report based on the options passed to the script
 // v3.0.4 I need to pass the template in for special processing
-$reportDom = $clarityService->getReport($onReportablesIDObjects, $onClass, $forReportableIDObjects, $forClass, $opts, $template);
+$reportDom = $clarityService->getReport($onReportablesIDObjects, $onClass, $forReportablesIDObjects, $forClass, $opts, $template);
 // AR If I want to see the XML before it gets processed?
 //$reportDom->formatOutput = true; 
 //header("Content-Type: text/xml; charset=utf-8"); echo $reportDom; exit(0);
@@ -137,13 +139,11 @@ $reportDom = $clarityService->getReport($onReportablesIDObjects, $onClass, $forR
 
 // Add in the script name and request parameters as attributes. This is to allow you to build different views direct from the report (eg: print).
 $reportDom->documentElement->setAttribute("scriptName", $_SERVER['SCRIPT_NAME']);
-$reportDom->documentElement->setAttribute("onReportablesIDObjects", stripslashes($_REQUEST['onReportablesIDObjects']));
-$reportDom->documentElement->setAttribute("onClass", $_REQUEST['onClass']);
-$reportDom->documentElement->setAttribute("forReportablesIDObjects", stripslashes($_REQUEST['forReportablesIDObjects']));
-$reportDom->documentElement->setAttribute("forClass", $_REQUEST['forClass']);
-$reportDom->documentElement->setAttribute("opts", stripslashes($_REQUEST['opts']));
-
-//echo var_dump($_REQUEST['opts']); exit(0);
+$reportDom->documentElement->setAttribute("onReportablesIDObjects", (isset($_REQUEST['onReportablesIDObjects'])) ? $_REQUEST['onReportablesIDObjects'] : '');
+$reportDom->documentElement->setAttribute("onClass", $onClass);
+$reportDom->documentElement->setAttribute("forReportablesIDObjects", (isset($_REQUEST['forReportablesIDObjects'])) ? $_REQUEST['forReportablesIDObjects'] : '');
+$reportDom->documentElement->setAttribute("forClass", $forClass);
+$reportDom->documentElement->setAttribute("opts", (isset($_REQUEST['opts'])) ? $_REQUEST['opts'] : '');
 
 // Put literals.xml into the report XML as a child of the document element so that the xsl can access the languages
 // TODO Since I am using literals.xml for help strings, this might become a significant size. So maybe I can make a special section of literals
@@ -157,8 +157,23 @@ $reportDom->documentElement->appendChild($reportDom->importNode($copyElement, tr
 $xslDom = new DOMDocument();
 $xslDom->load("../../reports/$template/report.xsl");
 
+// gh#1505 Convert results held in json, will be called from xsl
+function dptResultFormatter($result, $format) {
+    $json = json_decode($result);
+    if ($json == null)
+        $format = null;
+    switch ($format) {
+        case 'CEF':
+            if (isset($json->CEF))
+                $formattedResult = $json->CEF;
+            break;
+        default:
+            $formattedResult = $result;
+    }
+    return $formattedResult;
+}
 $proc = new XSLTProcessor();
-$proc->registerPHPFunctions(array("XSLTFunctions::secondsToMinutes","XSLTFunctions::secondsToHours"));
+$proc->registerPHPFunctions(array("XSLTFunctions::secondsToMinutes","XSLTFunctions::secondsToHours","dptResultFormatter"));
 $proc->importStylesheet($xslDom);
 if ($template == "export") {
 	header("Content-Type: text/csv; charset=\"utf-8\"");

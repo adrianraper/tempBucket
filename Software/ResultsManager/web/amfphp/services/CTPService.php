@@ -167,7 +167,7 @@ class CTPService extends BentoService {
         // If this is the first score, make sure the session includes the testId
         if (!$session->testId) {
             $session->testId = $scoreObj->testID;
-            $this->progressOps->updateTestSession($session);
+            $this->progressOps->updateTestSession($session, true, false);
         }
 
     }
@@ -178,7 +178,7 @@ class CTPService extends BentoService {
         //Session::set('userID', $session->userId);
         //$user = $this->manageableOps->getUserById($session->userId);
 
-        return $this->progressOps->getTestResult($session);
+        return $this->progressOps->saveTestResult($session);
     }
 
 }

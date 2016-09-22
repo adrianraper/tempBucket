@@ -25,8 +25,10 @@ class ReportOps {
 	function getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template, $returnXMLString = false) {
 		//echo 'reportOps.getReport $tempOnClass='.$onClass.' forClass='.$forClass.' template='.$template.'<br/>';
 		// Get the content map for converting ids to names
+        // gh#1503 Unless you are a summary report in which case it is not necessary
 		$contentOps = new ContentOps($this->db);
-		$this->contentMap = $contentOps->getContentMap();
+        if (stripos($template,"summary")===false)
+		    $this->contentMap = $contentOps->getContentMap();
 		
 		// v3.4 Then we need to get editedContent to merge it.
 		// The group list should be in session I think. It relates to the group of the logged in user.
@@ -138,6 +140,9 @@ class ReportOps {
 			$opts[ReportBuilder::SHOW_SESSIONID] = true;
 			// And they may want email to be displayed
 			$opts[ReportBuilder::SHOW_EMAIL] = true;
+            // gh#1505
+            $opts[ReportBuilder::SHOW_CEF] = true;
+            $opts[ReportBuilder::SHOW_STARTDATE] = true;
 		}
 		
 		// Create the ReportBuilder and set the options
@@ -181,10 +186,15 @@ EOD;
 			// Now put this information into the passed parameters for report building
 			$reportBuilder->setOpt(ReportBuilder::FOR_USERS, $forUsers);
 		}
-			
-		// Execute the query - for some crazy reason its necessary to store the sql in a variable before passing to to AdoDB
-		$sql = $reportBuilder->buildReportSQL();
-		// echo $sql.'<br/>'; exit();
+
+		// gh#1505
+        if (stripos($template,'dptsummary') !== false) {
+            $sql = $reportBuilder->buildCTPReportSQL();
+        } else {
+            // Execute the query - for some crazy reason its necessary to store the sql in a variable before passing to to AdoDB
+            $sql = $reportBuilder->buildReportSQL();
+        }
+		//echo $sql.'<br/>'; exit();
 		$rows = $this->db->GetArray($sql);
 		
 		// gh#777 Run a second query to add all users in a group who haven't got any score records
@@ -231,9 +241,13 @@ EOD;
 		// Build a second SQL and get the data from it into another array. Then you can process this array below too.
 		// Once all the data you need is in the dom, you can let the xsl pick it up.
 		// Or it might be a better idea to do the necessary processing (summing, weighting etc) in here as PHP will be easier thatn XSL (for most stuff).
-		//if ($template == "ClarityTestSummary") {
-		// Clarity's Practical Placement Test (ClarityTestSummary and 3levelTestSummary)
-		if (strpos($template,'TestSummary')!==false) {
+        // Dynamic Placement TEst
+        if (stripos($template,'dptsummary') !== false) {
+            // The result will have been calculated already by the application server
+
+
+        // Clarity's Practical Placement Test (ClarityTestSummary and 3levelTestSummary)
+        } elseif (strpos($template,'TestSummary') !== false) {
 			$this->PPTSelfAssessmentExerciseID = '1292227313781';
 			
 			// A great deal of the data will be the same (groupname etc) so use a similar setup

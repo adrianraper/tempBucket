@@ -1412,8 +1412,8 @@ INSERT INTO `T_Product` VALUES
 DELETE FROM T_ProductLanguage WHERE F_ProductCode = 63;
 DELETE FROM T_ProductLanguage WHERE F_ProductCode = 64;
 INSERT INTO `T_ProductLanguage` VALUES 
-(63,'EN','PracticalPlacementTest-International'),
-(63,'NAMEN','PracticalPlacementTest-NAmerican'),
+(63,'EN','DynamicPlacementTest-International'),
+(63,'NAMEN','DynamicPlacementTest-NAmerican'),
 (64,'EN','LearnEnglishLevelTest');
 
 DELETE FROM T_ProductVersion WHERE F_ProductCode = 63;
@@ -1461,9 +1461,11 @@ CREATE TABLE `T_TestSession` (
   `F_RootID` int(11) DEFAULT 0,
   `F_ProductCode` smallint(5) NOT NULL DEFAULT 0,
   `F_ReadyDateStamp` datetime DEFAULT NULL,
+  `F_StartedDateStamp` datetime DEFAULT NULL,
   `F_CompletedDateStamp` datetime DEFAULT NULL,
   `F_Duration` int(11) DEFAULT NULL,
-  PRIMARY KEY (`F_SessionID`,`F_ProductCode`, `F_RootID`),
+  `F_Result` TEXT DEFAULT NULL,
+  PRIMARY KEY (`F_SessionID`),
   KEY `Index_1` (`F_RootID`,`F_ProductCode`),
   KEY `Index_2` (`F_TestID`,`F_UserID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

@@ -172,6 +172,8 @@
 				<!--  gh#1470 -->
                 <xsl:if test="report/row/@licences"><th type="ro" width="100px"><xsl:value-of select="report/language//lit[@name='report_licences']"/></th></xsl:if>
                 <xsl:if test="report/row/@sessions"><th type="ro" width="100px"><xsl:value-of select="report/language//lit[@name='report_sessions']"/></th></xsl:if>
+				<!--  gh#1505 -->
+				<xsl:if test="report/row/@result"><th type="ro" width="100px"><xsl:value-of select="report/language//lit[@name='report_result']"/></th></xsl:if>
 			</tr>
 			<xsl:for-each select="report/row">
 				<tr>
@@ -223,6 +225,8 @@
                     <!--gh#23-->
                     <xsl:if test="@licences"><td><xsl:value-of select="@licences"/></td></xsl:if>
                     <xsl:if test="@sessions"><td><xsl:value-of select="@sessions"/></td></xsl:if>
+					<!--gh#1505-->
+					<xsl:if test="@result"><td><xsl:value-of select="php:function('dptResultFormatter', string(@result), 'CEF')"/></td></xsl:if>
 				</tr>
 			</xsl:for-each>
 		</table>

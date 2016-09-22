@@ -451,7 +451,11 @@
 			<lit name="report_noResults">No results</lit>
             <lit name="report_licences">Licences used</lit>
             <lit name="report_sessions">Times run</lit>
-			
+			<!-- gh#1505 -->
+			<lit name="report_result">CEF</lit>
+            <lit name="report_testsCompleted">Tests taken</lit>
+
+
 			<lit name="report_report">Report for</lit>
 			<lit name="report_dateRange">Date range</lit>
 			<lit name="report_attempts">Attempts</lit>
