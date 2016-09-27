@@ -246,12 +246,12 @@
 	<s:HGroup verticalCenter="-20" horizontalCenter="0" gap="40">
 		<s:VGroup paddingTop="130">
 			<s:Button id="previousVideoButton" verticalCenter="0" click="previousVideoButtonClick(event)" enabled="false" buttonMode="true" useHandCursor="true" />
-		</s:VGroup>		
-		
+		</s:VGroup>
+
 		<s:Group>
 			<!-- The video players -->
-			<!--players:WebViewVideoPlayer id="videoPlayer" width="640" height="360" visible="{videoList.selectedIndex != -1}" /-->
-			<players:OSMFVideoPlayer id="videoPlayer" width="640" height="360" visible="{videoList.selectedIndex != -1}"/>
+			<players:WebViewVideoPlayer id="videoPlayer" width="640" height="360" visible="{videoList.selectedIndex != -1}" />
+			<!--players:OSMFVideoPlayer id="videoPlayer" width="640" height="360" visible="{videoList.selectedIndex != -1}" /-->
 			
 			<!-- Placeholder image -->
 			<s:Image id="placeholderImage" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" />

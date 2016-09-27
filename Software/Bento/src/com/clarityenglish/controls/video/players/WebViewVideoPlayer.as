@@ -102,19 +102,11 @@ import mx.events.FlexEvent;
 		}
 
 		private function getVideoWidth():Number {
-			if (Capabilities.os.indexOf("iPad") > -1) {
-				return stageWebView.viewPort.width / dpiScaleFactor;
-			} else {
-				return stageWebView.viewPort.width;
-			}
+			return stageWebView.viewPort.width / dpiScaleFactor;
 		}
 
 		private function getVideoHeight():Number {
-			if (Capabilities.os.indexOf("iPad") > -1) {
-				return stageWebView.viewPort.height / dpiScaleFactor;
-			} else {
-				return stageWebView.viewPort.height;
-			}
+			return stageWebView.viewPort.height / dpiScaleFactor;
 		}
 		
 		private function get isHtml():Boolean {

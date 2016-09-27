@@ -7,7 +7,7 @@
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 	<platform>tablet|Android</platform>
 	<channel name='android-rackspace' caption='Ch1'>
-		<streamingMedia>http://c284790.r90.stream.cf1.rackcdn.com/</streamingMedia>
+		<streamingMedia>http://798a4ab11405fd81be17-42dc242c457c6a62e22482e1bb35342a.r14.cf1.rackcdn.com/</streamingMedia>
 	</channel>
 	<channel name='vimeo' caption='Ch2'>
 		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
@@ -20,9 +20,9 @@
     <remoteDomain> http://www.clarityenglish.com/Software/</remoteDomain>
     <remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>-->
 	
-    <contentPath>http://develop.clarityenglish.com/Content-March/</contentPath>
-    <remoteDomain>http://develop.clarityenglish.com/Software/</remoteDomain>
-    <remoteGateway>http://develop.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+    <contentPath>http://192.168.8.82/Content/</contentPath>
+    <remoteDomain>http://192.168.8.82/Software/</remoteDomain>
+    <remoteGateway>http://192.168.8.82/Software/ResultsManager/web/amfphp/</remoteGateway>
 	
 	<!--  contentPath>http://roadtoielts.chinaielts.org/Content/</contentPath>
     <remoteDomain>http://roadtoielts.chinaielts.org/Software/</remoteDomain>

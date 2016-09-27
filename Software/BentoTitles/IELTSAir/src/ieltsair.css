@@ -41,6 +41,12 @@ components|XHTMLExerciseView s|TextInput {
 	paddingRight: 0;
 }
 
+@media (os-platform: "Android") {
+	video|VideoSelector {
+		skinClass: ClassReference("skins.ieltsair.controls.video.AndroidWebViewVideoSelectorSkin");
+	}
+}
+
 @media (os-platform: "IOS") {
 	video|VideoSelector {
 		skinClass: ClassReference("skins.ieltsair.controls.video.WebViewVideoSelectorSkin");
@@ -188,7 +194,7 @@ credits|CreditsView {
 
 @media (os-platform: "Android") {
 	candidates|CandidatesView video|VideoSelector#tabletVideoSelector {
-		skinClass: ClassReference("skins.ieltsair.candidates.AndroidVideoSelectorSkin");
+		skinClass: ClassReference("skins.ieltsair.candidates.AndroidCandidateVideoSelectorSkin");
 	}
 }
 
