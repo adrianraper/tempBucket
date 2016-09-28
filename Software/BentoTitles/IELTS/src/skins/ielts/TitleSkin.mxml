@@ -59,7 +59,7 @@
 		<s:Button id="logoutButton" right="0" height="35" top="5" buttonMode="true" />
 	</s:Group>
 	
-	<s:SWFLoader id="infoButton" source="{hostComponent.productVersionInfo}" right="0" top="44" buttonMode="true" useHandCursor="true" visible="{hostComponent.productVersion == IELTSApplication.TEST_DRIVE}" excludeFrom="candidates" />
+	<s:SWFLoader id="infoButton" source="{hostComponent.productVersionInfo}" right="0" top="44" buttonMode="true" useHandCursor="true" visible="{hostComponent.productVersion == IELTSApplication.TEST_DRIVE}" excludeFrom="exercise, candidates" />
 	<!--gh#383-->
 	<title:InforButton id="topInforButton" richTextFlow="{hostComponent.inforButtonTextFlow}" right="10" top="55" buttonMode="true" useHandCursor="true" visible="{hostComponent.productVersionInforButton}" excludeFrom="exercise, candidates" />
 	
