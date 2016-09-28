@@ -123,13 +123,16 @@ package com.clarityenglish.bento.view.recorder {
 				case RecorderNotifications.PLAYHEAD_POSITION:
 					if (note.getType() == view.audioProxyName) {
 						view.waveformRenderer.playheadPosition = note.getBody().playHeadPosition as Number;
-						view.scrubBar.value = note.getBody().samplePosition as Number;
-						if (view.scrubBar.value == 0) {
-							view.playButton.visible = true;
-							view.pauseButton.visible = false;
-						} else {
-							view.playButton.visible = false;
-							view.pauseButton.visible = true;
+						//For recorder in R2I speaking test, it has scrubBar.
+						if (view.scrubBar) {
+							view.scrubBar.value = note.getBody().samplePosition as Number;
+							if (view.scrubBar.value == 0) {
+								view.playButton.visible = true;
+								view.pauseButton.visible = false;
+							} else {
+								view.playButton.visible = false;
+								view.pauseButton.visible = true;
+							}
 						}
 					}
 					break;
