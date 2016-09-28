@@ -63,7 +63,7 @@
 											super.data = value;
 
 											if (itemIndex == 0) {
-												listVerticalGap = 17;
+												listVerticalGap = 14;
 											} else {
 												listVerticalGap = 10;
 											}
