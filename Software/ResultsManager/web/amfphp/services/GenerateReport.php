@@ -114,6 +114,8 @@ $onClass = "Title";
 $forClass = "Group";
 Session::set('rootID', 163);
  */
+if ($template == 'ClarityTestSummary')
+    $template = "DPTSummary";
 
 // Protect against directory traversal
 // PHP 5.3
