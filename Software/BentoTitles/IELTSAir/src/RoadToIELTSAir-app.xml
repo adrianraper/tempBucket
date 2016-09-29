@@ -253,6 +253,10 @@
 			</array>
 			<key>UIRequiresPersistentWiFi</key> 
         	<string>YES</string>
+        	<key>NSAppTransportSecurity</key>
+ 			<dict>
+ 				<key>NSAllowsArbitraryLoads</key><true/>
+ 			</dict>
 		]]></InfoAdditions>
         <requestedDisplayResolution>high</requestedDisplayResolution>
     </iPhone>
