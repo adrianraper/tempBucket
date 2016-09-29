@@ -209,9 +209,9 @@ package com.clarityenglish.common.view.login {
 		private function onStartDemo(prefix:String, productCode:String):void {
 			//FlexGlobals.topLevelApplication.parameters.prefix = 'Demo';
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			configProxy.reset();
 			configProxy.getConfig().retainedParameters["prefix"] = prefix;
 			configProxy.getConfig().retainedParameters["productCode"] = productCode;
+			configProxy.reset();
 			sendNotification(CommonNotifications.ACCOUNT_RELOAD);
 		}
 		
