@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:login="com.clarityenglish.bento.view.login.*"
 		xmlns:title="com.clarityenglish.activereading.view.title.*" 
-		xmlns:credits="com.clarityenglish.bento.view.credits.*" 
+		xmlns:ending="com.clarityenglish.bento.view.ending.*"
 		xmlns:nonetwork="com.clarityenglish.bento.view.nonetwork.*">
 	
 	<!-- host component -->
@@ -19,7 +19,7 @@
 		<s:State name="loading" />
 		<s:State name="login" />
 		<s:State name="title" />
-		<s:State name="credits" />
+		<s:State name="ending" />
 		<s:State name="nonetwork" />
 	</s:states>
 	

@@ -1,4 +1,4 @@
-package com.clarityenglish.bento.view.credits {
+package com.clarityenglish.bento.view.ending {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	
@@ -14,7 +14,7 @@ package com.clarityenglish.bento.view.credits {
 	import spark.components.TextArea;
 	import spark.utils.TextFlowUtil;
 	
-	public class CreditsView extends BentoView {
+	public class EndingView extends BentoView {
 		
 		[SkinPart]
 		public var creditsRichText:RichText;

@@ -18,7 +18,7 @@
 @namespace error "com.clarityenglish.common.view.error.*";
 @namespace video "com.clarityenglish.controls.video.*";
 @namespace players "com.clarityenglish.controls.video.players.*";
-@namespace credits "com.clarityenglish.activereading.view.credits.*";
+@namespace ending "com.clarityenglish.activereading.view.ending.*";
 
 global {
 	outlineColors: #C63C47, #E6641E, #CF7D00, #47613D, #1E7496, #554091;
@@ -289,8 +289,8 @@ progress|ProgressCertificateView s|Button#printButton {
 	skinClass: ClassReference("skins.activereading.progress.ui.PrintButtonSkin");
 }
 
-credits|CreditsView {
-	skinClass: ClassReference("skins.activereading.CreditsSkin");
+ending|EndingView {
+	skinClass: ClassReference("skins.activereading.EndingSkin");
 }
 
 s|TitleWindow.RecorderTitleWindow {

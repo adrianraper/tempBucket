@@ -19,7 +19,7 @@ package com.clarityenglish.clearpronunciation {
 		public function ClearPronunciationApplication() {
 			super();
 			
-			StateUtil.addStates(this, [ "loading", "login", "title", "credits" ], true);
+			StateUtil.addStates(this, [ "loading", "login", "title", "ending" ], true);
 			
 			addEventListener(FlexEvent.CREATION_COMPLETE, creationComplete);
 		}

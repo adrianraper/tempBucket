@@ -1,7 +1,7 @@
 package com.clarityenglish.activereading {
 	import com.clarityenglish.activereading.controller.ActiveReadingStartupCommand;
-	import com.clarityenglish.activereading.view.credits.CreditsMediator;
-	import com.clarityenglish.activereading.view.credits.CreditsView;
+	import com.clarityenglish.activereading.view.ending.EndingMediator;
+	import com.clarityenglish.activereading.view.ending.EndingView;
 	import com.clarityenglish.activereading.view.exercise.ExerciseView;
 	import com.clarityenglish.activereading.view.home.HomeMediator;
 	import com.clarityenglish.activereading.view.home.HomeView;
@@ -44,7 +44,7 @@ package com.clarityenglish.activereading {
 			mapView(ProgressCompareView, ProgressCompareMediator);
 			mapView(ProgressScoreView, ProgressScoreMediator);
 			mapView(ProgressCertificateView, ProgressCertificateMediator);
-			mapView(CreditsView, CreditsMediator);
+			mapView(EndingView, EndingMediator);
 			
 			registerCommand(BBNotifications.STARTUP, ActiveReadingStartupCommand);
 		}

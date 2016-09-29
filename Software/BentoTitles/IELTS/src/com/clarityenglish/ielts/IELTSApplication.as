@@ -13,7 +13,7 @@ package com.clarityenglish.ielts {
 	[SkinState("nonetwork")]
 	[SkinState("login")]
 	[SkinState("title")]
-	[SkinState("credits")]
+	[SkinState("ending")]
 	public class IELTSApplication extends BentoApplication implements IBentoApplication {
 		
 		public var browserManager:IBrowserManager;
@@ -30,7 +30,7 @@ package com.clarityenglish.ielts {
 		public function IELTSApplication() {
 			super();
 			
-			StateUtil.addStates(this, [ "loading", "login", "title", "credits", "nonetwork" ], true);
+			StateUtil.addStates(this, [ "loading", "login", "title", "ending", "nonetwork" ], true);
 			
 			addEventListener(FlexEvent.CREATION_COMPLETE, creationComplete);
 		}

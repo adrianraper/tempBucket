@@ -13,7 +13,7 @@ import org.davekeen.util.StateUtil;
     [SkinState("nonetwork")]
     [SkinState("login")]
     [SkinState("title")]
-    [SkinState("closing")]
+    [SkinState("ending")]
     public class PracticalWritingApplication extends BentoApplication implements IBentoApplication {
 
         public var browserManager:IBrowserManager;
@@ -21,7 +21,7 @@ import org.davekeen.util.StateUtil;
         public function PracticalWritingApplication() {
             super();
 
-            StateUtil.addStates(this, [ "loading", "login", "title", "closing", "nonetwork" ], true);
+            StateUtil.addStates(this, [ "loading", "login", "title", "ending", "nonetwork" ], true);
 
             addEventListener(FlexEvent.CREATION_COMPLETE, creationComplete);
         }

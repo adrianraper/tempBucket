@@ -1,7 +1,6 @@
 ﻿package com.clarityenglish.ielts {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
-import com.clarityenglish.bento.view.credits.CreditsView;
 import com.clarityenglish.bento.view.exercise.ExerciseMediator;
 	import com.clarityenglish.bento.view.exercise.ExerciseView;
 import com.clarityenglish.common.view.login.LoginMediator;
@@ -12,6 +11,7 @@ import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.ielts.view.candidates.CandidatesMediator;
 	import com.clarityenglish.ielts.view.candidates.CandidatesView;
 import com.clarityenglish.ielts.view.credits.CreditsMediator;
+import com.clarityenglish.ielts.view.credits.CreditsView;
 import com.clarityenglish.ielts.view.help.HelpMediator;
 import com.clarityenglish.ielts.view.help.HelpView;
 import com.clarityenglish.ielts.view.home.HomeMediator;
@@ -61,7 +61,7 @@ import com.clarityenglish.ielts.view.zone.speakingtest.SpeakingTestView;
 			mapView(AccountView, AccountMediator);
 			mapView(SupportView, SupportMediator);
 			mapView(HelpView, HelpMediator);
-			mapView(com.clarityenglish.ielts.view.credits.CreditsView, CreditsMediator);
+			mapView(CreditsView, CreditsMediator);
 			mapView(ExerciseView, ExerciseMediator);
 			mapView(CandidatesView, CandidatesMediator);
 			mapView(ProgressView, ProgressMediator);

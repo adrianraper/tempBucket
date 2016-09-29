@@ -41,11 +41,11 @@ public class RotterdamStartupStateMachineCommand extends SimpleCommand {
 
                     <state name={BBStates.STATE_TITLE}>
                         <transition action={CommonNotifications.LOGGED_OUT} target={BBStates.STATE_LOAD_ACCOUNT}/>
-                        <transition action={CommonNotifications.EXITED} target={BBStates.STATE_CREDITS}/>
+                        <transition action={CommonNotifications.EXITED} target={BBStates.STATE_ENDING}/>
                         <transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK}/>
                     </state>
 
-                    <state name={BBStates.STATE_CREDITS}>
+                    <state name={BBStates.STATE_ENDING}>
                         <transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK}/>
                     </state>
                 </fsm>;
@@ -57,18 +57,18 @@ public class RotterdamStartupStateMachineCommand extends SimpleCommand {
         // #336 Does SCORM have any impact here, or can it be subsumed into directLogin?
         /*if (configProxy.getDirectLogin()) {
          var loginXML:XML = (fsm..state.(@name == BBStates.STATE_LOGIN))[0];
-         loginXML.appendChild(<transition action={CommonNotifications.INVALID_LOGIN} target={BBStates.STATE_CREDITS} />);
-         loginXML.appendChild(<transition action={CommonNotifications.INVALID_DATA} target={BBStates.STATE_CREDITS} />);
+         loginXML.appendChild(<transition action={CommonNotifications.INVALID_LOGIN} target={BBStates.STATE_ENDING} />);
+         loginXML.appendChild(<transition action={CommonNotifications.INVALID_DATA} target={BBStates.STATE_ENDING} />);
          }*/
         // #322
         /*if (configProxy.getConfig().anyError()) {
          loginXML = (fsm..state.(@name == BBStates.STATE_LOGIN))[0];
-         loginXML.appendChild(<transition action={CommonNotifications.CONFIG_ERROR} target={BBStates.STATE_CREDITS} />);
+         loginXML.appendChild(<transition action={CommonNotifications.CONFIG_ERROR} target={BBStates.STATE_ENDING} />);
          }*/
 
         // #377 - when disableAutoTimeout is on we want to go back to the login screen instead of the credits screen
         if (configProxy.getConfig().disableAutoTimeout) {
-            for each (var creditTransition:XML in fsm..transition.(@target == BBStates.STATE_CREDITS)) {
+            for each (var creditTransition:XML in fsm..transition.(@target == BBStates.STATE_ENDING)) {
                 creditTransition.@target = BBStates.STATE_LOGIN;
             }
         }

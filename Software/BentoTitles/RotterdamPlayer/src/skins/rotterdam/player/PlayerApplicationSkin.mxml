@@ -5,7 +5,7 @@
 		xmlns:login="com.clarityenglish.bento.view.login.*"
 		xmlns:title="com.clarityenglish.rotterdam.view.title.*"
 		xmlns:loginassets="skins.rotterdam.player.assets.login.*" 
-		xmlns:credits="com.clarityenglish.bento.view.credits.*">
+		xmlns:ending="com.clarityenglish.bento.view.ending.*">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.player.PlayerApplication")]
@@ -18,7 +18,7 @@
         <s:State name="loading" />
         <s:State name="login" />
         <s:State name="title" />
-		<s:State name="credits" />
+		<s:State name="ending" />
     </s:states>
 	
 	<!-- Body -->
@@ -26,7 +26,7 @@
 		<s:BusyIndicator includeIn="loading" verticalCenter="0" horizontalCenter="0" /> <!-- TODO: just used the mobile one for speediness for the moment -->
 		<login:LoginView id="loginView" width="100%" height="100%" includeIn="login" />
 		<title:TitleView id="titleView" width="100%" height="100%" includeIn="title" />
-		<credits:CreditsView id="creditsView" width="100%" height="100%" includeIn="credits" />
+		<ending:EndingView id="endingView" width="100%" height="100%" includeIn="ending" />
 		<!--<nonetwork:NoNetworkView id="noNetworkView" verticalCenter="0" horizontalCenter="0" includeIn="nonetwork" />-->
 	</s:Group>
 	

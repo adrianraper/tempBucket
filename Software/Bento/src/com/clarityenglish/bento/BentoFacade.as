@@ -4,8 +4,8 @@
 	import com.clarityenglish.bento.controller.recorder.CompareToCommand;
 	import com.clarityenglish.bento.controller.recorder.CutWaveformCommand;
 	import com.clarityenglish.bento.view.*;
-	import com.clarityenglish.bento.view.credits.CreditsMediator;
-	import com.clarityenglish.bento.view.credits.CreditsView;
+	import com.clarityenglish.bento.view.ending.EndingMediator;
+	import com.clarityenglish.bento.view.ending.EndingView;
 	import com.clarityenglish.bento.view.login.LoginView;
 	import com.clarityenglish.bento.view.marking.MarkingMediator;
 	import com.clarityenglish.bento.view.marking.MarkingView;
@@ -80,7 +80,7 @@
 			mapView(MarkingView, MarkingMediator);
 			mapView(WarningView, WarningMediator);
 			mapView(ErrorView, ErrorMediator);
-			mapView(CreditsView, CreditsMediator);
+			mapView(EndingView, EndingMediator);
 			mapView(NoNetworkView, NoNetworkMediator);
 			
 			// gh#1090

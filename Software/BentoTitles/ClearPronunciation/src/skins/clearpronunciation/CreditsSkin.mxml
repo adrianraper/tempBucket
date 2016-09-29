@@ -7,8 +7,8 @@
 		xmlns:credits="skins.clearpronunciation.assets.*" >
 	
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.bento.view.credits.CreditsView")]
-	</fx:Metadata>
+        [HostComponent("com.clarityenglish.bento.view.ending.EndingView")]
+    </fx:Metadata>
 	
     <s:states>
         <s:State name="normal" />

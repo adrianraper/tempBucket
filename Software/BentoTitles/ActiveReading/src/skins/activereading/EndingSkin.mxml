@@ -4,7 +4,7 @@
     	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" height="100%" xmlns:login="skins.activereading.assets.login.*" xmlns:credits="skins.activereading.assets.credits.*" xmlns:title="skins.activereading.assets.title.*">
 	
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.activereading.view.credits.CreditsView")]
+		[HostComponent("com.clarityenglish.activereading.view.ending.EndingView")]
 	</fx:Metadata>
 	
 	<fx:Declarations>

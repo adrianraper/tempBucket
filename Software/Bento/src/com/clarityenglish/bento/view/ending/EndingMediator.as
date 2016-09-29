@@ -1,4 +1,4 @@
-﻿package com.clarityenglish.bento.view.credits {
+﻿package com.clarityenglish.bento.view.ending {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	
@@ -8,14 +8,14 @@
 	/**
 	 * A Mediator
 	 */
-	public class CreditsMediator extends BentoMediator implements IMediator {
+	public class EndingMediator extends BentoMediator implements IMediator {
 		
-		public function CreditsMediator(mediatorName:String, viewComponent:BentoView) {
+		public function EndingMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
 		
-		private function get view():CreditsView {
-			return viewComponent as CreditsView;
+		private function get view():EndingView {
+			return viewComponent as EndingView;
 		}
 		
 		override public function onRegister():void {

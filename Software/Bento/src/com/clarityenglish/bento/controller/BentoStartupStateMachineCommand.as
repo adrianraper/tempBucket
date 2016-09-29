@@ -38,12 +38,12 @@ package com.clarityenglish.bento.controller {
 						<transition action={CommonNotifications.ACCOUNT_RELOAD} target={BBStates.STATE_RELOAD_ACCOUNT} />
 						<transition action={CommonNotifications.LOGGED_IN} target={BBStates.STATE_LOAD_MENU} />
 						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
-                        <transition action={CommonNotifications.EXITED} target={BBStates.STATE_CREDITS} />
+                        <transition action={CommonNotifications.EXITED} target={BBStates.STATE_ENDING} />
 					</state>
 
 					<state name={BBStates.STATE_LOAD_MENU} entering={BBNotifications.MENU_XHTML_LOAD}>
 						<transition action={BBNotifications.MENU_XHTML_LOADED} target={BBStates.STATE_START_SESSION} />
-						<transition action={BBNotifications.MENU_XHTML_NOT_LOADED} target={BBStates.STATE_CREDITS} />
+						<transition action={BBNotifications.MENU_XHTML_NOT_LOADED} target={BBStates.STATE_ENDING} />
 						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>
 				
@@ -54,11 +54,11 @@ package com.clarityenglish.bento.controller {
 			
 					<state name={BBStates.STATE_TITLE}>
 						<transition action={CommonNotifications.LOGGED_OUT} target={BBStates.STATE_LOAD_ACCOUNT} />
-						<transition action={CommonNotifications.EXITED} target={BBStates.STATE_CREDITS} />
+						<transition action={CommonNotifications.EXITED} target={BBStates.STATE_ENDING} />
 						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>
 					
-					<state name={BBStates.STATE_CREDITS}>
+					<state name={BBStates.STATE_ENDING}>
 						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>
 			
@@ -71,8 +71,8 @@ package com.clarityenglish.bento.controller {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			if (configProxy.getDirectLogin()) {
 				var loginXML:XML = (fsm..state.(@name == BBStates.STATE_LOGIN))[0];
-				loginXML.appendChild(<transition action={CommonNotifications.INVALID_LOGIN} target={BBStates.STATE_CREDITS} />);
-				loginXML.appendChild(<transition action={CommonNotifications.INVALID_DATA} target={BBStates.STATE_CREDITS} />);
+				loginXML.appendChild(<transition action={CommonNotifications.INVALID_LOGIN} target={BBStates.STATE_ENDING} />);
+				loginXML.appendChild(<transition action={CommonNotifications.INVALID_DATA} target={BBStates.STATE_ENDING} />);
 			}
 
 			// #322
@@ -81,16 +81,16 @@ package com.clarityenglish.bento.controller {
 			// or can they be during login too?
 			//if (configProxy.getConfig().anyError()) {
 				loginXML = (fsm..state.(@name == BBStates.STATE_LOGIN))[0];
-				loginXML.appendChild(<transition action={CommonNotifications.CONFIG_ERROR} target={BBStates.STATE_CREDITS} />);
+				loginXML.appendChild(<transition action={CommonNotifications.CONFIG_ERROR} target={BBStates.STATE_ENDING} />);
 				loginXML = (fsm..state.(@name == BBStates.STATE_LOAD_ACCOUNT))[0];
-				loginXML.appendChild(<transition action={CommonNotifications.CONFIG_ERROR} target={BBStates.STATE_CREDITS} />);
+				loginXML.appendChild(<transition action={CommonNotifications.CONFIG_ERROR} target={BBStates.STATE_ENDING} />);
 			//}
 			
 			// #377 - when disableAutoTimeout is on we want to go back to the login screen instead of the credits screen
 			// #790 In fact we will do this in browser as well as tablet now. But errors (like config error) should go to an error screen
 			/*
 			if (configProxy.getConfig().disableAutoTimeout) {
-				for each (var creditTransition:XML in fsm..transition.(@target == BBStates.STATE_CREDITS)) {
+				for each (var creditTransition:XML in fsm..transition.(@target == BBStates.STATE_ENDING)) {
 					creditTransition.@target = BBStates.STATE_LOAD_ACCOUNT; 
 				}
 			}

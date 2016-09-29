@@ -1,4 +1,4 @@
-package com.clarityenglish.practicalwriting.view.closing {
+package com.clarityenglish.practicalwriting.view.ending {
 import com.clarityenglish.bento.BentoApplication;
 import com.clarityenglish.bento.view.base.BentoView;
 
@@ -12,7 +12,7 @@ import mx.core.FlexGlobals;
 
 import spark.components.Label;
 
-public class ClosingView extends BentoView {
+public class EndingView extends BentoView {
 
         [SkinPart]
         public var closingCaptionLabel:Label;

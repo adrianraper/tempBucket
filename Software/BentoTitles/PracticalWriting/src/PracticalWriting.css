@@ -11,7 +11,7 @@
 @namespace title "com.clarityenglish.practicalwriting.view.title.*";
 @namespace progress "com.clarityenglish.practicalwriting.view.progress.*";
 @namespace settings "com.clarityenglish.practicalwriting.view.settings.*";
-@namespace closing "com.clarityenglish.practicalwriting.view.closing.*";
+@namespace ending "com.clarityenglish.practicalwriting.view.ending.*";
 @namespace timer "com.clarityenglish.bento.view.timer.*";
 @namespace vo "com.clarityenglish.practicalwriting.view.vo.*";
 @namespace video "com.clarityenglish.controls.video.*";
@@ -291,8 +291,8 @@ settings|SettingsView video|VideoSelector {
     skinClass: ClassReference("skins.practicalwriting.controls.video.SettingsVideoSelectorSkin");
 }
 
-closing|ClosingView {
-    skinClass: ClassReference("skins.practicalwriting.ClosingSkin");
+ending|EndingView {
+    skinClass: ClassReference("skins.practicalwriting.EndingSkin");
 }
 
 video|VideoSelector {

@@ -2,7 +2,7 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace login "com.clarityenglish.bento.view.login.*";
-/*@namespace credits "com.clarityenglish.bento.view.credits.*";*/
+@namespace ending "com.clarityenglish.bento.view.ending.*";
 @namespace creditsr2i "com.clarityenglish.ielts.view.credits.*";
 @namespace title "com.clarityenglish.ielts.view.title.*";
 @namespace zone "com.clarityenglish.ielts.view.zone.*";
@@ -465,14 +465,14 @@ creditsr2i|CreditsView s|VScrollBar {
 	skinClass: ClassReference("skins.ielts.ui.VScrollBarSkin");
 }
 
-/* Credit view styles */
-/*credits|CreditsView {
-	skinClass: ClassReference("skins.ielts.CreditsSkin");
+/* Ending view styles */
+ending|EndingView {
+	skinClass: ClassReference("skins.ielts.EndingSkin");
 }
 
-credits|CreditsView s|Button#moreButton {
-	skinClass: ClassReference("skins.ielts.credits.CreditsButtonSkin");
-}*/
+ending|EndingView s|Button#moreButton {
+	skinClass: ClassReference("skins.ielts.ending.MoreButtonSkin");
+}
 
 /* Marking view styles (this overwrites the default skin) */
 marking|MarkingView {

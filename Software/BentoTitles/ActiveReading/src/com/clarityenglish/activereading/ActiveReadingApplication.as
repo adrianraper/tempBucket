@@ -13,7 +13,7 @@ package com.clarityenglish.activereading {
 	[SkinState("nonetwork")]
 	[SkinState("login")]
 	[SkinState("title")]
-	[SkinState("credits")]
+	[SkinState("ending")]
 	public class ActiveReadingApplication extends BentoApplication implements IBentoApplication {
 		
 		public var browserManager:IBrowserManager;
@@ -21,7 +21,7 @@ package com.clarityenglish.activereading {
 		public function ActiveReadingApplication(){
 			super();
 			
-			StateUtil.addStates(this, [ "loading", "login", "title", "credits", "nonetwork" ], true);
+			StateUtil.addStates(this, [ "loading", "login", "title", "ending", "nonetwork" ], true);
 			
 			addEventListener(FlexEvent.CREATION_COMPLETE, creationComplete);
 		}

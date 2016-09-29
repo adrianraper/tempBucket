@@ -1,11 +1,11 @@
-package com.clarityenglish.activereading.view.credits {
+package com.clarityenglish.activereading.view.ending {
 	import com.clarityenglish.bento.view.base.BentoView;
 	
 	import mx.core.FlexGlobals;
 	
 	import spark.components.Label;
 	
-	public class CreditsView extends BentoView {
+	public class EndingView extends BentoView {
 		
 		[SkinPart]
 		public var versionLabel:Label;

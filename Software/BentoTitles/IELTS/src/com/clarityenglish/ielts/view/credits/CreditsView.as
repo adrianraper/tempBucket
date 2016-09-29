@@ -1,11 +1,15 @@
 package com.clarityenglish.ielts.view.credits {
 import com.clarityenglish.bento.view.base.BentoView;
 
+import flashx.textLayout.elements.TextFlow;
+
 import mx.collections.XMLListCollection;
 
 import spark.components.Label;
 
 import spark.components.List;
+import spark.components.RichText;
+import spark.utils.TextFlowUtil;
 
 public class CreditsView extends BentoView {
 
@@ -21,9 +25,9 @@ public class CreditsView extends BentoView {
     [SkinPart]
     public var creditsDeclarationLabel:Label;
 
-    public function CreditsView() {
-        trace("the credits view is added");
-    }
+    //For tablet credits
+    [SkinPart]
+    public var creditsRichText:RichText;
 
     protected override function partAdded(partName:String, instance:Object):void {
         super.partAdded(partName, instance);
@@ -41,6 +45,14 @@ public class CreditsView extends BentoView {
             case creditsDeclarationLabel:
                 creditsDeclarationLabel.text = copyProvider.getCopyForId("creditsDeclarationLabel");
                 break;
+            case creditsRichText:
+                var creditsContentString:String = this.copyProvider.getCopyForId("creditsRichText");
+                var creditFlow:TextFlow = TextFlowUtil.importFromString(creditsContentString);
+                creditFlow.color = "#4E4E4E";
+                creditFlow.fontSize = 14;
+                creditFlow.lineHeight = 22;
+                creditFlow.paragraphSpaceAfter = 12;
+                creditsRichText.textFlow = creditFlow;
         }
     }
 }

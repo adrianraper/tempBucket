@@ -15,7 +15,7 @@
 @namespace progresstb "com.clarityenglish.tensebuster.view.progress.*";
 @namespace progressui "com.clarityenglish.bento.view.progress.ui.*";
 @namespace mx "library://ns.adobe.com/flex/mx";
-@namespace credits "com.clarityenglish.bento.view.credits.*";
+@namespace ending "com.clarityenglish.bento.view.ending.*";
 @namespace marking "com.clarityenglish.bento.view.marking.*";
 @namespace recorder "com.clarityenglish.bento.view.recorder.*";
 @namespace view "com.clarityenglish.bento.view.*";
@@ -363,8 +363,8 @@ help|HelpView {
 	skinClass: ClassReference("skins.tensebuster.help.HelpSkin");
 }
 
-credits|CreditsView {
-	skinClass: ClassReference("skins.tensebuster.CreditsSkin");
+ending|EndingView {
+	skinClass: ClassReference("skins.tensebuster.EndingSkin");
 }
 
 s|TitleWindow.RecorderTitleWindow {

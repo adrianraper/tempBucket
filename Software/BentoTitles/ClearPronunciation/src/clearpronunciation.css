@@ -16,7 +16,7 @@ confirm that the rotterdam.clearpronunciation namespaces are NOT used please
 @namespace clearpronunciation1 "com.clarityenglish.clearpronunciation.*";
 @namespace course "com.clarityenglish.clearpronunciation.view.course.*";
 @namespace courseui "com.clarityenglish.clearpronunciation.view.course.ui.*";
-@namespace credits "com.clarityenglish.bento.view.credits.*";
+@namespace ending "com.clarityenglish.bento.view.ending.*";
 @namespace title "com.clarityenglish.clearpronunciation.view.title.*";
 @namespace ui3 "skins.clearpronunciation.progress.ui.*";
 @namespace exercise "com.clarityenglish.clearpronunciation.view.exercise.*";
@@ -376,6 +376,6 @@ settings|SettingsView s|Button#saveCloseButton {
 	skinClass: ClassReference("skins.clearpronunciation.settings.ui.SettingsCloseButtonSkin");
 }
 
-credits|CreditsView {
+ending|EndingView {
 	skinClass: ClassReference("skins.clearpronunciation.CreditsSkin");
 }

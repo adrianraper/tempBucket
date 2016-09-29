@@ -10,7 +10,7 @@
 		public static const STATE_START_SESSION:String = "state_start_session";
 		public static const STATE_NO_NETWORK:String = "state_no_network";
 		public static const STATE_TITLE:String = "state_title";
-		public static const STATE_CREDITS:String = "state_credits";
+		public static const STATE_ENDING:String = "state_ending";
 		
 	}
 	

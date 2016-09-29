@@ -88,8 +88,8 @@ import org.puremvc.as3.utilities.statemachine.StateMachine;
                         dataProxy.clear('openUnit');
                     }
                     break;
-                case BBStates.STATE_CREDITS:
-                    view.currentState = "closing";
+                case BBStates.STATE_ENDING:
+                    view.currentState = "ending";
                     break;
             }
         }

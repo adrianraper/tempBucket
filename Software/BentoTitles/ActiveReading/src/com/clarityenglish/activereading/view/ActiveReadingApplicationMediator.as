@@ -76,8 +76,8 @@ package com.clarityenglish.activereading.view {
 					view.currentState = "title";
 					view.callLater(handleDirectStart); // need to use callLater as otherwise the title state hasn't validated yet
 					break;
-				case BBStates.STATE_CREDITS:
-					view.currentState = "credits";
+				case BBStates.STATE_ENDING:
+					view.currentState = "ending";
 					break;
 			}
 		}

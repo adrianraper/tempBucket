@@ -5,7 +5,7 @@
 
     <!-- host component -->
     <fx:Metadata>
-        [HostComponent("com.clarityenglish.practicalwriting.view.closing.ClosingView")]
+        [HostComponent("com.clarityenglish.practicalwriting.view.ending.EndingView")]
     </fx:Metadata>
 
     <!-- states -->
