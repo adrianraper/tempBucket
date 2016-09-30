@@ -50,14 +50,12 @@ s|List {
 	horizontalScrollPolicy: off;
 }
 
-players|OSMFVideoPlayer {
-	skinClass: ClassReference("skins.clearpronunciationair.controls.video.videoplayer.VideoPlayerSkin");
+video|VideoSelector {
+	skinClass: ClassReference("skins.clearpronunciationair.controls.video.WebViewVideoSelectorSkin");
 }
 
-@media (os-platform: "IOS") {
-	video|VideoSelector {
-		skinClass: ClassReference("skins.clearpronunciationair.controls.video.IOSVideoSelectorSkin");
-	}
+settings|SettingsView video|VideoSelector {
+	skinClass: ClassReference("skins.clearpronunciationair.controls.video.SettingsWebViewVideoSelectorSkin");
 }
 
 login|LoginView s|TextInput {

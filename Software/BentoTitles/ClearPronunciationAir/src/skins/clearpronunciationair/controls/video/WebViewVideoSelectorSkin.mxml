@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:players="com.clarityenglish.controls.video.players.*"
 		xmlns:assets="skins.clearpronunciation.assets.exercise.*"
-		creationComplete="onCreationComplete(event)">
+		creationComplete="onCreationComplete(event)" removedFromStage="onRemovedFromStage(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.controls.video.VideoSelector")]
@@ -28,8 +28,10 @@
 		import com.clarityenglish.bento.view.recorder.WaveformView;
 		import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 		import com.clarityenglish.clearpronunciation.view.exercise.ExerciseView;
+		import com.clarityenglish.clearpronunciation.view.exercise.ExerciseView;
 		import com.clarityenglish.clearpronunciation.view.exercise.YouWillView;
 		import com.clarityenglish.clearpronunciation.view.exercise.ui.WindowShade;
+		import com.clarityenglish.clearpronunciation.view.title.TitleView;
 		import com.clarityenglish.textLayout.components.AudioPlayer;
 		import com.googlecode.bindagetools.Bind;
 
@@ -55,7 +57,6 @@
 
 		private var windowShade:WindowShade;
 		private var titleWindow:TitleWindow;
-		private var exerciseSkin:ExerciseSkin;
 
 		protected function onCreationComplete(event:FlexEvent):void {
 			// TODO Auto-generated method stub
@@ -91,37 +92,49 @@
 
 		protected function onMouseDown(event:Event):void {
 			var downComponent:Object = event.target;
-			if (downComponent is Button) {
-				while (downComponent.parent) {
-					if (downComponent is WindowShade) {
-						windowShade = downComponent as WindowShade;
-						videoPlayer.visible = false;
-						break;
-					} else if (downComponent is ExerciseView) {
-						videoPlayer.visible = false;
-						break;
-					} else if (downComponent is WaveformView) {
-						videoPlayer.visible = false;
+			var downComponentParent:Object = downComponent.parent;
+			var isVideoPlayerHiding:Boolean;
+
+			while (downComponentParent) {
+				if (downComponentParent is TitleView) {
+					var titleView:TitleView = downComponentParent as TitleView;
+					if (downComponent == titleView.settingsButton) {
+						isVideoPlayerHiding = true;
 						break;
 					}
-					downComponent = downComponent.parent;
+				} else if (downComponentParent is ExerciseView) {
+					var exerciseView:ExerciseView = downComponentParent as ExerciseView;
+					if (downComponent == exerciseView.windowShade.thumbButton || downComponent == exerciseView.recorderButton ||  downComponent == exerciseView.youWillButton) {
+						if (downComponent == exerciseView.windowShade.thumbButton)
+							windowShade = exerciseView.windowShade;
+						isVideoPlayerHiding = true;
+						break;
+					}
+				} else if (downComponentParent is WaveformView) {
+					isVideoPlayerHiding = true;
+					break;
+				} else if (downComponentParent is TitleWindow) {
+					var titleWindow:TitleWindow = downComponentParent as TitleWindow;
+					if (downComponent == titleWindow.closeButton) {
+						isVideoPlayerHiding = false;
+						break;
+					} else {
+						isVideoPlayerHiding = true;
+					}
 				}
-
-				if (!downComponent.parent) {
-					videoPlayer.visible = true;
-				}
+				downComponentParent = downComponentParent.parent;
 			}
+
+			videoPlayer.visible = !isVideoPlayerHiding;
 		}
 
 		protected function onMouseUp(event:Event):void {
-			if (!(event.target is Button)) {
-				if (windowShade) {
-					if (windowShade.isWindowShadeOpen) {
-						videoPlayer.visible = false;
-					} else {
-						videoPlayer.visible = true;
-						windowShade = null;
-					}
+			if (windowShade) {
+				if (windowShade.isWindowShadeOpen) {
+					videoPlayer.visible = false;
+				} else {
+					videoPlayer.visible = true;
+					windowShade = null;
 				}
 			}
 		}
@@ -133,11 +146,17 @@
 				hostComponent.isScriptOpen = false;
 			}
 		}
+
+		protected function onRemovedFromStage(event:Event):void {
+			trace("on remove from stage");
+			stage.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+			stage.removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
+		}
 		]]>
 	</fx:Script>
 
 	<!-- Animation text-->
-	<s:Group id="scriptGroup" left="0" width="320" filters="{[dropShadowTopFilter]}">
+	<s:Group id="scriptGroup" left="0" width="320" filters="{[dropShadowTopFilter]}" visible="{hostComponent.isVideoListHasScript}">
 		<s:Group width="322" height="215">
 			<s:Rect width="100%" height="100%" bottomRightRadiusX="12" bottomRightRadiusY="12">
 				<s:fill>

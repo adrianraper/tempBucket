@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:players="com.clarityenglish.controls.video.players.*"
+        xmlns:assets="skins.clearpronunciation.assets.exercise.*"
+        creationComplete="onCreationComplete(event)">
+    <!-- host component -->
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.controls.video.VideoSelector")]
+    </fx:Metadata>
+
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" angle="260" distance="1.5" alpha="0.5" blurX="8" blurY="5" />
+        <s:DropShadowFilter id="dropShadowTopFilter" angle="90" distance="1.5" alpha="0.5" blurX="8" blurY="5" />
+    </fx:Declarations>
+
+    <fx:Script>
+		<![CDATA[
+        import com.clarityenglish.bento.view.marking.MarkingView;
+        import com.clarityenglish.bento.view.recorder.WaveformView;
+        import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
+        import com.clarityenglish.clearpronunciation.view.exercise.ExerciseView;
+        import com.clarityenglish.clearpronunciation.view.exercise.YouWillView;
+        import com.clarityenglish.clearpronunciation.view.exercise.ui.WindowShade;
+        import com.clarityenglish.textLayout.components.AudioPlayer;
+        import com.googlecode.bindagetools.Bind;
+
+        import mx.events.CloseEvent;
+
+        import mx.events.FlexEvent;
+        import mx.managers.PopUpManager;
+
+        import skins.clearpronunciation.ExerciseSkin;
+        import skins.clearpronunciation.exercise.marking.MarkingSkin;
+
+        import skins.clearpronunciation.exercise.ui.WindowShadeSkin;
+        import skins.clearpronunciation.recorder.RecorderTitleWindowSkin;
+
+        import spark.components.Button;
+
+        import spark.components.Image;
+        import spark.components.TitleWindow;
+
+        import spark.components.VideoPlayer;
+        import spark.events.IndexChangeEvent;
+        import spark.utils.TextFlowUtil;
+
+        private var windowShade:WindowShade;
+        private var titleWindow:TitleWindow;
+        private var exerciseView:ExerciseView;
+
+        protected function onCreationComplete(event:FlexEvent):void {
+            var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
+            if (settingsSharedObject.data["channelIndex"]) {
+                channelList.selectedIndex = settingsSharedObject.data["channelIndex"];
+            }
+            channelList.visible = false;
+
+            videoList.selectedIndex = 0;
+            videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+            videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
+
+            videoPlayerBackRect.width = hostComponent.width + 5;
+            videoPlayerBackRect.height = hostComponent.height + 5;
+            videoPlayer.width = hostComponent.width;
+            videoPlayer.height = hostComponent.height;
+        }
+
+        protected function onVideoListIndexChange(event:Event):void {
+            videoPlayer.visible = true;
+        }
+        ]]>
+	</fx:Script>
+
+
+    <!--video player black background-->
+    <s:Rect id="videoPlayerBackRect" left="0" top="0" filters="{[dropShadowFilter]}">
+        <s:fill>
+            <s:SolidColor color="0x273A45" />
+        </s:fill>
+    </s:Rect>
+
+    <!-- The video players -->
+    <players:WebViewVideoPlayer id="videoPlayer" left="0"  placeholderSource="{hostComponent.placeholderSource}" />
+    <!--players:OSMFVideoPlayer id="videoPlayer" width="411" height="231" /-->
+
+    <!-- Placeholder image -->
+    <s:Image id="placeholderImage" left="0" source="{hostComponent.placeholderSource}" visible="{!videoPlayer.visible}" buttonMode="true" useHandCursor="true" />
+
+    <!-- Channel list -->
+    <s:List id="channelList" top="310" left="30" horizontalCenter="0" horizontalScrollPolicy="off" borderVisible="false" contentBackgroundAlpha="0">
+        <s:layout>
+            <s:HorizontalLayout columnWidth="176" gap="10"/>
+        </s:layout>
+        <s:itemRenderer>
+            <fx:Component>
+                <s:ItemRenderer autoDrawBackground="false">
+                    <fx:Script>
+						<![CDATA[
+                        override public function set data(value:Object):void {
+                            super.data = value;
+
+                            if (data) {
+                                channelLabel.text = data.caption;
+                            }
+                        }
+                        ]]>
+					</fx:Script>
+
+                    <s:states>
+                        <s:State name="normal" />
+                        <s:State name="hovered" />
+                        <s:State name="selected" />
+                    </s:states>
+                    <s:Group width="176" height="31" useHandCursor="true" buttonMode="true">
+                        <s:Rect left="0" width="100%" height="100%" radiusX="5" radiusY="5">
+                            <s:fill>
+                                <s:SolidColor color="#FFEFD2" />
+                            </s:fill>
+                            <s:stroke>
+                                <s:SolidColorStroke color="#9E9E9E" weight="1" />
+                            </s:stroke>
+                        </s:Rect>
+                        <s:Ellipse x="18" y="9" width="14" height="14">
+                            <s:fill>
+                                <s:SolidColor color="#FFFFFF" />
+                            </s:fill>
+                            <s:stroke>
+                                <s:SolidColorStroke color="#9E9E9E" />
+                            </s:stroke>
+                        </s:Ellipse>
+                        <s:Ellipse x="22" y="13" width="6" height="6" includeIn="hovered, selected">
+                            <s:fill>
+                                <s:SolidColor color="#000000" />
+                            </s:fill>
+                        </s:Ellipse>
+                        <s:Label id="channelLabel" left="50" verticalCenter="0" fontSize="16" fontWeight="bold" fontFamily="Mgbold" color="#333333" />
+                    </s:Group>
+                </s:ItemRenderer>
+            </fx:Component>
+        </s:itemRenderer>
+    </s:List>
+
+    <!-- Video list -->
+    <s:Rect top="2" right="40" width="71" height="236" topRightRadiusX="18" topRightRadiusY="18" bottomRightRadiusX="18" bottomRightRadiusY="18" visible="{hostComponent.videoCollection.length > 1}">
+        <s:fill>
+            <s:SolidColor color="0x273A45" />
+        </s:fill>
+    </s:Rect>
+    <s:List id="videoList" top="4" right="44" width="64" height="100%" horizontalScrollPolicy="off" minHeight="0" minWidth="0" borderVisible="false" visible="{hostComponent.videoCollection.length > 1}" contentBackgroundAlpha="0" requireSelection="true">
+        <s:itemRenderer>
+            <fx:Component>
+                <s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true">
+                    <fx:Script>
+						<![CDATA[
+                        [Bindable]
+                        private var iconPath:String;
+
+                        [Bindable]
+                        private var selectedIconPath:String;
+
+                        override public function set data(value:Object):void {
+                            super.data = value;
+
+                            if (data) {
+                                iconPath = outerDocument.hostComponent.href.rootPath + "/media/video/SoundVideoOff" + (itemIndex + 1) + ".png";
+                                selectedIconPath = outerDocument.hostComponent.href.rootPath + "/media/video/SoundVideoOn" + (itemIndex + 1) + ".png";
+                            }
+
+                            // #213
+                            enabled = !(data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8));
+                        }
+                        ]]>
+					</fx:Script>
+
+                    <s:states>
+                        <s:State name="normal" />
+                        <s:State name="hovered" />
+                        <s:State name="selected" />
+                    </s:states>
+
+                    <s:Group top="3">
+                        <s:BitmapImage source="{iconPath}" visible="{currentState == 'normal' || currentState == 'hovered'}" />
+                        <s:BitmapImage source="{selectedIconPath}" visible="{currentState == 'selected'}" />
+                    </s:Group>
+
+                </s:ItemRenderer>
+            </fx:Component>
+        </s:itemRenderer>
+    </s:List>
+</s:Skin>
