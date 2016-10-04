@@ -107,6 +107,11 @@ ielts|IELTSApplication {
 	skinClass: ClassReference("skins.ielts.IELTSApplicationSkin");
 }
 
+s|VScrollBar {
+	skinClass: ClassReference("skins.ielts.ui.VScrollBarSkin");
+}
+
+
 /* Login view styles */
 login|LoginView {
 	skinClass: ClassReference("skins.ielts.LoginSkin");
@@ -281,16 +286,8 @@ zone|PracticeZoneSectionView {
 	skinClass: ClassReference("skins.ielts.zone.PracticeZoneSectionSkin");
 }
 
-zone|PracticeZoneSectionView s|VScrollBar {
-	skinClass: ClassReference("skins.ielts.ui.VScrollBarSkin");
-}
-
 zone|PracticeZonePopoutView {
 	skinClass: ClassReference("skins.ielts.zone.PracticeZonePopoutSkin");
-}
-
-zone|PracticeZonePopoutView s|VScrollBar {
-	skinClass: ClassReference("skins.ielts.ui.VScrollBarSkin");
 }
 
 zoneui|DifficultyRenderer {
@@ -335,10 +332,6 @@ zone|ExamPracticeZoneSectionView zoneui|ExamPracticeButton {
 /* Exercise view styles */
 exercise|ExerciseView {
 	skinClass: ClassReference("skins.ielts.ExerciseSkin");
-}
-
-exercise|ExerciseView s|VScrollBar {
-	skinClass: ClassReference("skins.ielts.ui.VScrollBarSkin");
 }
 
 components|AudioPlayer {
@@ -445,10 +438,6 @@ help|HelpView {
 	skinClass: ClassReference("skins.ielts.HelpSkin");
 }
 
-help|HelpView s|VScrollBar {
-	skinClass: ClassReference("skins.ielts.ui.VScrollBarSkin");
-}
-
 help|HelpView #registerInfoButton {
 	skinClass: ClassReference("skins.ielts.title.RegisterMediumButton");
 }
@@ -459,10 +448,6 @@ help|HelpView  #buyInfoButton {
 
 creditsr2i|CreditsView {
 	skinClass: ClassReference("skins.ielts.CreditsSkin");
-}
-
-creditsr2i|CreditsView s|VScrollBar {
-	skinClass: ClassReference("skins.ielts.ui.VScrollBarSkin");
 }
 
 /* Ending view styles */
