@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 	// Initialisation
 	require_once '../startInit.php';
 	
@@ -10,6 +11,15 @@
 		header("location: /error/noPrefix.htm");
 		exit;
 	}
+=======
+	if (isset($_GET['session']))
+		session_id($_GET['session']);
+		
+	session_start();
+	$currentSessionID = session_id();
+
+	unset($_SESSION['dbHost']);
+>>>>>>> 0208921... fixed #389
 	
 	// For this product
 	$productCode = 54; // Rotterdam

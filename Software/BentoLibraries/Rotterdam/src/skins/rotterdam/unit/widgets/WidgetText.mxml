@@ -209,7 +209,10 @@
 	</s:Rect>
 	
 	<!-- gh#389 selectable is always true -->
+<<<<<<< HEAD
 	<!-- gh#1061 -->
+=======
+>>>>>>> 0208921... fixed #389
 	<components:PromptingRichEditableText id="richEditableText"
 										  placeholder="{widget.placeholder}"
 										  left="8" right="8" top="8" minHeight="{minHeight}"
