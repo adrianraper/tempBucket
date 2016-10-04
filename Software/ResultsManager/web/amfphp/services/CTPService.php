@@ -149,7 +149,7 @@ class CTPService extends BentoService {
 
         $score->sessionID = $session->sessionId;
         $score->userID = $user->userID;
-        $score->setUID($score->uid);
+        $score->setUID($scoreObj->uid);
         $score->dateStamp = $this->timestampToAnsiString($localTimestamp);
 
         // Write the summary score record

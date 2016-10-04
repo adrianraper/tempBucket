@@ -220,6 +220,8 @@ SQL;
                     $scoreDetails[] = $scoreDetail;
                 }
         }
+        $A1count = $this->countTags('/A1/i', $scoreDetails);
+        $Bcount = $this->countTags('/B[12]/i', $scoreDetails);
 
         // 3. Build the CEF, the numeric score
 
@@ -250,7 +252,19 @@ SQL;
         // {"result":"A2"}
         return ["result" => $result];
     }
-	
+
+    /**
+     * This method is most likely to be tidied and moved.
+     * It counts how many correctly answered questions had a particular tag
+     */
+    function countTags($pattern, $scoreDetails) {
+        $count = 0;
+        foreach ($scoreDetails as $scoreDetail) {
+            $count += (preg_match($pattern, $scoreDetail->getTags())) ? 1 : 0;
+        }
+        return $count;
+    }
+
 	/**
 	 * This method is called to insert a session record when a user starts a program
 	 * gh#954 If you are given a course id, link that to the session record. 

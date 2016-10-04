@@ -38,7 +38,7 @@ class ScoreDetail {
 
         // Merge other answer attributes into a detail json object
         // "{'type':".$answerObj->type.", 'state':".$answerObj->state.", 'tags:'".$answerObj->tags."}"
-        $detailString['type'] = $answerObj->questionType;
+        $detailString['questionType'] = $answerObj->questionType;
         $detailString['state'] = $answerObj->state;
         $detailString['tags'] = $answerObj->tags;
         $this->detail = json_encode($detailString);
@@ -85,6 +85,23 @@ class ScoreDetail {
 			$build .= '.'.$this->exerciseID;
 		return $build; 
 	}
+
+    /**
+     * Pull out sections of the detail
+     */
+    public function getTags() {
+        $detail = json_decode($this->detail);
+        return $detail->tags;
+    }
+    public function getQuestionType() {
+        $detail = json_decode($this->detail);
+        return $detail->questionType;
+    }
+    public function getState() {
+        $detail = json_decode($this->detail);
+        return $detail->state;
+    }
+
 	/**
 	 * Convert this object to an associative array ready to pass to AutoExecute.
 	 */
