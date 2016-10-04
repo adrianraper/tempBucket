@@ -4,8 +4,11 @@
  * @author Adrian Raper
  * 
  * Class for holding progress information from database and XML
+ * Orchid used this for holding PPT and LELT details and some other special certificate things
+ * Bento has not used this
+ * Couloir will use this for CTP to hold test item answer details.
  */
-class Score {
+class ScoreDetail {
 
 	var $_explicitType = 'com.clarityenglish.bento.vo.progress.ScoreDetail';
 	
@@ -21,21 +24,29 @@ class Score {
 	public $uid;
 
     // gh#1496 Create a standard score from a passed object
-	function ScoreDetail($scoreObj = null, $clientTimezoneOffset = null) {
+	function ScoreDetail($answerObj = null, $score = null, $clientTimezoneOffset = null) {
 	    // Set product, course, unit, exercise from the UID
-        if (isset($scoreObj['UID']))
-            $this->setUID($scoreObj['UID']);
+        if (isset($score->uid))
+            $this->setUID($score->uid);
+        if (isset($score->sessionID))
+            $this->sessionID = $score->sessionID;
 
-        if (isset($scoreObj['itemID']))
-            $this->itemID = $scoreObj['itemID'];
-        if (isset($scoreObj['detail']))
-            $this->detail = $scoreObj['detail'];
-        if (isset($scoreObj['score']))
-            $this->score = $scoreObj['score'];
+        if (isset($answerObj->id))
+            $this->itemID = $answerObj->id;
+        if (isset($answerObj->score))
+            $this->score = $answerObj->score;
+
+        // Merge other answer attributes into a detail json object
+        // "{'type':".$answerObj->type.", 'state':".$answerObj->state.", 'tags:'".$answerObj->tags."}"
+        $detailString['type'] = $answerObj->questionType;
+        $detailString['state'] = $answerObj->state;
+        $detailString['tags'] = $answerObj->tags;
+        $this->detail = json_encode($detailString);
 
         // gh#156 If we know a timezoneOffset, use server time (UTC) + this to get an accurate local time and ignore the sent time
         // php version differences have big impact on -ve passed integer from amfphp, so split into number and sign
         // How about tablets?
+
         $serverDateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
         if ($clientTimezoneOffset !== null && isset($clientTimezoneOffset['minutes'])) {
             $offset = $clientTimezoneOffset['minutes'];
@@ -47,7 +58,7 @@ class Score {
                 $dateNow = $serverDateStampNow->sub($clientDifference)->format('Y-m-d H:i:s');
             }
         } else {
-            $dateNow = (isset($scoreObj['dateStamp'])) ? $scoreObj['dateStamp'] : $serverDateStampNow->format('Y-m-d H:i:s');
+            $dateNow = (isset($answerObj->answerTimestamp)) ? $answerObj->answerTimestamp : $serverDateStampNow->format('Y-m-d H:i:s');
         }
         $this->dateStamp = $dateNow;
     }
@@ -84,7 +95,7 @@ class Score {
 		$array['F_SessionID'] = $this->sessionID;
 		$array['F_DateStamp'] = $this->dateStamp;
 		$array['F_ProductCode'] = $this->productCode;
-		//$array['F_CourseID'] = $this->courseID;
+		$array['F_CourseID'] = $this->courseID;
 		$array['F_UnitID'] = $this->unitID;
 		$array['F_ExerciseID'] = $this->exerciseID;
 		$array['F_Score'] = $this->score;
@@ -107,7 +118,7 @@ class Score {
 		$this->sessionID = $obj->F_SessionID;
 		$this->dateStamp = $obj->F_DateStamp;
 		$this->productCode = $obj->F_ProductCode;
-		//$this->courseID = $obj->F_CourseID;
+		$this->courseID = $obj->F_CourseID;
 		$this->unitID = $obj->F_UnitID;
 		$this->exerciseID = $obj->F_ExerciseID;
 		$this->score = $obj->F_Score;

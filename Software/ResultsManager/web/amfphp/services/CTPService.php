@@ -122,6 +122,7 @@ class CTPService extends BentoService {
         return $this->progressOps->startTestSession($user, $rootId, $productCode, $testId);
     }
 
+    // Write the score from an exercise. This includes full details of each answer and anomalies
     public function scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffset) {
         $session = $this->testOps->getTestSession($sessionId);
         if (!$session)
@@ -148,21 +149,20 @@ class CTPService extends BentoService {
 
         $score->sessionID = $session->sessionId;
         $score->userID = $user->userID;
-        $score->setUID($scoreObj->uid);
+        $score->setUID($score->uid);
         $score->dateStamp = $this->timestampToAnsiString($localTimestamp);
 
         // Write the summary score record
         $this->progressOps->insertScore($score, $user);
 
         // Write each score detail
-        /*
         $scoreDetails = array();
 
         foreach ($scoreObj->exerciseScore->questionScores as $answer) {
-            $scoreDetails[] = new ScoreDetail($answer, $clientTimezoneOffset);
+            $answer->answerTimestamp = (isset($answer->answerTimestamp)) ? $this->timestampToAnsiString($answer->answerTimestamp) : null;
+            $scoreDetails[] = new ScoreDetail($answer, $score, $clientTimezoneOffset);
         }
         $this->progressOps->insertScoreDetails($scoreDetails, $user);
-        */
 
         // If this is the first score, make sure the session includes the testId
         if (!$session->testId) {

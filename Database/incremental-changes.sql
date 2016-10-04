@@ -1479,3 +1479,24 @@ update T_ScheduledTests set F_MenuFilename='menu-gauge.json' where F_TestID=2;
 INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (2496, '2016-09-08 00:00:00', 'Clarity Test Platform tables');
+
+CREATE TABLE `T_ScoreDetail_Expiry` (
+  `F_UserID` int(10) NOT NULL,
+  `F_ExerciseID` bigint(19) NOT NULL,
+  `F_ItemID` varchar(64) NOT NULL,
+  `F_Score` int(10) DEFAULT NULL,
+  `F_SessionID` bigint(19) DEFAULT NULL,
+  `F_Detail` varchar(8192) DEFAULT NULL,
+  `F_DateStamp` datetime DEFAULT NULL,
+  `F_RootID` int(10) DEFAULT NULL,
+  `F_UnitID` bigint(19) DEFAULT NULL,
+  `F_CourseID` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- The following just to move old records from T_ScoreDetail
+-- select count(*) from `T_ScoreDetail` where F_DateStamp < '2015-01-01';
+-- INSERT INTO `T_ScoreDetail_Expiry` select * from `T_ScoreDetail` where F_DateStamp < '2015-01-01';
+-- DELETE FROM `T_ScoreDetail` where F_DateStamp < '2015-01-01';
+
+ALTER TABLE `T_ScoreDetail` ADD COLUMN `F_CourseID` bigint(20) NULL DEFAULT NULL AFTER `F_UnitID`;
+ALTER TABLE `T_ScoreDetail` MODIFY COLUMN `F_ItemID` varchar(64);
+ALTER TABLE `T_ScoreDetail` ADD INDEX `Index_01` (`F_SessionID`);

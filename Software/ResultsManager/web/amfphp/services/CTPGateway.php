@@ -20,7 +20,7 @@ try {
     */
     /*
     $json = json_decode('{"command":"scoreWrite",
-            "sessionID": "47",
+            "sessionID": "6",
             "score": {
                 "uid": "63.20160630.201606301.20160630001",
                 "testID": "2",
@@ -76,10 +76,11 @@ try {
                     "submitTimestamp": 1474277235232
                 }
             },
-            "localTimestamp": ' . time()*1000 . ',
+            "localTimestamp": ' . time()*1000 . ', 
             "timezoneOffset": -480
         }');
     */
+    //1475543370002 - timestamp for 4th Oct about 9:04am
     if (!$json)
         throw new Exception("Empty request");
 
@@ -110,14 +111,21 @@ try {
     echo json_encode(array("error" => $e->getMessage(), "code" => $e->getCode()));
 }
 
-// Router
 function router($json) {
-    // Security
-    if ($json->command !== "login") {
-        $service = new CTPService(); // We need this in order to set the session name!
+// Security not provided by php session anymore
+//    if ($json->command !== "login") {
+//        $service = new CTPService(); // We need this in order to set the session name!
 //        if (!Authenticate::isAuthenticated()) throw new UserAccessException("errorLostAuthentication");
+//    }
+
+    // Conversion between general Couloir data and Bento formats
+    // gh#1231
+    if (isset($json->timezoneOffset)) {
+        // Timezone has format {minutes:xx, negative:boolean} in Bento, but just xx in Couloir
+        if (!isset($json->timezoneOffset->minutes))
+            $json->timezoneOffset = json_decode('[{"minutes":'.abs($json->timezoneOffset).'},{"negative":'.($json->timezoneOffset < 0).'}]');
     }
-    
+
     switch ($json->command) {
         case "login": return login($json->email, $json->password, $json->productCode);
         case "getTestResult": return getResult($json->sessionID);

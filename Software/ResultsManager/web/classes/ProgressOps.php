@@ -185,14 +185,45 @@ SQL;
         // 1. Count all the correct answers in this session
         // sessionId is an index of the table, so a reasonable search
         $sql = <<<SQL
-			SELECT SUM(F_ScoreCorrect) as totalCorrect
+			SELECT SUM(F_ScoreCorrect) as totalCorrect, SUM(F_ScoreWrong) as totalWrong, SUM(F_ScoreMissed) as totalMissed
 			FROM T_Score
 			WHERE F_SessionID=?
 SQL;
         $bindingParams = array($session->sessionId);
         $rs = $this->db->Execute($sql, $bindingParams);
-        if ($rs)
-            $totalCorrect = $rs->FetchNextObj()->totalCorrect;
+        if ($rs) {
+            $record = $rs->FetchNextObj();
+            $totalCorrect = $record->totalCorrect;
+            $totalWrong = $record->totalWrong;
+            $totalMissed = $record->totalMissed;
+        }
+
+        // 2. Get all the detailed answers so we can pattern match against tags
+        $sql = <<<SQL
+			SELECT *
+			FROM T_ScoreDetail
+			WHERE F_SessionID=?
+SQL;
+        $bindingParams = array($session->sessionId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        switch ($rs->RecordCount()) {
+            case 0:
+                // No records have been saved, the app has failed
+                throw new Exception("There are no score records");
+                break;
+            default:
+                // Read from the db
+                $scoreDetails = array();
+                while($dbObj = $rs->FetchNextObj()) {
+                    $scoreDetail = new ScoreDetail();
+                    $scoreDetail->fromDatabaseObj($dbObj);
+                    $scoreDetails[] = $scoreDetail;
+                }
+        }
+
+        // 3. Build the CEF, the numeric score
+
+        // 4. Build a confidence graph for the score
 
         switch (true) {
             case ($totalCorrect > 80):
@@ -455,12 +486,16 @@ EOD;
         if (!$user->userType == 0)
             return;
 
-        $rootID = null; // I don't think this needs to be in T_ScoreDetail does it?
+        $rootID = 'null'; // I don't think this needs to be in T_ScoreDetail does it?
         $sqlData = array();
         foreach($scoreDetails as $scoreDetail) {
-            $sqlData[] = '("'.$user->userID.'", "'.$rootID.'", "'.$scoreDetail->sessionID.
-                '", "'.$scoreDetail->unitID.'", "'.$scoreDetail->exerciseID.
-                '", "'.$scoreDetail->itemID.'", "'.$scoreDetail->detail.'", "'.$scoreDetail->dateStamp.'")';
+            if (!$scoreDetail->unitID) $scoreDetail->unitID = 'null';
+            if (!$scoreDetail->exerciseID) $scoreDetail->exerciseID = 'null';
+            if (!$scoreDetail->courseID) $scoreDetail->courseID = 'null';
+            if (!$scoreDetail->score) $scoreDetail->score = 'null';
+            $sqlData[] = "(".$user->userID.", ".$rootID.", ".$scoreDetail->sessionID.
+                ", ".$scoreDetail->unitID.", ".$scoreDetail->exerciseID.
+                ", '".$scoreDetail->itemID."', ".$scoreDetail->score.", '".$scoreDetail->detail."', '".$scoreDetail->dateStamp."')";
         }
         $sql = <<<EOD
 			INSERT INTO T_ScoreDetail (F_UserID,F_RootID,F_SessionID,F_UnitID,F_ExerciseID,F_ItemID,F_Score,F_Detail,F_DateStamp)

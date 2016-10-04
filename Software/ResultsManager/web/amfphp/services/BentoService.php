@@ -22,6 +22,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Exercis
 
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/progress/Progress.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/progress/Score.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/progress/ScoreDetail.php");
 
 // v3.4 To allow the account root information to be passed back to RM
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Account.php");
