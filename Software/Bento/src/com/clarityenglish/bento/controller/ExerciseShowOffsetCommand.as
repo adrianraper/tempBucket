@@ -40,11 +40,11 @@ package com.clarityenglish.bento.controller {
 				} else {
 					// gh#853
                     // gh#1405 This is too early to logout, you haven't written any scores yet.
-					//if (configProxy.getConfig().scorm) {
-					//	sendNotification(CommonNotifications.LOGOUT);
-					//} else {
+					if (configProxy.getConfig().scorm || configProxy.getDirectStart().unitID) {
+						sendNotification(CommonNotifications.EXITED);
+					} else {
 						sendNotification(BBNotifications.SELECTED_NODE_UP);
-					//}
+					}
 				}
 			}
 		}

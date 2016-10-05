@@ -58,8 +58,8 @@
 		</s:fill>
 	</s:Rect>
 	
-    <course:menuOff includeIn="up" />
-	<course:menuOn includeIn="down, over" />
+    <course:menuOff includeIn="up, disabled" />
+	<course:menuOn includeIn="down, over, disabled"  />
 	
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->

@@ -104,10 +104,11 @@ import com.clarityenglish.common.model.ConfigProxy;
                         return true;
                     }
                 } else {
-                    // gh#1328
+                    // For CP, unit direct start will open the first exercise.
                     if (directStart.unitID) {
                         unit = bentoProxy.menuXHTML.getElementById(directStart.unitID);
-                        sendNotification(BBNotifications.SELECTED_NODE_CHANGE, unit);
+						var exercise:XML = unit.exercise[0];
+                        sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
                     } else if (directStart.courseID) {
                         var course:XML = bentoProxy.menuXHTML.getElementById(directStart.courseID);
                         sendNotification(BBNotifications.SELECTED_NODE_CHANGE, course);
