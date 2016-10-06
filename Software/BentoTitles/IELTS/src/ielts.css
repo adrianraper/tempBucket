@@ -274,12 +274,8 @@ zone|QuestionZoneSectionView {
 	showOpenEbookButton: true; /* GH #52 */
 }
 
-zone|QuestionZoneSectionView #downloadButton {
-	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
-}
-
-zone|QuestionZoneSectionView #videoButton {
-	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="WatchIcon");
+zone|QuestionZoneSectionView zoneui|ExamPracticeButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.QuestionZoneButtonSkin");
 }
 
 zone|PracticeZoneSectionView {

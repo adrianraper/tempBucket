@@ -1,37 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		xmlns:zone="skins.ielts.assets.zone.*"
-		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
-		creationComplete="colourizeButtons(event)">
+		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.QuestionZoneSectionView")]
 	</fx:Metadata>
-	<fx:Script>
-		<![CDATA[
-			import com.clarityenglish.ielts.IELTSApplication;
-			import com.clarityenglish.ielts.view.zone.DisabledPopupWatcher;
-			
-			import mx.events.FlexEvent;
-			
-			protected function colourizeButtons(event:FlexEvent = null):void {
-				if (readButton) readButton.setStyle('chromeColor', getStyle(hostComponent.courseClass + 'Color'));
-				if (downloadButton) downloadButton.setStyle('chromeColor', getStyle(hostComponent.courseClass + 'Color'));
-				if (videoButton) videoButton.setStyle('chromeColor', getStyle(hostComponent.courseClass + 'Color'));
-			}
-		]]>
-	</fx:Script>
 	
 	<!-- states -->
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
-		
-		<s:State name="reading" enterState="colourizeButtons(event)" />
-		<s:State name="writing" enterState="colourizeButtons(event)" />
-		<s:State name="listening" enterState="colourizeButtons(event)" />
-		<s:State name="speaking" enterState="colourizeButtons(event)" />
+
+		<s:State name="reading" />
+		<s:State name="writing" />
+		<s:State name="listening" />
+		<s:State name="speaking" />
 	</s:states>
 	
 	<!-- SkinParts
@@ -50,14 +34,13 @@
 				 source.speaking="@Embed(source='/skins/ielts/assets/zone/questionzone_speaking.png')" />
 	
 	<s:HGroup top="330" horizontalCenter="0" gap="15">
-		<s:Button id="readButton" color="#FFFFFF" width="150" visible="{getStyle('showOpenEbookButton')}" includeInLayout="{getStyle('showOpenEbookButton')}" buttonMode="true" useHandCursor="true" />
-		<s:Button id="downloadButton" color="#FFFFFF" width="150" buttonMode="true" useHandCursor="true" />
-		<s:Button id="videoButton" color="#FFFFFF" width="150" buttonMode="true" useHandCursor="true" />
+		<ui:ExamPracticeButton id="readExamButton" color="#FFFFFF" textBackgroundColor="{hostComponent.courseColor}" width="150" height="34" visible="{getStyle('showOpenEbookButton')}" includeInLayout="{getStyle('showOpenEbookButton')}" buttonMode="true" useHandCursor="true" />
+		<ui:ExamPracticeButton id="downloadExamButton" color="#FFFFFF" textBackgroundColor="{hostComponent.courseColor}" width="150" height="34" thumbnailSource="search" buttonMode="true" useHandCursor="true" />
+		<ui:ExamPracticeButton id="videoExamButton" color="#FFFFFF" textBackgroundColor="{hostComponent.courseColor}" width="150" height="34" thumbnailSource="watch" buttonMode="true" useHandCursor="true" />
 	</s:HGroup>
 	<!-- gh#1161 -->
 	<s:Group top="380" horizontalCenter="0" includeInLayout="{hostComponent.isTestDrive}" visible="{hostComponent.isTestDrive}" >
 		<ui:InfoLabel caption="{hostComponent.viewCopyProvider.getCopyForId('justEBookInTestDrive')}" />
-	</s:Group> 
-
+	</s:Group>
 	
 </s:Skin>

@@ -1,7 +1,7 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
-	import com.clarityenglish.ielts.IELTSApplication;
+	import com.clarityenglish.ielts.view.zone.ui.ExamPracticeButton;
 	
 	import flash.events.MouseEvent;
 	
@@ -14,13 +14,13 @@ package com.clarityenglish.ielts.view.zone {
 	public class QuestionZoneSectionView extends AbstractZoneSectionView {
 		
 		[SkinPart]
-		public var readButton:Button;
+		public var readExamButton:Button;
 		
 		[SkinPart]
-		public var downloadButton:Button;
+		public var downloadExamButton:Button;
 		
 		[SkinPart(required="true")]
-		public var videoButton:Button;
+		public var videoExamButton:Button;
 		
 		[SkinPart(required="true")]
 		public var questionVideoLabel:Label;
@@ -29,7 +29,12 @@ package com.clarityenglish.ielts.view.zone {
 		public var questionVideoInstructionLabel:Label;
 		
 		public var exerciseSelect:Signal = new Signal(XML);
-		
+
+		[Bindable(event="dataChange")]
+		public function get courseColor():uint {
+			return getStyle(courseClass + 'ExamPracticeColor');
+		}
+
 		public function get viewCopyProvider():CopyProvider {
 			return this.copyProvider;
 		}
@@ -43,16 +48,16 @@ package com.clarityenglish.ielts.view.zone {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case readButton:
-					readButton.addEventListener(MouseEvent.CLICK, onReadButtonClick);
+				case readExamButton:
+					readExamButton.addEventListener(MouseEvent.CLICK, onReadButtonClick);
 					instance.label = copyProvider.getCopyForId("downloadButton");
 					break;
-				case downloadButton:
-					downloadButton.addEventListener(MouseEvent.CLICK, onDownloadButtonClick);
+				case downloadExamButton:
+					downloadExamButton.addEventListener(MouseEvent.CLICK, onDownloadButtonClick);
 					instance.label = copyProvider.getCopyForId("pdfButton");
 					break;
-				case videoButton:
-					videoButton.addEventListener(MouseEvent.CLICK, onVideoButtonClick);
+				case videoExamButton:
+					videoExamButton.addEventListener(MouseEvent.CLICK, onVideoButtonClick);
 					instance.label = copyProvider.getCopyForId("videoButton");
 					break;
 				case questionVideoLabel:
@@ -76,13 +81,13 @@ package com.clarityenglish.ielts.view.zone {
 			
 			for each (var questionZoneNode:XML in _course.unit.(@["class"] == "question-zone").exercise) {
 				if (questionZoneNode.@href.indexOf(".xml") > 0) {
-					readButton.enabled = !(questionZoneNode.attribute("enabledFlag").length() > 0 && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
+					readExamButton.enabled = !(questionZoneNode.attribute("enabledFlag").length() > 0 && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
 				}
-				if (questionZoneNode.@href.indexOf(".pdf") > 0) { 
-					downloadButton.enabled = !(questionZoneNode.attribute("enabledFlag").length() > 0 && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
+				if (questionZoneNode.@href.indexOf(".pdf") > 0) {
+					downloadExamButton.enabled = !(questionZoneNode.attribute("enabledFlag").length() > 0 && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
 				}
-				if (questionZoneNode.@href.indexOf(".rss") > 0) { 
-					videoButton.enabled = !(questionZoneNode.attribute("enabledFlag").length() > 0 && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
+				if (questionZoneNode.@href.indexOf(".rss") > 0) {
+					videoExamButton.enabled = !(questionZoneNode.attribute("enabledFlag").length() > 0 && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
 				}
 			}
 			/*
