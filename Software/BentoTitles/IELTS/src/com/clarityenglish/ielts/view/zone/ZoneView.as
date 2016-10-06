@@ -157,10 +157,12 @@ import spark.components.ViewNavigator;
 			_isPlatformAndroid = value;
 		}
 		
-		public function setCourseSelectorVisible(value:Boolean):void {
+		public function setSelectorInforButtonVisible(value:Boolean):void {
 			courseSelector.visible = value;
+			if (bottomInforButton)
+				bottomInforButton.visible = value;
 		}
-		
+
 		// gh#761
 		[Bindable]
 		public function get isCourseDirectLink():Boolean {

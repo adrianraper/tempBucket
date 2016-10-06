@@ -113,10 +113,10 @@
 					//view.popoutExerciseSelector.exercises = view.refreshedExercises();
 					break;
 				case IELTSNotifications.PRACTICE_ZONE_POPUP_SHOW:
-					view.setCourseSelectorVisible(false);
+					view.setSelectorInforButtonVisible(false);
 					break;
 				case IELTSNotifications.PRACTICE_ZONE_POPUP_HIDE:
-					view.setCourseSelectorVisible(true);
+					view.setSelectorInforButtonVisible(true);
 					break;
 			}
 		}
