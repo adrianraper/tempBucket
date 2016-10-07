@@ -62,8 +62,8 @@ import com.clarityenglish.common.CommonNotifications;
             // gh#1444
             var menuTransforms:Array = [ new ProgressExerciseScoresTransform(),
                 new ProgressSummaryTransform(),
-                new HiddenContentTransform(),
-                new DirectStartDisableTransform(configProxy.getDirectStart()) ];
+                new HiddenContentTransform()/*,
+                new DirectStartDisableTransform(configProxy.getDirectStart())*/ ];
             xhtmlProxy.registerTransforms(menuTransforms, [ Href.MENU_XHTML ]);
 
             // gh#1408

@@ -151,6 +151,8 @@ package com.clarityenglish.bento.model {
             // gh#1444, gh#1408 transforms are prepared in StartupCommand
             // Determine if the href matches any of the registered transforms and if so add those transforms
             href.resetTransforms();
+			// gh#1444 move it back to XHTMLProxy from BentoStartupCommand.
+			registerTransforms([new DirectStartDisableTransform(configProxy.getDirectStart())], [ Href.MENU_XHTML ]);
             for each (var transformDefinition:TransformDefinition in transformDefinitions)
                 transformDefinition.injectTransforms(href);
 
