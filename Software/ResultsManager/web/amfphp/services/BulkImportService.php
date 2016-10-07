@@ -241,12 +241,12 @@ class UploadException extends Exception {
                         break;
                     case User::LOGIN_BY_EMAIL:
                         if (isset($user['email']))
-                            $idArray[] = strtolower($user['email']);
+                            $idArray[] = "'" . strtolower($user['email']) . "'";
                         $checkClause = "u.F_Email";
                         break;
                     case User::LOGIN_BY_NAME:
                         if (isset($user['name']))
-                            $idArray[] = strtolower($user['name']);
+                            $idArray[] = "'" . strtolower($user['name']) . "'";
                         $checkClause = "u.F_UserName";
                         break;
                     default:

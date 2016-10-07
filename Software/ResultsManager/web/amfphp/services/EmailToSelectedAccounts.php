@@ -70,19 +70,24 @@ $testingTriggers = "RM-welcome";
 if (stristr($testingTriggers, "RM-welcome")) {
 	// Email to all users in a group
 	// Note, changed without testing that array is ok
-	$groupIds = array('35026');
-	$templateID = 'user/CPEIP-LELT-welcome';
-	$emailArray = $thisService->dailyJobOps->getEmailsForGroups($groupIds);
+	//$groupIds = array('80023','80024','80025','80026','80027','80028');
+    $groupIds = array('21560');
+    $alsoSubGroups = true;
+	$templateID = 'user/LELT_welcome';
+	$emailArray = $thisService->dailyJobOps->getEmailsForGroup($groupIds, null, $alsoSubGroups);
 	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 		// Send the emails
 		$thisService->emailOps->sendEmails("", $templateID, $emailArray);
 		echo "Queued ".count($emailArray)." emails for units starting $courseDate. $newLine";
 			
 	} else {
-		// Or print on screen
-		echo count($emailArray)." emails for group $groupId $newLine";
-		foreach($emailArray as $email) {
+		// Or print a few of them on screen
+		echo count($emailArray)." emails for group ".implode(',', $groupIds)." $newLine";
+        $limit = 0;
+		foreach ($emailArray as $email) {
+            $limit++;
 			echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
+			if ($limit > 20) break;
 		}
 	}
 } else {

@@ -159,7 +159,7 @@
             <lit name="cannotPrint">Sorry, your Flash player cannot print. Please upgrade to at least version 7.</lit>
             <lit name="months">Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec</lit>
             <lit name="noSuchUserTryNew">Sorry, that name is not registered. Please click New user to register.</lit>
-            <lit name="logOn">Please type your name and click Start.</lit>
+            <lit name="logOn">Type your account details and click Start.</lit>
             <lit name="logOnSelfRegister">Please type your name and click Start, or click New user if it is your first time.</lit>
             <lit name="logOnAnon">For anonymous use, just click Start.</lit>
             <lit name="blankFields">Please fill in all the information.</lit>

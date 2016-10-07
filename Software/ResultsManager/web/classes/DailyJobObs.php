@@ -663,17 +663,21 @@ SQL;
 	 * Would be more useful if you could include other information in the emailArray
 	 * 
 	 */
-	public function getEmailsForGroup($groupIdArray, $templateDefinition=null) {
+	public function getEmailsForGroup($groupIdArray, $templateDefinition=null, $recurseGroups = true) {
 
 		// Initialise
 		$emailArray = array();		
 		$groups = array();
-		
-		foreach ($groupIdArray as $groupId) {
-			AbstractService::$debugLog->info("get subgroups for $groupId");
-			$groups = array_merge($groups, $this->manageableOps->getGroupSubgroups($groupId));
-		}
-		$groupList = implode(',', $groups);
+
+        if ($recurseGroups) {
+            foreach ($groupIdArray as $groupId) {
+                AbstractService::$debugLog->info("get subgroups for $groupId");
+                $groups = array_merge($groups, $this->manageableOps->getGroupSubgroups($groupId));
+            }
+            $groupList = implode(',', $groups);
+        } else {
+            $groupList = implode(',', $groupIdArray);
+        }
 		//AbstractService::$debugLog->info("end up asking for users in " . $groupList);
 		
 		$sql = <<<SQL
@@ -697,17 +701,20 @@ SQL;
 					$emailData = array("user" => $user);
 					
 					// Based on the template, you might need to query the database for extra information
-					switch ($templateDefinition->filename) {
-						case "user/PPT-with-result":
-							// We need to get the pre-saved test result for this user
-							$emailData['testResult'] = $this->memoryOps->get('CEF', 44, $user->id);
-							break;
-						default:
-					}
-					
-					// gh#1487
-					if (!is_null($templateDefinition->data))
-						$emailData['templateData'] = $templateDefinition->data;
+                    if (isset($templateDefinition)) {
+                        switch ($templateDefinition->filename) {
+                            case "user/PPT-with-result":
+                                // We need to get the pre-saved test result for this user
+                                $emailData['testResult'] = $this->memoryOps->get('CEF', 44, $user->id);
+                                break;
+                            default:
+                        }
+
+                        // gh#1487
+                        if (!is_null($templateDefinition->data))
+                            $emailData['templateData'] = $templateDefinition->data;
+                    }
+
 					$thisEmail = array("to" => $toEmail, "data" => $emailData);
 					$emailArray[] = $thisEmail;
 				} else {
