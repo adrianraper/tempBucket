@@ -2,7 +2,8 @@
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.ExerciseProxy;
-	import com.clarityenglish.bento.view.DynamicView;
+import com.clarityenglish.bento.model.SCORMProxy;
+import com.clarityenglish.bento.view.DynamicView;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
@@ -61,11 +62,12 @@ import org.puremvc.as3.interfaces.IMediator;
 			}).toProperty(view, "href");
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			if (configProxy.getDirectStart().exerciseID)
+			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+			if (configProxy.getDirectStart().exerciseID && !scormProxy.scorm.bookmark)
 				view.isDirectStartEx = true;
-			if (configProxy.getDirectStart().unitID)
+			if (configProxy.getDirectStart().unitID || (configProxy.getDirectStart().exerciseID && scormProxy.scorm.bookmark) )
 				view.isDirectStartUnit = true;
-			
+
 			view.languageCode = configProxy.getConfig().languageCode;
 			view.isPlatformiPad = configProxy.isPlatformiPad();
 			view.isPlatformTablet = configProxy.isPlatformTablet();
