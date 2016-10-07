@@ -141,7 +141,7 @@
 		<s:Spacer width="100%" />
 		
 		<s:HGroup paddingTop="22" paddingRight="32" gap="43">
-			<s:Button id="backToMenuButton" buttonMode="true" useHandCursor="true" enabled="false" />
+			<s:Button id="backToMenuButton" buttonMode="true" useHandCursor="true" enabled="{!(hostComponent.isDirectStartEx || hostComponent.isDirectStartUnit)}" />
 			<s:Button id="recorderButton" buttonMode="true" useHandCursor="true" />
 			<s:Button id="phonemicChartButton" buttonMode="true" useHandCursor="true" />
 			<s:Button id="youWillButton" buttonMode="true" useHandCursor="true" />
