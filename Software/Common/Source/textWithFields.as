@@ -1007,6 +1007,7 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 				// v6.5.4.2 Yiu, threat the CJK character like linebreak character first, we will take care of it at the end of this function, Bug ID 1370a
 				if (foundNewLine.length>0 ||  bIfCJKChar == true) {
 					linesIdx = this.lines.push({idx:i, y:thisTextHeight});
+					//myTrace("1.adding line " + i + " y=" + thisTextHeight);
 					foundNewLine.pop();
 				} else {
 					//myTrace("new line after llBC=" + lastLineBreakChar);
@@ -1026,6 +1027,7 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 					oldlastLineBreakChar = lastLineBreakChar; 
 					// so save the last recorded word-wrapping char as the place that it broke
 					linesIdx = this.lines.push({idx:lastLineBreakChar+1, y:thisTextHeight});
+					//myTrace("2.adding line " + (lastLineBreakChar+1) + " y=" + thisTextHeight);
 					//myTrace("so push line at " + Number(lastLineBreakChar+1));
 					// Slip in a wafer thin space? Or rather, change the last &nbsp; to a real space
 					// v6.3.5 This simply does not work to break the line as you would expect.
@@ -1048,7 +1050,9 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 				if (linesIdx>1) { // the first line is a special case
 					//trace("update line " + Number(linesIdx-2) + " to height=" + oldTextHeight);
 					// gh#869 usded to be this.lines[linesIdx-2].y, but if it is "2", linesIdx=2 will mean the first line but not the second line
-					this.lines[linesIdx-1].y = oldTextHeight;
+					// gh#1492 revert to original 
+					this.lines[linesIdx-2].y = oldTextHeight;
+					//myTrace("change line " + (linesIdx-2) + " y=" + oldTextHeight);
 				}
 				//trace(thisChar + " makes " + lines.length + " lines");
 				// if this line break was in the middle of a field, you will have to adjust
@@ -1219,7 +1223,8 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 
 	// v6.5.4.2 Yiu, add the offset up, to accumlate the offset 
 	for (var v1=0; v1<this.aCJKRelatedShowingAnswerOffset.length; ++v1) {
-		this.aAccumCJKRelatedShowingAnswerOffset[v1] = 0; //ar#869
+		// gh#1492 revert just in case
+		// this.aAccumCJKRelatedShowingAnswerOffset[v1] = 0; //ar#869
 		for (var v2=v1; v2>=0; --v2){
 			this.aAccumCJKRelatedShowingAnswerOffset[v1] += this.aCJKRelatedShowingAnswerOffset[v2];
 			//myTrace("twf.buildTextAndFields aAccumCJKRelatedOffset[" + v1 + "]=" + this.aCJKRelatedShowingAnswerOffset[v2]);
@@ -1230,7 +1235,8 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 	//this.showLineBreaks();
 //	trace("after forcing line breaks, height=" + this.holder._height);
 	// Not a good idea to leave the focus on the holder, so set it back to original
-	//Selection.setFocus(this.original); // gh#869
+	// gh#1492 revert?
+	Selection.setFocus(this.original); // gh#869
 	
 	// v6.5.4.2 Yiu, added this
 	// v6.5.4.4 AR. Why? This now causes a drag at the start of a line to copy the TF.url to the whole paragraph. 
@@ -1255,7 +1261,7 @@ TextWithFieldsClass.prototype.showLineBreaks = function() {
 		//if (thisChar.charCodeAt(0) == 9) thisChar = "<tab>";
 		//if (thisChar.charCodeAt(0) == 13) thisChar = "<newline>";
 		//myTrace("lines[" + i + "].idx=" + this.lines[i].idx + ", .y=" + this.lines[i].y + " " + thisChar);
-		myTrace("lines[" + i + "]=" + thisLine);
+		myTrace("lines[" + i + "]=" + thisLine + " y=" + this.lines[i].y);
 	}
 }
 // debugging function - changes natural line breaks to forced ones
@@ -1290,7 +1296,7 @@ TextWithFieldsClass.prototype.measureFields = function() {
 			//myTrace("line[" + j + "].start=" + this.lines[j].idx);
 			if (this.fields[i].start >= this.lines[j].idx) {
 				this.fields[i].startLine = j;
-				//myTrace("so field starts on line " + j);
+				//myTrace("so field " + i + " starts on line " + j);
 			}
 			if (this.fields[i].end > this.lines[j].idx) {
 				this.fields[i].endLine = j;
@@ -2216,7 +2222,7 @@ TextWithFieldsClass.prototype.onMouseUp = function() {
 				// don't bother doing anything if this component doesn't have 
 				// an event that needs to be triggered
 				if (this.controlClick_param == undefined) {
-					myTrace("no controlClicker for this TWF");
+					//myTrace("no controlClicker for this TWF");
 					return;
 				}
 				// v6.3.5 This doesn't work for countdown as you HAVEN'T counted lines yet.
