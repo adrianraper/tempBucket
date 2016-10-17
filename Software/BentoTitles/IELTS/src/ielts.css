@@ -324,7 +324,6 @@ zone|ExamPracticeZoneSectionView zoneui|ExamPracticeButton {
 	skinClass: ClassReference("skins.ielts.zone.ui.ExamPracticeButtonSkin");
 }
 
-
 /* Exercise view styles */
 exercise|ExerciseView {
 	skinClass: ClassReference("skins.ielts.ExerciseSkin");
@@ -341,6 +340,11 @@ components|AudioPlayer {
 
 s|VideoPlayer {
 	skinClass: ClassReference("skins.ielts.videoplayer.VideoPlayerSkin");
+}
+
+/* Video player skin for the video in exercise */
+exercise|ExerciseView s|VideoPlayer {
+	skinClass: ClassReference("skins.ielts.videoplayer.ExerciseVideoPlayerSkin");
 }
 
 /* Progress view styles */
