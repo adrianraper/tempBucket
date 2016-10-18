@@ -66,7 +66,7 @@ import spark.components.Label;
 
 		[Bindable]
 		public var speakingTestXMLListCollection:XMLListCollection;
-		
+
 		public var exerciseSelect:Signal = new Signal(XML, String);
 		
 		private var viewportPropertyWatcher:ChangeWatcher;
@@ -196,6 +196,13 @@ import spark.components.Label;
 						instance.setStyle("fontSize", 14);
 					}
 					break;
+				case leftArrowButton:
+				case rightArrowButton:
+					if (isDirectLinkStart && exerciseID) {
+						instance.enabled = false;
+					}
+					break;
+
 			}
 		}
 
@@ -218,14 +225,16 @@ import spark.components.Label;
 			if (list.scroller.horizontalScrollBar) {
 				pageNumberDisplay.selectedIndex = Math.floor(list.scroller.horizontalScrollBar.value / list.scroller.viewport.width);
 
-				if (pageNumberDisplay.selectedIndex == list.dataProvider.length - 1) {
-					rightArrowButton.enabled = false;
-				} else if (pageNumberDisplay.selectedIndex == 0) {
-					leftArrowButton.enabled = false;
-					rightArrowButton.enabled = true;
-				} else {
-					leftArrowButton.enabled = true;
-					rightArrowButton.enabled = true;
+				if (!(isDirectLinkStart && exerciseID)) {
+					if (pageNumberDisplay.selectedIndex == list.dataProvider.length - 1) {
+						rightArrowButton.enabled = false;
+					} else if (pageNumberDisplay.selectedIndex == 0) {
+						leftArrowButton.enabled = false;
+						rightArrowButton.enabled = true;
+					} else {
+						leftArrowButton.enabled = true;
+						rightArrowButton.enabled = true;
+					}
 				}
 			}
 		}
