@@ -28,11 +28,11 @@ package com.clarityenglish.bento.controller {
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(bentoProxy.currentExercise)) as ExerciseProxy;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 			
 			// #210, #256 - warning messages when leaving an exercise
 			if (exerciseProxy.attemptToLeaveExercise(note)) {
 				var exerciseNode:XML = bentoProxy.getExerciseNodeWithOffset(note.getBody() as int);
-				
 				sendNotification(BBNotifications.CLOSE_ALL_POPUPS, FlexGlobals.topLevelApplication); // #265
 				
 				if (exerciseNode) {
@@ -40,10 +40,34 @@ package com.clarityenglish.bento.controller {
 				} else {
 					// gh#853
                     // gh#1405 This is too early to logout, you haven't written any scores yet.
-					if (configProxy.getConfig().scorm || configProxy.getDirectStart().unitID) {
-						sendNotification(CommonNotifications.EXITED);
+					if (scormProxy.scorm) {
+						if (configProxy.getProductCode() == '52' || configProxy.getProductCode() == '53') {
+							if (scormProxy.scorm.launchData.exerciseID || scormProxy.scorm.launchData.groupID) {
+								sendNotification(CommonNotifications.EXITED);
+							} else {
+								sendNotification(BBNotifications.SELECTED_NODE_UP);
+							}
+						} else {
+							if (!scormProxy.scorm.launchData.courseID) {
+								sendNotification(CommonNotifications.EXITED);
+							} else {
+								sendNotification(BBNotifications.SELECTED_NODE_UP);
+							}
+						}
 					} else {
-						sendNotification(BBNotifications.SELECTED_NODE_UP);
+						if (configProxy.getProductCode() == '52' || configProxy.getProductCode() == '53') {
+							if (configProxy.getDirectStart().exerciseID || configProxy.getDirectStart().groupID) {
+								sendNotification(CommonNotifications.EXITED);
+							} else {
+								sendNotification(BBNotifications.SELECTED_NODE_UP);
+							}
+						} else {
+							if (!configProxy.getDirectStart().courseID) {
+								sendNotification(CommonNotifications.EXITED);
+							} else {
+								sendNotification(BBNotifications.SELECTED_NODE_UP);
+							}
+						}
 					}
 				}
 			}
