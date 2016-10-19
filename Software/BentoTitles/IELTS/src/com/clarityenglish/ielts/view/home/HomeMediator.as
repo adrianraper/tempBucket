@@ -58,7 +58,8 @@
 			
 			// This view runs of the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			view.href = bentoProxy.menuXHTML.href;
+			if(bentoProxy.menuXHTML) // gh#1517 Logout will pop up all the stacked views in homeNavigator and go to the home view however the bentoProxy reset before view pop up, so the bentoProxy.menuXHTML will be null and hence we need to skip the assignment for href.
+				view.href = bentoProxy.menuXHTML.href;
 			// gh#383
 			view.findMore.add(onFindMoreClicked);
 		}

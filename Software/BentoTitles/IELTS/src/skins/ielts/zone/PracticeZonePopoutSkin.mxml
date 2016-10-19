@@ -33,8 +33,9 @@
 
 							override public function set data(value:Object):void {
 								super.data = value;
-
-								if (data) {
+								
+								// gh#1518
+								if (data && data.parent()) {
 									courseClass = data.parent().parent().@['class'].toString();
 									indexLabel.setStyle("color", getStyle(courseClass + "ExamPracticeColor"));
 									exerciseSetGroup.addEventListener(MouseEvent.CLICK, onExerciseGroupClick);

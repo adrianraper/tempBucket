@@ -84,6 +84,8 @@
 		 */
 		private function onLogout():void {
 			sendNotification(CommonNotifications.LOGOUT);
+			// gh#1517
+			view.homeViewNavigator.popToFirstView();
 		}
 		
 		/**
