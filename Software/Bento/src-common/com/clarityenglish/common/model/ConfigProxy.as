@@ -539,7 +539,7 @@ package com.clarityenglish.common.model {
 						*/
 						config.mergeAccountData(data);
 						if (config.languageCode == "ZH" && !isPlatformTablet())
-							StyleManager.getStyleDeclaration("global").setStyle("fontFamily","SimHei");
+							StyleManager.getStyleDeclaration("global").setStyle("fontFamily","SimSun");
 						// gh#113 This IP and RU check could easily be done in PHP, in which case LoginProxy would catch it
 						// just like accountExpired. But for now leave this here with other config errors.
 						var authenticated:Boolean = this.checkAuthentication();
