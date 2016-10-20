@@ -933,7 +933,7 @@ EOD;
 			default:
 				$folder =  "../../".$GLOBALS['data_dir']."/".$contentLocation;
 		}
-        AbstractService::$debugLog->info("getContentFolder=".$folder);
+        //AbstractService::$debugLog->info("getContentFolder=".$folder);
 		return $folder;
 	}
 	
@@ -948,7 +948,7 @@ EOD;
 		// If the rootID is not given then default to the session root (this is normal behaviour except for DMS)
 		if (!$rootID) $rootID = Session::get('rootID');
 		$bindingParams = array($rootID);
-        AbstractService::$debugLog->info("parseContent rootID=$rootID and pc=$productCodes");
+        //AbstractService::$debugLog->info("parseContent rootID=$rootID and pc=$productCodes");
 
 		// Get all the titles this rootID is registered to use from t_accounts
 		// AR.DK suggests joining this on T_Product
@@ -1044,9 +1044,9 @@ EOD;
 		// Perform the query and create a Group object from the results
 		//NetDebug::trace("parseContent=".$sql."with ".implode(", ",$bindingParams));
 		//echo $sql;
-        AbstractService::$debugLog->info("parseContent sql=$sql");
+        //AbstractService::$debugLog->info("parseContent sql=$sql");
 		$titlesRS = $this->db->Execute($sql, $bindingParams);
-        AbstractService::$debugLog->info("rs count=".$titlesRS->RecordCount());
+        //AbstractService::$debugLog->info("rs count=".$titlesRS->RecordCount());
 		//NetDebug::trace("records=".$titlesRS->RecordCount());
 		
 		$titles = array();
@@ -1057,7 +1057,7 @@ EOD;
 			while ($titleObj = $titlesRS->FetchNextObj()) {
 				// v3.3 There are some details we need from T_Product and T_ProductLanguage
 				
-                AbstractService::$debugLog->info("getDetails for =".$titleObj->F_ProductCode." and ".$titleObj->F_LanguageCode);
+                //AbstractService::$debugLog->info("getDetails for =".$titleObj->F_ProductCode." and ".$titleObj->F_LanguageCode);
 				$productDetails = $this->getDetailsFromProductCode($titleObj->F_ProductCode, $titleObj->F_LanguageCode);
 				$titleObj->name = $productDetails['name'];
 				// v3.3 This will now usually be picked up from T_ProductLanguage as the default

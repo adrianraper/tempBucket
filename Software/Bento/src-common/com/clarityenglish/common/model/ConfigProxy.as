@@ -102,10 +102,10 @@ package com.clarityenglish.common.model {
 			config.paths.menuFilename = config.configFilename;
 			config.instanceID = null;
             // gh#1314 Since you can't reset the gateway, you don't want to reset the sessionID either
-            //config.sessionID = null;
+            //config.phpSessionID = null;
 
-			// gh#1160
-			config.userID = config.username = config.email = config.studentID = config.password = config.startingPoint = config.sessionID = null;
+			// gh#1160 gh#1519
+			config.userID = config.username = config.email = config.studentID = config.password = config.startingPoint = config.sessionID = config.phpSessionID = null;
 			config.group = new Group();
 			config.prefix = "";
 			config.noLogin = false;
@@ -235,10 +235,11 @@ package com.clarityenglish.common.model {
             //}
             config.mergeParameters(FlexGlobals.topLevelApplication.parameters);
 
-            // Configure the delegate now that you have the gateway path.  If a sessionid is defined then add it to the gateway.
-            // gh#1314 Otherwise generate an id to use as a session id.
-            //log.debug('use config.sessionID=' + config.sessionID);
-			RemoteDelegate.setGateway(config.remoteGateway + "gateway.php", { PHPSESSID: config.sessionID });
+            // Configure the delegate now that you have the gateway path.
+			// gh#1519 If a sessionid is defined then add it to the gateway.
+            // gh#1314 Otherwise generate an id to use as a php session id.
+            //log.debug('use config.phpSessionID=' + config.phpSessionID);
+			RemoteDelegate.setGateway(config.remoteGateway + "gateway.php", { PHPSESSID: config.phpSessionID });
 			RemoteDelegate.setService(config.remoteService);
 			
 			// A special case; if disableAutoTimeout is true then turn off the activity timer #385

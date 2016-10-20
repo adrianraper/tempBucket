@@ -120,7 +120,6 @@ package com.clarityenglish.common.model {
 					if (data) {
 						configProxy.getConfig().sessionID = data.sessionID;
 						sendNotification(BBNotifications.SESSION_STARTED, data);
-						//trace('started session sessionID={0}', data.sessionID);
 
 					} else {
 						// Can't write to the database
