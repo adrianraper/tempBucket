@@ -1041,7 +1041,7 @@ EOD;
 		// Perform the query and create a Group object from the results
 		//NetDebug::trace("parseContent=".$sql."with ".implode(", ",$bindingParams));
 		//echo $sql;
-        //AbstractService::$debugLog->info("rs count=".$titlesRS->RecordCount());
+        //AbstractService::$debugLog->info("parseContent sql=$sql");
 		$titlesRS = $this->db->Execute($sql, $bindingParams);
 		
 		$titles = array();
@@ -1051,7 +1051,6 @@ EOD;
 		if ($titlesRS->RecordCount() > 0) {
 			while ($titleObj = $titlesRS->FetchNextObj()) {
 				// v3.3 There are some details we need from T_Product and T_ProductLanguage
-				
 				$productDetails = $this->getDetailsFromProductCode($titleObj->F_ProductCode, $titleObj->F_LanguageCode);
 				$titleObj->name = $productDetails['name'];
 				// v3.3 This will now usually be picked up from T_ProductLanguage as the default
