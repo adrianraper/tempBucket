@@ -162,7 +162,8 @@ class CTPService extends BentoService {
             $answer->answerTimestamp = (isset($answer->answerTimestamp)) ? $this->timestampToAnsiString($answer->answerTimestamp) : null;
             $scoreDetails[] = new ScoreDetail($answer, $score, $clientTimezoneOffset);
         }
-        $this->progressOps->insertScoreDetails($scoreDetails, $user);
+        if (count($scoreDetails) > 0)
+            $this->progressOps->insertScoreDetails($scoreDetails, $user);
 
         // If this is the first score, make sure the session includes the testId
         if (!$session->testId) {

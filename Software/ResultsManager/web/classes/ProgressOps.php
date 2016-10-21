@@ -179,48 +179,71 @@ SQL;
      * This is for calculating the placement test result.
      * With full complexity this will require access to detailed scores so you can look at question tags (A2 etc)
      * as well as the number correct.
+     * It should also be read from a DPT specific scoring chart. scoring.json perhaps?
      *
      */
     function getTestResult($session) {
+
+        // Do you need to exclude any 'exercises' from scoring? Requirements for one...
+        $excludeExerciseIDs = array('2016063999');
+
         // 1. Count all the correct answers in this session
         // sessionId is an index of the table, so a reasonable search
+        // You can't query T_Score with an exclude F_ExerciseID IN () clause as too slow
+        // so replace with a php loop
+        // SELECT SUM(F_ScoreCorrect) as totalCorrect, SUM(F_ScoreWrong) as totalWrong, SUM(F_ScoreMissed) as totalMissed
         $sql = <<<SQL
-			SELECT SUM(F_ScoreCorrect) as totalCorrect, SUM(F_ScoreWrong) as totalWrong, SUM(F_ScoreMissed) as totalMissed
+			SELECT F_ScoreCorrect as correct, F_ScoreWrong as wrong, F_ScoreMissed as missed, F_ExerciseID as exID
 			FROM T_Score
 			WHERE F_SessionID=?
 SQL;
         $bindingParams = array($session->sessionId);
         $rs = $this->db->Execute($sql, $bindingParams);
+        $totalCorrect = $totalWrong = $totalMissed = 0;
         if ($rs) {
-            $record = $rs->FetchNextObj();
-            $totalCorrect = $record->totalCorrect;
-            $totalWrong = $record->totalWrong;
-            $totalMissed = $record->totalMissed;
+            while($record = $rs->FetchNextObj()) {
+                if (array_search($record->exID, $excludeExerciseIDs) === FALSE) {
+                    $totalCorrect += $record->correct;
+                    $totalWrong += $record->wrong;
+                    $totalMissed += $record->missed;
+                }
+            }
         }
 
         // 2. Get all the detailed answers so we can pattern match against tags
+        //
+        // TODO Keep checking that this remains true:
+        // We are ONLY interested in matching tags for correct questions
+        // And if we are dealing with a set of grouped questions (such as word ordering) one question (the first)
+        // and one only from the group will be marked as correct if the group is correct.
+        //
         $sql = <<<SQL
 			SELECT *
 			FROM T_ScoreDetail
 			WHERE F_SessionID=?
+            AND F_Score>0
 SQL;
         $bindingParams = array($session->sessionId);
         $rs = $this->db->Execute($sql, $bindingParams);
         switch ($rs->RecordCount()) {
             case 0:
-                // No records have been saved, the app has failed
-                throw new Exception("There are no score records");
+                // No correct answers have been saved.
+                return null;
+                //throw new Exception("There are no score records");
                 break;
             default:
                 // Read from the db
                 $scoreDetails = array();
-                while($dbObj = $rs->FetchNextObj()) {
-                    $scoreDetail = new ScoreDetail();
-                    $scoreDetail->fromDatabaseObj($dbObj);
-                    $scoreDetails[] = $scoreDetail;
+                while($record = $rs->FetchNextObj()) {
+                    if (array_search($record->F_ExerciseID, $excludeExerciseIDs) === FALSE) {
+                        $scoreDetail = new ScoreDetail();
+                        $scoreDetail->fromDatabaseObj($record);
+                        $scoreDetails[] = $scoreDetail;
+                    }
                 }
         }
         $A1count = $this->countTags('/A1/i', $scoreDetails);
+        $A2count = $this->countTags('/A2/i', $scoreDetails);
         $Bcount = $this->countTags('/B[12]/i', $scoreDetails);
 
         // 3. Build the CEF, the numeric score
@@ -237,20 +260,20 @@ SQL;
             case ($totalCorrect > 50):
                 $result = "B2";
                 break;
-            case ($totalCorrect > 40):
+            case ($totalCorrect > 25):
                 $result = "B1";
                 break;
-            case ($totalCorrect > 30):
+            case ($totalCorrect > 16):
                 $result = "A2";
                 break;
-            case ($totalCorrect > 20):
+            case ($totalCorrect > 5):
                 $result = "A1";
                 break;
             default:
                 $result = "A0";
         }
         // {"result":"A2"}
-        return array("result" => $result);
+        return array("result" => $result, "numeric" => $totalCorrect);
     }
 
     /**
@@ -260,7 +283,8 @@ SQL;
     function countTags($pattern, $scoreDetails) {
         $count = 0;
         foreach ($scoreDetails as $scoreDetail) {
-            $count += (preg_match($pattern, $scoreDetail->getTags())) ? 1 : 0;
+            $tagString = implode(',', $scoreDetail->getTags());
+            $count += ((preg_match($pattern, $tagString)) && ($scoreDetail->score > 0)) ? 1 : 0;
         }
         return $count;
     }

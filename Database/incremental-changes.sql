@@ -1486,6 +1486,7 @@ CREATE TABLE `T_ScoreDetail_Expiry` (
   `F_UserID` int(10) NOT NULL,
   `F_ExerciseID` bigint(19) NOT NULL,
   `F_ItemID` varchar(64) NOT NULL,
+  `F_Group` varchar(64) NULL DEFAULT NULL,
   `F_Score` int(10) DEFAULT NULL,
   `F_SessionID` bigint(19) DEFAULT NULL,
   `F_Detail` varchar(8192) DEFAULT NULL,
@@ -1501,4 +1502,5 @@ CREATE TABLE `T_ScoreDetail_Expiry` (
 
 ALTER TABLE `T_ScoreDetail` ADD COLUMN `F_CourseID` bigint(20) NULL DEFAULT NULL AFTER `F_UnitID`;
 ALTER TABLE `T_ScoreDetail` MODIFY COLUMN `F_ItemID` varchar(64);
+ALTER TABLE `T_ScoreDetail` ADD COLUMN `F_Group` varchar(32) NULL DEFAULT NULL AFTER `F_ItemID`;
 ALTER TABLE `T_ScoreDetail` ADD INDEX `Index_01` (`F_SessionID`);

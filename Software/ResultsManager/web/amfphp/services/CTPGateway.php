@@ -16,7 +16,7 @@ try {
     $json = json_decode(file_get_contents('php://input'));
     /*
     $json = json_decode('{"command":"login","email":"trackb@ppt","password":"80463e93a6193738137775fd8e8597fb","productCode":63}');
-    $json = json_decode('{"command":"getTestResult","sessionID":"8"}');
+    $json = json_decode('{"command":"getTestResult","testID":"1","sessionID":"22"}');
     */
     /*
     $json = json_decode('{"command":"scoreWrite",
