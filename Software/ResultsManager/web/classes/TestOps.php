@@ -104,10 +104,11 @@ SQL;
             case 0:
                 // There are no records
                 return false;
+                break;
             default:
-                $tests = array();
+                $testSessions = array();
                 while ($dbObj = $rs->FetchNextObj())
-                    $testSessions[] = new TestSession($dbObj, $this->db);
+                    $testSessions[] = new TestSession($dbObj);
         }
         return $testSessions;
     }

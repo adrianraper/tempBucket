@@ -59,7 +59,12 @@ class CTPService extends BentoService {
 
         if ($tests) {
             // Create a T_TestSession record here. Fill in the TestId when I do first writeScore if not known now
-            $testId = (count($tests) == 1) ? $tests[0]->testId : null;
+            //$testId = (count($tests) == 1) ? $tests[0]->testId : null;
+            // For now, the app will only work if max of one test is returned.
+            // There is no test selection page so just drop everything except the first
+            if (count($tests) > 1)
+                $tests = array_slice($tests,0,1);
+            $testId = $tests[0]->testId;
             $sessionId = $this->startSession($user, $rootID, $productCode, $testId);
         } else {
             $sessionId = "xxxx";
@@ -73,14 +78,14 @@ class CTPService extends BentoService {
 
     }
 
-	// Get details of the tests scheduled for this group
+	// Get details of all tests scheduled for this group
     public function getTests($group, $productCode) {
-        return $this->testOps->getTests($group->id, $productCode);
+        return $this->testOps->getActiveTests($group->id, $productCode);
     }
 
     // Get details of the tests that this user can take part in, but without security details
     public function getTestsSecure($group, $productCode) {
-        $tests = $this->testOps->getTests($group->id, $productCode);
+        $tests = $this->getTests($group, $productCode);
 
         if (!$tests)
             return array();
@@ -90,12 +95,14 @@ class CTPService extends BentoService {
         foreach ($tests as $key => $test) {
 
             // Remove any scheduled tests this user has already completed
-            if ($completedTests)
-                foreach ($completedTests as $completedTest)
+            if ($completedTests) {
+                foreach ($completedTests as $completedTest) {
                     if ($test->testId == $completedTest->testId) {
                         unset($tests[$key]);
-                        break 2;
+                        continue 2;
                     }
+                }
+            }
 
             // Strip out any security information
             $test->startData = null;
@@ -114,7 +121,7 @@ class CTPService extends BentoService {
             $test->startTimestamp = $this->ansiStringToTimestamp($test->openTime);
             $test->endTimestamp = $this->ansiStringToTimestamp($test->closeTime);
         }
-        return $tests;
+        return array_values($tests);
     }
 
     // Create a session record that runs throughout the test
@@ -165,9 +172,14 @@ class CTPService extends BentoService {
         if (count($scoreDetails) > 0)
             $this->progressOps->insertScoreDetails($scoreDetails, $user);
 
-        // If this is the first score, make sure the session includes the testId
+        // If this is the first score, make sure the session includes the testId and the start time
         if (!$session->testId) {
             $session->testId = $scoreObj->testID;
+            if (!$session->startDateStamp) {
+                $dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+                $dateNow = $dateStampNow->format('Y-m-d H:i:s');
+                $session->startDateStamp = $dateNow;
+            }
             $this->progressOps->updateTestSession($session);
         }
 
@@ -176,10 +188,12 @@ class CTPService extends BentoService {
     public function getTestResult($sessionId) {
         $session = $this->testOps->getTestSession($sessionId);
 
-        //Session::set('userID', $session->userId);
-        //$user = $this->manageableOps->getUserById($session->userId);
+        $result = $this->progressOps->getTestResult($session);
+        $completed = true;
+        $session->result = $result;
+        $this->progressOps->updateTestSession($session, $completed);
 
-        return $this->progressOps->getTestResult($session);
+        return $result;
     }
 
 }
