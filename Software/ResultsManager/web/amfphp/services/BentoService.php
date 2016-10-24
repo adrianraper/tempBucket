@@ -5,7 +5,6 @@
 
 require_once(dirname(__FILE__)."/../../config.php");
 
-$thisLib = $GLOBALS['adodb_libs'];
 require_once($GLOBALS['adodb_libs']."adodb-exceptions.inc.php");
 require_once($GLOBALS['adodb_libs']."adodb.inc.php");
 
@@ -23,6 +22,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Exercis
 
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/progress/Progress.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/progress/Score.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/progress/ScoreDetail.php");
 
 // v3.4 To allow the account root information to be passed back to RM
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Account.php");
@@ -639,7 +639,7 @@ class BentoService extends AbstractService {
 		
         // gh#954 and update the session, which might trigger a new session if course changes
         // This is ONLY done for C-Builder
-        $sessionId = $this->updateSession($sessionId, (strtolower(AbstractService::$title) == "rotterdam") ? $score->courseID : null);
+        $sessionId = $this->progressOps->updateSession($sessionId, (strtolower(AbstractService::$title) == "rotterdam") ? $score->courseID : null);
         $score->sessionID = $sessionId;
         return $score;
 

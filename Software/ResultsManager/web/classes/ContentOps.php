@@ -923,7 +923,6 @@ EOD;
 	 * Currently only applies to Author Plus.
 	 */
 	function getContentFolder($contentLocation, $productCode=null) {
-		//NetDebug::trace("myBase=".__FILE__);
 		switch ($productCode) {
 			case 1:
 				$folder = "../../".$GLOBALS['ap_data_dir']."/".$contentLocation;
@@ -934,7 +933,6 @@ EOD;
 			default:
 				$folder =  "../../".$GLOBALS['data_dir']."/".$contentLocation;
 		}
-		//NetDebug::trace("getContentFolder=$folder");
 		return $folder;
 	}
 	
@@ -949,7 +947,6 @@ EOD;
 		// If the rootID is not given then default to the session root (this is normal behaviour except for DMS)
 		if (!$rootID) $rootID = Session::get('rootID');
 		$bindingParams = array($rootID);
-		
 		// Get all the titles this rootID is registered to use from t_accounts
 		// AR.DK suggests joining this on T_Product
 		// DK. rather than joining on T_Product we use getTitleCaptionFromProductCode in _buildTitle to get the names
@@ -1044,8 +1041,8 @@ EOD;
 		// Perform the query and create a Group object from the results
 		//NetDebug::trace("parseContent=".$sql."with ".implode(", ",$bindingParams));
 		//echo $sql;
+        //AbstractService::$debugLog->info("rs count=".$titlesRS->RecordCount());
 		$titlesRS = $this->db->Execute($sql, $bindingParams);
-		//NetDebug::trace("records=".$titlesRS->RecordCount());
 		
 		$titles = array();
 		
@@ -1055,7 +1052,6 @@ EOD;
 			while ($titleObj = $titlesRS->FetchNextObj()) {
 				// v3.3 There are some details we need from T_Product and T_ProductLanguage
 				
-				//NetDebug::trace("getDetails for =".$titleObj->F_ProductCode." and ".$titleObj->F_LanguageCode);
 				$productDetails = $this->getDetailsFromProductCode($titleObj->F_ProductCode, $titleObj->F_LanguageCode);
 				$titleObj->name = $productDetails['name'];
 				// v3.3 This will now usually be picked up from T_ProductLanguage as the default

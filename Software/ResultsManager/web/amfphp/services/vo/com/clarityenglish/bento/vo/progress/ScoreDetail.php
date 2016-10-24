@@ -4,8 +4,11 @@
  * @author Adrian Raper
  * 
  * Class for holding progress information from database and XML
+ * Orchid used this for holding PPT and LELT details and some other special certificate things
+ * Bento has not used this
+ * Couloir will use this for CTP to hold test item answer details.
  */
-class Score {
+class ScoreDetail {
 
 	var $_explicitType = 'com.clarityenglish.bento.vo.progress.ScoreDetail';
 	
@@ -19,23 +22,39 @@ class Score {
     public $detail;
     public $score;
 	public $uid;
+    public $group;
 
     // gh#1496 Create a standard score from a passed object
-	function ScoreDetail($scoreObj = null, $clientTimezoneOffset = null) {
+	function ScoreDetail($answerObj = null, $score = null, $clientTimezoneOffset = null) {
 	    // Set product, course, unit, exercise from the UID
-        if (isset($scoreObj['UID']))
-            $this->setUID($scoreObj['UID']);
+        if ($score) {
+            if (isset($score->uid))
+                $this->setUID($score->uid);
+            if (isset($score->sessionID))
+                $this->sessionID = $score->sessionID;
+        }
 
-        if (isset($scoreObj['itemID']))
-            $this->itemID = $scoreObj['itemID'];
-        if (isset($scoreObj['detail']))
-            $this->detail = $scoreObj['detail'];
-        if (isset($scoreObj['score']))
-            $this->score = $scoreObj['score'];
+        if ($answerObj) {
+            if (isset($answerObj->id))
+                $this->itemID = $answerObj->id;
+            if (isset($answerObj->score))
+                $this->score = $answerObj->score;
+            if (isset($answerObj->group))
+                $this->group = $answerObj->group;
+
+            // Merge other answer attributes into a detail json object
+            // "{'type':".$answerObj->type.", 'state':".$answerObj->state.", 'tags:'".$answerObj->tags."}"
+            $detailString = array();
+            $detailString['questionType'] = $answerObj->questionType;
+            $detailString['state'] = $answerObj->state;
+            $detailString['tags'] = $answerObj->tags;
+            $this->detail = json_encode($detailString);
+        }
 
         // gh#156 If we know a timezoneOffset, use server time (UTC) + this to get an accurate local time and ignore the sent time
         // php version differences have big impact on -ve passed integer from amfphp, so split into number and sign
         // How about tablets?
+
         $serverDateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
         if ($clientTimezoneOffset !== null && isset($clientTimezoneOffset['minutes'])) {
             $offset = $clientTimezoneOffset['minutes'];
@@ -47,15 +66,15 @@ class Score {
                 $dateNow = $serverDateStampNow->sub($clientDifference)->format('Y-m-d H:i:s');
             }
         } else {
-            $dateNow = (isset($scoreObj['dateStamp'])) ? $scoreObj['dateStamp'] : $serverDateStampNow->format('Y-m-d H:i:s');
+            $dateNow = (isset($answerObj->answerTimestamp)) ? $answerObj->answerTimestamp : $serverDateStampNow->format('Y-m-d H:i:s');
         }
         $this->dateStamp = $dateNow;
     }
 	
 	public function setUID($value) {
 		$UIDArray = explode('.', $value);
-		if (count($UIDArray)>0)
-			$this->productCode = $UIDArray[0];
+		//if (count($UIDArray)>0)
+		//	$this->productCode = $UIDArray[0];
 		if (count($UIDArray)>1)
 			$this->courseID = $UIDArray[1];
 		if (count($UIDArray)>2)
@@ -65,7 +84,8 @@ class Score {
 		$this->uid = $this->getUID();
 	}
 	public function getUID() {
-		$build = $this->productCode;
+		//$build = $this->productCode;
+        $build = '';
 		if (isset($this->courseID))
 			$build .= '.'.$this->courseID;
 		if (isset($this->unitID))
@@ -74,6 +94,23 @@ class Score {
 			$build .= '.'.$this->exerciseID;
 		return $build; 
 	}
+
+    /**
+     * Pull out sections of the detail
+     */
+    public function getTags() {
+        $detail = json_decode($this->detail);
+        return $detail->tags;
+    }
+    public function getQuestionType() {
+        $detail = json_decode($this->detail);
+        return $detail->questionType;
+    }
+    public function getState() {
+        $detail = json_decode($this->detail);
+        return $detail->state;
+    }
+
 	/**
 	 * Convert this object to an associative array ready to pass to AutoExecute.
 	 */
@@ -83,13 +120,13 @@ class Score {
 		$array['F_UserID'] = $this->userID;
 		$array['F_SessionID'] = $this->sessionID;
 		$array['F_DateStamp'] = $this->dateStamp;
-		$array['F_ProductCode'] = $this->productCode;
-		//$array['F_CourseID'] = $this->courseID;
+		$array['F_CourseID'] = $this->courseID;
 		$array['F_UnitID'] = $this->unitID;
 		$array['F_ExerciseID'] = $this->exerciseID;
 		$array['F_Score'] = $this->score;
 		$array['F_Detail'] = $this->detail;
 		$array['F_ItemID'] = $this->itemID;
+        $array['F_Group'] = $this->group;
 
 		return $array;
 	}
@@ -106,13 +143,13 @@ class Score {
 		$this->userID = $obj->F_UserID;
 		$this->sessionID = $obj->F_SessionID;
 		$this->dateStamp = $obj->F_DateStamp;
-		$this->productCode = $obj->F_ProductCode;
-		//$this->courseID = $obj->F_CourseID;
+		$this->courseID = $obj->F_CourseID;
 		$this->unitID = $obj->F_UnitID;
 		$this->exerciseID = $obj->F_ExerciseID;
 		$this->score = $obj->F_Score;
 		$this->itemdID = $obj->F_ItemID;
 		$this->detail = $obj->F_Detail;
+        $this->group = $obj->F_Group;
 
 	}
 	

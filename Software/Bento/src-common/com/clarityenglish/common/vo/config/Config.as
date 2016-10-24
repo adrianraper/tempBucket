@@ -89,7 +89,10 @@ package com.clarityenglish.common.vo.config {
         public var server:String = null;
         public var protocol:String = 'http://';
 
-		public var ip:String;
+        // gh#1519
+        public var _phpSessionID:String = null;
+
+        public var ip:String;
 		public var referrer:String;
 		// For CCB
 		public var remoteStartFolder:String;
@@ -253,11 +256,19 @@ package com.clarityenglish.common.vo.config {
             _sessionID = value;
         }
         public function get sessionID():String {
-            if (!_sessionID) {
-                _sessionID = this.generateSessionId();
-            }
+            // TODO gh#1519 What to do if you try to get a bento sessionID that has not been set?
             return _sessionID;
         }
+		// gh#1519
+        public function set phpSessionID(value:String):void {
+            _phpSessionID = value;
+        }
+        public function get phpSessionID():String {
+            if (!_phpSessionID)
+                _phpSessionID = this.generateSessionId();
+            return _phpSessionID;
+        }
+
         public function set instanceID(value:String):void {
             _instanceID = value;
         }
@@ -302,7 +313,6 @@ package com.clarityenglish.common.vo.config {
 					case 'password':
 					case 'courseFile':
 					case 'startingPoint':
-					case 'sessionID':
 					case 'ip':
 					case 'referrer':
 					case 'instanceID':
@@ -314,7 +324,12 @@ package com.clarityenglish.common.vo.config {
 						if (this.hasOwnProperty(property))
 							this[property] = parameters[property];
 						break;
-					// #338 Legacy has parameter called course not courseID
+                    // gh#1519 You pass in a php session ID not a bento one
+                    case 'phpSessionID':
+                    case 'sessionID':
+                        this.phpSessionID = parameters[property];
+                        break;
+                    // #338 Legacy has parameter called course not courseID
 					case 'course':
 					case 'courseID':
 						this.courseID = parameters[property];

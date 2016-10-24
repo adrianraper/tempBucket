@@ -318,7 +318,6 @@ import flash.events.TimerEvent;
                     // gh#604 You might have a new sessionID now
                     if (data) {
                         configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-                        //trace('back to updateLicence with data sessionID={0}, config.sessionID={1}', data.sessionID, configProxy.getConfig().sessionID);
                         if (data.sessionID as String != configProxy.getConfig().sessionID) {
                             // Sanity check
                             if (data.sessionID > configProxy.getConfig().sessionID) {
