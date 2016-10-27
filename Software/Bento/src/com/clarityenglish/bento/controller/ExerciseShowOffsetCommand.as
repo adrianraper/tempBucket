@@ -41,18 +41,22 @@ package com.clarityenglish.bento.controller {
 					// gh#853
                     // gh#1405 This is too early to logout, you haven't written any scores yet.
 					if (scormProxy.scorm) {
-						if (configProxy.getProductCode() == '52' || configProxy.getProductCode() == '53') {
-							if (scormProxy.scorm.launchData.exerciseID || scormProxy.scorm.launchData.groupID) {
-								sendNotification(CommonNotifications.EXITED);
+						if (scormProxy.scorm.launchData) {
+							if (configProxy.getProductCode() == '52' || configProxy.getProductCode() == '53') {
+								if (scormProxy.scorm.launchData.exerciseID || scormProxy.scorm.launchData.groupID) {
+									sendNotification(CommonNotifications.EXITED);
+								} else {
+									sendNotification(BBNotifications.SELECTED_NODE_UP);
+								}
 							} else {
-								sendNotification(BBNotifications.SELECTED_NODE_UP);
+								if (scormProxy.scorm.launchData.exerciseID || scormProxy.scorm.launchData.unitID) {
+									sendNotification(CommonNotifications.EXITED);
+								} else {
+									sendNotification(BBNotifications.SELECTED_NODE_UP);
+								}
 							}
 						} else {
-							if (!scormProxy.scorm.launchData.courseID) {
-								sendNotification(CommonNotifications.EXITED);
-							} else {
-								sendNotification(BBNotifications.SELECTED_NODE_UP);
-							}
+							sendNotification(BBNotifications.SELECTED_NODE_UP);
 						}
 					} else {
 						if (configProxy.getProductCode() == '52' || configProxy.getProductCode() == '53') {
@@ -62,7 +66,7 @@ package com.clarityenglish.bento.controller {
 								sendNotification(BBNotifications.SELECTED_NODE_UP);
 							}
 						} else {
-							if (!configProxy.getDirectStart().courseID) {
+							if (configProxy.getDirectStart().exerciseID || configProxy.getDirectStart().unitID) {
 								sendNotification(CommonNotifications.EXITED);
 							} else {
 								sendNotification(BBNotifications.SELECTED_NODE_UP);
