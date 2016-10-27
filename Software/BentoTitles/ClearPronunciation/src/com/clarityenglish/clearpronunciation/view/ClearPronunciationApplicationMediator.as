@@ -10,8 +10,9 @@ import com.clarityenglish.common.model.ConfigProxy;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
-	
-	import org.davekeen.util.ClassUtil;
+import mx.utils.ObjectUtil;
+
+import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.utilities.statemachine.State;
@@ -90,13 +91,13 @@ import com.clarityenglish.common.model.ConfigProxy;
             var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
             var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
             var directStart:Object = configProxy.getDirectStart();
-
-            if (!directStart) return false;
+			// gh#1521 You cannot use directStart null or not to decide whether the program is direct start or not. You can only know it through the number of item in side the directStartObject.
+            if (ObjectUtil.getClassInfo(directStart).properties.length <= 0) return false;
 
             // #338
             // If exerciseID is defined go straight into an exercise.
             if (!directStart.scorm) {
-                if (directStart.exerciseID) {
+				if (directStart.exerciseID) {
                     var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);
 
                     if (exercise) {
@@ -117,7 +118,8 @@ import com.clarityenglish.common.model.ConfigProxy;
             } else {
                 var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
                 // gh#858
-                if (directStart.exerciseID) {
+				// gh#1521 Through the emptiness of launchData we can know the LMS platform is TalentLMS.
+                if (directStart.exerciseID && scormProxy.scorm.launchData) {
                     var unit:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID).parent();
                     var unitLength:Number = unit.exercise.length();
                     var exerciseIndex:Number = unit.exercise.(@id == directStart.exerciseID).childIndex();
@@ -126,14 +128,14 @@ import com.clarityenglish.common.model.ConfigProxy;
                     // Currently, the bookmark will not empty when last exercise ID stored, so here we need to force it open the first exercise manually.
                     var nextExercise:XML = (exerciseIndex + 1 == unitLength) ? unit.exercise[0] : unit.exercise[exerciseIndex + 1];
 
-                    if (nextExercise)
+					if (nextExercise)
                         sendNotification(BBNotifications.SELECTED_NODE_CHANGE, nextExercise);
                 } else if (directStart.unitID) {
                     unit = bentoProxy.menuXHTML.getElementById(directStart.unitID);
-                    // gh#879
-                    scormProxy.setTotalExercise(unit.exercise.length());
 
                     if (unit) {
+						// gh#879
+						scormProxy.setTotalExercise(unit.exercise.length());
                         sendNotification(BBNotifications.SELECTED_NODE_CHANGE, unit.exercise[0]);
                     }
                 }

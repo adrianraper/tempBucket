@@ -1,7 +1,8 @@
 package com.clarityenglish.clearpronunciation.view.home {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
-	import com.clarityenglish.bento.view.base.BentoMediator;
+import com.clarityenglish.bento.model.SCORMProxy;
+import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
@@ -39,7 +40,11 @@ import mx.collections.ArrayCollection;
 			
 			// Bind the selected node to the view to keep them in sync
 			Bind.fromProperty(bentoProxy, "selectedNode").toProperty(view, "selectedNode");
-			
+
+			// gh#1521 disable the demo feature which disable the unit and course expect the direct start one for TalentLMS.
+			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+			view.isHideDemoFeature = scormProxy.scorm && !scormProxy.scorm.launchData;
+
 			// Try and hack a bit of direct start for testing...
 			/*setTimeout(function():void {
 				sendNotification(BBNotifications.SELECTED_NODE_CHANGE, bentoProxy.menuXHTML..exercise.(@id == "1250740678061")[0]);

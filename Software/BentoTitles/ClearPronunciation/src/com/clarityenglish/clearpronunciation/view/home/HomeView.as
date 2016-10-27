@@ -64,6 +64,9 @@ import spark.components.Label;
 		[Bindable]
 		public var userNameCaption:String;
 
+		[Bindable]
+		public var isHideDemoFeature:Boolean;
+
 		public var channelCollection:ArrayCollection;
 		
 		public var mediaFolder:String;
@@ -117,7 +120,7 @@ import spark.components.Label;
 				case unitList:
 					// Set the item renderer
 					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
-					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: true, isShowDemoFeature: true };
+					unitListItemRenderer.properties = { copyProvider: copyProvider, showPieChart: true, isShowDemoFeature: !isHideDemoFeature };
 					instance.itemRenderer = unitListItemRenderer;
 					
 					// Auto select the unit if necessary

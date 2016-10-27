@@ -86,7 +86,7 @@
 				
 		<!-- Left buttons -->
 		<s:HGroup top="20" left="150">
-			<s:Button id="backButton" useHandCursor="true" buttonMode="true" enabled="{!(hostComponent.isDirectStartEx || (hostComponent.isDirectStartUnit &amp;&amp; hostComponent.isFirstExercise))}" />
+			<s:Button id="backButton" useHandCursor="true" buttonMode="true" enabled="{!(hostComponent.isDirectStartEx || hostComponent.isFirstExercise)}" />
 			<s:Button id="forwardButton" useHandCursor="true" buttonMode="true" enabled="{!hostComponent.isDirectStartEx}" />
 		</s:HGroup>
 		
@@ -116,7 +116,7 @@
 		
 		<s:Spacer width="100%" />
 		
-		<s:Group width="350" height="61" visible="{!(hostComponent.isDirectStartEx || hostComponent.isDirectStartUnit)}">
+		<s:Group width="350" height="61" visible="{!hostComponent.isDirectStartEx}">
 			<s:Group>
 				<course1:dropDownListBg />
 				<ui:UnitListItemRenderer id="currentUnitRenderer" showPieChart="false" showItemIndex="false" color="#FFFFFF" horizontalCenter="-10" verticalCenter="2" scaleX="1.2" scaleY="1.2" />
@@ -141,7 +141,7 @@
 		<s:Spacer width="100%" />
 		
 		<s:HGroup paddingTop="22" paddingRight="32" gap="43">
-			<s:Button id="backToMenuButton" buttonMode="true" useHandCursor="true" enabled="{!(hostComponent.isDirectStartEx || hostComponent.isDirectStartUnit)}" />
+			<s:Button id="backToMenuButton" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isDirectStartEx}" />
 			<s:Button id="recorderButton" buttonMode="true" useHandCursor="true" />
 			<s:Button id="phonemicChartButton" buttonMode="true" useHandCursor="true" />
 			<s:Button id="youWillButton" buttonMode="true" useHandCursor="true" />

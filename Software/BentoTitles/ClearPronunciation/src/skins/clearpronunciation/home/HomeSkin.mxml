@@ -70,6 +70,21 @@
 		<s:itemRenderer>
 			<fx:Component>
 				<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true">
+					<fx:Script>
+						<![CDATA[
+							public override function set data(value:Object):void {
+								super.data = value;
+
+								if (!outerDocument.hostComponent.isHideDemoFeature) {
+									if (data.attribute("enabledFlag").length() > 0 && (data.@enabledFlag.toString() & 8)) {
+										this.enabled = false;
+									} else {
+										this.enabled = true;
+									}
+								}
+							}
+						]]>
+					</fx:Script>
 					<s:states>
 						<s:State name="normal" />
 						<s:State name="hovered" />
