@@ -95,7 +95,8 @@ class CTPService extends BentoService {
         foreach ($tests as $key => $test) {
 
             // Remove any scheduled tests this user has already completed
-            if ($completedTests) {
+            // Let some emails repeat a test for testing purposes
+            if ($completedTests && stripos($group->manageables[0]->email, '@dpt') === false) {
                 foreach ($completedTests as $completedTest) {
                     if ($test->testId == $completedTest->testId) {
                         unset($tests[$key]);
@@ -178,7 +179,7 @@ class CTPService extends BentoService {
             if (!$session->startDateStamp) {
                 $dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
                 $dateNow = $dateStampNow->format('Y-m-d H:i:s');
-                $session->startDateStamp = $dateNow;
+                $session->startedDateStamp = $dateNow;
             }
             $this->progressOps->updateTestSession($session);
         }

@@ -12,7 +12,7 @@ class TestSession {
     var $rootId;
 	var $productCode;
 	var $readyDateStamp;
-    var $startDateStamp;
+    var $startedDateStamp;
     var $completedDateStamp;
     var $result;
     var $db;
@@ -35,7 +35,7 @@ class TestSession {
 		$this->rootId = intval($obj->F_RootID);
         $this->productCode = intval($obj->F_ProductCode);
         if ($obj->F_ReadyDateStamp && strtotime($obj->F_ReadyDateStamp) > 0) $this->readyDateStamp = $obj->F_ReadyDateStamp;
-        if ($obj->F_StartDateStamp && strtotime($obj->F_StartDateStamp) > 0) $this->startDateStamp = $obj->F_StartDateStamp;
+        if ($obj->F_StartedDateStamp && strtotime($obj->F_StartedDateStamp) > 0) $this->startedDateStamp = $obj->F_StartedDateStamp;
         if ($obj->F_CompletedDateStamp && strtotime($obj->F_CompletedDateStamp) > 0) $this->completedDateStamp = $obj->F_CompletedDateStamp;
         $this->result = json_encode($obj->F_Result);
 	}
@@ -53,7 +53,7 @@ class TestSession {
 		$array['F_RootID'] = $this->rootId;
 		$array['F_ProductCode'] = $this->productCode;
         $array['F_ReadyDateStamp'] = $this->readyDateStamp;
-        $array['F_StartDateStamp'] = $this->startDateStamp;
+        $array['F_StartedDateStamp'] = $this->startedDateStamp;
         $array['F_CompletedDateStamp'] = $this->completedDateStamp;
         $array['F_Result'] = json_encode($this->result);
 

@@ -157,8 +157,23 @@ $reportDom->documentElement->appendChild($reportDom->importNode($copyElement, tr
 $xslDom = new DOMDocument();
 $xslDom->load("../../reports/$template/report.xsl");
 
+// gh#1505 Convert results held in json, will be called from xsl
+function dptResultFormatter($result, $format) {
+    $json = json_decode($result);
+    if ($json == null)
+        $format = null;
+    switch ($format) {
+        case 'CEF':
+            if (isset($json->CEF))
+                $formattedResult = $json->CEF;
+            break;
+        default:
+            $formattedResult = $result;
+    }
+    return $formattedResult;
+}
 $proc = new XSLTProcessor();
-$proc->registerPHPFunctions(array("XSLTFunctions::secondsToMinutes","XSLTFunctions::secondsToHours"));
+$proc->registerPHPFunctions(array("XSLTFunctions::secondsToMinutes","XSLTFunctions::secondsToHours","dptResultFormatter"));
 $proc->importStylesheet($xslDom);
 if ($template == "export") {
 	header("Content-Type: text/csv; charset=\"utf-8\"");

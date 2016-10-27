@@ -671,7 +671,7 @@ SQL;
 
         if ($recurseGroups) {
             foreach ($groupIdArray as $groupId) {
-                AbstractService::$debugLog->info("get subgroups for $groupId");
+                //AbstractService::$debugLog->info("get subgroups for $groupId");
                 $groups = array_merge($groups, $this->manageableOps->getGroupSubgroups($groupId));
             }
             $groupList = implode(',', $groups);
@@ -721,7 +721,7 @@ SQL;
 					$noEmailCount++;
 				}
 			}
-			AbstractService::$debugLog->info("got $noEmailCount users with no email");
+			//AbstractService::$debugLog->info("got $noEmailCount users with no email");
 		}
 		return $emailArray;
 	}

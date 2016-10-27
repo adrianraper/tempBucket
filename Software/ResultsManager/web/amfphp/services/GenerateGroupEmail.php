@@ -9,20 +9,27 @@ require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
 $thisService = new ClarityService();
 if (!Authenticate::isAuthenticated()) {
 	// TODO: Replace with text from literals
-	echo "<h2>You are not logged in</h2>";
-	exit(0);
+	//echo "<h2>You are not logged in</h2>";
+	//exit(0);
 }
 
-if (!isset($_REQUEST['template']) || trim($_REQUEST['template']) == "") {
-	echo "<h2>No template was specified</h2>";
-	exit(0);
-}
-$templateDefinition = new TemplateDefinition();
-$templateDefinition = json_decode(stripslashes($_REQUEST['template']));
-$groupIdArray = $_REQUEST['groupIdArray'] == "" ? array() : json_decode(stripslashes($_REQUEST['groupIdArray']), true);
+//$templateDefinition = new TemplateDefinition();
+$templateDefinition = (isset($_REQUEST['template'])) ? json_decode(stripslashes($_REQUEST['template'])) : null;
+$groupIdArray = (isset($_REQUEST['groupIdArray'])) ? json_decode(stripslashes($_REQUEST['groupIdArray']), true) : array();
 $previewIndex = isset($_REQUEST['previewIndex']) ? $_REQUEST['previewIndex'] : 0;
 $send = isset($_REQUEST['send']) && $_REQUEST['send'] == "true";
 $emails_sent = isset($_REQUEST['emails_sent']) && $_REQUEST['emails_sent'] == "true";
+
+/**
+ * This for testing and debugging emails
+ */
+$templateDefinition = json_decode('{"data":{"test":{"closeTime":"2016-10-31 00:00:00","startType":"timer","status":2,"testId":"4","startData":null,"language":"EN","groupId":"21560","caption":"Second pilot","showResult":false,"productCode":"63","openTime":"2016-10-24 00:00:00"}},"templateID":null,"filename":"user/PPT-welcome","title":null,"description":null,"name":"invitation"}');
+$groupIdArray = json_decode('["21560"]');
+
+if (!isset($templateDefinition->data)) {
+    echo "<h2>No template data was passed</h2>";
+    exit(0);
+}
 
 //if ($previewIndex > 0) {
 //	var_dump($_REQUEST['template']); exit();
