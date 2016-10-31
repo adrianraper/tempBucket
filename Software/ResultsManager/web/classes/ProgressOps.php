@@ -468,8 +468,8 @@ SQL;
         $dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
         $dateNow = $dateStampNow->format('Y-m-d H:i:s');
 
-        if ($completed)
-            $session->completedDateStamp = $dateNow;
+        // gh#151 Don't overwrite an existing datestamp
+        $session->completedDateStamp = (!$session->completedDateStamp && $completed) ? $dateNow : $session->completedDateStamp;
 
         $this->db->AutoExecute("T_TestSession", $session->toAssocArray(), "UPDATE", "F_SessionID=".$session->sessionId);
 

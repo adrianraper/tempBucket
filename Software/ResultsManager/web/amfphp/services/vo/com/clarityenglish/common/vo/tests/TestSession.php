@@ -37,7 +37,7 @@ class TestSession {
         if ($obj->F_ReadyDateStamp && strtotime($obj->F_ReadyDateStamp) > 0) $this->readyDateStamp = $obj->F_ReadyDateStamp;
         if ($obj->F_StartedDateStamp && strtotime($obj->F_StartedDateStamp) > 0) $this->startedDateStamp = $obj->F_StartedDateStamp;
         if ($obj->F_CompletedDateStamp && strtotime($obj->F_CompletedDateStamp) > 0) $this->completedDateStamp = $obj->F_CompletedDateStamp;
-        $this->result = json_encode($obj->F_Result);
+        $this->result = ($obj->F_Result) ? json_decode($obj->F_Result) : null;
 	}
 	
 	/**
@@ -55,7 +55,7 @@ class TestSession {
         $array['F_ReadyDateStamp'] = $this->readyDateStamp;
         $array['F_StartedDateStamp'] = $this->startedDateStamp;
         $array['F_CompletedDateStamp'] = $this->completedDateStamp;
-        $array['F_Result'] = json_encode($this->result);
+        $array['F_Result'] = ($this->result) ? json_encode($this->result) : null;
 
 		return $array;
 	}

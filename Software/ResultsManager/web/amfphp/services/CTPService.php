@@ -187,14 +187,25 @@ class CTPService extends BentoService {
     }
 
     public function getTestResult($sessionId) {
+        $isDirty = false;
+
+        // Get the session record
         $session = $this->testOps->getTestSession($sessionId);
 
-        $result = $this->progressOps->getTestResult($session);
-        $completed = true;
-        $session->result = $result;
-        $this->progressOps->updateTestSession($session, $completed);
+        // gh#151 Has the result already been calculated for this session?
+        if (!$session->result) {
+            $session->result = $this->progressOps->getTestResult($session);
+            $isDirty = true;
+        }
+        // gh#151 Have we closed the session?
+        if (!$session->completedDateStamp)
+            $isDirty = true;
 
-        return $result;
+        // Update if something changed
+        if ($isDirty)
+            $this->progressOps->updateTestSession($session, true);
+
+        return $session->result;
     }
 
 }

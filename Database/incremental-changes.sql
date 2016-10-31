@@ -1473,9 +1473,9 @@ CREATE TABLE `T_TestSession` (
 
 /*
 ALTER TABLE `T_ScheduledTests` ADD COLUMN `F_MenuFilename` TEXT NULL DEFAULT NULL AFTER `F_ShowResult`;
-update T_ScheduledTests set F_MenuFilename='menu-track-a.json' where F_TestID=3;
-update T_ScheduledTests set F_MenuFilename='menu-track-b.json' where F_TestID=4;
-update T_ScheduledTests set F_MenuFilename='menu-gauge.json' where F_TestID=2;
+update T_ScheduledTests set F_MenuFilename='menu-track-a.json' where F_TestID=6;
+update T_ScheduledTests set F_MenuFilename='menu-track-b.json' where F_TestID=7;
+update T_ScheduledTests set F_MenuFilename='menu-gauge.json' where F_TestID=8;
 ALTER TABLE `T_ScheduledTests` ADD COLUMN `F_Status` smallint(5) NOT NULL DEFAULT 0 AFTER `F_MenuFilename`;
 */
 
