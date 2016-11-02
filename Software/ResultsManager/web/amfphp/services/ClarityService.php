@@ -421,7 +421,6 @@ class ClarityService extends AbstractService {
 	}
 	public function updateTest($test) {
 		$this->testOps->updateTest($test);
-		//AbstractService::$debugLog->info("return testdetails for group ".$test->groupId);
 		return $this->testOps->getTests($test->groupId, $test->productCode);
 	}
 	public function deleteTest($test) {

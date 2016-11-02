@@ -167,6 +167,7 @@ package com.clarityenglish.resultsmanager.view.management {
 				// This will send back an array of testDetails
 				case RMNotifications.TESTS_LOADED:
 					testadminView.testList.dataProvider = note.getBody() as Array;
+					testadminView.resetSelection();
 					break;
 				
 				//case RMNotifications.TEST_DELETED:
@@ -179,6 +180,8 @@ package com.clarityenglish.resultsmanager.view.management {
 				case RMNotifications.TEST_ADDED:
 					testadminView.testList.dataProvider = note.getBody() as Array;
 					testadminView.testList.selectedIndex = testadminView.testList.dataProvider.length - 1;
+					// Update editable status of test detail
+					testadminView.resetSelection();
 					
 					// gh#1499 
 					testadminView.addLicencesScheduled();

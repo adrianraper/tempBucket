@@ -33,10 +33,14 @@ package com.clarityenglish.resultsmanager.model {
 			new RemoteDelegate("getTests", [ group, thisTitle.id ], this).execute();
 		}
 		public function addTest(test:ScheduledTest):void {
-			new RemoteDelegate("addTest", [ test ], this).execute();
+			// Convert UTC times from database into local timezone
+			var convertedTest:ScheduledTest = test.convertTestTimesToUTC();
+			new RemoteDelegate("addTest", [ convertedTest ], this).execute();
 		}
 		public function updateTest(test:ScheduledTest):void {
-			new RemoteDelegate("updateTest", [ test ], this).execute();
+			// Convert UTC times from database into local timezone
+			var convertedTest:ScheduledTest = test.convertTestTimesToUTC();
+			new RemoteDelegate("updateTest", [ convertedTest ], this).execute();
 		}
 		//public function deleteTest(test:ScheduledTest):void {
 		//	new RemoteDelegate("deleteTest", [ test ], this).execute();
@@ -45,13 +49,23 @@ package com.clarityenglish.resultsmanager.model {
 		public function onDelegateResult(operation:String, data:Object):void{
 			switch (operation) {
 				case "getTests":
-					sendNotification(RMNotifications.TESTS_LOADED, data);
-					break;
 				case "updateTest":					
-					sendNotification(RMNotifications.TEST_UPDATED, data);
-					break;
 				case "addTest":
-					sendNotification(RMNotifications.TEST_ADDED, data);
+					// Convert UTC times from database into local timezone
+					var convertedTests:Array = new Array();
+					for each (var test:ScheduledTest in data)
+						convertedTests.push(test.convertTestTimesToLocal());
+					switch (operation) {
+						case "getTests":
+							sendNotification(RMNotifications.TESTS_LOADED, convertedTests);
+							break;
+						case "updateTest":					
+							sendNotification(RMNotifications.TEST_UPDATED, convertedTests);
+							break;
+						case "addTest":
+							sendNotification(RMNotifications.TEST_ADDED, convertedTests);
+							break;
+					}
 					break;
 				//case "deleteTest":
 				//	sendNotification(RMNotifications.TEST_DELETED, data);

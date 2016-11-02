@@ -239,7 +239,7 @@
 					//releaseTestButton.visible = releaseTestButton.includeInLayout = selectedTest.isTestDraft();
 					
 					// You can send out the invitation email anytime before it closes 
-					sendWelcomeEmailButton.visible = sendWelcomeEmailButton.includeInLayout = (selectedTest.isTestReleased() || !selectedTest.isTestStarted());
+					sendWelcomeEmailButton.visible = sendWelcomeEmailButton.includeInLayout = (selectedTest.isTestReleased() && !selectedTest.isTestClosed());
 					
 					// You can see the results any time after it opens 
 					generateReportButton.visible = generateReportButton.includeInLayout = selectedTest.isTestStarted();
@@ -328,7 +328,7 @@
 					<mx:Spacer height="5" />
 				</mx:VBox>
 			</mx:VBox>
-			<mx:VBox width="100%">
+			<mx:VBox width="100%" visible="{selectedGroup != null}" includeInLayout="{selectedGroup != null}">
 				<ui:TestDetailPanel width="99%" height="100%" id="testDetailPanel" visible="{testList.selectedItem != null}" includeInLayout="{testList.selectedItem != null}" />
 				<!-- <mx:Button id="releaseTestButton" visible="false" includeInLayout="false" height="18" click="onReleaseTestButtonClick(event)" /> -->
 				<mx:Button id="deleteTestButton" visible="false" includeInLayout="false" height="18" click="onDeleteTestButtonClick(event)" />

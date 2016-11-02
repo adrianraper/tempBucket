@@ -39,6 +39,8 @@
 		private var _openTime:Date;
 		private var _closeTime:Date;
 		
+		public var menuFilename:String;
+		
 		/**
 		 * Status of the test to control what you can to do it
 		 */
@@ -46,6 +48,22 @@
 		
 		public function ScheduledTest() {}
 		
+		private function clone():ScheduledTest {
+			var newTest:ScheduledTest = new ScheduledTest();
+			newTest.testId = this.testId;
+			newTest.groupId = this.groupId;
+			newTest.productCode = this.productCode;
+			newTest.caption = this.caption;
+			newTest.language = this.language;
+			newTest.showResult = this.showResult;
+			newTest.startType = this.startType;
+			newTest.startData = this.startData;
+			newTest._openTime = this._openTime;
+			newTest._closeTime = this._closeTime;
+			newTest.menuFilename = this.menuFilename;
+			newTest.status = this.status;
+			return newTest;
+		}
 		public function set closeTime(value:String):void {
 			_closeTime = DateUtils.ansiStringToDate(value);
 		}
@@ -70,6 +88,31 @@
 		}
 		public function isTestDraft():Boolean {
 			return (status == ScheduledTest.STATUS_PRERELEASE);
+		}
+		/**
+		 * Convert all times for the test into UTC for writing to the database
+		 */
+		public function convertTestTimesToUTC():ScheduledTest {
+			var newTest:ScheduledTest = this.clone();
+			newTest._openTime = this.convertToUTC(this._openTime);
+			newTest._closeTime = this.convertToUTC(this._closeTime);
+			return newTest;
+		}
+		public function convertTestTimesToLocal():ScheduledTest {
+			var newTest:ScheduledTest = this.clone();
+			newTest._openTime = this.convertToLocal(this._openTime);
+			newTest._closeTime = this.convertToLocal(this._closeTime);
+			return newTest;
+		}
+		private function convertToUTC(thisDate:Date):Date {
+			var utcDate:Date = new Date();
+			utcDate.setTime(thisDate.getTime() + (thisDate.getTimezoneOffset() * 60 * 1000));
+			return utcDate;
+		}
+		private function convertToLocal(thisDate:Date):Date {
+			var localDate:Date = new Date();
+			localDate.setTime(thisDate.getTime() - (thisDate.getTimezoneOffset() * 60 * 1000));
+			return localDate;
 		}
 	}
 	
