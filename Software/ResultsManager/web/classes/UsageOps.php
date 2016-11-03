@@ -1166,8 +1166,9 @@ EOD;
 	*/
 	
 	// gh#1487 Count tests purchased, used, scheduled
-	public function getTestsUsed($pc) {
-		$rootID = Session::get('rootID');
+	public function getTestsUsed($pc, $rootID = null) {
+        if (!$rootID)
+		    $rootID = Session::get('rootID');
 		
 		// Tests purchased is currently T_Accounts.F_MaxStudents - we will manually have to add this with any incremental purchases
 	    $bindingParams = array($pc, $rootID);
@@ -1226,7 +1227,7 @@ SQL;
         switch ($rs->RecordCount()) {
             case 0:
                 // There are no records
-                $scheduled = 0;
+                $scheduledEstimate = 0;
                 break;
             default:
             	// Include duplicate groups if they have multiple scheduled tests
@@ -1258,14 +1259,14 @@ SQL;
 			                $dbObj1 = $rs1->FetchNextObj();
 			                $alreadyCompleted = $dbObj1->testsUsed;
 			        }
-			        $scheduled += $usersInGroup - $alreadyCompleted;
+                    $scheduledEstimate = $usersInGroup - $alreadyCompleted;
                	}
         }
         
 		$usage = array();
 		$usage['purchased'] = $purchased; 
 		$usage['used'] = $completed; 
-		$usage['scheduled'] = $scheduled; 
+		$usage['scheduled'] = $scheduledEstimate;
 		return $usage;
 	}
 }

@@ -4,6 +4,7 @@
  */
 require_once(dirname(__FILE__)."/BentoService.php");
 require_once(dirname(__FILE__)."/../../classes/TestOps.php");
+require_once(dirname(__FILE__)."/../../classes/UsageOps.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/ScheduledTest.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/TestSession.php");
 
@@ -20,6 +21,7 @@ class CTPService extends BentoService {
 		AbstractService::$title = "ctp";
 
         $this->testOps = new TestOps($this->db);
+        $this->usageOps = new UsageOps($this->db);
 	}
 
 	// Login checks the user, account and returns valid tests
@@ -205,7 +207,9 @@ class CTPService extends BentoService {
         if ($isDirty)
             $this->progressOps->updateTestSession($session, true);
 
-        return $session->result;
+        // gh#1523 Are there enough licences left to send back the result?
+        $licencesObj = $this->usageOps->getTestsUsed($session->productCode, $session->rootId);
+        return (($licencesObj['purchased'] - $licencesObj['scheduled']) >= 0) ? $session->result : true;
     }
 
 }
