@@ -63,6 +63,9 @@ class ReportBuilder {
 	const FOR_UNITS = "for_units";
 	const FOR_EXERCISES = "for_exercises";
 	const FOR_IDOBJECTS = "for_idobjects";
+	
+	// gh#1523
+	const FOR_TESTID = "for_testid";
 
 	const ORDERBY_USERS = "orderby_users";
 	const ORDERBY_UNIT = "orderby_unit";
@@ -126,6 +129,9 @@ class ReportBuilder {
 		if (!isset($this->opts[ReportBuilder::SHOW_INACTIVE_USERS])) $this->opts[ReportBuilder::SHOW_INACTIVE_USERS] = "";
         // gh#1505
         if (!isset($this->opts[ReportBuilder::SHOW_CEF])) $this->opts[ReportBuilder::SHOW_CEF] = "";
+        // gh#1523
+        if (!isset($this->opts[ReportBuilder::FOR_TESTID])) $this->opts[ReportBuilder::FOR_TESTID] = "";
+        
 	}
 	
 	function setOpt($opt, $value) {
@@ -204,6 +210,8 @@ EOD;
         $this->addColumn("u.F_UserID", "userID");
 
         // For idObjects (e.g. CourseID=? AND UnitID=? AND ExerciseID=?)
+        // gh#1523 No need if you have a testId
+        /*
         if ($idObjects = $this->getOpt(ReportBuilder::FOR_IDOBJECTS)) {
                 foreach ($idObjects as $idObject) {
                     $wheres = array();
@@ -219,10 +227,19 @@ EOD;
                     $this->selectBuilder->addWhere("(".implode(" AND ", $wheres).")", true);
                 }
         }
-
+		*/
+        // gh#1523 You probably know the testID you want
+        if ($this->getOpt(ReportBuilder::FOR_TESTID))
+        	$this->selectBuilder->addWhere("s.F_TestID = ".$this->getOpt(ReportBuilder::FOR_TESTID));
+        	
+        // You must order by the test taking so that licences are correctly counted and over the limit are blocked
+        // Probably the nicest would be to order by F_CompletedDateStamp, but it will surely be quicker to order by the session id
+        // which is implicitly the start time of the test.
+        $this->selectBuilder->addOrder('s.F_SessionID');
+        	
         // v3.0.4 If you want special ordering
-        if ($this->getOpt(ReportBuilder::ORDERBY_USERS)) $this->selectBuilder->addOrder('s.F_UserID');
-        if ($this->getOpt(ReportBuilder::ORDERBY_UNIT)) $this->selectBuilder->addOrder('s.F_UnitID');
+        //if ($this->getOpt(ReportBuilder::ORDERBY_USERS)) $this->selectBuilder->addOrder('s.F_UserID');
+        //if ($this->getOpt(ReportBuilder::ORDERBY_UNIT)) $this->selectBuilder->addOrder('s.F_UnitID');
 
         // v3.4 Get last session results first
         if ($this->getOpt(ReportBuilder::SHOW_SESSIONID)) $this->selectBuilder->addOrder('s.F_SessionID', 'DESC');

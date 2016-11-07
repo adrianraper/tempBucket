@@ -188,7 +188,7 @@ EOD;
 		}
 
 		// gh#1505
-        if (stripos($template,'dptsummary') !== false) {
+        if (stripos($template,'testsummary') !== false) {
             $sql = $reportBuilder->buildCTPReportSQL();
         } else {
             // Execute the query - for some crazy reason its necessary to store the sql in a variable before passing to to AdoDB
@@ -196,6 +196,11 @@ EOD;
         }
 		//echo $sql.'<br/>'; exit();
 		$rows = $this->db->GetArray($sql);
+		
+		// gh#1523 Now is the time to blank out the scores for anyone who took the test but has no licence
+        if (stripos($template,'testsummary') !== false) {
+            $rows = $this->blankResultIfNoLicences();
+        }
 		
 		// gh#777 Run a second query to add all users in a group who haven't got any score records
 		if ($reportBuilder->getOpt(ReportBuilder::SHOW_INACTIVE_USERS)) {
@@ -241,10 +246,9 @@ EOD;
 		// Build a second SQL and get the data from it into another array. Then you can process this array below too.
 		// Once all the data you need is in the dom, you can let the xsl pick it up.
 		// Or it might be a better idea to do the necessary processing (summing, weighting etc) in here as PHP will be easier thatn XSL (for most stuff).
-        // Dynamic Placement TEst
-        if (stripos($template,'dptsummary') !== false) {
+        // Dynamic Placement Test
+        if (stripos($template,'ctpsummary') !== false) {
             // The result will have been calculated already by the application server
-
 
         // Clarity's Practical Placement Test (ClarityTestSummary and 3levelTestSummary)
         } elseif (strpos($template,'TestSummary') !== false) {
@@ -785,12 +789,12 @@ SQL;
 				// This needs to OR bunches of (F_CourseID=<course> AND F_UnitID=<unit> AND F_ExerciseID=$id) since they are not unique
 				// across courses - passing the idObjects array takes care of this
 				return array(ReportBuilder::FOR_IDOBJECTS => $idObjects);
+				break;
+				
 			case "Group":
 				$ids = array();				
-				foreach ($idObjects as $idObject) {
+				foreach ($idObjects as $idObject)
 					$ids[] = $idObject['Group'];
-				}
-				//echo "ids=".implode(",", $ids);
 					
 				// The report SQL doesn't understand groups, so we need to get all the users in this group
 				// v3.3 But why not? You could easily put groupID into the SQL.
@@ -804,8 +808,18 @@ SQL;
 				foreach ($groups as $group) {
 					$ids = array_merge($group->getSubGroupIds(), $ids);
 				}
-				//echo "ids=".implode(",", $ids);
-				return array(ReportBuilder::FOR_GROUPS => $ids);
+				
+				// gh#1523 Also pick up a test id for CTP
+				foreach ($idObjects as $idObject)
+					$testId = $idObject['TestID'];
+					
+				$return = array(ReportBuilder::FOR_GROUPS => $ids);
+				
+				if ($testId)
+					$return[ReportBuilder::FOR_TESTID] = array($testId);
+					
+				return $return;
+				break;
 				// skip this if I can do the above
 				// gh#653 Why is this not commented out? it can never be reached can it?
 				/*
@@ -1147,6 +1161,54 @@ SQL;
 	//	return sprintf("%d:%02d", abs((int)$minutes / 60), abs((int)$minutes % 60));
 	//}
 
+	// gh#1523 Go through all the results returned, blanking out the score for any who don't have a licence
+	public function blankResultIfNoLicences($rows, $pc) {
+		
+		$rootId = Session::get('rootID');
+		
+		// Tests purchased is currently T_Accounts.F_MaxStudents - we will manually have to add this with any incremental purchases
+	    $bindingParams = array($pc, $rootID);
+        $sql = <<<SQL
+			SELECT * FROM T_Accounts
+            WHERE F_ProductCode=?
+            AND F_RootID=? 
+SQL;
+        $rs = $this->db->Execute($sql, $bindingParams);
+        switch ($rs->RecordCount()) {
+            case 0:
+                // There are no records
+                $purchased = 0;
+                break;
+            default:
+            	// Just ignore anything more than one
+                $dbObj = $rs->FetchNextObj();
+                $purchased = $dbObj->F_MaxStudents;
+        }
+        
+        // Of all the tests that have been used, what is the sessionID of the last purchase one?
+        // Tests completed is based on T_TestSession
+        $sql = <<<SQL
+			SELECT MAX(F_SessionID) as lastID FROM T_TestSession
+            WHERE F_ProductCode=?
+            AND F_RootID=?
+            AND F_CompletedDateStamp is not null
+			GROUP BY F_UserID, F_TestID
+			ORDER BY F_SessionID ASC
+			LIMIT 0,$purchased;
+SQL;
+        $rs = $this->db->Execute($sql, $bindingParams);
+        switch ($rs->RecordCount()) {
+            case 0:
+                // There are no records
+                $completed = 0;
+                break;
+            default:
+            	// Just ignore anything more than one
+                $dbObj = $rs->FetchNextObj();
+                $maxID = $dbObj->lastID;
+        }
+        
+	}
 	// gh#653 convert an array into a UID taking into account whatever level is set
 	private function reportableUID($arrayObj){
 		$buildUID = '';

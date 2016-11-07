@@ -99,17 +99,17 @@ if (!Authenticate::isAuthenticated()) {
 $template = (isset($_REQUEST['template'])) ? $_REQUEST['template'] : "standard";
 $opts = json_decode(stripslashes((isset($_REQUEST['opts'])) ? $_REQUEST['opts'] : ""), true);
 $onReportablesIDObjects = (isset($_REQUEST['onReportablesIDObjects'])) ? json_decode(stripslashes($_REQUEST['onReportablesIDObjects']), true) : array();
-$forReportableIDObjects = (isset($_REQUEST['forReportablesIDObjects'])) ? json_decode(stripslashes($_REQUEST['forReportablesIDObjects']), true) : array();
+$forReportablesIDObjects = (isset($_REQUEST['forReportablesIDObjects'])) ? json_decode(stripslashes($_REQUEST['forReportablesIDObjects']), true) : array();
 $onClass = (isset($_REQUEST['onClass'])) ? $_REQUEST['onClass'] : "";
 $forClass = (isset($_REQUEST['forClass'])) ? $_REQUEST['forClass'] : "";
 
 /**
  * This for testing and debugging reports
  */
-$template = "standard";
+$template = "ClarityTestSummary";
 $opts = json_decode(stripslashes('{"detailedReport":true,"attempts":"all","headers":{"onReport":"Practical Placement Test v2","onReportLabel":"Title(s)","forReportDetail":"EfHS","attempts":"All attempts","forReportLabel":"Group(s)","dateRange":""},"includeInactiveUsers":true,"includeStudentID":false}'), true);
-$forReportablesIDObjects = json_decode(stripslashes('[{"Group":"74533"}]'), true);
-$onReportableIDObjects = json_decode(stripslashes('[{"Title":"63","Course":"1216948569658"}]'), true);
+$forReportablesIDObjects = json_decode(stripslashes('[{"Group":"74533", "TestID":"4"}]'), true);
+$onReportablesIDObjects = json_decode(stripslashes('[{"Title":"63","Course":"1216948569658"}]'), true);
 $onClass = "Title";
 $forClass = "Group";
 
@@ -121,7 +121,7 @@ $template = preg_replace($pattern, $replacement, $template);
 
 // Generate the report based on the options passed to the script
 // v3.0.4 I need to pass the template in for special processing
-$reportDom = $clarityService->getReport($onReportablesIDObjects, $onClass, $forReportableIDObjects, $forClass, $opts, $template);
+$reportDom = $clarityService->getReport($onReportablesIDObjects, $onClass, $forReportablesIDObjects, $forClass, $opts, $template);
 // AR If I want to see the XML before it gets processed?
 //$reportDom->formatOutput = true; 
 //header("Content-Type: text/xml; charset=utf-8"); echo $reportDom; exit(0);
@@ -137,11 +137,11 @@ $reportDom = $clarityService->getReport($onReportablesIDObjects, $onClass, $forR
 
 // Add in the script name and request parameters as attributes. This is to allow you to build different views direct from the report (eg: print).
 $reportDom->documentElement->setAttribute("scriptName", $_SERVER['SCRIPT_NAME']);
-$reportDom->documentElement->setAttribute("onReportablesIDObjects", stripslashes($_REQUEST['onReportablesIDObjects']));
-$reportDom->documentElement->setAttribute("onClass", $_REQUEST['onClass']);
-$reportDom->documentElement->setAttribute("forReportablesIDObjects", stripslashes($_REQUEST['forReportablesIDObjects']));
-$reportDom->documentElement->setAttribute("forClass", $_REQUEST['forClass']);
-$reportDom->documentElement->setAttribute("opts", stripslashes($_REQUEST['opts']));
+$reportDom->documentElement->setAttribute("onReportablesIDObjects", (isset($_REQUEST['onReportablesIDObjects'])) ? stripslashes($_REQUEST['onReportablesIDObjects']) : $onReportablesIDObjects);
+$reportDom->documentElement->setAttribute("onClass", (isset($_REQUEST['onClass'])) ? $_REQUEST['onClass'] : $onClass);
+$reportDom->documentElement->setAttribute("forReportablesIDObjects", (isset($_REQUEST['forReportablesIDObjects'])) ? stripslashes($_REQUEST['forReportablesIDObjects']) : $forReportablesIDObjects);
+$reportDom->documentElement->setAttribute("forClass", (isset($_REQUEST['forClass'])) ? $_REQUEST['forClass'] : $forClass);
+$reportDom->documentElement->setAttribute("opts", (isset($_REQUEST['opts'])) ? $_REQUEST['opts'] : $opts);
 
 //echo var_dump($_REQUEST['opts']); exit(0);
 

@@ -29,7 +29,7 @@ class CTPService extends BentoService {
         // Check the user, which includes licence slot checking (though there currently is none)
         // ctp#80
         $login = $this->login(
-            [ "email" => $email, "password" => $password ],
+            array( "email" => $email, "password" => $password ),
             User::LOGIN_BY_EMAIL + User::LOGIN_HASHED,
             true,
             microtime(true) * 10000, // instanceId - is this used for anything?
@@ -70,11 +70,11 @@ class CTPService extends BentoService {
             $sessionId = "xxxx";
         }
 
-        return [
+        return array(
             "user" => $user,
             "sessionID" => (string)$sessionId,
             "tests" => $tests
-        ];
+        );
 
     }
 
