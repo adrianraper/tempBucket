@@ -106,12 +106,13 @@ $forClass = (isset($_REQUEST['forClass'])) ? $_REQUEST['forClass'] : "";
 /**
  * This for testing and debugging reports
  */
-$template = "ClarityTestSummary";
+$template = "DPTSummary";
 $opts = json_decode(stripslashes('{"detailedReport":true,"attempts":"all","headers":{"onReport":"Practical Placement Test v2","onReportLabel":"Title(s)","forReportDetail":"EfHS","attempts":"All attempts","forReportLabel":"Group(s)","dateRange":""},"includeInactiveUsers":true,"includeStudentID":false}'), true);
 $forReportablesIDObjects = json_decode(stripslashes('[{"Group":"74533", "TestID":"4"}]'), true);
 $onReportablesIDObjects = json_decode(stripslashes('[{"Title":"63","Course":"1216948569658"}]'), true);
 $onClass = "Title";
 $forClass = "Group";
+Session::set('rootID', 163);
 
 // Protect against directory traversal
 // PHP 5.3
@@ -137,11 +138,11 @@ $reportDom = $clarityService->getReport($onReportablesIDObjects, $onClass, $forR
 
 // Add in the script name and request parameters as attributes. This is to allow you to build different views direct from the report (eg: print).
 $reportDom->documentElement->setAttribute("scriptName", $_SERVER['SCRIPT_NAME']);
-$reportDom->documentElement->setAttribute("onReportablesIDObjects", (isset($_REQUEST['onReportablesIDObjects'])) ? stripslashes($_REQUEST['onReportablesIDObjects']) : $onReportablesIDObjects);
-$reportDom->documentElement->setAttribute("onClass", (isset($_REQUEST['onClass'])) ? $_REQUEST['onClass'] : $onClass);
-$reportDom->documentElement->setAttribute("forReportablesIDObjects", (isset($_REQUEST['forReportablesIDObjects'])) ? stripslashes($_REQUEST['forReportablesIDObjects']) : $forReportablesIDObjects);
-$reportDom->documentElement->setAttribute("forClass", (isset($_REQUEST['forClass'])) ? $_REQUEST['forClass'] : $forClass);
-$reportDom->documentElement->setAttribute("opts", (isset($_REQUEST['opts'])) ? $_REQUEST['opts'] : $opts);
+$reportDom->documentElement->setAttribute("onReportablesIDObjects", (isset($_REQUEST['onReportablesIDObjects'])) ? stripslashes($_REQUEST['onReportablesIDObjects']) : "");
+$reportDom->documentElement->setAttribute("onClass", (isset($_REQUEST['onClass'])) ? $_REQUEST['onClass'] : "");
+$reportDom->documentElement->setAttribute("forReportablesIDObjects", (isset($_REQUEST['forReportablesIDObjects'])) ? stripslashes($_REQUEST['forReportablesIDObjects']) : "");
+$reportDom->documentElement->setAttribute("forClass", (isset($_REQUEST['forClass'])) ? $_REQUEST['forClass'] : "");
+$reportDom->documentElement->setAttribute("opts", (isset($_REQUEST['opts'])) ? $_REQUEST['opts'] : "");
 
 //echo var_dump($_REQUEST['opts']); exit(0);
 

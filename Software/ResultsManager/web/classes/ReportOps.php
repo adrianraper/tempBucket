@@ -188,7 +188,7 @@ EOD;
 		}
 
 		// gh#1505
-        if (stripos($template,'testsummary') !== false) {
+        if (stripos($template,'dptsummary') !== false) {
             $sql = $reportBuilder->buildCTPReportSQL();
         } else {
             // Execute the query - for some crazy reason its necessary to store the sql in a variable before passing to to AdoDB
@@ -198,8 +198,19 @@ EOD;
 		$rows = $this->db->GetArray($sql);
 		
 		// gh#1523 Now is the time to blank out the scores for anyone who took the test but has no licence
-        if (stripos($template,'testsummary') !== false) {
-            $rows = $this->blankResultIfNoLicences();
+        if (stripos($template,'dptsummary') !== false) {
+        	$pc = $onReportableIDObjects[0]['Title'];
+        	$rootId = Session::get('rootID');
+        	$maxSessionId = $this->lastSessionInLicence($pc, $rootId);
+        	
+			for (end($rows); key($rows)!==null; prev($rows)){
+	  			$currentRow = current($rows);
+	  			if ($currentRow['sessionID'] > $maxSessionId) {
+	  				$currentRow['result'] = '****';
+	  			} else {
+	  				break;
+	  			}
+			}        	
         }
 		
 		// gh#777 Run a second query to add all users in a group who haven't got any score records
@@ -247,7 +258,7 @@ EOD;
 		// Once all the data you need is in the dom, you can let the xsl pick it up.
 		// Or it might be a better idea to do the necessary processing (summing, weighting etc) in here as PHP will be easier thatn XSL (for most stuff).
         // Dynamic Placement Test
-        if (stripos($template,'ctpsummary') !== false) {
+        if (stripos($template,'dptsummary') !== false) {
             // The result will have been calculated already by the application server
 
         // Clarity's Practical Placement Test (ClarityTestSummary and 3levelTestSummary)
@@ -808,15 +819,14 @@ SQL;
 				foreach ($groups as $group) {
 					$ids = array_merge($group->getSubGroupIds(), $ids);
 				}
+				$return = array(ReportBuilder::FOR_GROUPS => $ids);
 				
 				// gh#1523 Also pick up a test id for CTP
 				foreach ($idObjects as $idObject)
 					$testId = $idObject['TestID'];
 					
-				$return = array(ReportBuilder::FOR_GROUPS => $ids);
-				
 				if ($testId)
-					$return[ReportBuilder::FOR_TESTID] = array($testId);
+					$return[ReportBuilder::FOR_TESTID] = $testId;
 					
 				return $return;
 				break;
@@ -1161,13 +1171,11 @@ SQL;
 	//	return sprintf("%d:%02d", abs((int)$minutes / 60), abs((int)$minutes % 60));
 	//}
 
-	// gh#1523 Go through all the results returned, blanking out the score for any who don't have a licence
-	public function blankResultIfNoLicences($rows, $pc) {
-		
-		$rootId = Session::get('rootID');
+	// gh#1523 Count number of licences purchased and which session id was the last that fit in this limit
+	public function lastSessionInLicence($pc, $rootId) {
 		
 		// Tests purchased is currently T_Accounts.F_MaxStudents - we will manually have to add this with any incremental purchases
-	    $bindingParams = array($pc, $rootID);
+	    $bindingParams = array($pc, $rootId);
         $sql = <<<SQL
 			SELECT * FROM T_Accounts
             WHERE F_ProductCode=?
@@ -1177,7 +1185,7 @@ SQL;
         switch ($rs->RecordCount()) {
             case 0:
                 // There are no records
-                $purchased = 0;
+                return 0;
                 break;
             default:
             	// Just ignore anything more than one
@@ -1185,10 +1193,10 @@ SQL;
                 $purchased = $dbObj->F_MaxStudents;
         }
         
-        // Of all the tests that have been used, what is the sessionID of the last purchase one?
+        // Of all the tests that have been used, what is the sessionID of the last purchased one?
         // Tests completed is based on T_TestSession
         $sql = <<<SQL
-			SELECT MAX(F_SessionID) as lastID FROM T_TestSession
+			SELECT * FROM T_TestSession
             WHERE F_ProductCode=?
             AND F_RootID=?
             AND F_CompletedDateStamp is not null
@@ -1196,19 +1204,10 @@ SQL;
 			ORDER BY F_SessionID ASC
 			LIMIT 0,$purchased;
 SQL;
-        $rs = $this->db->Execute($sql, $bindingParams);
-        switch ($rs->RecordCount()) {
-            case 0:
-                // There are no records
-                $completed = 0;
-                break;
-            default:
-            	// Just ignore anything more than one
-                $dbObj = $rs->FetchNextObj();
-                $maxID = $dbObj->lastID;
-        }
-        
+		$dbRows = $this->db->getArray($sql, $bindingParams);
+		return (count($dbRows) > 0) ? $dbRows[count($dbRows)-1]['F_SessionID'] : 0;		
 	}
+	
 	// gh#653 convert an array into a UID taking into account whatever level is set
 	private function reportableUID($arrayObj){
 		$buildUID = '';

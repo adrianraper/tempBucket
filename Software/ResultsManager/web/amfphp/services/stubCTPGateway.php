@@ -23,27 +23,27 @@ function router($json) {
 }
 
 function login() {
-	return [
-		"user" => [
+	return array(
+		"user" => array(
         		"email" => "test@test.com",
         		"fullName" => "Test Account",
         		"studentID" => "123456"
-		],
+		),
 		"sessionID" => "123456789",
-		"tests" => [
-			[
+		"tests" => array(
+			array(
 				"id" => "ilatest-run-12345",
 				"contentName" => "ila",
 				"description" => "The ILA test content run 12345.",
                 "startTimestamp" => "2016-08-20 09:00:00",
                 "endTimestamp" => null
-			]
-		]
-	];	
+			)
+		)
+	);
 }
 
 function scoreWrite() {
-	return [
+	return array(
 		"sessionID" => (string)time()
-	];
+	);
 }
