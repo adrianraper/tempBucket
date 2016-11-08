@@ -2,7 +2,6 @@
 Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
-	//import com.adobe.serialization.json.JSON;
 	import com.adobe.serialization.json.JSON;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.email.TemplateDefinition;

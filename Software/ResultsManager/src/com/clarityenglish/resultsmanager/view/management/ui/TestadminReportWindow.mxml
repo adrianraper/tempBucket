@@ -40,7 +40,7 @@
 		
 		private var copyProvider:CopyProvider;
 		// v3.0.5 For title specific reports
-		private var specialReportTemplate:String = "ClarityTestSummary";
+		private var specialReportTemplate:String = "DPTSummary";
 		
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			this.copyProvider = copyProvider;

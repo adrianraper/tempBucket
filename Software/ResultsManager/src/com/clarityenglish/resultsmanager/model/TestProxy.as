@@ -35,6 +35,8 @@ package com.clarityenglish.resultsmanager.model {
 		public function addTest(test:ScheduledTest):void {
 			// Convert UTC times from database into local timezone
 			var convertedTest:ScheduledTest = test.convertTestTimesToUTC();
+			// gh#1523 You might have faked a testId when creating a new one, clear that now
+			convertedTest.testId = null;
 			new RemoteDelegate("addTest", [ convertedTest ], this).execute();
 		}
 		public function updateTest(test:ScheduledTest):void {

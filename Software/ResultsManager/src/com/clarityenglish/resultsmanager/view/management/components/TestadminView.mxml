@@ -143,7 +143,9 @@
 				reportWindow.setCopyProvider(copyProvider);
 				reportWindow.parentView = this;
 				reportWindow.onReportables = new Array(selectedTitle);
-				reportWindow.forReportables = new Array(selectedGroup); 
+				// gh#1523
+				var selectedTest:ScheduledTest = testList.selectedItem as ScheduledTest;
+				reportWindow.forReportables = new Array(selectedGroup, selectedTest); 
 				PopUpManager.centerPopUp(reportWindow);
 			}
 				
@@ -163,6 +165,8 @@
 			private function onNewTestButtonClick(e:Event):void {
 				var newScheduledTest:ScheduledTest = new ScheduledTest();
 				newScheduledTest.groupId = selectedGroup.id;
+				// gh#1523 Fake a testId to allow this to be in a List (to do with Reportable.uid)
+				newScheduledTest.testId = '1';
 				
 				newScheduledTest.productCode = productCode;
 				newScheduledTest.language = defaultLanguage;

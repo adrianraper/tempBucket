@@ -7,7 +7,7 @@
 		   >
 	<mx:Script>
 		<![CDATA[
-		import com.clarityenglish.resultsmanager.Constants;
+		import com.clarityenglish.testadmin.Constants;
 		import com.clarityenglish.common.model.interfaces.CopyProvider;
 		import com.clarityenglish.common.events.LoginEvent;
 		import mx.controls.Alert;

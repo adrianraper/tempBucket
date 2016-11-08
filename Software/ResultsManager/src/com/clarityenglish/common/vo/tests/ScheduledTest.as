@@ -1,4 +1,5 @@
 ﻿package com.clarityenglish.common.vo.tests {
+	import com.clarityenglish.common.vo.Reportable;
 	import com.adobe.serialization.json.JSON;
 	
 	import mx.utils.ObjectUtil;
@@ -9,7 +10,8 @@
 	*/
 	[RemoteClass(alias = "com.clarityenglish.common.vo.tests.ScheduledTest")]
 	[Bindable]
-	public class ScheduledTest  {
+	// gh#1523
+	public class ScheduledTest extends Reportable {
 		
 		public static const STATUS_PRERELEASE:uint = 0;
 		public static const STATUS_RELEASED:uint = 1;
@@ -114,6 +116,29 @@
 			localDate.setTime(thisDate.getTime() - (thisDate.getTimezoneOffset() * 60 * 1000));
 			return localDate;
 		}
-	}
-	
+		
+		// Section to let scheduled test become a reportable
+		/**
+		 * This returns the label of the reportable to be shown in the tree (in this case the caption)
+		 * Override to name.
+		 */
+		[Transient]
+		override public function get reportableLabel():String { return caption; }
+		
+		//[Transient]
+		//override public function get children():Array { return new Array(); }		
+		//override public function set children(children:Array):void {}
+
+		/*
+		override public function get id():String {
+			return (testId) ? testId.toString() : '';
+		}
+		override public function set id(id:String):void { }
+		*/
+		override public function get uid():String {
+			return (testId) ? testId.toString() : '';
+		}
+		// gh#1523 This set to protected so that json.encode works - and it is never used anyway
+		override protected function set uid(value:String):void { }
+	}	
 }
