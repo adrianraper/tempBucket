@@ -176,16 +176,20 @@ class CTPService extends BentoService {
             $this->progressOps->insertScoreDetails($scoreDetails, $user);
 
         // If this is the first score, make sure the session includes the testId and the start time
+        $isDirty = false;
         if (!$session->testId) {
             $session->testId = $scoreObj->testID;
-            if (!$session->startDateStamp) {
-                $dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
-                $dateNow = $dateStampNow->format('Y-m-d H:i:s');
-                $session->startedDateStamp = $dateNow;
-            }
-            $this->progressOps->updateTestSession($session);
+            $isDirty = true;
         }
 
+        if (!$session->startedDateStamp) {
+            $dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+            $dateNow = $dateStampNow->format('Y-m-d H:i:s');
+            $session->startedDateStamp = $dateNow;
+            $isDirty = true;
+        }
+        if ($isDirty)
+            $this->progressOps->updateTestSession($session);
     }
 
     public function getTestResult($sessionId) {

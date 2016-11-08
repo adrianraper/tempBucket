@@ -1406,14 +1406,14 @@ ALTER TABLE T_User DROP COLUMN F_TimeZoneOffset;
 DELETE FROM T_Product WHERE F_ProductCode = 63;
 DELETE FROM T_Product WHERE F_ProductCode = 64;
 INSERT INTO `T_Product` VALUES
-(63,'Practical Placement Test v2',NULL,1),
+(63,'Dynamic Placement Test',NULL,1),
 (64,'LearnEnglish Level Test v2',NULL,1);
 
 DELETE FROM T_ProductLanguage WHERE F_ProductCode = 63;
 DELETE FROM T_ProductLanguage WHERE F_ProductCode = 64;
 INSERT INTO `T_ProductLanguage` VALUES 
-(63,'EN','PracticalPlacementTest-International'),
-(63,'NAMEN','PracticalPlacementTest-NAmerican'),
+(63,'EN','DPT-International'),
+(63,'NAMEN','DPT-NAmerican'),
 (64,'EN','LearnEnglishLevelTest');
 
 DELETE FROM T_ProductVersion WHERE F_ProductCode = 63;

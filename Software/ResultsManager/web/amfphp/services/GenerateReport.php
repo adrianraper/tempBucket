@@ -107,9 +107,9 @@ $forClass = (isset($_REQUEST['forClass'])) ? $_REQUEST['forClass'] : "";
  * This for testing and debugging reports
  */
 $template = "DPTSummary";
-$opts = json_decode(stripslashes('{"detailedReport":true,"attempts":"all","headers":{"onReport":"Practical Placement Test v2","onReportLabel":"Title(s)","forReportDetail":"EfHS","attempts":"All attempts","forReportLabel":"Group(s)","dateRange":""},"includeInactiveUsers":true,"includeStudentID":false}'), true);
-$forReportablesIDObjects = json_decode(stripslashes('[{"Group":"74533", "TestID":"4"}]'), true);
-$onReportablesIDObjects = json_decode(stripslashes('[{"Title":"63","Course":"1216948569658"}]'), true);
+$opts = json_decode(stripslashes('{"attempts":"all","detailedReport":true,"includeStudentID":false,"includeInactiveUsers":false,"headers":{"forReportLabel":"Group(s)","onReport":"Dynamic Placement Test","dateRange":"","onReportLabel":"Title(s)","attempts":"All attempts","forReportDetail":"Grunge, Full pilot"}}'), true);
+$forReportablesIDObjects = json_decode(stripslashes('[{"Group":"35026"},{"ScheduledTest":"16"}]'), true);
+$onReportablesIDObjects = json_decode(stripslashes('[{"Course":"63","Title":"63"}]'), true);
 $onClass = "Title";
 $forClass = "Group";
 Session::set('rootID', 163);

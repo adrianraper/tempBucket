@@ -202,11 +202,11 @@ EOD;
         	$pc = $onReportableIDObjects[0]['Title'];
         	$rootId = Session::get('rootID');
         	$maxSessionId = $this->lastSessionInLicence($pc, $rootId);
-        	
-			for (end($rows); key($rows)!==null; prev($rows)){
-	  			$currentRow = current($rows);
-	  			if ($currentRow['sessionID'] > $maxSessionId) {
-	  				$currentRow['result'] = '****';
+
+            $numRows = count($rows);
+			for ($i=$numRows-1; $i>=0; $i--) {
+	  			if ($rows[$i]['sessionID'] > $maxSessionId) {
+                    $rows[$i]['result'] = '****';
 	  			} else {
 	  				break;
 	  			}
@@ -803,10 +803,12 @@ SQL;
 				break;
 				
 			case "Group":
-				$ids = array();				
+				$ids = array();
+                // gh#1523 We may send test id here too
 				foreach ($idObjects as $idObject)
-					$ids[] = $idObject['Group'];
-					
+                    if (isset($idObject['Group']))
+                        $ids[] = $idObject['Group'];
+
 				// The report SQL doesn't understand groups, so we need to get all the users in this group
 				// v3.3 But why not? You could easily put groupID into the SQL.
 				// So change reports for groups to use FOR_GROUPS rather than FOR_USERS
@@ -822,9 +824,10 @@ SQL;
 				$return = array(ReportBuilder::FOR_GROUPS => $ids);
 				
 				// gh#1523 Also pick up a test id for CTP
-				foreach ($idObjects as $idObject)
-					$testId = $idObject['TestID'];
-					
+                foreach ($idObjects as $idObject)
+                    if (isset($idObject['ScheduledTest']))
+                        $testId = $idObject['ScheduledTest'];
+
 				if ($testId)
 					$return[ReportBuilder::FOR_TESTID] = $testId;
 					
@@ -1173,7 +1176,7 @@ SQL;
 
 	// gh#1523 Count number of licences purchased and which session id was the last that fit in this limit
 	public function lastSessionInLicence($pc, $rootId) {
-		
+
 		// Tests purchased is currently T_Accounts.F_MaxStudents - we will manually have to add this with any incremental purchases
 	    $bindingParams = array($pc, $rootId);
         $sql = <<<SQL
@@ -1192,9 +1195,11 @@ SQL;
                 $dbObj = $rs->FetchNextObj();
                 $purchased = $dbObj->F_MaxStudents;
         }
-        
+
         // Of all the tests that have been used, what is the sessionID of the last purchased one?
         // Tests completed is based on T_TestSession
+        // TODO This should only pick up the first UserId, TestId unique combination
+        // Perhaps that is best solved by counting each time it happens as a separate licence used?
         $sql = <<<SQL
 			SELECT * FROM T_TestSession
             WHERE F_ProductCode=?
@@ -1205,7 +1210,8 @@ SQL;
 			LIMIT 0,$purchased;
 SQL;
 		$dbRows = $this->db->getArray($sql, $bindingParams);
-		return (count($dbRows) > 0) ? $dbRows[count($dbRows)-1]['F_SessionID'] : 0;		
+        AbstractService::$debugLog->info("max session=".$dbRows[count($dbRows)-1]['F_SessionID']);
+		return (count($dbRows) > 0) ? $dbRows[count($dbRows)-1]['F_SessionID'] : 0;
 	}
 	
 	// gh#653 convert an array into a UID taking into account whatever level is set

@@ -34,10 +34,7 @@
 					function onLoaded() {
 						
 						<xsl:if test="count(report/row) = 0">return</xsl:if>
-						// AR Can I also test to see if this is a very big (means what?) report in which case use a different style?
-						// or issue a warning?
-						<xsl:if test="count(report/row) = 0">return</xsl:if>
-						
+
 						grid = dhtmlXGridFromTable("reportTable");
 						grid.setImagePath("../../reports/standard/dhtmlx/dhtmlxGrid/codebase/imgs/");
 						grid.setSkin("light");
@@ -326,7 +323,7 @@
 				<!--
 					This is where you format the function buttons
 				-->					
-				<xsl:if test="count(report/row)">
+				<xsl:if test="count(report/row) > 0">
 				<!-- drop some buttons
 					<input type="button" class="btn" id="showGridViewButton" onClick="showGridView();" /><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>
 					<input type="button" class="btn" id="showTabViewButton" onClick="exportTab();" /><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>
@@ -363,7 +360,17 @@
 						<xsl:with-param name="tableId">reportTable</xsl:with-param>
 					</xsl:call-template>
 				</div>
-				
+				<!--
+				<xsl:for-each select="report/row">
+					<xsl:if test="@result">
+						<xsl:if test="php:function('dptResultFormatter', string(@result), 'CEF') = '****'">
+						</xsl:if>
+					</xsl:if>
+				</xsl:for-each>
+				-->
+                <xsl:if test="report/row/@result = '****'">
+				    <p>Results marked **** are saved but not enough tests have been purchased to see them.<br/>Use the Test Admin tool to buy some more and these results will be shown.</p>
+                </xsl:if>
 				<br/>
 							
 				<xsl:call-template name="generateSubmitableForm">

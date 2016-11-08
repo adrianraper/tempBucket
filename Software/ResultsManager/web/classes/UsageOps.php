@@ -1190,25 +1190,17 @@ SQL;
         }
         
         // Tests completed is based on T_TestSession
+        // Count the times one person did one test, but ignore it since it should only happen for special testing cases
         $sql = <<<SQL
-			SELECT COUNT(*) as testsUsed FROM T_TestSession
+			SELECT COUNT(*) as duplicates, F_UserID, F_TestID FROM T_TestSession
             WHERE F_ProductCode=?
             AND F_RootID=?
             AND F_CompletedDateStamp is not null
 			GROUP BY F_UserID, F_TestID;
 SQL;
         $rs = $this->db->Execute($sql, $bindingParams);
-        switch ($rs->RecordCount()) {
-            case 0:
-                // There are no records
-                $completed = 0;
-                break;
-            default:
-            	// Just ignore anything more than one
-                $dbObj = $rs->FetchNextObj();
-                $completed = $dbObj->testsUsed;
-        }
-        
+        $completed = $rs->RecordCount();
+
         // Find all the scheduled tests for groups in this root that have not closed.
         // TODO would it be worth saving F_RootID in T_ScheduledTests?
         $date = new DateTime();
