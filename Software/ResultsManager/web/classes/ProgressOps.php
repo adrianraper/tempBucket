@@ -272,8 +272,8 @@ SQL;
             default:
                 $result = "A0";
         }
-        // {"CEF":"A2"}
-        return array("CEF" => $result, "numeric" => $totalCorrect);
+        // {"level":"A2"}
+        return array("level" => $result, "numeric" => $totalCorrect);
     }
 
     /**
