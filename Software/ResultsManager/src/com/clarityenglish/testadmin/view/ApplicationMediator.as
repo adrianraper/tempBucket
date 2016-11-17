@@ -9,7 +9,7 @@ package com.clarityenglish.testadmin.view {
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.testadmin.TestAdmin;
 	import com.clarityenglish.testadmin.ApplicationFacade;
-	import com.clarityenglish.testadmin.Constants;
+	import com.clarityenglish.resultsmanager.Constants;
 	import com.clarityenglish.resultsmanager.RMNotifications;
 	import com.clarityenglish.resultsmanager.view.loginopts.LoginOptsMediator;
 	import com.clarityenglish.resultsmanager.view.management.ManagementMediator;
@@ -126,7 +126,7 @@ package com.clarityenglish.testadmin.view {
 					
 				// v3.6.0 If you are starting with directStart parameter, configure tabs
 				case RMNotifications.DIRECT_START:
-					TraceUtils.myTrace("appMediator.directStart=" + (note.getBody() as String));
+					//TraceUtils.myTrace("appMediator.directStart=" + (note.getBody() as String));
 					application.configureTabsForDirectStart(note.getBody() as String);
 					break;
 				default:

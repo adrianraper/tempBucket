@@ -5,7 +5,7 @@ package com.clarityenglish.testadmin.controller {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.EmailProxy;
 	import com.clarityenglish.testadmin.ApplicationFacade;
-	import com.clarityenglish.testadmin.Constants;
+	import com.clarityenglish.resultsmanager.Constants;
 	import com.clarityenglish.resultsmanager.model.ContentProxy;
 	import com.clarityenglish.resultsmanager.model.EmailOptsProxy;
 	import com.clarityenglish.resultsmanager.model.LicenceProxy;

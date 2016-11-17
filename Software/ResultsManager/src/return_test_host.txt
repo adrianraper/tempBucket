@@ -2,4 +2,5 @@
 //return "http://main.wz.com/Software/ResultsManager/web/";
 //return "http://claritydevelop/Software/ResultsManager/web/";
 //return "http://www.ieltspractice.com/Clarity/Software/ResultsManager/web/";
-return "https://ng1.clarityenglish.com/Software/ResultsManager/web/";
+//return "https://ng1.clarityenglish.com/Software/ResultsManager/web/";
+//return "http://dock.projectbench/Software/ResultsManager/web/";

@@ -129,16 +129,16 @@
 		//override public function get children():Array { return new Array(); }		
 		//override public function set children(children:Array):void {}
 
-		/*
+		// gh#1523 Needed for reportable.toIDObject
 		override public function get id():String {
 			return (testId) ? testId.toString() : '';
 		}
-		override public function set id(id:String):void { }
-		*/
+		override protected function set id(id:String):void { }
 		override public function get uid():String {
 			return (testId) ? testId.toString() : '';
 		}
 		// gh#1523 This set to protected so that json.encode works - and it is never used anyway
 		override protected function set uid(value:String):void { }
+		
 	}	
 }

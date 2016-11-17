@@ -15,7 +15,7 @@
 		<![CDATA[
 			import com.clarityenglish.common.CommonNotifications;
 			import com.clarityenglish.testadmin.ApplicationFacade;
-			import com.clarityenglish.testadmin.Constants;
+			import com.clarityenglish.resultsmanager.Constants;
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
 			import com.clarityenglish.common.vo.manageable.User;
 			import com.clarityenglish.common.vo.content.Title;
@@ -23,15 +23,12 @@
 			import flash.display.MovieClip;
 			import flash.ui.ContextMenu;
 			import com.clarityenglish.utils.TraceUtils;			
-			import nl.demonsters.debugger.MonsterDebugger;
 			import mx.controls.Alert;
 			
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
-			private var debugger:MonsterDebugger;
 			private var copyProvider:CopyProvider;
 			
 			private function creationComplete():void {
-				debugger = new MonsterDebugger(this);
 
 				//TraceUtils.myTrace("RM started now");
 

@@ -81,7 +81,7 @@
 		}
 		
 		/**
-		 * Encode the reportable tree (this and all parents) into an object with each class mapped to its id.  For example:
+		 * Encode the reportable tree (this and all parents) into an object with each class mapped to its id. For example:
 		 * { Exercise: 23483, Unit: 1, Course: 1434, Title: 0 }
 		 * 
 		 * @return An object

@@ -7,7 +7,7 @@ package com.clarityenglish.testadmin.controller {
 	import com.clarityenglish.resultsmanager.model.LicenceProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.testadmin.TestAdmin;
-	import com.clarityenglish.testadmin.Constants;
+	import com.clarityenglish.resultsmanager.Constants;
 	import com.clarityenglish.testadmin.ApplicationFacade;
 	import com.clarityenglish.testadmin.view.ApplicationMediator;
 	import com.clarityenglish.resultsmanager.model.ContentProxy;
