@@ -205,7 +205,7 @@ EOD;
 
             $numRows = count($rows);
 			for ($i=$numRows-1; $i>=0; $i--) {
-	  			if ($rows[$i]['sessionID'] > $maxSessionId) {
+	  			if ($rows[$i]['sessionId'] > $maxSessionId) {
                     $rows[$i]['result'] = '****';
 	  			} else {
 	  				break;
@@ -1210,7 +1210,7 @@ SQL;
 			LIMIT 0,$purchased;
 SQL;
 		$dbRows = $this->db->getArray($sql, $bindingParams);
-        AbstractService::$debugLog->info("max session=".$dbRows[count($dbRows)-1]['F_SessionID']);
+        //AbstractService::$debugLog->info("max session=".$dbRows[count($dbRows)-1]['F_SessionID']);
 		return (count($dbRows) > 0) ? $dbRows[count($dbRows)-1]['F_SessionID'] : 0;
 	}
 	

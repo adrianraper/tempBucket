@@ -226,7 +226,7 @@
                     <xsl:if test="@licences"><td><xsl:value-of select="@licences"/></td></xsl:if>
                     <xsl:if test="@sessions"><td><xsl:value-of select="@sessions"/></td></xsl:if>
 					<!--gh#1505-->
-					<xsl:if test="@result"><td><xsl:value-of select="php:function('dptResultFormatter', string(@result), 'CEF')"/></td></xsl:if>
+					<xsl:if test="@result"><td><xsl:value-of select="php:function('dptResultFormatter', string(@result), 'CEFR')"/></td></xsl:if>
 				</tr>
 			</xsl:for-each>
 		</table>

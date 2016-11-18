@@ -178,71 +178,51 @@ class ReportBuilder {
 	}
 
 	// gh#1505 For test summary report
+    // The left outer join is to just pick one record if there are several, choosing the one with a result
+    // of the latest one with a result (which should only happen in testing)
 	function buildCTPReportSQL() {
 		$this->selectBuilder = new SelectBuilder();
 		$fromClause = <<<EOD
-						T_TestSession s
-						INNER JOIN T_User u ON s.F_UserID=u.F_UserID
-						INNER JOIN T_Membership m ON s.F_UserID=m.F_UserID
-						INNER JOIN T_Groupstructure g on g.F_GroupID = m.F_GroupID
+					    T_User u, T_Membership m, T_Groupstructure g, T_TestSession s1
+left outer join T_TestSession s2
+	on s1.F_UserID = s2.F_UserID and s1.F_TestID = s2.F_TestID
+    and ((if(s1.F_Result is null, '0', '1') < if(s2.F_Result is null, '0', '1'))
+         or (if(s1.F_Result is null, '0', '1') = if(s2.F_Result is null, '0', '1') and s1.F_SessionID < s2.F_SessionID))
 EOD;
 		$this->selectBuilder->setFrom($fromClause);
+        // Remove outer join rows where there was a 'greater' one found
+        $this->selectBuilder->addWhere("s2.F_UserID IS NULL");
+        $this->selectBuilder->addWhere("u.F_UserID = s1.F_UserID");
+        $this->selectBuilder->addWhere("u.F_UserID = m.F_UserID");
+        $this->selectBuilder->addWhere("g.F_GroupID = m.F_GroupID");
 
-        // Selection of name columns
-        if ($this->getOpt(ReportBuilder::SHOW_GROUPNAME)) $this->addColumn("g.F_GroupName", "groupName");
-        if ($this->getOpt(ReportBuilder::SHOW_USERNAME)) $this->addColumn("u.F_UserName", "userName");
-        if ($this->getOpt(ReportBuilder::SHOW_STUDENTID)) $this->addColumn("u.F_StudentID", "studentID");
-        if ($this->getOpt(ReportBuilder::SHOW_EMAIL)) $this->addColumn("u.F_Email", "email");
-
-        // Selection of ungrouped columns
-        if ($this->getOpt(ReportBuilder::SHOW_CEF)) $this->addColumn("s.F_Result", "result");
-        if ($this->getOpt(ReportBuilder::SHOW_DURATION)) $this->addColumn("s.F_Duration", "duration");
-        if ($this->getOpt(ReportBuilder::SHOW_STARTDATE)) $this->addColumn("s.F_StartedDateStamp", "start_date");
+        // Selection of name columns, with no grouping wanted
+        if ($this->getOpt(ReportBuilder::SHOW_GROUPNAME)) $this->selectBuilder->addSelect("g.F_GroupName groupName");
+        if ($this->getOpt(ReportBuilder::SHOW_USERNAME)) $this->selectBuilder->addSelect("u.F_UserName userName");
+        if ($this->getOpt(ReportBuilder::SHOW_STUDENTID)) $this->selectBuilder->addSelect("u.F_StudentID studentID");
+        if ($this->getOpt(ReportBuilder::SHOW_EMAIL)) $this->selectBuilder->addSelect("u.F_Email email");
+        if ($this->getOpt(ReportBuilder::SHOW_CEF)) $this->selectBuilder->addSelect("s1.F_Result result");
+        if ($this->getOpt(ReportBuilder::SHOW_DURATION)) $this->selectBuilder->addSelect("s1.F_Duration duration");
+        if ($this->getOpt(ReportBuilder::SHOW_STARTDATE)) $this->selectBuilder->addSelect("s1.F_StartedDateStamp start_date");
+        $this->selectBuilder->addSelect("s1.F_SessionID sessionId");
 
         // From date
         if ($fromDate = $this->getOpt(ReportBuilder::FROM_DATE))
-            $this->selectBuilder->addWhere("s.F_DateStamp >= '$fromDate'");
+            $this->selectBuilder->addWhere("s1.F_StartedDateStamp >= '$fromDate'");
         if ($toDate = $this->getOpt(ReportBuilder::TO_DATE))
-            $this->selectBuilder->addWhere("s.F_DateStamp <= '$toDate'");
+            $this->selectBuilder->addWhere("s1.F_StartedDateStamp <= '$toDate'");
 
-        // v3.4 For summary reports, you want to use sessionID
-        $this->addColumn("s.F_SessionID", "sessionID");
-        $this->addColumn("u.F_UserID", "userID");
-
-        // For idObjects (e.g. CourseID=? AND UnitID=? AND ExerciseID=?)
-        // gh#1523 No need if you have a testId
-        /*
-        if ($idObjects = $this->getOpt(ReportBuilder::FOR_IDOBJECTS)) {
-                foreach ($idObjects as $idObject) {
-                    $wheres = array();
-                    foreach ($idObject as $class => $id) {
-                        switch ($class) {
-                            case "Title":
-                                $wheres[] = "s.F_ProductCode=".$id;
-                                break;
-                        }
-                    }
-                    // Passing true as a parameter to addWhere marks these as OR clauses instead of the default AND
-                    //gh#28
-                    $this->selectBuilder->addWhere("(".implode(" AND ", $wheres).")", true);
-                }
-        }
-		*/
         // gh#1523 You probably know the testID you want
         if ($this->getOpt(ReportBuilder::FOR_TESTID))
-        	$this->selectBuilder->addWhere("s.F_TestID = ".$this->getOpt(ReportBuilder::FOR_TESTID));
+        	$this->selectBuilder->addWhere("s1.F_TestID = ".$this->getOpt(ReportBuilder::FOR_TESTID));
         	
         // You must order by the test taking so that licences are correctly counted and over the limit are blocked
         // Probably the nicest would be to order by F_CompletedDateStamp, but it will surely be quicker to order by the session id
         // which is implicitly the start time of the test.
-        $this->selectBuilder->addOrder('s.F_SessionID');
-        	
-        // v3.0.4 If you want special ordering
-        //if ($this->getOpt(ReportBuilder::ORDERBY_USERS)) $this->selectBuilder->addOrder('s.F_UserID');
-        //if ($this->getOpt(ReportBuilder::ORDERBY_UNIT)) $this->selectBuilder->addOrder('s.F_UnitID');
+        $this->selectBuilder->addOrder('s1.F_SessionID', 'ASC');
 
-        // v3.4 Get last session results first
-        if ($this->getOpt(ReportBuilder::SHOW_SESSIONID)) $this->selectBuilder->addOrder('s.F_SessionID', 'DESC');
+        $this->selectBuilder->addGroup('s1.F_UserID');
+        $this->selectBuilder->addGroup('s1.F_TestID');
 
         // AR To only pick up results for learners - ignore teachers etc
         $this->selectBuilder->addWhere("u.F_UserType=".USER::USER_TYPE_STUDENT);
