@@ -197,14 +197,14 @@ class CTPService extends BentoService {
         return array("success" => ($error===false), "error" => $error);
     }
 
-    public function getTestResult($sessionId) {
+    public function getTestResult($sessionId, $mode = null) {
         $isDirty = false;
 
         // Get the session record
         $session = $this->testOps->getTestSession($sessionId);
 
         // gh#151 Has the result already been calculated for this session?
-        if (!$session->result) {
+        if (!$session->result || $mode=='overwrite') {
             $session->result = $this->progressOps->getTestResult($session);
             $isDirty = true;
         }

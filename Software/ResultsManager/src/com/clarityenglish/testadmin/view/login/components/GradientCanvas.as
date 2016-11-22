@@ -1,4 +1,4 @@
-package com.clarityenglish.resultsmanager.view.login.components {
+package com.clarityenglish.testadmin.view.login.components {
 	import mx.containers.Canvas;
 	import mx.styles.StyleManager;
 	import mx.utils.ColorUtil;

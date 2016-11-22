@@ -2,27 +2,29 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
 				xmlns:login="com.clarityenglish.testadmin.view.login.components.*"
 				xmlns:management="com.clarityenglish.resultsmanager.view.management.components.*"
-				xmlns:loginopts="com.clarityenglish.resultsmanager.view.loginopts.components.*"
-				xmlns:usage="com.clarityenglish.resultsmanager.view.usage.components.*"
-				backgroundColor="#0b7bad" creationComplete="creationComplete()"
+				backgroundColor="#ffffff" creationComplete="creationComplete()"
 				disabledColor="0x000000" disabledOverlayAlpha="0.5"
 				implements="com.clarityenglish.common.view.interfaces.CopyReceiver"
 				modalTransparency="0.8" paddingBottom="1" paddingLeft="1" paddingRight="1"
 				paddingTop="1">
+	<!-- xmlns:usage="com.clarityenglish.resultsmanager.view.usage.components.*"
+	     xmlns:loginopts="com.clarityenglish.resultsmanager.view.loginopts.components.*" -->
 	<mx:Style source="../../../../css/clarity.css"/>
 	
 	<mx:Script>
 		<![CDATA[
 			import com.clarityenglish.common.CommonNotifications;
-			import com.clarityenglish.testadmin.ApplicationFacade;
-			import com.clarityenglish.resultsmanager.Constants;
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
-			import com.clarityenglish.common.vo.manageable.User;
 			import com.clarityenglish.common.vo.content.Title;
+			import com.clarityenglish.common.vo.manageable.User;
+			import com.clarityenglish.resultsmanager.Constants;
 			import com.clarityenglish.resultsmanager.RMNotifications;
+			import com.clarityenglish.testadmin.ApplicationFacade;
+			import com.clarityenglish.utils.TraceUtils;
+			
 			import flash.display.MovieClip;
 			import flash.ui.ContextMenu;
-			import com.clarityenglish.utils.TraceUtils;			
+			
 			import mx.controls.Alert;
 			
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
@@ -67,9 +69,9 @@
 			
 			public function setCopyProvider(copyProvider:CopyProvider):void {
 				this.copyProvider = copyProvider;
-				if (mainStack.contains(testadminView)) testadminView.label = copyProvider.getCopyForId("testadminTab");
-				if (mainStack.contains(usageView)) usageView.label = copyProvider.getCopyForId("usageStatisticsTab");
-				if (mainStack.contains(loginOptsView)) loginOptsView.label = copyProvider.getCopyForId("loginOptionsTab");
+				//if (mainStack.contains(testadminView)) testadminView.label = copyProvider.getCopyForId("testadminTab");
+				//if (mainStack.contains(usageView)) usageView.label = copyProvider.getCopyForId("usageStatisticsTab");
+				//if (mainStack.contains(loginOptsView)) loginOptsView.label = copyProvider.getCopyForId("loginOptionsTab");
 				
 				logoutButton.label = copyProvider.getCopyForId("logoutButton");
 				//brandingLabel.text = copyProvider.getCopyForId("applicationName") + " " + Constants.version;
@@ -82,34 +84,35 @@
 			 * visible to show/hide a tab so we can't use an MXML property bound to Constants.userType, but this method works fine.
 			 */
 			public function configureTabsForLoggedInUser():void {
-				TraceUtils.myTrace("logged in user is a " + Constants.userType);
+				//TraceUtils.myTrace("logged in user is a " + Constants.userType);
 				// This might run after directStart tabbing, so only remove tabs here.
 				// If you use logout, hopefully you will reset it all somewhere? No it doesn't.
-				if (Constants.userType == User.USER_TYPE_ADMINISTRATOR) {
+				//if (Constants.userType == User.USER_TYPE_ADMINISTRATOR) {
 					//if (!(mainStack.contains(loginOptsView)))
 					//	mainStack.addChild(loginOptsView);
 					//if (!(mainStack.contains(testadminView)))
 					//	mainStack.addChild(testadminView);
-				} else {
-					if ((mainStack.contains(loginOptsView)))
-						mainStack.removeChild(loginOptsView);
-						
-				}
+				//} else {
+				//	if ((mainStack.contains(loginOptsView)))
+				//		mainStack.removeChild(loginOptsView);
+				//}
 				// v3.4 Add a note about who you are.
 				// v3.5 And what account you are in?
 				//whoAmILabel.text = "You are logged in as " + Constants.userName + ", " + copyProvider.getCopyForId("userType" + Constants.userType) + ". " +
 				//				Constants.accountName + ".";
-				whoAmILabel.text = "You are logged in as " + Constants.userName + ", " + copyProvider.getCopyForId("userType" + Constants.userType) + ".";
-				brandingLabel.text = Constants.accountName;
+				//whoAmILabel.text = "You are signed in as " + Constants.userName + ".";
+				var replaceObj:Object = {"username": Constants.userName};
+				whoAmILabel.text = copyProvider.getCopyForId("signedInUser", replaceObj);
+				//brandingLabel.text = Constants.accountName;
 
 				// v3.5 Don't let reporters see usage stats. I think eventually teachers should only see stats for their group too.				
-				if (Constants.userType == User.USER_TYPE_REPORTER) {
-					if ((mainStack.contains(usageView)))
-						mainStack.removeChild(usageView);
-				} else {					
+				//if (Constants.userType == User.USER_TYPE_REPORTER) {
+				//	if ((mainStack.contains(usageView)))
+				//		mainStack.removeChild(usageView);
+				//} else {					
 					//if (!(mainStack.contains(usageView)))
 					//	mainStack.addChild(usageView);
-				}
+				//}
 				// AR. For now I am going to remove licence allocation except for the admin
 				// but I think it will actually go for the admin too. Yes
 				//if (Constants.userType != User.USER_TYPE_REPORTER) {
@@ -134,13 +137,13 @@
 				// DONE. Sort this out later.
 				// Now picked up and saved from login
 				// v3.6.6 Concurrent Tracking licence should have User view as well, and network
-				TraceUtils.myTrace('your licence is ' + Constants.licenceType);
-				var allAAlicences:Boolean = true;
-				if (Constants.licenceType == Title.LICENCE_TYPE_LT ||
-					Constants.licenceType == Title.LICENCE_TYPE_CT ||
-					Constants.licenceType == Title.LICENCE_TYPE_NETWORK ||
-					Constants.licenceType == Title.LICENCE_TYPE_TT)
-					allAAlicences = false;
+				//TraceUtils.myTrace('your licence is ' + Constants.licenceType);
+				//var allAAlicences:Boolean = true;
+				//if (Constants.licenceType == Title.LICENCE_TYPE_LT ||
+				//	Constants.licenceType == Title.LICENCE_TYPE_CT ||
+				//	Constants.licenceType == Title.LICENCE_TYPE_NETWORK ||
+				//	Constants.licenceType == Title.LICENCE_TYPE_TT)
+				//	allAAlicences = false;
 				/*
 				if (allAAlicences) {
 					if (mainStack.contains(managementView)) {
@@ -154,52 +157,23 @@
 				}
 				*/
 			}
-			/**
-			 * Show special tabs if you are running with directStart.
-			 * The main reason to hide other tabs is for security because you will not need to login for this.
-			 * Just click a link from email, which will pick up username/password from a time limited row in a security table.
-			 * gh#1492 But for test admin, there is conflict with the management tab, so you can only have one or other
-			 */
 			public function configureTabsForDirectStart(directStart:String):void {
-				// Which tab do they want? If it is blocked by user type or title types, go to it
-				if (directStart.toLowerCase()=="usagestats") {
-					TraceUtils.myTrace("Direct start to usage ");
-					if (!(mainStack.contains(usageView))) {
-						TraceUtils.myTrace("so add usage view");
-						mainStack.addChild(usageView);
-					}
-					if (mainStack.contains(loginOptsView)) {
-						TraceUtils.myTrace("and loginopts");
-						mainStack.removeChild(loginOptsView);
-					}
-				} else if (directStart.toLowerCase()=="controlcentre") {
-					TraceUtils.myTrace("Direct start to control centre");
-					if (!(mainStack.contains(loginOptsView))) {
-						TraceUtils.myTrace("so add loginOptsView");
-						mainStack.addChild(loginOptsView);
-					}
-					// And how to make this the initially shown tab?
-					mainStack.selectedIndex = 2;
-					
-				} else {
-					showAlert("Sorry, there is no direct access to Results Manager for " + directStart, "Starting problem");
-				}
+				showAlert("Sorry, there is no direct access to Test Admin", "Starting problem");
 			}
 			/*
 			 * For when you logout
 			 */
 			public function resetTabs():void {
-				if (!(mainStack.contains(testadminView))) 
-					mainStack.addChild(testadminView);
-				if (!(mainStack.contains(usageView))) 
-					mainStack.addChild(usageView);
-				if (!(mainStack.contains(loginOptsView))) 
-					mainStack.addChild(loginOptsView);
+				//if (!(mainStack.contains(testadminView))) 
+				//	mainStack.addChild(testadminView);
+				//if (!(mainStack.contains(usageView))) 
+				//	mainStack.addChild(usageView);
+				//if (!(mainStack.contains(loginOptsView))) 
+				//	mainStack.addChild(loginOptsView);
 			}
 			
 			public function showAlert(text:String, title:String):void {
 				Alert.show(text, title);
-				
 			}
 			
 		]]>
@@ -212,20 +186,17 @@
 		<mx:VBox width="100%" height="100%" paddingBottom="4" paddingLeft="4" paddingRight="4"
 				 paddingTop="4" verticalGap="0">
 			<mx:HBox width="100%">
-				<mx:Label id="brandingLabel" styleName="headingLabelWhite"/>
+				<mx:Label id="brandingLabel" styleName="headingLabelBlack"/>
 				<mx:Spacer width="100%"/>
-				<mx:Label id="whoAmILabel" styleName="headingLabelWhite"/>
+				<mx:Label id="whoAmILabel" styleName="headingLabelBlack"/>
 				<mx:Button id="logoutButton" click="onLogout()" color="0xFFFFFF"/>
 			</mx:HBox>
 			<mx:Spacer height="4"/>
-			<mx:TabNavigator id="mainStack" width="100%" height="100%" borderStyle="solid">
-				<management:TestadminView id="testadminView" width="100%" height="100%"/>
-				<usage:UsageView id="usageView" width="100%" height="100%"/>
-				<loginopts:LoginOptsView id="loginOptsView" width="100%" height="100%"/>
-			</mx:TabNavigator>
-
+			<!-- <mx:TabNavigator id="mainStack" width="100%" height="100%" borderStyle="solid"> -->
+				<management:TestadminView id="testadminView" width="100%" height="100%"/>				
+			<!-- </mx:TabNavigator> -->
+			<!-- <usage:UsageView id="usageView" width="100%" height="100%"/>
+			     <loginopts:LoginOptsView id="loginOptsView" width="100%" height="100%"/>  -->
 		</mx:VBox>
-		
 	</mx:ViewStack>
-	
 </mx:Application>

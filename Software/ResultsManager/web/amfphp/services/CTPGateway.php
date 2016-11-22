@@ -14,8 +14,8 @@ set_time_limit(360);
 try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
+    $json = json_decode('{"command":"getTestResult","testID":"16","sessionID":"133","mode":"overwrite"}');
     /*
-    $json = json_decode('{"command":"getTestResult","testID":"16","sessionID":"133"}');
     $json = json_decode('{"command":"login","email":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":63}');
     */
     /*
@@ -127,9 +127,12 @@ function router($json) {
             $json->timezoneOffset = json_decode('[{"minutes":'.abs($json->timezoneOffset).'},{"negative":'.($json->timezoneOffset < 0).'}]');
     }
 
+    if (!isset($json->mode))
+    	$json->mode = null;
+    	
     switch ($json->command) {
         case "login": return login($json->email, $json->password, $json->productCode);
-        case "getTestResult": return getResult($json->sessionID);
+        case "getTestResult": return getResult($json->sessionID, $json->mode);
         case "scoreWrite": return scoreWrite($json->sessionID, $json->score, $json->localTimestamp, $json->timezoneOffset);
         default: throw new Exception("Unknown command");
     }
@@ -141,9 +144,9 @@ function login($email, $password, $productCode) {
     return $service->testLogin($email, $password, $productCode);
 }
 
-function getResult($sessionId) {
+function getResult($sessionId, $mode = null) {
     global $service;
-    return $service->getTestResult($sessionId);
+    return $service->getTestResult($sessionId, $mode);
 }
 
 function scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffset=null) {

@@ -12,7 +12,7 @@ package com.clarityenglish.testadmin.view.login.components {
 		}
 	
 		[Bindable]
-  		[Embed('/../assets/TA_login_logo.png')]
+  		[Embed('/../assets/DPT_TA_logo.png')]
   		private var logoClass:Class;
 
 		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
@@ -20,14 +20,14 @@ package com.clarityenglish.testadmin.view.login.components {
 			var cr:Number = 12;
 			graphics.clear();
 			graphics.beginFill(0xffffff);
-			graphics.drawRoundRectComplex(0, 0, width, 130, cr, cr, 0, 0);
+			graphics.drawRoundRectComplex(0, 0, width, height, cr, cr, cr, cr);
 			graphics.endFill();
-			graphics.beginFill(0x0b7bad);
-			graphics.drawRoundRectComplex(0, 130, width, height-130, 0, 0, cr, cr);
-			graphics.endFill();
+			//graphics.beginFill(0x0b7bad);
+			//graphics.drawRoundRectComplex(0, 130, width, height-130, 0, 0, cr, cr);
+			//graphics.endFill();
 
 			var logo:BitmapAsset = BitmapAsset(new logoClass());
-			logo.move(90,16);
+			logo.move(178,50);
 			addChild(logo);
 
 			// the shadow

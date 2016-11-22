@@ -197,7 +197,7 @@ package com.clarityenglish.resultsmanager.view.management {
 				// For the number of licences
 				case RMNotifications.TEST_LICENCES_LOADED:
 					var data:Object = note.getBody();
-					testadminView.setLicencesUsed(data.purchased, data.used, data.scheduled);
+					testadminView.initLicencesUsed(data.purchased, data.used, data.scheduled);
 					break;
 				
 				default:

@@ -31,6 +31,12 @@ GradientCanvas {
 	fontSize: 16;
 	fontWeight: bold;
 }
+.promptGrey {
+	fontFamily: "Helvetica Neue Lt Std";
+	color: #666666;
+	fontSize: 16;
+	fontWeight: bold;
+}
 .promptEntry {
 	fontFamily: "Helvetica Neue Lt Std";
 	color: #0b7bad;
@@ -40,6 +46,13 @@ GradientCanvas {
 .forgotPassword {
 	fontFamily: "Helvetica Neue Lt Std";
 	color: #fdb81d;
+	fontSize: 13;
+	fontWeight: normal;
+	text-decoration: underline;
+}
+.forgotPasswordGrey {
+	fontFamily: "Helvetica Neue Lt Std";
+	color: #414042;
 	fontSize: 13;
 	fontWeight: normal;
 	text-decoration: underline;
@@ -67,6 +80,11 @@ GradientCanvas {
 	fontSize: 13;
 	fontWeight: bold;
 }
+.headingLabelBlack{
+	color: #000000;
+	fontSize: 13;
+	fontWeight: bold;
+}
 CheckBox {
 	disabledBorderColor: #EEEEEE;
 	disabledFillAlphas: 0.01, 0.02;
@@ -74,7 +92,14 @@ CheckBox {
 Button {
 	cornerRadius: 6;
 }
-
+.selectedButton {
+	fillAlphas: 1, 1, 1, 1;
+	fillColors: #3fa972, #3fa972, #3fa972, #3fa972;
+}
+.normalButton {
+	fillAlphas: 0.6, 0.4, 0.75, 0.65;
+	fillColors: #FFFFFF, #CCCCCC, #FFFFFF, #EEEEEE;
+}
 ButtonBar {
    buttonHeight: 26;
 }
@@ -104,4 +129,14 @@ Tab {
 	fontSize: 11;
 	fontWeight: bold;
 	color: #613C00;
+}
+.errorMessage {
+	fontSize: 12;
+	fontWeight: bold;
+	color: #ff0000;
+}
+.testList {
+	fontFamily: "Helvetica Neue Lt Std"; 
+	fontSize: 12;
+	fontWeight: bold;
 }

@@ -46,7 +46,6 @@
 			public var licencesPurchased:uint;
 			[Bindable]
 			public var licencesUsed:uint;
-			[Bindable]
 			public var _licencesScheduled:uint;
 			[Bindable]
 			public var licencesNeeded:int;
@@ -55,9 +54,28 @@
 			[Embed(source="/../assets/warning_icon.swf")]
 			private var alertWarningIcon:Class;	
 			
+			public function initLicencesUsed(purchased:uint, used:uint, scheduled:uint):void {
+				licencesPurchased = purchased;
+				licencesUsed = used;
+				licencesScheduled = scheduled;
+				licencesNeeded = (licencesUsed + _licencesScheduled) - licencesPurchased;
+				var licencesLeft:int = (licencesPurchased - licencesUsed);
+				var replaceObj:Object = {"licencesScheduled": _licencesScheduled.toString(), 
+					"licencesAvailable": (licencesLeft <= 0) ? '0' : licencesLeft.toString(),
+					"licencesNeeded" : licencesNeeded.toString()};
+				licencesNeededLabel.text = copyProvider.getCopyForId("licencesNeededWarning", replaceObj);
+				buyMoreButton.label = copyProvider.getCopyForId('buyMoreLicences', replaceObj);
+				
+				// ctp#206 Are you allowed to schedule a test?
+				if (licencesUsed >= licencesPurchased) {
+					newTestButton.enabled = false;
+				} else {
+					newTestButton.enabled = true;					
+				}				
+			}
 			public function set licencesScheduled(value:uint):void {
 				_licencesScheduled = value;
-				licencesNeeded = (licencesUsed + _licencesScheduled) - licencesPurchased;
+				initLicencesUsed(licencesPurchased, licencesUsed, value);
 			}
 			[Bindable]
 			public function get licencesScheduled():uint {
@@ -74,12 +92,12 @@
 				deleteTestButton.label = copyProvider.getCopyForId("deleteTest");
 				//releaseTestButton.label = copyProvider.getCopyForId("releaseTest");
 				
-				firstStepWindow.title = copyProvider.getCopyForId("testAdminFirstStep");
-				licenceUseLabel.title = copyProvider.getCopyForId("licenceUse");
+				//firstStepWindow.title = copyProvider.getCopyForId("testAdminFirstStep");
+				licenceUseLabel.text = copyProvider.getCopyForId("licenceUse");
 				licencesScheduledLabel.text = copyProvider.getCopyForId("licencesScheduled");
 				licencesUsedLabel.text = copyProvider.getCopyForId("licencesUsed");
 				licencesPurchasedLabel.text = copyProvider.getCopyForId("licencesPurchased");
-				
+
 				generateReportButton.label = copyProvider.getCopyForId("generateReport");
 				sendWelcomeEmailButton.label = copyProvider.getCopyForId("sendWelcomeEmail");
 				sendResultEmailButton.label = copyProvider.getCopyForId("sendResultEmail");
@@ -149,20 +167,13 @@
 				PopUpManager.centerPopUp(reportWindow);
 			}
 				
-			public function setLicencesUsed(purchased:uint, used:uint, scheduled:uint):void {
-				licencesPurchased = purchased;
-				licencesUsed = used;
-				licencesScheduled = scheduled;
-				buyMoreButton.label = licencesNeededLink();
-			}
-			
 			private function onTestChange(e:ListEvent):void {
 				var selectedTest:ScheduledTest = testList.selectedItem as ScheduledTest;
 				testDetailPanel.setDataProvider(selectedTest);
-				resetButtons();				
+				resetButtons();
 			}
 			
-			private function onNewTestButtonClick(e:Event):void {
+			private function onNewTestButtonClick(e:Event):void {				
 				var newScheduledTest:ScheduledTest = new ScheduledTest();
 				newScheduledTest.groupId = selectedGroup.id;
 				// gh#1523 Fake a testId to allow this to be in a List (to do with Reportable.uid)
@@ -215,20 +226,16 @@
 			// gh#1499
 			public function addLicencesScheduled():void {
 				licencesScheduled += selectedGroup.userCount;
-				if (licencesNeeded > 0) {
-					var text:String = copyProvider.getCopyForId("notEnoughLicences", {licencesAvailable: (licencesPurchased - licencesUsed), licencesScheduled: licencesScheduled});
-					Alert.show(text, "Please note", Alert.OK, this, null, alertWarningIcon);
-				}
-				buyMoreButton.label = licencesNeededLink();
+				//if (licencesNeeded > 0) {
+				//	var text:String = copyProvider.getCopyForId("notEnoughLicences", {licencesAvailable: (licencesPurchased - licencesUsed), licencesScheduled: licencesScheduled});
+				//	Alert.show(text, "Please note", Alert.OK, this, null, alertWarningIcon);
+				//}
 			}
 			// gh#1499 Reduce the number of scheduled tests
 			// As a test can be deleted at any point, this makes the scheduled count an estimate if the test is active
 			// so you don't need a complex counting basis
 			public function clearLicencesScheduled():void {
 				licencesScheduled -= selectedGroup.userCount;
-			}
-			private function licencesNeededLink():String {
-				return copyProvider.getCopyForId('buyMoreLicences', {licencesNeeded: licencesNeeded.toString()});
 			}
 			
 			public function resetButtons():void {
@@ -262,7 +269,6 @@
 			public function resetSelection():void {
 				onTestChange(null);
 			}
-			
 			public function showCaption(item:Object):String {
 				switch (item.status) {
 					case ScheduledTest.STATUS_PRERELEASE:
@@ -284,61 +290,74 @@
 				}	 
 				return item.caption + " (" + statusString + ")"; 
 			}
+						
 		]]>
 	</mx:Script>
 	<!--
 				
 	-->
-	<mx:HBox width="100%" height="100%" paddingLeft="4" paddingRight="4" paddingBottom="4" >
+	<mx:HBox width="100%" height="100%" borderStyle="solid" paddingLeft="4" paddingRight="4" paddingBottom="4" horizontalGap="10">
 		<view:ManageablesView id="manageablesView" width="30%" height="100%"/>
-		<mx:HBox width="70%" height="100%" >
-			<mx:VBox>
-				<mx:VBox width="100%" minWidth="300" height="300">
-					<mx:TitleWindow id="licenceUseLabel" paddingTop="20" width="100%" height="300" verticalAlign="top" >
-						<mx:HBox>
-							<mx:Label id="licencesPurchasedLabel" />
-							<mx:Label id="licencesPurchasedData" text="{licencesPurchased.toString()}" />
+		<mx:HBox width="70%" height="100%" horizontalGap="10">
+			<mx:VBox width="40%" >
+				<mx:VBox width="100%" minWidth="300" minHeight="200" borderStyle="solid" horizontalAlign="center" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
+					<mx:Label id="licenceUseLabel" width="100%" styleName="subHeadingLabelBlack" textAlign="center"/>
+					<mx:VBox width="100%" borderStyle="solid" borderColor="#00a79d" cornerRadius="6" paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
+						<mx:HBox width="100%">
+							<mx:Label id="licencesPurchasedLabel" width="150"/>
+							<mx:Label text="{licencesPurchased.toString()}" textAlign="right" />
 						</mx:HBox>
-						<mx:HBox>
-							<mx:Label id="licencesUsedLabel" />
-							<mx:Label id="licencesUsedData" text="{licencesUsed.toString()}" />
+						<mx:HBox width="100%">
+							<mx:Label id="licencesUsedLabel"  width="150"/>
+							<mx:Label text="{licencesUsed.toString()}"  textAlign="right"/>
 						</mx:HBox>
-						<mx:HBox>
-							<mx:Label id="licencesScheduledLabel" />
-							<mx:Label id="licencesScheduledData" text="{licencesScheduled.toString()}"/>
+						<mx:HBox width="100%">
+							<mx:Label id="licencesScheduledLabel" width="150" />
+							<mx:Label text="{licencesScheduled.toString()}"  textAlign="right"/>
 						</mx:HBox>
-						<mx:HRule width="90%" />
-						<mx:Button id="buyMoreButton" visible="{licencesNeeded > 0}"/>
-					</mx:TitleWindow>
+					</mx:VBox>
+					<mx:Spacer height="12" visible="{licencesNeeded &gt; 0}" includeInLayout="{licencesNeeded &gt; 0}"/>
+					<mx:VBox width="100%" backgroundColor="#D95982" cornerRadius="6" 
+							 paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10"
+							 visible="{licencesNeeded &gt; 0}" includeInLayout="{licencesNeeded &gt; 0}">
+						<mx:Text id="licencesNeededLabel" color="#ffffff" width="100%"/>
+					</mx:VBox>
+					<mx:Spacer height="12" />
+					<mx:Button id="buyMoreButton" visible="{licencesNeeded &gt; 0}"/>
 				</mx:VBox>
 				<mx:VBox width="100%" height="100%" visible="{selectedGroup == null}" includeInLayout="{selectedGroup == null}">
 					<mx:Spacer height="50" />
-					<mx:TitleWindow id="firstStepWindow" paddingTop="20" width="100%" height="100" verticalAlign="top" >
-						<mx:Label id="selectGroupLabel" fontWeight="bold" />
-					</mx:TitleWindow>
+					<mx:Label id="selectGroupLabel" fontWeight="bold" />
 				</mx:VBox>
 				<mx:VBox width="100%" minWidth="300" visible="{selectedGroup != null}" includeInLayout="{selectedGroup != null}">					
-					<mx:Button id="newTestButton" visible="true" includeInLayout="true" height="18" click="onNewTestButtonClick(event)" />
+					<mx:Button id="newTestButton" visible="true" includeInLayout="true" width="100%" height="24" click="onNewTestButtonClick(event)" />
 					<mx:HBox width="100%" >
 						<mx:Label id="listOfTestsLabel" styleName="subHeadingLabelBlack" />			
 						<mx:Label id="testListLabel" text="{selectedGroup.name}" styleName="subHeadingLabelBlack" />
 					</mx:HBox>
-					<mx:List id="testList"
-							 width="100%"
-							 height="50%"
-							 labelFunction="showCaption"
-							 itemRenderer="com.clarityenglish.resultsmanager.view.shared.ui.ScheduledTestsItemRenderer"
-							 change="onTestChange(event)" />
+					<mx:List id="testList" width="100%" height="100%" change="onTestChange(event)" selectionColor="#2bb673" rollOverColor="#00a79d"
+							 textSelectedColor="#ffffff" labelFunction="showCaption" verticalAlign="middle" rowHeight="32" paddingLeft="16" 
+							 styleName="testList">
+						<!-- 
+						<mx:itemRenderer>
+							<mx:Component>
+								<mx:HBox height="32" verticalAlign="middle" paddingLeft="16">
+									<mx:Label text="{outerDocument.showCaption(data)}" styleName="testItemList"/>
+								</mx:HBox>
+							</mx:Component>
+						</mx:itemRenderer>
+						-->
+					</mx:List>
 					<mx:Spacer height="5" />
 				</mx:VBox>
 			</mx:VBox>
-			<mx:VBox width="100%" visible="{selectedGroup != null}" includeInLayout="{selectedGroup != null}">
-				<ui:TestDetailPanel width="99%" height="100%" id="testDetailPanel" visible="{testList.selectedItem != null}" includeInLayout="{testList.selectedItem != null}" />
-				<!-- <mx:Button id="releaseTestButton" visible="false" includeInLayout="false" height="18" click="onReleaseTestButtonClick(event)" /> -->
-				<mx:Button id="deleteTestButton" visible="false" includeInLayout="false" height="18" click="onDeleteTestButtonClick(event)" />
-				<mx:Button id="generateReportButton" visible="false" includeInLayout="false" height="18" click="onGenerateReport(event)" />
-				<mx:Button id="sendWelcomeEmailButton" visible="false" includeInLayout="false" height="18" click="onSendWelcomeEmail(event)" />
-				<mx:Button id="sendResultEmailButton" visible="false" includeInLayout="false" height="18" click="onSendResultEmail(event)" />
+			<mx:VBox width="60%" visible="{selectedGroup != null}" includeInLayout="{selectedGroup != null}">
+				<ui:TestDetailPanel width="100%" height="100%" id="testDetailPanel" visible="{testList.selectedItem != null}" includeInLayout="{testList.selectedItem != null}" />
+				<!-- <mx:Button id="releaseTestButton" visible="false" includeInLayout="false" width="100%" height="24" click="onReleaseTestButtonClick(event)" /> -->
+				<mx:Button id="generateReportButton" visible="false" includeInLayout="false" width="100%" height="24" click="onGenerateReport(event)" />
+				<mx:Button id="sendWelcomeEmailButton" visible="false" includeInLayout="false" width="100%" height="24" click="onSendWelcomeEmail(event)" />
+				<mx:Button id="sendResultEmailButton" visible="false" includeInLayout="false" width="100%" height="24" click="onSendResultEmail(event)" />
+				<mx:Button id="deleteTestButton" visible="false" includeInLayout="false" width="100%" height="24" click="onDeleteTestButtonClick(event)" />
 			</mx:VBox>
 		</mx:HBox>
 	</mx:HBox>

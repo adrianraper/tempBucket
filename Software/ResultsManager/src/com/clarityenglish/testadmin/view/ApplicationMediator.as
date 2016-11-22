@@ -53,8 +53,8 @@ package com.clarityenglish.testadmin.view {
 			// or you can, but the test admin view has no manageables in it. Whichever you do first works.
 			// TraceUtils.myTrace("appMediator.directStart=" + this._directStart);
 			facade.registerMediator(new TestadminMediator(application.testadminView));				
-			facade.registerMediator(new UsageMediator(application.usageView));
-			facade.registerMediator(new LoginOptsMediator(application.loginOptsView));
+			//facade.registerMediator(new UsageMediator(application.usageView));
+			//facade.registerMediator(new LoginOptsMediator(application.loginOptsView));
 		}
 
 		/**

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
 		  horizontalScrollPolicy="off"
 		  horizontalAlign="left"
 		  paddingRight="10"
@@ -35,6 +35,10 @@
 			
 			private var _openDate:Date;
 			private var _closeDate:Date;
+			[Bindable]
+			private var _startByCode:Boolean;
+			[Bindable]
+			private var _showResult:Boolean;
 	
 			private function creationComplete():void {
 				/*
@@ -54,7 +58,7 @@
 			
 			public function setCopyProvider(copyProvider:CopyProvider):void {
 				this.copyProvider = copyProvider;
-				title = copyProvider.getCopyForId("testPanel");
+				//title = copyProvider.getCopyForId("testPanel");
 				captionLabel.text = copyProvider.getCopyForId("testCaptionLabel");
 				openTimeLabel.text = copyProvider.getCopyForId("testOpenTimeLabel");
 				closeTimeLabel.text = copyProvider.getCopyForId("testCloseTimeLabel");
@@ -62,8 +66,10 @@
 				startByTimer.label = copyProvider.getCopyForId("testTimeLabel");
 				startConditionsLabel.text = copyProvider.getCopyForId("testStartConditionLabel");
 				showResultLabel.text = copyProvider.getCopyForId("testShowResultLabel");
-				//cancelButton.label = copyProvider.getCopyForId("cancelButton");
+				cancelButton.label = copyProvider.getCopyForId("cancelButton");
 				saveButton.label = copyProvider.getCopyForId("saveTestDetail");
+				startByCode.label = showResult.label = copyProvider.getCopyForId("yesButton");
+				startByTimer.label = hideResult.label = copyProvider.getCopyForId("noButton");
 			}
 
 			public function setDataProvider(test:ScheduledTest):void {
@@ -96,12 +102,9 @@
 					}
 					startData.text = dataProvider.startData;
 					captionData.text = dataProvider.caption;
-					if (dataProvider.startType == 'code') {
-						startByCode.selected = true;
-					} else {
-						startByTimer.selected = true;
-					}
-					showResultData.selected = dataProvider.showResult;
+
+					_startByCode = (dataProvider.startType == 'code');
+					_showResult = (dataProvider.showResult);
 					
 					// Is the data editable?
 					setDataEditable(dataProvider.status == ScheduledTest.STATUS_PRERELEASE);
@@ -113,7 +116,7 @@
 				captionData.editable = startData.editable = editable; 
 				openTimeDataDate.enabled = closeTimeDataDate.enabled = editable;
 				openTimeDataHours.enabled = openTimeDataMins.enabled = closeTimeDataHours.enabled = closeTimeDataMins.enabled = editable; 
-				showResultData.enabled = startByCode.enabled = startByTimer.enabled = editable;
+				showResult.enabled = hideResult.enabled = startByCode.enabled = startByTimer.enabled = editable;
 				saveButton.enabled = editable;
 			}
 			public function dateChanged(e:Event):void {
@@ -150,7 +153,7 @@
 				if (_closeDate)
 					updatedTest.closeTime = DateUtils.dateAndTimeToString(_closeDate, closeTimeDataHours.value, closeTimeDataMins.value);
 				updatedTest.caption = captionData.text;
-				updatedTest.showResult = showResultData.selected;
+				updatedTest.showResult = showResult.selected;
 				updatedTest.startType = (startByCode.selected) ? 'code' : 'timer';
 				updatedTest.startData = (startByCode.selected) ? startData.text : null;
 				return updatedTest;
@@ -195,7 +198,7 @@
 				}
 				
 				// Check the code
-				if (startByCode.selected) {
+				if (_startByCode) {
 					if (startData.text.length < 4) {
 						_errorText = "The code must be at least 4 characters long.";
 						return false;
@@ -225,16 +228,40 @@
 			private function formatDateTime(date:Date):String {
 				return DateUtils.formatDate(date, "D MMM YYYY");
 			}
+			// Used to tie two buttons together for toggle on / off display 
+			private function onToggle(e:Event):void {
+				switch (e.currentTarget) {
+					case startByCode:
+						_startByCode = true;
+						break;
+					case startByTimer:
+						_startByCode = false;
+						break;
+					case showResult:
+						_showResult = true;
+						break;
+					case hideResult:
+						_showResult = false;
+						break;
+				}
+			}
 		]]>
 	</mx:Script>
+
 	
-	<mx:VBox width="100%" height="100%">
-		<mx:HBox>
-			<mx:Label id="captionLabel" width="200"/>
-			<mx:TextInput id="captionData" enabled="true" width="200" />
+	<mx:VBox width="100%" height="100%" borderStyle="solid" backgroundColor="#ECECEC" verticalGap="0">
+		<mx:HBox width="100%" backgroundColor="#ffffff" height="36" >
+			<mx:Button id="cancelButton" enabled="false" width="100" height="100%" />
+			<mx:Label text="Test details" width="100%" styleName="subHeadingLabelBlack" textAlign="center" paddingTop="8"/>
+			<mx:Button id="saveButton" width="100" height="100%" click="onAdd()" />
 		</mx:HBox>
-		<mx:HBox>
-			<mx:Text id="openTimeLabel" width="200"/>
+		<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
+			<mx:Label id="captionLabel" width="100%"/>
+			<mx:TextInput id="captionData" enabled="true" width="100%" />
+		</mx:VBox>
+		<mx:Spacer height="12" />
+		<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
+			<mx:Text id="openTimeLabel" width="100%"/>
 			<mx:HBox>			
 				<mx:DateField width="120" id="openTimeDataDate" enabled="true" editable="false" 
 						  selectableRange="{{rangeStart : new Date()}}" labelFunction="formatDateTime" yearNavigationEnabled="true" />
@@ -243,9 +270,7 @@
 				<mx:NumericStepper id="openTimeDataMins" enabled="true" width="50"   
 								   minimum="0" maximum="55" stepSize="5" value="0" />
 			</mx:HBox>
-		</mx:HBox>
-		<mx:HBox>
-			<mx:Text id="closeTimeLabel" width="200"/>
+			<mx:Text id="closeTimeLabel" width="100%"/>
 			<mx:HBox>			
 				<mx:DateField width="120" id="closeTimeDataDate" enabled="true" editable="false" 
 							  selectableRange="{{rangeStart : new Date()}}" labelFunction="formatDateTime" yearNavigationEnabled="true" />
@@ -254,22 +279,33 @@
 				<mx:NumericStepper id="closeTimeDataMins" enabled="true" width="50"   
 								   minimum="0" maximum="55" stepSize="5" value="0" />
 			</mx:HBox>
-		</mx:HBox>
-		<mx:HBox>
+		</mx:VBox>
+		<mx:Spacer height="12" />
+		<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
 			<mx:Text id="startConditionsLabel" width="200" />
-			<mx:VBox>
+			<mx:HBox>
+				<!--
 				<mx:RadioButton id="startByCode" groupName="startConditions" labelPlacement="right" />
 				<mx:RadioButton id="startByTimer" groupName="startConditions" labelPlacement="right" />
-			</mx:VBox>
-			<mx:TextInput id="startData" enabled="{startByCode.selected}" />
-		</mx:HBox>
-		<mx:HBox>
+				-->
+				<mx:Button id="startByCode" toggle="true" selected="{_startByCode}" click="onToggle(event)" styleName="{(_startByCode) ? 'selectedButton' : 'normalButton'}"/>
+				<mx:Button id="startByTimer" toggle="true" selected="{!_startByCode}" click="onToggle(event)" styleName="{(!_startByCode) ? 'selectedButton' : 'normalButton'}"/>
+			</mx:HBox>
+			<mx:TextInput id="startData" enabled="{_startByCode}" />
+		</mx:VBox>
+		<mx:Spacer height="12" />
+		<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
 			<mx:Text id="showResultLabel" width="200"/>
-			<mx:CheckBox id="showResultData" enabled="true" />
-		</mx:HBox>
-		<mx:Label id="errorTextLabel" text="{_errorText}" visible="true" includeInLayout="true" />
-		<mx:Button id="saveButton" click="onAdd()" />
-		<!-- <mx:Button id="cancelButton" enabled="{_isDirty}" click="onCancel()" /> -->
+			<mx:HBox>
+				<!--
+				<mx:CheckBox id="showResultData" enabled="true" />
+				-->
+				<mx:Button id="showResult" toggle="true" selected="{_showResult}" click="onToggle(event)" styleName="{(_showResult) ? 'selectedButton' : 'normalButton'}"/>
+				<mx:Button id="hideResult" toggle="true" selected="{!_showResult}" click="onToggle(event)" styleName="{(!_showResult) ? 'selectedButton' : 'normalButton'}"/>
+			</mx:HBox>
+		</mx:VBox>
+		<mx:Spacer height="12" />
+		<mx:Label id="errorTextLabel" text="{_errorText}" visible="true" includeInLayout="true" styleName="errorMessage"/>
 	</mx:VBox>
 
-</mx:TitleWindow>
+</mx:VBox>
