@@ -18,7 +18,8 @@ class ScheduledTest {
 	var $showResult;
     // ctp#68
     var $menuFilename;
-    const DEFAULT_NAME = "menu.json";
+    // ctp#200
+    const DEFAULT_NAME = "menu.json.hbs";
     
     var $status;
     const STATUS_PRERELEASE = 0;

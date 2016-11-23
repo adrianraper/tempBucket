@@ -42,22 +42,8 @@ class CTPService extends BentoService {
         $rootID = $login['account']->id;
 
         // Get the tests that the user's group can take part in
-        // There are some fake tests used for checking content
-        /*
-        if ($rootID==163 && preg_match('/(track\w+)(@ppt)/i', $user->email, $matches)) {
-            $fakeTest = new ScheduledTest();
-            $fakeTest->id = '1';
-            $fakeTest->testId = '1';
-            $fakeTest->startTimestamp = '2016-01-01';
-            $fakeTest->endTimestamp = null;
-            $fakeTest->contentName = $matches[1];
-            $fakeTest->description = 'Testing track '.$matches[1];
-            $tests[] = $fakeTest;
-        } else {
-        */
-            // But remember that you DON'T pass the security access code back to the app
-            $tests = $this->getTestsSecure($login['group'], $productCode);
-        //}
+        // But remember that you DON'T pass the security access code back to the app
+        $tests = $this->getTestsSecure($login['group'], $productCode);
 
         if ($tests) {
             // Create a T_TestSession record here. Fill in the TestId when I do first writeScore if not known now
@@ -71,6 +57,8 @@ class CTPService extends BentoService {
         } else {
             $sessionId = "xxxx";
         }
+        // Just until menu.json.hbs works...
+        $tests[0]->menuFilename = 'menu.json';
 
         return array(
             "user" => $user,
@@ -212,8 +200,11 @@ class CTPService extends BentoService {
             $this->progressOps->updateTestSession($session, true);
 
         // gh#1523 Are there enough licences left to send back the result?
+        // ctp#173
         $licencesObj = $this->usageOps->getTestsUsed($session->productCode, $session->rootId);
-        return (($licencesObj['purchased'] - $licencesObj['scheduled']) >= 0) ? $session->result : true;
-    }
+        if ($licencesObj['purchased'] - $licencesObj['scheduled'] >= 0)
+            $session->result = array("level" => null);
 
+        return $session->result;
+    }
 }

@@ -185,7 +185,9 @@ SQL;
     function getTestResult($session) {
 
         // Do you need to exclude any 'exercises' from scoring? Requirements for one...
-        $excludeExerciseIDs = array('2016063999');
+        // Exclude the gauge and gauge bonus questions
+        // ctp#153 will need to change these exercise IDs to base64 versions
+        $excludeExerciseIDs = array('2016063999','2015063020002','2015063020003','2015063020012','2015063020026');
 
         // 1. Count all the correct answers in this session
         // sessionId is an index of the table, so a reasonable search
@@ -193,7 +195,7 @@ SQL;
         // so replace with a php loop
         // SELECT SUM(F_ScoreCorrect) as totalCorrect, SUM(F_ScoreWrong) as totalWrong, SUM(F_ScoreMissed) as totalMissed
         $sql = <<<SQL
-			SELECT F_ScoreCorrect as correct, F_ScoreWrong as wrong, F_ScoreMissed as missed, F_ExerciseID as exID
+			SELECT F_ScoreCorrect as correct, F_ScoreWrong as wrong, F_ScoreMissed as missed, F_ExerciseID as exID, F_UnitID as unitID
 			FROM T_Score
 			WHERE F_SessionID=?
 SQL;
@@ -207,6 +209,19 @@ SQL;
                     $totalWrong += $record->wrong;
                     $totalMissed += $record->missed;
                 }
+                // Also note which track you went down
+                // This is not only hardcoded, but will be squashed if you end going down more than one track
+                switch ($record->unitID) {
+                    case '2015063020004':
+                        $track = 'A';
+                        break;
+                    case '2015063020018':
+                        $track = 'B';
+                        break;
+                    case '2015063020032':
+                        $track = 'C';
+                        break;
+                }
             }
         }
 
@@ -214,7 +229,7 @@ SQL;
         //
         // TODO Keep checking that this remains true:
         // We are ONLY interested in matching tags for correct questions
-        // And if we are dealing with a set of grouped questions (such as word ordering) one question (the first)
+        // And if we are dealing with a set of grouped questions (such as sentence reconstructions) one question (the first)
         // and one only from the group will be marked as correct if the group is correct.
         //
         $sql = <<<SQL
@@ -244,35 +259,61 @@ SQL;
         }
         $A1count = $this->countTags('/A1/i', $scoreDetails);
         $A2count = $this->countTags('/A2/i', $scoreDetails);
-        $Bcount = $this->countTags('/B[12]/i', $scoreDetails);
+        $B1count = $this->countTags('/B1/i', $scoreDetails);
+        $B2count = $this->countTags('/B2/i', $scoreDetails);
+        $C1count = $this->countTags('/C1/i', $scoreDetails);
+        $C2count = $this->countTags('/C2/i', $scoreDetails);
 
         // 3. Build the CEF, the numeric score
 
         // 4. Build a confidence graph for the score
 
-        switch (true) {
-            case ($totalCorrect > 80):
-                $result = "C2";
+        // Just put something together for now
+        switch ($track) {
+            case 'A':
+                switch (true) {
+                    case ($totalCorrect <= 8):
+                    case ($totalCorrect == 9 && $A2count == 0):
+                        $result = "A1";
+                        break;
+                    case ($totalCorrect == 9 && $A2count > 0):
+                    case ($totalCorrect >= 10 && $totalCorrect <= 11):
+                        $result = "A1/A2";
+                        break;
+                    case ($totalCorrect >= 12 && $totalCorrect <= 18):
+                        $result = "A2";
+                        break;
+                    case ($totalCorrect >= 19):
+                        $result = "A2/B1";
+                        break;
+                }
                 break;
-            case ($totalCorrect > 60):
-                $result = "C1";
+
+            case 'B':
+                switch (true) {
+                    case ($totalCorrect <= 2):
+                        $result = "A2/B1";
+                        break;
+                    case ($totalCorrect >= 3 && $totalCorrect <= 8):
+                    case ($totalCorrect == 9 && $B2count == 0):
+                        $result = "B1";
+                        break;
+                    case ($totalCorrect >= 10 && $totalCorrect <= 11):
+                    case ($totalCorrect == 9 && $B2count > 0):
+                        $result = "B1/B2";
+                        break;
+                    case ($totalCorrect >= 12 && $totalCorrect <= 18):
+                        $result = "B2";
+                        break;
+                    case ($totalCorrect >= 19):
+                        $result = "B2/C+";
+                        break;
+                }
                 break;
-            case ($totalCorrect > 50):
-                $result = "B2";
+            case 'B':
+                $result = "C+";
                 break;
-            case ($totalCorrect > 25):
-                $result = "B1";
-                break;
-            case ($totalCorrect > 16):
-                $result = "A2";
-                break;
-            case ($totalCorrect > 5):
-                $result = "A1";
-                break;
-            default:
-                $result = "A0";
         }
-        // {"level":"A2"}
         return array("level" => $result, "numeric" => $totalCorrect);
     }
 
