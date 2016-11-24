@@ -58,7 +58,7 @@ class CTPService extends BentoService {
             $sessionId = "xxxx";
         }
         // Just until menu.json.hbs works...
-        $tests[0]->menuFilename = 'menu.json';
+        //$tests[0]->menuFilename = 'menu.json';
 
         return array(
             "user" => $user,
