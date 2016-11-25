@@ -122,6 +122,8 @@ class CTPService extends BentoService {
 
     // Write the score from an exercise. This includes full details of each answer and anomalies
     public function scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffset) {
+	    $error = false;
+
         $session = $this->testOps->getTestSession($sessionId);
         if (!$session)
             throw new Exception("No such saved session");
@@ -150,8 +152,21 @@ class CTPService extends BentoService {
         $score->setUID($scoreObj->uid);
         $score->dateStamp = $this->timestampToAnsiString($localTimestamp);
 
+        // cpt#210
+        $score->exerciseID = 0;
+
         // Write the summary score record
-        $this->progressOps->insertScore($score, $user);
+        // gh#166 Catch duplicate record exceptions - and just ignore!!
+        try {
+            $this->progressOps->insertScore($score, $user);
+        } catch(Exception $e) {
+            if ($e->getCode() == $this->copyOps->getCodeForId('errorDatabaseDuplicateRecord')) {
+                $error["code"] = $e->getCode();
+                $error["message"] = $e->getMessage();
+            } else {
+                throw $e;
+            }
+        }
 
         // Write each score detail
         $scoreDetails = array();
@@ -178,6 +193,8 @@ class CTPService extends BentoService {
         }
         if ($isDirty)
             $this->progressOps->updateTestSession($session);
+
+        return array("success" => ($error===false), "error" => $error);
     }
 
     public function getTestResult($sessionId) {

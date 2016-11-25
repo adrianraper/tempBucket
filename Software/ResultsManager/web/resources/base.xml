@@ -60,6 +60,7 @@
             
             <lit name="errorDatabaseReading" code="500">Error reading from the database. Please contact support@clarityenglish.com.</lit>
             <lit name="errorDatabaseWriting" code="501">Error writing to the database. Please contact support@clarityenglish.com.</lit>
+            <lit name="errorDatabaseDuplicateRecord" code="502">Error writing to the database. Please contact support@clarityenglish.com. {msg}</lit>
 
             <lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
             <lit name="errorVideoLoad" code="602">This URL isn't recognised as a compatible video source. Click 'share' under a YouTube video and copy the URL, something like http://youtu.be/oSn3i4vsGeY. Vimeo can be copied direct from the URL.</lit>

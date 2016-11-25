@@ -76,9 +76,10 @@ try {
                     "submitTimestamp": 1474277235232
                 }
             },
-            "localTimestamp": ' . time()*1000 . ', 
+            "localTimestamp": 1480039838000, 
             "timezoneOffset": -480
         }');
+     *  // . time()*1000 . ',
     */
     //1475543370002 - timestamp for 4th Oct about 9:04am
     if (!$json)
@@ -147,6 +148,11 @@ function getResult($sessionId) {
 
 function scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffset=null) {
     global $service;
-    $service->scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffset);
-    return array("sessionID" => $sessionId);
+    $rc = $service->scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffset);
+    // ctp#166
+    if ($rc["success"]===false) {
+        return array("sessionID" => $sessionId, "error" => $rc["error"]);
+    } else {
+        return array("sessionID" => $sessionId);
+    }
 }

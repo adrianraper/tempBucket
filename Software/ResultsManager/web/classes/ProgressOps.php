@@ -310,7 +310,7 @@ SQL;
                         break;
                 }
                 break;
-            case 'B':
+            case 'C':
                 $result = "C+";
                 break;
         }
@@ -546,11 +546,18 @@ EOD;
 		$bindingParams = array($score->userID, $score->productCode, $score->courseID, $score->unitID, $score->exerciseID, 
 								$score->duration, $score->score, $score->scoreCorrect, $score->scoreWrong, $score->scoreMissed, 
 								$score->dateStamp, $score->sessionID);
-								
-		$rc = $this->db->Execute($sql, $bindingParams);
+
+		try {
+            $rc = $this->db->Execute($sql, $bindingParams);
+        } catch (Exception $e) {
+            // ctp#166
+            if ($this->db->ErrorNo() == 1062)
+                throw $this->copyOps->getExceptionForId("errorDatabaseDuplicateRecord", array("msg" => $this->db->ErrorMsg()));
+            throw $e;
+        }
 		if (!$rc)
-			throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
-		
+            throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
+
 		// #308
 		//return $rc;
 		// gh#119
@@ -573,7 +580,7 @@ EOD;
             if (!$scoreDetail->courseID) $scoreDetail->courseID = 'null';
             if (!$scoreDetail->score) $scoreDetail->score = 'null';
             $sqlData[] = "(".$user->userID.", ".$rootID.", ".$scoreDetail->sessionID.
-                ", ".$scoreDetail->unitID.", ".$scoreDetail->exerciseID.
+                ", ".$scoreDetail->unitID.", '".$scoreDetail->exerciseID."'".
                 ", '".$scoreDetail->itemID."', ".$scoreDetail->score.", '".$scoreDetail->detail."', '".$scoreDetail->dateStamp."')";
         }
         $sql = <<<EOD
