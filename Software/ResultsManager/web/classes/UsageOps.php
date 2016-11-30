@@ -1186,7 +1186,7 @@ SQL;
             default:
             	// Just ignore anything more than one
                 $dbObj = $rs->FetchNextObj();
-                $purchased = $dbObj->F_MaxStudents;
+                $purchased = intval($dbObj->F_MaxStudents);
         }
         
         // Tests completed is based on T_TestSession

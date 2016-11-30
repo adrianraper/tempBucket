@@ -517,7 +517,7 @@ class BentoService extends AbstractService {
 
 		// Update the session record
 		if ($sessionId)
-			$this->updateSession($sessionId);
+            $rc = $this->progressOps->updateSession($sessionId);
 		
 		// Clear php session and authentication
 		$this->loginOps->logout();
@@ -551,7 +551,7 @@ class BentoService extends AbstractService {
 		
 		// A successful session start will return a new ID
 		$sessionId = $this->progressOps->startSession($user, $rootId, $productCode, (strtolower(AbstractService::$title) == "rotterdam") ? $courseId : null);
-		return array("sessionID" => $sessionId);
+		return array("sessionID" => (string) $sessionId);
 	}
 	
 	/**
@@ -567,7 +567,7 @@ class BentoService extends AbstractService {
 		// A successful session stop will not generate an error
 		// gh#604 return the session id, it might be a new one
 		$sessionId = $this->progressOps->updateSession($sessionId, $courseId);
-		return array("sessionID" => $sessionId);
+		return array("sessionID" => (string) $sessionId);
 	}
 	
 	/**
@@ -598,8 +598,9 @@ class BentoService extends AbstractService {
 			$this->licenceOps->updateLicence($licence, $hibernate);
 
 		// Update the session record if applicable
+        // gh#1524
 		if ($sessionId)
-			return $this->updateSession($sessionId);
+            return array("sessionID" => (string) $this->progressOps->updateSession($sessionId));
 
 		return false;
 	}
@@ -640,7 +641,7 @@ class BentoService extends AbstractService {
         // gh#954 and update the session, which might trigger a new session if course changes
         // This is ONLY done for C-Builder
         $sessionId = $this->progressOps->updateSession($sessionId, (strtolower(AbstractService::$title) == "rotterdam") ? $score->courseID : null);
-        $score->sessionID = $sessionId;
+        $score->sessionID = (string) $sessionId;
         return $score;
 
     }

@@ -320,7 +320,7 @@ import flash.events.TimerEvent;
                         configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
                         if (data.sessionID as String != configProxy.getConfig().sessionID) {
                             // Sanity check
-                            if (data.sessionID > configProxy.getConfig().sessionID) {
+                            if (Number(data.sessionID) > Number(configProxy.getConfig().sessionID)) {
                                 configProxy.getConfig().sessionID = data.sessionID as String;
                             } else {
                                 trace('The new session id seems wrong: {0}', data.sessionID);

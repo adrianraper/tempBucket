@@ -60,7 +60,8 @@ package com.clarityenglish.common.model {
 		}
 		
 		/**
-		 * Update the database session record 
+		 * Update the database session record
+		 * gh#1524 This is not used
 		 * @return void
 		 * 
 		 */
