@@ -642,6 +642,7 @@
             <lit name="licencesPurchased">Tests purchased</lit>
             <lit name="licencesUsed">Tests used</lit>
             <lit name="notEnoughLicences">You have {licencesAvailable} tests left from your purchased supply. You have scheduled up to {licencesScheduled} people to take tests. It is best to buy some more now.</lit>
+            <lit name="licencesNeededWarning">You have {licencesAvailable} tests left from the ones you purchased. You have scheduled up to {licencesScheduled} people to take tests.</lit>
             <lit name="buyMoreLicences">Buy {licencesNeeded} tests now</lit>
             
             <lit name="generateReport">See test results</lit>

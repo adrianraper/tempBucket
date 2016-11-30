@@ -1486,7 +1486,7 @@ VALUES (2496, '2016-09-08 00:00:00', 'Clarity Test Platform tables');
 
 CREATE TABLE `T_ScoreDetail_Expiry` (
   `F_UserID` int(10) NOT NULL,
-  `F_ExerciseID` bigint(19) NOT NULL,
+  `F_ExerciseID` varchar(64) NOT NULL,
   `F_ItemID` varchar(64) NOT NULL,
   `F_Group` varchar(64) NULL DEFAULT NULL,
   `F_Score` int(10) DEFAULT NULL,
@@ -1506,3 +1506,7 @@ ALTER TABLE `T_ScoreDetail` ADD COLUMN `F_CourseID` bigint(20) NULL DEFAULT NULL
 ALTER TABLE `T_ScoreDetail` MODIFY COLUMN `F_ItemID` varchar(64);
 ALTER TABLE `T_ScoreDetail` ADD COLUMN `F_Group` varchar(32) NULL DEFAULT NULL AFTER `F_ItemID`;
 ALTER TABLE `T_ScoreDetail` ADD INDEX `Index_01` (`F_SessionID`);
+
+-- ctp#210
+ALTER TABLE `T_ScoreDetail` MODIFY COLUMN `F_ExerciseID` varchar(64);
+ALTER TABLE `T_ScoreDetail_Expiry` MODIFY COLUMN `F_ExerciseID` varchar(64);
