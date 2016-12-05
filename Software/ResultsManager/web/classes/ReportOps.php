@@ -197,7 +197,7 @@ EOD;
         }
 		//echo $sql.'<br/>'; exit();
 		$rows = $this->db->GetArray($sql);
-		
+
 		// gh#1523 Now is the time to blank out the scores for anyone who took the test but has no licence
         if (stripos($template,'dptsummary') !== false) {
         	$pc = $onReportableIDObjects[0]['Title'];
@@ -219,40 +219,59 @@ EOD;
 		
 		// gh#777 Run a second query to add all users in a group who haven't got any score records
 		if ($reportBuilder->getOpt(ReportBuilder::SHOW_INACTIVE_USERS)) {
-			$newRows = Array();
-			// which columns appear in the empty rows?
-			$fixedReportColumns = Array();
-			switch (true) {
-				case ($reportBuilder->getOpt(ReportBuilder::SHOW_EXERCISE)):
-					$fixedReportColumns['exerciseID'] = 0;
-				case ($reportBuilder->getOpt(ReportBuilder::SHOW_UNIT)):
-					$fixedReportColumns['unitID'] = 0;
-				case ($reportBuilder->getOpt(ReportBuilder::SHOW_COURSE)):
-					$fixedReportColumns['courseID'] = 0;
-				case ($reportBuilder->getOpt(ReportBuilder::SHOW_TITLE)):
-					$fixedReportColumns['productCode'] = 0;
-					break;
-				default:
-			}
-			// and for those columns, can you put a single value in them?
-			if (isset($fixedReportColumns['productCode']) && $headers['titles'] && count(explode(',', $headers['titles'])) == 1)
-				$fixedReportColumns['productCode'] = 'value';
-			if (isset($fixedReportColumns['courseID']) && $headers['courses'] && count(explode(',', $headers['courses'])) == 1)
-				$fixedReportColumns['courseID'] = 'value';
-				// we don't do units/exercises in the same way - doesn't seem too necessary
+            if (stripos($template,'dptsummary') !== false) {
+                $thisTestId = $reportBuilder->getOpt(ReportBuilder::FOR_TESTID);
+                $forGroupsInString = implode(",", $reportBuilder->getOpt(ReportBuilder::FOR_GROUPS));
+                $sql = <<<EOD
+                select g.F_GroupName groupName,u.F_UserName userName,u.F_Email email
+                    from T_Groupstructure g,  T_Membership m, T_User u
+                    WHERE u.F_UserID = m.F_UserID
+                    AND g.F_GroupID = m.F_GroupID
+                    AND u.F_UserType = 0
+                    AND m.F_GroupID IN ($forGroupsInString)
+                    AND NOT EXISTS 
+                    (select * from T_TestSession s 
+                     where s.F_UserID = u.F_UserID 
+                     and s.F_TestID = $thisTestId)
+                    ORDER BY u.F_UserName ASC;
+EOD;
+                $newRows = $this->db->GetArray($sql);
+            } else {
+                $newRows = Array();
+                // which columns appear in the empty rows?
+                $fixedReportColumns = Array();
+                switch (true) {
+                    case ($reportBuilder->getOpt(ReportBuilder::SHOW_EXERCISE)):
+                        $fixedReportColumns['exerciseID'] = 0;
+                    case ($reportBuilder->getOpt(ReportBuilder::SHOW_UNIT)):
+                        $fixedReportColumns['unitID'] = 0;
+                    case ($reportBuilder->getOpt(ReportBuilder::SHOW_COURSE)):
+                        $fixedReportColumns['courseID'] = 0;
+                    case ($reportBuilder->getOpt(ReportBuilder::SHOW_TITLE)):
+                        $fixedReportColumns['productCode'] = 0;
+                        break;
+                    default:
+                }
+                // and for those columns, can you put a single value in them?
+                if (isset($fixedReportColumns['productCode']) && $headers['titles'] && count(explode(',', $headers['titles'])) == 1)
+                    $fixedReportColumns['productCode'] = 'value';
+                if (isset($fixedReportColumns['courseID']) && $headers['courses'] && count(explode(',', $headers['courses'])) == 1)
+                    $fixedReportColumns['courseID'] = 'value';
+                    // we don't do units/exercises in the same way - doesn't seem too necessary
 
-			foreach ($allUsersDetails as $user) {
-				// If the user has a detail record, ignore them. Otherwise add them as a blank record. 
-				foreach ($rows as $row) {
-					if ($user["userID"] == $row["userID"])
-						continue 2; 
-				}
-				if ($rows) {
-					$newRows[] = $reportBuilder->createBlankRow($user, $rows[0], $fixedReportColumns);
-				} else {
-					$newRows[] = $user;
-				}
-			}
+                foreach ($allUsersDetails as $user) {
+                    // If the user has a detail record, ignore them. Otherwise add them as a blank record.
+                    foreach ($rows as $row) {
+                        if ($user["userID"] == $row["userID"])
+                            continue 2;
+                    }
+                    if ($rows) {
+                        $newRows[] = $reportBuilder->createBlankRow($user, $rows[0], $fixedReportColumns);
+                    } else {
+                        $newRows[] = $user;
+                    }
+                }
+            }
 			if ($newRows)
 				$rows = array_merge($rows, $newRows);
 		}

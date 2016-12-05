@@ -267,12 +267,6 @@
 							<script>truncateText("<xsl:value-of select="report/@forReportDetail"/>");</script>
 							</td></tr>
 						</xsl:if>
-						<tr><td class="headerTableLabels" >
-						<xsl:value-of select="report/language//lit[@name='report_attempts']"/>:	
-						</td>
-						<td >
-						<xsl:value-of select="report/@attempts"/>
-						</td></tr>
 						<!-- AR this test doesn't work, and it seems to slow things down.
 						<xsl:if test="string-length(report/@dateRange) &gt; 0"><xsl:value-of select="report/language//lit[@name='report_dateRange']"/>: <xsl:value-of select="report/@dateRange"/><br/></xsl:if>
 						-->
@@ -299,18 +293,6 @@
 					</td>
 					<td >
 					<xsl:call-template name="getSummaryExercisesCompleted" />
-					</td></tr>
-					<tr><td class="headerTableLabels" >
-					<xsl:value-of select="report/language//lit[@name='report_averageDuration']"/>:	
-					</td>
-					<td >
-					<xsl:call-template name="getSummaryAverageDuration" /><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text><xsl:value-of select="report/language//lit[@name='report_minutes']"/>
-					</td></tr>
-					<tr><td class="headerTableLabels" >
-					<xsl:value-of select="report/language//lit[@name='report_totalTimeSpent']"/>:	
-					</td>
-					<td >
-					<xsl:call-template name="getSummaryTotalTime" /><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text><xsl:value-of select="report/language//lit[@name='report_hours_minutes']"/>
 					</td></tr>
 					</tbody>
 					</table>
