@@ -210,12 +210,14 @@ package com.clarityenglish.resultsmanager.view.management {
 			var opts:Object = new Object();
 			if (e.fromDate) opts.fromDate = e.fromDate;
 			if (e.toDate) opts.toDate = e.toDate;
+			/*
 			if (e.scoreLessThan >= 0) opts.scoreLessThan = e.scoreLessThan;
 			if (e.scoreMoreThan >= 0) opts.scoreMoreThan = e.scoreMoreThan;
 			if (e.durationLessThan >= 0) opts.durationLessThan = e.durationLessThan;
 			if (e.durationMoreThan >= 0) opts.durationMoreThan = e.durationMoreThan;
-			opts.detailedReport = e.detailedReport;
 			opts.attempts = e.attempts;
+			*/
+			opts.detailedReport = e.detailedReport;
 			// v3.2 Optional id in the report
 			opts.includeStudentID = e.includeStudentID;
 			// gh#777

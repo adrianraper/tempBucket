@@ -49,10 +49,12 @@
 			closeWindowButton.label = copyProvider.getCopyForId("close");
 			toDateCheckBox.label = copyProvider.getCopyForId("toDate");
 			fromDateCheckBox.label = copyProvider.getCopyForId("fromDate");
+			/*
 			showAttempts.text = copyProvider.getCopyForId("showAttempts");
 			allAttempts.label = copyProvider.getCopyForId("allAttempts");
 			firstAttempt.label = copyProvider.getCopyForId("firstAttempts");
 			lastAttempt.label = copyProvider.getCopyForId("lastAttempts");
+			*/
 			filterStep.text = copyProvider.getCopyForId("reportFilterStep", {item:1});
 			// gh#777
 			includeInactiveUsersCheckBox.label = copyProvider.getCopyForId("includeInactiveUsersCheckBox");
@@ -104,7 +106,7 @@
 			}
 			
 			// Add in the attempts option
-			reportEvent.attempts = attemptsRadioGroup.selection.data as String;
+			//reportEvent.attempts = attemptsRadioGroup.selection.data as String;
 			
 			// If I want to generate to a particular template?
 			reportEvent.template = template;
@@ -138,8 +140,9 @@
 				</mx:VBox>
 			</mx:HBox>
 			<mx:Spacer height="5" />				
+			<!--
 			<mx:VBox>
-			<mx:Label id="showAttempts" />
+				<mx:Label id="showAttempts" />
 				<mx:HBox>
 					<mx:RadioButtonGroup id="attemptsRadioGroup" />
 					<mx:RadioButton id="allAttempts" data="{ReportEvent.ALL}" groupName="attemptsRadioGroup" selected="true" />
@@ -147,6 +150,7 @@
 					<mx:RadioButton id="lastAttempt" data="{ReportEvent.LAST}" groupName="attemptsRadioGroup" />
 				</mx:HBox>
 			</mx:VBox>
+			-->
 			<!-- gh#777 -->
 			<mx:HRule width="90%" />
 			<mx:Spacer height="5" />				

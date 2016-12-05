@@ -124,13 +124,22 @@ package com.clarityenglish.resultsmanager.model {
 				} else {
 					delete headers.courses;
 				}
-				//TraceUtils.myTrace("headers.titles=" + headers.titles);
-				//TraceUtils.myTrace("headers.courses=" + headers.courses);
-				//TraceUtils.myTrace("headers.forReport=" + headers.forReport);
+				
 			} else {
-				headers.forReportDetail = forReportables.map(function(reportable:Reportable, index:int, array:Array):String { 
-											return reportable.reportableLabel; } ).join(", ");
-				headers.forReportLabel = forClass + "(s)"; // Note that this is the name of the literal, it will be looked up later. No it won't!
+				// ctp#198
+				if (template == "DPTSummary") {
+					var tempTests:Array = new Array();
+					for each (reportable in forReportables) {
+						if (ClassUtils.getClassAsString(reportable) as String == "ScheduledTest")
+							tempTests.push(reportable.reportableLabel);
+					}
+					headers.forReportDetail = tempTests.join(", ");
+					headers.forReportLabel = "Description";
+				} else {
+					headers.forReportDetail = forReportables.map(function(reportable:Reportable, index:int, array:Array):String { 
+						return reportable.reportableLabel; } ).join(", ");
+					headers.forReportLabel = forClass + "(s)"; // Note that this is the name of the literal, it will be looked up later. No it won't!
+				}
 			}
 			
 			// Format the date range nicely
@@ -142,7 +151,8 @@ package com.clarityenglish.resultsmanager.model {
 			headers.dateRange = dateRange;
 			
 			// Say what type of attempt filtering we are using. Where do we actually put this in?
-			headers.attempts = copyProvider.getCopyForId(opts.attempts + "Attempts");
+			if (opts.attempts)
+			    headers.attempts = copyProvider.getCopyForId(opts.attempts + "Attempts");
 			
 			opts.headers = headers;
 			//trace("opts detailed report"+ opts.detailedReport);
