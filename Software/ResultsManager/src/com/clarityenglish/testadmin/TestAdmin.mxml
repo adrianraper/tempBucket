@@ -9,7 +9,7 @@
 				paddingTop="1">
 	<!-- xmlns:usage="com.clarityenglish.resultsmanager.view.usage.components.*"
 	     xmlns:loginopts="com.clarityenglish.resultsmanager.view.loginopts.components.*" -->
-	<mx:Style source="../../../../css/clarity.css"/>
+	<mx:Style source="../../../../css/testadmin.css"/>
 	
 	<mx:Script>
 		<![CDATA[

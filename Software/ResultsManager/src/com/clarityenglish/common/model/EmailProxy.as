@@ -8,7 +8,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.Manageable;
 	import com.clarityenglish.common.vo.tests.ScheduledTest;
-	import com.clarityenglish.dms.Constants;
+	import com.clarityenglish.resultsmanager.Constants;
 	import com.clarityenglish.dms.DMSNotifications;
 	import com.clarityenglish.dms.vo.account.Account;
 	

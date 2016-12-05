@@ -1,0 +1,142 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* TitleWindow { */
+/* not supported in CSS 
+	borderAlpha: 0.8;
+	borderColor: 0x1D9B9B;
+*/
+/* } */
+
+@font-face { 
+	src: url("../assets/HelveticaNeueLTStd-Bd_0.otf"); 
+	fontFamily: "Helvetica Neue Lt Std"; 
+	fontWeight: bold;
+}
+@font-face { 
+	src: url("../assets/HelveticaLTStd-Roman.otf"); 
+	fontFamily: "Helvetica Neue Lt Std"; 
+	fontWeight: normal;
+}
+
+/*
+GradientCanvas {
+	fillColors: 0xffffff, 0xd4d4d3;
+	cornerRadius: 0;
+}
+*/
+.prompt {
+	fontFamily: "Helvetica Neue Lt Std";
+	color: #ffffff;
+	fontSize: 16;
+	fontWeight: bold;
+}
+.promptGrey {
+	fontFamily: "Helvetica Neue Lt Std";
+	color: #666666;
+	fontSize: 16;
+	fontWeight: bold;
+}
+.promptEntry {
+	fontFamily: "Helvetica Neue Lt Std";
+	color: #0b7bad;
+	fontSize: 16;
+	fontWeight: bold;
+}
+.forgotPassword {
+	fontFamily: "Helvetica Neue Lt Std";
+	color: #fdb81d;
+	fontSize: 13;
+	fontWeight: normal;
+	text-decoration: underline;
+}
+.forgotPasswordGrey {
+	fontFamily: "Helvetica Neue Lt Std";
+	color: #414042;
+	fontSize: 13;
+	fontWeight: normal;
+	text-decoration: underline;
+}
+.loginButton {
+	fontFamily: "Helvetica Neue Lt Std";
+	color: #ffffff;
+	fontSize: 16;
+	fontWeight: bold;
+}
+.smallText {
+	fontFamily: "Helvetica Neue Lt Std";
+	color: #333333;
+	fontSize: 13;
+	fontWeight: normal;
+}
+
+.subHeadingLabelBlack {
+	color: #000000;
+	fontSize: 11;
+	fontWeight: bold;
+}
+.headingLabelWhite{
+	color: #FFFFFF;
+	fontSize: 13;
+	fontWeight: bold;
+}
+.headingLabelBlack{
+	color: #000000;
+	fontSize: 13;
+	fontWeight: bold;
+}
+CheckBox {
+	disabledBorderColor: #EEEEEE;
+	disabledFillAlphas: 0.01, 0.02;
+}
+Button {
+	cornerRadius: 6;
+}
+.selectedButton {
+	fillAlphas: 1, 1, 1, 1;
+	fillColors: #3fa972, #3fa972, #3fa972, #3fa972;
+}
+.normalButton {
+	fillAlphas: 0.6, 0.4, 0.75, 0.65;
+	fillColors: #FFFFFF, #CCCCCC, #FFFFFF, #EEEEEE;
+}
+ButtonBar {
+   buttonHeight: 26;
+}
+
+.mypanelTitle {
+   letterSpacing: 0;
+}
+
+TextArea {
+	backgroundColor:#F9FFA7;
+}
+
+Tab {
+	fillColors: #F0EB9E, #FFD184;
+}
+
+.notSelectedTabStyle {
+	backgroundColor: #F0EB9E;
+	fontFamily: Verdana;
+	fontSize: 11;
+	fontWeight: bold;
+	color: #825100;
+}
+.selectedTabStyle {
+	backgroundColor: #FFD184;
+	fontFamily: Verdana;
+	fontSize: 11;
+	fontWeight: bold;
+	color: #613C00;
+}
+.errorMessage {
+	fontSize: 12;
+	fontWeight: bold;
+	color: #ff0000;
+}
+.testList {
+	fontFamily: "Helvetica Neue Lt Std"; 
+	fontSize: 12;
+	fontWeight: bold;
+}

@@ -16,6 +16,7 @@
 			import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
 			import com.clarityenglish.resultsmanager.view.management.ui.TestadminReportWindow;
 			import com.clarityenglish.resultsmanager.view.shared.events.TestEvent;
+			import com.clarityenglish.testadmin.view.login.components.FlatButtonSkin;
 			import com.clarityenglish.utils.TraceUtils;
 			
 			import flash.text.StyleSheet;
@@ -330,7 +331,9 @@
 					<mx:Label id="selectGroupLabel" fontWeight="bold" />
 				</mx:VBox>
 				<mx:VBox width="100%" minWidth="300" visible="{selectedGroup != null}" includeInLayout="{selectedGroup != null}">					
-					<mx:Button id="newTestButton" visible="true" includeInLayout="true" width="100%" height="24" click="onNewTestButtonClick(event)" />
+					<mx:Button id="newTestButton" visible="true" includeInLayout="true" width="100%" height="24" click="onNewTestButtonClick(event)" 
+							   overSkin="{FlatButtonSkin}" upSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}"
+							   textRollOverColor="#FFFFFF"/>
 					<mx:HBox width="100%" >
 						<mx:Label id="listOfTestsLabel" styleName="subHeadingLabelBlack" />			
 						<mx:Label id="testListLabel" text="{selectedGroup.name}" styleName="subHeadingLabelBlack" />
