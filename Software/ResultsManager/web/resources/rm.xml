@@ -613,7 +613,7 @@
 			<lit name="hiddenContentLabel">Allow hidden content changes</lit>
 			
 			<!--  Test Platform -->
-            <lit name="listOfTestsLabel">Tests for: </lit>
+            <lit name="listOfTestsLabel">Tests for: {name}</lit>
             <lit name="addTest">Add new test</lit>
             <lit name="saveTestDetail">Save</lit>
             <lit name="cancelButton">Cancel</lit>

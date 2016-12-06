@@ -71,8 +71,9 @@ GradientCanvas {
 }
 
 .subHeadingLabelBlack {
+	fontFamily: "Helvetica Neue Lt Std";
 	color: #000000;
-	fontSize: 11;
+	fontSize: 12;
 	fontWeight: bold;
 }
 .headingLabelWhite{
@@ -139,4 +140,8 @@ Tab {
 	fontFamily: "Helvetica Neue Lt Std"; 
 	fontSize: 12;
 	fontWeight: bold;
+}
+.flatButton {
+	fontFamily: "Helvetica Neue Lt Std";
+	fontSize: 12;
 }

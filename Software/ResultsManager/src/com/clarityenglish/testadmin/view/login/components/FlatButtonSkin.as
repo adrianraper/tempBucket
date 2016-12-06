@@ -25,11 +25,14 @@ package com.clarityenglish.testadmin.view.login.components {
 				case "upSkin":
 					var outlineColors:Array = [0x00A79D, 0x2BB673];
 					break;
+				case "disabledSkin":
+					outlineColors = [0x696969, 0xCACACA];
+					break;
 				case "overSkin":
 					var fillColors:Array = [0x00A79D, 0x2BB673];
 					outlineColors = null;
 					break;
-				case "downSkin":
+				case "downSkin":	
 					fillColors = [0x2BB673, 0x00A79D];
 					outlineColors = null;
 					break;
@@ -42,7 +45,10 @@ package com.clarityenglish.testadmin.view.login.components {
 			m.createGradientBox(w, h, 0);
 			var spreadMethod:String = SpreadMethod.PAD;
 			
+			this.graphics.clear();
 			if (outlineColors) {
+				// need a background to trigger mouseover
+				this.graphics.beginFill(0xffffff);
 				this.graphics.lineStyle(1, 0);
 				this.graphics.lineGradientStyle(_fillType, outlineColors, _alphas, _ratios, m, spreadMethod);				
 				this.graphics.drawRoundRectComplex(0, 0, w, h, topCornerRadius, topCornerRadius, bottomCornerRadius, bottomCornerRadius);
