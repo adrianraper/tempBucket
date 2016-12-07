@@ -465,6 +465,28 @@ EOD;
      * This method is called to insert a session record for a test
      */
     function startTestSession($user, $rootId, $productCode, $testId = null) {
+        // ctp#195 Is there an unfinished session for this user/test already?
+        // If there is, return it (or the last one) so that we can use the same seed to recreate the same test
+        $sql = <<<EOD
+				SELECT s.*
+				FROM T_TestSession s
+				WHERE s.F_UserID=?
+                AND s.F_TestID=?
+                AND s.F_CompletedDateStamp is null
+                ORDER BY s.F_SessionID desc
+EOD;
+        $bindingParams = array($user->userID, $testId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs) {
+            if ($rs->recordCount() > 0) {
+                $rsObj = $rs->FetchNextObj();
+                $session = new TestSession($rsObj);
+                // ctp#195 temporary until older sessions expunged
+                if (is_null($session->seed))
+                    $session->seed = uniqid();
+                return $session;
+            }
+        }
 
         // gh#604 You might start with user as a plain userId
         if ($user instanceof User) {
@@ -479,19 +501,20 @@ EOD;
 
         $dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
         $dateNow = $dateStampNow->format('Y-m-d H:i:s');
-
-        $sql = <<<SQL
-			INSERT INTO T_TestSession (F_UserID, F_RootID, F_ProductCode, F_TestID, F_ReadyDateStamp)
-			VALUES (?, ?, ?, ?, ?)
-SQL;
-
-        // We want to return the newly created F_SessionID (or the SQL error)
-        $bindingParams = array($userId, $rootId, $productCode, $testId, $dateNow);
-        $rs = $this->db->Execute($sql, $bindingParams);
+        // ctp#195 Create a seed
+        $session = new TestSession();
+        $session->userId = $userId;
+        $session->rootId = $rootId;
+        $session->productCode = $productCode;
+        $session->testId = $testId;
+        $session->readyDateStamp = $dateNow;
+        $session->seed = uniqid();
+        $rs = $this->db->AutoExecute("T_TestSession", $session->toAssocArray(), "INSERT");
         if ($rs) {
             $sessionId = $this->db->Insert_ID();
             if ($sessionId) {
-                return $sessionId;
+                $session->sessionId = $sessionId;
+                return $session;
             } else {
                 // The database probably doesn't support the Insert_ID function
                 throw $this->copyOps->getExceptionForId("errorCantFindAutoIncrementSessionId");

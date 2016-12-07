@@ -15,8 +15,9 @@ class TestSession {
     var $startedDateStamp;
     var $completedDateStamp;
     var $result;
-    var $db;
-	
+    // ctp#195
+    var $seed;
+
 	function TestSession($dbObj = null) {
         if ($dbObj)
             $this->fromDatabaseObj($dbObj);
@@ -38,6 +39,8 @@ class TestSession {
         if ($obj->F_StartedDateStamp && strtotime($obj->F_StartedDateStamp) > 0) $this->startedDateStamp = $obj->F_StartedDateStamp;
         if ($obj->F_CompletedDateStamp && strtotime($obj->F_CompletedDateStamp) > 0) $this->completedDateStamp = $obj->F_CompletedDateStamp;
         $this->result = ($obj->F_Result) ? json_decode($obj->F_Result) : null;
+        // ctp#195
+        $this->seed = $obj->F_Seed;
 	}
 	
 	/**
@@ -56,6 +59,8 @@ class TestSession {
         $array['F_StartedDateStamp'] = $this->startedDateStamp;
         $array['F_CompletedDateStamp'] = $this->completedDateStamp;
         $array['F_Result'] = ($this->result) ? json_encode($this->result) : null;
+        // ctp#195
+        $array['F_Seed'] = $this->seed;
 
 		return $array;
 	}

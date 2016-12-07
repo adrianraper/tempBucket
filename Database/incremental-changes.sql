@@ -1465,7 +1465,8 @@ CREATE TABLE `T_TestSession` (
   `F_StartedDateStamp` datetime DEFAULT NULL,
   `F_CompletedDateStamp` datetime DEFAULT NULL,
   `F_Duration` int(11) DEFAULT NULL,
-  `F_Result` text,
+  `F_Result` text DEFAULT NULL,
+  `F_Seed` text DEFAULT NULL, 
   PRIMARY KEY (`F_SessionID`),
   KEY `Index_1` (`F_RootID`,`F_ProductCode`),
   KEY `Index_2` (`F_TestID`,`F_UserID`)
@@ -1510,3 +1511,6 @@ ALTER TABLE `T_ScoreDetail` ADD INDEX `Index_01` (`F_SessionID`);
 -- ctp#210
 ALTER TABLE `T_ScoreDetail` MODIFY COLUMN `F_ExerciseID` varchar(64);
 ALTER TABLE `T_ScoreDetail_Expiry` MODIFY COLUMN `F_ExerciseID` varchar(64);
+
+-- ctp#195
+ALTER TABLE `T_TestSession` ADD COLUMN `F_Seed` TEXT NULL DEFAULT NULL AFTER `F_Result`;

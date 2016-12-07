@@ -53,17 +53,18 @@ class CTPService extends BentoService {
             if (count($tests) > 1)
                 $tests = array_slice($tests,0,1);
             $testId = $tests[0]->testId;
-            $sessionId = $this->startSession($user, $rootID, $productCode, $testId);
+            $session = $this->startSession($user, $rootID, $productCode, $testId);
         } else {
-            $sessionId = "xxxx";
+            $session = new TestSession();
         }
         // Just until menu.json.hbs works...
         //$tests[0]->menuFilename = 'menu.json';
 
         return array(
             "user" => $user,
-            "sessionID" => (string)$sessionId,
-            "tests" => $tests
+            "session" => $session,
+            "tests" => $tests,
+            "sessionID" => (string) $session->sessionId
         );
 
     }
@@ -116,7 +117,7 @@ class CTPService extends BentoService {
     }
 
     // Create a session record that runs throughout the test
-    public function startSession($user, $rootId, $productCode, $testId=null)     {
+    public function startSession($user, $rootId, $productCode, $testId=null) {
         return $this->progressOps->startTestSession($user, $rootId, $productCode, $testId);
     }
 
