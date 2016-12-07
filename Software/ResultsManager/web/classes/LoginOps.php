@@ -32,7 +32,8 @@ class LoginOps {
 		// TODO. The code below doesn't properly do username+studentID at the moment
 		if ($loginOption & User::LOGIN_BY_NAME || $loginOption & User::LOGIN_BY_NAME_AND_ID) {
 			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");
-			if (isset($loginObj['username'])) {
+            // ctp#204
+            if (isset($loginObj['username']) && $loginObj['username'] != '') {
 				$key = 'u.F_UserName';
 				$keyValue = $loginObj['username'];
 			} else {
@@ -40,7 +41,8 @@ class LoginOps {
 			}
 		} elseif ($loginOption & User::LOGIN_BY_ID) {
 			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
-			if (isset($loginObj['studentID'])) {
+            // ctp#204
+            if (isset($loginObj['studentID']) && $loginObj['studentID'] != '') {
 				$key = 'u.F_StudentID';
 				$keyValue = $loginObj['studentID'];
 			} else {
@@ -48,7 +50,8 @@ class LoginOps {
 			}
 		} elseif ($loginOption & User::LOGIN_BY_EMAIL) {
 			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
-			if (isset($loginObj['email'])) {
+			// ctp#204
+			if (isset($loginObj['email']) && $loginObj['email'] != '') {
 				$key = 'u.F_Email';
 				$keyValue = $loginObj['email'];
 			} else {

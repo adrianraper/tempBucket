@@ -14,9 +14,10 @@ set_time_limit(360);
 try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
-    $json = json_decode('{"command":"getTestResult","testID":"16","sessionID":"133","mode":"overwrite"}');
     /*
+    $json = json_decode('{"command": "login","email": "","password": "d41d8cd98f00b204e9800998ecf8427e","productCode": "63"}');
     $json = json_decode('{"command":"login","email":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":63}');
+    $json = json_decode('{"command":"getTestResult","testID":"16","sessionID":"133","mode":"overwrite"}');
     */
     /*
     $json = json_decode('{"command":"scoreWrite",
