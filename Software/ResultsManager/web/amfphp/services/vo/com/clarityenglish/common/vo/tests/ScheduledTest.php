@@ -14,13 +14,14 @@ class ScheduledTest {
 	var $startData;
 	var $openTime;
 	var $closeTime;
-	var $language;
+    // ctp#60
+	var $lang;
 	var $showResult;
     // ctp#68
     var $menuFilename;
     // ctp#200
     const DEFAULT_NAME = "menu.json.hbs";
-    
+
     var $status;
     const STATUS_PRERELEASE = 0;
     const STATUS_RELEASED = 1;
@@ -51,7 +52,7 @@ class ScheduledTest {
 		$this->startData = $obj->F_StartData;
 		$this->openTime = $obj->F_OpenTime;
 		$this->closeTime = $obj->F_CloseTime;
-		$this->language = $obj->F_Language;
+		$this->lang = $obj->F_Language;
 		$this->showResult = filter_var($obj->F_ShowResult, FILTER_VALIDATE_BOOLEAN);
         // ctp#68
         $this->menuFilename = (!$obj->F_MenuFilename) ? ScheduledTest::DEFAULT_NAME : $obj->F_MenuFilename;
@@ -75,7 +76,7 @@ class ScheduledTest {
 		$array['F_StartData'] = $this->startData;
 		$array['F_OpenTime'] = $this->openTime;
 		$array['F_CloseTime'] = $this->closeTime;
-		$array['F_Language'] = $this->language;
+		$array['F_Language'] = $this->lang;
 		$array['F_ShowResult'] = intval($this->showResult);
         // ctp#68
         $array['F_MenuFilename'] = ($this->menuFilename == ScheduledTest::DEFAULT_NAME) ? null : $this->menuFilename;

@@ -15,8 +15,9 @@ try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
     /*
-    $json = json_decode('{"command":"login","email":"asra@hct","password":"c15521c9a6e45e0192345f66a34bd634","productCode":63}');
+    $json = json_decode('{"command":"getTranslations","lang":"EN"}');
     $json = json_decode('{"command":"login","email":"dandy@dpt","password":"2e93f6f5de7b09f1987ae0b9e5b3f383","productCode":63}');
+    $json = json_decode('{"command":"login","email":"asra@hct","password":"c15521c9a6e45e0192345f66a34bd634","productCode":63}');
     $json = json_decode('{"command": "login","email": "","password": "d41d8cd98f00b204e9800998ecf8427e","productCode": "63"}');
     $json = json_decode('{"command":"getTestResult","testID":"16","sessionID":"133","mode":"overwrite"}');
     */
@@ -136,6 +137,7 @@ function router($json) {
         case "login": return login($json->email, $json->password, $json->productCode);
         case "getTestResult": return getResult($json->sessionID, $json->mode);
         case "scoreWrite": return scoreWrite($json->sessionID, $json->score, $json->localTimestamp, $json->timezoneOffset);
+        case "getTranslations": return getTranslations($json->lang);
         default: throw new Exception("Unknown command");
     }
 }
@@ -160,4 +162,9 @@ function scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffse
     } else {
         return array("sessionID" => $sessionId);
     }
+}
+// ctp#60
+function getTranslations($lang) {
+    global $service;
+    return $service->getTranslations($lang);
 }

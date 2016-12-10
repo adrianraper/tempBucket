@@ -57,8 +57,6 @@ class CTPService extends BentoService {
         } else {
             $session = new TestSession();
         }
-        // Just until menu.json.hbs works...
-        //$tests[0]->menuFilename = 'menu.json';
 
         return array(
             "user" => $user,
@@ -224,5 +222,11 @@ class CTPService extends BentoService {
             $session->result = array("level" => null);
 
         return $session->result;
+    }
+
+    // ctp#60 Literals file for DPT
+    public function getTranslations($lang) {
+        $literals = $this->copyOps->getLiteralsFromFile($lang);
+        return $literals;
     }
 }

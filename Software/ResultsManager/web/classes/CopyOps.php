@@ -17,12 +17,13 @@ class CopyOps {
 	 * Literals are stored in resources/<language>/<title>.xml where language comes from the session (currently defaulting to EN) and the title is set
 	 * in the concrete Service file (e.g. ClarityService, DMSService, IELTSService).
 	 */
-	private function getFilename() {
-	    return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".AbstractService::$title.".xml";
+    // ctp#60
+	private function getFilename($type = 'xml') {
+	    return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".AbstractService::$title.".".$type;
 	}
 
-	private function getBaseFilename() {
-	    return dirname(__FILE__).$GLOBALS['interface_dir']."resources/base.xml";
+	private function getBaseFilename($type = 'xml') {
+	    return dirname(__FILE__).$GLOBALS['interface_dir']."resources/base.".$type;
 	}
 	
 	/**
@@ -160,5 +161,23 @@ class CopyOps {
 		$code = $this->getCodeForId($id, $languageCode);
 		return new Exception($copy, $code);
 	}
-	
+
+    /*
+     * This section for literals for couloir
+     */
+    /**
+     * gh#513 This is the only function to read the file(s), returns xml string
+     * gh#1050 Base literals are taken from base.xml, and then nodes are overlaid from the specific literals file
+     */
+    public function getLiteralsFromFile($lang) {
+        if (!file_exists($this->getFilename('json')))
+            throw new Exception($this->getFilename('json')." file not found");
+
+        // TODO Merge base under the specific title literals
+        //$base = json_encode(json_decode(file_get_contents($this->getBaseFilename('.json')), true));
+        $literals = json_decode(file_get_contents($this->getFilename('json')), true);
+
+        return $literals;
+    }
+
 }
