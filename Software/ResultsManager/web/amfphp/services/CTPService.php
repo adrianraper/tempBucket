@@ -218,8 +218,8 @@ class CTPService extends BentoService {
         // gh#1523 Are there enough licences left to send back the result?
         // ctp#173
         $licencesObj = $this->usageOps->getTestsUsed($session->productCode, $session->rootId);
-        if ($licencesObj['purchased'] - $licencesObj['scheduled'] >= 0)
-            $session->result = array("level" => null);
+        if (intval($licencesObj['purchased']) - intval($licencesObj['used']) <= 0)
+            $session->result = array("level" => null, "purchased" => $licencesObj['purchased'], "used" => $licencesObj['used']);
 
         return $session->result;
     }
