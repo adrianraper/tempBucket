@@ -260,7 +260,8 @@ EOD;
 		// #341 Only check password if you have set this to be the case 
 		if ($verified) {
 		    // ctp#80
-            $dbPassword = ($loginOption & User::LOGIN_HASHED) ? md5($dbLoginObj->F_Email . $dbLoginObj->F_Password) : $dbLoginObj->F_Password;
+            // ctp#230 Build the hash from the lowercase email
+            $dbPassword = ($loginOption & User::LOGIN_HASHED) ? md5(strtolower($dbLoginObj->F_Email) . $dbLoginObj->F_Password) : $dbLoginObj->F_Password;
 			if ($password != $dbPassword) {
 				//$logMessage = "login $keyValue wrong password, they typed $password, should be ".$dbLoginObj->F_Password;
 				//if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';

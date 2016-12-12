@@ -15,11 +15,11 @@ try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
     /*
-    $json = json_decode('{"command":"getTranslations","lang":"EN"}');
     $json = json_decode('{"command":"login","email":"dandy@dpt","password":"2e93f6f5de7b09f1987ae0b9e5b3f383","productCode":63}');
+    $json = json_decode('{"command":"getTestResult","testID":"16","sessionID":"133","mode":"normal"}');
+    $json = json_decode('{"command":"getTranslations","lang":"EN"}');
     $json = json_decode('{"command":"login","email":"asra@hct","password":"c15521c9a6e45e0192345f66a34bd634","productCode":63}');
     $json = json_decode('{"command": "login","email": "","password": "d41d8cd98f00b204e9800998ecf8427e","productCode": "63"}');
-    $json = json_decode('{"command":"getTestResult","testID":"16","sessionID":"133","mode":"overwrite"}');
     */
     /*
     $json = json_decode('{"command":"scoreWrite",
