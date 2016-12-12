@@ -76,7 +76,7 @@ class ScheduledTest {
 		$array['F_StartData'] = $this->startData;
 		$array['F_OpenTime'] = $this->openTime;
 		$array['F_CloseTime'] = $this->closeTime;
-		$array['F_Language'] = $this->lang;
+		$array['F_Language'] = ($this->lang == null) ? 'EN' : $this->lang;
 		$array['F_ShowResult'] = intval($this->showResult);
         // ctp#68
         $array['F_MenuFilename'] = ($this->menuFilename == ScheduledTest::DEFAULT_NAME) ? null : $this->menuFilename;

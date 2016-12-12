@@ -185,9 +185,10 @@ SQL;
     function getTestResult($session) {
 
         // Do you need to exclude any 'exercises' from scoring? Requirements for one...
-        // Exclude the gauge and gauge bonus questions
+        // Exclude the requirements and any bonus questions
         // ctp#153 will need to change these exercise IDs to base64 versions
-        $excludeExerciseIDs = array('2016063999','2015063020002','2015063020003','2015063020012','2015063020026');
+        $excludeExerciseIDs = array('2016063990','2016063991','2016063992','2016063993','2016063994','2016063995','2016063996   ',
+            '2015063020002','2015063020012','2015063020026');
 
         // 1. Count all the correct answers in this session
         // sessionId is an index of the table, so a reasonable search
@@ -287,6 +288,8 @@ SQL;
                         $result = "A2/B1";
                         break;
                 }
+                // ctp#122
+                $hurdle = 0;
                 break;
 
             case 'B':
@@ -309,12 +312,14 @@ SQL;
                         $result = "B2/C+";
                         break;
                 }
+                $hurdle = 30;
                 break;
             case 'C':
                 $result = "C+";
+                $hurdle = 60;
                 break;
         }
-        return array("level" => $result, "numeric" => $totalCorrect);
+        return array("level" => $result, "numeric" => $totalCorrect + $hurdle);
     }
 
     /**
