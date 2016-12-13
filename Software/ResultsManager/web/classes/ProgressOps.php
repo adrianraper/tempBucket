@@ -309,13 +309,13 @@ SQL;
                         $result = "B2";
                         break;
                     case ($totalCorrect >= 19):
-                        $result = "B2/C+";
+                        $result = "B2/C";
                         break;
                 }
                 $hurdle = 30;
                 break;
             case 'C':
-                $result = "C+";
+                $result = "C";
                 $hurdle = 60;
                 break;
         }

@@ -24,6 +24,7 @@ class ReportOps {
 	
 	function getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template, $returnXMLString = false) {
 		//echo 'reportOps.getReport $tempOnClass='.$onClass.' forClass='.$forClass.' template='.$template.'<br/>';
+        AbstractService::$controlLog->info('getReport for onClass=' . $onClass);
 		// Get the content map for converting ids to names
         // gh#1503 Unless you are a summary report in which case it is not necessary
 		$contentOps = new ContentOps($this->db);
@@ -202,15 +203,18 @@ EOD;
         	$pc = $onReportableIDObjects[0]['Title'];
         	$rootId = Session::get('rootID');
         	$maxSessionId = $this->lastSessionInLicence($pc, $rootId);
-
-            $numRows = count($rows);
-			for ($i=$numRows-1; $i>=0; $i--) {
-	  			if ($rows[$i]['sessionId'] > $maxSessionId) {
-                    $rows[$i]['result'] = '****';
-	  			} else {
-	  				break;
-	  			}
-			}        	
+            AbstractService::$controlLog->info('maxSessionID=' . $maxSessionId);
+            if ($maxSessionId > 0) {
+                $numRows = count($rows);
+                for ($i = $numRows - 1; $i >= 0; $i--) {
+                    if (intval($rows[$i]['sessionId']) > intval($maxSessionId)) {
+                        $rows[$i]['result'] = '****';
+                        AbstractService::$controlLog->info('fuzz sessionID=' . $rows[$i]['sessionId']);
+                    } else {
+                        break;
+                    }
+                }
+            }
         }
 		
 		// gh#777 Run a second query to add all users in a group who haven't got any score records
@@ -1197,20 +1201,25 @@ SQL;
         }
 
         // Of all the tests that have been used, what is the sessionID of the last purchased one?
-        // Tests completed is based on T_TestSession
-        // TODO This should only pick up the first UserId, TestId unique combination
-        // Perhaps that is best solved by counting each time it happens as a separate licence used?
+        // Tests completed is based on T_TestSession (unique user id and test id)
         $sql = <<<SQL
-			SELECT * FROM T_TestSession
-            WHERE F_ProductCode=?
-            AND F_RootID=?
-            AND F_CompletedDateStamp is not null
-			GROUP BY F_UserID, F_TestID
-			ORDER BY F_SessionID ASC
-			LIMIT 0,$purchased;
+			select s1.F_SessionID 
+            from T_User u, T_TestSession s1
+            left outer join T_TestSession s2
+	          on s1.F_UserID = s2.F_UserID and s1.F_TestID = s2.F_TestID
+                 and ((if(s1.F_Result is null, '0', '1') < if(s2.F_Result is null, '0', '1'))
+                  or (if(s1.F_Result is null, '0', '1') = if(s2.F_Result is null, '0', '1') and s1.F_SessionID < s2.F_SessionID))
+            where s2.F_UserID IS NULL
+            and u.F_UserID = s1.F_UserID
+            and s1.F_ProductCode = ?
+            and s1.F_RootID = ?
+            and s1.F_CompletedDateStamp is not null
+            group by s1.F_UserID, s1.F_TestID
+            order by s1.F_SessionID ASC
+            limit 0,$purchased; 
 SQL;
 		$dbRows = $this->db->getArray($sql, $bindingParams);
-        //AbstractService::$debugLog->info("max session=".$dbRows[count($dbRows)-1]['F_SessionID']);
+        AbstractService::$controlLog->info('purchased='.$purchased.' num rows='.count($dbRows));
 		return (count($dbRows) > 0) ? $dbRows[count($dbRows)-1]['F_SessionID'] : 0;
 	}
 	
