@@ -204,6 +204,7 @@ EOD;
         if ($this->getOpt(ReportBuilder::SHOW_CEF)) $this->selectBuilder->addSelect("s1.F_Result result");
         if ($this->getOpt(ReportBuilder::SHOW_DURATION)) $this->selectBuilder->addSelect("s1.F_Duration duration");
         if ($this->getOpt(ReportBuilder::SHOW_STARTDATE)) $this->selectBuilder->addSelect("s1.F_StartedDateStamp start_date");
+        if ($this->getOpt(ReportBuilder::SHOW_DURATION)) $this->selectBuilder->addSelect("TIMESTAMPDIFF(SECOND, s1.F_StartedDateStamp, s1.F_CompletedDateStamp) duration");
         $this->selectBuilder->addSelect("s1.F_SessionID sessionId");
 
         // From date

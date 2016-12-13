@@ -144,6 +144,7 @@ class ReportOps {
             // gh#1505
             $opts[ReportBuilder::SHOW_CEF] = true;
             $opts[ReportBuilder::SHOW_STARTDATE] = true;
+            $opts[ReportBuilder::SHOW_DURATION] = true;
 		}
 		
 		// Create the ReportBuilder and set the options

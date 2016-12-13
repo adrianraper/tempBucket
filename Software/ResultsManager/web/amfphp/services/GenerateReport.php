@@ -19,9 +19,10 @@ class XSLTFunctions {
 		// simple minutes
 		// sprintf can do the rounding itself, but apparently not terribly reliable
 		//return sprintf("%d (%d=%f)", round((int)$seconds / 60), (int)$seconds / 60, (int)$seconds / 60);
-		// gh#777
+		// gh#777, ctp#198
 		if ($seconds == 0)
-			return sprintf("%s", 0);
+            return '-';
+			//return sprintf("%s", 0);
 			
 		$minutes = round((int)$seconds / 60);
 		if ($minutes == 0) {
@@ -168,10 +169,14 @@ function dptResultFormatter($result, $format) {
     switch ($format) {
         case 'CEFR':
         case 'CEF':
-            if (isset($json->level))
-                $formattedResult = $json->level;
-            if (isset($json->CEF))
+            if (isset($json->CEF)) {
                 $formattedResult = $json->CEF;
+            } elseif (isset($json->level)) {
+                $formattedResult = $json->level;
+            }
+            // Then add the numeric sub-score
+            if (isset($json->numeric))
+                $formattedResult .= ' (dpt: '.$json->numeric.')';
             break;
         default:
             $formattedResult = $result;

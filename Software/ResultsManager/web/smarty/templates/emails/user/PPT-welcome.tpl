@@ -20,8 +20,8 @@
 <h2>How does it work?</h2>
 <h3>Phone or tablet</h3>
 <ol>
-	<li><p><a href="https://itunes.apple.com/us/app/dynamic-placement/id99999?mt=8"><image src="http://www.clarityenglish.com/images/app/badge_appstore.png" /></a></p>
-        <p><a href="https://play.google.com/store/apps/details?id=dpt.clarityenglish.com&hl=en"><image src="http://www.clarityenglish.com/images/app/badge_googleplay.png" /></a></p>    </li>
+	<li><p><a href="https://itunes.apple.com/hk/app/dynamic-placement-test/id1179218583?mt=8"><image src="http://www.clarityenglish.com/images/app/badge_appstore.png" /></a></p>
+        <p><a href="https://play.google.com/store/apps/details?id=com.clarityenglish.ctp_wrapper&hl=en"><image src="http://www.clarityenglish.com/images/app/badge_googleplay.png" /></a></p>    </li>
         <p>Do it now!</p>
     <li>Sign in with email={$user->email} and password={$user->password}</li>
     <li>The test will download.</li>
@@ -42,7 +42,7 @@
 <ol>
     <li>
         <p>If you want to take the test using your laptop or other browser, go to</p>
-        <p><a href="https://ctp.clarityenglish.com">ctp.clarityenglish.com</a></p>
+        <p><a href="https://dpt.clarityenglish.com">dpt.clarityenglish.com</a></p>
 	</li>
     <li>Sign in with email={$user->email} and password={$user->password}</li>
     <li>The test will download.</li>
@@ -58,7 +58,7 @@
 		<li>The test will start by {$testDetail->startType}</li>
 	{/if}
     <li>You don't need to keep the browser open, but don't clear the cache otherwise you will have to download again.</li>
-    <li>When you are ready to start the test, open the same <a href="https://ctp.clarityenglish.com">webpage</a> again </li>
+    <li>When you are ready to start the test, open the same <a href="https://dpt.clarityenglish.com">webpage</a> again </li>
 	<li>When you have finished the last questions, the app will try to send the answers for marking.</li>
 	<li>The test is not complete until your device shows an acknowledgement. Then you can close the browser.</li>
 </ol>
@@ -68,6 +68,6 @@
 <li>If you don't have a device you can bring, make sure you contact the administrator BEFORE the test.</li>
 
 <p>Good luck<br/>
-Clarity and telc support team</p>
+The Clarity and telc support team</p>
 </body>
 </html>
