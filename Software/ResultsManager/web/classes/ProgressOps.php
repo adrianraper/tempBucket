@@ -5,7 +5,7 @@ class ProgressOps {
 	var $menu;
 
 	// gh#604 Seconds before the session record is considered too old and a new one started
-	const SESSION_IDLE_THRESHOLD = 100;
+	const SESSION_IDLE_THRESHOLD = 3600;
     // gh#954 All licence counting is > 15, so for new users this will help accurate reflection
 	const MINIMUM_DURATION = 16; // Minimum seconds used as duration for new session records
 
@@ -429,7 +429,7 @@ EOD;
             // gh#954 Do we have a passed courseId that is different from the existing record?
             // TODO Until the Flash Bento programs update the sessionId if it is sent back differently, this will keep
             // triggering new session records whenever anyone changes course and then for every exercise after that
-            AbstractService::$debugLog->info("update session? $sessionId as courseId=$courseId and last one is " . $rsObj->F_CourseID);
+            //AbstractService::$debugLog->info("update session? $sessionId as courseId=$courseId and last one is " . $rsObj->F_CourseID);
             if (($interval > self::SESSION_IDLE_THRESHOLD) ||
                 ($courseId && $rsObj->F_CourseID && ($rsObj->F_CourseID != $courseId))) {
                 $newSessionId = $this->startSession($userId, $rootId, $productCode, $courseId);

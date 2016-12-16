@@ -24,7 +24,7 @@ class ReportOps {
 	
 	function getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template, $returnXMLString = false) {
 		//echo 'reportOps.getReport $tempOnClass='.$onClass.' forClass='.$forClass.' template='.$template.'<br/>';
-        AbstractService::$controlLog->info('getReport for onClass=' . $onClass);
+        //AbstractService::$controlLog->info('getReport for onClass=' . $onClass);
 		// Get the content map for converting ids to names
         // gh#1503 Unless you are a summary report in which case it is not necessary
 		$contentOps = new ContentOps($this->db);
@@ -199,18 +199,19 @@ EOD;
 		//echo $sql.'<br/>'; exit();
 		$rows = $this->db->GetArray($sql);
 
-		// gh#1523 Now is the time to blank out the scores for anyone who took the test but has no licence
+		// gh#1523 Now is the time to blank out the scores for anyone who completed the test but has no licence
         if (stripos($template,'dptsummary') !== false) {
         	$pc = $onReportableIDObjects[0]['Title'];
         	$rootId = Session::get('rootID');
         	$maxSessionId = $this->lastSessionInLicence($pc, $rootId);
-            AbstractService::$controlLog->info('maxSessionID=' . $maxSessionId);
+            //AbstractService::$controlLog->info('maxSessionID=' . $maxSessionId);
             if ($maxSessionId > 0) {
                 $numRows = count($rows);
                 for ($i = $numRows - 1; $i >= 0; $i--) {
                     if (intval($rows[$i]['sessionId']) > intval($maxSessionId)) {
-                        $rows[$i]['result'] = '****';
-                        AbstractService::$controlLog->info('fuzz sessionID=' . $rows[$i]['sessionId']);
+                        //AbstractService::$controlLog->info('fuzz sessionID=' . $rows[$i]['sessionId'].' lost '.$rows[$i]['result'].'.');
+                        if (!$rows[$i]['result'] == '')
+                            $rows[$i]['result'] = '****';
                     } else {
                         break;
                     }
@@ -1239,7 +1240,7 @@ SQL;
             limit 0,$purchased; 
 SQL;
 		$dbRows = $this->db->getArray($sql, $bindingParams);
-        AbstractService::$controlLog->info('purchased='.$purchased.' num rows='.count($dbRows));
+        //AbstractService::$controlLog->info('purchased='.$purchased.' num rows='.count($dbRows));
 		return (count($dbRows) > 0) ? $dbRows[count($dbRows)-1]['F_SessionID'] : 0;
 	}
 	

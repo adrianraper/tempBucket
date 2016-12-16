@@ -321,23 +321,30 @@
 			<lit name="studyGuideButtonLinkR2IFV2"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG2rds.pdf]]></lit>
 			<lit name="studyGuideButtonLinkR2IFV3"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG3spf.pdf]]></lit>
 			<lit name="studyGuideButtonLinkR2IFV4"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG4lic.pdf]]></lit>
-			<lit name="studyGuideButtonLinkR2IFV5"> <![CDATA[http://www.clarityenglish.com//Content/RoadToIELTS2-International/studyguides/SG5wrx.pdf]]></lit>
+			<lit name="studyGuideButtonLinkR2IFV5"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG5wrx.pdf]]></lit>
 			<lit name="studyGuideButtonLinkR2IFV6"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG6prp.pdf]]></lit>
 			<!--Study guides for R2IHU-->
 			<lit name="studyGuideButtonLinkR2IHU1"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG1rule.pdf]]></lit>
 			<lit name="studyGuideButtonLinkR2IHU2"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG2rds.pdf]]></lit>
 			<lit name="studyGuideButtonLinkR2IHU3"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG3spf.pdf]]></lit>
 			<lit name="studyGuideButtonLinkR2IHU4"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG4lic.pdf]]></lit>
-			<lit name="studyGuideButtonLinkR2IHU5"> <![CDATA[http://www.clarityenglish.com//Content/RoadToIELTS2-International/studyguides/SG5wrx.pdf]]></lit>
+			<lit name="studyGuideButtonLinkR2IHU5"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG5wrx.pdf]]></lit>
 			<lit name="studyGuideButtonLinkR2IHU6"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SG6prp.pdf]]></lit>
 			
             <!--Study guides for R2ILM-->
             <lit name="studyGuideButtonLinkR2ILM2"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SGL2rds.pdf]]></lit>
             <lit name="studyGuideButtonLinkR2ILM3"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SGL3spf.pdf]]></lit>
             <lit name="studyGuideButtonLinkR2ILM4"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SGL4lic.pdf]]></lit>
-            <lit name="studyGuideButtonLinkR2ILM5"> <![CDATA[http://www.clarityenglish.com//Content/RoadToIELTS2-International/studyguides/SGL5wrx.pdf]]></lit>
+            <lit name="studyGuideButtonLinkR2ILM5"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SGL5wrx.pdf]]></lit>
             <!--Study guides for R2ITD-->
             <lit name="studyGuideButtonLinkR2ITD2"> <![CDATA[http://www.clarityenglish.com/Content/RoadToIELTS2-International/studyguides/SGT2rds.pdf]]></lit>
+			<!--Study guides for CD version-->
+			<lit name="studyGuideButtonLinkFV1"> <![CDATA[../Content/RoadToIELTS2-International/studyguides/SG1rule.pdf]]></lit>
+			<lit name="studyGuideButtonLinkFV2"> <![CDATA[../Content/RoadToIELTS2-International/studyguides/SG2rds.pdf]]></lit>
+			<lit name="studyGuideButtonLinkFV3"> <![CDATA[../Content/RoadToIELTS2-International/studyguides/SG3spf.pdf]]></lit>
+			<lit name="studyGuideButtonLinkFV4"> <![CDATA[../Content/RoadToIELTS2-International/studyguides/SG4lic.pdf]]></lit>
+			<lit name="studyGuideButtonLinkFV5"> <![CDATA[../Content/RoadToIELTS2-International/studyguides/SG5wrx.pdf]]></lit>
+			<lit name="studyGuideButtonLinkFV6"> <![CDATA[../Content/RoadToIELTS2-International/studyguides/SG6prp.pdf]]></lit>
 
 			<lit name="currentPwdLabel">Current password:</lit>
 			<lit name="newPwdLabel">New password:</lit>

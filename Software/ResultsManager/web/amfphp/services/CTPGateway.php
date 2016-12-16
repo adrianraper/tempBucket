@@ -100,6 +100,7 @@ try {
     switch ($e->getCode()) {
         // ctp#75
         case 200:
+        case 205:
         case 206:
         case 207:
         case 208:

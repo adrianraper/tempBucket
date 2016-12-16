@@ -441,7 +441,7 @@ class ClarityService extends AbstractService {
 	
 	// v3.0.4 Include the template as well
 	public function getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template='standard') {
-        AbstractService::$debugLog->info('in ClarityService');
+        //AbstractService::$debugLog->info('in ClarityService');
 
         // Since we are potentially passing a lot of reportables to this from the client pass IDs instead of VOs to save on transfer overhead
 		// gh#1470 Special reports are built in a one-off way
