@@ -368,11 +368,13 @@ package com.clarityenglish.common.vo.config {
 
             // gh#1160
 			// gh#1160 If you started with passed parameters, clear [most of] them out now for a restart
+			// gh#1526 Keep productCode always. I am not sure if this will cause R2I demo not not flip between AC and GT...
 			this.retainedParameters = {};
 			for (property in parameters) {
 				switch (property) {
 					case 'dbHost':
 					case 'prefix':
+                    case 'productCode':
                     case 'rootID':
 						this.retainedParameters[property] = parameters[property];
 						break;
