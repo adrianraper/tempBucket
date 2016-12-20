@@ -213,6 +213,8 @@ SQL;
                 // Also note which track you went down
                 // This is not only hardcoded, but will be squashed if you end going down more than one track
                 switch ($record->unitID) {
+                    // This is the gauge in case you didn't finish it and actually get onto a track
+                    case '2015063020001':
                     case '2015063020004':
                         $track = 'A';
                         break;
