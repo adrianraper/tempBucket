@@ -213,7 +213,7 @@ SQL;
                 // Also note which track you went down
                 // This is not only hardcoded, but will be squashed if you end going down more than one track
                 switch ($record->unitID) {
-                    // This is the gauge in case you didn't finish it and actually get onto a track
+                    // This is the gauge in case you didn't finish it so have no track
                     case '2015063020001':
                     case '2015063020004':
                         $track = 'A';
@@ -239,7 +239,7 @@ SQL;
 			SELECT *
 			FROM T_ScoreDetail
 			WHERE F_SessionID=?
-            AND F_Score>0
+            AND F_Score >= 0
 SQL;
         $bindingParams = array($session->sessionId);
         $rs = $this->db->Execute($sql, $bindingParams);
@@ -497,10 +497,11 @@ EOD;
 
         // gh#604 You might start with user as a plain userId
         if ($user instanceof User) {
+            // ctp#282 Everybody uses up a licence
             // For teachers we will set rootID to -1 in the session record, so, are you a teacher?
             // Or more specifically are you NOT a student
-            if (!$user->userType == User::USER_TYPE_STUDENT)
-                $rootId = -1;
+            //if (!$user->userType == User::USER_TYPE_STUDENT)
+            //    $rootId = -1;
             $userId = $user->userID;
         } else {
             $userId = $user;
@@ -548,9 +549,10 @@ EOD;
     /**
 	 * This method is called to insert a score record to the database 
 	 */
-	function insertScore($score, $user) {
+    // ctp#282 Force score to be written for any usertype
+	function insertScore($score, $user, $forceScoreWriting = false) {
 		// For teachers we will set score to -1 in the score record, so, are you a teacher?
-		if (!$user->userType == 0)
+		if (!$user->userType == 0 && !$forceScoreWriting)
 			$score->score = -1;
 		
 		// Write anonymous records to an ancilliary table that will not slow down reporting
@@ -597,9 +599,10 @@ EOD;
     /**
      * This method is called to insert a score record to the database
      */
-    function insertScoreDetails($scoreDetails, $user) {
+    // ctp#282 Force score to be written for any usertype
+    function insertScoreDetails($scoreDetails, $user, $forceScoreWriting = false) {
         // For teachers we will not save any score details
-        if (!$user->userType == 0)
+        if (!$user->userType == 0 && !$forceScoreWriting)
             return;
 
         $rootID = 'null'; // I don't think this needs to be in T_ScoreDetail does it?

@@ -225,8 +225,8 @@ EOD;
         $this->selectBuilder->addGroup('s1.F_UserID');
         $this->selectBuilder->addGroup('s1.F_TestID');
 
-        // AR To only pick up results for learners - ignore teachers etc
-        $this->selectBuilder->addWhere("u.F_UserType=".USER::USER_TYPE_STUDENT);
+        // ctp#282
+        //$this->selectBuilder->addWhere("u.F_UserType=".USER::USER_TYPE_STUDENT);
 
         return $this->selectBuilder->toSQL();
     }

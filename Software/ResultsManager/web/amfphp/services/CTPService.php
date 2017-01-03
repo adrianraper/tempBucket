@@ -157,7 +157,9 @@ class CTPService extends BentoService {
         // Write the summary score record
         // gh#166 Catch duplicate record exceptions - and just ignore!!
         try {
-            $this->progressOps->insertScore($score, $user);
+            // ctp#282 Force score to be written for any usertype
+            $forceScoreWriting = true;
+            $this->progressOps->insertScore($score, $user, $forceScoreWriting);
         } catch(Exception $e) {
             if ($e->getCode() == $this->copyOps->getCodeForId('errorDatabaseDuplicateRecord')) {
                 $error["code"] = $e->getCode();
@@ -175,7 +177,8 @@ class CTPService extends BentoService {
             $scoreDetails[] = new ScoreDetail($answer, $score, $clientTimezoneOffset);
         }
         if (count($scoreDetails) > 0)
-            $this->progressOps->insertScoreDetails($scoreDetails, $user);
+            // ctp#282 Force score to be written for any usertype
+            $this->progressOps->insertScoreDetails($scoreDetails, $user, $forceScoreWriting);
 
         // If this is the first score, make sure the session includes the testId and the start time
         $isDirty = false;
