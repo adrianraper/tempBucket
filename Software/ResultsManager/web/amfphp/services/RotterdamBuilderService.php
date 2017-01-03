@@ -35,9 +35,9 @@ class RotterdamBuilderService extends RotterdamService {
             }
         }
     }
-
     // gh#1331 PHP5.6 Reacts badly if a parameter is missing
-    public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null, $allowedUserTypes = null) {
+    // gh#bug In php5.6.18 I can't call login as it is already set in bentoService - refuses to load file at all. ditto writeScore
+    public function builderLogin($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null, $allowedUserTypes = null) {
         // gh#66
         $allowedUserTypes = array(User::USER_TYPE_TEACHER,
             User::USER_TYPE_ADMINISTRATOR,
@@ -48,118 +48,98 @@ class RotterdamBuilderService extends RotterdamService {
 
         return parent::login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID, $productCode, $dbHost, $allowedUserTypes);
     }
+    public function builderWriteScore($user, $sessionID, $dateNow, $scoreObj) {
+        return new Score();
+    }
 
-	public function xhtmlLoad($href) {
-		$xhtml = parent::xhtmlLoad($href);
+    public function xhtmlLoad($href) {
+        $xhtml = parent::xhtmlLoad($href);
 
-		// gh#142
-		// gh#91 You only need to consider concurrency if this user can edit the course
-		if ($href->type == Href::MENU_XHTML && 
-			($href->options['enabledFlag'] & Course::EF_OWNER || $href->options['enabledFlag'] & Course::EF_COLLABORATOR)) {
-			$courseId = $href->options["courseId"];
+        // gh#142
+        // gh#91 You only need to consider concurrency if this user can edit the course
+        if ($href->type == Href::MENU_XHTML &&
+            ($href->options['enabledFlag'] & Course::EF_OWNER || $href->options['enabledFlag'] & Course::EF_COLLABORATOR)) {
+            $courseId = $href->options["courseId"];
 
-			// gh#385, gh#815
-			$datetimeStamp = new DateTime('now', new DateTimeZone(TIMEZONE));
-			$datetimeStamp->sub(new DateInterval('PT1M'));
-			$sql = <<<EOD
-				SELECT F_UserID 
-				FROM T_CourseConcurrency
-				WHERE F_CourseID = ?
-				AND F_UserID != ?
-				AND F_Timestamp > ?;
+            // gh#385, gh#815
+            $datetimeStamp = new DateTime('now', new DateTimeZone(TIMEZONE));
+            $datetimeStamp->sub(new DateInterval('PT1M'));
+            $sql = <<<EOD
+                SELECT F_UserID
+                FROM T_CourseConcurrency
+                WHERE F_CourseID = ?
+                AND F_UserID != ?
+                AND F_Timestamp > ?;
 EOD;
-			$bindingParams = array($courseId, Session::get('userID'), $datetimeStamp->format('Y-m-d H:i:s'));
-			$results = $this->db->GetCol($sql, $bindingParams);
-			
-			if ($results[0] > 0)
-				throw $this->copyOps->getExceptionForId("errorConcurrentCourseAccess");
-			
-			// Otherwise this is a successful login so update the timer (this is also done every minute triggered by the client)
-			$this->courseSessionUpdate($href->options["courseId"]);
-		}
-		
-		return $xhtml;
-	}
-	
-	// gh#954
-	public function courseSessionUpdate($courseId) {
-		$fields = array(
-			"F_RootID" => Session::get('rootID'),
-			"F_UserID" => Session::get('userID'),
-			"F_CourseID" => (string)$courseId,
-			"F_Timestamp" => date("Y-m-d H:i:s"),
-		);
-		
-		$this->db->Replace("T_CourseConcurrency", $fields, array("F_UserID", "F_CourseID"), true);
-	}
-	
-	public function courseCreate($course) {
-		return $this->courseOps->courseCreate($course);
-	}
-	
-	public function courseSave($filename, $xml) {
-		return $this->courseOps->courseSave($filename, $xml);
-	}
-	
-	public function courseDelete($course) {
-		return $this->courseOps->courseDelete($course);
-	}
-	/**
-	 * Create a blank account folder with all required directories and an empty course.xml (for now we're not sure there are any required directories)
-	 */
-	private function createAccountFolder() {
-		// Create the account folder containing a default courses.xml
-		// gh#65 - by only doing this if mkdir returns true we are effectively implementing concurrency locking (since if it returns false then someone else is doing
-		// it, and the delay of half a second will be more than enough for it to complete).
-		if (mkdir($this->accountFolder)) {
-			$this->createCoursesXML();
-		} else {
-			usleep(500);
-		}
-	}
+            $bindingParams = array($courseId, Session::get('userID'), $datetimeStamp->format('Y-m-d H:i:s'));
+            $results = $this->db->GetCol($sql, $bindingParams);
 
-	// gh#339
-	private function createMediaFolder() {
-		// Create a media folder
-		return mkdir($this->accountFolder."/media");
-	}
-	private function createMediaXML() {
-		// Create a default meta.xml
-		if (is_dir($this->accountFolder."/media")) {
+            if ($results[0] > 0)
+                throw $this->copyOps->getExceptionForId("errorConcurrentCourseAccess");
+
+            // Otherwise this is a successful login so update the timer (this is also done every minute triggered by the client)
+            $this->courseSessionUpdate($href->options["courseId"]);
+        }
+
+        return $xhtml;
+    }
+
+
+    public function courseCreate($course) {
+        return $this->courseOps->courseCreate($course);
+    }
+
+    public function courseSave($filename, $xml) {
+        return $this->courseOps->courseSave($filename, $xml);
+    }
+
+    public function courseDelete($course) {
+        return $this->courseOps->courseDelete($course);
+    }
+    private function createAccountFolder() {
+        // Create the account folder containing a default courses.xml
+        // gh#65 - by only doing this if mkdir returns true we are effectively implementing concurrency locking (since if it returns false then someone else is doing
+        // it, and the delay of half a second will be more than enough for it to complete).
+        if (mkdir($this->accountFolder)) {
+            $this->createCoursesXML();
+        } else {
+            usleep(500);
+        }
+    }
+
+    // gh#339
+    private function createMediaFolder() {
+        // Create a media folder
+        return mkdir($this->accountFolder."/media");
+    }
+
+    private function createMediaXML() {
+        // Create a default meta.xml
+        if (is_dir($this->accountFolder."/media")) {
             // gh#1331 Syntax marked wrong unless quotes used with heredoc delimiter
-			$mediaXML = <<<"XML"
+            $mediaXML = <<<"XML"
 <?xml version="1.0" encoding="utf-8"?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
-	<files />
+    <files />
 </bento>
 XML;
-			file_put_contents($this->accountFolder."/media/media.xml", $mediaXML);
-		}
-	}
-	private function createCoursesXML() {
-		$courseXML = <<<"XML"
+            file_put_contents($this->accountFolder."/media/media.xml", $mediaXML);
+        }
+    }
+    private function createCoursesXML() {
+        $courseXML = <<<"XML"
 <?xml version="1.0" encoding="utf-8"?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
-	<courses />
+    <courses />
 </bento>
 XML;
-		file_put_contents($this->accountFolder."/courses.xml", $courseXML);
-	}
-	
-	/**
-	 * gh#930
-	 * 
-	 * This service call overwrites Bento and stops scores from Builder
-	 *  
-	 */
-	public function writeScore($user, $sessionID, $dateNow, $scoreObj) {
-		return new Score();
-	}
+        file_put_contents($this->accountFolder."/courses.xml", $courseXML);
+    }
 
-	// gh#122
-	public function sendWelcomeEmail($courseXML, $groupID) {
-		// This will send a welcome email to any student in this group for this course
-		// (and subgroups that don't have their own publication data??)
-		return $this->courseOps->sendWelcomeEmail($courseXML, $groupID);
-	}
+    // gh#122
+    public function sendWelcomeEmail($courseXML, $groupID) {
+        // This will send a welcome email to any student in this group for this course
+        // (and subgroups that don't have their own publication data??)
+        return $this->courseOps->sendWelcomeEmail($courseXML, $groupID);
+    }
 }
