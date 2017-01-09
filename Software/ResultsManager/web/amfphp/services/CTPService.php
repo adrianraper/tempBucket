@@ -110,6 +110,9 @@ class CTPService extends BentoService {
             $test->description = $test->caption;
             $test->startTimestamp = $this->ansiStringToTimestamp($test->openTime);
             $test->endTimestamp = $this->ansiStringToTimestamp($test->closeTime);
+
+            // ctp#285 groupID needs to be a string
+            $test->groupId = (string)$test->groupId;
         }
         return array_values($tests);
     }

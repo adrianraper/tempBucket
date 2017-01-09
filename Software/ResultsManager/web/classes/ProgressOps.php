@@ -186,80 +186,140 @@ SQL;
 
         // Do you need to exclude any 'exercises' from scoring? Requirements for one...
         // Exclude the requirements and any bonus questions
+        // Include the gauge
         // ctp#153 will need to change these exercise IDs to base64 versions
-        $excludeExerciseIDs = array('2016063990','2016063991','2016063992','2016063993','2016063994','2016063995','2016063996   ',
-            '2015063020002','2015063020012','2015063020026');
+        //$excludeExerciseIDs = array('2016063990','2016063991','2016063992','2016063993','2016063994','2016063995','2016063996   ',
+        //    '2015063020002','2015063020012','2015063020026');
 
-        // 1. Count all the correct answers in this session
-        // sessionId is an index of the table, so a reasonable search
-        // You can't query T_Score with an exclude F_ExerciseID IN () clause as too slow
-        // so replace with a php loop
-        // SELECT SUM(F_ScoreCorrect) as totalCorrect, SUM(F_ScoreWrong) as totalWrong, SUM(F_ScoreMissed) as totalMissed
-        $sql = <<<SQL
-			SELECT F_ScoreCorrect as correct, F_ScoreWrong as wrong, F_ScoreMissed as missed, F_ExerciseID as exID, F_UnitID as unitID
-			FROM T_Score
-			WHERE F_SessionID=?
-SQL;
-        $bindingParams = array($session->sessionId);
-        $rs = $this->db->Execute($sql, $bindingParams);
-        $totalCorrect = $totalWrong = $totalMissed = 0;
-        if ($rs) {
-            while($record = $rs->FetchNextObj()) {
-                if (array_search($record->exID, $excludeExerciseIDs) === FALSE) {
-                    $totalCorrect += $record->correct;
-                    $totalWrong += $record->wrong;
-                    $totalMissed += $record->missed;
-                }
-                // Also note which track you went down
-                // This is not only hardcoded, but will be squashed if you end going down more than one track
-                switch ($record->unitID) {
-                    // This is the gauge in case you didn't finish it so have no track
-                    case '2015063020001':
-                    case '2015063020004':
-                        $track = 'A';
-                        break;
-                    case '2015063020018':
-                        $track = 'B';
-                        break;
-                    case '2015063020032':
-                        $track = 'C';
-                        break;
-                }
-            }
-        }
+        // Because T_Score does not have valid exercise id, include only gauge and track units
+        $gaugeUnitID = '2015063020001';
+        $trackAUnitID = '2015063020004';
+        $trackBUnitID = '2015063020018';
+        $trackCUnitID = '2015063020032';
+        $bonusA2UnitID = '2015063020080';
+        $bonusB1UnitID = '2015063020082';
+        $bonusB2UnitID = '2015063020084';
+        $bonusC1UnitID = '2015063020086';
+        $bonusC2UnitID = '2015063020032';
+        $gaugeBonusBUnitID = '2015063020011';
+        $gaugeBonusCUnitID = '2015063020025';
+        $includeUnitIDs = array($gaugeUnitID, $trackAUnitID, $trackBUnitID, $trackCUnitID);
 
-        // 2. Get all the detailed answers so we can pattern match against tags
-        //
-        // TODO Keep checking that this remains true:
-        // We are ONLY interested in matching tags for correct questions
-        // And if we are dealing with a set of grouped questions (such as sentence reconstructions) one question (the first)
-        // and one only from the group will be marked as correct if the group is correct.
+        // 1. Get all the detailed answers for gauge and track so we can pattern match against tags
+        // Currently we are ONLY interested in matching tags for correct questions
         //
         $sql = <<<SQL
 			SELECT *
 			FROM T_ScoreDetail
 			WHERE F_SessionID=?
-            AND F_Score >= 0
 SQL;
+        $sql .= " AND F_UnitID in ('".implode("','",$includeUnitIDs)."')";
+        $sql .= ' ORDER BY F_DateStamp asc';
         $bindingParams = array($session->sessionId);
         $rs = $this->db->Execute($sql, $bindingParams);
-        switch ($rs->RecordCount()) {
-            case 0:
-                // No correct answers have been saved.
-                return null;
-                //throw new Exception("There are no score records");
-                break;
-            default:
-                // Read from the db
-                $scoreDetails = array();
-                while($record = $rs->FetchNextObj()) {
-                    if (array_search($record->F_ExerciseID, $excludeExerciseIDs) === FALSE) {
+
+        if ($rs->RecordCount()==0)
+            // No correct answers have been saved. Exception?
+            return null;
+
+        $totalCorrect = $totalWrong = $totalMissed = 0;
+        $trackCorrect = $bonusCorrect = $gaugeCorrect = 0;
+        $track = 'A'; // In case you only answer questions in the gauge
+
+        $scoreDetails = array();
+        while ($record = $rs->FetchNextObj()) {
+            // As records are ordered by writing date, the last one you did will be last
+            $lastUnitID = $record->F_UnitID;
+            // We only want to know tags for main track
+            switch ($record->F_UnitID) {
+                case $trackAUnitID:
+                case $trackBUnitID:
+                case $trackCUnitID:
+                    if ($record->F_Score > 0) {
+                        $totalCorrect += $record->F_Score;
+                        $trackCorrect += $record->F_Score;
                         $scoreDetail = new ScoreDetail();
                         $scoreDetail->fromDatabaseObj($record);
                         $scoreDetails[] = $scoreDetail;
+                    } elseif ($record->F_Score < 0) {
+                        $totalWrong += abs($record->F_Score);
+                    } elseif ($record->F_Score == null) {
+                        $totalMissed++;
                     }
-                }
+                    // This only needed to tell if you went into a shared bonus from which track
+                    $trackUnitID = $record->F_UnitID;
+                    break;
+                case $bonusA2UnitID:
+                case $bonusB1UnitID:
+                case $bonusB2UnitID:
+                case $bonusC1UnitID:
+                case $bonusC2UnitID:
+                    if ($record->F_Score > 0) {
+                        $totalCorrect += $record->F_Score;
+                        $bonusCorrect += $record->F_Score;
+                    } elseif ($record->F_Score < 0) {
+                        $totalWrong += abs($record->F_Score);
+                    } elseif ($record->F_Score == null) {
+                        $totalMissed++;
+                    }
+                    break;
+                case $gaugeUnitID:
+                    if ($record->F_Score > 0) {
+                        $totalCorrect += $record->F_Score;
+                        $gaugeCorrect += $record->F_Score;
+                    } elseif ($record->F_Score < 0) {
+                        $totalWrong += abs($record->F_Score);
+                    } elseif ($record->F_Score == null) {
+                        $totalMissed++;
+                    }
+                    break;
+                case $gaugeBonusBUnitID:
+                case $gaugeBonusCUnitID:
+                    if ($record->F_Score > 0) {
+                        $totalCorrect += $record->F_Score;
+                    } elseif ($record->F_Score < 0) {
+                        $totalWrong += abs($record->F_Score);
+                    } elseif ($record->F_Score == null) {
+                        $totalMissed++;
+                    }
+                    break;
+                default:
+                    // ignore anything else
+            }
         }
+        // Also note which track you went down
+        switch ($lastUnitID) {
+            case $trackAUnitID:
+                $track = 'A';
+                break;
+            case $trackBUnitID:
+                $track = 'B';
+                break;
+            case $trackCUnitID:
+                $track = 'C';
+                break;
+            case $bonusA2UnitID:
+                $track = 'bonusA2';
+                break;
+            case $bonusB1UnitID:
+                $track = 'bonusB1';
+                break;
+            case $bonusB2UnitID:
+                $track = 'bonusB2';
+                break;
+            case $bonusC1UnitID:
+                $track = 'bonusC1';
+                break;
+            case $bonusC2UnitID:
+                $track = 'bonusC2';
+                break;
+            default:
+                // Hmmmm, what track to set?
+                $track = "U";
+        }
+
+        // 2. Then you need to check if we went into a bonus questions after the track
+
         $A1count = $this->countTags('/A1/i', $scoreDetails);
         $A2count = $this->countTags('/A2/i', $scoreDetails);
         $B1count = $this->countTags('/B1/i', $scoreDetails);
@@ -275,53 +335,131 @@ SQL;
         switch ($track) {
             case 'A':
                 switch (true) {
-                    case ($totalCorrect <= 8):
-                    case ($totalCorrect == 9 && $A2count == 0):
+                    case ($trackCorrect <= 8):
+                    case ($trackCorrect == 9 && $A2count == 0):
                         $result = "A1";
                         break;
                     case ($totalCorrect == 9 && $A2count > 0):
                     case ($totalCorrect >= 10 && $totalCorrect <= 11):
-                        $result = "A1/A2";
+                        // This means you should have seen the A2 bonus, but never answered questions from it.
+                        $result = "A1";
                         break;
-                    case ($totalCorrect >= 12 && $totalCorrect <= 18):
+                    case ($trackCorrect >= 12 && $trackCorrect <= 18):
                         $result = "A2";
                         break;
-                    case ($totalCorrect >= 19):
-                        $result = "A2/B1";
+                    case ($trackCorrect >= 19 && $trackCorrect <= 22):
+                        // This means you should have seen the B1 bonus, but never answered questions from it.
+                        $result = "A2";
                         break;
                 }
                 // ctp#122
                 $hurdle = 0;
                 break;
 
+            // There are two ways to run the A2 bonus questions, boundary between A1 and A2 or A2 and B1
+            case 'bonusA2':
+                switch (true) {
+                    case ($bonusCorrect <= 1):
+                        if ($trackUnitID == $trackAUnitID) {
+                            $result = "A1";
+                        } else {
+                            $result = "A2";
+                        }
+                        $hurdle = 0;
+                        break;
+                    case ($bonusCorrect >= 2):
+                        if ($trackUnitID == $trackAUnitID) {
+                            $result = "A2";
+                            $hurdle = 0;
+                        } else {
+                            $result = "B1";
+                            $hurdle = 30;
+                        }
+                        break;
+                }
+                break;
+
+            // Only ask B1 bonus if you might be going down
+            case 'bonusB1':
+                switch (true) {
+                    case ($bonusCorrect <= 1):
+                        $result = "A2";
+                        $hurdle = 0;
+                        break;
+                    case ($bonusCorrect >= 2):
+                        $result = "B1";
+                        $hurdle = 30;
+                        break;
+                }
+                break;
+
             case 'B':
                 switch (true) {
-                    case ($totalCorrect <= 2):
-                        $result = "A2/B1";
+                    case ($trackCorrect <= 2):
+                        // This means you should have seen the A2 bonus, but never answered questions from it.
+                        $result = "A2";
                         break;
-                    case ($totalCorrect >= 3 && $totalCorrect <= 8):
-                    case ($totalCorrect == 9 && $B2count == 0):
+                    case ($trackCorrect >= 3 && $trackCorrect <= 8):
+                    case ($trackCorrect == 9 && $B2count == 0):
                         $result = "B1";
                         break;
-                    case ($totalCorrect >= 10 && $totalCorrect <= 11):
-                    case ($totalCorrect == 9 && $B2count > 0):
-                        $result = "B1/B2";
+                    case ($trackCorrect >= 10 && $trackCorrect <= 11):
+                    case ($trackCorrect == 9 && $B2count > 0):
+                        // This means you should have seen the B2 bonus, but never answered questions from it.
+                        $result = "B1";
                         break;
-                    case ($totalCorrect >= 12 && $totalCorrect <= 18):
+                    case ($trackCorrect >= 12 && $trackCorrect <= 18):
                         $result = "B2";
                         break;
-                    case ($totalCorrect >= 19):
-                        $result = "B2/C";
+                    case ($trackCorrect >= 19):
+                        // This means you should have seen the C1 bonus, but never answered questions from it.
+                        $result = "B2";
                         break;
                 }
                 $hurdle = 30;
                 break;
+
+            case 'bonusB2':
+                switch (true) {
+                    case ($bonusCorrect <= 1):
+                        if ($trackUnitID == $trackBUnitID) {
+                            $result = "B1";
+                        } else {
+                            $result = "B2";
+                        }
+                        $hurdle = 30;
+                        break;
+                    case ($bonusCorrect >= 2):
+                        if ($trackUnitID == $trackBUnitID) {
+                            $result = "B2";
+                            $hurdle = 30;
+                        } else {
+                            $result = "C1";
+                            $hurdle = 60;
+                        }
+                        break;
+                }
+                break;
+
+            case 'bonusC1':
+                switch (true) {
+                    case ($bonusCorrect <= 1):
+                        $result = "B2";
+                        $hurdle = 30;
+                        break;
+                    case ($bonusCorrect >= 2):
+                        $result = "C1";
+                        $hurdle = 60;
+                        break;
+                }
+                break;
+
             case 'C':
                 $result = "C";
                 $hurdle = 60;
                 break;
         }
-        return array("level" => $result, "numeric" => $totalCorrect + $hurdle);
+        return array("level" => $result, "numeric" => $gaugeCorrect + $trackCorrect + $hurdle);
     }
 
     /**
