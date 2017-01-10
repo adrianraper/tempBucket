@@ -74,6 +74,28 @@ SQL;
         }
         return $tests;
     }
+    // ctp#173
+    function getTest($testId) {
+        $bindingParams = array($testId);
+        $sql = <<<SQL
+			SELECT * FROM T_ScheduledTests 
+			WHERE F_TestID=?
+SQL;
+        $rs = $this->db->Execute($sql, $bindingParams);
+        switch ($rs->RecordCount()) {
+            case 0:
+                return false;
+                break;
+            case 1:
+                $dbObj = $rs->FetchNextObj();
+                $test = new ScheduledTest($dbObj);
+                break;
+            default:
+                // Should be impossible
+                return false;
+        }
+        return $test;
+    }
 
     function addTest($test) {
         $dbObj = $test->toAssocArray();

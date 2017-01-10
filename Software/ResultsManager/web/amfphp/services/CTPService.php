@@ -209,8 +209,8 @@ class CTPService extends BentoService {
         $session = $this->testOps->getTestSession($sessionId);
 
         // gh#151 Has the result already been calculated for this session?
-        if (!$session->result || $mode=='overwrite') {
-            $session->result = $this->progressOps->getTestResult($session);
+        if (!$session->result || $mode=='overwrite' || $mode=='debug') {
+            $session->result = $this->progressOps->getTestResult($session, $mode);
             $isDirty = true;
         }
         // gh#151 Have we closed the session?
@@ -221,8 +221,12 @@ class CTPService extends BentoService {
         if ($isDirty)
             $this->progressOps->updateTestSession($session, true);
 
+        // ctp#173 Does the test administrator want the test takers to see a result?
+        $testSchedule = $this->testOps->getTest($session->testId);
+        if (!$testSchedule->showResult)
+            $session->result = array("level" => null, "showResult" => false);
+
         // gh#1523 Are there enough licences left to send back the result?
-        // ctp#173
         $licencesObj = $this->usageOps->getTestsUsed($session->productCode, $session->rootId);
         if (intval($licencesObj['purchased']) - intval($licencesObj['used']) <= 0)
             $session->result = array("level" => null, "purchased" => $licencesObj['purchased'], "used" => $licencesObj['used']);

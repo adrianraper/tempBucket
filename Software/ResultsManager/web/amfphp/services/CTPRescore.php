@@ -11,20 +11,20 @@ require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
 require_once(dirname(__FILE__)."/CTPService.php");
 
 $service = new CTPService();
-set_time_limit(360);
-$requestedTestID = (isset($_GET['testID'])) ? $_GET['testID'] : null;
+set_time_limit(3600);
 $requestedSessionID = (isset($_GET['sessionID'])) ? $_GET['sessionID'] : null;
 
-if ($requestedSessionID == null || $requestedTestID == null)
-    throw new Exception("Parameters should be testID=xx&sessionID=xx");
+if ($requestedSessionID == null)
+    throw new Exception("Parameter should be sessionID=xx");
 
 try {
-    $json = json_decode('{"command":"getTestResult","testID":'.$requestedTestID.',"sessionID":"'.$requestedSessionID.'","mode":"overwrite"}');
+    $json = json_decode('{"command":"getTestResult","sessionID":"'.$requestedSessionID.'","mode":"debug"}');
 
     if (!$json)
         throw new Exception("Empty request");
 
     echo json_encode(router($json));
+    flush();
 } catch (UserAccessException $e) {
     header(':', false, 403);
     echo json_encode(array("error" => $e->getMessage(), "code" => $e->getCode()));

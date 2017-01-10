@@ -26,5 +26,6 @@
   "SendingScores": "You have finished all the questions in the test. Please wait. Your answers are being sent for marking. Do not leave until you see your result or the test administrator says so.",
   "FinishedTest": "The test is complete and saved.",
   "ICantDoThis": "I can't do it.",
-  "DeviceUnsupported": "Sorry, but you can't use this device or browser to take the test. Please find a different one. Chrome is the best browser. iOS must be version 10. Android must be quite new."
+  "DeviceUnsupported": "Sorry, but you can't use this device or browser to take the test. Please find a different one. Chrome is the best browser. iOS must be version 10. Android must be quite new.",
+  "Start": "Start"
 }
