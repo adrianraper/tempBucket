@@ -188,6 +188,8 @@ SQL;
         // Because T_Score does not have valid exercise id, use unit ids
         // It might be more efficent to exclude things like requirements unit, but is more explicit to do it by includes
         $gaugeUnitID = '2015063020001';
+        $gaugeBonusBUnitID = '2015063020011';
+        $gaugeBonusCUnitID = '2015063020025';
         $trackAUnitID = '2015063020004';
         $trackBUnitID = '2015063020018';
         $trackCUnitID = '2015063020032';
@@ -196,11 +198,9 @@ SQL;
         $bonusB2UnitID = '2015063020084';
         $bonusC1UnitID = '2015063020086';
         $bonusC2UnitID = '2015063020088';
-        $gaugeBonusBUnitID = '2015063020011';
-        $gaugeBonusCUnitID = '2015063020025';
-        $includeUnitIDs = array($gaugeUnitID, $trackAUnitID, $trackBUnitID, $trackCUnitID,
-            $bonusA2UnitID, $bonusB1UnitID, $bonusB2UnitID, $bonusC1UnitID, $bonusC2UnitID,
-            $gaugeBonusBUnitID, $gaugeBonusCUnitID);
+        $includeUnitIDs = array($gaugeUnitID, $gaugeBonusBUnitID, $gaugeBonusCUnitID,
+            $trackAUnitID, $trackBUnitID, $trackCUnitID,
+            $bonusA2UnitID, $bonusB1UnitID, $bonusB2UnitID, $bonusC1UnitID, $bonusC2UnitID);
 
         // 1. Get all the detailed answers that are part of the test
         $sql = <<<SQL
@@ -220,12 +220,15 @@ SQL;
         $totalCorrect = $totalWrong = $totalMissed = 0;
         $trackCorrect = $bonusCorrect = $gaugeBonusCorrect = $gaugeCorrect = 0;
         $trackUnitID = $lastUnitID = 0;
+        $unitIdx = $lastUnitIdx = 0;
 
         $trackDetails = array();
         $gaugeDetails = array();
         while ($record = $rs->FetchNextObj()) {
-            // As records are ordered by writing date, the last one you did will be place that you exited the test from
-            $lastUnitID = $record->F_UnitID;
+            // ctp#315 Although records are mostly written in order, a few do get out of sync so you can't assume
+            // that the last one written was the last one done.
+            $unitIdx = array_search($record->F_UnitID, $includeUnitIDs);
+            $lastUnitIdx = ($unitIdx && ($unitIdx > $lastUnitIdx)) ? $unitIdx : $lastUnitIdx;
 
             // Keep track of total questions answered to see if you passed a threshold for an unspoilt test
             if ($record->F_Score > 0) {
@@ -281,6 +284,7 @@ SQL;
         }
 
         // Also note which was the last section you were in
+        $lastUnitID = $includeUnitIDs[$lastUnitIdx];
         switch ($lastUnitID) {
             case $gaugeUnitID:
                 $track = "gauge";
@@ -332,7 +336,6 @@ SQL;
         $gaugeB2orAbovecount = $this->countTags('/B2|C[1-2]/i', $gaugeDetails);
 
         // If you didn't make it out of the gauge, which track would you have been on?
-        // Effectively we are rescoring the gauge here
         switch ($track) {
             case 'gauge':
                 switch (true) {

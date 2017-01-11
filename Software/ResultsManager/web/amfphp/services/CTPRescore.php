@@ -13,12 +13,17 @@ require_once(dirname(__FILE__)."/CTPService.php");
 $service = new CTPService();
 set_time_limit(3600);
 $requestedSessionID = (isset($_GET['sessionID'])) ? $_GET['sessionID'] : null;
+$requestedTestID = (isset($_GET['testID'])) ? $_GET['testID'] : null;
 
-if ($requestedSessionID == null)
-    throw new Exception("Parameter should be sessionID=xx");
+if ($requestedSessionID == null && $requestedTestID == null)
+    throw new Exception("Parameter should be sessionID=xx or testID=xx");
 
 try {
-    $json = json_decode('{"command":"getTestResult","sessionID":"'.$requestedSessionID.'","mode":"debug"}');
+    if ($requestedSessionID) {
+        $json = json_decode('{"command":"getTestResult","sessionID":"' . $requestedSessionID . '","mode":"debug"}');
+    } elseif ($requestedTestID) {
+        $json = json_decode('{"command":"getAllTestResults","testID":"' . $requestedTestID . '","mode":"debug"}');
+    }
 
     if (!$json)
         throw new Exception("Empty request");
@@ -62,10 +67,21 @@ function router($json) {
     	$json->mode = null;
     	
     switch ($json->command) {
+        case "getAllTestResults": return getAllTestResults($json->testID, $json->mode);
         case "getTestResult": return getResult($json->sessionID, $json->mode);
         case "getTranslations": return getTranslations($json->lang);
         default: throw new Exception("Unknown command");
     }
+}
+
+// Only for batch processing of results
+function getAllTestResults($testID, $mode = null) {
+    global $service;
+    // Get all the sessions for people who completed this test
+    foreach ($service->getSessionsForTest($testID) as $session) {
+        $results[] = $service->getTestResult($session->sessionId, $mode);
+    }
+    return $results;
 }
 
 function getResult($sessionId, $mode = null) {

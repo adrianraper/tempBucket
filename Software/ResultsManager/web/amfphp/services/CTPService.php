@@ -221,6 +221,10 @@ class CTPService extends BentoService {
         if ($isDirty)
             $this->progressOps->updateTestSession($session, true);
 
+        // Debug mode (offline rescoring) never hides result
+        if ($mode=='debug')
+            return $session->result;
+
         // ctp#173 Does the test administrator want the test takers to see a result?
         $testSchedule = $this->testOps->getTest($session->testId);
         if (!$testSchedule->showResult)
@@ -232,6 +236,11 @@ class CTPService extends BentoService {
             $session->result = array("level" => null, "purchased" => $licencesObj['purchased'], "used" => $licencesObj['used']);
 
         return $session->result;
+    }
+
+    // Utility function
+    public function getSessionsForTest($testID) {
+        return $this->testOps->getSessionsForTest($testID);
     }
 
     // ctp#60 Literals file for DPT

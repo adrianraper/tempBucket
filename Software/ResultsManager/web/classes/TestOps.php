@@ -169,6 +169,24 @@ EOD;
         }
     }
 
+    function getSessionsForTest($testId) {
+	    $sessions = array();
+        $sql = <<<EOD
+			SELECT * 
+			FROM T_TestSession
+			WHERE F_TestID=?
+            AND F_CompletedDateStamp is not null
+EOD;
+        $bindingParams = array($testId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs && $rs->RecordCount() > 0)
+            while ($dbObj = $rs->FetchNextObj()) {
+                $testSession = new TestSession();
+                $testSession->fromDatabaseObj($dbObj);
+                $sessions[] = $testSession;
+            }
+	    return $sessions;
+    }
 
     // The rest of the class is related to Bento
     // TODO The content folder should be picked up from the normal way we do this...
