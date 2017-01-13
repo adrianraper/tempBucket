@@ -112,6 +112,10 @@ class CTPService extends BentoService {
             $test->endTimestamp = $this->ansiStringToTimestamp($test->closeTime);
 
             // ctp#285 groupID needs to be a string
+            // ctp#311 If you are running locally, implying no encryption in content server, send back an empty code
+            // Locally working will not work if you DO set an access code on a scheduled test
+            if ($test->startType == 'timer' && stristr($_SERVER['SERVER_NAME'],'dock.projectbench') !== false)
+                $test->groupId = '';
             $test->groupId = (string)$test->groupId;
         }
         return array_values($tests);
@@ -221,7 +225,7 @@ class CTPService extends BentoService {
         if ($isDirty)
             $this->progressOps->updateTestSession($session, true);
 
-        // Debug mode (offline rescoring) never hides result
+        // Debug mode (offline/batch rescoring) never hides result
         if ($mode=='debug')
             return $session->result;
 
@@ -238,7 +242,7 @@ class CTPService extends BentoService {
         return $session->result;
     }
 
-    // Utility function
+    // Pick up all the sessions for a particular test
     public function getSessionsForTest($testID) {
         return $this->testOps->getSessionsForTest($testID);
     }

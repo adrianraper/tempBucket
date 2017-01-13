@@ -333,17 +333,18 @@ SQL;
         //$C2count = $this->countTags('/C2/i', $trackDetails);
 
         // Count tags for items in the gauge
-        $gaugeB2orAbovecount = $this->countTags('/B2|C[1-2]/i', $gaugeDetails);
+        $gaugeB2orAboveCount = $this->countTags('/B2|C[1-2]/i', $gaugeDetails);
+        $gaugeAboveB2Count = $this->countTags('/C[1-2]/i', $gaugeDetails);
 
         // If you didn't make it out of the gauge, which track would you have been on?
         switch ($track) {
             case 'gauge':
                 switch (true) {
                     case ($gaugeCorrect <= 4):
-                    case ($gaugeCorrect >= 5 && $gaugeCorrect <= 7 && $gaugeB2orAbovecount == 0):
+                    case ($gaugeCorrect >= 5 && $gaugeCorrect <= 7 && $gaugeAboveB2Count == 0):
                         $track = "A";
                         break;
-                    case ($gaugeCorrect >= 5 && $gaugeCorrect <= 7 && $gaugeB2orAbovecount >= 1):
+                    case ($gaugeCorrect >= 5 && $gaugeCorrect <= 7 && $gaugeAboveB2Count >= 1):
                     case ($gaugeCorrect >= 8 && $gaugeCorrect <= 15):
                         $track = "B";
                         break;
@@ -524,6 +525,7 @@ SQL;
         if ($mode=='debug') {
             $rc['gaugeCorrect'] = $gaugeCorrect;
             $rc['gaugeBonusCorrect'] = $gaugeBonusCorrect;
+            $rc['gaugeAboveB2'] = $gaugeAboveB2Count;
             $rc['track'] = $track;
             $rc['trackCorrect'] = $trackCorrect;
             $rc['bonusCorrect'] = $bonusCorrect;
