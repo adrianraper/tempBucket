@@ -10,7 +10,10 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/TestSessi
 
 
 class CTPService extends BentoService {
-	
+
+    // The version of the app that called you
+    private $appVersion;
+
 	function __construct() {
 		// gh#341 A unique ID to distinguish sessions between multiple Clarity applications
 		Session::setSessionName("CTPService");
@@ -24,6 +27,13 @@ class CTPService extends BentoService {
         $this->usageOps = new UsageOps($this->db);
 	}
 
+	public function getAppVersion() {
+	    return $this->addVersion;
+    }
+    public function setAppVersion($appVersion) {
+	    $this->appVersion = $appVersion;
+
+    }
 	// Login checks the user, account and returns valid tests
 	public function testLogin($email, $password, $productCode) {
         $rootID = null;
@@ -111,12 +121,15 @@ class CTPService extends BentoService {
             $test->startTimestamp = $this->ansiStringToTimestamp($test->openTime);
             $test->endTimestamp = $this->ansiStringToTimestamp($test->closeTime);
 
-            // ctp#285 groupID needs to be a string
             // ctp#311 If you are running locally, implying no encryption in content server, send back an empty code
             // Locally working will not work if you DO set an access code on a scheduled test
             if ($test->startType == 'timer' && stristr($_SERVER['SERVER_NAME'],'dock.projectbench') !== false)
                 $test->groupId = '';
-            $test->groupId = (string)$test->groupId;
+
+            // ctp#285 groupID needs to be a string
+            // ctp#324 for app versions above x
+            if (version_compare($this->getAppVersion(), '0.0.0', '>'))
+                $test->groupId = (string)$test->groupId;
         }
         return array_values($tests);
     }
