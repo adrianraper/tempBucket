@@ -139,10 +139,6 @@ EOD;
 				// typically one would be an LM account and the other a IP.com purchase
 				// So first of all see if you can figure out some rules for picking one of the multiple users
 				
-				// Do some logging to check this, especially with tablets
-				//$logMessage = "login $keyValue has ".$rs->RecordCount()." matches";
-				//AbstractService::$debugLog->info($logMessage);
-				
 				// 1. Does the password match just one of them?
                 $matches = 0;
 				// gh#741
@@ -155,11 +151,8 @@ EOD;
 						$matches++;
 					}
 				}
-				if ($matches == 1) {
-					//$logMessage = "use password to match ".$dbLoginObj->F_UserID;
-					//AbstractService::$debugLog->info($logMessage);
+				if ($matches == 1)
 					continue;
-				}
 
 				// 2. Is there just one that has not expired?
 				$matches = 0;
@@ -177,16 +170,17 @@ EOD;
 					continue;
 					
 				// 3. What about by account attributes?
+                // gh#1531 You are only looking at accounts with the tragetted productCode
 				$rs->MoveFirst();
-				while ($userObj = $rs->FetchNextObj()) {
+				while ($userObj = $rs->FetchNextObj())
 					$userIDArray[] = $userObj->F_UserID;
-				}
 				$userIDList = join(',', $userIDArray);
 				
 				// requires a SQL look up on the accounts for each user
 				$selectFields = array("g.F_GroupID as groupID",
 								"m.F_RootID as rootID",
 								"a.F_ProductVersion as productVersion",
+                                "a.F_ProductCode as productCode",
 								"a.F_ExpiryDate as expiryDate",
 								"u.*");
 				$sql  = "SELECT ".join(",", $selectFields);
@@ -199,14 +193,24 @@ EOD;
 					and a.F_ProductCode in ($productCode);
 EOD;
 				$rs1 = $this->db->Execute($sql);
-				
-				// Can we rank them by programVersion? HomeUser > FullVersion > LastMinute > TestDrive > Demo
-				$matches = 0;
+
+                // gh#1531 3a. Check if the userID is unique that you have now filtered by accounts with this productCode
+                $matches = $matchedUserID = 0;
+                $rs1->MoveFirst();
+                while ($accountObj = $rs1->FetchNextObj()) {
+                    if ($accountObj->F_UserID != $matchedUserID) {
+                        $dbLoginObj = $accountObj;
+                        $matches++;
+                        $matchedUserID = $accountObj->F_UserID;
+                    }
+                }
+                if ($matches == 1)
+                    continue;
+
+				// 3b. Can we rank them by programVersion? HomeUser > FullVersion > LastMinute > TestDrive > Demo
+                $matches = $matchedUserID = 0;
 				$rs1->MoveFirst();
 				while ($accountObj = $rs1->FetchNextObj()) {
-					
-					//$logMessage = "root ".$accountObj->rootID." is a ".$accountObj->productVersion;
-					//AbstractService::$debugLog->info($logMessage);
 					
 					if ($accountObj->productVersion && stristr($accountObj->productVersion, 'HU')) {
 						
@@ -216,34 +220,32 @@ EOD;
 							
 							// There might be more than one account record for one user, so only count
 							// duplicates with different userIDs.
-							if ($dbLoginObj->F_UserID != $accountObj->F_UserID) {
+                            if ($accountObj->F_UserID != $matchedUserID) {
 								$dbLoginObj = $accountObj;
 								$matches++;
-							} else {
-								if ($matches == 0) $matches++;
+                                $matchedUserID = $accountObj->F_UserID;
 							}
 						}
 					}
 				}
 				if ($matches == 1) 
 					continue;
-					
-				$matches = 0;
+
+                $matches = $matchedUserID = 0;
 				$rs1->MoveFirst();
 				while ($accountObj = $rs1->FetchNextObj()) {
 					if ($accountObj->productVersion && stristr($accountObj->productVersion, 'FV')) {
 						// the account must still be active
 						if ($accountObj->expiryDate && ($accountObj->expiryDate > '2038')) $accountObj->expiryDate = '2038-01-01';
 						if (strtotime($accountObj->expiryDate) > strtotime(date("Y-m-d"))) {
-							
-							// There might be more than one account record for one user, so only count
-							// duplicates with different userIDs.
-							if ($dbLoginObj->F_UserID != $accountObj->F_UserID) {
-								$dbLoginObj = $accountObj;
-								$matches++;
-							} else {
-								if ($matches == 0) $matches++;
-							}
+
+                            // There might be more than one account record for one user, so only count
+                            // duplicates with different userIDs.
+                            if ($accountObj->F_UserID != $matchedUserID) {
+                                $dbLoginObj = $accountObj;
+                                $matches++;
+                                $matchedUserID = $accountObj->F_UserID;
+                            }
 						}
 					}
 				}
@@ -252,7 +254,7 @@ EOD;
 					
 				// TODO. This is not perfect. You might have an expired account that is HU and it is chosen over
 				// non-expired FV ones.
-				
+
 				throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 		}
 		
