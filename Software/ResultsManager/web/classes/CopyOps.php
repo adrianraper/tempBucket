@@ -166,18 +166,66 @@ class CopyOps {
      * This section for literals for couloir
      */
     /**
-     * gh#513 This is the only function to read the file(s), returns xml string
-     * gh#1050 Base literals are taken from base.xml, and then nodes are overlaid from the specific literals file
+     * TODO Need to read a couloir base, then overwrite specific titles on top
+     * TODO Return for a specific language code
      */
     public function getLiteralsFromFile($lang) {
         if (!file_exists($this->getFilename('json')))
             throw new Exception($this->getFilename('json')." file not found");
 
-        // TODO Merge base under the specific title literals
-        //$base = json_encode(json_decode(file_get_contents($this->getBaseFilename('.json')), true));
-        $literals = json_decode(file_get_contents($this->getFilename('json')), true);
+        // Initialise
+        $build = $specific = array();
 
-        return $literals;
+        // 1. Read the base in English
+        $baseFilename = $this->getBaseFilename('json');
+        $base = json_decode(file_get_contents($baseFilename), true);
+        foreach ($base['languages'] as $value) {
+            if ($value['language'] == 'en') {
+                $build = $value['literals'];
+                break;
+            }
+        }
+        // 2. Get the base overlay in $lang
+        foreach ($base['languages'] as $value) {
+            if ($value['language'] == $lang) {
+                $baseOverlay = $value['literals'];
+                break;
+            }
+        }
+        // 3. Overlay these onto the base
+        foreach ($build as $literal => $value) {
+            $build[$literal] = (isset($baseOverlay[$literal])) ? $baseOverlay[$literal] : $value;
+        }
+        // 4. Read the specific file in English
+        $literals = json_decode(file_get_contents($this->getFilename('json')), true);
+        foreach ($literals['languages'] as $value) {
+            if ($value['language'] == 'en') {
+                $specific = $value['literals'];
+                break;
+            }
+        }
+        // 5. And the specifics overlay in $lang
+        foreach ($literals['languages'] as $value) {
+            if ($value['language'] == $lang) {
+                $specificOverlay = $value['literals'];
+                break;
+            }
+        }
+        // 6. Overlay these onto the base
+        foreach ($specific as $literal => $value) {
+            $specific[$literal] = (isset($specificOverlay[$literal])) ? $specificOverlay[$literal] : $value;
+        }
+        // 7. Overwrite any specifics to the base
+        foreach ($build as $literal => $value) {
+            $build[$literal] = (isset($specific[$literal])) ? $specific[$literal] : $value;
+        }
+        // 8. Add any new ones from specific
+        foreach ($specific as $literal => $value) {
+            if (!isset($build[$literal]))
+                $build[$literal] = $value;
+        }
+
+        return $build;
     }
 
 }

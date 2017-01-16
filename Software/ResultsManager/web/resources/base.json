@@ -1,0 +1,56 @@
+{
+  "languages": [
+    {
+      "language": "en",
+      "caption": "English",
+      "literals": {
+        "Email": "Email",
+        "Password": "Password",
+        "Login": "Sign in",
+        "Logout": "Sign out",
+        "EmptyLogin": "Please type an email.",
+        "IncorrectLogin": "Your email or password do not match.",
+        "ConnectToInternet": "Please connect to the internet.",
+        "Downloading": "Downloading",
+        "DownloadError": "Downloading problem.",
+        "TryAgain": "Try again.",
+        "Ok": "ok",
+        "Next": "Next",
+        "Back": "Back",
+        "Submit": "Submit",
+        "Finish": "Finish",
+        "Start": "Start",
+        "DeviceUnsupported": "You need a different device to use this app. Check with your support team."
+      }
+    },
+    {
+      "language": "zh-tw",
+      "caption": "漢語 Chinese (Traditional)",
+      "literals": {
+        "Downloading": "下載",
+        "TryAgain": "再試一次。",
+        "Ok": "好",
+        "Next": "未來",
+        "Back": "背部",
+        "Submit": "呈遞",
+        "Finish": "完畢",
+        "Start": "開始",
+        "Logout": "退出"
+      }
+    },
+    {
+      "language": "id",
+      "caption": "Bahasa Indonesia",
+      "literals": {
+        "TryAgain": "Coba lagi.",
+        "Ok": "baik",
+        "Next": "Berikutnya",
+        "Back": "Kembali",
+        "Submit": "menyampaikan",
+        "Finish": "menyelesaikan",
+        "Start": "Mulai",
+        "Logout": "Keluar"
+      }
+    }
+  ]
+}
