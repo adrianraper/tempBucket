@@ -28,7 +28,7 @@ class CTPService extends BentoService {
 	}
 
 	public function getAppVersion() {
-	    return $this->addVersion;
+	    return $this->appVersion;
     }
     public function setAppVersion($appVersion) {
 	    $this->appVersion = $appVersion;
