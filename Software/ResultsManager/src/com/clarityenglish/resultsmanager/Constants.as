@@ -10,7 +10,7 @@
 		/**
 		 * The version of the software, used to tie bugs and version control together.
 		 */
-		public static var version:String = "3.8.1490";
+		public static var version:String = "3.8.60";
 		
 		/** Making this false activates various debug and test friendly attributes in the application */
 		public static function get DEBUG_MODE():Boolean {

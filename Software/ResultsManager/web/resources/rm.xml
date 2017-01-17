@@ -634,6 +634,7 @@
             <lit name="yesButton">Yes</lit>
             <lit name="noButton">No</lit>
             <lit name="signedInUser">Hello {username}.</lit>
+            <lit name="languageLabel">Which language do you want the program instructions to be in?</lit>
             
             <lit name="testAdminFirstStep">Step 1</lit>
 

@@ -18,6 +18,7 @@
 			import flash.system.ApplicationDomain;
 			import flash.system.LoaderContext;
 			
+			import mx.collections.ArrayCollection;
 			import mx.formatters.DateFormatter;
 			import mx.managers.SystemManager;
 			import mx.utils.ObjectUtil;
@@ -38,6 +39,8 @@
 			private var _startByCode:Boolean;
 			[Bindable]
 			private var _showResult:Boolean;
+			// gtp#60
+			private var _language:String;
 	
 			private function creationComplete():void {
 				/*
@@ -69,6 +72,8 @@
 				saveButton.label = copyProvider.getCopyForId("saveTestDetail");
 				startByCode.label = showResult.label = copyProvider.getCopyForId("yesButton");
 				startByTimer.label = hideResult.label = copyProvider.getCopyForId("noButton");
+				// ctp#60
+				languageLabel.text = copyProvider.getCopyForId("languageLabel");
 			}
 
 			public function setDataProvider(test:ScheduledTest):void {
@@ -105,6 +110,19 @@
 					_startByCode = (dataProvider.startType == 'code');
 					_showResult = (dataProvider.showResult);
 					
+					// ctp#60
+					_language = dataProvider.language;
+					// TODO where to get the list of available languages from?
+					languageData.dataProvider = new ArrayCollection([{label:"English", data:"EN"},
+																	 {label:"Bahasa Indonesia", data:"ID"},
+																	 {label:"漢語", data:"ZH"}]);
+					for (var i:uint=0; i<languageData.dataProvider.length; i++) {
+						if (languageData.dataProvider[i].data == _language) {
+							languageData.selectedIndex = i;
+							break;
+						}
+					}
+					
 					// Is the data editable?
 					setDataEditable(dataProvider.status == ScheduledTest.STATUS_PRERELEASE);
 						
@@ -118,6 +136,7 @@
 				openTimeDataHours.enabled = openTimeDataMins.enabled = closeTimeDataHours.enabled = closeTimeDataMins.enabled = editable; 
 				showResult.enabled = hideResult.enabled = startByCode.enabled = startByTimer.enabled = editable;
 				saveButton.enabled = editable;
+				languageData.enabled = editable;
 			}
 			public function dateChanged(e:Event):void {
 				if (closeTimeDataDate.selectedDate)
@@ -144,7 +163,7 @@
 				updatedTest.testId = dataProvider.testId;
 				updatedTest.productCode = dataProvider.productCode;
 				updatedTest.groupId = dataProvider.groupId;
-				updatedTest.language = dataProvider.language;
+				//updatedTest.language = dataProvider.language;
 				updatedTest.status = dataProvider.status;
 				
 				// Data validation on times
@@ -156,6 +175,7 @@
 				updatedTest.showResult = showResult.selected;
 				updatedTest.startType = (startByCode.selected) ? 'code' : 'timer';
 				updatedTest.startData = (startByCode.selected) ? startData.text : null;
+				updatedTest.language = languageData.selectedItem.data;
 				return updatedTest;
 			}
 			
@@ -166,7 +186,8 @@
 						(tdA.startData == tdB.startData) &&
 						(tdA.caption == tdB.caption) &&
 						(tdA.showResult == tdB.showResult) &&
-						(tdA.startType == tdB.startType));
+						(tdA.startType == tdB.startType) && 
+						(tdA.language == tdB.language)) ;
 			}
 			// Have enough details been added?
 			private function isComplete():Boolean {
@@ -285,7 +306,7 @@
 		</mx:VBox>
 		<mx:Spacer height="12" />
 		<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
-			<mx:Text id="startConditionsLabel" width="200" />
+			<mx:Text id="startConditionsLabel" width="300" />
 			<mx:HBox>
 				<!--
 				<mx:RadioButton id="startByCode" groupName="startConditions" labelPlacement="right" />
@@ -306,6 +327,11 @@
 				<mx:Button id="showResult" toggle="true" selected="{_showResult}" click="onToggle(event)" styleName="{(_showResult) ? 'selectedButton' : 'normalButton'}"/>
 				<mx:Button id="hideResult" toggle="true" selected="{!_showResult}" click="onToggle(event)" styleName="{(!_showResult) ? 'selectedButton' : 'normalButton'}"/>
 			</mx:HBox>
+		</mx:VBox>
+		<mx:Spacer height="12" />
+		<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
+			<mx:Text id="languageLabel" width="200"/>
+			<mx:ComboBox id="languageData" width="200" />
 		</mx:VBox>
 		<mx:Spacer height="12" />
 		<mx:Label id="errorTextLabel" text="{_errorText}" visible="{!(_errorText == '')}" includeInLayout="{!(_errorText == '')}" styleName="errorMessage"/>
