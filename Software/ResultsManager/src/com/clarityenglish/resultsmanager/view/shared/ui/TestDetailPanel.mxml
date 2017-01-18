@@ -74,6 +74,9 @@
 				startByTimer.label = hideResult.label = copyProvider.getCopyForId("noButton");
 				// ctp#60
 				languageLabel.text = copyProvider.getCopyForId("languageLabel");
+				// ctp#214
+				emailInsertionLabel.text = copyProvider.getCopyForId("emailInsertionLabel");
+					
 			}
 
 			public function setDataProvider(test:ScheduledTest):void {
@@ -115,13 +118,17 @@
 					// TODO where to get the list of available languages from?
 					languageData.dataProvider = new ArrayCollection([{label:"English", data:"EN"},
 																	 {label:"Bahasa Indonesia", data:"ID"},
-																	 {label:"漢語", data:"ZH"}]);
+																	 {label:"漢語", data:"ZH-TW"}]);
 					for (var i:uint=0; i<languageData.dataProvider.length; i++) {
 						if (languageData.dataProvider[i].data == _language) {
 							languageData.selectedIndex = i;
 							break;
 						}
 					}
+
+					// ctp#214
+					// ctp#214
+					emailInsertionData.text = dataProvider.emailInsertion;
 					
 					// Is the data editable?
 					setDataEditable(dataProvider.status == ScheduledTest.STATUS_PRERELEASE);
@@ -136,7 +143,7 @@
 				openTimeDataHours.enabled = openTimeDataMins.enabled = closeTimeDataHours.enabled = closeTimeDataMins.enabled = editable; 
 				showResult.enabled = hideResult.enabled = startByCode.enabled = startByTimer.enabled = editable;
 				saveButton.enabled = editable;
-				languageData.enabled = editable;
+				languageData.enabled = emailInsertionData.enabled = editable;
 			}
 			public function dateChanged(e:Event):void {
 				if (closeTimeDataDate.selectedDate)
@@ -176,6 +183,8 @@
 				updatedTest.startType = (startByCode.selected) ? 'code' : 'timer';
 				updatedTest.startData = (startByCode.selected) ? startData.text : null;
 				updatedTest.language = languageData.selectedItem.data;
+				// ctp#214 Make sure that any html is removed
+				updatedTest.emailInsertion = emailInsertionData.text;
 				return updatedTest;
 			}
 			
@@ -305,33 +314,34 @@
 			</mx:HBox>
 		</mx:VBox>
 		<mx:Spacer height="12" />
-		<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
-			<mx:Text id="startConditionsLabel" width="300" />
-			<mx:HBox>
-				<!--
-				<mx:RadioButton id="startByCode" groupName="startConditions" labelPlacement="right" />
-				<mx:RadioButton id="startByTimer" groupName="startConditions" labelPlacement="right" />
-				-->
-				<mx:Button id="startByCode" toggle="true" selected="{_startByCode}" click="onToggle(event)" styleName="{(_startByCode) ? 'selectedButton' : 'normalButton'}"/>
-				<mx:Button id="startByTimer" toggle="true" selected="{!_startByCode}" click="onToggle(event)" styleName="{(!_startByCode) ? 'selectedButton' : 'normalButton'}"/>
-			</mx:HBox>
-			<mx:TextInput id="startData" enabled="{_startByCode}" />
-		</mx:VBox>
+		<mx:HBox width="100%" horizontalGap="0" >
+			<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="50%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
+				<mx:Text id="startConditionsLabel" width="100%" height="30"/>
+				<mx:HBox>
+					<mx:Button id="startByCode" toggle="true" selected="{_startByCode}" click="onToggle(event)" styleName="{(_startByCode) ? 'selectedButton' : 'normalButton'}"/>
+					<mx:Button id="startByTimer" toggle="true" selected="{!_startByCode}" click="onToggle(event)" styleName="{(!_startByCode) ? 'selectedButton' : 'normalButton'}"/>
+				</mx:HBox>
+				<mx:TextInput id="startData" enabled="{_startByCode}" />
+			</mx:VBox>
+			<mx:Spacer width="10" />
+			<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="50%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
+				<mx:Text id="showResultLabel" width="100%" height="30"/>
+				<mx:HBox>
+					<mx:Button id="showResult" toggle="true" selected="{_showResult}" click="onToggle(event)" styleName="{(_showResult) ? 'selectedButton' : 'normalButton'}"/>
+					<mx:Button id="hideResult" toggle="true" selected="{!_showResult}" click="onToggle(event)" styleName="{(!_showResult) ? 'selectedButton' : 'normalButton'}"/>
+				</mx:HBox>
+				<mx:TextInput visible="false" /> <!-- just to get box height same as other one -->
+			</mx:VBox>
+		</mx:HBox>
 		<mx:Spacer height="12" />
 		<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
-			<mx:Text id="showResultLabel" width="200"/>
-			<mx:HBox>
-				<!--
-				<mx:CheckBox id="showResultData" enabled="true" />
-				-->
-				<mx:Button id="showResult" toggle="true" selected="{_showResult}" click="onToggle(event)" styleName="{(_showResult) ? 'selectedButton' : 'normalButton'}"/>
-				<mx:Button id="hideResult" toggle="true" selected="{!_showResult}" click="onToggle(event)" styleName="{(!_showResult) ? 'selectedButton' : 'normalButton'}"/>
-			</mx:HBox>
-		</mx:VBox>
-		<mx:Spacer height="12" />
-		<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
-			<mx:Text id="languageLabel" width="200"/>
+			<mx:Text id="languageLabel" width="240"/>
 			<mx:ComboBox id="languageData" width="200" />
+		</mx:VBox>
+		<mx:Spacer height="12" />
+		<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
+			<mx:Text id="emailInsertionLabel" width="240"/>
+			<mx:TextArea id="emailInsertionData" width="100%" height="50" verticalScrollPolicy="auto" horizontalScrollPolicy="off" wordWrap="true" />
 		</mx:VBox>
 		<mx:Spacer height="12" />
 		<mx:Label id="errorTextLabel" text="{_errorText}" visible="{!(_errorText == '')}" includeInLayout="{!(_errorText == '')}" styleName="errorMessage"/>

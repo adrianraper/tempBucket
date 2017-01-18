@@ -58,7 +58,7 @@
 			filterStep.text = copyProvider.getCopyForId("reportFilterStep", {item:1});
 			// gh#777
 			includeInactiveUsersCheckBox.label = copyProvider.getCopyForId("includeInactiveUsersCheckBox");
-			generateSpecialReportButton.label = copyProvider.getCopyForId("TestReport");
+			generateSpecialReportButton.label = copyProvider.getCopyForId("testReport");
 		}
 		
 		private function creationComplete():void {
@@ -140,17 +140,6 @@
 				</mx:VBox>
 			</mx:HBox>
 			<mx:Spacer height="5" />				
-			<!--
-			<mx:VBox>
-				<mx:Label id="showAttempts" />
-				<mx:HBox>
-					<mx:RadioButtonGroup id="attemptsRadioGroup" />
-					<mx:RadioButton id="allAttempts" data="{ReportEvent.ALL}" groupName="attemptsRadioGroup" selected="true" />
-					<mx:RadioButton id="firstAttempt" data="{ReportEvent.FIRST}" groupName="attemptsRadioGroup" />
-					<mx:RadioButton id="lastAttempt" data="{ReportEvent.LAST}" groupName="attemptsRadioGroup" />
-				</mx:HBox>
-			</mx:VBox>
-			-->
 			<!-- gh#777 -->
 			<mx:HRule width="90%" />
 			<mx:Spacer height="5" />				
