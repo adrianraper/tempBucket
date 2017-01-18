@@ -51,24 +51,8 @@ class ScoreDetail {
             $this->detail = json_encode($detailString);
         }
 
-        // gh#156 If we know a timezoneOffset, use server time (UTC) + this to get an accurate local time and ignore the sent time
-        // php version differences have big impact on -ve passed integer from amfphp, so split into number and sign
-        // How about tablets?
-
-        $serverDateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
-        if ($clientTimezoneOffset !== null && isset($clientTimezoneOffset['minutes'])) {
-            $offset = $clientTimezoneOffset['minutes'];
-            $negative = (boolean)$clientTimezoneOffset['negative'];
-            $clientDifference = new DateInterval('PT'.strval($offset).'M');
-            if ($negative) {
-                $dateNow = $serverDateStampNow->add($clientDifference)->format('Y-m-d H:i:s');
-            } else {
-                $dateNow = $serverDateStampNow->sub($clientDifference)->format('Y-m-d H:i:s');
-            }
-        } else {
-            $dateNow = (isset($answerObj->answerTimestamp)) ? $answerObj->answerTimestamp : $serverDateStampNow->format('Y-m-d H:i:s');
-        }
-        $this->dateStamp = $dateNow;
+        // ctp#216 Write the time sent by the device for when the answer was selected  - null means not answered
+        $this->dateStamp = (isset($answerObj->answerTimestamp)) ? $answerObj->answerTimestamp : null;
     }
 	
 	public function setUID($value) {

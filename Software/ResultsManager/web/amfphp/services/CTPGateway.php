@@ -22,64 +22,69 @@ try {
     $json = json_decode('{"command": "login","email": "","password": "d41d8cd98f00b204e9800998ecf8427e","productCode": "63"}');
     */
     /*
-    $json = json_decode('{"command":"scoreWrite",
-            "sessionID": "6",
+    $json = json_decode('{"command": "scoreWrite",
+            "appVersion": "0.6.3",
             "score": {
-                "uid": "63.20160630.201606301.20160630001",
-                "testID": "2",
+                "uid": "63.2016063999.20166301999.2016063990",
+                "testID": "27",
                 "exerciseScore": {
                     "questionScores": [{
-                        "id": "2561567001aa49dca9c9ced953794418",
+                        "id": "11124987-ae36-4d18-a3c3-df935dbf4447",
                         "questionType": "MultipleChoiceQuestion",
-                        "state": [0],
-                        "score": -1,
-                        "answerTimestamp": 1474277220933,
-                        "tags": [],
-                        "group": null
+                        "state": [1],
+                        "score": 1,
+                        "answerTimestamp": 1484704516218,
+                        "tags": []
                     },
                     {
-                        "id": "d8bf84df-502f-4203-8c63-18549a183a1e",
-                        "questionType": "FreeDragQuestion",
-                        "state": {
-                            "dropTargetIdx": 19,
-                            "answerIdx": null
-                        },
-                        "score": null,
-                        "answerTimestamp": 1474277224187,
-                        "tags": [],
-                        "group": null
-                    },
-                    {
-                        "id": "d1258b72785c4709b683019c553ae8da",
+                        "id": "5674435b-61f7-4222-9f77-b7b0c10d41ac",
                         "questionType": "DropdownQuestion",
                         "state": 0,
                         "score": 1,
-                        "answerTimestamp": 1474277227839,
-                        "tags": [],
-                        "group": null
+                        "answerTimestamp": 1484704519512,
+                        "tags": []
                     },
                     {
-                        "id": "52d3c75c18194d15837e5d73bbab7487",
+                        "id": "5674435b-61f7-4222-9f77-b7b0c10d41ad",
+                        "questionType": "DropdownQuestion",
+                        "state": null,
+                        "score": null,
+                        "answerTimestamp": null,
+                        "tags": []
+                    },
+                    {
+                        "id": "5674435b-61f7-4222-9f77-b7b0c10d41ae",
+                        "questionType": "DropdownQuestion",
+                        "state": null,
+                        "score": null,
+                        "answerTimestamp": null,
+                        "tags": []
+                    },
+                    {
+                        "id": "b810a84f-01f7-49f5-8f23-062a257d709d",
                         "questionType": "DragQuestion",
                         "state": [{
                             "draggableIdx": 1,
-                            "answerIdx": 0
+                            "answerIdx": -1
                         }],
-                        "score": 1,
-                        "answerTimestamp": 1474277232599,
-                        "tags": [],
-                        "group": null
+                        "score": null,
+                        "answerTimestamp": 1484704521302,
+                        "tags": []
                     }],
                     "exerciseMark": {
                         "correctCount": 2,
-                        "incorrectCount": 1,
-                        "missedCount": 1
+                        "incorrectCount": 0,
+                        "missedCount": 3
                     },
-                    "duration": 155632,
-                    "submitTimestamp": 1474277235232
+                    "duration": 62380,
+                    "submitTimestamp": 1484704529712
+                },
+                "anomalies": {
+                    
                 }
             },
-            "localTimestamp": 1480039838000, 
+            "sessionID": "159",
+            "localTimestamp": 1484704529856,
             "timezoneOffset": -480
         }');
      *  // . time()*1000 . ',
@@ -87,10 +92,6 @@ try {
     //1475543370002 - timestamp for 4th Oct about 9:04am
     if (!$json)
         throw new Exception("Empty request");
-
-    // Some data adjustment until the app and server are in sync with names etc
-    //if (!isset($json->productCode)) $json->productCode = 63;
-    //if (!isset($json->sessionID) && isset($json->score)) $json->sessionID = $json->score->sessionID;
 
     echo json_encode(router($json));
 } catch (UserAccessException $e) {
@@ -129,7 +130,7 @@ function router($json) {
     if (isset($json->timezoneOffset)) {
         // Timezone has format {minutes:xx, negative:boolean} in Bento, but just xx in Couloir
         if (!isset($json->timezoneOffset->minutes))
-            $json->timezoneOffset = json_decode('[{"minutes":'.abs($json->timezoneOffset).'},{"negative":'.($json->timezoneOffset < 0).'}]');
+            $json->timezoneOffset = json_decode('{"minutes":'.abs($json->timezoneOffset).',"negative":'.($json->timezoneOffset < 0).'}');
     }
 
     if (!isset($json->mode))

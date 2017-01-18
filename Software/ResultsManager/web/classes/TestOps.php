@@ -188,6 +188,54 @@ EOD;
 	    return $sessions;
     }
 
+    // ctp#261 Find the first real score written for this session (so not including requirements)
+    public function getFirstScore($sessionId)     {
+	    // This works because the first 'exercise' in gauge is the instructions. You get a score
+        // record for when you have finished reading that (submit), which is almost perfect for when you actually start.
+        $gaugeUnitID = '2015063020001';
+        $sql = <<<EOD
+			SELECT * 
+			FROM T_Score
+			WHERE F_SessionID=?
+			AND F_UnitID=?
+            ORDER BY F_DateStamp asc
+            LIMIT 0,1
+EOD;
+        $bindingParams = array($sessionId, $gaugeUnitID);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs && $rs->RecordCount() > 0){
+            $dbObj = $rs->FetchNextObj();
+            $scoreDetail = new ScoreDetail();
+            $scoreDetail->fromDatabaseObj($dbObj);
+        } else {
+            $scoreDetail = null;
+        }
+        return $scoreDetail;
+    }
+
+    // ctp#261 Find the last score written for this session
+    public function getLastScore($sessionId)     {
+        // TODO make sure that it is not too time consuming to read T_Score like this as a very big table
+        // Although F_SessionID is an index
+        $sql = <<<EOD
+			SELECT * 
+			FROM T_Score
+			WHERE F_SessionID=?
+            ORDER BY F_DateStamp desc
+            LIMIT 0,1
+EOD;
+        $bindingParams = array($sessionId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs && $rs->RecordCount() > 0){
+            $dbObj = $rs->FetchNextObj();
+            $scoreDetail = new ScoreDetail();
+            $scoreDetail->fromDatabaseObj($dbObj);
+        } else {
+            $scoreDetail = null;
+        }
+        return $scoreDetail;
+    }
+
     // The rest of the class is related to Bento
     // TODO The content folder should be picked up from the normal way we do this...
 	public function getQuestions($exercise) {

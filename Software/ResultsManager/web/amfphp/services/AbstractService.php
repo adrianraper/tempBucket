@@ -216,8 +216,28 @@ class AbstractService {
 	}
 
 	/*
-	 * For converting unix timestamps (milliseconds since epoch) to strings for the database
+	 * For converting microsecond timestamps in UTC to local time
+	 * TODO Add some protection in case we send a PHP timestamp to this (seconds not microseconds)
 	 */
+    public function timestampToLocalAnsiString($timestamp, $clientTimezoneOffset=null)     {
+        $dateTime = new DateTime('@'.intval($timestamp/1000));
+        if ($clientTimezoneOffset !== null && isset($clientTimezoneOffset->minutes)) {
+            $offset = $clientTimezoneOffset->minutes;
+            $negative = (boolean)$clientTimezoneOffset->negative;
+            $clientDifference = new DateInterval('PT' . strval($offset) . 'M');
+            if ($negative) {
+                $localDateTime = $dateTime->add($clientDifference);
+            } else {
+                $localDateTime = $dateTime->sub($clientDifference);
+            }
+        } else {
+            $localDateTime = $dateTime;
+        }
+        return $localDateTime->format('Y-m-d H:i:s');
+    }
+/*
+ * For converting unix timestamps (milliseconds since epoch) to strings for the database
+ */
     public function timestampToAnsiString($timestamp) {
         return date("Y-m-d H:i:s", ($timestamp/1000));
     }

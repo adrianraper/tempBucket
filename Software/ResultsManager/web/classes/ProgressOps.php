@@ -718,8 +718,10 @@ EOD;
             $userId = $user;
         }
 
+        // ctp#261 This is written in server UTC time
         $dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
         $dateNow = $dateStampNow->format('Y-m-d H:i:s');
+
         // ctp#195 Create a seed
         $session = new TestSession();
         $session->userId = $userId;
@@ -747,16 +749,10 @@ EOD;
      * Update a session record for a test - make sure it includes the test id and any updated status
      *
      */
-    public function updateTestSession($session, $completed=false) {
-        $dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
-        $dateNow = $dateStampNow->format('Y-m-d H:i:s');
-
-        // gh#151 Don't overwrite an existing datestamp
-        $session->completedDateStamp = (!$session->completedDateStamp && $completed) ? $dateNow : $session->completedDateStamp;
-
+    public function updateTestSession($session) {
         $this->db->AutoExecute("T_TestSession", $session->toAssocArray(), "UPDATE", "F_SessionID=".$session->sessionId);
-
     }
+
     /**
 	 * This method is called to insert a score record to the database 
 	 */
@@ -833,7 +829,15 @@ EOD;
 EOD;
         $sql .= implode(',', $sqlData);
 
-        $rc = $this->db->Execute($sql);
+        // ctp#337
+        try {
+            $rc = $this->db->Execute($sql);
+        } catch (Exception $e) {
+            // ctp#166
+            if ($this->db->ErrorNo() == 1062)
+                throw $this->copyOps->getExceptionForId("errorDatabaseDuplicateRecord", array("msg" => $this->db->ErrorMsg()));
+            throw $e;
+        }
         if (!$rc)
             throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
 
