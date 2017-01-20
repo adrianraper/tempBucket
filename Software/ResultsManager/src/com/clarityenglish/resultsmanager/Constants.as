@@ -58,6 +58,8 @@
 		// TODO Just temporary
 		public static var userName:String;
 		public static var password:String;
+		// ctp#314
+		public static var email:String;
 		public static var accountName:String;
 		// Getting worse and worse!
 		public static var maxAuthors:Number;

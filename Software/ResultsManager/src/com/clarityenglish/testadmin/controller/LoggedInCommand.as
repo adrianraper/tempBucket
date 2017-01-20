@@ -40,6 +40,8 @@ package com.clarityenglish.testadmin.controller {
 			// TODO This is terrible, but just until we work out how to do a preview like start of AP
 			Constants.userName = data.userName as String;
 			Constants.password = data.password as String;
+			// ctp#214
+			Constants.email = data.email as String;
 			// v3.5.1 For displaying
 			Constants.accountName = data.accountName as String;
 			// v3.5 For checking if you even try to add new usertypes

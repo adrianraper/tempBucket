@@ -108,9 +108,12 @@
 				// TODO where should this be set. rm.xml, config.xml?
 				var test:ScheduledTest = testList.selectedItem as ScheduledTest;
 				var welcomeEmailTemplate:TemplateDefinition = new TemplateDefinition();
-				welcomeEmailTemplate.filename = "user/PPT-welcome";
+				welcomeEmailTemplate.filename = "user/DPT-welcome";
 				welcomeEmailTemplate.name = "invitation";
-				welcomeEmailTemplate.data = {test: test};
+				
+				// ctp#214 Need to send the administrator details for the email too
+				var administrator:Object = {name: Constants.userName, email: Constants.email};
+				welcomeEmailTemplate.data = {test: test, administrator: administrator};
 
 				showSendEmailDialog(function(e:CloseEvent):void {
 					if (e.detail == Alert.YES)

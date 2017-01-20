@@ -408,10 +408,12 @@ EOD;
 			// TODO: This currently binds the language to productCode=2 (RM) but we'll want to make this configurable when we add more products)
 			// AR I also want to know the login user's ID back in RM. Hmm, I think I was able to pick this up anyway without it being in the selectFields. How?
 			// No, I don't think it was being properly passed. Anyway, it is now.
+			// ctp#214
 			$selectFields = array("g.F_GroupID",
 								  "m.F_RootID",
 								  "u.F_UserType",
 								  "u.F_UserName",
+								  "u.F_Email",
 								  "u.F_UserID",
 								  "u.F_Password",
 								  $this->db->SQLDate("Y-m-d H:i:s", "u.F_StartDate")." UserStartDate",

@@ -240,6 +240,8 @@ class ClarityService extends AbstractService {
 						 // Just a temporary way of doing things!
 						 // v3.4.0 Use the capitalisation from the database rather than what they type
 						 //"userName" => $username, // Do you need htmlspecialchars here for odd names? Or does amfphp handle it all?
+						 // ctp#214
+						 "email" => $loginObj->F_Email,
 						 "userName" => $loginObj->F_UserName, // Do you need htmlspecialchars here for odd names? Or does amfphp handle it all?
 						 "password" => $password,
 						 // v3.5.1 Send back the account name for display purposes
