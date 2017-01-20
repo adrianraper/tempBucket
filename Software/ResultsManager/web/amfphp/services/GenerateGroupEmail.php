@@ -23,8 +23,42 @@ $emails_sent = isset($_REQUEST['emails_sent']) && $_REQUEST['emails_sent'] == "t
 /**
  * This for testing and debugging emails
  */
-$templateDefinition = json_decode('{"data":{"test":{"closeTime":"2016-10-31 00:00:00","startType":"timer","status":2,"testId":"4","startData":null,"language":"EN","groupId":"21560","caption":"Second pilot","showResult":false,"productCode":"63","openTime":"2016-10-24 00:00:00"}},"templateID":null,"filename":"user/PPT-welcome","title":null,"description":null,"name":"invitation"}');
+/*
+$templateDefinition = json_decode('{
+	"description": null,
+	"title": null,
+	"name": "invitation",
+	"data": {
+		"administrator": {
+			"email": "twaddle@email",
+			"name": "Mrs Twaddle"
+		},
+		"test": {
+			"closeTime": "2017-01-31 00:00:00",
+			"startType": "timer",
+			"productCode": "63",
+			"openTime": "2017-01-17 00:00:00",
+			"parent": null,
+			"children": null,
+			"id": "1011",
+			"testId": "1011",
+			"showResult": false,
+			"startData": null,
+			"groupId": "35026",
+			"status": 2,
+			"caption": "Funny in Chinese",
+			"emailInsertion": "Please go to lecture room 2B at 10am to start the test.",
+			"language": "EN",
+			"menuFilename": "menu.json.hbs",
+			"uid": "1011",
+			"reportableLabel": "Funny in Chinese"
+		}
+	},
+	"templateID": null,
+	"filename": "user/DPT-welcome"
+}');
 $groupIdArray = json_decode('["21560"]');
+*/
 
 if (!isset($templateDefinition->data)) {
     echo "<h2>No template data was passed</h2>";
