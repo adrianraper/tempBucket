@@ -23,7 +23,7 @@ $emails_sent = isset($_REQUEST['emails_sent']) && $_REQUEST['emails_sent'] == "t
 /**
  * This for testing and debugging emails
  */
-/*
+
 $templateDefinition = json_decode('{
 	"description": null,
 	"title": null,
@@ -58,7 +58,7 @@ $templateDefinition = json_decode('{
 	"filename": "user/DPT-welcome"
 }');
 $groupIdArray = json_decode('["21560"]');
-*/
+
 
 if (!isset($templateDefinition->data)) {
     echo "<h2>No template data was passed</h2>";
