@@ -61,6 +61,7 @@ package com.clarityenglish.resultsmanager.view.management {
 			testadminView.addEventListener(TestEvent.UPDATE, onTestUpdate);
 			
 			testadminView.addEventListener(EmailEvent.SEND_EMAIL, onSendEmail);
+			testadminView.addEventListener(EmailEvent.PREVIEW_EMAIL, onPreviewEmail);
 			
 			// Inject fixed test data into the view
 			testadminView.productCode = productCode;
@@ -238,6 +239,9 @@ package com.clarityenglish.resultsmanager.view.management {
 		
 		private function onSendEmail(e:EmailEvent):void {
 			sendNotification(CommonNotifications.SEND_EMAIL, e);
+		}
+		private function onPreviewEmail(e:EmailEvent):void {
+			sendNotification(CommonNotifications.PREVIEW_EMAIL, e);
 		}
 	}
 }

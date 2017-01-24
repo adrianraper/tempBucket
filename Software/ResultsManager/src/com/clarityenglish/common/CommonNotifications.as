@@ -18,6 +18,8 @@
 		
 		public static const EMAIL_SENT:String = "email_sent";
 		public static const SEND_EMAIL:String = "send_email";
+		// ctp#214
+		public static const PREVIEW_EMAIL:String = "preview_email";
 	}
 	
 }

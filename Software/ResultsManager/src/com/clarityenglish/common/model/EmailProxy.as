@@ -82,10 +82,20 @@ package com.clarityenglish.common.model {
 		}
 		
 		// gh#1487
+		// ctp#214
 		public function previewGroupEmail(templateDefinition:TemplateDefinition, manageables:Array):void {
-			var urlRequest:URLRequest = new URLRequest(Constants.AMFPHP_BASE + "services/GenerateGroupEmail.php");
+			var urlRequest:URLRequest = new URLRequest(Constants.AMFPHP_BASE + "services/PreviewGroupEmail.php");
 			urlRequest.method = Constants.URL_REQUEST_METHOD;
 			
+			groupEmailPost(templateDefinition, manageables, urlRequest);
+		}
+		public function sendGroupEmail(templateDefinition:TemplateDefinition, manageables:Array):void {
+			var urlRequest:URLRequest = new URLRequest(Constants.AMFPHP_BASE + "services/GenerateGroupEmail.php");
+			urlRequest.method = Constants.URL_REQUEST_METHOD;
+
+			groupEmailPost(templateDefinition, manageables, urlRequest);
+		}
+		private function groupEmailPost(templateDefinition:TemplateDefinition, manageables:Array, urlRequest:URLRequest):void {
 			var postVariables:URLVariables = new URLVariables();
 			postVariables.nocache = Math.floor(Math.random() * 999999);
 			// Pass the whole template definition, which includes data as well as the filename

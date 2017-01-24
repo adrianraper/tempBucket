@@ -1439,6 +1439,7 @@ CREATE TABLE `T_ScheduledTests` (
   `F_ShowResult` TINYINT(1) NOT NULL DEFAULT 1,
   `F_MenuFilename` TEXT NULL DEFAULT NULL,
   `F_Status` smallint(5) NOT NULL DEFAULT 0,
+  `F_EmailInsertion` TEXT NULL DEFAULT NULL,
   PRIMARY KEY (`F_TestID`),
   INDEX `Index_1` (`F_TestID`, `F_GroupID`)
 )  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -1514,3 +1515,6 @@ ALTER TABLE `T_ScoreDetail_Expiry` MODIFY COLUMN `F_ExerciseID` varchar(64);
 
 -- ctp#195
 ALTER TABLE `T_TestSession` ADD COLUMN `F_Seed` TEXT NULL DEFAULT NULL AFTER `F_Result`;
+
+-- ctp#214
+ALTER TABLE `T_ScheduledTests` ADD COLUMN `F_EmailInsertion` TEXT NULL DEFAULT NULL AFTER `F_Status`;

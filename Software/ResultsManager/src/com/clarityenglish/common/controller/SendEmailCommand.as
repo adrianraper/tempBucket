@@ -18,7 +18,12 @@ package com.clarityenglish.common.controller {
 			var emailEvent:EmailEvent = note.getBody() as EmailEvent;
 			
 			var emailProxy:EmailProxy = facade.retrieveProxy(EmailProxy.NAME) as EmailProxy;
-			emailProxy.previewGroupEmail(emailEvent.templateDefinition, emailEvent.manageables);
+			// ctp#214
+			if (emailEvent.type == EmailEvent.PREVIEW_EMAIL) {
+				emailProxy.previewGroupEmail(emailEvent.templateDefinition, emailEvent.manageables);
+			} else {
+				emailProxy.sendGroupEmail(emailEvent.templateDefinition, emailEvent.manageables);
+			}
 		}
 		
 	}

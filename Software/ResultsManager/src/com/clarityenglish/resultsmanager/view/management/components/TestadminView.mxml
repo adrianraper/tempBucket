@@ -117,7 +117,7 @@
 
 				showSendEmailDialog(function(e:CloseEvent):void {
 					if (e.detail == Alert.YES)
-						dispatchEvent(new EmailEvent(EmailEvent.SEND_EMAIL, welcomeEmailTemplate, new Array(selectedGroup)));
+						dispatchEvent(new EmailEvent(EmailEvent.PREVIEW_EMAIL, welcomeEmailTemplate, new Array(selectedGroup)));
 				}, welcomeEmailTemplate );
 			}
 			// This function will probably be suppressed
@@ -125,7 +125,7 @@
 				// TODO where should this be set. rm.xml, config.xml?
 				var test:ScheduledTest = testList.selectedItem as ScheduledTest;
 				var resultEmailTemplate:TemplateDefinition = new TemplateDefinition();
-				resultEmailTemplate.filename = (test.showResult) ? "user/PPT-with-result" : "user/PPT-without-result";
+				resultEmailTemplate.filename = (test.showResult) ? "user/DPT-with-result" : "user/DPT-without-result";
 				resultEmailTemplate.name = "result";
 				resultEmailTemplate.data = {test: test};
 				

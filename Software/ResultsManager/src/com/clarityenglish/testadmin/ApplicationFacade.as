@@ -64,6 +64,8 @@
 			registerCommand(RMNotifications.DELETE_TEST, UpdateTestCommand);
 			registerCommand(RMNotifications.ADD_TEST, UpdateTestCommand);
 			registerCommand(CommonNotifications.SEND_EMAIL, SendEmailCommand);
+			// ctp#214
+			registerCommand(CommonNotifications.PREVIEW_EMAIL, SendEmailCommand);
 			
 		}
 	}
