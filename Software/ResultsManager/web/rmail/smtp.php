@@ -9,7 +9,7 @@
     * |                  http://www.phpguru.org/static/license.html                  |
     * o------------------------------------------------------------------------------o
     *
-    * © Copyright 2008,2009 Richard Heyes
+    * Â© Copyright 2008,2009 Richard Heyes
     */
 
 define('SMTP_STATUS_NOT_CONNECTED', 1, true);
@@ -96,6 +96,8 @@ class smtp
 
             $greeting = $this->get_data();
             if (is_resource($this->connection)) {
+                // gh#226 https://www.rgraph.net/pg-downloads/rmail/Rmail%20for%20PHP/Rmail_Patch.diff.txt
+                $this->status = SMTP_STATUS_CONNECTED;
                 return $this->auth ? $this->ehlo() : $this->helo();
             } else {
                 $this->errors[] = 'Failed to connect to server: '.$errstr;

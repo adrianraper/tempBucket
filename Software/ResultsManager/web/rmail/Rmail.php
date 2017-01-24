@@ -158,8 +158,8 @@ class Rmail
     */
     public function setCRLF($crlf = "\n")
     {
-        if (!defined('CRLF')) {
-            define('CRLF', $crlf, true);
+        if (!defined('RMAIL_CRLF')) {
+            define('RMAIL_CRLF', $crlf, true);
         }
 
         if (!defined('MAIL_MIMEPART_CRLF')) {
@@ -711,7 +711,7 @@ class Rmail
     */
     public function send($recipients, $type = 'mail')
     {
-        if (!defined('CRLF')) {
+        if (!defined('RMAIL_CRLF')) {
             $this->setCRLF( ($type == 'mail' OR $type == 'sendmail') ? "\n" : "\r\n");
         }
 
@@ -733,9 +733,9 @@ class Rmail
                 $to = $this->encodeHeader(implode(', ', $recipients), $this->build_params['head_charset']);
 
                 if (!empty($this->return_path)) {
-                    $result = mail($to, $subject, $this->output, implode(CRLF, $headers), '-f' . $this->return_path);
+                    $result = mail($to, $subject, $this->output, implode(RMAIL_CRLF, $headers), '-f' . $this->return_path);
                 } else {
-                    $result = mail($to, $subject, $this->output, implode(CRLF, $headers));
+                    $result = mail($to, $subject, $this->output, implode(RMAIL_CRLF, $headers));
                 }
 
                 // Reset the subject in case mail is resent
@@ -764,7 +764,7 @@ class Rmail
                 }
 
                 $pipe = popen($this->sendmail_path . " " . $returnPath, 'w');
-                    $bytes = fputs($pipe, implode(CRLF, $headers) . CRLF . CRLF . $this->output);
+                    $bytes = fputs($pipe, implode(RMAIL_CRLF, $headers) . RMAIL_CRLF . RMAIL_CRLF . $this->output);
                 $r = pclose($pipe);
 
                 return $r;
@@ -775,9 +775,10 @@ class Rmail
                 require_once(dirname(__FILE__) . '/RFC822.php');
                 // Generates PHP warnings 'Non-static method smtp::connect() should not be called statically'
                 // gh#226 However, you MUST call statically otherwise Rmail the smtp code doesn't set status correctly
-                $smtp = &smtp::connect($this->smtp_params);
-                //$smtp = new smtp($this->smtp_params);
-                $rc = $smtp->connect();
+                // Now found patch to smtp.php that overcomes this
+                //$smtp = &smtp::connect($this->smtp_params);
+                $smtp = new smtp($this->smtp_params);
+                $smtp->connect();
                 
                 // Parse recipients argument for internet addresses
                 foreach ($recipients as $recipient) {
@@ -855,7 +856,7 @@ class Rmail
         // Make up the date header as according to RFC822
         $this->setHeader('Date', date('D, d M y H:i:s O'));
 
-        if (!defined('CRLF')) {
+        if (!defined('RMAIL_CRLF')) {
             $this->setCRLF($type == 'mail' ? "\n" : "\r\n");
         }
 
@@ -872,7 +873,7 @@ class Rmail
         }
         $headers[] = 'To: ' . implode(', ', $recipients);
 
-        return implode(CRLF, $headers) . CRLF . CRLF . $this->output;
+        return implode(RMAIL_CRLF, $headers) . RMAIL_CRLF . RMAIL_CRLF . $this->output;
     }
 } // End of class.
 
