@@ -12,12 +12,13 @@
         "Result": "Result",
         "Reset": "Reset",
         "EnterCode": "Type the code to start the test.",
-        "SendingScores": "You have finished all the questions in the test. Please wait. Your answers are being sent for marking. Do not leave until you see your result or the test administrator says so.",
+        "SendingScores": "The system is submitting your answers. Please do not leave until you see your result or the test administrator says so.",
         "FinishedTest": "The test is complete and saved.",
         "ICantDoThis": "I can't do it.",
         "IncorrectValidateCode": "It looks like you have entered a wrong code. Check your test notice again, or get help from your test administrator.",
         "EmptyValidateCode": "Please input your validation code.",
-        "DeviceUnsupported": "You need a different device to take the test. Check with your test administrator."
+        "DeviceUnsupported": "You need a different device to take the test. Check with your test administrator.",
+        "Uploading": "Uploading"
       }
     },
     {
