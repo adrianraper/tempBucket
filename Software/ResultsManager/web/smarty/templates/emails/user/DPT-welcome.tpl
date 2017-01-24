@@ -25,33 +25,26 @@
 <p style="font-family: Sans-Serif; "><strong>Sign in details:</strong><br/>
     Email: <strong>{$user->email}</strong><br/>
     Password: <strong>{$user->password}</strong></p>
-{if $testDetail->startType == 'code'}
-    <p style="font-family: Sans-Serif; "><strong>Test code:</strong><br/>
-    You will be told the code before the test starts.</p>
-{/if}
 
-<p style="font-family: Sans-Serif; margin-bottom: 0"><strong>Instructions for phone or tablet</strong><br/>
+<p style="font-family: Sans-Serif; margin-bottom: 0"><strong>How to take the test</strong><br/>
 <ol style="margin-top: 0">
-    <li>Download the app from the <a href="https://itunes.apple.com/hk/app/dynamic-placement-test/id1179218583?mt=8&amp;ign-mpt=uo%3D4" target="_blank" style=" font-size:0.9em;">Apple App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.clarityenglish.ctp_wrapper&hl=en" target="_blank" style=" font-size:0.9em;">Google Play</a><br/>
-    <li>Try section 1 of the test to make sure it runs on your device.</li>
+    <li>Go to <a href="https://dpt.clarityenglish.com">dpt.clarityenglish.com</a> in your browser or download the app from the <a href="https://itunes.apple.com/hk/app/dynamic-placement-test/id1179218583?mt=8&amp;ign-mpt=uo%3D4" target="_blank" style=" font-size:0.9em;">Apple App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.clarityenglish.ctp_wrapper&hl=en" target="_blank" style=" font-size:0.9em;">Google Play</a><br/>
+    <li>Sign in and try section 1 of the test to make sure it runs properly.</li>
+{if $testDetail->startType == 'code'}
+    <li>Your test administrator will give you the access code when the test is ready to start.</li>
+{/if}
 </ol>
 </p>
-<p style="font-family: Sans-Serif; margin-bottom: 0"><strong>Instructions for laptop or other browser</strong><br/>
-<ol style="margin-top: 0">
-    <li>Go to <a href="https://dpt.clarityenglish.com">dpt.clarityenglish.com</a> and sign in.
-    <li>Try section 1 of the test to make sure it runs in your browser.</li>
-</ol>
-</p>
+
+<p style="font-family: Sans-Serif; "><strong style="color: red">Important</strong><br/>
+    You will need <strong>headphones</strong> or <strong>earphones</strong> for the test.</p>
 
 {if $testDetail->emailInsertion}
     <p style="font-family: Sans-Serif; "><strong>Notes</strong><br/>
     {$testDetail->emailInsertion}<br/>
 {/if}
 
-<p style="font-family: Sans-Serif; "><strong style="color: red">Important</strong><br/>
-    You will need <strong>headphones</strong> or <strong>earphones</strong> for the test.</p>
-
-<p>Questions? Ask your administrator {$administrator->name} {if $administrator->email}({$administrator->email}){/if}.</p>
+<p>Questions? Ask your administrator, {$administrator->name} {if $administrator->email} at {$administrator->email}{/if}.</p>
 
 <p>Best wishes<br/>
 The ClarityEnglish support team</p>
