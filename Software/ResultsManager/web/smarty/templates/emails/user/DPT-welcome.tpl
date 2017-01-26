@@ -36,7 +36,7 @@
 </ol>
 </p>
 
-<p style="font-family: Sans-Serif; "><strong style="color: red">Important</strong><br/>
+<p style="font-family: Sans-Serif; "><strong>Important</strong><br/>
     You will need <strong>headphones</strong> or <strong>earphones</strong> for the test.</p>
 
 {if $testDetail->emailInsertion}

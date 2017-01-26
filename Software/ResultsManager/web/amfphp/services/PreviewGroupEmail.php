@@ -22,7 +22,7 @@ $send = isset($_REQUEST['send']) && $_REQUEST['send'] == "true";
 /**
  * This for testing and debugging emails
  */
-/*
+
 $templateDefinition = json_decode('{
 	"description": null,
 	"title": null,
@@ -57,7 +57,6 @@ $templateDefinition = json_decode('{
 	"filename": "user/DPT-welcome"
 }');
 $groupIdArray = json_decode('["21560"]');
-*/
 
 if (!isset($templateDefinition->data)) {
     echo "<h2>No template data was passed</h2>";
@@ -80,8 +79,13 @@ array_push($userEmailArray, $adminEmail);
 if ($send)
     $results = $thisService->emailOps->sendEmails("", $templateDefinition->filename, $userEmailArray);
 ?>
-    <html>
+<!DOCTYPE html>
+  <html>
     <head>
+        <title>Preview email</title>
+        <link rel="shortcut icon" type="image/x-icon" href="http://www.clarityenglish.com/Software/DPT.ico"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
         <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
         <script src="../../js/prototype-1.6.0.3.js"></script>
