@@ -613,8 +613,11 @@
 			<lit name="hiddenContentLabel">Allow hidden content changes</lit>
 			
 			<!--  Test Platform -->
+                    
+            <lit name="actionLabel">Actions:</lit>
+            <lit name="testDetailsCaption">Test details:</lit>
             <lit name="listOfTestsLabel">Tests for: {name}</lit>
-            <lit name="addTest">Add new test</lit>
+            <lit name="addTest">+ Add new test</lit>
             <lit name="saveTestDetail">Save</lit>
             <lit name="cancelButton">Cancel</lit>
             <lit name="deleteTest">Delete</lit>
@@ -635,7 +638,11 @@
             <lit name="noButton">No</lit>
             <lit name="signedInUser">Hello {username}.</lit>
             <lit name="languageLabel">Which language do you want the program instructions to be in?</lit>
-            <lit name="emailInsertionLabel">Do you want to add any notes into the welcome email? The test location perhaps?</lit>
+            <lit name="emailInsertionNoteLabel">Do you want to add any notes into the welcome email? The test location perhaps?</lit>
+            <lit name="emailInsertionNameLabel">Who is the contact in the email?</lit>
+            <lit name="emailInsertionEmailLabel">And their email?</lit>
+            <lit name="emailInsertionSubjectLabel">Subject line for the email:</lit>
+            <lit name="emailInsertionSubject">{name} has set you an English test</lit>    
             
             <lit name="testAdminFirstStep">Step 1</lit>
 

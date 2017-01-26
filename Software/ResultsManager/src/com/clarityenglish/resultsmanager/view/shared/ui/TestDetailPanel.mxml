@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
-		  horizontalScrollPolicy="off"
-		  creationComplete="creationComplete()"
-		  implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+		 creationComplete="creationComplete()" horizontalScrollPolicy="off"
+		 implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>
 		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			import com.adobe.serialization.json.JSONDecoder;
+			import com.adobe.serialization.json.JSONEncoder;
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
 			import com.clarityenglish.common.vo.tests.ScheduledTest;
 			import com.clarityenglish.resultsmanager.Constants;
@@ -42,6 +44,23 @@
 			// gtp#60
 			private var _language:String;
 	
+			[Bindable]
+			public var times:ArrayCollection = new ArrayCollection();
+			
+			private function displayTime(item:Object):String {
+				return leadingZero(item.data.hours) + ":" + leadingZero(item.data.mins);
+			}
+			private function leadingZero(num:Number):String {
+				if (num <= 0)
+					return "00";
+				if (num < 10)
+					return "0" + num;
+				return num.toString();
+			}
+			private function setTimeIndex(hours:uint, mins:uint):uint {
+				// 4 time settings per hour
+				return (hours * 4) + Math.round(mins / 15);
+			}
 			private function creationComplete():void {
 				/*
 				captionData.addEventListener(Event.CHANGE, onDataChange); 
@@ -53,9 +72,14 @@
 				openTimeDataDate.addEventListener(Event.CHANGE, dateChanged); 
 				closeTimeDataDate.addEventListener(Event.CHANGE, dateChanged); 
 				openTimeDataHours.addEventListener(Event.CHANGE, dateChanged); 
-				openTimeDataMins.addEventListener(Event.CHANGE, dateChanged); 
 				closeTimeDataHours.addEventListener(Event.CHANGE, dateChanged); 
-				closeTimeDataMins.addEventListener(Event.CHANGE, dateChanged);
+				
+				for (var i:uint = 0; i<24; i++) {
+					times.addItem({data: {hours:i, mins:0}});
+					times.addItem({data: {hours:i, mins:15}});
+					times.addItem({data: {hours:i, mins:30}});
+					times.addItem({data: {hours:i, mins:45}});
+				}
 			}
 			
 			public function setCopyProvider(copyProvider:CopyProvider):void {
@@ -75,8 +99,12 @@
 				// ctp#60
 				languageLabel.text = copyProvider.getCopyForId("languageLabel");
 				// ctp#214
-				emailInsertionLabel.text = copyProvider.getCopyForId("emailInsertionLabel");
-					
+				emailInsertionNoteLabel.text = copyProvider.getCopyForId("emailInsertionNoteLabel");
+				// ctp#351
+				emailInsertionNameLabel.text = copyProvider.getCopyForId("emailInsertionNameLabel");
+				emailInsertionEmailLabel.text = copyProvider.getCopyForId("emailInsertionEmailLabel");
+				emailInsertionSubjectLabel.text = copyProvider.getCopyForId("emailInsertionSubjectLabel");
+				//testDetailsCaption.text = copyProvider.getCopyForId("testDetailsCaption");
 			}
 
 			public function setDataProvider(test:ScheduledTest):void {
@@ -84,27 +112,23 @@
 					
 					dataProvider = test;
 					if (dataProvider.openTime) {
-						var openDate:Date = DateUtils.ansiStringToDate(dataProvider.openTime)
+						var openDate:Date = DateUtils.ansiStringToDate(dataProvider.openTime);
 						openTimeDataDate.selectedDate = openDate;
-						openTimeDataHours.value = openDate.hours;
-						openTimeDataMins.value = openDate.minutes;
+						openTimeDataHours.selectedIndex = setTimeIndex(openDate.hours, openDate.minutes);
 						_openDate = openDate;
 					} else {
 						openTimeDataDate.selectedDate = null;
-						openTimeDataHours.value = 0;
-						openTimeDataMins.value = 0;
+						openTimeDataHours.selectedIndex = -1;
 						_openDate = null;
 					}
 					if (dataProvider.closeTime) {
-						var closeDate:Date = DateUtils.ansiStringToDate(dataProvider.closeTime)
+						var closeDate:Date = DateUtils.ansiStringToDate(dataProvider.closeTime);
 						closeTimeDataDate.selectedDate = closeDate;
-						closeTimeDataHours.value = closeDate.hours;
-						closeTimeDataMins.value = closeDate.minutes;
+						closeTimeDataHours.selectedIndex = setTimeIndex(closeDate.hours, closeDate.minutes);
 						_closeDate = closeDate;
 					} else {
 						closeTimeDataDate.selectedDate = null;
-						closeTimeDataHours.value = 0;
-						closeTimeDataMins.value = 0;
+						closeTimeDataHours.selectedIndex = -1;
 						_closeDate = null;
 					}
 					startData.text = dataProvider.startData;
@@ -126,9 +150,21 @@
 						}
 					}
 
-					// ctp#214
-					// ctp#214
-					emailInsertionData.text = dataProvider.emailInsertion;
+					//dataProvider.emailInsertion = '"{\"note\":\"Come to the classroom\"}"';
+					try {
+						var emailInsertionObject:Object = (dataProvider.emailInsertion) ? JSON.decode(unescape(dataProvider.emailInsertion)) : new Object();
+					} catch(e:Error) {
+						emailInsertionObject = new Object();
+					}
+					// Catch JSON parse error that can leave a string not an object
+					if (emailInsertionObject is String)
+						emailInsertionObject = new Object();
+					
+					// ctp#214 ctp#351
+					emailInsertionNoteData.text = (emailInsertionObject.note) ? (emailInsertionObject.note) : '';
+					emailInsertionNameData.text = (emailInsertionObject.name) ? unescape(emailInsertionObject.name) : Constants.userName;
+					emailInsertionEmailData.text = (emailInsertionObject.email) ? unescape(emailInsertionObject.email) : Constants.email;
+					emailInsertionSubjectData.text = (emailInsertionObject.subject) ? unescape(emailInsertionObject.subject) : copyProvider.getCopyForId("emailInsertionSubject", {name: emailInsertionNameData.text});
 					
 					// Is the data editable?
 					setDataEditable(dataProvider.status == ScheduledTest.STATUS_PRERELEASE);
@@ -140,24 +176,30 @@
 			private function setDataEditable(editable:Boolean):void {
 				captionData.editable = startData.editable = editable; 
 				openTimeDataDate.enabled = closeTimeDataDate.enabled = editable;
-				openTimeDataHours.enabled = openTimeDataMins.enabled = closeTimeDataHours.enabled = closeTimeDataMins.enabled = editable; 
+				openTimeDataHours.enabled = closeTimeDataHours.enabled = editable; 
 				showResult.enabled = hideResult.enabled = startByCode.enabled = startByTimer.enabled = editable;
 				saveButton.enabled = editable;
-				languageData.enabled = emailInsertionData.enabled = editable;
+				languageData.enabled = editable;
+				emailInsertionNoteData.enabled = emailInsertionNameData.enabled = emailInsertionEmailData.enabled = emailInsertionSubjectData.enabled = editable;
 			}
 			public function dateChanged(e:Event):void {
 				if (closeTimeDataDate.selectedDate)
 					_closeDate = closeTimeDataDate.selectedDate;
 				if (openTimeDataDate.selectedDate)
 					_openDate = openTimeDataDate.selectedDate;
-				if (_closeDate) {
-					_closeDate.hours = closeTimeDataHours.value;
-					_closeDate.minutes = closeTimeDataMins.value;
+				if (e.target == openTimeDataHours) {
+  					if (_openDate) {
+						_openDate.hours = openTimeDataHours.selectedItem.data.hours;
+						_openDate.minutes = openTimeDataHours.selectedItem.data.mins;
+					}
 				}
-				if (_openDate) {
-					_openDate.hours = openTimeDataHours.value;
-					_openDate.minutes = openTimeDataMins.value;
+				if (e.target == closeTimeDataHours) {
+					if (_closeDate) {
+						_closeDate.hours = closeTimeDataHours.selectedItem.data.hours;
+						_closeDate.minutes = closeTimeDataHours.selectedItem.data.mins;
+					}
 				}
+					
 			}
 			//public function onDataChange(e:Event):void {
 			//	var tdA:ScheduledTest = getTestFromScreen();
@@ -170,22 +212,30 @@
 				updatedTest.testId = dataProvider.testId;
 				updatedTest.productCode = dataProvider.productCode;
 				updatedTest.groupId = dataProvider.groupId;
-				//updatedTest.language = dataProvider.language;
+				updatedTest.language = dataProvider.language;
 				updatedTest.status = dataProvider.status;
 				
 				// Data validation on times
 				if (_openDate)
-					updatedTest.openTime = DateUtils.dateAndTimeToString(_openDate, openTimeDataHours.value, openTimeDataMins.value);
+					updatedTest.openTime = DateUtils.dateAndTimeToString(_openDate);
 				if (_closeDate)
-					updatedTest.closeTime = DateUtils.dateAndTimeToString(_closeDate, closeTimeDataHours.value, closeTimeDataMins.value);
+					updatedTest.closeTime = DateUtils.dateAndTimeToString(_closeDate);
 				updatedTest.caption = captionData.text;
 				updatedTest.showResult = showResult.selected;
 				updatedTest.startType = (startByCode.selected) ? 'code' : 'timer';
 				updatedTest.startData = (startByCode.selected) ? startData.text : null;
 				updatedTest.language = languageData.selectedItem.data;
-				// ctp#214 Make sure that any html is removed
-				updatedTest.emailInsertion = emailInsertionData.text;
+				// ctp#214 TODO Make sure that any html is removed
+				updatedTest.emailInsertion = JSON.encode({note: safeChars(emailInsertionNoteData.text),
+															name: safeChars(emailInsertionNameData.text), 
+															email: safeChars(emailInsertionEmailData.text), 
+															subject: safeChars(emailInsertionSubjectData.text)});
 				return updatedTest;
+			}
+			private function safeChars(text:String):String {
+				var build:String = escape(text);
+				var pattern:RegExp = /%22/g;
+				return build.replace(pattern, "%27");
 			}
 			
 			// Have the user editable details changed?
@@ -196,7 +246,8 @@
 						(tdA.caption == tdB.caption) &&
 						(tdA.showResult == tdB.showResult) &&
 						(tdA.startType == tdB.startType) && 
-						(tdA.language == tdB.language)) ;
+						(tdA.language == tdB.language) && 
+						(tdA.emailInsertion == tdB.emailInsertion));
 			}
 			// Have enough details been added?
 			private function isComplete():Boolean {
@@ -277,74 +328,109 @@
 			}
 		]]>
 	</mx:Script>
-
-	
-	<mx:VBox width="100%" height="100%" borderStyle="solid" backgroundColor="#ECECEC" verticalGap="0" 
-			 paddingTop="10" paddingLeft="10" paddingRight="10" paddingBottom="10">
-		<mx:HBox width="100%" backgroundColor="#ffffff" height="36" >
+	<!-- backgroundColor="#ECECEC" borderStyle="solid" -->
+	<mx:VBox width="100%" height="100%" paddingTop="10"
+			 verticalGap="0">
+		<mx:HBox width="100%" height="40">
 			<!-- <mx:Button id="cancelButton" enabled="false" width="100" height="100%" /> -->
-			<mx:Label text="Test details" width="100%" paddingTop="8" styleName="subHeadingLabelBlack" textAlign="center" />
-			<mx:Button id="saveButton" height="26" click="onAdd()" 
-						   overSkin="{FlatButtonSkin}" upSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}" disabledSkin="{FlatButtonSkin}"
-						   textRollOverColor="#FFFFFF" disabledColor="#999999"/>
+			<!-- <mx:Label id="testDetailsCaption" width="100%" paddingTop="8" styleName="subHeadingLabelBlack"
+					  textAlign="center"/> -->
+			<mx:Label id="errorTextLabel" text="{_errorText}" styleName="errorMessage"
+					  visible="{!(_errorText == '')}" includeInLayout="{!(_errorText == '')}" textAlign="center"/>
 		</mx:HBox>
-		<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
+		<mx:VBox width="100%" backgroundColor="#ffffff" borderStyle="solid" paddingBottom="10"
+				 paddingLeft="20" paddingRight="20" paddingTop="10">
 			<mx:Label id="captionLabel" width="100%"/>
-			<mx:TextInput id="captionData" enabled="true" width="100%" />
+			<mx:TextInput id="captionData" width="100%" enabled="true"/>
 		</mx:VBox>
-		<mx:Spacer height="12" />
-		<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
-			<mx:Text id="openTimeLabel" width="100%"/>
-			<mx:HBox>			
-				<mx:DateField width="120" id="openTimeDataDate" enabled="true" editable="false" 
-						  selectableRange="{{rangeStart : new Date()}}" labelFunction="formatDateTime" yearNavigationEnabled="true" />
-				<mx:NumericStepper id="openTimeDataHours" enabled="true" width="50"   
-						   minimum="0" maximum="23" stepSize="1" value="9" />
-				<mx:NumericStepper id="openTimeDataMins" enabled="true" width="50"   
-								   minimum="0" maximum="55" stepSize="5" value="0" />
-			</mx:HBox>
-			<mx:Text id="closeTimeLabel" width="100%"/>
-			<mx:HBox>			
-				<mx:DateField width="120" id="closeTimeDataDate" enabled="true" editable="false" 
-							  selectableRange="{{rangeStart : new Date()}}" labelFunction="formatDateTime" yearNavigationEnabled="true" />
-				<mx:NumericStepper id="closeTimeDataHours" enabled="true" width="50"   
-								   minimum="0" maximum="23" stepSize="1" value="12" />
-				<mx:NumericStepper id="closeTimeDataMins" enabled="true" width="50"   
-								   minimum="0" maximum="55" stepSize="5" value="0" />
-			</mx:HBox>
-		</mx:VBox>
-		<mx:Spacer height="12" />
-		<mx:HBox width="100%" horizontalGap="0" >
-			<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="50%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
+		<mx:Spacer height="12"/>
+		<mx:HBox width="100%" backgroundColor="#ffffff" borderStyle="solid" paddingBottom="10"
+				 paddingLeft="20" paddingRight="20" paddingTop="10">
+			<mx:VBox width="50%">
+				<mx:Text id="openTimeLabel" width="100%"/>
+				<mx:HBox>			
+					<mx:DateField id="openTimeDataDate" width="110" editable="false" enabled="true"
+								  labelFunction="formatDateTime"
+								  selectableRange="{{rangeStart : new Date()}}"
+								  yearNavigationEnabled="true"/>
+					<mx:ComboBox id="openTimeDataHours" enabled="true" width="70"
+								 dataProvider="{times}" labelFunction="displayTime"
+								 fontWeight="normal" fontFamily="Helvetica"/>
+				</mx:HBox>				
+			</mx:VBox>
+			<mx:VBox width="50%">
+				<mx:Text id="closeTimeLabel" width="100%" height="30"/>
+				<mx:HBox>			
+					<mx:DateField id="closeTimeDataDate" width="110" editable="false" enabled="true"
+								  labelFunction="formatDateTime"
+								  selectableRange="{{rangeStart : new Date()}}"
+								  yearNavigationEnabled="true"/>
+					<mx:ComboBox id="closeTimeDataHours" enabled="true" width="70"
+								 dataProvider="{times}" labelFunction="displayTime" 
+								 fontWeight="normal" fontFamily="Helvetica"/>
+				</mx:HBox>
+			</mx:VBox>
+		</mx:HBox>
+		<mx:Spacer height="12"/>
+		<mx:HBox width="100%" horizontalGap="0">
+			<mx:VBox width="50%" backgroundColor="#ffffff" borderStyle="solid" paddingBottom="10"
+					 paddingLeft="20" paddingRight="20" paddingTop="10">
 				<mx:Text id="startConditionsLabel" width="100%" height="30"/>
 				<mx:HBox>
-					<mx:Button id="startByCode" toggle="true" selected="{_startByCode}" click="onToggle(event)" styleName="{(_startByCode) ? 'selectedButton' : 'normalButton'}"/>
-					<mx:Button id="startByTimer" toggle="true" selected="{!_startByCode}" click="onToggle(event)" styleName="{(!_startByCode) ? 'selectedButton' : 'normalButton'}"/>
+					<mx:Button id="startByCode" click="onToggle(event)" selected="{_startByCode}"
+							   styleName="{(_startByCode) ? 'selectedButton' : 'normalButton'}"
+							   toggle="true"/>
+					<mx:Button id="startByTimer" click="onToggle(event)" selected="{!_startByCode}"
+							   styleName="{(!_startByCode) ? 'selectedButton' : 'normalButton'}"
+							   toggle="true"/>
 				</mx:HBox>
-				<mx:TextInput id="startData" enabled="{_startByCode}" />
+				<mx:TextInput id="startData" enabled="{_startByCode}"/>
 			</mx:VBox>
-			<mx:Spacer width="10" />
-			<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="50%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
+			<mx:Spacer width="10"/>
+			<mx:VBox width="50%" backgroundColor="#ffffff" borderStyle="solid" paddingBottom="10"
+					 paddingLeft="20" paddingRight="20" paddingTop="10">
 				<mx:Text id="showResultLabel" width="100%" height="30"/>
 				<mx:HBox>
-					<mx:Button id="showResult" toggle="true" selected="{_showResult}" click="onToggle(event)" styleName="{(_showResult) ? 'selectedButton' : 'normalButton'}"/>
-					<mx:Button id="hideResult" toggle="true" selected="{!_showResult}" click="onToggle(event)" styleName="{(!_showResult) ? 'selectedButton' : 'normalButton'}"/>
+					<mx:Button id="showResult" click="onToggle(event)" selected="{_showResult}"
+							   styleName="{(_showResult) ? 'selectedButton' : 'normalButton'}"
+							   toggle="true"/>
+					<mx:Button id="hideResult" click="onToggle(event)" selected="{!_showResult}"
+							   styleName="{(!_showResult) ? 'selectedButton' : 'normalButton'}"
+							   toggle="true"/>
 				</mx:HBox>
-				<mx:TextInput visible="false" /> <!-- just to get box height same as other one -->
+				<mx:TextInput visible="false"/> <!-- just to get box height same as other one -->
 			</mx:VBox>
 		</mx:HBox>
-		<mx:Spacer height="12" />
-		<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
+		<mx:Spacer height="12"/>
+		<mx:VBox width="100%" backgroundColor="#ffffff" borderStyle="solid" paddingBottom="10"
+				 paddingLeft="20" paddingRight="20" paddingTop="10">
 			<mx:Text id="languageLabel" width="240"/>
-			<mx:ComboBox id="languageData" width="200" />
+			<mx:ComboBox id="languageData" width="200"/>
 		</mx:VBox>
-		<mx:Spacer height="12" />
-		<mx:VBox borderStyle="solid" backgroundColor="#ffffff" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20">
-			<mx:Text id="emailInsertionLabel" width="240"/>
-			<mx:TextArea id="emailInsertionData" width="100%" height="50" verticalScrollPolicy="auto" horizontalScrollPolicy="off" wordWrap="true" />
+		<mx:Spacer height="12"/>
+		<mx:VBox width="100%" backgroundColor="#ffffff" borderStyle="solid" paddingBottom="10"
+				 paddingLeft="20" paddingRight="20" paddingTop="10">
+			<mx:Text id="emailInsertionNoteLabel" width="300"/>
+			<mx:TextArea id="emailInsertionNoteData" width="100%" height="50"
+						 horizontalScrollPolicy="off" verticalScrollPolicy="auto" wordWrap="true"/>
+			<mx:HBox width="100%" horizontalGap="10">
+				<mx:VBox width="200">
+					<mx:Text id="emailInsertionNameLabel" width="100%"/>
+					<mx:TextInput id="emailInsertionNameData" width="100%" enabled="true"/>
+				</mx:VBox>
+				<mx:VBox width="200">
+					<mx:Text id="emailInsertionEmailLabel" width="100%"/>
+					<mx:TextInput id="emailInsertionEmailData" width="100%" enabled="true"/>
+				</mx:VBox>
+			</mx:HBox>
+			<mx:Text id="emailInsertionSubjectLabel" width="240"/>
+			<mx:TextInput id="emailInsertionSubjectData" width="100%" enabled="true"/>
 		</mx:VBox>
-		<mx:Spacer height="12" />
-		<mx:Label id="errorTextLabel" text="{_errorText}" visible="{!(_errorText == '')}" includeInLayout="{!(_errorText == '')}" styleName="errorMessage"/>
+		<mx:Spacer height="12"/>
+		<mx:Button id="saveButton" width="100%" height="30" click="onAdd()" disabledColor="#999999"
+				   disabledSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}"
+				   overSkin="{FlatButtonSkin}" textRollOverColor="#FFFFFF"
+				   upSkin="{FlatButtonSkin}" styleName="testList"/>
 	</mx:VBox>
 
 </mx:VBox>
