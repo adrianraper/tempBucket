@@ -11,10 +11,7 @@ package com.clarityenglish.testadmin.view {
 	import com.clarityenglish.testadmin.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.Constants;
 	import com.clarityenglish.resultsmanager.RMNotifications;
-	import com.clarityenglish.resultsmanager.view.loginopts.LoginOptsMediator;
-	import com.clarityenglish.resultsmanager.view.management.ManagementMediator;
-	import com.clarityenglish.resultsmanager.view.management.TestadminMediator;
-	import com.clarityenglish.resultsmanager.view.usage.UsageMediator;
+	import com.clarityenglish.testadmin.view.management.TestadminMediator;
 	import com.clarityenglish.utils.TraceUtils;
 	import com.flexiblexperiments.ListItemGroupedDragProxy;
 	

@@ -645,6 +645,10 @@
             <lit name="emailInsertionSubject">{name} has set you an English test</lit>    
             
             <lit name="testAdminFirstStep">Step 1</lit>
+            <lit name="testAdminManageables">1. Choose your group</lit>
+            <lit name="testAdminDetailedManageablesLabel">Right-click on a group to manage the members.</lit>
+            <lit name="testAdminTests">2. Tests for that group</lit>
+            <lit name="testAdminTestDetails">3. Details for that test</lit>
 
             <lit name="licenceUse">Your tests</lit>
             <lit name="licencesScheduled">Tests scheduled</lit>

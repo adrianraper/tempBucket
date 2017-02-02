@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
+		 xmlns:slt="com.flexiblexperiments.*"
+		 xmlns:controls="org.davekeen.controls.*"
+		 creationComplete="creationComplete()"
+		 implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+			import com.clarityenglish.common.events.SearchEvent;
+			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			import com.clarityenglish.common.vo.manageable.*;
+			import com.clarityenglish.resultsmanager.Constants;
+			import com.clarityenglish.resultsmanager.view.management.events.*;
+			import com.clarityenglish.resultsmanager.view.management.ui.*;
+			import com.clarityenglish.testadmin.view.management.ui.TAManageableCMManager;
+			import com.clarityenglish.resultsmanager.view.shared.events.SelectEvent;
+			import com.clarityenglish.utils.TraceUtils;
+			
+			import flash.events.ContextMenuEvent;
+			import flash.events.Event;
+			import flash.events.MouseEvent;
+			import flash.geom.Point;
+			import flash.net.FileReference;
+			import flash.ui.ContextMenu;
+			import flash.ui.ContextMenuItem;
+			
+			import mx.collections.ICollectionView;
+			import mx.containers.VBox;
+			import mx.controls.Alert;
+			import mx.controls.treeClasses.DefaultDataDescriptor;
+			import mx.core.IFlexDisplayObject;
+			import mx.core.UIComponent;
+			import mx.core.mx_internal;
+			import mx.events.CloseEvent;
+			import mx.events.DragEvent;
+			import mx.events.ListEvent;
+			import mx.managers.PopUpManager;
+			
+			import org.davekeen.utils.ClassUtils;		
+			
+			private static const TREE_FILTERED_BG_COLOUR:int = 0xf2ffb4;
+			
+			private var copyProvider:CopyProvider;
+			
+			private var fileReference:FileReference;
+			
+			private var manageableCMManager:TAManageableCMManager;
+			
+			private var lastTreeItemEvent:ListEvent;
+			
+			// The last items to have been dragged
+			private var dragTreeItems:Array;
+			
+			// Keep a reference to the import window as it needs to respond to a return from the server
+			private var importWindow:ImportWindow;
+			
+			// Keep a reference to the assign window as it needs to respond to a return from the server
+			private var assignWindow:AssignWindow;
+			
+			private var searchActive:Boolean;
+			
+			// Icon for the alert window
+			[Embed(source="/../assets/warning_icon.swf")]
+			private var alertWarningIcon:Class;		
+			
+			/**
+			 * Set any copy in this component and call setCopyProvider on any child components
+			 * 
+			 * @param	copyProvider An object implementing CopyProvider
+			 */
+			public function setCopyProvider(copyProvider:CopyProvider):void {
+				this.copyProvider = copyProvider;
+				
+				manageableCMManager.setCopyProvider(copyProvider);
+			}
+			
+			public function setFileReference(fileReference:FileReference):void {
+				this.fileReference = fileReference;
+			}
+			
+			public function setImportResults(importResults:Array):void {
+				if (importWindow && importWindow.visible)
+					importWindow.setImportResults(importResults);
+			}
+			
+			public function showNoExpiredUsersAlert():void {
+				Alert.show(copyProvider.getCopyForId("noExpiredUsers"), "Alert", Alert.OK, this);
+			}
+			
+			/**
+			 * When the component has been created create the context menu and add listeners
+			 */
+			private function creationComplete():void {
+				manageableCMManager = new TAManageableCMManager(tree);
+				manageableCMManager.addEventListener(ContextMenuEvent.MENU_SELECT, onMenuSelect);
+				manageableCMManager.addEventListener(ManageableEvent.ADD_GROUP, onAddGroupSelect);
+				manageableCMManager.addEventListener(ManageableEvent.ADD_TEACHER, onAddUserSelect);
+				manageableCMManager.addEventListener(ManageableEvent.ADD_REPORTER, onAddUserSelect);
+				manageableCMManager.addEventListener(ManageableEvent.ADD_AUTHOR, onAddUserSelect);
+				manageableCMManager.addEventListener(ManageableEvent.ADD_LEARNER, onAddUserSelect);
+				manageableCMManager.addEventListener(ManageableEvent.ASSIGN_CLASSES, onAssignClasses);
+				//manageableCMManager.addEventListener(ManageableEvent.EXPORT, onExportSelect);
+				//manageableCMManager.addEventListener(ManageableEvent.ARCHIVE, onArchiveSelect);
+				manageableCMManager.addEventListener(ManageableEvent.IMPORT, onImportSelect);
+				manageableCMManager.addEventListener(ManageableEvent.DELETE, onDeleteSelect);
+				manageableCMManager.addEventListener(ManageableEvent.DETAILS, onDetailsSelect);
+				manageableCMManager.addEventListener(SearchEvent.SEARCH, onSearchSelect);
+				//manageableCMManager.addEventListener(SearchEvent.CLEAR_SEARCH, onClearSearchSelect);
+				//manageableCMManager.addEventListener(ReportEvent.SHOW_REPORT_WINDOW, onGenerateReportSelect);
+				//manageableCMManager.addEventListener(SelectEvent.EXPIRED_USERS, onSelectSelect);
+				//manageableCMManager.addEventListener(ContentEvent.CHECK_FOLDER, onCheckEditedContentSelect);
+				//manageableCMManager.addEventListener(ContentEvent.RESET_CONTENT, onResetEditedContentSelect);
+			}
+			
+			/**
+			 * The user has selected the 'add group' menu item.  Construct a new Group object and call showAddGroupWindow
+			 * 
+			 * @param	e
+			 */
+			private function onAddGroupSelect(e:ManageableEvent):void {
+				var newGroup:Group = new Group();
+				showAddGroupWindow(newGroup);
+			}
+			
+			/**
+			 * The user has selected the 'add teacher' or 'add learner' menu item.  Construct a new User object and call showAddUserWindow
+			 * 
+			 * @param	e
+			 */
+			private function onAddUserSelect(e:ManageableEvent):void {
+				var newUser:User = new User();
+				
+				switch (e.type) {
+					case ManageableEvent.ADD_LEARNER:
+						newUser.userType = User.USER_TYPE_STUDENT;
+						break;
+					case ManageableEvent.ADD_REPORTER:
+						newUser.userType = User.USER_TYPE_REPORTER;
+						break;
+					case ManageableEvent.ADD_AUTHOR:
+						newUser.userType = User.USER_TYPE_AUTHOR;
+						break;
+					case ManageableEvent.ADD_TEACHER:
+						newUser.userType = User.USER_TYPE_TEACHER;
+						break;
+					default:
+						throw new Error("Unknown userType " + e.type);
+				}
+				
+				showAddUsersWindow( [ newUser ] );
+			}
+			
+			private function onAssignClasses(e:ManageableEvent):void {
+				// Dispatch an event to the mediator so it can get the extra groups from the server (then call setExtraGroupResults)
+				dispatchEvent(new ManageableEvent(ManageableEvent.GET_EXTRA_GROUPS, [ tree.selectedItem ], null, true));
+				
+				assignWindow = PopUpManager.createPopUp(UIComponent(parentApplication), AssignWindow, true) as AssignWindow;
+				assignWindow.setCopyProvider(copyProvider);
+				assignWindow.user = tree.selectedItem as User;
+				assignWindow.parentView = this;
+				assignWindow.setDataProvider(tree.dataProvider);
+				PopUpManager.centerPopUp(assignWindow);
+			}
+			
+			private function onGenerateReportSelect(e:ReportEvent):void {
+				e.onReportables = tree.selectedItems;
+				//MonsterDebugger.trace(this, tree.selectedItems);
+				dispatchEvent(e.clone());
+			}
+			
+			public function setExtraGroupsResults(extraGroups:Array):void {
+				if (assignWindow)
+					assignWindow.setExtraGroups(extraGroups);
+			}
+			
+			/**
+			 * The user has selected the 'delete' menu item so popup a configured confirm alert window
+			 * 
+			 * @param	e
+			 */
+			private function onDeleteSelect(e:ManageableEvent):void {
+				// If we want to keep delete in noStudents mode we need an extra confirmation box here (you might be deleting hidden users, etc)
+				if (Constants.noStudents) {
+					showNoStudentsDialog(function(e:CloseEvent):void {
+						if (e.detail == Alert.YES)
+							dispatchEvent(new ManageableEvent(ManageableEvent.DELETE, tree.selectedItems, null, true));
+					} );
+				} else if (searchActive) {
+					// If the tree is currently filtered then add an extra confirmation box
+					showFilteredGroupsDialog(function(e:CloseEvent):void {
+						if (e.detail == Alert.YES)
+							showDeleteDialog(function(e:CloseEvent):void {
+								if (e.detail == Alert.YES)
+									dispatchEvent(new ManageableEvent(ManageableEvent.DELETE, tree.selectedItems, null, true));
+							} );
+					} );
+				} else {
+					// Otherwise just show the delete confirmation box
+					showDeleteDialog(function(e:CloseEvent):void {
+						if (e.detail == Alert.YES)
+							dispatchEvent(new ManageableEvent(ManageableEvent.DELETE, tree.selectedItems, null, true));
+					} );
+				}
+			}
+			
+			private function showFilteredGroupsDialog(alertListener:Function):void {
+				var text:String = copyProvider.getCopyForId("filteredTreeAlert");
+				Alert.show(text, "Confirm", Alert.YES | Alert.NO, this, alertListener);
+			}
+			
+			private function showNoStudentsDialog(alertListener:Function):void {
+				var text:String = copyProvider.getCopyForId("noStudentsDeleteAlert");
+				Alert.show(text, "Confirm", Alert.YES | Alert.NO, this, alertListener);
+			}
+			
+			private function showDeleteDialog(alertListener:Function, archive:Boolean = false):void {
+				var text:String;
+				
+				var operationText:String = (archive) ? copyProvider.getCopyForId("archive") : copyProvider.getCopyForId("delete");
+				
+				var userCount:uint = 0;
+				var groupCount:uint = 0;
+				
+				var manageables:Array = Manageable.normalizeManageables(tree.selectedItems);
+				
+				for each (var manageable:Manageable in manageables) {
+					userCount += manageable.userCount;
+					groupCount += Math.max(manageable.groupCount - 1, 0); // Subtract one so we don't count the initial group
+				}
+				
+				if (tree.selectedItem is Group || tree.selectedItems.length > 1) {
+					var replaceObj:Object = new Object();
+					replaceObj.groupCount = groupCount.toString();
+					replaceObj.userCount = userCount.toString();
+					replaceObj.operationText = operationText;
+					
+					text = copyProvider.getCopyForId("groupsDelete", replaceObj);
+				} else {
+					replaceObj = new Object();
+					replaceObj.operationText = operationText;
+					
+					text = copyProvider.getCopyForId("usersDelete", replaceObj);
+				}
+				// Can you add a coloured icon to make it clear that this is warning to pay attention to?
+				Alert.show(text, "Confirm", Alert.YES | Alert.NO, this, alertListener, alertWarningIcon);
+			}
+			
+			/**
+			 * The user has selected the 'details' menu item so either open the group or user details window depending on what is selected
+			 * 
+			 * @param	e
+			 */
+			private function onDetailsSelect(e:ManageableEvent):void {
+				if (tree.selectedItem is Group) {
+					showAddGroupWindow(tree.selectedItem as Group, true);
+				} else {
+					showAddUsersWindow(tree.selectedItems, true);
+				}
+			}
+			
+			private function onImportSelect(e:ManageableEvent):void {
+				importWindow = PopUpManager.createPopUp(UIComponent(parentApplication), ImportWindow, true) as ImportWindow;
+				importWindow.setCopyProvider(copyProvider);
+				importWindow.fileReference = fileReference;
+				importWindow.parentView = this;
+				importWindow.parentGroup = tree.selectedItem as Group;
+				PopUpManager.centerPopUp(importWindow);
+			}
+			
+			private function onExportSelect(e:ManageableEvent):void {
+				e.manageables = tree.selectedItems;
+				dispatchEvent(e.clone());
+			}
+			
+			private function onArchiveSelect(e:ManageableEvent):void {
+				showDeleteDialog(function(e:CloseEvent):void {
+					if (e.detail == Alert.YES)
+						dispatchEvent(new ManageableEvent(ManageableEvent.ARCHIVE, tree.selectedItems, null, true));
+				}, true );
+			}
+			
+			private function onSearchSelect(e:SearchEvent):void {
+				showSearchWindow();
+			}
+			
+			public function onSearchSubmit(e:SearchEvent):void {
+				e.currentTarget.removeEventListener(SearchEvent.SEARCH, onSearchSubmit);
+				e.currentTarget.removeEventListener(Event.CANCEL, onSearchCancel);
+				
+				dispatchEvent(e.clone());
+				
+				// Refresh the item renderers as the data descriptor has changed
+				tree.refreshItemRenderers();
+				
+				manageableCMManager.setIsSearchActive(true);
+				//filteredLabel.visible = true;
+				//filteredButton.visible = filteredButton.includeInLayout = true;
+				
+				tree.setStyle("backgroundColor", TREE_FILTERED_BG_COLOUR);
+				
+				searchActive = true;
+			}
+			
+			private function onSearchCancel(e:Event):void {
+				e.currentTarget.removeEventListener(SearchEvent.SEARCH, onSearchSubmit);
+				e.currentTarget.removeEventListener(Event.CANCEL, onSearchCancel);
+			}
+			
+			private function onClearSearchButtonClick():void {
+				manageableCMManager.dispatchEvent(new SearchEvent(SearchEvent.CLEAR_SEARCH, null, true));
+			}
+			
+			/**
+			 * Since we need to fake a 'Clear search' menu item this needs to be public as it is called by the mediator on LOGGED_OUT
+			 * 
+			 * @param	e
+			 */
+			public function onClearSearchSelect(e:SearchEvent):void {
+				if (e) {
+					dispatchEvent(e.clone());
+					
+					// Refresh the item renderers as the data descriptor has changed
+					tree.refreshItemRenderers();
+				}
+				
+				manageableCMManager.setIsSearchActive(false);
+				//filteredButton.visible = filteredButton.includeInLayout = false;
+				tree.setStyle("backgroundColor", 0xFFFFFF);
+				searchActive = false;
+			}
+			
+			/**
+			 * 
+			 * @param	e
+			 */
+			private function onSelectSelect(e:SelectEvent):void {
+				// If all selected items are groups then add them to the SelectEvent
+				if (tree.selectedItems.length >= 1 && ClassUtils.checkObjectClasses(tree.selectedItems) == Group)
+					e.manageables = tree.selectedItems as Array; 
+				//MonsterDebugger.trace(this, "onSelectSelect");
+				dispatchEvent(e.clone());
+			}
+			
+			// Handling CM click for checking edited content initialisation
+			private function onCheckEditedContentSelect(e:ContentEvent):void {
+				//MonsterDebugger.trace(this, "onCheckEditedContentSelect");
+				if (tree.selectedItem is Group) {
+					e.groupID = (tree.selectedItem as Group).id;
+					dispatchEvent(e.clone());
+				}
+			}
+			// Handling CM click for checking edited content initialisation
+			private function onResetEditedContentSelect(e:ContentEvent):void {
+				// Otherwise just show the delete confirmation box
+				showResetDialog(function(e:CloseEvent):void {
+					if (e.detail == Alert.YES)
+						dispatchEvent(new ContentEvent(ContentEvent.RESET_CONTENT, null, (tree.selectedItem as Group).id, null, null, true));
+				} );
+				/*
+				if (tree.selectedItem is Group) {
+				e.groupID = (tree.selectedItem as Group).id;
+				e.editedUID = null;
+				dispatchEvent(e.clone());
+				}
+				*/
+			}
+			private function showResetDialog(alertListener:Function):void {
+				var text:String = copyProvider.getCopyForId("resetGroupContent");
+				Alert.show(text, "Confirm", Alert.YES | Alert.NO, this, alertListener, alertWarningIcon);
+			}
+			
+			/**
+			 * Show the group details popup window
+			 * 
+			 * @param	group The group we are editing - this can be a new Group object
+			 * @param	editMode If true we are editing an existing object
+			 */
+			private function showAddGroupWindow(group:Group, editMode:Boolean = false):void {
+				var addGroupWindow:AddGroupWindow = PopUpManager.createPopUp(UIComponent(parentApplication), AddGroupWindow, true) as AddGroupWindow;
+				addGroupWindow.editMode = editMode;
+				addGroupWindow.setCopyProvider(copyProvider);
+				addGroupWindow.parentView = this;
+				addGroupWindow.parentGroup = tree.selectedItem as Group;
+				addGroupWindow.group = group;
+				PopUpManager.centerPopUp(addGroupWindow);
+			}
+			
+			/**
+			 * Show the user details popup window
+			 * 
+			 * @param	user The user we are editing - this can be a new User object
+			 * @param	editMode If true we are editing an existing object
+			 */
+			private function showAddUsersWindow(users:Array, editMode:Boolean = false):void {
+				var addUserWindow:AddUserWindow = PopUpManager.createPopUp(UIComponent(parentApplication), AddUserWindow, true) as AddUserWindow;
+				addUserWindow.editMode = editMode;
+				addUserWindow.setCopyProvider(copyProvider);
+				addUserWindow.parentView = this;
+				addUserWindow.parentGroup = tree.selectedItem as Group;
+				addUserWindow.users = users;
+				PopUpManager.centerPopUp(addUserWindow);
+			}
+			
+			/**
+			 * Show the search popup window
+			 */
+			private function showSearchWindow():void {
+				var searchWindow:SearchWindow = PopUpManager.createPopUp(UIComponent(parentApplication), SearchWindow, true) as SearchWindow;
+				searchWindow.setCopyProvider(copyProvider);
+				searchWindow.parentView = this;
+				searchWindow.parentGroup = tree.selectedItem as Group;
+				searchWindow.addEventListener(SearchEvent.SEARCH, onSearchSubmit);
+				searchWindow.addEventListener(Event.CANCEL, onSearchCancel);
+				PopUpManager.centerPopUp(searchWindow);
+			}
+			
+			/**
+			 * If the user selects a different item in the tree pass the array of selected items to the context menu manager so that the
+			 * correct menu items can be enabled/disabled based on the current selection.
+			 */
+			private function onChange():void {
+				manageableCMManager.enableBySelectedManageables(tree.selectedItems);
+				dispatchEvent(new Event(Event.CHANGE));
+			}
+			
+			/**
+			 * Workaround for bug http://bugs.adobe.com/jira/browse/SDK-17190
+			 * 
+			 * @param	e
+			 */
+			private function onDragEnter(e:DragEvent):void {
+				//MonsterDebugger.trace(this, e);
+				if (e.dragSource.hasFormat("treeItems") && (e.dragSource.dataForFormat("treeItems") as Array).length > 0)
+					dragTreeItems = e.dragSource.dataForFormat("treeItems") as Array;
+			}
+			
+			/**
+			 * The only kind of dragging allowed is the dragging of users between groups
+			 * @param	e
+			 */
+			private function onDragDrop(e:DragEvent):void {
+				//MonsterDebugger.trace(this, e);
+				var dragItems:Array = dragTreeItems;
+				
+				// Check that all the things being dragged are all users or all groups (this is the prerequisite for dragging) and none are
+				// the currently logged in user.
+				var manageableClass:Class = (dragItems[0] is User) ? User : Group;
+				for each (var m:Manageable in dragItems) {
+					// v3.4 Multi-group users
+					//if (!(m is manageableClass) || (m is User && Constants.userID == m.id)) {
+					if (!(m is manageableClass) || (m is User && Constants.userID == (m as User).userID) || (m is User && (m as User).userType == 2)) {
+						e.preventDefault();
+						tree.hideDropFeedback(e);
+						return;
+					}
+				}
+				
+				
+				// Get the parent group with some Flex trickery
+				// or let slt do this for us!
+				//var dropGroup:Group = tree.mx_internal::_dropData.parent as Group;
+				var dropGroup:Group = tree.dropData.parent as Group;
+				
+				// fixed the move around mutiple groups problem
+				var selfLoopFlag:Boolean = false;
+				if(dragItems[0] is Group){
+					for each (var dragItemsGroup:Manageable in dragItems) {
+						var dragItemSubGroups:Array = (dragItemsGroup as Group).getSubGroups();
+						for each (var subGroup:Manageable in dragItemSubGroups) {
+							if (dropGroup == subGroup) {
+								selfLoopFlag = true;
+							}
+						}
+						if(dropGroup ==  dragItemsGroup){
+							selfLoopFlag = true;
+						}
+					}
+				}
+				// If there is no parent (i.e. if the user is trying to drop into the top level) then prevent the drop
+				if (!dropGroup || selfLoopFlag) {
+					e.preventDefault();
+					tree.hideDropFeedback(e);
+					return;
+				}
+				
+				// If the tree is filtered and we are dropping a group pop up a confirm dialog first, otherwise just move the items
+				if (manageableClass == Group && searchActive) {
+					showFilteredGroupsDialog(function(e:CloseEvent):void {
+						if (e.detail == Alert.YES)
+							dispatchEvent(new ManageableEvent(ManageableEvent.MOVE_MANAGEABLES, dragItems, dropGroup, true));
+					} );
+				} else {
+					dispatchEvent(new ManageableEvent(ManageableEvent.MOVE_MANAGEABLES, dragItems, dropGroup, true));
+				}
+			}
+			
+			/*
+			* When a right click is detected select the item the mouse is currently over in the tree.  This value is maintained by
+			* onItemRollOver.  If this does actually result in a change to the tree selection then fire an onChange event.
+			*/
+			private function onMenuSelect(e:ContextMenuEvent):void {
+				if (lastTreeItemEvent && tree.selectedItems.indexOf(lastTreeItemEvent.itemRenderer.data) == -1) {
+					tree.selectedItem = lastTreeItemEvent.itemRenderer.data;
+					onChange();
+				}
+			}
+			
+			/**
+			 * When rolling over a row in the tree set lastRolledOverIdx to the index of that row so we can select it when right clicking.
+			 * 
+			 * @param	e
+			 */
+			private function onItemRollOver(e:ListEvent):void {
+				lastTreeItemEvent = e.clone() as ListEvent;
+			}
+			
+			/**
+			 * Set the dataprovider for the tree
+			 * 
+			 * @param	dataProvider
+			 */
+			public function setTreeDataProvider(dataProvider:Object):void {
+				tree.dataProvider = dataProvider;
+				tree.openItems = tree.dataProvider;
+			}
+			
+			/**
+			 * Set the data descriptor for the tree
+			 * 
+			 * @param	dataDescriptor
+			 */
+			public function setTreeDataDescriptor(dataDescriptor:DefaultDataDescriptor):void {
+				tree.dataDescriptor = dataDescriptor;
+			}
+			
+			/**
+			 * Force the tree item renderers to redraw themselves
+			 */
+			public function invalidateTree():void {
+				tree.invalidateList();
+			}
+			
+			/**
+			 * Set which items in the tree are selected and update the context menu as required
+			 * 
+			 * @param	selectedItems
+			 */
+			public function setSelectedItems(selectedItems:Array):void {
+				tree.selectedItems = selectedItems;
+				manageableCMManager.enableBySelectedManageables(tree.selectedItems);
+			}
+			
+			/**
+			 * Returns an array of currently selected items in the tree
+			 * 
+			 * @return
+			 */
+			public function getSelectedManageables():Array {
+				//MonsterDebugger.trace(this, tree.selectedItems);
+				return tree.selectedItems;
+			}
+			
+			/**
+			 * Trying to get the top group selected on first call
+			 */
+			public function selectTopGroup():void {
+				// This selects it, but doesn't trigger any events
+				tree.selectedIndex = 0;
+				//MonsterDebugger.trace(this, "try to display the tree");
+				//MonsterDebugger.trace(this, tree.);
+				// You can't call this straight away as the tree will claim it has no selectedItems.
+				//onChange();
+				callLater(function():void { tree.dispatchEvent(new ListEvent(ListEvent.CHANGE)); } );
+				//callLater(function():void { onChange(); } );
+			}
+			/**
+			 * Puts a more informative name on groups
+			 * @param	item from tree
+			 * @return	caption to display
+			 */
+			private function treeLabel(item:Object):String {
+				if (item is Group) {
+					var groupCount:uint = item.groupCount-1; // don't count yourself
+					var userCount:uint = item.userCount; // If we just want learners, perhaps we could modify this getter to include a userType for matching.
+					if (groupCount == 0) {
+						var groupDescriptor:String = "";
+					} else if (groupCount == 1) {
+						groupDescriptor = " in 1 sub-group";
+					} else {
+						groupDescriptor = " in " + groupCount.toString() + " sub-groups";
+					}
+					if (userCount == 0 && groupCount == 0) {
+						var userDescriptor:String = "empty";
+					} else if (userCount == 0) {
+						userDescriptor = "has 0 users";
+					} else if (userCount == 1) {
+						userDescriptor = "has 1 user";
+					} else {
+						userDescriptor = "has " + userCount.toString() + " users";
+					}
+					return item.name + " (" + userDescriptor + groupDescriptor + ")";
+				} else {
+					// Also if the name is blank, can we use the ID?
+					if (item.name == undefined || item.name == "") {
+						//userDescriptor = item.studentID + " (id)";
+						userDescriptor = item.studentID;
+					} else {
+						userDescriptor = item.name;
+					}
+					// gh#122 add email if present
+					if (item.email)
+						userDescriptor += ' (' + item.email + ')';
+					
+					// Is this you?
+					//MonsterDebugger.trace(this, "user name=" + item.name + " id=" + item.userID + " me=" + Constants.userID);
+					if (item.userID == Constants.userID) {
+						// v3.4 Prefer this from the main mxml
+						//userDescriptor += " (you are logged in as " + copyProvider.getCopyForId("userType" + Constants.userType) + ")";
+						userDescriptor += " (this is you)";
+					}
+					return userDescriptor;
+				}
+			}
+			
+			// gh#1424
+			private function onRefreshButtonClick():void {
+				dispatchEvent(new ManageableEvent(ManageableEvent.GET_ALL_MANAGEABLES));
+			}
+			
+		]]>
+	</mx:Script>
+		<slt:SpringLoadedTree id="tree"
+							  openOnClick="false"
+							  autoCloseOnDrop="false"
+							  autoOpenTimerMS="400"
+							  width="100%"
+							  height="100%"
+							  labelFunction="treeLabel"
+							  dragEnabled="true" 
+							  dropEnabled="true" 
+							  dragMoveEnabled="true"
+							  dragEnter="onDragEnter(event)"
+							  dragDrop="onDragDrop(event)"
+							  allowMultipleSelection="true"
+							  retainVerticalScrollPosition="true"
+							  itemRenderer="com.clarityenglish.resultsmanager.view.shared.ui.ReportableTreeItemRenderer"
+							  itemRollOver="onItemRollOver(event)"
+							  change="onChange()"
+							  />
+</mx:VBox>

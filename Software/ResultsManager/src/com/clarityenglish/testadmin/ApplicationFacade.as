@@ -4,7 +4,7 @@
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.patterns.facade.Facade;
 	import com.clarityenglish.resultsmanager.model.*;
-	import com.clarityenglish.resultsmanager.view.*;
+	import com.clarityenglish.testadmin.view.*;
 	import com.clarityenglish.testadmin.controller.*;
 	import com.clarityenglish.resultsmanager.controller.*;
 	import com.clarityenglish.common.controller.*;

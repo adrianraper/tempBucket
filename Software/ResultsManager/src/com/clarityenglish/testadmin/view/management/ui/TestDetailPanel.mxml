@@ -26,7 +26,7 @@
 			import mx.utils.ObjectUtil;
 			
 			import org.davekeen.utils.DateUtils;
-		
+			
 			private var copyProvider:CopyProvider;
 			//[Bindable]
 			//private var _isDirty:Boolean = false;
@@ -43,7 +43,7 @@
 			private var _showResult:Boolean;
 			// gtp#60
 			private var _language:String;
-	
+			
 			[Bindable]
 			public var times:ArrayCollection = new ArrayCollection();
 			
@@ -105,8 +105,11 @@
 				emailInsertionEmailLabel.text = copyProvider.getCopyForId("emailInsertionEmailLabel");
 				emailInsertionSubjectLabel.text = copyProvider.getCopyForId("emailInsertionSubjectLabel");
 				//testDetailsCaption.text = copyProvider.getCopyForId("testDetailsCaption");
-			}
+				
+				testDetailsLabel.text = copyProvider.getCopyForId("testAdminTestDetails");
 
+			}
+			
 			public function setDataProvider(test:ScheduledTest):void {
 				if (test) {
 					
@@ -133,7 +136,7 @@
 					}
 					startData.text = dataProvider.startData;
 					captionData.text = dataProvider.caption;
-
+					
 					_startByCode = (dataProvider.startType == 'code');
 					_showResult = (dataProvider.showResult);
 					
@@ -141,15 +144,15 @@
 					_language = dataProvider.language;
 					// TODO where to get the list of available languages from?
 					languageData.dataProvider = new ArrayCollection([{label:"English", data:"EN"},
-																	 {label:"Bahasa Indonesia", data:"ID"},
-																	 {label:"漢語", data:"ZH-TW"}]);
+						{label:"Bahasa Indonesia", data:"ID"},
+						{label:"漢語", data:"ZH-TW"}]);
 					for (var i:uint=0; i<languageData.dataProvider.length; i++) {
 						if (languageData.dataProvider[i].data == _language) {
 							languageData.selectedIndex = i;
 							break;
 						}
 					}
-
+					
 					//dataProvider.emailInsertion = '"{\"note\":\"Come to the classroom\"}"';
 					try {
 						var emailInsertionObject:Object = (dataProvider.emailInsertion) ? JSON.decode(unescape(dataProvider.emailInsertion)) : new Object();
@@ -168,7 +171,7 @@
 					
 					// Is the data editable?
 					setDataEditable(dataProvider.status == ScheduledTest.STATUS_PRERELEASE);
-						
+					
 					_errorText == '';
 					//_isDirty = false;
 				}
@@ -188,7 +191,7 @@
 				if (openTimeDataDate.selectedDate)
 					_openDate = openTimeDataDate.selectedDate;
 				if (e.target == openTimeDataHours) {
-  					if (_openDate) {
+					if (_openDate) {
 						_openDate.hours = openTimeDataHours.selectedItem.data.hours;
 						_openDate.minutes = openTimeDataHours.selectedItem.data.mins;
 					}
@@ -199,7 +202,7 @@
 						_closeDate.minutes = closeTimeDataHours.selectedItem.data.mins;
 					}
 				}
-					
+				
 			}
 			//public function onDataChange(e:Event):void {
 			//	var tdA:ScheduledTest = getTestFromScreen();
@@ -227,9 +230,9 @@
 				updatedTest.language = languageData.selectedItem.data;
 				// ctp#214 TODO Make sure that any html is removed
 				updatedTest.emailInsertion = JSON.encode({note: safeChars(emailInsertionNoteData.text),
-															name: safeChars(emailInsertionNameData.text), 
-															email: safeChars(emailInsertionEmailData.text), 
-															subject: safeChars(emailInsertionSubjectData.text)});
+					name: safeChars(emailInsertionNameData.text), 
+					email: safeChars(emailInsertionEmailData.text), 
+					subject: safeChars(emailInsertionSubjectData.text)});
 				return updatedTest;
 			}
 			private function safeChars(text:String):String {
@@ -241,13 +244,13 @@
 			// Have the user editable details changed?
 			private function _isEqual(tdA:ScheduledTest, tdB:ScheduledTest):Boolean {
 				return ((tdA.openTime == tdB.openTime) &&
-						(tdA.closeTime == tdB.closeTime) &&
-						(tdA.startData == tdB.startData) &&
-						(tdA.caption == tdB.caption) &&
-						(tdA.showResult == tdB.showResult) &&
-						(tdA.startType == tdB.startType) && 
-						(tdA.language == tdB.language) && 
-						(tdA.emailInsertion == tdB.emailInsertion));
+					(tdA.closeTime == tdB.closeTime) &&
+					(tdA.startData == tdB.startData) &&
+					(tdA.caption == tdB.caption) &&
+					(tdA.showResult == tdB.showResult) &&
+					(tdA.startType == tdB.startType) && 
+					(tdA.language == tdB.language) && 
+					(tdA.emailInsertion == tdB.emailInsertion));
 			}
 			// Have enough details been added?
 			private function isComplete():Boolean {
@@ -257,7 +260,7 @@
 					_errorText = "There must be a close time.";
 					return false;
 				}
-					
+				
 				// Check the start time
 				if (!_openDate) {
 					_errorText = "There must be a start time.";
@@ -292,9 +295,9 @@
 			// Trigger events from user action
 			/*
 			private function onUpdate():void {
-				_isDirty = false;
-				if (isComplete())
-					dispatchEvent(new TestEvent(TestEvent.UPDATE, getTestFromScreen()));				
+			_isDirty = false;
+			if (isComplete())
+			dispatchEvent(new TestEvent(TestEvent.UPDATE, getTestFromScreen()));				
 			}
 			*/
 			//private function onCancel():void {
@@ -329,12 +332,13 @@
 		]]>
 	</mx:Script>
 	<!-- backgroundColor="#ECECEC" borderStyle="solid" -->
-	<mx:VBox width="100%" height="100%" paddingTop="10" paddingRight="1"
-			 verticalGap="0">
-		<mx:HBox width="100%" height="40">
+	<mx:VBox width="100%" height="100%" paddingRight="1" verticalGap="0">
+		<mx:Label id="testDetailsLabel" styleName="subHeadingLabelBlack" width="100%" />
+		<mx:Spacer height="10" />
+		<mx:HBox width="100%" >
 			<!-- <mx:Button id="cancelButton" enabled="false" width="100" height="100%" /> -->
 			<!-- <mx:Label id="testDetailsCaption" width="100%" paddingTop="8" styleName="subHeadingLabelBlack"
-					  textAlign="center"/> -->
+			textAlign="center"/> -->
 			<mx:Label id="errorTextLabel" text="{_errorText}" styleName="errorMessage"
 					  visible="{!(_errorText == '')}" includeInLayout="{!(_errorText == '')}" textAlign="center"/>
 		</mx:HBox>
@@ -432,5 +436,5 @@
 				   overSkin="{FlatButtonSkin}" textRollOverColor="#FFFFFF"
 				   upSkin="{FlatButtonSkin}" styleName="testList"/>
 	</mx:VBox>
-
+	
 </mx:VBox>

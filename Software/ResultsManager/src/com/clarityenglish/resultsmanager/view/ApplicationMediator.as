@@ -13,7 +13,6 @@ package com.clarityenglish.resultsmanager.view {
 	import com.clarityenglish.resultsmanager.ResultsManager;
 	import com.clarityenglish.resultsmanager.view.loginopts.LoginOptsMediator;
 	import com.clarityenglish.resultsmanager.view.management.ManagementMediator;
-	import com.clarityenglish.resultsmanager.view.management.TestadminMediator;
 	import com.clarityenglish.resultsmanager.view.usage.UsageMediator;
 	import com.clarityenglish.utils.TraceUtils;
 	import com.flexiblexperiments.ListItemGroupedDragProxy;
@@ -49,14 +48,7 @@ package com.clarityenglish.resultsmanager.view {
 		override public function onRegister():void {
 			super.onRegister();
 			
-			// gh#1487 Can't register managementView as well as testadminView to their respective mediators
-			// or you can, but the test admin view has no manageables in it. Whichever you do first works.
-			// TraceUtils.myTrace("appMediator.directStart=" + this._directStart);
-			if (this._directStart == 'testadmin') {
-				facade.registerMediator(new TestadminMediator(application.testadminView));				
-			} else {
-				facade.registerMediator(new ManagementMediator(application.managementView));
-			}
+			facade.registerMediator(new ManagementMediator(application.managementView));
 			facade.registerMediator(new UsageMediator(application.usageView));
 			facade.registerMediator(new LoginOptsMediator(application.loginOptsView));
 		}

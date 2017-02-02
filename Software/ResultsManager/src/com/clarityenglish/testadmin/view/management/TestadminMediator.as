@@ -1,7 +1,7 @@
-﻿/*
- Mediator - PureMVC
- */
-package com.clarityenglish.resultsmanager.view.management {
+/*
+Mediator - PureMVC
+*/
+package com.clarityenglish.testadmin.view.management {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.EmailEvent;
 	import com.clarityenglish.common.model.CopyProxy;
@@ -9,15 +9,15 @@ package com.clarityenglish.resultsmanager.view.management {
 	import com.clarityenglish.common.vo.content.Content;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.*;
-	import com.clarityenglish.resultsmanager.ApplicationFacade;
+	import com.clarityenglish.testadmin.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.RMNotifications;
 	import com.clarityenglish.resultsmanager.model.ContentProxy;
 	import com.clarityenglish.resultsmanager.model.LicenceProxy;
 	import com.clarityenglish.resultsmanager.model.ReportProxy;
 	import com.clarityenglish.resultsmanager.model.TestProxy;
 	import com.clarityenglish.resultsmanager.model.UsageProxy;
-	import com.clarityenglish.resultsmanager.view.*;
-	import com.clarityenglish.resultsmanager.view.management.components.*;
+	import com.clarityenglish.testadmin.view.*;
+	import com.clarityenglish.testadmin.view.management.components.*;
 	import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
 	import com.clarityenglish.resultsmanager.view.shared.events.TestEvent;
 	import com.clarityenglish.utils.TraceUtils;
@@ -33,7 +33,7 @@ package com.clarityenglish.resultsmanager.view.management {
 	 * A Mediator
 	 */
 	public class TestadminMediator extends Mediator implements IMediator {
-	
+		
 		// Cannonical name of the Mediator
 		public static const NAME:String = "TestadminMediator";
 		// TODO How to get the productCode nicely here?
@@ -71,7 +71,7 @@ package com.clarityenglish.resultsmanager.view.management {
 		private function get testadminView():TestadminView {
 			return viewComponent as TestadminView;
 		}
-
+		
 		/**
 		 * Get the Mediator name.
 		 * <P>
@@ -86,7 +86,7 @@ package com.clarityenglish.resultsmanager.view.management {
 		override public function getMediatorName():String {
 			return TestadminMediator.NAME;
 		}
-        
+		
 		/**
 		 * List all notifications this Mediator is interested in.
 		 * <P>
@@ -97,20 +97,20 @@ package com.clarityenglish.resultsmanager.view.management {
 		 */
 		override public function listNotificationInterests():Array {
 			return [
-					RMNotifications.SHOW_REPORT_WINDOW,
-					CommonNotifications.COPY_LOADED,
-					RMNotifications.MANAGEABLES_LOADED,
-					RMNotifications.MANAGEABLE_SELECTED,
-					RMNotifications.TESTS_LOADED,
-					RMNotifications.TEST_UPDATED,
-					RMNotifications.TEST_ADDED,
-					RMNotifications.TEST_DELETED,
-					RMNotifications.TEST_LICENCES_LOADED,
-					RMNotifications.CONTENT_LOADED,
-					CommonNotifications.EMAIL_SENT,
-				];
+				RMNotifications.SHOW_REPORT_WINDOW,
+				CommonNotifications.COPY_LOADED,
+				RMNotifications.MANAGEABLES_LOADED,
+				RMNotifications.MANAGEABLE_SELECTED,
+				RMNotifications.TESTS_LOADED,
+				RMNotifications.TEST_UPDATED,
+				RMNotifications.TEST_ADDED,
+				RMNotifications.TEST_DELETED,
+				RMNotifications.TEST_LICENCES_LOADED,
+				RMNotifications.CONTENT_LOADED,
+				CommonNotifications.EMAIL_SENT,
+			];
 		}
-
+		
 		/**
 		 * Handle all notifications this Mediator is interested in.
 		 * <P>
@@ -142,9 +142,9 @@ package com.clarityenglish.resultsmanager.view.management {
 					var titles:Array = note.getBody() as Array;
 					// If all goes well, there will only be one title coming back anyway
 					for each (var title:Title in titles) {
-						if (title.id == productCode) 
-							testadminView.selectedTitle = title;
-					}
+					if (title.id == productCode) 
+						testadminView.selectedTitle = title;
+				}
 					break;
 				
 				case RMNotifications.MANAGEABLE_SELECTED:
@@ -226,7 +226,7 @@ package com.clarityenglish.resultsmanager.view.management {
 			
 			reportProxy.getReport(e.forReportables, e.forClass, e.onReportables, opts, e.template);
 		}
-
+		
 		private function onTestUpdate(e:TestEvent):void {			
 			sendNotification(RMNotifications.UPDATE_TEST, e);
 		}
