@@ -659,7 +659,8 @@
             <lit name="includeInactiveUsersCheckBox">Show users who have not taken the test?</lit>
             <lit name="testReport">Display</lit>
             <lit name="sendEmailAlert">Send out the {emailType} email to {userCount} people?</lit>
-            <lit name="sendEmailWarnAboutNoEmail">About to send out the {emailType} email to {userCount} people. {noEmailCount} people without email address will be ignored.</lit>
+            <lit name="sendEmailWarnAboutNoEmailSingle">There is one person without an email address in the group. They will be ignored.</lit>
+            <lit name="sendEmailWarnAboutNoEmailMultiple">There are {noEmailCount} people without email addresses in the group. They will be ignored.</lit>
 		</group>
 	</language>
 </literals>
