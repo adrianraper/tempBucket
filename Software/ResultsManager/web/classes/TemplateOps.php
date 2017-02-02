@@ -26,6 +26,8 @@ class TemplateOps {
 		$smarty->register_function("format_ansi_date", array($this, "formatAnsiDate"));
 		$smarty->register_function("get_dictionary_label", array($this, "getDictionaryLabel"));
 		$smarty->register_function("date_diff", array($this, "dateDiff"));
+        $smarty->register_function("decode_json", array($this, "decodeJSON"));
+        $smarty->register_function("unescape_string", array($this, "unescapeString"));
 		// This next function will not be cached
 		$smarty->register_function("dynamic_user_name", array($this, "getUserName"), false);
 		
@@ -183,7 +185,16 @@ class TemplateOps {
 	function getUserName($params, &$smarty) {
 		return $params['uname'];
 	}
-	
+    /**
+     * Used to decode JSON sent to a template
+     */
+    function decodeJSON($params, &$smarty) {
+        return json_decode($params['data']);
+    }
+    function unescapeString($params, &$smarty) {
+        return urldecode($params['data']);
+    }
+
 	/**
 	 * Retrieve an entry from the dictionary.  The template needs to pass a class with a getDictionary function (e.g. AccountOps) in order for
 	 * this to work.

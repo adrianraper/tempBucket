@@ -13,8 +13,7 @@ if (!Authenticate::isAuthenticated()) {
     //exit(0);
 }
 
-//$templateDefinition = new TemplateDefinition();
-$templateDefinition = (isset($_REQUEST['template'])) ? json_decode(stripslashes($_REQUEST['template'])) : null;
+$templateDefinition = (isset($_REQUEST['template'])) ? json_decode($_REQUEST['template']) : null;
 $groupIdArray = (isset($_REQUEST['groupIdArray'])) ? json_decode(stripslashes($_REQUEST['groupIdArray']), true) : array();
 $previewIndex = isset($_REQUEST['previewIndex']) ? $_REQUEST['previewIndex'] : 0;
 $send = isset($_REQUEST['send']) && $_REQUEST['send'] == "true";
@@ -22,7 +21,7 @@ $send = isset($_REQUEST['send']) && $_REQUEST['send'] == "true";
 /**
  * This for testing and debugging emails
  */
-
+/*
 $templateDefinition = json_decode('{
 	"description": null,
 	"title": null,
@@ -46,7 +45,7 @@ $templateDefinition = json_decode('{
 			"groupId": "35026",
 			"status": 2,
 			"caption": "Funny in Chinese",
-			"emailInsertion": "Please go to lecture room 2B at 10am to start the test.",
+			"emailInsertion": "{note: Please go to lecture room 2B at 10am to start the test.}",
 			"language": "EN",
 			"menuFilename": "menu.json.hbs",
 			"uid": "1011",
@@ -57,6 +56,7 @@ $templateDefinition = json_decode('{
 	"filename": "user/DPT-welcome"
 }');
 $groupIdArray = json_decode('["21560"]');
+*/
 
 if (!isset($templateDefinition->data)) {
     echo "<h2>No template data was passed</h2>";
@@ -65,14 +65,14 @@ if (!isset($templateDefinition->data)) {
 
 $userEmailArray = $thisService->dailyJobOps->getEmailsForGroup($groupIdArray, $templateDefinition);
 
-// ctp#346 Add the administrator to this list of email recipients for copy
+// ctp#346 Add the test administrator to this list of email recipients for copy
 $adminEmail = array();
-$adminEmail['to'] = $templateDefinition->data->administrator->email;
+$adminEmail['to'] = $templateDefinition->data->emailDetails->email;
 // Since we don't have a full user for the admin, just replace key bits
 $adminEmail['data']['user'] = new User();
-$adminEmail['data']['user']->name = $templateDefinition->data->administrator->name.' (copy for reference)';
-$adminEmail['data']['user']->email = $templateDefinition->data->administrator->email;
-$adminEmail['data']['user']->password = 'xxxxxx';
+$adminEmail['data']['user']->name = $templateDefinition->data->emailDetails->name.' (email for reference)';
+$adminEmail['data']['user']->email = $templateDefinition->data->emailDetails->email;
+$adminEmail['data']['user']->password = '(hidden)';
 $adminEmail['data']['templateData'] = $userEmailArray[0]['data']['templateData'];
 array_push($userEmailArray, $adminEmail);
 

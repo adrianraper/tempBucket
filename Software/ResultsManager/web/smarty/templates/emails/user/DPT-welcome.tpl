@@ -5,12 +5,12 @@
 {* Parameters: $user, $testDetail *}
 -->
 {assign var='testDetail' value=$templateData->test}
-{assign var='administrator' value=$templateData->administrator}
+{assign var='emailDetails' value=$templateData->emailDetails}
 <p>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Take the Dynamic Placement Test</title>
+    <title>{if $emailDetails->subject}{unescape_string data=$emailDetails->subject}{else}Dynamic Placement Test{/if}</title>
     <!-- <from>support@clarityenglish.com</from> -->
 </head>
 <p>
@@ -19,7 +19,7 @@
 <p style="font-family: Sans-Serif;">You are scheduled to take an English test.</p>
 <p style="font-family: Sans-Serif; "><strong>Test name:</strong><br/>
 {$testDetail->caption}</p>
-<p style="font-family: Sans-Serif; "><strong>Test5 time:</strong><br/>
+<p style="font-family: Sans-Serif; "><strong>Test time:</strong><br/>
     From {format_ansi_date ansiDate=$testDetail->openTime format="%Y-%m-%d %H:%M"}<br/>
     To {format_ansi_date ansiDate=$testDetail->closeTime format="%Y-%m-%d %H:%M"}</p>
 <p style="font-family: Sans-Serif; "><strong>Sign in details:</strong><br/>
@@ -39,12 +39,16 @@
 <p style="font-family: Sans-Serif; "><strong>Important</strong><br/>
     You will need <strong>headphones</strong> or <strong>earphones</strong> for the test.</p>
 
-{if $testDetail->emailInsertion}
+{if $emailDetails && $emailDetails->note}
     <p style="font-family: Sans-Serif; "><strong>Notes</strong><br/>
-    {$testDetail->emailInsertion}<br/>
+    {unescape_string data=$emailDetails->note}<br/>
 {/if}
 
-<p>Questions? Ask your administrator, {$administrator->name} {if $administrator->email} at {$administrator->email}{/if}.</p>
+<p>Questions? Ask your administrator{if $emailDetails && $emailDetails->name}, {unescape_string data=$emailDetails->name}{/if}
+    {if $emailDetails && $emailDetails->email}
+        at {unescape_string data=$emailDetails->email}
+    {/if}.
+</p>
 
 <p>Best wishes<br/>
 The ClarityEnglish support team</p>
