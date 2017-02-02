@@ -1216,10 +1216,10 @@ SQL;
 			GROUP BY t.F_TestID
 SQL;
         $rs = $this->db->Execute($sql, $bindingParams);
+        $scheduledEstimate = 0;
         switch ($rs->RecordCount()) {
             case 0:
                 // There are no records
-                $scheduledEstimate = 0;
                 break;
             default:
             	// Include duplicate groups if they have multiple scheduled tests
@@ -1251,7 +1251,8 @@ SQL;
 			                $dbObj1 = $rs1->FetchNextObj();
 			                $alreadyCompleted = $dbObj1->testsUsed;
 			        }
-                    $scheduledEstimate = $usersInGroup - $alreadyCompleted;
+			        // ctp#341
+                    $scheduledEstimate += $usersInGroup - $alreadyCompleted;
                	}
         }
         
