@@ -494,6 +494,19 @@ SQL;
                 }
                 break;
 
+            case 'bonusC2':
+                switch (true) {
+                    case ($bonusCorrect <= 1):
+                        $result = "C1";
+                        $hurdle = 60;
+                        break;
+                    case ($bonusCorrect >= 2):
+                        $result = "C2";
+                        $hurdle = 60;
+                        break;
+                }
+                break;
+
             case 'C':
                 switch (true) {
                     case ($trackCorrect <= 2):
