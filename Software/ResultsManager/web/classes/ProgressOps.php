@@ -186,7 +186,7 @@ SQL;
 
         // Do you need to exclude any 'exercises' from scoring? Requirements for one...
         // Because T_Score does not have valid exercise id, use unit ids
-        // It might be more efficent to exclude things like requirements unit, but is more explicit to do it by includes
+        // It might be more efficient to exclude things like requirements unit, but is more explicit to do it by includes
         $gaugeUnitID = '2015063020001';
         $gaugeBonusBUnitID = '2015063020011';
         $gaugeBonusCUnitID = '2015063020025';
@@ -203,14 +203,24 @@ SQL;
             $bonusA2UnitID, $bonusB1UnitID, $bonusB2UnitID, $bonusC1UnitID, $bonusC2UnitID);
 
         // 1. Get all the detailed answers that are part of the test
+        // ctp#366 Exclude duplicates for each item
         $sql = <<<SQL
-			SELECT *
-			FROM T_ScoreDetail
-			WHERE F_SessionID=?
+            SELECT sd.*
+        	FROM T_ScoreDetail sd
+	        INNER JOIN (
+              SELECT F_SessionID as id, F_ItemID as itemID, MIN(F_DateStamp) as firstRecord
+		      FROM T_ScoreDetail
+		      WHERE F_SessionID=?
 SQL;
         $sql .= " AND F_UnitID in ('".implode("','",$includeUnitIDs)."')";
-        $sql .= ' ORDER BY F_DateStamp asc';
-        $bindingParams = array($session->sessionId);
+        $sql .= <<<SQL
+		      GROUP BY F_ExerciseID, F_ItemID
+	        ) i ON sd.F_SessionID = i.id AND sd.F_ItemID = i.itemID AND sd.F_DateStamp = i.firstRecord
+	        WHERE sd.F_SessionID=?
+SQL;
+        $sql .= " AND F_UnitID in ('".implode("','",$includeUnitIDs)."')";
+        $sql .= " GROUP BY sd.F_ExerciseID, sd.F_ItemID;";
+        $bindingParams = array($session->sessionId, $session->sessionId);
         $rs = $this->db->Execute($sql, $bindingParams);
 
         if ($rs->RecordCount()==0)

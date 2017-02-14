@@ -241,6 +241,9 @@ class CTPService extends BentoService {
         // Commit all the database inserts and updates
         $this->db->CompleteTrans();
 
+        // If you want to test what happens if scores are written but CTP thinks they are not...
+        //throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => "Fake error"));
+
         return array("success" => true);
     }
 
@@ -255,16 +258,16 @@ class CTPService extends BentoService {
             $session->result = $this->progressOps->getTestResult($session, $mode);
 
             // ctp#261 Find the datestamp of the first real score in the test to update the session with
-            $firstScoreDetail = $this->testOps->getFirstScore($sessionId);
-            $session->startedDateStamp = $firstScoreDetail->dateStamp;
+            $firstScore = $this->testOps->getFirstScore($sessionId);
+            $session->startedDateStamp = $firstScore->dateStamp;
             $isDirty = true;
         }
 
         // gh#151 Have we closed the session?
         if (!$session->completedDateStamp) {
             // ctp#261 Get the last score written for this session
-            $lastScoreDetail = $this->testOps->getLastScore($sessionId);
-            $session->completedDateStamp = $lastScoreDetail->dateStamp;
+            $lastScore = $this->testOps->getLastScore($sessionId);
+            $session->completedDateStamp = $lastScore->dateStamp;
             $isDirty = true;
         }
 

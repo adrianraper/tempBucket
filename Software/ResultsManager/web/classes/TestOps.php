@@ -189,13 +189,14 @@ EOD;
     }
 
     // ctp#261 Find the first real score written for this session (so not including requirements)
-    public function getFirstScore($sessionId)     {
+    public function getFirstScore($sessionId) {
 	    // This works because the first 'exercise' in gauge is the instructions. You get a score
         // record for when you have finished reading that (submit), which is almost perfect for when you actually start.
+        // It is (as of DPT launch) much quicker to read T_ScoreDetail than T_Score
         $gaugeUnitID = '2015063020001';
         $sql = <<<EOD
 			SELECT * 
-			FROM T_Score
+			FROM T_ScoreDetail
 			WHERE F_SessionID=?
 			AND F_UnitID=?
             ORDER BY F_DateStamp asc
@@ -205,21 +206,21 @@ EOD;
         $rs = $this->db->Execute($sql, $bindingParams);
         if ($rs && $rs->RecordCount() > 0){
             $dbObj = $rs->FetchNextObj();
-            $scoreDetail = new ScoreDetail();
-            $scoreDetail->fromDatabaseObj($dbObj);
+            $score = new ScoreDetail();
+            $score->fromDatabaseObj($dbObj);
         } else {
-            $scoreDetail = null;
+            $score = null;
         }
-        return $scoreDetail;
+        return $score;
     }
 
     // ctp#261 Find the last score written for this session
-    public function getLastScore($sessionId)     {
+    public function getLastScore($sessionId) {
         // TODO make sure that it is not too time consuming to read T_Score like this as a very big table
         // Although F_SessionID is an index
         $sql = <<<EOD
 			SELECT * 
-			FROM T_Score
+			FROM T_ScoreDetail
 			WHERE F_SessionID=?
             ORDER BY F_DateStamp desc
             LIMIT 0,1
@@ -228,12 +229,12 @@ EOD;
         $rs = $this->db->Execute($sql, $bindingParams);
         if ($rs && $rs->RecordCount() > 0){
             $dbObj = $rs->FetchNextObj();
-            $scoreDetail = new ScoreDetail();
-            $scoreDetail->fromDatabaseObj($dbObj);
+            $score = new ScoreDetail();
+            $score->fromDatabaseObj($dbObj);
         } else {
-            $scoreDetail = null;
+            $score = null;
         }
-        return $scoreDetail;
+        return $score;
     }
 
     // The rest of the class is related to Bento

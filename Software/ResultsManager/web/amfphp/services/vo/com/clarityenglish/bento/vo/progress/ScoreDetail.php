@@ -131,10 +131,9 @@ class ScoreDetail {
 		$this->unitID = $obj->F_UnitID;
 		$this->exerciseID = $obj->F_ExerciseID;
 		$this->score = $obj->F_Score;
-		$this->itemdID = $obj->F_ItemID;
+		$this->itemID = $obj->F_ItemID;
 		$this->detail = $obj->F_Detail;
         $this->group = $obj->F_Group;
-
 	}
 	
 }
