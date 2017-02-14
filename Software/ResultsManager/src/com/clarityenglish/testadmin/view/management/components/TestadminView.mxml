@@ -121,7 +121,7 @@
 				// ctp#214 Need to send the test administrator details for the email too
 				//var administrator:Object = {name: Constants.userName, email: Constants.email};
 				// ctp#354
-				var emailInsertion:String = (test.emailInsertion) ? JSON.decode(test.emailInsertion) : null;
+				var emailInsertion:Object = (test.emailInsertion) ? JSON.decode(test.emailInsertion) : null;
 				welcomeEmailTemplate.data = {test: test, emailDetails: emailInsertion};
 				var usersWithoutEmail:uint = countUsersWithNoEmail();
 				
