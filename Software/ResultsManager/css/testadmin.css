@@ -9,7 +9,7 @@
 /* } */
 
 @font-face { 
-	src: url("../assets/HelveticaNeueLTStd-Bd_0.otf"); 
+	src: url("../assets/HelveticaLTStd-Bold.otf"); 
 	fontFamily: "Helvetica Neue Lt Std"; 
 	fontWeight: bold;
 }
@@ -25,6 +25,7 @@ GradientCanvas {
 	cornerRadius: 0;
 }
 */
+/* Login screen */
 .prompt {
 	fontFamily: "Helvetica Neue Lt Std";
 	color: #ffffff;
@@ -33,34 +34,75 @@ GradientCanvas {
 }
 .promptGrey {
 	fontFamily: "Helvetica Neue Lt Std";
-	color: #666666;
+	color: #999999;
 	fontSize: 16;
 	fontWeight: bold;
 }
+/* Has to be Arial as used for typing in details */
 .promptEntry {
-	fontFamily: "Helvetica Neue Lt Std";
+	fontFamily: "Arial";
 	color: #0b7bad;
 	fontSize: 16;
 	fontWeight: bold;
 }
+.promptEntryPassword {
+	fontFamily: "Helvetica Neue Lt Std";
+	color: #0b7bad;
+	fontSize: 26;
+}
 .forgotPassword {
 	fontFamily: "Helvetica Neue Lt Std";
 	color: #fdb81d;
-	fontSize: 13;
+	fontSize: 24;
 	fontWeight: normal;
 	text-decoration: underline;
 }
 .forgotPasswordGrey {
 	fontFamily: "Helvetica Neue Lt Std";
 	color: #414042;
-	fontSize: 13;
+	fontSize: 14;
 	fontWeight: normal;
 	text-decoration: underline;
 }
 .loginButton {
 	fontFamily: "Helvetica Neue Lt Std";
 	color: #ffffff;
-	fontSize: 16;
+	fontSize: 14;
+	fontWeight: bold;
+}
+
+/* For use in the main screen banner */
+.licenceNumber {
+	fontFamily: "Helvetica Neue Lt Std";
+	color: #44AA66;
+	fontSize: 40;
+	fontWeight: normal;
+}
+/* For use in the column headings */
+.bannerStepNumbers {
+	fontFamily: "Helvetica Neue Lt Std";
+	color: #ffffff;
+	fontSize: 100;
+	fontWeight: bold;
+}
+/* For all headings and main instructions */
+.subHeadingLabelBlack, .inputPromptBlack {
+	fontFamily: "Helvetica Neue Lt Std";
+	color: #000000;
+	fontSize: 13;
+	fontWeight: bold;
+}
+.detailedHeadingLabelBlack {
+	fontFamily: "Helvetica Neue Lt Std";
+	color: #000000;
+	fontSize: 11;
+	fontWeight: normal;
+}
+/* Are these used ?*/
+.inputLabelBlack {
+	fontFamily: "Helvetica Neue Lt Std";
+	color: #000000;
+	fontSize: 13;
 	fontWeight: bold;
 }
 .smallText {
@@ -69,16 +111,9 @@ GradientCanvas {
 	fontSize: 13;
 	fontWeight: normal;
 }
-
-.subHeadingLabelBlack {
-	fontFamily: "Helvetica Neue Lt Std";
-	color: #000000;
-	fontSize: 12;
-	fontWeight: bold;
-}
 .headingLabelWhite{
 	color: #FFFFFF;
-	fontSize: 13;
+	fontSize: 14;
 	fontWeight: bold;
 }
 .headingLabelBlack{
@@ -86,6 +121,7 @@ GradientCanvas {
 	fontSize: 13;
 	fontWeight: bold;
 }
+
 CheckBox {
 	disabledBorderColor: #EEEEEE;
 	disabledFillAlphas: 0.01, 0.02;
@@ -110,13 +146,29 @@ ButtonBar {
 }
 
 TextArea {
-	backgroundColor:#F9FFA7;
+	backgroundColor:#FFFFFF;
+	borderStyle: inset;
 }
 
 Tab {
 	fillColors: #F0EB9E, #FFD184;
 }
 
+Tree {
+	folderClosedIcon: ClassReference(null);
+	folderOpenIcon: ClassReference(null);
+	defaultLeafIcon: ClassReference(null);
+	selectionColor: #44aa66;
+	rollOverColor: #00a79d;
+	textSelectedColor: #ffffff;
+}
+TreeItemRenderer {
+	verticalCenter: 0;	
+	fontFamily: "Arial"; 
+	fontSize: 13;
+	fontWeight: normal;
+	rollOverColor: #ffffff;
+}
 .notSelectedTabStyle {
 	backgroundColor: #F0EB9E;
 	fontFamily: Verdana;
@@ -132,16 +184,37 @@ Tab {
 	color: #613C00;
 }
 .errorMessage {
-	fontSize: 12;
+	fontSize: 14;
 	fontWeight: bold;
-	color: #ff0000;
+	color: #d95982;
 }
-.testList {
-	fontFamily: "Helvetica Neue Lt Std"; 
+/* Gradient backgrounds */
+
+/* Data shown on screen */
+.testList, .inputEntry  {
+	fontFamily: "Arial"; 
 	fontSize: 12;
-	fontWeight: bold;
+	fontWeight: normal;
 }
 .flatButton {
 	fontFamily: "Helvetica Neue Lt Std";
-	fontSize: 12;
+	fontSize: 14;
+	disabledColor: #999999; 
+}
+.panelTitleStyle {
+	fontFamily: "Helvetica Neue Lt Std";
+	textAlign: center;
+	fontSize: 14;
+	fontWeight: bold;
+}
+.importTextArea {
+	borderColor: #999999;
+}
+.gradientBackgroundEnabled {
+	backgroundImage: ClassReference("com.clarityenglish.testadmin.view.login.components.GradientBackground");
+	backgroundSize: "100%";
+	fillColors: #FFFFFF, #DCDDDE;
+	fillAlphas: 0.5, 0.5;
+	gradientType: 'radial';
+	focalPointRatio: 0;
 }

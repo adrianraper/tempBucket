@@ -68,7 +68,7 @@ require_once(dirname(__FILE__)."/AbstractService.php");
 class ClarityService extends AbstractService {
 	
 	var $db;
-    const sessionLifetime = 60; // production should be 86400
+    const sessionLifetime = 86400; // production should be 86400
 	
 	function __construct() {
 		parent::__construct();

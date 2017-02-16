@@ -4,23 +4,23 @@ Mediator - PureMVC
 package com.clarityenglish.testadmin.view.management {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.EmailEvent;
+	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.content.Content;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.*;
-	import com.clarityenglish.testadmin.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.RMNotifications;
 	import com.clarityenglish.resultsmanager.model.ContentProxy;
 	import com.clarityenglish.resultsmanager.model.LicenceProxy;
 	import com.clarityenglish.resultsmanager.model.ReportProxy;
 	import com.clarityenglish.resultsmanager.model.TestProxy;
 	import com.clarityenglish.resultsmanager.model.UsageProxy;
-	import com.clarityenglish.testadmin.view.*;
-	import com.clarityenglish.testadmin.view.management.components.*;
 	import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
 	import com.clarityenglish.resultsmanager.view.shared.events.TestEvent;
-	import com.clarityenglish.utils.TraceUtils;
+	import com.clarityenglish.testadmin.ApplicationFacade;
+	import com.clarityenglish.testadmin.view.*;
+	import com.clarityenglish.testadmin.view.management.components.*;
 	
 	import flash.events.Event;
 	
@@ -53,10 +53,11 @@ package com.clarityenglish.testadmin.view.management {
 			facade.registerMediator(new ManageablesMediator(testadminView.manageablesView));
 			
 			testadminView.addEventListener(ReportEvent.GENERATE, onGenerateReport);
+			testadminView.addEventListener(LoginEvent.LOGOUT, onLogout);
 			
 			//testadminView.testDetailPanel.addEventListener(TestEvent.UPDATE, onTestUpdate);
 			testadminView.testDetailPanel.addEventListener(TestEvent.ADD, onTestAdd);
-			//testadminView.testDetailPanel.addEventListener(TestEvent.CANCEL, onTestCancel);
+			testadminView.testDetailPanel.addEventListener(TestEvent.CANCEL, onTestCancel);
 			testadminView.addEventListener(TestEvent.DELETE, onTestUpdate);
 			testadminView.addEventListener(TestEvent.UPDATE, onTestUpdate);
 			
@@ -230,9 +231,9 @@ package com.clarityenglish.testadmin.view.management {
 		private function onTestUpdate(e:TestEvent):void {			
 			sendNotification(RMNotifications.UPDATE_TEST, e);
 		}
-		//private function onTestCancel(e:TestEvent):void {			
-		//	testadminView.resetSelection();
-		//}
+		private function onTestCancel(e:TestEvent):void {			
+			testadminView.resetSelection();
+		}
 		private function onTestAdd(e:TestEvent):void {			
 			sendNotification(RMNotifications.ADD_TEST, e);
 		}
@@ -242,6 +243,9 @@ package com.clarityenglish.testadmin.view.management {
 		}
 		private function onPreviewEmail(e:EmailEvent):void {
 			sendNotification(CommonNotifications.PREVIEW_EMAIL, e);
+		}
+		private function onLogout(e:LoginEvent):void {
+			sendNotification(CommonNotifications.LOGOUT);
 		}
 	}
 }

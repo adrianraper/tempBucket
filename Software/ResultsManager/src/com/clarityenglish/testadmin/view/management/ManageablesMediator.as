@@ -66,22 +66,22 @@ package com.clarityenglish.testadmin.view.management {
 			manageablesView.addEventListener(ManageableEvent.UPDATE_USERS, onUpdateUsers);
 			manageablesView.addEventListener(ManageableEvent.DELETE, onDelete);
 			manageablesView.addEventListener(ManageableEvent.MOVE_MANAGEABLES, onMoveManageables);
-			manageablesView.addEventListener(ManageableEvent.EXPORT, onExport);
-			manageablesView.addEventListener(ManageableEvent.ARCHIVE, onArchive);
+			//manageablesView.addEventListener(ManageableEvent.EXPORT, onExport);
+			//manageablesView.addEventListener(ManageableEvent.ARCHIVE, onArchive);
 			manageablesView.addEventListener(ManageableEvent.IMPORT, onImport);
 			// v3.6.1 Allow moving as well as importing
 			// gh#653
 			manageablesView.addEventListener(ManageableEvent.IMPORT_FROM_EXCEL, onImportFromExcel);
 			manageablesView.addEventListener(ManageableEvent.IMPORT_FROM_EXCEL_WITH_MOVE, onImportFromExcel);
 			manageablesView.addEventListener(ManageableEvent.IMPORT_FROM_EXCEL_WITH_COPY, onImportFromExcel);
-			manageablesView.addEventListener(ManageableEvent.GET_EXTRA_GROUPS, onGetExtraGroups);
-			manageablesView.addEventListener(ExtraGroupsEvent.SET_EXTRA_GROUPS, onSetExtraGroups);
+			//manageablesView.addEventListener(ManageableEvent.GET_EXTRA_GROUPS, onGetExtraGroups);
+			//manageablesView.addEventListener(ExtraGroupsEvent.SET_EXTRA_GROUPS, onSetExtraGroups);
 			manageablesView.addEventListener(SearchEvent.SEARCH, onSearch);
 			manageablesView.addEventListener(SearchEvent.CLEAR_SEARCH, onClearSearch);
-			manageablesView.addEventListener(ReportEvent.SHOW_REPORT_WINDOW, onShowReportWindow);
-			manageablesView.addEventListener(SelectEvent.EXPIRED_USERS, onSelectExpiredUsers);
-			manageablesView.addEventListener(ContentEvent.CHECK_FOLDER, onCheckEditingContentFolder);
-			manageablesView.addEventListener(ContentEvent.RESET_CONTENT, onResetEditingContentFolder);
+			//manageablesView.addEventListener(ReportEvent.SHOW_REPORT_WINDOW, onShowReportWindow);
+			//manageablesView.addEventListener(SelectEvent.EXPIRED_USERS, onSelectExpiredUsers);
+			//manageablesView.addEventListener(ContentEvent.CHECK_FOLDER, onCheckEditingContentFolder);
+			//manageablesView.addEventListener(ContentEvent.RESET_CONTENT, onResetEditingContentFolder);
 			
 			manageablesView.addEventListener(LogEvent.ERROR, onLog);
 			
@@ -150,9 +150,9 @@ package com.clarityenglish.testadmin.view.management {
 					manageablesView.onClearSearchSelect(null);
 					onClearSearch(null);
 					break;
-				case RMNotifications.EXTRA_GROUPS_LOADED:
-					manageablesView.setExtraGroupsResults(note.getBody() as Array);
-					break;
+				//case RMNotifications.EXTRA_GROUPS_LOADED:
+				//	manageablesView.setExtraGroupsResults(note.getBody() as Array);
+				//	break;
 				case RMNotifications.XML_IMPORTED:
 					//TraceUtils.myTrace("manageablesMediator.setImportResults");
 					manageablesView.setImportResults(note.getBody() as Array);
@@ -231,13 +231,13 @@ package com.clarityenglish.testadmin.view.management {
 			sendNotification(RMNotifications.MOVE_MANAGEABLES, e);
 		}
 		
-		private function onExport(e:ManageableEvent):void {
-			sendNotification(RMNotifications.EXPORT_MANAGEABLES, e);
-		}
+		//private function onExport(e:ManageableEvent):void {
+		//	sendNotification(RMNotifications.EXPORT_MANAGEABLES, e);
+		//}
 		
-		private function onArchive(e:ManageableEvent):void {
-			sendNotification(RMNotifications.ARCHIVE_MANAGEABLES, e);
-		}
+		//private function onArchive(e:ManageableEvent):void {
+		//	sendNotification(RMNotifications.ARCHIVE_MANAGEABLES, e);
+		//}
 		
 		private function onImport(e:ManageableEvent):void {
 			sendNotification(RMNotifications.UPLOAD_XML, { completeNotification: RMNotifications.IMPORT_MANAGEABLES, completeBody: e.parentGroup, completeType: ImportManageablesCommand.XML_IMPORT } );
@@ -251,15 +251,15 @@ package com.clarityenglish.testadmin.view.management {
 			sendNotification(RMNotifications.IMPORT_MANAGEABLES, body, e.type);
 		}
 		
-		private function onGetExtraGroups(e:ManageableEvent):void {
-			// Since this has no side-effects we can access the proxy directly instead of going through a command
-			var manageablesProxy:ManageableProxy = facade.retrieveProxy(ManageableProxy.NAME) as ManageableProxy;
-			manageablesProxy.getExtraGroups(e.manageable as User);
-		}
+		//private function onGetExtraGroups(e:ManageableEvent):void {
+		//	// Since this has no side-effects we can access the proxy directly instead of going through a command
+		//	var manageablesProxy:ManageableProxy = facade.retrieveProxy(ManageableProxy.NAME) as ManageableProxy;
+		//	manageablesProxy.getExtraGroups(e.manageable as User);
+		//}
 		
-		private function onSetExtraGroups(e:ExtraGroupsEvent):void {
-			sendNotification(RMNotifications.SET_EXTRA_GROUPS, e);
-		}
+		//private function onSetExtraGroups(e:ExtraGroupsEvent):void {
+		//	sendNotification(RMNotifications.SET_EXTRA_GROUPS, e);
+		//}
 		
 		private function onSearch(e:SearchEvent):void {
 			filterDataDescriptor.setSearch(e);
@@ -275,19 +275,17 @@ package com.clarityenglish.testadmin.view.management {
 			manageablesView.tree.openItems = beforeSearchOpenItems;
 		}
 		
-		private function onCheckEditingContentFolder(e:ContentEvent):void {
-			//MonsterDebugger.trace(this, "onCheckEditingContentFolder in Man.mediator");
-			// You do this through a command rather than direct to the proxy as it changes stuff outside the program
-			sendNotification(RMNotifications.CHECK_FOLDER, e);
-		}
-		private function onResetEditingContentFolder(e:ContentEvent):void {
-			//MonsterDebugger.trace(this, "onCheckEditingContentFolder in Man.mediator");
-			// You do this through a command rather than direct to the proxy as it changes stuff outside the program
-			sendNotification(RMNotifications.RESET_CONTENT, e);
-		}
-		
+		//private function onCheckEditingContentFolder(e:ContentEvent):void {
+		//	// You do this through a command rather than direct to the proxy as it changes stuff outside the program
+		//	sendNotification(RMNotifications.CHECK_FOLDER, e);
+		//}
+		//private function onResetEditingContentFolder(e:ContentEvent):void {
+		//	// You do this through a command rather than direct to the proxy as it changes stuff outside the program
+		//	sendNotification(RMNotifications.RESET_CONTENT, e);
+		//}
+
+		/*
 		private function onSelectExpiredUsers(e:SelectEvent):void {
-			//MonsterDebugger.trace(this, "onSelectExpiredUsers in Man.mediator");
 			var manageablesProxy:ManageableProxy = facade.retrieveProxy(ManageableProxy.NAME) as ManageableProxy;
 			
 			var expiredUsers:Array = manageablesProxy.getExpiredUsers(e.manageables);
@@ -309,11 +307,12 @@ package com.clarityenglish.testadmin.view.management {
 				manageablesView.showNoExpiredUsersAlert();
 			}
 		}
-		
+		*/
+		/*
 		private function onShowReportWindow(e:ReportEvent):void {
 			sendNotification(RMNotifications.SHOW_REPORT_WINDOW, e);
 		}
-		
+		*/
 		private function onLog(e:LogEvent):void {
 			switch (e.type) {
 				case LogEvent.NOTICE:

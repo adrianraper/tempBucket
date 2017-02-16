@@ -42,7 +42,7 @@
 		private var _closeTime:Date;
 		
 		// ctp#214
-		public var emailInsertion:String;
+		//public var emailInsertion:String;
 
 		public var menuFilename:String;
 		
@@ -67,7 +67,7 @@
 			newTest._closeTime = this._closeTime;
 			newTest.menuFilename = this.menuFilename;
 			newTest.status = this.status;
-			newTest.emailInsertion = this.emailInsertion;
+			//newTest.emailInsertion = this.emailInsertion;
 			return newTest;
 		}
 		public function set closeTime(value:String):void {

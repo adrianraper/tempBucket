@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	creationComplete="creationComplete()" 
+	borderAlpha="0.9"
+	dropShadowEnabled = "true"
+	width="400"
+	borderColor="#FFFFFF"
+	backgroundColor="#FFFFFF"
+	implements="com.clarityenglish.common.view.interfaces.CopyReceiver" xmlns:components="com.clarityenglish.resultsmanager.view.login.components.*">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.resultsmanager.Constants;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;;
+		import com.clarityenglish.resultsmanager.view.management.events.ManageableEvent;
+		import com.clarityenglish.common.vo.manageable.Group;
+		import com.clarityenglish.common.vo.manageable.User;
+		import flash.events.Event;
+		import mx.core.IFlexDisplayObject;
+		import mx.managers.PopUpManager;
+		import com.clarityenglish.testadmin.view.login.components.FlatButtonSkin;
+		
+		private var _group:Group;
+		private var _parentGroup:Group;
+		
+		public var parentView:IFlexDisplayObject;
+		
+		[Bindable]
+		public var editMode:Boolean;
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			title = copyProvider.getCopyForId("addGroupWindowTitle");
+			groupNameLabel.text = copyProvider.getCopyForId("name");
+			addButton.label = copyProvider.getCopyForId(editMode ? "update" : "add");
+			cancelButton.label = copyProvider.getCopyForId("cancel");
+			//groupInfoItem.label = copyProvider.getCopyForId("groupID");
+		}
+		
+		public function set parentGroup(value:Group):void {
+			_parentGroup = value;
+		}
+		
+		public function set group(value:Group):void {
+			_group = value;
+			
+			groupNameTextInput.text = _group.name;
+			//groupID.text = _group.id;
+			//myGroupsCheckBox.selected = _group.enableMyGroups;
+		}
+		
+		private function submit():void {
+			if (Constants.userType != User.USER_TYPE_REPORTER) {
+				_group.name = groupNameTextInput.text;
+				
+				// Since PopUps live on a different branch of the display tree we need to explicitly dispatch the event from the parentView
+				parentView.dispatchEvent(new ManageableEvent(editMode ? ManageableEvent.UPDATE_GROUPS : ManageableEvent.ADD_GROUP, [ _group ], _parentGroup, true));
+			}
+			
+			removePopup();
+		}
+		
+		private function removePopup():void {
+			PopUpManager.removePopUp(this);
+		}
+		
+		private function creationComplete():void {
+			groupNameTextInput.setFocus();
+			groupNameTextInput.setSelection(0, 0);
+			
+			// The add button is not available to reporters
+			addButton.visible = addButton.includeInLayout = (Constants.userType != User.USER_TYPE_REPORTER);
+		}
+		
+		]]>
+	</mx:Script>
+	<mx:HBox width="100%" height="100%" paddingTop="10" paddingRight="10" paddingBottom="20" paddingLeft="20">
+		<mx:Label id="groupNameLabel" width="80" styleName="inputLabelBlack" textAlign="left" />
+		<mx:TextInput id="groupNameTextInput" width="100%" styleName="inputEntry" />
+	</mx:HBox>
+	<mx:ControlBar width="100%" horizontalAlign="center">
+		<mx:Button id="cancelButton" click="removePopup()" 
+				   width="120" height="30" overSkin="{FlatButtonSkin}" upSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}" disabledSkin="{FlatButtonSkin}"
+				   textRollOverColor="#FFFFFF" styleName="flatButton"/>
+		<mx:Spacer width="20" />
+		<mx:Button id="addButton" enabled="{groupNameTextInput.text.length > 0}" click="submit()" 
+				   width="120" height="30" overSkin="{FlatButtonSkin}" upSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}" disabledSkin="{FlatButtonSkin}" 
+				   textRollOverColor="#FFFFFF" styleName="flatButton"/>
+	</mx:ControlBar>
+</mx:TitleWindow>

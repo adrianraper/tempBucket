@@ -12,6 +12,7 @@
 			import com.clarityenglish.resultsmanager.Constants;
 			import com.clarityenglish.resultsmanager.view.shared.events.TestEvent;
 			import com.clarityenglish.testadmin.view.login.components.FlatButtonSkin;
+			import com.clarityenglish.testadmin.view.login.components.GradientBackground;
 			
 			import flash.display.*;
 			import flash.display.Loader;
@@ -88,26 +89,21 @@
 				captionLabel.text = copyProvider.getCopyForId("testCaptionLabel");
 				openTimeLabel.text = copyProvider.getCopyForId("testOpenTimeLabel");
 				closeTimeLabel.text = copyProvider.getCopyForId("testCloseTimeLabel");
-				startByCode.label = copyProvider.getCopyForId("testCodeLabel");
-				startByTimer.label = copyProvider.getCopyForId("testTimeLabel");
-				startConditionsLabel.text = copyProvider.getCopyForId("testStartConditionLabel");
-				showResultLabel.text = copyProvider.getCopyForId("testShowResultLabel");
-				//cancelButton.label = copyProvider.getCopyForId("cancelButton");
+				startByCode.label = copyProvider.getCopyForId("testStartConditionLabel");
+				//startByTimer.label = copyProvider.getCopyForId("testTimeLabel");
+				//startConditionsLabel.text = copyProvider.getCopyForId("testStartConditionLabel");
+				showResult.label = copyProvider.getCopyForId("testShowResultLabel");
+				cancelButton.label = copyProvider.getCopyForId("cancelButton");
 				saveButton.label = copyProvider.getCopyForId("saveTestDetail");
-				startByCode.label = showResult.label = copyProvider.getCopyForId("yesButton");
-				startByTimer.label = hideResult.label = copyProvider.getCopyForId("noButton");
+				//startByTimer.label = hideResult.label = copyProvider.getCopyForId("noButton");
 				// ctp#60
 				languageLabel.text = copyProvider.getCopyForId("languageLabel");
 				// ctp#214
-				emailInsertionNoteLabel.text = copyProvider.getCopyForId("emailInsertionNoteLabel");
+				//emailInsertionNoteLabel.text = copyProvider.getCopyForId("emailInsertionNoteLabel");
 				// ctp#351
-				emailInsertionNameLabel.text = copyProvider.getCopyForId("emailInsertionNameLabel");
-				emailInsertionEmailLabel.text = copyProvider.getCopyForId("emailInsertionEmailLabel");
-				emailInsertionSubjectLabel.text = copyProvider.getCopyForId("emailInsertionSubjectLabel");
-				//testDetailsCaption.text = copyProvider.getCopyForId("testDetailsCaption");
-				
-				testDetailsLabel.text = copyProvider.getCopyForId("testAdminTestDetails");
-
+				//emailInsertionNameLabel.text = copyProvider.getCopyForId("emailInsertionNameLabel");
+				//emailInsertionEmailLabel.text = copyProvider.getCopyForId("emailInsertionEmailLabel");
+				//emailInsertionSubjectLabel.text = copyProvider.getCopyForId("emailInsertionSubjectLabel");
 			}
 			
 			public function setDataProvider(test:ScheduledTest):void {
@@ -154,6 +150,7 @@
 					}
 					
 					//dataProvider.emailInsertion = '"{\"note\":\"Come to the classroom\"}"';
+					/*
 					try {
 						var emailInsertionObject:Object = (dataProvider.emailInsertion) ? JSON.decode(unescape(dataProvider.emailInsertion)) : new Object();
 					} catch(e:Error) {
@@ -164,10 +161,11 @@
 						emailInsertionObject = new Object();
 					
 					// ctp#214 ctp#351
-					emailInsertionNoteData.text = (emailInsertionObject.note) ? (emailInsertionObject.note) : '';
-					emailInsertionNameData.text = (emailInsertionObject.name) ? unescape(emailInsertionObject.name) : Constants.userName;
-					emailInsertionEmailData.text = (emailInsertionObject.email) ? unescape(emailInsertionObject.email) : Constants.email;
-					emailInsertionSubjectData.text = (emailInsertionObject.subject) ? unescape(emailInsertionObject.subject) : copyProvider.getCopyForId("emailInsertionSubject", {name: emailInsertionNameData.text});
+					//emailInsertionNoteData.text = (emailInsertionObject.note) ? (emailInsertionObject.note) : '';
+					//emailInsertionNameData.text = (emailInsertionObject.name) ? unescape(emailInsertionObject.name) : Constants.userName;
+					//emailInsertionEmailData.text = (emailInsertionObject.email) ? unescape(emailInsertionObject.email) : Constants.email;
+					//emailInsertionSubjectData.text = (emailInsertionObject.subject) ? unescape(emailInsertionObject.subject) : copyProvider.getCopyForId("emailInsertionSubject", {name: emailInsertionNameData.text});
+					*/
 					
 					// Is the data editable?
 					setDataEditable(dataProvider.status == ScheduledTest.STATUS_PRERELEASE);
@@ -180,34 +178,46 @@
 				captionData.editable = startData.editable = editable; 
 				openTimeDataDate.enabled = closeTimeDataDate.enabled = editable;
 				openTimeDataHours.enabled = closeTimeDataHours.enabled = editable; 
-				showResult.enabled = hideResult.enabled = startByCode.enabled = startByTimer.enabled = editable;
-				saveButton.enabled = editable;
+				showResult.enabled = startByCode.enabled = editable;
+				saveButton.enabled = cancelButton.enabled = editable;
 				languageData.enabled = editable;
-				emailInsertionNoteData.enabled = emailInsertionNameData.enabled = emailInsertionEmailData.enabled = emailInsertionSubjectData.enabled = editable;
+
+				// This work, but gives wrong look
+				//wholeDetailPanel.enabled = editable;
+				var styleName:String = (editable) ? null : "gradientBackgroundEnabled";
+				wholeDetailPanel.setStyle("styleName", (editable) ? null : "gradientBackgroundEnabled");
+				
+				// Turn off all selection and focus for stuff in the panel
+				wholeDetailPanel.tabEnabled = editable;
+				wholeDetailPanel.focusEnabled = editable;
+				//captionData.selectable = editable;
+			}
+			
+			private function selectionChanged(e:Event):void {
+				switch (e.currentTarget) {
+					case startByCode:
+						_startByCode = e.currentTarget.selected;
+						break;
+					case showResult:
+						_showResult = e.currentTarget.selected;
+						break;
+				}
 			}
 			public function dateChanged(e:Event):void {
-				if (closeTimeDataDate.selectedDate)
-					_closeDate = closeTimeDataDate.selectedDate;
 				if (openTimeDataDate.selectedDate)
 					_openDate = openTimeDataDate.selectedDate;
-				if (e.target == openTimeDataHours) {
-					if (_openDate) {
-						_openDate.hours = openTimeDataHours.selectedItem.data.hours;
-						_openDate.minutes = openTimeDataHours.selectedItem.data.mins;
-					}
+				if (_openDate) {
+					_openDate.hours = openTimeDataHours.selectedItem.data.hours;
+					_openDate.minutes = openTimeDataHours.selectedItem.data.mins;
 				}
-				if (e.target == closeTimeDataHours) {
-					if (_closeDate) {
-						_closeDate.hours = closeTimeDataHours.selectedItem.data.hours;
-						_closeDate.minutes = closeTimeDataHours.selectedItem.data.mins;
-					}
+				if (closeTimeDataDate.selectedDate)
+					_closeDate = closeTimeDataDate.selectedDate;
+				if (_closeDate) {
+					_closeDate.hours = closeTimeDataHours.selectedItem.data.hours;
+					_closeDate.minutes = closeTimeDataHours.selectedItem.data.mins;
 				}
-				
 			}
-			//public function onDataChange(e:Event):void {
-			//	var tdA:ScheduledTest = getTestFromScreen();
-			//	_isDirty = !_isEqual(tdA, dataProvider);
-			//}
+
 			private function getTestFromScreen():ScheduledTest {
 				var updatedTest:ScheduledTest = new ScheduledTest();
 				
@@ -218,7 +228,6 @@
 				updatedTest.language = dataProvider.language;
 				updatedTest.status = dataProvider.status;
 				
-				// Data validation on times
 				if (_openDate)
 					updatedTest.openTime = DateUtils.dateAndTimeToString(_openDate);
 				if (_closeDate)
@@ -228,13 +237,10 @@
 				updatedTest.startType = (startByCode.selected) ? 'code' : 'timer';
 				updatedTest.startData = (startByCode.selected) ? startData.text : null;
 				updatedTest.language = languageData.selectedItem.data;
-				// ctp#214 TODO Make sure that any html is removed
-				updatedTest.emailInsertion = JSON.encode({note: safeChars(emailInsertionNoteData.text),
-					name: safeChars(emailInsertionNameData.text), 
-					email: safeChars(emailInsertionEmailData.text), 
-					subject: safeChars(emailInsertionSubjectData.text)});
+				
 				return updatedTest;
 			}
+			
 			private function safeChars(text:String):String {
 				var build:String = escape(text);
 				var pattern:RegExp = /%22/g;
@@ -249,42 +255,36 @@
 					(tdA.caption == tdB.caption) &&
 					(tdA.showResult == tdB.showResult) &&
 					(tdA.startType == tdB.startType) && 
-					(tdA.language == tdB.language) && 
-					(tdA.emailInsertion == tdB.emailInsertion));
+					(tdA.language == tdB.language)); 
+					// (tdA.emailInsertion == tdB.emailInsertion));
 			}
 			// Have enough details been added?
 			private function isComplete():Boolean {
 				_errorText = "";
 				
 				if (!_closeDate) {
-					_errorText = "There must be a close time.";
+					_errorText = copyProvider.getCopyForId("testMissingCloseTime");
 					return false;
 				}
 				
 				// Check the start time
 				if (!_openDate) {
-					_errorText = "There must be a start time.";
+					_errorText = copyProvider.getCopyForId("testMissingOpenTime");
 					return false;
 				}
 				// Check the close time
 				if (_closeDate) {
-					//dateInterim = endTimeData.selectedDate;
-					//if (isNaN(dateInterim)) {
-					//	_errorText = "The close date/time is not understood. Try something like 2016-09-17 09:30";
-					//	return false;
-					//}
-					//var endTime:Date = new Date(dateInterim);
-					// TODO This comparison should include the times as well as days part
 					if (ObjectUtil.dateCompare(_openDate, _closeDate) >= 0) {
-						_errorText = "The close must be after the open.";
+						_errorText = copyProvider.getCopyForId("testCloseBeforeOpen");
 						return false;
 					}
 				}
 				
 				// Check the code
 				if (_startByCode) {
-					if (startData.text.length < 4) {
-						_errorText = "The code must be at least 4 characters long.";
+					var minLength:uint = 3;
+					if (startData.text.length < minLength) {
+						_errorText = copyProvider.getCopyForId("testCodeTooShort", {min: minLength}); // "The code must be at least 3 characters.";
 						return false;
 					}
 				}
@@ -300,9 +300,9 @@
 			dispatchEvent(new TestEvent(TestEvent.UPDATE, getTestFromScreen()));				
 			}
 			*/
-			//private function onCancel():void {
-			//	dispatchEvent(new TestEvent(TestEvent.CANCEL, null));
-			//}
+			private function onCancel():void {
+				dispatchEvent(new TestEvent(TestEvent.CANCEL, null));
+			}
 			private function onAdd():void {
 				if (isComplete()) {
 					dataProvider.status = ScheduledTest.STATUS_RELEASED;
@@ -312,129 +312,57 @@
 			private function formatDateTime(date:Date):String {
 				return DateUtils.formatDate(date, "D MMM YYYY");
 			}
-			// Used to tie two buttons together for toggle on / off display 
-			private function onToggle(e:Event):void {
-				switch (e.currentTarget) {
-					case startByCode:
-						_startByCode = true;
-						break;
-					case startByTimer:
-						_startByCode = false;
-						break;
-					case showResult:
-						_showResult = true;
-						break;
-					case hideResult:
-						_showResult = false;
-						break;
-				}
-			}
 		]]>
 	</mx:Script>
+	<mx:Style>
+	</mx:Style>
 	<!-- backgroundColor="#ECECEC" borderStyle="solid" -->
-	<mx:VBox width="100%" height="100%" paddingRight="1" verticalGap="0">
-		<mx:Label id="testDetailsLabel" styleName="subHeadingLabelBlack" width="100%" />
-		<mx:Spacer height="10" />
-		<mx:HBox width="100%" >
-			<!-- <mx:Button id="cancelButton" enabled="false" width="100" height="100%" /> -->
-			<!-- <mx:Label id="testDetailsCaption" width="100%" paddingTop="8" styleName="subHeadingLabelBlack"
-			textAlign="center"/> -->
-			<mx:Label id="errorTextLabel" text="{_errorText}" styleName="errorMessage"
-					  visible="{!(_errorText == '')}" includeInLayout="{!(_errorText == '')}" textAlign="center"/>
-		</mx:HBox>
-		<mx:VBox width="100%" backgroundColor="#ffffff" borderStyle="solid" paddingBottom="10"
-				 paddingLeft="20" paddingRight="20" paddingTop="10">
-			<mx:Label id="captionLabel" width="100%"/>
-			<mx:TextInput id="captionData" width="100%" enabled="true"/>
-		</mx:VBox>
-		<mx:Spacer height="12"/>
-		<mx:HBox width="100%" backgroundColor="#ffffff" borderStyle="solid" paddingBottom="10"
-				 paddingLeft="20" paddingRight="20" paddingTop="10">
-			<mx:VBox width="50%">
-				<mx:Text id="openTimeLabel" width="100%"/>
-				<mx:HBox>			
-					<mx:DateField id="openTimeDataDate" width="110" editable="false" enabled="true"
-								  labelFunction="formatDateTime"
-								  selectableRange="{{rangeStart : new Date()}}"
-								  yearNavigationEnabled="true"/>
-					<mx:ComboBox id="openTimeDataHours" enabled="true" width="70"
-								 dataProvider="{times}" labelFunction="displayTime"
-								 fontWeight="normal" fontFamily="Helvetica"/>
-				</mx:HBox>				
-			</mx:VBox>
-			<mx:VBox width="50%">
-				<mx:Text id="closeTimeLabel" width="100%" height="30"/>
-				<mx:HBox>			
-					<mx:DateField id="closeTimeDataDate" width="110" editable="false" enabled="true"
-								  labelFunction="formatDateTime"
-								  selectableRange="{{rangeStart : new Date()}}"
-								  yearNavigationEnabled="true"/>
-					<mx:ComboBox id="closeTimeDataHours" enabled="true" width="70"
-								 dataProvider="{times}" labelFunction="displayTime" 
-								 fontWeight="normal" fontFamily="Helvetica"/>
-				</mx:HBox>
-			</mx:VBox>
-		</mx:HBox>
-		<mx:Spacer height="12"/>
-		<mx:HBox width="100%" horizontalGap="0">
-			<mx:VBox width="50%" backgroundColor="#ffffff" borderStyle="solid" paddingBottom="10"
-					 paddingLeft="20" paddingRight="20" paddingTop="10">
-				<mx:Text id="startConditionsLabel" width="100%" height="30"/>
-				<mx:HBox>
-					<mx:Button id="startByCode" click="onToggle(event)" selected="{_startByCode}"
-							   styleName="{(_startByCode) ? 'selectedButton' : 'normalButton'}"
-							   toggle="true"/>
-					<mx:Button id="startByTimer" click="onToggle(event)" selected="{!_startByCode}"
-							   styleName="{(!_startByCode) ? 'selectedButton' : 'normalButton'}"
-							   toggle="true"/>
-				</mx:HBox>
-				<mx:TextInput id="startData" enabled="{_startByCode}"/>
-			</mx:VBox>
-			<mx:Spacer width="10"/>
-			<mx:VBox width="50%" backgroundColor="#ffffff" borderStyle="solid" paddingBottom="10"
-					 paddingLeft="20" paddingRight="20" paddingTop="10">
-				<mx:Text id="showResultLabel" width="100%" height="30"/>
-				<mx:HBox>
-					<mx:Button id="showResult" click="onToggle(event)" selected="{_showResult}"
-							   styleName="{(_showResult) ? 'selectedButton' : 'normalButton'}"
-							   toggle="true"/>
-					<mx:Button id="hideResult" click="onToggle(event)" selected="{!_showResult}"
-							   styleName="{(!_showResult) ? 'selectedButton' : 'normalButton'}"
-							   toggle="true"/>
-				</mx:HBox>
-				<mx:TextInput visible="false"/> <!-- just to get box height same as other one -->
-			</mx:VBox>
-		</mx:HBox>
-		<mx:Spacer height="12"/>
-		<mx:VBox width="100%" backgroundColor="#ffffff" borderStyle="solid" paddingBottom="10"
-				 paddingLeft="20" paddingRight="20" paddingTop="10">
-			<mx:Text id="languageLabel" width="240"/>
-			<mx:ComboBox id="languageData" width="200"/>
-		</mx:VBox>
-		<mx:Spacer height="12"/>
-		<mx:VBox width="100%" backgroundColor="#ffffff" borderStyle="solid" paddingBottom="10"
-				 paddingLeft="20" paddingRight="20" paddingTop="10">
-			<mx:Text id="emailInsertionNoteLabel" width="300"/>
-			<mx:TextArea id="emailInsertionNoteData" width="100%" height="50"
-						 horizontalScrollPolicy="off" verticalScrollPolicy="auto" wordWrap="true"/>
-			<mx:HBox width="100%" horizontalGap="10">
-				<mx:VBox width="200">
-					<mx:Text id="emailInsertionNameLabel" width="100%"/>
-					<mx:TextInput id="emailInsertionNameData" width="100%" enabled="true"/>
-				</mx:VBox>
-				<mx:VBox width="200">
-					<mx:Text id="emailInsertionEmailLabel" width="100%"/>
-					<mx:TextInput id="emailInsertionEmailData" width="100%" enabled="true"/>
-				</mx:VBox>
+	<mx:VBox id="wholeDetailPanel" width="100%" height="100%" verticalGap="0" >
+		<mx:VBox width="100%" height="100%" verticalGap="0" paddingLeft="20" paddingRight="20">
+			<mx:Label id="captionLabel" width="100%" styleName="inputPromptBlack"/>
+			<mx:TextInput id="captionData" styleName="inputEntry" width="100%" enabled="true"/>
+			<mx:Text id="openTimeLabel" width="100%" paddingTop="10" styleName="inputPromptBlack"/>
+			<mx:HBox>			
+				<mx:DateField id="openTimeDataDate" width="110" editable="false" enabled="true"
+							  labelFunction="formatDateTime" styleName="inputPromptBlack"
+							  selectableRange="{{rangeStart : new Date()}}"
+							  yearNavigationEnabled="true"/>
+				<mx:ComboBox id="openTimeDataHours" enabled="true" width="80" styleName="inputPromptBlack"
+							 dataProvider="{times}" labelFunction="displayTime" />
+			</mx:HBox>				
+			<mx:Text id="closeTimeLabel" width="100%" paddingTop="10" styleName="inputPromptBlack"/>
+			<mx:HBox>			
+				<mx:DateField id="closeTimeDataDate" width="110" editable="false" enabled="true"
+							  labelFunction="formatDateTime" styleName="inputPromptBlack"
+							  selectableRange="{{rangeStart : new Date()}}"
+							  yearNavigationEnabled="true"/>
+				<mx:ComboBox id="closeTimeDataHours" enabled="true" width="80"
+							 dataProvider="{times}" labelFunction="displayTime" styleName="inputPromptBlack"/>
 			</mx:HBox>
-			<mx:Text id="emailInsertionSubjectLabel" width="240"/>
-			<mx:TextInput id="emailInsertionSubjectData" width="100%" enabled="true"/>
+			<mx:HBox width="100%" horizontalGap="0" paddingTop="10">
+				<mx:CheckBox id="startByCode" selected="{_startByCode}" change="selectionChanged(event)" styleName="inputPromptBlack"/>
+				<mx:TextInput id="startData" styleName="inputEntry" enabled="{_startByCode}" width="100"/>
+			</mx:HBox>
+			<mx:HBox width="100%" horizontalGap="0" paddingTop="10">
+				<mx:CheckBox id="showResult" selected="{_showResult}" styleName="inputPromptBlack" />
+			</mx:HBox>
+			<mx:Text id="languageLabel" width="100%" paddingTop="10" styleName="inputPromptBlack"/>
+			<mx:ComboBox id="languageData" width="150" styleName="inputEntry"/>
+			<mx:Label id="errorTextLabel" text="{_errorText}" styleName="errorMessage"
+					  visible="{!(_errorText == '')}" includeInLayout="{!(_errorText == '')}" textAlign="center"
+					  paddingTop="10"/>
+			
 		</mx:VBox>
-		<mx:Spacer height="12"/>
-		<mx:Button id="saveButton" width="100%" height="30" click="onAdd()" disabledColor="#999999"
+		<mx:Spacer height="100%" />
+		<mx:Button id="saveButton" width="100%" height="30" click="onAdd()"
 				   disabledSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}"
 				   overSkin="{FlatButtonSkin}" textRollOverColor="#FFFFFF"
-				   upSkin="{FlatButtonSkin}" styleName="testList"/>
+				   upSkin="{FlatButtonSkin}" styleName="flatButton"/>
+		<mx:Spacer height="6" />
+		<mx:Button id="cancelButton" width="100%" height="30" click="onCancel()"
+				   disabledSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}"
+				   overSkin="{FlatButtonSkin}" textRollOverColor="#FFFFFF"
+				   upSkin="{FlatButtonSkin}" styleName="flatButton"/>
 	</mx:VBox>
 	
 </mx:VBox>

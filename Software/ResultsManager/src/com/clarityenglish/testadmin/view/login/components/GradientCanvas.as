@@ -26,6 +26,7 @@ package com.clarityenglish.testadmin.view.login.components {
 			
 			this.graphics.beginGradientFill(_fillType, fillColors, _alphas, _ratios, m, spreadMethod);
 			this.graphics.drawRect(0, 0, w, h);
+			//this.graphics.drawRoundRect(0, 0, w, h, cornerRadius, cornerRadius);
 			this.graphics.endFill();
 		}
 	}

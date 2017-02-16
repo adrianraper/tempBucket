@@ -99,13 +99,13 @@ package com.clarityenglish.testadmin.view {
 			
 			switch (note.getName()) {
 				case CommonNotifications.LOGGED_IN:
-					application.topStack.selectedIndex = 1;
-					application.configureTabsForLoggedInUser();
-					
+					application.topStack.selectedIndex = 1;					
 					break;
+				
 				case CommonNotifications.LOGGED_OUT:
 					application.topStack.selectedIndex = 0;
 					break;
+				
 				case CommonNotifications.COPY_LOADED:
 					var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 					copyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
@@ -116,16 +116,6 @@ package com.clarityenglish.testadmin.view {
 					application.setCopyProvider(copyProvider);
 					break;
 					
-				// v3.5.0 Once the content is loaded you can check to see if all titles are AA
-				case RMNotifications.CONTENT_LOADED:
-					application.configureTabsForTitles(note.getBody() as Array);
-					break;
-					
-				// v3.6.0 If you are starting with directStart parameter, configure tabs
-				case RMNotifications.DIRECT_START:
-					//TraceUtils.myTrace("appMediator.directStart=" + (note.getBody() as String));
-					application.configureTabsForDirectStart(note.getBody() as String);
-					break;
 				default:
 					break;
 			}

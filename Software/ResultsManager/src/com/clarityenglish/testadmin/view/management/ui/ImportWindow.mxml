@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	creationComplete="creationComplete()" 
+	borderAlpha="0.9"
+	dropShadowEnabled = "true"
+	width="500"
+	borderColor="#FFFFFF"
+	backgroundColor="#FFFFFF"
+	implements="com.clarityenglish.common.view.interfaces.CopyReceiver" xmlns:components="com.clarityenglish.resultsmanager.view.login.components.*">
+	<mx:Script>
+		<![CDATA[
+			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			import com.clarityenglish.common.vo.manageable.Group;
+			import com.clarityenglish.resultsmanager.Constants;
+			import com.clarityenglish.resultsmanager.model.utils.ExcelImportError;
+			import com.clarityenglish.resultsmanager.model.utils.ExcelImportParser;
+			import com.clarityenglish.resultsmanager.view.management.events.ManageableEvent;
+			import com.clarityenglish.resultsmanager.view.shared.events.LogEvent;
+			import com.clarityenglish.testadmin.view.login.components.FlatButtonSkin;
+			import com.clarityenglish.utils.TraceUtils;
+			
+			import flash.events.Event;
+			import flash.net.FileFilter;
+			import flash.net.FileReference;
+			import flash.system.System;
+			
+			import mx.controls.Alert;
+			import mx.core.IFlexDisplayObject;
+			import mx.core.UIComponent;
+			import mx.managers.PopUpManager;
+		
+		private var _parentGroup:Group;
+		
+		public var parentView:IFlexDisplayObject;
+		
+		public var fileReference:FileReference;
+		
+		[Bindable]
+		public var editMode:Boolean;
+		
+		[Bindable]
+		private var importControlsVisible:Boolean = true;
+		
+		private var copyProvider:CopyProvider;
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+			
+			//title = copyProvider.getCopyForId("importWindow");
+			//browseButton.label = copyProvider.getCopyForId("browse");
+			//editButton.label = copyProvider.getCopyForId("edit");
+			startExcelImportButton.label = copyProvider.getCopyForId("TAstartImport");
+			//checkDataButton.label = copyProvider.getCopyForId("checkData");
+			closeWindowButton.label = copyProvider.getCopyForId("cancel");
+			//copyFailedToClipboardButton.label = copyProvider.getCopyForId("importCopyFailedToClipboard");
+			
+			var replaceObj:Object = new Object();
+			replaceObj.helpFolder = Constants.HOST + Constants.HELP_FOLDER;
+			//TraceUtils.myTrace("helpFolder=" + replaceObj.helpFolder);
+			//helpTextArea.htmlText = copyProvider.getCopyForId("importHelp", replaceObj);
+			//helpTextLabel.text = copyProvider.getCopyForId("helpArea");
+			
+			//excelImportInstructions.text = copyProvider.getCopyForId("excelImportInstructions");			
+			//browseButton.label = copyProvider.getCopyForId("browse");
+			//importTypeLabel.text = copyProvider.getCopyForId("chooseImportType");
+			//xmlLabel1.text = copyProvider.getCopyForId("XMLInstruction1");
+			//xmlLabel2.text = copyProvider.getCopyForId("XMLInstruction2");
+			//xmlLabel3.htmlText = copyProvider.getCopyForId("XMLInstruction3", replaceObj);
+			title = copyProvider.getCopyForId("TAimportUser");
+			excelLabel1.text = copyProvider.getCopyForId("TApasteDataFromExcel");
+			excelLabel2.text = copyProvider.getCopyForId("TAmatchExistingUser");
+			resultsLabel1.text = copyProvider.getCopyForId("resultsLabel1");
+			
+			// v3.5 Allow import with update
+			//importWithUpdate.label = copyProvider.getCopyForId("importWithUpdate");
+			//importJustPreview.label = copyProvider.getCopyForId("importJustPreview");
+			// gh#653
+			importWithMove.label = copyProvider.getCopyForId("importWithMove");
+			importWithCopy.label = copyProvider.getCopyForId("importWithCopy");
+			importWithBlock.label = copyProvider.getCopyForId("importWithBlock");
+			
+			//importTextArea.setStyle('fillColors', [0xff0000, 0xd4d4d3]);
+			//importTextArea.setStyle('fillType', GradientType.LINEAR);
+			//importTextArea.setStyle('fillAlpha', [1, 1]);
+			//importTextArea.setStyle('cornerRadius', 10);
+		
+		}
+		
+		public function set parentGroup(value:Group):void {
+			_parentGroup = value;
+		}
+		
+		public function setImportResults(importResults:Array):void {
+			// Show the grid. This is now viewstack 4
+			//importTypeViewStack.selectedIndex = 0;			
+			//importTypeViewStack.selectedIndex = 3;			
+			
+			// Show the import results in the grid
+			dataGrid.dataProvider = importResults;
+			
+			// Hide the buttons now the import has happened
+			importControlsVisible = false;
+			
+			// Enabled to copy to clipboard button
+			//copyFailedToClipboardButton.enabled = true;
+		}
+		
+		private function removePopup():void {
+			PopUpManager.removePopUp(this);
+		}
+
+		private function creationComplete():void {
+			/*
+			var border:Shape = new Shape();
+			var ui:UIComponent = new UIComponent();
+			ui.addChild(border);
+			importTextArea.addChild(ui);
+			border.graphics.beginFill(0xFFFFFF);
+			border.graphics.lineStyle(0, 0xCCCCCC, 1);
+			//importTextArea.width, importTextArea.height
+			border.graphics.drawRoundRect(0, 0, 320, 120, 25, 25);
+			border.graphics.endFill();
+			
+			excelTextArea = new TextArea();
+			importTextArea.addChild(excelTextArea);
+			excelTextArea.x = excelTextArea.y = 10;
+			excelTextArea.id = "excelTextArea"; 
+			excelTextArea.width = 300;
+			excelTextArea.height = 100;
+			excelTextArea.setStyle("borderStyle","solid");
+
+			var filter:BitmapFilter = getBitmapFilter();
+			var myFilters:Array = new Array();
+			myFilters.push(filter);
+			border.filters = myFilters;
+			*/
+		}
+			/*
+		private function getBitmapFilter():BitmapFilter {
+			var color:Number = 0x666666;
+			var angle:Number = 45;
+			var alpha:Number = 0.8;
+			var blurX:Number = 4;
+			var blurY:Number = 4;
+			var distance:Number = 2;
+			var strength:Number = 0.4;
+			var inner:Boolean = true;
+			var knockout:Boolean = false;
+			var quality:Number = BitmapFilterQuality.HIGH;
+			return new DropShadowFilter(distance,
+				angle,
+				color,
+				alpha,
+				blurX,
+				blurY,
+				strength,
+				quality,
+				inner,
+				knockout);
+		}
+			*/
+		
+		/*
+		private function browse():void {
+			var fileFilter:FileFilter = new FileFilter("XML files", "*.xml");
+			fileReference.addEventListener(Event.SELECT, onSelect);
+			fileReference.addEventListener(Event.CANCEL, onCancel);
+			fileReference.browse( [ fileFilter ] );
+		}
+		private function onSelect(e:Event):void {
+			fileReference.removeEventListener(Event.SELECT, onSelect);
+			fileReference.removeEventListener(Event.CANCEL, onCancel);
+			
+			filenameTextInput.text = fileReference.name;
+		}
+		private function onCancel(e:Event):void {
+			fileReference.removeEventListener(Event.SELECT, onSelect);
+			fileReference.removeEventListener(Event.CANCEL, onCancel);
+		}
+		*/
+		
+		private function startExcelImport():void {
+			var manageablesObj:Object;
+			
+			try {
+				// This will come from the clipboard rather than a text area.
+				// Ah, no there is no getClipboard function due to privacy. So you have to provide a textArea for manual pasting.
+				manageablesObj = ExcelImportParser.excelPasteToManageables(excelTextArea.text);
+				//manageablesObj = ExcelImportParser.excelPasteToManageables(System.getClipboard());
+			
+				var manageablesArray:Array = new Array();
+				manageablesArray["groups"] = manageablesObj.groups;
+				manageablesArray["users"] = manageablesObj.users;
+			
+				// v3.6.1 Allow import/move or preview?
+				// gh#653
+				if (importWithMove.selected) {
+					var importEventName:String = ManageableEvent.IMPORT_FROM_EXCEL_WITH_MOVE;
+				} else if (importWithCopy.selected) {
+					importEventName = ManageableEvent.IMPORT_FROM_EXCEL_WITH_COPY;
+				} else {
+					importEventName = ManageableEvent.IMPORT_FROM_EXCEL;
+				}
+				//TraceUtils.myTrace("importView, go to event " + importEventName);
+				//parentView.dispatchEvent(new ManageableEvent(ManageableEvent.IMPORT_FROM_EXCEL, manageablesArray, _parentGroup, true));
+				parentView.dispatchEvent(new ManageableEvent(importEventName, manageablesArray, _parentGroup, true));
+				
+			} catch (e:ExcelImportError) {
+				switch (e.message) {
+					case ExcelImportError.NO_USERNAME_HEADER:
+						parentView.dispatchEvent(new LogEvent(LogEvent.ERROR, copyProvider.getCopyForId("excelNoUsernameHeader"), true));
+						break;
+					default:
+						parentView.dispatchEvent(new LogEvent(LogEvent.ERROR, e.message, true));
+				}
+			}
+			
+		}
+		
+		/**
+		 * If the Excel import type is chosen automatically pop up the edit box (ticket #64)
+		 */
+		private function onImportTypeChange():void {
+			//if (importTypeComboBox.selectedItem == "Excel") importTypeViewStack.selectedIndex = 1;
+		}
+		
+		/**
+		 * Copy failed results to the clipboard (ticket #85)
+		 */
+		/*
+		private function copyFailedResultsToClipboard():void {
+			// First get all the failed results
+			var failedResults:Array = dataGrid.dataProvider.source.filter(function(item:Object, index:int, array:Array):Boolean {
+				return !item.success;
+			} );
+			
+			// Turn this into comma seperated usernames
+			var usernames:Array = failedResults.map(function(item:Object, index:int, array:Array):String {
+				return item.name;
+			} );
+			
+			if (usernames.length == 0) {
+				Alert.show(copyProvider.getCopyForId("importNothingToCopyToClipboard"), "Notice");
+			} else {
+				// Copy the text to the clipboard
+				System.setClipboard(usernames.join(", "));
+				Alert.show(copyProvider.getCopyForId("importCopyToClipboardSuccessful"), "Notice");
+			}
+		}
+		*/
+		]]>
+	</mx:Script>
+		<mx:VBox width="100%" height="100%" paddingTop="10" paddingRight="20" paddingBottom="10" paddingLeft="20">
+				<mx:VBox id="excelInitialLayout" verticalGap="0" width="100%" height="100%">
+					<mx:Label id="excelLabel1" paddingLeft="20" width="100%" styleName="inputLabelBlack" />
+					<mx:TextArea id="excelTextArea" width="100%" height="100" paddingTop="5" styleName="importTextArea" />
+					<mx:Label id="excelLabel2" paddingTop="10" paddingLeft="20" styleName="inputLabelBlack" />
+						<mx:RadioButton id="importWithMove" paddingTop="5" paddingLeft="20" groupName="importOptionsRadioGroup" styleName="inputLabelBlack" selected="true" />
+						<mx:RadioButton id="importWithCopy" paddingTop="5" paddingLeft="20" groupName="importOptionsRadioGroup" styleName="inputLabelBlack" />
+						<mx:RadioButton id="importWithBlock" paddingTop="5" paddingLeft="20" groupName="importOptionsRadioGroup" styleName="inputLabelBlack" />
+				</mx:VBox>
+				<mx:VBox id="importResultsLayout" width="100%" height="80%" visible="false" includeInLayout="false">
+					<mx:Label id="resultsLabel1" styleName="inputLabelBlack" />
+					<mx:DataGrid id="dataGrid" width="100%" height="100%" alternatingItemColors="[#F4FBFF, #FFFFFF]" resizableColumns="false" rowHeight="22">
+						<mx:columns>
+							<mx:DataGridColumn dataField="success" headerText="" width="22" itemRenderer="com.clarityenglish.resultsmanager.view.management.ui.treeClasses.TickCrossRenderer" />
+							<mx:DataGridColumn dataField="name" headerText="Name" />
+							<mx:DataGridColumn dataField="message" headerText="Message" />
+							<mx:DataGridColumn dataField="type" headerText="Type" width="50" />
+						</mx:columns>
+					</mx:DataGrid>
+				</mx:VBox>
+		</mx:VBox>
+
+	<mx:ControlBar width="100%" horizontalAlign="center">
+		<mx:Button id="closeWindowButton" click="removePopup()" 
+				   width="120" height="30" overSkin="{FlatButtonSkin}" upSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}" disabledSkin="{FlatButtonSkin}"
+				   textRollOverColor="#FFFFFF" styleName="flatButton"/>
+		<mx:Spacer width="20" />
+		<mx:Button id="startExcelImportButton" enabled="{excelTextArea.text.length > 0}" click="startExcelImport()" 
+				   width="120" height="30" overSkin="{FlatButtonSkin}" upSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}" disabledSkin="{FlatButtonSkin}" 
+				   textRollOverColor="#FFFFFF" styleName="flatButton"/>
+	</mx:ControlBar>
+	
+</mx:TitleWindow>

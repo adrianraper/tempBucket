@@ -621,9 +621,11 @@
             <lit name="saveTestDetail">Save</lit>
             <lit name="cancelButton">Cancel</lit>
             <lit name="deleteTest">Delete test</lit>
-            <lit name="generateReport">See test results</lit>
+            <lit name="archiveTest">Archive test</lit>
+            <lit name="generateReport">Create results report</lit>
+            <lit name="checkProgress">Check progress</lit>
             <lit name="sendResultEmail">Email test results</lit>
-            <lit name="sendWelcomeEmail">Preview welcome emails</lit>
+            <lit name="sendWelcomeEmail">Create welcome emails</lit>
             <lit name="selectGroup">Select a group on the left to see the tests scheduled for them.</lit>
             <lit name="testDetailPanel">Details of the test</lit>
             <lit name="testOpenTimeLabel">Start time</lit>
@@ -643,6 +645,11 @@
             <lit name="emailInsertionEmailLabel">And their email?</lit>
             <lit name="emailInsertionSubjectLabel">Subject line for the email:</lit>
             <lit name="emailInsertionSubject">{name} has set you an English test</lit>    
+
+            <lit name="testMissingCloseTime">The test must have a start time.</lit>
+            <lit name="testMissingOpenTime">The test must have an end time.</lit>
+            <lit name="testCloseBeforeOpen">The end time should be after the start time.</lit>
+            <lit name="testCodeTooShort">The access code should be at least {min} characters.</lit>
             
             <lit name="testAdminFirstStep">Step 1</lit>
             <lit name="testAdminManageables">Users and groups</lit>
@@ -650,7 +657,8 @@
             <lit name="testAdminTests">List of tests</lit>
             <lit name="detailedTestAdminTests">Choose a test</lit>
             <lit name="testAdminTestDetails">Test schedule</lit>
-            <lit name="detailedTestAdminTestDetails">Set the details of the test</lit>
+            <lit name="setTestDetails">Set the details of the test</lit>
+            <lit name="checkTestDetails">Check the details of the test</lit>
 
             <lit name="licenceUse">Your tests</lit>
             <lit name="licencesScheduled">Scheduled</lit>
@@ -658,7 +666,7 @@
             <lit name="licencesUsed">Used</lit>
             <lit name="notEnoughLicences">You have {licencesAvailable} tests left from your purchased supply. You have scheduled up to {licencesScheduled} people to take tests. It is best to buy some more now.</lit>
             <lit name="licencesNeededWarning">You have {licencesAvailable} tests left from the ones you purchased. You have scheduled up to {licencesScheduled} people to take tests.</lit>
-            <lit name="buyMoreLicences">Buy {licencesNeeded} tests now</lit>
+            <lit name="buyMoreLicences">Buy more tests</lit>
             
             <lit name="generateTestadminReportWindowTitle">What do you want to include in the report?</lit>
             <lit name="reportFilterStep">Add filters to block some results.</lit>
@@ -667,6 +675,11 @@
             <lit name="sendEmailAlert">Send out the {emailType} email to {userCount} people?</lit>
             <lit name="sendEmailWarnAboutNoEmailSingle">There is one person without an email address in the group. They will be ignored.</lit>
             <lit name="sendEmailWarnAboutNoEmailMultiple">There are {noEmailCount} people without email addresses in the group. They will be ignored.</lit>
+            
+            <lit name="TAstartImport">Import</lit>
+            <lit name="TAimportUser">Import test takers</lit>
+            <lit name="TApasteDataFromExcel">Copy the data from Excel and paste in the box.</lit>
+            <lit name="TAmatchExistingUser">If details match existing users:</lit>
 		</group>
 	</language>
 </literals>

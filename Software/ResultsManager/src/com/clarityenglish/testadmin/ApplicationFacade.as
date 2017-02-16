@@ -37,28 +37,9 @@
 			registerCommand(RMNotifications.DELETE_MANAGEABLES, DeleteManageablesCommand);
 			registerCommand(RMNotifications.MOVE_MANAGEABLES, MoveManageablesCommand);
 			// v3.5 Do not use anymore
-			//registerCommand(RMNotifications.ALLOCATE_LICENCES, AllocateLicencesCommand);
-			//registerCommand(RMNotifications.UNALLOCATE_LICENCES, UnallocateLicencesCommand);
-			registerCommand(RMNotifications.EXPORT_MANAGEABLES, ExportManageablesCommand);
-			registerCommand(RMNotifications.ARCHIVE_MANAGEABLES, ArchiveManageablesCommand);
 			registerCommand(RMNotifications.IMPORT_MANAGEABLES, ImportManageablesCommand);
 			// v3.6.1 Allow moving and importing
 			registerCommand(RMNotifications.IMPORT_MOVE_MANAGEABLES, ImportManageablesCommand);
-			registerCommand(RMNotifications.UPLOAD_XML, UploadXMLCommand);
-			registerCommand(RMNotifications.SET_EXTRA_GROUPS, SetExtraGroupsCommand);
-			registerCommand(RMNotifications.SET_CONTENT_VISIBLE, SetContentVisibleCommand);
-			registerCommand(RMNotifications.UPDATE_LOGIN_OPTS, UpdateLoginOptsCommand);
-			registerCommand(RMNotifications.UPDATE_EMAIL_OPTS, UpdateEmailOptsCommand);
-			// v3.4
-			registerCommand(RMNotifications.EDIT_EXERCISE, EditInAuthorPlusCommand);
-			registerCommand(RMNotifications.MOVE_CONTENT_AFTER, EditedContentCommand);
-			registerCommand(RMNotifications.MOVE_CONTENT_BEFORE, EditedContentCommand);
-			registerCommand(RMNotifications.INSERT_CONTENT_AFTER, EditedContentCommand);
-			registerCommand(RMNotifications.INSERT_CONTENT_BEFORE, EditedContentCommand);
-			registerCommand(RMNotifications.COPY_CONTENT_AFTER, EditedContentCommand);
-			registerCommand(RMNotifications.COPY_CONTENT_BEFORE, EditedContentCommand);
-			registerCommand(RMNotifications.RESET_CONTENT, EditedContentCommand);
-			registerCommand(RMNotifications.CHECK_FOLDER, EditedContentCommand);
 			// gh#1487
 			registerCommand(RMNotifications.UPDATE_TEST, UpdateTestCommand);
 			registerCommand(RMNotifications.DELETE_TEST, UpdateTestCommand);

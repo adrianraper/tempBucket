@@ -11,7 +11,7 @@
 			import com.clarityenglish.common.vo.manageable.*;
 			import com.clarityenglish.resultsmanager.Constants;
 			import com.clarityenglish.resultsmanager.view.management.events.*;
-			import com.clarityenglish.resultsmanager.view.management.ui.*;
+			import com.clarityenglish.testadmin.view.management.ui.*;
 			import com.clarityenglish.testadmin.view.management.ui.TAManageableCMManager;
 			import com.clarityenglish.resultsmanager.view.shared.events.SelectEvent;
 			import com.clarityenglish.utils.TraceUtils;
@@ -55,7 +55,7 @@
 			private var importWindow:ImportWindow;
 			
 			// Keep a reference to the assign window as it needs to respond to a return from the server
-			private var assignWindow:AssignWindow;
+			//private var assignWindow:AssignWindow;
 			
 			private var searchActive:Boolean;
 			
@@ -96,9 +96,9 @@
 				manageableCMManager.addEventListener(ManageableEvent.ADD_GROUP, onAddGroupSelect);
 				manageableCMManager.addEventListener(ManageableEvent.ADD_TEACHER, onAddUserSelect);
 				manageableCMManager.addEventListener(ManageableEvent.ADD_REPORTER, onAddUserSelect);
-				manageableCMManager.addEventListener(ManageableEvent.ADD_AUTHOR, onAddUserSelect);
+				//manageableCMManager.addEventListener(ManageableEvent.ADD_AUTHOR, onAddUserSelect);
 				manageableCMManager.addEventListener(ManageableEvent.ADD_LEARNER, onAddUserSelect);
-				manageableCMManager.addEventListener(ManageableEvent.ASSIGN_CLASSES, onAssignClasses);
+				//manageableCMManager.addEventListener(ManageableEvent.ASSIGN_CLASSES, onAssignClasses);
 				//manageableCMManager.addEventListener(ManageableEvent.EXPORT, onExportSelect);
 				//manageableCMManager.addEventListener(ManageableEvent.ARCHIVE, onArchiveSelect);
 				manageableCMManager.addEventListener(ManageableEvent.IMPORT, onImportSelect);
@@ -150,6 +150,7 @@
 				showAddUsersWindow( [ newUser ] );
 			}
 			
+			/*
 			private function onAssignClasses(e:ManageableEvent):void {
 				// Dispatch an event to the mediator so it can get the extra groups from the server (then call setExtraGroupResults)
 				dispatchEvent(new ManageableEvent(ManageableEvent.GET_EXTRA_GROUPS, [ tree.selectedItem ], null, true));
@@ -161,18 +162,20 @@
 				assignWindow.setDataProvider(tree.dataProvider);
 				PopUpManager.centerPopUp(assignWindow);
 			}
-			
+			*/
+			/*
 			private function onGenerateReportSelect(e:ReportEvent):void {
 				e.onReportables = tree.selectedItems;
 				//MonsterDebugger.trace(this, tree.selectedItems);
 				dispatchEvent(e.clone());
 			}
-			
+			*/
+			/*
 			public function setExtraGroupsResults(extraGroups:Array):void {
 				if (assignWindow)
 					assignWindow.setExtraGroups(extraGroups);
 			}
-			
+			*/
 			/**
 			 * The user has selected the 'delete' menu item so popup a configured confirm alert window
 			 * 
@@ -261,24 +264,30 @@
 			private function onImportSelect(e:ManageableEvent):void {
 				importWindow = PopUpManager.createPopUp(UIComponent(parentApplication), ImportWindow, true) as ImportWindow;
 				importWindow.setCopyProvider(copyProvider);
-				importWindow.fileReference = fileReference;
+				//importWindow.fileReference = fileReference;
 				importWindow.parentView = this;
 				importWindow.parentGroup = tree.selectedItem as Group;
+				
+				// Style it
+				importWindow.showCloseButton = false;
+				importWindow.setStyle("titleStyleName", "panelTitleStyle");
+				importWindow.setStyle("horizontalAlign", "center");
 				PopUpManager.centerPopUp(importWindow);
 			}
-			
+			/*
 			private function onExportSelect(e:ManageableEvent):void {
 				e.manageables = tree.selectedItems;
 				dispatchEvent(e.clone());
 			}
-			
+			*/
+			/*
 			private function onArchiveSelect(e:ManageableEvent):void {
 				showDeleteDialog(function(e:CloseEvent):void {
 					if (e.detail == Alert.YES)
 						dispatchEvent(new ManageableEvent(ManageableEvent.ARCHIVE, tree.selectedItems, null, true));
 				}, true );
 			}
-			
+			*/
 			private function onSearchSelect(e:SearchEvent):void {
 				showSearchWindow();
 			}
@@ -337,18 +346,17 @@
 				// If all selected items are groups then add them to the SelectEvent
 				if (tree.selectedItems.length >= 1 && ClassUtils.checkObjectClasses(tree.selectedItems) == Group)
 					e.manageables = tree.selectedItems as Array; 
-				//MonsterDebugger.trace(this, "onSelectSelect");
 				dispatchEvent(e.clone());
 			}
 			
 			// Handling CM click for checking edited content initialisation
 			private function onCheckEditedContentSelect(e:ContentEvent):void {
-				//MonsterDebugger.trace(this, "onCheckEditedContentSelect");
 				if (tree.selectedItem is Group) {
 					e.groupID = (tree.selectedItem as Group).id;
 					dispatchEvent(e.clone());
 				}
 			}
+			/*
 			// Handling CM click for checking edited content initialisation
 			private function onResetEditedContentSelect(e:ContentEvent):void {
 				// Otherwise just show the delete confirmation box
@@ -356,19 +364,19 @@
 					if (e.detail == Alert.YES)
 						dispatchEvent(new ContentEvent(ContentEvent.RESET_CONTENT, null, (tree.selectedItem as Group).id, null, null, true));
 				} );
-				/*
 				if (tree.selectedItem is Group) {
 				e.groupID = (tree.selectedItem as Group).id;
 				e.editedUID = null;
 				dispatchEvent(e.clone());
 				}
-				*/
 			}
+			*/
+			/*
 			private function showResetDialog(alertListener:Function):void {
 				var text:String = copyProvider.getCopyForId("resetGroupContent");
 				Alert.show(text, "Confirm", Alert.YES | Alert.NO, this, alertListener, alertWarningIcon);
 			}
-			
+			*/
 			/**
 			 * Show the group details popup window
 			 * 
@@ -382,6 +390,12 @@
 				addGroupWindow.parentView = this;
 				addGroupWindow.parentGroup = tree.selectedItem as Group;
 				addGroupWindow.group = group;
+				
+				// Style it
+				addGroupWindow.showCloseButton = false;
+				addGroupWindow.setStyle("titleStyleName", "panelTitleStyle");
+				addGroupWindow.setStyle("horizontalAlign", "center");
+
 				PopUpManager.centerPopUp(addGroupWindow);
 			}
 			
@@ -398,6 +412,12 @@
 				addUserWindow.parentView = this;
 				addUserWindow.parentGroup = tree.selectedItem as Group;
 				addUserWindow.users = users;
+				
+				// Style it
+				addUserWindow.showCloseButton = false;
+				addUserWindow.setStyle("titleStyleName", "panelTitleStyle");
+				addUserWindow.setStyle("horizontalAlign", "center");
+				
 				PopUpManager.centerPopUp(addUserWindow);
 			}
 			
@@ -556,7 +576,6 @@
 			 * @return
 			 */
 			public function getSelectedManageables():Array {
-				//MonsterDebugger.trace(this, tree.selectedItems);
 				return tree.selectedItems;
 			}
 			
@@ -566,12 +585,8 @@
 			public function selectTopGroup():void {
 				// This selects it, but doesn't trigger any events
 				tree.selectedIndex = 0;
-				//MonsterDebugger.trace(this, "try to display the tree");
-				//MonsterDebugger.trace(this, tree.);
 				// You can't call this straight away as the tree will claim it has no selectedItems.
-				//onChange();
 				callLater(function():void { tree.dispatchEvent(new ListEvent(ListEvent.CHANGE)); } );
-				//callLater(function():void { onChange(); } );
 			}
 			/**
 			 * Puts a more informative name on groups
@@ -612,7 +627,6 @@
 						userDescriptor += ' (' + item.email + ')';
 					
 					// Is this you?
-					//MonsterDebugger.trace(this, "user name=" + item.name + " id=" + item.userID + " me=" + Constants.userID);
 					if (item.userID == Constants.userID) {
 						// v3.4 Prefer this from the main mxml
 						//userDescriptor += " (you are logged in as " + copyProvider.getCopyForId("userType" + Constants.userType) + ")";
@@ -630,6 +644,7 @@
 		]]>
 	</mx:Script>
 		<slt:SpringLoadedTree id="tree"
+							  borderStyle="none"
 							  openOnClick="false"
 							  autoCloseOnDrop="false"
 							  autoOpenTimerMS="400"
@@ -643,7 +658,7 @@
 							  dragDrop="onDragDrop(event)"
 							  allowMultipleSelection="true"
 							  retainVerticalScrollPosition="true"
-							  itemRenderer="com.clarityenglish.resultsmanager.view.shared.ui.ReportableTreeItemRenderer"
+							  itemRenderer="com.clarityenglish.testadmin.view.management.ui.SimpleTreeItemRenderer"
 							  itemRollOver="onItemRollOver(event)"
 							  change="onChange()"
 							  />

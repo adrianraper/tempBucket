@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:fxc="com.fxcomps.vacombobox.*"
+				borderAlpha="0.9"
+				borderColor="{Constants.popupBackgroundColour}"
+				creationComplete="creationComplete()"
+				implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.resultsmanager.Constants;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.resultsmanager.view.management.events.ManageableEvent;
+		import com.clarityenglish.common.events.SearchEvent;
+		import com.clarityenglish.common.vo.manageable.Group;
+		import com.clarityenglish.common.vo.manageable.User;
+		import flash.events.Event;
+		import mx.core.IFlexDisplayObject;
+		import mx.managers.PopUpManager;
+		
+		private var _parentGroup:Group;
+		
+		public var parentView:IFlexDisplayObject;
+		
+		[Bindable]
+		private var userTypeDataProvider:Object;
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			title = copyProvider.getCopyForId("searchWindowTitle");
+			userNameFormItem.label = copyProvider.getCopyForId("name");
+			learnerIDFormItem.label = copyProvider.getCopyForId("learner_id");
+			emailFormItem.label = copyProvider.getCopyForId("email");
+			countryFormItem.label = copyProvider.getCopyForId("country");
+			userTypeFormItem.label = copyProvider.getCopyForId("userType");
+			emailEmptyCheckBox.label = idEmptyCheckBox.label = copyProvider.getCopyForId("empty");
+			
+			userTypeDataProvider = [ { label: copyProvider.getCopyForId("student"), data: User.USER_TYPE_STUDENT },
+									 { label: copyProvider.getCopyForId("author"), data: User.USER_TYPE_AUTHOR },
+									 { label: copyProvider.getCopyForId("teacher"), data: User.USER_TYPE_TEACHER },	
+									 { label: copyProvider.getCopyForId("reporter"), data: User.USER_TYPE_REPORTER } ];	
+			
+			expiresBeforeFormItem.label = copyProvider.getCopyForId("expiresBefore");
+									 
+			searchButton.label = copyProvider.getCopyForId("search");
+			cancelButton.label = copyProvider.getCopyForId("cancel");
+		}
+		
+		public function set parentGroup(value:Group):void {
+			_parentGroup = value;
+		}
+		
+		private function submit():void {
+			// Create a new search event
+			// AR I only want to search in the group I click on. Turn bubbles off? No. That's not it.
+			// It actually always searches everywhere, but I can set to expand only the group I click on so it looks like a search in that group.
+			var searchEvent:SearchEvent = new SearchEvent(SearchEvent.SEARCH, null, true);
+			
+			// Add the relevant conditions to the search event (all case insensitive)
+			searchEvent.addRegExpCondition("name", new RegExp(userNameTextInput.text, "i"));
+			searchEvent.addRegExpCondition("country", new RegExp(countryTextInput.text, "i"));
+
+			if (idEmptyCheckBox.selected) {
+				searchEvent.addEqualsCondition("studentID", "");
+			} else {
+				searchEvent.addRegExpCondition("studentID", new RegExp(learnerIDTextInput.text, "i"));
+			}
+			
+			if (emailEmptyCheckBox.selected) {
+				searchEvent.addEqualsCondition("email", "");
+			} else {
+				searchEvent.addRegExpCondition("email", new RegExp(emailTextInput.text, "i"));
+			}
+			
+			if (userTypeCheckBox.selected && userTypeComboBox.value != null) searchEvent.addEqualsCondition("userType", userTypeComboBox.value);
+			
+			if (expiresBeforeCheckBox.selected) {
+				// When checking if someone expires before we also need to check that expiryDate is > 0 (as this
+				// is never expires)
+				searchEvent.addMoreThanCondition("expiryDateAsDate", 0);
+				searchEvent.addLessThanCondition("expiryDateAsDate", expiresBeforeDateField.selectedDate.getTime());
+			}
+			
+			// This is a special case - we need to take further action in the view before dispatching the event to the mediator
+			// so the view is listening specifically to this popup (normally we would call dispatchEvent on parentView).
+			dispatchEvent(searchEvent);
+			
+			removePopup();
+		}
+		
+		private function removePopup():void {
+			PopUpManager.removePopUp(this);
+		}
+		
+		private function creationComplete():void {
+			userNameTextInput.setFocus();
+			userNameTextInput.setSelection(0, 0);
+		}
+		
+		]]>
+	</mx:Script>
+	
+	<mx:Form defaultButton="{searchButton}">
+		<mx:FormItem id="userNameFormItem" labelWidth="120">
+			<mx:TextInput id="userNameTextInput" />
+		</mx:FormItem>
+		<mx:FormItem id="learnerIDFormItem" labelWidth="120">
+			<mx:HBox width="100%">
+				<mx:TextInput id="learnerIDTextInput" enabled="{!idEmptyCheckBox.selected}"/>
+				<mx:CheckBox id="idEmptyCheckBox" labelPlacement="right" paddingTop="4" />
+			</mx:HBox>
+		</mx:FormItem>
+		<mx:FormItem id="emailFormItem" labelWidth="120">
+			<mx:HBox width="100%">
+				<mx:TextInput id="emailTextInput" enabled="{!emailEmptyCheckBox.selected}"/>
+				<mx:CheckBox id="emailEmptyCheckBox" labelPlacement="right" paddingTop="4" />
+			</mx:HBox>
+		</mx:FormItem>
+		<mx:FormItem id="countryFormItem" labelWidth="120">
+			<mx:TextInput id="countryTextInput" />
+		</mx:FormItem>
+		<mx:FormItem id="userTypeFormItem" labelWidth="120" >
+			<mx:HBox width="100%">
+				<mx:CheckBox id="userTypeCheckBox" paddingTop="4" />
+				<fxc:VAComboBox id="userTypeComboBox" dataField="data" dataProvider="{userTypeDataProvider}" enabled="{userTypeCheckBox.selected}" />
+			</mx:HBox>
+		</mx:FormItem>
+		<mx:FormItem id="expiresBeforeFormItem" labelWidth="120" width="100%">
+			<mx:HBox width="100%">
+				<mx:CheckBox id="expiresBeforeCheckBox" paddingTop="4" />
+				<mx:DateField id="expiresBeforeDateField" formatString="YYYY/MM/DD" selectedDate="{new Date()}" yearNavigationEnabled="true" enabled="{expiresBeforeCheckBox.selected}" />
+			</mx:HBox>
+		</mx:FormItem>
+		<mx:ControlBar>
+			<mx:Button id="searchButton" click="submit()"/>
+			<mx:Button id="cancelButton" click="removePopup();" />
+		</mx:ControlBar>
+	</mx:Form>
+</mx:TitleWindow>

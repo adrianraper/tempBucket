@@ -13,7 +13,10 @@
 		import com.clarityenglish.utils.TraceUtils;
 		import com.clarityenglish.testadmin.view.login.components.*;
 		import mx.events.FlexEvent;
-		
+
+		//[Embed('/../assets/dpt_admin_panel_logo_smaller.png')]
+		//private var logo:Class;
+
 		private var copyProvider:CopyProvider;
 		
 		protected function onInitialize(event:FlexEvent):void {
@@ -22,19 +25,23 @@
 			this.setStyle('cornerRadius',0);
 			this.setStyle('fillType', GradientType.RADIAL);
 			this.setStyle('fillAlphas', [1, 1]);
+			//logoImage.source = logo
 		}
 			
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			this.copyProvider = copyProvider;
 			
-			usernameFormItem.text = copyProvider.getCopyForId("loginUsername");
-			passwordFormItem.text = copyProvider.getCopyForId("loginPassword");
+			//usernameFormItem.text = copyProvider.getCopyForId("loginUsername");
+			//passwordFormItem.text = copyProvider.getCopyForId("loginPassword");
 			loginButton.label = copyProvider.getCopyForId("loginButton");
 			forgotPassword.text = copyProvider.getCopyForId("forgotPassword");
 			var substTags:Object = {version: Constants.version};
 			version.text = copyProvider.getCopyForId("applicationVersion", substTags);
 			copyright.text = copyProvider.getCopyForId("copyright");
-			setInputFocus();
+			usernameTextInput.promptText = copyProvider.getCopyForId("loginUsername");
+			passwordTextInput.promptText = copyProvider.getCopyForId("loginPassword");
+			//passwordTextInput.isPassword = true;
+			//setInputFocus();
 		}
 		
 		private function setInputFocus():void {
@@ -87,14 +94,18 @@
 	</mx:Script>
 
 	<!-- gh#747 Very clumsy component, struggling with mx to get it nicer! -->
-    <view:LoginPanelBackgroundSkin width="430" height="404" horizontalCenter="0" verticalCenter="-60"	/>
-	<mx:VBox id="loginWindow" width="250" height="243" horizontalCenter="0" verticalCenter="20" horizontalAlign="center"  >
+	<!-- Large logo on left, like dpt sign in 
+    <view:LoginPanelBackgroundSkin width="700" height="404" horizontalCenter="0" verticalCenter="-60" />
+	<mx:VBox id="loginWindow" width="250" height="243" horizontalCenter="180" verticalCenter="20" horizontalAlign="center" >
+	-->
+	<view:LoginPanelBackgroundSkin width="430" height="464" horizontalCenter="0" verticalCenter="-60" />
+	<mx:VBox id="loginWindow" width="430" height="220" horizontalCenter="0" verticalCenter="62" horizontalAlign="center" >
 		<mx:VBox horizontalAlign="left" verticalGap="0">
-			<mx:Label id="usernameFormItem" styleName="promptGrey" />
-			<mx:TextInput id="usernameTextInput" width="225" text="" styleName="promptEntry" keyUp="loginKeyUp(event)" />
+			<!-- <mx:Label id="usernameFormItem" styleName="promptGrey" /> -->
+			<view:PromptTextInput id="usernameTextInput" width="225" paddingLeft="6" paddingTop="3" paddingBottom="3" styleName="promptEntry" promptStyleName="promptGrey" keyUp="loginKeyUp(event)" />
 			<mx:Spacer height="5" />
-			<mx:Label id="passwordFormItem" styleName="promptGrey" />
-			<mx:TextInput id="passwordTextInput" width="225" displayAsPassword="true" text="" styleName="promptEntry" keyUp="loginKeyUp(event)" />
+			<!-- <mx:Label id="passwordFormItem" styleName="promptGrey" /> -->
+			<view:PromptTextInput id="passwordTextInput" width="225" paddingLeft="6" paddingTop="3" paddingBottom="3" height="{usernameTextInput.height}" displayAsPassword="true" styleName="promptEntryPassword" promptStyleName="promptGrey" keyUp="loginKeyUp(event)" />
 		</mx:VBox>
 		<mx:Spacer height="10" />
 		<mx:Label id="forgotPassword" styleName="forgotPasswordGrey" click="onForgotPassword(event)" useHandCursor="true" buttonMode="true" />

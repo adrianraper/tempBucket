@@ -12,7 +12,7 @@ package com.clarityenglish.testadmin.view.login.components {
 		}
 	
 		[Bindable]
-  		[Embed('/../assets/DPT_TA_logo.png')]
+  		[Embed('/../assets/dpt_admin_panel_logo_small.png')]
   		private var logoClass:Class;
 
 		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
@@ -22,14 +22,21 @@ package com.clarityenglish.testadmin.view.login.components {
 			graphics.beginFill(0xffffff);
 			graphics.drawRoundRectComplex(0, 0, width, height, cr, cr, cr, cr);
 			graphics.endFill();
-			//graphics.beginFill(0x0b7bad);
-			//graphics.drawRoundRectComplex(0, 130, width, height-130, 0, 0, cr, cr);
-			//graphics.endFill();
 
 			var logo:BitmapAsset = BitmapAsset(new logoClass());
-			logo.move(178,50);
+			/* Large logo on left, like dpt sign in 
+			logo.move(40,60);
 			addChild(logo);
-
+			
+			// a separating line
+			graphics.lineStyle(1, 0x9B9B9B, 0.9);
+			graphics.moveTo(logo.width + 80, 50); 
+			graphics.lineTo(logo.width + 80, logo.height + logo.y);
+			*/
+			/* Medium logo on top */ 
+			logo.move(110,20);
+			addChild(logo);
+			
 			// the shadow
             var filter:BitmapFilter = getBitmapFilter();
             var myFilters:Array = new Array();
