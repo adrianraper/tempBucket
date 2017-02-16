@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Welcome to IELTSpractice.com</title>
 	<!-- <from>support@ieltspractice.com</from> -->
-	<!-- <bcc>accounts@clarityenglish.com,support@ieltspractice.com,adrian.raper@clarityenglish.com</bcc> -->
+	<!-- <bcc>accounts@clarityenglish.com,support@ieltspractice.com</bcc> -->
 </head>
 <body style="font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 13px; background-color:#E5E5E5;">
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/ieltspractice/bg.jpg" bgcolor="#FFFFFF">

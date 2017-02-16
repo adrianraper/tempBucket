@@ -7,8 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Welcome to ClarityLifeSkills</title>
-	<!-- <from>support@claritylifeskills.com</from> -->
-	<!-- <cc>adrian.raper@clarityenglish.com</cc> -->
+	<!-- <from>%22ClarityEnglish%22 %3Csupport@claritylifeskills.com%3E</from> -->
+	<!-- <cc>cynthia.lau@clarityenglish.com,support@clarityenglish.com,accounts@clarityenglish.com</cc> -->
 </head>
 <body>
 	

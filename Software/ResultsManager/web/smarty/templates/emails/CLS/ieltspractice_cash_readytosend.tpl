@@ -14,6 +14,12 @@
   <tr>
     <td colspan="3"><a href="http://www.ieltspractice.com" target="_blank"><img src="http://www.clarityenglish.com/images/email/ieltspractice/header.jpg" alt="Road to IELTS: IELTS preparation and practice" width="600" height="173" border="0" style="margin:0; font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; "/></a></td>
   </tr>
+  
+  <tr>
+        	<td height="53" colspan="3" background="http://www.clarityenglish.com/images/email/ieltspractice/subtitle.jpg" style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0; padding:0 48px; color:#FFFFFF; line-height:53px; font-weight:bold;">
+            	Your payment methods
+             </td>
+        </tr>
         
         
         
@@ -33,15 +39,58 @@ Please keep this email for later reference.</p>
 
 
 <div style="border:#CCCCCC 1px solid; padding:10px; margin:0;">
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 14px; margin:0 0 5px 0; padding:0; color:#0399D6; font-weight:bold;line-height:18px;">Personal details</p>
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Reference number: </strong>{$body->refNo}</p>
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Name: </strong>{$body->name}</p>
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Email: </strong>{$body->email}</p>
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Module: </strong> {$body->offerDetail}</p>
+
+	<table width="484" border="0" cellspacing="0" cellpadding="0" style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">
+  <tr>
+    <td colspan="2">
+    	<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 14px; margin:0; padding:0; color:#0399D6; font-weight:bold;line-height:18px;">Personal details</p>    </td>
+    </tr>
+  <tr>
+    <td colspan="2"><p style="margin:0 0 5px 0; padding:0;"><strong>Name: </strong>{$body->name}</p></td>
+  </tr>
+  
+  <tr>
+    <td colspan="2"><p style="margin:0 0 5px 0; padding:0;"><strong>Email: </strong>{$body->email}</p></td>
+  </tr>
+  
+  
+  <tr>
+    <td width="64" valign="top"><p style="margin:0 0 5px 0; padding:0;"><strong>Package: </strong> </p></td>
+    <td width="420"><p style="margin:0 0 5px 0; padding:0;">
+	{if in_array($body->offerID, array(59,60,63,65,66,67,68,69,70,71,72,73,83,84,85,86,87,88,89,90,91,92,93,94))}
+		Road to IELTS Academic Module<br />
+	{/if}
+	{if in_array($body->offerID, array(61,62,64,74,75,76,77,78,79,80,81,82,95,96,97,98,99,100,101,102,103,104,105,106))}
+		Road to IELTS General Training Module<br />
+	{/if}
+	{if in_array($body->offerID, array(68,69,70,71,72,73,77,78,79,80,81,82,86,87,88,92,93,94,98,99,100,104,105,106))}
+		Tense Buster<br />
+	{/if}
+	{if in_array($body->offerID, array(65,66,67,71,72,73,74,75,76,80,81,82,89,90,91,92,93,94,101,102,103,104,105,106))}
+		Study Skills Success<br />
+	{/if}
+	{if in_array($body->offerID, array(83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106))}
+		Practical Writing<br />
+	{/if}
+	
+	</p></td>
+  </tr>
+  
+  <tr>
+    <td colspan="2"><p style="margin:0 0 5px 0; padding:0;"><strong>Payment method: </strong>Cash</p></td>
+  </tr>
+  
+ <tr>
+    <td colspan="2"><p style="margin:0 0 5px 0; padding:0;"><strong>Payment amount: </strong>US${$body->amount}</p></td>
+  </tr>
+  
+  <tr>
+    <td colspan="2"><p style="margin:0 0 5px 0; padding:0;"><strong>Reference number: </strong>{$body->refNo}</p></td>
+  </tr>
+  
+  
+</table>
                 
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Subscription price:</strong> US${$body->amount}</p>
-                
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Payment method: </strong>{$api->paymentMethod}</p>
 			</div>
 			</div>
             
@@ -65,7 +114,7 @@ Please keep this email for later reference.</p>
   <tr>
     <td></td>
     <td align="left" valign="top">2.</td>
-    <td>Go to the agent's office and pay ${$body->amount} in <span style="color:#0A436E; font-weight:bold;">US Dollars</span>.</td>
+    <td>Go to the agent's office and pay ${$body->amount} in <span style="color:#0A436E; font-weight:bold;">US dollars</span>.</td>
     <td></td>
   </tr>
   <tr>
@@ -74,7 +123,10 @@ Please keep this email for later reference.</p>
   <tr>
     <td></td>
     <td align="left" valign="top">3.</td>
-    <td>Give the agent the special instruction: <span style="color:#0A436E; font-weight:bold;">Recipient must receive money in US$ (not Hong Kong Dollars)</span>.</td>
+   
+    <td>Tell the agent that the recipient must receive money in <span style="color:#0A436E; font-weight:bold;">US dollars </span>(not Hong Kong dollars).</td>
+    
+    
     <td></td>
   </tr>
   <tr>
@@ -110,7 +162,7 @@ Please keep this email for later reference.</p>
                 <ol style="margin:0; padding:0 0 0 25px; list-style-type: lower-roman;  line-height:18px;">
                 	<li>Sender name</li>
                     <li>Sender country</li>
-                    <li>Money Control Transfer Number (10-digit)</li>
+                    <li>Money control transfer number (10-digit)</li>
                     <li>The reference number at the top of this email</li>
                 </ol>    </td>
     <td background="http://www.clarityenglish.com/images/email/ieltspractice/list_right_bg.jpg"></td>
@@ -189,10 +241,11 @@ Please keep this email for later reference.</p>
                		<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Please feel free to contact us if you have any questions.</p>
 
 						<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">Best wishes</p>
-                        <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:15px 0; padding:0; color:#000000; line-height:18px;"><img src="http://www.clarityenglish.com/images/email/ieltspractice/sign_christianng.jpg" width="103" height="25" alt="Christine Ng"/></p>
+                        <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:10px 0 5px 0; padding:0; color:#000000; line-height:18px;"><img src="http://www.clarityenglish.com/images/email/ieltspractice/sign_cynthialau.jpg" width="103" height="33" alt="Cynthia Lau"/></p>
                         <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">
-                 	Ms Christine Ng<br />
-                   Accounts Manager, Clarity</p>
+                 	Cynthia Lau<br />
+                    IELTSpractice Support Team</p>  
+                        
                    </div>
     </td>
   </tr>
@@ -203,25 +256,82 @@ Please keep this email for later reference.</p>
   
   
   <tr>
-        <td width="10" background="http://www.clarityenglish.com/images/email/ieltspractice/bg_btm_left.jpg">            </td>
-        <td width="579"  bgcolor="#343434">
-       <div style="padding:20px 48px; color:#FFFFFF;">
-         
-            
-            
-             <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#FFFFFF; line-height:18px; font-weight:bold;">Clarity Language Consultants Ltd<br />(UK and Hong Kong since 1992)</p>
-			  
-			 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#FFFFFF; line-height:18px;">
+    <td colspan="3">
+    
+    	<table width="600" border="0" cellpadding="0" cellspacing="0" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#FFFFFF; line-height:18px;">
+  <tr>
+    <td width="10" rowspan="13" valign="top" background="http://www.clarityenglish.com/images/email/ieltspractice/bg_btm_left.jpg"></td>
+    <td width="48" rowspan="13" valign="top" bgcolor="#343434"></td>
+    <td height="20" colspan="2" valign="top" bgcolor="#343434"></td>
+    <td width="48" rowspan="13" valign="top" bgcolor="#343434"></td>
+    <td width="11" rowspan="13" valign="top" background="http://www.clarityenglish.com/images/email/ieltspractice/bg_btm_right.jpg"></td>
+  </tr>
+  <tr>
+    <td colspan="2" valign="top" bgcolor="#343434">
+    	 <strong>Clarity Language Consultants Ltd</strong> (UK and Hong Kong since 1992)</td>
+    </tr>
+  <tr>
+    <td height="5" colspan="2" valign="top" bgcolor="#343434"></td>
+    </tr>
+  <tr>
+    <td width="20" height="20" valign="top" bgcolor="#343434"><img src="http://www.clarityenglish.com/images/email/rti2/winner.jpg" alt="Winner" width="16" height="20"/></td>
+    <td width="463"  valign="top" bgcolor="#343434" style="line-height:20px;"><strong>2014 WINNER</strong> of the Hong Kong ICT awards, Best Product (Road to IELTS)</td>
+    </tr>
+   <tr>
+     <td height="5" colspan="2" valign="top" bgcolor="#343434"></td>
+     </tr>
+   <tr>
+     <td  height="20" valign="top" bgcolor="#343434"><img src="http://www.clarityenglish.com/images/email/rti2/winner.jpg" alt="Winner" width="16" height="20"/></td>
+     <td valign="top" style="line-height:20px;" bgcolor="#343434"><strong>2013 WINNER</strong> of the Hong Kong Business Award (SME)</td>
+   </tr>
+   <tr>
+     <td  height="5" colspan="2" valign="top" bgcolor="#343434"></td>
+     </tr>
+   
+   <tr>
+     <td  height="20" valign="top" bgcolor="#343434"><img src="http://www.clarityenglish.com/images/email/rti2/winner.jpg" alt="Winner" width="16" height="20"/></td>
+    <td width="463" valign="top" style="line-height:20px;" bgcolor="#343434"><strong>2012 WINNER</strong> of the English Speaking Union President's Award</td>
+    </tr>
+    
+    
+    
+  <tr>
+    <td height="8" colspan="2" valign="middle" bgcolor="#343434"></td>
+    </tr>
+    
+    
+    
+  <tr>
+    <td height="20" colspan="2" valign="middle" background="http://www.clarityenglish.com/images/email/rti2/ielts_foot_line.jpg" bgcolor="#343434"></td>
+    </tr>
+   <tr>
+     <td height="8" colspan="2" valign="middle" bgcolor="#343434"></td>
+     </tr>
+   
+      <tr>
+        <td height="45" colspan="2" valign="top" bgcolor="#343434">
+        	
                 T: (+852) 2791 1787 | F: (+852) 2791 6484<br />
-              E: <a href="mailto:support@ieltspractice.com" style="color:#FFFFFF;">support@ieltspractice.com</a> | W: <a href="http://www.IELTSpractice.com" target="_blank" style="color:#FFFFFF;">www.IELTSpractice.com</a>              </p> 
-              
-               <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; 0; padding:0; color:#FFFFFF; line-height:18px;">Your privacy is important to us. Please review IELTSpractice.com privacy
-policy by clicking here: <a href="http://www.ieltspractice.com/terms.php" target="_blank" style="color:#FFFFFF;">http://www.ieltspractice.com/terms.php</a></p>
-    </div>
-        
-        
-        </td>
-        <td width="11" background="http://www.clarityenglish.com/images/email/ieltspractice/bg_btm_right.jpg"></td>
+                E: <a href="mailto:support@ieltspractice.com" style="color:#FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0;">support@ieltspractice.com</a> | W: <a href="http://www.IELTSpractice.com/" target="_blank" style="color:#FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0;">www.IELTSpractice.com</a>        </td>
+        </tr>
+      <tr>
+        <td  colspan="2" valign="top" style="padding:0 0 15px 0;" bgcolor="#343434">
+    	
+                Your privacy is important to us. Please review the IELTSpractice.com privacy policy <br />by clicking
+here: <a href="http://www.www.ieltspractice.com/terms.php" target="_blank" style="color:#FFFFFF;">http://www.ieltspractice.com/terms.php</a>    </td>
+     </tr>
+  
+  
+  
+  
+ 
+ 
+  <tr>
+    <td height="10" colspan="6" background="http://www.clarityenglish.com/images/email/rti2/ielts_foot_bottom.jpg" ></td>
+    </tr>
+</table>
+    
+    </td>
   </tr>
 </table>
 

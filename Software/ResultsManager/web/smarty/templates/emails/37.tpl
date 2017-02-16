@@ -2,6 +2,7 @@
 {* Description: Email 14a. Internal quotation request *}
 {* Variables: $account, $template_dir *}
 {assign var="quotationFile" value="`$template_dir`quotations/`$account->prefix`_`$expiryDate`_quotation.pdf"}
+{assign var='dateDiff' value='+77day'}
 <html>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -27,7 +28,7 @@
 -- Section containing details of titles, highlighting those that are expiring related to this email
 -->
 	{include file='file:includes/Spacer_Before_Title_Details.tpl'}
-	{include file="file:includes/Title_Details_Section.tpl'}
+	{include file="file:includes/Title_Details_Section.tpl' dateDiff=$dateDiff}
 <!-- 
 -- Email signature 
 -->

@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Welcome to ClarityLifeSkills.com</title>
 	<!-- <from>%22ClarityLifeSkills%22 %3Cadmin@claritylifeskills.com%3E</from> -->
-	<!-- <bcc>admin@claritylifeskills.com,accounts@clarityenglish.com</bcc> -->
+	<!-- <bcc>support@claritylifeskills.com,accounts@clarityenglish.com</bcc> -->
 </head>
 <body style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:10px 0 0 0; padding:0; color:#000000;">
 <div style="width:600px; margin:0 auto; padding:0;">
@@ -69,7 +69,7 @@
 -->
 	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Please feel free to contact us if you have any quesitons.</p>
 	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">With best wishes</p>
-	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Nicole Lung</p>
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Cynthia Lau</p>
 	{include file='file:includes/CLS_Email_Signature.tpl'}
 <!--
 -- Privacy and terms and conditions

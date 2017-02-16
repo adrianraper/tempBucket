@@ -59,7 +59,7 @@
 -->
 	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:10px 0 10px 0; padding:0; color:#000000;">I'm looking forward to hearing from you.</p>
      <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:10px 0 10px 0; padding:0; color:#000000;">Best regards<br>
-   Nicole
+   Jennifer Sin
     </p>
 	{include file='file:includes/SalesManager_Email_Signature.tpl'}
 <!-- 

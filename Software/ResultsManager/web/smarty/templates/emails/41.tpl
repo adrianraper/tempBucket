@@ -52,6 +52,7 @@
 	Some programs in your Clarity English subscription expire today. Your learners no longer have access to the programs highlighted below.
 	As I mentioned in yesterday's email, if you do intend to renew, please send me an email and I'll arrange for a two-week extension, free of charge, while we renew the programs.
 {/if}
+        Please note that the two-week extension is only available once.
 		{* If there is a security string, it means you can do a direct start to usage stats *}
 		{if ($session)}
 			If you would like to check your usage statistics, click <a href="http://www.ClarityEnglish.com/area1/ResultsManager/directUsageStats.php?session={$session}" target='_blank'>here</a></span>.
@@ -70,7 +71,7 @@
 -->
 	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:10px 0 10px 0; padding:0; color:#000000;">In the meantime, if you have any queries or requests, please don't hesitate to get in touch.</p>
     <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:10px 0 10px 0; padding:0; color:#000000;">Best regards<br>
-   Nicole
+   Jennifer
     </p>
 	{include file='file:includes/SalesManager_Email_Signature.tpl'}
 <!-- 

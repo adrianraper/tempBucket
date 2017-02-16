@@ -52,7 +52,7 @@
 	some titles in your account expire 
 {/if}
 	 <strong>tomorrow</strong>. 
-	I would hate for there to be an interruption to your service, so if you intend to renew, please send me an email and I'll arrange for a two-week extension, free of charge.
+	I would hate for there to be an interruption to your service, so if you intend to renew, please send me an email and I'll arrange for a two-week extension, free of charge. Please note that the two-week extension is only available once.
 		{* If there is a security string, it means you can do a direct start to usage stats *}
 		{if ($session)}
 			If you would like to check your usage statistics, click <a href="http://www.ClarityEnglish.com/area1/ResultsManager/directUsageStats.php?session={$session}" target='_blank'>here</a></span>.
@@ -72,7 +72,7 @@
 	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:10px 0 10px 0; padding:0; color:#000000;">Do please let me know as soon as possible so that I can ensure the continuity of your service.</p>
     <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:10px 0 10px 0; padding:0; color:#000000;">I'm looking forward to hearing from you.</p>
     <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:10px 0 10px 0; padding:0; color:#000000;">Best regards<br>
-   Nicole
+   Jennifer
     </p>
     
 	{include file='file:includes/SalesManager_Email_Signature.tpl'}

@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Study Guide 2: Learn about IELTS Reading</title>
-<!--<from>IELTS Practice<noreply@ieltspractice.com></from>-->
+    <!-- <from>%22IELTS Practice%22 %3Cnoreply@ieltspractice.com%3E</from> -->
 </head>
 
 <body style="margin:10px 0 0 0; padding:0;" bgcolor="#ffffff" >

@@ -19,21 +19,20 @@
 {if $useWording == 'all'}
 	<title>Clarity English - Subscription reminder, 14 days left</title>
 {elseif $useWording == 'one'}
-	<title>Clarity English - One program in your account expires tomorrow</title>
+	<title>Clarity English - One program in your account expires in just 14 days</title>
 {elseif $useWording == 'couple'}
-	<title>Clarity English - Two programs in your account expire tomorrow</title>
+	<title>Clarity English - Two programs in your account expire in just 14 days</title>
 {else}
-	<title>Clarity English - Some programs in your account expire tomorrow</title>
+	<title>Clarity English - Some programs in your account expire in just 14 days</title>
 {/if}
 	<!-- <from>%22Clarity English%22 %3Cadmin@clarityenglish.com%3E</from> -->
 	<!-- <bcc>admin@clarityenglish.com</bcc> -->
 <style type="text/css">
-  	    	@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);
-		</style>
+    		@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);
+			</style>
 	{if ($quotationFile|file_exists)}
 		<!-- <attachment>{$quotationFile}</attachment> -->
 	{/if}
-    	
 </head>
 <body text="#000000" style="margin:0; padding:0;">
 <div style="width:600px; margin:0 auto; padding:0;">
@@ -71,7 +70,7 @@
 -->
 	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:10px 0 10px 0; padding:0; color:#000000;">I'm looking forward to hearing from you.</p>
      <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:10px 0 10px 0; padding:0; color:#000000;">Best regards<br>
-   Nicole
+   Jennifer Sin
     </p>
 	{include file='file:includes/SalesManager_Email_Signature.tpl'}
 <!-- 

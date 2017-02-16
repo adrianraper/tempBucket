@@ -8,7 +8,7 @@
 		<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->
 </head>
 <body style="font-family: arial, sans-serif; margin: 0px; font-size: 14px; ">
-  <p>Dear {$account->adminUser->name} {$account->id}</p>
+  <p>Dear {$account->adminUser->name}</p>
   <p>You will be pleased to hear that today we are adding some updates to your Road to IELTS account. All of these are free of additional charge — and are included in your subscription.</p>
   <p>So, what does this content upgrade include? Rather a lot:</p>
   <ul>

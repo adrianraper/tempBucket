@@ -53,34 +53,7 @@
     <td colspan="3">
     
     
-    <table width="600" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/ieltspractice/img_reminder_next.jpg">
-  <tr>
-    <td width="66" height="82">&nbsp;</td>
-    <td>&nbsp;</td>
-    <td width="90">&nbsp;</td>
-  </tr>
-  <tr>
-    <td height="60"></td>
-    <td valign="top">
-    	<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 15px; margin:0; padding:0; color:#FFFFFF; line-height:18px;">Your learning doesn't stop here. Enhance your career<br />
-prospects by learning essential English skills for your daily life!</p>
-	</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td height="140">&nbsp;</td>
-    <td valign="top">
-    	<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0; padding:0 220px 0 0; color:#FFFFFF; line-height:18px;">ClarityLifeSkills is the ideal place to improve your English in general, and prepare for English language exams. A variety of online programs and courses enable you to practise your reading, writing, grammar, listening, speaking, vocabulary and pronunciation.</p>
-	</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td height="59">&nbsp;</td>
-    <td valign="top"> <a href="http://www.claritylifeskills.com?utm_source=EndToday&utm_medium=Btn_Findmore&utm_campaign=IP_ReminderEmail" target="_blank"><img src="http://www.clarityenglish.com/images/email/ieltspractice/btn_reminder_cls_more.jpg" alt="Find out more" width="149" height="40" style="margin:0 0 15px 0; border:0; background-color:#EFB32F; color:#4B2808;"/></a></td>
-    <td>&nbsp;</td>
-  </tr>
   
-</table>
 
     
    
@@ -96,10 +69,10 @@ prospects by learning essential English skills for your daily life!</p>
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:15px 0; padding:0; color:#000000; line-height:18px;">Please feel free to contact us at <a href="mailto: support@ieltspractice.com">support@ieltspractice.com</a> if you have any questions.</p>
 
 						<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0; padding:0; color:#000000; line-height:18px;">Best wishes</p>
-                        <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:5px 0; padding:0; color:#000000; line-height:18px;"><img src="http://www.clarityenglish.com/images/email/ieltspractice/sign_nicolelung.jpg" width="103" height="25" alt="Nicole Lung"/></p>
-                        <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0; padding:0; color:#000000; line-height:18px;">
-                 	Nicole Lung<br />
-                    Marketing Executive, Clarity</p>    
+                        <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:10px 0 5px 0; padding:0; color:#000000; line-height:18px;"><img src="http://www.clarityenglish.com/images/email/ieltspractice/sign_cynthialau.jpg" width="103" height="33" alt="Cynthia Lau"/></p>
+                        <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">
+                 	Cynthia Lau<br />
+                    IELTSpractice Support Team</p>    
         
         
       

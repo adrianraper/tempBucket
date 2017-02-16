@@ -68,9 +68,10 @@
                		
 
 						<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0; padding:0; color:#000000; line-height:18px;">Best wishes</p>
-                        <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:10px 0; padding:0; color:#000000; line-height:18px;"><img src="http://www.clarityenglish.com/images/email/ieltspractice/sign_support.jpg" width="159" height="32" alt="Clarity Support team"/></p>
-<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0; padding:0; color:#000000; line-height:18px;">
-                 	Clarity Support Team</p>
+                        <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:10px 0 5px 0; padding:0; color:#000000; line-height:18px;"><img src="http://www.clarityenglish.com/images/email/ieltspractice/sign_cynthialau.jpg" width="103" height="33" alt="Cynthia Lau"/></p>
+                        <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">
+                 	Cynthia Lau<br />
+                    IELTSpractice Support Team</p>
              
              
            </div>
