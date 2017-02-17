@@ -83,12 +83,12 @@
 			<lit name="showUnassigned">Show unassigned</lit>
 			<lit name="tooManyUsersToAllocate">Sorry, ading these users would exceed your licence allowance by {userCount}.</lit>
 			<lit name="loginWindow">Sign in to Results Manager</lit>
-			<lit name="loginUsername">Username</lit>
+			<lit name="loginUsername">Type your username</lit>
 			<lit name="loginPassword">Password</lit>
 			<lit name="loginFilter">Search for</lit>
 			
 			<lit name="loginButton">Sign in</lit>
-			<lit name="logoutButton">Logout</lit>
+			<lit name="logoutButton">Sign out</lit>
 			<lit name="empty">Empty</lit>
 			<lit name="userType2">an administrator</lit>
 			<lit name="userType1">a teacher</lit>
@@ -613,31 +613,31 @@
 			<lit name="hiddenContentLabel">Allow hidden content changes</lit>
 			
 			<!--  Test Platform -->
-                    
+            <lit name="helpButton">Help</lit>                    
             <lit name="actionLabel">Actions:</lit>
             <lit name="testDetailsCaption">Test details:</lit>
             <lit name="listOfTestsLabel">Tests for: {name}</lit>
-            <lit name="addTest">+ Add new test</lit>
+            <lit name="addTest">+ Schedule a test</lit>
             <lit name="saveTestDetail">Save</lit>
             <lit name="cancelButton">Cancel</lit>
-            <lit name="deleteTest">Delete</lit>
+            <lit name="deleteTest">Delete test</lit>
             <lit name="generateReport">See test results</lit>
             <lit name="sendResultEmail">Email test results</lit>
             <lit name="sendWelcomeEmail">Preview welcome emails</lit>
             <lit name="selectGroup">Select a group on the left to see the tests scheduled for them.</lit>
             <lit name="testDetailPanel">Details of the test</lit>
-            <lit name="testOpenTimeLabel">The test can be downloaded at anytime, but not started until:</lit>
-            <lit name="testCloseTimeLabel">Test closes at:</lit>
-            <lit name="testStartConditionLabel">Do you want to add a security access code?</lit>
+            <lit name="testOpenTimeLabel">Start time</lit>
+            <lit name="testCloseTimeLabel">End time</lit>
+            <lit name="testStartConditionLabel">Require an access code?</lit>
             <lit name="testCodeLabel">Access code</lit>
             <lit name="testTimeLabel">Time based</lit>
-            <lit name="testCaptionLabel">Description:</lit>
-            <lit name="testShowResultLabel">Show test taker their result?</lit>
+            <lit name="testCaptionLabel">Test name</lit>
+            <lit name="testShowResultLabel">Show test-takers their CEF result after the test?</lit>
             <lit name="testPanel">Test schedule details</lit>
             <lit name="yesButton">Yes</lit>
             <lit name="noButton">No</lit>
             <lit name="signedInUser">Hello {username}.</lit>
-            <lit name="languageLabel">Which language do you want the program instructions to be in?</lit>
+            <lit name="languageLabel">Language for the program instructions</lit>
             <lit name="emailInsertionNoteLabel">Do you want to add any notes into the welcome email? The test location perhaps?</lit>
             <lit name="emailInsertionNameLabel">Who is the contact in the email?</lit>
             <lit name="emailInsertionEmailLabel">And their email?</lit>
@@ -645,15 +645,17 @@
             <lit name="emailInsertionSubject">{name} has set you an English test</lit>    
             
             <lit name="testAdminFirstStep">Step 1</lit>
-            <lit name="testAdminManageables">1. Choose your group</lit>
-            <lit name="testAdminDetailedManageablesLabel">Right-click on a group to manage the members.</lit>
-            <lit name="testAdminTests">2. Tests for that group</lit>
-            <lit name="testAdminTestDetails">3. Details for that test</lit>
+            <lit name="testAdminManageables">Users and groups</lit>
+            <lit name="detailedTestAdminManageablesLabel">Choose a group, or right-click to create new ones.</lit>
+            <lit name="testAdminTests">List of tests</lit>
+            <lit name="detailedTestAdminTests">Choose a test</lit>
+            <lit name="testAdminTestDetails">Test schedule</lit>
+            <lit name="detailedTestAdminTestDetails">Set the details of the test</lit>
 
             <lit name="licenceUse">Your tests</lit>
-            <lit name="licencesScheduled">Tests scheduled</lit>
-            <lit name="licencesPurchased">Tests purchased</lit>
-            <lit name="licencesUsed">Tests used</lit>
+            <lit name="licencesScheduled">Scheduled</lit>
+            <lit name="licencesPurchased">Purchased</lit>
+            <lit name="licencesUsed">Used</lit>
             <lit name="notEnoughLicences">You have {licencesAvailable} tests left from your purchased supply. You have scheduled up to {licencesScheduled} people to take tests. It is best to buy some more now.</lit>
             <lit name="licencesNeededWarning">You have {licencesAvailable} tests left from the ones you purchased. You have scheduled up to {licencesScheduled} people to take tests.</lit>
             <lit name="buyMoreLicences">Buy {licencesNeeded} tests now</lit>

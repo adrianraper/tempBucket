@@ -1,10 +1,10 @@
 <?php
 /*
- * This is not really an AMFPHP service but its in this folder to maintain path integrity in all of the require_once calls.
+ * This is not really an AMFPHP service but it's in this folder to maintain path integrity in all of the require_once calls.
  * Since there are no classes or methods here it does not represent a security risk.
  */
-require_once(dirname(__FILE__)."/ClarityService.php");
-require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
+require_once(dirname(__FILE__) . "/ClarityService.php");
+require_once(dirname(__FILE__) . "../../core/shared/util/Authenticate.php");
 
 $thisService = new ClarityService();
 if (!Authenticate::isAuthenticated()) {
@@ -13,194 +13,224 @@ if (!Authenticate::isAuthenticated()) {
     //exit(0);
 }
 
-$templateDefinition = (isset($_REQUEST['template'])) ? json_decode($_REQUEST['template']) : null;
+$templateString = (isset($_REQUEST['template'])) ? $_REQUEST['template'] : '';
+$template = (isset($_REQUEST['template'])) ? json_decode($_REQUEST['template']) : null;
+$groupIdString = (isset($_REQUEST['groupIdArray'])) ? $_REQUEST['groupIdArray'] : '';
 $groupIdArray = (isset($_REQUEST['groupIdArray'])) ? json_decode(stripslashes($_REQUEST['groupIdArray']), true) : array();
-$previewIndex = isset($_REQUEST['previewIndex']) ? $_REQUEST['previewIndex'] : 0;
-$send = isset($_REQUEST['send']) && $_REQUEST['send'] == "true";
+$previewIndex = isset($_REQUEST['previewIndex']) ? json_decode($_REQUEST['previewIndex']) : 0;
+//$send = isset($_REQUEST['send']) && $_REQUEST['send'] == "true";
 
 /**
  * This for testing and debugging emails
  */
 /*
-$templateDefinition = json_decode('{
-	"description": null,
-	"title": null,
-	"name": "invitation",
-	"data": {
-		"administrator": {
-			"email": "twaddle@email",
-			"name": "Mrs Twaddle"
-		},
-		"test": {
-			"closeTime": "2017-01-31 00:00:00",
-			"startType": "timer",
-			"productCode": "63",
-			"openTime": "2017-01-17 00:00:00",
-			"parent": null,
-			"children": null,
-			"id": "1011",
-			"testId": "1011",
-			"showResult": false,
-			"startData": null,
-			"groupId": "35026",
-			"status": 2,
-			"caption": "Funny in Chinese",
-			"emailInsertion": "{note: Please go to lecture room 2B at 10am to start the test.}",
-			"language": "EN",
-			"menuFilename": "menu.json.hbs",
-			"uid": "1011",
-			"reportableLabel": "Funny in Chinese"
-		}
-	},
-	"templateID": null,
-	"filename": "user/DPT-welcome"
-}');
-$groupIdArray = json_decode('["21560"]');
+$templateString = '{"description": null,"title": null,"name": "invitation","data": {"administrator": {"email": "twaddle@email","name": "Mrs Twaddle"},"test": {"closeTime": "2017-01-31 00:00:00","startType": "timer","productCode": "63","openTime": "2017-01-17 00:00:00","parent": null,"children": null,"id": "1011","testId": "1011","showResult": false,"startData": null,"groupId": "35026","status": 2,"caption": "Funny in Chinese","language": "EN","menuFilename": "menu.json.hbs","uid": "1011","reportableLabel": "Funny in Chinese"}},"templateID": null,"filename": "user/DPT-welcome"}';
+$template = json_decode($templateString);
+$groupIdString = '["21560"]';
+$groupIdArray = json_decode($groupIdString);
+$previewIndex = 0;
 */
 
-if (!isset($templateDefinition->data)) {
+if (!isset($template->data)) {
     echo "<h2>No template data was passed</h2>";
     exit(0);
 }
+if (!isset($groupIdArray[0])) {
+    echo "<h2>No group data was passed</h2>";
+    exit(0);
+}
 
-$userEmailArray = $thisService->dailyJobOps->getEmailsForGroup($groupIdArray, $templateDefinition);
+$userEmailArray = $thisService->dailyJobOps->getEmailsForGroup($groupIdArray, $template);
+$emailContents = $thisService->emailOps->fetchEmail($template->filename, $userEmailArray[$previewIndex]['data']);
 
+$administratorEmail = (isset($template->data->administrator->email)) ? $template->data->administrator->email : 'support@clarityenglish.com';
+$administratorName = (isset($template->data->administrator->name)) ? $template->data->administrator->name : null;
+
+if (isset($template->data->administrator->name) && isset($template->data->administrator->email)) {
+    $emailInsertion = "Got any questions? Ask " . $administratorName . " at " . $administratorEmail;
+} else if (isset($administratorName)) {
+    $emailInsertion = "Ask any questions from " . $administratorName. ".";
+} else {
+    $emailInsertion = "Type here to tell the test takers how to contact you if they have any questions.";
+}
+/*
 // ctp#346 Add the test administrator to this list of email recipients for copy
 $adminEmail = array();
-$adminEmail['to'] = $templateDefinition->data->emailDetails->email;
+$adminEmail['to'] = $administratorEmail;
 // Since we don't have a full user for the admin, just replace key bits
 $adminEmail['data']['user'] = new User();
-$adminEmail['data']['user']->name = $templateDefinition->data->emailDetails->name.' (email for reference)';
-$adminEmail['data']['user']->email = $templateDefinition->data->emailDetails->email;
+$adminEmail['data']['user']->name = $administratorName . ' (copy for reference)';
+$adminEmail['data']['user']->email = $administratorEmail;
 $adminEmail['data']['user']->password = '(hidden)';
 $adminEmail['data']['templateData'] = $userEmailArray[0]['data']['templateData'];
 array_push($userEmailArray, $adminEmail);
+*/
 
-if ($send)
-    $results = $thisService->emailOps->sendEmails("", $templateDefinition->filename, $userEmailArray);
+//if ($send) {
+//    $results = $thisService->emailOps->sendEmails("", $template->filename, $userEmailArray);
+//}
 ?>
+
 <!DOCTYPE html>
-  <html>
-    <head>
-        <title>Preview email</title>
-        <link rel="shortcut icon" type="image/x-icon" href="http://www.clarityenglish.com/Software/DPT.ico"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta charset="UTF-8">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
-        <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-        <script src="../../js/prototype-1.6.0.3.js"></script>
-        <script>
-            function previewEmail(previewIndex) {
-                $("sendForm").previewIndex.value = previewIndex;
-                $("sendForm").send.value = false;
-                $("sendForm").submit();
-            }
-
-            function sendEmails() {
-                $("sendForm").send.value = true;
-                $("sendForm").submit();
-            }
-        </script>
-    </head>
+<html lang="en">
+<head>
+    <title>Test Admin send welcome email</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
     <style>
-        html {
-            font: 400 1em/1.4 'Open Sans', sans-serif;
-            text-rendering: optimizeLegibility;
-        }
-        .header {
-            font-weight: bold;
-            text-align: center;
-            padding: 10px 0;
-        }
-        .body {
-            position: absolute;
-            top: 50px;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            display: flex;
-            max-height: 900px;
-        }
-        .preview {
-            padding: 2em;
-            width: 60%;
-        }
-        .main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            width: 40%;
-        }
-        .content {
-            flex: 1;
-            display: flex;
+        .scrollingBlock {
             overflow-y: auto;
-            width: 100%;
         }
-        .box {
-            min-height: 500px;
-            display: flex;
-            width: 100%;
+        .promptWithIcon {
+            vertical-align: -2px;
         }
-        .column {
-            padding: 20px;
-            width: 100%;
+        li > a {
+            text-decoration: none;
+        }
+        .replaceInPreview {
+            display: none;
+        }
+        #confirmEmailPanel .replaceInPreview {
+            display: block;
         }
 
-        .col-footer {
-            font-weight: bold;
-            text-align: center;
-            background-image: linear-gradient(to right, #2BB673, #00A79D);
-            padding: 1em 0;
-            color: #ffffff;
-            cursor: pointer;
-        }
-        .listItem {
-            padding: 0.3em;
-            width: 100%;
-        }
-        .bordered {
-            border: 1px solid #C9DBDF;
-        }
     </style>
-    <body>
-    <form id="sendForm" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="GET">
-        <input type="hidden" name="previewIndex" value="<?php echo isset($_REQUEST['previewIndex']) ? $_REQUEST['previewIndex'] : 0; ?>" />
-        <input type="hidden" name="template" value='<?php echo $_REQUEST["template"]; ?>' />
-        <input type="hidden" name="groupIdArray" value='<?php echo json_encode($groupIdArray); ?>' />
-        <input type="hidden" name="send" />
-    </form>
-    <?php if (!$send) { ?>
-        <div class="header">
-            Test takers' emails and preview
+    <script>
+
+        /**
+         * This will send the original data and any edits made on this screen to a function that
+         * sends the emails and or returns the template with the edits and selected user's details.
+         */
+        var currentPreviewIndex = 0;
+        function previewEmail(previewIndex) {
+            currentPreviewIndex = previewIndex;
+            getEmail(currentPreviewIndex, false);
+        }
+        // Show a modal panel with the final email contents
+        function confirmEmail() {
+            getEmail(currentPreviewIndex, false);
+            $("#confirmEmailPanel").show();
+        }
+        function sendEmails() {
+            $("#confirmEmailPanel").hide();
+            $("#emailsSentNotice").show();
+            getEmail(currentPreviewIndex, true);
+        }
+        function dontSendEmail() {
+            $("#confirmEmailPanel").hide();
+        }
+        function getEmail(previewIndex, sendEmails) {
+            var groupIdArray = JSON.parse(<?php echo "'$groupIdString'"; ?>);
+            var previewIndex = previewIndex;
+            var template = JSON.parse(<?php echo "'$templateString'"; ?>);
+            // Need to remove line breaks (and other?) characters from typed text
+            var strippedNotes = $("#emailInsertion").val();
+            strippedNotes = strippedNotes.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+            console.log(strippedNotes);
+            var emailInsertion =  JSON.parse('{"subject":"' + $("#emailSubject").val() + '", "notes":"' + strippedNotes + '"}');
+
+            $.ajax({
+                url: "http://dock.projectbench/Software/ResultsManager/web/amfphp/services/GroupEmailActions.php",
+                data: {
+                    method: "getTemplate",
+                    template: JSON.stringify(template),
+                    groupIdArray: JSON.stringify(groupIdArray),
+                    previewIndex: JSON.stringify(previewIndex),
+                    emailInsertion: JSON.stringify(emailInsertion),
+                    send: sendEmails
+                },
+                type: "GET",
+                dataType: "json"
+            })
+                .done(function (json) {
+                    $("#emailConfirm").replaceWith('<div id="emailConfirm" class="w3-container">' + json.emailContents + '</div>');
+                    $("#emailContents").replaceWith('<div id="emailContents">' + json.emailContents + '</div>');
+                    if (sendEmails)
+                        $("#emailsSentNotice h2").text("Emails sent");
+                })
+                .fail(function (xhr, status, errorThrown) {
+                    alert("Sorry, there was a problem!");
+                    console.log("Error: " + errorThrown);
+                    console.log("Status: " + status);
+                    console.dir(xhr);
+                });
+        }
+        function closeWindow() {
+            window.close();
+        }
+    </script>
+</head>
+<body>
+<div class="w3-cell-row">
+    <div class="w3-container w3-cell w3-cell-middle w3-card-2" style="width:40%">
+        <img src="http://www.clarityenglish.com/images/program/DPTpage/DPT_TA_logo.png" alt="DPT logo"
+             class="w3-cell-middle w3-padding-8">
+        &nbsp;&nbsp;<span><strong>Edit and send this email to test takers</strong></span>
+    </div>
+    <div class="w3-container w3-cell w3-cell-middle w3-card-2">
+        <div class="w3-cell-row">
+            <div class="w3-cell" style="width:94px">Subject&nbsp;&nbsp;<i class="fa fa-edit promptWithIcon"
+                                                                          style="font-size:20px"></i></div>
+            <input id="emailSubject" class="w3-input w3-border w3-round w3-hover-teal w3-pale-green" type="text"
+                   value="<?php if (isset($administratorName)) {
+                       echo $administratorName . " has set you an English test";
+                   } else {
+                       echo "You have been set an English test";
+                   }  ?>">
         </div>
-        <div class="body">
-            <div class="main bordered">
-                <div class="content ">
-                    <div class="box">
-                        <div class="column ">
-                            <?php
-                            $n = 0;
-                            foreach ($userEmailArray as $userEmail) {
-                                echo "<div class='listItem'>";
-                                echo "<a href='#' onClick='previewEmail(".$n.")'>".$userEmail['data']['user']->name." (".$userEmail['to'].")</a>";
-                                echo "</div>";
-                                $n++;
-                            }
-                            ?>
-                        </div>
-                    </div>
+    </div>
+</div>
+<div class="w3-cell-row">
+    <div class="w3-container w3-cell w3-card-2" style="width:40%">
+        <ul class="w3-ul w3-hoverable scrollingBlock w3-margin-top w3-margin-bottom" style="height:700px">
+            <?php
+            $n = 0;
+            foreach ($userEmailArray as $userEmail) {
+                echo "<li class='w3-hover-teal'>";
+                echo "<a href='#' onClick='previewEmail(" . $n . ")'>" . $userEmail['data']['user']->name . " (" . $userEmail['to'] . ")</a>";
+                echo "</li>";
+                $n++;
+            }
+            ?>
+        </ul>
+    </div>
+    <div class="w3-container w3-cell w3-card-2 w3-padding-0">
+        <div class="w3-container w3-margin w3-hover-shadow" style="height:700px">
+                <div id="emailContents"><?php echo $emailContents; ?></div>
+                <div><strong>Notes</strong>&nbsp;&nbsp;<i class="fa fa-edit promptWithIcon" style="font-size:20px"></i>
                 </div>
-                <div class="col-footer" onclick="sendEmails()">Send all emails</div>
-            </div>
-            <div class="preview bordered">
-                <?php echo $thisService->emailOps->fetchEmail($templateDefinition->filename, $userEmailArray[$previewIndex]['data']); ?>
-            </div>
+                <textarea id="emailInsertion" class="w3-input w3-border w3-round w3-hover-teal w3-pale-green"
+                          style="height:100px; resize:none"><?php echo $emailInsertion; ?></textarea>
         </div>
-    <?php } else { ?>
-        <div class="header">
-            Emails sent
+        <button class="w3-btn-block w3-ripple w3-teal" onclick="confirmEmail()">Send all</button>
+    </div>
+</div>
+<div id="emailsSentNotice" class="w3-modal" style="display:none">
+    <div class="w3-modal-content w3-card-8 w3-center" style="width:50%">
+        <header class="w3-container w3-teal">
+                            <span onclick="closeWindow()"
+                                  class="w3-closebtn">&times;</span>
+            <h2>Sending emails, please wait...</h2>
+        </header>
+    </div>
+</div>
+<div id="confirmEmailPanel" class="w3-modal" style="display:none">
+    <div class="w3-modal-content w3-card-8" style="width:75%">
+        <header class="w3-container w3-border-bottom w3-padding-8 w3-light-grey">
+                            <span onclick="dontSendEmail()"
+                                  class="w3-closebtn">&times;</span>
+            <h3>Click OK to confirm this and all emails</h3>
+        </header>
+        <div id="emailConfirm" class="w3-container">Email goes here</div>
+        <div class="w3-container w3-border-top w3-padding-8 w3-light-grey">
+            <button onclick="sendEmails()" type="button" class="w3-btn w3-teal w3-left">OK</button>
+            <button onclick="dontSendEmail()" type="button" class="w3-btn w3-teal w3-right">Cancel</button>
         </div>
-    <?php } ?>
-  </body>
+    </div>
+</div>
+
+</body>
 </html>
