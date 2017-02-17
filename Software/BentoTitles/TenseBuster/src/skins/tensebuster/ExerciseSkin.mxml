@@ -10,7 +10,7 @@
 	</fx:Metadata>
 	
 	<fx:Declarations>
-		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="1.5" alpha="0.6" blurX="7" blurY="7" />
+		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="1.5" alpha="0.2" blurX="7" blurY="7" />
 	</fx:Declarations>
 	
 	<s:states>
@@ -24,11 +24,11 @@
 	<s:layout>
 		<s:BasicLayout />
 	</s:layout>
-	
+
 	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/hexagonBg.png')" left="0" right="0" bottom="0"/>
-	<s:Group width="100%" height="100%" filters="{[dropShadowFilter]}" includeIn="exercise">
-		<!--rectangle exercise panel-->
-		<s:Rect left="28" right="28" bottom="0" top="-25">
+	<!--<s:Group width="100%" height="100%" filters="{[dropShadowFilter]}" includeIn="exercise">
+		&lt;!&ndash;rectangle exercise panel&ndash;&gt;
+		<s:Rect left="28" right="28" bottom="0" top="0">
 			<s:fill>
 				<s:LinearGradient rotation="90">
 					<s:GradientEntry color="0xFFFFFF" ratio="0"/>
@@ -37,15 +37,15 @@
 				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>
-		<!--top exercise panel-->	
-		<exercise:topPanel top="-55" right="28" left="28" />
-	</s:Group>
-	
+		&lt;!&ndash;top exercise panel&ndash;&gt;
+		&lt;!&ndash;exercise:topPanel top="-55" right="28" left="28" /&ndash;&gt;
+	</s:Group>-->
+
 	<!-- Exercise -->
-	<view:DynamicView id="dynamicView" left="60" right="60" top="54" bottom="0"/>
+	<view:DynamicView id="dynamicView" left="10" right="10" top="-20" bottom="0"/>
 	
 	<!--Backgroud left and right-->
-	<s:Rect width="20" bottom="0" top="5" left="40" includeIn="exercise">
+	<s:Rect width="10" bottom="0" top="-80" left="0" includeIn="exercise">
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0xFFFFFF"/>
@@ -53,7 +53,7 @@
 			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
-	<s:Rect width="20" bottom="0" top="5" right="40" includeIn="exercise">
+	<s:Rect width="10" bottom="0" top="-80" right="0" includeIn="exercise">
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0xFFFFFF"/>
@@ -63,31 +63,41 @@
 	</s:Rect>
 	<!--s:SWFLoader source="@Embed(source='skins/tensebuster/assets/bgLeft.png')" left="15" top="206"/>
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/bgRight.png')" left="950" top="206"/-->
+
+	<!-- Control bar -->
+	<s:Rect left="0" right="0" height="47" top="-70" filters="{[dropShadowFilter]}">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF" />
+		</s:fill>
+	</s:Rect>
 	
-	<!-- Top Left buttons -->
-	<s:HGroup left="60" top="16" includeIn="exercise" gap="0">
-		<!-- gh#967 -->
-		<s:Button id="backToMenuButton" color="0xFFFFFF" fontSize="12" buttonMode="true" useHandCursor="true" />
-		<s:Spacer width="1" />
-		<s:Button id="backButton" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}" visible="{!hostComponent.isDirectStartEx}"/>
-		<s:Button id="forwardButton" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
-		<s:Button id="feedbackButton" visible="false" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
+	<!-- Home buttons -->
+	<s:Button id="backToMenuButton" color="0xFFFFFF" left="0" top="-70" fontSize="12" buttonMode="true" useHandCursor="true" />
+
+	<!-- Top Right buttons -->
+	<s:HGroup right="10" top="-80" includeIn="exercise" gap="10">
+		<s:Button id="backButton" color="0xEA2133" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}" visible="{!hostComponent.isDirectStartEx}"/>
+		<s:Button id="forwardButton" color="0xEA2133" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
+		<s:HGroup paddingLeft="20" gap="5">
+			<s:Button id="feedbackButton" visible="false" color="0xEA2133" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
+			<s:Button id="markingButton"  color="0xEA2133" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
+			<s:Button id="startAgainButton" color="0xEA2133" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
+			<s:Button id="recorderButton" color="0xEA2133" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
+			<s:Button id="ruleButton" color="0xEA2133" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" visible="{hostComponent.ruleLink != null}" includeInLayout="{hostComponent.ruleLink != null}" />
+			<s:Button id="printButton" visible="{hostComponent.hasPrintStylesheet}" includeInLayout="{hostComponent.hasPrintStylesheet}" color="0xEA2133" buttonMode="true" fontSize="13" fontFamily="HelveticaMd" useHandCursor="true"/>
+		</s:HGroup>
 	</s:HGroup>
 
-<!-- Top Right buttons -->
-	<s:HGroup right="60" top="16" includeIn="exercise" gap="0">
-		<s:Button id="markingButton"  color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
-		<s:Button id="startAgainButton" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
-		<s:Button id="recorderButton" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
-		<s:Button id="ruleButton" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" visible="{hostComponent.ruleLink != null}" />
-		<s:Button id="printButton" visible="{hostComponent.hasPrintStylesheet}" color="0xFFFFFF" buttonMode="true" fontSize="13" fontFamily="HelveticaMd" useHandCursor="true"/>
-	</s:HGroup>	
-	
-	<!--Red line-->
-	<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/TB-bg-redLine.png')" top="14" left="25"/>
+	<!-- Header -->
+	<s:Rect left="0" right="0" height="10" top="-80">
+		<s:fill>
+			<s:SolidColor color="0xEA2133" />
+		</s:fill>
+	</s:Rect>
+
 
 	<!--Footer-->
-	<s:Rect width="100%" height="10" bottom="0">
+	<s:Rect left="10" right="10" height="10" bottom="0">
 		<s:fill>
 			<s:SolidColor color="0xEA2133" />
 		</s:fill>

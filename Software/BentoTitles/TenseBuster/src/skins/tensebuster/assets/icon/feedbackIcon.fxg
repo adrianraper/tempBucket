@@ -5,7 +5,7 @@
     <Group d:type="layer" d:userLabel="Layer 1">
       <Path ai:seqID="1" data="M8.56348 0C3.83594 0 0 2.48828 0 5.55664 0 8.62402 3.83594 11.1123 8.56348 11.1123L8.62207 11.1113 11.3623 14.6484 11.9346 10.6641C14.9863 9.81445 17.126 7.84766 17.126 5.55664 17.126 2.48828 13.292 0 8.56348 0Z">
         <fill>
-          <SolidColor color="#FFFFFF"/>
+          <SolidColor color="#EA2133"/>
         </fill>
       </Path>
     </Group>

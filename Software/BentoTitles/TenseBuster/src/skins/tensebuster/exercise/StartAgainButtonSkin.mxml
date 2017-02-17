@@ -44,7 +44,7 @@
     </fx:Metadata>
 	
 	<fx:Declarations>
-		<s:DropShadowFilter id="dropShadowFilter" angle="70" distance="1.5" alpha="0.8"/>
+		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="1.5" alpha="0.2"/>
 	</fx:Declarations>
     
     <!-- states -->
@@ -55,16 +55,24 @@
         <s:State name="disabled" />
     </s:states>
     
-	<s:Group top.over="2" top.down="2" top.up="0">
-		<icon:startAgainBg filters.up="{[dropShadowFilter]}" />
-		<icon:startAgainIcon left="15" top="7" />
+	<s:Group>
+		<s:Group filters="{[dropShadowFilter]}" scaleX="0.3" scaleY="0.3">
+			<s:Path data="M23.7402 149.693C22.1807 149.693 19.9316 148.869 18.7412 147.862L2.16309 133.833C0.973633 132.826 0 130.727 0 129.167L0 2.83398C0 1.27539 1.27539 0 2.83398 0L274.956 0C276.515 0 277.79 1.27539 277.79 2.83398L277.79 129.167C277.79 130.727
+ 276.816 132.826 275.627 133.833L259.049 147.862C257.858 148.869 255.609 149.693 254.05 149.693L23.7402 149.693Z" >
+				<s:fill>
+					<s:SolidColor color="#FFFFFF" color.down="#E2E2E2" color.over="#E2E2E2" />
+				</s:fill>
+			</s:Path>
+		</s:Group>
+		<icon:startAgainIcon left="7" top="22" scaleX="0.8" scaleY="0.8" />
 		
 		<!-- layer 8: text -->
 		<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
 		<s:Label id="labelDisplay"
 				 textAlign="center"
 				 maxDisplayedLines="1"
-				 left="30" right="10" top="11" bottom="2">
+				 fontSize="11"
+				 left="22" right="10" top="25" bottom="2">
 		</s:Label>
     </s:Group>
 </s:SparkButtonSkin>

@@ -2,7 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:recorder="com.clarityenglish.bento.view.recorder.*"
-		xmlns:exercise="skins.tensebuster.assets.exercise.*" xmlns:assetstb="skins.tensebuster.assets.*">
+		xmlns:exercise="skins.tensebuster.assets.exercise.*" xmlns:assetstb="skins.tensebuster.assets.*" xmlns:icon="skins.tensebuster.assets.icon.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.title.TitleView")]
@@ -62,32 +62,24 @@
 		</s:HGroup>
 	</s:Group>
 	
-	<s:Group top="45" left="55" visible="{hostComponent.currentState == 'exercise'}">
-		<s:HGroup verticalAlign="middle">
+	<s:Group top="10" left="70" height="47" visible="{hostComponent.currentState == 'exercise'}">
+		<s:HGroup verticalCenter="0" verticalAlign="middle">
 			<s:HGroup verticalAlign="middle" id="coursePath">
 				<s:Group>
-					<exercise:elementarySIcon visible="{hostComponent.courseCaption == 'Elementary'}" />
-					<exercise:lowerinterSIcon visible="{hostComponent.courseCaption == 'Lower Intermediate'}" />
-					<exercise:interSIcon visible="{hostComponent.courseCaption == 'Intermediate'}" />
-					<exercise:upperinterSIcon visible="{hostComponent.courseCaption == 'Upper Intermediate'}" />
-					<exercise:advanceSIcon visible="{hostComponent.courseCaption == 'Advanced'}" />
+					<exercise:elementarySIcon visible="{hostComponent.courseCaption == 'Elementary'}" scaleX="0.7" scaleY="0.7" />
+					<exercise:lowerinterSIcon visible="{hostComponent.courseCaption == 'Lower Intermediate'}" scaleX="0.7" scaleY="0.7" />
+					<exercise:interSIcon visible="{hostComponent.courseCaption == 'Intermediate'}" scaleX="0.7" scaleY="0.7" />
+					<exercise:upperinterSIcon visible="{hostComponent.courseCaption == 'Upper Intermediate'}" scaleX="0.7" scaleY="0.7" />
+					<exercise:advanceSIcon visible="{hostComponent.courseCaption == 'Advanced'}" scaleX="0.7" scaleY="0.7" />
 				</s:Group>
-				<s:Label text="{hostComponent.courseCaption}" color="0x333333" fontSize="19" paddingTop="2" />
 			</s:HGroup>
-			<s:HGroup verticalAlign="middle" id="unitPath">
-				<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/arrow.png')" />
-				<s:Group>
-					<exercise:elementaryPencil visible="{hostComponent.courseCaption == 'Elementary'}" />
-					<exercise:lowerinterPencil visible="{hostComponent.courseCaption == 'Lower Intermediate'}" />
-					<exercise:interPencil visible="{hostComponent.courseCaption == 'Intermediate'}" />
-					<exercise:upperinterPencil visible="{hostComponent.courseCaption == 'Upper Intermediate'}" />
-					<exercise:advancedPencil visible="{hostComponent.courseCaption == 'Advanced'}" />
-				</s:Group>			
-				<s:Label text="{hostComponent.unitCaption}" color="0x333333" fontSize="14" paddingTop="6" />
+			<s:HGroup verticalAlign="middle" id="unitPath" >
+				<icon:connector scaleX="0.3" scaleY="0.3" />
+				<s:Label text="{hostComponent.unitCaption}" color="0x333333" fontSize="12" fontWeight="bold" paddingTop="3" />
 			</s:HGroup>
 			<s:HGroup verticalAlign="middle" id="exercisePath">
-				<s:SWFLoader source="@Embed(source='/skins/tensebuster/assets/arrow.png')" />
-				<s:Label text="{hostComponent.exerciseCaption}" color="{getStyle(TitleView.courseCode + 'Color')}" fontSize="14" paddingTop="6" />
+				<icon:connector scaleX="0.3" scaleY="0.3" />
+				<s:Label text="{hostComponent.exerciseCaption}" color="{getStyle(TitleView.courseCode + 'Color')}" fontSize="12" paddingTop="3" />
 			</s:HGroup>
 		</s:HGroup>	
 	</s:Group>

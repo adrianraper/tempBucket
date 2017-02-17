@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="1.0" viewHeight="67.895" viewWidth="71" ai:appVersion="14.0.0.367" d:id="1" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ai="http://ns.adobe.com/ai/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
+  <Library/>
+  <Group d:id="2" d:type="layer" d:userLabel="Layer 1">
+    <Group ai:knockout="0" d:id="3">
+      <Group>
+        <Path winding="nonZero" ai:knockout="0" data="M69.4854 29.2222L59.8496 20.9355 43.8809 7.20508 35.502 0 27.1182 7.20508 11.1523 20.9399 1.51855 29.2222C-0.30957 30.7959 -0.515137 33.5444 1.0542 35.3706 2.62402 37.2026 5.38477 37.4038 7.20215 35.8364L11.1523 32.4414 35.502 11.4995 59.8496
+ 32.4414 63.791 35.8364C64.623 36.5405 65.6357 36.8931 66.6357 36.8931 67.8711 36.8931 69.0859 36.3726 69.9473 35.3706 71.5107 33.5444 71.3135 30.7959 69.4854 29.2222Z" >
+          <fill>
+            <SolidColor color="#ec1c32"/>
+          </fill>
+        </Path>
+        <Rect x="11.3921" y="4.6582" width="10.4189" height="15.2646" ai:knockout="0">
+          <fill>
+            <SolidColor color="#ec1c32"/>
+          </fill>
+        </Rect>
+        <Path winding="nonZero" ai:knockout="0" data="M35.502 15.5044L11.1523 36.4399 11.1523 67.895 26.8457 67.895 26.8457 45.9204 44.1543 45.9204 44.1543 67.895 59.8496 67.895 59.8496 36.4399 35.502 15.5044Z" >
+          <fill>
+            <SolidColor color="#ec1c32"/>
+          </fill>
+        </Path>
+      </Group>
+    </Group>
+  </Group>
+  <Private>
+    <ai:PrivateElement d:ref="#1">
+      <ai:DocData base="Export_to_Alice-01.assets/images"/>
+      <ai:SaveOptions>
+        <ai:Dictionary>
+          <ai:DictEntry name="writeImages" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="includeXMP" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="includeSymbol" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="aiEditCap" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="versionKey" value="1" valueType="Integer"/>
+          <ai:DictEntry name="clipToActiveArtboard" value="1" valueType="Boolean"/>
+          <ai:DictEntry name="downsampleLinkedImages" value="0" valueType="Boolean"/>
+          <ai:DictEntry name="rasterizeResolution" value="72" valueType="Integer"/>
+          <ai:DictEntry name="preserveGradientPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveFilterPolicy" value="3" valueType="Integer"/>
+          <ai:DictEntry name="preserveTextPolicy" value="3" valueType="Integer"/>
+        </ai:Dictionary>
+      </ai:SaveOptions>
+      <ai:Artboards rulerCanvasDiffH="24.5" rulerCanvasDiffV="24.5" zoom="1">
+        <ai:Artboard bottom="-57.947" index="0" left="-12" right="59" top="9.948"/>
+      </ai:Artboards>
+    </ai:PrivateElement>
+    <ai:PrivateElement d:ref="#2">
+      <ai:LayerOptions colorType="ThreeColor">
+        <ai:ThreeColor blue="257" green="128.502" red="79.31"/>
+      </ai:LayerOptions>
+    </ai:PrivateElement>
+    <ai:PrivateElement ai:hashcode="883cf46067a8dd05ec320b876b1479b6" d:ref="#3">
+      <ai:Group knockout="0">
+        <ai:Path data="M 69.485 29.222L 59.85 20.936L 43.881 7.205L 35.502 0L 27.118 7.205L 11.152 20.94L 1.519 29.222C -0.31 30.796 -0.515 33.544 1.054 35.371C 2.624 37.203 5.385 37.404 7.202 35.836L 11.152 32.441L 35.502 11.5L 59.85 32.441L 63.791 35.836C 64.623 36.541 65.636 36.893 66.636 36.893C 67.871 36.893 69.086 36.373 69.947 35.371C 71.511 33.544 71.313 30.796 69.485 29.222Z" knockout="0">
+          <ai:ArtStyle/>
+          <ai:Fill colorType="ThreeColor">
+            <ai:ThreeColor blue="0.196" green="0.11" red="0.925"/>
+          </ai:Fill>
+        </ai:Path>
+        <ai:Rect height="15.265" knockout="0" width="10.419" x="11.392" y="4.658">
+          <ai:Fill colorType="ThreeColor">
+            <ai:ThreeColor blue="0.196" green="0.11" red="0.925"/>
+          </ai:Fill>
+          <ai:ArtStyle/>
+        </ai:Rect>
+        <ai:Path data="M 35.502 15.504L 11.152 36.44L 11.152 67.895L 26.846 67.895L 26.846 45.92L 44.154 45.92L 44.154 67.895L 59.85 67.895L 59.85 36.44L 35.502 15.504Z" knockout="0">
+          <ai:ArtStyle/>
+          <ai:Fill colorType="ThreeColor">
+            <ai:ThreeColor blue="0.196" green="0.11" red="0.925"/>
+          </ai:Fill>
+        </ai:Path>
+        <ai:ArtStyle>
+          <ai:PaintFields>
+            <ai:Stroke index="0" miterLimit="4" weight="1"/>
+            <ai:Fill index="1"/>
+            <ai:GroupContent index="1"/>
+          </ai:PaintFields>
+        </ai:ArtStyle>
+      </ai:Group>
+    </ai:PrivateElement>
+  </Private>
+</Graphic>

@@ -5,7 +5,7 @@
     <Group d:type="layer" d:userLabel="Layer 1">
       <Path winding="nonZero" ai:seqID="1" data="M8.62549 9.95996 0 4.98047 8.62549 0 8.62549 9.95996Z">
         <fill>
-          <SolidColor color="#FFFFFF"/>
+          <SolidColor color="#EA2133"/>
         </fill>
       </Path>
     </Group>
