@@ -20,6 +20,8 @@
 		public static const SEND_EMAIL:String = "send_email";
 		// ctp#214
 		public static const PREVIEW_EMAIL:String = "preview_email";
+		// ctp#372
+		public static const AUTHENTICATION_ERROR:String = "authentication_error";
 	}
 	
 }

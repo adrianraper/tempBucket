@@ -1517,4 +1517,5 @@ ALTER TABLE `T_ScoreDetail_Expiry` MODIFY COLUMN `F_ExerciseID` varchar(64);
 ALTER TABLE `T_TestSession` ADD COLUMN `F_Seed` TEXT NULL DEFAULT NULL AFTER `F_Result`;
 
 -- ctp#214
-ALTER TABLE `T_ScheduledTests` ADD COLUMN `F_EmailInsertion` TEXT NULL DEFAULT NULL AFTER `F_Status`;
+-- ALTER TABLE `T_ScheduledTests` ADD COLUMN `F_EmailInsertion` TEXT NULL DEFAULT NULL AFTER `F_Status`;
+ALTER TABLE T_ScheduledTests DROP COLUMN F_EmailInsertion;

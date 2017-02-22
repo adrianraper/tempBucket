@@ -1,5 +1,16 @@
 <?php
-	session_start();
+    // gh#1458 If a portal is involved in running the start page, share a common session
+    if (isset($PHPSESSID) && ($PHPSESSID!='')) {
+        session_id($PHPSESSID);
+    } elseif (isset($_GET['PHPSESSID']) && ($_GET['PHPSESSID']!='')) {
+        session_id($_GET['PHPSESSID']);
+
+        // gh#1314 This can be removed once all start pages link to v27 Bento apps
+    } elseif (isset($_GET['session'])) {
+        session_id($_GET['session']);
+    }
+    session_start();
+    $currentSessionID = session_id();
 	unset($_SESSION['dbHost']);
 	if (isset($_REQUEST['dbHost'])) $_SESSION['dbHost']=$_REQUEST['dbHost'];
 	
@@ -60,12 +71,15 @@
 		} else {
 			var jsPassword = swfobject.getQueryParamValue("password");
 		}
+        var jsSessionID = "<?php echo $currentSessionID; ?>";
+
 		var flashvars = {
 			host: startControl, // THIS MUST INCLUDE THE TRAILING SLASH!
 			username: jsUserName,
 			password: jsPassword,
 			rootID: swfobject.getQueryParamValue("rootID"),
-			directStart: swfobject.getQueryParamValue("directStart")
+			directStart: swfobject.getQueryParamValue("directStart"),
+			sessionID: jsSessionID
 		};
 		var params = {
 			id: "rm",

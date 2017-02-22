@@ -32,8 +32,9 @@ package com.clarityenglish.resultsmanager.controller {
 			if (Application.application.parameters.host) Constants.HOST = Application.application.parameters.host;
 			
 			// If the sessionid is defined in the FlashVars then set it
-			if (Application.application.parameters.sessionid) {
-				Constants.SESSIONID = Application.application.parameters.sessionid;
+			// gh#1314, gh#372
+			if (Application.application.parameters.sessionID) {
+				Constants.SESSIONID = Application.application.parameters.sessionID;
 			} else {
 				Constants.SESSIONID = this.generateSessionId();
 			}

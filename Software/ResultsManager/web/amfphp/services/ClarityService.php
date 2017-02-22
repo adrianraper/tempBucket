@@ -68,14 +68,31 @@ require_once(dirname(__FILE__)."/AbstractService.php");
 class ClarityService extends AbstractService {
 	
 	var $db;
-
+    const sessionLifetime = 60; // production should be 86400
+	
 	function __construct() {
 		parent::__construct();
 		
 		// A unique ID to distinguish sessions between multiple Clarity applications
 		Session::setSessionName("RM");
 		
-		// Set the product name for logging
+        // ctp#372 Session loss - copy from Bento
+        // http://stackoverflow.com/questions/520237/how-do-i-expire-a-php-session-after-30-minutes
+        // If you have already set the lastActivity marker, update it (or close everything if too long).
+        // But don't make a new lastActivity - that is only done during bento.login
+        if (Session::get('lastActivity')) {
+            if (time() - Session::get('lastActivity') > self::sessionLifetime) {
+                AbstractService::$debugLog->info('php session too old ' . Session::getSessionName() . ' user as ' . Authenticate::getAuthUser() . ' id=' . session_id());
+                // last request was too long ago
+                // tbh I don't think you need to do this as the error should throw you through logout
+                Session::clear();
+                // You can't use copyOps here as the practicalWritingService has not initialised it yet
+                throw new Exception('errorLostAuthentication');
+            }
+            Session::set('lastActivity', time());
+        }
+		
+        // Set the product name for logging
 		AbstractService::$log->setProductName("RM");
 		AbstractService::$debugLog->setProductName("RM");
 		AbstractService::$controlLog->setProductName("RM");
@@ -146,6 +163,10 @@ class ClarityService extends AbstractService {
 		if ($dbHost)
 			$this->initDbHost($dbHost);
 		
+        // ctp#372
+        if (!Session::get('lastActivity'))
+            Session::set('lastActivity', time());
+
 		// gh#1118 Allow super user to login
 		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
 								 User::USER_TYPE_ADMINISTRATOR,

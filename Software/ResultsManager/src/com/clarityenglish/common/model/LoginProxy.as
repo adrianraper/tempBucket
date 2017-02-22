@@ -9,6 +9,7 @@ package com.clarityenglish.common.model {
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
+	import mx.rpc.Fault;
 
 	/**
 	 * A proxy
@@ -88,7 +89,7 @@ package com.clarityenglish.common.model {
 			}
 		}
 		
-		public function onDelegateFault(operation:String, data:Object):void{
+		public function onDelegateFault(operation:String, data:Object):void {
 			sendNotification(CommonNotifications.TRACE_ERROR, data);
 		}
 		

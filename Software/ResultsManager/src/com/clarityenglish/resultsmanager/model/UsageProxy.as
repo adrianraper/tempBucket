@@ -60,15 +60,10 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		public function onDelegateFault(operation:String, data:Object):void{
-			sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + data);
-			
-			switch (operation) {
-				case "getUsageForTitle":
-				case "getFixedUsageForTitle":
-				case "getUsageForTest":
-					break;
-				default:
-					sendNotification(CommonNotifications.TRACE_ERROR, "Fault from unknown operation: " + operation);
+			if (data as String == 'errorLostAuthentication') {
+				sendNotification(CommonNotifications.AUTHENTICATION_ERROR, "You have been timed out. Please sign in again to keep working.");	
+			} else {
+				sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + data);
 			}
 		}
 		

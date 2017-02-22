@@ -10,6 +10,8 @@ package com.clarityenglish.common.view {
 	import flash.display.Sprite;
 	
 	import mx.controls.Alert;
+	import mx.events.CloseEvent;
+	import mx.rpc.Fault;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -82,6 +84,7 @@ package com.clarityenglish.common.view {
 					CommonNotifications.TRACE_ERROR,
 					CommonNotifications.LOGGED_IN,
 					CommonNotifications.COPY_LOADED,
+					CommonNotifications.AUTHENTICATION_ERROR,
 				];
 		}
 
@@ -106,6 +109,9 @@ package com.clarityenglish.common.view {
 					trace("[Error] " + note.getBody() as String);
 					Alert.show(note.getBody() as String, "Error", Alert.OK, application as Sprite);
 					break;
+				case CommonNotifications.AUTHENTICATION_ERROR:
+					Alert.show(note.getBody() as String, "Authentication", Alert.OK, application as Sprite, alertClickHandler);
+					break;
 				case CommonNotifications.COPY_LOADED:
 					// Set the alert box labels from the copy
 					var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
@@ -114,6 +120,11 @@ package com.clarityenglish.common.view {
 					break;
 				default:
 					break;		
+			}
+		}
+		private function alertClickHandler(evt:CloseEvent):void {
+			if (evt.detail == Alert.OK) {
+				facade.sendNotification(CommonNotifications.LOGOUT);
 			}
 		}
 

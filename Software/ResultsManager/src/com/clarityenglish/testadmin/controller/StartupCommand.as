@@ -32,8 +32,9 @@ package com.clarityenglish.testadmin.controller {
 			if (Application.application.parameters.host) Constants.HOST = Application.application.parameters.host;
 			
 			// If the sessionid is defined in the FlashVars then set it
-			if (Application.application.parameters.sessionid) {
-				Constants.SESSIONID = Application.application.parameters.sessionid;
+			// gh#1314, gh#372
+			if (Application.application.parameters.sessionID) {
+				Constants.SESSIONID = Application.application.parameters.sessionID;
 			} else {
 				Constants.SESSIONID = this.generateSessionId();
 			}
@@ -43,7 +44,7 @@ package com.clarityenglish.testadmin.controller {
 			
 			// Configure the delegate
 			// gh#1314
-			RemoteDelegate.setGateway(Constants.AMFPHP_BASE + "gateway.php", { PHPSESSID: Constants.SESSIONID });
+			RemoteDelegate.setGateway(Constants.AMFPHP_BASE + "gateway.php", { PHPSESSID: Constants.SESSIONID });			
 			RemoteDelegate.setService(Constants.AMFPHP_SERVICE);
 			
 			// Register the copy and login proxies (all other proxies are registered on a successful login)

@@ -101,17 +101,20 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		public function onDelegateFault(operation:String, data:Object):void {
-			//sendNotification(ApplicationFacade.TRACE_ERROR, operation + ": " + data);
+			if (data as String == 'errorLostAuthentication') {
+				sendNotification(CommonNotifications.AUTHENTICATION_ERROR, "You have been timed out. Please sign in again to keep working.");	
+			} else {
 
-			// gh#1424
-			switch (operation) {
-				case "getLicences":
-					break;
-				case "allocateLicences":
-				case "unallocateLicences":
-					sendNotification(CommonNotifications.TRACE_ERROR, data);
-					getLicences();
-					break;
+				// gh#1424
+				switch (operation) {
+					case "getLicences":
+						break;
+					case "allocateLicences":
+					case "unallocateLicences":
+						sendNotification(CommonNotifications.TRACE_ERROR, data);
+						getLicences();
+						break;
+				}
 			}
 		}
 		

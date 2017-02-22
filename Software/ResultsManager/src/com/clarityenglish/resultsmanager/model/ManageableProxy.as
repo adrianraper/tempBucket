@@ -12,21 +12,20 @@ package com.clarityenglish.resultsmanager.model {
 	import com.clarityenglish.resultsmanager.controller.ImportManageablesCommand;
 	import com.clarityenglish.resultsmanager.view.management.events.ManageableEvent;
 	import com.clarityenglish.utils.TraceUtils;
-	import mx.core.Application;
 	
 	import flash.net.URLRequest;
 	import flash.net.URLVariables;
 	import flash.net.navigateToURL;
 	
+	import mx.core.Application;
 	import mx.events.PropertyChangeEvent;
+	import mx.rpc.Fault;
 	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 
-	//import nl.demonsters.debugger.MonsterDebugger;
-	
 	/**
 	 * A proxy
 	 */
@@ -289,34 +288,36 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		public function onDelegateFault(operation:String, data:Object):void {
-			//sendNotification(ApplicationFacade.TRACE_ERROR, operation + ": " + data);
-			
-			// Don't show function name as this is sometimes an expected error
-			sendNotification(CommonNotifications.TRACE_ERROR, data);
-			
-			// gh#1424 If a call fails, why would you try to refresh manageables? 
-			switch (operation) {
-				case "getAllManageables":
-					// Probably this is a timeout - what is the best advice to give?
-					sendNotification(CommonNotifications.TRACE_ERROR, "We can't get all users and groups. This is probably because there are a lot, or the computers are slow. Try again. If that fails, try to sign in as a teacher with fewer groups.");
-					break;
-				case "addGroup":
-				case "addUser":
-				case "deleteManageables":
-				case "updateGroups":
-				case "updateUsers":
-				case "moveManageables":
-					// Refresh the manageables from the database
-					getAllManageables();
-					break;
-				case "importXMLFromUpload":
-				case "importManageables":
-				case "getExtraGroups":
-				case "setExtraGroups":
-				case "initEditedContent":
-					break;
-				default:
-					sendNotification(CommonNotifications.TRACE_ERROR, "Fault from unknown operation: " + operation);
+			if (data as String == 'errorLostAuthentication') {
+				sendNotification(CommonNotifications.AUTHENTICATION_ERROR, "You have been timed out. Please sign in again to keep working.");	
+			} else {
+				// Don't show function name as this is sometimes an expected error
+				sendNotification(CommonNotifications.TRACE_ERROR, data);
+				
+				// gh#1424 If a call fails, why would you try to refresh manageables? 
+				switch (operation) {
+					case "getAllManageables":
+						// Probably this is a timeout - what is the best advice to give?
+						sendNotification(CommonNotifications.TRACE_ERROR, "We can't get all users and groups. This is probably because there are a lot, or the computers are slow. Try again. If that fails, try to sign in as a teacher with fewer groups.");
+						break;
+					case "addGroup":
+					case "addUser":
+					case "deleteManageables":
+					case "updateGroups":
+					case "updateUsers":
+					case "moveManageables":
+						// Refresh the manageables from the database
+						getAllManageables();
+						break;
+					case "importXMLFromUpload":
+					case "importManageables":
+					case "getExtraGroups":
+					case "setExtraGroups":
+					case "initEditedContent":
+						break;
+					default:
+						sendNotification(CommonNotifications.TRACE_ERROR, "Fault from unknown operation: " + operation);
+				}
 			}
 		}
 		

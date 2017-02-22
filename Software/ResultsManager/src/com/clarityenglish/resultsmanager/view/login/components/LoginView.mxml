@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <comps:GradientCanvas xmlns:mx="http://www.adobe.com/2006/mxml"
-		   xmlns:view="com.clarityenglish.resultsmanager.view.login.components.*"
-		   xmlns:comps="com.clarityenglish.resultsmanager.view.login.components.*"
-		   implements="com.clarityenglish.common.view.login.interfaces.LoginComponent, com.clarityenglish.common.view.interfaces.CopyReceiver"
-		   initialize="onInitialize(event)"
-		   >
+					  xmlns:view="com.clarityenglish.resultsmanager.view.login.components.*"
+					  xmlns:comps="com.clarityenglish.resultsmanager.view.login.components.*"
+					  implements="com.clarityenglish.common.view.login.interfaces.LoginComponent, com.clarityenglish.common.view.interfaces.CopyReceiver"
+					  initialize="onInitialize(event)">
 	<mx:Script>
 		<![CDATA[
 		import com.clarityenglish.resultsmanager.Constants;
@@ -19,7 +18,9 @@
 		
 		protected function onInitialize(event:FlexEvent):void {
 			this.setStyle('fillColors', [0xffffff, 0xd4d4d3]);
-			this.setStyle('cornerRadius',0);			
+			this.setStyle('cornerRadius',0);
+			this.setStyle("fillAlphas", [1, 1]);
+			this.setStyle("fillType", GradientType.LINEAR);
 		}
 			
 		public function setCopyProvider(copyProvider:CopyProvider):void {
@@ -83,22 +84,26 @@
 			
 		]]>
 	</mx:Script>
-	<mx:Image id="RMlogo" maintainAspectRatio="true" verticalCenter="0" horizontalCenter="0" scaleContent="false" 
-				  source="@Embed('/../assets/RM_login_bg_smaller.png')" />		
+	<mx:Image id="RMlogo" horizontalCenter="0" maintainAspectRatio="true" scaleContent="false"
+			  source="@Embed('/../assets/RM_login_bg_smaller.png')" verticalCenter="0"/>		
 
 		<!-- gh#747 Very clumsy component, struggling with mx to get it nicer! -->
-		<comps:LoginPanelBackgroundSkin width="430" height="404" 
-										horizontalCenter="0" verticalCenter="0"	/>
-		<mx:VBox id="loginWindow" width="250" height="243" horizontalCenter="0" verticalCenter="80" horizontalAlign="center"  >
+		<comps:LoginPanelBackgroundSkin width="430" height="404" horizontalCenter="0"
+										verticalCenter="0"/>
+		<mx:VBox id="loginWindow" width="250" height="243" horizontalAlign="center"
+				 horizontalCenter="0" verticalCenter="80">
 			<mx:VBox horizontalAlign="left" verticalGap="0">
-				<mx:Label id="usernameFormItem" styleName="prompt" />
-				<mx:TextInput id="usernameTextInput" width="225" text="" styleName="promptEntry" keyUp="loginKeyUp(event)" />
-				<mx:Spacer height="5" />
-				<mx:Label id="passwordFormItem" styleName="prompt" />
-				<mx:TextInput id="passwordTextInput" width="225" displayAsPassword="true" text="" styleName="promptEntry" keyUp="loginKeyUp(event)" />
+				<mx:Label id="usernameFormItem" styleName="prompt"/>
+				<mx:TextInput id="usernameTextInput" width="225" keyUp="loginKeyUp(event)"
+							  styleName="promptEntry" text=""/>
+				<mx:Spacer height="5"/>
+				<mx:Label id="passwordFormItem" styleName="prompt"/>
+				<mx:TextInput id="passwordTextInput" width="225" displayAsPassword="true"
+							  keyUp="loginKeyUp(event)" styleName="promptEntry" text=""/>
 			</mx:VBox>
-			<mx:Spacer height="10" />
-			<mx:Label id="forgotPassword" styleName="forgotPassword" click="onForgotPassword(event)" useHandCursor="true" buttonMode="true" />
+			<mx:Spacer height="10"/>
+			<mx:Label id="forgotPassword" buttonMode="true" click="onForgotPassword(event)"
+					  styleName="forgotPassword" useHandCursor="true"/>
 			<mx:Spacer height="100%" />
 			<mx:Button id="loginButton" horizontalCenter="0" verticalCenter="400" click="login()" width="100" height="50"
 					   overSkin="{ButtonUpSkin}" upSkin="{ButtonUpSkin}" downSkin="{ButtonUpSkin}"
