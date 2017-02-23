@@ -57,22 +57,22 @@
 
 	<s:Group>
 		<s:Group filters="{[dropShadowFilter]}" scaleX="0.3" scaleY="0.3">
-			<s:Path data="M23.7402 149.696C22.1807 149.696 19.9316 148.872 18.7422 147.865L2.16406 133.834C0.973633 132.827 0 130.727 0 129.168L0 2.83496C0 1.27539 1.27539 0 2.83496 0L221.271 0C222.829 0 224.104 1.27539 224.104 2.83496L224.104 129.168C224.104 130.727
- 223.131 132.827 221.941 133.834L205.363 147.865C204.173 148.872 201.924 149.696 200.365 149.696L23.7402 149.696Z" >
+			<s:Path data="M23.7402 149.696C22.1807 149.696 19.9316 148.872 18.7422 147.865L2.16406 133.834C0.973633 132.827 0 130.727 0 129.168L0 2.83496C0 1.27539 1.27539 0 2.83496 0L261.272 0C262.832 0 264.107 1.27539 264.107 2.83496L264.107 129.168C264.107 130.727
+ 263.134 132.827 261.943 133.834L245.365 147.865C244.176 148.872 241.926 149.696 240.367 149.696L23.7402 149.696Z" >
 				<s:fill>
 					<s:SolidColor color="#FFFFFF" color.down="#E2E2E2" color.over="#E2E2E2" />
 				</s:fill>
 			</s:Path>
 		</s:Group>
-		<icon:recorderIcon  left="8" top="22" scaleX="0.8" scaleY="0.8" />
+		<icon:recorderIcon  left="13" top="22" scaleX="0.8" scaleY="0.8" />
 		
 		<!-- layer 8: text -->
 		<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
 		<s:Label id="labelDisplay"
 				 textAlign="center"
 				 maxDisplayedLines="1"
-				 fontSize="11"
-				 left="22" right="10" top="25" bottom="2">
+				 fontSize="12" fontWeight="normal"
+				 left="26" right="10" top="25" bottom="2">
 		</s:Label>
 	</s:Group>
     

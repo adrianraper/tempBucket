@@ -1,104 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:view="com.clarityenglish.bento.view.*"
-		xmlns:recorder="com.clarityenglish.bento.view.recorder.*" xmlns:exercise="skins.tensebuster.assets.exercise.*" xmlns:android="skins.tensebusterair.assets.android.*">
-	<!-- host component -->
-	<fx:Metadata>
-		[HostComponent("com.clarityenglish.bento.view.exercise.ExerciseView")]
-	</fx:Metadata>
-	<fx:Script>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:mx="library://ns.adobe.com/flex/mx"
+        xmlns:view="com.clarityenglish.bento.view.*"
+        xmlns:recorder="com.clarityenglish.bento.view.recorder.*" xmlns:exercise="skins.tensebuster.assets.exercise.*"
+        xmlns:android="skins.tensebusterair.assets.android.*">
+    <!-- host component -->
+    <fx:Metadata>
+        [HostComponent("com.clarityenglish.bento.view.exercise.ExerciseView")]
+    </fx:Metadata>
+    <fx:Script>
 		<![CDATA[
-			import mx.core.FlexGlobals;
-		]]>
+        import mx.core.FlexGlobals;
+        ]]>
 	</fx:Script>
-	
-	<fx:Declarations>
-		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="1.5" alpha="0.6" blurX="7" blurY="7" />
-		<s:DropShadowFilter id="lineShadowFilter" angle="70" distance="1.5" alpha="0.8"/>
-	</fx:Declarations>
-	
-	<s:states>
-		<s:State name="disabled" />
-		<s:State name="normal" />
-		
-		<s:State name="exercise" />
-		<s:State name="other" />
-	</s:states>
 
-	<s:Group horizontalCenter="0" height="100%" filters="{[dropShadowFilter]}">
-		<s:HGroup top="10" gap="-1">
-			<android:exTriangle />
-			<s:Rect horizontalCenter="0" width="904" height="30">
-				<s:fill>
-					<s:SolidColor color="0xFFFFFF" />
-				</s:fill>
-			</s:Rect>
-			<android:exTriangle scaleX="-1" />
-		</s:HGroup>		
-		<s:Rect width="954" top="40" bottom="0">
-			<s:fill>
-				<s:SolidColor color="0xFFFFFF" />
-			</s:fill>
-		</s:Rect>
-	</s:Group>
-	
-	<s:Group width="906" horizontalCenter="0" height="100%">
-		<!-- Exercise -->
-		<view:DynamicView id="dynamicView" left="0" right="0" horizontalCenter="0" top="98" bottom="24"/>
-	</s:Group>
+    <fx:Declarations>
+        <s:DropShadowFilter id="dropShadowFilter" angle="90" distance="1.5" alpha="0.2" blurX="7" blurY="7"/>
+    </fx:Declarations>
 
-	<!--exercise side bar-->
-	<s:Group horizontalCenter="0" height="100%" width="954">
-		<s:Rect left="0" top="60" bottom="0" width="25">
-			<s:fill>
-				<s:LinearGradient rotation="90">
-					<s:GradientEntry color="0xFFFFFF" />
-					<s:GradientEntry color="0xEC1C32" />
-				</s:LinearGradient>
-			</s:fill>
-		</s:Rect>
-		<s:Rect right="0" top="60" bottom="0" width="25">
-			<s:fill>
-				<s:LinearGradient rotation="90">
-					<s:GradientEntry color="0xFFFFFF" />
-					<s:GradientEntry color="0xEC1C32" />
-				</s:LinearGradient>
-			</s:fill>
-		</s:Rect>
-	</s:Group>
-	
-	<s:Group horizontalCenter="0" width="902">
-		<!-- Top Left buttons -->
-		<s:HGroup left="0" top="59" includeIn="exercise" gap="0">
-			<s:Button id="backToMenuButton" color="0xFFFFFF" fontSize="12" buttonMode="true" useHandCursor="true" />
-			<s:Spacer width="1" />
-			<s:Button id="backButton" color="0xFFFFFF" fontSize="12" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}"/>
-			<s:Button id="forwardButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
-			<s:Button id="feedbackButton" visible="false" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
-		</s:HGroup>	
-		
-		<!-- Top Right buttons -->
-		<s:HGroup right="0" top="59" includeIn="exercise" gap="0">
-			<s:Button id="markingButton" color="0xFFFFFF" fontSize="12" buttonMode="true" useHandCursor="true" />
-			<s:Button id="startAgainButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
-			<s:Button id="recorderButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
-			<s:Button id="ruleButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" visible="{hostComponent.ruleLink != null}" />
-			<s:Button id="printButton" visible="{hostComponent.hasPrintStylesheet}" color="0xFFFFFF" fontWeight="bold" buttonMode="true" fontSize="12" useHandCursor="true"/>
-		</s:HGroup>	
-	</s:Group>
-	
-	<!--Red line-->
-	<s:Rect width="954" height="2" top="59" horizontalCenter="0" filters="{[lineShadowFilter]}">
-		<s:fill>
-			<s:SolidColor color="0xEC1C32"/>
-		</s:fill>
-	</s:Rect>
-	
-	<!-- Footer -->
-	<s:Group horizontalCenter="0" bottom="0">
-		<s:SWFLoader source="@Embed(source='/skins/tensebusterair/assets/exercise/TB-footer.png')" bottom="0" />
-	</s:Group>
-	
+    <s:states>
+        <s:State name="disabled"/>
+        <s:State name="normal"/>
+
+        <s:State name="exercise"/>
+        <s:State name="other"/>
+    </s:states>
+
+    <!-- Exercise -->
+    <view:DynamicView id="dynamicView" left="10" right="10" horizontalCenter="0" top="60" bottom="24"/>
+
+    <!--exercise side bar-->
+    <s:Rect width="10" bottom="0" top="0" left="0" includeIn="exercise">
+        <s:fill>
+            <s:LinearGradient rotation="90">
+                <s:GradientEntry color="0xFFFFFF"/>
+                <s:GradientEntry color="0xEA2133"/>
+            </s:LinearGradient>
+        </s:fill>
+    </s:Rect>
+    <s:Rect width="10" bottom="0" top="0" right="0" includeIn="exercise">
+        <s:fill>
+            <s:LinearGradient rotation="90">
+                <s:GradientEntry color="0xFFFFFF"/>
+                <s:GradientEntry color="0xEA2133"/>
+            </s:LinearGradient>
+        </s:fill>
+    </s:Rect>
+
+    <!-- Control bar -->
+    <s:Rect left="0" right="0" height="47" top="10" filters="{[dropShadowFilter]}">
+        <s:fill>
+            <s:SolidColor color="#FFFFFF"/>
+        </s:fill>
+    </s:Rect>
+
+    <!-- Home buttons -->
+    <s:Button id="backToMenuButton" color="0xFFFFFF" left="0" top="8" fontSize="12" buttonMode="true"
+              useHandCursor="true"/>
+
+    <s:HGroup right="10" top="0" includeIn="exercise" gap="5">
+        <s:Button id="backButton" color="0xEA2133" fontSize="13" buttonMode="true" useHandCursor="true"
+                  enabled="{!hostComponent.isFirstExercise}" visible="{!hostComponent.isDirectStartEx}"/>
+        <s:Button id="forwardButton" color="0xEA2133" fontSize="13" buttonMode="true" useHandCursor="true"
+                  visible="{!hostComponent.isDirectStartEx}"/>
+        <s:HGroup paddingLeft="20" gap="5">
+            <s:Button id="feedbackButton" visible="false" includeInLayout="false" color="0xEA2133" fontSize="13"
+                      buttonMode="true" useHandCursor="true"/>
+            <s:Button id="markingButton" color="0xEA2133" fontSize="13" buttonMode="true" useHandCursor="true"/>
+            <s:Button id="startAgainButton" color="0xEA2133" fontSize="13" buttonMode="true" useHandCursor="true"/>
+            <s:Button id="recorderButton" color="0xEA2133" fontSize="13" buttonMode="true" useHandCursor="true"/>
+            <s:Button id="ruleButton" color="0xEA2133" fontSize="13" buttonMode="true" useHandCursor="true"
+                      visible="{hostComponent.ruleLink != null}"
+                      includeInLayout="{hostComponent.ruleLink != null}"/>
+        </s:HGroup>
+    </s:HGroup>
+
+    <!-- Header -->
+    <s:Rect left="0" right="0" height="8" top="0">
+        <s:fill>
+            <s:SolidColor color="0xEA2133"/>
+        </s:fill>
+    </s:Rect>
+
+    <!--Footer-->
+    <s:Rect left="10" right="10" height="10" bottom="0">
+        <s:fill>
+            <s:SolidColor color="0xEA2133" />
+        </s:fill>
+    </s:Rect>
+
 </s:Skin>

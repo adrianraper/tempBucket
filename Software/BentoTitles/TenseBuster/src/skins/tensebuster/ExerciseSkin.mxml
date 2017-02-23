@@ -72,29 +72,27 @@
 	</s:Rect>
 	
 	<!-- Home buttons -->
-	<s:Button id="backToMenuButton" color="0xFFFFFF" left="0" top="-70" fontSize="12" buttonMode="true" useHandCursor="true" />
+	<s:Button id="backToMenuButton" color="0xFFFFFF" left="0" top="-72" fontSize="12" buttonMode="true" useHandCursor="true" />
 
 	<!-- Top Right buttons -->
-	<s:HGroup right="10" top="-80" includeIn="exercise" gap="10">
+	<s:HGroup right="10" top="-80" includeIn="exercise" gap="5">
 		<s:Button id="backButton" color="0xEA2133" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}" visible="{!hostComponent.isDirectStartEx}"/>
 		<s:Button id="forwardButton" color="0xEA2133" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
 		<s:HGroup paddingLeft="20" gap="5">
-			<s:Button id="feedbackButton" visible="false" color="0xEA2133" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
+			<s:Button id="feedbackButton" visible="false" includeInLayout="false" color="0xEA2133" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
 			<s:Button id="markingButton"  color="0xEA2133" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
 			<s:Button id="startAgainButton" color="0xEA2133" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
 			<s:Button id="recorderButton" color="0xEA2133" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
 			<s:Button id="ruleButton" color="0xEA2133" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" visible="{hostComponent.ruleLink != null}" includeInLayout="{hostComponent.ruleLink != null}" />
-			<s:Button id="printButton" visible="{hostComponent.hasPrintStylesheet}" includeInLayout="{hostComponent.hasPrintStylesheet}" color="0xEA2133" buttonMode="true" fontSize="13" fontFamily="HelveticaMd" useHandCursor="true"/>
 		</s:HGroup>
 	</s:HGroup>
 
 	<!-- Header -->
-	<s:Rect left="0" right="0" height="10" top="-80">
+	<s:Rect left="0" right="0" height="8" top="-80">
 		<s:fill>
 			<s:SolidColor color="0xEA2133" />
 		</s:fill>
 	</s:Rect>
-
 
 	<!--Footer-->
 	<s:Rect left="10" right="10" height="10" bottom="0">
