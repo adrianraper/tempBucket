@@ -133,7 +133,7 @@ array_push($userEmailArray, $adminEmail);
             var emailInsertion =  JSON.parse('{"subject":"' + $("#emailSubject").val() + '", "notes":"' + strippedNotes + '"}');
 
             $.ajax({
-                url: "http://dock.projectbench/Software/ResultsManager/web/amfphp/services/GroupEmailActions.php",
+                url: "GroupEmailActions.php",
                 data: {
                     method: "getTemplate",
                     template: JSON.stringify(template),
