@@ -381,11 +381,11 @@
 	
 	-->
 	<mx:VBox width="100%" height="100%" verticalGap="0" >
-  	  <mx:HBox id="adminPanelBanner" width="100%" height="100" verticalAlign="middle"
+  	  <mx:HBox id="adminPanelBanner" width="100%" height="90" verticalAlign="middle"
 			   paddingBottom="0" horizontalGap="30"
 			   borderSides="bottom" borderStyle="solid">
-		  <mx:Spacer width="10"/>
-		  <mx:Image source="@Embed('/../assets/DPT_TA_logo.png')"/>
+		  <mx:Spacer width="0"/>
+		  <mx:Image source="@Embed('/../assets/dpt_admin_panel_logo_smallest.png')"/>
 		  <mx:Spacer width="100%"/>
 		  <mx:VBox width="160" backgroundColor="#D95982" cornerRadius="6" 
 				   paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10"
