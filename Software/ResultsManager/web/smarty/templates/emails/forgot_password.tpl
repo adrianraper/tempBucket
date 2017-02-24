@@ -5,7 +5,8 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Clarity English - password reminder</title>
+		<title>ClarityEnglish - password reminder</title>
+        <!-- <from>%22ClarityEnglish%22 %3Csupport@clarityenglish.com%3E</from> -->
         <style type="text/css">
   	    	@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);
 		</style>

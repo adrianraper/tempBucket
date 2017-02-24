@@ -6,8 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>New unit from {$course->caption}</title>
-	<!-- <from>support@clarityenglish.com</from> -->
-	<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->		
+    <!-- <from>%22ClarityEnglish%22 %3Csupport@clarityenglish.com%3E</from> -->
     <style>
     @import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);
     </style>

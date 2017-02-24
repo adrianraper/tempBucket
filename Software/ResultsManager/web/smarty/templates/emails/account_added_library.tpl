@@ -12,8 +12,8 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Clarity English - Your new account</title>
-	<!-- <from>%22Clarity English%22 %3Cadmin@clarityenglish.com%3E</from> -->
+	<title>ClarityEnglish - Your new account</title>
+	<!-- <from>%22ClarityEnglish%22 %3Cadmin@clarityenglish.com%3E</from> -->
 	<!-- <bcc>admin@clarityenglish.com, accounts@clarityenglish.com</bcc> -->
 	<style type="text/css">
 		@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);

@@ -320,9 +320,10 @@ EOD;
 					}
 					break;	
 				case "22": #ip.com 6-day IELTS tips email subscription
-					$toClarity = sendEmail(34);
+                    // AR 24 Feb 2017 No need to send support this email
+					//$toClarity = sendEmail(34);
 					$toCustomer = sendEmail(35);
-					if ( ($toClarity) AND ($toCustomer) ) {
+					if ( $toCustomer ) {
 						echo 'true';
 					}
 					else {
@@ -468,16 +469,16 @@ function sendEmail($templateID) {
 	
 	// Set common variables
 	$clarityTest = "Clarity Testing <unfrankie@gmail.com>";
-	$clarityVivi = "Vivying Cheng<vivying.cheng@clarityenglish.com>";
+	$clarityVivi = "Vivying Cheng <vivying.cheng@clarityenglish.com>";
 	$claritySales = "ClarityEnglish <sales@clarityenglish.com>";
-	$clarityNews = "Clarity English <news@clarityenglish.com>";
+	$clarityNews = "ClarityEnglish <news@clarityenglish.com>";
 	$clarityInfo = "Clarity Info <info@clarityenglish.com>";
 	$claritySupport = "Clarity Support <support@clarityenglish.com>";
 	$clarityAccount = "Clarity Accounts <accounts@clarityenglish.com>";
 	$clarityCLSSupport = "ClarityLifeSkills <support@claritylifeskills.com>";
-	$clarityIELTSSupport = "IELTS Practice<support@ieltspractice.com>";
+	$clarityIELTSSupport = "IELTS Practice <support@ieltspractice.com>";
 	$clarityIELTSSupportNoreply = "IELTS Practice <noreply@ieltspractice.com>";
-	$clarityR2ISupport = "Road To IELTS Support Team<support@roadtoielts.com>";
+	$clarityR2ISupport = "Road To IELTS <support@roadtoielts.com>";
 
 	$templateFolder = $serverLocation."email/template";
 	
@@ -864,7 +865,7 @@ function sendEmail($templateID) {
 		case 34: #  ip.com 6-day IELTS tips email subsciption - to Clarity
 			$body = file_get_contents("$templateFolder/IP_studyguide_signup_toClarity.htm");
 			$to = $clarityIELTSSupport;
-			$subject = "IELTSpractice 6-day IELTS tips email subsciption(" . date(DATE_RFC822).")"; 
+			$subject = "IELTSpractice 6-days of tips subscription";
 
 			$from = $clarityIELTSSupportNoreply;
 			break;
@@ -908,7 +909,7 @@ function sendEmail($templateID) {
 			$body = file_get_contents("$templateFolder/IP_unsubscribe_toClarity.htm");
 			$to = $clarityIELTSSupport;
 			//$cc = $clarityR2ISupport;
-			$subject = "IELTSpractice 6-day IELTS tips email unsubscribe(" . date(DATE_RFC822).")"; 
+			$subject = "IELTSpractice 6-days of tips unsubscribe";
 
 			$from = $clarityIELTSSupportNoreply;
 			$templateNames = array(	'IP/studyguide_importantrules',
