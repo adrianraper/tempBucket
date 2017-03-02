@@ -55,6 +55,10 @@
 			[Bindable]
 			public var licencesNeeded:int;
 			
+			// ctp#374
+			[Bindable]
+			private var addingNew:Boolean = false;
+			
 			// Icon for the alert window
 			[Embed(source="/../assets/warning_icon.swf")]
 			private var alertWarningIcon:Class;	
@@ -251,8 +255,9 @@
 				
 				// Put it temporarily into the list
 				//testList.dataProvider.addItem(newScheduledTest);
-				//testList.selectedIndex++;
-				testList.selectedIndex = -1;
+				//testList.selectedIndex = testList.dataProvider.length - 1;
+				// ctp#374
+				addingNew = true;
 				
 				testDetailPanel.setDataProvider(newScheduledTest);
 				testDetailPanel.captionData.setFocus();
@@ -307,6 +312,7 @@
 			
 			// For the currently selected test, what actions can you take?
 			public function resetButtons():void {
+				addingNew = false;
 				newTestButton.visible = newTestButton.includeInLayout = true;
 				var selectedTest:ScheduledTest = testList.selectedItem as ScheduledTest;
 				
@@ -345,6 +351,9 @@
 			}
 			public function resetSelection():void {
 				testList.selectedIndex = -1;
+				onTestChange(null);
+			}
+			public function refreshSelection():void {
 				onTestChange(null);
 			}
 			public function showCaption(item:Object):String {
@@ -455,7 +464,7 @@
 					</mx:VBox>
 				</mx:Canvas>
 		  		<ui:TestDetailPanel width="100%" height="100%" id="testDetailPanel" 
-								visible="{testList.selectedItem != null &amp;&amp; selectedGroup != null}" 
+								visible="{(testList.selectedItem != null || addingNew) &amp;&amp; selectedGroup != null}" 
 								includeInLayout="true" />
 				<mx:VBox width="100%" horizontalAlign="center" verticalGap="6" visible="{selectedGroup != null}" includeInLayout="{selectedGroup != null}">					
 					<mx:Button id="generateReportButton" visible="false" includeInLayout="false" width="100%" height="30" click="onGenerateReport(event)" 

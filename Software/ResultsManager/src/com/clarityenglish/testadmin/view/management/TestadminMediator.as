@@ -182,8 +182,9 @@ package com.clarityenglish.testadmin.view.management {
 				case RMNotifications.TEST_ADDED:
 					testadminView.testList.dataProvider = note.getBody() as Array;
 					testadminView.testList.selectedIndex = testadminView.testList.dataProvider.length - 1;
+					
 					// Update editable status of test detail
-					testadminView.resetSelection();
+					testadminView.refreshSelection();
 					
 					// gh#1499 
 					testadminView.addLicencesScheduled();
