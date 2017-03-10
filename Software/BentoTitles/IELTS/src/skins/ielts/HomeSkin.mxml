@@ -47,7 +47,7 @@
 			<s:Label id="colorBarIntroLabel" width="80%" lineHeight="18" />	
 		</s:VGroup>
 		<s:VGroup id="welcomeGroup" width="100%" paddingTop="5" visible="{hostComponent.noProgressData}" includeInLayout="{hostComponent.noProgressData}" >
-			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/home_coursebar_demo.png')" 
+			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/home_coursebar_demo.png')" scaleX="0.5" scaleY="0.5"
 						 visible="{(hostComponent.isDemo())}"
 						 includeInLayout="{(hostComponent.isDemo())}"/>			
 			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/home_coursebar.png')" 
