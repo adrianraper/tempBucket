@@ -131,6 +131,11 @@ class ReportOps {
 					// Headers are just included in the root xml element for the XSL to do whatever it likes with them
 					$headers = $reportOptValue;
 					break;
+                // ctp#388
+                case "timezoneOffset":
+                    // Comes from client as "timezoneOffset":-480 - so minutes difference to UTC
+                    $opts[ReportBuilder::SHOW_TIMEZONE] = (($reportOptValue < 0) ? '+' : '-').(abs(round($reportOptValue / 60))).':00';
+                    break;
 				default:
 					//throw new Exception("Unknown report option ".$reportOpt);
 			}
@@ -144,6 +149,8 @@ class ReportOps {
             // gh#1505
             $opts[ReportBuilder::SHOW_CEF] = true;
             $opts[ReportBuilder::SHOW_STARTDATE] = true;
+            // ctp#388
+            $opts[ReportBuilder::SHOW_COMPLETEDDATE] = true;
             $opts[ReportBuilder::SHOW_DURATION] = true;
 		}
 		
@@ -196,6 +203,7 @@ EOD;
             // Execute the query - for some crazy reason its necessary to store the sql in a variable before passing to to AdoDB
             $sql = $reportBuilder->buildReportSQL();
         }
+        // Debug if you want to see the SQL that will be executed to get data for the report
 		//echo $sql.'<br/>'; exit();
 		$rows = $this->db->GetArray($sql);
 

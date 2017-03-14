@@ -69,6 +69,7 @@
 						<xsl:if test="report/row/@score">sortTypes.push("int");</xsl:if>
 						<xsl:if test="report/row/@duration">sortTypes.push("duration_custom");</xsl:if>
 						<xsl:if test="report/row/@start_date">sortTypes.push("date");</xsl:if>
+					    <xsl:if test="report/row/@completed_date">sortTypes.push("date");</xsl:if>
 
 						// Change average score to be a number not a string
 						<xsl:if test="report/row/@average_score">sortTypes.push("int");</xsl:if>

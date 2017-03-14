@@ -34,6 +34,12 @@ class XSLTFunctions {
 			return sprintf("%d", $minutes);
 		}
 	}
+	// ctp#388
+	static function roundTimestamp($timestamp, $timeZone = null) {
+	    if (strtotime($timestamp) !== FALSE)
+	        return substr($timestamp, 0, strlen($timestamp)-3);
+	    return '-';
+    }
 	static function secondsToHours($seconds) {
 		// simple hours
 		// sprintf can do the rounding itself, but apparently not terribly reliable
@@ -107,7 +113,7 @@ $forClass = (isset($_REQUEST['forClass'])) ? $_REQUEST['forClass'] : "";
 /**
  * This for testing and debugging reports
 $template = "DPTSummary";
-$opts = json_decode(stripslashes('{"includeInactiveUsers":true,"attempts":"all","detailedReport":true,"includeStudentID":false,
+$opts = json_decode(stripslashes('{"timezoneOffset":-480, "includeInactiveUsers":true,"attempts":"all","detailedReport":true,"includeStudentID":false,
         "headers":{"forReportLabel":"Description","onReport":"Dynamic Placement Test","dateRange":"","onReportLabel":"Title(s)",
         "forReportDetail":"Full pilot"}}'), true);
 $forReportablesIDObjects = json_decode(stripslashes('[{"Group":"35026"},{"ScheduledTest":"16"}]'), true);
@@ -184,7 +190,7 @@ function dptResultFormatter($result, $format) {
     return $formattedResult;
 }
 $proc = new XSLTProcessor();
-$proc->registerPHPFunctions(array("XSLTFunctions::secondsToMinutes","XSLTFunctions::secondsToHours","dptResultFormatter"));
+$proc->registerPHPFunctions(array("XSLTFunctions::secondsToMinutes","XSLTFunctions::secondsToHours","dptResultFormatter","XSLTFunctions::roundTimestamp"));
 $proc->importStylesheet($xslDom);
 if ($template == "export") {
 	header("Content-Type: text/csv; charset=\"utf-8\"");

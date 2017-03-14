@@ -33,7 +33,9 @@ class ReportBuilder {
 	const SHOW_SCORE_OF = "show_score_of"; // add up correct+missed+wrong
 	const SHOW_DURATION = "show_duration";
 	const SHOW_STARTDATE = "show_startdate";
-	
+    // ctp#388
+    const SHOW_COMPLETEDDATE = "show_completeddate";
+
 	const SHOW_AVERAGE_SCORE = "show_average_score";
 	const SHOW_COMPLETE = "show_complete";
 	// gh#23
@@ -76,6 +78,9 @@ class ReportBuilder {
     // gh#1505
     const SHOW_CEF = 'show_cef';
 
+    // ctp#388
+    const SHOW_TIMEZONE = 'show_timezone';
+
 	function ReportBuilder($db = null) {
 		$this->db = $db;
 		$this->opts = array();
@@ -98,6 +103,7 @@ class ReportBuilder {
 		if (!isset($this->opts[ReportBuilder::SHOW_SCORE_OF])) $this->opts[ReportBuilder::SHOW_SCORE_OF] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_DURATION])) $this->opts[ReportBuilder::SHOW_DURATION] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_STARTDATE])) $this->opts[ReportBuilder::SHOW_STARTDATE] = "";
+        if (!isset($this->opts[ReportBuilder::SHOW_COMPLETEDDATE])) $this->opts[ReportBuilder::SHOW_COMPLETEDDATE] = "";
 		if (!isset($this->opts[ReportBuilder::ATTEMPTS])) $this->opts[ReportBuilder::ATTEMPTS] = "";
 		if (!isset($this->opts[ReportBuilder::DETAILED_REPORT])) $this->opts[ReportBuilder::DETAILED_REPORT] = "";
 		if (!isset($this->opts[ReportBuilder::FROM_DATE])) $this->opts[ReportBuilder::FROM_DATE] = "";
@@ -131,7 +137,9 @@ class ReportBuilder {
         if (!isset($this->opts[ReportBuilder::SHOW_CEF])) $this->opts[ReportBuilder::SHOW_CEF] = "";
         // gh#1523
         if (!isset($this->opts[ReportBuilder::FOR_TESTID])) $this->opts[ReportBuilder::FOR_TESTID] = "";
-        
+        // ctp#388
+        if (!isset($this->opts[ReportBuilder::SHOW_TIMEZONE])) $this->opts[ReportBuilder::SHOW_TIMEZONE] = "";
+
 	}
 	
 	function setOpt($opt, $value) {
@@ -203,7 +211,15 @@ EOD;
         if ($this->getOpt(ReportBuilder::SHOW_EMAIL)) $this->selectBuilder->addSelect("u.F_Email email");
         if ($this->getOpt(ReportBuilder::SHOW_CEF)) $this->selectBuilder->addSelect("s1.F_Result result");
         if ($this->getOpt(ReportBuilder::SHOW_DURATION)) $this->selectBuilder->addSelect("s1.F_Duration duration");
-        if ($this->getOpt(ReportBuilder::SHOW_STARTDATE)) $this->selectBuilder->addSelect("s1.F_StartedDateStamp start_date");
+        // ctp#388  convert_tz(F_StartedDateStamp, '+00:00', '+08:00')
+        if ($this->getOpt(ReportBuilder::SHOW_TIMEZONE)) {
+            $timezone = $this->getOpt(ReportBuilder::SHOW_TIMEZONE);
+            if ($this->getOpt(ReportBuilder::SHOW_STARTDATE)) $this->selectBuilder->addSelect("convert_tz(s1.F_StartedDateStamp, '+00:00', '$timezone') start_date");
+            if ($this->getOpt(ReportBuilder::SHOW_COMPLETEDDATE)) $this->selectBuilder->addSelect("convert_tz(s1.F_CompletedDateStamp, '+00:00', '$timezone') completed_date");
+        } else {
+            if ($this->getOpt(ReportBuilder::SHOW_STARTDATE)) $this->selectBuilder->addSelect("s1.F_StartedDateStamp start_date");
+            if ($this->getOpt(ReportBuilder::SHOW_COMPLETEDDATE)) $this->selectBuilder->addSelect("s1.F_CompletedDateStamp completed_date");
+        }
         if ($this->getOpt(ReportBuilder::SHOW_DURATION)) $this->selectBuilder->addSelect("TIMESTAMPDIFF(SECOND, s1.F_StartedDateStamp, s1.F_CompletedDateStamp) duration");
         $this->selectBuilder->addSelect("s1.F_SessionID sessionId");
 
