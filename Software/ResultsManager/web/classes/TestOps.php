@@ -215,12 +215,12 @@ EOD;
     }
 
     // ctp#261 Find the last score written for this session
+    // ctp#383
     public function getLastScore($sessionId) {
         // TODO make sure that it is not too time consuming to read T_Score like this as a very big table
-        // Although F_SessionID is an index
         $sql = <<<EOD
 			SELECT * 
-			FROM T_ScoreDetail
+			FROM T_Score
 			WHERE F_SessionID=?
             ORDER BY F_DateStamp desc
             LIMIT 0,1

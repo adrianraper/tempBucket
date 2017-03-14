@@ -187,17 +187,18 @@ SQL;
         // Do you need to exclude any 'exercises' from scoring? Requirements for one...
         // Because T_Score does not have valid exercise id, use unit ids
         // It might be more efficient to exclude things like requirements unit, but is more explicit to do it by includes
-        $gaugeUnitID = '2015063020001';
-        $gaugeBonusBUnitID = '2015063020011';
-        $gaugeBonusCUnitID = '2015063020025';
-        $trackAUnitID = '2015063020004';
-        $trackBUnitID = '2015063020018';
-        $trackCUnitID = '2015063020032';
-        $bonusA2UnitID = '2015063020080';
-        $bonusB1UnitID = '2015063020082';
-        $bonusB2UnitID = '2015063020084';
-        $bonusC1UnitID = '2015063020086';
-        $bonusC2UnitID = '2015063020088';
+        $gaugeUnitID = DPTConstants::gaugeUnitID;
+        $gaugeBonusBUnitID = DPTConstants::gaugeBonusBUnitID;
+        $gaugeBonusCUnitID = DPTConstants::gaugeBonusCUnitID;
+        $trackAUnitID = DPTConstants::trackAUnitID;
+        $trackBUnitID = DPTConstants::trackBUnitID;
+        $trackCUnitID = DPTConstants::trackCUnitID;
+        $bonusA2UnitID = DPTConstants::bonusA2UnitID;
+        $bonusB1UnitID = DPTConstants::bonusB1UnitID;
+        $bonusB2UnitID = DPTConstants::bonusB2UnitID;
+        $bonusC1UnitID = DPTConstants::bonusC1UnitID;
+        $bonusC2UnitID = DPTConstants::bonusC2UnitID;
+
         $includeUnitIDs = array($gaugeUnitID, $gaugeBonusBUnitID, $gaugeBonusCUnitID,
             $trackAUnitID, $trackBUnitID, $trackCUnitID,
             $bonusA2UnitID, $bonusB1UnitID, $bonusB2UnitID, $bonusC1UnitID, $bonusC2UnitID);
@@ -745,13 +746,13 @@ EOD;
         $dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
         $dateNow = $dateStampNow->format('Y-m-d H:i:s');
 
-        // ctp#195 Create a seed
         $session = new TestSession();
         $session->userId = $userId;
         $session->rootId = $rootId;
         $session->productCode = $productCode;
         $session->testId = $testId;
         $session->readyDateStamp = $dateNow;
+        // ctp#195 Create a seed
         $session->seed = uniqid();
         $rs = $this->db->AutoExecute("T_TestSession", $session->toAssocArray(), "INSERT");
         if ($rs) {

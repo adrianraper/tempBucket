@@ -7,6 +7,7 @@ require_once(dirname(__FILE__)."/../../classes/TestOps.php");
 require_once(dirname(__FILE__)."/../../classes/UsageOps.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/ScheduledTest.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/TestSession.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/DPTConstants.php");
 
 
 class CTPService extends BentoService {
@@ -173,9 +174,13 @@ class CTPService extends BentoService {
         $score->userID = $user->userID;
         $score->setUID($scoreObj->uid);
         // ctp#216 This was the time the app managed to send the score to the server
-        $score->dateStamp = $this->timestampToLocalAnsiString($localTimestamp, $clientTimezoneOffset);
+        // ctp#380 Save as UTC
+        // ctp#383 Use the submit timestamp rather than sent timestamp
+        $score->dateStamp = $this->timestampToAnsiString($scoreObj->exerciseScore->submitTimestamp);
 
         // cpt#210
+        // ctp#383 We might need to compare this exercise id against some constants later
+        $tempExerciseID = $score->exerciseID;
         $score->exerciseID = 0;
 
         // Write the summary score record
@@ -200,7 +205,8 @@ class CTPService extends BentoService {
                 continue;
 
             // Convert timestamp to our usual date format
-            $answer->answerTimestamp = (isset($answer->answerTimestamp)) ? $this->timestampToLocalAnsiString($answer->answerTimestamp, $clientTimezoneOffset) : null;
+            // ctp#380 Save UTC time
+            $answer->answerTimestamp = (isset($answer->answerTimestamp)) ? $this->timestampToAnsiString($answer->answerTimestamp) : null;
             $scoreDetails[] = new ScoreDetail($answer, $score);
         }
         if (count($scoreDetails) > 0) {
@@ -224,8 +230,12 @@ class CTPService extends BentoService {
         }
 
         // ctp#261 The start datestamp is the local device time of first exercise submission
-        if (!$session->startedDateStamp) {
-            $session->startedDateStamp = $this->timestampToLocalAnsiString($scoreObj->exerciseScore->submitTimestamp, $clientTimezoneOffset);
+        // ctp#380 Save UTC time
+        // ctp#383 Only update session datestamps if this is the first exercise after the test has started.
+        // Currently this means the instructions exercise
+        if (!$session->startedDateStamp && $tempExerciseID == DPTConstants::instructionsID) {
+            //$session->startedDateStamp = $this->timestampToLocalAnsiString($scoreObj->exerciseScore->submitTimestamp, $clientTimezoneOffset);
+            $session->startedDateStamp = $this->timestampToAnsiString($scoreObj->exerciseScore->submitTimestamp);
             $isDirty = true;
         }
 
@@ -258,14 +268,15 @@ class CTPService extends BentoService {
             $session->result = $this->progressOps->getTestResult($session, $mode);
 
             // ctp#261 Find the datestamp of the first real score in the test to update the session with
-            $firstScore = $this->testOps->getFirstScore($sessionId);
-            $session->startedDateStamp = $firstScore->dateStamp;
+            // ctp#391 No need to change session record for start datestamp
+            //$firstScore = $this->testOps->getFirstScore($sessionId);
+            //$session->startedDateStamp = $firstScore->dateStamp;
             $isDirty = true;
         }
 
         // gh#151 Have we closed the session?
         if (!$session->completedDateStamp) {
-            // ctp#261 Get the last score written for this session
+            // ctp#261 Get the time the last score was written for this session
             $lastScore = $this->testOps->getLastScore($sessionId);
             $session->completedDateStamp = $lastScore->dateStamp;
             $isDirty = true;
