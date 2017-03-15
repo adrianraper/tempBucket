@@ -46,7 +46,16 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	
+
+    <!-- getSummaryTestsCompleted calculates the total exercises completed in this report -->
+    <xsl:template name="getSummaryTestsCompleted">
+        <xsl:choose>
+            <xsl:when test="report/row/@completed_date">
+                <xsl:value-of select="count(report/row[string-length(@completed_date)&gt;0])"/>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:template>
+
 	<!-- getSummaryAverageScore calculates the average score for this report -->
 	<!-- This is not the right way to calculate averages, you have to look at each row to get average*complete -->
 	<!-- <xsl:value-of select="round(sum(report/row[@average_score >= 0]/@average_score) div count(report/row[@average_score >= 0]))"/> -->
@@ -211,10 +220,16 @@
 					
 					<xsl:if test="@duration"><td><xsl:value-of select="php:function('XSLTFunctions::secondsToMinutes', string(@duration))"/></td></xsl:if>
 					<xsl:if test="@start_date"><td><xsl:value-of select="@start_date"/></td></xsl:if>
-                    <xsl:if test="@completed_date"><td>yes</td></xsl:if>
-					
+                    <xsl:choose>
+                        <xsl:when test="string-length(@completed_date)&gt;0" >
+                            <td>yes</td>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <td>-</td>
+                        </xsl:otherwise>
+                    </xsl:choose>
+
 					<xsl:if test="@average_score"><td><xsl:call-template name="formatScore"><xsl:with-param name="score" select="@average_score" /></xsl:call-template></td></xsl:if>
-					
 					<xsl:if test="@complete"><td><xsl:value-of select="@complete"/></td></xsl:if>
 					
 					<!--gh#23-->

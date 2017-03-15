@@ -232,8 +232,12 @@ EOD;
             if (stripos($template,'dptsummary') !== false) {
                 $thisTestId = $reportBuilder->getOpt(ReportBuilder::FOR_TESTID);
                 $forGroupsInString = implode(",", $reportBuilder->getOpt(ReportBuilder::FOR_GROUPS));
+                // ctp#388 In case there are no results from the test yet, add empty columns here
+                // TODO they should probably be driven by the OPTS to see what to include as order does matter
+                // But for now with a fixed dpt report it is ok
                 $sql = <<<EOD
-                select g.F_GroupName groupName,u.F_UserName userName,u.F_Email email
+                select g.F_GroupName groupName,u.F_UserName userName,u.F_Email email, 
+                       null duration, null start_date, null completed_date, null result
                     from T_Groupstructure g,  T_Membership m, T_User u
                     WHERE u.F_UserID = m.F_UserID
                     AND g.F_GroupID = m.F_GroupID

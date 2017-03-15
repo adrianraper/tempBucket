@@ -21,7 +21,8 @@
 		<xsl:if test="report/row/@score"><xsl:value-of select="report/language//lit[@name='report_score']"/>,</xsl:if>
 		<xsl:if test="report/row/@duration"><xsl:value-of select="report/language//lit[@name='report_duration_secs']"/>,</xsl:if>
 		<xsl:if test="report/row/@start_date"><xsl:value-of select="report/language//lit[@name='report_startTime']"/>,</xsl:if>
-		
+		<xsl:if test="report/row/@completed_date"><xsl:value-of select="report/language//lit[@name='report_completedTime']"/>,</xsl:if>
+
 		<xsl:if test="report/row/@average_score"><xsl:value-of select="report/language//lit[@name='report_averageScore']"/>,</xsl:if>
 		<xsl:if test="report/row/@complete"><xsl:value-of select="report/language//lit[@name='report_complete']"/>,</xsl:if>
 		<xsl:if test="report/row/@exercise_percentage"><xsl:value-of select="report/language//lit[@name='report_completePercentage']"/>,</xsl:if>
@@ -29,11 +30,13 @@
 		<xsl:if test="report/row/@average_time"><xsl:value-of select="report/language//lit[@name='report_averageTime_secs']"/>,</xsl:if>
 		<xsl:if test="report/row/@total_time"><xsl:value-of select="report/language//lit[@name='report_totalTime']"/>,</xsl:if>
 		<!-- Science Po -->
-		<xsl:if test="report/row/@fullName">student Name,</xsl:if>
+		<xsl:if test="report/row/@fullName">student name,</xsl:if>
 		<xsl:if test="report/row/@email">email,</xsl:if>
 		<xsl:if test="report/row/@studentsYear">students year,</xsl:if>
 		<xsl:if test="report/row/@correspondingFaculty">correspondingFaculty,</xsl:if>
 		<!-- Science Po -->
+		<!--  gh#1505 -->
+		<xsl:if test="report/row/@result"><xsl:value-of select="report/language//lit[@name='report_result']"/>,</xsl:if>
 		<xsl:text>
 </xsl:text>
 
@@ -54,7 +57,8 @@
 			
 			<xsl:if test="@duration">"<xsl:value-of select="@duration"/>",</xsl:if>
 			<xsl:if test="@start_date">"<xsl:value-of select="@start_date"/>",</xsl:if>
-			
+            <xsl:if test="@completed_date">"<xsl:value-of select="@completed_date"/>",</xsl:if>
+
 			<xsl:if test="@average_score">"<xsl:value-of select="@average_score" />",</xsl:if>
 			
 			<xsl:if test="@complete">"<xsl:value-of select="@complete"/>",</xsl:if>
@@ -72,6 +76,7 @@
 			<xsl:if test="@studentsYear">"<xsl:value-of select="@studentsYear"/>",</xsl:if>
 			<xsl:if test="@correspondingFaculty">"<xsl:value-of select="@correspondingFaculty"/>",</xsl:if>
 			<!-- Science Po -->
+            <xsl:if test="@result">"<xsl:value-of select="php:function('dptResultFormatter', string(@result), 'CEFR')"/>",</xsl:if>
 			<xsl:text>
 </xsl:text>
 

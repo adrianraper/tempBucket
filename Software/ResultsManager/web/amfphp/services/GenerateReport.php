@@ -112,16 +112,17 @@ $forClass = (isset($_REQUEST['forClass'])) ? $_REQUEST['forClass'] : "";
 
 /**
  * This for testing and debugging reports
-$template = "DPTSummary";
+ *
+$template = "export";
 $opts = json_decode(stripslashes('{"timezoneOffset":-480, "includeInactiveUsers":true,"attempts":"all","detailedReport":true,"includeStudentID":false,
         "headers":{"forReportLabel":"Description","onReport":"Dynamic Placement Test","dateRange":"","onReportLabel":"Title(s)",
         "forReportDetail":"Full pilot"}}'), true);
-$forReportablesIDObjects = json_decode(stripslashes('[{"Group":"35026"},{"ScheduledTest":"16"}]'), true);
+$forReportablesIDObjects = json_decode(stripslashes('[{"Group":"35026"},{"ScheduledTest":"44"}]'), true);
 $onReportablesIDObjects = json_decode(stripslashes('[{"Course":"63","Title":"63"}]'), true);
 $onClass = "Title";
 $forClass = "Group";
 Session::set('rootID', 163);
- */
+*/
 
 // Protect against directory traversal
 // PHP 5.3

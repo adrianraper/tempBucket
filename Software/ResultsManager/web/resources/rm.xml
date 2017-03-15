@@ -455,6 +455,8 @@
 			<lit name="report_result">CEF</lit>
             <lit name="report_testsCompleted">Tests taken</lit>
             <lit name="report_completedTime">Test completed</lit>
+			<lit name="report_localTime">Times</lit>
+			<lit name="report_timezone">Shown for your timezone.</lit>
 
 			<lit name="report_report">Report for</lit>
 			<lit name="report_dateRange">Date range</lit>
@@ -681,8 +683,8 @@
             <lit name="TApasteDataFromExcel">Copy the data from Excel and paste in the box.</lit>
             <lit name="TAmatchExistingUser">If details match existing users:</lit>
             
-            <lit name="reportForReportLabel">Test caption:</lit>
-            <lit name="reportOnReportLabel">Title:</lit>
+            <lit name="reportForReportLabel">Test caption</lit>
+            <lit name="reportOnReportLabel">Title</lit>
             
 		</group>
 	</language>

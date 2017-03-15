@@ -214,93 +214,88 @@
 			</head>
 			
 			<body onLoad="onLoaded();">
-				<table width="80%">
+				<table width="99%">
 				<xsl:if test="count(report/row)>500">
 					<tr><td>Warning - this is a big report. If it doesn't display properly, switch to the plain or print view which is much faster.</td></tr>
 				</xsl:if>
-				<tr valign="top" ><td align="left" width="70%">
-				<!-- AR does the truncation cause problem with &quot;? Yes. Applies to @titles and @content too.
-				<xsl:value-of select="report/language//lit[@name='report_report']"/>: <script>truncateText("<xsl:value-of select="report/@report"/>");</script><br/> 
-				//AR I have changed the names of attributes within opts.headers
-				// headers.report has become .onReport
-				// headers.content has become .forReportDetail
-				// added headers.forReportLabel
-				// added headers.titles, headers.courses if needed.
-				//
-				// removed from below: 
-				// <xsl:value-of select="report/language//lit[@name='report_report']"/>
-				// <xsl:value-of select="report/language//lit[@name='report_content']"/>
-				-->
+				<tr valign="top" >
+                  <td align="left" width="50%">
 				<!--
 					This is where you format the header. Please make it nice!
 				-->					
-					<table id="headerTable" width="80%">
+                     <table id="headerTable" width="90%">
+                         <tbody>
+                            <tr >
+                                <td class="headerTableLabels" width="100">
+                                    <xsl:value-of select="report/@onReportLabel"/>:
+                                </td>
+                                <td >
+                                    <xsl:value-of select="substring(report/@onReport,1,250)"/>
+                                </td>
+                            </tr>
+                            <xsl:if test="report/@titles">
+                                <tr><td class="headerTableLabels" >
+                                <xsl:value-of select="report/language//lit[@name='report_titles']"/>:
+                                </td>
+                                <td >
+                                <script>truncateText("<xsl:value-of select="report/@titles"/>");</script>
+                                </td></tr>
+                            </xsl:if>
+                            <xsl:if test="report/@courses">
+                                <tr><td class="headerTableLabels" >
+                                <xsl:value-of select="report/language//lit[@name='report_courses']"/>:
+                                </td>
+                                <td >
+                                <script>truncateText("<xsl:value-of select="report/@courses"/>");</script>
+                                </td></tr>
+                            </xsl:if>
+                            <xsl:if test="report/@forReportDetail and report/@forReportDetail!=''">
+                                <tr><td class="headerTableLabels" >
+                                <xsl:value-of select="report/@forReportLabel"/>:
+                                </td>
+                                <td >
+                                <script>truncateText("<xsl:value-of select="report/@forReportDetail"/>");</script>
+                                </td></tr>
+                            </xsl:if>
+                            <!-- AR this test doesn't work, and it seems to slow things down.
+                            <xsl:if test="string-length(report/@dateRange) &gt; 0"><xsl:value-of select="report/language//lit[@name='report_dateRange']"/>: <xsl:value-of select="report/@dateRange"/><br/></xsl:if>
+                            -->
+                            <xsl:if test="report/@dateRange and report/@dateRange!=''">
+                                <tr><td class="headerTableLabels" >
+                                <xsl:value-of select="report/language//lit[@name='report_dateRange']"/>:
+                                </td>
+                                <td >
+                                <xsl:value-of select="report/@dateRange"/>
+                                </td></tr>
+                            </xsl:if>
+                        </tbody>
+                     </table>
+				  </td>
+				<!-- This is where we could put the summary -->
+				  <td align="left" valign="top" width="50%">
+					<table id="headerTable" width="90%">
 					<tbody>
-						<tr >
-							<td class="headerTableLabels" width="100">
-								<xsl:value-of select="report/@onReportLabel"/>:	
+                        <tr>
+                            <td class="headerTableLabels" width="150">
+                                <xsl:value-of select="report/language//lit[@name='report_testsCompleted']"/>:
+                            </td>
+                            <td >
+                                <xsl:call-template name="getSummaryTestsCompleted" />
+                            </td>
+                        </tr>
+						<tr> <!-- ctp#388 -->
+							<td class="headerTableLabels" width="150">
+								<xsl:value-of select="report/language//lit[@name='report_localTime']"/>:
 							</td>
 							<td >
-								<xsl:value-of select="substring(report/@onReport,1,250)"/>
+                                <xsl:value-of select="report/language//lit[@name='report_timezone']"/>
 							</td>
 						</tr>
-						<xsl:if test="report/@titles">
-							<tr><td class="headerTableLabels" >
-							<xsl:value-of select="report/language//lit[@name='report_titles']"/>:	
-							</td>
-							<td >
-							<script>truncateText("<xsl:value-of select="report/@titles"/>");</script>
-							</td></tr>
-						</xsl:if>
-						<xsl:if test="report/@courses">
-							<tr><td class="headerTableLabels" >
-							<xsl:value-of select="report/language//lit[@name='report_courses']"/>:	
-							</td>
-							<td >
-							<script>truncateText("<xsl:value-of select="report/@courses"/>");</script>
-							</td></tr>
-						</xsl:if>
-						<xsl:if test="report/@forReportDetail and report/@forReportDetail!=''">
-							<tr><td class="headerTableLabels" >
-							<xsl:value-of select="report/@forReportLabel"/>:	
-							</td>
-							<td >
-							<script>truncateText("<xsl:value-of select="report/@forReportDetail"/>");</script>
-							</td></tr>
-						</xsl:if>
-						<!-- AR this test doesn't work, and it seems to slow things down.
-						<xsl:if test="string-length(report/@dateRange) &gt; 0"><xsl:value-of select="report/language//lit[@name='report_dateRange']"/>: <xsl:value-of select="report/@dateRange"/><br/></xsl:if>
-						-->
-						<xsl:if test="report/@dateRange and report/@dateRange!=''">
-							<tr><td class="headerTableLabels" >
-							<xsl:value-of select="report/language//lit[@name='report_dateRange']"/>:	
-							</td>
-							<td >
-							<xsl:value-of select="report/@dateRange"/>
-							</td></tr>
-						</xsl:if>
-					</tbody>
-					</table>
-				</td>
-				<!-- This is where we could put the summary -->
-				<td align="left" valign="top" width="30%">
-				<!--
-					This is where you format the footer
-				-->					
-					<table id="headerTable" width="100%">
-					<tbody>
-					<tr ><td class="headerTableLabels" width="150">
-					<xsl:value-of select="report/language//lit[@name='report_testsCompleted']"/>:
-					</td>
-					<td >
-					<xsl:call-template name="getSummaryExercisesCompleted" />
-					</td></tr>
 					</tbody>
 					</table>
 					
-				</td>
-				<td valign="top" align="right">
-				</td></tr>
+				  </td>
+                </tr>
 				</table>
 				<hr/>
 				<!--
@@ -313,10 +308,13 @@
 				-->					
 					<input type="button" class="btn" id="showCSVViewButton" onClick="exportCSV();" /><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>
 					<input type="button" class="btn" id="showPrintableViewButton" onClick="showPrintableView();" /><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>										
+					<!--
 					<input type="button" class="btn" id="regroupByButton" onClick="regroupGrid();" /><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>
 					<select id="groupingSelect" style="width:130px;">
 						<option value="" />
-					</select><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>
+					</select>
+					-->
+					<xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>
 					<script>
 				<!-- drop csv button
 						//$("showGridViewButton").value = "<xsl:value-of select="report/language//lit[@name='report_showGridView']"/>";
@@ -324,7 +322,9 @@
 				-->					
 						$("showCSVViewButton").value = "<xsl:value-of select="report/language//lit[@name='report_showCSVView']"/>";
 						$("showPrintableViewButton").value = "<xsl:value-of select="report/language//lit[@name='report_showPrintableView']"/>";
+                        <!--
 						$("regroupByButton").value = "<xsl:value-of select="report/language//lit[@name='report_regroupBy']"/>";
+						-->
 					</script>
 					
 					<hr/>
@@ -343,16 +343,8 @@
 						<xsl:with-param name="tableId">reportTable</xsl:with-param>
 					</xsl:call-template>
 				</div>
-				<!--
-				<xsl:for-each select="report/row">
-					<xsl:if test="@result">
-						<xsl:if test="php:function('dptResultFormatter', string(@result), 'CEF') = '****'">
-						</xsl:if>
-					</xsl:if>
-				</xsl:for-each>
-				-->
                 <xsl:if test="report/row/@result = '****'">
-				    <p>Results marked **** are saved but not enough tests have been purchased to see them.<br/>Use the Test Admin tool to buy some more and these results will be shown.</p>
+				    <p>Results marked **** are saved but not enough tests have been purchased to see them.<br/>Contact Clarity to buy some more and these results will be shown.</p>
                 </xsl:if>
 				<br/>
 							
