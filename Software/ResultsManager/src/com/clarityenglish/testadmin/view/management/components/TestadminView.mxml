@@ -390,7 +390,7 @@
 	
 	-->
 	<mx:VBox width="100%" height="100%" verticalGap="0" >
-  	  <mx:HBox id="adminPanelBanner" width="100%" height="90" verticalAlign="middle"
+  	  <mx:HBox id="adminPanelBanner" width="100%" height="94" verticalAlign="middle"
 			   paddingBottom="0" horizontalGap="30"
 			   borderSides="bottom" borderStyle="solid">
 		  <mx:Spacer width="0"/>

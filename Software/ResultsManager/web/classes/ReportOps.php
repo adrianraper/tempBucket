@@ -132,7 +132,7 @@ class ReportOps {
 					$headers = $reportOptValue;
 					break;
 				default:
-					throw new Exception("Unknown report option ".$reportOpt);
+					//throw new Exception("Unknown report option ".$reportOpt);
 			}
 		}
 		

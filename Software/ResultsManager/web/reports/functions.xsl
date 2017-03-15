@@ -159,6 +159,7 @@
 				<xsl:if test="report/row/@correct"><th type="ro"><xsl:value-of select="report/language//lit[@name='report_score_correct']"/></th></xsl:if>
 				<xsl:if test="report/row/@duration"><th type="ro"><xsl:value-of select="report/language//lit[@name='report_duration']"/></th></xsl:if>
 				<xsl:if test="report/row/@start_date"><th type="ro"><xsl:value-of select="report/language//lit[@name='report_startTime']"/></th></xsl:if>
+                <xsl:if test="report/row/@completed_date"><th type="ro"><xsl:value-of select="report/language//lit[@name='report_completedTime']"/></th></xsl:if>
 				
 				<xsl:if test="report/row/@average_score"><th type="ro"><xsl:value-of select="report/language//lit[@name='report_averageScore']"/></th></xsl:if>
 				<xsl:if test="report/row/@complete"><th type="ro" width="100px"><xsl:value-of select="report/language//lit[@name='report_complete']"/></th></xsl:if>
@@ -210,6 +211,7 @@
 					
 					<xsl:if test="@duration"><td><xsl:value-of select="php:function('XSLTFunctions::secondsToMinutes', string(@duration))"/></td></xsl:if>
 					<xsl:if test="@start_date"><td><xsl:value-of select="@start_date"/></td></xsl:if>
+                    <xsl:if test="@completed_date"><td>yes</td></xsl:if>
 					
 					<xsl:if test="@average_score"><td><xsl:call-template name="formatScore"><xsl:with-param name="score" select="@average_score" /></xsl:call-template></td></xsl:if>
 					

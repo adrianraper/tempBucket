@@ -6,7 +6,7 @@
 			<lit name="applicationVersion">Version {version}</lit>
 			
             <lit name="version">v{version} Software, Design, Navigation</lit>
-            <lit name="copyright">© Clarity Language Consultants Ltd, 2015. All rights reserved.</lit>
+            <lit name="copyright">© Clarity Language Consultants Ltd, 2015-7. All rights reserved.</lit>
 			<lit name="userExpiredError">This user's account expired on {date}.</lit>
 			<lit name="productExpiredError">The licence for this title stopped on {date}.</lit>
 			
@@ -454,7 +454,7 @@
 			<!-- gh#1505 -->
 			<lit name="report_result">CEF</lit>
             <lit name="report_testsCompleted">Tests taken</lit>
-
+            <lit name="report_completedTime">Test completed</lit>
 
 			<lit name="report_report">Report for</lit>
 			<lit name="report_dateRange">Date range</lit>
@@ -680,6 +680,10 @@
             <lit name="TAimportUser">Import test takers</lit>
             <lit name="TApasteDataFromExcel">Copy the data from Excel and paste in the box.</lit>
             <lit name="TAmatchExistingUser">If details match existing users:</lit>
+            
+            <lit name="reportForReportLabel">Test caption:</lit>
+            <lit name="reportOnReportLabel">Title:</lit>
+            
 		</group>
 	</language>
 </literals>

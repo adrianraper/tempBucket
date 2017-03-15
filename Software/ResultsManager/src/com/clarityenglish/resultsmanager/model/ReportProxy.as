@@ -69,7 +69,7 @@ package com.clarityenglish.resultsmanager.model {
 							return reportable.reportableLabel; 
 						}
 					} ).join(", ");
-			headers.onReportLabel = onClass + "(s)"; // Note that this is the name of the literal, it will be looked up later. No it won't!
+			headers.onReportLabel = (template == "DPTSummary") ? "Report" : onClass + "(s)";
 			
 			// Build up header for the forReports. This is reportClass based.
 			// If onClass is manageable, then I will want to list the title, course, unit from forClass
@@ -134,7 +134,7 @@ package com.clarityenglish.resultsmanager.model {
 							tempTests.push(reportable.reportableLabel);
 					}
 					headers.forReportDetail = tempTests.join(", ");
-					headers.forReportLabel = "Description";
+					headers.forReportLabel = copyProvider.getCopyForId("reportForReportLabel");
 				} else {
 					headers.forReportDetail = forReportables.map(function(reportable:Reportable, index:int, array:Array):String { 
 						return reportable.reportableLabel; } ).join(", ");
@@ -155,7 +155,9 @@ package com.clarityenglish.resultsmanager.model {
 			    headers.attempts = copyProvider.getCopyForId(opts.attempts + "Attempts");
 			
 			opts.headers = headers;
-			//trace("opts detailed report"+ opts.detailedReport);
+			
+			// ctp#388
+			opts.timezoneOffset = new Date().getTimezoneOffset();
 			
 			// If the forReportables are Title then replace them with their sub courses as titles don't really exist
 			// gh#1424 TODO But we DO want a title summary report - for TB, AR, R2I etc it will be useful
