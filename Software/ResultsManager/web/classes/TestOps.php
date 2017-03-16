@@ -229,7 +229,7 @@ EOD;
         $rs = $this->db->Execute($sql, $bindingParams);
         if ($rs && $rs->RecordCount() > 0){
             $dbObj = $rs->FetchNextObj();
-            $score = new ScoreDetail();
+            $score = new Score();
             $score->fromDatabaseObj($dbObj);
         } else {
             $score = null;

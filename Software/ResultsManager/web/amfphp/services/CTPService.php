@@ -275,7 +275,7 @@ class CTPService extends BentoService {
         }
 
         // gh#151 Have we closed the session?
-        if (!$session->completedDateStamp) {
+        if (!$session->completedDateStamp || $mode=='overwrite' || $mode=='debug') {
             // ctp#261 Get the time the last score was written for this session
             $lastScore = $this->testOps->getLastScore($sessionId);
             $session->completedDateStamp = $lastScore->dateStamp;
