@@ -863,10 +863,10 @@ SQL;
 				// gh#1523 Also pick up a test id for CTP
                 foreach ($idObjects as $idObject)
                     if (isset($idObject['ScheduledTest']))
-                        $testId = $idObject['ScheduledTest'];
+                        $return[ReportBuilder::FOR_TESTID] = $idObject['ScheduledTest'];
 
-				if ($testId)
-					$return[ReportBuilder::FOR_TESTID] = $testId;
+				//if ($testId)
+				//	$return[ReportBuilder::FOR_TESTID] = $testId;
 					
 				return $return;
 				break;

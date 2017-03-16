@@ -104,6 +104,9 @@ if (!Authenticate::isAuthenticated()) {
 */
 
 $template = (isset($_REQUEST['template'])) ? $_REQUEST['template'] : "standard";
+// ctp#376
+if (isset($_REQUEST['reportType']))
+    $reportType = $_REQUEST['reportType'];
 $opts = json_decode(stripslashes((isset($_REQUEST['opts'])) ? $_REQUEST['opts'] : ""), true);
 $onReportablesIDObjects = (isset($_REQUEST['onReportablesIDObjects'])) ? json_decode(stripslashes($_REQUEST['onReportablesIDObjects']), true) : array();
 $forReportablesIDObjects = (isset($_REQUEST['forReportablesIDObjects'])) ? json_decode(stripslashes($_REQUEST['forReportablesIDObjects']), true) : array();
@@ -132,7 +135,10 @@ $template = preg_replace($pattern, $replacement, $template);
 
 // Generate the report based on the options passed to the script
 // v3.0.4 I need to pass the template in for special processing
-$reportDom = $clarityService->getReport($onReportablesIDObjects, $onClass, $forReportablesIDObjects, $forClass, $opts, $template);
+// ctp#376 Get specific data for export and printable reports
+// We should end up with $reportType = DPTSummary, $template = standard / export / printable
+$reportType = (isset($reportType)) ? $reportType : ($template == "DPTSummary") ? "DPTSummary" : $template;
+$reportDom = $clarityService->getReport($onReportablesIDObjects, $onClass, $forReportablesIDObjects, $forClass, $opts, $reportType);
 // AR If I want to see the XML before it gets processed?
 //$reportDom->formatOutput = true; 
 //header("Content-Type: text/xml; charset=utf-8"); echo $reportDom; exit(0);

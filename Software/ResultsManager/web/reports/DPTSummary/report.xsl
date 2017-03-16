@@ -12,7 +12,7 @@
 				<!-- You need this to avoid DOM warning: DOMElement::setAttribute() [domelement.setattribute]: string is not in UTF-8 -->
 				<link rel="shortcut icon" href="/Software/RM.ico" type="image/x-icon" />
 				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-				<title>Results Manager Generated Report</title>
+				<title>Admin Panel Summary Report</title>
 				
 				<link rel="stylesheet" type="text/css" href="../../reports/standard/dhtmlx/dhtmlxGrid/codebase/headerFooter.css" />
 				<link rel="stylesheet" type="text/css" href="../../reports/standard/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.css" />
@@ -38,7 +38,7 @@
 						grid = dhtmlXGridFromTable("reportTable");
 						grid.setImagePath("../../reports/standard/dhtmlx/dhtmlxGrid/codebase/imgs/");
 						grid.setSkin("light");
-						grid.setInitWidths("*,*,*,*,*,*,*,*,*,*,*,*");
+						grid.setInitWidths("*,*,*,*,*,*,*,*");
 		
 						/* Custom sorting function for durations */
 						/* Cope with &lt;1 as a time spent 
@@ -56,35 +56,19 @@
 						var headerString = [];
 						var sortTypes = [];
 						
-						<xsl:if test="report/row/@titleName">headerString.push("#text_filter");sortTypes.push("str");addGroupingOptions("<xsl:value-of select="report/language//lit[@name='report_title']"/>");</xsl:if>
-		  				<xsl:if test="report/row/@courseName">headerString.push("#text_filter");sortTypes.push("str");addGroupingOptions("<xsl:value-of select="report/language//lit[@name='report_course']"/>");</xsl:if>
-		  				<xsl:if test="report/row/@unitName">headerString.push("#text_filter");sortTypes.push("str");addGroupingOptions("<xsl:value-of select="report/language//lit[@name='report_unit']"/>");</xsl:if>
-		  				<xsl:if test="report/row/@exerciseName">headerString.push("#text_filter");sortTypes.push("str");addGroupingOptions("<xsl:value-of select="report/language//lit[@name='report_exercise']"/>");</xsl:if>
-						<xsl:if test="report/row/@groupName">headerString.push("#text_filter");sortTypes.push("str");addGroupingOptions("<xsl:value-of select="report/language//lit[@name='report_group']"/>");</xsl:if>
-						<xsl:if test="report/row/@userName">headerString.push("#text_filter");sortTypes.push("str");addGroupingOptions("<xsl:value-of select="report/language//lit[@name='report_student']"/>");</xsl:if>
-						<xsl:if test="report/row/@studentID">headerString.push("#text_filter");sortTypes.push("str");addGroupingOptions("<xsl:value-of select="report/language//lit[@name='report_studentID']"/>");</xsl:if>
-                        // gh#1505
-                        <xsl:if test="report/row/@result">headerString.push("#text_filter");sortTypes.push("str");addGroupingOptions("<xsl:value-of select="report/language//lit[@name='report_result']"/>");</xsl:if>
+						<xsl:if test="report/row/@groupName">headerString.push("#text_filter");sortTypes.push("str");</xsl:if>
+						<xsl:if test="report/row/@userName">headerString.push("#text_filter");sortTypes.push("str");</xsl:if>
+						<xsl:if test="report/row/@email">headerString.push("#text_filter");sortTypes.push("str");</xsl:if>
 
-						<xsl:if test="report/row/@score">sortTypes.push("int");</xsl:if>
 						<xsl:if test="report/row/@duration">sortTypes.push("duration_custom");</xsl:if>
 						<xsl:if test="report/row/@start_date">sortTypes.push("date");</xsl:if>
-					    <xsl:if test="report/row/@completed_date">sortTypes.push("date");</xsl:if>
+					    <xsl:if test="report/row/@completed_date">sortTypes.push("str");</xsl:if>
 
-						// Change average score to be a number not a string
-						<xsl:if test="report/row/@average_score">sortTypes.push("int");</xsl:if>
-						<xsl:if test="report/row/@complete">sortTypes.push("int");</xsl:if>
-						
-						//gh#23
-						<xsl:if test="report/row/@exercise_percentage">sortTypes.push("int");</xsl:if>
-						<xsl:if test="report/row/@exerciseUnit_percentage">sortTypes.push("int");</xsl:if>
-						// What is this?
-						<xsl:if test="report/row/@unit_percentage">sortTypes.push("duration_custom");</xsl:if>
-						
-						<xsl:if test="report/row/@average_time">sortTypes.push("duration_custom");</xsl:if>
-						<xsl:if test="report/row/@total_time">sortTypes.push("duration_custom");</xsl:if>
-						
-						grid.attachHeader(headerString.join(","));
+						// gh#1505
+						<xsl:if test="report/row/@result">sortTypes.push("str");</xsl:if>
+                        <xsl:if test="report/row/@anomaly">sortTypes.push("str");</xsl:if>
+
+					    grid.attachHeader(headerString.join(","));
 						grid.setColSorting(sortTypes.join(","));
 						
 						grid.enableBlockSelection();
@@ -307,24 +291,10 @@
 					<input type="button" class="btn" id="showTabViewButton" onClick="exportTab();" /><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>
 				-->					
 					<input type="button" class="btn" id="showCSVViewButton" onClick="exportCSV();" /><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>
-					<input type="button" class="btn" id="showPrintableViewButton" onClick="showPrintableView();" /><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>										
-					<!--
-					<input type="button" class="btn" id="regroupByButton" onClick="regroupGrid();" /><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>
-					<select id="groupingSelect" style="width:130px;">
-						<option value="" />
-					</select>
-					-->
-					<xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>
+					<input type="button" class="btn" id="showPrintableViewButton" onClick="showPrintableView();" />
 					<script>
-				<!-- drop csv button
-						//$("showGridViewButton").value = "<xsl:value-of select="report/language//lit[@name='report_showGridView']"/>";
-						//$("showTabViewButton").value = "<xsl:value-of select="report/language//lit[@name='report_showTabView']"/>";
-				-->					
 						$("showCSVViewButton").value = "<xsl:value-of select="report/language//lit[@name='report_showCSVView']"/>";
 						$("showPrintableViewButton").value = "<xsl:value-of select="report/language//lit[@name='report_showPrintableView']"/>";
-                        <!--
-						$("regroupByButton").value = "<xsl:value-of select="report/language//lit[@name='report_regroupBy']"/>";
-						-->
 					</script>
 					
 					<hr/>
@@ -351,10 +321,12 @@
 				<xsl:call-template name="generateSubmitableForm">
 					<xsl:with-param name="formId">printForm</xsl:with-param>
 					<xsl:with-param name="reportTemplate">printable</xsl:with-param>
+                    <xsl:with-param name="reportType">DPTSummary</xsl:with-param>
 				</xsl:call-template>
 				<xsl:call-template name="generateSubmitableForm">
 					<xsl:with-param name="formId">exportForm</xsl:with-param>
 					<xsl:with-param name="reportTemplate">export</xsl:with-param>
+                    <xsl:with-param name="reportType">DPTSummary</xsl:with-param>
 				</xsl:call-template>
 			</body>
 		</html>

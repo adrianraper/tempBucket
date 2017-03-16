@@ -184,6 +184,7 @@
                 <xsl:if test="report/row/@sessions"><th type="ro" width="100px"><xsl:value-of select="report/language//lit[@name='report_sessions']"/></th></xsl:if>
 				<!--  gh#1505 -->
 				<xsl:if test="report/row/@result"><th type="ro" width="100px"><xsl:value-of select="report/language//lit[@name='report_result']"/></th></xsl:if>
+				<xsl:if test="report/row/@anomaly"><th type="ro" width="100px"><xsl:value-of select="report/language//lit[@name='report_anomaly']"/></th></xsl:if>
 			</tr>
 			<xsl:for-each select="report/row">
 				<tr>
@@ -244,6 +245,7 @@
                     <xsl:if test="@sessions"><td><xsl:value-of select="@sessions"/></td></xsl:if>
 					<!--gh#1505-->
 					<xsl:if test="@result"><td><xsl:value-of select="php:function('dptResultFormatter', string(@result), 'CEFR')"/></td></xsl:if>
+					<xsl:if test="@anomaly"><td><xsl:value-of select="@anomaly"/></td></xsl:if>
 				</tr>
 			</xsl:for-each>
 		</table>
@@ -254,7 +256,8 @@
 	<xsl:template name="generateSubmitableForm">
 		<xsl:param name="formId" />
 		<xsl:param name="reportTemplate" />
-		
+		<xsl:param name="reportType" />
+
 		<form id="{$formId}" action="{$scriptName}" method="post" target="_blank">
 			<input type="hidden" name="onReportablesIDObjects" value='{$onReportablesIDObjects}' />
 			<input type="hidden" name="onClass" value='{$onClass}' />
@@ -262,6 +265,7 @@
 			<input type="hidden" name="forClass" value='{$forClass}' />
 			<input type="hidden" name="opts" value='{$opts}' />
 			<input type="hidden" name="template" value='{$reportTemplate}' />
+			<input type="hidden" name="reportType" value='{$reportType}' />
 		</form>
 	</xsl:template>
 	

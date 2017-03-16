@@ -17,7 +17,8 @@
 		
 		<xsl:if test="report/row/@userName"><xsl:value-of select="report/language//lit[@name='report_student']"/>,</xsl:if>
 		<xsl:if test="report/row/@studentID"><xsl:value-of select="report/language//lit[@name='report_studentID']"/>,</xsl:if>
-		
+		<xsl:if test="report/row/@email"><xsl:value-of select="report/language//lit[@name='report_email']"/>,</xsl:if>
+
 		<xsl:if test="report/row/@score"><xsl:value-of select="report/language//lit[@name='report_score']"/>,</xsl:if>
 		<xsl:if test="report/row/@duration"><xsl:value-of select="report/language//lit[@name='report_duration_secs']"/>,</xsl:if>
 		<xsl:if test="report/row/@start_date"><xsl:value-of select="report/language//lit[@name='report_startTime']"/>,</xsl:if>
@@ -31,10 +32,8 @@
 		<xsl:if test="report/row/@total_time"><xsl:value-of select="report/language//lit[@name='report_totalTime']"/>,</xsl:if>
 		<!-- Science Po -->
 		<xsl:if test="report/row/@fullName">student name,</xsl:if>
-		<xsl:if test="report/row/@email">email,</xsl:if>
 		<xsl:if test="report/row/@studentsYear">students year,</xsl:if>
 		<xsl:if test="report/row/@correspondingFaculty">correspondingFaculty,</xsl:if>
-		<!-- Science Po -->
 		<!--  gh#1505 -->
 		<xsl:if test="report/row/@result"><xsl:value-of select="report/language//lit[@name='report_result']"/>,</xsl:if>
 		<xsl:text>
@@ -52,7 +51,8 @@
 			
 			<xsl:if test="@userName">"<xsl:value-of select="@userName"/>",</xsl:if>
 			<xsl:if test="@studentID">"<xsl:value-of select="@studentID"/>",</xsl:if>
-			
+			<xsl:if test="@email">"<xsl:value-of select="@email"/>",</xsl:if>
+
 			<xsl:if test="@score">"<xsl:value-of select="@score" />",</xsl:if>
 			
 			<xsl:if test="@duration">"<xsl:value-of select="@duration"/>",</xsl:if>
@@ -72,10 +72,9 @@
 			
 			<!-- Science Po -->
 			<xsl:if test="@fullName">"<xsl:value-of select="@fullName"/>",</xsl:if>
-			<xsl:if test="@email">"<xsl:value-of select="@email"/>",</xsl:if>
 			<xsl:if test="@studentsYear">"<xsl:value-of select="@studentsYear"/>",</xsl:if>
 			<xsl:if test="@correspondingFaculty">"<xsl:value-of select="@correspondingFaculty"/>",</xsl:if>
-			<!-- Science Po -->
+			<!--  gh#1505 -->
             <xsl:if test="@result">"<xsl:value-of select="php:function('dptResultFormatter', string(@result), 'CEFR')"/>",</xsl:if>
 			<xsl:text>
 </xsl:text>
