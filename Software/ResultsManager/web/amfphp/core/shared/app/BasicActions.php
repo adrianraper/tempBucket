@@ -131,7 +131,9 @@ function securityAction (&$amfbody) {
 				} else {
 				}
                 */
-                $ex = new MessageException(E_USER_ERROR, "Method access blocked by beforeFilter in " . $className . " class", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
+                //$ex = new MessageException(E_USER_ERROR, "Method access blocked by beforeFilter in " . $className . " class", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");                
+				// ctp#372
+				$ex = new MessageException(E_USER_ERROR, "Your authentication has been lost, please start again.", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");		
 				MessageException::throwException($amfbody, $ex);
 				return false;
 			} 
