@@ -7,13 +7,13 @@
         "TestClosed": "The test closed on {date} at {time}.",
         "NotAnsweredQuestions": "You have missed a question.|You have missed {count} questions.",
         "IncorrectQuestions": "You must get these questions right before you can go on.",
-        "Access": "Access",
+        "Access": "Access code",
         "Code": "Code",
         "Result": "Result",
         "Reset": "Reset",
         "EnterCode": "Type the code to start the test.",
-        "SendingScores": "The system is submitting your answers. Please do not leave until you see your result or the test administrator says so.",
-        "FinishedTest": "The test is complete and saved.",
+        "SendingScores": "Your test is finished and we are submitting your answers. Do not leave until you see your result or the test administrator says so.",
+        "FinishedTest": "The test is completed and the result has been sent to your test administrator.",
         "ICantDoThis": "I can't do it.",
         "IncorrectValidateCode": "It looks like you have entered a wrong code. Check your test notice again, or get help from your test administrator.",
         "EmptyValidateCode": "Please input your validation code.",
@@ -24,10 +24,21 @@
     {
       "language": "zh-tw",
       "literals": {
-        "TestNotOpened": "测试尚未开始。请于{date}在{time}再试一次。",
-        "NotAnsweredQuestions": "你错过了一个问题。|您错过了{count}个问题。",
-        "EnterCode": "键入代码以开始测试。",
-        "DeviceUnsupported": "您需要使用不同的设备进行测试。请与您的测试管理员联系。"
+        "TestNotOpened": "測試尚未開始。請於{date}{time}再試一次。",
+        "TestClosed": "這個測試已於{date}{time}結束.",
+        "NotAnsweredQuestions": "您錯過了一個問題。|您錯過了{count}個問題。",
+        "IncorrectQuestions": "您必須填寫所有正確答案。",
+        "Access": "測試驗證碼",
+        "Code": "驗證碼",
+        "Result": "測試結果",
+        "Reset": "重設測試",
+        "EnterCode": "請輸入您的測試驗證碼。",
+        "SendingScores": "您已經完成此測試。系統正在上傳您的答案。 在您看到測試結果之前，請不要離開此頁。",
+        "FinishedTest": "您的測試已經完成。",
+        "ICantDoThis": "I can't do it.",
+        "IncorrectValidateCode": "您輸入的測試驗證碼不正確。請再次檢閱您的測試通知，或向你的測試管理員尋求協助。 ",
+        "EmptyValidateCode": "請輸入您的測試驗證碼。",
+        "DeviceUnsupported": "您需要使用其他的設備進行測試。如需協助，請與您的測試管理員聯繫。"
       }
     },
     {
