@@ -7,7 +7,7 @@
 	width="500"
 	borderColor="#FFFFFF"
 	backgroundColor="#FFFFFF"
-	implements="com.clarityenglish.common.view.interfaces.CopyReceiver" xmlns:components="com.clarityenglish.resultsmanager.view.login.components.*">
+	implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>
 		<![CDATA[
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
@@ -44,6 +44,8 @@
 		
 		private var copyProvider:CopyProvider;
 		
+		private function creationComplete():void {}
+			
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			this.copyProvider = copyProvider;
 			
@@ -98,9 +100,12 @@
 			
 			// Show the import results in the grid
 			dataGrid.dataProvider = importResults;
+			excelInitialLayout.visible = excelInitialLayout.includeInLayout = false;
+			importResultsLayout.visible = importResultsLayout.includeInLayout = true;
 			
-			// Hide the buttons now the import has happened
-			importControlsVisible = false;
+			// Change the buttons now the import has completed
+			startExcelImportButton.visible = startExcelImportButton.includeInLayout = false;
+			closeWindowButton.label = copyProvider.getCopyForId("ok");
 			
 			// Enabled to copy to clipboard button
 			//copyFailedToClipboardButton.enabled = true;
@@ -109,77 +114,7 @@
 		private function removePopup():void {
 			PopUpManager.removePopUp(this);
 		}
-
-		private function creationComplete():void {
-			/*
-			var border:Shape = new Shape();
-			var ui:UIComponent = new UIComponent();
-			ui.addChild(border);
-			importTextArea.addChild(ui);
-			border.graphics.beginFill(0xFFFFFF);
-			border.graphics.lineStyle(0, 0xCCCCCC, 1);
-			//importTextArea.width, importTextArea.height
-			border.graphics.drawRoundRect(0, 0, 320, 120, 25, 25);
-			border.graphics.endFill();
-			
-			excelTextArea = new TextArea();
-			importTextArea.addChild(excelTextArea);
-			excelTextArea.x = excelTextArea.y = 10;
-			excelTextArea.id = "excelTextArea"; 
-			excelTextArea.width = 300;
-			excelTextArea.height = 100;
-			excelTextArea.setStyle("borderStyle","solid");
-
-			var filter:BitmapFilter = getBitmapFilter();
-			var myFilters:Array = new Array();
-			myFilters.push(filter);
-			border.filters = myFilters;
-			*/
-		}
-			/*
-		private function getBitmapFilter():BitmapFilter {
-			var color:Number = 0x666666;
-			var angle:Number = 45;
-			var alpha:Number = 0.8;
-			var blurX:Number = 4;
-			var blurY:Number = 4;
-			var distance:Number = 2;
-			var strength:Number = 0.4;
-			var inner:Boolean = true;
-			var knockout:Boolean = false;
-			var quality:Number = BitmapFilterQuality.HIGH;
-			return new DropShadowFilter(distance,
-				angle,
-				color,
-				alpha,
-				blurX,
-				blurY,
-				strength,
-				quality,
-				inner,
-				knockout);
-		}
-			*/
-		
-		/*
-		private function browse():void {
-			var fileFilter:FileFilter = new FileFilter("XML files", "*.xml");
-			fileReference.addEventListener(Event.SELECT, onSelect);
-			fileReference.addEventListener(Event.CANCEL, onCancel);
-			fileReference.browse( [ fileFilter ] );
-		}
-		private function onSelect(e:Event):void {
-			fileReference.removeEventListener(Event.SELECT, onSelect);
-			fileReference.removeEventListener(Event.CANCEL, onCancel);
-			
-			filenameTextInput.text = fileReference.name;
-		}
-		private function onCancel(e:Event):void {
-			fileReference.removeEventListener(Event.SELECT, onSelect);
-			fileReference.removeEventListener(Event.CANCEL, onCancel);
-		}
-		*/
-		
+	
 		private function startExcelImport():void {
 			var manageablesObj:Object;
 			
@@ -225,30 +160,6 @@
 			//if (importTypeComboBox.selectedItem == "Excel") importTypeViewStack.selectedIndex = 1;
 		}
 		
-		/**
-		 * Copy failed results to the clipboard (ticket #85)
-		 */
-		/*
-		private function copyFailedResultsToClipboard():void {
-			// First get all the failed results
-			var failedResults:Array = dataGrid.dataProvider.source.filter(function(item:Object, index:int, array:Array):Boolean {
-				return !item.success;
-			} );
-			
-			// Turn this into comma seperated usernames
-			var usernames:Array = failedResults.map(function(item:Object, index:int, array:Array):String {
-				return item.name;
-			} );
-			
-			if (usernames.length == 0) {
-				Alert.show(copyProvider.getCopyForId("importNothingToCopyToClipboard"), "Notice");
-			} else {
-				// Copy the text to the clipboard
-				System.setClipboard(usernames.join(", "));
-				Alert.show(copyProvider.getCopyForId("importCopyToClipboardSuccessful"), "Notice");
-			}
-		}
-		*/
 		]]>
 	</mx:Script>
 		<mx:VBox width="100%" height="100%" paddingTop="10" paddingRight="20" paddingBottom="10" paddingLeft="20">
@@ -267,7 +178,7 @@
 							<mx:DataGridColumn dataField="success" headerText="" width="22" itemRenderer="com.clarityenglish.resultsmanager.view.management.ui.treeClasses.TickCrossRenderer" />
 							<mx:DataGridColumn dataField="name" headerText="Name" />
 							<mx:DataGridColumn dataField="message" headerText="Message" />
-							<mx:DataGridColumn dataField="type" headerText="Type" width="50" />
+							<mx:DataGridColumn dataField="type" headerText="Type" width="56" />
 						</mx:columns>
 					</mx:DataGrid>
 				</mx:VBox>

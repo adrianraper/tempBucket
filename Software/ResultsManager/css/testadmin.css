@@ -209,6 +209,9 @@ TreeItemRenderer {
 }
 .importTextArea {
 	borderColor: #999999;
+	fontFamily: "Arial"; 
+	fontSize: 12;
+	fontWeight: normal;
 }
 .gradientBackgroundEnabled {
 	backgroundImage: ClassReference("com.clarityenglish.testadmin.view.login.components.GradientBackground");

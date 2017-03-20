@@ -797,11 +797,18 @@ EOD;
 		AbstractService::$controlLog->info(' delete these groups '.$groupIdInString);
 		
 		// gh#1190 Archive instead of delete
+		// gh#1534
 		$sql = <<<SQL
-			INSERT INTO T_Groupstructure_Deleted
-			SELECT * FROM T_Groupstructure WHERE F_GroupID IN ($groupIdInString);
+			SELECT * FROM T_Groupstructure_Deleted WHERE F_GroupID IN ($groupIdInString);
 SQL;
 		$rc = $this->db->Execute($sql);
+		if ($rc->RecordCount() == 0) {
+			$sql = <<<SQL
+				INSERT INTO T_Groupstructure_Deleted
+				SELECT * FROM T_Groupstructure WHERE F_GroupID IN ($groupIdInString);
+SQL;
+			$rc = $this->db->Execute($sql);
+		}
 		$sql = <<<SQL
 			DELETE FROM T_Groupstructure WHERE F_GroupID IN ($groupIdInString);
 SQL;
@@ -868,11 +875,19 @@ EOD;
 				AbstractService::$controlLog->info(' remove from one group, user id='.$user->userID);
 				
 				$bindingParams = array($user->getMultiUserGroupID(), $user->userID);
+				// gh#1534 You can't catch exception (1062 SQL duplicate) as the StartTrans and CommitTrans override them
+				// So just do an extra select on the _deleted table first
 				$sql = <<<SQL
-					INSERT INTO T_Membership_Deleted
-					SELECT * FROM T_Membership WHERE F_GroupID=? AND F_UserID=?;
+					SELECT * FROM T_Membership_Deleted WHERE F_GroupID=? AND F_UserID=?;
 SQL;
 				$rc = $this->db->Execute($sql, $bindingParams);
+				if ($rc->RecordCount() == 0) {
+					$sql = <<<SQL
+						INSERT INTO T_Membership_Deleted
+						SELECT * FROM T_Membership WHERE F_GroupID=? AND F_UserID=?;
+SQL;
+					$rc = $this->db->Execute($sql, $bindingParams);
+				}
 				$sql = <<<SQL
 					DELETE FROM T_Membership WHERE F_GroupID=? AND F_UserID=?;
 SQL;
@@ -881,21 +896,35 @@ SQL;
 				AbstractService::$controlLog->info(' delete user id='.$user->userID);
 				$bindingParams = array($user->userID);
 				
+				// gh#1534
 				$sql = <<<SQL
-					INSERT INTO T_User_Deleted
-					SELECT * FROM T_User WHERE F_UserID=?;
+					SELECT * FROM T_User_Deleted WHERE F_UserID=?;
 SQL;
 				$rc = $this->db->Execute($sql, $bindingParams);
+				if ($rc->RecordCount() == 0) {
+					$sql = <<<SQL
+							INSERT INTO T_User_Deleted
+							SELECT * FROM T_User WHERE F_UserID=?;
+SQL;
+					$rc = $this->db->Execute($sql, $bindingParams);
+				}
 				$sql = <<<SQL
 					DELETE FROM T_User WHERE F_UserID=?;
 SQL;
 				$rc = $this->db->Execute($sql, $bindingParams);
 				
+				// gh#1534
 				$sql = <<<SQL
-					INSERT INTO T_Membership_Deleted
-					SELECT * FROM T_Membership WHERE F_UserID=?;
+					SELECT * FROM T_Membership_Deleted WHERE F_UserID=?;
 SQL;
 				$rc = $this->db->Execute($sql, $bindingParams);
+				if ($rc->RecordCount() == 0) {
+					$sql = <<<SQL
+						INSERT INTO T_Membership_Deleted
+						SELECT * FROM T_Membership WHERE F_UserID=?;
+SQL;
+					$rc = $this->db->Execute($sql, $bindingParams);
+				}
 				$sql = <<<SQL
 					DELETE FROM T_Membership WHERE F_UserID=?;
 SQL;
@@ -1126,8 +1155,9 @@ SQL;
 			} else {
 				// When $mergeGroups is set duplicates are not allowed (it needs to merge into existing groups) so add parameter to addGroup
 				$parentGroup = $this->addGroup($manageable, $parentGroup, !$mergeGroups);
+				// ctp#377 Only add message for new groups
+				$this->addImportResult("Group", $manageable->name, true, "created");
 			}
-			$this->addImportResult("Group", $manageable->name, true);
 			
 			foreach ($manageable->manageables as $m) {
 				$this->_importManageable($m, $parentGroup, $mergeGroups, $controlExistingStudents);

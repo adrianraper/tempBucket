@@ -45,7 +45,7 @@ class TestOps {
 			AND F_ProductCode=?
 SQL;
         $rs = $this->db->Execute($sql, $bindingParams);
-        //AbstractService::$debugLog->info("got ". $rs->RecordCount()." records for group " . $group->id);
+        //AbstractService::$debugLog->info("got ". $rs->RecordCount()." records for group " . $groupList);
         switch ($rs->RecordCount()) {
             case 0:
                 // There are no records
