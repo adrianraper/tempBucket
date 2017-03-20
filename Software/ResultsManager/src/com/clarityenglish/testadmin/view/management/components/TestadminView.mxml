@@ -79,6 +79,7 @@
 				buyMoreButton.label = copyProvider.getCopyForId('buyMoreLicences', replaceObj);
 				
 				// ctp#206 Are you allowed to schedule a test?
+				// This is not much use as it will get overwritten during use...
 				if (licencesUsed >= licencesPurchased) {
 					newTestButton.enabled = false;
 				} else {
@@ -258,6 +259,10 @@
 				//testList.selectedIndex = testList.dataProvider.length - 1;
 				// ctp#374
 				addingNew = true;
+				// ctp#378
+				generateReportButton.visible = generateReportButton.includeInLayout = false;
+				deleteTestButton.visible = deleteTestButton.includeInLayout = false;
+				sendWelcomeEmailButton.visible = sendWelcomeEmailButton.includeInLayout = false;
 				
 				testDetailPanel.setDataProvider(newScheduledTest);
 				testDetailPanel.captionData.setFocus();
@@ -313,7 +318,7 @@
 			// For the currently selected test, what actions can you take?
 			public function resetButtons():void {
 				addingNew = false;
-				newTestButton.visible = newTestButton.includeInLayout = true;
+				newTestButton.visible = newTestButton.includeInLayout = (selectedGroup);
 				var selectedTest:ScheduledTest = testList.selectedItem as ScheduledTest;
 				
 				if (selectedTest) {
@@ -401,7 +406,8 @@
 				   visible="{licencesNeeded &gt; 0}" includeInLayout="{licencesNeeded &gt; 0}">
 			  <mx:Text id="licencesNeededLabel" color="#ffffff" width="100%"/>
 		  </mx:VBox>
-		  <mx:Button id="buyMoreButton" height="30" visible="{licencesNeeded &gt; -10}" includeInLayout="{licencesNeeded &gt; -10}"
+		  <!-- ctp#399 visible="{licencesNeeded &gt; -10}" includeInLayout="{licencesNeeded &gt; -10}" -->
+		  <mx:Button id="buyMoreButton" height="30" visible="false" includeInLayout="false"
 					 overSkin="{FlatButtonSkin}" upSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}" styleName="flatButton"
 					 textRollOverColor="#FFFFFF"/>
 		  <mx:VBox width="100%" verticalGap="0">
