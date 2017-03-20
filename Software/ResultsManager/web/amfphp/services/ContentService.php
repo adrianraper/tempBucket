@@ -14,7 +14,10 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/progress/ScoreDe
 require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
 require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 
-// v3.4 This is used for internal queries
+// Specific ops needed for content procedures
+require_once(dirname(__FILE__)."/../../classes/TestOps.php");
+require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
+require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
 require_once(dirname(__FILE__)."/../../classes/InternalQueryOps.php");
 
 require_once(dirname(__FILE__)."/AbstractService.php");
@@ -35,9 +38,9 @@ class ContentService extends AbstractService {
 		// Set the title name for resources
 		AbstractService::$title = "content";
 		
-		// v3.4 For internal queries
 		$this->internalQueryOps = new InternalQueryOps($this->db);
-		
+        $this->testOps = new TestOps($this->db);
+
 		// DMS has no restrictions on user/group access so disable manageable authentication
 		AuthenticationOps::$useAuthentication = false;
 		
@@ -64,6 +67,7 @@ class ContentService extends AbstractService {
 		$this->changeDbHost($dbHost);
 		
 		$this->internalQueryOps->changeDB($this->db);
+        $this->testsOps->changeDB($this->db);
 	}
 	
 }

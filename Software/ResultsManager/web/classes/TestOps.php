@@ -692,6 +692,99 @@ EOD;
 		return $data;
 	}
 
+    /**
+     * These functions are used by Item Analysis functions
+     *
+     */
+    // Count the number of times this item id has been attempted
+    public function iaAttempts($itemId) {
+        // We can't know the number of times the question has been presented and not attempted
+        // as we don't write scoreDetails for such a case. Should we?
+        // COUNT(*) presented,
+        $sql = <<<EOD
+			SELECT sum(CASE WHEN F_Score is not null THEN 1 ELSE 0 END) as attempts, 
+			       sum(CASE WHEN F_Score > 0 THEN 1 ELSE 0 END) as correct  
+			FROM T_ScoreDetail
+			WHERE F_ItemID=?
+EOD;
+        $bindingParams = array($itemId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs) {
+            $dbObj = $rs->FetchNextObj();
+            //$rc['presented'] = intval($dbObj->presented);
+            $rc['attempted'] = ($dbObj->attempts) ? intval($dbObj->attempts) : 0;
+            $rc['correct'] = ($dbObj->correct) ? intval($dbObj->correct) : 0;
+        } else {
+            //$rc['presented'] = 0;
+            $rc['attempted'] = 0;
+            $rc['correct'] = 0;
+        }
+
+        // Find the pattern for the top 3 errors
+        // First word placement...
+        // {"questionType":"FreeDragQuestion","state":{..."current":[{"dropTargetIdx":2,"answerIdx":null}]},"tags":["A2","word-placement"]}
+        // a score of -1 means it was attempted and got wrong - always true??
+        $wrongPatterns = array();
+        $sql = <<<EOD
+			SELECT *  
+			FROM T_ScoreDetail
+			WHERE F_ItemID=?
+            AND F_Score = -1
+EOD;
+        $bindingParams = array($itemId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs) {
+            $wrongPatterns = array();
+            while ($dbObj = $rs->FetchNextObj()) {
+                $wrongs = array();
+                $scoreDetail = new ScoreDetail();
+                $scoreDetail->fromDatabaseObj($dbObj);
+                $detail = json_decode($scoreDetail->detail);
+                $qtype = $detail->questionType;
+                $state = $detail->state;
+                switch ($qtype) {
+                    case 'MultipleChoiceQuestion':
+                        if (isset($state[0]))
+                            $wrongs[0] = $state[0];
+                        break;
+                    case 'DropdownQuestion':
+                        $wrongs[0] = $state;
+                        break;
+                    case 'DragQuestion':
+                        if (isset($state[0]->draggableIdx))
+                            $wrongs[0] = $state[0]->draggableIdx;
+                        break;
+                    case 'FreeDragQuestion':
+                        $current = $state->current;
+                        foreach ($current as $answer) {
+                            // This is for word placement
+                            if (is_null($answer->answerIdx)) {
+                                $wrongs[0] = $answer->dropTargetIdx;
+                            } else {
+                                // This is for any reorganisation
+                                $wrongs[$answer->answerIdx] = $answer->dropTargetIdx;
+                            }
+                        }
+                        break;
+                    default:
+                }
+                $pattern = array();
+                for ($i = 0; $i < count($wrongs); $i++) {
+                    $pattern[] = $wrongs[$i] + 1; // Make it 1 based so easier to read
+                }
+                $wrongPatterns[] = implode(',', $pattern);
+            }
+        }
+        if (count($wrongPatterns) > 0) {
+            // Find unique values and count them
+            $summary = array_count_values($wrongPatterns);
+            arsort($summary);
+            $rc['distractors'] = $summary;
+        }
+
+        return $rc;
+    }
+
     // TODO These should surely be in a utility class
     public function encrypt($data)	{
         $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
