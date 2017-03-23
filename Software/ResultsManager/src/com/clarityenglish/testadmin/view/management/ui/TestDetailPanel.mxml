@@ -100,6 +100,9 @@
 				languageLabel.text = copyProvider.getCopyForId("languageLabel");
 				// ctp#214
 				//emailInsertionNoteLabel.text = copyProvider.getCopyForId("emailInsertionNoteLabel");
+				// ctp#400
+				followUpCaptionLabel.text = copyProvider.getCopyForId("followUpCaptionLabel");
+				followUpURLLabel.text = copyProvider.getCopyForId("followUpURLLabel");
 				// ctp#351
 				//emailInsertionNameLabel.text = copyProvider.getCopyForId("emailInsertionNameLabel");
 				//emailInsertionEmailLabel.text = copyProvider.getCopyForId("emailInsertionEmailLabel");
@@ -141,7 +144,9 @@
 					// TODO where to get the list of available languages from?
 					languageData.dataProvider = new ArrayCollection([{label:"English", data:"EN"},
 						{label:"Bahasa Indonesia", data:"ID"},
-						{label:"漢語", data:"ZH-TW"}]);
+						{label:"漢語", data:"ZH-TW"},
+						{label:"العَرَبِيَّة", data:"AR"}
+					]);
 					for (var i:uint=0; i<languageData.dataProvider.length; i++) {
 						if (languageData.dataProvider[i].data == _language) {
 							languageData.selectedIndex = i;
@@ -150,22 +155,21 @@
 					}
 					
 					//dataProvider.emailInsertion = '"{\"note\":\"Come to the classroom\"}"';
-					/*
+					// ctp#400
 					try {
-						var emailInsertionObject:Object = (dataProvider.emailInsertion) ? JSON.decode(unescape(dataProvider.emailInsertion)) : new Object();
+						var followUpObject:Object = (dataProvider.followUp) ? JSON.decode(unescape(dataProvider.followUp)) : new Object();
 					} catch(e:Error) {
-						emailInsertionObject = new Object();
+						followUpObject = new Object();
 					}
 					// Catch JSON parse error that can leave a string not an object
-					if (emailInsertionObject is String)
-						emailInsertionObject = new Object();
+					if (followUpObject is String)
+						followUpObject = new Object();
 					
-					// ctp#214 ctp#351
-					//emailInsertionNoteData.text = (emailInsertionObject.note) ? (emailInsertionObject.note) : '';
+					followUpCaptionData.text = (followUpObject.caption) ? (followUpObject.caption) : '';
+					followUpURLData.text = (followUpObject.href) ? (followUpObject.href) : '';
 					//emailInsertionNameData.text = (emailInsertionObject.name) ? unescape(emailInsertionObject.name) : Constants.userName;
 					//emailInsertionEmailData.text = (emailInsertionObject.email) ? unescape(emailInsertionObject.email) : Constants.email;
 					//emailInsertionSubjectData.text = (emailInsertionObject.subject) ? unescape(emailInsertionObject.subject) : copyProvider.getCopyForId("emailInsertionSubject", {name: emailInsertionNameData.text});
-					*/
 					
 					// Is the data editable?
 					setDataEditable(dataProvider.status == ScheduledTest.STATUS_PRERELEASE);
@@ -191,6 +195,9 @@
 				wholeDetailPanel.tabEnabled = editable;
 				wholeDetailPanel.focusEnabled = editable;
 				//captionData.selectable = editable;
+				
+				// ctp#400
+				followUpCaptionData.editable = followUpURLData.editable = false;
 			}
 			
 			private function selectionChanged(e:Event):void {
@@ -348,6 +355,15 @@
 			</mx:HBox>
 			<mx:Text id="languageLabel" width="100%" paddingTop="10" styleName="inputPromptBlack"/>
 			<mx:ComboBox id="languageData" width="150" styleName="inputEntry"/>
+			<!-- ctp#400 -->
+			<mx:HBox width="100%" horizontalGap="0" paddingTop="10" visible="{followUpCaptionData.text.length > 0}" includeInLayout="{followUpCaptionData.text.length > 0}" verticalAlign="middle">
+				<mx:Text id="followUpCaptionLabel" width="120" paddingTop="2" styleName="inputPromptBlack"/>
+				<mx:TextInput id="followUpCaptionData" styleName="inputEntry" enabled="false" width="100%"/>
+			</mx:HBox>
+			<mx:HBox width="100%" horizontalGap="0" paddingTop="10" visible="{followUpURLData.text.length > 0}" includeInLayout="{followUpURLData.text.length > 0}" verticalAlign="top" >
+				<mx:Text id="followUpURLLabel" width="120" paddingTop="2" styleName="inputPromptBlack"/>
+				<mx:TextInput id="followUpURLData" styleName="inputEntry" enabled="false" width="100%"/>
+			</mx:HBox>
 			<mx:Label id="errorTextLabel" text="{_errorText}" styleName="errorMessage"
 					  visible="{!(_errorText == '')}" includeInLayout="{!(_errorText == '')}" textAlign="center"
 					  paddingTop="10"/>

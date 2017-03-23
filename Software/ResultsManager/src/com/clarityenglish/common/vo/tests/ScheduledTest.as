@@ -43,6 +43,8 @@
 		
 		// ctp#214
 		//public var emailInsertion:String;
+		// ctp#400
+		public var followUp:String;
 
 		public var menuFilename:String;
 		
@@ -67,7 +69,7 @@
 			newTest._closeTime = this._closeTime;
 			newTest.menuFilename = this.menuFilename;
 			newTest.status = this.status;
-			//newTest.emailInsertion = this.emailInsertion;
+			newTest.followUp = this.followUp;
 			return newTest;
 		}
 		public function set closeTime(value:String):void {

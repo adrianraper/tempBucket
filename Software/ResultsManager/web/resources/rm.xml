@@ -685,6 +685,8 @@
             
             <lit name="reportForReportLabel">Test caption</lit>
             <lit name="reportOnReportLabel">Title</lit>
+            <lit name="followUpCaptionLabel">Follow up caption</lit>
+            <lit name="followUpURLLabel">Follow up URL</lit>
             
 		</group>
 	</language>
