@@ -21,7 +21,9 @@ class ScheduledTest {
     var $menuFilename;
     // ctp#214
 	//var $emailInsertion;
-    
+    // ctp#400
+    var $followUp;
+
     // ctp#200
     const DEFAULT_NAME = "menu.json.hbs";
 
@@ -62,6 +64,8 @@ class ScheduledTest {
         $this->status = intval($obj->F_Status);
     	// ctp#214
 		//$this->emailInsertion = $obj->F_EmailInsertion;
+        // ctp#400
+        $this->followUp = $obj->F_FollowUp;
 	}
 	
 	/**
@@ -88,7 +92,9 @@ class ScheduledTest {
 		$array['F_Status'] = $this->status;
 	    // ctp#214
 		//$array['F_EmailInsertion'] = $this->emailInsertion;
-		
+        // ctp#400
+        $array['F_FollowUp'] = $this->followUp;
+
 		return $array;
 	}
 }

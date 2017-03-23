@@ -300,6 +300,13 @@ class CTPService extends BentoService {
         if (intval($licencesObj['purchased']) - intval($licencesObj['used']) <= 0)
             $session->result = array("level" => null, "purchased" => $licencesObj['purchased'], "used" => $licencesObj['used']);
 
+        // ctp#400 Do you want to send back a caption and link for the last screen?
+        if (isset($testSchedule->followUp)) {
+            $followUp = json_decode($testSchedule->followUp);
+            foreach ($followUp as $k => $v)
+                $session->result[$k] = $v;
+        }
+
         return $session->result;
     }
 
