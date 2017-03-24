@@ -24,6 +24,24 @@
       }
     },
     {
+      "language": "ar",
+      "caption": "العَرَبِيَّة (Arabic)",
+      "literals": {
+        "Email": "البريد الإلكتروني",
+        "Password": "كلمه السر",
+        "Login": "تسجيل الدخول",
+        "Logout": "الخروج",
+        "Downloading": "جارى التحميل",
+        "TryAgain": "حاول ثانية",
+        "Ok": "حسنا",
+        "Next": "التالى",
+        "Back": "الى الخلف",
+        "Submit": "عرض",
+        "Finish": "إنهاء",
+        "Start": "بداية",
+      }
+    },
+    {
       "language": "zh-tw",
       "caption": "漢語 Chinese (Traditional)",
       "literals": {

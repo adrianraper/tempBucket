@@ -50,6 +50,12 @@
         "FinishedTest": "Tes selesai dan disimpan.",
         "DeviceUnsupported": "Anda membutuhkan perangkat yang berbeda untuk mengikuti tes. Periksa dengan administrator tes Anda."
       }
+    },
+    {
+      "language": "ar",
+      "literals": {
+        "TestNotOpened": "لم يبدأ الاختبار بعد. حاول مرة أخرى في وقت لاحق."
+      }
     }
   ]
 }
