@@ -7,6 +7,11 @@ $thisService = new ClarityService();
 
 header('Content-Type: text/plain; charset=utf-8');
 
+$passedDbHost = (isset($_REQUEST['dbHost'])) ? $_REQUEST['dbHost'] : $GLOBALS['dbHost'];
+$temp = $GLOBALS['dbHost'];
+//if ($GLOBALS['dbHost'] != $dbHost)
+    $thisService->changeDB($passedDbHost);
+
 echo "database is ".$GLOBALS['db']."\n";
 /*
  * Action for the script

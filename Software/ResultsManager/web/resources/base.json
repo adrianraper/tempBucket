@@ -19,26 +19,29 @@
         "Back": "Back",
         "Submit": "Submit",
         "Finish": "Finish",
-        "Start": "Start",
-        "DeviceUnsupported": "You need a different device to use this app. Check with your support team."
+        "Start": "Start"
       }
     },
     {
       "language": "ar",
       "caption": "العَرَبِيَّة (Arabic)",
       "literals": {
-        "Email": "البريد الإلكتروني",
-        "Password": "كلمه السر",
+        "Email": "البريد اللإلكتروني",
+        "Password": "كلمة المرور",
         "Login": "تسجيل الدخول",
-        "Logout": "الخروج",
-        "Downloading": "جارى التحميل",
-        "TryAgain": "حاول ثانية",
-        "Ok": "حسنا",
-        "Next": "التالى",
-        "Back": "الى الخلف",
-        "Submit": "عرض",
+        "Logout": "تسجيل الخروج",
+        "EmptyLogin": "الرجاء إدخال بريدك الإلكتروني و كلمة المرور",
+        "IncorrectLogin": "بريدك الإلكتروني أو كلمة المرور غير صحيحة. الرجاء المحاولة مرة أخرى.",
+        "ConnectToInternet": "الرجاء الإتصال بالإنترنت.",
+        "Downloading": "جاري التحميل",
+        "DownloadError": "يوجد خطا في التحميل",
+        "TryAgain": "حاول مرة أخرى",
+        "Ok": "موافق",
+        "Next": "التالي",
+        "Back": "السابق",
+        "Submit": "قدم إجابتك",
         "Finish": "إنهاء",
-        "Start": "بداية",
+        "Start": "إبدأ"
       }
     },
     {

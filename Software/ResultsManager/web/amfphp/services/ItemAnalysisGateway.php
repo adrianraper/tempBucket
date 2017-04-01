@@ -42,7 +42,7 @@ function loadAPIInformation() {
 
 	//$inputData = file_get_contents("php://input");
 	//$inputData = '{"method":"getRecordsForItemId","id":"11124987-ae36-4d18-a3c3-df935dbf4447","dbHost":2}';
-	$inputData = '{"method":"processMenu","dbHost":2}';
+	$inputData = '{"method":"processMenu","dbHost":3}';
 
 	$postInformation= json_decode($inputData, true);
 	if (!$postInformation) 
@@ -200,6 +200,7 @@ try {
 		case 'getRecordsForItemId':
 			$rc = $thisService->internalQueryOps->getScoreDetailsForItemId($apiInformation['id']);
 			break;
+
 		case 'processMenu':
 
             $menuFile = $titleFolder.'/expanded-menu.json';

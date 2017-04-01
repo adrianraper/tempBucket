@@ -83,13 +83,13 @@ class DBDetails {
 				//$this->dbname  = urlencode("../../../../Database/clarity.db");
 				break;
 			
-			// For Dave's development environment
-			case 5:
+			// For Item Analysis database (cropped copy of production)
+			case 3:
 				$this->driver = "mysqli";
-				$this->host = "dock.projectbench";
+				$this->host = "localhost";
 				$this->user = "clarity";
 				$this->password = "clarity";
-				$this->dbname = "rack80829";
+				$this->dbname = "rackIAG";
 				break;
 					
 			case 2:

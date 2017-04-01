@@ -779,6 +779,8 @@ EOD;
             // Find unique values and count them
             $summary = array_count_values($wrongPatterns);
             arsort($summary);
+            // But only worth reporting top (3?) results?
+            array_splice($summary, 5);
             $rc['distractors'] = $summary;
         }
 

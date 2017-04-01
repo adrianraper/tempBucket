@@ -67,7 +67,7 @@ class ContentService extends AbstractService {
 		$this->changeDbHost($dbHost);
 		
 		$this->internalQueryOps->changeDB($this->db);
-        $this->testsOps->changeDB($this->db);
+        $this->testOps->changeDB($this->db);
 	}
 	
 }
