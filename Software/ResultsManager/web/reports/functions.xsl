@@ -221,14 +221,17 @@
 					
 					<xsl:if test="@duration"><td><xsl:value-of select="php:function('XSLTFunctions::secondsToMinutes', string(@duration))"/></td></xsl:if>
 					<xsl:if test="@start_date"><td><xsl:value-of select="@start_date"/></td></xsl:if>
-                    <xsl:choose>
+					<!--gh#1539-->
+					<xsl:if test="@completed_date">
+					  <xsl:choose>
                         <xsl:when test="string-length(@completed_date)&gt;0" >
                             <td>yes</td>
                         </xsl:when>
                         <xsl:otherwise>
                             <td>-</td>
                         </xsl:otherwise>
-                    </xsl:choose>
+                      </xsl:choose>
+					</xsl:if>
 
 					<xsl:if test="@average_score"><td><xsl:call-template name="formatScore"><xsl:with-param name="score" select="@average_score" /></xsl:call-template></td></xsl:if>
 					<xsl:if test="@complete"><td><xsl:value-of select="@complete"/></td></xsl:if>
