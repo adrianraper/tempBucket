@@ -137,8 +137,10 @@ class Exercise {
 			}
 			// Once you have all sections, you need to do some replacing of fields/answers
 			$this->model = new Model($this);
-			// Get the model ready
 			$this->model->prepareQuestions();
+			$scoreBased = $this->settings->getSettingValue('feedback', 'scoreBased');
+			if ($scoreBased)
+                $this->model->prepareFeedback();
 			
 		}
 	}
@@ -176,13 +178,6 @@ class Exercise {
 			$sections[]=$this->example;
 		if ($this->body)
 			$sections[]=$this->body;
-		if ($this->feedbacks) {
-			// Each feedback is a separate section
-			foreach ($this->feedbacks->getFeedbacks() as $feedback) {
-				//echo 'add fb to sections ';
-				$sections[]=$feedback;
-			}
-		}
 		if ($this->texts) {
 			// Each text is a separate section
 			foreach ($this->texts as $text) {
@@ -191,6 +186,17 @@ class Exercise {
 			}
 		}
 		return $sections;
+	}
+	function getFeedback(){
+        $sections = array();
+        if ($this->feedbacks) {
+            // Each feedback is a separate section
+            foreach ($this->feedbacks->getFeedbacks() as $feedback) {
+                //echo 'add fb to sections ';
+                $sections[]=$feedback;
+            }
+        }
+        return $sections;
 	}
 	
 	// A utility function to describe the object

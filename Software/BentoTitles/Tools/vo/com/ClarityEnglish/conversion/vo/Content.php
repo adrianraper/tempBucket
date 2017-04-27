@@ -41,7 +41,7 @@ class Content{
 					} else {
 						// What can we tell about how this paragraph fits into a group?
 						$thisPara = New Paragraph($child, $this);
-						$thisParaType = $this->getParaGrouping($thisPara);
+						$thisParaType = $thisPara->getParaGrouping();
 						if ($thisParaType) {
 							//echo "para=$thisParaType ".substr($thisPara->getPureText(),0,64)."\n";
 							// At this stage I am just merging, but worth noting paragraph types
@@ -198,8 +198,9 @@ class Content{
 			// As you do it, you want to find any drops and replace them with an input field
 			// You will also write out a question node in the script node. NO, that is done already.
 			$pattern = '/([^\[]*)[\[]([\d]+)[\]]([^\[]*)/is';
-			//$buildText='';
-			$generatedID=1;
+			$buildText='';
+
+			//$generatedID=1;
 			if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
 				foreach ($matches as $m) {
 					// read the fields to find the matching answer
@@ -218,7 +219,7 @@ class Content{
 					}
 					//echo $fieldType;
 					if ($fieldType==Field::FIELD_TYPE_DROP) {
-						$buildText.=$m[1].'<input id="q'.$m[2].'" type="droptarget" />'.$m[3];
+						$buildText.=$m[1].'<span id="q'.$m[2].'" class="droptarget" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_GAP) {
 						$buildText.=$m[1].'<input id="q'.$m[2].'" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_TARGET) {
@@ -244,81 +245,68 @@ class Content{
 		global $newline;
 		$builder='';
 		$buildText='';
+
 		// Each question in any question based exercise extends content so comes here
 		// Need to add TARGET_SPOTTING for RTI-GT
 		if (($exerciseType==Exercise::EXERCISE_TYPE_MULTIPLECHOICE) ||
 			($exerciseType==Exercise::EXERCISE_TYPE_TARGETSPOTTING)) {
-			// You need to output all the paragraphs.
-			$lastTagType = null;
-			// MC are very specific format from Arthur. There will only be one paragraph, but
-			// need to break that down into lists
-			foreach ($this->getParagraphs() as $paragraph) {
-				//echo '**********'.$paragraph->getPureText();
-				$thisTagType = $paragraph->getTagType();
-				// Just in case there is some other paragraph too
-				if (stristr($paragraph->getPureText(),'#q')!==FALSE) {
-					// ID. This id matches to the question block 
-					$builder.=$newline.'<li id="q'.$this->getID().'">';
-					// Grab the whole paragraph text, need to mangle it to get question and options.
-					$subBuilder=$paragraph->output($lastTagType,$thisTagType);
-					//echo $subBuilder;
-					// Get rid of <tab><b>#q</b>
-					$patterns = Array();
-					$patterns[] = '/\<tab\>/is';
-					$patterns[] = '/<b\>#q\<\/b\>/is';
-					$replacement = '';
-					$subBuilder = preg_replace($patterns, $replacement, $subBuilder);
-					//echo $subBuilder."\n\n";
-					
-					// Grab the text (everything up to first option)
-					$pattern = '/(.*?)[abcde]{1}\.\[(.*)/is';
-					$replacement = '\1';
-					$builder.= preg_replace($pattern, $replacement, $subBuilder);
-					//echo $builder;
-					
-					// Split on the patterns a.< b.<
-					$pattern = '/[abcde]{1}\.\[/is';
-					$options = preg_split($pattern, $subBuilder);
-					
-					// Then output the options as another list
-					// CSS in TLF currently means we have to use <list> not <ol>
-					//$builder.='<ol class="answerList">';
-					//$builder.='</ol>';
-					$builder.='<list class="answerList">';
-						for ($i=1; $i<count($options); $i++) {
-							// As the first character has been eaten by the regex
-							$builder.='<li>'.'['.$options[$i].'</li>';
-						} 
-					$builder.='</list>';
-					$builder.="$newline</li>";
-				} else {
-					$builder.=$paragraph->output($lastTagType,$thisTagType);
-				}
-				$lastTagType = $thisTagType;
-			}		
-			//echo $builder;
-			
-			// As you do it, you want to find any drops and replace them with an input field
-			// You will also write out a question node in the script node. NO, that is done already.
-			$pattern = '/([^\[]*)[\[]([\d]+)[\]]([^\[]*)/is';
-			if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
-				foreach ($matches as $m) {
-					// Read the fields to find the matching answer
-					$answer='';
-					foreach ($this->getFields() as $field) {
-						if ($field->getID()==$m[2]) {
-							$fieldType = $field->getType();
-							$answers = $field->getAnswers();
-							$answer = $answers[0]->getAnswer();
-							continue;
-							// TODO: What if we didn't find this field id?
-						}
-					}
-					if ($fieldType==Field::FIELD_TYPE_TARGET) {
-						$buildText.=$m[1].'<a id="a'.$m[2].'" >'.$answer.'</a>'.$m[3];
-					}
-				}
-			}			
+            // You need to output all the paragraphs.
+            $lastTagType = null;
+            // MC are very specific format from Arthur. There will only be one paragraph, but
+            // need to break that down into lists
+            /* From Orchid it is quite different. We have
+            <question>
+              <paragraph ...>#q</paragraph>
+              <paragraph ...>What is the capital of England?</paragraph>
+              <paragraph ...>a.</paragraph><paragraph>[1]</paragraph>
+              <paragraph ...>b.</paragraph><paragraph>[2]</paragraph>
+              <paragraph ...>c.</paragraph><paragraph>[3]</paragraph>
+            </question>
+            */
+            // ID. This id matches to the question block
+            $buildText = '<li class="questions-list" id="q' . $this->getID() . '">';
+
+            // For each paragraph in the question, grab it as text to display before the options
+            // then the options
+            // then anything after them??
+            $options = array();
+            foreach ($this->getParagraphs() as $paragraph) {
+                $builder = $paragraph->getPureText();
+                // Get rid of <tab>, <b>#q</b>, a.
+                $patterns = Array();
+                $patterns[] = '/\<tab\>/is';
+                $patterns[] = '/#q/is';
+                $patterns[] = '/^[abcde]{1}\./i';
+                $replacement = '';
+                $builder = preg_replace($patterns, $replacement, $builder);
+
+                // If this is an option, save it, otherwise write out the text
+                $pattern = '/\[([\d]{1,2})\]/i';
+                if (preg_match($pattern, $builder, $matches)) {
+                    $options[] = $matches[1];
+                } else {
+                    $buildText .= '<p>'.$builder.'</p>';
+                }
+            }
+
+            // Find any option field and replace it with the answer
+            if (count($options) > 0) {
+                $buildText .= '<ol class="questions-list-answers">';
+                foreach ($options as $option) {
+                    foreach ($this->getFields() as $field) {
+                        if ($field->getID() == $option) {
+                            $fieldType = $field->getType();
+                            $answers = $field->getAnswers();
+                            $answer = $answers[0]->getAnswer();
+                            continue;
+                        }
+                    }
+                    $buildText .= '<li><span>'.$answer.'</span></li>';
+                }
+                $buildText .= '</ol>';
+            }
+            $buildText .= '</li>';
+
 			foreach ($this->getMediaNodes() as $mediaNode) {
 				$buildText.=$mediaNode->output();
 			}
@@ -430,7 +418,7 @@ class Content{
 						}
 					}
 					if ($fieldType==Field::FIELD_TYPE_DROP) {
-						$buildText.=$m[1].'<input id="q'.$m[2].'" type="droptarget" />'.$m[3];
+                        $buildText.=$m[1].'<span id="q'.$m[2].'" class="droptarget" />'.$m[3];
 					}
 				}
 			}			
@@ -491,30 +479,9 @@ class Content{
 				}
 			}			
 		}
-		return $buildText;
+        return $buildText;
 	}
-	// Check each paragraph to see if it can be merged into the previous one
-	function getParaGrouping($thisPara) {
-		// Check various conditions to see if this para should merge with the previous one(s)
-		// 1. Has extra space been added before this paragraph?
-		if ($thisPara->y > 0) {
-			//echo "new because y>0 \n";
-			return 'spaceBefore';
-		}
-		// Does it look like the start of a list?
-		// TODO. Add a variation for bulleted lists
-		$pureText = $thisPara->getPureText($thisPara->getText());
-		$pattern = '/^[\d]\./';
-		if (preg_match($pattern, $pureText)) {
-			return 'ol';
-		}
-		// Is it empty?
-		$pattern = '/^[\s\xc2\xa0]*$/';
-		if (preg_match($pattern, $pureText)>0) {
-			return 'empty';
-		}
-		return null;
-	}
+
 	// A utility function to describe the object
 	function toString() {
 		global $newline;

@@ -24,10 +24,17 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Paragraph.p
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/MediaNode.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Field.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Answer.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelAnswer.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelFeedback.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelQuestion.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelDragQuestion.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.php");
 
+// Allow you to catch simple_xml errors
+libxml_use_internal_errors(true);
+
 // If you want to see echo stmts, then use plainView
-$plainView=false;
+$plainView=true;
 $batch=true;
 if ($plainView) {
 	header ('Content-Type: text/plain');
@@ -42,10 +49,9 @@ if ($plainView) {
 // and output to the new folder structure.
 
 // Get the file
-$contentFolder = dirname(__FILE__).'/../../../ap/';
-$titleFolder = $contentFolder.'/RTIPR';
-//$titleFolderOut = $contentFolder.'/RoadToIELTS2-Academic';
-$titleFolderOut = $contentFolder.'/RTIPR-Bento';
+$contentFolder = dirname(__FILE__).'/../../../../Contentbench/Content';
+$titleFolder = $contentFolder.'/StudySkillsSuccessV9-International';
+$titleFolderOut = $contentFolder.'/../Couloir/StudySkillsSuccess-International';
 
 // Add an extra loop to do all folders at once
 $topFolder = $titleFolder.'/Courses';
@@ -77,54 +83,29 @@ if ($batch && $handle1 = opendir($topFolder)) {
 						convertExercise($matches[1]);
 					}
 			*/
-			$menuXML = simplexml_load_file($menuFile);
-			
-			// For each node in the menu, get the skill and the filename
+            try {
+			    $menuXML = simplexml_load_file($menuFile);
+            } catch (Exception $e) {
+                echo "Couldn't parse xml in $menufile, so need to skip it.$newline";
+                continue;
+            }
+			// For each node in the menu, get the filename
 			foreach ($menuXML->item as $unitNode) {
-				/*
-				 * When converting from AP, no need to do this
-				 * 
-				// Convert the caption to a skill
-				switch ((string) $unitNode['caption']) {
-					case 'Writing 1':
-					case 'Writing 2':
-						$skillFolder = "writing";
-						break;
-					case 'Listening':
-					case 'Speaking':
-					case 'Reading':
-						$skillFolder = strtolower((string) $unitNode['caption']);
-						break;
-						
-					default:
-						// We don't want any exercises from other units, so jump to the next unit node
-						continue(2);
-						break;
-				}
-				$exerciseFolderOut = $titleFolderOut.'/'.$skillFolder.'/exercises/';
-				*/
-				$exerciseFolderOut = $titleFolderOut.'/'.$courseFolder.'/Exercises/';
+				$exerciseFolderOut = $titleFolderOut.'/exercises/';
 				// Then loop for all exercises in that unit node
 				foreach ($unitNode->item as $exercise) {
-					/*
-					 * AP conversion
-					// But we don't want listening and reading introductions
-					if ($skillFolder=='listening' || $skillFolder=='reading') {
-						if ((string) $exercise['caption']=='Introduction')
-							continue(1);
-					} 
-					 */
-					// Finally, copy the file
-					
 					$exerciseFile = $exercise['fileName'];
 					$fromFile = $exerciseFolder.$exerciseFile;
-					$toFile = $exerciseFolderOut.$exerciseFile;
-					convertExercise($fromFile, $toFile);
-					/*if (!copy($fromFile, $toFile)) {
-						echo "failed to copy $fromFile $newline";
-					} else {
-						echo "copied file to ".$toFile."$newline";
-					}*/
+					// Optional pattern matching on file name
+                    $pattern = '/([\d]+).xml/i';
+                    $pattern = '/1286875077772|1286875077666/i';
+                    //$pattern = '/one.xml/is';
+					if (file_exists($fromFile) && preg_match($pattern, $exerciseFile, $matches)) {
+    					$toFile = $exerciseFolderOut.$exerciseFile;
+    					// Change file type of output
+                        $toFile = str_replace('.xml', '.html', $toFile);
+    					convertExercise($fromFile, $toFile);
+					}
 				}
 			}
 		}
@@ -134,16 +115,14 @@ if ($batch && $handle1 = opendir($topFolder)) {
 	
 } else {
 	// or just a specific one
-	//$courseFolder = '1151344537052';
-	$courseFolder = '1151344259872';
+	$courseFolder = '1151344537052';
 	//$skillFolder = "writing";
-	$skillFolder = "speaking";
+	//$skillFolder = "speaking";
 	//$skillFolder = "reading";
-	//$skillFolder = "listening";
+	$skillFolder = "listening";
 	$exerciseFolder = $titleFolder.'/Courses/'.$courseFolder.'/Exercises/';
 	$exerciseFolderOut = $titleFolderOut.'/'.$skillFolder.'/exercises/';
-	//$exerciseURL = '/Content/RoadToIELTS2-General/'.$skillFolder.'/exercises/';
-	$exerciseURL = '/Content/RoadToIELTS2-Academic/'.$skillFolder.'/exercises/';
+	$exerciseURL = '/Content/RoadToIELTS2-General/'.$skillFolder.'/exercises/';
 	//$exerciseID = '1156153794194';
 	//$exerciseID = '1156153794055'; // presentation
 	//$exerciseID = '1156153794170'; // drag and drop
@@ -160,7 +139,7 @@ if ($batch && $handle1 = opendir($topFolder)) {
 	//$exerciseID = '1156153794384'; // For testing customised=true
 	//$exerciseID = '1156153794430'; // missing reading text
 	//$exerciseID = '1151344172816'; // missing main content
-	$exerciseID = '1151344259941'; // warning from GT conversion
+	$exerciseID = '1151344537628'; // warning from GT conversion
 	$fromFile = $exerciseFolder.$exerciseID.'.xml';
 	$toFile = $exerciseFolderOut.$exerciseID.'.xml';
 	convertExercise($fromFile, $toFile);
@@ -182,32 +161,39 @@ function convertExercise($infile, $outfile) {
 	//$infile = $exerciseFolder.$exerciseID.'.xml';
 	//$outfile = $exerciseFolderOut.$exerciseID.'.xml';
 
+	if (!file_exists($infile)){
+	    echo "Skip $infile as it doesn't exist! $newline";
+	    return;
+	}
+	    
 	// Before you spend any time running the conversion, check if the output already exists
 	// If it does, see if it has a meta tag for customised=true - in which case leave it alone.
-	try {
-		$existingXml = simplexml_load_file($outfile);
-		// If we can read it, does it have a meta tag?
-		//echo "$outfile exists already...$newline";
-		if ($existingXml) {
-			//var_dump($existingXml->head->meta); exit();
-			// Note that this is a neat way to do it with xpath. But if the XML has the following namespace 
-			// <bento xmlns="http://www.w3.org/1999/xhtml">
-			// xpath stops working. So until we know that we can drop that NS, do it with arrays and foreach
-			//if ($existingXml->xpath('//meta[@name="customised" and @content="true"]')) {
-			foreach ($existingXml->head->meta as $metaTag) {
-				//echo (string) $metaTag['content'];
-				if ((string) $metaTag['name']=='customised' && (string) $metaTag['content']=='true') {
-					echo "Skip $outfile as it has been customised $newline";
-					return;
-				}
-			}
-		}
-		
-	} catch (Exception $e) {
-		echo "Couldn't read $outfile, but no problem!$newline";
-		// Do nothing - not being able to read the file means we will just overwrite/create it
+	if (file_exists($outfile) && filesize($outfile)>0) {
+        try {
+            $existingXml = simplexml_load_file($outfile);
+            // If we can read it, does it have a meta tag?
+            //echo "$outfile exists already...$newline";
+            if ($existingXml) {
+                //var_dump($existingXml->head->meta); exit();
+                // Note that this is a neat way to do it with xpath. But if the XML has the following namespace
+                // <bento xmlns="http://www.w3.org/1999/xhtml">
+                // xpath stops working. So until we know that we can drop that NS, do it with arrays and foreach
+                //if ($existingXml->xpath('//meta[@name="customised" and @content="true"]')) {
+                foreach ($existingXml->head->meta as $metaTag) {
+                    //echo (string) $metaTag['content'];
+                    if ((string) $metaTag['name']=='customised' && (string) $metaTag['content']=='true') {
+                        echo "Skip $outfile as it has been customised $newline";
+                        return;
+                    }
+                }
+            }
+
+        } catch (Exception $e) {
+            echo "Couldn't read $outfile, but no problem!$newline";
+            // Do nothing - not being able to read the file means we will just overwrite/create it
+        }
 	}
-	//echo "Convert $infile to $outfile $newline"; return;
+	echo "Convert $infile to $outfile $newline";
 	// Load the contents into an XML structure
 	try {
 		$xml = simplexml_load_file($infile);
@@ -217,7 +203,7 @@ function convertExercise($infile, $outfile) {
 		if ($xml->getName()=='exercise') {
 			$attr = $xml->attributes();
 			$type = $attr['type'];
-			//echo 'type='.$attr['type']. "$newline";	
+			echo 'type='.$attr['type']. "$newline";	
 		}
 	} catch (Exception $e) {
 		//var_dump($e);
@@ -231,9 +217,9 @@ function convertExercise($infile, $outfile) {
 	
 	// Create an internal exercise to hold the data. 
 	// Will we need different classes for different types?
+	//echo "It is a $type"; return;
 	switch (strtolower($type)) {
 		case 'presentation':
-		case 'bullet':
 			$exercise = new Presentation($xml);
 			break;
 		case 'dragon':
@@ -245,7 +231,6 @@ function convertExercise($infile, $outfile) {
 			$exercise = new Gapfill($xml);
 			break;
 		case 'dropdown':
-		case 'stopdrop':
 			$exercise = new Dropdown($xml);
 			break;
 		case 'analyze':
@@ -264,30 +249,18 @@ function convertExercise($infile, $outfile) {
 			break;
 		default;
 			//throw new Exception("unknown exercise type $type");
-			$exerciseID = $attr['id'];
-			$fileName = basename($infile);
-			echo "unknown exercise type $type for $fileName $newline";
+			echo "unknown exercise type $type for $exerciseID $newline";
 			return;
 	}
 	// At the end of construction, you can check the object if you want
-	if ($plainView) echo $exercise->toString();
+	//if ($plainView) echo $exercise->toString();
 	
 	// Then create an output function
-//	switch (strtolower($type)) {
-//		case 'presentation':
-//		case 'dragon':
-//		case 'draganddrop':
-//		case 'cloze':
-//		case 'dropdown':
-//		case 'targetspotting':
-//		default:
-			$converter = New ConversionOps($exercise);
-			$converter->setOutputFile($outfile);
-			$rc = $converter->createOutput();
-			//$outURL = $exerciseURL.$exerciseID.'.xml';
-			echo " writing out $type $outfile $newline";
-//			break;
-//	}
+    $converter = New ConversionOps($exercise);
+    $converter->setOutputFile($outfile);
+    $rc = $converter->createOutput();
+    //$outURL = $exerciseURL.$exerciseID.'.xml';
+    echo " and writing out $outfile $newline";
 }
 
 // It might help to display the output file in the browser (or the last of many)

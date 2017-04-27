@@ -39,5 +39,15 @@ class Feedback extends Content{
 		//return Exercise::EXERCISE_SECTION_FEEDBACK;
 		return 'fb'.$this->getID();
 	}
+    // I want to override the Content method output to wrap container round the feedback
+    function output() {
+
+        $buildText = '<script id="'.$this->getSection().'" type="text/x-handlebars-template">';
+        $buildText .= '<div class="feedback">';
+        $buildText .= parent::output();
+        $buildText .= '</div></script>';
+
+        return $buildText;
+    }
+
 }
-?>

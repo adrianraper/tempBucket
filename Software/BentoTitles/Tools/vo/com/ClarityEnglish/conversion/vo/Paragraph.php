@@ -123,7 +123,12 @@ class Paragraph {
 			// Not quite, it leaves ALIGN=\"LEFT\", which xhtml doesn't like. So add stripslashes.
 			//$builtHtml = stripslashes(preg_replace("/(<\/?)(\w+)([^>]*>)/e","'\\1'.strtolower('\\2').'\\3'",$builtHtml));
 			// Or maybe I should even change everything in a tag - all attribute keys and values.
-			$builtHtml = stripslashes(preg_replace("/(<\/?)([^>]+)(>)/e","'\\1'.strtolower('\\2').'\\3'",$builtHtml));
+			$builtHtml = stripslashes(preg_replace_callback("/(<\/?)([^>]+)(>)/",
+			    function ($matches) {
+			        // return $matches[0].strtolower($matches[1]).$matches[2];
+                    return strtolower($matches[0]);
+			    },
+			    $builtHtml));
 			
 			//echo $fullParagraphHtml."\n";	
 			//echo $builtHtml."\n";	
@@ -221,6 +226,28 @@ class Paragraph {
 	function getTagType() {
 		return $this->tagType;
 	}
+    // Check each paragraph to see if it can be merged into the previous one
+    function getParaGrouping() {
+        // Check various conditions to see if this para should merge with the previous one(s)
+        // 1. Has extra space been added before this paragraph?
+        if ($this->y > 0) {
+            //echo "new because y>0 \n";
+            return 'spaceBefore';
+        }
+        // Does it look like the start of a list?
+        // TODO. Add a variation for bulleted lists
+        $pureText = $this->getPureText();
+        $pattern = '/^[\d]\./';
+        if (preg_match($pattern, $pureText)) {
+            return 'ol';
+        }
+        // Is it empty?
+        $pattern = '/^[\s\xc2\xa0]*$/';
+        if (preg_match($pattern, $pureText)>0) {
+            return 'empty';
+        }
+        return null;
+    }
 	function isOrderedList(){
 		return ($this->tagType=='ol');
 	}

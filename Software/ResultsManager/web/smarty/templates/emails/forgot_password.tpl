@@ -31,7 +31,7 @@
         </div>
 
         
-         <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400;  line-height:18px; margin: 0 0 10px 0; font-size: 13px;padding:0; color:#000000;">Please feel free to conatct us if you have any quesitons.</p>
+         <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400;  line-height:18px; margin: 0 0 10px 0; font-size: 13px;padding:0; color:#000000;">Please feel free to contact us if you have any questions.</p>
       
                     <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400;  line-height:18px; margin: 0 0 10px 0; font-size: 13px;padding:0; color:#000000;">Best regards<br/>
 		Adrian</p>

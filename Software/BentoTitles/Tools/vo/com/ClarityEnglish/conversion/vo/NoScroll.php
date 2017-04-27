@@ -28,9 +28,12 @@ class NoScroll extends Content{
 		// Or should we drop all tabs altogether and just use span floats?
 		//$builder = str_replace('<tab>', '<tab/>', $builder);
 		$builder = str_replace('<tab>', '', $builder);
-		
-		$pattern = '/([^\[]*)[\[]([\d]+)[\]]/is';
-		$buildText='';
+
+		// Add container for the no scroll fields
+        $this->getParent()->noScrollBlock = "b1";
+        $buildText='<section class="draggables" id="'.$this->getParent()->noScrollBlock.'">';
+
+        $pattern = '/([^\[]*)[\[]([\d]+)[\]]/is';
 		if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
 			foreach ($matches as $m) {
 				// read the fields to find the matching answer
@@ -45,11 +48,11 @@ class NoScroll extends Content{
 				$buildText.=$m[1].'<span id="a'.$m[2].'" draggable="true">'.$answer.'</span>';
 			}
 		}
-		
-		// Then add to the model
-		
-		
-				
+
+		// And close the container
+        $buildText .= '</section>';
+
+        // Then add any media nodes
 		foreach ($this->getMediaNodes() as $mediaNode) {
 			$buildText.=$mediaNode->output();
 		}

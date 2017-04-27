@@ -9,6 +9,7 @@ class MediaNode {
 	// Where is it?
 	private $filename;
 	private $location;
+	private $url;
 
 	// mode controls behaviour (such as hidden until after marking, or autorun)
 	private $mode;
@@ -19,6 +20,9 @@ class MediaNode {
 	private $width;
 	private $height;
 	private $stretch;
+
+	// should be caption
+    private $name;
 	
 	// for reference
 	private $id;
@@ -32,7 +36,7 @@ class MediaNode {
 		$this->parent = $object;
 	}
 	
-	function MediaNode($xmlObj=null, $parent=null) {
+	public function __construct($xmlObj=null, $parent=null) {
 		// Keep a reference back to the section we are part of
 		$this->setParent($parent);
 		
@@ -52,6 +56,8 @@ class MediaNode {
 						case 'location':
 						case 'mode':
 						case 'filename':
+						case 'name':
+                        case 'url':
 							$this->$a = $b;
 							break;
 						case 'type':
@@ -88,6 +94,8 @@ class MediaNode {
 				case 'filename':
 				case 'type':
 				case 'qualifier':
+                case 'name':
+                case 'url':
 			  		// Simple attributes
 			  		if ($b)
 			  			$build.="$a=$b ";
@@ -98,6 +106,7 @@ class MediaNode {
 		return $build;
 	}
 	// This function turns the object into a string to go into the xhtml file.
+	// <media name="weblink" url="http://www.studyskillssuccess.com/reading.html" mode="1" id="1004" type="m:url" />
 	function output() {
 		$build='';
 		switch ($this->type) {
@@ -112,6 +121,9 @@ class MediaNode {
 			case 'video':
 				$build.= '<video '; 
 				break;
+            case 'url':
+                $build.= '<a ';
+                break;
 			// Possibly other media nodes will be blocked as they were hacks
 			case 'text':
 				return '';
@@ -122,7 +134,7 @@ class MediaNode {
 		// Then based on the x and y we will position it somehow
 		// But for now don't try to get video to float as it will fail
 		// It also seems likely that most video exercises will get tweaked a bit anyway
-		if ($this->type!='video') {
+		if ($this->type!='video' && $this->type!='url') {
 			if ($this->x>=100 && $this->y<=100) {
 				$build.= 'class="rightFloat" ';
 			} else {	
@@ -130,17 +142,26 @@ class MediaNode {
 			}
 		}
 		// Location is merged into filename
-		// TODO. We want to use symbolic folder names that can be evaluated at runtime.
-		//if ($this->location=='shared') {
-			$build.="src=\"../media/$this->filename\" ";
-		//}
+		if ($this->type == 'url') {
+			$thisUrl = str_replace('#sharedMedia#	', '', $this->url);
+            $build .= 'src="../media/'.$thisUrl.'" ';
+        } else {
+            $build .= 'src="../media/'.$this->filename.'" ';
+		}
 		// Other attributes that just get copied
-		$build.="mode=\"$this->mode\" id=\"$this->id\" ";
-		// Let it be a natual width and height unless stretched
+		//$build.="mode=\"$this->mode\" id=\"$this->id\" ";
+
+		// Let it be a natural width and height unless stretched
 		if ($this->stretch=='true')
-			$build.="height=\"$this->height\" width=\"$this->width\" "; 
-		
-		$build.=' />';
+			$build.="height=\"$this->height\" width=\"$this->width\" ";
+
+        switch ($this->type) {
+            case 'url':
+                $build .= '>'.$this->name.'</a>';
+                break;
+            default:
+                $build .= ' />';
+        }
 		return $build;
 	}
 }

@@ -112,22 +112,53 @@
 			$referrer = $_SERVER['HTTP_REFERER'];
 		}
 	}
-	// Specifically send a licence file for this customer and override the location
-	//$licenceFile = '&licence='.$prefix.'_licence.txt';
-	//$licenceFile = '&licence=licence.txt';
-	//$locationFile = 'location-SQLServer.txt';
-	// There is a stange behaviour while resize not working if nothing is on the screen. Temp solution: make a empty div.
-	echo "<p> </p>";	
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<title>Clear Pronunciation 2: Speech</title>
 	<link rel="shortcut icon" href="/Software/CP2.ico" type="image/x-icon" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="en" />
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
+    <meta name="robots" content="noindex">
+    <meta name="Description" content="ClearPronunciation Speech from ClarityEnglish">
+    <meta name="keywords" content="ESP, Pronunciation, ClarityEnglish">
+    <!-- Bootstrap -->
+    <link href="https://www.clarityenglish.com/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="/bootstrap/css/mobile-max767.css" rel="stylesheet"> -->
+    <!-- <link href="/bootstrap/css/tablet-768-1199.css" rel="stylesheet"> -->
+    <link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />
+
+    <!---Font style--->
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    
+     <!---Google Analytics Tracking--->
+	<script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-873320-20', 'auto');
+      ga('send', 'pageview');
+	  ga('send', 'event', {eventCategory: 'Error', eventAction: '404', eventLabel:'sky_source_page: ' + document.location.href + ' page: ' + document.location.pathname + document.location.search + ' ref: ' + document.referrer });
+	  
+      <!---_gaq.push(['_trackEvent', 'Error', '404', 'sky_source_page: ' + document.location.href + ' page: ' + document.location.pathname + document.location.search + ' ref: ' + document.referrer]);--->
+	 (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	  
+    </script>
+    
+  </head>
+   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://www.clarityenglish.com/bootstrap/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
@@ -192,8 +223,8 @@
 		} else {
 			var jsUserID = swfobject.getQueryParamValue("userID");
 		}
-		if ("<?php echo $Email ?>".length>0) {
-			var jsEmail = "<?php echo $Email ?>";
+		if ("<?php echo $email ?>".length>0) {
+			var jsEmail = "<?php echo $email ?>";
 		} else {
 			var jsEmail = swfobject.getQueryParamValue("email");
 		}
@@ -235,20 +266,30 @@
 		var expressInstall = startControl + "expressInstall.swf";
 		swfobject.embedSWF(startControl + "control.swf" + argList, "altContent", coordsWidth, coordsHeight, "9.0.28", expressInstall, flashvars, params, attr);
 	</script>
-<!--CSS pop up layout box-->
-<link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />
-</head>
 <body onload="onLoad()">
-	<div align="center" id="altContent">
-		<p>This application requires Adobe's Flash player, running at least version 9.</p>
-		<p>It seems your browser doesn't have this.</p>
-		<p>Please download the latest Adobe Flash Player.</p>
-		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
-		<p>If you still get this message, then your browser is stopping the scripts on this page from running.</p>
-	</div>
+    <div id="altContent"> 
+        <nav class="navbar-default" id="main-nav">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="/" onClick="ga('send', 'event', 'header', 'logo', 'click-home',0,{nonInteraction: true});"><img src="https://www.clarityenglish.com/images/logo_clarityenglish.png" width="132" height="24"/></a>
+            </div>
+        </nav>
+        <div class="jumbotron error-jumbotron text-left">
+            <p class="error-text-1">Blocked Flash Player</p>
+            <p class="error-general-txt">This application needs Flash Player, and your browser is blocking it or doesn't have it.</p>
+            <p class="error-general-txt">Please allow it to run, the following links show how to change your browser settings:</p>
+            <ul class="error-general-txt">
+            <li><a href="https://support.google.com/chrome/answer/3123708" target="_blank">Chrome settings</a></p> 
+            <li><a href="https://helpx.adobe.com/flash-player/kb/enabling-flash-player-firefox.html" target="_blank">Firefox settings</a></p> 
+            <li><a href="http://osxdaily.com/2013/12/18/enable-flash-plugin-specific-websites-safari-mac/" target="_blank">Safari settings</a></p> 
+            <li><a href="https://helpx.adobe.com/flash-player/kb/flash-player-issues-windows-10-edge.html" target="_blank">Edge settings</a></p> 
+            <li><a href="https://helpx.adobe.com/flash-player/kb/install-flash-player-windows.html" target="_blank">Internet Explorer settings</a></p> 
+            </ul>
+            <p class="error-general-txt">Or email us &mdash; support@clarityenglish.com</p>
+        </div>
+    </div>
 <NOSCRIPT>
 This application requires your browser to support javascript and to have Adobe's Flash player installed. <br>
-Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br>
+Your browser does not support scripting at the moment. If you are allowed, please use settings or options<br>
 to switch this on and then refresh this page.</NOSCRIPT>
 </body>
 </html>

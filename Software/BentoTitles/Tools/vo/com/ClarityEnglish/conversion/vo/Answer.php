@@ -14,7 +14,7 @@ class Answer {
 		$this->parent = $object;
 	}
 		
-	function Answer($xmlObj=null, $parent=null) {
+	public function __construct($xmlObj=null, $parent=null) {
 		// Keep a reference back to the field we are part of
 		if ($parent)
 			$this->setParent($parent);

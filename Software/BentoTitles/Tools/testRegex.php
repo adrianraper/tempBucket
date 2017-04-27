@@ -210,6 +210,12 @@ EOD;
 			$pattern = '/\<font color="#000000"\>('.$characters_to_keep.'*?)\<\/font\>/is';
 			$replacement = '\1';
 			$builtHtml = preg_replace($pattern, $replacement, $builtHtml);
+
+            $builtHtml = stripslashes(preg_replace_callback("/(<\/?)([^>]+)(>)/",
+                function ($matches) {
+                    return strtolower($matches[0]); //.strtolower($matches[1]).$matches[2];
+                },
+                $builtHtml));
 echo $builtHtml;
 			
 exit();

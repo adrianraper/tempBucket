@@ -1522,3 +1522,24 @@ ALTER TABLE T_ScheduledTests DROP COLUMN F_EmailInsertion;
 
 -- ctp#400
 ALTER TABLE `T_ScheduledTests` ADD COLUMN `F_FollowUp` TEXT NULL DEFAULT NULL AFTER `F_Status`;
+
+DELETE FROM T_Product WHERE F_ProductCode = 65;
+DELETE FROM T_Product WHERE F_ProductCode = 66;
+INSERT INTO `T_Product` VALUES
+(65,'Deutscher Einstufungstest',NULL,1),
+(66,'Study Skills Success',NULL,1);
+
+DELETE FROM T_ProductLanguage WHERE F_ProductCode = 65;
+DELETE FROM T_ProductLanguage WHERE F_ProductCode = 66;
+INSERT INTO `T_ProductLanguage` VALUES 
+(65,'DE','DE-German'),
+(66,'NAMEN','SSS'),
+(66,'EN','SSS');
+
+DELETE FROM T_ProductVersion WHERE F_ProductCode = 65;
+DELETE FROM T_ProductVersion WHERE F_ProductCode = 66;
+INSERT INTO `T_ProductVersion` VALUES 
+(65,'DEMO'),
+(65,'FV'),
+(65,'DEMO'),
+(65,'FV');

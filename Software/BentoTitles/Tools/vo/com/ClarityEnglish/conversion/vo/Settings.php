@@ -13,6 +13,15 @@ class Settings {
 	function getSection() {
 		return Exercise::EXERCISE_SECTION_SECTIONS;
 	}
+	function getSettings() {
+		return $this->settings->settings;
+	}
+	function getSettingValue($settingName, $attribute) {
+	    if (isset($this->settings->{$settingName}))
+	        if (isset($this->settings->{$settingName}[$attribute]))
+                return (string) $this->settings->{$settingName}[$attribute];
+	    return false;
+    }
 	// For output to xhtml
 	function output() {
 		return $this->settings->asXML();
