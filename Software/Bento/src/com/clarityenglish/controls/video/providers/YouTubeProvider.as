@@ -29,7 +29,7 @@ package com.clarityenglish.controls.video.providers {
 			//urlPattern = copyProvider.getCopyForId('youTubePattern');
 			urlPattern = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|(?:youtu\.be\/))([^"&?\/ ]{11})/i;
 			srcPattern = /youtube:([\w-]+)/i;
-			urlBase = 'http:\/\/youtu.be\/{id}';
+			urlBase = 'https:\/\/youtu.be\/{id}';
 			srcBase = 'youtube:{id}';
 			idPattern = /{id}/i;
 		}
@@ -65,7 +65,7 @@ package com.clarityenglish.controls.video.providers {
 		 */
 		public function canHandleSource(source:Object):Boolean {
 			// The current YouTube video link looks like
-			//   http://youtu.be/oSn3i4vsGeY
+			//   https://youtu.be/oSn3i4vsGeY
 			// others look like
 			//   http://www.youtube.com/embed/xxx?rel=0
 			// or 
@@ -95,7 +95,7 @@ package com.clarityenglish.controls.video.providers {
 		 * 
 		 */
 		public function toSource(src:Object):Object {
-			//return 'http://youtu.be/' + this.getIdFromSrc(src);
+			//return 'https://youtu.be/' + this.getIdFromSrc(src);
 			//return copyProvider.getCopyForId('youTubeBase', {id: this.getIdFromSrc(src)});
 			return urlBase.replace(idPattern, this.getIdFromSrc(src));
 		}

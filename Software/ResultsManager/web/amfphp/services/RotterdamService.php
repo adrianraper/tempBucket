@@ -28,5 +28,8 @@ class RotterdamService extends BentoService {
 		$productCodes = array(-54, -12, -13, -1001);
 		return $this->contentOps->getContent($productCodes);
 	}
-	
+
+    // gh#954 Rather hacky, but the player doesn't want to do anything with this
+    public function courseSessionUpdate($courseId, $sessionId) {}
+
 }

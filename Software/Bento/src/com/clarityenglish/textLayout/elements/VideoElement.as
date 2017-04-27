@@ -73,6 +73,7 @@ import com.clarityenglish.controls.video.VideoSelector;
 			if (!inititalized) {
 				// Don't do this if we are running an AIR app
 				if (Capabilities.playerType != "Desktop") {
+                    Security.allowDomain("www.youtu.be");
 					Security.allowDomain("www.youtube.com");
 					Security.allowDomain("www.vimeo.com");
 				}

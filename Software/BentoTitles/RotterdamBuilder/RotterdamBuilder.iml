@@ -21,7 +21,7 @@
           <map>
             <entry key="compiler.locale" value="en_US" />
           </map>
-          <option name="additionalOptions" value="--swf-version=20 -debug=false" />
+          <option name="additionalOptions" value="--swf-version=20 -debug=true" />
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android />

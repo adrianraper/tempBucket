@@ -23,6 +23,7 @@ package com.clarityenglish.controls.video.players {
 		protected var _sourceChanged:Boolean;
 		
 		public function FlashVideoPlayer() {
+            trace("create FlashVideoPlayer");
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 		}
 		
@@ -34,6 +35,7 @@ package com.clarityenglish.controls.video.players {
 
 		public function set provider(value:IVideoProvider):void {
 			// If a provider already exists then give it an opportunity to clean up
+            trace("set provider in FlashVideoPlayer");
 			if (_provider) _provider.destroy();
 			
 			_provider = value;
@@ -42,7 +44,7 @@ package com.clarityenglish.controls.video.players {
 		}
 		
 		public function set source(value:Object):void {
-			log.info("Source set to " + value);
+			trace("FlashVideo Source set to " + value);
 			_source = value;
 			_sourceChanged = true;
 			

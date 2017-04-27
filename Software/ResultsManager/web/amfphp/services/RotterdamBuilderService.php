@@ -78,12 +78,11 @@ EOD;
                 throw $this->copyOps->getExceptionForId("errorConcurrentCourseAccess");
 
             // Otherwise this is a successful login so update the timer (this is also done every minute triggered by the client)
-            $this->courseSessionUpdate($href->options["courseId"]);
+            //$this->courseSessionUpdate($href->options["courseId"]);
         }
 
         return $xhtml;
     }
-
 
     public function courseCreate($course) {
         return $this->courseOps->courseCreate($course);

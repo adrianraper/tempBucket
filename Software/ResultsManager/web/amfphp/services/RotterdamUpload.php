@@ -1,7 +1,7 @@
 <?php
 // gh#1314
 // if (isset($_GET['PHPSESSID'])) session_id($_GET['PHPSESSID']); // gh#32
-if (isset($_GET['span'])) $span = $_GET['span'];
+$span = (isset($_GET['span'])) ? $_GET['span'] : 1;
 
 require_once(dirname(__FILE__)."/../../config.php");
 require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");

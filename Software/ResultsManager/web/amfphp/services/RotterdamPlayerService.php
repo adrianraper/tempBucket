@@ -15,6 +15,4 @@ class RotterdamPlayerService extends RotterdamService {
 		parent::__construct();
 	}
 
-	// gh#954 Rather hacky, but the player doesn't want to do anything with this
-	public function courseSessionUpdate($courseId, $sessionId) {}
 }

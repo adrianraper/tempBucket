@@ -68,7 +68,8 @@ package com.clarityenglish.controls.video.players {
 		
 		public function set source(value:Object):void {
 			log.info("Source set to " + value);
-			_source = value;
+            trace("HTMLVideo Source set to " + value);
+            _source = value;
 			_sourceChanged = true;
 			invalidateProperties();
 		}
