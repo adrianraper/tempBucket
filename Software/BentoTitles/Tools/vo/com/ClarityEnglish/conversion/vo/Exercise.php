@@ -170,6 +170,17 @@ class Exercise {
 	function getModel(){
 		return $this->model->output();
 	}
+	function getReadingText() {
+        $sections = array();
+        if (isset($this->texts) && count($this->texts)) {
+            // Each text is a separate section
+            foreach ($this->texts as $text)
+                $sections[]=$text;
+        } else {
+            return false;
+        }
+        return $sections;
+	}
 	function getSections(){
 		$sections = array();
 		if ($this->noscroll)
@@ -178,13 +189,6 @@ class Exercise {
 			$sections[]=$this->example;
 		if ($this->body)
 			$sections[]=$this->body;
-		if ($this->texts) {
-			// Each text is a separate section
-			foreach ($this->texts as $text) {
-				//echo "getSectionText";
-				$sections[]=$text;
-			}
-		}
 		return $sections;
 	}
 	function getFeedback(){

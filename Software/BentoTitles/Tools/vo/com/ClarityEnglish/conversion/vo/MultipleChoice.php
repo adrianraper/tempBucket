@@ -7,4 +7,3 @@ class MultipleChoice extends Exercise {
 	}
 	
 }
-?>

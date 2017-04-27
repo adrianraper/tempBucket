@@ -2,7 +2,7 @@
 /*
  * Used to hold feedback that will go into the model
  */
-class ModelFeedback {
+class ModelFeedback implements JsonSerializable {
 
     private $target = null;
     private $expr = null;
@@ -10,10 +10,10 @@ class ModelFeedback {
     function __construct() { }
 
     function addTarget($id) {
-        $this->source = '#fb'.$id;
+        $this->target = '#fb'.$id;
     }
     function getTarget() {
-        return (isset($this->source)) ? $this->source : false;
+        return (isset($this->target)) ? $this->target : false;
     }
     function addExpr($expr) {
         $this->expr = $expr;
@@ -21,7 +21,10 @@ class ModelFeedback {
     function getExpr() {
         return (isset($this->expr)) ? $this->expr : true;
     }
-    function outputForCouloir() {
-        return json_encode($this);
+    public function jsonSerialize() {
+        $rc = array();
+        if (isset($this->target)) $rc['target'] = $this->target;
+        if (isset($this->expr)) $rc['expr'] = $this->expr;
+        return $rc;
     }
 }

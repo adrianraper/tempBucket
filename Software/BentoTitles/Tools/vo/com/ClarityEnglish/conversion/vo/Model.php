@@ -22,21 +22,18 @@ class Model {
 			$this->setParent($parent);
 			$this->type = $parent->getType();
 		}
-/*
-		$xmlstr = <<<XML
-<script id="model" type="application/json">
-</script>
-XML;
-		$this->model = new SimpleXMLElement($xmlstr);
-*/
-		/*
-		$this->model->addChild('settings');
-		$this->model->settings->addChild('param');
-		$this->model->settings->param->addAttribute('name', 'delayedMarking');
-        */
+        $this->marking = ($this->getParent()->settings->getSettingValue('marking', 'instant')) ? "instant" : "delayed";
 	}
-	
-	// Get ready for questions in the model
+
+    // Group based feedback is one per question, not one per field
+    function isGroupBased() {
+	    return $this->getParent()->settings->getSettingValue('feedback', 'groupBased');
+    }
+    function hasReadingText() {
+        return $this->getParent()->settings->getSettingValue('feedback', 'groupBased');
+    }
+
+    // Get ready for questions in the model
 	function prepareQuestions() {
 		// check to see if the questions node already exists
 		//if (!$this->model->questions) {
@@ -102,7 +99,7 @@ XML;
 				//$newQ->addAttribute('group',$field->group);
                 $newQ->addSource($question->getID());
 				// TODO assume there is only one block per exercise
-                $newQ->addBlock('b1');
+                $newQ->addBlock('1');
                 $newQ->addDraggables('#b1 .draggables');
 				// Each field in the body lists the correct answer. You need to match these
 				// against the answers in the fields in noscroll to get the answer source id
@@ -143,7 +140,7 @@ XML;
 						}
 					}
 				}
-                $questions[] = $newQ;
+                $this->questions[] = $newQ;
             }
 		// For a gapfill, the questions have their source as the gaps
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_GAPFILL && $this->getParent()->isQuestionBased()) {
@@ -386,34 +383,48 @@ XML;
 			}
 		// For a multiple choice, the questions have their source as the gaps and blocks
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_MULTIPLECHOICE ||
-					$this->type==Exercise::EXERCISE_TYPE_QUIZ) {
+				  $this->type==Exercise::EXERCISE_TYPE_QUIZ) {
+
 			// Each question has its own fields
 			foreach ($this->getParent()->body->getQuestions() as $question) {
-				$newQ = $this->model->questions->addChild("MultipleChoiceQuestion");
+                $newQ = new ModelMultipleChoiceQuestion($this);
+                //$newQ->addSource($question->getID());
                 // TODO assume there is only one block per exercise
-				$newQ->addAttribute('block','q1');
-				foreach ($question->getFields() as $field) {
+                $newQ->addBlock('1');
+				//foreach ($question->getFields() as $field) {
+                $fields = $question->getFields();
+                for ($i=0; $i < count($fields); $i++) {
 				
-					// Only ever 1 answer per field
-					foreach ($field->getAnswers() as $answer) {
-						$newA = $newQ->addChild('answer');
-						$newA->addAttribute('source','a'.$field->getID());
-						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
-					}
-					//echo $newQ;
+					// Each answer becomes a nth selector
+                    $answers = $fields[$i]->getAnswers();
+                    $newA = new ModelAnswer();
+                    $newA->addSourceNthChild($question->getID(), $i+1);
+                    $newA->addCorrect($answers[0]->isCorrect() ? 'true' : 'false');
+                    $newQ->addAnswer($newA);
+
 					// Is there any feedback to be added to the model related to this field?
 					// NOTE: This code assumes that there is only one answer in the field 
-					if (count($field->getAnswers()==1) && $this->getParent()->feedbacks) {
+					if (count($answers)==1 && !$this->isGroupBased() && $this->getParent()->feedbacks) {
 						foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
 							// Is this feedback for this field?
-							if ($feedback->getID()==$field->getID()) {
-								$newFB = $newA->addChild('feedback');	
-								$newFB->addAttribute('source','fb'.$field->getID());
+							if ($feedback->getID()==$fields[$i]->getID()) {
+                                $newQ->addFeedback($fields[$i]->getID());
 								break;
 							}
 						}
 					}
 				}
+                if (count($answers)==1 && $this->isGroupBased() && $this->getParent()->feedbacks) {
+                    foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
+                        // Is this feedback for this field?
+                        if ($feedback->getID()==$question->getID()) {
+                            $newQ->addFeedback($question->getID());
+                            break;
+                        }
+                    }
+                }
+
+                $this->questions[] = $newQ;
 			}
 		} 
 	}
@@ -422,54 +433,26 @@ XML;
         foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
             $newFB = new ModelFeedback();
             $newFB->addTarget($feedback->getID());
+            $newFB->addExpr(true);
             $this->feedback[] = $newFB;
         }
     }
 
-	// For output to xhtml
+	// For output to html
 	function output() {
-        $buildText = '<script id="model" type="application/json">';
-        $buildText .= json_encode($this);
-        $buildText .= '</script>';
+        $buildText = '<script id="model" type="application/json">{';
+        $sections = array();
+        if (isset($this->marking))
+            $sections[] = '"marking":'.json_encode($this->marking);
+        if (count($this->questions) > 0)
+            $sections[] = '"questions":'.json_encode($this->questions);
+        if (count($this->feedback) > 0)
+            $sections[] = '"feedback":'.json_encode($this->feedback);
+        $buildText .= implode(',', $sections);
+        $buildText .= '}</script>';
         return $buildText;
-
-        /*
-		$buildObj = array();
-        $buildObj['marking'] = ($this->getParent()->settings->getSettingValue('marking', 'instant')) ? "instant" : "delayed";
-
-		$buildObj['questions'] = array();
-		foreach ($this->model->questions->children() as $question) {
-		    // I guess a question should have an outputToCouloir formatter to do this
-		    $question =
-		    $qObj = array();
-		    $qObj['id'] = 'xxxx';
-		    $qObj['questionType'] = $question->questionType;
-		    $qObj['source'] = '#'.$question['source'];
-            $qObj['block'] = '#'.$question['block'];
-            $qObj['draggables'] = '#'.$question['block'].' .draggables';
-            $qObj['answers'] = array();
-            $aObj = array();
-            $aObj['source'] = '#'.$question->answer['source'];
-            $aObj['correct'] = true;
-            // If the answer has feedback, put that in the question
-            if (isset($question->answer['feedback'])) {
-                $qObj['feedback'] = $question->answer['feedback']['source'];
-            }
-            $qObj['answers'][] = $aObj;
-            $buildObj['questions'][] = $qObj;
-        }
-
-        if ($this->model->feedback) {
-            $buildObj['feedback'] = array();
-            foreach ($this->model->feedback as $feedback) {
-                $fObj = array();
-                $fObj['target'] = '#fb0';
-                $fObj['expr'] = true;
-                $buildObj['feedback'][] = $fObj;
-            }
-        }
-        */
 	}
+
 	// A utility function to describe the object
 	function toString() {
 		//$this->nodes->script->addAttribute("bug", "bad");
@@ -478,4 +461,3 @@ XML;
 		return $newline.str_replace('<?xml version="1.0"?'.'>','',$this->model->asXML());
 	}
 }
-?>

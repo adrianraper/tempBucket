@@ -2,21 +2,22 @@
 /*
  * Used to hold questions that will go into the model
  */
-class ModelQuestion {
+class ModelQuestion implements JsonSerializable {
 
-    const QUESTION_TYPE_DRAG = 'question_type_drag';
-    const QUESTION_TYPE_MULTIPLECHOICE = 'question_type_multiplechoice';
+    const QUESTION_TYPE_DRAG = 'DragQuestion';
+    const QUESTION_TYPE_MULTIPLECHOICE = 'MultipleChoiceQuestion';
     const QUESTION_TYPE_GAPFILL = 'question_type_gapfill';
     const QUESTION_TYPE_DROPDOWN = 'question_type_dropdown';
     const QUESTION_TYPE_ERRORCORRECTION = 'question_type_errorcorrection';
     const QUESTION_TYPE_TARGETSPOTTING = 'question_type_targetspotting';
 
     private $id = null;
-    //private $questionType = null;
     private $source = null;
     private $block = null;
     private $feedback = null;
+    private $tags = null;
     private $answers = array();
+    private $draggables = null;
 
     protected $parent;
 
@@ -32,6 +33,11 @@ class ModelQuestion {
     function setParent($object) {
         $this->parent = $object;
     }
+    // This will generate a unique ID for a question
+    // "id": "1256650a-eb2b-4cac-9a2c-062db5354496"
+    function generateId() {
+        return UUID::v4();
+    }
 
     // Expect this to be overridden by specific question types
 	function getType() {
@@ -43,7 +49,7 @@ class ModelQuestion {
         $this->id = $id;
     }
     function getId() {
-        return (isset($this->id)) ? $this->id : generateId();
+        return (isset($this->id)) ? $this->id : $this->generateId();
     }
     function addSource($id) {
         $this->source = '#q'.$id;
@@ -58,7 +64,7 @@ class ModelQuestion {
         return (isset($this->block)) ? $this->block : false;
     }
     function addFeedback($id) {
-        $this->feedback = '#'.$id;
+        $this->feedback = '#fb'.$id;
     }
     function getFeedback() {
         return (isset($this->feedback)) ? $this->feedback : false;
@@ -69,7 +75,19 @@ class ModelQuestion {
     function getAnswers() {
         return $this->answers;
     }
-    function outputForCouloir() {
-        return json_encode($this);
+    function addDraggables($selector) {
+        $this->draggables = $selector;
+    }
+    public function jsonSerialize() {
+        $rc = array();
+        $rc['questionType'] = $this->getType();
+        $rc['id'] = $this->getId();
+        if (isset($this->feedback)) $rc['feedback'] = $this->feedback;
+        if (isset($this->source)) $rc['source'] = $this->source;
+        if (isset($this->block)) $rc['block'] = $this->block;
+        if (isset($this->draggables)) $rc['draggables'] = $this->draggables;
+        if (isset($this->tags)) $rc['tags'] = $this->tags;
+        if (count($this->answers) > 0) $rc['answers'] = $this->answers;
+        return $rc;
     }
 }

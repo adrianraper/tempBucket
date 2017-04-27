@@ -2,7 +2,7 @@
 /*
  * Used to hold questions that will go into the model
  */
-class ModelAnswer {
+class ModelAnswer implements JsonSerializable {
 
     private $source = null;
     private $correct = null;
@@ -21,7 +21,13 @@ class ModelAnswer {
     function getBlock() {
         return (isset($this->correct)) ? $this->correct : false;
     }
-    function outputForCouloir() {
-        return json_encode($this);
+    function addSourceNthChild($id, $idx) {
+        $this->source = '#q'.$id.' li:nth-child('.$idx.')';
+    }
+    public function jsonSerialize() {
+        $rc = array();
+        if (isset($this->source)) $rc['source'] = $this->source;
+        if (isset($this->correct)) $rc['correct'] = $this->correct;
+        return $rc;
     }
 }
