@@ -59,7 +59,10 @@ class Paragraph {
 	
 	// The content of the paragraph is html with Flash flavours. We want to turn this into the html
 	// flavours that we can use in Bento.
-	function stripAPFormatting($fullParagraphHtml) {
+	function stripAPFormatting($xmlObj) {
+        // We are passed a SimpleXMLElement, not a string
+        $fullParagraphHtml = (string)$xmlObj;
+
 		// First of all, assuming that this is pure Author Plus, just strip away standard bits
 		// It might be useful to know what section this paragraph is in...
 		// And, if we are in a rubric - I think I should simply get rid of ALL html tags to leave pure text.
@@ -87,31 +90,68 @@ class Paragraph {
 			// Stuff that looks the same doesn't match the same...
 			// Need to cope with extra characters, including tabs and non-breaking spaces. \h?
 			// TextFormat has no information that we want to keep.
-			//$pattern = '/<TEXTFORMAT [^>]+>('.Paragraph::characters_to_keep.'+)<\/TEXTFORMAT>/is';
-			//$replacement = '\1';
-			//$builtHtml = preg_replace($pattern, $replacement, $fullParagraphHtml);
-			$patterns = Array();
-			$patterns[] = '/\<TEXTFORMAT [^\>]+\>/is';
-			$patterns[] = '/\<\/TEXTFORMAT\>/is';
+			$pattern = '/<[\/]*?textformat[\s\S]*?>/i';
 			$replacement = '';
-			$builtHtml = preg_replace($patterns, $replacement, $fullParagraphHtml);
-			//$builtHtml = $fullParagraphHtml;
-			
+			$builtHtml = preg_replace($pattern, $replacement, $fullParagraphHtml);
+
 			// In terms of conversion - it is a question of what I want to keep 
-			// FONT - I don't care about any changes in face or size (because there are hardly any and they are bound to change). 
-			// I want to keep color changes. Ignore everything else.
-			//$pattern = '/<FONT [^>]+ COLOR="([#a-fA-F0-9x]+)" [^>]+>('.Paragraph::characters_to_keep.'+)<\/FONT>/is';
-			//$replacement = '<font color="\1">\2</font>';
-			$pattern = '/\<FONT [^\>]+ COLOR="([#a-fA-F0-9x]+)" [^\>]+\>/is';
-			$replacement = '<font color="\1">';
+			// FONT - Only keep color as an attribute
+            // The first pattern matches font tags that DO have color
+			$pattern = '/<font [\s\S]*?(color="[#a-fA-F0-9x]+?")+[\s\S]*?>/i';
+			$replacement = '<font \1>';
 			$builtHtml = preg_replace($pattern, $replacement, $builtHtml);
-			
+            // The second pattern matches black, we will just drop that
+            $pattern = '/\s*color="#000000"/i';
+            $replacement = '';
+            $builtHtml = preg_replace($pattern, $replacement, $builtHtml);
+            // This pattern matches font tags that DON'T have color (as the first attribute). You can't just drop the font tag as it might be nested
+            $pattern = '/<font (?!color="[#x0-9a-f]+")[\s\S]*?>/i';
+            $replacement = '<font>';
+            $builtHtml = preg_replace($pattern, $replacement, $builtHtml);
+
+            // Remove font that is only around a field as the field will get styled anyway
+            $pattern = '/<font[^>]*?>(\[\d+\])<\/font>/i';
+            $replacement = '\1';
+            $builtHtml = preg_replace($pattern, $replacement, $builtHtml);
+
 			// FONT. If the only thing is color=black then I would like to drop the whole font tag.
-			$pattern = '/\<font color="#000000"\>('.Paragraph::characters_to_keep.'*?)\<\/font\>/is';
+            // TODO This fails if you have nested <font> tags, which you do. Just leave and remove all later.
+            /*
+			$pattern = '/\<font color="#000000"\>('.Paragraph::characters_to_keep.'*?)\<\/font\>/i';
 			$replacement = '\1';
 			$builtHtml = preg_replace($pattern, $replacement, $builtHtml);
-			
-			// For good xhtml keep all tags lowercase. It may be quicker to just do a strreplace for these!
+            */
+
+			// Alignment
+            $pattern = '/<p align="[\w]+">/i';
+            $replacement = '<p>';
+            $builtHtml = preg_replace($pattern, $replacement, $builtHtml);
+
+            // Remove empty paragraphs
+            $patterns = array();
+            $patterns[] = '/<p[^>]*?\/>/i'; // finding <p />
+            $patterns[] = '/<p[^>]*?>[\s]*<\/p>/i'; // finding <p></p>
+            $patterns[] = '/<p><[font|b]+?[^>]*?>[\s]*<\/[font|b]+?><\/p>/i'; // finding <p><font color="0xff0033"></font></p> - or <b> in
+            $replacement = '';
+            $builtHtml = preg_replace($patterns, $replacement, $builtHtml);
+
+            // Replace the font tag with span and css style
+            $builtHtml = preg_replace_callback("/<font ([\s\S]*?)>([\s\S]*?)<\/font>/i",
+                function ($matches) {
+                    // now get the attribute and value and restyle as css
+                    $pattern = '/([\w-]*?)="([\s\S]*?)"/i';
+                    $replacement = '\1: \2';
+                    $styleValue = preg_replace($pattern, $replacement, $matches[1]);
+                    return '<span style="'.$styleValue.'">'.$matches[2].'</span>';
+                },
+                $builtHtml);
+
+            // Finally just drop all font tags now as you have converted to span any colour that you want
+            $pattern = '/<[\/]*?font[\s\S]*?>/i';
+            $replacement = '';
+            $builtHtml = preg_replace($pattern, $replacement, $builtHtml);
+
+            // For good xhtml keep all tags lowercase. It may be quicker to just do a strreplace for these!
 			/*
 			$pattern = '/<P ([^>]+)>('.$charactersToKeep.'+)<\/P>/is';
 			$replacement = '<p \1>\2</p>';
@@ -129,8 +169,8 @@ class Paragraph {
                     return strtolower($matches[0]);
 			    },
 			    $builtHtml));
-			
-			//echo $fullParagraphHtml."\n";	
+
+            //echo $fullParagraphHtml."\n";
 			//echo $builtHtml."\n";	
 			// P - Just keep.
 		}		
@@ -167,6 +207,7 @@ class Paragraph {
 		$builtHtml = preg_replace($pattern, $replacement, $builtHtml);
 		*/
 		// Just simply get rid of the tags and their attributes
+        /*
 		$patterns = Array();
 		$patterns[] = '/\<TEXTFORMAT [^\>]+\>/is';
 		$patterns[] = '/\<FONT [^\>]+\>/is';
@@ -176,8 +217,10 @@ class Paragraph {
 		$patterns[] = '/\<\/FONT\>/is';
 		$patterns[] = '/\<\/P\>/is';
 		$patterns[] = '/\<\/B\>/is';
+        */
+        $pattern = '/<[\/]*[p|font|b|textformat].*?>/is';
 		$replacement = '';
-		$builtHtml = preg_replace($patterns, $replacement, $htmlString);
+		$builtHtml = preg_replace($pattern, $replacement, $htmlString);
 		//echo $builtHtml;
 		return $builtHtml;
 	}
@@ -188,7 +231,7 @@ class Paragraph {
 		$this->text = $text;
 	}
 	// Add tags round the paragraph based on its type
-	function output($lastTagType,$thisTagType){
+	function output($lastTagType, $thisTagType){
 		// You might want to add tags to the html
 		//echo "last=$lastTagType, this=$thisTagType ||";
 		$builtHtml='';
@@ -289,4 +332,3 @@ class Paragraph {
 		return $newline."<paragraph>".$this->getPureText()."</paragraph>";
 	}
 }
-?>

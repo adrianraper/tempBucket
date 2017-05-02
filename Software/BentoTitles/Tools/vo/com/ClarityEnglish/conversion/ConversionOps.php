@@ -3,6 +3,7 @@ class ConversionOps {
 	
 	var $exercise;
 	var $outfile;
+    var $newline = "\n";
 	
 	public function __construct($exercise) {
 		$this->exercise = $exercise;	
@@ -32,40 +33,21 @@ class ConversionOps {
 	}
 	function formatHtmlRubric() {
 		$rubricText = $this->exercise->getRubric();
+		// sss##2
 		$build =<<< EOD
-\n<header class="rubric">
-	$rubricText
+<header class="rubric">
+  $rubricText
 </header>
 EOD;
-		return $build;
+		return $this->prettyprintHtml($build);
 	}
     function formatHtmlReadingText() {
-        $build = '';
+	    $build = '';
         // Better to write out the sections in a specific order
         // Mind you we build them in a specific order so should be fine
         foreach ($this->exercise->getReadingText() as $section) {
             $sectionText = $section->output();
-            $sectionType = $section->getSection();
-            //echo "output section ".$sectionType."=".$sectionText.$newline;
-            $sectionBuild =<<< EOD
-\n<!-- text is $sectionType-->
-	$sectionText
-EOD;
-            // It might be nice to format the sectionText - not sure. Or leave Dreamweaver to do this?
-            // BUG. There is something that stops some readingTexts from getting formatted,
-            // they just disappear after going through the following.
-            //$build .= $sectionBuild;
-            $dom = new DOMDocument('1.0');
-            $dom->preserveWhiteSpace = false;
-            $dom->formatOutput = true;
-            $rc = $dom->loadXML($sectionBuild);
-            if ($rc) {
-                $build .= str_replace('<?xml version="1.0"?'.'>','',$dom->saveXML());
-            } else {
-                // If the XML didn't load for some reason, just output it raw
-                $build .= $sectionBuild;
-            }
-            //echo "output section ".$sectionType."=".$build.$newline;
+            $build .= $this->prettyprint($sectionText);
         }
         return $build;
     }
@@ -75,27 +57,7 @@ EOD;
 		// Mind you we build them in a specific order so should be fine
 		foreach ($this->exercise->getSections() as $section) {
 			$sectionText = $section->output();
-			$sectionType = $section->getSection();
-			//echo "output section ".$sectionType."=".$sectionText.$newline;
-			$sectionBuild =<<< EOD
-\n<!-- section is $sectionType-->
-	$sectionText
-EOD;
-			// It might be nice to format the sectionText - not sure. Or leave Dreamweaver to do this?
-			// BUG. There is something that stops some readingTexts from getting formatted, 
-			// they just disappear after going through the following.
-			//$build .= $sectionBuild; 
-			$dom = new DOMDocument('1.0');
-			$dom->preserveWhiteSpace = false;
-			$dom->formatOutput = true;
-			$rc = $dom->loadXML($sectionBuild);
-			if ($rc) {
-				$build .= str_replace('<?xml version="1.0"?'.'>','',$dom->saveXML());
-			} else {
-				// If the XML didn't load for some reason, just output it raw
-				$build .= $sectionBuild; 
-			} 
-			//echo "output section ".$sectionType."=".$build.$newline;
+            $build .= $this->prettyprint($sectionText);
 		}
 		return $build;
 	}
@@ -105,62 +67,37 @@ EOD;
         // Mind you we build them in a specific order so should be fine
         foreach ($this->exercise->getFeedback() as $section) {
             $sectionText = $section->output();
-            $sectionType = $section->getSection();
-            //echo "output section ".$sectionType."=".$sectionText.$newline;
-            $sectionBuild =<<< EOD
-\n<!-- feedback is $sectionType-->
-	$sectionText
-EOD;
-            // It might be nice to format the sectionText - not sure. Or leave Dreamweaver to do this?
-            // BUG. There is something that stops some readingTexts from getting formatted, 
-            // they just disappear after going through the following.
-            //$build .= $sectionBuild; 
-            $dom = new DOMDocument('1.0');
-            $dom->preserveWhiteSpace = false;
-            $dom->formatOutput = true;
-            $rc = $dom->loadXML($sectionBuild);
-            if ($rc) {
-                $build .= str_replace('<?xml version="1.0"?'.'>','',$dom->saveXML());
-            } else {
-                // If the XML didn't load for some reason, just output it raw
-                $build .= $sectionBuild;
-            }
-            //echo "output section ".$sectionType."=".$build.$newline;
+            $build .= $this->prettyprint($sectionText);
         }
         return $build;
     }
 	function formatHtmlHead() {
 		// Components that go in the head
-		$exerciseType = strtolower($this->exercise->getType());
-		
-		// TODO. Settings. Need to move into the model at some point.
-		//$settings = strtolower($this->exercise->getSettings());
-		
-		// Model (questions and answers)
-		//$model = $this->exercise->model->toString();
+		//$exerciseType = strtolower($this->exercise->getType());
+        //$now =date('Y-m-d');
+
 		$model = $this->exercise->model->output();
 		
-		$now =date('Y-m-d');
 		$build =<<< EOD
-    <head>
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-            <link rel="stylesheet" href="../css/styles.less" />
-	$model
-    </head>
+  <head>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" href="../css/styles.less" />
+    $model
+  </head>
 EOD;
 		return $build;
 	}
 	function formatFullHtml($head, $rubric, $readingText, $sections, $feedback) {
-		// Switch from practically xhtml to xml with html characteristics
-		//	<!DOCTYPE html>
-		//	<html xmlns="http://www.w3.org/1999/xhtml">
-		// TODO. Note that trac has an issue raised regarding this xmlns as it stops xpath working.
-		$build = <<< EOD
+        //if ($rubric) $rubric = $this->prettyprintHtml($rubric);
+        //if ($readingText) $readingText = $this->prettyprintHtml($readingText);
+        //if ($feedback) $feedback = $this->prettyprint($feedback);
+        //if ($sections) $sections = $this->prettyprintHtml($sections);
+        $build = <<< EOD
 <!DOCTYPE html>
 <html>
 $head
 <body>
-	$rubric
+  $rubric
 EOD;
         if ($this->exercise->getReadingText()) {
             $build .= $this->formatSplitScreen($readingText, $sections);
@@ -179,7 +116,7 @@ EOD;
   <div class="page-split">
     <div class="page-split-one">
       <div class="content mod-split-one" id="g1-text">
-$text
+        $text
       </div>
       <div class="page-split-sidebar mod-page-one">
         <span class="page-split-sidebar-text mod-page-one">Questions</span>
@@ -190,11 +127,64 @@ $text
         <span class="page-split-sidebar-text mod-page-two">Text</span>
       </div>        
       <div class="content mod-split-two">
-	$questions
-	      </div>
+        $questions
+      </div>
     </div>
   </div>
 EOD;
         return $build;
+    }
+
+    // There are some bits of html that get wrecked if you do prettyprintHtml, so do the xml version for them
+    function prettyprint($text) {
+        $dom = new DOMDocument('1.0');
+        $dom->preserveWhiteSpace = false;
+        $dom->formatOutput = true;
+        $rc = $dom->loadXML($text);
+        if ($rc) {
+            $build = str_replace('<?xml version="1.0"?' . '>', '', $dom->saveXML());
+        } else {
+            // If the XML didn't load for some reason, just output it raw
+            $build = $text;
+        }
+        return $build;
+    }
+    function prettyprintHtml($text) {
+        $dom = new DOMDocument('1.0');
+        $dom->preserveWhiteSpace = false;
+        $dom->formatOutput = true;
+        $rc = $dom->loadHTML($text, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        if ($rc) {
+            $build = $dom->saveHTML();
+        } else {
+            // If the html didn't load for some reason, just output it raw
+            $build = $text;
+        }
+        return $build;
+    }
+    // Not able to make this work yet
+    function formatHtml($html) {
+        // Load HTML that already has doctype and stuff
+        $formatter = new \HtmlFormatter\HtmlFormatter($html);
+
+        // Add rules to remove some stuff
+        //$formatter->remove( 'img' );
+        //$formatter->remove( [ '.some_css_class', '#some_id', 'div.some_other_class' ] );
+        // Only the above syntax is supported, not full CSS/jQuery selectors
+
+        // These tags get replaced with their inner HTML,
+        // e.g. <tag>foo</tag> --> foo
+        // Only tag names are supported here
+        //$formatter->flatten( 'span' );
+        //$formatter->flatten( [ 'code', 'pre' ] );
+
+        // Actually perform the removals
+        //$formatter->filterContent();
+
+        // Direct DomDocument manipulations are possible
+        //$formatter->getDoc()->createElement( 'p', 'Appended paragraph' );
+
+        // Get resulting HTML
+        return $formatter->getText();
     }
 }

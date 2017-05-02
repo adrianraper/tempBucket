@@ -176,8 +176,6 @@ class Exercise {
             // Each text is a separate section
             foreach ($this->texts as $text)
                 $sections[]=$text;
-        } else {
-            return false;
         }
         return $sections;
 	}

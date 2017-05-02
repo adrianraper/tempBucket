@@ -29,8 +29,10 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelAnswer
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelFeedback.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelQuestion.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelDragQuestion.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelGapfillQuestion.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelMultipleChoiceQuestion.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.php");
+require_once(dirname(__FILE__)."/HtmlFormatter.php");
 
 // Allow you to catch simple_xml errors
 libxml_use_internal_errors(true);
@@ -100,7 +102,7 @@ if ($batch && $handle1 = opendir($topFolder)) {
 					$fromFile = $exerciseFolder.$exerciseFile;
 					// Optional pattern matching on file name
                     $pattern = '/([\d]+).xml/i';
-                    $pattern = '/1xx286875077772|1xx286875077666|1286875076366/i';
+                    $pattern = '/1286875077446|1xx286875077772|1xx286875077666|1xx286875076366/i';
                     //$pattern = '/one.xml/is';
 					if (file_exists($fromFile) && preg_match($pattern, $exerciseFile, $matches)) {
     					$toFile = $exerciseFolderOut.$exerciseFile;

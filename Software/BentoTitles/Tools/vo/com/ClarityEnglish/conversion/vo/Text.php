@@ -31,7 +31,14 @@ class Text extends Content{
 			
 		parent::__construct($xmlObj, $parent);
 	}
-	
+
+	function output() {
+		$buildText='<section class="text">';
+		$buildText .= parent::output();
+		$buildText .= '</section>';
+		return $buildText;
+	}
+
 	//function setID($id) {
 	//	if ($id)
 	//		$this->id = (string)$id;
@@ -49,4 +56,3 @@ class Text extends Content{
 		}
 	}
 }
-?>

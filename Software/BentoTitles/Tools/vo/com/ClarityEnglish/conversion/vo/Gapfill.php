@@ -7,4 +7,3 @@ class Gapfill extends Exercise {
 	}
 	
 }
-?>

@@ -7,8 +7,9 @@ class Model {
     protected $questions = array();
     protected $feedback = array();
     protected $marking = null;
+    var $newline = "\n";
 
-	protected $parent;
+    protected $parent;
 	function getParent() {
 		return $this->parent;
 	}
@@ -71,7 +72,7 @@ class Model {
 					}
 					//echo 'and add to the answer';
 					$newA->addAttribute('source','a'.$matchingID);
-					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+					$newA->addAttribute('correct',$answer->isCorrect() ? true : false);
 				}
 				//echo $newQ;
 				// Is there any feedback to be added to the model related to this field?
@@ -121,7 +122,8 @@ class Model {
 						}
 						if ($foundID) {
 							$newA->addSource($foundID);
-							$newA->addCorrect(($answer->isCorrect()) ? 'true' : 'false');
+                            // sss#6
+							$newA->addCorrect(($answer->isCorrect()) ? true : false);
 						}
 						$newQ->addAnswer($newA);
 					}
@@ -146,35 +148,30 @@ class Model {
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_GAPFILL && $this->getParent()->isQuestionBased()) {
 			// Each question has its own fields
 			foreach ($this->getParent()->body->getQuestions() as $question) {
-				$newQ = $this->model->questions->addChild("GapFillQuestion");
-				$newQ->addAttribute('source','q'.$question->getID());
-				// Whilst you can get the group from the field, you can also get it from the question
-				// Ideally we would match to make sure they are the same
-				//$newQ->addAttribute('block','b'.$question->getID());
+                $newQ = new ModelGapfillQuestion($this);
+                $newQ->addSource($question->getID());
+                $newQ->addBlock('1');
 				foreach ($question->getFields() as $field) {
 					// You can have multiple answers per field
 					// they should all have the same group id
-					$newQ->addAttribute('block','b'.$field->group);
+					//$newQ->addAttribute('block','b'.$field->group);
 					foreach ($field->getAnswers() as $answer) {
-						$newA = $newQ->addChild('answer');
-						//$newA->addAttribute('source','a'.$field->getID());
-						$newA->addAttribute('value',$answer->getAnswer());
-						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+                        $newA = new ModelAnswer();
+                        $newA->addValue($answer->getAnswer());
+                        $newA->addCorrect($answer->isCorrect() ? true : false);
+                        $newQ->addAnswer($newA);
 					}
-					//echo $newQ;
-					// Is there any feedback to be added to the model related to this field?
-					// NOTE: This code assumes that there is only one answer in the field 
-					if (count($field->getAnswers()==1) && $this->getParent()->feedbacks) {
-						foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
-							// Is this feedback for this field?
-							if ($feedback->getID()==$field->getID()) {
-								$newFB = $newA->addChild('feedback');	
-								$newFB->addAttribute('source','fb'.$field->getID());
-								break;
-							}
-						}
-					}
+                    if (count($field->getAnswers()==1) && $this->getParent()->feedbacks) {
+                        foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
+                            // Is this feedback for this field?
+                            if ($feedback->getID()==$field->getID()) {
+                                $newQ->addFeedback($field->getID());
+                                break;
+                            }
+                        }
+                    }
 				}
+                $this->questions[] = $newQ;
 			}
 			
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_GAPFILL && !$this->getParent()->isQuestionBased()) {
@@ -187,7 +184,8 @@ class Model {
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
 					$newA->addAttribute('value',$answer->getAnswer());
-					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+                    // sss#6
+					$newA->addAttribute('correct',$answer->isCorrect() ? true : false);
 				}
 				//echo $newQ;
 				// Is there any feedback to be added to the model related to this field?
@@ -215,7 +213,8 @@ class Model {
 					$newA = $newQ->addChild('answer');
 					//$newA->addAttribute('value',$answer->getAnswer());
 					$newA->addAttribute('source','a'.$generateID++);
-					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+                    // sss#6
+					$newA->addAttribute('correct',$answer->isCorrect() ? true : false);
 				}
 				//echo $newQ;
 				// Is there any feedback to be added to the model related to this field?
@@ -246,7 +245,8 @@ class Model {
 						$newA = $newQ->addChild('answer');
 						//$newA->addAttribute('source','a'.$field->getID());
 						$newA->addAttribute('source','a'.$generateID++);
-						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+                        // sss#6
+						$newA->addAttribute('correct',$answer->isCorrect() ? true : false);
 					}
 					//echo $newQ;
 					// Is there any feedback to be added to the model related to this field?
@@ -274,7 +274,8 @@ class Model {
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
 					$newA->addAttribute('value',$answer->getAnswer());
-					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+                    // sss#6
+					$newA->addAttribute('correct',$answer->isCorrect() ? true : false);
 					// Is there any feedback to be added to the model related to this answer?
 				}
 				//echo $newQ;
@@ -306,7 +307,8 @@ class Model {
 						$newA = $newQ->addChild('answer');
 						//$newA->addAttribute('source','a'.$field->getID());
 						$newA->addAttribute('source',$answer->getAnswer());
-						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+                        // sss#6
+						$newA->addAttribute('correct',$answer->isCorrect() ? true : false);
 					}
 					//echo $newQ;
 					// Is there any feedback to be added to the model related to this field?
@@ -333,7 +335,8 @@ class Model {
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
 					$newA->addAttribute('source','t'.$field->getID());
-					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+                    // sss#6
+					$newA->addAttribute('correct',$answer->isCorrect() ? true : false);
 				}
 				//echo $newQ;
 				// Is there any feedback to be added to the model related to this field?
@@ -364,7 +367,8 @@ class Model {
 						$newA = $newQ->addChild('answer');
 						//$newA->addAttribute('source','a'.$field->getID());
 						$newA->addAttribute('source',$answer->getAnswer());
-						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+                        // sss#6
+						$newA->addAttribute('correct',$answer->isCorrect() ? true : false);
 					}
 					//echo $newQ;
 					// Is there any feedback to be added to the model related to this field?
@@ -399,7 +403,8 @@ class Model {
                     $answers = $fields[$i]->getAnswers();
                     $newA = new ModelAnswer();
                     $newA->addSourceNthChild($question->getID(), $i+1);
-                    $newA->addCorrect($answers[0]->isCorrect() ? 'true' : 'false');
+                    // sss#6
+                    $newA->addCorrect($answers[0]->isCorrect() ? true : false);
                     $newQ->addAnswer($newA);
 
 					// Is there any feedback to be added to the model related to this field?
@@ -433,31 +438,30 @@ class Model {
         foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
             $newFB = new ModelFeedback();
             $newFB->addTarget($feedback->getID());
-            $newFB->addExpr(true);
+            // sss#6
+            $newFB->addExpr("true");
             $this->feedback[] = $newFB;
         }
     }
 
 	// For output to html
+    // sss#1
 	function output() {
-        $buildText = '<script id="model" type="application/json">{';
+        $buildText = '<script id="model" type="application/json">'."$this->newline".'{';
         $sections = array();
         if (isset($this->marking))
-            $sections[] = '"marking":'.json_encode($this->marking);
+            $sections[] = '"marking":'.json_encode($this->marking, JSON_PRETTY_PRINT);
         if (count($this->questions) > 0)
-            $sections[] = '"questions":'.json_encode($this->questions);
+            $sections[] = '"questions":'.json_encode($this->questions, JSON_PRETTY_PRINT);
         if (count($this->feedback) > 0)
-            $sections[] = '"feedback":'.json_encode($this->feedback);
-        $buildText .= implode(',', $sections);
-        $buildText .= '}</script>';
+            $sections[] = '"feedback":'.json_encode($this->feedback, JSON_PRETTY_PRINT);
+        $buildText .= implode(",$this->newline", $sections);
+        $buildText .= '}'."$this->newline".'    </script>';
         return $buildText;
 	}
 
 	// A utility function to describe the object
 	function toString() {
-		//$this->nodes->script->addAttribute("bug", "bad");
-		//echo "model to string";
-		global $newline;
-		return $newline.str_replace('<?xml version="1.0"?'.'>','',$this->model->asXML());
+		return $this->newline.str_replace('<?xml version="1.0"?'.'>','',$this->model->asXML());
 	}
 }

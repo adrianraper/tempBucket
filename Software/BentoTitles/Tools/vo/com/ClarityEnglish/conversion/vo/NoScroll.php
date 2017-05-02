@@ -65,4 +65,3 @@ class NoScroll extends Content{
 		
 	}
 }
-?>

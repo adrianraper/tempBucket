@@ -47,7 +47,7 @@ class QbBody {
                                     // Yes it does. So save it in next, and write out the previous group
                                     // $nextGroupPara = $thisPara;
                                     // First just save the previous merged paragraph
-                                    $this->addParagraph($groupPara);
+                                    //$this->addParagraph($groupPara);
                                     // Then get ready for the next round by setting the new para as the first of the next group
                                     // How you do this depends on the type of group it is starting
                                     if ($thisParaType=='empty') {
@@ -134,19 +134,13 @@ class QbBody {
 		return Exercise::EXERCISE_SECTION_BODY;
 	}
 	function output() {
-		global $newline;
-		//echo "output qbBody";
-		$buildText = '';
-		// Also output the common mediaNodes. These are likely to be first.
-		foreach($this->mediaNodes as $mediaNode) {
-			$buildText.=$mediaNode->output();
-		}
+        $buildText='<section class="qbbody">';
 		// Here we output the common stuff
         // TODO Making the assumption that we only have one 'block' per exercise for anything grouping...
-		$buildText .= $newline.'<div class="container-questions"><ol class="questions" id="b1">';
+		$buildText .= '<div class="container-questions"><ol class="questions" id="b1">';
 		// Then for each question
 		foreach($this->getQuestions() as $question) {
-			$buildText.= $question->output();
+			$buildText .= $question->output();
 		}
 		$buildText .= '</ol></div>';
         $lastTagType = null;
@@ -154,11 +148,16 @@ class QbBody {
             if ($paragraph) {
                 // Keep track of any paragraph that is a different tag type than the previous one
                 $thisTagType = $paragraph->getTagType();
-                $buildText.=$paragraph->output($lastTagType,$thisTagType);
+                $buildText .= $paragraph->output($lastTagType,$thisTagType);
                 $lastTagType = $thisTagType;
 
             }
         }
+        // Also output the common mediaNodes. These are likely to be first.
+        foreach($this->mediaNodes as $mediaNode) {
+            $buildText .= $mediaNode->output();
+        }
+        $buildText .= '</section>';
 
 		return $buildText;
 	}

@@ -12,6 +12,9 @@ class ModelAnswer implements JsonSerializable {
     function addSource($id) {
         $this->source = '#a'.$id;
     }
+    function addValue($text) {
+        $this->source = $text;
+    }
     function getSource() {
         return (isset($this->source)) ? $this->source : false;
     }
