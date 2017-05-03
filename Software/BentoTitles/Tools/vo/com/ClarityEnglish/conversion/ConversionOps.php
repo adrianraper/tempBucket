@@ -52,13 +52,15 @@ EOD;
         return $build;
     }
 	function formatHtmlSections() {
-		$build = '';
-		// Better to write out the sections in a specific order
-		// Mind you we build them in a specific order so should be fine
-		foreach ($this->exercise->getSections() as $section) {
+        // TODO Making the assumption that we only have one 'block' per exercise for anything grouping...
+        $build = '<div class="sections" id="b1">';
+
+        foreach ($this->exercise->getSections() as $section) {
 			$sectionText = $section->output();
             $build .= $this->prettyprint($sectionText);
 		}
+
+		$build .= '</div>';
 		return $build;
 	}
     function formatHtmlFeedback() {
@@ -77,11 +79,13 @@ EOD;
         //$now =date('Y-m-d');
 
 		$model = $this->exercise->model->output();
-		
+        $extrabuild = ($this->exercise->getReadingText()) ? '<link rel="stylesheet" href="../css/unscrollable.less" />' : '';
+
 		$build =<<< EOD
   <head>
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" href="../css/styles.less" />
+    $extrabuild
     $model
   </head>
 EOD;
@@ -97,12 +101,14 @@ EOD;
 <html>
 $head
 <body>
-  $rubric
 EOD;
         if ($this->exercise->getReadingText()) {
-            $build .= $this->formatSplitScreen($readingText, $sections);
+            $build .= $this->formatSplitScreen($rubric, $readingText, $sections);
         } else {
-        	$build .= $sections;
+            $build .= <<< EOD
+$rubric
+$sections
+EOD;
         }
         $build .= <<< EOD
 </body>
@@ -111,11 +117,12 @@ $feedback
 EOD;
 		return $build;
 	}
-	function formatSplitScreen($text, $questions) {
+	function formatSplitScreen($rubric, $text, $questions) {
         $build = <<< EOD
   <div class="page-split">
     <div class="page-split-one">
       <div class="content mod-split-one" id="g1-text">
+        $rubric
         $text
       </div>
       <div class="page-split-sidebar mod-page-one">

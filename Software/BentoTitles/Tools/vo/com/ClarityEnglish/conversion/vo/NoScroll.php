@@ -21,17 +21,17 @@ class NoScroll extends Content{
 		// So drop everything (except tabs) from the paragraphs, and first write out the spans
 		foreach ($this->getParagraphs() as $paragraph) {
 			if ($paragraph)
-				$builder.=$paragraph->getPureText();
+				$builder .= $paragraph->getPureText();
 		}
 		// <tab>[21]<tab>[30]<tab>[27]<tab>[22]
 		// change <tab> to correct <tab/>
 		// Or should we drop all tabs altogether and just use span floats?
 		//$builder = str_replace('<tab>', '<tab/>', $builder);
-		$builder = str_replace('<tab>', '', $builder);
+		//$builder = str_replace('<tab>', '', $builder);
 
 		// Add container for the no scroll fields
-        $this->getParent()->noScrollBlock = "b1";
-        $buildText='<section class="draggables" id="'.$this->getParent()->noScrollBlock.'">';
+        //$this->getParent()->noScrollBlock = "b1";
+        $buildText='<section class="draggables">'; // id="'.$this->getParent()->noScrollBlock.'">';
 
         $pattern = '/([^\[]*)[\[]([\d]+)[\]]/is';
 		if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {

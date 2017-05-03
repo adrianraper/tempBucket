@@ -94,6 +94,11 @@ class Paragraph {
 			$replacement = '';
 			$builtHtml = preg_replace($pattern, $replacement, $fullParagraphHtml);
 
+			// Always drop paragraphs that are just there for numbering
+            $pattern = '/<tab><B>#q<\/B>/i';
+            $replacement = '';
+            $builtHtml = preg_replace($pattern, $replacement, $builtHtml);
+
 			// In terms of conversion - it is a question of what I want to keep 
 			// FONT - Only keep color as an attribute
             // The first pattern matches font tags that DO have color
@@ -289,7 +294,7 @@ class Paragraph {
         if (preg_match($pattern, $pureText)>0) {
             return 'empty';
         }
-        return null;
+        return false;
     }
 	function isOrderedList(){
 		return ($this->tagType=='ol');

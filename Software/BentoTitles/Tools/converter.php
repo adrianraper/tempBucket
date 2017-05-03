@@ -102,7 +102,7 @@ if ($batch && $handle1 = opendir($topFolder)) {
 					$fromFile = $exerciseFolder.$exerciseFile;
 					// Optional pattern matching on file name
                     $pattern = '/([\d]+).xml/i';
-                    $pattern = '/1286875077446|1xx286875077772|1xx286875077666|1xx286875076366/i';
+                    $pattern = '/1286875077446|1286875077772|1286875077666|1286875076366/i';
                     //$pattern = '/one.xml/is';
 					if (file_exists($fromFile) && preg_match($pattern, $exerciseFile, $matches)) {
     					$toFile = $exerciseFolderOut.$exerciseFile;

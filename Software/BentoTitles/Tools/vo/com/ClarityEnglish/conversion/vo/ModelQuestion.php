@@ -57,8 +57,8 @@ class ModelQuestion implements JsonSerializable {
     function getSource() {
         return (isset($this->source)) ? $this->source : false;
     }
-    function addBlock($id) {
-        $this->block = '#b'.$id;
+    function addBlock($id, $prefix='b') {
+        $this->block = '#'.$prefix.$id;
     }
     function getBlock() {
         return (isset($this->block)) ? $this->block : false;

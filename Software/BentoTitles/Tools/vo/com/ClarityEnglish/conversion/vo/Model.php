@@ -394,7 +394,7 @@ class Model {
                 $newQ = new ModelMultipleChoiceQuestion($this);
                 //$newQ->addSource($question->getID());
                 // TODO assume there is only one block per exercise
-                $newQ->addBlock('1');
+                $newQ->addBlock($question->getID(), 'q');
 				//foreach ($question->getFields() as $field) {
                 $fields = $question->getFields();
                 for ($i=0; $i < count($fields); $i++) {
