@@ -83,8 +83,6 @@ class Content{
 					$this->addField($child);
 				}
 			}
-            // Write out the final paragraph
-            //$this->addParagraph($groupPara);
 		}
 	}
 
@@ -92,7 +90,7 @@ class Content{
 		$this->fields[] = new Field($xmlObj, $this);
 	}
 	function getFields() {
-		return $this->fields;
+        return (isset($this->fields)) ? $this->fields : array();
 	}
 	function addMediaNode($xmlObj) {
 		$this->mediaNodes[] = new MediaNode($xmlObj, $this);
@@ -174,9 +172,10 @@ class Content{
 	// Special output functions
 	// Should this be somewhere else?
 	function bodyOutput($exerciseType) {
-        $buildText='<section class="body">';
+        //$buildText='<section class="body">';
+        $buildText='<div class="container-body">';
 
-		// Doesn't seem a need for a condition here
+        // Doesn't seem a need for a condition here
 		//if ($exerciseType==Exercise::EXERCISE_TYPE_DRAGANDDROP ||
 		//	$exerciseType==Exercise::EXERCISE_TYPE_GAPFILL ||
 		//	$exerciseType==Exercise::EXERCISE_TYPE_TARGETSPOTTING ||
@@ -198,7 +197,6 @@ class Content{
 			// As you do it, you want to find any drops and replace them with an input field
 			// You will also write out a question node in the script node. NO, that is done already.
 			$pattern = '/([^\[]*)[\[]([\d]+)[\]]([^\[]*)/is';
-			$buildText='';
 
 			//$generatedID=1;
 			if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
@@ -207,13 +205,13 @@ class Content{
 					// Actually we don't really need to read the fields at all since we never mix up field types
 					// and the answer has already been put in model section. 
 					// TODO: Ah, but the answers will help us work out the width for gaps.
-					$answer='';
+					$answer = $fieldType = '';
 					foreach ($this->getFields() as $field) {
 						if ($field->getID()==$m[2]) {
 							$fieldType = $field->getType();
 							$answers = $field->getAnswers();
 							$answer = $answers[0]->getAnswer();
-							continue;
+							break;
 							// TODO: What if we didn't find this field id?
 						}
 					}
@@ -223,15 +221,13 @@ class Content{
 					} else if ($fieldType==Field::FIELD_TYPE_GAP) {
 						$buildText.=$m[1].'<input id="q'.$m[2].'" class="gapfill" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_TARGET) {
-						$buildText.=$m[1].'<g id="t'.$m[2].'">'.$answer.'</g>'.$m[3];
+						$buildText.=$m[1].'<span id="q'.$m[2].'" class="target" >'.$answer.'</span>'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_TARGETGAP) {
 						$buildText.=$m[1].'<input id="q'.$m[2].'" value="'.$answer.'" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_DROPDOWN) {
 						$buildText.=$m[1].'<select id="q'.$m[2].'" >';
 						foreach ($answers as $answer) {
-							// Is there any value in having an id for each option?
 							$buildText.= '<option>'.$answer->getAnswer().'</option>';
-							//$buildText.= '<option id="o'.$generatedID++.'">'.$answer->getAnswer().'</option>';
 						}
 						$buildText.='</select>'.$m[3];
 					}
@@ -243,7 +239,7 @@ class Content{
         foreach ($this->getMediaNodes() as $mediaNode) {
             $buildText .= $mediaNode->output();
         }
-        $buildText .= '</section>';
+        $buildText .= '</div>';
         return $buildText;
 	}
 	// Remember that you come here once for each question
@@ -255,7 +251,8 @@ class Content{
 		// Each question in any question based exercise extends content so comes here
 		// Need to add TARGET_SPOTTING for RTI-GT
 		if (($exerciseType==Exercise::EXERCISE_TYPE_MULTIPLECHOICE) ||
-			($exerciseType==Exercise::EXERCISE_TYPE_TARGETSPOTTING)) {
+			($exerciseType==Exercise::EXERCISE_TYPE_TARGETSPOTTING) ||
+			($exerciseType==Exercise::EXERCISE_TYPE_DROPDOWN)) {
             // You need to output all the paragraphs.
             $lastTagType = null;
             // MC are very specific format from Arthur. There will only be one paragraph, but
@@ -297,19 +294,25 @@ class Content{
 
             // Find any option field and replace it with the answer
             if (count($options) > 0) {
-                $buildText .= '<ol class="questions-list-answers">';
+                $groupSelector = ($exerciseType == Exercise::EXERCISE_TYPE_DROPDOWN) ? 'select' : 'ol';
+                $selector = ($exerciseType == Exercise::EXERCISE_TYPE_DROPDOWN) ? 'option' : 'li';
+                $buildText .= '<'.$groupSelector.' class="questions-list-answers">';
                 foreach ($options as $option) {
                     foreach ($this->getFields() as $field) {
                         if ($field->getID() == $option) {
-                            $fieldType = $field->getType();
+                            //$fieldType = $field->getType();
                             $answers = $field->getAnswers();
-                            $answer = $answers[0]->getAnswer();
+                            $buildText .= '<'.$selector.'>';
+                            foreach ($answers as $answer) {
+                                $answerText = $answer->getAnswer();
+                                $buildText .= '<span>'.$answerText.'</span>';
+                            }
+                            $buildText .= '</'.$selector.'>';
                             continue;
                         }
                     }
-                    $buildText .= '<li><span>'.$answer.'</span></li>';
                 }
-                $buildText .= '</ol>';
+                $buildText .= '</'.$groupSelector.'>';
             }
             $buildText .= '</li>';
 
@@ -404,7 +407,8 @@ class Content{
 					}
 				}
 			}
-        } elseif ($exerciseType==Exercise::EXERCISE_TYPE_GAPFILL) {
+        } elseif (($exerciseType==Exercise::EXERCISE_TYPE_GAPFILL) ||
+                  ($exerciseType==Exercise::EXERCISE_TYPE_ERRORCORRECTION)) {
             // You need to output all the paragraphs.
             $lastTagType = $thisTagType = null;
             // Each question may have many paragraphs, nest them in a list
@@ -422,7 +426,23 @@ class Content{
             $buildText='';
             if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
                 foreach ($matches as $m) {
-                    $buildText.=$m[1].'<span id="q'.$m[2].'" class="gapfill" />'.$m[3];
+                    // Read the fields to find the matching answer
+                    $initialValue = '';
+                    $gapType = 'gapfill';
+                    if ($exerciseType==Exercise::EXERCISE_TYPE_ERRORCORRECTION) {
+                        $gapType = 'targetgap';
+                        foreach ($this->getFields() as $field) {
+                            if ($field->getID() == $m[2]) {
+                                $answers = $field->getAnswers();
+                                foreach ($answers as $answer) {
+                                    if ($answer->getCorrect())
+                                        $initialValue = 'value="'.$answer->getAnswer().'" ';
+                                    continue 2;
+                                }
+                            }
+                        }
+                    }
+                    $buildText.=$m[1].'<input id="q'.$m[2].'" class="'.$gapType.'" '.$initialValue.'/>'.$m[3];
                 }
             }
             /*

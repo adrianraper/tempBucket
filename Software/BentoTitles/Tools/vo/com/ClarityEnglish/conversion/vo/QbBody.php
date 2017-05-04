@@ -64,7 +64,7 @@ class QbBody {
 		$this->questions[] = new Question(count($this->questions)+1,$xmlObj, $this->getParent());
 	}
 	function getQuestions() {
-		return $this->questions;
+        return (isset($this->questions)) ? $this->questions : array();
 	}
 	function addField($qID, $xmlObj) {
 		foreach($this->questions as $question) {
@@ -94,7 +94,7 @@ class QbBody {
         $this->paragraphs[] = $para;
     }
     function getParagraphs() {
-        return $this->paragraphs;
+        return (isset($this->paragraphs)) ? $this->paragraphs : array();
     }
 	// QbBody has to implement the same interface as Body
 	function getSection() {

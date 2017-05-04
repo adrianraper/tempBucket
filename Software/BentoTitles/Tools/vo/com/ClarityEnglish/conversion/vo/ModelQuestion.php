@@ -7,9 +7,9 @@ class ModelQuestion implements JsonSerializable {
     const QUESTION_TYPE_DRAG = 'DragQuestion';
     const QUESTION_TYPE_MULTIPLECHOICE = 'MultipleChoiceQuestion';
     const QUESTION_TYPE_GAPFILL = 'GapfillQuestion';
-    const QUESTION_TYPE_DROPDOWN = 'question_type_dropdown';
-    const QUESTION_TYPE_ERRORCORRECTION = 'question_type_errorcorrection';
-    const QUESTION_TYPE_TARGETSPOTTING = 'question_type_targetspotting';
+    const QUESTION_TYPE_DROPDOWN = 'DropdownQuestion';
+    const QUESTION_TYPE_ERRORCORRECTION = 'ErrorCorrectionQuestion';
+    const QUESTION_TYPE_TARGETSPOTTING = 'TargetSpottingQuestion';
 
     private $id = null;
     private $source = null;

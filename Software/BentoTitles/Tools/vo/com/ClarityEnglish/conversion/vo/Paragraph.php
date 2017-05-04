@@ -94,8 +94,13 @@ class Paragraph {
 			$replacement = '';
 			$builtHtml = preg_replace($pattern, $replacement, $fullParagraphHtml);
 
+			// Drop <tab> </tab> <tab/>
+            $pattern = '/<[\/]*?tab[\/]*?>/i';
+            $replacement = '';
+            $builtHtml = preg_replace($pattern, $replacement, $builtHtml);
+
 			// Always drop paragraphs that are just there for numbering
-            $pattern = '/<tab><B>#q<\/B>/i';
+            $pattern = '/<B>#q<\/B>/i';
             $replacement = '';
             $builtHtml = preg_replace($pattern, $replacement, $builtHtml);
 

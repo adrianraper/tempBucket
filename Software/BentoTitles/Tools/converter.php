@@ -29,8 +29,11 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelAnswer
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelFeedback.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelQuestion.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelDragQuestion.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelDropdownQuestion.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelTargetSpottingQuestion.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelGapfillQuestion.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelMultipleChoiceQuestion.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ModelErrorCorrectionQuestion.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.php");
 require_once(dirname(__FILE__)."/HtmlFormatter.php");
 
@@ -71,7 +74,7 @@ if ($batch && $handle1 = opendir($topFolder)) {
 			//$outURL='';
 			//echo "processing $courseFolder $newline";
 			$menuFile = $titleFolder.'/Courses/'.$courseFolder.'/menu.xml';
-			echo "processing $menuFile $newline";
+			echo "processing $courseFolder/menu.xml $newline";
 			
 			/*
 			 * Merge this file with moveBySkill. So read the menu.xml here instead of the directory.
@@ -102,7 +105,7 @@ if ($batch && $handle1 = opendir($topFolder)) {
 					$fromFile = $exerciseFolder.$exerciseFile;
 					// Optional pattern matching on file name
                     $pattern = '/([\d]+).xml/i';
-                    $pattern = '/1286875077446|1286875077772|1286875077666|1286875076366/i';
+                    //$pattern = '/1288600469289|1xx286875077446|1xx286875077772|1xx286875077666|1xx286875076366/i';
                     //$pattern = '/one.xml/is';
 					if (file_exists($fromFile) && preg_match($pattern, $exerciseFile, $matches)) {
     					$toFile = $exerciseFolderOut.$exerciseFile;
@@ -197,7 +200,8 @@ function convertExercise($infile, $outfile) {
             // Do nothing - not being able to read the file means we will just overwrite/create it
         }
 	}
-	echo "Convert $infile to $outfile $newline";
+	$shortFilename = substr($infile, strripos($infile, '/')+1);
+	echo "Convert $shortFilename $newline";
 	// Load the contents into an XML structure
 	try {
 		$xml = simplexml_load_file($infile);
@@ -224,6 +228,7 @@ function convertExercise($infile, $outfile) {
 	//echo "It is a $type"; return;
 	switch (strtolower($type)) {
 		case 'presentation':
+        case 'bullet':
 			$exercise = new Presentation($xml);
 			break;
 		case 'dragon':
@@ -235,6 +240,7 @@ function convertExercise($infile, $outfile) {
 			$exercise = new Gapfill($xml);
 			break;
 		case 'dropdown':
+        case 'stopdrop':
 			$exercise = new Dropdown($xml);
 			break;
 		case 'analyze':
@@ -246,6 +252,7 @@ function convertExercise($infile, $outfile) {
 			break;
 		case 'targetspotting':
 		case 'proofreading':
+        case 'questionspotter':
 			$exercise = new TargetSpotting($xml);
 			break;
 		case 'errorcorrection':

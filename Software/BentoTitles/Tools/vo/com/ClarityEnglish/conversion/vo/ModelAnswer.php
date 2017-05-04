@@ -9,8 +9,8 @@ class ModelAnswer implements JsonSerializable {
 
     function __construct() { }
 
-    function addSource($id) {
-        $this->source = '#a'.$id;
+    function addSource($id, $prefix='a') {
+        $this->source = '#'.$prefix.$id;
     }
     function addValue($text) {
         $this->source = $text;
@@ -24,8 +24,8 @@ class ModelAnswer implements JsonSerializable {
     function getBlock() {
         return (isset($this->correct)) ? $this->correct : false;
     }
-    function addSourceNthChild($id, $idx) {
-        $this->source = '#q'.$id.' li:nth-child('.$idx.')';
+    function addSourceNthChild($id, $idx, $selector='li') {
+        $this->source = '#q'.$id.' '.$selector.':nth-child('.$idx.')';
     }
     public function jsonSerialize() {
         $rc = array();

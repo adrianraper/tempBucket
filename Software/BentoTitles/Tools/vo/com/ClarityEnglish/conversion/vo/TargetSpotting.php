@@ -7,4 +7,3 @@ class TargetSpotting extends Exercise {
 	}
 	
 }
-?>
