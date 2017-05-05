@@ -29,7 +29,7 @@
 
 <p style="margin-bottom: 0"><strong>How to take the test</strong><br/>
 <ol style="margin-top: 0">
-    <li>Go to <a href="https://dpt.clarityenglish.com">dpt.clarityenglish.com</a> in your browser or download the app from the <a href="https://itunes.apple.com/hk/app/dynamic-placement-test/id1179218583?mt=8&amp;ign-mpt=uo%3D4" target="_blank" style=" font-size:0.9em;">Apple App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.clarityenglish.ctp_wrapper&hl=en" target="_blank" style=" font-size:0.9em;">Google Play</a><br/>
+    <li>Go to <a href="https://dpt.clarityenglish.com">dpt.clarityenglish.com</a> in your browser or download the app from the <a href="https://itunes.apple.com/hk/app/dynamic-placement-test/id1179218583?mt=8&amp;ign-mpt=uo%3D4" target="_blank" style=" font-size:0.9em;">Apple App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.clarityenglish.ctp_wrapper&hl=en" target="_blank" style=" font-size:0.9em;">Google Play</a>. Search for <strong>Dynamic Placement Test</strong>.<br/>
     <li>Sign in and try section 1 of the test to make sure it runs properly.</li>
 {if $testDetail->startType == 'code'}
     <li>Your test administrator will give you the access code when the test is ready to start.</li>
