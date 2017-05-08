@@ -58,7 +58,7 @@ package com.clarityenglish.ielts.view.zone {
 						this.toolTipText = copyProvider.getCopyForId("onlyAvailableFV");
 						break;
 					case IELTSApplication.TEST_DRIVE:
-						this.toolTipText = copyProvider.getCopyForId("onlyAvailableLM");
+						this.toolTipText = copyProvider.getCopyForId("notAvailableTD");
 						break;
 					case BentoApplication.DEMO:
 						this.toolTipText = copyProvider.getCopyForId("notAvailbleDemo");

@@ -247,10 +247,7 @@
                                         return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableFV");
                                         break;
                                     case IELTSApplication.TEST_DRIVE:
-                                        if (sequenceNumber >= 3) {
-                                            return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableFVWebsite");
-                                        }
-                                        return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableLM");
+                                        return outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailableTD");
                                         break;
                                     case BentoApplication.DEMO:
                                         return outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailbleDemo");

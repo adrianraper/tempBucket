@@ -147,8 +147,8 @@
 											practiceLabel.text = outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailblePracticeTest");
 										}
 										// gh#759
-										practiceTestGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion, getSequenceNumber(data));
-										answerKeyGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion, getSequenceNumber(data));
+										practiceTestGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion);
+										answerKeyGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion);
 									}
 
 								}
@@ -164,10 +164,7 @@
 										return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableFV");
 										break;
 									case IELTSApplication.TEST_DRIVE:
-										if (sequenceNumber >= 3) {
-											return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableFVWebsite");
-										}
-										return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableLM");
+										return outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailableTD");
 										break;
 									case BentoApplication.DEMO:
 										return outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailbleDemo");
@@ -203,11 +200,6 @@
 
 					<s:Label id="practiceLabel" top="{courseClass != 'listening' ? 305 : 330}" horizontalCenter="0" fontSize="16" visible="{data.attribute('href').length() > 0}" />
 
-					<!-- gh#1161 -->
-					<s:Group id="testDriveInformation" verticalCenter="0" horizontalCenter="0" includeInLayout="{outerDocument.hostComponent.isTestDrive}" visible="{outerDocument.hostComponent.isTestDrive}" >
-						<ui:InfoLabel id="testDriveInfo" />
-					</s:Group>
-
 					<!--gh#759 using group to show tooltip when button is disabled-->
 					<s:HGroup top="{courseClass != 'listening' ? 105 : 135}" horizontalCenter="0" gap="0" visible="{data.attribute('href').length() > 0}">
 						<s:Group id="practiceTestGroup">
@@ -224,6 +216,11 @@
 						<s:Label id="moduleLabel" top="17" left="107" fontSize="12" />
 						<s:Label id="captionLabel" top="30" left="107" fontSize="15" fontWeight="bold" />
 						<tlfcomponents:AudioPlayer id="audioPlayer" right="10" top="8" visible="{data.attribute('audioHref').length() > 0}" includeInLayout="{data.attribute('audioHref').length() > 0}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
+					</s:Group>
+
+					<!-- gh#1161 -->
+					<s:Group id="testDriveInformation" verticalCenter="0" horizontalCenter="0" includeInLayout="{outerDocument.hostComponent.isTestDrive}" visible="{outerDocument.hostComponent.isTestDrive}" >
+						<ui:InfoLabel id="testDriveInfo" />
 					</s:Group>
 				</s:DataRenderer>
 			</fx:Component>
