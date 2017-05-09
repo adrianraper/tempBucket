@@ -24,13 +24,12 @@ $previewIndex = isset($_REQUEST['previewIndex']) ? json_decode($_REQUEST['previe
  * This for testing and debugging emails
  */
 /*
-$templateString = '{"description": null,"title": null,"name": "invitation","data": {"administrator": {"email": "twaddle@email","name": "Mrs Twaddle"},"test": {"closeTime": "2017-01-31 00:00:00","startType": "timer","productCode": "63","openTime": "2017-01-17 00:00:00","parent": null,"children": null,"id": "1011","testId": "1011","showResult": false,"startData": null,"groupId": "35026","status": 2,"caption": "Funny in Chinese","language": "EN","menuFilename": "menu.json.hbs","uid": "1011","reportableLabel": "Funny in Chinese"}},"templateID": null,"filename": "user/DPT-welcome"}';
+$templateString = '{"title":null,"templateID":null,"description":null,"filename":"user/DPT-welcome","name":"invitation","data":{"test":{"startType":"timer","language":"EN","followUp":{"caption":"Read dock this","href":null},"parent":null,"closeTime":"2017-05-09 17:00:00","id":"56","children":null,"reportableLabel":"May&apos;s test \"that will\" fail","uid":"56","showResult":false,"caption":"May&apos;s test \"that will\" fail","groupId":"35026","menuFilename":"menu.json.hbs","productCode":"63","testId":"56","status":2,"openTime":"2017-05-09 09:00:00","startData":null},"administrator":{"name":"Mrs Twaddle","email":"twaddle@email.com"}}}';
 $template = json_decode($templateString);
 $groupIdString = '["21560"]';
 $groupIdArray = json_decode($groupIdString);
 $previewIndex = 0;
 */
-
 if (!isset($template->data)) {
     echo "<h2>No template data was passed</h2>";
     exit(0);
@@ -41,7 +40,11 @@ if (!isset($groupIdArray[0])) {
 }
 
 $userEmailArray = $thisService->dailyJobOps->getEmailsForGroup($groupIdArray, $template);
-$emailContents = $thisService->emailOps->fetchEmail($template->filename, $userEmailArray[$previewIndex]['data']);
+if (count($userEmailArray) > 0) {
+    $emailContents = $thisService->emailOps->fetchEmail($template->filename, $userEmailArray[$previewIndex]['data']);
+} else {
+    $emailContents = $thisService->emailOps->fetchEmail($template->filename, array());
+}
 
 $administratorEmail = (isset($template->data->administrator->email)) ? $template->data->administrator->email : 'support@clarityenglish.com';
 $administratorName = (isset($template->data->administrator->name)) ? $template->data->administrator->name : null;
@@ -49,7 +52,7 @@ $administratorName = (isset($template->data->administrator->name)) ? $template->
 if (isset($template->data->administrator->name) && isset($template->data->administrator->email)) {
     $emailInsertion = "Got any questions? Ask " . $administratorName . " at " . $administratorEmail;
 } else if (isset($administratorName)) {
-    $emailInsertion = "Ask any questions from " . $administratorName. ".";
+    $emailInsertion = "Ask " . $administratorName. " any questions.";
 } else {
     $emailInsertion = "Type here to tell the test takers how to contact you if they have any questions.";
 }
@@ -129,8 +132,11 @@ array_push($userEmailArray, $adminEmail);
             // Need to remove line breaks (and other?) characters from typed text
             var strippedNotes = $("#emailInsertion").val();
             strippedNotes = strippedNotes.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-            console.log(strippedNotes);
-            var emailInsertion =  JSON.parse('{"subject":"' + $("#emailSubject").val() + '", "notes":"' + strippedNotes + '"}');
+            strippedNotes = strippedNotes.replace(/(")/g, '&quot;');
+            //console.log(strippedNotes);
+            var subject = $("#emailSubject").val()
+            subject = subject.replace(/(")/g, '&quot;');
+            var emailInsertion =  JSON.parse('{"subject":"' + subject + '", "notes":"' + strippedNotes + '"}');
 
             $.ajax({
                 url: "GroupEmailActions.php",
@@ -187,12 +193,16 @@ array_push($userEmailArray, $adminEmail);
     <div class="w3-container w3-cell w3-card-2" style="width:40%">
         <ul class="w3-ul w3-hoverable scrollingBlock w3-margin-top w3-margin-bottom" style="height:700px">
             <?php
-            $n = 0;
-            foreach ($userEmailArray as $userEmail) {
-                echo "<li class='w3-hover-teal'>";
-                echo "<a href='#' onClick='previewEmail(" . $n . ")'>" . $userEmail['data']['user']->name . " (" . $userEmail['to'] . ")</a>";
-                echo "</li>";
-                $n++;
+            if (count($userEmailArray) > 0) {
+                $n = 0;
+                foreach ($userEmailArray as $userEmail) {
+                    echo "<li class='w3-hover-teal'>";
+                    echo "<a href='#' onClick='previewEmail(" . $n . ")'>" . $userEmail['data']['user']->name . " (" . $userEmail['to'] . ")</a>";
+                    echo "</li>";
+                    $n++;
+                }
+            } else {
+                echo "<span><strong>There is nobody to send an email to.</strong></span>";
             }
             ?>
         </ul>
@@ -205,7 +215,10 @@ array_push($userEmailArray, $adminEmail);
                 <textarea id="emailInsertion" class="w3-input w3-border w3-round w3-hover-teal w3-pale-green"
                           style="height:100px; resize:none"><?php echo $emailInsertion; ?></textarea>
         </div>
-        <button class="w3-btn-block w3-ripple w3-teal" onclick="confirmEmail()">Send all</button>
+        <?php
+        if (count($userEmailArray) > 0)
+            echo '<button class="w3-btn-block w3-ripple w3-teal" onclick="confirmEmail()">Send all</button>';
+        ?>
     </div>
 </div>
 <div id="emailsSentNotice" class="w3-modal" style="display:none">
