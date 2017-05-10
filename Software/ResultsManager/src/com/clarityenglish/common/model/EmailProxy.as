@@ -99,7 +99,17 @@ package com.clarityenglish.common.model {
 			var postVariables:URLVariables = new URLVariables();
 			postVariables.nocache = Math.floor(Math.random() * 999999);
 			// Pass the whole template definition, which includes data as well as the filename
+			// title-dpt#417 Some of the data is already JSON encoded, don't double it up
 			postVariables.template = JSON.encode(templateDefinition);
+			var pattern:RegExp = /\\\\\\"/gi;
+			postVariables.template = postVariables.template.replace(pattern, "&quot;"); 
+			pattern = /\\"/gi;
+			postVariables.template = postVariables.template.replace(pattern, "\""); 
+			pattern = /\"{/gi;
+			postVariables.template = postVariables.template.replace(pattern, "{"); 
+			pattern = /}\"/gi;
+			postVariables.template = postVariables.template.replace(pattern, "}"); 
+
 			// TODO This makes assumptions that we are only passed an array of group ids.
 			postVariables.groupIdArray = JSON.encode(manageables.map(
 				function(manageable:Manageable, index:int, array:Array):Object { 

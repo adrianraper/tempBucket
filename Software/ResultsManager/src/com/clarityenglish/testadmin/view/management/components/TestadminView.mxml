@@ -127,11 +127,18 @@
 			
 			private function onSendWelcomeEmail(e:Event):void {
 				// TODO where should this be set. rm.xml, config.xml?
-				var test:ScheduledTest = testList.selectedItem as ScheduledTest;
+				var test:ScheduledTest = (testList.selectedItem as ScheduledTest).clone();
 				var welcomeEmailTemplate:TemplateDefinition = new TemplateDefinition();
 				welcomeEmailTemplate.filename = "user/DPT-welcome";
 				welcomeEmailTemplate.name = "invitation";
 				
+				// title-dpt#417
+				var pattern:RegExp = /'/gi;
+				test.caption = test.caption.replace(pattern, "&apos;"); 
+				test.followUp = (test.followUp) ? test.followUp.replace(pattern, "&apos;") : ''; 
+				pattern = /"/gi;
+				test.caption = test.caption.replace(pattern, "&quot;");
+
 				// ctp#214 Need to send the test administrator details for the email too
 				var administrator:Object = {name: Constants.userName, email: Constants.email};
 				welcomeEmailTemplate.data = {test: test, administrator: administrator};
@@ -394,97 +401,128 @@
 	<!--
 	
 	-->
-	<mx:VBox width="100%" height="100%" verticalGap="0" >
-  	  <mx:HBox id="adminPanelBanner" width="100%" height="94" verticalAlign="middle"
-			   paddingBottom="0" horizontalGap="30"
-			   borderSides="bottom" borderStyle="solid">
+	<mx:VBox width="100%" height="100%" verticalGap="0">
+  	  <mx:HBox id="adminPanelBanner" width="100%" height="94" borderSides="bottom"
+			   borderStyle="solid" horizontalGap="30" paddingBottom="0" verticalAlign="middle">
 		  <mx:Spacer width="0"/>
 		  <mx:Image source="@Embed('/../assets/dpt_admin_panel_logo_smallest.png')"/>
 		  <mx:Spacer width="100%"/>
-		  <mx:VBox width="160" backgroundColor="#D95982" cornerRadius="6" 
-				   paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10"
-				   visible="{licencesNeeded &gt; 0}" includeInLayout="{licencesNeeded &gt; 0}">
-			  <mx:Text id="licencesNeededLabel" color="#ffffff" width="100%"/>
+		  <mx:VBox visible="{licencesNeeded &gt; 0}" width="160" backgroundColor="#D95982"
+				   cornerRadius="6" includeInLayout="{licencesNeeded &gt; 0}" paddingBottom="10"
+				   paddingLeft="10" paddingRight="10" paddingTop="10">
+			  <mx:Text id="licencesNeededLabel" width="100%" color="#ffffff"/>
 		  </mx:VBox>
 		  <!-- ctp#399 visible="{licencesNeeded &gt; -10}" includeInLayout="{licencesNeeded &gt; -10}" -->
-		  <mx:Button id="buyMoreButton" height="30" visible="false" includeInLayout="false"
-					 overSkin="{FlatButtonSkin}" upSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}" styleName="flatButton"
-					 textRollOverColor="#FFFFFF"/>
+		  <mx:Button id="buyMoreButton" visible="false" height="30" downSkin="{FlatButtonSkin}"
+					 includeInLayout="false" overSkin="{FlatButtonSkin}" styleName="flatButton"
+					 textRollOverColor="#FFFFFF" upSkin="{FlatButtonSkin}"/>
 		  <mx:VBox width="100%" verticalGap="0">
-			  <mx:Label width="100%" text="{licencesPurchased.toString()}" styleName="licenceNumber" textAlign="center" />
-			  <mx:Label width="100%" id="licencesPurchasedLabel" paddingTop="-8" textAlign="center" styleName="detailedHeadingLabelBlack" />
+			  <mx:Label width="100%" styleName="licenceNumber" text="{licencesPurchased.toString()}"
+						textAlign="center"/>
+			  <mx:Label id="licencesPurchasedLabel" width="100%" paddingTop="-8"
+						styleName="detailedHeadingLabelBlack" textAlign="center"/>
 		  </mx:VBox>
 		  <mx:VBox width="100%" verticalGap="0">
-			  <mx:Label width="100%" text="{licencesUsed.toString()}" styleName="licenceNumber" textAlign="center" />
-			  <mx:Label width="100%" id="licencesUsedLabel" paddingTop="-8" textAlign="center" styleName="detailedHeadingLabelBlack" />
+			  <mx:Label width="100%" styleName="licenceNumber" text="{licencesUsed.toString()}"
+						textAlign="center"/>
+			  <mx:Label id="licencesUsedLabel" width="100%" paddingTop="-8"
+						styleName="detailedHeadingLabelBlack" textAlign="center"/>
 		  </mx:VBox>
 		  <mx:VBox width="100%" verticalGap="0">
-			  <mx:Label width="100%" text="{licencesScheduled.toString()}" styleName="licenceNumber" textAlign="center" />
-			  <mx:Label width="100%" id="licencesScheduledLabel" paddingTop="-8" textAlign="center" styleName="detailedHeadingLabelBlack" />
+			  <mx:Label width="100%" styleName="licenceNumber" text="{licencesScheduled.toString()}"
+						textAlign="center"/>
+			  <mx:Label id="licencesScheduledLabel" width="100%" paddingTop="-8"
+						styleName="detailedHeadingLabelBlack" textAlign="center"/>
 		  </mx:VBox>
-		  <mx:Button id="helpButton" click="onHelp()" width="100" height="30" 
-					 overSkin="{FlatButtonSkin}" upSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}"
-					 textRollOverColor="#FFFFFF" styleName="flatButton"/>
-		  <mx:Button id="logoutButton" click="onLogout()" width="100" height="30" 
-					 overSkin="{FlatButtonSkin}" upSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}"
-					 textRollOverColor="#FFFFFF" styleName="flatButton"/>
+		  <mx:Button id="helpButton" width="100" height="30" click="onHelp()"
+					 downSkin="{FlatButtonSkin}" overSkin="{FlatButtonSkin}" styleName="flatButton"
+					 textRollOverColor="#FFFFFF" upSkin="{FlatButtonSkin}"/>
+		  <mx:Button id="logoutButton" width="100" height="30" click="onLogout()"
+					 downSkin="{FlatButtonSkin}" overSkin="{FlatButtonSkin}" styleName="flatButton"
+					 textRollOverColor="#FFFFFF" upSkin="{FlatButtonSkin}"/>
 		  <mx:Spacer width="10"/>
 	  </mx:HBox>
 	  <mx:HBox width="100%" height="100%" borderStyle="none" horizontalGap="0">
 		  <mx:VBox width="33%" height="100%" borderSides="right" borderStyle="solid">
-			  <mx:Canvas width="100%" height="76" backgroundColor="#44AA66" backgroundAlpha="0.2" horizontalScrollPolicy="off" verticalScrollPolicy="off" >
-				  <mx:Label height="100%" text="1" styleName="bannerStepNumbers" x="0" y="-24" />
-				  <mx:VBox width="100%" height="100%" horizontalAlign="center" horizontalCenter="0" paddingTop="10">
-				  	<mx:Label id="manageablesLabel" styleName="subHeadingLabelBlack" width="100%" textAlign="center" />
-				  	<mx:Text id="detailedManageablesLabel" styleName="detailedHeadingLabelBlack" width="160" textAlign="center" />
+			  <mx:Canvas width="100%" height="76" backgroundAlpha="0.2" backgroundColor="#44AA66"
+						 horizontalScrollPolicy="off" verticalScrollPolicy="off">
+				  <mx:Label x="0" y="-24" height="100%" styleName="bannerStepNumbers" text="1"/>
+				  <mx:VBox width="100%" height="100%" horizontalAlign="center" horizontalCenter="0"
+						   paddingTop="10">
+				  	<mx:Label id="manageablesLabel" width="100%" styleName="subHeadingLabelBlack"
+							  textAlign="center"/>
+				  	<mx:Text id="detailedManageablesLabel" width="160"
+							 styleName="detailedHeadingLabelBlack" textAlign="center"/>
 			  	</mx:VBox>
 			  </mx:Canvas>
 			  <view:ManageablesView id="manageablesView" width="100%" height="100%" paddingLeft="0"/>
 		  </mx:VBox>
-		  <mx:VBox borderSides="right" borderStyle="solid" width="33%" height="100%" >
-			  <mx:Canvas width="100%" height="76" backgroundColor="#44AA99" backgroundAlpha="0.2" horizontalScrollPolicy="off" verticalScrollPolicy="off" >
-				  <mx:Label height="100%" text="2" styleName="bannerStepNumbers" x="0" y="-24" />
-				  <mx:VBox width="100%" height="100%" horizontalAlign="center" horizontalCenter="0" paddingTop="10">
-					  <mx:Label id="testsLabel" styleName="subHeadingLabelBlack" width="100%" textAlign="center" />
-				      <mx:Label id="detailedTestsLabel" styleName="detailedHeadingLabelBlack" width="160" textAlign="center" />
+		  <mx:VBox width="33%" height="100%" borderSides="right" borderStyle="solid">
+			  <mx:Canvas width="100%" height="76" backgroundAlpha="0.2" backgroundColor="#44AA99"
+						 horizontalScrollPolicy="off" verticalScrollPolicy="off">
+				  <mx:Label x="0" y="-24" height="100%" styleName="bannerStepNumbers" text="2"/>
+				  <mx:VBox width="100%" height="100%" horizontalAlign="center" horizontalCenter="0"
+						   paddingTop="10">
+					  <mx:Label id="testsLabel" width="100%" styleName="subHeadingLabelBlack"
+								textAlign="center"/>
+				      <mx:Label id="detailedTestsLabel" width="160"
+								styleName="detailedHeadingLabelBlack" textAlign="center"/>
 				  </mx:VBox>
 			  </mx:Canvas>
-			  <mx:Text id="selectGroupLabel" paddingTop="50" width="280" height="100%" visible="{selectedGroup == null}" includeInLayout="{selectedGroup == null}" 
-					   styleName="testList" textAlign="center" horizontalCenter="0" />
-			  <mx:List id="testList" width="100%" height="100%" change="onTestChange(event)" selectionColor="#44aa66" rollOverColor="#00a79d"
-							 textSelectedColor="#ffffff" labelFunction="showCaption" verticalAlign="middle" rowHeight="32" paddingLeft="16" 
-							 visible="{selectedGroup != null}" includeInLayout="{selectedGroup != null}" styleName="testList"
-							 borderStyle="none">
+			  <mx:Text id="selectGroupLabel" visible="{selectedGroup == null}" width="280"
+					   height="100%" horizontalCenter="0" includeInLayout="{selectedGroup == null}"
+					   paddingTop="50" styleName="testList" textAlign="center"/>
+			  <mx:List id="testList" visible="{selectedGroup != null}" width="100%" height="100%"
+					   borderStyle="none" change="onTestChange(event)"
+					   includeInLayout="{selectedGroup != null}" labelFunction="showCaption"
+					   paddingLeft="16" rollOverColor="#00a79d" rowHeight="32"
+					   selectionColor="#44aa66" styleName="testList" textSelectedColor="#ffffff"
+					   verticalAlign="middle">
 				</mx:List>
-				<mx:Button id="newTestButton" width="100%" height="30" click="onNewTestButtonClick(event)" 
-						   overSkin="{FlatButtonSkin}" upSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}" disabledSkin="{FlatButtonSkin}"
-						   textRollOverColor="0xFFFFFF"
-						   visible="{selectedGroup != null}" includeInLayout="{selectedGroup != null}" styleName="flatButton" />
+				<mx:Button id="newTestButton" visible="{selectedGroup != null}" width="100%"
+						   height="30" click="onNewTestButtonClick(event)"
+						   disabledSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}"
+						   includeInLayout="{selectedGroup != null}" overSkin="{FlatButtonSkin}"
+						   styleName="flatButton" textRollOverColor="0xFFFFFF"
+						   upSkin="{FlatButtonSkin}"/>
 		  </mx:VBox>
-		  <mx:VBox width="34%" height="100%" >
-				<mx:Canvas width="100%" height="76" backgroundColor="#00A79D" backgroundAlpha="0.2" horizontalScrollPolicy="off" verticalScrollPolicy="off" >
-					<mx:Label height="100%" text="3" styleName="bannerStepNumbers" x="0" y="-24" />
-					<mx:VBox width="100%" height="100%" horizontalAlign="center" horizontalCenter="0" paddingTop="10">
-						<mx:Label id="testDetailsLabel" styleName="subHeadingLabelBlack" width="100%" textAlign="center" />
-						<mx:Label id="detailedTestDetailsLabel" styleName="detailedHeadingLabelBlack" width="160" textAlign="center" />
+		  <mx:VBox width="34%" height="100%">
+				<mx:Canvas width="100%" height="76" backgroundAlpha="0.2" backgroundColor="#00A79D"
+						   horizontalScrollPolicy="off" verticalScrollPolicy="off">
+					<mx:Label x="0" y="-24" height="100%" styleName="bannerStepNumbers" text="3"/>
+					<mx:VBox width="100%" height="100%" horizontalAlign="center" horizontalCenter="0"
+							 paddingTop="10">
+						<mx:Label id="testDetailsLabel" width="100%" styleName="subHeadingLabelBlack"
+								  textAlign="center"/>
+						<mx:Label id="detailedTestDetailsLabel" width="160"
+								  styleName="detailedHeadingLabelBlack" textAlign="center"/>
 					</mx:VBox>
 				</mx:Canvas>
-		  		<ui:TestDetailPanel width="100%" height="100%" id="testDetailPanel" 
-								visible="{(testList.selectedItem != null || addingNew) &amp;&amp; selectedGroup != null}" 
-								includeInLayout="true" />
-				<mx:VBox width="100%" horizontalAlign="center" verticalGap="6" visible="{selectedGroup != null}" includeInLayout="{selectedGroup != null}">					
-					<mx:Button id="generateReportButton" visible="false" includeInLayout="false" width="100%" height="30" click="onGenerateReport(event)" 
-							   overSkin="{FlatButtonSkin}" upSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}"
-							   textRollOverColor="#FFFFFF" styleName="flatButton"/>
-					<mx:Button id="sendWelcomeEmailButton" visible="false" includeInLayout="false" width="100%" height="30" click="onSendWelcomeEmail(event)" 
-							   overSkin="{FlatButtonSkin}" upSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}"
-							   textRollOverColor="#FFFFFF" styleName="flatButton"/>
-					<mx:Button id="sendResultEmailButton" visible="false" includeInLayout="false" width="100%" height="30" click="onSendResultEmail(event)" 
-							   overSkin="{FlatButtonSkin}" upSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}"
-							   textRollOverColor="#FFFFFF" styleName="flatButton"/>
-					<mx:Button id="deleteTestButton" visible="false" includeInLayout="false" width="100%" height="30" click="onDeleteTestButtonClick(event)" 
-							   overSkin="{FlatButtonSkin}" upSkin="{FlatButtonSkin}" downSkin="{FlatButtonSkin}"
-							   textRollOverColor="#FFFFFF" styleName="flatButton"/>
+		  		<ui:TestDetailPanel id="testDetailPanel"
+									visible="{(testList.selectedItem != null || addingNew) &amp;&amp; selectedGroup != null}"
+									width="100%" height="100%" includeInLayout="true"/>
+				<mx:VBox visible="{selectedGroup != null}" width="100%" horizontalAlign="center"
+						 includeInLayout="{selectedGroup != null}" verticalGap="6">					
+					<mx:Button id="generateReportButton" visible="false" width="100%" height="30"
+							   click="onGenerateReport(event)" downSkin="{FlatButtonSkin}"
+							   includeInLayout="false" overSkin="{FlatButtonSkin}"
+							   styleName="flatButton" textRollOverColor="#FFFFFF"
+							   upSkin="{FlatButtonSkin}"/>
+					<mx:Button id="sendWelcomeEmailButton" visible="false" width="100%" height="30"
+							   click="onSendWelcomeEmail(event)" downSkin="{FlatButtonSkin}"
+							   includeInLayout="false" overSkin="{FlatButtonSkin}"
+							   styleName="flatButton" textRollOverColor="#FFFFFF"
+							   upSkin="{FlatButtonSkin}"/>
+					<mx:Button id="sendResultEmailButton" visible="false" width="100%" height="30"
+							   click="onSendResultEmail(event)" downSkin="{FlatButtonSkin}"
+							   includeInLayout="false" overSkin="{FlatButtonSkin}"
+							   styleName="flatButton" textRollOverColor="#FFFFFF"
+							   upSkin="{FlatButtonSkin}"/>
+					<mx:Button id="deleteTestButton" visible="false" width="100%" height="30"
+							   click="onDeleteTestButtonClick(event)" downSkin="{FlatButtonSkin}"
+							   includeInLayout="false" overSkin="{FlatButtonSkin}"
+							   styleName="flatButton" textRollOverColor="#FFFFFF"
+							   upSkin="{FlatButtonSkin}"/>
 				</mx:VBox>
 			</mx:VBox>
 		</mx:HBox>

@@ -80,7 +80,7 @@
 					times.addItem({data: {hours:i, mins:15}});
 					times.addItem({data: {hours:i, mins:30}});
 					times.addItem({data: {hours:i, mins:45}});
-				}
+				}				
 			}
 			
 			public function setCopyProvider(copyProvider:CopyProvider):void {
@@ -107,6 +107,10 @@
 				//emailInsertionNameLabel.text = copyProvider.getCopyForId("emailInsertionNameLabel");
 				//emailInsertionEmailLabel.text = copyProvider.getCopyForId("emailInsertionEmailLabel");
 				//emailInsertionSubjectLabel.text = copyProvider.getCopyForId("emailInsertionSubjectLabel");
+
+				// Hide followUp for now
+				followUpPanel1.visible = followUpPanel1.includeInLayout = followUpPanel2.visible = followUpPanel2.includeInLayout = Constants.followUp;
+
 			}
 			
 			public function setDataProvider(test:ScheduledTest):void {
@@ -171,6 +175,9 @@
 					//emailInsertionEmailData.text = (emailInsertionObject.email) ? unescape(emailInsertionObject.email) : Constants.email;
 					//emailInsertionSubjectData.text = (emailInsertionObject.subject) ? unescape(emailInsertionObject.subject) : copyProvider.getCopyForId("emailInsertionSubject", {name: emailInsertionNameData.text});
 					
+					// Only show follow up if you have enabled it, or if there is data already in the fields
+				    followUpPanel1.visible = followUpPanel1.includeInLayout = followUpPanel2.visible = followUpPanel2.includeInLayout = (Constants.followUp || (followUpCaptionData.text.length > 0));
+					
 					// Is the data editable?
 					setDataEditable(dataProvider.status == ScheduledTest.STATUS_PRERELEASE);
 					
@@ -197,7 +204,7 @@
 				//captionData.selectable = editable;
 				
 				// ctp#400
-				followUpCaptionData.editable = followUpURLData.editable = false;
+				followUpCaptionData.editable = followUpURLData.editable = editable;
 			}
 			
 			private function selectionChanged(e:Event):void {
@@ -245,6 +252,13 @@
 				updatedTest.startData = (startByCode.selected) ? startData.text : null;
 				updatedTest.language = languageData.selectedItem.data;
 				
+				// title-dpt#417
+				if (followUpCaptionData.text) {
+					var followUpObject:Object = new Object();
+					followUpObject.caption = (followUpCaptionData.text) ? followUpCaptionData.text : null;
+					followUpObject.href = (followUpURLData.text) ? followUpURLData.text : null;
+					updatedTest.followUp = JSON.encode(followUpObject);
+				}
 				return updatedTest;
 			}
 			
@@ -356,13 +370,13 @@
 			<mx:Text id="languageLabel" width="100%" paddingTop="10" styleName="inputPromptBlack"/>
 			<mx:ComboBox id="languageData" width="150" styleName="inputEntry"/>
 			<!-- ctp#400 -->
-			<mx:HBox width="100%" horizontalGap="0" paddingTop="10" visible="{followUpCaptionData.text.length > 0}" includeInLayout="{followUpCaptionData.text.length > 0}" verticalAlign="middle">
+			<mx:HBox id="followUpPanel1" width="100%" horizontalGap="0" paddingTop="10" verticalAlign="middle">
 				<mx:Text id="followUpCaptionLabel" width="120" paddingTop="2" styleName="inputPromptBlack"/>
-				<mx:TextInput id="followUpCaptionData" styleName="inputEntry" enabled="false" width="100%"/>
+				<mx:TextInput id="followUpCaptionData" styleName="inputEntry" width="100%"/>
 			</mx:HBox>
-			<mx:HBox width="100%" horizontalGap="0" paddingTop="10" visible="{followUpURLData.text.length > 0}" includeInLayout="{followUpURLData.text.length > 0}" verticalAlign="top" >
+			<mx:HBox id="followUpPanel2" width="100%" horizontalGap="0" paddingTop="10" verticalAlign="top" >
 				<mx:Text id="followUpURLLabel" width="120" paddingTop="2" styleName="inputPromptBlack"/>
-				<mx:TextInput id="followUpURLData" styleName="inputEntry" enabled="false" width="100%"/>
+				<mx:TextInput id="followUpURLData" styleName="inputEntry" width="100%"/>
 			</mx:HBox>
 			<mx:Label id="errorTextLabel" text="{_errorText}" styleName="errorMessage"
 					  visible="{!(_errorText == '')}" includeInLayout="{!(_errorText == '')}" textAlign="center"

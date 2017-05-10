@@ -79,6 +79,7 @@
 			password: jsPassword,
 			rootID: swfobject.getQueryParamValue("rootID"),
 			directStart: swfobject.getQueryParamValue("directStart"),
+			followUp: swfobject.getQueryParamValue("followUp"),
 			sessionID: jsSessionID
 		};
 		var params = {

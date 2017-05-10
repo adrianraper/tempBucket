@@ -72,6 +72,9 @@ package com.clarityenglish.testadmin.controller {
 				sendNotification(RMNotifications.DIRECT_START, directStart);
 			}
 			
+			// Hide followUp for now until fully tested
+			Constants.followUp = (Application.application.parameters.followUp);
+			
 		}
 		private function generateSessionId():String {
 			// Interleave a timestamp with a random string of letters

@@ -10,7 +10,7 @@
 		/**
 		 * The version of the software, used to tie bugs and version control together.
 		 */
-		public static var version:String = "3.8.71";
+		public static var version:String = "3.8.75";
 		
 		/** Making this false activates various debug and test friendly attributes in the application */
 		public static function get DEBUG_MODE():Boolean {
@@ -65,6 +65,9 @@
 		public static var maxAuthors:Number;
 		public static var maxTeachers:Number;
 		public static var maxReporters:Number;
+		
+		// Hide followUp for now
+		public static var followUp:Boolean;
 		
 		/**
 		 * The type of the logged in user - either:

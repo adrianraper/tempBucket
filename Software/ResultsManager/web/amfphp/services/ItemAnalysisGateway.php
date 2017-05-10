@@ -429,7 +429,7 @@ function readItemsFromExercise($file) {
                     if ($reorderable) {
                         $domQuestion = $html->find($qblock, 0);
                         // Pick up the answers so you can reorder the sources
-                        $roots = [];
+                        $roots = array();
                         foreach ($question->answers as $answer){
                             $source = $answer->source;
                             $roots[] = $domQuestion->find($source, 0)->innertext;

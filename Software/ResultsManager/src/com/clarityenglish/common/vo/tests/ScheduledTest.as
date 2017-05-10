@@ -55,7 +55,7 @@
 		
 		public function ScheduledTest() {}
 		
-		private function clone():ScheduledTest {
+		public function clone():ScheduledTest {
 			var newTest:ScheduledTest = new ScheduledTest();
 			newTest.testId = this.testId;
 			newTest.groupId = this.groupId;
