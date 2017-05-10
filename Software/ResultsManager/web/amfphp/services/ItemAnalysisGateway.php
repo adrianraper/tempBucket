@@ -10,7 +10,9 @@
  * Then it reads each file to find each item and the associated root, answer and alternative options
  *
  * It can't work with hbs stuff in the menu, so you need to run a Notepad++ python script expand-menu-hbs.py
- * which will do a pre-process to list out full exercise nodes.
+ * which will do a pre-process to list out full exercise nodes, then you save as expanded-menu.json
+ *
+ * http://dock.projectbench/Software/ResultsManager/web/amfphp/services/ItemAnalysisGateway.php?output=json&unitName=gauge
  */
 //session_id($_GET['PHPSESSID']);
 
