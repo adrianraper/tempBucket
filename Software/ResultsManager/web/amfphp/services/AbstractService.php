@@ -129,7 +129,13 @@ class AbstractService {
             $this->db->SetCharSet('utf8');
 
 		$this->db->SetFetchMode(ADODB_FETCH_ASSOC);
-		AbstractService::$log->setTarget($this->db);
+		// Only change db log type destinations
+		if ($GLOBALS['logType'] == 'db')
+		    AbstractService::$log->setTarget($this->db);
+        if ($GLOBALS['debugLogType'] == 'db')
+            AbstractService::$debugLog->setTarget($this->db);
+        if ($GLOBALS['controlLogType'] == 'db')
+            AbstractService::$controlLog->setTarget($this->db);
 	}
 	
 	/**

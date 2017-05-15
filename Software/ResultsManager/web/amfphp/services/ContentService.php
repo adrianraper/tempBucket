@@ -16,6 +16,7 @@ require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 
 // Specific ops needed for content procedures
 require_once(dirname(__FILE__)."/../../classes/TestOps.php");
+require_once(dirname(__FILE__)."/../../classes/ItemAnalysisOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
 require_once(dirname(__FILE__)."/../../classes/InternalQueryOps.php");
@@ -40,6 +41,7 @@ class ContentService extends AbstractService {
 		
 		$this->internalQueryOps = new InternalQueryOps($this->db);
         $this->testOps = new TestOps($this->db);
+        $this->itemAnalysisOps = new ItemAnalysisOps($this->db);
 
 		// DMS has no restrictions on user/group access so disable manageable authentication
 		AuthenticationOps::$useAuthentication = false;
@@ -68,6 +70,7 @@ class ContentService extends AbstractService {
 		
 		$this->internalQueryOps->changeDB($this->db);
         $this->testOps->changeDB($this->db);
+        $this->itemAnalysisOps->changeDB($this->db);
 	}
 	
 }

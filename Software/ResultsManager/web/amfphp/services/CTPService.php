@@ -51,6 +51,7 @@ class CTPService extends BentoService {
         // Make sure you only pass back public/reasonable information about the user
         $user = $login['group']->manageables[0]->publicView();
         $rootID = $login['account']->id;
+        $groupId = $login['group']->id;
 
         // Get the tests that the user's group can take part in
         // But remember that you DON'T pass the security access code back to the app
@@ -73,7 +74,8 @@ class CTPService extends BentoService {
             "user" => $user,
             "session" => $session,
             "tests" => $tests,
-            "sessionID" => (string) $session->sessionId
+            "sessionID" => (string) $session->sessionId,
+            "groupID" => (string) $groupId
         );
 
     }
@@ -320,4 +322,12 @@ class CTPService extends BentoService {
         $literals = $this->copyOps->getLiteralsFromFile($lang);
         return $literals;
     }
+
+    // Return a code for this user - typically this is the [first] group Id they are in
+    public function getDefaultCode($userId) {
+        $groupId = $this->manageableOps->getGroupIdForUserId($userId);
+
+        return $groupId;
+    }
+
 }

@@ -1651,7 +1651,7 @@ EOD;
 	 * This returns the group ID that a given user belongs to.  At present this is only used by DMS, but it might come in useful for something
 	 * later on so I've left it in here.
 	 * gh#653 return a comma delimitted list of multiple groups for this user
-	 * Also used by Bento hiddenContentTransform
+	 * Also used by Bento hiddenContentTransform - and Couloir login and CouloirPasswordServer
 	 */
 	function getGroupIdForUserId($userID) {
 		// gh#653 tidy up SQL as no need to join on T_Groupstructure
@@ -1662,7 +1662,7 @@ EOD;
 			   AND u.F_UserID=?
 EOD;
 		$rs = $this->db->Execute($sql, array($userID));
-		if ($rs) {
+		if ($rs && $rs->RecordCount() > 0) {
 			while ($row = $rs->FetchNextObj())
 				$groups[] = $row->groupID;
 			return implode(',', $groups); 
