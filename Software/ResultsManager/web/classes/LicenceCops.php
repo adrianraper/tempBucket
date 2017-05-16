@@ -233,6 +233,7 @@ EOD;
         if (!$rs) {
             throw $this->copyOps->getExceptionForId("errorDatabaseWriting");
         }
+        AbstractService::$debugLog->info("grabbedLicenceSlot for key=$keyId");
         return true;
     }
 
@@ -273,8 +274,10 @@ EOD;
         $rs = $this->db->Execute($sql, $bindingParams);
         // If you got a few records back, it indicates something went wrong, but you DO still have a licence
         if ($rs && $rs->RecordCount() > 0) {
+            AbstractService::$debugLog->info("checkCurrentLicence success for key=$keyId > $dateStamp");
             return true;
         }
+        AbstractService::$debugLog->info("checkCurrentLicence fail for key=$keyId > $dateStamp");
         return false;
     }
     /**
@@ -292,7 +295,10 @@ EOD;
 EOD;
         $bindingParams = array($productCode, $rootId, $dateStamp);
         $rs = $this->db->Execute($sql, $bindingParams);
-        return $rs->FetchNextObj()->i;
+        $count = $rs->FetchNextObj()->i;
+        AbstractService::$debugLog->info("countCurrentLicence=$count");
+
+        return $count;
     }
 
     /**
@@ -666,11 +672,12 @@ EOD;
 	 */
     // gh#1342
 	function updateLicence($sessionId) {
+        $reconnectionWindow = LicenceCops::AA_RECONNECTION_WINDOW;
 
 		// gh#815
-		//$dateNow = date('Y-m-d H:i:s');
         $dateStampNow = $this->getNow();
-		$dateNow = $dateStampNow->format('Y-m-d H:i:s');
+        // Set an extra 5 minutes on the licence
+		$dateNow = $dateStampNow->add(new DateInterval('PT'.$reconnectionWindow.'S'))->format('Y-m-d H:i:s');
 		
 		// Update the licence in the table
         // gh#1342
@@ -683,6 +690,7 @@ EOD;
 		$rs = $this->db->Execute($sql, $bindingParams);
 		if (!$rs)
 			throw $this->copyOps->getExceptionForId("errorCantUpdateLicence", array("licenceID" => $sessionId));
+		return true;
 	}
 
     function releaseCouloirLicenceSlot($sessionId, $timestamp) {

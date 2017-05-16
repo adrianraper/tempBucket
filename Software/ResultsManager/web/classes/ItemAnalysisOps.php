@@ -23,17 +23,34 @@ class ItemAnalysisOps {
 	}
 
     public function itemAnalysis($apiInformation, $titleFolder) {
-        $menuFile = $apiInformation['menuFile'];
-	    $files = $this->getFilesFromMenu($menuFile, $apiInformation, $titleFolder);
+	    $files = $this->getFilesFromMenu($apiInformation, $titleFolder);
 	    foreach ($files as $file) {
             $this->readItemsFromExercise($file, $apiInformation, $titleFolder);
         }
     }
+    // Read all items that could possibly be in the test (based on files)
+    // Read all results from valid tests, sort by user then item
+    // For each user, retrieve their score for each of the list of items (if any) and output
+    public function getCandidateAnswers($apiInformation, $titleFolder) {
+        $files = $this->getFilesFromMenu($apiInformation, $titleFolder);
+        $qids = [];
+        foreach ($files as $file) {
+            $qids = array_merge($qids, $this->readItemsFromDB($file, $apiInformation, $titleFolder));
+        }
+        $this->readDataForItems($qids);
+    }
     public function checkContent($apiInformation, $titleFolder) {
-        $menuFile = $apiInformation['menuFile'];
+        //$menuFile = $apiInformation['menuFile'];
         $files = $this->getFilesFromMenu($apiInformation, $titleFolder);
         foreach ($files as $file) {
             $this->checkContentFromExercise($file, $apiInformation, $titleFolder);
+        }
+    }
+
+    public function makeNewItemId($apiInformation, $titleFolder) {
+        $files = $this->getFilesFromMenu($apiInformation, $titleFolder);
+        foreach ($files as $file) {
+            $rc = $this->changeItemInExercise($file, $apiInformation, $titleFolder);
         }
     }
 
@@ -52,14 +69,22 @@ class ItemAnalysisOps {
 
             // Then loop for all exercises in that unit node
             foreach ($unit->exercises as $exercise) {
-                if ($apiInformation['filter'] != '' && stristr($exercise->href, $apiInformation['filter']) === false)
-                    continue;
-
                 // Is this exercise a straight html (question bank) or a template?
                 if (stripos($exercise->href, '.hbs') !== false) {
                     $files = array_merge($files, $this->readItemsFromTemplate($exercise->href, $apiInformation, $titleFolder));
                 } else {
-                    //$this->readItemsFromExercise($exercise->href, $apiInformation, $titleFolder);
+                    // filter if not matching - use a regex or not, determined if first char is /
+                    $filterPattern = $apiInformation['filter'];
+                    if ($filterPattern != '') {
+                        if (substr($filterPattern, 0, 1) == '/') {
+                            if (preg_match($filterPattern, $exercise->href) != 1) {
+                                continue;
+                            }
+                        } else {
+                            if (stristr($exercise->href, $filterPattern) === false)
+                                continue;
+                        }
+                    }
                     $files[] = $exercise->href;
                 }
             }
@@ -85,11 +110,48 @@ class ItemAnalysisOps {
         if (preg_match_all($pattern, $templateContents, $matches))
             //echo "got matches=".count($matches[1])."$newline";
             for ($i=0; $i < count($matches[1]); $i++) {
-                //$this->readItemsFromExercise($templateFolder.$matches[1][$i], $apiInformation, $titleFolder);
+                // filter if not matching - use a regex or not, determined if first char is /
+                $filterPattern = $apiInformation['filter'];
+                if ($filterPattern != '') {
+                    if (substr($filterPattern, 0, 1) == '/') {
+                        if (preg_match($filterPattern, $templateFolder.$matches[1][$i]) != 1)
+                            continue;
+                    } else {
+                        if (stristr($templateFolder.$matches[1][$i], $filterPattern) === false)
+                            continue;
+                    }
+                }
+
                 $files[] = $templateFolder.$matches[1][$i];
             }
 
         return $files;
+    }
+
+    public function changeItemInExercise($file, $apiInformation, $titleFolder) {
+        $originalID = $apiInformation['id'];
+
+        // Do a quick check if the text exists in the file
+        $plainText = file_get_contents($titleFolder . '/' . $file);
+        if (stristr($plainText, $originalID) === false)
+            return false;
+
+        $newID = $this->generateItemID();
+        $newText = str_ireplace($originalID, $newID, $plainText, $count);
+        if ($count == 1) {
+            file_put_contents($titleFolder . '/' . $file, $newText);
+            $this->writeChangeLog($file . ': change ' . $originalID . ' to ' . $newID);
+        } else {
+            $this->writeChangeLog($file . ': too many ' . $originalID . '=' . $count);
+        }
+        return true;
+    }
+
+    protected function generateItemID() {
+	    return UUID::v4();
+    }
+    protected function writeChangeLog($msg) {
+	    logit($msg);
     }
 
     protected function checkContentFromExercise($file, $apiInformation, $titleFolder) {
@@ -209,7 +271,9 @@ class ItemAnalysisOps {
                     }
                 }
                 // Is there a reading text?
-                $reading = $html->find('.page-split .content', 0);
+                // The order of .content and .header is not fixed
+                //$reading = $html->find('.page-split .content', 0);
+                $reading = $html->find('.page-split', 0);
                 if ($reading) { // && $skill == 'reading')
                     // Build the header and first paragraph - is this enough to provide context?
                     $readingText = $reading->find('header', 0)->plaintext;
@@ -301,32 +365,28 @@ class ItemAnalysisOps {
                         break;
 
                     case 'FreeDragQuestion':
-                        // First deal with sentence reconstruction
-                        if ($reorderable) {
-                            $domQuestion = $html->find($qblock, 0);
-                            // Pick up the answers so you can reorder the sources
-                            $roots = array();
-                            foreach ($question->answers as $answer){
-                                $source = $answer->source;
-                                $roots[] = $domQuestion->find($source, 0)->innertext;
-                            }
-                            $root = implode(' | ', $roots);
-
-                            // Then word placement
-                        } else {
-                            $domQuestion = $html->find($qblock, 0);
-                            $domNodes = $domQuestion->find('span[!class]'); // Note that the span could easily have a class... so this would not work
-                            if (!$domNodes)
-                                $domNodes = $domQuestion->find('span[class=dragzone]'); // But then this might pick up some of them
-                            $domDraggle = $html->find($qsource, 0)->innertext;
-                            foreach ($domNodes as $span) {
-                                $span->find('span',0)->outertext = ' *'.$domDraggle.'*'.($span->find('span[class=space]') ? ' ' : '');
-                                $root .= $span->innertext;
-                            }
-
+                        $domQuestion = $html->find($qblock, 0);
+                        $domNodes = $domQuestion->find('span[!class]'); // Note that the span could easily have a class... so this would not work
+                        if (!$domNodes)
+                            $domNodes = $domQuestion->find('span[class=dragzone]'); // But then this might pick up some of them
+                        $domDraggle = $html->find($qsource, 0)->innertext;
+                        foreach ($domNodes as $span) {
+                            $span->find('span',0)->outertext = ' *'.$domDraggle.'*'.($span->find('span[class=space]') ? ' ' : '');
+                            $root .= $span->innertext;
                         }
-                        break;
 
+                        break;
+                    case 'ReconstructionQuestion':
+                        $domQuestion = $html->find($qblock, 0);
+                        // Pick up the answers so you can reorder the sources
+                        $roots = array();
+                        foreach ($question->answers as $answer){
+                            $source = $answer->source;
+                            $roots[] = $domQuestion->find($source, 0)->innertext;
+                        }
+                        $root = implode(' | ', $roots);
+
+                        break;
                     case 'DragQuestion':
                         // If this is a listening, see if we can reference the audio
                         // If the drags are images, then reference the filename, otherwise show text
@@ -392,7 +452,9 @@ class ItemAnalysisOps {
                         $root = $skill;
                 }
                 // Query the database to get attempt information for item analysis
-                $attempts = $this->iaAttempts($qid);
+                // You might skip this if you just want header information about the items, not the data
+                if ($apiInformation["method"] == "itemAnalysisWithData")
+                    $attempts = $this->iaAttempts($qid);
 
                 iagOutput($file, $qid, $qtype, $root, $context, $readingText, $tags, $attempts);
                 if (isset($newhtml)) {
@@ -407,16 +469,104 @@ class ItemAnalysisOps {
         unset($html);
     }
 
+    // Get a list of all the items that can be included in the test
+    protected function readItemsFromDB($file, $apiInformation, $titleFolder) {
+
+	    $qids = [];
+        $html = file_get_html($titleFolder . '/' . $file);
+        $modelJson = $html->find('#model', 0)->innertext;
+        if ($modelJson) {
+            $model = json_decode($modelJson);
+
+            // For each question in the model, pick the item id and save
+            $qids = [];
+            foreach ($model->questions as $question) {
+                $qids[] = $question->id;
+            }
+        }
+        return $qids;
+    }
+    protected function readDataForItems($qids) {
+
+        // For each test-taker in the valid tests - this is a matrix of users and results
+        $userRS = $this->getTestTakerResults();
+
+        $records = [];
+        if ($userRS) {
+            $lastUid = 0; $record = [];
+            while ($dbObj = $userRS->FetchNextObj()) {
+                $uid = $dbObj->uid;
+                $qid = $dbObj->qid;
+                $score = $dbObj->score;
+                $result = $dbObj->result;
+                // If you are working on a new user, clear the stacks and write out the last one
+                if ($lastUid != $uid) {
+                    // Write out the previous record
+                    if ($lastUid>0) {
+                        $records[] = $record;
+                    }
+                    $lastUid = $uid;
+                    $record = ["uid" => $uid, "result" => $result];
+                }
+                // For each item that they answered, if it is part of the test record the score
+                if (in_array($qid, $qids)) {
+                    $record[$qid] = $score;
+                }
+            }
+            // And the final one...
+            $records[] = $record;
+
+        } else {
+            AbstractService::$log->notice("no test takers, no results");
+        }
+
+        // Now we have an array of users, each with an array of the items and their score.
+        // Need to format each line so that the items are in the right order and ones the user didn't see are included
+        // First a header record
+        testTakerOutput('item id', $qids, 'result');
+
+        foreach ($records as $record) {
+            $uid = $record["uid"];
+            $result = $record["result"];
+            $qidScores = [];
+            foreach ($qids as $qid) {
+                $qidScores[] = (isset($record[$qid])) ? $record[$qid] : '';
+            }
+            testTakerOutput($uid, $qidScores, $result);
+        }
+    }
+
+    // Get all the data for test takers in the tests we are counting
+    public function getTestTakerResults() {
+        // Add a whitelist of testIds that are considered valid
+        //$whiteList = '(75,366,364,358,345,338,330,328,327,274,273,251,238,229,226,225,78,68,65,64,63,62,61,60,59,58,57,51,50,49,48,47,46,45,44,43)';
+        //$whiteList = '(714,700,697,688,685,678,664,654,643,638,631,629,624,620,575,551,538,501,500,497,485,484,449,404,377,371,364,358,345,338,330,273)';
+        $whiteList = '(714)';
+        $sql = <<<EOD
+            select d.F_UserID as uid, d.F_ItemID as qid, (CASE WHEN d.F_Score is null THEN 0 ELSE d.F_Score END) as score, t.F_Result as result 
+            FROM T_ScoreDetail d, T_TestSession t
+            WHERE t.F_TestID in $whiteList
+            AND t.F_SessionID = d.F_SessionID
+            order by uid, qid;
+EOD;
+        $bindingParams = array();
+        return $this->db->Execute($sql, $bindingParams);
+    }
+
     // Count the number of times this item id has been attempted
     public function iaAttempts($itemId) {
         // We can't know the number of times the question has been presented and not attempted
         // as we don't write scoreDetails for such a case. Should we?
         // COUNT(*) presented,
+        // Add a whitelist of testIds that are considered valid
+        $whiteList = '(366,364,358,345,338,330,328,327,274,273,251,238,229,226,225,78,68,65,64,63,62,61,60,59,58,57,51,50,49,48,47,46,45,44,43)';
         $sql = <<<EOD
-			SELECT sum(CASE WHEN F_Score is not null THEN 1 ELSE 0 END) as attempts, 
-			       sum(CASE WHEN F_Score > 0 THEN 1 ELSE 0 END) as correct  
-			FROM T_ScoreDetail
-			WHERE F_ItemID=?
+            select sum(CASE WHEN d.F_Score is not null THEN 1 ELSE 0 END) as attempts, 
+                    sum(CASE WHEN d.F_Score > 0 THEN 1 ELSE 0 END) as correct
+            FROM T_ScoreDetail d, T_TestSession t
+            WHERE d.F_ItemID=?
+            AND t.F_TestID in $whiteList
+            AND t.F_SessionID = d.F_SessionID;
 EOD;
         $bindingParams = array($itemId);
         $rs = $this->db->Execute($sql, $bindingParams);
@@ -438,14 +588,17 @@ EOD;
         $wrongPatterns = array();
         $sql = <<<EOD
 			SELECT *  
-			FROM T_ScoreDetail
-			WHERE F_ItemID=?
-            AND F_Score = -1
+            FROM T_ScoreDetail d, T_TestSession t
+            WHERE d.F_ItemID=?
+            AND d.F_Score = -1
+            AND t.F_TestID in $whiteList
+            AND t.F_SessionID = d.F_SessionID;
 EOD;
         $bindingParams = array($itemId);
         $rs = $this->db->Execute($sql, $bindingParams);
         if ($rs) {
             $wrongPatterns = array();
+            $j = 0;
             while ($dbObj = $rs->FetchNextObj()) {
                 $wrongs = array();
                 $scoreDetail = new ScoreDetail();
@@ -483,16 +636,16 @@ EOD;
                 for ($i = 0; $i < count($wrongs); $i++) {
                     $pattern[] = $wrongs[$i] + 1; // Make it 1 based so easier to read
                 }
-                $wrongPatterns[] = implode(',', $pattern);
+                $wrongPatterns[$j] = implode(',', $pattern);
+                $j++;
             }
         }
         if (count($wrongPatterns) > 0) {
             // Find unique values and count them
             $summary = array_count_values($wrongPatterns);
             arsort($summary);
-            // But only worth reporting top (3?) results?
-            array_splice($summary, 5);
-            $rc['distractors'] = $summary;
+            // But only worth reporting top (5?) results?
+            $rc['distractors'] = array_slice($summary, 0,5, true);
         }
 
         return $rc;

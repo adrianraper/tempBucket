@@ -3,21 +3,7 @@ class DBDetails {
 
 	function __construct($dbHost) {
 		switch ($dbHost) {
-			// for performance testing
-			case 248:
-				$this->driver = "mysqli";
-				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";
-				$this->user = "clarity";
-				$this->password = "clarity123";
-				$this->dbname = "global_r2iv2";
-				break;
-			case 249:
-				$this->driver = "mysqli";
-				$this->host = "211.151.90.72";
-				$this->user = "root";
-				$this->password = "123456";
-				$this->dbname = "copy_global_r2iv2";
-				break;
+			// Archived databases
 			case 200:
 				$this->driver = "mysqli";
 				$this->host = "clarity-eu-db-2017-06-21-05-09.c8s4j19sgnql.eu-west-1.rds.amazonaws.com";
@@ -25,49 +11,7 @@ class DBDetails {
 				$this->password = "clarity123";
 				$this->dbname = "rack80829";
 				break;
-			case 102:
-				/*
-				$this->driver = "mysql";
-				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";
-				$this->user = "clarity";
-				$this->password = "clarity123";
-				$this->dbname = "GlobalRoadToIELTS";
-				*/
-				$this->driver = "mysqli";
-				$this->host = "localhost";
-				$this->user = "clarity";
-				$this->password = "clarity";
-				$this->dbname = "global_r2iv2";
-				break;
-			case 101:
-				$this->driver = "mysqli";
-				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";
-				$this->user = "clarity";
-				$this->password = "clarity123";
-				$this->dbname = "global_r2iv2";
-				break;
-			case 1000:
-				$this->driver = "mysqli";
-				$this->host = "localhost";
-				$this->user = "root";
-				$this->password = "Sunshine1787";
-				$this->dbname = "GlobalRoadToIELTS";
-				break;
-			case 20:
-				$this->driver = "mysqli";
-				$this->host = "localhost";
-				$this->user = "clarity";
-				$this->password = "clarity";
-				$this->dbname = "rack80829";
-				break;
-			/*
-				$this->driver = "mysql";
-				$this->host = "ClarityDevelop";
-				$this->user = "root";
-				$this->password = "Sunshine1787";
-				$this->dbname = "rack80829";
-				break;
-			*/
+            // BC Rackspace
 			case 400:
 				$this->driver = "mysqli";
 				$this->host = "46.38.190.53";

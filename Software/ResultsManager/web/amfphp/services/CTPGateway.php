@@ -29,10 +29,10 @@ $localTimestamp = $localDateTime->format('U')*1000;
 try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
+    //$json = json_decode('{"command":"getCoverage","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDc3MDQ4OCwic2Vzc2lvbklkIjoiMjU5In0.v0b1YdNxmx7NLrZopGmX7yavtn1v397nYf2LIBjzkvc"}');
+    //$json = json_decode('{"command":"login","email":"dave@sss","password":"b36dd0fe2ba555a061660f857f842596","productCode":66, "rootID":10719}');
     /*
     $json = json_decode('{"command":"login","email":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":65, "rootID":163}');
-    $json = json_decode('{"command":"login","email":"dave@sss","password":"b36dd0fe2ba555a061660f857f842596","productCode":66, "rootID":10719}');
-    $json = json_decode('{"command":"getCoverage","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDc0OTY2OSwic2Vzc2lvbklkIjoiMjUzIn0.HYB8KpYVqO6yFgkDJH8SNCTJfeNoppNREtKSRjE85y8"}');
     //$json = json_decode('{"command":"dbCheck"}');
     $json = json_decode('{"command":"login","email":"ferko.spits@email","password":"20863ef31d598f9c020c0d5b872e2fbe","productCode":66, "rootID":163}');
     $json = json_decode('{"command":"login","email":"xx@noodles.hk","password":"68f1e135ba6167a2a4665b267d8fde39","productCode":66, "rootID":163}');
@@ -139,7 +139,7 @@ try {
                         "lostVisibility": 1
                     }
                 },
-                "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDc0OTY2OSwic2Vzc2lvbklkIjoiMjUzIn0.HYB8KpYVqO6yFgkDJH8SNCTJfeNoppNREtKSRjE85y8",
+                "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDc3MDQ4OCwic2Vzc2lvbklkIjoiMjU5In0.v0b1YdNxmx7NLrZopGmX7yavtn1v397nYf2LIBjzkvc",
                 "localTimestamp": '. $utcTimestamp .',
                 "timezoneOffset": -480
         }');
@@ -243,6 +243,14 @@ try {
         throw new Exception("Empty request");
 
     $jsonResult = router($json);
+    switch ($json->command) {
+        case "login":
+        case "getTranslations":
+            AbstractService::$debugLog->info("CTP return " . $json->command);
+            break;
+        default:
+            AbstractService::$debugLog->info("CTP return " . json_encode($jsonResult));
+    }
     if ($jsonResult == []) {
         echo json_encode($jsonResult, JSON_FORCE_OBJECT);
     } else {
@@ -300,6 +308,9 @@ function router($json) {
     if ((isset($json->productCode) && $json->productCode==60))
         $json->productCode = 66;
 
+    $localDateTime = new DateTime();
+    $localTimestamp = $localDateTime->format('Y-m-d H:i:s');
+    AbstractService::$debugLog->info("CTP ".$json->command." at ".$localTimestamp);
     switch ($json->command) {
         case "login":
             $loginObj = Array();
@@ -373,13 +384,15 @@ function getResult($token, $mode = null) {
 
 function scoreWrite($token, $scoreObj, $localTimestamp, $clientTimezoneOffset=null) {
     global $service;
-    $rc = $service->scoreWrite($token, $scoreObj, $localTimestamp, $clientTimezoneOffset);
+    return $service->scoreWrite($token, $scoreObj, $localTimestamp, $clientTimezoneOffset);
+    /*
     // ctp#166
     if ($rc["success"]===false) {
         return array("token" => $token, "error" => $rc["error"]);
     } else {
         return array("token" => $token);
     }
+    */
 }
 // ctp#60
 function getTranslations($lang) {

@@ -132,7 +132,7 @@ class ClarityService extends AbstractService {
         
 	}
 	public function changeDB($dbHost) {
-        $this->changeDbHost($dbHost);
+        $this->initDbHost($dbHost);
 	}
 
 	/**

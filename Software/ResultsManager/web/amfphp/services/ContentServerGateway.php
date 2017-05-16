@@ -27,9 +27,9 @@ try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
     //$json = json_decode('{"command":"releaseLicenseSlot","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDI0NTM3Mywic2Vzc2lvbklkIjoiMjQ1In0.t_IJ-xCH5m94ZZUR7oSKa4KIMyfuDXf4GnYL3_TXleA","timestamp":'.$utcTimestamp.'}');
-    $json = json_decode('{"command":"updateActivity","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDc0OTY2OSwic2Vzc2lvbklkIjoiMjUzIn0.HYB8KpYVqO6yFgkDJH8SNCTJfeNoppNREtKSRjE85y8","timestamp":'.$utcTimestamp.'}');
-    $json = json_decode('{"command":"acquireLicenseSlots","tokens":["eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDc0OTY2OSwic2Vzc2lvbklkIjoiMjUzIn0.HYB8KpYVqO6yFgkDJH8SNCTJfeNoppNREtKSRjE85y8",
-                                                                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDY4MzE5Mywic2Vzc2lvbklkIjoiMzIifQ.YP7gtch3KYUsQpPbx4JJcTgiK2jSvRSNDPAF6Nunwwg"]}');
+    //$json = json_decode('{"command":"updateActivity","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDc0OTY2OSwic2Vzc2lvbklkIjoiMjUzIn0.HYB8KpYVqO6yFgkDJH8SNCTJfeNoppNREtKSRjE85y8","timestamp":'.$utcTimestamp.'}');
+    //$json = json_decode('{"command":"acquireLicenseSlots","tokens":["eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDc3MDQ4OCwic2Vzc2lvbklkIjoiMjU5In0.v0b1YdNxmx7NLrZopGmX7yavtn1v397nYf2LIBjzkvc",
+    //                                                              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDY4MzE5Mywic2Vzc2lvbklkIjoiMzIifQ.YP7gtch3KYUsQpPbx4JJcTgiK2jSvRSNDPAF6Nunwwg"]}');
     /*
     $json = json_decode('{"command":"getEncryptionKey","id":298}');
     $json = json_decode('{"command":"dbCheck"}');
@@ -38,6 +38,7 @@ try {
         throw new Exception("Empty request");
 
     $jsonResult = router($json);
+    AbstractService::$debugLog->info("return ".json_encode($jsonResult));
     if ($jsonResult == []) {
         echo json_encode($jsonResult, JSON_FORCE_OBJECT);
     } else {

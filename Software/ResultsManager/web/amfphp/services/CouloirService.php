@@ -177,7 +177,7 @@ class CouloirService extends AbstractService {
         // Create a session
         $session = $this->startCouloirSession($user, $rootId, $productCode, $testId);
 
-        // Create a token
+        // Create a token that contains this session id
         $token = $this->authenticationCops->createToken(["sessionId" => (string) $session->sessionId]);
 
         // Grab a licence slot - this will send exception if none available
@@ -188,6 +188,8 @@ class CouloirService extends AbstractService {
             "user" => $user,
             "tests" => $tests,
             "token" => $token);
+
+        AbstractService::$debugLog->info("token=$token");
 
         // sss#12 For a title that uses encrypted content, send the key
         if ($productCode == 63 || $productCode == 65) {
@@ -441,7 +443,7 @@ EOD;
         // If you want to test what happens if scores are written but CTP thinks they are not...
         //throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => "Fake error"));
 
-        return array("success" => true);
+        return [];
     }
 
     // sss#12 Only relevant for DPT, DE
@@ -568,7 +570,7 @@ EOD;
         $sessionId = $this->authenticationCops->getSessionId($token);
 
         // Get the full session record
-        $session = $this->progressCops->getSession($sessionId);
+        $session = $this->progressCops->getCouloirSession($sessionId);
 
         // Retrieve the score records for this user and this product
         $units = $this->progressCops->getUnitProgress($session);
@@ -586,7 +588,7 @@ EOD;
         $sessionId = $this->authenticationCops->getSessionId($token);
 
         // Get the full session record
-        $session = $this->progressCops->getSession($sessionId);
+        $session = $this->progressCops->getCouloirSession($sessionId);
 
         // Retrieve the score records for this user and this product
         $units = $this->progressCops->getUnitProgress($session);
