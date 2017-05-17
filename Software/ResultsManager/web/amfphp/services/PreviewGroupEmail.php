@@ -191,7 +191,7 @@ array_push($userEmailArray, $adminEmail);
 </div>
 <div class="w3-cell-row">
     <div class="w3-container w3-cell w3-card-2" style="width:40%">
-        <ul class="w3-ul w3-hoverable scrollingBlock w3-margin-top w3-margin-bottom" style="height:700px">
+        <ul class="w3-ul w3-hoverable scrollingBlock w3-margin-top w3-margin-bottom" style="height:720px">
             <?php
             if (count($userEmailArray) > 0) {
                 $n = 0;
@@ -208,7 +208,7 @@ array_push($userEmailArray, $adminEmail);
         </ul>
     </div>
     <div class="w3-container w3-cell w3-card-2 w3-padding-0">
-        <div class="w3-container w3-margin w3-hover-shadow" style="height:700px">
+        <div class="w3-container w3-margin w3-hover-shadow" style="height:720px">
                 <div id="emailContents"><?php echo $emailContents; ?></div>
                 <div><strong>Notes</strong>&nbsp;&nbsp;<i class="fa fa-edit promptWithIcon" style="font-size:20px"></i>
                 </div>
@@ -237,7 +237,7 @@ array_push($userEmailArray, $adminEmail);
                                   class="w3-closebtn">&times;</span>
             <h3>Click OK to confirm this and all emails</h3>
         </header>
-        <div id="emailConfirm" class="w3-container">Email goes here</div>
+        <div id="emailConfirm" class="w3-container">Loading the email...</div>
         <div class="w3-container w3-border-top w3-padding-8 w3-light-grey">
             <button onclick="sendEmails()" type="button" class="w3-btn w3-teal w3-left">OK</button>
             <button onclick="dontSendEmail()" type="button" class="w3-btn w3-teal w3-right">Cancel</button>

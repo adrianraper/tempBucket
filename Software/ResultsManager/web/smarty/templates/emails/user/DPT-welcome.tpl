@@ -16,25 +16,28 @@
 <body style="font-family: Sans-Serif; font-size: 15px">
 <p>
 <!-- <div style="text-align: center"><img src="http://www.clarityenglish.com/images/program/DPTpage/dpt_icon_email.png" width="116" height="76"></div> -->
-<p >Dear {$user->name}</p>
-<p >You are scheduled to take an English test.</p>
-<p ><strong>Test name:</strong><br/>
+<p>Dear {$user->name}</p>
+<p>You are scheduled to take an English test.</p>
+<p><strong>Test name:</strong><br/>
 {$testDetail->caption}</p>
-<p ><strong>Test time:</strong><br/>
+<p><strong>Test time:</strong><br/>
     From: {format_ansi_date ansiDate=$testDetail->openTime format="%Y-%m-%d %H:%M"}<br/>
-    To: &nbsp;&nbsp;{format_ansi_date ansiDate=$testDetail->closeTime format="%Y-%m-%d %H:%M"}</p>
-<p ><strong>Sign in details:</strong><br/>
-    Email: <strong>{$user->email}</strong><br/>
+    To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{format_ansi_date ansiDate=$testDetail->closeTime format="%Y-%m-%d %H:%M"}<br/>
+The test will take 30 minutes.</p>
+<p><strong>Sign in details:</strong><br/>
+    Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>{$user->email}</strong><br/>
     Password: <strong>{$user->password}</strong></p>
 
 <p style="margin-bottom: 0"><strong>How to take the test</strong><br/>
-<ol style="margin-top: 0">
-    <li>Go to <a href="https://dpt.clarityenglish.com">dpt.clarityenglish.com</a> in your browser or download the app from the <a href="https://itunes.apple.com/hk/app/dynamic-placement-test/id1179218583?mt=8&amp;ign-mpt=uo%3D4" target="_blank" style=" font-size:0.9em;">Apple App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.clarityenglish.ctp_wrapper&hl=en" target="_blank" style=" font-size:0.9em;">Google Play</a>. Search for <strong>Dynamic Placement Test</strong>.<br/>
-    <li>Sign in and try section 1 of the test to make sure it runs properly.</li>
-{if $testDetail->startType == 'code'}
-    <li>Your test administrator will give you the access code when the test is ready to start.</li>
-{/if}
+You can take the test on a desktop/laptop or a tablet/smartphone.
+<ol style="margin-top: 0; margin-bottom: 0">
+    <li>For desktop/laptop go to <a href="https://dpt.clarityenglish.com"><strong>dpt.clarityenglish.com</strong></a> in your browser.</li>
+    <li>For tablet/phone download the app from the <a href="https://itunes.apple.com/hk/app/dynamic-placement-test/id1179218583?mt=8&amp;ign-mpt=uo%3D4" target="_blank" style=" font-size:0.9em;">Apple App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.clarityenglish.ctp_wrapper&hl=en" target="_blank" style=" font-size:0.9em;">Google Play</a>. Search for <strong>Dynamic Placement Test</strong>.</li>
 </ol>
+Sign in and try section 1 of the test to make sure it runs properly.<br/>
+{if $testDetail->startType == 'code'}
+    Your test administrator will give you the access code when the test is ready to start.
+{/if}
 </p>
 
 <p><strong>Important</strong><br/>
