@@ -216,8 +216,9 @@ class Content{
 						}
 					}
 					//echo $fieldType;
+					// sss#11
 					if ($fieldType==Field::FIELD_TYPE_DROP) {
-						$buildText.=$m[1].'<span id="q'.$m[2].'" class="droptarget" />'.$m[3];
+						$buildText.=$m[1].'<span id="q'.$m[2].'" class="droptarget"></span>'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_GAP) {
 						$buildText.=$m[1].'<input id="q'.$m[2].'" class="gapfill" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_TARGET) {
@@ -402,8 +403,9 @@ class Content{
 							// TODO: What if we didn't find this field id?
 						}
 					}
+					// sss#11
 					if ($fieldType==Field::FIELD_TYPE_DROP) {
-                        $buildText.=$m[1].'<span id="q'.$m[2].'" class="droptarget" />'.$m[3];
+                        $buildText.=$m[1].'<span id="q'.$m[2].'" class="droptarget"></span>'.$m[3];
 					}
 				}
 			}
