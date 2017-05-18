@@ -253,6 +253,7 @@ class Content{
 		// Need to add TARGET_SPOTTING for RTI-GT
 		if (($exerciseType==Exercise::EXERCISE_TYPE_MULTIPLECHOICE) ||
 			($exerciseType==Exercise::EXERCISE_TYPE_TARGETSPOTTING) ||
+            ($exerciseType==Exercise::EXERCISE_TYPE_QUIZ) ||
 			($exerciseType==Exercise::EXERCISE_TYPE_DROPDOWN)) {
             // You need to output all the paragraphs.
             $lastTagType = null;
@@ -285,9 +286,11 @@ class Content{
                 $builder = preg_replace($patterns, $replacement, $builder);
 
                 // If this is an option, save it, otherwise write out the text
+                // sss#10 A quiz will have two fields in one paragraph
                 $pattern = '/\[([\d]{1,2})\]/i';
-                if (preg_match($pattern, $builder, $matches)) {
-                    $options[] = $matches[1];
+                if (preg_match_all($pattern, $builder, $matches)) {
+                    foreach ($matches[1] as $match)
+                        $options[] = $match;
                 } else {
                     $buildText .= '<p>'.$builder.'</p>';
                 }
@@ -320,7 +323,8 @@ class Content{
 			foreach ($this->getMediaNodes() as $mediaNode) {
 				$buildText.=$mediaNode->output();
 			}
-		} elseif ($exerciseType==Exercise::EXERCISE_TYPE_QUIZ) {
+		/*
+		  } elseif ($exerciseType==Exercise::EXERCISE_TYPE_QUIZ) {
 			// You need to output all the paragraphs.
 			$lastTagType = null;
 			// MC are very specific format from Arthur. There will only be one paragraph, but
@@ -374,6 +378,7 @@ class Content{
 			foreach ($this->getMediaNodes() as $mediaNode) {
 				$buildText.=$mediaNode->output();
 			}
+		*/
 		} elseif ($exerciseType==Exercise::EXERCISE_TYPE_DRAGANDDROP) {
 			// You need to output all the paragraphs.
 			$lastTagType = $thisTagType = null;
