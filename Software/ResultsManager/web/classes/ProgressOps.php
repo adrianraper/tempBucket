@@ -555,6 +555,16 @@ SQL;
             $rc['bonusCorrect'] = $bonusCorrect;
             $rc['lastUnitID'] = $lastUnitID;
             $rc['trackUnitID'] = $trackUnitID;
+
+            // Show which tags applied to correct answers
+            $tags = array();
+            foreach ($trackDetails as $trackDetail) {
+                $detail = json_decode($trackDetail->detail);
+                $tags = array_merge($tags, $detail->tags);
+            }
+            if (count($tags)>0) {
+                $rc['tagsCorrect'] = array_count_values($tags);
+            }
         }
         return $rc;
     }

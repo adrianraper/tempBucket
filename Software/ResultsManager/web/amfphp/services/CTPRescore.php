@@ -1,7 +1,9 @@
 <?php
 /**
  * This file will rescore a test using the latest marking scheme
- * ?testID=xx&sessionID=xx
+ * ?testID=xx&sessionID=xx&mode=overwrite
+ *
+ * or show you details for a test taker ?email=ferko@email
  */
 
 header('Content-type: application/json');
@@ -12,18 +14,18 @@ require_once(dirname(__FILE__)."/CTPService.php");
 
 $service = new CTPService();
 set_time_limit(3600);
-$requestedSessionID = (isset($_GET['sessionID'])) ? $_GET['sessionID'] : null;
-$requestedTestID = (isset($_GET['testID'])) ? $_GET['testID'] : null;
+$requestedSessionID = (isset($_GET['sessionID'])) ? $_GET['sessionID'] : '';
+$requestedTestID = (isset($_GET['testID'])) ? $_GET['testID'] : '';
+$testTakerEmail = (isset($_GET['email'])) ? $_GET['email'] : '';
 
-if ($requestedSessionID == null && $requestedTestID == null)
-    throw new Exception("Parameter should be sessionID=xx or testID=xx");
+// If you want to really do a rescore and change the database, mode=overwrite
+$mode = (isset($_GET['mode'])) ? $_GET['mode'] : 'debug';
+
+if ($requestedSessionID == null && $requestedTestID == null && $testTakerEmail == null)
+    throw new Exception("Parameter should be sessionID=xx, testID=xx or email=x@y.z");
 
 try {
-    if ($requestedSessionID) {
-        $json = json_decode('{"command":"getTestResult","sessionID":"' . $requestedSessionID . '","mode":"debug"}');
-    } elseif ($requestedTestID) {
-        $json = json_decode('{"command":"getAllTestResults","testID":"' . $requestedTestID . '","mode":"debug"}');
-    }
+    $json = json_decode('{"command":"getTestResults","sessionID":"'.$requestedSessionID.'","testID":"'.$requestedTestID.'","email":"'.$testTakerEmail.'","mode":"'.$mode.'"}');
 
     if (!$json)
         throw new Exception("Empty request");
@@ -67,26 +69,20 @@ function router($json) {
     	$json->mode = null;
     	
     switch ($json->command) {
-        case "getAllTestResults": return getAllTestResults($json->testID, $json->mode);
-        case "getTestResult": return getResult($json->sessionID, $json->mode);
+        case "getTestResults": return getTestResults($json->sessionID, $json->email, $json->testID, $json->mode);
         case "getTranslations": return getTranslations($json->lang);
         default: throw new Exception("Unknown command");
     }
 }
 
 // Only for batch processing of results
-function getAllTestResults($testID, $mode = null) {
+function getTestResults($sessionID, $email, $testID, $mode = null) {
     global $service;
+    $results = array();
     // Get all the sessions for people who completed this test
-    foreach ($service->getSessionsForTest($testID) as $session) {
+    foreach ($service->getSessionsForTest($sessionID, $email, $testID) as $session)
         $results[] = $service->getTestResult($session->sessionId, $mode);
-    }
     return $results;
-}
-
-function getResult($sessionId, $mode = null) {
-    global $service;
-    return $service->getTestResult($sessionId, $mode);
 }
 
 // ctp#60

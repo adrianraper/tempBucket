@@ -265,8 +265,12 @@ class CTPService extends BentoService {
         // Get the session record
         $session = $this->testOps->getTestSession($sessionId);
 
+        // For manual figuring out of a result, with more detail
+        if ($mode=='debug')
+            return $this->progressOps->getTestResult($session, $mode);
+
         // gh#151 Has the result already been calculated for this session?
-        if (!$session->result || $mode=='overwrite' || $mode=='debug') {
+        if (!$session->result || $mode=='overwrite') {
             $session->result = $this->progressOps->getTestResult($session, $mode);
 
             // ctp#261 Find the datestamp of the first real score in the test to update the session with
@@ -277,7 +281,7 @@ class CTPService extends BentoService {
         }
 
         // gh#151 Have we closed the session?
-        if (!$session->completedDateStamp || $mode=='overwrite' || $mode=='debug') {
+        if (!$session->completedDateStamp || $mode=='overwrite') {
             // ctp#261 Get the time the last score was written for this session
             $lastScore = $this->testOps->getLastScore($sessionId);
             $session->completedDateStamp = $lastScore->dateStamp;
@@ -288,8 +292,8 @@ class CTPService extends BentoService {
         if ($isDirty)
             $this->progressOps->updateTestSession($session);
 
-        // Debug mode (offline/batch rescoring) never hides result
-        if ($mode=='debug')
+        // With manual rescoring we always want to show the result
+        if ($mode=='overwrite')
             return $session->result;
 
         // ctp#173 Does the test administrator want the test takers to see a result?
@@ -312,9 +316,18 @@ class CTPService extends BentoService {
         return $session->result;
     }
 
-    // Pick up all the sessions for a particular test
-    public function getSessionsForTest($testID) {
-        return $this->testOps->getSessionsForTest($testID);
+    // Pick up all the sessions for a particular test or test taker
+    public function getSessionsForTest($sessionId, $email, $testId) {
+	    if ($testId)
+            return $this->testOps->getSessionsForTest($testId);
+        if ($email)
+            return $this->testOps->getSessionsFromEmail($email);
+        if ($sessionId) {
+            $sessions = array();
+            $sessions[] = $this->testOps->getTestSession($sessionId);
+            return $sessions;
+        }
+        return array();
     }
 
     // ctp#60 Literals file for DPT

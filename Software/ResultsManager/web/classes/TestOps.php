@@ -169,6 +169,25 @@ EOD;
         }
     }
 
+    function getSessionsFromEmail($email) {
+        $sessions = array();
+        $sql = <<<EOD
+			SELECT s.* 
+			FROM T_TestSession s, T_User u
+			WHERE s.F_UserID = u.F_UserID
+            AND u.F_Email=?
+EOD;
+        $bindingParams = array($email);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs && $rs->RecordCount() > 0)
+            while ($dbObj = $rs->FetchNextObj()) {
+                $testSession = new TestSession();
+                $testSession->fromDatabaseObj($dbObj);
+                $sessions[] = $testSession;
+            }
+        return $sessions;
+    }
+
     function getSessionsForTest($testId) {
 	    $sessions = array();
         $sql = <<<EOD
