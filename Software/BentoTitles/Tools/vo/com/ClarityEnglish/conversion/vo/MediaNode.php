@@ -112,28 +112,41 @@ class MediaNode {
 		switch ($this->type) {
 			case 'picture':
 			case 'image':
-				$build.= '<img '; 
+				$build.= '<img ';
+                $build .= 'src="../media/'.$this->filename.'" ';
 				break;
 			case 'streamingAudio':
 			case 'audio':
-				$build.= '<audio controls="compact" '; 
+				/*
+				 <video width="320" height="240" controls>
+				  <source src="movie.mp4" type="video/mp4">
+				  <source src="movie.ogg" type="video/ogg">
+				  Your browser does not support the video tag.
+  				 </video>
+				 */
+				$build.= '<audio controls class="compact">';
+                $build .= '<source src="../media/'.$this->filename.'" type="audio/mp3">';
 				break;
 			case 'video':
-				$build.= '<video '; 
+				$build.= '<video controls>';
+                $build .= '<source src="../media/'.$this->filename.'" type="video/mp4">';
 				break;
             case 'url':
                 $build.= '<a ';
+                $thisUrl = str_replace('#sharedMedia#	', '', $this->url);
+                $build .= 'src="../media/'.$thisUrl.'" ';
                 break;
 			// Possibly other media nodes will be blocked as they were hacks
 			case 'text':
 				return '';
 				break;
 			default:
-				$build.= '<media ';
+				//$build.= '<media ';
 		}
 		// Then based on the x and y we will position it somehow
 		// But for now don't try to get video to float as it will fail
 		// It also seems likely that most video exercises will get tweaked a bit anyway
+        /*
 		if ($this->type!='video' && $this->type!='url') {
 			if ($this->x>=100 && $this->y<=100) {
 				$build.= 'class="rightFloat" ';
@@ -141,23 +154,21 @@ class MediaNode {
 				$build.= 'class="leftFloat" ';
 			}
 		}
-		// Location is merged into filename
-		if ($this->type == 'url') {
-			$thisUrl = str_replace('#sharedMedia#	', '', $this->url);
-            $build .= 'src="../media/'.$thisUrl.'" ';
-        } else {
-            $build .= 'src="../media/'.$this->filename.'" ';
-		}
+        */
 		// Other attributes that just get copied
 		//$build.="mode=\"$this->mode\" id=\"$this->id\" ";
 
 		// Let it be a natural width and height unless stretched
-		if ($this->stretch=='true')
-			$build.="height=\"$this->height\" width=\"$this->width\" ";
+		//if ($this->stretch=='true')
+		//	$build.="height=\"$this->height\" width=\"$this->width\" ";
 
         switch ($this->type) {
             case 'url':
                 $build .= '>'.$this->name.'</a>';
+                break;
+            case 'audio':
+            case 'video':
+                $build .= '</'.$this->type.'>';
                 break;
             default:
                 $build .= ' />';
@@ -165,4 +176,3 @@ class MediaNode {
 		return $build;
 	}
 }
-?>

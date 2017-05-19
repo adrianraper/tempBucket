@@ -27,7 +27,9 @@ class ConversionOps {
 			$sections = $this->formatHtmlSections();
             $feedback = $this->formatHtmlFeedback();
 			$contents = $this->formatFullHtml($head, $rubric, $readingText, $sections, $feedback);
-			fwrite($fh, $contents);
+            $prettyPrinter = new Gajus\Dindent\Indenter();
+            $prettyContents = $prettyPrinter->indent($contents);
+			fwrite($fh, $prettyContents);
 			fclose($fh);
 		}	
 	}
@@ -144,6 +146,7 @@ EOD;
 
     // There are some bits of html that get wrecked if you do prettyprintHtml, so do the xml version for them
     function prettyprint($text) {
+	    return $text;
         $dom = new DOMDocument('1.0');
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput = true;
@@ -157,6 +160,7 @@ EOD;
         return $build;
     }
     function prettyprintHtml($text) {
+        return $text;
         $dom = new DOMDocument('1.0');
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput = true;
