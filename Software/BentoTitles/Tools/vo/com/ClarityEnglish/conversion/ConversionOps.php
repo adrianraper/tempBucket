@@ -147,6 +147,7 @@ EOD;
     // There are some bits of html that get wrecked if you do prettyprintHtml, so do the xml version for them
     function prettyprint($text) {
 	    return $text;
+	    // Do all pretty print in the regex beautifier now
         $dom = new DOMDocument('1.0');
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput = true;
@@ -161,6 +162,7 @@ EOD;
     }
     function prettyprintHtml($text) {
         return $text;
+        // Do all pretty print in the regex beautifier now
         $dom = new DOMDocument('1.0');
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput = true;
@@ -174,6 +176,7 @@ EOD;
         return $build;
     }
     // Not able to make this work yet
+    /*
     function formatHtml($html) {
         // Load HTML that already has doctype and stuff
         $formatter = new \HtmlFormatter\HtmlFormatter($html);
@@ -198,4 +201,5 @@ EOD;
         // Get resulting HTML
         return $formatter->getText();
     }
+    */
 }

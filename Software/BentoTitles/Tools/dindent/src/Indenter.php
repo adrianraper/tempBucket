@@ -64,7 +64,7 @@ class Indenter {
         if (preg_match_all('/<script\b[^>]*>([\s\S]*?)<\/script>/mi', $input, $matches)) {
             $this->temporary_replacements_script = $matches[0];
             foreach ($matches[0] as $i => $match) {
-                // But if the script is type="text/xxx" then we want to just indent it like the rest
+                // Clarity: But if the script is type="text/xxx" then we want to just indent it like the rest
                 if (preg_match('/type="([\S]+?)"/i', $match, $innerMatches))
                     if (stripos($innerMatches[1],"text/") === 0)
                         continue;
@@ -82,6 +82,12 @@ class Indenter {
         if (preg_match_all('/<(' . implode('|', $this->inline_elements) . ')[^>]*>(?:[^<]*)<\/\1>/', $input, $matches)) {
             $this->temporary_replacements_inline = $matches[0];
             foreach ($matches[0] as $i => $match) {
+                // Clarity: If this is a span with an id that is NOT class=droptarget|target, don't treat it as inline
+                // Could be rewritten as any span which has draggable=true, but this way seems more likely to hit the general spot
+                // <span id="a12" draggable="true">reviews first draft</span>
+                if ((stripos($match, '<span') === 0) && (stripos($match, 'id=') !== false))
+                    if ((stripos($match, 'class="droptarget"') === false) && (stripos($match, 'class="target"') === false))
+                        continue;
                 $input = str_replace($match, 'ᐃ' . ($i + 1) . 'ᐃ', $input);
             }
         }
@@ -164,7 +170,7 @@ class Indenter {
         $output = preg_replace('/(<(\w+)[^>]*>)\s*(<\/\2>)/', '\\1\\3', $output);
 
         foreach ($this->temporary_replacements_script as $i => $original) {
-            // But if the script is type="text/xxx" then we didn't replace it earlier
+            // Clarity: but if the script is type="text/xxx" then we didn't replace it earlier
             if (preg_match('/type="([\S]+?)"/i', $original, $innerMatches))
                 if (stripos($innerMatches[1],"text/") === 0)
                     continue;
