@@ -39,7 +39,7 @@ class Licence {
 			$this->licenceClearanceDate = $this->licenceStartDate;
 		// Just in case dates have been put in wrongly. 
 		// First, if clearance date is in the future, use the start date
-		if ($this->licenceClearanceDate > time()) 
+		if ($this->licenceClearanceDate > $this->getNow())
 			$this->licenceClearanceDate = $this->licenceStartDate;
 		// If clearance date is before the start date, it doesn't much matter
 		// Turn the string into a timestamp
@@ -49,13 +49,13 @@ class Licence {
 		if (!$this->licenceClearanceFrequency)
 			$this->licenceClearanceFrequency = '1 year';
 		if (stristr($this->licenceClearanceFrequency, '-')!==FALSE) 
-			$this->licenceClearanceFrequency = str_replace('-', '', $title-> licenceClearanceFrequency);
+			$this->licenceClearanceFrequency = str_replace('-', '', $this->licenceClearanceFrequency);
 		// Check that the frequency is valid
 		if (!strtotime($this->licenceClearanceFrequency, $fromDateStamp) > 0)
 			$this->licenceClearanceFrequency = '1 year';
 		// Just in case we still have invalid data
 		$safetyCount=0;
-		while ($safetyCount<99 && strtotime($this->licenceClearanceFrequency, $fromDateStamp) < time()) {
+		while ($safetyCount<99 && strtotime($this->licenceClearanceFrequency, $fromDateStamp) < $this->getNow()) {
 			$fromDateStamp = strtotime($this->licenceClearanceFrequency, $fromDateStamp);
 			$safetyCount++;
 		}
@@ -76,6 +76,31 @@ class Licence {
 		$this->expiryDate = $title->expiryDate;
 		$this->licenceStartDate = $title->licenceStartDate;
 		$this->findLicenceClearanceDate();
-	}		
-		
+	}
+
+	// Just in case you got licence from JSON and it became an array instead of a Licence
+	public function fromArray($array) {
+	    if (isset($array['licenceType']))
+            $this->licenceType = $array['licenceType'];
+        if (isset($array['maxStudents']))
+            $this->maxStudents = $array['maxStudents'];
+        if (isset($array['licenceClearanceDate']))
+            $this->licenceClearanceDate = $array['licenceClearanceDate'];
+        if (isset($array['licenceClearanceFrequency']))
+            $this->licenceClearanceFrequency = $array['licenceClearanceFrequency'];
+        if (isset($array['expiryDate']))
+            $this->expiryDate = $array['expiryDate'];
+        if (isset($array['licenceStartDate']))
+            $this->licenceStartDate = $array['licenceStartDate'];
+        $this->findLicenceClearanceDate();
+    }
+
+    /**
+     * Utility to help with testing dates and times
+     */
+    private function getNow() {
+        $nowString = (isset($GLOBALS['fake_now'])) ? $GLOBALS['fake_now'] : 'now';
+        $now = new DateTime($nowString, new DateTimeZone(TIMEZONE));
+        return $now->getTimestamp();
+    }
 }	

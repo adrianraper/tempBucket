@@ -18,9 +18,14 @@ function loadAPIInformation() {
 	global $thisService;
 
 	//$inputData = file_get_contents("php://input");
-	$inputData = '{"method":"getAllManageablesFromRoot","username":"clarity","password":"ceonlin787e","dbHost":2}';
+	//$inputData = '{"method":"getAllManageablesFromRoot","username":"clarity","password":"ceonlin787e","dbHost":2}';
+    $inputData = '{"method":"getUsageStats", "username":"Mrs Twaddle", "password":"password",
+                    "productCode":"61", "fromDate":"2017-01-01", "toDate":"2017-12-31", "dbHost":2}';
 
-	$postInformation= json_decode($inputData, true);
+    // Do you want to fake a special date for testing?
+    //$GLOBALS['fake_now'] = '2017-01-26 09:00:00';
+
+    $postInformation= json_decode($inputData, true);
 	if (!$postInformation)
 		throw new Exception('Error decoding data: '.': '.$inputData);
 
@@ -104,7 +109,22 @@ try {
 			    $rc = $thisService->manageableOps->getAllManageablesFromRoot();
 			break;
 
-		default:
+        case 'getUsageStats';
+            $me = $thisService->login($apiInformation['username'], $apiInformation['password']);
+            $productCode = $apiInformation['productCode'];
+            $fromDate = $apiInformation['fromDate'];
+            $toDate = $apiInformation['toDate'];
+            if ($me) {
+                $title = $thisService->contentOps->getContent($productCode);
+                if (isset($title[0])) {
+                    $rc = $thisService->usageOps->getUsageForTitle($title[0], $fromDate, $toDate);
+                    $rc = array_merge($rc, $thisService->usageOps->getFixedUsageForTitle($title[0], $fromDate, $toDate));
+                }
+            }
+            break;
+
+        default:
+            throw new Exception('Couldn\'t handle method: '.$apiInformation['method']);
 	}
 
 	if (isset($rc['errCode']) && intval($rc['errCode']) > 0) {

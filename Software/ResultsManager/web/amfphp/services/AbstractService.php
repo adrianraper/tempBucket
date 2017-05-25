@@ -243,9 +243,9 @@ class AbstractService {
         }
         return $localDateTime->format('Y-m-d H:i:s');
     }
-/*
- * For converting unix timestamps (milliseconds since epoch) to strings for the database
- */
+    /*
+     * For converting unix timestamps (milliseconds since epoch) to strings for the database
+     */
     public function timestampToAnsiString($timestamp) {
         return date("Y-m-d H:i:s", ($timestamp/1000));
     }

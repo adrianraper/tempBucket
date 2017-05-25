@@ -161,8 +161,7 @@ EOD;
         $bindingParams = array($sessionId);
         $rs = $this->db->Execute($sql, $bindingParams);
         if ($rs && $rs->RecordCount() > 0) {
-            $testSession = new TestSession();
-            $testSession->fromDatabaseObj($rs->FetchNextObj());
+            $testSession = new TestSession($rs->FetchNextObj());
             return $testSession;
         } else {
             return false;
@@ -181,9 +180,7 @@ EOD;
         $rs = $this->db->Execute($sql, $bindingParams);
         if ($rs && $rs->RecordCount() > 0)
             while ($dbObj = $rs->FetchNextObj()) {
-                $testSession = new TestSession();
-                $testSession->fromDatabaseObj($dbObj);
-                $sessions[] = $testSession;
+                $sessions[] = new TestSession($dbObj);
             }
         return $sessions;
     }
@@ -200,9 +197,7 @@ EOD;
         $rs = $this->db->Execute($sql, $bindingParams);
         if ($rs && $rs->RecordCount() > 0)
             while ($dbObj = $rs->FetchNextObj()) {
-                $testSession = new TestSession();
-                $testSession->fromDatabaseObj($dbObj);
-                $sessions[] = $testSession;
+                $sessions[] = new TestSession($dbObj);
             }
 	    return $sessions;
     }

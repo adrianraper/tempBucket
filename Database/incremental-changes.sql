@@ -1543,3 +1543,32 @@ INSERT INTO `T_ProductVersion` VALUES
 (65,'FV'),
 (65,'DEMO'),
 (65,'FV');
+
+-- gh#1230 new licence tracking
+DROP TABLE IF EXISTS `T_LicenceHolders`;
+CREATE TABLE `T_LicenceHolders` (
+  `F_LicenceID` int(11) NOT NULL AUTO_INCREMENT,
+  `F_UserID` int(11) NOT NULL,
+  `F_RootID` int(11) NOT NULL DEFAULT 0,
+  `F_ProductCode` smallint(5) NOT NULL DEFAULT 0,
+  `F_StartDateStamp` datetime NOT NULL,
+  `F_EndDateStamp` datetime DEFAULT NULL,
+  PRIMARY KEY (`F_LicenceID`),
+  KEY `Index_1` (`F_UserID`,`F_ProductCode`),
+  KEY `Index_2` (`F_RootID`,`F_ProductCode`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;  
+
+DROP TABLE IF EXISTS `T_LicenceHoldersDeleted`;
+CREATE TABLE `T_LicenceHoldersDeleted` (
+  `F_LicenceID` int(11) NOT NULL,
+  `F_UserID` int(11) DEFAULT NULL,
+  `F_RootID` int(11) DEFAULT NULL,
+  `F_ProductCode` smallint(5) DEFAULT NULL,
+  `F_StartDateStamp` datetime DEFAULT NULL,
+  `F_EndDateStamp` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;  
+
+INSERT INTO `T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (2450, '2017-05-31 00:00:00', 'New licence tables');
+

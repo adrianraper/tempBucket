@@ -18,6 +18,8 @@ if (!isset($noSession)) session_start();
 // gh#815 This doesn't seem to be reliable with new DateTime();
 define('TIMEZONE', 'UTC');
 date_default_timezone_set(TIMEZONE);
+// gh#1230 To help with testing with particular dates as today - override in your debug gateway
+unset($GLOBALS['fake_now']);
 
 // If the total manageables in the logged in account is more than this students will not be displayed and some function disabled (RM only)
 $GLOBALS['max_manageables_for_student_display'] = 5000;

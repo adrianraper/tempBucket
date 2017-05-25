@@ -18,6 +18,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Subscripti
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/trigger/Trigger.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/trigger/Condition.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Account.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Licence.php");
 
 require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
@@ -39,6 +40,7 @@ require_once(dirname(__FILE__)."/../../classes/CourseOps.php");
 require_once(dirname(__FILE__)."/../../classes/TriggerOps.php");
 require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php");
 require_once(dirname(__FILE__)."/../../classes/MemoryOps.php");
+require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
 require_once(dirname(__FILE__)."/../../classes/DailyJobObs.php");
 
 require_once(dirname(__FILE__)."/AbstractService.php");
@@ -71,7 +73,9 @@ class MinimalService extends AbstractService {
 		$this->triggerOps = new TriggerOps($this->db);
 		$this->subscriptionOps = new SubscriptionOps($this->db);
 		$this->memoryOps = new MemoryOps($this->db);
-		
+		$this->licenceOps = new LicenceOps($this->db);
+		$this->accountOps = new AccountOps($this->db);
+
 		// DMS has no restrictions on user/group access so disable manageable authentication
 		AuthenticationOps::$useAuthentication = false;
 		

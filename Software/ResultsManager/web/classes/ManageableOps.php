@@ -2459,7 +2459,37 @@ EOD;
 				return null;
 		}
 	}
-	
+
+	// Odd utility function for getting users from a root with no group structure
+    // It is very slow to create all these new User objects, and all we need is userID
+    public function getUsersFromAccount($account) {
+	    $rootID = $account->id;
+        $sql = <<<EOD
+    			SELECT distinct u.F_UserID as userId
+    				FROM T_User u, T_Membership m
+    				WHERE u.F_UserID=m.F_UserID
+    				AND m.F_RootID=?
+    				AND u.F_UserType = 0 
+EOD;
+        $rs = $this->db->Execute($sql, array($rootID));
+        switch ($rs->RecordCount()) {
+            case 0:
+                // There are no records
+                return false;
+            default:
+                $users = array();
+                while ($userObj = $rs->FetchNextObj()) {
+                    /*
+                    $user = new User();
+                    $user->fromDatabaseObj($userObj);
+                    $users[] = $user;
+                    */
+                    $users[] = array('userID' => $userObj->userId);
+                }
+        }
+        return $users;
+    }
+
 	/**
 	 * This will either find the user, or will add a new one
 	 * 

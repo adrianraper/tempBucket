@@ -16,6 +16,7 @@ class DailyJobObs {
 		$this->courseOps = new CourseOps($this->db);
 		$this->subscriptionOps = new SubscriptionOps($this->db);
 		$this->memoryOps = new MemoryOps($this->db);
+		$this->licenceOps = new LicenceOps($this->db);
 	}
 	
 	/**
@@ -239,7 +240,45 @@ SQL;
 		
 	}
 
-	// For archiving sent emails.
+    // git#1230 For archiving LT licences that have expired
+    // Expected to be run by a daily CRON job
+    function archiveExpiredLicences($expiredDate, $database) {
+
+        $this->db->StartTrans();
+        $sql = <<<SQL
+			INSERT INTO $database.T_LicenceHoldersDeleted
+			SELECT * FROM $database.T_LicenceHolders 
+			WHERE F_EndDateStamp < ?;
+SQL;
+        $bindingParams = array($expiredDate);
+        $rs = $this->db->Execute($sql, $bindingParams);
+
+        $sql = <<<SQL
+			DELETE FROM $database.T_LicenceHolders
+			WHERE F_EndDateStamp < ?;
+SQL;
+        $rs = $this->db->Execute($sql, $bindingParams);
+        $recordCount = $this->db->Affected_Rows();
+
+        $this->db->CompleteTrans();
+
+        // send back the number of deleted records
+        return $recordCount;
+    }
+
+    // gh#1230 To create a new licence if the user has an existing one
+    public function createNewStyleLicence($userId, $rootId, $productCode, $licence, $earliestDate) {
+
+        // Extra check to make sure that this user doesn't have a new licence already for this title
+        if (!$this->licenceOps->checkExistingNewStyleLicence($userId, $productCode, $licence)) {
+            $this->licenceOps->convertLicenceSlot($userId, $productCode, $rootId, $licence, $earliestDate);
+            AbstractService::$log->info("add a licence for " . $userId . " to " . $productCode);
+            return true;
+        }
+        return false;
+    }
+
+    // For archiving sent emails.
 	// Expected to be run by a daily CRON job
 	function archiveSentEmails($database) {
 		

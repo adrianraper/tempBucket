@@ -164,7 +164,15 @@ function runDailyJobs($triggerDate = null) {
 			}
 		}
 	}
-	*/	
+	*/
+    // 8. Archive expired licences
+
+    // Clean up the T_LicenceHolders, remove licences that have expired
+    $database = 'rack80829';
+    $expiryDate = new DateTime('@'.$triggerDate);
+    $rc = $thisService->dailyJobOps->archiveExpiredLicences($expiryDate->format('Y-m-d'), $database);
+    echo "Archived $rc licences. $newLine";
+
 }
 
 // Action

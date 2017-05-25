@@ -212,7 +212,8 @@ class BentoService extends AbstractService {
 		// We also need some misc stuff.
 		// gh#914
 		$configObj = array("databaseVersion" => $this->getDatabaseVersion(),
-							"uploadMaxFilesize" => $this->getUploadMaxFilesize(), "ip" => $config['ip']);
+							"uploadMaxFilesize" => $this->getUploadMaxFilesize(),
+                            "ip" => (isset($config['ip'])) ? $config['ip'] : null);
 		
 		// Set some session variables that other calls will use
 		Session::set('rootID', $account->id);
@@ -335,7 +336,7 @@ class BentoService extends AbstractService {
 			($loginOption & User::LOGIN_BY_ANONYMOUS && $loginObj == NULL)) {
 		*/
 		// Protect older Bento titles that don't send this property
-		if (!isset($licence->signInAs) || $licence->signInAs == NULL) {
+        if (!isset($licence->signInAs) || $licence->signInAs == NULL) {
 			//AbstractService::$debugLog->notice ("licence->signInAs not sent or null");
 			if ($licence->licenceType == Title::LICENCE_TYPE_AA ||
 				($licence->licenceType == Title::LICENCE_TYPE_NETWORK && $loginObj == NULL) ||
@@ -489,7 +490,7 @@ class BentoService extends AbstractService {
 						 "rootID" => $rootID);
 		
 		// gh#21 include the account you found if the rootID changed based on the login
-		if ($newAccount)
+		if (isset($newAccount))
 			$dataObj['account'] = $newAccount;
 			
 		return $dataObj;

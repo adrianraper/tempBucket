@@ -247,7 +247,7 @@ EOD;
 			if (strpos($GLOBALS['db'],"sqlite")!==false) {
 				$sqldatemonth = "strftime('%m',F_StartDateStamp) ";
 			} else {
-				$sqldatemonth = $this->db->SQLDATE('m', F_StartDateStamp);
+				$sqldatemonth = $this->db->SQLDATE('m', 'F_StartDateStamp');
 			}
 			
 			// gh#178 Not really this issue, just done at the same time!
@@ -327,7 +327,8 @@ EOD;
 		//		AND u.F_UserType=0
 		// v3.7 For Bento titles, courseID is NOT part of session, so you have to join session and score, sadly
 		// v3.7 we changed ss.F_Duration to sc.F_Duration for it lead the numbers of one exercises mutiply ss.F_Duration
-		if ($title->id > 50) {
+        $titleId = intval($title->productCode);
+		if ($titleId > 50) {
 			$sql = 	<<<EOD
 				SELECT sc.F_CourseID courseID, COUNT(sc.F_SessionID) courseCount, SUM(sc.F_Duration) duration
 				FROM T_Session ss, T_Score sc
@@ -349,7 +350,7 @@ EOD;
 				GROUP BY ss.F_CourseID
 EOD;
 		}
-		$bindingParams = array($title->id, Session::get('rootID'), $fromDateStamp, $toDateStamp);
+		$bindingParams = array($titleId, Session::get('rootID'), $fromDateStamp, $toDateStamp);
 		//NetDebug::trace("USAGE: sql=".$sql);		
 		//NetDebug::trace("bindings=".implode(",",$bindingParams));		
 		// Unfortunately date bindings don't seem to work so they are directly embedded in the SQL string
@@ -382,9 +383,10 @@ EOD;
 			$otherCount=0;
 
 		$otherDuration=0;
+        $currentRS = array();
 			foreach ($rs as $record) {
 				// Is this SQL record listed in the current title?
-				if (in_array($record['courseID'],$courseIdArray)) {
+				if (in_array($record['courseID'], $courseIdArray)) {
 					// add this count and duration to the return set
 					$currentRS[] = $record;
 				} else {
@@ -392,11 +394,11 @@ EOD;
 					$otherDuration+=$record['duration'];
 				}
 			}
-			$returnArray = array(courseCounts=>$currentRS);
+			$returnArray = array("courseCounts" => $currentRS);
 		//}
 		if ($otherCount>0)
 			//$currentRS[] = array(courseID=>0,userCount=>$otherCount,duration=>$otherDuration);
-			$returnArray['otherCourseCounts'] = array(courseID=>0,courseCount=>$otherCount,duration=>$otherDuration);
+			$returnArray['otherCourseCounts'] = array("courseID" => 0, "courseCount" => $otherCount, "duration" => $otherDuration);
 		
 		return $returnArray;
 	}
