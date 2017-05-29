@@ -263,9 +263,10 @@ import flash.utils.Timer;
 		public function get productVersionInfo():String {
 			switch (_productVersion) {
 				case IELTSApplication.LAST_MINUTE:
+                case IELTSApplication.TEST_DRIVE:
 					return this.languageAssetFolder + "upgrade.jpg";
-				case IELTSApplication.TEST_DRIVE:
-					return this.languageAssetFolder + "register.jpg";
+//				case IELTSApplication.TEST_DRIVE:
+//					return this.languageAssetFolder + "register.jpg";
 				case BentoApplication.DEMO:
 					// #337
 					return this.languageAssetFolder + ((config.pricesURL) ? "price.jpg" : "buy.jpg");
@@ -279,7 +280,7 @@ import flash.utils.Timer;
 		// gh#383
 		[Bindable(event="productVersionChanged")]
 		public function get productVersionInforButton():Boolean {
-			if (_productVersion == IELTSApplication.LAST_MINUTE) {
+			if (_productVersion == IELTSApplication.LAST_MINUTE || _productVersion == IELTSApplication.TEST_DRIVE) {
 				// assign default value to information button in home menu page
 				infoButtonText = copyProvider.getCopyForId("infoReadingText");
 				inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);

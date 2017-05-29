@@ -33,21 +33,16 @@
 			protected function onInitialize(event:FlexEvent):void {
 				// Determine what platform we are running onR
 				var platform:String = Capabilities.version.split(" ")[0];
-				var language:String = Capabilities.language;
-
-				if (language != "en" && language != "zh-CN") {
-					language = "en";
-				}	
 				
 				switch (platform) {
 					case "IOS":
 						// Set the iOS config xml file
-						FlexGlobals.topLevelApplication.parameters.configFile = "ios-config-" + language + ".xml";
+						FlexGlobals.topLevelApplication.parameters.configFile = "ios-config-en.xml";
 						XHTMLImporter.media = "ios";
 						break;
 					case "AND":
 						// Set the Android config xml file as well as getting the prefix, product code and font size from the iOS settings
-						FlexGlobals.topLevelApplication.parameters.configFile = "android-config-" + language + ".xml";
+						FlexGlobals.topLevelApplication.parameters.configFile = "android-config-en.xml";
 						XHTMLImporter.media = "android";
 						break
 					default:

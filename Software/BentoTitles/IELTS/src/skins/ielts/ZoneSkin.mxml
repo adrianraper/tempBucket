@@ -14,37 +14,37 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
-			
+
 			import org.davekeen.transitions.PatchedSlideViewTransition;
-			
+
 			import spark.transitions.ViewTransitionDirection;
-			
+
 			protected function onInitialize(event:FlexEvent):void {
 				sectionNavigator.tabBar.height = 43;
 			}
-			
+
 			protected function onCreationComplete(event:FlexEvent):void {
 				// #413
-				
+
 				// This is a little hacky, but we can't get rid of the tab bar until the transition has finished so figure it out there.  We also need to use a custom
 				// PatchedSlideViewTransition as the stock one has a bug when the tab bar is hidden.
 				var pushTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
 				pushTransition.direction = ViewTransitionDirection.LEFT;
 				questionZoneViewNavigator.defaultPushTransition = pushTransition;
-				
+
 				var popTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
 				popTransition.direction = ViewTransitionDirection.RIGHT;
 				questionZoneViewNavigator.defaultPopTransition = popTransition;
 			}
-			
+
 		]]>
 	</fx:Script>
-	
+
 	<!-- states -->
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
-		
+
 		<s:State name="demo_browser" />
 		<s:State name="demo_tablet" />
 		<s:State name="fullVersion_browser" stateGroups="fullVersionStates" />
@@ -56,25 +56,25 @@
 		<s:State name="testDrive_browser" stateGroups="bcStates, testDrive" />
 		<s:State name="testDrive_tablet" stateGroups="bcStates, testDrive" />
 	</s:states>
-	
+
 	<courseselector:CourseSelector id="courseSelector" course="{hostComponent.course}" left="-30" top="100" tabletMode="true" />
 
 	<!-- gh#1161 -->
-	<title:InforButton id="bottomInforButton" richTextFlow="{hostComponent.inforButtonTextFlow}" left="30" top="540" buttonMode="true" useHandCursor="true" includeIn="testDrive"  />
+	<!--<title:InforButton id="bottomInforButton" richTextFlow="{hostComponent.inforButtonTextFlow}" left="30" top="540" buttonMode="true" useHandCursor="true" includeIn="testDrive"  />-->
 
-	<zone:ZonesChrome top="40" top.lastMinute_browser="70" right="10" />
-	<zone:ZonesBars top="40" top.lastMinute_browser="70" right="10" />
-	<zone:ZonesBinder top="40" top.lastMinute_browser="70" right="10" />
-	
-	<s:Label text="{hostComponent.copyProvider.getCopyForId(hostComponent.course.@caption)}" color="#FFFFFF" fontSize="18" fontWeight="bold" top="94" top.lastMinute_browser="124" right="30" />
-	
-	<zoneui:ZoneTabbedViewNavigator id="sectionNavigator" width="518" height="492" top="134" top.lastMinute_browser="164" right="10">
+	<zone:ZonesChrome top="40" top.lastMinute_browser="70" top.testDrive_browser="70" right="10" />
+	<zone:ZonesBars top="40" top.lastMinute_browser="70" top.testDrive_browser="70" right="10" />
+	<zone:ZonesBinder top="40" top.lastMinute_browser="70" top.testDrive_browser="70" right="10" />
+
+	<s:Label text="{hostComponent.copyProvider.getCopyForId(hostComponent.course.@caption)}" color="#FFFFFF" fontSize="18" fontWeight="bold" top="94" top.lastMinute_browser="124" top.testDrive_browser="124"  right="30" />
+
+	<zoneui:ZoneTabbedViewNavigator id="sectionNavigator" width="518" height="492" top="134" top.lastMinute_browser="164" top.testDrive_browser="164" right="10">
 		<s:ViewNavigator id="questionZoneViewNavigator" width="100%" height="100%" firstView="com.clarityenglish.ielts.view.zone.QuestionZoneSectionView" firstViewData="{hostComponent.course}" />
 		<s:ViewNavigator id="adviceZoneViewNavigator" width="100%" height="100%" firstView="com.clarityenglish.ielts.view.zone.AdviceZoneSectionView" firstViewData="{hostComponent.course}" />
 		<s:ViewNavigator id="practiceZoneViewNavigator" width="100%" height="100%" firstView="com.clarityenglish.ielts.view.zone.PracticeZoneSectionView" firstViewData="{hostComponent.course}" />
 		<s:ViewNavigator id="testZoneViewNavigator" width="100%" height="100%" firstView="com.clarityenglish.ielts.view.zone.ExamPracticeZoneSectionView" firstViewData="{hostComponent.course}" />
 	</zoneui:ZoneTabbedViewNavigator>
-	
+
 	<!--s:Button id="shortRateButton" bottom="45" left="300" useHandCursor="true" buttonMode="true" visible="{hostComponent.isPlatformTablet}" includeIn="bcStates" />
 	<s:Button id="longRateButton" top="10" right="12" useHandCursor="true" buttonMode="true" visible="{hostComponent.isPlatformTablet}" includeIn="fullVersionStates" /-->
 </s:Skin>
