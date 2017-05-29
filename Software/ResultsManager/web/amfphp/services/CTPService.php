@@ -343,4 +343,8 @@ class CTPService extends BentoService {
         return $groupId;
     }
 
+    // ctp#428 Write a log message for a permanent record of login
+    public function writeLog($msg) {
+
+    }
 }
