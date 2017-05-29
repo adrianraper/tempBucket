@@ -221,6 +221,11 @@
 <android>
         <manifestAdditions><![CDATA[
 			<manifest android:installLocation="auto">
+				<supports-screens android:smallScreens="false"
+						  android:normalScreens="false"
+						  android:largeScreens="true"
+						  android:xlargeScreens="true"
+						  android:requiresSmallestWidthDp="600" />
 			    <!--See the Adobe AIR documentation for more information about setting Google Android permissions-->
 			    <!--Removing the permission android.permission.INTERNET will have the side effect
 		of preventing you from debugging your application on your device-->
