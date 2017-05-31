@@ -112,8 +112,12 @@ package com.clarityenglish.bento.vo.content.transform {
 			use namespace xhtml;
 			
 			var stats:Stats = new Stats();
-			
-			stats.of += 1;
+
+			// #1544 for exercise that is disabled we should not count it in the total number of exercises.
+            if (!(exercise.attribute("enabledFlag").length() > 0 && exercise.@enabledFlag & 8)) {
+                stats.of += 1;
+            }
+
 			if (exercise.hasOwnProperty("@done") && Number(exercise.@done) > 0) {
 				stats.count += 1;
 				stats.totalDone += Number(exercise.@done);
