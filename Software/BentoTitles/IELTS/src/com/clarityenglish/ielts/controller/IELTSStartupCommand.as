@@ -37,15 +37,6 @@ import org.puremvc.as3.interfaces.INotification;
 				return (bentoProxy.menuXHTML) ? bentoProxy.menuXHTML..course[0].@["class"].toString() : null;
 			});
 			
-			// Set the transforms that IELTS uses on its menu.xml files
-			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;			
-			var transforms:Array = [ new ProgressExerciseScoresTransform(),
-									 new ProgressSummaryTransform(),
-									 new HiddenContentTransform()
-									 /* gh#761 new DirectStartDisableTransform(configProxy.getDirectStart())*/ ];
-			xhtmlProxy.registerTransforms(transforms, [ Href.MENU_XHTML ]);
-			
 			facade.registerMediator(new IELTSApplicationMediator(note.getBody()));
 		}
 
