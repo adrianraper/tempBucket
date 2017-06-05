@@ -129,23 +129,18 @@
 									//gh #184
 									if (practiceTestButton.enabled) {
 										//practiceLabel.text = data.@caption;
-										practiceLabel.text = "";
+										//practiceLabel.text = "";
 										practiceTestGroup.toolTip = null;
 										answerKeyGroup.toolTip = null;
 										testDriveInformation.includeInLayout = testDriveInformation.visible = false;
 									} else {
-										// gh#1161
-										if (outerDocument.hostComponent.isTestDrive) {
-											practiceLabel.text = "";
-											testDriveInformation.includeInLayout = testDriveInformation.visible = true;
-											if (courseClass == 'reading') {
-												testDriveInfo.caption = outerDocument.hostComponent.getCopyProvider().getCopyForId('exampleInReadingTest1');
-											} else {
-												testDriveInfo.caption = outerDocument.hostComponent.getCopyProvider().getCopyForId('exampleInReading');
-											}
+										testDriveInformation.includeInLayout = testDriveInformation.visible = true;
+										if (idx == 1) {
+											testDriveInfo.caption = outerDocument.hostComponent.getCopyProvider().getCopyForId('notAvailblePracticeTest_FVLM');
 										} else {
-											practiceLabel.text = outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailblePracticeTest");
+											testDriveInfo.caption = outerDocument.hostComponent.getCopyProvider().getCopyForId('notAvailblePracticeTest_FV');
 										}
+
 										// gh#759
 										practiceTestGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion);
 										answerKeyGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion);
@@ -198,7 +193,7 @@
 						<s:DropShadowFilter id="dropShadowFilterTop" color="#CCCCCC" blurX="5" blurY="5" alpha="0.75" distance="1" angle="270" />
 					</fx:Declarations>
 
-					<s:Label id="practiceLabel" top="{courseClass != 'listening' ? 305 : 330}" horizontalCenter="0" fontSize="16" visible="{data.attribute('href').length() > 0}" />
+					<!--<s:Label id="practiceLabel" top="{courseClass != 'listening' ? 305 : 330}" horizontalCenter="0" fontSize="16" visible="{data.attribute('href').length() > 0}" />-->
 
 					<!--gh#759 using group to show tooltip when button is disabled-->
 					<s:HGroup top="{courseClass != 'listening' ? 105 : 135}" horizontalCenter="0" gap="0" visible="{data.attribute('href').length() > 0}">
@@ -219,7 +214,7 @@
 					</s:Group>
 
 					<!-- gh#1161 -->
-					<s:Group id="testDriveInformation" verticalCenter="0" horizontalCenter="0" includeInLayout="{outerDocument.hostComponent.isTestDrive}" visible="{outerDocument.hostComponent.isTestDrive}" >
+					<s:Group id="testDriveInformation" verticalCenter="0" horizontalCenter="0">
 						<ui:InfoLabel id="testDriveInfo" />
 					</s:Group>
 				</s:DataRenderer>

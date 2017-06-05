@@ -231,6 +231,12 @@
 
                                     if (data.attribute("enabledFlag").length() > 0 && (Number(data.@enabledFlag.toString()) & 8)) {
                                         speakingStartGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion, getSequenceNumber(data));
+
+                                        if (idx == 1) {
+                                            testDriveInfo.caption = outerDocument.hostComponent.getCopyProvider().getCopyForId('notAvailblePracticeTest_FVLM');
+                                        } else {
+                                            testDriveInfo.caption = outerDocument.hostComponent.getCopyProvider().getCopyForId('notAvailblePracticeTest_FV');
+                                        }
                                     } else {
                                         speakingStartGroup.toolTip = null;
                                     }
@@ -431,8 +437,7 @@
                             </s:Group>
                         </s:Group>
 
-                        <s:Label id="notAvailableLabel" top="317" horizontalCenter="0" fontSize="16" text="{outerDocument.hostComponent.copyProvider.getCopyForId('notAvailblePracticeTest')}" visible="{(data.attribute('enabledFlag').length() > 0 &amp;&amp; (Number(data.@enabledFlag.toString()) &amp; 8)) &amp;&amp; !outerDocument.hostComponent.isTestDrive}"  />
-                        <ui:InfoLabel id="testDriveInfo" verticalCenter="0" horizontalCenter="0" caption="{outerDocument.hostComponent.copyProvider.getCopyForId('exampleInReading')}" visible="{(data.attribute('enabledFlag').length() > 0 &amp;&amp; (Number(data.@enabledFlag.toString()) &amp; 8)) &amp;&amp; outerDocument.hostComponent.isTestDrive}"  />
+                        <ui:InfoLabel id="testDriveInfo" verticalCenter="0" horizontalCenter="0" visible="{(data.attribute('enabledFlag').length() > 0 &amp;&amp; (Number(data.@enabledFlag.toString()) &amp; 8))}"  />
                     </s:DataRenderer>
                 </fx:Component>
             </s:itemRenderer>

@@ -179,7 +179,8 @@
 			<lit name="onlyAvailableLM">Only available in the Last Minute version. Click above to upgrade.</lit>
 			<lit name="notAvailableTD">Not available in this Test Drive Version. Click on the banner to upgrade to Full Version.</lit>
             <lit name="notAvailbleDemo">Not available in this demo.</lit>
-			<lit name="notAvailblePracticeTest">This practice test is not in this version.</lit>
+            <lit name="notAvailblePracticeTest_FV">Only available with Full Version.</lit>
+            <lit name="notAvailblePracticeTest_FVLM">Only available with Full Version or Last Minute.</lit>
 			<lit name="notAvailble">Not available in the current version. Click above to upgrade.</lit>
 			<lit name="compareInstructionLabel">Compare your score with people in:</lit>
 			<lit name="chartCaptionLabel">Average score %</lit>
@@ -767,8 +768,9 @@
 			<lit name="infoWritingText"><![CDATA[<p>对于考试成绩心存忧虑?</p><p>马上登记雅思之路完整版!</p>]]></lit>
 			<lit name="countDownLabel2">今天便是你的考试天了 — 加油!</lit>
 			<lit name="countDownLabel3">考试考得还好吗? </lit>
-						<lit name="RegisterNowButton">立即注册</lit>
-						<lit name="notAvailblePracticeTest">如您需要更多模拟试卷，请登记雅思之路完整版。</lit>
+            <lit name="RegisterNowButton">立即注册</lit>
+            <lit name="notAvailblePracticeTest_FVLM">仅在完整版本和冲刺版本內才能打开此内容。</lit>
+            <lit name="notAvailblePracticeTest_FV">仅在完整版本內才能打开此内容。</lit>
 		</group>
 	</language>
 	
