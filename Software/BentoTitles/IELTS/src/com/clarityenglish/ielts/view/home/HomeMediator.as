@@ -29,6 +29,7 @@
 			
 			view.courseSelect.add(onCourseSelected);
 			view.info.add(onInfoRequested);
+			view.exerciseSelect.add(onExerciseSelect);
 			
 			// Inject required data into the view
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
@@ -68,6 +69,7 @@
 			super.onRemove();
 			
 			view.courseSelect.remove(onCourseSelected);
+            view.exerciseSelect..remove(onExerciseSelect);
 			view.info.remove(onInfoRequested);
 		}
 		
@@ -113,6 +115,10 @@
 			var morePage:String = (configProxy.getConfig().upgradeURL) ? configProxy.getConfig().upgradeURL : "www.ieltspractice.com";
 			sendNotification(IELTSNotifications.IELTS_REGISTER, morePage);
 		}
+
+        protected function onExerciseSelect(node:XML, attribute:String = null):void {
+            sendNotification(BBNotifications.SELECTED_NODE_CHANGE, node, attribute);
+        }
 
 	}
 }

@@ -227,6 +227,10 @@ home|HomeView s|Button#registerInfoButton {
 	skinClass: ClassReference("skins.ielts.home.RegisterInfoButton");
 }
 
+home|HomeView zoneui|ExamPracticeButton {
+	skinClass: ClassReference("skins.ielts.zone.ui.ExamPracticeButtonSkin");
+}
+
 homeui|CourseBarRenderer {
 	skinClass: ClassReference("skins.ielts.home.CourseBarRendererSkin");
 }

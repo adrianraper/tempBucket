@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		xmlns:ui="com.clarityenglish.ielts.view.home.ui.*">
+		xmlns:ui="com.clarityenglish.ielts.view.home.ui.*"
+		xmlns:zoneui="com.clarityenglish.ielts.view.zone.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.home.HomeView")]
 	</fx:Metadata>
+
+	<fx:Script>
+		<![CDATA[
+		import com.clarityenglish.ielts.IELTSApplication;
+
+		protected function getProductModule(productCode:String):String {
+			switch (productCode) {
+				case IELTSApplication.ACADEMIC_MODULE:
+					return hostComponent.getCopyProvider().getCopyForId("AC");
+					break;
+				case IELTSApplication.GENERAL_TRAINING_MODULE:
+					return hostComponent.getCopyProvider().getCopyForId("GT");
+					break;
+				default:
+					return hostComponent.getCopyProvider().getCopyForId("AC");
+			}
+		}
+		]]>
+	</fx:Script>
 
 	<fx:Declarations>
 		<s:DropShadowFilter id="dropShadowFilter" color="#CCCCCC" blurX="5" blurY="5" alpha="0.75" distance="1" angle="180" knockout="false"/>
@@ -34,7 +54,7 @@
 	</s:Group>
 	-->
 	<s:Group width="100%" height="{height > 702 ? 702 : height}">
-		<s:VGroup left="39" top="140" gap="10">
+		<s:VGroup left="39" top="140" gap="10" visible="{currentState == 'testDrive' &amp;&amp; !hostComponent.noProgressData}" includeInLayout="{currentState == 'testDrive' &amp;&amp; !hostComponent.noProgressData}">
 			<s:VGroup gap="6">
 				<s:Label id="welcomeLabel" />
 				<s:Label id="noticeLabel" />
@@ -46,6 +66,22 @@
 				<ui:CourseBarRenderer id="writingCoverageBar" data="{hostComponent.dataProvider}" courseClass="writing" width="375" />
 			</s:VGroup>
 		</s:VGroup>
+
+		<s:Group left="39" top="130" width="50%" visible="{currentState == 'testDrive' &amp;&amp; hostComponent.noProgressData}" includeInLayout="{currentState == 'testDrive' &amp;&amp; hostComponent.noProgressData}">
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/freePractice.png')" left="60" top="0" scaleX="0.5" scaleY="0.5" />
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/clickHere.png')" left="60" top="40" scaleX="0.5" scaleY="0.5" />
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/answerKey.png')" right="40" top="0" scaleX="0.5" scaleY="0.5" />
+			<s:Group top="70" horizontalCenter="0">
+				<zoneui:ExamPracticeButton id="practiceTestButton" top="50" color="#FFFFFF" label="{hostComponent.practiceTestButtonData.@caption}" thumbnailSource="{hostComponent.assetFolder + 'testpracticequestion_reading1.png'}"
+										   textBackgroundColor="{getStyle('readingExamPracticeColor')}" isBottomLeftRound="true" useHandCursor="true" buttonMode="true" />
+				<s:Group top="0" left="-5">
+					<s:SWFLoader source="@Embed(source='skins/ielts/assets/headerBar.png')" scaleX="0.54"  scaleY="0.54"/>
+					<s:Label id="indexLabel" width="50" left="15" top="28" textAlign="center" fontSize="48" fontWeight="bold" text="1" color="{getStyle('readingExamPracticeColor')}" />
+					<s:Label id="moduleLabel" top="25" left="77" fontSize="12" text="{getProductModule(hostComponent.productCode)}" />
+					<s:Label id="captionLabel" top="39" left="77" fontSize="15" fontWeight="bold" text="{hostComponent.practiceTestButtonData.@caption}" />
+				</s:Group>
+			</s:Group>
+		</s:Group>
 
 		<s:Button id="longRateButton" useHandCursor="true" buttonMode="true" bottom.testDrive="110" left.testDrive="39"
 				  right.rateStates="20" top.lastMinute="50" top.fullversionStates="20"/>

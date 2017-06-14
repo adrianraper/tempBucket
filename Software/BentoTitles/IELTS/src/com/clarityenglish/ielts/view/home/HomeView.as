@@ -71,6 +71,9 @@ package com.clarityenglish.ielts.view.home {
 	
 		[SkinPart(required="true")]
 		public var noticeLabel:Label;
+
+		[SkinPart]
+		public var practiceTestButton:Button;
 		
 		// gh#383
 		[SkinPart]
@@ -113,11 +116,15 @@ package com.clarityenglish.ielts.view.home {
 		
 		[Bindable]
 		public var noProgressData:Boolean;
+
+		[Bindable]
+		public var practiceTestButtonData:XML;
 		
 		public var courseSelect:Signal = new Signal(XML);
 		public var info:Signal = new Signal();
 		// gh#383
 		public var findMore:Signal = new Signal();
+        public var exerciseSelect:Signal = new Signal(XML, String);
 		
 		private var _isPlatformTablet:Boolean;
 		private var _isPlatformipad:Boolean;
@@ -149,6 +156,10 @@ package com.clarityenglish.ielts.view.home {
 		public function set isPlatformAndroid(value:Boolean):void {
 			_isPlatformAndroid = value;
 		}
+
+        public function getCopyProvider():CopyProvider {
+            return copyProvider;
+        }
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
@@ -162,6 +173,8 @@ package com.clarityenglish.ielts.view.home {
 				switch (course.@["class"].toString()) {
 					case "reading":
 						if (readingCourseButton) readingCourseButton.enabled = !(course.attribute("enabledFlag").length() > 0 && (Number(course.@enabledFlag.toString()) & 8));
+                        // For the practice test button on home page in TD
+						practiceTestButtonData = course.unit.(attribute("class") == "exam-practice").exercise[0];
 						break;
 					case "listening":
 						if (listeningCourseButton) listeningCourseButton.enabled = !(course.attribute("enabledFlag").length() > 0 && (Number(course.@enabledFlag.toString()) & 8));
@@ -287,6 +300,9 @@ package com.clarityenglish.ielts.view.home {
 				case studyPlannerCaptionLabel:
 					studyPlannerCaptionLabel.text = copyProvider.getCopyForId("studyPlannerCaptionLabel");
 					break;
+				case practiceTestButton:
+                    practiceTestButton.addEventListener(MouseEvent.CLICK, onPracticeTestButtonClick);
+					break;
 			}
 		}
 				
@@ -374,6 +390,10 @@ package com.clarityenglish.ielts.view.home {
 		protected function onStudyPlannerDownloadButtonClick(event:MouseEvent):void {
 			var url:String = copyProvider.getCopyForId("studyPlannerFVDownloadLink");
 			navigateToURL(new URLRequest(url), "_blank");
+		}
+
+		protected function onPracticeTestButtonClick(event:MouseEvent):void {
+            exerciseSelect.dispatch(practiceTestButtonData, "href");
 		}
 
 	}
