@@ -24,7 +24,7 @@ $previewIndex = isset($_REQUEST['previewIndex']) ? json_decode($_REQUEST['previe
  * This for testing and debugging emails
  */
 /*
-$templateString = '{"title":null,"templateID":null,"description":null,"filename":"user/DPT-welcome","name":"invitation","data":{"test":{"startType":"timer","language":"EN","followUp":{"caption":"Read dock this","href":null},"parent":null,"closeTime":"2017-05-09 17:00:00","id":"56","children":null,"reportableLabel":"May&apos;s test \"that will\" fail","uid":"56","showResult":false,"caption":"May&apos;s test \"that will\" fail","groupId":"35026","menuFilename":"menu.json.hbs","productCode":"63","testId":"56","status":2,"openTime":"2017-05-09 09:00:00","startData":null},"administrator":{"name":"Mrs Twaddle","email":"twaddle@email.com"}}}';
+$templateString = '{"title":null,"templateID":null,"description":null,"filename":"user/DPT-welcome","name":"invitation","data":{"test":{"startType":"timer","language":"EN","followUp":{"caption":"Read dock this","href":null},"parent":null,"closeTime":"2017-05-09 17:00:00","id":"56","children":null,"reportableLabel":"May&apos;s test that will fail","uid":"56","showResult":false,"caption":"May&apos;s test that will fail","groupId":"35026","menuFilename":"menu.json.hbs","productCode":"63","testId":"56","status":2,"openTime":"2017-05-09 09:00:00","startData":null},"administrator":{"name":"Mrs Twaddle","email":"twaddle@email.com"}}}';
 $template = json_decode($templateString);
 $groupIdString = '["21560"]';
 $groupIdArray = json_decode($groupIdString);
@@ -102,6 +102,22 @@ array_push($userEmailArray, $adminEmail);
 
     </style>
     <script>
+        $(document).ready(function(){
+            // gh#1551
+            $( '#select-all' ).click( function () {
+                $( '#emails input[type="checkbox"]' ).prop('checked', true);
+                $( '#select-all' ).css('text-decoration', 'underline');
+                $( '#select-none' ).css('text-decoration', 'none');
+            })
+            $( '#select-none' ).click( function () {
+                $( '#emails input[type="checkbox"]' ).prop('checked', false)
+                $( '#select-all' ).css('text-decoration', 'none');
+                $( '#select-none' ).css('text-decoration', 'underline');
+            })
+            $( '#emails input[type="checkbox"]' ).click( function () {
+                $( '#select-all,#select-none' ).css('text-decoration', 'none')
+            })
+        })
 
         /**
          * This will send the original data and any edits made on this screen to a function that
@@ -126,6 +142,18 @@ array_push($userEmailArray, $adminEmail);
             $("#confirmEmailPanel").hide();
         }
         function getEmail(previewIndex, sendEmails) {
+            //gh#1551 Pick up those emails that are selected
+            // Get all checkboxes in the id=emails
+            var selectedEmailArray = [];
+            var checkboxEmails = $("#emails [type=checkbox]");
+            console.log("checkbox array has " + checkboxEmails.length);
+            for (var i = 0; i < checkboxEmails.length; i++) {
+                console.log("checkbox " + i + " is checked=" + checkboxEmails[i].checked);
+                if (checkboxEmails[i].checked)
+                    selectedEmailArray.push(i);
+            };
+            // Loop through picking out those that have val=selected
+            //var selectedEmailArray = [1,3];
             var groupIdArray = JSON.parse(<?php echo "'$groupIdString'"; ?>);
             var previewIndex = previewIndex;
             var template = JSON.parse(<?php echo "'$templateString'"; ?>);
@@ -144,6 +172,7 @@ array_push($userEmailArray, $adminEmail);
                     method: "getTemplate",
                     template: JSON.stringify(template),
                     groupIdArray: JSON.stringify(groupIdArray),
+                    selectedEmailArray: JSON.stringify(selectedEmailArray),
                     previewIndex: JSON.stringify(previewIndex),
                     emailInsertion: JSON.stringify(emailInsertion),
                     send: sendEmails
@@ -152,6 +181,7 @@ array_push($userEmailArray, $adminEmail);
                 dataType: "json"
             })
                 .done(function (json) {
+                    //console.log(json);
                     $("#emailConfirm").replaceWith('<div id="emailConfirm" class="w3-container">' + json.emailContents + '</div>');
                     $("#emailContents").replaceWith('<div id="emailContents">' + json.emailContents + '</div>');
                     if (sendEmails)
@@ -190,13 +220,18 @@ array_push($userEmailArray, $adminEmail);
     </div>
 </div>
 <div class="w3-cell-row">
+    <!-- gh#1551 -->
     <div class="w3-container w3-cell w3-card-2" style="width:40%">
-        <ul class="w3-ul w3-hoverable scrollingBlock w3-margin-top w3-margin-bottom" style="height:720px">
+        <div class="w3-margin-top w3-margin-left">
+            select <a href='#' id="select-all" style="text-decoration: underline">all</a> / <a href='#' id="select-none" style="text-decoration: none">none</a>
+        </div>
+        <ul id="emails" class="w3-ul w3-hoverable scrollingBlock w3-margin-bottom" style="height:720px">
             <?php
             if (count($userEmailArray) > 0) {
                 $n = 0;
                 foreach ($userEmailArray as $userEmail) {
                     echo "<li class='w3-hover-teal'>";
+                    echo "<input type='checkbox' id='chk".$n."' checked> ";
                     echo "<a href='#' onClick='previewEmail(" . $n . ")'>" . $userEmail['data']['user']->name . " (" . $userEmail['to'] . ")</a>";
                     echo "</li>";
                     $n++;

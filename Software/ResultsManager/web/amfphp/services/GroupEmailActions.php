@@ -24,6 +24,7 @@ if (!Authenticate::isAuthenticated()) {
 
 $template = (isset($_REQUEST['template'])) ? json_decode($_REQUEST['template']) : null;
 $groupIdArray = (isset($_REQUEST['groupIdArray'])) ? json_decode($_REQUEST['groupIdArray']) : array();
+$selectedEmailArray = (isset($_REQUEST['selectedEmailArray'])) ? json_decode($_REQUEST['selectedEmailArray']) : array();
 $previewIndex = isset($_REQUEST['previewIndex']) ? $_REQUEST['previewIndex'] : 0;
 $emailInsertion = isset($_REQUEST['emailInsertion']) ? json_decode($_REQUEST['emailInsertion']) : '';
 $send = isset($_REQUEST['send']) && $_REQUEST['send'] == "true";
@@ -88,6 +89,27 @@ $userEmailArray = $thisService->dailyJobOps->getEmailsForGroup($groupIdArray, $t
 $administratorEmail = (isset($template->data->administrator->email)) ? $template->data->administrator->email : 'support@clarityenglish.com';
 $administratorName = (isset($template->data->administrator->name)) ? $template->data->administrator->name : null;
 
+// Filter the users based on the selected array if it exists
+if (count($selectedEmailArray) > 0) {
+    // convert selected indexes to keyed array
+    $keyedEmails = array();
+    foreach ($selectedEmailArray as $selectedEmail) {
+        $keyedEmails[$selectedEmail] = true;
+    }
+    $userEmailArray = array_intersect_key($userEmailArray, $keyedEmails);
+    /*
+    $trail = '';
+    foreach ($userEmailArray as $userEmail) {
+        $trail .= $userEmail['data']['user']->email." ";
+    };
+    print json_encode($trail);
+    exit();
+    */
+}
+
+// Note that the above does not reindex the array, so you might just have $userEmailArray[3] and $userEmailArray[31] set.
+$firstValue = reset($userEmailArray);
+
 // ctp#346 Add the test administrator to this list of email recipients for copy
 $adminEmail = array();
 $adminEmail['to'] = $administratorEmail;
@@ -96,7 +118,7 @@ $adminEmail['data']['user'] = new User();
 $adminEmail['data']['user']->name = $administratorName . ' (copy for reference)';
 $adminEmail['data']['user']->email = $administratorEmail;
 $adminEmail['data']['user']->password = '(hidden)';
-$adminEmail['data']['templateData'] = $userEmailArray[0]['data']['templateData'];
+$adminEmail['data']['templateData'] = $firstValue['data']['templateData'];
 array_push($userEmailArray, $adminEmail);
 
 // Get the email from the template and insert the selected user's details into it
@@ -104,7 +126,7 @@ if ($queryMethod == "getTemplate") {
     // If you passed some data that the admin wants added into the email, include it in the template data
     if ($emailInsertion)
         $template->data->emailDetails = $emailInsertion;
-    $emailContents = $thisService->emailOps->fetchEmail($template->filename, $userEmailArray[$previewIndex]['data']);
+    $emailContents = $thisService->emailOps->fetchEmail($template->filename, $firstValue['data']);
     $rc['emailContents'] = $emailContents;
 }
 
