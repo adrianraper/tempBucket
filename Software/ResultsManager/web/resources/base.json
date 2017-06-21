@@ -46,17 +46,24 @@
     },
     {
       "language": "zh-tw",
-      "caption": "漢語 Chinese (Traditional)",
+      "caption": "繁體中文",
       "literals": {
-        "Downloading": "下載",
+        "Email": "電郵地址",
+        "Password": "密碼",
+        "Login": "登入測試",
+        "Downloading": "下載進行中",
+		"EmptyLogin": "請輸入適當的電郵地址。",
+        "IncorrectLogin": "您輸入的電子郵件或密碼不正確。",
+        "ConnectToInternet": "請連接到互聯網。",
+		"DownloadError": "下載出現錯誤。",
         "TryAgain": "再試一次。",
-        "Ok": "好",
-        "Next": "未來",
-        "Back": "背部",
-        "Submit": "呈遞",
-        "Finish": "完畢",
+        "Ok": "確定",
+        "Next": "下一頁",
+        "Back": "往後",
+        "Submit": "提交答案",
+        "Finish": "完成測試",
         "Start": "開始",
-        "Logout": "退出"
+        "Logout": "登出"
       }
     },
     {

@@ -35,7 +35,7 @@
         "EnterCode": "請輸入您的測試驗證碼。",
         "SendingScores": "您已經完成此測試。系統正在上傳您的答案。 在您看到測試結果之前，請不要離開此頁。",
         "FinishedTest": "您的測試已經完成。",
-        "ICantDoThis": "I can't do it.",
+        "ICantDoThis": "似乎出現了問題...",
         "IncorrectValidateCode": "您輸入的測試驗證碼不正確。請再次檢閱您的測試通知，或向你的測試管理員尋求協助。 ",
         "EmptyValidateCode": "請輸入您的測試驗證碼。",
         "DeviceUnsupported": "您需要使用其他的設備進行測試。如需協助，請與您的測試管理員聯繫。"
