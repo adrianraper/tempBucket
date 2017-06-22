@@ -25,20 +25,20 @@
       "language": "zh-tw",
       "literals": {
         "TestNotOpened": "測試尚未開始。請於{date}{time}再試一次。",
-        "TestClosed": "這個測試已於{date}{time}結束.",
-        "NotAnsweredQuestions": "您錯過了一個問題。|您錯過了{count}個問題。",
-        "IncorrectQuestions": "您必須填寫所有正確答案。",
+        "TestClosed": "此測試已於{date}{time}結束.",
+        "NotAnsweredQuestions": "尚有一個問題沒有回答。|尚有{count}個問題沒有回答。",
+        "IncorrectQuestions": "請填寫所有正確答案。",
         "Access": "測試驗證碼",
         "Code": "驗證碼",
         "Result": "測試結果",
-        "Reset": "重設測試",
-        "EnterCode": "請輸入您的測試驗證碼。",
-        "SendingScores": "您已經完成此測試。系統正在上傳您的答案。 在您看到測試結果之前，請不要離開此頁。",
-        "FinishedTest": "您的測試已經完成。",
-        "ICantDoThis": "似乎出現了問題...",
-        "IncorrectValidateCode": "您輸入的測試驗證碼不正確。請再次檢閱您的測試通知，或向你的測試管理員尋求協助。 ",
-        "EmptyValidateCode": "請輸入您的測試驗證碼。",
-        "DeviceUnsupported": "您需要使用其他的設備進行測試。如需協助，請與您的測試管理員聯繫。"
+        "Reset": "重置測試",
+        "EnterCode": "請輸入測試驗證碼。",
+        "SendingScores": "測試已結束，系統正在上傳你的答案，請不要離開此頁。",
+        "FinishedTest": "測試已結束，你的測試結果已傳送給測試管理員。",
+        "ICantDoThis": "無法運行",
+        "IncorrectValidateCode": "測試驗證碼不正確。請查閱你的測試通知，或向測試管理員尋求幫助。 ",
+        "EmptyValidateCode": "請輸入測試驗證碼。",
+        "DeviceUnsupported": "請使用其他設備進行測試。如需幫助，請與測試管理員聯繫。"
       }
     },
     {
