@@ -28,6 +28,7 @@ package com.clarityenglish.ielts.view.zone {
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.isPlatformiPad = configProxy.isPlatformiPad();
+			view.isPlatformTablet = configProxy.isPlatformTablet();
 		}
 		
 		override public function listNotificationInterests():Array {

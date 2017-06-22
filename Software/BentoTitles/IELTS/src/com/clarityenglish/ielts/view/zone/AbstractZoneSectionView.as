@@ -14,6 +14,7 @@ package com.clarityenglish.ielts.view.zone {
 	public class AbstractZoneSectionView extends BentoView {
 		
 		private var _isPlatformiPad:Boolean;
+		private var _isPlatformTablet:Boolean;
 		
 		[Bindable]
 		public function get isPlatformiPad():Boolean {
@@ -22,6 +23,15 @@ package com.clarityenglish.ielts.view.zone {
 		
 		public function set isPlatformiPad(value:Boolean):void {
 			_isPlatformiPad = value;
+		}
+
+		[Bindable]
+		public function get isPlatformTablet():Boolean {
+			return _isPlatformTablet;
+		}
+
+		public function set isPlatformTablet(value:Boolean):void {
+            _isPlatformTablet = value;
 		}
 		
 		public function AbstractZoneSectionView() {

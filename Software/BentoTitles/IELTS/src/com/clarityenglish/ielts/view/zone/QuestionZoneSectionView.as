@@ -2,14 +2,16 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.ielts.view.zone.ui.ExamPracticeButton;
-	
-	import flash.events.MouseEvent;
+import com.clarityenglish.ielts.view.zone.ui.InfoLabel;
+
+import flash.events.MouseEvent;
 	
 	import org.davekeen.transitions.PatchedSlideViewTransition;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
-	import spark.components.Label;
+import spark.components.Group;
+import spark.components.Label;
 	
 	public class QuestionZoneSectionView extends AbstractZoneSectionView {
 		
@@ -18,6 +20,9 @@ package com.clarityenglish.ielts.view.zone {
 		
 		[SkinPart]
 		public var downloadExamButton:Button;
+
+		[SkinPart]
+		public var infoLabel:InfoLabel;
 		
 		[SkinPart(required="true")]
 		public var videoExamButton:Button;
@@ -70,6 +75,15 @@ package com.clarityenglish.ielts.view.zone {
 						instance.setStyle("fontSize", 14);
 					}
 					instance.text = copyProvider.getCopyForId("questionVideoInstructionLabel");
+					break;
+				case infoLabel:
+					if (isTestDrive) {
+						if (isPlatformTablet) {
+                            infoLabel.caption = copyProvider.getCopyForId("notAvailblePracticeTest_FVLM");
+						} else {
+                            infoLabel.caption = copyProvider.getCopyForId("justEBookInTestDrive");
+						}
+                    }
 					break;
 			}
 		}

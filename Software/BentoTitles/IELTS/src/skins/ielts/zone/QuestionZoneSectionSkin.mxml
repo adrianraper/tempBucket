@@ -40,7 +40,7 @@
 	</s:HGroup>
 	<!-- gh#1161 -->
 	<s:Group top="380" horizontalCenter="0" includeInLayout="{hostComponent.isTestDrive}" visible="{hostComponent.isTestDrive}" >
-		<ui:InfoLabel caption="{hostComponent.viewCopyProvider.getCopyForId('justEBookInTestDrive')}" />
+		<ui:InfoLabel id="infoLabel" />
 	</s:Group>
 	
 </s:Skin>

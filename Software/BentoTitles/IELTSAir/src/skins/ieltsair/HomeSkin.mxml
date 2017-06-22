@@ -54,7 +54,7 @@
 	</s:Group>
 	-->
 	<s:Group width="100%" height="{height > 702 ? 702 : height}">
-		<s:VGroup left="39" top="140" gap="10" visible="{currentState == 'testDrive' &amp;&amp; !hostComponent.noProgressData}" includeInLayout="{currentState == 'testDrive' &amp;&amp; !hostComponent.noProgressData}">
+		<s:VGroup left="39" top="140" gap="10" visible="{(currentState == 'testDrive' &amp;&amp; !hostComponent.noProgressData) || currentState != 'testDrive'}">
 			<s:VGroup gap="6">
 				<s:Label id="welcomeLabel" />
 				<s:Label id="noticeLabel" />
@@ -67,11 +67,11 @@
 			</s:VGroup>
 		</s:VGroup>
 
-		<s:Group left="39" top="130" width="50%" visible="{currentState == 'testDrive' &amp;&amp; hostComponent.noProgressData}" includeInLayout="{currentState == 'testDrive' &amp;&amp; hostComponent.noProgressData}">
-			<s:SWFLoader source="@Embed(source='skins/ielts/assets/freePractice.png')" left="60" top="0" scaleX="0.5" scaleY="0.5" />
-			<s:SWFLoader source="@Embed(source='skins/ielts/assets/clickHere.png')" left="60" top="40" scaleX="0.5" scaleY="0.5" />
-			<s:SWFLoader source="@Embed(source='skins/ielts/assets/answerKey.png')" right="40" top="0" scaleX="0.5" scaleY="0.5" />
-			<s:Group top="70" horizontalCenter="0">
+		<s:Group left="39" top="145" width="50%" visible="{currentState == 'testDrive' &amp;&amp; hostComponent.noProgressData}" includeInLayout="{currentState == 'testDrive' &amp;&amp; hostComponent.noProgressData}">
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/freePractice.png')" horizontalCenter="-30" top="0" scaleX="0.5" scaleY="0.5" />
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/clickHere.png')" horizontalCenter="-100" top="45" scaleX="0.5" scaleY="0.5" />
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/answerKey.png')" right="0" top="0" scaleX="0.5" scaleY="0.5" />
+			<s:Group top="80" horizontalCenter="0">
 				<zoneui:ExamPracticeButton id="practiceTestButton" top="50" color="#FFFFFF" label="{hostComponent.practiceTestButtonData.@caption}" thumbnailSource="{hostComponent.assetFolder + 'testpracticequestion_reading1.png'}"
 										   textBackgroundColor="{getStyle('readingExamPracticeColor')}" isBottomLeftRound="true" useHandCursor="true" buttonMode="true" />
 				<s:Group top="0" left="-5">
@@ -83,8 +83,8 @@
 			</s:Group>
 		</s:Group>
 
-		<s:Button id="longRateButton" useHandCursor="true" buttonMode="true" bottom.testDrive="110" left.testDrive="39"
-				  right.rateStates="20" top.lastMinute="50" top.fullversionStates="20"/>
+		<s:Button id="longRateButton" useHandCursor="true" buttonMode="true"
+				  right.rateStates="20" top.lastMinute="50" top.fullversionStates="20" excludeFrom="testDrive" />
 
 		<s:VGroup right="20" horizontalAlign="right" width="100%" verticalCenter="20" verticalCenter.lastMinute="0" gap="10">
 			<s:Button id="readingCourseButton" width="45%" right="0"/>
