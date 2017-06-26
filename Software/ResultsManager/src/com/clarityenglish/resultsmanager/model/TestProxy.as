@@ -30,6 +30,8 @@ package com.clarityenglish.resultsmanager.model {
 		public function getTests(group:Group):void {
 			var contentProxy:ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
 			var thisTitle:Title = contentProxy.titles[0] as Title;
+			if (!thisTitle)
+				return;
 			new RemoteDelegate("getTests", [ group, thisTitle.id ], this).execute();
 		}
 		public function addTest(test:ScheduledTest):void {

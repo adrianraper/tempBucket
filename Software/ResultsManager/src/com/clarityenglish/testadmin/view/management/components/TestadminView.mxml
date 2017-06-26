@@ -138,6 +138,10 @@
 				test.followUp = (test.followUp) ? test.followUp.replace(pattern, "&apos;") : ''; 
 				pattern = /"/gi;
 				test.caption = test.caption.replace(pattern, "&quot;");
+				
+				// gh#1553 Include timezone in the test times
+				//var timezoneFormat:String = DateUtils.formatTimeZone();
+				//test.openTime = test.openTime + "(" + timezoneFormat + ")";
 
 				// ctp#214 Need to send the test administrator details for the email too
 				var administrator:Object = {name: Constants.userName, email: Constants.email};

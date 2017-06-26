@@ -84,7 +84,9 @@
 		public function get openTime():String {
 			return (_openTime) ? DateUtils.dateToAnsiString(_openTime) : null;
 		}
-		
+		public function get timezone():String {
+			return DateUtils.formatTimeZone();
+		}
 		public function isTestClosed():Boolean {
 			return (ObjectUtil.dateCompare(_closeTime, new Date()) < 0);
 		}

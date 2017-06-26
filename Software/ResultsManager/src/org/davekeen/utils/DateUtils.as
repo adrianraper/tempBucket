@@ -39,6 +39,19 @@
 				date.seconds = seconds;
 			return DateUtils.dateToAnsiString(date);
 		}
+		
+		public static function formatTimeZone():String {
+			var offset:Number = new Date().timezoneOffset;
+			var offsetSign:String = (offset == 0) ? "" : (offset < 0) ? "+" : "-"; 
+			var offsetHours:Number = Math.abs(offset) / 60;
+			var offsetWholeHours:Boolean = (offsetHours == int(offsetHours));
+			var offsetMinutes:int = Math.abs(offset) - (int(offsetHours) * 60);
+			// Remove trailing zeros
+			//var offsetFormatted:String = (offsetWholeHours) ? offsetHours.toString() : offsetHours.toString().replace(/(\d+\.*[1-9]*)[0]*/g, "$1");
+			var offsetFormatted:String = (offsetSign == "") ? "" : (offsetWholeHours) ? offsetHours.toString() : int(offsetHours).toString() + ":" + offsetMinutes.toString();
+			return "GMT " + offsetSign + offsetFormatted;
+		}
+
 	}
 	
 }

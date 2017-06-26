@@ -108,9 +108,13 @@
 				//emailInsertionEmailLabel.text = copyProvider.getCopyForId("emailInsertionEmailLabel");
 				//emailInsertionSubjectLabel.text = copyProvider.getCopyForId("emailInsertionSubjectLabel");
 
+				// gh#1553
+				var timezone:String = DateUtils.formatTimeZone();
+				timezone1Label.text = timezone;
+				timezone2Label.text = timezone;
+				
 				// Hide followUp for now
 				followUpPanel1.visible = followUpPanel1.includeInLayout = followUpPanel2.visible = followUpPanel2.includeInLayout = Constants.followUp;
-
 			}
 			
 			public function setDataProvider(test:ScheduledTest):void {
@@ -356,6 +360,7 @@
 							  yearNavigationEnabled="true"/>
 				<mx:ComboBox id="openTimeDataHours" enabled="true" width="80" styleName="inputPromptBlack"
 							 dataProvider="{times}" labelFunction="displayTime" />
+				<mx:Text id="timezone1Label" width="100" paddingTop="4" styleName="inputPromptBlack"/>
 			</mx:HBox>				
 			<mx:Text id="closeTimeLabel" width="100%" paddingTop="10" styleName="inputPromptBlack"/>
 			<mx:HBox>			
@@ -365,6 +370,7 @@
 							  yearNavigationEnabled="true"/>
 				<mx:ComboBox id="closeTimeDataHours" enabled="true" width="80"
 							 dataProvider="{times}" labelFunction="displayTime" styleName="inputPromptBlack"/>
+				<mx:Text id="timezone2Label" width="100" paddingTop="4" styleName="inputPromptBlack"/>
 			</mx:HBox>
 			<mx:HBox width="100%" horizontalGap="0" paddingTop="10">
 				<mx:CheckBox id="startByCode" selected="{_startByCode}" change="selectionChanged(event)" styleName="inputPromptBlack"/>
