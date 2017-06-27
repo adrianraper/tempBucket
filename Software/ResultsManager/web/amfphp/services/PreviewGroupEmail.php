@@ -108,15 +108,18 @@ array_push($userEmailArray, $adminEmail);
                 $( '#emails input[type="checkbox"]' ).prop('checked', true);
                 $( '#select-all' ).css('text-decoration', 'underline');
                 $( '#select-none' ).css('text-decoration', 'none');
-            })
+                $("#sendButton").html("Send to everyone");
+            });
             $( '#select-none' ).click( function () {
                 $( '#emails input[type="checkbox"]' ).prop('checked', false)
                 $( '#select-all' ).css('text-decoration', 'none');
                 $( '#select-none' ).css('text-decoration', 'underline');
-            })
+                $("#sendButton").html("Nothing to send");
+            });
             $( '#emails input[type="checkbox"]' ).click( function () {
                 $( '#select-all,#select-none' ).css('text-decoration', 'none')
-            })
+                $("#sendButton").html(($("#emails [type=checkbox]").length > 0) ? "Send emails" : "Nothing to send");
+            });
         })
 
         /**
@@ -130,8 +133,13 @@ array_push($userEmailArray, $adminEmail);
         }
         // Show a modal panel with the final email contents
         function confirmEmail() {
-            getEmail(currentPreviewIndex, false);
-            $("#confirmEmailPanel").show();
+            var testTakersSelected = $("#emails [type=checkbox]:checked");
+            if (testTakersSelected.length == 0) {
+                $("#sendButton").html("Select some test-takers to receive this email");
+            } else {
+                getEmail(currentPreviewIndex, false);
+                $("#confirmEmailPanel").show();
+            }
         }
         function sendEmails() {
             $("#confirmEmailPanel").hide();
@@ -222,8 +230,8 @@ array_push($userEmailArray, $adminEmail);
 <div class="w3-cell-row">
     <!-- gh#1551 -->
     <div class="w3-container w3-cell w3-card-2" style="width:40%">
-        <div class="w3-margin-top w3-margin-left">
-            select <a href='#' id="select-all" style="text-decoration: underline">all</a> / <a href='#' id="select-none" style="text-decoration: none">none</a>
+        <div class="w3-margin-top">
+            <a href='#' id="select-all" style="text-decoration: underline">all</a> / <a href='#' id="select-none" style="text-decoration: none">none</a>
         </div>
         <ul id="emails" class="w3-ul w3-hoverable scrollingBlock w3-margin-bottom" style="height:720px">
             <?php
@@ -252,7 +260,7 @@ array_push($userEmailArray, $adminEmail);
         </div>
         <?php
         if (count($userEmailArray) > 0)
-            echo '<button class="w3-btn-block w3-ripple w3-teal" onclick="confirmEmail()">Send all</button>';
+            echo '<button id="sendButton" class="w3-btn-block w3-ripple w3-teal" onclick="confirmEmail()">Send all</button>';
         ?>
     </div>
 </div>

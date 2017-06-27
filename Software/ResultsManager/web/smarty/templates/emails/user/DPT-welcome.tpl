@@ -21,8 +21,8 @@
 <p><strong>Test name:</strong><br/>
 {$testDetail->caption}</p>
 <p><strong>Test time:</strong><br/>
-    From: {format_ansi_date ansiDate=$testDetail->openTime format="%Y-%m-%d %H:%M"}<br/>
-    To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{format_ansi_date ansiDate=$testDetail->closeTime format="%Y-%m-%d %H:%M"}<br/>
+    From: {format_ansi_date ansiDate=$testDetail->openTime format="%Y-%m-%d %H:%M"} ({$testDetail->timezone})<br/>
+    To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{format_ansi_date ansiDate=$testDetail->closeTime format="%Y-%m-%d %H:%M"} ({$testDetail->timezone})<br/>
 The test will take 30 minutes.</p>
 <p><strong>Sign in details:</strong><br/>
     Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>{$user->email}</strong><br/>
