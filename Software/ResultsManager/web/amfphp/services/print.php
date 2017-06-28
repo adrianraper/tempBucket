@@ -17,6 +17,9 @@ $basePath = preg_replace("..", "", $basePath);
 
 // Remove any default namespaces before parsing anything and replace the root <bento> node with <html>
 $xmlString = file_get_contents($url);
+// gh#1548
+if ($xmlString === false) {echo "Sorry, this can't be printed."; exit(0);}
+
 $xmlString = preg_replace('/( *)?xmlns[^=]*="[^"]*"/i', '', $xmlString);
 $xmlString = preg_replace("/<bento>/i", "<html>", $xmlString);
 $xmlString = preg_replace("/<\/bento>/i", "</html>", $xmlString);
@@ -35,6 +38,8 @@ $xmlString = preg_replace("/<meta name=\"conversion-date\".*\/>/i", "", $xmlStri
 //$simpleXml = simpledom_load_string($xmlString);
 //$simpleXml = call_user_func_array('simplexml_load_string', array($xmlString, 'SimpleDOM'));
 $simpleXml = simplexml_load_string($xmlString, 'SimpleDOM');
+// gh#1548
+if ($simpleXml === false) {echo "Sorry, this can't be printed."; exit(0);}
 
 // Add in a base tag
 // gh#1238 Make this the first child in head node
