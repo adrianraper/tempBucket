@@ -6,7 +6,7 @@
  * The only job this runs is to send emails placed in the T_PendingEmails table 
  */
 // How many emails will you send at once? 
-$batchLoad = 10;
+$batchLoad = 30;
 set_time_limit(59);
 
 // Parameters you can use to pause the sending of emails, or manually send x at once
