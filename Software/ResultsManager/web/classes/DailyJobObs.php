@@ -88,7 +88,7 @@ SQL;
 					WHERE F_UserID = ?;
 SQL;
 				$rc = $this->db->Execute($sql, $bindingParams);
-				
+
 				$sql = <<<SQL
 					INSERT INTO $database.T_Score_Expiry
 					SELECT * FROM $database.T_Score 
@@ -100,8 +100,21 @@ SQL;
 					WHERE F_UserID = ?;
 SQL;
 				$rc = $this->db->Execute($sql, $bindingParams);
-				
-				$sql = <<<SQL
+
+                // gh#1550
+                $sql = <<<SQL
+					INSERT INTO $database.T_ScoreDetail_Expiry
+					SELECT * FROM $database.T_ScoreDetail 
+					WHERE F_UserID = ?;
+SQL;
+                $rc = $this->db->Execute($sql, $bindingParams);
+                $sql = <<<SQL
+					DELETE FROM $database.T_ScoreDetail
+					WHERE F_UserID = ?;
+SQL;
+                $rc = $this->db->Execute($sql, $bindingParams);
+
+                $sql = <<<SQL
 					INSERT INTO $database.T_User_Expiry
 					SELECT * FROM $database.T_User 
 					WHERE F_UserID = ?;
