@@ -39,6 +39,8 @@ class Account extends Reportable {
 	var $languageCode;
 	// gh#659
 	var $IPMatchedProductCodes = array();
+	// gh#1230 Pick up licence counting method
+    var $useOldLicenceCount = false;
 	
 	/**
 	 * This is private since we get the real user object from the db in AccountOps for DMS (this is filled into $adminUser) and
@@ -136,6 +138,8 @@ class Account extends Reportable {
 		$this->verified = $obj->F_Verified;
 		//gh#11
 		//$this->languageCode = $obj->F_LanguageCode;
+        // gh#1230
+        $this->useOldLicenceCount = $obj->F_UseOldLicenceCount;
 		
 	}
 	
@@ -177,7 +181,8 @@ class Account extends Reportable {
 		// v4.0 Integration with Bento
 		$array['F_Verified'] = (isset($this->verified)) ? $this->verified : 1;
 		$array['F_SelfRegister'] = (isset($this->selfRegister)) ? $this->selfRegister : 0;
-		
+        $array['F_UseOldLicenceCount'] = (isset($this->useOldLicenceCount)) ? $this->useOldLicenceCount : 0;
+
 		return $array;
 	}
 	
@@ -210,7 +215,9 @@ class Account extends Reportable {
 		// v4.0 Integration with Bento
 						"$prefix.F_Verified",
 						"$prefix.F_SelfRegister",
-						
+        // gh#1230
+                        "$prefix.F_UseOldLicenceCount",
+
 						"$prefix.F_Logo");
 		
 		return implode(",", $fields);
@@ -237,4 +244,3 @@ class Account extends Reportable {
         return ($a->expiryDate > $b->expiryDate) ? +1 : -1;
     }
 }
-?>

@@ -102,8 +102,8 @@ function runOccasionalJobs($period) {
                         $licence->fromDatabaseObj($title);
                         if (($licence->licenceType == Title::LICENCE_TYPE_TT) || ($licence->licenceType == Title::LICENCE_TYPE_LT)) {
                             $oldStyleCount = $thisService->licenceOps->countUsedOldStyleLicences($account->id, $title->productCode, $licence);
-                            $newStyleCount = $thisService->licenceOps->countUsedNewStyleLicences($account->id, $title->productCode, $licence);
-                            $newStyleTotal = $thisService->licenceOps->countTotalNewStyleLicences($account->id, $title->productCode, $licence);
+                            $newStyleCount = $thisService->licenceOps->countUsedLicences($account->id, $title->productCode, $licence);
+                            $newStyleTotal = $thisService->licenceOps->countTotalLicences($account->id, $title->productCode, $licence);
                             if ($oldStyleCount > 0 || $newStyleCount > 0 || $newStyleTotal > 0)
                                 echo $account->id . "&nbsp;&nbsp;&nbsp;&nbsp;" . $title->productCode . "&nbsp;&nbsp;&nbsp;&nbsp;" . $oldStyleCount . "&nbsp;&nbsp;&nbsp;&nbsp;" . $newStyleCount . "&nbsp;&nbsp;&nbsp;&nbsp;" . $newStyleTotal . "$newLine";
                         }

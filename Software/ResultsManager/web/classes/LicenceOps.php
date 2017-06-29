@@ -13,6 +13,7 @@ class LicenceOps {
 	function LicenceOps($db) {
 		$this->db = $db;
 		$this->copyOps = new CopyOps();
+        $this->accountOps = new AccountOps($db);
 	}
 	
 	/**
@@ -20,7 +21,8 @@ class LicenceOps {
 	 * Not a very neat function...
 	 */
 	function changeDB($db) {
-		$this->db = $db;
+        $this->db = $db;
+        $this->accountOps->changeDB($db);
 	}
 	
 	/**
@@ -153,12 +155,22 @@ EOD;
                         $licenceID = $user->userID;
 
                     } else {
-                        // Has this user got an existing licence we can use?
-                        $licenceID = $this->checkExistingOldStyleLicence($user->userID, $productCode, $licence);
+                        // gh#1230 Use of old or new licence counting based on account
+                        $account = $this->accountOps->getBentoAccount($rootID, $productCode);
+                        if ($account->useOldLicenceCount) {
+                            // Has this user got an existing licence we can use?
+                            $licenceID = $this->checkExistingOldStyleLicence($user->userID, $productCode, $licence);
+                        } else {
+                            $licenceID = $this->checkExistingLicence($user->userID, $productCode, $licence);
+                        }
                         // No, so is there a free one?
                         if (!$licenceID) {
                             // How many licences have been used?
-                            $licenceCount = $this->countUsedOldStyleLicences($singleRootID, $productCode, $licence);
+                            if ($account->useOldLicenceCount) {
+                                $licenceCount = $this->countUsedOldStyleLicences($singleRootID, $productCode, $licence);
+                            } else {
+                                $licenceCount = $this->countUsedLicences($singleRootID, $productCode, $licence);
+                            }
                             if ($licenceCount < $licence->maxStudents) {
                                 // gh#1230 Grab one
                                 $licenceID = $this->setLicenceSlot($user, $productCode, $singleRootID, $licence);
@@ -312,11 +324,12 @@ EOD;
 	 * @param Number $productCode
 	 * @param Licence $licence
 	 */
-	function checkExistingNewStyleLicence($userId, $productCode, $licence) {
+	function checkExistingLicence($userId, $productCode, $licence) {
 		// gh#125 Need exactly the same conditions here as with countUsedLicences
         // Have they taken a licence within the last [licence period]?
         $dateStamp = $this->getNow();
         $licencePeriodAgo = $dateStamp->modify('-'.$licence->licenceClearanceFrequency)->format('Y-m-d H:i:s');
+        AbstractService::$debugLog->info("licences used since ".$licencePeriodAgo);
 		$sql = <<<EOD
 			SELECT * FROM T_LicenceHolders l
 			WHERE l.F_UserID = ?
@@ -459,7 +472,7 @@ EOD;
     /**
 	 * Count the number of used licences for this root / product since the clearance date
 	 */
-	function countUsedNewStyleLicences($rootID, $productCode, $licence) {
+	function countUsedLicences($rootID, $productCode, $licence) {
 		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
 		// v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
         // gh#1230 How many licences have been used since the licence clearance date?
@@ -514,7 +527,7 @@ EOD;
      * It is probably more than licences used as it includes people who started in the previous licence period
      * but haven't been cleared out yet.
      */
-    function countTotalNewStyleLicences($rootID, $productCode, $licence) {
+    function countTotalLicences($rootID, $productCode, $licence) {
         $aYearAgo = $this->getNow();
         $aYearAgo->modify('-1 year');
         $earliestDate = $aYearAgo->format('Y-m-d');
@@ -778,8 +791,15 @@ EOD;
 		$licence->licenceClearanceFrequency = $title->licenceClearanceFrequency;
 		$licence->licenceType = $title->licenceType;
 		$licence->findLicenceClearanceDate();
-		
-		return $this->countUsedOldStyleLicences($rootID, $productCode, $licence);
+
+		// gh#1230
+        $account = $this->accountOps->getBentoAccount($rootID, $productCode);
+        if ($account->useOldLicenceCount) {
+            $count = $this->countUsedOldStyleLicences($rootID, $productCode, $licence);
+        } else {
+            $count = $this->countUsedLicences($rootID, $productCode, $licence);
+        }
+		return $count;
 		/*
 		if (!$fromDateStamp)
 			$fromDateStamp = $this->getLicenceClearanceDate($title);

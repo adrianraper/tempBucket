@@ -1572,3 +1572,8 @@ INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (2450, '2017-05-31 00:00:00', 'New licence tables');
 
+-- gh#1230 new licence tracking
+ALTER TABLE `T_AccountRoot` ADD COLUMN `F_UseOldLicenceCount` SMALLINT(5) DEFAULT '0' AFTER `F_CustomerType` ;
+-- Initially everybody is set to use the old method
+update T_AccountRoot
+set F_UseOldLicenceCount = 1;
