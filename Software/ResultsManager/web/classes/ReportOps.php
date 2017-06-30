@@ -21,7 +21,7 @@ class ReportOps {
 	function changeDB($db) {
 		$this->db = $db;
 	}
-	
+
 	function getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template, $returnXMLString = false) {
 		// Get the content map for converting ids to names
         // gh#1503 Unless you are a summary report in which case it is not necessary

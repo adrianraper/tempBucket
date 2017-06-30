@@ -476,9 +476,6 @@ class ClarityService extends AbstractService {
 			return $this->reportOps->getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template);
 		}
 	}
-    //public function getDebugReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template='standard') {
-    //    return $this->debugReportOps->getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template);
-    //}
 
 	public function getHiddenContent() {
 		return $this->contentOps->getHiddenContent();

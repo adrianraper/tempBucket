@@ -431,8 +431,6 @@ EOD;
 		$opts = array();
 
 		// AR Can you have two types of student report - detailed which gives everything
-		// === AR start
-		//$detailedReport = false;
 		if ($reportOpts['detailedReport']) {
 			// in which case I need all columns, right?
 			$opts[ReportBuilder::SHOW_EXERCISE] = true; // This automatically adds units and courses columns
@@ -475,7 +473,6 @@ EOD;
 			// A user report should not show student ID in the table, just in the header no matter what the opts say
 			$reportOpts['includeStudentID'] = false;
 		}					  
-		// === AR end
 		return $opts;
 	}
 	

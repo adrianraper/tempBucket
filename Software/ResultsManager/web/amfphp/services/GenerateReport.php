@@ -115,15 +115,30 @@ $forClass = (isset($_REQUEST['forClass'])) ? $_REQUEST['forClass'] : "";
 
 /**
  * This for testing and debugging reports
- *
-$template = "export";
-$opts = json_decode(stripslashes('{"timezoneOffset":-480, "includeInactiveUsers":true,"attempts":"all","detailedReport":true,"includeStudentID":false,
-        "headers":{"forReportLabel":"Description","onReport":"Dynamic Placement Test","dateRange":"","onReportLabel":"Title(s)",
-        "forReportDetail":"Full pilot"}}'), true);
-$forReportablesIDObjects = json_decode(stripslashes('[{"Group":"35026"},{"ScheduledTest":"44"}]'), true);
-$onReportablesIDObjects = json_decode(stripslashes('[{"Course":"63","Title":"63"}]'), true);
-$onClass = "Title";
-$forClass = "Group";
+ */
+/*
+$template = "standard";
+$opts = json_decode(stripslashes('{
+	"detailedReport": false,
+	"includeInactiveUsers": false,
+	"includeStudentID": false,
+	"headers": {
+		"forReportLabel": "Title details",
+		"courses": "",
+		"dateRange": "",
+		"onReport": "TMNP",
+		"titles": "Practical Writing",
+		"attempts": "All attempts",
+		"forReportDetail": "",
+		"onReportLabel": "Group(s)"
+	},
+	"attempts": "all",
+	"timezoneOffset": -480
+}'), true);
+$forReportablesIDObjects = json_decode(stripslashes('[{"Course":"2015061010000","Title":"61"},{"Course":"2015061080000","Title":"61"},{"Course":"2015061050000","Title":"61"},{"Course":"2015061040000","Title":"61"},{"Course":"2015061030000","Title":"61"},{"Course":"2015061100000","Title":"61"},{"Course":"2015061070000","Title":"61"},{"Course":"2015061020000","Title":"61"},{"Course":"2015061090000","Title":"61"},{"Course":"2015061060000","Title":"61"}]'), true);
+$onReportablesIDObjects = json_decode(stripslashes('[{"Group":"21560"}]'), true);
+$onClass = "Group";
+$forClass = "Title";
 Session::set('rootID', 163);
 */
 /*

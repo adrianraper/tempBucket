@@ -183,53 +183,62 @@ class Group extends Manageable {
 	static function getReportBuilderOpts($forClass, $reportOpts, $template='standard') {
 		// These are the fields to include in a report for a group.
 		$opts = array();
-		
-		$opts[ReportBuilder::GROUPED] = true;
-		$opts[ReportBuilder::SHOW_GROUPNAME] = true; // and I do want to see the group name (at least for multi group reports)
-		$opts[ReportBuilder::SHOW_USERNAME] = true;
-		$opts[ReportBuilder::SHOW_AVERAGE_SCORE] = true;
-		$opts[ReportBuilder::SHOW_COMPLETE] = true;
-		$opts[ReportBuilder::SHOW_AVERAGE_TIME] = true;
-		$opts[ReportBuilder::SHOW_TOTAL_TIME] = true;
-					  
-		switch ($forClass) {
-			case "Title":
-				// At present there isn't really a way to get statistics on more than one title at a time... ask Adrian about this
-				// Set title to group differently from course. Except that there isn't really a show_title.
-				// show_course will automagically show title (see ReportOps.processRowFields)
-				// gh#797
-				$opts[ReportBuilder::SHOW_TITLE] = true;
-				$opts[ReportBuilder::WITHIN_COURSE] = true;
-				//$opts[ReportBuilder::SHOW_COURSE] = true;
-				break;
-			case "Course":
-				$opts[ReportBuilder::SHOW_COURSE] = true;
-				// gh#23
-				$opts[ReportBuilder::WITHIN_COURSE] = true;
-				break;
-			case "Unit":
-				$opts[ReportBuilder::SHOW_UNIT] = true;
-				break;
-			case "Exercise":
-				$opts[ReportBuilder::SHOW_EXERCISE] = true;
-				break;
-			// gh#1470
-			case "Licence":
-				// Override defaults as they are not wanted
-				$opts[ReportBuilder::SHOW_USERNAME] = false;
-				$opts[ReportBuilder::SHOW_AVERAGE_SCORE] = false;
-				$opts[ReportBuilder::SHOW_COMPLETE] = false;
-				$opts[ReportBuilder::SHOW_AVERAGE_TIME] = false;
-				
-				$opts[ReportBuilder::SHOW_LICENCES_USED] = true;
-				$opts[ReportBuilder::SHOW_SESSIONS_USED] = true;
-				break;
-			default:
-				throw new Exception("Class not implemented");
-		}
-		//echo "Group.showCourse=".$opts[ReportBuilder::SHOW_COURSE]."         ";		
-		
-		return $opts;
+
+		// gh#1555
+        if ($reportOpts['detailedReport']) {
+            $opts[ReportBuilder::SHOW_EXERCISE] = true; // This automatically adds units and courses columns
+            $opts[ReportBuilder::SHOW_SCORE] = true;
+            $opts[ReportBuilder::SHOW_DURATION] = true;
+            $opts[ReportBuilder::SHOW_STARTDATE] = true;
+            $opts[ReportBuilder::SHOW_USERNAME] = true;
+
+        } else {
+            $opts[ReportBuilder::GROUPED] = true;
+            $opts[ReportBuilder::SHOW_GROUPNAME] = true; // and I do want to see the group name (at least for multi group reports)
+            $opts[ReportBuilder::SHOW_USERNAME] = true;
+            $opts[ReportBuilder::SHOW_AVERAGE_SCORE] = true;
+            $opts[ReportBuilder::SHOW_COMPLETE] = true;
+            $opts[ReportBuilder::SHOW_AVERAGE_TIME] = true;
+            $opts[ReportBuilder::SHOW_TOTAL_TIME] = true;
+
+            switch ($forClass) {
+                case "Title":
+                    // At present there isn't really a way to get statistics on more than one title at a time... ask Adrian about this
+                    // Set title to group differently from course. Except that there isn't really a show_title.
+                    // show_course will automagically show title (see ReportOps.processRowFields)
+                    // gh#797
+                    $opts[ReportBuilder::SHOW_TITLE] = true;
+                    $opts[ReportBuilder::WITHIN_COURSE] = true;
+                    //$opts[ReportBuilder::SHOW_COURSE] = true;
+                    break;
+                case "Course":
+                    $opts[ReportBuilder::SHOW_COURSE] = true;
+                    // gh#23
+                    $opts[ReportBuilder::WITHIN_COURSE] = true;
+                    break;
+                case "Unit":
+                    $opts[ReportBuilder::SHOW_UNIT] = true;
+                    break;
+                case "Exercise":
+                    $opts[ReportBuilder::SHOW_EXERCISE] = true;
+                    break;
+                // gh#1470
+                case "Licence":
+                    // Override defaults as they are not wanted
+                    $opts[ReportBuilder::SHOW_USERNAME] = false;
+                    $opts[ReportBuilder::SHOW_AVERAGE_SCORE] = false;
+                    $opts[ReportBuilder::SHOW_COMPLETE] = false;
+                    $opts[ReportBuilder::SHOW_AVERAGE_TIME] = false;
+
+                    $opts[ReportBuilder::SHOW_LICENCES_USED] = true;
+                    $opts[ReportBuilder::SHOW_SESSIONS_USED] = true;
+                    break;
+                default:
+                    throw new Exception("Class not implemented");
+            }
+
+        }
+        return $opts;
 	}
 	
 }
