@@ -18,7 +18,7 @@
 	<remoteGateway>http://192.168.8.82/Software/ResultsManager/web/amfphp/</remoteGateway>-->
 	
 	<contentPath>http://roadtoielts.chinaielts.org/Content/</contentPath>
-    <remoteDomain> http://roadtoielts.chinaielts.org/Software/</remoteDomain>
+    <remoteDomain>http://roadtoielts.chinaielts.org/Software/</remoteDomain>
     <remoteGateway>http://roadtoielts.chinaielts.org/Software/ResultsManager/web/amfphp/</remoteGateway>
 	
 	<!--  contentPath>http://dock.contentbench/Content/</contentPath>

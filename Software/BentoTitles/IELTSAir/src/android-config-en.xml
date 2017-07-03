@@ -17,7 +17,7 @@
 	<language>EN</language>
 	
 	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
-    <remoteDomain> http://www.clarityenglish.com/Software/</remoteDomain>
+    <remoteDomain>http://www.clarityenglish.com/Software/</remoteDomain>
     <remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
 	
     <!--<contentPath>http://192.168.8.58/Content/</contentPath>-->
