@@ -469,7 +469,9 @@ import flash.utils.Timer;
 					navigateToURL(new URLRequest(url), "_blank");
 					break;
 				case IELTSApplication.TEST_DRIVE:
-					register.dispatch();
+					//register.dispatch();
+                    var url:String = copyProvider.getCopyForId("TDTopBlueBannerLink");
+                    navigateToURL(new URLRequest(url), "_blank");
 					break;
 				case BentoApplication.DEMO:
 					buy.dispatch();
