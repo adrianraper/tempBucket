@@ -24,7 +24,8 @@ import com.clarityenglish.textLayout.vo.XHTML;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
 	
 	import spark.components.Button;
-	import spark.components.Label;
+import spark.components.Group;
+import spark.components.Label;
 	import spark.components.NavigatorContent;
 import spark.components.TabbedViewNavigator;
 import spark.components.ViewNavigator;
@@ -58,6 +59,12 @@ import spark.components.ViewNavigator;
 		
 		[SkinPart]
 		public var bottomInforButton:InforButton;
+
+		[SkinPart]
+		public var registerButtonGroup:Group;
+
+		[SkinPart]
+		public var registerButtonText:Label;
 		
 		[Bindable]
 		public var user:User;
@@ -245,6 +252,12 @@ import spark.components.ViewNavigator;
 				case bottomInforButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
+				case registerButtonGroup:
+                    registerButtonGroup.addEventListener(MouseEvent.CLICK, onRegisterButtonGroupClick);
+					break;
+				case registerButtonText:
+                    registerButtonText.text = copyProvider.getCopyForId("registerButtonText");
+					break;
 			}
 		}
 		
@@ -348,6 +361,11 @@ import spark.components.ViewNavigator;
 			
 			var urlRequest:URLRequest = new URLRequest(urlString);
 			navigateToURL(urlRequest, "_blank");
+		}
+
+		protected function onRegisterButtonGroupClick(event:MouseEvent):void {
+            var url:String = copyProvider.getCopyForId("registerButtonLink");
+            navigateToURL(new URLRequest(url), "_blank");
 		}
 
 		// #337
