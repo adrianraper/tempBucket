@@ -222,7 +222,9 @@ public class HelpView extends BentoView {
     }
 
     private function onRegisterInfoClick(event:MouseEvent):void {
-        register.dispatch();
+        //register.dispatch();
+        var url:String = copyProvider.getCopyForId("helpPageRegisterButtonLink");
+        navigateToURL(new URLRequest(url), "_blank");
     }
 
     private function onBuyInfoClick(event:MouseEvent):void {

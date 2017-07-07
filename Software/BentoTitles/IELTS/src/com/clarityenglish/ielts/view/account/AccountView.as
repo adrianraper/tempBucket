@@ -498,7 +498,9 @@ package com.clarityenglish.ielts.view.account {
 		}
 
 		private function onRequestInfoClick(event:MouseEvent):void {
-			register.dispatch();
+			//register.dispatch();
+            var url:String = copyProvider.getCopyForId("accountPageRegisterButtonLink");
+            navigateToURL(new URLRequest(url), "_blank");
 		}
 		
 	}

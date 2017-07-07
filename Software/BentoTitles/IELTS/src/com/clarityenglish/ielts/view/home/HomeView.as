@@ -365,7 +365,9 @@ package com.clarityenglish.ielts.view.home {
 		} 
 		
 		private function onRequestInfoClick(event:MouseEvent):void {
-			info.dispatch();
+			//info.dispatch();
+            var url:String = copyProvider.getCopyForId("homePageRegisterButtonLink");
+            navigateToURL(new URLRequest(url), "_blank");
 		}
 		
 		// gh#383

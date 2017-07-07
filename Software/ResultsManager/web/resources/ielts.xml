@@ -101,7 +101,12 @@
 			<lit name="androidRateLink"><![CDATA[https://play.google.com/store/apps/details?id=air.com.clarityenglish.ielts.app]]></lit>
 			<lit name="RegisterNowButton">Register Now</lit>
 			<lit name="registerInfoButton">Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
-			<lit name="noProgressText">Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
+			<lit name="registerButtonText">Register for the IELTS test with the British Council. Click here.</lit>
+            <lit name="homePageRegisterButtonLink"><![CDATA[https://goo.gl/wQxNRp]]></lit>
+            <lit name="zonePageRegisterButtonLink"><![CDATA[https://goo.gl/nTkd9b]]></lit>
+            <lit name="accountPageRegisterButtonLink"><![CDATA[https://goo.gl/dVvFd1]]></lit>
+            <lit name="helpPageRegisterButtonLink"><![CDATA[https://goo.gl/1M2qKF]]></lit>
+            <lit name="noProgressText">Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
 			<lit name="colorBarIntroLabel">The colour bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
 			<lit name="infoReadingText"> <![CDATA[<p>Succeed in IELTS.</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
 			<lit name="infoListeningText"><![CDATA[<p>Improve your band scores.</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
@@ -174,12 +179,12 @@
 			<lit name="examPracticeComponent">Test practice</lit>
 			<lit name="practiceZoneComponent">Practice zone</lit>
 			<lit name="notCurAvailable">Not currently available.</lit>
+            <lit name="notAvailableTD">Not available in this Test Drive Version. Click on the banner to upgrade to Full Version.</lit>
 			<lit name="onlyAvailableFV">Only available in the Full Version. Click above to upgrade.</lit>
 			<lit name="onlyAvailableFVWebsite">Only available in the Full Version. Subscribe at www.ieltspractice.com.</lit>
 			<lit name="onlyAvailableLM">Only available in the Last Minute version. Click above to upgrade.</lit>
-			<lit name="notAvailableTD">Not available in this Test Drive Version. Click on the banner to upgrade to Full Version.</lit>
-            <lit name="notAvailbleDemo">Not available in this demo.</lit>
-            <lit name="notAvailblePracticeTest_FV">Only available with Full Version.</lit>
+			<lit name="notAvailbleDemo">Not available in this demo.</lit>
+			<lit name="notAvailblePracticeTest_FV">Only available with Full Version.</lit>
             <lit name="notAvailblePracticeTest_FVLM">Only available with Full Version or Last Minute.</lit>
 			<lit name="notAvailble">Not available in the current version. Click above to upgrade.</lit>
 			<lit name="compareInstructionLabel">Compare your score with people in:</lit>
@@ -229,6 +234,7 @@
             <!-- Banner Link -->
             <lit name="LMFindOutMoreLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=IP_link&utm_source=RTI_LM&utm_medium=LM_frontpage_findoutmore]]></lit>
             <lit name="LMTopBlueBannerLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=RTI_FV&utm_source=RTI_LM&utm_medium=LM_topright_bluebanner]]></lit>
+            <lit name="TDTopBlueBannerLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=RTI_FV&utm_source=RTI_TD&utm_medium=TD_topright_bluebanner]]></lit>
             <lit name="TDHelpBlueBannerLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=RTI_FV&utm_source=RTI_TD&utm_medium=help_bluebanner]]></lit>
             <lit name="TDBottomBlueBannerLink"><![CDATA[http://www.ieltspractice.com/?utm_campaign=RTI_FV&utm_source=RTI_TD&utm_medium=TD_succeed_banner]]></lit>
             <!-- Clarity recorder captions -->
@@ -249,34 +255,94 @@
 			<lit name="speakingTestHeaderRightLabel">Practice Test {index}</lit>
 			<lit name="speakingTestInstructionRichEditableText"><![CDATA[<p>Your IELTS Speaking test has <span fontWeight="bold">three parts.</span> In <span fontWeight="bold">Parts 1</span> and 3 you talk to an examiner. This screen helps you practise for <span fontWeight="bold">Part 2</span> where you give a short talk.</p>]]></lit>
 			<lit name="speakingTestSpeakerLabel">Make sure you have headphones or speakers switched on.</lit>
-			<lit name="speakingTestPhoneLabel">Record yourself on your phone. Then listen. How well didi you do?</lit>
+			<lit name="speakingTestPhoneLabel">Record yourself on your phone. Then listen. How well did you do?</lit>
 			<lit name="taskHeaderLabel">Candidate Task Card</lit>
-			<lit name="taskDescribeLabel1">Describe something you own which is very important to you.</lit>
-			<lit name="taskDescribeLabel2">Describe something you own which is very important to you.</lit>
-			<lit name="taskDescribeLabel3">Describe something you own which is very important to you.</lit>
+			<lit name="taskDescribeLabel1">Talk about a friend who has played a big part in your life.</lit>
+			<lit name="taskDescribeLabel2">Describe a book that has had a great influence on you.</lit>
+			<lit name="taskDescribeLabel3">Describe an animal that can be found in your country.</lit>
 			<lit name="taskDescribeLabel4">Describe something you own which is very important to you.</lit>
-			<lit name="taskDescribeLabel5">Describe something you own which is very important to you.</lit>
-			<lit name="taskDescribeLabel6">Describe something you own which is very important to you.</lit>
+			<lit name="taskDescribeLabel5">Describe a recent invention that has had a major impact on your life.</lit>
+			<lit name="taskDescribeLabel6">Describe a wedding you have been to or heard about.</lit>
 			<lit name="taskYouShouldLabel">You should say:</lit>
-			<lit name="taskYouShouldEditableText1"><![CDATA[<p>where you go it from</p><p>how long you have had it</p><p>what you use it for</p>]]></lit>
-			<lit name="taskYouShouldEditableText2"><![CDATA[<p>where you go it from</p><p>how long you have had it</p><p>what you use it for</p>]]></lit>
-			<lit name="taskYouShouldEditableText3"><![CDATA[<p>where you go it from</p><p>how long you have had it</p><p>what you use it for</p>]]></lit>
-			<lit name="taskYouShouldEditableText4"><![CDATA[<p>where you go it from</p><p>how long you have had it</p><p>what you use it for</p>]]></lit>
-			<lit name="taskYouShouldEditableText5"><![CDATA[<p>where you go it from</p><p>how long you have had it</p><p>what you use it for</p>]]></lit>
-			<lit name="taskYouShouldEditableText6"><![CDATA[<p>where you go it from</p><p>how long you have had it</p><p>what you use it for</p>]]></lit>
+			<lit name="taskYouShouldEditableText1"><![CDATA[<p>when you met</p><p>what your friend is like</p><p>what is so special about him/her</p>]]></lit>
+			<lit name="taskYouShouldEditableText2"><![CDATA[<p>when you read it</p><p>what it is about</p><p>why it is special</p>]]></lit>
+			<lit name="taskYouShouldEditableText3"><![CDATA[<p>what it looks like</p><p>where it lives</p><p>what you like / don't like about it</p>]]></lit>
+			<lit name="taskYouShouldEditableText4"><![CDATA[<p>where you got it from</p><p>how long you have had it</p><p>what you use it for</p>]]></lit>
+			<lit name="taskYouShouldEditableText5"><![CDATA[<p>when it was invented</p><p>what it does</p><p>how it has affected your life</p>]]></lit>
+			<lit name="taskYouShouldEditableText6"><![CDATA[<p>who got married</p><p>what they wore</p><p>what they did on the day</p>]]></lit>
 			<lit name="taskExplainLabel1">and explain why it is important to you.</lit>
-			<lit name="taskExplainLabel2">and explain why it is important to you.</lit>
-			<lit name="taskExplainLabel3">and explain why it is important to you.</lit>
+			<lit name="taskExplainLabel2">and explain the effect it has had on your life.</lit>
+			<lit name="taskExplainLabel3">and explain how people in your country generally feel about it.</lit>
 			<lit name="taskExplainLabel4">and explain why it is important to you.</lit>
 			<lit name="taskExplainLabel5">and explain why it is important to you.</lit>
-			<lit name="taskExplainLabel6">and explain why it is important to you.</lit>
-			<lit name="taskRequirementEditableText"><![CDATA[
+			<lit name="taskExplainLabel6">and explain how you felt about this wedding.</lit>
+			<lit name="taskRequirementEditableText1"><![CDATA[
+				<p>Talk about a friend who has played a big part in your life.</p>
+				<p lineHeight="28">You should say:</p>
+				<p lineHeight="28">when you met</p>
+				<p>what your friend is like</p>
+				<p>what is so special about him/her</p>
+				<p lineHeight="28">and explain the impact he/she has had on you.</p>
+				<br/>
+				<p>You will have to talk about the topic for 1 to 2 minutes.</p>
+				<p>You have one minute to think about what you're going to say.</p>
+				<p>You can make some notes to help you if you wish.</p>]]>
+			</lit>
+            <lit name="taskRequirementEditableText2"><![CDATA[
+                <p>Describe a book that has had a great influence on you.</p>
+                <p lineHeight="28">You should say:</p>
+                <p lineHeight="28">when you read it</p>
+                <p>what it is about</p>
+                <p>why it is special</p>
+                <p lineHeight="28">and explain the effect it has had on your life.</p>
+                <br/>
+                <p>You will have to talk about the topic for 1 to 2 minutes.</p>
+                <p>You have one minute to think about what you're going to say.</p>
+                <p>You can make some notes to help you if you wish.</p>]]>
+            </lit>
+			<lit name="taskRequirementEditableText3"><![CDATA[
+                <p>Describe an animal that can be found in your country.</p>
+                <p lineHeight="28">You should say:</p>
+                <p lineHeight="28">what it looks like</p>
+                <p>where it lives</p>
+                <p>what you like / don't like about it</p>
+                <p lineHeight="28">and explain how people in your country generally feel about it.</p>
+                <br/>
+                <p>You will have to talk about the topic for 1 to 2 minutes.</p>
+                <p>You have one minute to think about what you're going to say.</p>
+                <p>You can make some notes to help you if you wish.</p>]]>
+            </lit>
+			<lit name="taskRequirementEditableText4"><![CDATA[
 				<p>Describe something you own which is very important to you.</p>
 				<p lineHeight="28">You should say:</p>
 				<p lineHeight="28">where you go it from</p>
 				<p>how long you have had it</p>
 				<p>what you use it for</p>
 				<p lineHeight="28">and explain why it is important to you.</p>
+				<br/>
+				<p>You will have to talk about the topic for 1 to 2 minutes.</p>
+				<p>You have one minute to think about what you're going to say.</p>
+				<p>You can make some notes to help you if you wish.</p>]]>
+			</lit>
+			<lit name="taskRequirementEditableText5"><![CDATA[
+				<p>Describe a recent invention that has had a major impact on your life.</p>
+				<p lineHeight="28">You should say:</p>
+				<p lineHeight="28">when it was invented</p>
+				<p>what it does</p>
+				<p>how it has affected your life</p>
+				<p lineHeight="28">and explain the effect you think this invention has on society as a whole.</p>
+				<br/>
+				<p>You will have to talk about the topic for 1 to 2 minutes.</p>
+				<p>You have one minute to think about what you're going to say.</p>
+				<p>You can make some notes to help you if you wish.</p>]]>
+			</lit>
+			<lit name="taskRequirementEditableText6"><![CDATA[
+				<p>Describe a wedding you have been to or heard about.</p>
+				<p lineHeight="28">You should say:</p>
+				<p lineHeight="28">who got married</p>
+				<p>what they wore</p>
+				<p>what they did on the day</p>
+				<p lineHeight="28">and explain how you felt about this wedding.</p>
 				<br/>
 				<p>You will have to talk about the topic for 1 to 2 minutes.</p>
 				<p>You have one minute to think about what you're going to say.</p>
@@ -290,10 +356,10 @@
 						<listMarkerFormat>
 							<ListMarkerFormat afterContent="&#x9;" beforeContent="&#x9;" />
 						</listMarkerFormat>
-						<li><p><span fontWeight="bold" lineHeight="20">Fluency</span><br/>Do you speak easily, reasonably quickly and without having to stop and pause a lot?</p></li>
+						<li><p><span fontWeight="bold" lineHeight="20">Fluency</span><br/>Do you speak at a natural speed? Do your ideas flow together?</p></li>
 				 		<li><p><span fontWeight="bold" lineHeight="20">Vocabulary</span><br/>Do you use a good range of vocabulary. Is your choice of vocabulary accurate?</p></li>
-				 		<li><p><span fontWeight="bold" lineHeight="20">Grammar</span><br/>How well you use English grammar? Do you use a variety of grammatical structures?</p></li>
-				 		<li><p><span fontWeight="bold" lineHeight="20">Pronunciation</span><br/>How easy it for the examiner to understand what you are saying?</p></li>
+				 		<li><p><span fontWeight="bold" lineHeight="20">Grammar</span><br/>How well do you use English grammar? Do you use a variety of grammatical structures?</p></li>
+				 		<li><p><span fontWeight="bold" lineHeight="20">Pronunciation</span><br/>How easy it is for the examiner to understand what you are saying?</p></li>
 				 	</list>
 				]]>
 			</lit>
@@ -362,17 +428,17 @@
 			<lit name="creditsString">
 				<credit>
 					<team>
-						<member title="Project Manager" name="Clarity: Joe Law;British Council: Greg Selby" />
+						<member title="Project Manager" name="ClarityEnglish: Sieon Lau;British Council: Greg Selby" />
 						<member title="Lead Programmer" name="Dave Keen" />
 						<member title="Video recordings" name="Andy Lewis" />
 						<member title="Tapescript" name="Alex Mackarow" />
-						<member title="Images" name="Photo images are taken from Shutterstock with permission;Graphic of a windup radio;Reproduced by kind permission of the Freeplay Energy Group" />
+						<member title="Images" name="Purchased from Shutterstock" />
 					</team>
 					<authenticity>
 						<column>
 							<member title="A" name="Abolishing Management, One Slice at a Time;ACTA;American Artist Magazine;Amnesty International USA"/>
 							<member title="B" name="Books, etc., Christmas Catalogu;BritainUSA.com;British Medical Journal"/>
-							<member title="C" name="Canada's International Development Research Centre;Country Living Magazine"/>
+							<member title="C" name="Canada's International Development Research Centre;Country Living Magazine;Canadian Health Measures Survey"/>
 							<member title="D" name="Directory of International Voluntary Work"/>
 							<member title="E" name="ERIC Digest"/>
 							<member title="G" name="Games on Playing Cards (Totem, PIT, Games of Rebellion, Black Peter, Game of Poems);Guns, Germs and Steel"/>
@@ -400,7 +466,7 @@
 			<lit name="creditsRichText">
 			    <![CDATA[
 			            <p><span fontWeight="bold">Project Managers</span><br/>
-							Clarity: Joe Law<br/>
+							ClarityEnglish: Sieon Lau<br/>
 							British Council: Greg Selby</p>							
 						
 						<p><span fontWeight="bold">Lead Programmer</span><br/>
@@ -578,32 +644,6 @@
 			<lit name="exampleInReadingTest1">Look at test 1 for an example.</lit>
 			<lit name="justEBookInTestDrive">Just the eBook is in Test Drive.</lit>
 			<lit name="countryList">Afghanistan|Aland Islands|Albania|Algeria|American Samoa|Andorra|Angola|Anguilla|Antarctica|Antigua and Barbuda|Argentina|Armenia|Aruba|Australia|Austria|Azerbaijan|Bahamas|Bahrain|Bangladesh|Barbados|Belarus|Belgium|Belize|Benin|Bermuda|Bhutan|Bolivia|Bosnia and Herzegovina|Botswana|Bouvet Island|Brazil|British Indian Ocean Territory|Brunei|Bulgaria|Burkina Faso|Burundi|Cambodia|Cameroon|Canada|Cape Verde|Cayman Islands|Central African Republic|Chad|Chile|China|Christmas Island|Cocos (Keeling) Islands|Colombia|Comoros|Congo|Congo, Democratic Republic|Cook Islands|Costa Rica|Cote D'Ivoire|Croatia|Cuba|Cyprus|Czech Republic|Denmark|Djibouti|Dominica|Dominican Republic|Ecuador|Egypt|El Salvador|Equatorial Guinea|Eritrea|Estonia|Ethiopia|Falkland Islands|Faroe Islands|Fiji|Finland|France|French Guiana|French Polynesia|French Southern Territories|Gabon|Gambia|Georgia|Germany|Ghana|Gibraltar|Greece|Greenland|Grenada|Guadeloupe|Guam|Guatemala|Guernsey|Guinea|Guinea-Bissau|Guyana|Haiti|Heard Island|Honduras|Hong Kong|Hungary|Iceland|India|Indonesia|Iran|Iraq|Ireland|Isle Of Man|Israel|Italy|Jamaica|Japan|Jersey|Jordan|Kazakhstan|Kenya|Kiribati|Korea, North|Korea, South|Kuwait|Kyrgyzstan|Laos|Latvia|Lebanon|Lesotho|Liberia|Libya|Liechtenstein|Lithuania|Luxembourg|Macao|Macedonia|Madagascar|Malawi|Malaysia|Maldives|Mali|Malta|Marshall Islands|Martinique|Mauritania|Mauritius|Mayotte|Mexico|Micronesia|Moldova|Monaco|Mongolia|Montenegro|Montserrat|Morocco|Mozambique|Myanmar|Namibia|Nauru|Nepal|Netherlands|Netherlands Antilles|New Caledonia|New Zealand|Nicaragua|Niger|Nigeria|Niue|Norfolk Island|Northern Mariana Islands|Norway|Oman|Pakistan|Palau|Palestine|Panama|Papua New Guinea|Paraguay|Peru|Philippines|Pitcairn Islands|Poland|Portugal|Puerto Rico|Qatar|Reunion|Romania|Russia|Rwanda|Saint Barthelemy|Saint Helena|Saint Kitts and Nevis|Saint Lucia|Saint Martin|Saint Pierre and Miquelon|Saint Vincent and The Grenadines|Samoa|San Marino|Sao Tome and Principe|Saudi Arabia|Senegal|Serbia|Seychelles|Sierra Leone|Singapore|Slovakia|Slovenia|Solomon Islands|Somalia|South Africa|The South Sandwich Islands|Spain|Sri Lanka|Sudan|Suriname|Svalbard and Jan Mayen|Swaziland|Sweden|Switzerland|Syria|Taiwan|Tajikistan|Tanzania|Thailand|Timor-Leste|Togo|Tokelau|Tonga|Trinidad and Tobago|Tunisia|Turkey|Turkmenistan|Turks and Caicos Islands|Tuvalu|Uganda|Ukraine|United Arab Emirates|United Kingdom|United States|Uruguay|Uzbekistan|Vanuatu|Vatican City|Venezuela|Vietnam|Virgin Islands, British|Virgin Islands, U.S.|Wallis and Futuna|Western Sahara|Yemen|Zambia|Zimbabwe</lit>
-            <lit name="SpeakingPracticeTest1">
-                <![CDATA[
-                    <p><span fontWeight="bold">Describe a book that has had a great influence on you.</span></p>
-                    <p><span fontWeight="bold">You should say:</span></p>
-                    <p><span fontWeight="bold">when you read it</span></p>
-                    <p><span fontWeight="bold">what it is about</span></p>
-                    <p><span fontWeight="bold">why it is special</span></p>
-                    <p><span fontWeight="bold">and explain the effect it has had on your life.</span></p>
-                    <p>You will have to talk about the topic for 1 to 2 minutes.</p>
-                    <p>You have one minute to think about what you’re going to say.</p>
-                    <p>You can make some notes to help you if you wish.</p>
-                ]]>
-            </lit>
-            <lit name="SpeakingPracticeTest2">
-                <![CDATA[
-                    <p><span fontWeight="bold">Describe a recent invention that has had a major impact on your life.</span></p>
-                    <p><span fontWeight="bold">You should say:</span></p>
-                    <p><span fontWeight="bold">when it was invented</span></p>
-                    <p><span fontWeight="bold">what it does</span></p>
-                    <p><span fontWeight="bold">how it has affected your life</span></p>
-                    <p><span fontWeight="bold">and explain the effect you think this invention has on society as a whole.</span></p>
-                    <p>You will have to talk about the topic for 1 to 2 minutes.</p>
-                    <p>You have one minute to think about what you’re going to say.</p>
-                    <p>You can make some notes to help you if you wish.</p>
-                ]]>
-            </lit>
 		</group>
 	</language>
 
@@ -634,7 +674,7 @@
 			<lit name="onlyAvailableFV">仅在完整版本內才能打开此内容。点击上图按钮进行升级。</lit>
 			<lit name="onlyAvailableFVWebsite">仅在完整版本內才能打开此内容，詳情請瀏覽www.ieltspractice.com。</lit>
             <lit name="notAvailableTD">体验版不包含此内容。点击按钮升级到完整版。</lit>
-			<lit name="progressNavBarCoverage">我的完成率</lit>
+            <lit name="progressNavBarCoverage">我的完成率</lit>
 			<lit name="progressNavBarCompare">比较</lit>
 			<lit name="progressNavBarAnalyse">分析</lit>
 			<lit name="progressNavBarScores">我的分数</lit>

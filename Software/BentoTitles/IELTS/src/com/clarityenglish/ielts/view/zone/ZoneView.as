@@ -364,7 +364,7 @@ import spark.components.ViewNavigator;
 		}
 
 		protected function onRegisterButtonGroupClick(event:MouseEvent):void {
-            var url:String = copyProvider.getCopyForId("registerButtonLink");
+            var url:String = copyProvider.getCopyForId("zonePageRegisterButtonLink");
             navigateToURL(new URLRequest(url), "_blank");
 		}
 
