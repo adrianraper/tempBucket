@@ -205,9 +205,11 @@
 						</s:Group>
 					</s:HGroup>
 
-					<s:Group top="{courseClass != 'listening' ? 55 : 85}" horizontalCenter="0" filters="{[dropShadowFilterBottom, dropShadowFilterTop]}">
+					<s:Group top="{courseClass != 'listening' ? 55 : 85}" height="70" horizontalCenter="0" filters="{[dropShadowFilterBottom, dropShadowFilterTop]}">
 						<assets:HeadBar left="0" />
-						<s:Label id="indexLabel" width="50" left="27" top="17" textAlign="center" fontSize="48" fontWeight="bold" />
+						<s:Group height="100%" width="104" >
+							<s:Label id="indexLabel" verticalCenter="2" horizontalCenter="0" lineHeight="100" textAlign="center" fontSize="48" fontWeight="bold" />
+						</s:Group>
 						<s:Label id="moduleLabel" top="17" left="107" fontSize="12" />
 						<s:Label id="captionLabel" top="30" left="107" fontSize="15" fontWeight="bold" />
 						<tlfcomponents:AudioPlayer id="audioPlayer" right="10" top="8" visible="{data.attribute('audioHref').length() > 0}" includeInLayout="{data.attribute('audioHref').length() > 0}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />

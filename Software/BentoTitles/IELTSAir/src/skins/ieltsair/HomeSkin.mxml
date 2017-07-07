@@ -74,9 +74,11 @@
 			<s:Group top="80" horizontalCenter="0">
 				<zoneui:ExamPracticeButton id="practiceTestButton" top="50" color="#FFFFFF" label="{hostComponent.practiceTestButtonData.@caption}" thumbnailSource="{hostComponent.assetFolder + 'testpracticequestion_reading1.png'}"
 										   textBackgroundColor="{getStyle('readingExamPracticeColor')}" isBottomLeftRound="true" useHandCursor="true" buttonMode="true" />
-				<s:Group top="0" left="-5">
-					<s:SWFLoader source="@Embed(source='skins/ielts/assets/headerBar.png')" scaleX="0.54"  scaleY="0.54"/>
-					<s:Label id="indexLabel" width="50" left="15" top="28" textAlign="center" fontSize="48" fontWeight="bold" text="1" color="{getStyle('readingExamPracticeColor')}" />
+				<s:Group top="0" left="-5" height="90">
+					<s:SWFLoader source="@Embed(source='skins/ielts/assets/headerBar.png')" scaleX="0.54" scaleY="0.54"/>
+					<s:Group height="100%" width="80" >
+						<s:Label id="indexLabel" verticalCenter="2" horizontalCenter="0" lineHeight="100" textAlign="center" fontSize="48" fontWeight="bold" text="1" color="{getStyle('readingExamPracticeColor')}" />
+					</s:Group>
 					<s:Label id="moduleLabel" top="25" left="77" fontSize="12" text="{getProductModule(hostComponent.productCode)}" />
 					<s:Label id="captionLabel" top="39" left="77" fontSize="15" fontWeight="bold" text="{hostComponent.practiceTestButtonData.@caption}" />
 				</s:Group>
