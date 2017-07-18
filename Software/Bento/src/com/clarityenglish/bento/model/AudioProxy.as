@@ -12,14 +12,16 @@ import com.clarityenglish.common.vo.config.BentoError;
 
 import flash.events.ErrorEvent;
 	import flash.events.Event;
-	import flash.events.ProgressEvent;
+import flash.events.PermissionEvent;
+import flash.events.ProgressEvent;
 	import flash.events.SampleDataEvent;
 	import flash.events.StatusEvent;
 	import flash.media.Microphone;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
 	import flash.net.URLRequest;
-	import flash.system.Security;
+import flash.permissions.PermissionStatus;
+import flash.system.Security;
 	import flash.system.SecurityPanel;
 	import flash.utils.ByteArray;
 	import flash.utils.setTimeout;
@@ -415,37 +417,58 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 		 * 
 		 * @param	idx
 		 */
-		public function setMicrophone():Boolean {
-			//if (microphone)
-			//	microphone.removeEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
-
-			try {
-				microphone = Microphone.getMicrophone();
-                trace("set microphone, Microphone.names=" + Microphone.names.toString() + " microphone.name=" + microphone.name + " muted=" + microphone.muted);
-				// v4.0.1.2 Error checking
-                if (!Microphone.isSupported || microphone == null) {
-                    _recordEnabled = false;
-					// gh#1464 This notification has no effect as mediator not complete yet
-					// when this is called from onRegister
-					//sendNotification(RecorderNotifications.NO_MICROPHONE);
-					//Security.showSettings(SecurityPanel.MICROPHONE);
-				} else {
-					// gh#530
-                    // gh#1464 Even a muted microphone needs a status handler in case the user unmutes it
-                    if (!microphone.hasEventListener(StatusEvent.STATUS))
-					    microphone.addEventListener(StatusEvent.STATUS, microphoneStatusHandler);
-					microphone.setSilenceLevel(0);
-					// gh#1438
-					microphone.rate = MICROPHONE_RATE;
-                    if (microphone.muted)
-                        Security.showSettings(SecurityPanel.MICROPHONE);
-                    _recordEnabled = (!microphone.muted);
-				}
-			} catch (e:Error) {
-                _recordEnabled = false;
-			}
-            return _recordEnabled;
+		private function connectMicrophone():void {
+            // gh#530
+            // gh#1464 Even a muted microphone needs a status handler in case the user unmutes it
+            if (!microphone.hasEventListener(StatusEvent.STATUS))
+                microphone.addEventListener(StatusEvent.STATUS, microphoneStatusHandler);
+            microphone.setSilenceLevel(0);
+            // gh#1438
+            microphone.rate = MICROPHONE_RATE;
+            if (microphone.muted)
+                Security.showSettings(SecurityPanel.MICROPHONE);
+            _recordEnabled = (!microphone.muted);
 		}
+
+        public function setMicrophone():Boolean {
+            //if (microphone)
+            //	microphone.removeEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
+
+            // v4.0.1.2 Error checking
+            if (!Microphone.isSupported) {
+                _recordEnabled = false;
+                // gh#1464 This notification has no effect as mediator not complete yet
+                // when this is called from onRegister
+                //sendNotification(RecorderNotifications.NO_MICROPHONE);
+                //Security.showSettings(SecurityPanel.MICROPHONE);
+            } else {
+                microphone = Microphone.getMicrophone();
+                trace("set microphone, Microphone.names=" + Microphone.names.toString() + " microphone.name=" + microphone.name + " muted=" + microphone.muted);
+
+                if (Microphone.permissionStatus != PermissionStatus.GRANTED) {
+                    microphone.addEventListener(PermissionEvent.PERMISSION_STATUS, function (e:PermissionEvent):void {
+                        if (e.status == PermissionStatus.GRANTED) {
+                            connectMicrophone();
+                        }
+                        else {
+                            // permission denied
+                            _recordEnabled = false;
+                        }
+                    });
+
+                    try {
+                        microphone.requestPermission();
+                    }
+                    catch (e:Error) {
+                        // another request is in progress
+                        _recordEnabled = false;
+                    }
+                } else {
+                    connectMicrophone();
+                }
+            }
+            return _recordEnabled;
+        }
 		
 		public function record(clearWaveform:Boolean = false):void {
             // gh#1438 Check that the mic has not been denied since we first started
