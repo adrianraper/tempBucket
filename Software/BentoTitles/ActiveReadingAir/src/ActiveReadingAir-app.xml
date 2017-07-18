@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<application xmlns="http://ns.adobe.com/air/application/23.0">
+<application xmlns="http://ns.adobe.com/air/application/26.0">
 
 <!-- Adobe AIR Application Descriptor File Template.
 
@@ -27,8 +27,7 @@
 	<!-- A string value of the format <0-999>.<0-999>.<0-999> that represents application version which can be used to check for application upgrade. 
 	Values can also be 1-part or 2-part. It is not necessary to have a 3-part value.
 	An updated version of application must have a versionNumber value higher than the previous version. Required for namespace >= 2.5 . -->
-	<versionNumber>10.0.20</versionNumber>
-		         
+	<versionNumber>10.0.60</versionNumber>
 	<!-- A string value (such as "v1", "2.5", or "Alpha 1") that represents the version of the application, as it should be shown to users. Optional. -->
 	<!-- <versionLabel></versionLabel> -->
 
@@ -269,9 +268,14 @@
     <!-- </android> -->
 	<!-- End of the schema for adding the android specific tags in AndroidManifest.xml file -->
 
-<android>
-        <manifestAdditions><![CDATA[
+	<android>
+		<manifestAdditions><![CDATA[
 			<manifest android:installLocation="auto">
+				<supports-screens android:smallScreens="false"
+						  android:normalScreens="false"
+						  android:largeScreens="true"
+						  android:xlargeScreens="true"
+						  android:requiresSmallestWidthDp="600" />
 			    <!--See the Adobe AIR documentation for more information about setting Google Android permissions-->
 			    <!--Removing the permission android.permission.INTERNET will have the side effect
 		of preventing you from debugging your application on your device-->
@@ -284,17 +288,18 @@
 			    <!--<uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>-->
 			    <!--<uses-permission android:name="android.permission.WAKE_LOCK"/>-->
 			    <!--<uses-permission android:name="android.permission.CAMERA"/>-->
-			   	<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+			    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 			    <!--The ACCESS_NETWORK_STATE and ACCESS_WIFI_STATE permissions should be toggled
 		together in order to use AIR's NetworkInfo APIs-->
 			    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>-->
 			    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>-->
-			    <application android:hardwareAccelerated="true"/> 
+			    <application android:enabled="true" android:hardwareAccelerated="true">
+			    </application>
 			</manifest>
-			
+
 		]]></manifestAdditions>
-		<containsVideo>true</containsVideo>
-    </android>
+	</android>
+
     <iPhone>
         <InfoAdditions><![CDATA[
 			<key>UIDeviceFamily</key>
@@ -303,6 +308,8 @@
 			</array>
 			<key>UIRequiresPersistentWiFi</key> 
         	<string>YES</string>
+        	<key>NSMicrophoneUsageDescription</key>
+            <string>Enable microphone access for audio recording.</string>
 	        <key>UIPrerenderedIcon</key>
 	        <true/>
 	        <key>NSAppTransportSecurity</key>
