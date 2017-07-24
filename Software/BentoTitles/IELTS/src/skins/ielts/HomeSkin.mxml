@@ -88,7 +88,7 @@
 			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/answerKey.png')" right="30" top="0" scaleX="0.5" scaleY="0.5" />
 			<s:Group top="80" horizontalCenter="0">
 				<zoneui:ExamPracticeButton id="practiceTestButton" top="50" color="#FFFFFF" label="{hostComponent.practiceTestButtonData.@caption}" thumbnailSource="{hostComponent.assetFolder + 'testpracticequestion_reading1.png'}"
-										   textBackgroundColor="{getStyle('readingExamPracticeColor')}" isBottomLeftRound="true" useHandCursor="true" buttonMode="true" />
+										   textBackgroundColor="{getStyle('readingExamPracticeColor')}" isBottomLeftRound="true" isBottomRightRound="true" useHandCursor="true" buttonMode="true" />
 				<s:Group top="0" left="-5">
 					<s:SWFLoader source="@Embed(source='/skins/ielts/assets/headerBar.png')" scaleX="0.54"  scaleY="0.54"/>
 					<s:Label id="indexLabel" width="50" left="15" top="28" textAlign="center" fontSize="48" fontWeight="bold" text="1" color="{getStyle('readingExamPracticeColor')}" />
