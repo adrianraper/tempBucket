@@ -224,10 +224,13 @@ import spark.components.ViewNavigator;
 				case sectionNavigator:
 					// #486
 					sectionNavigator.addEventListener(Event.CHANGE, onSectionNavigatorChange, false, 0, true);
-					if (lastSelectedSectionIdx >= 0) sectionNavigator.selectedIndex = lastSelectedSectionIdx;
-					// If the course is reading and it is in test drive the first selected tab in zone is exam practice.
-					if(productVersion == IELTSApplication.TEST_DRIVE && course.@['class'] == "reading")
-                        sectionNavigator.selectedIndex = 3;
+					if (lastSelectedSectionIdx >= 0) {
+						sectionNavigator.selectedIndex = lastSelectedSectionIdx;
+                    } else {
+                        // If the course is reading and it is in test drive the first selected tab in zone is exam practice.
+                        if(productVersion == IELTSApplication.TEST_DRIVE && course.@['class'] == "reading")
+                            sectionNavigator.selectedIndex = 3;
+					}
 					break;
 				case questionZoneViewNavigator:
 					instance.label = copyProvider.getCopyForId("questionZoneViewNavigator");
