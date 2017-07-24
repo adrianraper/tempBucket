@@ -45,12 +45,15 @@ in accordance with the terms of the license agreement accompanying it.
 	
 	<!-- layer 2: fill -->
 	<!--- @private -->
-	<s:Rect id="fill" left="0" right="0" top="0" bottom="0" radiusX="4" radiusY="4">
+	<s:Rect id="fill" left="0" right="0" top="0" bottom="0" radiusX="5" radiusY="5">
 		<s:fill>
-			<s:LinearGradient rotation="90">
-				<s:GradientEntry color="0x2DA3E3" color.over="0x50B9F2" color.down="0x50B9F2" ratio="0" />				
-				<s:GradientEntry color="0x056FB0" color.over="0x148FDB" color.down="0x148FDB" ratio="1" />				
-			</s:LinearGradient>
+			<s:SolidColor color="#0072A8" />
+		</s:fill>
+	</s:Rect>
+
+	<s:Rect left="1" right="1" top="1" bottom="5">
+		<s:fill>
+			<s:SolidColor color="#2C8CC7" />
 		</s:fill>
 	</s:Rect>
 
@@ -59,7 +62,7 @@ in accordance with the terms of the license agreement accompanying it.
 	<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
 	<s:Label id="labelDisplay" 
 			 color="0xFFFFFF" 
-			 fontSize="16"
+			 fontSize="21"
 			 fontWeight="bold"
 			 textAlign="center"
 			 maxDisplayedLines="1"

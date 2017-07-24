@@ -76,24 +76,23 @@
 		</s:VGroup>
 	</s:BorderContainer>
 	
-	<s:BorderContainer horizontalCenter="0" borderAlpha="0" backgroundAlpha="0" width="90%" includeIn="bcStates">
-		<s:Group width="100%" height="440" top="150">
-			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='CreditGraphic')" autoLoad="true" horizontalAlign="center" horizontalCenter="0" />
-			<s:Spacer height="0" />
-			<s:VGroup width="100%" horizontalAlign="center" paddingTop="80">
-				<s:SWFLoader source="@Embed(source='/skins/ielts/assets/credits.png')" horizontalAlign="center" horizontalCenter="0" />
-				<s:Spacer height="10" />
-				<s:Label id="thankYouLabel2" fontSize="21" color="0x174A7D" fontWeight="bold" horizontalCenter="0" />
-				<s:Spacer height="10" />
-				<s:HGroup>
-					<s:Label id="upgradeLabel" fontSize="21" fontFamily="Segoe Print" fontWeight="bold" color="#0094D5" horizontalCenter="0" />
-					<s:Label id="fullVersionLabel" fontSize="21" fontFamily="Segoe Print" fontWeight="bold" color="#E86C1F" horizontalCenter="0" paddingLeft="3" />
+	<s:BorderContainer horizontalCenter="0" borderAlpha="0" backgroundAlpha="0" width="100%" includeIn="bcStates">
+		<s:Group width="100%" height="100%" top="10">
+			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='CreditGraphic')" autoLoad="true" />
+			<s:VGroup width="100%" horizontalAlign="center" paddingTop="240">
+				<s:RichText id="endingRichText" fontSize="35" color="#08416B" fontWeight="bold" horizontalCenter="0" textAlign="center" />
+				<s:HGroup paddingTop="55" paddingLeft="40" gap="50">
+					<s:SWFLoader source="@Embed(source='/skins/ielts/assets/ending/morePracticeTests.png')" horizontalAlign="center" scaleX="0.5" scaleY="0.5"/>
+					<s:SWFLoader source="@Embed(source='/skins/ielts/assets/ending/moreExercises.png')" horizontalAlign="center" scaleX="0.5" scaleY="0.5"/>
+					<s:SWFLoader source="@Embed(source='/skins/ielts/assets/ending/moreAdviceFromExperts.png')" horizontalAlign="center" scaleX="0.48" scaleY="0.5"/>
 				</s:HGroup>
-				<s:Spacer height="10" />
-				<s:HGroup paddingLeft="-100">
-					<s:SWFLoader source="@Embed(source='/skins/ielts/assets/credits/click_here.png')"/>
-					<s:Button useHandCursor="true" buttonMode="true" id="moreButton" click="onMoreClicked(event)" width="200" height="40" />
-				</s:HGroup>				
+				<s:VGroup paddingTop="75" gap="0">
+					<s:VGroup paddingLeft="30">
+						<s:SWFLoader source="@Embed(source='/skins/ielts/assets/ending/clickHere.png')" scaleX="0.5" scaleY="0.5"/>
+					</s:VGroup>
+
+					<s:Button id="moreButton" useHandCursor="true" buttonMode="true" click="onMoreClicked(event)" width="510" height="48.5" />
+				</s:VGroup>
 			</s:VGroup>			
 		</s:Group>
 	</s:BorderContainer>	
