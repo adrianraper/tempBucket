@@ -75,22 +75,21 @@
 			</s:Rect>
 		</s:VGroup>
 	</s:BorderContainer>
-	
-	<s:BorderContainer horizontalCenter="0" borderAlpha="0" backgroundAlpha="0" width="100%" includeIn="bcStates">
+
+	<s:BorderContainer horizontalCenter="0" borderAlpha="0" backgroundAlpha="0" width="100%" height="100%" includeIn="bcStates">
 		<s:Group width="100%" height="100%" top="10">
 			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='CreditGraphic')" autoLoad="true" />
-			<s:VGroup width="100%" horizontalAlign="center" paddingTop="240">
+			<s:VGroup width="100%" horizontalAlign="center" verticalCenter="-100" paddingTop="100">
 				<s:RichText id="endingRichText" fontSize="35" color="#08416B" fontWeight="bold" horizontalCenter="0" textAlign="center" />
 				<s:HGroup paddingTop="55" paddingLeft="40" gap="50">
 					<s:SWFLoader source="@Embed(source='/skins/ielts/assets/ending/morePracticeTests.png')" horizontalAlign="center" scaleX="0.5" scaleY="0.5"/>
 					<s:SWFLoader source="@Embed(source='/skins/ielts/assets/ending/moreExercises.png')" horizontalAlign="center" scaleX="0.5" scaleY="0.5"/>
-					<s:SWFLoader source="@Embed(source='/skins/ielts/assets/ending/moreAdviceFromExperts.png')" horizontalAlign="center" scaleX="0.48" scaleY="0.5"/>
+					<s:SWFLoader source="@Embed(source='/skins/ielts/assets/ending/moreAdviceFromExperts.png')" horizontalAlign="center" scaleX="0.5" scaleY="0.5"/>
 				</s:HGroup>
 				<s:VGroup paddingTop="75" gap="0">
 					<s:VGroup paddingLeft="30">
 						<s:SWFLoader source="@Embed(source='/skins/ielts/assets/ending/clickHere.png')" scaleX="0.5" scaleY="0.5"/>
 					</s:VGroup>
-
 					<s:Button id="moreButton" useHandCursor="true" buttonMode="true" click="onMoreClicked(event)" width="510" height="48.5" />
 				</s:VGroup>
 			</s:VGroup>			
