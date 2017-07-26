@@ -188,6 +188,9 @@ SQL;
         // Because T_Score does not have valid exercise id, use unit ids
         // It might be more efficient to exclude things like requirements unit, but is more explicit to do it by includes
         $gaugeUnitID = DPTConstants::gaugeUnitID;
+        // ctp#438
+        $gaugeOneExerciseID = '2015063020003';
+        $gaugeTwoExerciseID = '2015063020028';
         $gaugeBonusBUnitID = DPTConstants::gaugeBonusBUnitID;
         $gaugeBonusCUnitID = DPTConstants::gaugeBonusCUnitID;
         $trackAUnitID = DPTConstants::trackAUnitID;
@@ -229,9 +232,11 @@ SQL;
             return null;
 
         $totalCorrect = $totalWrong = $totalMissed = 0;
-        $trackCorrect = $bonusCorrect = $gaugeBonusCorrect = $gaugeCorrect = 0;
+        $trackCorrect = $bonusCorrect = $gaugeBonusCorrect = $gaugeCorrect = $gaugeOneCorrect = $gaugeTwoCorrect = 0;
         $trackUnitID = $lastUnitID = 0;
         $unitIdx = $lastUnitIdx = 0;
+        // ctp#438 Just for reporting the test path
+        $gaugeTwoUsed = $gaugeBonusBUsed = $gaugeBonusCUsed = $trackBonusA2Used = $trackBonusB1Used = $trackBonusB2Used = $trackBonusC1Used = $trackBonusC2Used = false;
 
         $trackDetails = array();
         $gaugeDetails = array();
@@ -276,23 +281,36 @@ SQL;
 
                 case $gaugeUnitID:
                     if ($record->F_Score > 0) {
-                        $gaugeCorrect += $record->F_Score;
+                        if ($record->F_ExerciseID == $gaugeOneExerciseID)
+                            $gaugeOneCorrect += $record->F_Score;
+                        if ($record->F_ExerciseID == $gaugeTwoExerciseID)
+                            $gaugeTwoCorrect += $record->F_Score;
                         $scoreDetail = new ScoreDetail();
                         $scoreDetail->fromDatabaseObj($record);
                         $gaugeDetails[] = $scoreDetail;
                     }
+                    // ctp#438 To tell if we went through both parts of the gauge - for reporting test path
+                    if ($record->F_ExerciseID == $gaugeTwoExerciseID)
+                        $gaugeTwoUsed = true;
                     break;
 
                 case $gaugeBonusBUnitID:
                 case $gaugeBonusCUnitID:
                     if ($record->F_Score > 0)
                         $gaugeBonusCorrect += $record->F_Score;
+                    // ctp#438 To tell if we went through a gauge bonus - for reporting test path
+                    if ($record->F_UnitID == $gaugeBonusBUnitID)
+                        $gaugeBonusBUsed = true;
+                    if ($record->F_UnitID == $gaugeBonusCUnitID)
+                        $gaugeBonusCUsed = true;
                     break;
 
                 default:
                     // ignore anything else
             }
         }
+        // ctp#438 Use an overall gauge score
+        $gaugeCorrect = $gaugeOneCorrect + $gaugeTwoCorrect;
 
         // Also note which was the last section you were in
         $lastUnitID = $includeUnitIDs[$lastUnitIdx];
@@ -436,6 +454,7 @@ SQL;
                         }
                         break;
                 }
+                $trackBonusA2Used = true;
                 break;
 
             // Only ask B1 bonus if you might be going down
@@ -450,6 +469,7 @@ SQL;
                         $hurdle = 30;
                         break;
                 }
+                $trackBonusB1Used = true;
                 break;
 
             case 'B':
@@ -490,6 +510,7 @@ SQL;
                         }
                         break;
                 }
+                $trackBonusB2Used = true;
                 break;
 
             case 'bonusC1':
@@ -503,6 +524,7 @@ SQL;
                         $hurdle = 60;
                         break;
                 }
+                $trackBonusC1Used = true;
                 break;
 
             case 'bonusC2':
@@ -516,6 +538,7 @@ SQL;
                         $hurdle = 60;
                         break;
                 }
+                $trackBonusC2Used = true;
                 break;
 
             case 'C':
@@ -546,15 +569,45 @@ SQL;
             $result = "U";
 
         $rc = array("level" => $result, "numeric" => $gaugeCorrect + $trackCorrect + $hurdle);
+
+        // ctp#438 Report the test path
         if ($mode=='debug') {
-            $rc['gaugeCorrect'] = $gaugeCorrect;
-            $rc['gaugeBonusCorrect'] = $gaugeBonusCorrect;
+            $rc['gaugeOneCorrect'] = $gaugeOneCorrect;
+            if ($gaugeTwoUsed)
+                $rc['gaugeTwoCorrect'] = $gaugeTwoCorrect;
             $rc['gaugeAboveB2'] = $gaugeAboveB2Count;
-            $rc['track'] = $track;
+            if ($gaugeBonusBUsed)
+                $rc['gaugeBonusBCorrect'] = $gaugeBonusCorrect;
+            if ($gaugeBonusCUsed)
+                $rc['gaugeBonusCCorrect'] = $gaugeBonusCorrect;
+            switch ($trackUnitID) {
+                case $trackAUnitID:
+                    $rc['track'] = 'A';
+                    break;
+                case $trackBUnitID:
+                    $rc['track'] = 'B';
+                    break;
+                case $trackCUnitID:
+                    $rc['track'] = 'C';
+                    break;
+                default:
+                    $rc['track'] = 'none';
+                    break;
+            }
             $rc['trackCorrect'] = $trackCorrect;
-            $rc['bonusCorrect'] = $bonusCorrect;
-            $rc['lastUnitID'] = $lastUnitID;
-            $rc['trackUnitID'] = $trackUnitID;
+            if ($track != $rc['track'])
+                $rc['lastUnit'] = $track;
+            if ($trackBonusA2Used)
+                $rc['trackBonusA2Correct'] = $bonusCorrect;
+            if ($trackBonusB1Used)
+                $rc['trackBonusB1Correct'] = $bonusCorrect;
+            if ($trackBonusB2Used)
+                $rc['trackBonusB2Correct'] = $bonusCorrect;
+            if ($trackBonusC1Used)
+                $rc['trackBonusC1Correct'] = $bonusCorrect;
+            if ($trackBonusC2Used)
+                $rc['trackBonusC2Correct'] = $bonusCorrect;
+            //$rc['lastUnitID'] = $lastUnitID;
 
             // Show which tags applied to correct answers
             $tags = array();
