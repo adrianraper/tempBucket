@@ -16,6 +16,11 @@ class DPTConstants {
     const bonusB2UnitID = '2015063020084';
     const bonusC1UnitID = '2015063020086';
     const bonusC2UnitID = '2015063020088';
+    // ctp#438
+    const gaugeOneExerciseID = '2015063020003';
+    const gaugeTwoExerciseID = '2015063020028';
+
+    const minimumAnswersForValidResult = 10;
 
     function DPTConstants() {}
 

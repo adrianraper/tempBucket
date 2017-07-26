@@ -188,9 +188,6 @@ SQL;
         // Because T_Score does not have valid exercise id, use unit ids
         // It might be more efficient to exclude things like requirements unit, but is more explicit to do it by includes
         $gaugeUnitID = DPTConstants::gaugeUnitID;
-        // ctp#438
-        $gaugeOneExerciseID = '2015063020003';
-        $gaugeTwoExerciseID = '2015063020028';
         $gaugeBonusBUnitID = DPTConstants::gaugeBonusBUnitID;
         $gaugeBonusCUnitID = DPTConstants::gaugeBonusCUnitID;
         $trackAUnitID = DPTConstants::trackAUnitID;
@@ -201,6 +198,9 @@ SQL;
         $bonusB2UnitID = DPTConstants::bonusB2UnitID;
         $bonusC1UnitID = DPTConstants::bonusC1UnitID;
         $bonusC2UnitID = DPTConstants::bonusC2UnitID;
+        // ctp#438
+        $gaugeOneExerciseID = DPTConstants::gaugeOneExerciseID;
+        $gaugeTwoExerciseID = DPTConstants::gaugeTwoExerciseID;
 
         $includeUnitIDs = array($gaugeUnitID, $gaugeBonusBUnitID, $gaugeBonusCUnitID,
             $trackAUnitID, $trackBUnitID, $trackCUnitID,
@@ -416,7 +416,6 @@ SQL;
 
         */
         // ctp#122
-        $hurdle = 0;
         switch ($track) {
             case 'A':
                 switch (true) {
@@ -442,18 +441,16 @@ SQL;
                         } else {
                             $result = "A2";
                         }
-                        $hurdle = 0;
                         break;
                     case ($bonusCorrect >= 2):
                         if ($trackUnitID == $trackAUnitID) {
                             $result = "A2";
-                            $hurdle = 0;
                         } else {
                             $result = "B1";
-                            $hurdle = 30;
                         }
                         break;
                 }
+                // ctp#438 To tell if we went through a gauge bonus - for reporting test path
                 $trackBonusA2Used = true;
                 break;
 
@@ -462,11 +459,9 @@ SQL;
                 switch (true) {
                     case ($bonusCorrect <= 1):
                         $result = "A2";
-                        $hurdle = 0;
                         break;
                     case ($bonusCorrect >= 2):
                         $result = "B1";
-                        $hurdle = 30;
                         break;
                 }
                 $trackBonusB1Used = true;
@@ -477,15 +472,12 @@ SQL;
                     case ($trackCorrect <= 2):
                         // This means you should have seen the A2 bonus, but never answered questions from it.
                         $result = "A2";
-                        $hurdle = 0;
                         break;
                     case ($trackCorrect >= 3 && $trackCorrect <= 11):
                         $result = "B1";
-                        $hurdle = 30;
                         break;
                     case ($trackCorrect >= 12):
                         $result = "B2";
-                        $hurdle = 30;
                         break;
                 }
                 break;
@@ -498,15 +490,12 @@ SQL;
                         } else {
                             $result = "B2";
                         }
-                        $hurdle = 30;
                         break;
                     case ($bonusCorrect >= 2):
                         if ($trackUnitID == $trackBUnitID) {
                             $result = "B2";
-                            $hurdle = 30;
                         } else {
                             $result = "C1";
-                            $hurdle = 60;
                         }
                         break;
                 }
@@ -517,11 +506,9 @@ SQL;
                 switch (true) {
                     case ($bonusCorrect <= 1):
                         $result = "B2";
-                        $hurdle = 30;
                         break;
                     case ($bonusCorrect >= 2):
                         $result = "C1";
-                        $hurdle = 60;
                         break;
                 }
                 $trackBonusC1Used = true;
@@ -531,11 +518,9 @@ SQL;
                 switch (true) {
                     case ($bonusCorrect <= 1):
                         $result = "C1";
-                        $hurdle = 60;
                         break;
                     case ($bonusCorrect >= 2):
                         $result = "C2";
-                        $hurdle = 60;
                         break;
                 }
                 $trackBonusC2Used = true;
@@ -546,15 +531,12 @@ SQL;
                     case ($trackCorrect <= 2):
                         // This means you should have seen the B2 bonus, but never answered questions from it.
                         $result = "B2";
-                        $hurdle = 30;
                         break;
                     case ($trackCorrect >= 3 && $trackCorrect <= 11):
                         $result = "C1";
-                        $hurdle = 60;
                         break;
                     case ($trackCorrect >= 12):
                         $result = "C2";
-                        $hurdle = 60;
                         break;
                 }
                 break;
@@ -564,8 +546,23 @@ SQL;
                 break;
         }
 
+        // ctp#438 The hurdle is based on the track that you answered questions for, not the CEFR you end up with
+        switch ($trackUnitID) {
+            case $trackCUnitID:
+                $hurdle = 60;
+                break;
+            case $trackBUnitID:
+                $hurdle = 30;
+                break;
+            case $trackAUnitID:
+            default:
+                $hurdle = 0;
+                break;
+        }
+
+
         // Check that enough questions were answered to make this a valid test (includes gauge, track and bonuses)
-        if (($totalCorrect + $totalWrong) <= 10)
+        if (($totalCorrect + $totalWrong) <= DPTConstants::minimumAnswersForValidResult)
             $result = "U";
 
         $rc = array("level" => $result, "numeric" => $gaugeCorrect + $trackCorrect + $hurdle);
@@ -616,7 +613,7 @@ SQL;
                 $tags = array_merge($tags, $detail->tags);
             }
             if (count($tags)>0) {
-                $rc['tagsCorrect'] = array_count_values($tags);
+                $rc['trackTagsCorrect'] = array_count_values($tags);
             }
         }
         return $rc;
