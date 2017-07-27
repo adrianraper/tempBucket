@@ -25,8 +25,17 @@ class CTPService extends BentoService {
 		AbstractService::$title = "ctp";
 
         $this->testOps = new TestOps($this->db);
+        $this->progressOps = new ProgressOps($this->db);
         $this->usageOps = new UsageOps($this->db);
 	}
+
+    public function changeDB($dbHost) {
+        $this->changeDbHost($dbHost);
+
+        $this->testOps = new TestOps($this->db);
+        $this->progressOps = new ProgressOps($this->db);
+        $this->usageOps = new UsageOps($this->db);
+    }
 
 	public function getAppVersion() {
 	    return $this->appVersion;
@@ -324,7 +333,9 @@ class CTPService extends BentoService {
             return $this->testOps->getSessionsFromEmail($email);
         if ($sessionId) {
             $sessions = array();
-            $sessions[] = $this->testOps->getTestSession($sessionId);
+            $session = $this->testOps->getTestSession($sessionId);
+            if ($session)
+                $sessions[] = $session;
             return $sessions;
         }
         return array();
