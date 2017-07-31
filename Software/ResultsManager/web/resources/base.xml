@@ -32,6 +32,8 @@
             <lit name="errorNullRootId" code="219">Please refresh the browser or start the app again to keep going.</lit>
             <lit name="errorTitleCorrupted" code="220">The account details have been corrupted. Help is always available at support@clarityenglish.com</lit>
             <lit name="errorAccountSuspended" code="221">The account has been suspended. Help is always available at support@clarityenglish.com</lit>
+            <lit name="errorNoIPMatch" code="222">Your IP is not in the range of any account. {ip}</lit>
+            <lit name="errorNoAccountFound" code="223">No account can be found, provide personal details to start.</lit>
 
             <lit name="errorLicenceHasntStartedYet" code="300">Your account hasn't started yet. Please contact your administrator.</lit>
             <lit name="errorLicenceExpired" code="301">Your account expired on {expiryDate}. Please contact your administrator.</lit>

@@ -385,7 +385,7 @@ EOD;
 		// I suspect that for a network login it can be made simpler as there will only be 1 root.
 		// v3.4.1 Need to pass back name to pick up 'correct' capitalisation
 		if ($GLOBALS['dbms'] == 'pdo_sqlite') {
-			$sql .=	<<<EOD
+			$sql = <<<EOD
 				SELECT g.F_GroupID, m.F_RootID,
 						u.F_UserType, u.F_UserID, u.F_Password, u.F_StartDate UserStartDate, u.F_ExpiryDate UserExpiryDate,
 						u.F_UserName,
@@ -780,7 +780,7 @@ EOD;
 		$bindingParams = array(Session::get('rootID'));
 		//	SELECT IF((e.F_Email IS NULL), u.F_Email, e.F_Email), e.F_MessageType 
 		// TODO: Not tested in SQL Server yet
-		$sql .=	<<<EOD
+		$sql = <<<EOD
 			SELECT CASE WHEN (e.F_Email IS NULL) THEN u.F_Email ELSE e.F_Email END as F_Email, e.F_MessageType 
 			FROM T_AccountEmails e, T_AccountRoot r, T_User u
 			WHERE r.F_RootID = ?
@@ -879,8 +879,13 @@ EOD;
 			if ($ip) {
 				$rawRootID = $this->accountOps->getRootIDFromIP($ip, $productCode);
 				$rootID = (int) $rawRootID;
-				if (!$rootID) 
-					return null;
+				if (!$rootID)
+				    // gh#1561 In terms of getting an account, this is an error. This lets the calling proxy choose action.
+				    // Whilst a specific error is best, if I use errorNoPrefixOrRoot, we will get backwards compatability
+				    // for older apps with the new backend - which is a good idea.
+                    //throw $this->copyOps->getExceptionForId("errorNoIPMatch", array("ip" => $ip));
+                    throw $this->copyOps->getExceptionForId("errorNoPrefixOrRoot");
+					//return null;
 					
 			} else {
 				throw $this->copyOps->getExceptionForId("errorNoPrefixOrRoot");
@@ -895,8 +900,8 @@ EOD;
 			$rootID = (int) $rawRootID;
 			// #519
 			if (!$rootID) {
-				$logMessage = 'prefix error, prefix='.$prefix.' rootID='.$rawRootID.' db='.$GLOBALS['db'];
-				AbstractService::$debugLog->err($logMessage);
+				//$logMessage = 'prefix error, prefix='.$prefix.' rootID='.$rawRootID.' db='.$GLOBALS['db'];
+				//AbstractService::$debugLog->err($logMessage);
 				throw $this->copyOps->getExceptionForId("errorNoPrefixForRoot", array("prefix" => $prefix));
 			}		
 		}

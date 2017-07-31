@@ -11,7 +11,8 @@ import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.common.events.MemoryEvent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
-	import com.clarityenglish.common.vo.content.Bookmark;
+import com.clarityenglish.common.vo.config.Endpoint;
+import com.clarityenglish.common.vo.content.Bookmark;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.User;
@@ -193,7 +194,9 @@ import flash.events.TimerEvent;
             // gh#36 Also need dbHost if this is the first call
             // gh#156 Drop timezoneOffset
             var params:Array = [loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, rootID, configProxy.getProductCode(), configProxy.getConfig().dbHost];
-            new RemoteDelegate("login", params, this).execute();
+            // gh#1561 You might have to use this call to figure out which endpoint you are working in
+            var endpointAction:Object = {acceptFirstResult:true};
+            new RemoteDelegate("login", params, this, false, endpointAction).execute();
         }
 
         public function logout():void {
@@ -288,12 +291,19 @@ import flash.events.TimerEvent;
         /* INTERFACE org.davekeen.delegates.IDelegateResponder */
         public function onDelegateResult(operation:String, data:Object):void {
             var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+            var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+            var config:Config = configProxy.getConfig();
 
             switch (operation) {
+                // gh#1561
+                case "selectedEndpoint":
+                    if (data) {
+                        config.mergeEndpointData((data as Endpoint).fullXML);
+                    }
+                    break;
                 case "getInstanceID":
                     if (data) {
                         // Check if the returned instance ID is the same as our current session
-                        configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 
                         // To help Alfred trigger the error screen
                         if (Config.DEVELOPER.name == "AN") {
@@ -317,7 +327,6 @@ import flash.events.TimerEvent;
                 case "updateLicence":
                     // gh#604 You might have a new sessionID now
                     if (data) {
-                        configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
                         if (data.sessionID as String != configProxy.getConfig().sessionID) {
                             // Sanity check
                             if (Number(data.sessionID) > Number(configProxy.getConfig().sessionID)) {
@@ -336,7 +345,6 @@ import flash.events.TimerEvent;
                 case "addUser":
                     if (data) {
                         // Just go back into login for this user now
-                        configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
                         var verified:Boolean = (configProxy.getAccount().verified == 1);
                         login(data as User, configProxy.getAccount().loginOption, verified);
 
@@ -358,7 +366,6 @@ import flash.events.TimerEvent;
                         _groupTrees = data.groupTrees;
 
                         // Add the licence id you just got to the config
-                        var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
                         configProxy.getConfig().licence.id = (data.licence as Licence).id as Number;
 
                         // Store a user config object in a shared object if rememberLogin is turned on #385

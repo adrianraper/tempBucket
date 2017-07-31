@@ -174,8 +174,10 @@ class BentoService extends AbstractService {
 		$account = $this->loginOps->getAccountSettings($config);
 		
 		// gh#315 If no account and you didn't throw an exception, just means we can't find it from partial parameters
+        // gh#1561 For consistency we should still alert this with an exception
 		if (!$account)
-			return null;
+            throw $this->copyOps->getExceptionForId("errorNoAccountFound");
+			// return null;
 		
 		// gh#659 productCodes is null or not can distinguish whether this is ipad or online version login
 		if (isset($config['ip'])) {
@@ -271,12 +273,12 @@ class BentoService extends AbstractService {
 			} else {
 				$config ['ip'] = $_SERVER ["REMOTE_ADDR"];
 			}
-			AbstractService::$debugLog->notice ( "picked up ip as " . $config ['ip'] );
+			//AbstractService::$debugLog->notice ( "picked up ip as " . $config ['ip'] );
 		} else {
-			AbstractService::$debugLog->notice ( "was passed ip as " . $config ['ip'] );
+			//AbstractService::$debugLog->notice ( "was passed ip as " . $config ['ip'] );
 		}
 		
-		return $this->getAccountSettings ( $config );
+		return $this->getAccountSettings($config);
 	}
 	
 	// Rewritten from RM version

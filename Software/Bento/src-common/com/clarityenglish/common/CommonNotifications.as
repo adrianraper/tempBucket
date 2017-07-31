@@ -14,6 +14,8 @@
 		
 		public static const CONFIG_LOAD:String = "config_load";
 		public static const CONFIG_LOADED:String = "config_loaded";
+        // gh#1561
+        public static const CONFIG_ENDPOINT_SELECTED:String = "config_endpoint_selected";
 
 		// 341
 		public static const ADD_USER:String = "add_user";
@@ -60,6 +62,7 @@
 		// gh#1067
 		public static const WRITE_MEMORY:String = "write_memory";
 		//public static const GET_MEMORY:String = "get_memory";
+
 	}
 	
 }

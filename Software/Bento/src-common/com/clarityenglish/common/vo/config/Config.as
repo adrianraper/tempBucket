@@ -1,26 +1,23 @@
 package com.clarityenglish.common.vo.config {
-	import com.clarityenglish.common.model.CopyProxy;
-	import com.clarityenglish.common.vo.content.Title;
-	import com.clarityenglish.common.vo.manageable.Group;
-	import com.clarityenglish.common.vo.manageable.User;
-	import com.clarityenglish.dms.vo.account.Account;
-	import com.clarityenglish.dms.vo.account.Licence;
-	
-	import flash.events.Event;
-	import flash.events.IOErrorEvent;
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
-	
-	import mx.logging.ILogger;
-	import mx.logging.Log;
-	import mx.managers.SystemManager;
-	import mx.styles.StyleManager;
-	
-	import org.davekeen.util.ClassUtil;
-	import org.davekeen.util.StringUtils;
-	import org.davekeen.util.XmlUtils;
-	
-	/**
+    import com.clarityenglish.common.model.CopyProxy;
+    import com.clarityenglish.common.vo.content.Title;
+    import com.clarityenglish.common.vo.manageable.Group;
+    import com.clarityenglish.common.vo.manageable.User;
+    import com.clarityenglish.dms.vo.account.Account;
+    import com.clarityenglish.dms.vo.account.Licence;
+
+    import flash.events.Event;
+    import flash.events.IOErrorEvent;
+    import flash.net.URLLoader;
+    import flash.net.URLRequest;
+
+    import mx.logging.ILogger;
+    import mx.logging.Log;
+
+    import org.davekeen.util.ClassUtil;
+    import org.davekeen.util.StringUtils;
+
+/**
 	 * This holds configuration information that comes from any source.
 	 * It includes licence control, user and account information.
 	 */
@@ -175,7 +172,7 @@ package com.clarityenglish.common.vo.config {
 		
 		// gh#224
 		public var customisation:XML;
-		
+
 		// gh#886, gh#1090
 		private var _noLogin:Boolean;
 
@@ -359,11 +356,12 @@ package com.clarityenglish.common.vo.config {
 
             // gh#1314 Have to do this after picking up sever parameters
             // gh#1339 Substitute any dynamic domains
+            // gh#1561 drop for now
             var replaceObj:Object = {remoteDomain: this.remoteDomain, currentDomain: this.protocol + this.server + '/'};
             for (var searchString:String in replaceObj) {
                 var regExp:RegExp = new RegExp("\{" + searchString + "\}", "g");
-                this.remoteGateway = this.remoteGateway.replace(regExp, replaceObj[searchString]);
-                this.contentRoot = this.contentRoot.replace(regExp, replaceObj[searchString]);
+                if (this.remoteGateway) this.remoteGateway = this.remoteGateway.replace(regExp, replaceObj[searchString]);
+                if (this.contentRoot) this.contentRoot = this.contentRoot.replace(regExp, replaceObj[searchString]);
             }
 
             // gh#1160
@@ -468,31 +466,27 @@ package com.clarityenglish.common.vo.config {
 		 * 	  remoteService
 		 */
 		public function mergeFileData(xml:XML):void {
-			//ODD. For some reason, xml.config.dbHost.length() fails but xml..dbHost.length(); succeeds.
-			//var myL:int = xml.config.dbHost.length();
-			//var myS:String = xml..dbHost.toString();
-			//if (xml..dbHost.length() > 0) this.dbHost = xml..dbHost.toString();
-			if (xml..dbHost.toString())	this.dbHost = xml..dbHost.toString();
-			if (xml..prefix.toString()) this.prefix = xml..prefix.toString();
-			if (xml..productCode.toString()) {
-				this.configProductCode = xml..productCode.toString();;
-				this.productCode = xml..productCode.toString();		
+			//var myS:String = xml.dbHost.toString();
+			if (xml.prefix.toString()) this.prefix = xml.prefix.toString();
+			if (xml.productCode.toString()) {
+				this.configProductCode = xml.productCode.toString();
+				this.productCode = xml.productCode.toString();		
 			}
-			if (xml..productVersion.toString()) this.productVersion = xml..productVersion.toString();
-			if (xml..action.toString()) this.action = xml..action.toString();
+			if (xml.productVersion.toString()) this.productVersion = xml.productVersion.toString();
+			if (xml.action.toString()) this.action = xml.action.toString();
 			
 			// Use the config.xml to help with developer options
-			if (xml..developer.toString()) Config.DEVELOPER.name = xml..developer.toString();
+			if (xml.developer.toString()) Config.DEVELOPER.name = xml.developer.toString();
 			
 			// This is the base content folder, we expect it to be added to with title specific subFolder
-			if (xml..contentPath.toString()) {
-				this.contentRoot = xml..contentPath.toString();
+			if (xml.contentPath.toString()) {
+				this.contentRoot = xml.contentPath.toString();
 			} else {
 				this.contentRoot= "/";
 			}
 			
 			// Name of the menu file (called courseFile to fit in with Orchid)
-			xmlCourseFile = xml..courseFile.toString();
+			xmlCourseFile = xml.courseFile.toString();
 			if (xmlCourseFile) {
 				this.configFilename = xmlCourseFile;
 				this.paths.menuFilename = xmlCourseFile;
@@ -502,7 +496,7 @@ package com.clarityenglish.common.vo.config {
 			}
 			
 			// Alice: automatic multiple channel
-			for each (var channel:XML in xml..channel){			
+			for each (var channel:XML in xml.channel){			
 				var channelObject:ChannelObject = new ChannelObject();
 				channelObject.name = channel.@name.toString();
 				channelObject.caption = channel.@caption.toString();
@@ -511,113 +505,180 @@ package com.clarityenglish.common.vo.config {
 			}
 			
 			// #335
-			if (xml..streamingMedia.toString()) this.paths.streamingMedia = xml..streamingMedia.toString();
+			if (xml.streamingMedia.toString()) this.paths.streamingMedia = xml.streamingMedia.toString();
 
-			if (xml..mediaChannel.toString()) {
-				this.mediaChannel = xml..mediaChannel.toString();
+			if (xml.mediaChannel.toString()) {
+				this.mediaChannel = xml.mediaChannel.toString();
 			}else {
 				// TODO: It would be better to build a preference system into the .rss files
 				this.mediaChannel = 'vimeo';
 			}
 			
-			if (xml..sharedMedia.toString()) this.paths.sharedMedia = xml..sharedMedia.toString();
-			if (xml..brandingMedia.toString()) this.paths.brandingMedia = xml..brandingMedia.toString();
+			if (xml.sharedMedia.toString()) this.paths.sharedMedia = xml.sharedMedia.toString();
+			if (xml.brandingMedia.toString()) this.paths.brandingMedia = xml.brandingMedia.toString();
 			
-			if (xml..courseID.toString()) this.courseID = xml..courseID.toString();
-			//if (xml..courseFile.toString()) this.courseFile = xml..courseFile.toString();
-			if (xml..language.toString()) {
-				this.language = xml..language.toString();
-				this.languageCode = xml..language.toString();
+			if (xml.courseID.toString()) this.courseID = xml.courseID.toString();
+			//if (xml.courseFile.toString()) this.courseFile = xml.courseFile.toString();
+			if (xml.language.toString()) {
+				this.language = xml.language.toString();
+				this.languageCode = xml.language.toString();
 			}
 
+            if (xml.dbHost.toString())	this.dbHost = xml.dbHost.toString();
+			// gh#1561 Done separately as endpoints, but leave here (without defaults) in case it is an old config.xml
             // For remote access and domain independence
-            if (xml..remoteDomain.toString()) {
-                this.remoteDomain = xml..remoteDomain.toString();
-            } else {
-                this.remoteDomain = "http://www.ClarityEnglish.com/";
+            if (xml.remoteDomain.toString()) {
+                this.remoteDomain = xml.remoteDomain.toString();
+            //} else {
+            //    this.remoteDomain = "http://www.ClarityEnglish.com/";
             }
 
             // To handle the amfphp gateway
-			if (xml..remoteGateway.toString()) {
-				this.remoteGateway = xml..remoteGateway.toString();
-			} else {
-				this.remoteGateway = "Software/ResultsManager/web/amfphp/";
+			if (xml.remoteGateway.toString()) {
+				this.remoteGateway = xml.remoteGateway.toString();
+			//} else {
+			//	this.remoteGateway = "Software/ResultsManager/web/amfphp/";
 			}
-			if (xml..remoteService.toString()) {
-				this.remoteService = xml..remoteService.toString();
-			} else {
-				this.remoteService = "BentoService";
+			if (xml.remoteService.toString()) {
+				this.remoteService = xml.remoteService.toString();
+			//} else {
+			//	this.remoteService = "BentoService";
 			}
-			
-			if (xml..assetFolder.toString()) {
-				this.assetFolder = xml..assetFolder.toString();
+			if (xml.assetFolder.toString()) {
+				this.assetFolder = xml.assetFolder.toString();
 			} else {
-				this.assetFolder = "ResultsManager/web/resources/assets/";
+				this.assetFolder = "Software/ResultsManager/web/resources/assets/";
 			}
 			// for CCB
-			if (xml..remoteStartFolder.toString()) {
-				this.remoteStartFolder = xml..remoteStartFolder.toString();
-			} else {
+			if (xml.remoteStartFolder.toString()) {
+				this.remoteStartFolder = xml.remoteStartFolder.toString();
+			//} else {
 				// gh#92
-				this.remoteStartFolder = "http://www.ClarityEnglish.com/area1/";
+			//	this.remoteStartFolder = "http://www.ClarityEnglish.com/area1/";
 			}			
 
 			// #337
-			if (xml..upgradeURL.toString())
-				this.upgradeURL = xml..upgradeURL.toString();
-			if (xml..pricesURL.toString())
-				this.pricesURL = xml..pricesURL.toString();
-			if (xml..registerURL.toString())
-				this.registerURL = xml..registerURL.toString();
-			if (xml..manualURL.toString())
-				this.manualURL = xml..manualURL.toString();
-			if (xml..getAccountURL.toString())
-				this.getAccountURL = xml..getAccountURL.toString();
+			if (xml.upgradeURL.toString())
+				this.upgradeURL = xml.upgradeURL.toString();
+			if (xml.pricesURL.toString())
+				this.pricesURL = xml.pricesURL.toString();
+			if (xml.registerURL.toString())
+				this.registerURL = xml.registerURL.toString();
+			if (xml.manualURL.toString())
+				this.manualURL = xml.manualURL.toString();
+			if (xml.getAccountURL.toString())
+				this.getAccountURL = xml.getAccountURL.toString();
 			
 			// #385
-			if (xml..rememberLogin.toString() == "true")
+			if (xml.rememberLogin.toString() == "true")
 				this.rememberLogin = true;
-			if (xml..disableAutoTimeout.toString() == "true")
+			if (xml.disableAutoTimeout.toString() == "true")
 				this.disableAutoTimeout = true;
 			
 			// #410
-			if (xml..checkNetworkAvailabilityUrl.toString())
-				this.checkNetworkAvailabilityUrl = xml..checkNetworkAvailabilityUrl.toString();
-			if (xml..checkNetworkAvailabilityInterval.toString())
-				this.checkNetworkAvailabilityInterval = new Number(xml..checkNetworkAvailabilityInterval.toString());
-			if (xml..checkNetworkAvailabilityReconnectInterval.toString())
-				this.checkNetworkAvailabilityReconnectInterval = new Number(xml..checkNetworkAvailabilityReconnectInterval.toString());
+			if (xml.checkNetworkAvailabilityUrl.toString())
+				this.checkNetworkAvailabilityUrl = xml.checkNetworkAvailabilityUrl.toString();
+			if (xml.checkNetworkAvailabilityInterval.toString())
+				this.checkNetworkAvailabilityInterval = new Number(xml.checkNetworkAvailabilityInterval.toString());
+			if (xml.checkNetworkAvailabilityReconnectInterval.toString())
+				this.checkNetworkAvailabilityReconnectInterval = new Number(xml.checkNetworkAvailabilityReconnectInterval.toString());
 
 			// gh#21
-			if (xml..loginOption.toString())
-				this.loginOption = Number(xml..loginOption.toString());
+			if (xml.loginOption.toString())
+				this.loginOption = Number(xml.loginOption.toString());
 			
 			// gh#476
-			if (xml..useCacheBuster.toString() == "true")
+			if (xml.useCacheBuster.toString() == "true")
 				this.useCacheBuster = true;
 
 			// For help with testing
-			if (xml..id.toString()) {
-				this.configID = xml..id.toString();
+			if (xml.id.toString()) {
+				this.configID = xml.id.toString();
 			} else {
 				this.configID = '-';
 			}
-			if (xml..ip.toString()) {
-				this.ip = xml..ip.toString();
+			if (xml.ip.toString()) {
+				this.ip = xml.ip.toString();
 			}
-			if (xml..referrer.toString()) {
-				this.referrer = xml..referrer.toString();
+			if (xml.referrer.toString()) {
+				this.referrer = xml.referrer.toString();
 			}
 			
 			// gh#234
-			if (xml..platform.toString())
-				this.platform = xml..platform.toString();
+			if (xml.platform.toString())
+				this.platform = xml.platform.toString();
 			
 			// gh#224
-			if (xml..customisation)
-				this.customisation = xml..customisation[0];
+			if (xml.customisation)
+				this.customisation = xml.customisation[0];
 		}
-		
+
+	    // gh#1561 Add or update (but not default) config options that might have come from a selected endpoint
+		public function mergeEndpointData(xml:XML):void {
+			// If you had an old config file, this XML will be null
+            if (xml == null) return;
+
+			trace("merge endpoint data into config");
+			for each (var channel:XML in xml.channel){
+				var channelObject:ChannelObject = new ChannelObject();
+				channelObject.name = channel.@name.toString();
+				channelObject.caption = channel.@caption.toString();
+				channelObject.streamingMedia = channel.streamingMedia.toString();
+				channels.push(channelObject);
+			}
+            if (xml.contentPath.toString())
+                this.contentRoot = xml.contentPath.toString();
+
+			// #335
+			if (xml.streamingMedia.toString()) this.paths.streamingMedia = xml.streamingMedia.toString();
+
+			if (xml.mediaChannel.toString()) {
+				this.mediaChannel = xml.mediaChannel.toString();
+			}
+
+			if (xml.sharedMedia.toString()) this.paths.sharedMedia = xml.sharedMedia.toString();
+			if (xml.brandingMedia.toString()) this.paths.brandingMedia = xml.brandingMedia.toString();
+
+			if (xml.language.toString()) {
+				this.language = xml.language.toString();
+				this.languageCode = xml.language.toString();
+			}
+
+			if (xml.dbHost.toString())	this.dbHost = xml.dbHost.toString();
+			if (xml.assetFolder.toString()) {
+				this.assetFolder = xml.assetFolder.toString();
+			}
+
+			// #337
+			if (xml.upgradeURL.toString())
+				this.upgradeURL = xml.upgradeURL.toString();
+			if (xml.pricesURL.toString())
+				this.pricesURL = xml.pricesURL.toString();
+			if (xml.registerURL.toString())
+				this.registerURL = xml.registerURL.toString();
+			if (xml.manualURL.toString())
+				this.manualURL = xml.manualURL.toString();
+			if (xml.getAccountURL.toString())
+				this.getAccountURL = xml.getAccountURL.toString();
+
+			// #410
+			if (xml.checkNetworkAvailabilityUrl.toString())
+				this.checkNetworkAvailabilityUrl = xml.checkNetworkAvailabilityUrl.toString();
+			if (xml.checkNetworkAvailabilityInterval.toString())
+				this.checkNetworkAvailabilityInterval = new Number(xml.checkNetworkAvailabilityInterval.toString());
+			if (xml.checkNetworkAvailabilityReconnectInterval.toString())
+				this.checkNetworkAvailabilityReconnectInterval = new Number(xml.checkNetworkAvailabilityReconnectInterval.toString());
+
+			// gh#21
+			if (xml.loginOption.toString())
+				this.loginOption = Number(xml.loginOption.toString());
+
+			// gh#476
+			if (xml.useCacheBuster.toString() == "true")
+				this.useCacheBuster = true;
+
+		}
+
 		/**
 		 * You can read the following from the database about the account
 		 *

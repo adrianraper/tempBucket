@@ -1,35 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<id>/area1/RoadToIELTS2 in localhost</id>
+    <dbHost>2</dbHost>
 	<developer>none</developer>
-	<dbHost>2</dbHost>
 	<productCode>52,53</productCode>
+	<loginOption>128</loginOption>
 	<language>EN</language>
 	<platform>browser</platform>
 	<useCacheBuster>true</useCacheBuster>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
-	<channel name="ios-azure" caption="Ch1">
-        <streamingMedia>http://portalvhds99k5w60hsxq1q.blob.core.chinacloudapi.cn/</streamingMedia>
-    </channel>	
-	<channel name='rackspace' caption='Ch2'>
+	<channel name='rackspace' caption='A'>
 		<streamingMedia>http://c284790.r90.stream.cf1.rackcdn.com/</streamingMedia>
 	</channel>  
-	<channel name='aws' caption='Ch3'>
-		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
-	</channel>
 	<!--channel name='network' caption='network'>
 		<streamingMedia>{contentPath}/video/</streamingMedia>
 	</channel-->
 	<sharedMedia />
 	<brandingMedia />
-    <upgradeURL>http://www.ieltspractice.com</upgradeURL>
-    <pricesURL>http://www.clarityenglish.com/prices.php</pricesURL>
-    <registerURL>http://takeielts.britishcouncil.org/book-your-test/book-now</registerURL>
-    <getAccountURL>http://www.roadtoielts.com/</getAccountURL>
-    
-	<contentPath>http://dock.contentbench/Content/</contentPath>
-	<remoteDomain>http://dock.projectbench/Software/</remoteDomain>
-	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
-	<remoteService>IELTSService</remoteService>
-	<assetFolder>ResultsManager/web/resources/assets/</assetFolder>
+	<endpoint name='dock'>
+		<upgradeURL>http://www.ieltspractice.com</upgradeURL>
+		<pricesURL>http://www.clarityenglish.com/prices.php</pricesURL>
+		<registerURL>http://takeielts.britishcouncil.org/book-your-test/book-now</registerURL>
+		<getAccountURL>http://www.roadtoielts.com/</getAccountURL>
+		<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+		<remoteService>IELTSService</remoteService>
+        <channel name='aws' caption='B'>
+            <streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
+        </channel>
+        <contentPath>http://dock.contentbench/Content/</contentPath>
+	</endpoint>
+	<endpoint name='aws'>
+		<upgradeURL>http://www.ieltspractice.com</upgradeURL>
+		<pricesURL>http://www.clarityenglish.com/prices.php</pricesURL>
+		<registerURL>http://takeielts.britishcouncil.org/book-your-test/book-now</registerURL>
+		<getAccountURL>http://www.roadtoielts.com/</getAccountURL>
+		<remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+		<remoteService>IELTSService</remoteService>
+        <channel name="ios-azure" caption="C">
+            <streamingMedia>http://portalvhds99k5w60hsxq1q.blob.core.chinacloudapi.cn/</streamingMedia>
+        </channel>
+        <contentPath>http://www.clarityenglish.com/Content/</contentPath>
+    </endpoint>
+    <endpoint name='china'>
+        <upgradeURL>http://www.ieltspractice.com</upgradeURL>
+        <pricesURL>http://www.clarityenglish.com/prices.php</pricesURL>
+        <registerURL>http://takeielts.britishcouncil.org/book-your-test/book-now</registerURL>
+        <getAccountURL>http://www.roadtoielts.com/</getAccountURL>
+        <remoteGateway>http://www.clarityenglish.cn/Software/ResultsManager/web/amfphp/</remoteGateway>
+        <remoteService>IELTSService</remoteService>
+        <channel name='aws' caption='D'>
+            <streamingMedia>http://portalvhds99k5w60hsxq1q.blob.core.chinacloudapi.cn/</streamingMedia>
+        </channel>
+        <contentPath>http://dock.contentbench/Content/</contentPath>
+    </endpoint>
+	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 </config>

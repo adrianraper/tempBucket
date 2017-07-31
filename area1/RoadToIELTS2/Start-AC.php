@@ -6,10 +6,10 @@
 	require_once '../readPassedVariables.php';
 	
 	// Handling no prefix
-	if (!$prefix) {
-		header("location: /error/noPrefix.htm");
-		exit;
-	}
+	//if (!$prefix) {
+	//	header("location: /error/noPrefix.htm");
+	//	exit;
+	//}
 	
 	// For this product
 	$productCode = 52; // RoadToIELTS 2

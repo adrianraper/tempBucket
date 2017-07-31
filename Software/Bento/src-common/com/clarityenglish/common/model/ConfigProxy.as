@@ -11,6 +11,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
+	import com.clarityenglish.common.vo.config.Endpoint;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.User;
@@ -23,13 +24,15 @@ package com.clarityenglish.common.model {
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.utils.setTimeout;
-	
-	import mx.core.FlexGlobals;
+import flash.xml.XMLNode;
+
+import mx.core.FlexGlobals;
 	import mx.formatters.DateFormatter;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	import mx.rpc.Fault;
-	import mx.styles.StyleManager;
+import mx.rpc.events.ResultEvent;
+import mx.styles.StyleManager;
 	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
@@ -153,13 +156,16 @@ package com.clarityenglish.common.model {
 			if (Config.DEVELOPER.name.indexOf("DK") >= 0) {
 				if (!config.prefix) config.prefix = "Clarity";
 			}
-			
+
+            // gh#1561 It would make sense to have one call to find an account that either used prefix OR IP
+
 			// gh#21 If you are basing the account on the login, then go direct to login
 			if (config.loginOption && !config.prefix && !config.rootID) {
 				// gh#315 Trigger a call to check the IP first
 				var dbConfig:Object = { dbHost: config.dbHost, ip: config.ip, productCode: config.productCode };
 				var params:Array = [ dbConfig ];
-				new RemoteDelegate("getIPMatch", params, this).execute();
+                var endpointAction:Object = {acceptFirstResult:true};
+				new RemoteDelegate("getIPMatch", params, this, false, endpointAction).execute();
 				
 			} else {			
 				// Create a subset of the config object to pass to the remote call
@@ -169,7 +175,8 @@ package com.clarityenglish.common.model {
 				//  and it isn't nice to send NaN as rootID
 				dbConfig = { dbHost: config.dbHost, prefix: config.prefix, rootID: config.rootID, productCode: config.productCode };
 				params = [ dbConfig ];
-				new RemoteDelegate("getAccountSettings", params, this).execute();
+                endpointAction = {acceptFirstResult:true};
+                new RemoteDelegate("getAccountSettings", params, this, false, endpointAction).execute();
 			}
 		}
 
@@ -222,8 +229,8 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function onConfigLoadComplete(e:Event):void {
-			//config = new XML(e.target.data);
-			config.mergeFileData(new XML(e.target.data));
+			var configXML:XML = new XML(e.target.data);
+			config.mergeFileData(configXML);
 
             // gh#1314  Use what is passed from start page or command line
             // gh#1160 If we have already used these, just keep those that are retainable.
@@ -235,13 +242,34 @@ package com.clarityenglish.common.model {
             //}
             config.mergeParameters(FlexGlobals.topLevelApplication.parameters);
 
-            // Configure the delegate now that you have the gateway path.
 			// gh#1519 If a sessionid is defined then add it to the gateway.
             // gh#1314 Otherwise generate an id to use as a php session id.
-            //log.debug('use config.phpSessionID=' + config.phpSessionID);
-			RemoteDelegate.setGateway(config.remoteGateway + "gateway.php", { PHPSESSID: config.phpSessionID });
-			RemoteDelegate.setService(config.remoteService);
-			
+			// gh#1561 Loop round <endpoints> in the e.target.data (config.xml) adding them to RemoteDelegate
+            for each (var endpointXML:XML in configXML..endpoint){
+                var endpoint:Endpoint = new Endpoint();
+                endpoint.name = endpointXML.@name.toString();
+                endpoint.remoteGateway = endpointXML.remoteGateway.toString();
+				endpoint.remoteService = endpointXML.remoteService.toString();
+				//endpoint.dbHost = endpointXML.dbHost.toString();
+				endpoint.fullXML = endpointXML;
+                endpoint.params = { PHPSESSID: config.phpSessionID };
+
+                RemoteDelegate.setGatewayParams(endpoint.params);
+                RemoteDelegate.addEndpoint(endpoint);
+            }
+
+			// To allow old config.xml to be read by new apps, build an endpoint from basic parts
+			if (!endpoint && config.remoteGateway.length > 4) {
+                var endpoint:Endpoint = new Endpoint();
+                endpoint.name = 'default';
+                endpoint.remoteGateway = config.remoteGateway;
+                endpoint.remoteService = config.remoteService;
+                endpoint.params = { PHPSESSID: config.phpSessionID };
+
+                RemoteDelegate.setGatewayParams(endpoint.params);
+                RemoteDelegate.addEndpoint(endpoint);
+            }
+
 			// A special case; if disableAutoTimeout is true then turn off the activity timer #385
 			facade.removeCommand(BBNotifications.ACTIVITY_TIMER_RESET);
 			
@@ -511,9 +539,16 @@ package com.clarityenglish.common.model {
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		public function onDelegateResult(operation:String, data:Object):void {
 			switch (operation) {
+                // gh#1561
+                case "selectedEndpoint":
+                    if (data) {
+                        config.mergeEndpointData((data as Endpoint).fullXML);
+                    }
+                    break;
 				// gh#315
 				case "getIPMatch":
 					// If there is no data, it means no account found, so trigger login based account
+                    // gh#1561 Should not happen like this anymore as Fault used if no match
 					if (!data) {
 						this.createDummyAccount();
 						break;
@@ -589,8 +624,11 @@ package com.clarityenglish.common.model {
 
                 switch (operation) {
                     // gh#315
+                    // gh#1561 No IP match will give a fault now
                     case "getIPMatch":
-                        if (thisError.errorNumber == copyProxy.getCodeForId("errorNoPrefixOrRoot")) {
+                        if (thisError.errorNumber == copyProxy.getCodeForId("errorNoPrefixOrRoot") ||
+                                thisError.errorNumber == copyProxy.getCodeForId("errorNoIPMatch") ||
+                                thisError.errorNumber == copyProxy.getCodeForId("errorNoAccountFound"))  {
                             this.createDummyAccount();
                             break;
                         }
