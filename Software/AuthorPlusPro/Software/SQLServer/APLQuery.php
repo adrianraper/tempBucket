@@ -18,7 +18,9 @@ require_once(dirname(__FILE__)."/dbFunctions.php");
 	$dbDetails = new DBDetails($vars['DBHOST']);
 	$vars['DBDRIVER']=$dbDetails->driver;
 	//print($dbDetails->dsn);
-	$db = &ADONewConnection($dbDetails->dsn);
+    // gh#1493
+	$db = ADONewConnection($dbDetails->dsn);
+
 	if (!$db) die("Connection failed");
 	//$db->debug = true;
 	$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
