@@ -1577,3 +1577,7 @@ ALTER TABLE `T_AccountRoot` ADD COLUMN `F_UseOldLicenceCount` SMALLINT(5) DEFAUL
 -- Initially everybody is set to use the old method
 update T_AccountRoot
 set F_UseOldLicenceCount = 1;
+
+INSERT INTO `T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (2451, '2017-08-01 00:00:00', 'Update accounts to default to old licence method');
