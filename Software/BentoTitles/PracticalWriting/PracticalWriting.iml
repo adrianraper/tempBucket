@@ -3,7 +3,7 @@
   <component name="FlexBuildConfigurationManager" active="PracticalWriting">
     <configurations>
       <configuration name="PracticalWriting" main-class="PracticalWriting" output-file="PracticalWriting.swf" output-folder="$MODULE_DIR$/bin-release">
-        <dependencies target-player="23.0">
+        <dependencies target-player="26.0">
           <entries>
             <entry module-name="Bento" build-configuration-name="Bento">
               <dependency linkage="Merged" />
@@ -21,7 +21,7 @@
               <dependency linkage="Merged" />
             </entry>
           </entries>
-          <sdk name="Flex4.15_AIR23.0" />
+          <sdk name="Flex4.16_AIR26.0" />
         </dependencies>
         <compiler-options>
           <option name="additionalOptions" value="-debug=true" />
@@ -46,7 +46,7 @@
               <dependency linkage="Merged" />
             </entry>
           </entries>
-          <sdk name="Flex4.15_AIR23.0" />
+          <sdk name="Flex4.16_AIR26.0" />
         </dependencies>
         <compiler-options>
           <option name="filesToIncludeInSWC" value="$MODULE_DIR$/src/PracticalWriting.css&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/login/loginMan.png&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/login/backgroundLargeBall.png&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/loading.swf&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/HelveticaNeueLTStd-Bd.otf&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/HelveticaNeueLTStd-Roman.otf&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/exercise/audio/pause.png&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/exercise/audio/play.png&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/exercise/audio/played.png&#10;$MODULE_DIR$/src/skins/practicalwriting/assets/exercise/audio/playing.png" />
@@ -63,7 +63,7 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Flex4.15_AIR23.0" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="jdk" jdkName="Flex4.16_AIR26.0" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="Mobile components" level="project" />
     <orderEntry type="module" module-name="OSMF" exported="" />
