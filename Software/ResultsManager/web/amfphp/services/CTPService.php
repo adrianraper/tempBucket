@@ -6,6 +6,7 @@ require_once(dirname(__FILE__)."/BentoService.php");
 require_once(dirname(__FILE__)."/../../classes/TestOps.php");
 require_once(dirname(__FILE__)."/../../classes/UsageOps.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/ScheduledTest.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/context/ContextSession.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/TestSession.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/DPTConstants.php");
 
@@ -340,6 +341,92 @@ class CTPService extends BentoService {
         }
         return array();
     }
+
+    // sss#17 Which exercises has the user completed?
+    public function getCoverage($sessionId) {
+
+        // Get the full session record
+        $session = $this->progressOps->getSession($sessionId);
+
+        // Retrieve the score records for this user and this product
+        $exercises = $this->progressOps->getExercisesCompleted($session);
+
+        // Format: list the exercises that have been completed, removes duplicates too
+        $exercisesDone = array();
+        foreach ($exercises as $exercise)
+            $exercisesDone[$exercise['F_ExerciseID']] = true;
+
+        return $exercisesDone;
+    }
+
+    // sss#17 Which exercises has the user completed?, full details
+    public function getScoreDetails($sessionId) {
+
+        // Get the full session record
+        $session = $this->progressOps->getSession($sessionId);
+
+        // Retrieve the score records for this user and this product
+        $exercises = $this->progressOps->getExercisesCompleted($session);
+
+        // Format: detail each exercise that has been completed
+        $exercisesDone = array();
+        foreach ($exercises as $exercise)
+            $exercisesDone[] = ['exerciseId' => $exercise['F_ExerciseID'],
+                                'scorePercent' => intval($exercise['F_Score']),
+                                'date' => $exercise['F_DateStamp'],
+                                'duration' => intval($exercise['F_Duration'])
+                                ];
+
+        return $exercisesDone;
+    }
+    // sss#17 For each unit that the user had worked on, summarise the progress
+    public function getUnitProgress($sessionId) {
+
+        // Get the full session record
+        $session = $this->progressOps->getSession($sessionId);
+
+        // Retrieve the score records for this user and this product
+        $units = $this->progressOps->getUnitProgress($session);
+
+        // Format: detail each exercise that has been completed
+        $unitsDone = array();
+        foreach ($units as $unit)
+            $unitsDone[$unit['unitId']] = intval($unit['duration']);
+
+        return $unitsDone;
+    }
+    // sss#17 For each unit that the user had worked on, summarise the progress
+    public function getUnitComparison($sessionId, $mode) {
+
+        // Get the full session record
+        $session = $this->progressOps->getSession($sessionId);
+
+        // Retrieve the score records for this user and this product
+        $units = $this->progressOps->getUnitProgress($session);
+
+        // Retrieve the summary for everyone
+        $everyone = $this->progressOps->getEveryoneUnitSummary($session->productCode);
+
+        // Put the user and the everyone results in a similar format for merging
+        // Note that the existing code for everyone returns old style index names (UnitID not unitId)
+        $userUnits = array();
+        foreach ($units as $unit)
+            $userUnits[$unit['unitId']] = ['averageScore' => $unit['averageScore']];
+        $everyoneUnits = array();
+        foreach ($everyone as $unit) {
+            $everyoneUnits[$unit['UnitID']] = ['averageScore' => $unit['AverageScore']];
+        }
+
+        // Format and merge: unit summaries. Drive by everyone as that contains ALL units
+        $unitsDone = array();
+        foreach ($everyoneUnits as $key => $value) {
+            $userAverage = (isset($userUnits[$key])) ? $userUnits[$key]['averageScore'] : 0;
+            $unitsDone[$key] = ['youPercent' => round(floatval($userAverage)),
+                'everyonePercent' => round(floatval($value['averageScore']))];
+        }
+        return $unitsDone;
+    }
+
 
     // ctp#60 Literals file for DPT
     public function getTranslations($lang) {

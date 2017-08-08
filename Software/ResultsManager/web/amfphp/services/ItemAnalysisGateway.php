@@ -186,7 +186,7 @@ try {
             //file_put_contents($outputFilename,"Hello");
 
             // Write a header record
-            iagOutput('Filename','Item id','Q Type','Options','Context','Reading text','Tags',array('attempted' => 'Attempts','correct' =>'Correct','distractors' => 'Distractors'));
+            iagOutput('Filename','Item id','Q Type','Options', 'Context','Reading text','Tags',array('attempted' => 'Attempts','correct' =>'Correct','distractors' => 'Distractors'));
             break;
         case 'export':
             header('Content-Type: text/plain; charset=utf-8');

@@ -15,6 +15,8 @@ try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
     /*
+    $json = json_decode('{"command":"getComparison","sessionID":"14060263"}');
+    $json = json_decode('{"command":"getCoverage","sessionID":"14060263"}');
     $json = json_decode('{"command":"login","email":"asra@hct","password":"c15521c9a6e45e0192345f66a34bd634","productCode":63}');
     $json = json_decode('{"command":"login","email":"dandy@dpt","password":"2e93f6f5de7b09f1987ae0b9e5b3f383","productCode":63,"platform":"Chrome 58.0.3029.110 on Windows 10 64-bit","appVersion":"0.6.1"}');
     $json = json_decode('{"command":"getTestResult","appVersion":"0.7.4","testID":"49","sessionID":"177","mode":"overwrite"}');
@@ -147,6 +149,10 @@ function router($json) {
         case "getTestResult": return getResult($json->sessionID, $json->mode);
         case "scoreWrite": return scoreWrite($json->sessionID, $json->score, $json->localTimestamp, $json->timezoneOffset);
         case "getTranslations": return getTranslations($json->lang);
+        case "getCoverage": return getCoverage($json->sessionID);
+        case "getComparison": return getComparison($json->sessionID, $json->mode);
+        case "getAnalysis": return getAnalysis($json->sessionID);
+        case "getScoreDetails": return getScoreDetails($json->sessionID);
         default: throw new Exception("Unknown command");
     }
 }
@@ -162,6 +168,26 @@ function login($email, $password, $productCode, $platform = null) {
         // do nothing
     }
     return $service->testLogin($email, $password, $productCode);
+}
+// sss#17 Return a map of exercise ids which have been done
+function getCoverage($sessionId) {
+    global $service;
+    return $service->getCoverage($sessionId);
+}
+// sss#17 Return a map of unit ids showing my score and the average score for worldwide | country | institution
+function getComparison($sessionId, $mode = 'worldwide') {
+    global $service;
+    return $service->getUnitComparison($sessionId, $mode);
+}
+// sss#17 Return a map of unit ids with the time spent on each
+function getAnalysis($sessionId) {
+    global $service;
+    return $service->getUnitProgress($sessionId);
+}
+// sss#17 This returns a array of objects, each containing the exerciseId, the score (as a percent), the date and the duration (in seconds).
+function getScoreDetails($sessionId) {
+    global $service;
+    return $service->getScoreDetails($sessionId);
 }
 
 function getResult($sessionId, $mode = null) {

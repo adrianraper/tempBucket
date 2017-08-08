@@ -176,6 +176,43 @@ SQL;
 	}
 
     /**
+     * Get details of all exercises completed (marked)
+     */
+    public function getExercisesCompleted($session) {
+        $sql = <<<SQL
+			SELECT *
+			FROM T_Score
+			WHERE F_ProductCode=?
+			AND F_UserID=?
+SQL;
+
+        $bindingParams = array($session->productCode, $session->userId);
+        $rs = $this->db->GetArray($sql, $bindingParams);
+
+        return $rs;
+
+    }
+    /**
+     * Get summary of progress at the unit level
+     */
+    public function getUnitProgress($session) {
+        // F_ProductCode, F_CourseID, F_UnitID, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country
+        $sql = <<<SQL
+			SELECT F_UnitID as unitId, SUM(if(F_Duration>3600,3600,F_Duration)) as duration, AVG(if(F_Score<0,0,F_Score)) as averageScore, AVG(if(F_Duration>3600,3600,F_Duration)) as averageDuration, COUNT(F_UserID) as exerciseCount
+			FROM T_Score
+			WHERE F_ProductCode=?
+			AND F_UserID=?
+            GROUP BY F_UnitID
+SQL;
+
+        $bindingParams = array($session->productCode, $session->userId);
+        $rs = $this->db->GetArray($sql, $bindingParams);
+
+        return $rs;
+
+    }
+
+    /**
      * This is for calculating the placement test result.
      * With full complexity this will require access to detailed scores so you can look at question tags (A2 etc)
      * as well as the number correct.
@@ -838,6 +875,26 @@ EOD;
     }
 
     /**
+     * This picks up details on the session for Couloir
+     * sss#17
+     */
+    public function getSession($sessionId) {
+        $sql = <<<EOD
+			select s.* from T_Session s
+            where s.F_SessionID = ?
+EOD;
+        $bindingParams = array($sessionId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs) {
+            if ($rs->recordCount() > 0) {
+                $rsObj = $rs->FetchNextObj();
+                $session = new ContextSession($rsObj);
+                return $session;
+            }
+        }
+        throw $this->copyOps->getExceptionForId("errorNoSession", array("id" => $sessionId));
+    }
+    /**
 	 * This method is called to insert a score record to the database 
 	 */
     // ctp#282 Force score to be written for any usertype
@@ -949,5 +1006,5 @@ EOD;
 		$bindingParams = array($productCode);
 		return $this->db->GetArray($sql, $bindingParams);
 	}
-	
+
 }
