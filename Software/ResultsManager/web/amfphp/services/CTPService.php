@@ -80,13 +80,17 @@ class CTPService extends BentoService {
             $session = new TestSession();
         }
 
-        return array(
+        // sss#12 For a title that does not use encrypted content, don't send groupID as this is a decryption key
+        $rc = array(
             "user" => $user,
             "session" => $session,
             "tests" => $tests,
-            "sessionID" => (string) $session->sessionId,
-            "groupID" => (string) $groupId
-        );
+            "sessionID" => (string) $session->sessionId);
+
+        if ($productCode == 63)
+            $rc["groupID"] = (string) $groupId;
+
+        return $rc;
 
     }
 
