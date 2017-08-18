@@ -87,8 +87,8 @@ class CTPService extends BentoService {
             "tests" => $tests,
             "sessionID" => (string) $session->sessionId);
 
-        if ($productCode == 63)
-            $rc["groupID"] = (string) $groupId;
+        if ($productCode == 63 || $productCode == 65)
+            $rc["groupID"] = ""; //(string) $groupId;
 
         return $rc;
 
@@ -132,6 +132,9 @@ class CTPService extends BentoService {
                     break;
                 case 64:
                     $test->contentName = "lelt";
+                    break;
+                case 65:
+                    $test->contentName = "de";
                     break;
             }
             $test->description = $test->caption;
