@@ -115,11 +115,11 @@ SQL;
 
     // This will list all the scheduled tests a user has completed
     function getCompletedTests($userId) {
-        $bindingParams = array($userId);
+        $bindingParams = array($userId, SessionTrack::STATUS_CLOSED);
         $sql = <<<SQL
-			SELECT * FROM T_TestSession
+			SELECT * FROM T_SessionTrack
             WHERE F_UserID = ?
-            AND F_CompletedDateStamp is not null 
+            AND F_Status = ? 
 SQL;
         $rs = $this->db->Execute($sql, $bindingParams);
         switch ($rs->RecordCount()) {
@@ -130,7 +130,7 @@ SQL;
             default:
                 $testSessions = array();
                 while ($dbObj = $rs->FetchNextObj())
-                    $testSessions[] = new TestSession($dbObj);
+                    $testSessions[] = new SessionTrack($dbObj);
         }
         return $testSessions;
     }
@@ -153,16 +153,16 @@ SQL;
     }
 
     function getTestSession($sessionId) {
+	    // gh#1563 Change to general Couloir session
         $sql = <<<EOD
 			SELECT * 
-			FROM T_TestSession
+			FROM T_SessionTrack
 			WHERE F_SessionID=?
 EOD;
         $bindingParams = array($sessionId);
         $rs = $this->db->Execute($sql, $bindingParams);
         if ($rs && $rs->RecordCount() > 0) {
-            $testSession = new TestSession($rs->FetchNextObj());
-            return $testSession;
+            return new SessionTrack($rs->FetchNextObj());
         } else {
             return false;
         }
@@ -172,7 +172,7 @@ EOD;
         $sessions = array();
         $sql = <<<EOD
 			SELECT s.* 
-			FROM T_TestSession s, T_User u
+			FROM T_SessionTrack s, T_User u
 			WHERE s.F_UserID = u.F_UserID
             AND u.F_Email=?
 EOD;
@@ -180,7 +180,7 @@ EOD;
         $rs = $this->db->Execute($sql, $bindingParams);
         if ($rs && $rs->RecordCount() > 0)
             while ($dbObj = $rs->FetchNextObj()) {
-                $sessions[] = new TestSession($dbObj);
+                $sessions[] = new SessionTrack($dbObj);
             }
         return $sessions;
     }
@@ -189,15 +189,15 @@ EOD;
 	    $sessions = array();
         $sql = <<<EOD
 			SELECT * 
-			FROM T_TestSession
-			WHERE F_TestID=?
-            AND F_CompletedDateStamp is not null
+			FROM T_SessionTrack
+			WHERE F_ContentID=?
+            AND F_Status = 1
 EOD;
         $bindingParams = array($testId);
         $rs = $this->db->Execute($sql, $bindingParams);
         if ($rs && $rs->RecordCount() > 0)
             while ($dbObj = $rs->FetchNextObj()) {
-                $sessions[] = new TestSession($dbObj);
+                $sessions[] = new SessionTrack($dbObj);
             }
 	    return $sessions;
     }

@@ -1123,17 +1123,8 @@ VALUES (1957, '2014-12-03 00:00:00', 'user memory T_Memory');
 
 -- SSSV10
 DELETE FROM T_ProductLanguage WHERE F_ProductCode = 60;
-INSERT INTO T_ProductLanguage VALUES 
-(60,'EN','StudySkillsSuccessV10-International');
-
 DELETE FROM T_Product WHERE F_ProductCode = 60;
-INSERT INTO `T_Product` VALUES
-(60,'Study Skills Success V10',NULL,2);
-
 DELETE FROM T_ProductVersion WHERE F_ProductCode = 60;
-INSERT INTO `T_ProductVersion` VALUES 
-(60,'DEMO'),
-(60,'FV');
 
 -- gh#1090 Option to block personal tracking from AA
 ALTER TABLE T_Accounts ADD COLUMN F_LoginModifier SMALLINT NULL DEFAULT NULL;
@@ -1581,3 +1572,17 @@ set F_UseOldLicenceCount = 1;
 INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (2451, '2017-08-01 00:00:00', 'Update accounts to default to old licence method');
+
+-- requires new licence tracking table for both LT and AA
+DROP TABLE IF EXISTS `T_LicenceHolders`;
+CREATE TABLE `T_LicenceHolders` (
+  `F_KeyID` int NOT NULL,
+  `F_RootID` int NOT NULL DEFAULT 0,
+  `F_ProductCode` smallint NOT NULL DEFAULT 0,
+  `F_StartDateStamp` datetime NOT NULL,
+  `F_EndDateStamp` datetime DEFAULT NULL,
+  `F_LicenceType` smallint DEFAULT NULL,
+  PRIMARY KEY (`F_KeyID`),
+  KEY `Index_1` (`F_KeyID`,`F_ProductCode`),
+  KEY `Index_2` (`F_RootID`,`F_ProductCode`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

@@ -1259,4 +1259,20 @@ EOD;
 			AbstractService::$debugLog->err($logMessage);
 		}
 	}
+	/*
+	 * Used by couloir
+	 */
+	public function getLicenceDetails($rootId, $productCode) {
+        $sql = 	<<<EOD
+				SELECT * FROM T_Accounts
+				WHERE F_RootID=?
+				AND F_ProductCode=?
+EOD;
+        $rs = $this->db->Execute($sql, array($rootId, $productCode));
+        if ($rs) {
+            $licence = new Licence();
+            $licence->fromDbRecordset($rs->FetchNextObj());
+            return $licence;
+        }
+    }
 }

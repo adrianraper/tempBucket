@@ -78,6 +78,16 @@ class Licence {
 		$this->findLicenceClearanceDate();
 	}
 
+    public function fromDbRecordset($dbObj) {
+        $this->licenceType = (int)$dbObj->F_LicenceType;
+        $this->maxStudents = (int)$dbObj->F_MaxStudents;
+        $this->licenceClearanceDate = $dbObj->F_LicenceClearanceDate;
+        $this->licenceClearanceFrequency = $dbObj->F_LicenceClearanceFrequency;
+        $this->expiryDate = $dbObj->F_ExpiryDate;
+        $this->licenceStartDate = $dbObj->F_LicenceStartDate;
+        $this->findLicenceClearanceDate();
+    }
+    
 	// Just in case you got licence from JSON and it became an array instead of a Licence
 	public function fromArray($array) {
 	    if (isset($array['licenceType']))

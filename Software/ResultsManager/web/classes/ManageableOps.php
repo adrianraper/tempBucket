@@ -2524,5 +2524,25 @@ EOD;
             $buildString = $type.$buildString;
         return $buildString;
     }
+    /*
+     * Functions for Couloir that don't use authentication
+     */
+    // Need a way to get a user from an id without using authentication in manageableOps
+    public function getCouloirUserFromID($id) {
+        $sql  = "SELECT ".User::getSelectFields($this->db);
+        $sql .= <<<EOD
+				FROM T_User u
+				WHERE u.F_UserID=?
+EOD;
+        $bindingParams = array($id);
+        $usersRS = $this->db->Execute($sql, $bindingParams);
+
+        if ($usersRS->RecordCount() == 1) {
+            return $this->_createUserFromObj($usersRS->FetchNextObj());
+        } else {
+            throw new Exception("Database error, user lost");
+        }
+    }
+
 }
 

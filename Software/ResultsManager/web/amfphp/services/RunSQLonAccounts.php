@@ -5,13 +5,14 @@
 
 require_once(dirname(__FILE__)."/DMSService.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/session/SessionTrack.php");
 
 // Don't get fooled by old session variables
 if (isset($_SESSION['dbHost'])) unset($_SESSION['dbHost']);
 if (isset($_REQUEST['dbHost'])) $_SESSION['dbHost']=$_REQUEST['dbHost'];
 
 $dmsService = new DMSService();
-//session_start();
+set_time_limit(360);
 
 function addDaysToTimestamp($timestamp, $days) {
 	//return date("Y-m-d", $timestamp + ($days * 86400));
@@ -375,7 +376,67 @@ SQL;
 		// send back the number of archived users
 		return $rs->RecordCount();
 }
+function convertSessionRecords($rootIds=null) {
+    global $dmsService;
 
+    $sql = <<<EOD
+		select * from T_TestSession
+EOD;
+    if ($rootIds) {
+        $sql .= " where F_RootID in (" . implode(",",$rootIds) .")";
+    }
+    $bindingParams = array();
+    $rs = $dmsService->db->Execute($sql, $bindingParams);
+    if ($rs) {
+        while ($dbObj = $rs->FetchNextObj()) {
+            convertSessionRecord($dbObj);
+        }
+    } else {
+        throw new Exception('problem reading old session records');
+    }
+    return $rs->RecordCount();
+}
+function convertSessionRecord($dbObj) {
+    global $dmsService;
+
+    // Convert the data to the new format
+    $session = new SessionTrack();
+    $session->sessionId = $dbObj->F_SessionID;
+    $session->userId = $dbObj->F_UserID;
+    $session->rootId = $dbObj->F_RootID;
+    $session->productCode = $dbObj->F_ProductCode;
+    $session->startDateStamp = $dbObj->F_ReadyDateStamp;
+    $session->contentID = $dbObj->F_TestID;
+
+    // If the test completed, use status to show this
+    $session->status = (is_null($dbObj->F_CompletedDateStamp)) ? SessionTrack::STATUS_OPEN : SessionTrack::STATUS_CLOSED;
+
+    // What is the last time we know about?
+    $session->lastUpdateDateStamp = ($dbObj->F_CompletedDateStamp) ? $dbObj->F_CompletedDateStamp : $dbObj->F_StartedDateStamp;
+
+    // If the test completed, use duration to show how long it took
+    if ($dbObj->F_CompletedDateStamp && $dbObj->F_StartedDateStamp) {
+        $session->duration = strtotime($dbObj->F_CompletedDateStamp) - strtotime($dbObj->F_StartedDateStamp);
+    } elseif ($dbObj->F_CompletedDateStamp && $dbObj->F_ReadyDateStamp) {
+        $session->duration = strtotime($dbObj->F_CompletedDateStamp) - strtotime($dbObj->F_ReadyDateStamp);
+    } elseif ($dbObj->F_StartedDateStamp) {
+        // If the test started but went no further, show an arbitrary 1 minute
+        $session->duration = 60;
+    } else {
+        $session->duration = null;
+    }
+
+    // Build the seed and the result into JSON encoded data
+    $data = array();
+    if ($dbObj->F_Seed)
+        $data["seed"] = $dbObj->F_Seed;
+    if ($dbObj->F_Result)
+        $data["result"] = json_decode($dbObj->F_Result);
+    $session->data = $data;
+
+    // And insert to the database
+    $rs = $dmsService->db->AutoExecute("T_SessionTrack", $session->toAssocArray(), "INSERT");
+}
 
 // If you want to run specific triggers for specific days (for testing)
 // you can put 'date=-1' in the URL
@@ -386,7 +447,17 @@ $testingTriggers = "";
 //$testingTriggers .= "Seed permissions and privacy for CCB";
 //$testingTriggers .= "Archive users who have not done anything lately";
 //$testingTriggers .= "Restore archived users";
-$testingTriggers .= "Clear orphans";
+//$testingTriggers .= "Clear orphans";
+$testingTriggers .= "Convert TestSession to SessionTrack";
+
+// The move to full Couloir means shifting from DPT specific T_TestSession to generic couloir T_SessionTrack
+if (stristr($testingTriggers, "Convert TestSession to SessionTrack")) {
+    $testingAccounts = array();
+    //$testingAccounts = array(163);
+
+    $rc = convertSessionRecords($testingAccounts);
+    echo "Converted $rc records<br/>";
+}
 
 if (stristr($testingTriggers, "Restore archived users")) {
 	$cutoffID = 894120;
