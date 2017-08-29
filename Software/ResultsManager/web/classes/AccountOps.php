@@ -1172,10 +1172,16 @@ EOD;
 						$targetStart = (int) $targetArray[0];
 						$targetEnd = (int) $targetArray[1];
 						$thisDetail = (int) $thisBlocks[$i];
+						// gh#1564 if a pattern has two ranges, matching the first then ignores the second
+                        // which means that 192.168.8-10.0-32 would match 192.168.8.64
+                        // But there are NO examples of this, the second range is only ever 0-255
 						if ($targetStart <= $thisDetail && $thisDetail <= $targetEnd) {
-							//myTrace("range match " + thisDetail + " between " + targetStart + " and " + targetEnd);
 							return true;
-						}
+						//gh#1564 if a pattern has a range, not matching it is fatal
+						} else {
+						    break;
+                        }
+
 					} else {
 						//myTrace("no match between " + targetBlocks[i] + " and " + thisBlocks[i]);
 						break;
