@@ -9,6 +9,7 @@
             <lit name="errorLostAuthentication" code="101">You have been timed out. Please start again. Remember, help is always available at support@clarityenglish.com</lit>
             <!-- gh#1292 -->
             <lit name="userAccessError" code="102">You do not have permission for these users. ({ids})</lit>
+            <lit name="errorTokenInvalid" code="103">You need to sign-in again as your authentication is lost.</lit>
 
             <lit name="errorNoSuchUser" code="200">Your {loginKeyField} is not registered. Please contact your administrator.</lit>
             <lit name="errorNoProductCode" code="201">No product code sent.</lit>

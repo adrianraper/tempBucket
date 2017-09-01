@@ -1532,8 +1532,12 @@ DELETE FROM T_ProductVersion WHERE F_ProductCode = 66;
 INSERT INTO `T_ProductVersion` VALUES 
 (65,'DEMO'),
 (65,'FV'),
-(65,'DEMO'),
-(65,'FV');
+(66,'DEMO'),
+(66,'FV');
+
+DELETE FROM T_Language WHERE F_LanguageCode = 'DE';
+INSERT INTO `T_Language` VALUES 
+('DE','Deutscher');
 
 -- gh#1230 new licence tracking
 DROP TABLE IF EXISTS `T_LicenceHolders`;
@@ -1586,3 +1590,4 @@ CREATE TABLE `T_LicenceHolders` (
   KEY `Index_1` (`F_KeyID`,`F_ProductCode`),
   KEY `Index_2` (`F_RootID`,`F_ProductCode`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+

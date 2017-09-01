@@ -147,6 +147,10 @@ class CTPService extends BentoService {
             if ($test->startType == 'timer' && stristr($_SERVER['SERVER_NAME'],'dock.projectbench') !== false)
                 $test->groupId = '';
 
+            // HACK for DE
+            if ($productCode==65)
+                $test->groupId = '';
+
             // ctp#285 groupID needs to be a string
             // ctp#324 for app versions above x
             if (version_compare($this->getAppVersion(), '0.0.0', '>'))

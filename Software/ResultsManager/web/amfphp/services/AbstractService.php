@@ -244,6 +244,26 @@ class AbstractService {
         return $localDateTime->format('Y-m-d H:i:s');
     }
     /*
+     * For converting microsecond timestamps in local time to utc
+     */
+    public function localTimestampToAnsiString($localTimestamp, $clientTimezoneOffset=null)     {
+        $dateTime = new DateTime('@'.intval($localTimestamp/1000));
+        if ($clientTimezoneOffset !== null && isset($clientTimezoneOffset->minutes)) {
+            $offset = $clientTimezoneOffset->minutes;
+            $negative = (boolean)$clientTimezoneOffset->negative;
+            $clientDifference = new DateInterval('PT' . strval($offset) . 'M');
+            if ($negative) {
+                $utcDateTime = $dateTime->sub($clientDifference);
+            } else {
+                $utcDateTime = $dateTime->add($clientDifference);
+            }
+        } else {
+            $utcDateTime = $dateTime;
+        }
+        return $utcDateTime->format('Y-m-d H:i:s');
+    }
+
+    /*
      * For converting unix timestamps (milliseconds since epoch) to strings for the database
      */
     public function timestampToAnsiString($timestamp) {

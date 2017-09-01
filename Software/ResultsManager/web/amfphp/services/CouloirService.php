@@ -13,6 +13,7 @@ require_once(dirname(__FILE__)."/../../classes/LoginCops.php");
 require_once(dirname(__FILE__)."/../../classes/LicenceCops.php");
 require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
+require_once(dirname(__FILE__)."/../../classes/AuthenticationCops.php");
 
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/Reportable.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Content.php");
@@ -34,6 +35,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/DPTConsta
 
 require_once($GLOBALS['adodb_libs']."adodb-exceptions.inc.php");
 require_once($GLOBALS['adodb_libs']."adodb.inc.php");
+require_once(dirname(__FILE__)."/firebase/JWT/JWT.php");
 require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
 
 
@@ -43,7 +45,6 @@ class CouloirService extends AbstractService {
     private $appVersion;
 
 	function __construct() {
-
 		parent::__construct();
 		
 		// Set the title name for resources
@@ -57,6 +58,7 @@ class CouloirService extends AbstractService {
         $this->licenceCops = new LicenceCops($this->db);
         $this->accountOps = new AccountOps($this->db);
         $this->contentOps = new ContentOps($this->db);
+        $this->authenticationCops = new AuthenticationCops();
 	}
 
     public function changeDB($dbHost) {
@@ -70,6 +72,7 @@ class CouloirService extends AbstractService {
         $this->licenceCops = new LicenceCops($this->db);
         $this->accountOps = new AccountOps($this->db);
         $this->contentOps = new ContentOps($this->db);
+        $this->authenticationCops = new AuthenticationCops();
     }
 
 	public function getAppVersion() {
@@ -174,6 +177,9 @@ class CouloirService extends AbstractService {
         // Create a session
         $session = $this->startCouloirSession($user, $rootId, $productCode, $testId);
 
+        // Create a token
+        $token = $this->authenticationCops->createToken(["sessionId" => (string) $session->sessionId]);
+
         // Grab a licence slot - this will send exception if none available
         // TODO if you catch an exception from this, you could then invalidate the session you just created
         $licence = $this->licenceCops->acquireCouloirLicenceSlot($session->sessionId);
@@ -183,7 +189,7 @@ class CouloirService extends AbstractService {
             "user" => $user,
             "session" => $session,
             "tests" => $tests,
-            "sessionID" => (string) $session->sessionId);
+            "token" => $token);
 
         if ($productCode == 63 || $productCode == 65)
             $rc["groupID"] = ""; //(string) $groupId;
@@ -194,10 +200,10 @@ class CouloirService extends AbstractService {
 
     public function updateActivity($token, $localTimestamp, $clientTimezoneOffset = null) {
         // Pick the session id from the token
-        $sessionId = $token->sessionID;
+        $sessionId = $this->authenticationCops->getSessionId($token);
 
         // Convert to UTC from the local timestamp sent by the app
-        $timestamp = $this->timestampToLocalAnsiString($localTimestamp, $clientTimezoneOffset);
+        $timestamp = $this->localTimestampToAnsiString($localTimestamp, $clientTimezoneOffset);
         return $this->progressCops->updateCouloirSession($sessionId, $timestamp);
     }
         // This reports whether each session in the array can get a licence slot
@@ -206,8 +212,7 @@ class CouloirService extends AbstractService {
     }
     private function acquireLicenceSlot($token) {
 	    // Pick the session id from the token
-        $session = $token;
-        $sessionId = $session["sessionID"];
+        $sessionId = $this->authenticationCops->getSessionId($token);
 
 	    // Simply, can this session get a licence or not?
         try {
@@ -216,6 +221,16 @@ class CouloirService extends AbstractService {
             return false;
         }
     }
+    public function releaseLicenceSlot($token, $localTimestamp) {
+        // Pick the session id from the token
+        $sessionId = $this->authenticationCops->getSessionId($token);
+        try {
+            $this->licenceCops->releaseCouloirLicenceSlot($sessionId);
+        } catch (Exception $e) {
+        }
+        // No need to send anything back for this call
+	}
+
 	// Get details of all tests scheduled for this group
     public function getTests($group, $productCode) {
         return $this->testOps->getActiveTests($group->id, $productCode);
@@ -500,7 +515,9 @@ EOD;
     }
 
     // sss#17 Which exercises has the user completed?
-    public function getCoverage($sessionId) {
+    public function getCoverage($token) {
+        // Pick the session id from the token
+        $sessionId = $this->authenticationCops->getSessionId($token);
 
         // Get the full session record
         $session = $this->progressCops->getCouloirSession($sessionId);
@@ -517,7 +534,9 @@ EOD;
     }
 
     // sss#17 Which exercises has the user completed?, full details
-    public function getScoreDetails($sessionId) {
+    public function getScoreDetails($token) {
+        // Pick the session id from the token
+        $sessionId = $this->authenticationCops->getSessionId($token);
 
         // Get the full session record
         $session = $this->progressCops->getCouloirSession($sessionId);
@@ -537,7 +556,9 @@ EOD;
         return $exercisesDone;
     }
     // sss#17 For each unit that the user had worked on, summarise the progress
-    public function getUnitProgress($sessionId) {
+    public function getUnitProgress($token) {
+        // Pick the session id from the token
+        $sessionId = $this->authenticationCops->getSessionId($token);
 
         // Get the full session record
         $session = $this->progressCops->getSession($sessionId);
@@ -553,7 +574,9 @@ EOD;
         return $unitsDone;
     }
     // sss#17 For each unit that the user had worked on, summarise the progress
-    public function getUnitComparison($sessionId, $mode) {
+    public function getUnitComparison($token, $mode) {
+        // Pick the session id from the token
+        $sessionId = $this->authenticationCops->getSessionId($token);
 
         // Get the full session record
         $session = $this->progressCops->getSession($sessionId);
@@ -602,4 +625,5 @@ EOD;
     public function writeLog($msg) {
 
     }
+
 }

@@ -10,11 +10,21 @@ class UserAccessException extends Exception {}
 $service = new CouloirService();
 set_time_limit(360);
 
+// Pick up the current time and convert as if it came from app  (local timezone, microseconds)
+$utcDateTime = new DateTime();
+$utcTimestamp = $utcDateTime->format('U')*1000;
+$utcDateTime->setTimezone(new DateTimeZone('Asia/Hong_Kong'));
+$localDate = $utcDateTime->format('Y-m-d H:i:s');
+// Or simply set a date time that you want to test with
+//$localDate = '2017-09-01 11:33:00';
+$localDateTime = new DateTime($localDate);
+$localTimestamp = $localDateTime->format('U')*1000;
+
 try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
-    $json = json_decode('{"command":"login","email":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":66, "rootID":163}');
-    $json = json_decode('{"command":"updateActivity","token":{"sessionID":231},"localTimestamp":1504168928000,"timezoneOffset":-480}');
+    $json = json_decode('{"command":"login","email":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":65, "rootID":163}');
+    //$json = json_decode('{"command":"updateActivity","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDI0NTM3Mywic2Vzc2lvbklkIjoiMjQ1In0.t_IJ-xCH5m94ZZUR7oSKa4KIMyfuDXf4GnYL3_TXleA","localTimestamp":'.$localTimestamp.',"timezoneOffset":-480}');
     /*
     $json = json_decode('{"command":"login","email":"ferko.spits@email","password":"20863ef31d598f9c020c0d5b872e2fbe","productCode":66, "rootID":163}');
     $json = json_decode('{"command":"login","email":"xx@noodles.hk","password":"68f1e135ba6167a2a4665b267d8fde39","productCode":66, "rootID":163}');
@@ -226,8 +236,6 @@ try {
 	"localTimestamp": 1503557638530,
 	"timezoneOffset": -480
 }');
-        //$newDateTime = new DateTime();
-        //$newTimestamp = $newDateTime->format('U');
 
     */
     //1475543370002 - timestamp for 4th Oct about 9:04am
@@ -297,13 +305,13 @@ function router($json) {
             return getAccount($json->productCode, $json->prefix, $json->IP, $json->RU);
         case "acquireLicenceSlots": return acquireLicenceSlots($json->tokens);
         case "updateActivity": return updateActivity($json->token, $json->localTimestamp, $json->timezoneOffset);
-        case "getTestResult": return getResult($json->sessionID, $json->mode);
-        case "scoreWrite": return scoreWrite($json->sessionID, $json->score, $json->localTimestamp, $json->timezoneOffset);
+        case "getTestResult": return getResult($json->token, $json->mode);
+        case "scoreWrite": return scoreWrite($json->token, $json->score, $json->localTimestamp, $json->timezoneOffset);
         case "getTranslations": return getTranslations($json->lang);
-        case "getCoverage": return getCoverage($json->sessionID);
-        case "getComparison": return getComparison($json->sessionID, $json->mode);
-        case "getAnalysis": return getAnalysis($json->sessionID);
-        case "getScoreDetails": return getScoreDetails($json->sessionID);
+        case "getCoverage": return getCoverage($json->token);
+        case "getComparison": return getComparison($json->token, $json->mode);
+        case "getAnalysis": return getAnalysis($json->token);
+        case "getScoreDetails": return getScoreDetails($json->token);
         default: throw new Exception("Unknown command");
     }
 }
@@ -340,39 +348,39 @@ function acquireLicenceSlots($tokens) {
     return $service->acquireLicenceSlots($tokens);
 }
 // sss#17 Return a map of exercise ids which have been done
-function getCoverage($sessionId) {
+function getCoverage($token) {
     global $service;
-    return $service->getCoverage($sessionId);
+    return $service->getCoverage($token);
 }
 // sss#17 Return a map of unit ids showing my score and the average score for worldwide | country | institution
-function getComparison($sessionId, $mode = 'worldwide') {
+function getComparison($token, $mode = 'worldwide') {
     global $service;
-    return $service->getUnitComparison($sessionId, $mode);
+    return $service->getUnitComparison($token, $mode);
 }
 // sss#17 Return a map of unit ids with the time spent on each
-function getAnalysis($sessionId) {
+function getAnalysis($token) {
     global $service;
-    return $service->getUnitProgress($sessionId);
+    return $service->getUnitProgress($token);
 }
 // sss#17 This returns a array of objects, each containing the exerciseId, the score (as a percent), the date and the duration (in seconds).
-function getScoreDetails($sessionId) {
+function getScoreDetails($token) {
     global $service;
-    return $service->getScoreDetails($sessionId);
+    return $service->getScoreDetails($token);
 }
 
-function getResult($sessionId, $mode = null) {
+function getResult($token, $mode = null) {
     global $service;
-    return $service->getResult($sessionId, $mode);
+    return $service->getResult($token, $mode);
 }
 
-function scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffset=null) {
+function scoreWrite($token, $scoreObj, $localTimestamp, $clientTimezoneOffset=null) {
     global $service;
     $rc = $service->scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffset);
     // ctp#166
     if ($rc["success"]===false) {
-        return array("sessionID" => $sessionId, "error" => $rc["error"]);
+        return array("token" => $token, "error" => $rc["error"]);
     } else {
-        return array("sessionID" => $sessionId);
+        return array("token" => $token);
     }
 }
 // ctp#60
