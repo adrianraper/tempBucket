@@ -214,7 +214,7 @@ class ClarityService extends AbstractService {
 			$manageablesCount = $this->manageableOps->countUsersInGroup(Session::get('groupIDs'));
 			
 			// v3.5 Special (temporary) change for Taihung University (18000 accounts) for Kima.
-			// and SciencesPo (updated for 2013/14/15/16)
+			// and SciencesPo (updated for 2013/14/15/16/17)
 			// added BCJPILA. 
 			// added TW_CUTE 2014 11 05 
 			// added ELS 2015/08/17
@@ -222,7 +222,7 @@ class ClarityService extends AbstractService {
 			if ((int)$loginObj->F_RootID == 14781 || (int)$loginObj->F_RootID == 19278 || (int)$loginObj->F_RootID == 26155 || 
 				(int)$loginObj->F_RootID == 13982 || (int)$loginObj->F_RootID == 13754 || (int)$loginObj->F_RootID == 22743
 				|| (int)$loginObj->F_RootID == 32366 || (int)$loginObj->F_RootID == 35886  || (int)$loginObj->F_RootID == 163
-				|| (int)$loginObj->F_RootID == 37281 || (int)$loginObj->F_RootID == 29130) {
+				|| (int)$loginObj->F_RootID == 37281 || (int)$loginObj->F_RootID == 29130 || (int)$loginObj->F_RootID == 54360) {
 				Session::set('no_students', ($manageablesCount > 22000));
 			} else {
 				Session::set('no_students', ($manageablesCount > $GLOBALS['max_manageables_for_student_display']));
