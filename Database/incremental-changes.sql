@@ -1578,16 +1578,39 @@ INSERT INTO `T_DatabaseVersion`
 VALUES (2451, '2017-08-01 00:00:00', 'Update accounts to default to old licence method');
 
 -- requires new licence tracking table for both LT and AA
-DROP TABLE IF EXISTS `T_LicenceHolders`;
-CREATE TABLE `T_LicenceHolders` (
+DROP TABLE IF EXISTS `T_CouloirLicenceHolders`;
+CREATE TABLE `T_CouloirLicenceHolders` (
+  `F_LicenceID` int NOT NULL AUTO_INCREMENT,
   `F_KeyID` int NOT NULL,
-  `F_RootID` int NOT NULL DEFAULT 0,
-  `F_ProductCode` smallint NOT NULL DEFAULT 0,
-  `F_StartDateStamp` datetime NOT NULL,
+  `F_RootID` int NOT NULL DEFAULT '0',
+  `F_ProductCode` smallint NOT NULL DEFAULT '0',
+  `F_StartDateStamp` datetime DEFAULT NULL,
   `F_EndDateStamp` datetime DEFAULT NULL,
-  `F_LicenceType` smallint DEFAULT NULL,
-  PRIMARY KEY (`F_KeyID`),
+  `F_LicenceType` smallint DEFAULT '1',
+  PRIMARY KEY (`F_LicenceID`),
   KEY `Index_1` (`F_KeyID`,`F_ProductCode`),
   KEY `Index_2` (`F_RootID`,`F_ProductCode`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- new sesssion handling
+DROP TABLE IF EXISTS `T_SessionTrack`;
+CREATE TABLE `T_SessionTrack` (
+  `F_SessionID` int NOT NULL AUTO_INCREMENT,
+  `F_UserID` int NOT NULL,
+  `F_ProductCode` smallint NOT NULL DEFAULT '0',
+  `F_RootID` int DEFAULT '0',
+  `F_StartDateStamp` datetime DEFAULT NULL,
+  `F_LastUpdateDateStamp` datetime DEFAULT NULL,
+  `F_Duration` int DEFAULT NULL,
+  `F_ContentID` varchar(64) DEFAULT NULL,
+  `F_Data` text,
+  `F_Status` smallint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`F_SessionID`),
+  KEY `Index_1` (`F_UserID`,`F_ProductCode`),
+  KEY `Index_2` (`F_RootID`,`F_ProductCode`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- table is deprecated for all Couloir and Bento new licence counting style
+-- DROP TABLE IF EXISTS `T_Licences`;
+
 

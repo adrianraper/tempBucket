@@ -135,7 +135,7 @@ SQL;
         return $testSessions;
     }
 
-    // This function should only be called by the Couloir Password Server
+    // This function should only be called by the Couloir Content Server
     public function getTestAccessCode($testId) {
         $bindingParams = array($testId);
         $sql = <<<SQL
@@ -148,7 +148,7 @@ SQL;
                 $test = new ScheduledTest($rs->FetchNextObj());
                 return ($test->startType == "code") ? $test->startData : $test->groupId;
             default:
-                return false;
+                return null;
         }
     }
 

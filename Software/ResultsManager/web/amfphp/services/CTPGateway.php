@@ -5,6 +5,12 @@ if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
 require_once(dirname(__FILE__)."/CouloirService.php");
 
+// For setting the header when you want to send back an exception
+function headerDateWithStatusCode($statusCode) {
+    $utcDateTime = new DateTime();
+    $utcTimestamp = $utcDateTime->format('U')*1000;
+    header("Date: ".$utcTimestamp, false, $statusCode);
+}
 class UserAccessException extends Exception {}
 
 $service = new CouloirService();
@@ -23,30 +29,24 @@ $localTimestamp = $localDateTime->format('U')*1000;
 try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
-    $json = json_decode('{"command":"login","email":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":65, "rootID":163}');
-    //$json = json_decode('{"command":"updateActivity","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDI0NTM3Mywic2Vzc2lvbklkIjoiMjQ1In0.t_IJ-xCH5m94ZZUR7oSKa4KIMyfuDXf4GnYL3_TXleA","localTimestamp":'.$localTimestamp.',"timezoneOffset":-480}');
     /*
+    $json = json_decode('{"command":"login","email":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":65, "rootID":163}');
+    $json = json_decode('{"command":"login","email":"dave@sss","password":"b36dd0fe2ba555a061660f857f842596","productCode":66, "rootID":10719}');
+    $json = json_decode('{"command":"getCoverage","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDc0OTY2OSwic2Vzc2lvbklkIjoiMjUzIn0.HYB8KpYVqO6yFgkDJH8SNCTJfeNoppNREtKSRjE85y8"}');
+    //$json = json_decode('{"command":"dbCheck"}');
     $json = json_decode('{"command":"login","email":"ferko.spits@email","password":"20863ef31d598f9c020c0d5b872e2fbe","productCode":66, "rootID":163}');
     $json = json_decode('{"command":"login","email":"xx@noodles.hk","password":"68f1e135ba6167a2a4665b267d8fde39","productCode":66, "rootID":163}');
     $json = json_decode('{"command":"getAccount","productCode":66,"IP":"192.168.8.68","RU":""}');
     $json = json_decode('{"command":"getAccount","productCode":66,"prefix":"clarity","IP":"192.168.8.61","RU":""}');
     $json = json_decode('{"command":"getTestResult","appVersion":"1.1.0","testID":"73","sessionID":"201"}');
-    $json = json_decode('{"command":"getScoreDetails","sessionID":"193"}');
-    $json = json_decode('{"command":"login","email":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":63}');
-    $json = json_decode('{"command":"getCoverage","sessionID":"193"}');
-    $json = json_decode('{"command":"getScoreDetails","sessionID":"14880080"}');
-    $json = json_decode('{"command":"getLicenceSlots","sessions":[{"sessionId":"14880080"}]}');
-    $json = json_decode('{"command":"login","email":"asra@hct","password":"c15521c9a6e45e0192345f66a34bd634","productCode":63}');
-    $json = json_decode('{"command":"login","email":"dandy@dpt","password":"2e93f6f5de7b09f1987ae0b9e5b3f383","productCode":63,"platform":"Chrome 58.0.3029.110 on Windows 10 64-bit","appVersion":"0.6.1"}');
-    $json = json_decode('{"command":"getTestResult","appVersion":"0.7.4","testID":"49","sessionID":"177","mode":"overwrite"}');
-    $json = json_decode('{"command": "login","email": "","password": "d41d8cd98f00b204e9800998ecf8427e","productCode": "63"}');
+    $json = json_decode('{"command":"getScoreDetails","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDU5MTc0Niwic2Vzc2lvbklkIjoiMjQ2In0.MZlSRH6vJsa1ExDi4o17xWkVErQCa5-Iu9JYWXdJ_Ls"}');
     $json = json_decode('{"command":"getTranslations","lang":"zh-tw"}');
     */
     /*
     $json = json_decode('{"command": "scoreWrite",
                 "appVersion": "0.8.1",
                 "score": {
-                    "uid": "60.2017066010000.2017066010200.2017066010202",
+                    "uid": "66.2017066010000.2017066010200.2017066010202",
                     "exerciseScore": {
                         "questionScores": [{
                             "id": "2b722a83-afc4-4006-8a05-6b0b4c8ab9e4",
@@ -132,15 +132,15 @@ try {
                             "missedCount": 5
                         },
                         "duration": 92001,
-                        "submitTimestamp": '. time()*1000 .'
+                        "submitTimestamp": '. $utcTimestamp .'
                     },
                     "anomalies": {
                         "lostFocus": 3,
                         "lostVisibility": 1
                     }
                 },
-                "sessionID": "14880080",
-                "localTimestamp": 1503027083439,
+                "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDc0OTY2OSwic2Vzc2lvbklkIjoiMjUzIn0.HYB8KpYVqO6yFgkDJH8SNCTJfeNoppNREtKSRjE85y8",
+                "localTimestamp": '. $utcTimestamp .',
                 "timezoneOffset": -480
         }');
     */
@@ -242,10 +242,18 @@ try {
     if (!$json)
         throw new Exception("Empty request");
 
-    echo json_encode(router($json));
+    $jsonResult = router($json);
+    if ($jsonResult == []) {
+        echo json_encode($jsonResult, JSON_FORCE_OBJECT);
+    } else {
+        echo json_encode($jsonResult);
+    }
+
 } catch (UserAccessException $e) {
-    header(':', false, 403);
+    // Throw UserAccessExceptions in the code if this is an authentication issue
+    headerDateWithStatusCode(403);
     echo json_encode(array("error" => $e->getMessage(), "code" => $e->getCode()));
+
 } catch (Exception $e) {
     switch ($e->getCode()) {
         // ctp#75
@@ -258,10 +266,10 @@ try {
         case 213:
         case 214:
         case 215:
-            header(':', false, 401);
+            headerDateWithStatusCode(401);
             break;
         default:
-            header(':', false, 500);
+            headerDateWithStatusCode(500);
     }
     echo json_encode(array("error" => $e->getMessage(), "code" => $e->getCode()));
 }
@@ -288,6 +296,10 @@ function router($json) {
     // Save the version of the app that called us
     $service->setAppVersion((isset($json->appVersion)) ? $json->appVersion : '0.0.0');
 
+    // Just in case we are using the old SSS product code
+    if ((isset($json->productCode) && $json->productCode==60))
+        $json->productCode = 66;
+
     switch ($json->command) {
         case "login":
             $loginObj = Array();
@@ -303,8 +315,6 @@ function router($json) {
             if (!isset($json->IP)) $json->IP = null;
             if (!isset($json->RU)) $json->RU = null;
             return getAccount($json->productCode, $json->prefix, $json->IP, $json->RU);
-        case "acquireLicenceSlots": return acquireLicenceSlots($json->tokens);
-        case "updateActivity": return updateActivity($json->token, $json->localTimestamp, $json->timezoneOffset);
         case "getTestResult": return getResult($json->token, $json->mode);
         case "scoreWrite": return scoreWrite($json->token, $json->score, $json->localTimestamp, $json->timezoneOffset);
         case "getTranslations": return getTranslations($json->lang);
@@ -312,6 +322,7 @@ function router($json) {
         case "getComparison": return getComparison($json->token, $json->mode);
         case "getAnalysis": return getAnalysis($json->token);
         case "getScoreDetails": return getScoreDetails($json->token);
+        case "dbCheck": return dbCheck();
         default: throw new Exception("Unknown command");
     }
 }
@@ -333,19 +344,6 @@ function login($loginObj, $password, $productCode, $rootId, $platform = null) {
 function getAccount($productCode, $prefix, $ip, $ru) {
     global $service;
     return $service->getAccount($productCode, $prefix, $ip, $ru);
-}
-// Take a token and a timestamp. This is evidence that at that local time, the app was active.
-// Update the session, return success or failure
-function updateActivity($token, $localTimestamp, $clientTimezoneOffset=null) {
-    global $service;
-    return $service->updateActivity($token, $localTimestamp, $clientTimezoneOffset);
-}
-// sss#61 Return an array of tokens that can get a licence
-// Assume that this is only called by a licence server, not directly by an app
-// Each token is something that holds a session id, in an authenticated format
-function acquireLicenceSlots($tokens) {
-    global $service;
-    return $service->acquireLicenceSlots($tokens);
 }
 // sss#17 Return a map of exercise ids which have been done
 function getCoverage($token) {
@@ -375,7 +373,7 @@ function getResult($token, $mode = null) {
 
 function scoreWrite($token, $scoreObj, $localTimestamp, $clientTimezoneOffset=null) {
     global $service;
-    $rc = $service->scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffset);
+    $rc = $service->scoreWrite($token, $scoreObj, $localTimestamp, $clientTimezoneOffset);
     // ctp#166
     if ($rc["success"]===false) {
         return array("token" => $token, "error" => $rc["error"]);
@@ -387,4 +385,9 @@ function scoreWrite($token, $scoreObj, $localTimestamp, $clientTimezoneOffset=nu
 function getTranslations($lang) {
     global $service;
     return $service->getTranslations($lang);
+}
+// Just for testing new gateways
+function dbCheck() {
+    global $service;
+    return $service->dbCheck();
 }

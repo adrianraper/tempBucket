@@ -943,7 +943,7 @@ EOD;
     public function updateCouloirSession($sessionId, $timestamp) {
         $session = $this->getCouloirSession($sessionId);
 
-        $newDateTime = new DateTime($timestamp, new DateTimeZone(TIMEZONE));
+        $newDateTime = new DateTime('@'.intval($timestamp), new DateTimeZone(TIMEZONE));
         $lastDateTime = new DateTime($session->lastUpdateDateStamp, new DateTimeZone(TIMEZONE));
         $secondsDifference = $newDateTime->format('U')-$lastDateTime->format('U');
 

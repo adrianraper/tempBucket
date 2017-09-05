@@ -184,51 +184,56 @@ class CouloirService extends AbstractService {
         // TODO if you catch an exception from this, you could then invalidate the session you just created
         $licence = $this->licenceCops->acquireCouloirLicenceSlot($session->sessionId);
 
-        // sss#12 For a title that does not use encrypted content, don't send groupID as this is a decryption key
         $rc = array(
             "user" => $user,
-            "session" => $session,
             "tests" => $tests,
             "token" => $token);
 
-        if ($productCode == 63 || $productCode == 65)
-            $rc["groupID"] = ""; //(string) $groupId;
+        // sss#12 For a title that uses encrypted content, send the key
+        if ($productCode == 63 || $productCode == 65) {
+            $rc["key"] = (string)$group->id;
+        } else {
+            $rc["key"] = null;
+        }
 
         return $rc;
 
     }
 
-    public function updateActivity($token, $localTimestamp, $clientTimezoneOffset = null) {
+    public function updateActivity($token, $timestamp) {
         // Pick the session id from the token
         $sessionId = $this->authenticationCops->getSessionId($token);
 
-        // Convert to UTC from the local timestamp sent by the app
-        $timestamp = $this->localTimestampToAnsiString($localTimestamp, $clientTimezoneOffset);
-        return $this->progressCops->updateCouloirSession($sessionId, $timestamp);
+        // Convert to seconds from the timestamp sent by app
+        $timestamp = $timestamp / 1000;
+        $this->progressCops->updateCouloirSession($sessionId, $timestamp);
+        return [];
     }
-        // This reports whether each session in the array can get a licence slot
+    // This reports whether each session in the array can get a licence slot
     public function acquireLicenceSlots($tokens) {
-	    return array_map("acquireLicenceSlot", $tokens);
-    }
-    private function acquireLicenceSlot($token) {
-	    // Pick the session id from the token
-        $sessionId = $this->authenticationCops->getSessionId($token);
+        $func = function($token) {
+            // Pick the session id from the token
+            $sessionId = $this->authenticationCops->getSessionId($token);
 
-	    // Simply, can this session get a licence or not?
-        try {
-            return ($this->licenceCops->acquireCouloirLicenceSlot($sessionId));
-        } catch (Exception $e) {
-            return false;
-        }
+            // Simply, can this session get a licence or not?
+            try {
+                // Note American spelling for app API
+                return array("hasLicenseSlot" => true, "reconnectionWindow" => $this->licenceCops->acquireCouloirLicenceSlot($sessionId));
+            } catch (Exception $e) {
+                return array("hasLicenseSlot" => false);
+            }
+        };
+        return array_map($func, $tokens);
     }
-    public function releaseLicenceSlot($token, $localTimestamp) {
+    public function releaseLicenceSlot($token, $timestamp) {
         // Pick the session id from the token
         $sessionId = $this->authenticationCops->getSessionId($token);
         try {
-            $this->licenceCops->releaseCouloirLicenceSlot($sessionId);
+            $timestamp = $timestamp / 1000;
+            $this->licenceCops->releaseCouloirLicenceSlot($sessionId, $timestamp);
         } catch (Exception $e) {
         }
-        // No need to send anything back for this call
+        return [];
 	}
 
 	// Get details of all tests scheduled for this group
@@ -315,16 +320,17 @@ EOD;
 
 
     // Write the score from an exercise. This includes full details of each answer and anomalies
-    public function scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffset = null) {
+    public function scoreWrite($token, $scoreObj, $localTimestamp, $clientTimezoneOffset = null) {
 
-        $session = $this->getCouloirSession($sessionId);
+        // Pick the session id from the token
+        $sessionId = $this->authenticationCops->getSessionId($token);
 
-        if (!$session)
-            throw new Exception("No such saved session");
+        // Get the full session record
+        $session = $this->progressCops->getCouloirSession($sessionId);
 
         // To avoid authentication, dummy use of session variables
-        Session::set('userID', $session->userId);
-        $user = $this->manageableOps->getUserById($session->userId);
+        //Session::set('userID', $session->userId);
+        $user = $this->manageableOps->getCouloirUserFromID($session->userId);
         if (!$user)
             throw new Exception("No such saved user");
 
@@ -371,7 +377,7 @@ EOD;
             }
         }
 
-        // sss#17 Couloir vs Test
+        // sss#17 Special section for writing score detail for tests
         if ($session->productCode == 63 || $session->productCode == 65) {
             // Write each score detail
             $scoreDetails = array();
@@ -418,6 +424,7 @@ EOD;
                 $isDirty = true;
             }
 
+            // TODO Why is this only for DPT and DE?
             if ($isDirty) {
                 try {
                     $this->progressCops->updateCouloirSession($session);
@@ -626,4 +633,7 @@ EOD;
 
     }
 
+    public function dbCheck() {
+        return ['database' => $GLOBALS['db']];
+    }
 }
