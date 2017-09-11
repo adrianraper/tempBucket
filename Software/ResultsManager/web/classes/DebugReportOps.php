@@ -2,7 +2,7 @@
 require_once(dirname(__FILE__)."/ReportBuilder.php");
 require_once(dirname(__FILE__)."/ContentOps.php");
 
-class ReportOps {
+class DebugReportOps {
 	
 	var $db;
 	
@@ -10,7 +10,7 @@ class ReportOps {
 	
 	var $total;
 	
-	function ReportOps($db) {
+	function DebugReportOps($db) {
 		$this->db = $db;
 	}
 
@@ -206,7 +206,7 @@ EOD;
         // Debug if you want to see the SQL that will be executed to get data for the report
 		//echo $sql.'<br/>'; exit();
 		$rows = $this->db->GetArray($sql);
-
+        AbstractService::$debugLog->info('DebugGenerateReport has rows='.count($rows));
 		// gh#1523 Now is the time to blank out the scores for anyone who completed the test but has no licence
         if (stripos($template,'dptsummary') !== false) {
         	$pc = $onReportableIDObjects[0]['Title'];
@@ -403,6 +403,7 @@ EOD;
 				
 					// Do we have an already built row to write out from the previous test?
 					if (isset($buildRow['unitName'])) {
+                        AbstractService::$debugLog->info('DGR summarise ='.$buildRow['unitName']);
 						$summarisedRows[] = $buildRow;
 					}
 					
@@ -443,7 +444,7 @@ EOD;
 					$exerciseName = 'unknown';
 				}
 				$buildRow['exerciseName'] = $exerciseName;
-				
+                AbstractService::$debugLog->info('DGR now exerciseID='.$row["exerciseID"].' name='.$exerciseName);
 				// There are two units that will have been used in each test, we only care about the one that
 				// contains these exercises
 				if (!stristr($exerciseName, 'grammar') === FALSE) {
@@ -474,7 +475,8 @@ EOD;
 			}
 			
 			// Reset our rows to the summarised one for the rest of the reporting code
-			$rows = $summarisedRows;			
+			$rows = $summarisedRows;
+            AbstractService::$debugLog->info('DebugGenerateReport has summarised rows='.count($rows));
 
 		// gh#653 If you have users who appear in multiple groups, need to whittle out duplicate records
 		// For most reports this will introduce an entirely unnecessary loop. But I guess it is quicker than

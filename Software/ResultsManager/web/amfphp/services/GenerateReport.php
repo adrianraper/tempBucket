@@ -127,6 +127,14 @@ $forClass = "Group";
 Session::set('rootID', 163);
 */
 
+$forReportablesIDObjects = json_decode(stripslashes('[{"Group":"73399"}]'), true);
+$template="CEFSummary";
+$opts=json_decode(stripslashes('{"includeInactiveUsers":false,"includeStudentID":false,"headers":{"forReportDetail":"Jordan, Makani phase 2","forReportLabel":"Group(s)","onReport":"LearnEnglish Level Test","dateRange":"","onReportLabel":"Title(s)","attempts":"Last only"},"detailedReport":false,"attempts":"last"}'), true);
+$onReportablesIDObjects=json_decode(stripslashes('[{"Title":"36","Course":"1242806791546"}]'), true);
+$nocache="233557";
+$forClass="Group";
+$onClass="Title";
+
 // Protect against directory traversal
 // PHP 5.3
 $pattern = '/..\//';
@@ -141,8 +149,7 @@ $reportType = (isset($reportType)) ? $reportType : ($template == "DPTSummary") ?
 $reportDom = $clarityService->getReport($onReportablesIDObjects, $onClass, $forReportablesIDObjects, $forClass, $opts, $reportType);
 // AR If I want to see the XML before it gets processed?
 //$reportDom->formatOutput = true; 
-//header("Content-Type: text/xml; charset=utf-8"); echo $reportDom; exit(0);
-//header("Content-Type: text/xml; charset=utf-8"); echo $reportDom->saveXML(); exit(0);
+header("Content-Type: text/xml; charset=utf-8"); echo $reportDom->saveXML(); exit(0);
 //header("Content-Type: text/xml; charset=utf-8"); echo utf8_encode($reportDom->saveXML()); exit(0);
 //header("Content-Type: text/xml; charset=utf-8"); echo htmlspecialchars($reportDom->saveXML(), ENT_COMPAT, 'UTF-8'); exit(0);
 

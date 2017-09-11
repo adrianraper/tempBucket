@@ -56,6 +56,7 @@ require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
 require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
 require_once(dirname(__FILE__)."/../../classes/UsageOps.php");
 require_once(dirname(__FILE__)."/../../classes/ReportOps.php");
+//require_once(dirname(__FILE__)."/../../classes/DebugReportOps.php");
 require_once(dirname(__FILE__)."/../../classes/ImportXMLParser.php");
 // v3.6 Required as usage ops can also send triggered emails.
 // v3.6 Not any more, remove that to RunTriggers.php
@@ -121,6 +122,7 @@ class ClarityService extends AbstractService {
 		//$this->licenceOps = new LicenceOps($this->db);
 		$this->usageOps = new UsageOps($this->db);
 		$this->reportOps = new ReportOps($this->db);
+		//$this->debugReportOps = new DebugReportOps($this->db);
         // gh#1275
         $this->accountOps = new AccountOps($this->db);
         // gh#1487
@@ -474,7 +476,10 @@ class ClarityService extends AbstractService {
 			return $this->reportOps->getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template);
 		}
 	}
-	
+    //public function getDebugReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template='standard') {
+    //    return $this->debugReportOps->getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template);
+    //}
+
 	public function getHiddenContent() {
 		return $this->contentOps->getHiddenContent();
 	}
