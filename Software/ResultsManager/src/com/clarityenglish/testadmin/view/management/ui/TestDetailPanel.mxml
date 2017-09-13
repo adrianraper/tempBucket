@@ -147,7 +147,9 @@
 					_language = dataProvider.language;
 					// TODO where to get the list of available languages from?
 					languageData.dataProvider = new ArrayCollection([{label:"English", data:"EN"},
-						{label:"Bahasa Indonesia", data:"ID"},
+						{label:"bahasa Indonesia", data:"ID"},
+						{label:"deutsch", data:"DE"},
+						{label:"italiano", data:"IT"},
 						{label:"漢語", data:"ZH-TW"},
 						{label:"العَرَبِيَّة", data:"AR"}
 					]);

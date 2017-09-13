@@ -23,6 +23,50 @@
       }
     },
     {
+      "language": "de",
+      "caption": "deutsche",
+      "literals": {
+        "Email": "E-Mail",
+        "Password": "Passwort",
+        "Login": "Einloggen",
+        "Logout": "Ausloggen",
+        "EmptyLogin": "Bitte geben Sie Ihre E-Mail-Adresse und Ihr Passwort ein.",
+        "IncorrectLogin": "E-Mail-Adresse oder Passwort ist nicht korrekt. Bitte versuchen Sie es erneut.",
+        "ConnectToInternet": "Bitte stellen Sie eine Verbindung mit dem Internet her.",
+        "Downloading": "Inhalte werden heruntergeladen",
+        "DownloadError": "Fehler beim Download",
+        "TryAgain": "Erneut versuchen.",
+        "Ok": "o.k.",
+        "Next": "Weiter",
+        "Back": "Zurück",
+        "Submit": "Abschicken",
+        "Finish": "Ende",
+        "Start": "Start"
+      }
+    },
+    {
+      "language": "it",
+      "caption": "italiana",
+      "literals": {
+        "Email": "E-mail",
+        "Password": "Password",
+        "Login": "Accedi",
+        "Logout": "Esci",
+        "EmptyLogin": "Per favore inserisca la propria e-mail e la password.",
+        "IncorrectLogin": "La sua e-mail o la password non è corretta. Per favore riprovi.",
+        "ConnectToInternet": "Per favore collegarsi a internet.",
+        "Downloading": "Scaricando",
+        "DownloadError": "Errore nel download",
+        "TryAgain": "Provare nuovamente.",
+        "Ok": "ok",
+        "Next": "Avanti",
+        "Back": "Indietro",
+        "Submit": "Inviare",
+        "Finish": "Fine",
+        "Start": "Inizio"
+      }
+    },
+    {
       "language": "ar",
       "caption": "العَرَبِيَّة (Arabic)",
       "literals": {

@@ -22,6 +22,48 @@
       }
     },
     {
+      "language": "de",
+      "literals": {
+        "TestNotOpened": "Der Test hat noch nicht begonnen. Versuchen Sie es am {date} um {time} noch einmal.",
+        "TestClosed": "Der Test wurde am {date} um {time} geschlossen.",
+        "NotAnsweredQuestions": "You have missed a question.|You have missed {count} questions.",
+        "IncorrectQuestions": "Sie müssen diese Fragen richtig beantworten, bevor Sie fortfahren könnnen.",
+        "Access": "Access code",
+        "Code": "Code",
+        "Result": "Testergebnis",
+        "Reset": "Reset",
+        "EnterCode": "Type the code to start the test.",
+        "SendingScores": "Das System gibt gerade Ihre Antworten ein. Bitte schalten Sie nicht ab, bevor Sie Ihr Ergebnis gesehen haben oder Ihnen Ihr Testadministrator Ihnen dies mitteilt.",
+        "FinishedTest": "Der Test ist abgeschlossen und wurde gespeichert.",
+        "ICantDoThis": "I can't do it.",
+        "IncorrectValidateCode": "It looks like you have entered a wrong code. Check your test notice again, or get help from your test administrator.",
+        "EmptyValidateCode": "Please input your validation code.",
+        "DeviceUnsupported": "Sie benötigen ein anderes Gerät, um diese App nutzen zu können. Bitte nehmen Sie Kontakt mit der Kundenbetreuung auf.",
+        "Uploading": "Uploading"
+      }
+    },
+    {
+      "language": "it",
+      "literals": {
+        "TestNotOpened": "Il test non è ancora iniziato. Provi di nuovo il {date} alle {time}.",
+        "TestClosed": "Il test è stato completato il {date} alle {time}",
+        "NotAnsweredQuestions": "You have missed a question.|You have missed {count} questions.",
+        "IncorrectQuestions": "Deve rispondere correttamente  a queste domande prima di poter procedere.",
+        "Access": "Access code",
+        "Code": "Code",
+        "Result": "Risultato del test",
+        "Reset": "Reset",
+        "EnterCode": "Type the code to start the test.",
+        "SendingScores": "Il sistema sta inviando le sue risposte. Per favore non abbandoni la postazione finchè non avrà visto il suo risultato o il suo amministratore del test non le dice di andare.",
+        "FinishedTest": "Il test è completo e tutti i suoi dati sono stati salvati e registrati. ArrivederLa.",
+        "ICantDoThis": "I can't do it.",
+        "IncorrectValidateCode": "It looks like you have entered a wrong code. Check your test notice again, or get help from your test administrator.",
+        "EmptyValidateCode": "Please input your validation code.",
+        "DeviceUnsupported": "Ha bisogno di un dipositivo differente per usare questa APP. Consulti il suo team di supporto.",
+        "Uploading": "Uploading"
+      }
+    },
+    {
       "language": "zh-tw",
       "literals": {
         "TestNotOpened": "測試尚未開始。請於{date}{time}再試一次。",
