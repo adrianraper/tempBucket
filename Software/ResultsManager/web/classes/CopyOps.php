@@ -18,8 +18,9 @@ class CopyOps {
 	 * in the concrete Service file (e.g. ClarityService, DMSService, IELTSService).
 	 */
     // ctp#60
-	private function getFilename($type = 'xml') {
-	    return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".AbstractService::$title.".".$type;
+	private function getFilename($type = 'xml', $code = null) {
+	    $code = (is_null($code)) ? AbstractService::$title : $code;
+	    return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".$code.".".$type;
 	}
 
 	private function getBaseFilename($type = 'xml') {
@@ -167,11 +168,21 @@ class CopyOps {
      */
     /**
      * TODO Need to read a couloir base, then overwrite specific titles on top
-     * TODO Return for a specific language code
+     * sss#155
      */
-    public function getLiteralsFromFile($lang) {
-        if (!file_exists($this->getFilename('json')))
-            throw new Exception($this->getFilename('json')." file not found");
+    public function getLiteralsFromFile($lang, $productCode) {
+        switch ($productCode) {
+            case 66:
+                $code = 'sss';
+                break;
+            case 63:
+                $code = 'ctp'; // TODO change this
+                break;
+            default:
+                $code = null;
+        }
+        if (!file_exists($this->getFilename('json', $code)))
+            throw new Exception($this->getFilename('json', $code)." file not found");
 
         // Initialise
         $build = $specific = array();
@@ -197,7 +208,7 @@ class CopyOps {
             $build[$literal] = (isset($baseOverlay[$literal])) ? $baseOverlay[$literal] : $value;
         }
         // 4. Read the specific file in English
-        $literals = json_decode(file_get_contents($this->getFilename('json')), true);
+        $literals = json_decode(file_get_contents($this->getFilename('json', $code)), true);
         foreach ($literals['languages'] as $value) {
             if ($value['language'] == 'en') {
                 $specific = $value['literals'];

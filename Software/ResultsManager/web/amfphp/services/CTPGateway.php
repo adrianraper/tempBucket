@@ -31,6 +31,7 @@ try {
     $json = json_decode(file_get_contents('php://input'));
     //$json = json_decode('{"command":"getCoverage","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDc3MDQ4OCwic2Vzc2lvbklkIjoiMjU5In0.v0b1YdNxmx7NLrZopGmX7yavtn1v397nYf2LIBjzkvc"}');
     //$json = json_decode('{"command":"login","email":"dave@sss","password":"b36dd0fe2ba555a061660f857f842596","productCode":66, "rootID":10719}');
+    $json = json_decode('{"command":"getTranslations","lang":"de", "productCode":66}');
     /*
     $json = json_decode('{"command":"login","email":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":65, "rootID":163}');
     //$json = json_decode('{"command":"dbCheck"}');
@@ -40,7 +41,7 @@ try {
     $json = json_decode('{"command":"getAccount","productCode":66,"prefix":"clarity","IP":"192.168.8.61","RU":""}');
     $json = json_decode('{"command":"getTestResult","appVersion":"1.1.0","testID":"73","sessionID":"201"}');
     $json = json_decode('{"command":"getScoreDetails","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDU5MTc0Niwic2Vzc2lvbklkIjoiMjQ2In0.MZlSRH6vJsa1ExDi4o17xWkVErQCa5-Iu9JYWXdJ_Ls"}');
-    $json = json_decode('{"command":"getTranslations","lang":"zh-tw"}');
+
     */
     /*
     $json = json_decode('{"command": "scoreWrite",
@@ -328,7 +329,10 @@ function router($json) {
             return getAccount($json->productCode, $json->prefix, $json->IP, $json->RU);
         case "getTestResult": return getResult($json->token, $json->mode);
         case "scoreWrite": return scoreWrite($json->token, $json->score, $json->localTimestamp, $json->timezoneOffset);
-        case "getTranslations": return getTranslations($json->lang);
+        // sss#155
+        case "getTranslations":
+            if (!isset($json->productCode)) $json->productCode = null;
+            return getTranslations($json->lang, $json->productCode);
         case "getCoverage": return getCoverage($json->token);
         case "getComparison": return getComparison($json->token, $json->mode);
         case "getAnalysis": return getAnalysis($json->token);
@@ -395,9 +399,10 @@ function scoreWrite($token, $scoreObj, $localTimestamp, $clientTimezoneOffset=nu
     */
 }
 // ctp#60
-function getTranslations($lang) {
+// sss#155
+function getTranslations($lang, $productCode) {
     global $service;
-    return $service->getTranslations($lang);
+    return $service->getTranslations($lang, $productCode);
 }
 // Just for testing new gateways
 function dbCheck() {
