@@ -351,7 +351,8 @@ EOD;
         } else {
             $score->score = -1;
         }
-        $score->duration = $scoreObj->exerciseScore->duration;
+        // sss#134 app sends milliseconds
+        $score->duration = $scoreObj->exerciseScore->duration / 1000;
 
         $score->sessionID = $session->sessionId;
         $score->userID = $user->userID;

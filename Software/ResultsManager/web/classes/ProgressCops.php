@@ -197,6 +197,7 @@ SQL;
     }
     /**
      * Get summary of progress at the unit level
+     * Cap durations of each exercise at one hour (3600 seconds)
      */
     public function getUnitProgress($session) {
         // F_ProductCode, F_CourseID, F_UnitID, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country
