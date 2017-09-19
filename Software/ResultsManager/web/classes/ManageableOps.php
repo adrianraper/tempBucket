@@ -1245,28 +1245,57 @@ EOD;
 	 
 	/**
 	 * Given a user id, what group(s) are they in?
+     * sss#130 Need to cope if this is the anonymous user, find the top level group for that root.
 	 */
-	function getUsersGroups($user) {
-		$sql = <<<EOD
+	function getUsersGroups($user, $rootId = null) {
+	    // If this is a 'real' user, find the group they are in
+		if ($user->id > 0) {
+            $sql = <<<EOD
 			SELECT g.*
 			FROM T_Membership m, T_Groupstructure g
 			WHERE m.F_UserID = ?
 			AND m.F_GroupID = g.F_GroupID
 EOD;
-		$rs = $this->db->Execute($sql, array($user->id));
-		switch ($rs->RecordCount()) {
-			case 0:
-				// There are no records
-				return false;
-			default:
-				// At some point users will be able to be in multiple groups
-				// in which case we need to know them all.
-				$groups = array();
-				while ($groupObj = $rs->FetchNextObj())
-					$groups[] = $this->_createGroupFromObj($groupObj);
-		}
+            $rs = $this->db->Execute($sql, array($user->id));
 
-		return $groups;
+        // Otherwise for anonymous user, find the top level group for their root
+        } else {
+		    if (is_array($rootId)) {
+                if (count($rootId) > 1) {
+                    $rootClause = "m.F_RootID IN (".implode(",",$rootId).")";
+                } else {
+                    $rootClause = "m.F_RootID=".$rootId[0];
+                }
+            } else {
+                $rootClause = "m.F_RootID=".$rootId;
+            }
+            $sql =	<<<EOD
+				SELECT g.*
+				FROM T_Membership m, T_User u, T_Groupstructure g
+				WHERE $rootClause
+				AND m.F_UserID = u.F_UserID
+				AND m.F_GroupID = g.F_GroupID
+                AND u.F_UserType = ?
+EOD;
+            $bindingParams = array(User::USER_TYPE_ADMINISTRATOR);
+            $rs = $this->db->Execute($sql, $bindingParams);
+        }
+
+        switch ($rs->RecordCount()) {
+            case 0:
+                // There are no records
+                //return false;
+                throw $this->copyOps->getExceptionForId("errorNoSuchGroup");
+
+            default:
+                // At some point users will be able to be in multiple groups
+                // in which case we need to know them all.
+                $groups = array();
+                while ($groupObj = $rs->FetchNextObj())
+                    $groups[] = $this->_createGroupFromObj($groupObj);
+        }
+
+        return $groups;
 	}
 	/**
 	 * This returns a specific user object defined by its ID

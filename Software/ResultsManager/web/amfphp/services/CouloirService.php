@@ -128,29 +128,48 @@ class CouloirService extends AbstractService {
 
 	    // If you know the account, pick it up
         if ($rootId) {
-            $account = $this->manageableOps->getAccountRoot($rootId);
+            // This will do a checksum validity and account suspended check
+            $account = $this->accountOps->getBentoAccount($rootId, $productCode);
+
+            // Remove any other titles from the account
+            $account->titles = array_filter($account->titles, function($title) use ($productCode) {
+                return  $title->productCode = $productCode;
+            });
+
+            // What sort of licence is it?
+            $licenceType = $account->titles[0]->licenceType;
+
         } else {
             $account = null;
+            $licenceType = Title::LICENCE_TYPE_LT;
         }
 
-        // Check the validity of the user details for this product
-        $loginObj["password"] = $password;
-        $loginOption = ((isset($account->loginOption)) ? $account->loginOption : User::LOGIN_BY_EMAIL) + User::LOGIN_HASHED;
-        $verified = true;
-        $allowedUserTypes = array(User::USER_TYPE_TEACHER, User::USER_TYPE_ADMINISTRATOR, User::USER_TYPE_STUDENT, User::USER_TYPE_REPORTER);
-        $userObj = $this->loginCops->loginCouloir($loginObj, $loginOption, $verified, $allowedUserTypes, $rootId, $productCode);
+        // sss#130 If an anonymous access is requested, try that
+        if ($licenceType == Title::LICENCE_TYPE_AA && $loginObj["anonymous"]) {
+            // Confirm that this account accepts anonymous signin
+            if ($account)
+            $userObj = $this->loginCops->loginAnonymousCouloir($rootId, $productCode);
+        } else {
+            // Check the validity of the user details for this product
+            $loginObj["password"] = $password;
+            $loginOption = ((isset($account->loginOption)) ? $account->loginOption : User::LOGIN_BY_EMAIL) + User::LOGIN_HASHED;
+            $verified = true;
+            $allowedUserTypes = array(User::USER_TYPE_TEACHER, User::USER_TYPE_ADMINISTRATOR, User::USER_TYPE_STUDENT, User::USER_TYPE_REPORTER);
+            $userObj = $this->loginCops->loginCouloir($loginObj, $loginOption, $verified, $allowedUserTypes, $rootId, $productCode);
+        }
         $user = new User();
         $user->fromDatabaseObj($userObj);
+
+        // sss#130 This will cope with anonymous user
+        $groups = $this->manageableOps->getUsersGroups($user, $rootId);
+        $group = (isset($groups[0])) ? $groups[0] : null;
+        // Add the user into the group for standard Bento organisation
+        $group->addManageables(array($user));
 
         // If we didn't know the root id, then we do now
         if (!$rootId) {
             $rootId = $this->manageableOps->getRootIdForUserId($user->id);
         }
-
-        $groups = $this->manageableOps->getUsersGroups($user);
-        $group = (isset($groups[0])) ? $groups[0] : null;
-        // Add the user into the group for standard Bento organisation
-        $group->addManageables(array($user));
 
         // Check on hidden content at the product level for this group
         $groupIdList =  implode(',', $this->manageableOps->getGroupParents($group->id));

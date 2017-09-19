@@ -291,58 +291,21 @@ EOD;
 	
 	/**
 	 * Get the anonymous user from the database
+     * sss#130
 	 */
-	public function anonymousUser($rootID) {
-		$sql =	<<<EOD
+	public function loginAnonymousCouloir($rootID) {
+        $sql = <<<EOD
 				SELECT * FROM T_User u
 				WHERE F_UserID=-1; 
 EOD;
-		$rs = $this->db->Execute($sql);
-		
-		if ($rs->RecordCount() > 0) {
-			$loginObj = $rs->FetchNextObj();
-		} else {
-			throw $this->copyOps->getExceptionForId("errorNoAnonymousUser");
-		}
-		
-		// #503 rootID could be an array. 
-		if (is_array($rootID)) {
-			if (count($rootID) > 1) {
-				$rootClause = "m.F_RootID IN (".implode(",",$rootID).")";
-			} else {
-				$rootClause = "m.F_RootID=".$rootID[0];
-			}
-		} else {
-			$rootClause = "m.F_RootID=".$rootID;
-		}
-				
-		// Then we need the top level group ID for this root.
-		// #503 Since we might be searching in a root list, save the one that you actually find
-		$sql =	<<<EOD
-				SELECT m.F_GroupID as groupID, m.F_RootID as rootID 
-				FROM T_Membership m, T_User u
-				WHERE $rootClause
-				AND m.F_UserID = u.F_UserID
-				AND u.F_UserType=?; 
-EOD;
-		$bindingParams = array(User::USER_TYPE_ADMINISTRATOR);
-		$rs = $this->db->Execute($sql, $bindingParams);
-		
-		if ($rs->RecordCount() > 0) {
-			$dbObj = $rs->FetchNextObj();
-			$loginObj->groupID = $dbObj->groupID;
-			// #503 Since we might be searching in a root list, save the one that you actually find
-			$loginObj->rootID = $dbObj->rootID;
-		} else {
-			throw $this->copyOps->getExceptionForId("errorNoSuchGroup");
-		}
-			
-		// gh#334 Authenticate the user with the session
-		// gh#1140 In case name is null
-		$sessionName = (string)$loginObj->F_UserID.$loginObj->F_UserName;
-		Authenticate::login($sessionName, $loginObj->F_UserType);
-		
-		return $loginObj;
+        $rs = $this->db->Execute($sql);
+
+        if ($rs->RecordCount() > 0) {
+            $loginObj = $rs->FetchNextObj();
+        } else {
+            throw $this->copyOps->getExceptionForId("errorNoAnonymousUser");
+        }
+        return $loginObj;
 	}
 	
 	/**
