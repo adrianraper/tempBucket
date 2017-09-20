@@ -13,7 +13,7 @@ class LoginCops {
 		
 		$this->copyOps = new CopyOps();
 		$this->manageableOps = new ManageableOps($db);
-		$this->accountOps = new AccountOps($db);
+		$this->accountCops = new AccountCops($db);
 	}
 	
 	/**
@@ -22,7 +22,7 @@ class LoginCops {
 	 */
 	function changeDB($db) {
 		$this->db = $db;
-		$this->accountOps->changeDB($db);
+		$this->accountCops->changeDB($db);
 		$this->manageableOps->changeDB($db);
 	}
 
@@ -291,9 +291,10 @@ EOD;
 	
 	/**
 	 * Get the anonymous user from the database
+     * TODO This seems utterly pointless - getting back basically a null record from the database
      * sss#130
 	 */
-	public function loginAnonymousCouloir($rootID) {
+	public function loginAnonymousCouloir() {
         $sql = <<<EOD
 				SELECT * FROM T_User u
 				WHERE F_UserID=-1; 
@@ -392,41 +393,6 @@ EOD;
 	// TODO pass sessionId so that you can close it and release T_LicenceHolders
 	function logout() {
 	}
-
-	// TODO Seems quite likely that this should be in AccountCops
-    public function getAccount($productCode, $prefix, $ip, $ru) {
-
-        // gh#39 productCode might be a comma delimited list '52,53'
-        if (!$productCode)
-            throw $this->copyOps->getExceptionForId("errorNoProductCode");
-
-        if ($prefix) {
-            // Kind of silly, but bento is usually keyed on prefix and getAccounts always works on rootID
-            // so add an extra call if you don't currently know the rootID
-            $rootId = (int) $this->accountOps->getAccountRootID($prefix);
-            // There is no account for this prefix, so this is an error
-            if (!$rootId) {
-                throw $this->copyOps->getExceptionForId("errorNoPrefixForRoot", array("prefix" => $prefix));
-            }
-            // TODO We could do any licence control for IP and RU at this point, then no need for app to worry about it
-        } else {
-            // gh#315 Allow lookup for IP
-            if ($ip) {
-                $rootId = (int) $this->accountOps->getRootIDFromIP($ip, $productCode);
-            }
-        }
-
-        // #519
-        if (!$rootId) {
-            // You haven't found an account that matches the IP, but this is fine, you can continue with email login
-            return false;
-        }
-
-        $account = $this->accountOps->getBentoAccount($rootId, $productCode);
-        $account->addLicenceAttributes($this->accountOps->getAccountLicenceDetails($rootId, null, $productCode));
-
-        return $account;
-    }
 
     /**
      * Get hidden content records from the database to see if this user is blocked at the title level

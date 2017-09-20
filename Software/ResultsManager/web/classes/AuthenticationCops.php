@@ -4,7 +4,8 @@
  */
 class AuthenticationCops {
 	
-	function AuthenticationCops() {
+	function AuthenticationCops($db) {
+        $this->db = $db;
         $this->copyOps = new CopyOps();
 	}
 
@@ -34,5 +35,27 @@ class AuthenticationCops {
     public function getSessionId($token) {
 	    $payload = $this->getPayloadFromToken($token);
         return (isset($payload->sessionId)) ? $payload->sessionId : false;
+    }
+
+    // Many functions want the full session based on the session id in the token
+    public function getSession($token) {
+        $payload = $this->getPayloadFromToken($token);
+        $sessionId = (isset($payload->sessionId)) ? $payload->sessionId : false;
+        if (!$sessionId)
+            throw $this->copyOps->getExceptionForId("errorLostSession");
+
+        $sql = <<<EOD
+            SELECT * FROM T_SessionTrack
+        	WHERE F_SessionID=?
+EOD;
+        $bindingParams = array($sessionId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs) {
+            $session = new SessionTrack($rs->FetchNextObj());
+        } else {
+            throw $this->copyOps->getExceptionForId("errorLostSession");
+        }
+
+        return $session;
     }
 }

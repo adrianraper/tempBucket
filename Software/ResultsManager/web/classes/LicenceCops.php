@@ -8,10 +8,15 @@ class LicenceCops {
 
     var $db;
 
-    // Couloir will let an AA licence be active for 5 minutes without any update
+    // The licence server will let an AA licence linger for 1 minute with no internet connection
+    // and for 5 minutes without any activity in the app.
+    // The back end uses 2 minutes for expiry of AA if the licence server has forgotten a licence.
     const LICENCE_DELAY = 5;
-    const AA_RECONNECTION_WINDOW = 300;
+    const AA_LICENCE_EXTENSION = 120;
+    const AA_RECONNECTION_WINDOW = 60;
+    const AA_INACTIVITY_WINDOW = 300; // 30 days
     const LT_RECONNECTION_WINDOW = 2592000; // 30 days
+    const LT_INACTIVITY_WINDOW = 2592000; // 30 days
 
     //const HIBERNATE_DELAY = 15; // production = 2
 
@@ -19,7 +24,7 @@ class LicenceCops {
         $this->db = $db;
         $this->copyOps = new CopyOps();
         $this->manageableOps = new ManageableOps($db);
-        $this->accountOps = new AccountOps($db);
+        $this->accountCops = new AccountCops($db);
         $this->contentOps = new ContentOps($db);
     }
 
@@ -32,6 +37,48 @@ class LicenceCops {
     }
 
     /*
+     * A check that an existing licence is still valid,
+     */
+    public function checkCouloirLicenceSlot($session) {
+        // For AA licences, userId will be a generic -1 - or the anonymous user for an account
+        $sessionId = $session->sessionId;
+        $userId = $session->userId;
+        $rootId = $session->rootId;
+        $productCode = $session->productCode;
+        $licence = $this->accountCops->getLicenceDetails($rootId, $productCode);
+
+        // Then licence slot checking is based on licence type
+        switch ($licence->licenceType) {
+            // No need to check LT licence other than during sign-in
+            case Title::LICENCE_TYPE_SINGLE:
+            case Title::LICENCE_TYPE_I:
+            case Title::LICENCE_TYPE_LT:
+            case Title::LICENCE_TYPE_TT:
+                $reconnectionWindow = LicenceCops::LT_RECONNECTION_WINDOW;
+                $inactivityWindow = LicenceCops::LT_INACTIVITY_WINDOW;
+                break;
+
+            case Title::LICENCE_TYPE_AA:
+            case Title::LICENCE_TYPE_CT:
+            case Title::LICENCE_TYPE_NETWORK:
+            default:
+                // TODO It is possible that a licence might have specific time limits to override these defaults
+                $reconnectionWindow = LicenceCops::AA_RECONNECTION_WINDOW;
+                $inactivityWindow = LicenceCops::AA_INACTIVITY_WINDOW;
+
+                $activeLicence = $this->checkCurrentLicence($productCode, $rootId, $sessionId, $userId, $licence);
+                if ($activeLicence) {
+                    $this->extendLicence($sessionId);
+                } else {
+                    return ["hasLicenseSlot" => false];
+                }
+                break;
+
+        }
+        return ["hasLicenseSlot" => true, "reconnectionWindow" => $reconnectionWindow, "inactivityWindow" => $inactivityWindow];
+    }
+
+    /*
      * Get a licence slot for this session
      *  Check the account to find the licence type and limits
      *  Check if a current licence exists
@@ -41,28 +88,15 @@ class LicenceCops {
      * Takes care of all database records related to the licence
      *
      */
-    function acquireCouloirLicenceSlot($sessionId) {
-        // Find out about the session
-        $sql = <<<EOD
-            SELECT * FROM T_SessionTrack
-        	WHERE F_SessionID=?
-EOD;
-        $bindingParams = array($sessionId);
-        $rs = $this->db->Execute($sql, $bindingParams);
-        if ($rs) {
-            $session = new SessionTrack($rs->FetchNextObj());
-        } else {
-            throw $this->copyOps->getExceptionForId("errorLostSession");
-        }
+    function acquireCouloirLicenceSlot($session) {
 
-        // Fake for authentication
         // For AA licences, userId will be a generic -1 - or the anonymous user for an account
-        //Session::set('userID', $session->userId);
+        $sessionId = $session->sessionId;
         $userId = $session->userId;
         $user = $this->manageableOps->getCouloirUserFromID($userId);
         $rootId = $session->rootId;
         $productCode = $session->productCode;
-        $licence = $this->accountOps->getLicenceDetails($rootId, $productCode);
+        $licence = $this->accountCops->getLicenceDetails($rootId, $productCode);
 
         // Some checks are independent of licence type
         // gh#815
@@ -70,7 +104,7 @@ EOD;
         $dateStampNow = $this->getNow();
         $dateNow = $dateStampNow->format('Y-m-d H:i:s');
         // An AA licence stays active for 5 minutes if untouched
-        $aShortWhileAgo = $dateStampNow->modify('-'.(LicenceCops::LICENCE_DELAY * 60).' secs')->format('Y-m-d H:i:s');
+        //$aShortWhileAgo = $dateStampNow->modify('-'.(LicenceCops::LICENCE_DELAY * 60).' secs')->format('Y-m-d H:i:s');
         //$aLongerWhileAgo = $dateStampNow->modify('-'.(LicenceOps::HIBERNATE_DELAY * 60).' secs')->format('Y-m-d H:i:s');
 
         if ($licence->licenceStartDate > $dateNow)
@@ -88,66 +122,44 @@ EOD;
             case Title::LICENCE_TYPE_AA:
             case Title::LICENCE_TYPE_CT:
             case Title::LICENCE_TYPE_NETWORK:
+                // TODO It is possible that a licence might have specific time limits to override these defaults
                 $reconnectionWindow = LicenceCops::AA_RECONNECTION_WINDOW;
+                $inactivityWindow = LicenceCops::AA_INACTIVITY_WINDOW;
 
                 // Only check on learners. AA licence doesn't have teachers, but a CT licence will
-                if ($user->userType != User::USER_TYPE_STUDENT) {
-                    break;
+                // No, I think we should control all concurrent users
+                //if ($user->userType != User::USER_TYPE_STUDENT) {
+                //   break;
 
-                } else {
-                    /*
-                        From session id pick up user id, root id and product code.
-                        Get the licence from root and product.
-                        Read T_CouloirLicenceHolders to see if licence exists that is active (less than x minutes old).
-                        If yes, then update the lastActivity time and return true.
-                        Delete T_CouloirLicenceHolders for this root and product that are not active.
-                        Count T_CouloirLicenceHolders for this root and product (that are active).
-                        If licence limit permits, insert to T_CouloirLicenceHolders and return true.
-                     */
-                    $activeLicence = $this->checkCurrentLicence($productCode, $rootId, $sessionId, $userId, $licence);
-                    if ($activeLicence) {
-                        $rc = $this->updateLicence($sessionId);
-                        if ($rc) {
-                            // Licence slot found, get out of this case. Or is it clearer to quit the whole function?
-                            //return $sessionId;
-                            break;
-                        } else {
-                            throw $this->copyOps->getExceptionForId("errorCantClearLicences");
-                        }
+                /*
+                    From session id pick up user id, root id and product code.
+                    Get the licence from root and product.
+                    Read T_CouloirLicenceHolders to see if licence exists that is active (endDate is in the future).
+                    If yes, return true.
+                    Count T_CouloirLicenceHolders for this root and product (that are active).
+                    If licence limit permits, insert to T_CouloirLicenceHolders and return true.
+                 */
+                $activeLicence = $this->checkCurrentLicence($productCode, $rootId, $sessionId, $userId, $licence);
+                if ($activeLicence) {
+                    $rc = $this->extendLicence($sessionId);
+                    if ($rc) {
+                        // Licence slot found, get out of this case.
+                        break;
+                    } else {
+                        throw $this->copyOps->getExceptionForId("errorCantClearLicences");
                     }
-
-                    // gh#1342 Reorder so that first check is to see if there is a free licence you can use
-                    $usedLicences = $this->countCurrentLicences($productCode, $rootId);
-                    if ($usedLicences >= $licence->maxStudents) {
-
-                        // No unused licences so delete the ones that are not currently active
-                        $sql = <<<EOD
-                            DELETE FROM T_CouloirLicenceHolders
-                            WHERE F_ProductCode=?
-                            AND F_RootID=?
-                            AND (F_EndDateStamp<? OR F_EndDateStamp is null)
-EOD;
-                        $bindingParams = array($productCode, $rootId, $dateNow);
-                        $rs = $this->db->Execute($sql, $bindingParams);
-                        if (!$rs) {
-                            // Write a record to the failure table
-                            $this->failLicenceSlot($user, $rootId, $productCode, $licence, null, $this->copyOps->getCodeForId("errorCantClearLicences"));
-
-                            throw $this->copyOps->getExceptionForId("errorCantClearLicences");
-                        }
-                        // Try again for a free one
-                        $usedLicences = $this->countCurrentLicences($productCode, $rootId);
-                        if ($usedLicences >= $licence->maxStudents) {
-                            // You really can't get a space
-                            $this->failLicenceSlot($user, $rootId, $productCode, $licence, null, $this->copyOps->getCodeForId("errorConcurrentLicenceFull"));
-
-                            throw $this->copyOps->getExceptionForId("errorConcurrentLicenceFull");
-                        }
-                    }
-
-                    // There is a free licence, so grab it
-                    $this->grabLicenceSlot($productCode, $rootId, $sessionId, $userId, $licence);
                 }
+
+                // Count to see how many this account is currently using
+                $usedLicences = $this->countCurrentLicences($productCode, $rootId);
+                if ($usedLicences >= $licence->maxStudents) {
+                    $this->failLicenceSlot($user, $rootId, $productCode, $licence, null, $this->copyOps->getCodeForId("errorConcurrentLicenceFull"));
+
+                    throw $this->copyOps->getExceptionForId("errorConcurrentLicenceFull");
+                }
+
+                // There is a free licence, so grab it
+                $this->grabLicenceSlot($productCode, $rootId, $sessionId, $userId, $licence);
                 break;
 
             // Currently treated as tracking types.
@@ -156,6 +168,7 @@ EOD;
             case Title::LICENCE_TYPE_LT:
             case Title::LICENCE_TYPE_TT:
                 $reconnectionWindow = LicenceCops::LT_RECONNECTION_WINDOW;
+                $inactivityWindow = LicenceCops::LT_INACTIVITY_WINDOW;
 
                 // Only track learners
                 if ($user->userType != User::USER_TYPE_STUDENT) {
@@ -200,7 +213,7 @@ EOD;
 
                 throw $this->copyOps->getExceptionForId("errorInvalidLicenceType");
         }
-        return $reconnectionWindow;
+        return ["hasLicenseSlot" => true, "reconnectionWindow" => $reconnectionWindow, "inactivityWindow" => $inactivityWindow];
     }
     /**
      * Grab a licence slot
@@ -222,8 +235,22 @@ EOD;
             case Title::LICENCE_TYPE_CT:
             case Title::LICENCE_TYPE_NETWORK:
             default:
-                $licenceEndDate = $expungeDateStamp->modify('+'.(LicenceCops::LICENCE_DELAY * 60).' secs')->format('Y-m-d H:i:s');
                 $keyId = $sessionId;
+                // sss#161 Delete any existing licence for this session before you add a new one.
+                // Just as a safety check. REALLY?
+                $sql = <<<EOD
+                    DELETE FROM T_CouloirLicenceHolders
+                    WHERE F_ProductCode=?
+                    AND F_RootID=?
+                    AND F_KeyID=?
+EOD;
+                $bindingParams = array($productCode, $rootId, $keyId);
+                $rs = $this->db->Execute($sql, $bindingParams);
+                if (!$rs) {
+                    throw $this->copyOps->getExceptionForId("errorCantClearLicences");
+                }
+
+                $licenceEndDate = $expungeDateStamp->modify('+'.(LicenceCops::AA_LICENCE_EXTENSION).' secs')->format('Y-m-d H:i:s');
                 break;
         }
         $sql = <<<EOD
@@ -239,7 +266,7 @@ EOD;
     }
 
     /*
-     * Is there an active licence for this session?
+     * Is there an active licence for this session or user?
      */
     private function checkCurrentLicence($productCode, $rootId, $sessionId, $userId, $licence) {
         $dateStampNow = $this->getNow();
@@ -672,18 +699,31 @@ EOD;
 
     /**
      *
-     * This function updates a licence record with a timestamp
+     * This function extends a licence record with a timestamp
      * It is only relevant for AA licences that constantly check the date
      */
     // gh#1342
-    function updateLicence($sessionId) {
-        $reconnectionWindow = LicenceCops::AA_RECONNECTION_WINDOW;
+    function extendLicence($sessionId, $timestamp=null) {
+        $extendBy = LicenceCops::AA_LICENCE_EXTENSION;
 
-        // gh#815
-        $dateStampNow = $this->getNow();
-        // Set an extra 5 minutes on the licence
-        $dateNow = $dateStampNow->add(new DateInterval('PT'.$reconnectionWindow.'S'))->format('Y-m-d H:i:s');
+        // gh#815 sss#161 You might be updating based on an activity message from a little while ago that just arrived
+        $dateStampNow = is_null($timestamp) ? $this->getNow() : new DateTime('@'.intval($timestamp), new DateTimeZone(TIMEZONE));
+        // Set an extra x seconds on the licence
+        $dateNow = $dateStampNow->add(new DateInterval('PT'.$extendBy.'S'))->format('Y-m-d H:i:s');
 
+        // sss#161 Check first that this IS an AA licence
+        // TODO I think this is unnecessary, we won't call it for LT
+        /*
+        $sql = <<<EOD
+			SELECT * FROM T_CouloirLicenceHolders 
+			WHERE F_KeyID=?
+            AND F_LicenceType=?
+EOD;
+        $bindingParams = array($sessionId, Title::LICENCE_TYPE_AA);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if (!$rs || $rs->recordCount()==0)
+            return;
+        */
         // Update the licence in the table
         // gh#1342
         $sql = <<<EOD
@@ -698,32 +738,20 @@ EOD;
         return true;
     }
 
-    function releaseCouloirLicenceSlot($sessionId, $timestamp) {
-        // Find out about the session
-        $sql = <<<EOD
-            SELECT * FROM T_SessionTrack
-        	WHERE F_SessionID=?
-EOD;
-        $bindingParams = array($sessionId);
-        $rs = $this->db->Execute($sql, $bindingParams);
-        if ($rs) {
-            $session = new SessionTrack($rs->FetchNextObj());
-        } else {
-            throw $this->copyOps->getExceptionForId("errorLostSession");
-        }
-
+    function releaseCouloirLicenceSlot($session, $timestamp) {
+        $sessionId = $session->sessionId;
         $userId = $session->userId;
-        $user = $this->manageableOps->getCouloirUserFromID($userId);
         $rootId = $session->rootId;
         $productCode = $session->productCode;
-        $licence = $this->accountOps->getLicenceDetails($rootId, $productCode);
-        return $this->dropLicenceSlot($productCode, $rootId, $sessionId, $userId, $licence);
+        $licence = $this->accountCops->getLicenceDetails($rootId, $productCode);
+        return $this->dropLicenceSlot($productCode, $rootId, $sessionId, $userId, $licence, $timestamp);
     }
     /**
-     * Drop a licence slot - does this clear the licence or close it with a timestamp?
+     * Drop a licence slot - this clears the record from the licence table
+     * and closes the session tracking.
      * gh#1230
      */
-    public function dropLicenceSlot($productCode, $rootId, $sessionId, $userId, $licence) {
+    public function dropLicenceSlot($productCode, $rootId, $sessionId, $userId, $licence, $timestamp) {
 
         switch ($licence->licenceType) {
             case Title::LICENCE_TYPE_AA:
@@ -749,6 +777,23 @@ EOD;
         }
         return true;
     }
+
+    public function deleteExpiredLicenceSlots($session) {
+        $sessionId = $session->sessionId;
+        $rootId = $session->rootId;
+        $productCode = $session->productCode;
+        $dateStampNow = $this->getNow();
+        $dateNow = $dateStampNow->format('Y-m-d H:i:s');
+        $sql = <<<EOD
+            DELETE FROM T_CouloirLicenceHolders
+            WHERE F_ProductCode=?
+            AND F_RootID=?
+            AND (F_EndDateStamp<? OR F_EndDateStamp IS NULL)
+EOD;
+        $bindingParams = array($productCode, $rootId, $dateNow);
+        $this->db->Execute($sql, $bindingParams);
+    }
+
     /**
      * Record the failure to get a licence or otherwise start the program
      */
@@ -787,7 +832,7 @@ EOD;
         $licence->findLicenceClearanceDate();
 
         // gh#1230
-        $account = $this->accountOps->getBentoAccount($rootID, $productCode);
+        $account = $this->accountCops->getBentoAccount($rootID, $productCode);
         if ($account->useOldLicenceCount) {
             $count = $this->countUsedOldStyleLicences($rootID, $productCode, $licence);
         } else {

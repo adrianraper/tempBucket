@@ -11,7 +11,7 @@ require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
 require_once(dirname(__FILE__)."/../../classes/ProgressCops.php");
 require_once(dirname(__FILE__)."/../../classes/LoginCops.php");
 require_once(dirname(__FILE__)."/../../classes/LicenceCops.php");
-require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
+require_once(dirname(__FILE__)."/../../classes/AccountCops.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
 require_once(dirname(__FILE__)."/../../classes/AuthenticationCops.php");
 
@@ -57,9 +57,9 @@ class CouloirService extends AbstractService {
         $this->manageableOps = new ManageableOps($this->db);
         $this->loginCops = new LoginCops($this->db);
         $this->licenceCops = new LicenceCops($this->db);
-        $this->accountOps = new AccountOps($this->db);
+        $this->accountCops = new AccountCops($this->db);
         $this->contentOps = new ContentOps($this->db);
-        $this->authenticationCops = new AuthenticationCops();
+        $this->authenticationCops = new AuthenticationCops($this->db);
 	}
 
     public function changeDB($dbHost) {
@@ -71,9 +71,9 @@ class CouloirService extends AbstractService {
         $this->manageableOps = new ManageableOps($this->db);
         $this->loginCops = new LoginCops($this->db);
         $this->licenceCops = new LicenceCops($this->db);
-        $this->accountOps = new AccountOps($this->db);
+        $this->accountCops = new AccountCops($this->db);
         $this->contentOps = new ContentOps($this->db);
-        $this->authenticationCops = new AuthenticationCops();
+        $this->authenticationCops = new AuthenticationCops($this->db);
     }
 
 	public function getAppVersion() {
@@ -85,9 +85,9 @@ class CouloirService extends AbstractService {
     /*
      * Find an account that matches a prefix, IP or RU range.
      */
-    public function getAccount($productCode, $prefix, $ip, $ru) {
+    public function getLoginConfig($productCode, $prefix, $ip, $ru) {
 
-        $account = $this->loginCops->getAccount($productCode, $prefix, $ip, $ru);
+        $account = $this->accountCops->getAccount($productCode, $prefix, $ip, $ru);
 
         // gh#315 If no account and you didn't throw an exception, just means we can't find it from partial parameters
         // gh#1561 For consistency we should still alert this with an exception
@@ -119,21 +119,52 @@ class CouloirService extends AbstractService {
                 $productCode = $account->titles[0]->productCode;
         }
 
-        return array("account" => $account);
+        switch ($account->loginOption) {
+            case 8:
+                $loginOption = "id";
+                break;
+            case 1:
+                $loginOption = "name";
+                break;
+            case 128:
+            default:
+                $loginOption = "email";
+                break;
+        }
+        switch ($account->titles[0]->licenceType) {
+            case Title::LICENCE_TYPE_SINGLE:
+            case Title::LICENCE_TYPE_I:
+            case Title::LICENCE_TYPE_LT:
+            case Title::LICENCE_TYPE_TT:
+                $licenceType = "lt";
+                break;
+            case Title::LICENCE_TYPE_AA:
+            case Title::LICENCE_TYPE_CT:
+            case Title::LICENCE_TYPE_NETWORK:
+            default:
+                $licenceType = "aa";
+                break;
+        }
+        return array("loginOption" => $loginOption,
+                     "verified" => ($account->verified) ? true : false,
+                     "lang" => $account->titles[0]->languageCode,
+                     "allowSelfRegistration" => ($account->selfRegister > 0) ? true : false,
+                     "licenceType" => $licenceType,
+                     "rootId" => intval($account->id));
     }
     /*
      * Login checks the user, account, hidden content, creates a session and secures a licence
      */
-	public function login($loginObj, $password, $productCode, $rootId = null, $platform = null) {
+	public function login($loginObj, $productCode, $rootId = null, $platform = null) {
 
 	    // If you know the account, pick it up
         if ($rootId) {
             // This will do a checksum validity and account suspended check
-            $account = $this->accountOps->getBentoAccount($rootId, $productCode);
+            $account = $this->accountCops->getBentoAccount($rootId, $productCode);
 
             // Remove any other titles from the account
             $account->titles = array_filter($account->titles, function($title) use ($productCode) {
-                return  $title->productCode = $productCode;
+                return $title->productCode = $productCode;
             });
 
             // What sort of licence is it?
@@ -144,14 +175,14 @@ class CouloirService extends AbstractService {
             $licenceType = Title::LICENCE_TYPE_LT;
         }
 
-        // sss#130 If an anonymous access is requested, try that
-        if ($licenceType == Title::LICENCE_TYPE_AA && $loginObj["anonymous"]) {
-            // Confirm that this account accepts anonymous signin
-            if ($account)
+        // sss#130 If an anonymous access is requested, build a null user
+        if ($licenceType == Title::LICENCE_TYPE_AA &&
+            (is_null($loginObj["email"])) && (is_null($loginObj["studentID"])) && (is_null($loginObj["username"]))) {
             $userObj = $this->loginCops->loginAnonymousCouloir($rootId, $productCode);
+
         } else {
             // Check the validity of the user details for this product
-            $loginObj["password"] = $password;
+            //$loginObj["password"] = $password;
             $loginOption = ((isset($account->loginOption)) ? $account->loginOption : User::LOGIN_BY_EMAIL) + User::LOGIN_HASHED;
             $verified = true;
             $allowedUserTypes = array(User::USER_TYPE_TEACHER, User::USER_TYPE_ADMINISTRATOR, User::USER_TYPE_STUDENT, User::USER_TYPE_REPORTER);
@@ -202,7 +233,7 @@ class CouloirService extends AbstractService {
 
         // Grab a licence slot - this will send exception if none available
         // TODO if you catch an exception from this, you could then invalidate the session you just created
-        $licence = $this->licenceCops->acquireCouloirLicenceSlot($session->sessionId);
+        $licence = $this->licenceCops->acquireCouloirLicenceSlot($session);
 
         $rc = array(
             "user" => $user,
@@ -224,35 +255,42 @@ class CouloirService extends AbstractService {
 
     public function updateActivity($token, $timestamp) {
         // Pick the session id from the token
-        $sessionId = $this->authenticationCops->getSessionId($token);
+        $session = $this->authenticationCops->getSession($token);
 
         // Convert to seconds from the timestamp sent by app
-        $timestamp = $timestamp / 1000;
-        $this->progressCops->updateCouloirSession($sessionId, $timestamp);
+        $timestamp = intval($timestamp / 1000);
+        $this->progressCops->updateCouloirSession($session, $timestamp);
+
         return [];
     }
     // This reports whether each session in the array can get a licence slot
-    public function acquireLicenceSlots($tokens) {
+    public function checkLicenceSlots($tokens) {
         $func = function($token) {
             // Pick the session id from the token
-            $sessionId = $this->authenticationCops->getSessionId($token);
+            $session = $this->authenticationCops->getSession($token);
+
+            // gh#161 Delete all expired licences here to tidy up before grabbing each one
+            // TODO This clears for product code and root id. It might be worth making sure
+            // that you only do it once for each combination to save unnecessary calls.
+            $this->licenceCops->deleteExpiredLicenceSlots($session);
 
             // Simply, can this session get a licence or not?
             try {
                 // Note American spelling for app API
-                return array("hasLicenseSlot" => true, "reconnectionWindow" => $this->licenceCops->acquireCouloirLicenceSlot($sessionId));
+                return $this->licenceCops->checkCouloirLicenceSlot($session);
             } catch (Exception $e) {
-                return array("hasLicenseSlot" => false);
+                return ["hasLicenseSlot" => false];
             }
         };
         return array_map($func, $tokens);
     }
     public function releaseLicenceSlot($token, $timestamp) {
         // Pick the session id from the token
-        $sessionId = $this->authenticationCops->getSessionId($token);
+        $session = $this->authenticationCops->getSession($token);
         try {
             $timestamp = $timestamp / 1000;
-            $this->licenceCops->releaseCouloirLicenceSlot($sessionId, $timestamp);
+            $this->progressCops->updateCouloirSession($session, $timestamp);
+            $this->licenceCops->releaseCouloirLicenceSlot($session, $timestamp);
         } catch (Exception $e) {
         }
         return [];
@@ -324,6 +362,7 @@ class CouloirService extends AbstractService {
     public function startCouloirSession($user, $rootId, $productCode, $uid=null) {
         return $this->progressCops->startCouloirSession($user, $rootId, $productCode, $uid);
     }
+    /*
     function getCouloirSession($sessionId) {
         $sql = <<<EOD
 			SELECT * 
@@ -339,16 +378,13 @@ EOD;
             return false;
         }
     }
-
+    */
 
     // Write the score from an exercise. This includes full details of each answer and anomalies
     public function scoreWrite($token, $scoreObj, $localTimestamp, $clientTimezoneOffset = null) {
 
-        // Pick the session id from the token
-        $sessionId = $this->authenticationCops->getSessionId($token);
-
-        // Get the full session record
-        $session = $this->progressCops->getCouloirSession($sessionId);
+        // Pick the session from the token
+        $session = $this->authenticationCops->getSession($token);
 
         // To avoid authentication, dummy use of session variables
         //Session::set('userID', $session->userId);
@@ -468,11 +504,11 @@ EOD;
     }
 
     // sss#12 Only relevant for DPT, DE
-    public function getResult($sessionId, $mode = null) {
+    public function getResult($token, $mode = null) {
         $isDirty = false;
 
         // Get the session record
-        $session = $this->progressCops->getCouloirSession($sessionId);
+        $session = $this->authenticationCops->getSession($token);
 
         // For manual figuring out of a result, with more detail
         if ($mode=='debug')
@@ -493,7 +529,7 @@ EOD;
         // sss#17
         if ($session->status == SessionTrack::STATUS_OPEN || $mode=='overwrite') {
             // ctp#261 Get the time the last score was written for this session
-            $lastScore = $this->testOps->getLastScore($sessionId);
+            $lastScore = $this->testOps->getLastScore($session->sessionId);
             $session->lastUpdateDateStamp = $lastScore->dateStamp;
             $session->duration = strtotime($session->lastUpdateDateStamp) - strtotime($session->startDateStamp);
             $session->status = SessionTrack::STATUS_CLOSED;
@@ -546,11 +582,8 @@ EOD;
 
     // sss#17 Which exercises has the user completed?
     public function getCoverage($token) {
-        // Pick the session id from the token
-        $sessionId = $this->authenticationCops->getSessionId($token);
-
-        // Get the full session record
-        $session = $this->progressCops->getCouloirSession($sessionId);
+        // Pick the session from the token
+        $session = $this->authenticationCops->getSession($token);
 
         // Retrieve the score records for this user and this product
         $exercises = $this->progressCops->getExercisesCompleted($session);
@@ -565,11 +598,8 @@ EOD;
 
     // sss#17 Which exercises has the user completed?, full details
     public function getScoreDetails($token) {
-        // Pick the session id from the token
-        $sessionId = $this->authenticationCops->getSessionId($token);
-
-        // Get the full session record
-        $session = $this->progressCops->getCouloirSession($sessionId);
+        // Pick the session  from the token
+        $session = $this->authenticationCops->getSession($token);
 
         // Retrieve the score records for this user and this product
         $exercises = $this->progressCops->getExercisesCompleted($session);
@@ -588,10 +618,7 @@ EOD;
     // sss#17 For each unit that the user had worked on, summarise the progress
     public function getUnitProgress($token) {
         // Pick the session id from the token
-        $sessionId = $this->authenticationCops->getSessionId($token);
-
-        // Get the full session record
-        $session = $this->progressCops->getCouloirSession($sessionId);
+        $session = $this->authenticationCops->getSession($token);
 
         // Retrieve the score records for this user and this product
         $units = $this->progressCops->getUnitProgress($session);
@@ -605,11 +632,8 @@ EOD;
     }
     // sss#17 For each unit that the user had worked on, summarise the progress
     public function getUnitComparison($token, $mode) {
-        // Pick the session id from the token
-        $sessionId = $this->authenticationCops->getSessionId($token);
-
-        // Get the full session record
-        $session = $this->progressCops->getCouloirSession($sessionId);
+        // Pick the session from the token
+        $session = $this->authenticationCops->getSession($token);
 
         // Retrieve the score records for this user and this product
         $units = $this->progressCops->getUnitProgress($session);

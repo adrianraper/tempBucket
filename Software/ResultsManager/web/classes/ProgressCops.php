@@ -941,8 +941,7 @@ EOD;
      * Update a session record for Couloir
      * sss#17
      */
-    public function updateCouloirSession($sessionId, $timestamp) {
-        $session = $this->getCouloirSession($sessionId);
+    public function updateCouloirSession($session, $timestamp) {
 
         $newDateTime = new DateTime('@'.intval($timestamp), new DateTimeZone(TIMEZONE));
         $lastDateTime = new DateTime($session->lastUpdateDateStamp, new DateTimeZone(TIMEZONE));
@@ -960,7 +959,6 @@ EOD;
 
         $session->lastUpdateDateStamp = $newDateTime->format('Y-m-d H:i:s');
         $rs = $this->db->AutoExecute("T_SessionTrack", $session->toAssocArray(), "UPDATE", "F_SessionID=".$session->sessionId);
-        return ($rs);
     }
 
     /**

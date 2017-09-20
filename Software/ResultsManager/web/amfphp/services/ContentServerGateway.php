@@ -26,10 +26,10 @@ $utcTimestamp = $utcDateTime->format('U')*1000;
 try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
+    //$json = json_decode('{"command":"updateActivity","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNTkwMjA5Niwic2Vzc2lvbklkIjoiMjkxIn0.vyougpOHKi5ctolqh56e6f0fd5NEQp1rxtXCt3X9iNI","timestamp":'.$utcTimestamp.'}');
     //$json = json_decode('{"command":"releaseLicenseSlot","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDI0NTM3Mywic2Vzc2lvbklkIjoiMjQ1In0.t_IJ-xCH5m94ZZUR7oSKa4KIMyfuDXf4GnYL3_TXleA","timestamp":'.$utcTimestamp.'}');
-    //$json = json_decode('{"command":"updateActivity","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDc0OTY2OSwic2Vzc2lvbklkIjoiMjUzIn0.HYB8KpYVqO6yFgkDJH8SNCTJfeNoppNREtKSRjE85y8","timestamp":'.$utcTimestamp.'}');
     //$json = json_decode('{"command":"acquireLicenseSlots","tokens":["eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDc3MDQ4OCwic2Vzc2lvbklkIjoiMjU5In0.v0b1YdNxmx7NLrZopGmX7yavtn1v397nYf2LIBjzkvc",
-    //                                                              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDY4MzE5Mywic2Vzc2lvbklkIjoiMzIifQ.YP7gtch3KYUsQpPbx4JJcTgiK2jSvRSNDPAF6Nunwwg"]}');
+    //                                                              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNjQ3MjY4Niwic2Vzc2lvbklkIjoiMzA2In0.qDdsEn0Lfb0e4HSyJaK1Mh6YC0hYN-hodh0eu-NY23Y"]}');
     /*
     $json = json_decode('{"command":"getEncryptionKey","id":298}');
     $json = json_decode('{"command":"dbCheck"}');
@@ -75,11 +75,15 @@ function router($json) {
     global $service;
     $localDateTime = new DateTime();
     $localTimestamp = $localDateTime->format('Y-m-d H:i:s');
-    AbstractService::$debugLog->info("got ".$json->command." at ".$localTimestamp);
+    //AbstractService::$debugLog->info("got ".$json->command." at ".$localTimestamp);
     switch ($json->command) {
         case "acquireLicenseSlots": return acquireLicenceSlots($json->tokens);
         case "releaseLicenseSlot": return releaseLicenceSlot($json->token, $json->timestamp);
-        case "updateActivity": return updateActivity($json->token, $json->timestamp);
+        case "updateActivity":
+            $newDateTime = new DateTime('@'.intval($json->timestamp / 1000), new DateTimeZone(TIMEZONE));
+            $localTimestamp = $newDateTime->format('Y-m-d H:i:s');
+            AbstractService::$debugLog->info("got ".$json->command." at ".$localTimestamp." token=".$json->token);
+            return updateActivity($json->token, $json->timestamp);
         case "getEncryptionKey": return getEncryptionKey($json->id);
         case "dbCheck": return dbCheck();
         default: throw new Exception("Unknown command");
@@ -97,8 +101,9 @@ function updateActivity($token, $utcTimestamp) {
 // Each token is something that holds a session id, in an authenticated format
 function acquireLicenceSlots($tokens) {
     global $service;
-    return $service->acquireLicenceSlots($tokens);
+    return $service->checkLicenceSlots($tokens);
 }
+// sss#171 This will be called by app signout too
 function releaseLicenceSlot($token, $utcTimestamp) {
     global $service;
     return $service->releaseLicenceSlot($token, $utcTimestamp);

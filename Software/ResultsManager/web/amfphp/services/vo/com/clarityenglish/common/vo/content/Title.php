@@ -189,7 +189,7 @@ class Title extends Content {
 	 *
 	 * @param obj The object returned for the record by FetchNextObject()
 	 */
-	function fromDatabaseObj($obj, $db = null) {
+	public function fromDatabaseObj($obj, $db = null) {
 		$this->productCode = $obj->F_ProductCode;
 		$this->maxStudents = $obj->F_MaxStudents;
 		$this->maxTeachers = $obj->F_MaxTeachers;
