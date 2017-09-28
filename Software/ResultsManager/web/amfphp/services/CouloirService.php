@@ -104,29 +104,9 @@ class CouloirService extends AbstractService {
             $account->selfRegister = 0;
         }
 
-        // gh#659 productCodes is null or not can distinguish whether this is ipad or online version login
-        if (isset($ip)) {
-            // gh#1223
-            foreach ($account->licenceAttributes as $thisLicenceAttribute) {
-                if ($thisLicenceAttribute['licenceKey'] == 'IPrange') {
-                    if ($thisLicenceAttribute['productCode'] != '') {
-                        array_push($account->IPMatchedProductCodes, $thisLicenceAttribute['productCode']);
-                    } else { // Sometimes the product code column is empty, so we need to add product code from title
-                        foreach ($account->titles as $thisTitle)
-                            array_push($account->IPMatchedProductCodes, $thisTitle->productCode);
-                        break;
-                    }
-                }
-            }
-        }
-
         // gh#315 Can only cope with one title, and tablet login by IP might find an account with 2
         if (count($account->titles) > 1) {
             $account->titles = array(reset($account->titles));
-
-            // gh#39 If you had multiple codes, reduce to one
-            if (stristr($productCode, ','))
-                $productCode = $account->titles[0]->productCode;
         }
 
         switch ($account->loginOption) {
@@ -173,7 +153,6 @@ class CouloirService extends AbstractService {
 
 	    // If you know the account, pick it up
         if ($rootId) {
-            // This will do a checksum validity and account suspended check
             $account = $this->accountCops->getBentoAccount($rootId, $productCode);
 
             // Remove any other titles from the account
@@ -214,6 +193,9 @@ class CouloirService extends AbstractService {
         // If we didn't know the root id, then we do now
         if (!$rootId) {
             $rootId = $this->manageableOps->getRootIdForUserId($user->id);
+
+            // sss#152 now that we know an account, we must check the validity of the title
+            $account = $this->accountCops->getBentoAccount($rootId, $productCode);
         }
 
         // Check on hidden content at the product level for this group
