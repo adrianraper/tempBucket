@@ -1612,8 +1612,10 @@ CREATE TABLE `T_SessionTrack` (
   KEY `Index_4` (`F_RootID`,`F_ProductCode`,`F_StartDateStamp`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
--- table is deprecated for all Couloir and Bento new licence counting style
--- DROP TABLE IF EXISTS `T_Licences`;
+INSERT INTO `T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (2452, '2017-09-28 00:00:00', 'Couloir licence and session tracking');
+
 
 INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
