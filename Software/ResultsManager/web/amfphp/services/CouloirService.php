@@ -2,7 +2,7 @@
 /**
  * Called from amfphp gateway from Flex
  */
-require_once(dirname(__FILE__)."/AbstractService.php");
+require_once(dirname(__FILE__)."/AbstractCouloirService.php");
 require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/TestOps.php");
 require_once(dirname(__FILE__)."/../../classes/UsageCops.php");
@@ -91,8 +91,18 @@ class CouloirService extends AbstractService {
 
         // gh#315 If no account and you didn't throw an exception, just means we can't find it from partial parameters
         // gh#1561 For consistency we should still alert this with an exception
-        if (!$account)
-            throw $this->copyOps->getExceptionForId("errorNoAccountFound");
+        // sss#152 Return default parameters so that the app can go to personal signin
+        if (!$account) {
+            //throw $this->copyOps->getExceptionForId("errorNoAccountFound");
+            $account = new Account();
+            $title = new Title();
+            $title->licenceType = Title::LICENCE_TYPE_TT;
+            $title->languageCode = 'EN';
+            $account->addTitles(array($title));
+            $account->loginOption = 128;
+            $account->verified = true;
+            $account->selfRegister = 0;
+        }
 
         // gh#659 productCodes is null or not can distinguish whether this is ipad or online version login
         if (isset($ip)) {
@@ -145,12 +155,16 @@ class CouloirService extends AbstractService {
                 $licenceType = "aa";
                 break;
         }
-        return array("loginOption" => $loginOption,
-                     "verified" => ($account->verified) ? true : false,
-                     "lang" => $account->titles[0]->languageCode,
-                     "allowSelfRegistration" => ($account->selfRegister > 0) ? true : false,
-                     "licenceType" => $licenceType,
-                     "rootId" => intval($account->id));
+        // Format the return object
+        $config = array("loginOption" => $loginOption,
+                        "verified" => ($account->verified) ? true : false,
+                        "lang" => $account->titles[0]->languageCode,
+                        "allowSelfRegistration" => ($account->selfRegister > 0) ? true : false,
+                        "licenceType" => $licenceType);
+        if (isset($account->id))
+            $config["rootId"] = intval($account->id);
+
+        return $config;
     }
     /*
      * Login checks the user, account, hidden content, creates a session and secures a licence

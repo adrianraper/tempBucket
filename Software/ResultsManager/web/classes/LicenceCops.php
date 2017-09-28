@@ -100,8 +100,7 @@ class LicenceCops {
 
         // Some checks are independent of licence type
         // gh#815
-        //$dateNow = date('Y-m-d 23:59:59');
-        $dateStampNow = $this->getNow();
+        $dateStampNow = AbstractService::getNow();
         $dateNow = $dateStampNow->format('Y-m-d H:i:s');
         // An AA licence stays active for 5 minutes if untouched
         //$aShortWhileAgo = $dateStampNow->modify('-'.(LicenceCops::LICENCE_DELAY * 60).' secs')->format('Y-m-d H:i:s');
@@ -222,9 +221,9 @@ class LicenceCops {
     public function grabLicenceSlot($productCode, $rootId, $sessionId, $userId, $licence) {
 
         // The licence expiry date is very different for AA and LT.
-        $dateStamp = $this->getNow();
+        $dateStamp = AbstractService::getNow();
         $dateNow = $dateStamp->format('Y-m-d H:i:s');
-        $expungeDateStamp = $this->getNow();
+        $expungeDateStamp = AbstractService::getNow();
         switch ($licence->licenceType) {
             case Title::LICENCE_TYPE_LT:
                 $expungeDateStamp->modify('+'.$licence->licenceClearanceFrequency); // one licence period in the future
@@ -269,7 +268,7 @@ EOD;
      * Is there an active licence for this session or user?
      */
     private function checkCurrentLicence($productCode, $rootId, $sessionId, $userId, $licence) {
-        $dateStampNow = $this->getNow();
+        $dateStampNow = AbstractService::getNow();
         $dateStamp = $dateStampNow->format('Y-m-d H:i:s');
         // AA is keyed on sessionId, LT keyed on userId
         switch ($licence->licenceType) {
@@ -315,7 +314,7 @@ EOD;
      * TODO should we count only by AA licence type? Or is this only a problem for testing accounts?
      */
     private function countCurrentLicences($productCode, $rootId) {
-        $dateStampNow = $this->getNow();
+        $dateStampNow = AbstractService::getNow();
         //$dateStamp = $dateStampNow->modify('-1 day')->format('Y-m-d H:i:s');
         $dateStamp = $dateStampNow->format('Y-m-d H:i:s');
         $sql = <<<EOD
@@ -390,7 +389,7 @@ EOD;
     function checkExistingLicence($userId, $productCode, $licence) {
         // gh#125 Need exactly the same conditions here as with countUsedLicences
         // Have they taken a licence within the last [licence period]?
-        $dateStamp = $this->getNow();
+        $dateStamp = AbstractService::getNow();
         $licencePeriodAgo = $dateStamp->modify('-'.$licence->licenceClearanceFrequency)->format('Y-m-d H:i:s');
         AbstractService::$debugLog->info("licences used since ".$licencePeriodAgo);
         $sql = <<<EOD
@@ -429,7 +428,7 @@ EOD;
      * Will be deprecated as soon as new licence style implemented.
      */
     function checkEarliestOldStyleLicence($userId, $productCode) {
-        $aYearAgo = $this->getNow();
+        $aYearAgo = AbstractService::getNow();
         $aYearAgo->modify('-1 year');
         $earliestDate = $aYearAgo->format('Y-m-d');
 
@@ -466,7 +465,7 @@ EOD;
      * Will be deprecated as soon as new licence style implemented.
      */
     function checkEarliestOldStyleLicences($rootId, $productCode) {
-        $aYearAgo = $this->getNow();
+        $aYearAgo = AbstractService::getNow();
         $aYearAgo->modify('-1 year');
         $earliestDate = $aYearAgo->format('Y-m-d');
 
@@ -504,7 +503,7 @@ EOD;
      * gh#1230 Used to avoid lengthy checks
      */
     function countTimesTitleUsed($rootId, $productCode) {
-        $aYearAgo = $this->getNow();
+        $aYearAgo = AbstractService::getNow();
         $aYearAgo->modify('-1 year');
         $earliestDate = $aYearAgo->format('Y-m-d');
 
@@ -591,7 +590,7 @@ EOD;
      * but haven't been cleared out yet.
      */
     function countTotalLicences($rootID, $productCode, $licence) {
-        $aYearAgo = $this->getNow();
+        $aYearAgo = AbstractService::getNow();
         $aYearAgo->modify('-1 year');
         $earliestDate = $aYearAgo->format('Y-m-d');
 
@@ -707,7 +706,7 @@ EOD;
         $extendBy = LicenceCops::AA_LICENCE_EXTENSION;
 
         // gh#815 sss#161 You might be updating based on an activity message from a little while ago that just arrived
-        $dateStampNow = is_null($timestamp) ? $this->getNow() : new DateTime('@'.intval($timestamp), new DateTimeZone(TIMEZONE));
+        $dateStampNow = is_null($timestamp) ? AbstractService::getNow() : new DateTime('@'.intval($timestamp), new DateTimeZone(TIMEZONE));
         // Set an extra x seconds on the licence
         $dateNow = $dateStampNow->add(new DateInterval('PT'.$extendBy.'S'))->format('Y-m-d H:i:s');
 
@@ -782,7 +781,7 @@ EOD;
         $sessionId = $session->sessionId;
         $rootId = $session->rootId;
         $productCode = $session->productCode;
-        $dateStampNow = $this->getNow();
+        $dateStampNow = AbstractService::getNow();
         $dateNow = $dateStampNow->format('Y-m-d H:i:s');
         $sql = <<<EOD
             DELETE FROM T_CouloirLicenceHolders
@@ -805,7 +804,7 @@ EOD;
         if ($reasonCode == null || $reasonCode == '')
             $reasonCode = 0;
 
-        $dateStampNow = $this->getNow();
+        $dateStampNow = AbstractService::getNow();
         $dateNow = $dateStampNow->format('Y-m-d H:i:s');
         $bindingParams = array($ip, $dateNow, $rootID, $user->id, $productCode, $reasonCode);
         $sql = <<<EOD
@@ -963,11 +962,4 @@ EOD;
         return false;
     }
 
-    /**
-     * Utility to help with testing dates and times
-     */
-    private function getNow() {
-        $nowString = (isset($GLOBALS['fake_now'])) ? $GLOBALS['fake_now'] : 'now';
-        return new DateTime($nowString, new DateTimeZone(TIMEZONE));
-    }
 }

@@ -73,8 +73,11 @@ class AccountCops {
 	 * Bento specific function to getAccount details as need far less than RM and some RM bits are wrong
 	 */
 	function getBentoAccount($rootID, $productCode) {
-		
-		// gh#39 product code might be a comma delimited list. 
+
+        $dateStampNow = AbstractService::getNow();
+        $dateNow = $dateStampNow->format('Y-m-d H:i:s');
+
+        // gh#39 product code might be a comma delimited list.
 		// This is a small query, so no performance problems just doing the IN always.
 		$sql = <<< SQL
 				SELECT r.*, t.* 
@@ -106,7 +109,7 @@ SQL;
 		if ($account->accountStatus == Account::SUSPENDED)
             throw $this->copyOps->getExceptionForId("errorAccountSuspended");
 
-		// gh#39 You might have multiple matching titles
+		// gh#39 You might have multiple matching titles (if productCode=52,53)
 		while ($dbObj = $rs->FetchNextObj()) {
             $title = new Title();
             $title->fromDatabaseObj($dbObj);
@@ -114,6 +117,13 @@ SQL;
             // gh#1404 Is the checksum valid for this account?
             if (!$this->_validateChecksum($title, $account))
                 throw $this->copyOps->getExceptionForId("errorTitleCorrupted", array("productCode" => $productCode));
+
+            // sss#161 Are the dates valid for this title?
+            if ($title->licenceStartDate > $dateNow)
+                throw $this->copyOps->getExceptionForId("errorLicenceHasntStartedYet");
+
+            if ($title->expiryDate < $dateNow)
+                throw $this->copyOps->getExceptionForId("errorLicenceExpired", array("expiryDate" => $title->expiryDate));
 
             $account->addTitles(array($title));
 		}

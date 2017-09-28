@@ -39,7 +39,8 @@ class Licence {
 			$this->licenceClearanceDate = $this->licenceStartDate;
 		// Just in case dates have been put in wrongly. 
 		// First, if clearance date is in the future, use the start date
-		if ($this->licenceClearanceDate > $this->getNow())
+        $now = AbstractService::getNow();
+		if ($this->licenceClearanceDate > $now->getTimestamp())
 			$this->licenceClearanceDate = $this->licenceStartDate;
 		// If clearance date is before the start date, it doesn't much matter
 		// Turn the string into a timestamp
@@ -55,7 +56,7 @@ class Licence {
 			$this->licenceClearanceFrequency = '1 year';
 		// Just in case we still have invalid data
 		$safetyCount=0;
-		while ($safetyCount<99 && strtotime($this->licenceClearanceFrequency, $fromDateStamp) < $this->getNow()) {
+		while ($safetyCount<99 && strtotime($this->licenceClearanceFrequency, $fromDateStamp) < $now->getTimestamp()) {
 			$fromDateStamp = strtotime($this->licenceClearanceFrequency, $fromDateStamp);
 			$safetyCount++;
 		}

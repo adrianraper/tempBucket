@@ -273,5 +273,13 @@ class AbstractService {
         $dateTime = DateTime::createFromFormat('Y-m-d H:i:s', $date);
         return $dateTime->getTimestamp() * 1000;
     }
+    /**
+     * Utility to help with testing dates and times
+     * TODO Should be in AbstractService?
+     */
+    public static function getNow() {
+        $nowString = (isset($GLOBALS['fake_now'])) ? $GLOBALS['fake_now'] : 'now';
+        return new DateTime($nowString, new DateTimeZone(TIMEZONE));
+    }
 
 }

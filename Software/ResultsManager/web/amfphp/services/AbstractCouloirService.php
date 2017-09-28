@@ -1,19 +1,17 @@
 <?php
 /**
- * 
+ * This is still called AbstractService though it is a version for Couloir
  */
 require_once(dirname(__FILE__)."/../../config.php");
  
 require_once($GLOBALS['adodb_libs']."adodb-exceptions.inc.php");
 require_once($GLOBALS['adodb_libs']."adodb.inc.php");
 
-require_once(dirname(__FILE__)."/../../classes/Log/Log.php");
-require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
-
-// Needed for old Bento stuff
 require_once(dirname(__FILE__)."/../../classes/Session.php");
+require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
+require_once(dirname(__FILE__)."/../../classes/Log/Log.php");
 
-class AbstractCouloirService {
+class AbstractService {
 	
 	var $db;
 	
@@ -21,11 +19,11 @@ class AbstractCouloirService {
 	
 	static $log;
 	static $debugLog;
+	// gh#448
 	static $controlLog;
 
 	function __construct() {
 
-	    // Database connection details
 		// Small optimization
 		$ADODB_COUNTRECS = false;
 		
@@ -69,7 +67,7 @@ class AbstractCouloirService {
 		} else {
 			$logTarget = null;
 		}
-        AbstractCouloirService::$log = &Log::factory($logType, $logTarget, null, $conf);
+		AbstractService::$log = &Log::factory($logType, $logTarget, null, $conf);
 		
 		if ($debugLogType == 'file') {
 			$debugLogTarget = $GLOBALS['logs_dir'].'debugLog.txt';
@@ -78,7 +76,7 @@ class AbstractCouloirService {
 		} else {
 			$debugLogTarget = null;
 		}
-        AbstractCouloirService::$debugLog = &Log::factory($debugLogType, $debugLogTarget, null, $conf);
+		AbstractService::$debugLog = &Log::factory($debugLogType, $debugLogTarget, null, $conf);
 			
 		if ($controlLogType == 'file') {
 			$controlLogTarget = $GLOBALS['logs_dir'].'controlLog.txt';
@@ -87,7 +85,7 @@ class AbstractCouloirService {
 		} else {
 			$controlLogTarget = null;
 		}
-        AbstractCouloirService::$controlLog = &Log::factory($controlLogType, $controlLogTarget, null, $conf);
+		AbstractService::$controlLog = &Log::factory($controlLogType, $controlLogTarget, null, $conf);
 		
 		// Create the operation classes
 		$this->copyOps = new CopyOps();
@@ -121,29 +119,13 @@ class AbstractCouloirService {
 		$this->db->SetFetchMode(ADODB_FETCH_ASSOC);
 		// Only change db log type destinations
 		if ($GLOBALS['logType'] == 'db')
-            AbstractCouloirService::$log->setTarget($this->db);
+		    AbstractService::$log->setTarget($this->db);
         if ($GLOBALS['debugLogType'] == 'db')
-            AbstractCouloirService::$debugLog->setTarget($this->db);
+            AbstractService::$debugLog->setTarget($this->db);
         if ($GLOBALS['controlLogType'] == 'db')
-            AbstractCouloirService::$controlLog->setTarget($this->db);
+            AbstractService::$controlLog->setTarget($this->db);
 	}
 	
-	/**
-	 * Gets the list of dictionaries asked for.  A dictionary is a map of data->label and is used (for example) for informing the client
-	 * about simple and static table joins (e.g. reseller id -> reseller name).
-	 *
-	 * The concrete service must implement a protected getDictionary($dictionaryName) method for this to work.
-	 */
-	public function getDictionaries($dictionaryNames) {
-		$dictionaries = array();
-		
-		foreach ($dictionaryNames as $dictionaryName)
-			$dictionaries[$dictionaryName] = $this->getDictionary($dictionaryName);
-		
-		return $dictionaries;
-	}
-	
-
 	/*
 	 * For converting microsecond timestamps in UTC to local time
 	 * TODO Add some protection in case we send a PHP timestamp to this (seconds not microseconds)
@@ -164,15 +146,42 @@ class AbstractCouloirService {
         }
         return $localDateTime->format('Y-m-d H:i:s');
     }
-/*
- * For converting unix timestamps (milliseconds since epoch) to strings for the database
- */
+    /*
+     * For converting microsecond timestamps in local time to utc
+     */
+    public function localTimestampToAnsiString($localTimestamp, $clientTimezoneOffset=null)     {
+        $dateTime = new DateTime('@'.intval($localTimestamp/1000));
+        if ($clientTimezoneOffset !== null && isset($clientTimezoneOffset->minutes)) {
+            $offset = $clientTimezoneOffset->minutes;
+            $negative = (boolean)$clientTimezoneOffset->negative;
+            $clientDifference = new DateInterval('PT' . strval($offset) . 'M');
+            if ($negative) {
+                $utcDateTime = $dateTime->sub($clientDifference);
+            } else {
+                $utcDateTime = $dateTime->add($clientDifference);
+            }
+        } else {
+            $utcDateTime = $dateTime;
+        }
+        return $utcDateTime->format('Y-m-d H:i:s');
+    }
+
+    /*
+     * For converting unix timestamps (milliseconds since epoch) to strings for the database
+     */
     public function timestampToAnsiString($timestamp) {
         return date("Y-m-d H:i:s", ($timestamp/1000));
     }
     public function ansiStringToTimestamp($date) {
         $dateTime = DateTime::createFromFormat('Y-m-d H:i:s', $date);
         return $dateTime->getTimestamp() * 1000;
+    }
+    /**
+     * Utility to help with testing dates and times
+     */
+    public static function getNow() {
+        $nowString = (isset($GLOBALS['fake_now'])) ? $GLOBALS['fake_now'] : 'now';
+        return new DateTime($nowString, new DateTimeZone(TIMEZONE));
     }
 
 }
