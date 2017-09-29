@@ -301,10 +301,10 @@ EOD;
         $rs = $this->db->Execute($sql, $bindingParams);
         // If you got a few records back, it indicates something went wrong, but you DO still have a licence
         if ($rs && $rs->RecordCount() > 0) {
-            AbstractService::$debugLog->info("checkCurrentLicence success for key=$keyId > $dateStamp");
+            //AbstractService::$debugLog->info("checkCurrentLicence success for key=$keyId > $dateStamp");
             return true;
         }
-        AbstractService::$debugLog->info("checkCurrentLicence fail for key=$keyId > $dateStamp");
+        //AbstractService::$debugLog->info("checkCurrentLicence fail for key=$keyId > $dateStamp");
         return false;
     }
     /**

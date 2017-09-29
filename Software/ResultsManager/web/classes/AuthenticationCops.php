@@ -2,8 +2,11 @@
 /*
  * http://www.phpbuilder.com/articles/application-architecture/security/using-a-json-web-token-in-php.html
  */
+use Firebase\JWT\JWT;
+
 class AuthenticationCops {
-	
+
+
 	function AuthenticationCops($db) {
         $this->db = $db;
         $this->copyOps = new CopyOps();
@@ -19,12 +22,12 @@ class AuthenticationCops {
             "iss" => "http://dock.projectbench",
             "iat" => time());
         $token = array_merge($token, $payload);
-        return Firebase\JWT\JWT::encode($token, $this::KEY, 'HS256');
+        return JWT::encode($token, $this::KEY, 'HS256');
     }
 
     public function getPayloadFromToken($token) {
 	    try {
-            $payload = Firebase\JWT\JWT::decode($token, $this::KEY, array('HS256'));
+            $payload = JWT::decode($token, $this::KEY, array('HS256'));
         } catch (Exception $e) {
             throw $this->copyOps->getExceptionForId("errorTokenInvalid");
         }

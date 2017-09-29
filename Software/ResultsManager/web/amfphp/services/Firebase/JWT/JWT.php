@@ -131,6 +131,7 @@ class JWT
 
         // Check if this token has expired.
         if (isset($payload->exp) && ($timestamp - static::$leeway) >= $payload->exp) {
+            // Clarity This should be ExpiredException, but I have a namespace issue!
             throw new ExpiredException('Expired token');
         }
 

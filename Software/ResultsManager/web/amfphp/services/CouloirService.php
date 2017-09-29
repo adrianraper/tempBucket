@@ -35,7 +35,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/DPTConsta
 
 require_once($GLOBALS['adodb_libs']."adodb-exceptions.inc.php");
 require_once($GLOBALS['adodb_libs']."adodb.inc.php");
-require_once(dirname(__FILE__)."/firebase/JWT/JWT.php");
+require_once(dirname(__FILE__) . "/Firebase/JWT/JWT.php");
 require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
 
 
@@ -135,11 +135,22 @@ class CouloirService extends AbstractService {
                 $licenceType = "aa";
                 break;
         }
+        // sss#177 For self register, send a token if it is allowed. The app can pass this to an all purpose webpage.
+        if ($account->selfRegister > 0) {
+            // Set an expiry time for the token 5 minutes from now
+            $utcDateTime = new DateTime();
+            $utcTimestamp = $utcDateTime->format('U');
+            $aLittleLater = $utcTimestamp + (5 * 60);
+            // Pass the productCode and rootId in the token so the webpage knows its stuff
+            $selfRegToken = $this->authenticationCops->createToken(["exp" => $aLittleLater, "productCode" => $productCode, "rootId" => $account->id]);
+        }
+        // "allowSelfRegistration" => ($account->selfRegister > 0) ? $selfRegToken : null,
+
         // Format the return object
         $config = array("loginOption" => $loginOption,
                         "verified" => ($account->verified) ? true : false,
                         "lang" => $account->titles[0]->languageCode,
-                        "allowSelfRegistration" => ($account->selfRegister > 0) ? true : false,
+                        "selfRegistrationToken" => ($account->selfRegister > 0) ? $selfRegToken : null,
                         "licenceType" => $licenceType);
         if (isset($account->id))
             $config["rootId"] = intval($account->id);
@@ -236,7 +247,7 @@ class CouloirService extends AbstractService {
             "tests" => $tests,
             "token" => $token);
 
-        AbstractService::$debugLog->info("token=$token");
+        //AbstractService::$debugLog->info("token=$token");
 
         // sss#12 For a title that uses encrypted content, send the key
         if ($productCode == 63 || $productCode == 65) {
@@ -673,7 +684,6 @@ EOD;
 
     // ctp#428 Write a log message for a permanent record of login
     public function writeLog($msg) {
-
     }
 
     public function dbCheck() {
