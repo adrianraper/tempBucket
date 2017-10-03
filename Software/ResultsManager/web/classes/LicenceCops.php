@@ -26,6 +26,7 @@ class LicenceCops {
         $this->manageableOps = new ManageableOps($db);
         $this->accountCops = new AccountCops($db);
         $this->contentOps = new ContentOps($db);
+        $this->loginCops = new LoginCops($db);
     }
 
     /**
@@ -75,6 +76,14 @@ class LicenceCops {
                 break;
 
         }
+        // sss#192 Check the instance id - does it still match the sign in one?
+        if ($userId > 0) {
+            $instanceId = $this->loginCops->getInstanceId($userId, $productCode);
+            if ($sessionId != $instanceId) {
+                return ["hasLicenseSlot" => false];
+            }
+        }
+
         return ["hasLicenseSlot" => true, "reconnectionWindow" => $reconnectionWindow, "inactivityWindow" => $inactivityWindow];
     }
 

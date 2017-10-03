@@ -137,19 +137,22 @@ class CouloirService extends AbstractService {
         }
         // sss#177 For self register, send a token if it is allowed. The app can pass this to an all purpose webpage.
         if ($account->selfRegister > 0) {
-            // Set an expiry time for the token 5 minutes from now
+            // Set an expiry time for the token 1 hour from now
+            // TODO It would be neater to create a token that doesn't expire but can only be used one
+            // Add a record to a table with an id and a date used (null initially).
+            // When you come back to addUser for that id you fill in the date and then ban it to be used again.
             $utcDateTime = new DateTime();
-            $utcTimestamp = $utcDateTime->format('U');
-            $aLittleLater = $utcTimestamp + (5 * 60);
+            $utcTimestamp = intval($utcDateTime->format('U'));
+            $aLittleLater = $utcTimestamp + (60 * 60);
             // Pass the productCode and rootId in the token so the webpage knows its stuff
             $selfRegToken = $this->authenticationCops->createToken(["exp" => $aLittleLater, "productCode" => $productCode, "rootId" => $account->id]);
         }
-        // "allowSelfRegistration" => ($account->selfRegister > 0) ? $selfRegToken : null,
 
         // Format the return object
         $config = array("loginOption" => $loginOption,
                         "verified" => ($account->verified) ? true : false,
                         "lang" => $account->titles[0]->languageCode,
+                        "allowSelfRegistration" => ($account->selfRegister > 0) ? true : false,
                         "selfRegistrationToken" => ($account->selfRegister > 0) ? $selfRegToken : null,
                         "licenceType" => $licenceType);
         if (isset($account->id))
@@ -160,7 +163,7 @@ class CouloirService extends AbstractService {
     /*
      * Login checks the user, account, hidden content, creates a session and secures a licence
      */
-	public function login($loginObj, $productCode, $rootId = null, $platform = null) {
+	public function login($login, $password, $productCode, $rootId = null, $platform = null) {
 
 	    // If you know the account, pick it up
         if ($rootId) {
@@ -180,8 +183,7 @@ class CouloirService extends AbstractService {
         }
 
         // sss#130 If an anonymous access is requested, build a null user
-        if ($licenceType == Title::LICENCE_TYPE_AA &&
-            (is_null($loginObj["email"])) && (is_null($loginObj["studentID"])) && (is_null($loginObj["username"]))) {
+        if ($licenceType == Title::LICENCE_TYPE_AA && (is_null($login))) {
             $userObj = $this->loginCops->loginAnonymousCouloir($rootId, $productCode);
 
         } else {
@@ -190,7 +192,7 @@ class CouloirService extends AbstractService {
             $loginOption = ((isset($account->loginOption)) ? $account->loginOption : User::LOGIN_BY_EMAIL) + User::LOGIN_HASHED;
             $verified = true;
             $allowedUserTypes = array(User::USER_TYPE_TEACHER, User::USER_TYPE_ADMINISTRATOR, User::USER_TYPE_STUDENT, User::USER_TYPE_REPORTER);
-            $userObj = $this->loginCops->loginCouloir($loginObj, $loginOption, $verified, $allowedUserTypes, $rootId, $productCode);
+            $userObj = $this->loginCops->loginCouloir($login, $password, $loginOption, $verified, $allowedUserTypes, $rootId, $productCode);
         }
         $user = new User();
         $user->fromDatabaseObj($userObj);
@@ -242,6 +244,11 @@ class CouloirService extends AbstractService {
         // TODO if you catch an exception from this, you could then invalidate the session you just created
         $licence = $this->licenceCops->acquireCouloirLicenceSlot($session);
 
+        // sss#192 Update the user with the instance id (using session id) to cope with only one user on one device
+        if ($user->id > 0) {
+            $rc = $this->loginCops->setInstanceId($user->id, $session->sessionId, $productCode);
+        }
+
         $rc = array(
             "user" => $user,
             "tests" => $tests,
@@ -257,7 +264,77 @@ class CouloirService extends AbstractService {
         }
 
         return $rc;
+    }
 
+    // sss#177 Add a user to a self-registering account
+    public function addUser($token, $loginObj) {
+        // Pick the productCode and rootId from the token
+        $json = $this->authenticationCops->getPayloadFromToken($token);
+        $productCode = isset($json->productCode) ? $json->productCode : null;
+        $rootId = isset($json->rootId) ? $json->rootId : null;
+        if (!$productCode || !$rootId) {
+            throw $this->copyOps->getExceptionForId("errorNoAccountFound");
+        }
+
+        // Check that there is not already a user with this information
+        // Name/Id has to be unique in the account
+        // Email has to be unique (this was not true in the past but it is better to require it now)
+        $account = $this->accountCops->getBentoAccount($rootId, $productCode);
+        $loginOption = ((isset($account->loginOption)) ? $account->loginOption : User::LOGIN_BY_EMAIL) + User::LOGIN_HASHED;
+
+        $stubUser = new User();
+        if ($loginOption & User::LOGIN_BY_NAME || $loginOption & User::LOGIN_BY_NAME_AND_ID) {
+            $loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");
+            if (isset($loginObj["username"])) {
+                $loginKeyValue = $stubUser->name = $loginObj["username"];
+            } else {
+                throw $this->copyOps->getExceptionForId ("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
+            }
+        } elseif ($loginOption & User::LOGIN_BY_ID) {
+            $loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
+            if (isset($loginObj["studentID"])) {
+                $loginKeyValue = $stubUser->studentID = $loginObj["studentID"];
+            } else {
+                throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
+            }
+        } elseif ($loginOption & User::LOGIN_BY_EMAIL) {
+            $loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
+            if (isset($loginObj["email"])) {
+                $loginKeyValue = $stubUser->email = $loginObj["email"];
+            } else {
+                throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
+            }
+        } else {
+            throw $this->copyOps->getExceptionForId ( "errorInvalidLoginOption", array("loginOption" => $loginOption));
+        }
+        $user = $this->manageableOps->getUserByKey($stubUser, $rootId, $loginOption);
+
+        if ($user) {
+            // A user already exists with these details, so throw an error as we can't add the new one
+            throw $this->copyOps->getExceptionForId("errorDuplicateUser", array("name" => $stubUser->name, "loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
+        }
+
+        // Add the new user to the top-level group for this account
+        $adminUser = new User();
+        $adminUser->id = $account->getAdminUserID();
+        $groups = $this->manageableOps->getUsersGroups($adminUser);
+
+        // Add any preset details to the user object
+        if (isset($loginObj["username"]))
+            $stubUser->name = $loginObj["username"];
+        if (isset($loginObj["studentID"]))
+            $stubUser->studentID = $loginObj["studentID"];
+        if (isset($loginObj["email"]))
+            $stubUser->email = $loginObj["email"];
+        if (isset($loginObj["password"]))
+            $stubUser->password = $loginObj["password"];
+        $stubUser->registerMethod = "selfRegister";
+        $stubUser->userType = User::USER_TYPE_STUDENT;
+        // Use a minimal add user that has no authentication and user duplication checking
+        $newUser = $this->manageableOps->minimalAddUser($stubUser, $groups[0], $rootId);
+
+        // Now do a login for this user
+        return $this->login($loginKeyValue, $stubUser->password, $productCode, $rootId = null, $platform = null);
     }
 
     public function updateActivity($token, $timestamp) {

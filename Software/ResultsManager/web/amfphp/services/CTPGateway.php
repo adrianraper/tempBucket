@@ -32,7 +32,10 @@ try {
     // Decode the body
 
     $json = json_decode(file_get_contents('php://input'));
+    //$json = json_decode('{"command":"addUser","appVersion":"0.9.10","email":"donald-3@trump","name":"Donald Trump 3","password":"f7e41a12cd326daa74b73e39ef442119","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNzUzNDczMywiZXhwIjoxNTA3NTM3NzMzLCJwcm9kdWN0Q29kZSI6NjYsInJvb3RJZCI6IjE2MyJ9.2q8KF1lqGHZo9xdfz27BbWb77ZXagAikrmHNOmoUc8E"}');
+    //$json = json_decode('{"command":"login","appVersion":"0.9.10","login":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":"66","rootId":null}');
     //$json = json_decode('{"command":"getLoginConfig","productCode":66,"prefix":"Clarity"}');
+    //$json = json_decode('{"command":"getLoginConfig","appVersion":"0.9.10","productCode":"66","prefix":null}');
     //$json = json_decode('{"command":"getCoverage","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNjY3Mjg2NSwiZXhwIjoxNTA2NjcyOTI1LCJwcm9kdWN0Q29kZSI6NjYsInJvb3RJZCI6IjE2MyJ9.JiIYVqoYrORwioBU9t1DDAqg5oT6UhdRpR2AeVogiV0"}');
     /*
     //$json = json_decode('{"command":"login","email":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":66}');
@@ -280,6 +283,7 @@ try {
         case 213:
         case 214:
         case 215:
+        case 217:
         case 220:
         case 300:
         case 301:
@@ -325,20 +329,31 @@ function router($json) {
     switch ($json->command) {
         case "logout": return logout($json->token);
         case "login":
+            /*
             $loginObj = Array();
             $loginObj["email"] = (isset($json->login)) ? $json->login : null;
             $loginObj["studentID"] = (isset($json->studentID)) ? $json->studentID : null;
             $loginObj["username"] = (isset($json->name)) ? $json->name : null;
             $loginObj["password"] = (isset($json->password)) ? $json->password : null;
+            */
+            if (!isset($json->login)) $json->login = null;
+            if (!isset($json->password)) $json->password = null;
             // ctp#428
             if (!isset($json->platform)) $json->platform = '*not passed from app*';
             if (!isset($json->rootId)) $json->rootId = null;
-            return login($loginObj, $json->productCode, $json->rootId, $json->platform);
+            return login($json->login, $json->password, $json->productCode, $json->rootId, $json->platform);
         case "getLoginConfig":
             if (!isset($json->prefix)) $json->prefix = null;
             if (!isset($json->IP)) $json->IP = null;
             if (!isset($json->RU)) $json->RU = null;
             return getLoginConfig($json->productCode, $json->prefix, $json->IP, $json->RU);
+        // sss#177
+        case "addUser":
+            $loginObj = Array();
+            $loginObj["email"] = (isset($json->email)) ? $json->email : null;
+            $loginObj["username"] = (isset($json->name)) ? $json->name : null;
+            $loginObj["password"] = (isset($json->password)) ? $json->password : null;
+            return addUser($json->token, $loginObj);
         case "getTestResult": return getResult($json->token, $json->mode);
         case "scoreWrite": return scoreWrite($json->token, $json->score, $json->localTimestamp, $json->timezoneOffset);
         // sss#155
@@ -355,7 +370,7 @@ function router($json) {
 }
 
 // In general, exceptions are thrown if something blocks login. Like an expired user or no licence slots.
-function login($loginObj, $productCode, $rootId, $platform = null) {
+function login($login, $password, $productCode, $rootId, $platform = null) {
     global $service;
     // ctp#428
     try {
@@ -364,13 +379,18 @@ function login($loginObj, $productCode, $rootId, $platform = null) {
     } catch (Exception $e) {
         // do nothing
     }
-    return $service->login($loginObj, $productCode, $rootId, $platform);
+    return $service->login($login, $password, $productCode, $rootId, $platform);
 }
 // sss#61 Return login option details for this account
 // Returns exception if no account found - 223 is an expected one
 function getLoginConfig($productCode, $prefix, $ip, $ru) {
     global $service;
     return $service->getLoginConfig($productCode, $prefix, $ip, $ru);
+}
+// sss#177 Add a new user to a self-registering account
+function addUser($token, $loginObj) {
+    global $service;
+    return $service->addUser($token, $loginObj);
 }
 // sss#17 Return a map of exercise ids which have been done
 function getCoverage($token) {

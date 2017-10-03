@@ -30,42 +30,26 @@ class LoginCops {
 	 * Login does the following:
 	 *  Check that the user is valid
 	 */
-	function loginCouloir($loginObj, $loginOption, $verified, $userTypes, $rootID, $productCode) {
+	function loginCouloir($login, $password, $loginOption, $verified, $userTypes, $rootID, $productCode) {
 		// Pull out the relevant login details from the passed object
 		// loginOption controls what fields you use to login with.
 		if ($loginOption & User::LOGIN_BY_NAME || $loginOption & User::LOGIN_BY_NAME_AND_ID) {
 			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");
-            // ctp#204
-            if (isset($loginObj['username']) && $loginObj['username'] != '') {
-				$key = 'u.F_UserName';
-				$keyValue = $loginObj['username'];
-			} else {
-				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
-			}
+            $key = 'u.F_UserName';
 		} elseif ($loginOption & User::LOGIN_BY_ID) {
 			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
-            // ctp#204
-            if (isset($loginObj['studentID']) && $loginObj['studentID'] != '') {
-				$key = 'u.F_StudentID';
-				$keyValue = $loginObj['studentID'];
-			} else {
-				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
-			}
+    		$key = 'u.F_StudentID';
 		} elseif ($loginOption & User::LOGIN_BY_EMAIL) {
 			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
-			// ctp#204
-			if (isset($loginObj['email']) && $loginObj['email'] != '') {
-				$key = 'u.F_Email';
-				$keyValue = $loginObj['email'];
-			} else {
-				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
-			}
+			$key = 'u.F_Email';
 		} else {
 			throw $this->copyOps->getExceptionForId("errorInvalidLoginOption", array("loginOption" => $loginOption));
 		}
-		// gh#ctp#80 This might be the hashed version that has been passed
-        if (isset($loginObj['password']))
-            $password = $loginObj['password'];
+        if (isset($login) && $login != '') {
+            $keyValue = $login;
+        } else {
+            throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
+        }
 
 		// #503
 		$selectFields = array("g.F_GroupID as groupID",
@@ -314,45 +298,31 @@ EOD;
 	 * 
 	 * @param Number $instanceID
 	 */
-	function setInstanceID($userID, $instanceID, $productCode) {
-		
-		// TODO. This seems messy to do it here rather than in config.php
-		// But it isn't actually very important so leave here for now.
-		// v6.5.6 Add support for HTTP_X_FORWARDED_FOR
-		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
-			$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
-		} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
-			$ip = $_SERVER["HTTP_CLIENT_IP"];
-		} else {
-			$ip = $_SERVER["REMOTE_ADDR"];
-		}
+	function setInstanceId($userId, $instanceId, $productCode) {
 		
 		// #319 Instance ID per productCode
 		// Get the existing set of instance IDs and add/update for this title
-		$instanceArray = $this->getInstanceArray($userID);
+		$instanceArray = $this->getInstanceArray($userId);
 		
 		// If the database value is null, the above returns null
 		// but php then makes the array assignment work fine!
 		// However, safer to do it explicitly 
 		if (!$instanceArray)
 			$instanceArray = array();
-		$instanceArray[$productCode] = $instanceID;
+		$instanceArray[$productCode] = $instanceId;
 		$instanceControl = json_encode($instanceArray);
 
-		// #340. SQLite doesn't like symbolic names for the table in an update
 		$sql = <<<EOD
 			UPDATE T_User
-			SET F_UserIP=?, F_InstanceID=? 
+			SET F_InstanceID=? 
 			WHERE F_UserID=?
 EOD;
-		$bindingParams = array($ip, $instanceControl, $userID);
+		$bindingParams = array($instanceControl, $userId);
 		$resultObj = $this->db->Execute($sql, $bindingParams);
 		if ($resultObj)
 			return true;
 		
-		throw $this->copyOps->getExceptionForId("errorSetInstanceId", array("userID" => $userID, "productCode" => $productCode));
+		throw $this->copyOps->getExceptionForId("errorSetInstanceId", array("userID" => $userId, "productCode" => $productCode));
 	}
 	
 	/**
@@ -360,10 +330,10 @@ EOD;
 	 * 
 	 * @param Number $userID
 	 */
-	function getInstanceID($userID, $productCode) {
+	function getInstanceID($userId, $productCode) {
 		
 		// #319 Instance ID per productCode
-		$instanceArray = $this->getInstanceArray($userID);
+		$instanceArray = $this->getInstanceArray($userId);
 		
 		if (isset($instanceArray[$productCode]))
 			return $instanceArray[$productCode];
@@ -373,13 +343,13 @@ EOD;
 	/**
 	 * Helper function to turn string to array
 	 */
-	function getInstanceArray($userID) {
+	function getInstanceArray($userId) {
 		$sql = <<<EOD
 		SELECT u.F_InstanceID as control
 		FROM T_User u					
 		WHERE u.F_UserID=?
 EOD;
-		$bindingParams = array($userID);
+		$bindingParams = array($userId);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		if ($rs && $rs->RecordCount() == 1) {
 			

@@ -1472,7 +1472,7 @@ EOD;
 	 * This returns a specific user object defined by a key set from loginOption
 	 * gh#164 you might pass the loginOption now
 	 */
-	function getUserByKey($stubUser, $rootID = NULL, $loginOption = null) {
+	function getUserByKey($stubUser, $rootID = null, $loginOption = null) {
 
 		// gh#653
 		// gh#1067 you might want to force root to be empty, not picked up from session

@@ -54,6 +54,8 @@ class AccountCops {
             // gh#315 Allow lookup for IP
             if ($ip) {
                 $rootId = (int) $this->getRootIDFromIP($ip, $productCode);
+            } else {
+                $rootId = null;
             }
         }
 

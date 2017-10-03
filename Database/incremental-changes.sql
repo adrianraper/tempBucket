@@ -1613,4 +1613,7 @@ CREATE TABLE `T_SessionTrack` (
 -- table is deprecated for all Couloir and Bento new licence counting style
 -- DROP TABLE IF EXISTS `T_Licences`;
 
+INSERT INTO `T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (2452, '2017-10-10 00:00:00', 'Couloir licences and sessions');
 
