@@ -1,176 +1,91 @@
-<?php
-require_once('variables.php');
-
-$email = $productCode = $rootID = $loginOption = $template = $error = $message = '';
-
-// gh#487
-if (isset($_GET['productCode']))
-	$productCode = $_GET['productCode'];
-if (isset($_GET['rootID']))
-	$rootID = $_GET['rootID'];
-if (isset($_GET['loginOption']))
-	$loginOption = $_GET['loginOption'];
-	
-// What is specific for this product?
-switch ($productCode) {
-	case 52:
-	case 53:
-		$cssClass = 'rti';
-		$cssTheme = 'grey';
-		$template = 'ieltspractice_forgot_password';
-		break;
-	case 54:
-		$cssClass = 'ccb';
-		$cssTheme = 'grey';
-		$template = 'ccb_forgot_password';
-		break;
-	case 55:
-	case 59:
-		$cssClass = 'tb';
-		$cssTheme = 'grey';
-		$template = 'tb_forgot_password';
-		break;
-	case 56:
-		$cssClass = 'ar';
-		$cssTheme = 'grey';
-		$template = 'ar_forgot_password';
-		break;
-	case 57:
-		$cssClass = 'cp1';
-		$cssTheme = 'grey';
-		$template = 'cp1_forgot_password';
-		break;
-	default:
-		$cssClass = 'general';
-		$cssTheme = 'grey';
-		$template = 'forgot_password';
-		break;
-}
-		
-if ($_POST['process'] == "performValidation") {
-	$email = $_POST['CLS_Email'];	
-	
-	//$emailPattern = '/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$/i';
-	//if (preg_match($emailPattern, $email) === FALSE) {
-	if (filter_var($email, FILTER_VALIDATE_EMAIL) === FALSE) {
-		$message = "Please fill in a valid email address";
-		
-	} else {
-		// No special licenceType to send from here
-		$postXML = "CLS_Email=$email&templateID=$template&rootID=$rootID&loginOption=$loginOption";
-		//$serializedObj = json_encode($postXML);
-		$targetURL = $commonDomain."Software/ResultsManager/web/amfphp/services/ResendEmailPassword.php";
-		
-		// Initialize the cURL session
-		$ch = curl_init();
-		
-		// Setup the post variables
-		$curlOptions = array(CURLOPT_HEADER => false,
-							CURLOPT_FAILONERROR=>true,
-							CURLOPT_FOLLOWLOCATION=>true,
-							CURLOPT_RETURNTRANSFER => true,
-							CURLOPT_POST => true,
-							CURLOPT_POSTFIELDS => $postXML,
-							CURLOPT_URL => $targetURL
-		);
-		curl_setopt_array($ch, $curlOptions);
-		
-		// Execute the cURL session
-		$contents = curl_exec($ch);
-		if ($contents === false){
-			// echo 'Curl error: ' . curl_error($ch);
-			$errorCode = 1;
-			$failReason = curl_error($ch);
-			curl_close($ch);
-		} else {
-			curl_close($ch);
-			// $contents is coming back with a utf-8 BOM in front of it, which invalidates it as JSON. Get rid of it.
-			if (substr($contents,0,3)=="\xEF\xBB\xBF")
-				$contents = substr($contents,3);
-			//echo $contents;exit(0);
-			parse_str($contents);
-
-			if ($debugLog)
-				error_log("back from ResendEmailPassword with $contents for $email \n", 3, $debugFile);
-
-			// Expecting to get back an error code and a message
-			if (is_numeric($error) && intval($error) > 0) {
-				$page = 'forgotPassword_failure.php';
-			} else {
-				$page = 'forgotPassword_success.php';
-			}
-			header('location: '.$page.'?email='.$email.'&error='.$error.'&message='.$message.'&productCode='.$productCode);
-		}
-	}
-}
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
-<meta name="Description" content="Password reminder email">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>ClarityEnglish: Online English since 1992 | Support</title>
+    <link rel="shortcut icon" href="https://www.clarityenglish.com/images/favicon.ico" type="image/x-icon" />
+    <meta name="robots" content="ALL">
+    <meta name="Description" content="Find answers to questions about installation, compatibility, licencing and technical issues relating to ClarityEnglish programs.">
+    <meta name="keywords" content="Technical support from ClarityEnglish, installation, compatibility, licencing, technical issues, ask support">
 
-<title>Forgot your password?</title>
+    <!-- Bootstrap -->
+    <link href="https://www.clarityenglish.com/bootstrap/css/bootstrap.min.css?v=170824" rel="stylesheet">
+    <link href="https://www.clarityenglish.com/bootstrap/css/mobile-max767.css?v=170824" rel="stylesheet">
+    <link href="https://www.clarityenglish.com/bootstrap/css/support-mobile.css?v=170824" rel="stylesheet">
+    <link href="https://www.clarityenglish.com/bootstrap/css/tablet-768-1199.css?v=170824" rel="stylesheet">
 
-<!--CSS General-->
-<link rel="stylesheet" type="text/css" href="../css/forgotpw.css" />
+    <!---Font style--->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!---Google Analytics Tracking--->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-873320-20', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://www.clarityenglish.com/bootstrap/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../css/forgotpw.css" />
+    <script src="../script/forgotPasswordControl.js"></script>
 </head>
-<body id="<?php echo $cssClass;?>" class="<?php echo $cssTheme;?>">
-<div id="container_position">
+<body>
 
-	
+<?php include $_SERVER['DOCUMENT_ROOT'].'/inc_nav.php'; ?>
 
-	<div id="container">
-
-            <div id="bigbox">
-            	<div id="clearbox_center">
-                    <div id="clearbox">
-                    	<div id="top"></div>
-                        <div id="mid">
-                        	<form id="CLS_forgot_pwd" name="CLS_forgot_pwd" method="post" action="<?php $PHP_SELF ?>">
-                            <div id="left">
-                            	<h1>Forgot your password?</h1>
-                            </div>
-                        
-                            <div id="right">
-                            
-                                <p class="text">Please type in your registered email address. The password linked to that email will be sent to you as quickly as our computers can.</p>
-                                <p class="title">Registered email:</p>
-                                
-                                <div id="emailbox">
-                                  <input name="CLS_Email" id="CLS_Email" type="text" value="<?php echo $email;?>" class="emailfield"/>
-                                </div>
-                                <input type="hidden" name="process" value="performValidation" />
-                                
-                                
-                                <div class="form_waiting" style="display:none;">Please wait...</div>
-								<div class="form_oops"><?PHP echo $message;?></div>
-                                <div class="form_ok" style="display:none;">Sent successfully, please check your email.</div>
-                                
-                              
-                                
-                                <input name="input" type="submit" value="Email me" class="btn_submit" />
-                            </div>
-                            </form>
-                            
-                            <div class="clear"></div>
-                        </div>
-                        
-                        <div id="btm"></div>
-                    </div>
-                    
-                    <div id="supportline">
-                  For help, please contact the Clarity support team at <a href="mailto:support@clarityenglish.com?subject=Forgot Password enquiry (app version)">support@clarityenglish.com</a>.                  </div>
-                </div>
-            </div>
-    </div>
- 
-    
-    <div id="footerbox">
-    	<div id="programicon"></div>
-        <div id="logoline"><div id="logobox"></div></div>
+<div class="jumbotron support-jumbotron">
+    <div class="banner-txt-box Trans-W-bg text-center">
+        <h1 id="general-banner-txt">Support</h1>
     </div>
 </div>
+
+<div class="P-E7DAE9-bg">
+    <div class="container ">
+        <div class="row align-top support-ticket">
+            <div class="col-lg-6 col-md-6 col-sm-5 support-left">
+                <p id="support-header" class="general-subtag">Find your password</p>
+                <p class="general-text">Type your email and we will send your password. If you have forgotten or don&apos;t know the email linked to your account, please email <span class="general-bold-tag">support@clarityenglish.com</span> with your name and institution. </p>
+            </div>
+            <!-- form -->
+            <div class="col-lg-6 col-md-6 col-sm-7 support-right">
+                <div class="support-lead-detail general-shadow">
+                    <form method="post" id="email-form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="registeredEmail" placeholder="Your email" required autofocus>
+                        </div>
+                        <div id="error" class="lead-warn-email lead-warn-box">
+                            <p class="general-text error-msg">xxx</p>
+                        </div>
+                        <div class="general-button-box">
+                            <button type="submit" id="btn-submit" class="btn btn-default general-input-btn input-bg-p">Email me</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <!-- end of form-->
+        </div>
+    </div>
+</div>
+
+<?php include $_SERVER['DOCUMENT_ROOT'].'/inc_footer.php'; ?>
+
 </body>
 </html>

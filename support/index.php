@@ -1,7 +1,7 @@
-<?php 
-session_start();
-$current_subsite = "support"; 
+<?php
 
+//$current_subsite = "support"; 
+	/*
 	require_once('../db_login.php');
 
 	for ($i=5; $i<10; $i++){	
@@ -22,182 +22,95 @@ $current_subsite = "support";
 		}
 		$resultset->Close();
 	}
-
+	*/
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
-<title>Clarity English language teaching online | Support </title>
-<meta name="classification" content="Education">
-<meta name="robots" content="ALL">
-<meta name="Description" content="Clarity runs several projects to support learning communities worldwide.">
-<meta name="Keywords" content="online english, english teaching, Clarity English, ICT for English, IELTS preparation, authoring, ELT,  EFL, ESL, ESOL, CALL, ELT software, ELT program">
 
-<link rel="stylesheet" type="text/css" href="../css/global.css"/>
-<link rel="stylesheet" type="text/css" href="../css/support.css"/>               
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>ClarityEnglish: Online English since 1992 | Support</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <meta name="robots" content="ALL">
+    <meta name="Description" content="Find answers to questions about installation, compatibility, licencing and technical issues relating to ClarityEnglish programs.">
+    <meta name="keywords" content="Technical support from ClarityEnglish, installation, compatibility, licencing, technical issues, ask support">
 
-<!--Jquery library-->
-<script type="text/javascript" src="/script/jquery.js"></script>
+    <!-- Bootstrap -->
+    <link href="/bootstrap/css/bootstrap.min.css?v=170824" rel="stylesheet">
+    <link href="/bootstrap/css/mobile-max767.css?v=170824" rel="stylesheet">
+	<link href="/bootstrap/css/support-mobile.css?v=170824" rel="stylesheet">
+    <link href="/bootstrap/css/tablet-768-1199.css?v=170824" rel="stylesheet">
 
-<!--Select Menu easinng-->
-<script type="text/javascript" src="/script/jquery.easing.min.js"></script>
-<!-- Menu easinng: include Google's AJAX API loader -->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-
-
-
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-873320-12']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-
-
-</script>
-          
-</head>
-
-<body id="support">
-<?php $currentSelection="support"; ?>
-
-<div id="container_outter">
-
-<?php include  ($_SERVER['DOCUMENT_ROOT'].'/include/header.php') ; ?>
+    <!---Font style--->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
     
+    <!---Google Analytics Tracking--->
+	<script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-873320-20', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+    
+  </head>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/bootstrap/js/support.js"></script>
+	<script src="/bootstrap/js/supportEnquiry.js"></script>
+  <script>
 
-     
-    <div id="container">
-    	<div id="menu_program">
+  </script>
+  <body>  
 
-     </div>
-            <div id="container_inner">
-            
-            	<div id="support_home_top">
-                	<div class="box" id="licence">
-                    	<a href="./licence.php" onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'Btn_txt_licence',, true]);" class="txtbox">
-                        	<span class="title">Licence and delivery</span>
-                            <span class="txt">Learn about Clarity's licensing and  other <br />
-                            options.</span>
-                        </a>
-                    	 <a href="./licence.php" onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'Btn_licence',, true]);" class="click"></a>
-                    </div>
-                    <div class="box" id="troubleshoot">
-                  	<a href="./troubleshooting.php" onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'Btn_txt_troubleshoot',, true]);" class="txtbox">
-                         <span class="title">Troubleshooting</span>
-                         <span class="txt">Find the solutions and <br />tips that we have <br />collected.</span>                    </a>
-           		    <a href="./troubleshooting.php" onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'Btn_troubleshoot',, true]);"  class="click"></a>
-                    </div>
-					<div class="box" id="tutorial">
-                  <a href="./tutorials.php" onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'Btn_txt_tutorials',, true]);" class="txtbox">
-                            <span class="title">Tutorials</span>
-                            <span class="txt">Download the installation guide and user manual for your product.</span>
-                        </a>
-                    <a href="./tutorials.php" onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'Btn_tutorials',, true]);"  class="click"> </a>
-                    </div>
-                    <div class="box" id="search">
-                  	<a href="./search.php"  onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'Btn_txt_search',, true]);" class="txtbox">
-                        	<span class="title">Search Support</span>
-                            <span class="txt">Use our search engine to <br />find the solution you <br />need.</span>                       	</a>
-                    	<a href="./search.php"  onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'Btn_search',, true]);" class="click"></a>
-                    
-                    </div>
-                    <div class="box" id="contact">
-                 		 <a href="./contact.php"  onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'Btn_txt_contact',, true]);" class="txtbox">
-                        	<span class="title">Contact Clarity Support</span>
-                            <span class="txt">Get in touch with the Clarity Support Team.</span>
-                         </a>
-                    	<a href="./contact.php"  onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'Btn_contact',, true]);" class="click"></a>                  </div>
-                    
-             
-                
-                
-                </div>
-                
-                <div id="support_home_btm">
-                
-                	<div id="box_enquiry">
-                    	<div id="content">
-							<h2>Top Enquiries</h2>
-                            
-                            <ul class="list_dot">
-                            	<li><a href="topenquiry.php?tq=1&#tq1" onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'top_q1',, true]);"><?php echo $question[5]; ?></a></li>
-                            	
-                               
-                                <li><a href="topenquiry.php?tq=2&#tq2" onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'top_q2',, true]);"><?php echo $question[6]; ?></a></li>
-                                <li><a href="topenquiry.php?tq=3&#tq3" onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'top_q3',, true]);"><?php echo $question[7]; ?></a></li>
-                                <li><a href="topenquiry.php?tq=4&#tq4" onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'top_q4',, true]);"><?php echo $question[8]; ?></a></li>
-                                <li><a href="topenquiry.php?tq=5&#tq5" onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'top_q5',, true]);"><?php echo $question[9]; ?></a></li>
-                            </ul>                        	
-                        </div>
-                    	
-                    
-                    </div>
-                    <div id="box_teachers">
-                    	<div id="content">
-                    	<h2>Support for teachers</h2>
-							<p class="txt">Check the Clarity support materials to boost program usage! We have designed materials such as flyers and posters to help you get the best value from your current Clarity subscription.</p>
-                     
-                            <p class="txt">Most of these materials are FREE! They have been devised in collaboration with a range of institutions to ensure that both teachers and learners are aware of Clarity resources.</p>
-                         
-                         <div id="btnmore">
-                         <a class="btn_blue" href="../resources/index.php" onClick="_gaq.push(['_trackEvent', 'Support', 'Home', 'link_resources',, true]);"><span>Click to find out more</span></a>
-                         </div>
-                   
-                            <p class="clear"></p>
-                            
-						</div>
-                    </div>
-                	
-                
-                
-                </div>
-	 		
-            
-            
-            
-         
-         
-          </div>
-          
-        
-         
-         
-         
-        
-        
-        
-
-        
-        	
-            
-            
-           
-         
-      
-        
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/inc_nav.php'; ?>  
+    <div class="jumbotron support-jumbotron">
+    	<div class="banner-txt-box Trans-W-bg text-center">
+    		<h1 id="general-banner-txt">Support</h1>
+        </div>
     </div>
-​
+	
+
+	<div class="container-fluid support-search-overview">
+        
+        
+        <h2 class="general-tag text-center">Search</h2>   
+        
+              
+        <form id="form1" method="post" class="searchform text-center" action="result.php" target="_blank">
+				<div class="support-border container">
+				<input type='text' autofocus value="<?php if(isset($search)) echo($search);?>"  class="general-subtag  support-search" name="search" id="search_field"/>
+                <!--<input name="" type="button" id="search_clear" value="" onclick="document.getElementById('search_field').value = '';" />-->
+                <input type="submit" class="support-search-btn" style="display:inline;"/>
+				</div>
+		</form>
+		<p class="general-text">Please use keywords to search for the support you need, such as "SCORM", "bandwidth", "network". Or, if you prefer, use the form below to simply ask us your question.</p>
+		
+    </div>
+	
+	
+	
+	<?php include 'support-ticket.php'; ?>
+	
+    <?php include 'support-materials.php'; ?>
+     
+	<?php include $_SERVER['DOCUMENT_ROOT'].'/inc_footer.php'; ?>
 
 
-
-</div>
-
-
-  <?php include ($_SERVER['DOCUMENT_ROOT'].'/include/footer_general.php' ); ?>
-  
-
-
-
-
-</body>
+  </body>
 </html>

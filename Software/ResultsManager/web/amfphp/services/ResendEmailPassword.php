@@ -28,12 +28,12 @@ function sendPasswordEmail($userInformation) {
 	global $returnURL;
 	
 	$email = $userInformation['email'];
-	// Change from productCode to licenceType as a way to check on unique email addresses
+    //AbstractService::$debugLog->info('resendEmailPassword to '.$email);
 	//$pc = $userInformation['productCode'];
 	$licenceType = isset($userInformation['licenceType']) ? $userInformation['licenceType'] : null;
 	$loginOption = isset($userInformation['loginOption']) ? $userInformation['loginOption'] : null;
 	$templateID = isset($userInformation['templateID']) ? $userInformation['templateID'] : 'forgot_password';
-	
+
 	$users = $dmsService->manageableOps->getUserFromEmail($email, $licenceType);
 	if ($users) {
 		// You may have found multiple users for this email. 
@@ -62,11 +62,11 @@ function sendPasswordEmail($userInformation) {
 			}
 		} else {
 			header('Content-Type: text/plain');
-			echo "&error=211&message=Email registered with different passwords.";
+			echo "&error=211&message=Email registered to multiple accounts";
 		}
 	} else {
 		header('Content-Type: text/plain');
-		echo "&error=210&message=Email not registered in our database.";
+		echo "&error=210&message=This email is not in our database";
 	}
 }
 
