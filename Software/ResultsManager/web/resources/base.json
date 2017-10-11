@@ -55,7 +55,21 @@
         "Score": "Score",
         "Date": "Date",
         "Exercise": "Exercise",
-        "Time": "Time (mins)"
+        "Time": "Time (mins)",
+        "Yes": "Yes",
+        "No": "No",
+        "Close": "Close",
+        "NotAnsweredQuestions": "You have missed a question.|You have not answered {count} questions.",
+        "IncorrectQuestions": "You need to answer all questions correctly.",
+        "DirtyExercise": "Are you sure? You will lose any work you have done in this exercise.",
+        "UnreadExerciseFeedback": "This exercise has feedback you haven't read.  Do you want to read it?",
+        "ClickAnswersForFeedback": "Click on the answers to show feedback.",
+        "LearningObjectives": "Learning Objectives",
+        "WatchVideo": "Watch the introduction video",
+        "IntroductionVideo": "Introduction video",
+        "StartPractice": "Start the practice",
+        "CompareCaption": "Shows your average score in a unit compared to everyone",
+        "AnalysisCaption": "Time spent in each unit"
       }
     },
     {
