@@ -23,6 +23,8 @@ class Title extends Content {
 	// gh#1090
 	const SIGNIN_TRACKING = 1;
 	const SIGNIN_ANONYMOUS = 2;
+	// sss#224
+	const SIGNIN_BLOCKED = 1;
 		
 	var $courses = array();
 	

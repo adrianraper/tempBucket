@@ -109,17 +109,23 @@ class CouloirService extends AbstractService {
             $account->titles = array(reset($account->titles));
         }
 
-        switch ($account->loginOption) {
-            case 8:
-                $loginOption = "id";
-                break;
-            case 1:
-                $loginOption = "name";
-                break;
-            case 128:
-            default:
-                $loginOption = "email";
-                break;
+        // sss#224
+        if ($account->titles[0]->loginModifier == Title::SIGNIN_BLOCKED
+            && $account->titles[0]->licenceType == Title::LICENCE_TYPE_AA) {
+            $loginOption = "none";
+        } else {
+            switch ($account->loginOption) {
+                case 8:
+                    $loginOption = "id";
+                    break;
+                case 1:
+                    $loginOption = "name";
+                    break;
+                case 128:
+                default:
+                    $loginOption = "email";
+                    break;
+            }
         }
         switch ($account->titles[0]->licenceType) {
             case Title::LICENCE_TYPE_SINGLE:

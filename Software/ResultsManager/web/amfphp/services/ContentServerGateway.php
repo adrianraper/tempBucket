@@ -82,7 +82,8 @@ function router($json) {
         $sids = array_map(function($token) use ($service) {return $service->authenticationCops->getSessionId($token);}, $json->tokens);
     }
 
-    AbstractService::$debugLog->info("CSG ".$json->command." for [".implode(',', $sids)."] at ".$localTimestamp);
+    if (isset($sids))
+        AbstractService::$debugLog->info("CSG ".$json->command." for [".implode(',', $sids)."] at ".$localTimestamp);
     switch ($json->command) {
         case "acquireLicenseSlots": return acquireLicenceSlots($json->tokens);
         case "releaseLicenseSlot": return releaseLicenceSlot($json->token, $json->timestamp);
