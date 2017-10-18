@@ -32,21 +32,25 @@ try {
     // Decode the body
 
     $json = json_decode(file_get_contents('php://input'));
+
+    //$json = json_decode('{"command":"memoryWrite","key":"gettingStartedVideos","value":"[{unit:speaking, video:true}]", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwODIxMjExMSwic2Vzc2lvbklkIjoiMzc0In0.Pf4icYhhIz_VmBnmVQL8DHmUaAb-rLXfB_QNZCV7Do4"}');
+    //$json = json_decode('{"command":"memoryWrite","key":"dob","value":"2017-12-31", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwODIxMjExMSwic2Vzc2lvbklkIjoiMzc0In0.Pf4icYhhIz_VmBnmVQL8DHmUaAb-rLXfB_QNZCV7Do4"}');
+    //$json = json_decode('{"command":"memoryClear","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwODIxMjExMSwic2Vzc2lvbklkIjoiMzc0In0.Pf4icYhhIz_VmBnmVQL8DHmUaAb-rLXfB_QNZCV7Do4"}');
     //$json = json_decode('{"command":"addUser","appVersion":"0.9.10","email":"donald-3@trump","name":"Donald Trump 3","password":"f7e41a12cd326daa74b73e39ef442119","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNzUzNDczMywiZXhwIjoxNTA3NTM3NzMzLCJwcm9kdWN0Q29kZSI6NjYsInJvb3RJZCI6IjE2MyJ9.2q8KF1lqGHZo9xdfz27BbWb77ZXagAikrmHNOmoUc8E"}');
-    //$json = json_decode('{"command":"login","appVersion":"0.9.10","login":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":"66","rootId":null}');
-    //$json = json_decode('{"command":"getLoginConfig","productCode":66,"prefix":"Clarity"}');
+    $json = json_decode('{"command":"login","appVersion":"0.9.10","login":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":"66","rootId":163}');
+    //$json = json_decode('{"command":"getLoginConfig","productCode":"66","prefix":"Clarity"}');
     //$json = json_decode('{"command":"getLoginConfig","appVersion":"0.9.10","productCode":"66","prefix":null}');
     //$json = json_decode('{"command":"getCoverage","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNjY3Mjg2NSwiZXhwIjoxNTA2NjcyOTI1LCJwcm9kdWN0Q29kZSI6NjYsInJvb3RJZCI6IjE2MyJ9.JiIYVqoYrORwioBU9t1DDAqg5oT6UhdRpR2AeVogiV0"}');
     /*
     //$json = json_decode('{"command":"login","email":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":66}');
     //$json = json_decode('{"command":"getScoreDetails","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNjQxNzk5Mywic2Vzc2lvbklkIjoiMzA0In0._P3S0Ll3960dwzV4S-WWWS4F-P_sQr3RwNz6V4HdxMo"}');
-    //$json = json_decode('{"command":"login","productCode":66, "rootId":163}');
-    //$json = json_decode('{"command":"login","email":"dave@sss","password":"b36dd0fe2ba555a061660f857f842596","productCode":66, "rootId":10719}');
-    //$json = json_decode('{"command":"getTranslations","lang":"de", "productCode":66}');
+    //$json = json_decode('{"command":"login","productCode":"66", "rootId":163}');
+    //$json = json_decode('{"command":"login","email":"dave@sss","password":"b36dd0fe2ba555a061660f857f842596","productCode":"66", "rootId":10719}');
+    //$json = json_decode('{"command":"getTranslations","lang":"de", "productCode":"66"}');
     //$json = json_decode('{"command":"dbCheck"}');
-    $json = json_decode('{"command":"login","email":"ferko.spits@email","password":"20863ef31d598f9c020c0d5b872e2fbe","productCode":66, "rootId":163}');
-    $json = json_decode('{"command":"login","email":"xx@noodles.hk","password":"68f1e135ba6167a2a4665b267d8fde39","productCode":66, "rootId":163}');
-    $json = json_decode('{"command":"getAccount","productCode":66,"prefix":"clarity","IP":"192.168.8.61","RU":""}');
+    $json = json_decode('{"command":"login","email":"ferko.spits@email","password":"20863ef31d598f9c020c0d5b872e2fbe","productCode":"66", "rootId":163}');
+    $json = json_decode('{"command":"login","email":"xx@noodles.hk","password":"68f1e135ba6167a2a4665b267d8fde39","productCode":"66", "rootId":163}');
+    $json = json_decode('{"command":"getAccount","productCode":"66","prefix":"clarity","IP":"192.168.8.61","RU":""}');
     $json = json_decode('{"command":"getTestResult","appVersion":"1.1.0","testID":"73","sessionID":"201"}');
     $json = json_decode('{"command":"getScoreDetails","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDU5MTc0Niwic2Vzc2lvbklkIjoiMjQ2In0.MZlSRH6vJsa1ExDi4o17xWkVErQCa5-Iu9JYWXdJ_Ls"}');
 
@@ -255,6 +259,8 @@ try {
     switch ($json->command) {
         case "login":
         case "getTranslations":
+        case "memoryWrite":
+        case "memoryClear":
             //AbstractService::$debugLog->info("CTP return" . $json->command);
             break;
         default:
@@ -319,9 +325,10 @@ function router($json) {
     // Save the version of the app that called us
     $service->setAppVersion((isset($json->appVersion)) ? $json->appVersion : '0.0.0');
 
-    // Just in case we are using the old SSS product code
-    if ((isset($json->productCode) && $json->productCode==60))
-        $json->productCode = 66;
+    // Just in case we are using the old SSS product code - will certainly be redundant by release date
+    if ((isset($json->productCode) && $json->productCode=='60')) {
+        throw new Exception("Using old SSS productCode=60");
+    }
 
     $localDateTime = new DateTime();
     $localTimestamp = $localDateTime->format('Y-m-d H:i:s');
@@ -356,6 +363,14 @@ function router($json) {
             return addUser($json->token, $loginObj);
         case "getTestResult": return getResult($json->token, $json->mode);
         case "scoreWrite": return scoreWrite($json->token, $json->score, $json->localTimestamp, $json->timezoneOffset);
+        // sss#228
+        case "memoryWrite":
+            if (!isset($json->key)) $json->key = null;
+            if (!isset($json->value)) $json->value = null;
+            return memoryWrite($json->token, $json->key, $json->value);
+        // sss#228
+        case "memoryClear":
+            return memoryClear($json->token);
         // sss#155
         case "getTranslations":
             if (!isset($json->productCode)) $json->productCode = null;
@@ -391,6 +406,15 @@ function getLoginConfig($productCode, $prefix, $ip, $ru) {
 function addUser($token, $loginObj) {
     global $service;
     return $service->addUser($token, $loginObj);
+}
+// sss#228 write memory for this user from the app
+function memoryWrite($token, $key, $value) {
+    global $service;
+    return $service->memoryWrite($token, $key, $value);
+}
+function memoryClear($token) {
+    global $service;
+    return $service->memoryClear($token);
 }
 // sss#17 Return a map of exercise ids which have been done
 function getCoverage($token) {

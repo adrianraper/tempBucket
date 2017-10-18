@@ -12,6 +12,7 @@ require_once(dirname(__FILE__)."/../../classes/ProgressCops.php");
 require_once(dirname(__FILE__)."/../../classes/LoginCops.php");
 require_once(dirname(__FILE__)."/../../classes/LicenceCops.php");
 require_once(dirname(__FILE__)."/../../classes/AccountCops.php");
+require_once(dirname(__FILE__)."/../../classes/MemoryCops.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
 require_once(dirname(__FILE__)."/../../classes/AuthenticationCops.php");
 
@@ -60,6 +61,7 @@ class CouloirService extends AbstractService {
         $this->accountCops = new AccountCops($this->db);
         $this->contentOps = new ContentOps($this->db);
         $this->authenticationCops = new AuthenticationCops($this->db);
+        $this->memoryCops = new MemoryCops($this->db);
 	}
 
     public function changeDB($dbHost) {
@@ -74,6 +76,7 @@ class CouloirService extends AbstractService {
         $this->accountCops = new AccountCops($this->db);
         $this->contentOps = new ContentOps($this->db);
         $this->authenticationCops = new AuthenticationCops($this->db);
+        $this->memoryCops = new MemoryCops($this->db);
     }
 
 	public function getAppVersion() {
@@ -171,13 +174,17 @@ class CouloirService extends AbstractService {
      */
 	public function login($login, $password, $productCode, $rootId = null, $platform = null) {
 
-	    // If you know the account, pick it up
+        // sss#229 If the productCode is a comma delimited string '52,53' you need to handle it here
+        // Until we get to a situation (Road to IELTS) that requires it, just assume a single integer
+        $productCode = intval($productCode);
+
+        // If you know the account, pick it up
         if ($rootId) {
             $account = $this->accountCops->getBentoAccount($rootId, $productCode);
 
             // Remove any other titles from the account
             $account->titles = array_filter($account->titles, function($title) use ($productCode) {
-                return $title->productCode = $productCode;
+                return $title->productCode = intval($productCode);
             });
 
             // What sort of licence is it?
@@ -255,10 +262,14 @@ class CouloirService extends AbstractService {
             $rc = $this->loginCops->setInstanceId($user->id, $session->sessionId, $productCode);
         }
 
+        // sss#228 Return the user's memory too
+        $memory = $this->memoryCops->getWholeMemory($user->id, $productCode);
+
         $rc = array(
             "user" => $user,
             "tests" => $tests,
-            "token" => $token);
+            "token" => $token,
+            "memory" => $memory);
 
         //AbstractService::$debugLog->info("token=$token");
 
@@ -281,6 +292,10 @@ class CouloirService extends AbstractService {
         if (!$productCode || !$rootId) {
             throw $this->copyOps->getExceptionForId("errorNoAccountFound");
         }
+
+        // sss#229 If the productCode is a comma delimited string '52,53' you need to handle it here
+        // Until we get to a situation (Road to IELTS) that requires it, just assume a single integer
+        $productCode = intval($productCode);
 
         // Check that there is not already a user with this information
         // Name/Id has to be unique in the account
@@ -385,6 +400,23 @@ class CouloirService extends AbstractService {
         }
         return [];
 	}
+
+	// sss#228 Write to the user's memory
+    public function memoryWrite($token, $key, $value) {
+        // Pick the session from the token
+        $session = $this->authenticationCops->getSession($token);
+
+        $this->memoryCops->set($key, $value, $session->userId, $session->productCode);
+        return array();
+    }
+    // Clear the memory for this user of this title
+    public function memoryClear($token) {
+        // Pick the session from the token
+        $session = $this->authenticationCops->getSession($token);
+
+        $this->memoryCops->forget($session->userId, $session->productCode);
+        return array();
+    }
 
 	// Get details of all tests scheduled for this group
     public function getTests($group, $productCode) {
