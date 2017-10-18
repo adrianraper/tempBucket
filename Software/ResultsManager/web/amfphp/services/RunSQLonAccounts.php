@@ -19,6 +19,75 @@ function addDaysToTimestamp($timestamp, $days) {
 	return $timestamp + ($days * 86400);
 }
 
+function mapSSSOldIdsToNewIds() {
+    global $dmsService;
+    if (isset($_SERVER["SERVER_NAME"])) {
+        $newLine = '<br/>';
+    } else {
+        $newLine = "\n";
+    }
+    $recCount = 0;
+    $productCode = 66;
+    // Read the old menu.json
+    $oldFilename = '../../../../../../TestBench/content-sss/menu.json.old';
+    if (is_readable($oldFilename)) {
+        $contents = file_get_contents($oldFilename);
+        $contents = utf8_encode($contents);
+        $oldMenu = json_decode($contents);
+    }
+    $newFilename = '../../../../../../TestBench/content-sss/menu.json';
+    if (is_readable($newFilename)) {
+        $contents = file_get_contents($newFilename);
+        $contents = utf8_encode($contents);
+        $newMenu = json_decode($contents);
+    }
+    $oldCourseId = $oldMenu->courses[0]->id;
+    $newCourseId = $newMenu->courses[0]->id;
+    echo "change course $oldCourseId to $newCourseId $newLine";
+    $sql = <<< SQL
+		UPDATE T_Score s
+		SET s.F_CourseID = ?
+		WHERE s.F_CourseID = ?
+		AND s.F_ProductCode = ?;
+SQL;
+    $bindingParams = array($newCourseId, $oldCourseId, $productCode);
+    $rs = $dmsService->db->Execute($sql, $bindingParams);
+    $recCount += ($rs) ? $dmsService->db->Affected_Rows() : 0;
+
+    for ($idx=0; $idx < count($oldMenu->courses[0]->units); $idx++) {
+        $oldUnitId = $oldMenu->courses[0]->units[$idx]->id;
+        $newUnitId = $newMenu->courses[0]->units[$idx]->id;
+        echo "&nbsp;&nbsp;change unit $oldUnitId to $newUnitId $newLine";
+        $sql = <<< SQL
+            UPDATE T_Score s
+            SET s.F_UnitID = ?
+            WHERE s.F_UnitID = ?
+            AND s.F_CourseID = ?
+            AND s.F_ProductCode = ?;
+SQL;
+        $bindingParams = array($newUnitId, $oldUnitId, $newCourseId, $productCode);
+        $rs = $dmsService->db->Execute($sql, $bindingParams);
+        $recCount += ($rs) ? $dmsService->db->Affected_Rows() : 0;
+
+        for ($edx=0; $edx < count($oldMenu->courses[0]->units[$idx]->exercises); $edx++) {
+            $oldExerciseId = $oldMenu->courses[0]->units[$idx]->exercises[$edx]->id;
+            $newExerciseId = $newMenu->courses[0]->units[$idx]->exercises[$edx]->id;
+            $sql = <<< SQL
+                UPDATE T_Score s
+                SET s.F_ExerciseID = ?
+                WHERE s.F_ExerciseID = ?
+                AND s.F_CourseID = ?
+                AND s.F_ProductCode = ?;
+SQL;
+            $bindingParams = array($newExerciseId, $oldExerciseId, $newCourseId, $productCode);
+            $rs = $dmsService->db->Execute($sql, $bindingParams);
+            echo "&nbsp;&nbsp;&nbsp;&nbsp;change ex $oldExerciseId to $newExerciseId (".$dmsService->db->Affected_Rows().") $newLine";
+            $recCount += ($rs) ? $dmsService->db->Affected_Rows() : 0;
+        }
+    }
+    return $recCount;
+}
+
 function addRMtoAccount($account) {
 	global $dmsService;
 	// use the details from the first title that they have as the basis
@@ -448,8 +517,14 @@ $testingTriggers = "";
 //$testingTriggers .= "Archive users who have not done anything lately";
 //$testingTriggers .= "Restore archived users";
 //$testingTriggers .= "Clear orphans";
-$testingTriggers .= "Convert TestSession to SessionTrack";
+//$testingTriggers .= "Convert TestSession to SessionTrack";
+$testingTriggers .= "map SSS old Ids to new Ids";
 
+// One off for changing SSS ids in menu.json. Though could be useful as template for other such stuffs
+if (stristr($testingTriggers, "map SSS old Ids to new Ids")) {
+    $rc = mapSSSOldIdsToNewIds();
+    echo "Converted $rc records<br/>";
+}
 // The move to full Couloir means shifting from DPT specific T_TestSession to generic couloir T_SessionTrack
 if (stristr($testingTriggers, "Convert TestSession to SessionTrack")) {
     $testingAccounts = array();

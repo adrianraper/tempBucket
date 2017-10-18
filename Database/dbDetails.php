@@ -3,7 +3,7 @@ class DBDetails {
 
 	function __construct($dbHost) {
 		switch ($dbHost) {
-			// Archived databases
+			// Other databases
 			case 200:
 				$this->driver = "mysqli";
 				$this->host = "clarity-eu-db-2017-06-21-05-09.c8s4j19sgnql.eu-west-1.rds.amazonaws.com";
@@ -18,6 +18,14 @@ class DBDetails {
 				$this->user = "clarity";
 				$this->password = "cl4r479@";
 				$this->dbname = "clarity";
+				break;
+			// Staging
+			case 300:
+				$this->driver = "mysqli";
+				$this->host = "clarity-eu-db-staging.c8s4j19sgnql.eu-west-1.rds.amazonaws.com";
+				$this->user = "clarity";
+				$this->password = "clarity123";
+				$this->dbname = "rack80829";
 				break;
 				
 			// Different paths from RM code and Orchid code
