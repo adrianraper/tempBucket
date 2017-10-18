@@ -117,13 +117,16 @@ EOD;
 		$bindingParams = array($userId, $productCode);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		
-		$memory = array();
-		if ($rs) {
+		if ($rs && $rs->RecordCount() > 0) {
+            $memory = array();
 			while ($dbObj = $rs->FetchNextObj()) {
 				$memory[$dbObj->k] = $dbObj->v;
 			}
-		}
+		} else {
+		   $memory = json_decode ("{}");
+        }
 		return $memory;
+		//
     }
     
     /**

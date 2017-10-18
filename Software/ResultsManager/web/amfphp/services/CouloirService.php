@@ -243,8 +243,6 @@ class CouloirService extends AbstractService {
                     $tests = array_slice($tests,0,1);
                 $testId = $tests[0]->testId;
             }
-        } else {
-            $tests = null; // or an empty array?
         }
 
         // Create a session
@@ -260,16 +258,17 @@ class CouloirService extends AbstractService {
         // sss#192 Update the user with the instance id (using session id) to cope with only one user on one device
         if ($user->id > 0) {
             $rc = $this->loginCops->setInstanceId($user->id, $session->sessionId, $productCode);
+
+            // sss#228 Return the user's memory too
+            $memory = $this->memoryCops->getWholeMemory($user->id, $productCode);
         }
 
-        // sss#228 Return the user's memory too
-        $memory = $this->memoryCops->getWholeMemory($user->id, $productCode);
-
+        // Include default returns of null or empty objects as required by app
         $rc = array(
             "user" => $user,
-            "tests" => $tests,
+            "tests" => (isset($tests)) ? $tests : null,
             "token" => $token,
-            "memory" => $memory);
+            "memory" => (isset($memory)) ? $memory : json_decode ("{}"));
 
         //AbstractService::$debugLog->info("token=$token");
 
