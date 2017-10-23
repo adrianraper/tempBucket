@@ -706,6 +706,10 @@ EOD;
         // Pick the session from the token
         $session = $this->authenticationCops->getSession($token);
 
+        // sss#244 Nothing needed for anonymous user
+        if ($session->userId < 0)
+            return array();
+
         // Retrieve the score records for this user and this product
         $exercises = $this->progressCops->getExercisesCompleted($session);
 
