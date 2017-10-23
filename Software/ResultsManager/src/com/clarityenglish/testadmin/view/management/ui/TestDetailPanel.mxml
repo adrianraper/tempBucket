@@ -148,11 +148,15 @@
 					// TODO where to get the list of available languages from?
 					languageData.dataProvider = new ArrayCollection([{label:"English", data:"EN"},
 						{label:"bahasa Indonesia", data:"ID"},
-						{label:"deutsch", data:"DE"},
-						{label:"italiano", data:"IT"},
-						{label:"漢語", data:"ZH-TW"},
-						{label:"العَرَبِيَّة", data:"AR"}
+						{label:"漢語", data:"ZH-TW"}
 					]);
+					// Only enable beta language if you are in admin mode (proxy with followUp parameter)
+					if (Constants.followUp){
+						languageData.dataProvider.addItem({label:"العَرَبِيَّة", data:"AR"});
+						languageData.dataProvider.addItem({label:"deutsch", data:"DE"});
+						languageData.dataProvider.addItem({label:"italiano", data:"IT"});
+					}
+					
 					for (var i:uint=0; i<languageData.dataProvider.length; i++) {
 						if (languageData.dataProvider[i].data == _language) {
 							languageData.selectedIndex = i;
