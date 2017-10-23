@@ -68,7 +68,29 @@ class AccountCops {
         $account = $this->getBentoAccount($rootId, $productCode);
         $account->addLicenceAttributes($this->getAccountLicenceDetails($rootId, null, $productCode));
 
+        // sss#128
+        $account->titles[0]->contentLocation = $this->getTitleContentLocation($productCode, $account->titles[0]->languageCode);
         return $account;
+    }
+    /**
+     * Pick up the content name for Couloir to send to the content server
+     * sss#128
+     */
+    public function getTitleContentLocation($productCode, $languageCode) {
+        $sql = <<< SQL
+				SELECT * 
+				FROM T_ProductLanguage
+				WHERE F_ProductCode = ?
+				AND F_LanguageCode = ?
+SQL;
+        $bindingParams = array($productCode, $languageCode);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs && $rs->RecordCount() > 0) {
+            $dbObj = $rs->FetchObj();
+            return $dbObj->F_ContentLocation;
+        } else {
+            throw $this->copyOps->getExceptionForId("errorContentLocationFound", array("productCode" => $productCode, "languageCode" => $languageCode));
+        }
     }
 
     /**

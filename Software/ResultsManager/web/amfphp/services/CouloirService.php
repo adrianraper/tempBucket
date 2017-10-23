@@ -101,6 +101,7 @@ class CouloirService extends AbstractService {
             $title = new Title();
             $title->licenceType = Title::LICENCE_TYPE_TT;
             $title->languageCode = 'EN';
+            $title->contentLocation = $this->accountCops->getTitleContentLocation($productCode, $title->languageCode);
             $account->addTitles(array($title));
             $account->loginOption = 128;
             $account->verified = true;
@@ -163,7 +164,8 @@ class CouloirService extends AbstractService {
                         "lang" => $account->titles[0]->languageCode,
                         "allowSelfRegistration" => ($account->selfRegister > 0) ? true : false,
                         "selfRegistrationToken" => ($account->selfRegister > 0) ? $selfRegToken : null,
-                        "licenceType" => $licenceType);
+                        "contentName" => $account->titles[0]->contentLocation,
+                        "licenseType" => $licenceType);
         if (isset($account->id))
             $config["rootId"] = intval($account->id);
 

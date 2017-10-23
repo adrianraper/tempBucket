@@ -1523,9 +1523,9 @@ INSERT INTO `T_Product` VALUES
 DELETE FROM T_ProductLanguage WHERE F_ProductCode = 65;
 DELETE FROM T_ProductLanguage WHERE F_ProductCode = 66;
 INSERT INTO `T_ProductLanguage` VALUES 
-(65,'DE','DE-German'),
-(66,'NAMEN','SSS'),
-(66,'EN','SSS');
+(65,'DE','de'),
+(66,'NAMEN','sss-namerican'),
+(66,'EN','sss');
 
 DELETE FROM T_ProductVersion WHERE F_ProductCode = 65;
 DELETE FROM T_ProductVersion WHERE F_ProductCode = 66;
@@ -1616,4 +1616,17 @@ CREATE TABLE `T_SessionTrack` (
 INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (2452, '2017-10-10 00:00:00', 'Couloir licences and sessions');
+
+-- sss#128
+DELETE FROM T_Product WHERE F_ProductCode = 67;
+INSERT INTO `T_Product` VALUES
+(67,'Bridge to Seven',NULL,1);
+
+DELETE FROM T_ProductLanguage WHERE F_ProductCode = 67;
+INSERT INTO `T_ProductLanguage` VALUES 
+(67,'EN','b27');
+
+DELETE FROM T_ProductVersion WHERE F_ProductCode = 67;
+INSERT INTO `T_ProductVersion` VALUES 
+(67,'FV');
 
