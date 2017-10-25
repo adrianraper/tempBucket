@@ -11,7 +11,7 @@ function headerDateWithStatusCode($statusCode) {
     $utcTimestamp = $utcDateTime->format('U')*1000;
     header("Date: ".$utcTimestamp, false, $statusCode);
 }
-class UserAccessException extends Exception {}
+//class UserAccessException extends Exception {}
 
 $service = new CouloirService();
 set_time_limit(360);
@@ -38,8 +38,8 @@ try {
     //$json = json_decode('{"command":"memoryWrite","key":"dob","value":"2017-12-31", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwODIxMjExMSwic2Vzc2lvbklkIjoiMzc0In0.Pf4icYhhIz_VmBnmVQL8DHmUaAb-rLXfB_QNZCV7Do4"}');
     //$json = json_decode('{"command":"memoryClear","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwODIxMjExMSwic2Vzc2lvbklkIjoiMzc0In0.Pf4icYhhIz_VmBnmVQL8DHmUaAb-rLXfB_QNZCV7Do4"}');
     //$json = json_decode('{"command":"addUser","appVersion":"0.9.10","email":"donald-3@trump","name":"Donald Trump 3","password":"f7e41a12cd326daa74b73e39ef442119","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNzUzNDczMywiZXhwIjoxNTA3NTM3NzMzLCJwcm9kdWN0Q29kZSI6NjYsInJvb3RJZCI6IjE2MyJ9.2q8KF1lqGHZo9xdfz27BbWb77ZXagAikrmHNOmoUc8E"}');
-    //$json = json_decode('{"command":"login","appVersion":"0.9.10","login":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":"66","rootId":163}');
-    //$json = json_decode('{"command":"getLoginConfig","productCode":"67","prefix":"Clarity"}');
+    //$json = json_decode('{"command":"login","appVersion":"0.9.10","login":"dandy@email","password":"xxf7e41a12cd326daa74b73e39ef442119","productCode":"66","rootId":163}');
+    //$json = json_decode('{"command":"getLoginConfig","productCode":"66","prefix":"Clarity"}');
     //$json = json_decode('{"command":"getLoginConfig","appVersion":"0.9.10","productCode":"66","prefix":null}');
     //$json = json_decode('{"command":"getComparison","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwODIxMjExMSwic2Vzc2lvbklkIjoiMzc0In0.Pf4icYhhIz_VmBnmVQL8DHmUaAb-rLXfB_QNZCV7Do4"}');
     /*
@@ -267,17 +267,23 @@ try {
         default:
             AbstractService::$debugLog->info("CTP return " . json_encode($jsonResult));
     }
+    // sss#256 put a success wrapper around the returning data
+    $jsonWrapped = array("success" => true, "details" => $jsonResult);
+    // If you need to run this code but the app is not implementing #256, include the next line
+    $jsonWrapped = $jsonResult;
     if ($jsonResult == []) {
-        echo json_encode($jsonResult, JSON_FORCE_OBJECT);
+        echo json_encode($jsonWrapped, JSON_FORCE_OBJECT);
     } else {
-        echo json_encode($jsonResult);
+        echo json_encode($jsonWrapped);
     }
 
+/*
+ * sss#256
 } catch (UserAccessException $e) {
     // Throw UserAccessExceptions in the code if this is an authentication issue
     headerDateWithStatusCode(403);
     echo json_encode(array("error" => $e->getMessage(), "code" => $e->getCode()));
-
+*/
 } catch (Exception $e) {
     switch ($e->getCode()) {
         // ctp#75
@@ -296,12 +302,15 @@ try {
         case 301:
         case 303:
         case 304:
-            headerDateWithStatusCode(401);
+            // sss#256 These are the exceptions that are handled by the backend in some way
+            // Send back http header 200, but with failure in the JSON
+            //headerDateWithStatusCode(401);
             break;
         default:
             headerDateWithStatusCode(500);
     }
-    echo json_encode(array("error" => $e->getMessage(), "code" => $e->getCode()));
+    //echo json_encode(array("success" => false, "error" => array("literal" => $e->getMessage(), "code" => $e->getCode())));
+    echo json_encode(array("literal" => $e->getMessage(), "code" => $e->getCode()));
 }
 
 function router($json) {

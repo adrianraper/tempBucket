@@ -14,7 +14,8 @@ function headerDateWithStatusCode($statusCode) {
     $utcTimestamp = $utcDateTime->format('U')*1000;
     header("Date: ".$utcTimestamp, false, $statusCode);
 }
-class UserAccessException extends Exception {}
+// sss#256
+//class UserAccessException extends Exception {}
 
 $service = new CouloirService();
 set_time_limit(360);
@@ -37,18 +38,16 @@ try {
     if (!$json)
         throw new Exception("Empty request");
 
-    $jsonResult = router($json);
     AbstractService::$debugLog->info("CSG return ".json_encode($jsonResult));
+    // sss#256 put a success wrapper around the returning data
+    $jsonWrapped = array("success" => true, "details" => $jsonResult);
+    // If you need to run this code but the app is not implementing #256, include the next line
+    $jsonWrapped = $jsonResult;
     if ($jsonResult == []) {
-        echo json_encode($jsonResult, JSON_FORCE_OBJECT);
+        echo json_encode($jsonWrapped, JSON_FORCE_OBJECT);
     } else {
-        echo json_encode($jsonResult);
+        echo json_encode($jsonWrapped);
     }
-
-} catch (UserAccessException $e) {
-    // Throw UserAccessExceptions in the code if this is an authentication issue
-    headerDateWithStatusCode(403);
-    echo $e->getMessage();
 
 } catch (Exception $e) {
     switch ($e->getCode()) {
@@ -62,12 +61,14 @@ try {
         case 213:
         case 214:
         case 215:
-            headerDateWithStatusCode(401);
-            break;
+        // sss#256 These are the exceptions that are handled by the backend in some way
+        // Send back http header 200, but with failure in the JSON
+        //headerDateWithStatusCode(401);
+        break;
         default:
             headerDateWithStatusCode(500);
     }
-    echo $e->getMessage();
+    echo json_encode(array("success" => false, "error" => array("literal" => $e->getMessage(), "code" => $e->getCode())));
 }
 
 // Note American spelling of license in these calls which is converted to British licence from here on in
