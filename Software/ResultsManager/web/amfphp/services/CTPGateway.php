@@ -38,7 +38,7 @@ try {
     //$json = json_decode('{"command":"memoryClear","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwODIxMjExMSwic2Vzc2lvbklkIjoiMzc0In0.Pf4icYhhIz_VmBnmVQL8DHmUaAb-rLXfB_QNZCV7Do4"}');
     //$json = json_decode('{"command":"addUser","appVersion":"0.9.10","email":"donald-3@trump","name":"Donald Trump 3","password":"f7e41a12cd326daa74b73e39ef442119","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNzUzNDczMywiZXhwIjoxNTA3NTM3NzMzLCJwcm9kdWN0Q29kZSI6NjYsInJvb3RJZCI6IjE2MyJ9.2q8KF1lqGHZo9xdfz27BbWb77ZXagAikrmHNOmoUc8E"}');
     //$json = json_decode('{"command":"login","appVersion":"0.9.10","login":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":"66","rootId":163}');
-    //$json = json_decode('{"command":"getLoginConfig","productCode":"66","prefix":"Clarity"}');
+    //$json = json_decode('{"command":"getLoginConfig","productCode":"67","prefix":"Clarity"}');
     //$json = json_decode('{"command":"getLoginConfig","appVersion":"0.9.10","productCode":"66","prefix":null}');
     //$json = json_decode('{"command":"getComparison","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwODIxMjExMSwic2Vzc2lvbklkIjoiMzc0In0.Pf4icYhhIz_VmBnmVQL8DHmUaAb-rLXfB_QNZCV7Do4"}');
     /*

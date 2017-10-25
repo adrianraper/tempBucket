@@ -541,7 +541,8 @@ class ItemAnalysisOps {
         // Add a whitelist of testIds that are considered valid
         //$whiteList = '(75,366,364,358,345,338,330,328,327,274,273,251,238,229,226,225,78,68,65,64,63,62,61,60,59,58,57,51,50,49,48,47,46,45,44,43)';
         //$whiteList = '(714,700,697,688,685,678,664,654,643,638,631,629,624,620,575,551,538,501,500,497,485,484,449,404,377,371,364,358,345,338,330,273)';
-        $whiteList = '(714)';
+        //$whiteList = '(714)';
+        $whiteList = '(484, 638)'; // AsiaU TOEIC comparison tests
         $sql = <<<EOD
             select d.F_UserID as uid, d.F_ItemID as qid, (CASE WHEN d.F_Score is null THEN 0 ELSE d.F_Score END) as score, t.F_Result as result 
             FROM T_ScoreDetail d, T_TestSession t

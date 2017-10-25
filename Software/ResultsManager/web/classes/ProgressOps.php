@@ -292,6 +292,22 @@ SQL;
                 $totalMissed++;
             }
 
+            // dpt#459
+            if ($mode=='debug') {
+                $innerSql = <<<SQL
+                SELECT u.* FROM T_User u
+                WHERE u.F_UserID=?
+SQL;
+                $bindingParams = array($record->F_UserID);
+                $innerRs = $this->db->Execute($innerSql, $bindingParams);
+                if ($innerRs) {
+                    $userObj = $innerRs->FetchNextObj();
+                    $email = $userObj->F_Email;
+                } else {
+                    $email = 'no email';
+                }
+            }
+
             // We want to know tags for correct answers in the main tracks and separately for the gauge
             switch ($record->F_UnitID) {
                 case $trackAUnitID:
@@ -606,6 +622,7 @@ SQL;
 
         // ctp#438 Report the test path
         if ($mode=='debug') {
+            $rc['email'] = $email;
             $rc['gaugeOneCorrect'] = $gaugeOneCorrect;
             if ($gaugeTwoUsed)
                 $rc['gaugeTwoCorrect'] = $gaugeTwoCorrect;

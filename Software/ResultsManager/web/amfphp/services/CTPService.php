@@ -9,6 +9,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/Scheduled
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/context/ContextSession.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/TestSession.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/DPTConstants.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/session/SessionTrack.php");
 
 
 class CTPService extends BentoService {
@@ -19,7 +20,7 @@ class CTPService extends BentoService {
 	function __construct() {
 		// gh#341 A unique ID to distinguish sessions between multiple Clarity applications
 		Session::setSessionName("CTPService");
-		
+
 		parent::__construct();
 		
 		// Set the title name for resources
