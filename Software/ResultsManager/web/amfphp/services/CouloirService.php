@@ -509,8 +509,6 @@ EOD;
         // Pick the session from the token
         $session = $this->authenticationCops->getSession($token);
 
-        // To avoid authentication, dummy use of session variables
-        //Session::set('userID', $session->userId);
         $user = $this->manageableOps->getCouloirUserFromID($session->userId);
         if (!$user)
             throw new Exception("No such saved user");
@@ -553,9 +551,13 @@ EOD;
 
         } catch(Exception $e) {
             // gh#166 Catch duplicate record exceptions - and just ignore!!
+            $this->db->FailTrans();
+            $this->db->CompleteTrans();
             if ($e->getCode() != $this->copyOps->getCodeForId('errorDatabaseDuplicateRecord')) {
-                $this->db->FailTrans();
                 throw $e;
+            } else {
+                // gh#460 If you find that this is a duplicate, just quit whole process, but with no error
+                return [];
             }
         }
 
@@ -579,9 +581,12 @@ EOD;
                     $this->progressCops->insertScoreDetails($scoreDetails, $user, $forceScoreWriting);
                 } catch (Exception $e) {
                     // gh#166 Catch duplicate record exceptions - and just ignore!!
+                    $this->db->FailTrans();
+                    $this->db->CompleteTrans();
                     if ($e->getCode() != $this->copyOps->getCodeForId('errorDatabaseDuplicateRecord')) {
-                        $this->db->FailTrans();
                         throw $e;
+                    } else {
+                        return [];
                     }
                 }
             }
@@ -619,9 +624,6 @@ EOD;
 
         // Commit all the database inserts and updates
         $this->db->CompleteTrans();
-
-        // If you want to test what happens if scores are written but CTP thinks they are not...
-        //throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => "Fake error"));
 
         return [];
     }
