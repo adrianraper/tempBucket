@@ -310,6 +310,7 @@ try {
             headerDateWithStatusCode(500);
     }
     //echo json_encode(array("success" => false, "error" => array("literal" => $e->getMessage(), "code" => $e->getCode())));
+    // sss#236 If you need to run this code but the app is not implementing #256, include the next line and comment the above one
     echo json_encode(array("literal" => $e->getMessage(), "code" => $e->getCode()));
 }
 
