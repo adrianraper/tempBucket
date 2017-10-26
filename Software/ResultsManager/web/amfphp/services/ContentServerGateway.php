@@ -38,6 +38,8 @@ try {
     if (!$json)
         throw new Exception("Empty request");
 
+    $jsonResult = router($json);
+
     AbstractService::$debugLog->info("CSG return ".json_encode($jsonResult));
     // sss#256 put a success wrapper around the returning data
     $jsonWrapped = array("success" => true, "details" => $jsonResult);

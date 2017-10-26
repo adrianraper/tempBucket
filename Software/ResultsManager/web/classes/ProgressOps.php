@@ -174,10 +174,9 @@ SQL;
 		// cast the values to integers and remove 0 entries
 		return array_filter(array_map('intval', $rs));
 	}
-
     /**
-     * Get details of all exercises completed (marked)
-     */
+     * These are Couloir functions but NOT called by CTPService (DPT) so are not called here
+     *
     public function getExercisesCompleted($session) {
         $sql = <<<SQL
 			SELECT *
@@ -192,9 +191,6 @@ SQL;
         return $rs;
 
     }
-    /**
-     * Get summary of progress at the unit level
-     */
     public function getUnitProgress($session) {
         // F_ProductCode, F_CourseID, F_UnitID, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country
         $sql = <<<SQL
@@ -211,7 +207,7 @@ SQL;
         return $rs;
 
     }
-
+    */
     /**
      * This is for calculating the placement test result.
      * With full complexity this will require access to detailed scores so you can look at question tags (A2 etc)
@@ -892,9 +888,8 @@ EOD;
     }
 
     /**
-     * This picks up details on the session for Couloir
-     * sss#17
-     */
+     * These are Couloir functions but NOT called by CTPService (DPT) so are not called here
+     *
     public function getSession($sessionId) {
         $sql = <<<EOD
 			select s.* from T_Session s
@@ -911,6 +906,8 @@ EOD;
         }
         throw $this->copyOps->getExceptionForId("errorNoSession", array("id" => $sessionId));
     }
+    */
+
     /**
 	 * This method is called to insert a score record to the database 
 	 */

@@ -1,15 +1,13 @@
 <?php
 /**
- * Called from amfphp gateway from Flex
+ * Called from CTPGateway for DPT requests - will be obsolete once DPT folded into latest Couloir
  */
 require_once(dirname(__FILE__)."/BentoService.php");
 require_once(dirname(__FILE__)."/../../classes/TestOps.php");
 require_once(dirname(__FILE__)."/../../classes/UsageOps.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/ScheduledTest.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/context/ContextSession.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/TestSession.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/DPTConstants.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/session/SessionTrack.php");
 
 
 class CTPService extends BentoService {
@@ -354,6 +352,9 @@ class CTPService extends BentoService {
         return array();
     }
 
+    /**
+     * These are Couloir functions but NOT called by CTPGateway (DPT) so are not called here
+     *
     // sss#17 Which exercises has the user completed?
     public function getCoverage($sessionId) {
 
@@ -438,7 +439,7 @@ class CTPService extends BentoService {
         }
         return $unitsDone;
     }
-
+    */
 
     // ctp#60 Literals file for DPT
     public function getTranslations($lang) {

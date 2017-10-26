@@ -205,12 +205,12 @@ EOD;
         $expungeDate = $expungeDateStamp->modify('-1 day')->format('Y-m-d 23:59:59'); // minus one day
 
         $sql = <<<SQL
-			INSERT INTO T_LicenceHolders (F_KeyID, F_RootID, F_ProductCode, F_StartDateStamp, F_EndDateStamp, F_LicenceType)
+			INSERT INTO T_LicenceHolders (F_UserID, F_RootID, F_ProductCode, F_StartDateStamp, F_EndDateStamp)
 			VALUES (?, ?, ?, ?, ?)
 SQL;
 
         // We want to return the newly created F_LicenceID (or the SQL error)
-        $bindingParams = array($user->userID, $rootId, $productCode, $dateNow, $expungeDate, $licence->licenceType);
+        $bindingParams = array($user->userID, $rootId, $productCode, $dateNow, $expungeDate);
         $rs = $this->db->Execute($sql, $bindingParams);
         if ($rs) {
             $licenceId = $this->db->Insert_ID();
@@ -235,12 +235,12 @@ SQL;
         $expungeDate = $expungeDateStamp->modify('-1 day')->format('Y-m-d 23:59:59'); // minus one day
 
         $sql = <<<SQL
-			INSERT INTO T_LicenceHolders (F_KeyID, F_RootID, F_ProductCode, F_StartDateStamp, F_EndDateStamp, F_LicenceType)
+			INSERT INTO T_LicenceHolders (F_UserID, F_RootID, F_ProductCode, F_StartDateStamp, F_EndDateStamp)
 			VALUES (?, ?, ?, ?, ?)
 SQL;
 
         // We want to return the newly created F_LicenceID (or the SQL error)
-        $bindingParams = array($userId, $rootId, $productCode, $earliestDate, $expungeDate, $licence->licenceType);
+        $bindingParams = array($userId, $rootId, $productCode, $earliestDate, $expungeDate);
         $rs = $this->db->Execute($sql, $bindingParams);
         if ($rs) {
             $licenceId = $this->db->Insert_ID();
@@ -332,7 +332,7 @@ EOD;
         AbstractService::$debugLog->info("licences used since ".$licencePeriodAgo);
 		$sql = <<<EOD
 			SELECT * FROM T_LicenceHolders l
-			WHERE l.F_KeyID = ?
+			WHERE l.F_UserID = ?
 			AND l.F_StartDateStamp > ?
 EOD;
 
@@ -478,16 +478,16 @@ EOD;
         // gh#1230 How many licences have been used since the licence clearance date?
 		if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
 			$sql = <<<EOD
-				SELECT COUNT(l.F_KeyID) AS licencesUsed 
+				SELECT COUNT(l.F_UserID) AS licencesUsed 
 				FROM T_LicenceHolders l, T_User u
-				WHERE l.F_KeyID = u.F_UserID
+				WHERE l.F_UserID = u.F_UserID
 				AND l.F_StartDateStamp >= ?
 EOD;
 		} else {
 			// gh#604 Teacher records in session will now include root, so ignore them here
 			// gh#1228 But that ignores deleted/archived users, so revert
 			$sql = <<<EOD
-				SELECT COUNT(l.F_KeyID) AS licencesUsed 
+				SELECT COUNT(l.F_UserID) AS licencesUsed 
 				FROM T_LicenceHolders l
 				WHERE l.F_StartDateStamp >= ?
 EOD;
@@ -534,9 +534,9 @@ EOD;
 
         if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
             $sql = <<<EOD
-				SELECT COUNT(l.F_KeyID) AS licencesUsed 
+				SELECT COUNT(l.F_UserID) AS licencesUsed 
 				FROM T_LicenceHolders l, T_User u
-				WHERE l.F_KeyID = u.F_UserID
+				WHERE l.F_UserID = u.F_UserID
 				AND l.F_StartDateStamp >= ?
 EOD;
         } else {

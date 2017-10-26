@@ -167,11 +167,13 @@ class CopyOps {
      * This section for literals for couloir
      */
     /**
-     * TODO Need to read a couloir base, then overwrite specific titles on top
      * sss#155
      */
-    public function getLiteralsFromFile($lang, $productCode) {
+    public function getLiteralsFromFile($lang, $productCode = null) {
         switch ($productCode) {
+            case 67:
+                $code = 'b27';
+                break;
             case 66:
                 $code = 'sss';
                 break;
@@ -179,7 +181,7 @@ class CopyOps {
                 $code = 'ctp'; // TODO change this
                 break;
             default:
-                $code = null;
+                $code = $productCode;
         }
         if (!file_exists($this->getFilename('json', $code)))
             throw new Exception($this->getFilename('json', $code)." file not found");
