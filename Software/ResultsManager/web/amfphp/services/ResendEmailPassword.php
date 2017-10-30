@@ -32,7 +32,7 @@ function sendPasswordEmail($userInformation) {
 	//$pc = $userInformation['productCode'];
 	$licenceType = isset($userInformation['licenceType']) ? $userInformation['licenceType'] : null;
 	$loginOption = isset($userInformation['loginOption']) ? $userInformation['loginOption'] : null;
-	$templateID = isset($userInformation['templateID']) ? $userInformation['templateID'] : 'forgot_password';
+	$templateID = isset($userInformation['templateID']) ? $userInformation['templateID'] : null;
 
 	$users = $dmsService->manageableOps->getUserFromEmail($email, $licenceType);
 	if ($users) {
@@ -47,9 +47,30 @@ function sendPasswordEmail($userInformation) {
 				$passwordsMatch = false;
 		}
 		if ($passwordsMatch) {
-			$emailArray[] = array("to" => $users[0]->email, "data" => array("user" => $users[0], "loginOption" => $loginOption));
-								
+			// gh#1568 Which email template to use? Depends on the type of account if you didn't send it
+            if (is_null($templateID) && count($users) == 1) {
+                $account = $dmsService->manageableOps->getAccountFromUser($users[0]);
+
+                if ($account->id == 14030) {
+                    $templateID = "Global_R2I_forgot_password";
+                } elseif ($account->licenceType = Title::LICENCE_TYPE_I) {
+                    $templateID = "ieltspractice_forgot_password";
+                } else {
+                    $templateID = "forgot_password";
+                }
+            }
+            if (isset($userInformation['rootID']) && $userInformation['rootID']==14030) {
+                $templateID = "Global_R2I_forgot_password";
+            }
+            // If you retrieved many users and didn't say or we couldn't figure out which template you want...
+            if (is_null($templateID)) {
+                header('Content-Type: text/plain');
+                echo "&error=211&message=Email registered to multiple accounts";
+                return;
+            };
+
 			// Send the emails
+            $emailArray[] = array("to" => $users[0]->email, "data" => array("user" => $users[0], "loginOption" => $loginOption));
 			$dmsService->emailOps->sendEmails("Clarity support", $templateID, $emailArray);
 			// If you are just testing, display the email template on screen.
 			if ($returnURL != "") {
