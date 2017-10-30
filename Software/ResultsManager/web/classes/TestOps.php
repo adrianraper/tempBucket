@@ -148,7 +148,7 @@ SQL;
                 $test = new ScheduledTest($rs->FetchNextObj());
                 return ($test->startType == "code") ? $test->startData : $test->groupId;
             default:
-                return false;
+                return null;
         }
     }
 

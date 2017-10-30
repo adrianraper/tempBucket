@@ -70,7 +70,7 @@ try {
         default:
             headerDateWithStatusCode(500);
     }
-    echo json_encode(array("success" => false, "error" => array("literal" => $e->getMessage(), "code" => $e->getCode())));
+    echo json_encode(array("success" => false, "error" => array("message" => $e->getMessage(), "code" => (string) $e->getCode())));
 }
 
 // Note American spelling of license in these calls which is converted to British licence from here on in
@@ -85,8 +85,11 @@ function router($json) {
         $sids = array_map(function($token) use ($service) {return $service->authenticationCops->getSessionId($token);}, $json->tokens);
     }
 
-    if (isset($sids))
-        AbstractService::$debugLog->info("CSG ".$json->command." for [".implode(',', $sids)."] at ".$localTimestamp);
+    if (isset($sids)) {
+        AbstractService::$debugLog->info("CSG " . $json->command . " for [" . implode(',', $sids) . "] at " . $localTimestamp);
+    } else {
+        AbstractService::$debugLog->info("CSG call " . $json->command);
+    }
     switch ($json->command) {
         case "acquireLicenseSlots": return acquireLicenceSlots($json->tokens);
         case "releaseLicenseSlot": return releaseLicenceSlot($json->token, $json->timestamp);
