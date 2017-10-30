@@ -400,7 +400,7 @@ function router($json) {
             $loginObj["email"] = (isset($json->email)) ? $json->email : null;
             $loginObj["username"] = (isset($json->name)) ? $json->name : null;
             $loginObj["password"] = (isset($json->password)) ? $json->password : null;
-            return addUser($json->token, $loginObj);
+            return addUser($json->selfRegistrationToken, $loginObj);
         case "getTestResult": return getResult($json->token, $json->mode);
         case "scoreWrite": return scoreWrite($json->token, $json->score, $json->localTimestamp, $json->timezoneOffset);
         // sss#228
@@ -443,9 +443,9 @@ function getLoginConfig($productCode, $prefix, $ip, $ru) {
     return $service->getLoginConfig($productCode, $prefix, $ip, $ru);
 }
 // sss#177 Add a new user to a self-registering account
-function addUser($token, $loginObj) {
+function addUser($selfRegistrationToken, $loginObj) {
     global $service;
-    return $service->addUser($token, $loginObj);
+    return $service->addUser($selfRegistrationToken, $loginObj);
 }
 // sss#228 write memory for this user from the app
 function memoryWrite($token, $key, $value) {
