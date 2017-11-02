@@ -62,8 +62,14 @@ class HiddenContentTransform extends XmlTransform {
 					}
 					// If the UID doesn't match our menu.xml, just ignore it
 					// Otherwise set it and all its children to this eF
-					if ($node)
-						$this->propagateEnabledFlag($node[0], $eF);
+					if ($node) {
+                        // gh#1287 R2I Practice Zone exercises don't like eF=11, it has to be eF=8 to disable them
+                        if (($uidArray[0]==52 || $uidArray[0]==53) && count($uidArray)==4 && $eF==Content::CONTENT_DISABLED) {
+                            $this->forceEnabledFlag($node[0], $eF);
+                        } else {
+                            $this->propagateEnabledFlag($node[0], $eF);
+                        }
+                    }
 				}
 				
 				// Then go through the structure of the xml to see if all children in a node are hidden, in which case the node is too
@@ -95,7 +101,18 @@ class HiddenContentTransform extends XmlTransform {
 				$node->addAttribute($attributeName, intval($attributeValue));
 		}
 	}
-	
+
+	/**
+     * gh#1287 Force exercises in R2I to use enabledFlag = 8 for disable
+     */
+	private function forceEnabledFlag($node, $eF) {
+        if (isset($node['enabledFlag'])) {
+            $node['enabledFlag'] = intval($eF);
+        } else {
+            $node->addAttribute('enabledFlag', intval($eF));
+        }
+    }
+
 	/**
 	 * recursive function to set all child nodes to this enabledFlag
 	 */
