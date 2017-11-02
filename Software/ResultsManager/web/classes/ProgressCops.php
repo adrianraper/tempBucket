@@ -193,8 +193,8 @@ SQL;
         $rs = $this->db->GetArray($sql, $bindingParams);
 
         return $rs;
-
     }
+
     /**
      * Get summary of progress at the unit level
      * Cap durations of each exercise at one hour (3600 seconds)

@@ -734,14 +734,15 @@ EOD;
         $exercises = $this->progressCops->getExercisesCompleted($session);
 
         // Format: detail each exercise that has been completed
+        // sss#214 a score of -1 means it was not marked. The app wants this as null
         $exercisesDone = array();
-        foreach ($exercises as $exercise)
+        foreach ($exercises as $exercise) {
             $exercisesDone[] = ['exerciseId' => $exercise['F_ExerciseID'],
-                                'scorePercent' => intval($exercise['F_Score']),
-                                'date' => $exercise['F_DateStamp'],
-                                'duration' => intval($exercise['F_Duration'])
-                                ];
-
+                'scorePercent' => (intval($exercise['F_Score']) >= 0) ? intval($exercise['F_Score']) : null,
+                'date' => $exercise['F_DateStamp'],
+                'duration' => intval($exercise['F_Duration'])
+            ];
+        }
         return $exercisesDone;
     }
     // sss#17 For each unit that the user had worked on, summarise the progress
