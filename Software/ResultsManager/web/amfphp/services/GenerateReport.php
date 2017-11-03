@@ -149,7 +149,7 @@ $reportType = (isset($reportType)) ? $reportType : ($template == "DPTSummary") ?
 $reportDom = $clarityService->getReport($onReportablesIDObjects, $onClass, $forReportablesIDObjects, $forClass, $opts, $reportType);
 // AR If I want to see the XML before it gets processed?
 //$reportDom->formatOutput = true; 
-header("Content-Type: text/xml; charset=utf-8"); echo $reportDom->saveXML(); exit(0);
+//header("Content-Type: text/xml; charset=utf-8"); echo $reportDom->saveXML(); exit(0);
 //header("Content-Type: text/xml; charset=utf-8"); echo utf8_encode($reportDom->saveXML()); exit(0);
 //header("Content-Type: text/xml; charset=utf-8"); echo htmlspecialchars($reportDom->saveXML(), ENT_COMPAT, 'UTF-8'); exit(0);
 

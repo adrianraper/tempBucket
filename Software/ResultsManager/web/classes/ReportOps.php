@@ -204,7 +204,7 @@ EOD;
             $sql = $reportBuilder->buildReportSQL();
         }
         // Debug if you want to see the SQL that will be executed to get data for the report
-		//echo $sql.'<br/>'; exit();
+		echo $sql.'<br/>'; exit();
 		$rows = $this->db->GetArray($sql);
 
 		// gh#1523 Now is the time to blank out the scores for anyone who completed the test but has no licence
@@ -947,12 +947,13 @@ SQL;
 		    }
 		} else {
 			// gh#28
-			if (isset($row['exerciseUnit_percentage'])) {
+			if (isset($row['exerciseUnit_percentage']) && isset($title->courses)) {
 				$total = 0;
 				foreach ($title->courses as $course)
 					foreach ($course->units as $unit)
 						$total = $total + $unit->totalExercises;
-				$row['exerciseUnit_percentage'] =  100 * $row['exerciseUnit_percentage'] / $total;
+				if ($total > 0)
+				    $row['exerciseUnit_percentage'] = 100 * $row['exerciseUnit_percentage'] / $total;
 		    }
 		}
 		

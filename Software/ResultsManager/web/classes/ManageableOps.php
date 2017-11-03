@@ -2091,7 +2091,25 @@ EOD;
 		
 		return $subGroupIDs;
 	}
-	
+    // This to just try and quickly get subgroups from SQL - NOT recursive
+    public function getSubgroupsOfThisGroup($startGroupID) {
+        $subGroupIDs = array();
+        $sql = <<<EOD
+				SELECT F_GroupID
+				FROM T_Groupstructure
+				WHERE F_GroupParent = ?
+				AND F_GroupParent <> F_GroupID
+EOD;
+        $groupRS = $this->db->Execute($sql, array($startGroupID));
+        if ($groupRS->recordCount() > 0) {
+            foreach ($groupRS->GetArray() as $group) {
+                $subGroupIDs[] = $group['F_GroupID'];
+            }
+        }
+
+        return $subGroupIDs;
+    }
+
 	// Count the users in these groups
 	public function countUsersInGroup($groupsArray) {
 		// Get all subgroup IDs
