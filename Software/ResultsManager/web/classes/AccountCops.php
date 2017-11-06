@@ -49,7 +49,6 @@ class AccountCops {
             if (!$rootId) {
                 throw $this->copyOps->getExceptionForId("errorNoPrefixForRoot", array("prefix" => $prefix));
             }
-            // TODO We could do any licence control for IP and RU at this point, then no need for app to worry about it
         } else {
             // gh#315 Allow lookup for IP
             if ($ip) {
@@ -67,6 +66,27 @@ class AccountCops {
 
         $account = $this->getBentoAccount($rootId, $productCode);
         $account->addLicenceAttributes($this->getAccountLicenceDetails($rootId, null, $productCode));
+
+        // sss#285 IP and RU licence control
+        // If this account has IP control, match and accept or kick ou
+        if ($account->licenceAttributes) {
+            foreach ($account->licenceAttributes as $thisLicenceAttribute) {
+                if ($thisLicenceAttribute['licenceKey'] == 'IPrange') {
+                    if ($thisLicenceAttribute['productCode'] == '' || stristr($thisLicenceAttribute['productCode'], $productCode) !== false) {
+                        if (!$this->isIPInRange($ip, $thisLicenceAttribute['licenceValue'])) {
+                            throw $this->copyOps->getExceptionForId("errorIPDoesntMatch", array("ip" => $ip));
+                        }
+                    }
+                }
+                if ($thisLicenceAttribute['licenceKey'] == 'RUrange') {
+                    if ($thisLicenceAttribute['productCode'] == '' || stristr($thisLicenceAttribute['productCode'], $productCode) !== false) {
+                        if (!$this->isRUInRange($ru, $thisLicenceAttribute['licenceValue'])) {
+                            throw $this->copyOps->getExceptionForId("errorRUDoesntMatch", array("referrer" => ($ru) ? $ru : 'untraceable'));
+                        }
+                    }
+                }
+            }
+        }
 
         // sss#128
         $account->titles[0]->contentLocation = $this->getTitleContentLocation($productCode, $account->titles[0]->languageCode);
@@ -323,7 +343,26 @@ EOD;
 		}
 		return false;
 	}
-	
+    /*
+     * Will check if a single referrer matches anything in a list
+     * TODO Could make the patterns regex if that gave any benefit
+     */
+    private function isRUInRange($ru, $ruList) {
+        // Build an array of accepted ru patterns
+        $ruPatterns = explode(',', $ruList);
+
+        // Is there a direct match?
+        foreach ($ruPatterns as $ruPattern) {
+            if (stristr($ru, $ruPattern) !== false) {
+                return true;
+            }
+        }
+
+        // If not, is protocol or www bit getting in the way?
+
+        return false;
+    }
+
 	/**
 	 * Get an account when you know the user
 	 */
@@ -395,8 +434,47 @@ EOD;
         }
     }
     /*
-     * This is a simple version of ActionScript escape function
+     * sss#285 Pick up the client's ip and ru from the request
      */
+    public function getIP() {
+        $ip = null;
+        // v6.5.6 Add support for HTTP_X_FORWARDED_FOR
+        if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            // This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
+            // Not always it doesn't. So need to send the whole list to the licence checking algorithm. Better send as a list than an array.
+            //$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
+            //$ip = $ipList[0];
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_TRUE_CLIENT_IP'];
+        } elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
+            $ip = $_SERVER["HTTP_CLIENT_IP"];
+        } else {
+            $ip = $_SERVER["REMOTE_ADDR"];
+        }
+
+        //added by sky for Bento
+        $ip = str_replace(" ", "", $ip);
+        return $ip;
+    }
+    public function getRU() {
+        $referrer = null;
+        // it is dangerous to send the whole referrer as you might get confused with parameters (specifically content)
+        if (isset($_SERVER['HTTP_REFERER'])) {
+            if (strpos($_SERVER['HTTP_REFERER'], '?')) {
+                $referrer = substr($_SERVER['HTTP_REFERER'], 0, strpos($_SERVER['HTTP_REFERER'], '?'));
+            } else {
+                $referrer = $_SERVER['HTTP_REFERER'];
+            }
+        } else if (isset($_SESSION['Referer'])) {
+            $referrer = $_SESSION['Referer'];
+        }
+        return $referrer;
+    }
+
+/*
+ * This is a simple version of ActionScript escape function
+ */
     private function actionscriptEscape($text) {
         $needles = array('_','-','.');
         $replaces = array('%5F','%2D','%2E');

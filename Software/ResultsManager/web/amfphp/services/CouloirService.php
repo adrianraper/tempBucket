@@ -87,8 +87,13 @@ class CouloirService extends AbstractService {
     }
     /*
      * Find an account that matches a prefix, IP or RU range.
+     * sss#285 The ip is picked up by the server, not sent from client
      */
-    public function getLoginConfig($productCode, $prefix, $ip, $ru) {
+    public function getLoginConfig($productCode, $prefix) {
+
+        // Pick up the ip and ru, if any, of the client
+        $ip = $this->accountCops->getIP();
+        $ru = $this->accountCops->getRU();
 
         $account = $this->accountCops->getAccount($productCode, $prefix, $ip, $ru);
 
@@ -166,8 +171,11 @@ class CouloirService extends AbstractService {
                         "selfRegistrationToken" => ($account->selfRegister > 0) ? $selfRegToken : null,
                         "contentName" => $account->titles[0]->contentLocation,
                         "licenseType" => $licenceType);
-        if (isset($account->id))
+        // sss#288
+        if (isset($account->id)) {
             $config["rootId"] = intval($account->id);
+            $config["institutionName"] = $account->name;
+        }
 
         return $config;
     }
