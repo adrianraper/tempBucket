@@ -11,7 +11,7 @@
         "Login": "Login",
         "Logout": "Logout",
         "EmptyLogin": "Please type your email and password.",
-        "IncorrectLogin": "Your email or password are wrong. Please try again.",
+        "IncorrectLogin": "Your email or password is wrong. Please try again.",
         "ConnectToInternet": "You need to connect to the internet in order to continue.",
         "OnlineModeWarning": "You are running the in online mode. Make sure you have a good connection.",
         "Downloading": "Downloading",
@@ -32,11 +32,15 @@
         "Back": "Back",
         "Submit": "Submit",
         "Finish": "Finish",
-        "ClickAnswersForFeedback": "Click on the answers to show feedback.",
         "LearningObjectives": "Learning Objectives",
         "WatchVideo": "Watch the introduction video",
         "IntroductionVideo": "Introduction video",
-        "StartPractice": "Start the practice"
+        "StartPractice": "Start learning!",
+	      "NoProgress": "Progress Report is not available for users using Anonymous Access. If you would like to check your learning progress, please create a personal account at the sign-in page.",
+        "CompletionAmount": "{completion} of {total} completed",
+      	"Worksheet": "Worksheet",
+        "VideoTranscript": "Video transcripts",
+        "AudioTranscript": "Audio transcripts"
       }
     }
   ]

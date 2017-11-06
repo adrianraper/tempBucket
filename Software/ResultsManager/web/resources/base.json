@@ -20,7 +20,7 @@
         "Start": "Start",
         "OnlineModeWarning": "You are running the test in online mode.  Make sure you have good connection.",
         "DeviceUnsupported": "You need a different device to take the test. Check with your test adminstrator.",
-        "LoginCaption": "Sign in with your ClarityEnglish account.",
+        "LoginCaption": "Sign in with your ClarityEnglish account",
         "ForgotPassword": "Forgot your password?",
         "CreatAccount": "Create an account",
         "AnonymousLoginCaption": "Just practice",
@@ -40,7 +40,7 @@
         "Marking": "Marking",
         "Previous": "Previous",
         "Next": "Next",
-        "Question": "Question",
+        "Questions": "Questions",
         "Article": "Article",
         "MarkingResult": "You got {correctRate} in this exercise.",
         "Correct": "Correct {correctCount}",
@@ -63,13 +63,14 @@
         "IncorrectQuestions": "You need to answer all questions correctly.",
         "DirtyExercise": "Are you sure? You will lose any work you have done in this exercise.",
         "UnreadExerciseFeedback": "This exercise has feedback you haven't read.  Do you want to read it?",
-        "ClickAnswersForFeedback": "Click on the answers to show feedback.",
+        "ClickAnswersForFeedback": "Click on the answers to see feedback.",
         "LearningObjectives": "Learning Objectives",
         "WatchVideo": "Watch the introduction video",
         "IntroductionVideo": "Introduction video",
-        "StartPractice": "Start the practice",
+        "StartPractice": "Start learning!",
         "CompareCaption": "Shows your average score in a unit compared to everyone",
-        "AnalysisCaption": "Time spent in each unit"
+        "AnalysisCaption": "Time spent in each unit",
+        "ExerciseLoadError": "A problem occurred whilst loading this exercise.  Clarity have been informed of the issue."
       }
     },
     {
