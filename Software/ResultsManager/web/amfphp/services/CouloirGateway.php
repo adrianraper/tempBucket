@@ -12,9 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 $json = json_decode(file_get_contents('php://input'));
 /**
  * Pretend to pass variables for easier debugging
-$json = json_decode('{"command":"getLoginConfig","productCode":"66","prefix":"xxClarity", "appVersion":"1.0.0"}');
+
 $json = json_decode('{"command":"scoreWrite","appVersion":"0.9.14","score":{"uid":"66.2017066000000.2017066060000.2017066060201","exerciseScore":{"questionScores":[{"id":"58256e35-1852-4e0c-ae82-c068546c0dd1","questionType":"MultipleChoiceQuestion","state":{"answerIdxToStringMap":["Yes","No"],"selectedAnswerIdxs":[1]},"scores":[1],"mark":{"correctCount":1,"incorrectCount":0,"missedCount":0},"answerTimestamp":1508914741802,"tags":[]},{"id":"63714645-e117-43ae-ab5a-a63aebec05df","questionType":"MultipleChoiceQuestion","state":{"answerIdxToStringMap":["Yes","No"],"selectedAnswerIdxs":[]},"scores":[null],"mark":{"correctCount":0,"incorrectCount":0,"missedCount":1},"answerTimestamp":null,"tags":[]},{"id":"9c115863-9da6-486b-ba04-3d818c9975a4","questionType":"MultipleChoiceQuestion","state":{"answerIdxToStringMap":["Yes","No"],"selectedAnswerIdxs":[]},"scores":[null],"mark":{"correctCount":0,"incorrectCount":0,"missedCount":1},"answerTimestamp":null,"tags":[]},{"id":"ae3444a2-c5f0-4227-8768-29f5d2ab66bc","questionType":"MultipleChoiceQuestion","state":{"answerIdxToStringMap":["Yes","No"],"selectedAnswerIdxs":[]},"scores":[null],"mark":{"correctCount":0,"incorrectCount":0,"missedCount":1},"answerTimestamp":null,"tags":[]},{"id":"cbd54a2c-c224-4b07-a111-cd9ad90680b9","questionType":"MultipleChoiceQuestion","state":{"answerIdxToStringMap":["Yes","No"],"selectedAnswerIdxs":[]},"scores":[null],"mark":{"correctCount":0,"incorrectCount":0,"missedCount":1},"answerTimestamp":null,"tags":[]},{"id":"6e2b5687-ddfb-4568-8f5c-1b64b7e3a3b9","questionType":"MultipleChoiceQuestion","state":{"answerIdxToStringMap":["Yes","No"],"selectedAnswerIdxs":[]},"scores":[null],"mark":{"correctCount":0,"incorrectCount":0,"missedCount":1},"answerTimestamp":null,"tags":[]},{"id":"542103f2-75ab-4b17-ade4-b39b57d5724f","questionType":"MultipleChoiceQuestion","state":{"answerIdxToStringMap":["Yes","No"],"selectedAnswerIdxs":[]},"scores":[null],"mark":{"correctCount":0,"incorrectCount":0,"missedCount":1},"answerTimestamp":null,"tags":[]},{"id":"4751fd3b-8f24-47ee-ae5d-5e52574831db","questionType":"MultipleChoiceQuestion","state":{"answerIdxToStringMap":["Yes","No"],"selectedAnswerIdxs":[]},"scores":[null],"mark":{"correctCount":0,"incorrectCount":0,"missedCount":1},"answerTimestamp":null,"tags":[]}],"exerciseMark":{"correctCount":1,"incorrectCount":0,"missedCount":7},"duration":25615,"submitTimestamp":1508914751725},"anomalies":{}},"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwODkxNDY5Nywic2Vzc2lvbklkIjoiMzk3In0.ur1eizKEOX6tLoNc1wSkiI9M-pqEetou-YU380RRajQ",
   "localTimestamp":1508914759727,"timezoneOffset":-480}');
+$json = json_decode('{"command":"getLoginConfig","productCode":"66","prefix":"Clarity","appVersion":"1.0.0"}');
 $json = json_decode('{"command":"memoryWrite","key":"gettingStartedVideos","value":"[{unit:speaking, video:true}]", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwODIxMjExMSwic2Vzc2lvbklkIjoiMzc0In0.Pf4icYhhIz_VmBnmVQL8DHmUaAb-rLXfB_QNZCV7Do4"}');
 $json = json_decode('{"command":"memoryWrite","key":"dob","value":"2017-12-31", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwODIxMjExMSwic2Vzc2lvbklkIjoiMzc0In0.Pf4icYhhIz_VmBnmVQL8DHmUaAb-rLXfB_QNZCV7Do4"}');
 $json = json_decode('{"command":"memoryClear","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwODIxMjExMSwic2Vzc2lvbklkIjoiMzc0In0.Pf4icYhhIz_VmBnmVQL8DHmUaAb-rLXfB_QNZCV7Do4"}');
@@ -339,6 +340,9 @@ try {
         case 303:
         case 304:
         case 306:
+        case 311:
+        case 312:
+        case 313:
             // sss#256 These are the exceptions that are handled by the backend in some way
             // Send back http header 200, but with failure in the JSON
             //headerDateWithStatusCode(401);
