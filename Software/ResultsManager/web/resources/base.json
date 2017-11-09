@@ -42,6 +42,7 @@
         "Next": "Next",
         "Questions": "Questions",
         "Article": "Article",
+        "Topic": "Topic",
         "MarkingResult": "You got {correctRate} in this exercise.",
         "Correct": "Correct {correctCount}",
         "Incorrect": "Incorrect {incorrectCount}",
