@@ -1524,7 +1524,7 @@ DELETE FROM T_ProductLanguage WHERE F_ProductCode = 65;
 DELETE FROM T_ProductLanguage WHERE F_ProductCode = 66;
 INSERT INTO `T_ProductLanguage` VALUES 
 (65,'DE','de'),
-(66,'NAMEN','sss-namerican'),
+(66,'NAMEN','sss-na'),
 (66,'EN','sss');
 
 DELETE FROM T_ProductVersion WHERE F_ProductCode = 65;
