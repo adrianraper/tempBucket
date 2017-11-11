@@ -18,13 +18,13 @@
         "Submit": "Submit",
         "Finish": "Finish",
         "Start": "Start",
-        "OnlineModeWarning": "You are running the test in online mode.  Make sure you have good connection.",
+        "OnlineModeWarning": "You are running the test in online mode. Make sure you have good connection.",
         "DeviceUnsupported": "You need a different device to take the test. Check with your test adminstrator.",
         "LoginCaption": "Sign in with your ClarityEnglish account",
         "ForgotPassword": "Forgot your password?",
         "CreatAccount": "Create an account",
         "AnonymousLoginCaption": "Just practice",
-        "License": "Licensed to Clarity Language Consultants Ltd",
+        "License": "Licensed to {institutionName}",
         "Uploading": "Uploading",
         "Done": "Done",
         "ShowTheAnswers": "Show the answers",
@@ -63,7 +63,7 @@
         "NotAnsweredQuestions": "You have missed a question.|You have not answered {count} questions.",
         "IncorrectQuestions": "You need to answer all questions correctly.",
         "DirtyExercise": "Are you sure? You will lose any work you have done in this exercise.",
-        "UnreadExerciseFeedback": "This exercise has feedback you haven't read.  Do you want to read it?",
+        "UnreadExerciseFeedback": "This exercise has feedback you haven't read. Do you want to read it?",
         "ClickAnswersForFeedback": "Click on the answers to see feedback.",
         "LearningObjectives": "Learning Objectives",
         "WatchVideo": "Watch the introduction video",
@@ -71,7 +71,8 @@
         "StartPractice": "Start learning!",
         "CompareCaption": "Shows your average score in a unit compared to everyone",
         "AnalysisCaption": "Time spent in each unit",
-        "ExerciseLoadError": "A problem occurred whilst loading this exercise.  Clarity have been informed of the issue."
+        "ExerciseLoadError": "A problem occurred whilst loading this exercise. Clarity have been informed of the issue.",
+        "ForgotPasswordLink": "https://www.clarityenglish.com/support/forgotPassword.php"
       }
     },
     {
