@@ -148,6 +148,10 @@ class CouloirService extends AbstractService {
             case Title::LICENCE_TYPE_NETWORK:
             default:
                 $licenceType = "aa";
+                // sss#132 Most aa licences let you self-register
+                if ($account->titles[0]->loginModifier != Title::SIGNIN_BLOCKED) {
+                    $account->selfRegister = 128;
+                }
                 break;
         }
         // sss#177 For self register, send a token if it is allowed. The app can pass this to an all purpose webpage.
