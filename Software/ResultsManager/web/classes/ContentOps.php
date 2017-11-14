@@ -1141,6 +1141,7 @@ EOD;
 				case ($pid == 63): 
 				case ($pid == 64): 
 				case ($pid == 66):
+				case ($pid == 67):
 					$courseType = 'couloir';
 					$titleObj->indexFile = "course.xml";
 					break;
