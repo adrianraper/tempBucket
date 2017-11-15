@@ -14,6 +14,7 @@ set_time_limit(360);
 try {
     // Pick up the passed data
     $testId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_ENCODED);
+    AbstractService::$debugLog->info("CPS call testId=" . $testId);
     if ($testId) {
         $json = json_decode('{"command":"getCode","testId":'.$testId.'}');
         echo router($json);

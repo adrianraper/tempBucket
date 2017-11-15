@@ -24,6 +24,12 @@ set_time_limit(360);
 // Pick up the current time and convert as if it came from app (microseconds)
 $utcDateTime = new DateTime();
 $utcTimestamp = $utcDateTime->format('U')*1000;
+
+// sss#257 Cope with old DPT content server calls
+$oldTestId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_ENCODED);
+if (isset($oldTestId))
+    AbstractService::$debugLog->info("old SPS call for id=$oldTestId");
+
 try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
@@ -38,6 +44,7 @@ try {
     if (!$json)
         throw new Exception("Empty request");
 
+    AbstractService::$debugLog->info("CSG-staging call ".json_encode($json));
     $jsonResult = router($json);
 
     AbstractService::$debugLog->info("CSG return ".json_encode($jsonResult));
