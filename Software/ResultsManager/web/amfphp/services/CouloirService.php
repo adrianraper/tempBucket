@@ -184,10 +184,6 @@ class CouloirService extends AbstractService {
                         "selfRegistrationToken" => ($selfRegister > 0) ? $selfRegToken : null,
                         "licenseType" => $licenceType,
                         "account" => $returnAccount);
-        // Temporary until rootId moved in client
-        if (isset($account->id)) {
-            $config["rootId"] = intval($account->id);
-        }
         return $config;
     }
     /*
@@ -243,6 +239,8 @@ class CouloirService extends AbstractService {
 
             // sss#152 now that we know an account, we must check the validity of the title
             $foundAccount = $this->accountCops->getBentoAccount($rootId, $productCode);
+            // sss#128
+            $foundAccount->titles[0]->contentLocation = $this->accountCops->getTitleContentLocation($productCode, $foundAccount->titles[0]->languageCode);
         }
 
         // Check on hidden content at the product level for this group
@@ -299,7 +297,6 @@ class CouloirService extends AbstractService {
         }
 
         // sss#304 Return an account if login had to look one up
-        /*
         if (isset($foundAccount)) {
             // Remove other titles
             $foundAccount->titles = array_filter($foundAccount->titles, function ($title) use ($productCode) {
@@ -314,7 +311,6 @@ class CouloirService extends AbstractService {
         } else {
             $rc["account"] = null;
         }
-        */
         return $rc;
     }
 
