@@ -473,23 +473,35 @@ EOD;
 	 * Count the number of used licences for this root / product since the clearance date
 	 */
 	function countUsedLicences($rootID, $productCode, $licence) {
+	    // sss#290 Include couloir licence control
+        $title = new Title();
+        $title->productCode = $productCode;
+        if ($title->isTitleCouloir()) {
+            $licenceTableName = 'T_CouloirLicenceHolders';
+            $keyFieldName = 'F_KeyID';
+        } else {
+            $licenceTableName = 'T_LicenceHolders';
+            $keyFieldName = 'F_UserID';
+        }
+        $dateFieldName = 'F_StartDateStamp';
+
 		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
 		// v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
         // gh#1230 How many licences have been used since the licence clearance date?
 		if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
 			$sql = <<<EOD
-				SELECT COUNT(l.F_UserID) AS licencesUsed 
-				FROM T_LicenceHolders l, T_User u
-				WHERE l.F_UserID = u.F_UserID
-				AND l.F_StartDateStamp >= ?
+				SELECT COUNT(l.$keyFieldName) AS licencesUsed 
+				FROM $licenceTableName l, T_User u
+				WHERE l.$keyFieldName = u.F_UserID
+				AND l.$dateFieldName >= ?
 EOD;
 		} else {
 			// gh#604 Teacher records in session will now include root, so ignore them here
 			// gh#1228 But that ignores deleted/archived users, so revert
 			$sql = <<<EOD
-				SELECT COUNT(l.F_UserID) AS licencesUsed 
-				FROM T_LicenceHolders l
-				WHERE l.F_StartDateStamp >= ?
+				SELECT COUNT(l.$keyFieldName) AS licencesUsed 
+				FROM $licenceTableName l
+				WHERE l.$dateFieldName >= ?
 EOD;
 		}
 		
@@ -794,7 +806,8 @@ EOD;
 
 		// gh#1230
         $account = $this->accountOps->getBentoAccount($rootID, $productCode);
-        if ($account->useOldLicenceCount) {
+        // sss#290 Override if this is a Couloir title as must be new licence handling
+        if ($account->useOldLicenceCount && !$title->isTitleCouloir()) {
             $count = $this->countUsedOldStyleLicences($rootID, $productCode, $licence);
         } else {
             $count = $this->countUsedLicences($rootID, $productCode, $licence);
@@ -894,6 +907,7 @@ EOD;
 	}
 
 	// gh#1211 To allow old and new versions of titles to be counted together for licences and usage
+    // sss#314 we can't mix old and new SSS as different licence control. Will need to migrate records instead.
 	public function getOldProductCode($pc) {
 		switch ($pc) {
 			case 52:

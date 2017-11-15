@@ -1150,8 +1150,7 @@ EOD;
 					$titleObj->indexFile = "menu-FullVersion.xml";
 					break;
 				}
-				//AbstractService::$debugLog->err("$pid menu is ".$folder."/".$titleObj->indexFile. " is $courseType");
-				
+
 				// Build the title object (if the course.xml file doesn't exist then just skip it. However, if we are in $forDMS
 				// mode then this is DMS and we want to display everything, even if course.xml doesn't exist.
 				//NetDebug::trace("get content from =".$folder."/".$titleObj->indexFile);
@@ -1688,6 +1687,8 @@ EOD;
 	private function _createTitleFromObj($titleObj) {
 		$title = new Title();
 		$title->fromDatabaseObj($titleObj);
+        // sss#290 Set the title id to the productCode
+        $title->id = $title->getIDForIDObject();
 		return $title;
 	}
 

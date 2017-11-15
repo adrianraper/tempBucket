@@ -342,6 +342,7 @@ EOD;
     }
 
     /**
+     * TODO Couloir Gateway will not be called for any title that can use old style licences, no remove this
      *
      * Does this user already have a licence for this product?
      * Change to use T_Session for tracking licence use
@@ -552,7 +553,7 @@ EOD;
 				SELECT COUNT(l.F_KeyID) AS licencesUsed 
 				FROM T_CouloirLicenceHolders l, T_User u
 				WHERE l.F_KeyID = u.F_UserID
-				AND l.F_EndDateStamp >= ?
+				AND l.F_StartDateStamp >= ?
 EOD;
         } else {
             // gh#604 Teacher records in session will now include root, so ignore them here
@@ -560,7 +561,7 @@ EOD;
             $sql = <<<EOD
 				SELECT COUNT(l.F_KeyID) AS licencesUsed 
 				FROM T_CouloirLicenceHolders l
-				WHERE l.F_EndDateStamp >= ?
+				WHERE l.F_StartDateStamp >= ?
 EOD;
         }
 

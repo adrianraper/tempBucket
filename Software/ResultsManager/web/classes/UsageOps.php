@@ -189,11 +189,18 @@ EOD;
 		return $rs;
 	}
 	/* 
-	 * v3.5 For AA usage stats 
+	 * v3.5 For AA usage stats
+	 * Note, used for ALL usage stats, not just AA
 	 *
 	 */
 	private function getAASessionCounts($title, $fromDate, $toDate) {
-		
+
+	    // sss#290
+        if ($title->isTitleCouloir()) {
+            $tableName = 'T_SessionTrack';
+        } else {
+            $tableName = 'T_Session';
+        }
 		// For HCT aggregated results, include all roots
 		$rootID = Session::get('rootID');
 		if ($rootID == 14292)
@@ -255,7 +262,7 @@ EOD;
 			// needs to be '2014-01-01' which will be fine for MySQL too.
 			$sql = <<<EOD
 					select count(F_SessionID) sessionCount, $sqldatemonth month
-					from T_Session
+					from $tableName
 					where F_StartDateStamp>='$i-01-01'
 					and F_StartDateStamp<'$j-01-01'
 EOD;
@@ -328,21 +335,27 @@ EOD;
 		// v3.7 For Bento titles, courseID is NOT part of session, so you have to join session and score, sadly
 		// v3.7 we changed ss.F_Duration to sc.F_Duration for it lead the numbers of one exercises mutiply ss.F_Duration
         $titleId = intval($title->productCode);
-		if ($titleId > 50) {
+        // sss#290 Couloir titles use T_SessionTrack
+        if ($title->isTitleCouloir()) {
+            $sessionTableName = 'T_SessionTrack';
+        } else {
+            $sessionTableName = 'T_Session';
+        }
+        if ($titleId > 50) {
 			$sql = 	<<<EOD
 				SELECT sc.F_CourseID courseID, COUNT(sc.F_SessionID) courseCount, SUM(sc.F_Duration) duration
-				FROM T_Session ss, T_Score sc
+				FROM $sessionTableName ss, T_Score sc
 				WHERE ss.F_ProductCode= ?
 				AND ss.F_RootID = ?
+				AND ss.F_SessionID = sc.F_SessionID
 				AND ss.F_StartDateStamp >= ?
 				AND ss.F_StartDateStamp <= ?
-				AND ss.F_SessionID = sc.F_SessionID
 				GROUP BY sc.F_CourseID;
 EOD;
 		} else {
 			$sql = 	<<<EOD
 				SELECT F_CourseID courseID, COUNT(ss.F_SessionID) courseCount, SUM(ss.F_Duration) duration
-				FROM T_Session ss
+				FROM $sessionTableName ss
 				WHERE ss.F_ProductCode=?
 				AND ss.F_RootID = ?
 				AND ss.F_StartDateStamp >= ?
@@ -618,7 +631,12 @@ EOD;
         
 		$fromDateStamp = $fromDate;
 		$toDateStamp = $toDate;
-		
+        // sss#290
+        if ($title->isTitleCouloir()) {
+            $tableName = 'T_SessionTrack';
+        } else {
+            $tableName = 'T_Session';
+        }
 		// For HCT aggregated results, include all roots
 		$rootID = Session::get('rootID');
 		if ($rootID == 14292)
@@ -627,11 +645,12 @@ EOD;
 		// Tidy up the two SQL statements into one, with the HCT aggregated result
 		$secondsLimit = 10800; // 3 hours
         // gh#1396 Change SQL for sqlite compatibility
+        // sss#290 Course id is not used in any way
+        // This is simply different dates that getCourseCounts total...
         $sql = <<<EOD
-            SELECT F_CourseID courseID,
-                COUNT(ss.F_SessionID) as totalCourse,
+            SELECT COUNT(ss.F_SessionID) as totalCourse,
                 SUM(CASE WHEN ss.F_Duration>$secondsLimit THEN $secondsLimit ELSE ss.F_Duration END) as totalDuration
-            FROM T_Session ss
+            FROM $tableName ss
             WHERE ss.F_StartDateStamp >= ?
             AND ss.F_StartDateStamp <= ?
 EOD;

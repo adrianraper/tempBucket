@@ -78,6 +78,18 @@ class Title extends Content {
 		}
 		
 	}
+	public function isTitleCouloir() {
+        switch ($this->productCode) {
+            case 63:
+            case 66:
+            case 67:
+                return true;
+                break;
+            default:
+                return false;
+        }
+    }
+
 	/**
 	 * Get the array of objects that make up a report if a report is generated on this Title
 	 */
