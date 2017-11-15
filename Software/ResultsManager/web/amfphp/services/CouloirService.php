@@ -4,7 +4,7 @@
  */
 require_once(dirname(__FILE__)."/AbstractCouloirService.php");
 require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
-require_once(dirname(__FILE__)."/../../classes/TestOps.php");
+require_once(dirname(__FILE__)."/../../classes/TestCops.php");
 require_once(dirname(__FILE__)."/../../classes/UsageCops.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
@@ -52,7 +52,7 @@ class CouloirService extends AbstractService {
         // TODO This should be obsolete
         AbstractService::$title = "ctp";
 
-        $this->testOps = new TestOps($this->db);
+        $this->testCops = new TestCops($this->db);
         $this->progressCops = new ProgressCops($this->db);
         $this->usageCops = new UsageCops($this->db);
         $this->manageableOps = new ManageableOps($this->db);
@@ -67,7 +67,7 @@ class CouloirService extends AbstractService {
     public function changeDB($dbHost) {
         $this->changeDbHost($dbHost);
 
-        $this->testOps = new TestOps($this->db);
+        $this->testCops = new TestCops($this->db);
         $this->progressCops = new ProgressCops($this->db);
         $this->usageCops = new UsageCops($this->db);
         $this->manageableOps = new ManageableOps($this->db);
@@ -95,92 +95,99 @@ class CouloirService extends AbstractService {
         $ip = $this->accountCops->getIP();
         $ru = $this->accountCops->getRU();
 
+        // Find the account, if one matches
         $account = $this->accountCops->getAccount($productCode, $prefix, $ip, $ru);
 
         // gh#315 If no account and you didn't throw an exception, just means we can't find it from partial parameters
         // gh#1561 For consistency we should still alert this with an exception
         // sss#152 Return default parameters so that the app can go to personal signin
+        // sss#304
         if (!$account) {
             //throw $this->copyOps->getExceptionForId("errorNoAccountFound");
-            $account = new Account();
-            $title = new Title();
-            $title->licenceType = Title::LICENCE_TYPE_TT;
-            $title->languageCode = 'EN';
-            $title->contentLocation = $this->accountCops->getTitleContentLocation($productCode, $title->languageCode);
-            $account->addTitles(array($title));
-            $account->loginOption = 128;
-            $account->verified = true;
-            $account->selfRegister = 0;
-        }
+            $returnAccount = null;
+            $loginOption = "email";
+            $verified = true;
+            $selfRegister = 0;
+            $licenceType = "lt";
 
-        // gh#315 Can only cope with one title, and tablet login by IP might find an account with 2
-        if (count($account->titles) > 1) {
-            $account->titles = array(reset($account->titles));
-        }
-
-        // sss#224
-        if ($account->titles[0]->loginModifier == Title::SIGNIN_BLOCKED
-            && $account->titles[0]->licenceType == Title::LICENCE_TYPE_AA) {
-            $loginOption = "none";
         } else {
-            switch ($account->loginOption) {
-                case 8:
-                    $loginOption = "id";
+            // gh#315 Can only cope with one title, and tablet login by IP might find an account with 2
+            if (count($account->titles) > 1) {
+                $account->titles = array(reset($account->titles));
+            }
+
+            // sss#224
+            if ($account->titles[0]->loginModifier == Title::SIGNIN_BLOCKED
+                && $account->titles[0]->licenceType == Title::LICENCE_TYPE_AA) {
+                $loginOption = "none";
+            } else {
+                switch ($account->loginOption) {
+                    case 8:
+                        $loginOption = "id";
+                        break;
+                    case 1:
+                        $loginOption = "name";
+                        break;
+                    case 128:
+                    default:
+                        $loginOption = "email";
+                        break;
+                }
+            }
+            switch ($account->titles[0]->licenceType) {
+                case Title::LICENCE_TYPE_SINGLE:
+                case Title::LICENCE_TYPE_I:
+                case Title::LICENCE_TYPE_LT:
+                case Title::LICENCE_TYPE_TT:
+                    $licenceType = "lt";
                     break;
-                case 1:
-                    $loginOption = "name";
-                    break;
-                case 128:
+                case Title::LICENCE_TYPE_AA:
+                case Title::LICENCE_TYPE_CT:
+                case Title::LICENCE_TYPE_NETWORK:
                 default:
-                    $loginOption = "email";
+                    $licenceType = "aa";
+                    // sss#132 Most aa licences let you self-register
+                    if ($account->titles[0]->loginModifier != Title::SIGNIN_BLOCKED) {
+                        $account->selfRegister = 128;
+                    }
                     break;
             }
-        }
-        switch ($account->titles[0]->licenceType) {
-            case Title::LICENCE_TYPE_SINGLE:
-            case Title::LICENCE_TYPE_I:
-            case Title::LICENCE_TYPE_LT:
-            case Title::LICENCE_TYPE_TT:
-                $licenceType = "lt";
-                break;
-            case Title::LICENCE_TYPE_AA:
-            case Title::LICENCE_TYPE_CT:
-            case Title::LICENCE_TYPE_NETWORK:
-            default:
-                $licenceType = "aa";
-                // sss#132 Most aa licences let you self-register
-                if ($account->titles[0]->loginModifier != Title::SIGNIN_BLOCKED) {
-                    $account->selfRegister = 128;
-                }
-                break;
-        }
-        // sss#177 For self register, send a token if it is allowed. The app can pass this to an all purpose webpage.
-        if ($account->selfRegister > 0) {
-            // Set an expiry time for the token 1 hour from now
-            // TODO It would be neater to create a token that doesn't expire but can only be used one
-            // Add a record to a table with an id and a date used (null initially).
-            // When you come back to addUser for that id you fill in the date and then ban it to be used again.
-            $utcDateTime = new DateTime();
-            $utcTimestamp = intval($utcDateTime->format('U'));
-            $aLittleLater = $utcTimestamp + (60 * 60);
-            // Pass the productCode and rootId in the token so the webpage knows its stuff
-            $selfRegToken = $this->authenticationCops->createToken(["exp" => $aLittleLater, "productCode" => $productCode, "rootId" => $account->id]);
+            // sss#177 For self register, send a token if it is allowed. The app can pass this to an all purpose webpage.
+            if ($account->selfRegister > 0) {
+                // Set an expiry time for the token 1 hour from now
+                // TODO It would be neater to create a token that doesn't expire but can only be used one
+                // Add a record to a table with an id and a date used (null initially).
+                // When you come back to addUser for that id you fill in the date and then ban it to be used again.
+                $utcDateTime = new DateTime();
+                $utcTimestamp = intval($utcDateTime->format('U'));
+                $aLittleLater = $utcTimestamp + (60 * 60);
+                // Pass the productCode and rootId in the token so the webpage knows its stuff
+                $selfRegToken = $this->authenticationCops->createToken(["exp" => $aLittleLater, "productCode" => $productCode, "rootId" => $account->id]);
+            }
+
+            // sss#304 Format return object
+            $verified = $account->verified;
+            $selfRegister = $account->selfRegister;
+            if (isset($account->id)) {
+                $returnAccount = array("lang" => $account->titles[0]->languageCode,
+                                "contentName" => $account->titles[0]->contentLocation,
+                                "rootId" => intval($account->id),
+                                "institutionName" => $account->name,
+                                "menuFilename" => "menu.json");
+            }
         }
 
-        // Format the return object
+        // sss#288 sss#304
         $config = array("loginOption" => $loginOption,
-                        "verified" => ($account->verified) ? true : false,
-                        "lang" => $account->titles[0]->languageCode,
-                        "allowSelfRegistration" => ($account->selfRegister > 0) ? true : false,
-                        "selfRegistrationToken" => ($account->selfRegister > 0) ? $selfRegToken : null,
-                        "contentName" => $account->titles[0]->contentLocation,
-                        "licenseType" => $licenceType);
-        // sss#288
+                        "verified" => ($verified) ? true : false,
+                        "allowSelfRegistration" => ($selfRegister > 0) ? true : false,
+                        "selfRegistrationToken" => ($selfRegister > 0) ? $selfRegToken : null,
+                        "licenseType" => $licenceType,
+                        "account" => $returnAccount);
+        // Temporary until rootId moved in client
         if (isset($account->id)) {
             $config["rootId"] = intval($account->id);
-            $config["institutionName"] = $account->name;
         }
-
         return $config;
     }
     /*
@@ -235,7 +242,7 @@ class CouloirService extends AbstractService {
             $rootId = $this->manageableOps->getRootIdForUserId($user->id);
 
             // sss#152 now that we know an account, we must check the validity of the title
-            $account = $this->accountCops->getBentoAccount($rootId, $productCode);
+            $foundAccount = $this->accountCops->getBentoAccount($rootId, $productCode);
         }
 
         // Check on hidden content at the product level for this group
@@ -284,8 +291,6 @@ class CouloirService extends AbstractService {
             "token" => $token,
             "memory" => (isset($memory)) ? $memory : json_decode ("{}"));
 
-        //AbstractService::$debugLog->info("token=$token");
-
         // sss#12 For a title that uses encrypted content, send the key
         if ($productCode == 63 || $productCode == 65) {
             $rc["key"] = (string)$group->id;
@@ -293,6 +298,23 @@ class CouloirService extends AbstractService {
             $rc["key"] = null;
         }
 
+        // sss#304 Return an account if login had to look one up
+        /*
+        if (isset($foundAccount)) {
+            // Remove other titles
+            $foundAccount->titles = array_filter($foundAccount->titles, function ($title) use ($productCode) {
+                return $title->productCode = intval($productCode);
+            });
+            $rc["account"] = array(
+                "lang" => $foundAccount->titles[0]->languageCode,
+                "contentName" => $foundAccount->titles[0]->contentLocation,
+                "rootId" => intval($foundAccount->id),
+                "institutionName" => $foundAccount->name,
+                "menuFilename" => "menu.json");
+        } else {
+            $rc["account"] = null;
+        }
+        */
         return $rc;
     }
 
@@ -433,7 +455,7 @@ class CouloirService extends AbstractService {
 
 	// Get details of all tests scheduled for this group
     public function getTests($group, $productCode) {
-        return $this->testOps->getActiveTests($group->id, $productCode);
+        return $this->testCops->getActiveTests($group->id, $productCode);
     }
 
     // Get details of the tests that this user can take part in, but without security details
@@ -445,7 +467,7 @@ class CouloirService extends AbstractService {
 
         // Get a list of all scheduled tests that this user has completed (likely to be very small list)
         $user = $group->manageables[0];
-        $completedTests = $this->testOps->getCompletedTests($user->id);
+        $completedTests = $this->testCops->getCompletedTests($user->id);
         foreach ($tests as $key => $test) {
 
             // Remove any scheduled tests this user has already completed
@@ -666,7 +688,7 @@ EOD;
         // sss#17
         if ($session->status == SessionTrack::STATUS_OPEN || $mode=='overwrite') {
             // ctp#261 Get the time the last score was written for this session
-            $lastScore = $this->testOps->getLastScore($session->sessionId);
+            $lastScore = $this->testCops->getLastScore($session->sessionId);
             $session->lastUpdateDateStamp = $lastScore->dateStamp;
             $session->duration = strtotime($session->lastUpdateDateStamp) - strtotime($session->startDateStamp);
             $session->status = SessionTrack::STATUS_CLOSED;
@@ -682,7 +704,7 @@ EOD;
             return $session->result;
 
         // ctp#173 Does the test administrator want the test takers to see a result?
-        $testSchedule = $this->testOps->getTest($session->contentId);
+        $testSchedule = $this->testCops->getTest($session->contentId);
         if (!$testSchedule->showResult)
             $session->result = array("level" => null, "showResult" => false);
 
@@ -704,12 +726,12 @@ EOD;
     // Pick up all the sessions for a particular test or test taker
     public function getSessionsForTest($sessionId, $email, $testId) {
 	    if ($testId)
-            return $this->testOps->getSessionsForTest($testId);
+            return $this->testCops->getSessionsForTest($testId);
         if ($email)
-            return $this->testOps->getSessionsFromEmail($email);
+            return $this->testCops->getSessionsFromEmail($email);
         if ($sessionId) {
             $sessions = array();
-            $session = $this->testOps->getTestSession($sessionId);
+            $session = $this->testCops->getTestSession($sessionId);
             if ($session)
                 $sessions[] = $session;
             return $sessions;

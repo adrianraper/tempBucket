@@ -25,35 +25,33 @@ set_time_limit(360);
 $utcDateTime = new DateTime();
 $utcTimestamp = $utcDateTime->format('U')*1000;
 
-// sss#257 Cope with old DPT content server calls
-$oldTestId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_ENCODED);
-if (isset($oldTestId))
-    AbstractService::$debugLog->info("old SPS call for id=$oldTestId");
-
 try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
-    //$json = json_decode('{"command":"acquireLicenseSlots","tokens":["eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNjU5MzcyOCwic2Vzc2lvbklkIjoiOCJ9.e62Njadljh2vAweWivqvv3CaWAU7wZx0IOz3qtaTJj8",
-    //                                                              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNjQ3MjY4Niwic2Vzc2lvbklkIjoiMzA2In0.qDdsEn0Lfb0e4HSyJaK1Mh6YC0hYN-hodh0eu-NY23Y"]}');
-    //$json = json_decode('{"command":"updateActivity","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNTkwMjA5Niwic2Vzc2lvbklkIjoiMjkxIn0.vyougpOHKi5ctolqh56e6f0fd5NEQp1rxtXCt3X9iNI","timestamp":'.$utcTimestamp.'}');
-    //$json = json_decode('{"command":"releaseLicenseSlot","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDI0NTM3Mywic2Vzc2lvbklkIjoiMjQ1In0.t_IJ-xCH5m94ZZUR7oSKa4KIMyfuDXf4GnYL3_TXleA","timestamp":'.$utcTimestamp.'}');
     /*
-    $json = json_decode('{"command":"getEncryptionKey","id":298}');
+    $json = json_decode('{"command":"getEncryptionKey","id":78}');
+    $json = json_decode('{"command":"acquireLicenseSlots","tokens":["eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNjU5MzcyOCwic2Vzc2lvbklkIjoiOCJ9.e62Njadljh2vAweWivqvv3CaWAU7wZx0IOz3qtaTJj8",
+                                                                  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNjQ3MjY4Niwic2Vzc2lvbklkIjoiMzA2In0.qDdsEn0Lfb0e4HSyJaK1Mh6YC0hYN-hodh0eu-NY23Y"]}');
+    $json = json_decode('{"command":"updateActivity","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNTkwMjA5Niwic2Vzc2lvbklkIjoiMjkxIn0.vyougpOHKi5ctolqh56e6f0fd5NEQp1rxtXCt3X9iNI","timestamp":'.$utcTimestamp.'}');
+    $json = json_decode('{"command":"releaseLicenseSlot","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDI0NTM3Mywic2Vzc2lvbklkIjoiMjQ1In0.t_IJ-xCH5m94ZZUR7oSKa4KIMyfuDXf4GnYL3_TXleA","timestamp":'.$utcTimestamp.'}');
     $json = json_decode('{"command":"dbCheck"}');
     */
     if (!$json)
         throw new Exception("Empty request");
 
-    AbstractService::$debugLog->info("CSG-staging call ".json_encode($json));
+    //AbstractService::$debugLog->info("CSG-staging call ".json_encode($json));
     $jsonResult = router($json);
 
-    AbstractService::$debugLog->info("CSG return ".json_encode($jsonResult));
-    // sss#256 put a success wrapper around the returning data
-    $jsonWrapped = array("success" => true, "details" => $jsonResult);
-    // If you need to run this code but the app is not implementing #256, include the next line
+    // sss#256 put a success wrapper around the returning data. NO, not for content server (yet at least)
+    //$jsonWrapped = array("success" => true, "details" => $jsonResult);
+    // If you need to run this code but the content server is not implementing #256, include the next line
     $jsonWrapped = $jsonResult;
+    //AbstractService::$debugLog->info("CSG return ".json_encode($jsonWrapped));
     if ($jsonResult == []) {
         echo json_encode($jsonWrapped, JSON_FORCE_OBJECT);
+    // sss#461 Code return as a string with quotes
+    } elseif ($json->command == "getEncryptionKey" && $jsonResult == intval($jsonResult)) {
+        echo json_encode((string)$jsonWrapped);
     } else {
         echo json_encode($jsonWrapped);
     }
@@ -127,7 +125,7 @@ function releaseLicenceSlot($token, $utcTimestamp) {
 }
 function getEncryptionKey($testId) {
     global $service;
-    return $service->testOps->getTestAccessCode($testId);
+    return $service->testCops->getTestAccessCode($testId);
 }
 // Just for testing new gateways
 function dbCheck() {
