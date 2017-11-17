@@ -1,6 +1,4 @@
-{* Name: Internal quotation request *}
-{* Description: Email 14a. Internal quotation request *}
-{* Variables: $account, $template_dir *}
+
 {assign var="quotationFile" value="`$template_dir`quotations/`$account->prefix`_`$expiryDate`_quotation.pdf"}
 {assign var='dateDiff' value='+77day'}
 <html>

@@ -1,7 +1,4 @@
-{* This works out some template details that are not in the regular title object *}
-{* No good as variables set within the include are lost when you leave the scope *}
-{* Old titles
-*}
+
 {if $title->name|stristr:"Tense Buster"}
 	{assign var='titleImage' value='tb'}
 	{assign var='startPageFolder' value='TenseBuster'}
@@ -26,6 +23,10 @@
 {elseif $title->productCode==53}
 	{assign var='titleImage' value='rtiv2'}
 	{assign var='startPageFolder' value='RoadToIELTS2'}
+{elseif $title->productCode==59}
+	{assign var='titleImage' value='tb'}
+	{assign var='startPageFolder' value='TenseBuster'}    
+
 {elseif $title->name|stristr:"Business Writing"}
 	{assign var='titleImage' value='bw'}
 	{assign var='startPageFolder' value='BusinessWriting'}
@@ -83,7 +84,12 @@
 {elseif $title->name|stristr:"Listening Bank"}
 	{assign var='titleImage' value='g'}
 	{assign var='startPageFolder' value='ListeningBank'}
-
+{elseif $title->name|stristr:"Practical Writing"}
+	{assign var='titleImage' value='pw'}
+	{assign var='startPageFolder' value='PracticalWriting'}
+{elseif $title->name|stristr:"Dynamic Placement Test"}
+	{assign var='titleImage' value='dpt'}
+	{assign var='startPageFolder' value='DPT'}
 {else}
 	{assign var='titleImage' value='g'}
 	{assign var='startPageFolder' value='xxx'}
@@ -97,18 +103,17 @@
 {/if}
 {if $method=='startPage'}
 	{if $title->name|stristr:"It's Your Job"}
-		http://www.ClarityEnglish.com/area1/{$startPageFolder}/index.php?prefix={$account->prefix}</br>
+		<a href="http://www.ClarityEnglish.com/area1/{$startPageFolder}/index.php?prefix={$account->prefix}" target="_blank">http://www.ClarityEnglish.com/area1/{$startPageFolder}/index.php?prefix={$account->prefix}</a></br>
 	{elseif $title->productCode==52}
-		http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start-AC.php?prefix={$account->prefix}</br>
+		<a href="http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start-AC.php?prefix={$account->prefix}" target="_blank">http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start-AC.php?prefix={$account->prefix}</a></br>
 	{elseif $title->productCode==53}
-		http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start-GT.php?prefix={$account->prefix}</br>
+		<a href="http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start-GT.php?prefix={$account->prefix}" target="_blank">http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start-GT.php?prefix={$account->prefix}</a></br>
 	{elseif $title->productCode==54}
-		http://www.ClarityEnglish.com/area1/{$startPageFolder}/Player.php?prefix={$account->prefix}</br>
-	{* Actually no harm in using prefix for RM - it is just ignored
-		{elseif $title->name|stristr:"Results Manager"}
-			http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start.php</br>
-	*}
+		<a href="http://www.ClarityEnglish.com/area1/{$startPageFolder}/Player.php?prefix={$account->prefix}" target="_blank">http://www.ClarityEnglish.com/area1/{$startPageFolder}/Player.php?prefix={$account->prefix}</a></br>
+{elseif $title->productCode==59}
+		<a href="http://www.ClarityEnglish.com/TenseBuster/6weeks/index.php?prefix={$account->prefix}" target="_blank">http://www.ClarityEnglish.com/TenseBuster/6weeks/index.php?prefix={$account->prefix}</a></br>
+
 	{else}
-		http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start.php?prefix={$account->prefix}</br>
+		<a href="http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start.php?prefix={$account->prefix}" target="_blank">http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start.php?prefix={$account->prefix}</a></br>
 	{/if}
 {/if}

@@ -3,11 +3,32 @@
 {/if}
 {date_diff assign='expiringDate' date='' period=$dateDiff}
 {date_diff assign='oneMonthAgo' date='' period='-1month'}
-{* two loops, first for expiring titles, then for the rest *}
+
+{assign var='hasR2I' value='false'}
+{assign var='hasTBv10' value='false'}
+{assign var='hasARv10' value='false'}
+{assign var='hasCP1v10' value='false'}
 {foreach name=orderDetails from=$account->titles item=title}
-	{* Just totally skip IYJ Practice Centre and titles older than one month (unlikely to be any) *}
-	{* Ignore Road to IELTS v1 *}
-	{if $title->expiryDate|truncate:10:"" >= $oneMonthAgo && !$title->name|stristr:"Practice Centre" && $title->productCode!=12 && $title->productCode!=13}
+	{if $title->productCode=='52' || $title->productCode=='53'}
+		{assign var='hasR2I' value='true'}
+	{/if}  
+	{if $title->productCode=='55'}
+		{assign var='hasTBv10' value='true'}
+	{/if}
+    {if $title->productCode=='56'}
+		{assign var='hasARv10' value='true'}
+	{/if} 
+    {if $title->productCode=='57'}
+		{assign var='hasCP1v10' value='true'}
+	{/if} 
+{/foreach}
+{foreach name=orderDetails from=$account->titles item=title}
+
+    {if ($title->productCode=='9' && $hasTBv10 == 'true') || ($title->productCode=='33' && $hasARv10 == 'true') ||
+	    ($title->productCode=='39' && $hasCP1v10 == 'true') || ($title->productCode=='59') ||
+	    ($title->productCode=='63') || ($title->productCode=='65')}
+	{else}
+	{if $title->expiryDate|truncate:10:"" >= $oneMonthAgo && !$title->name|stristr:"Practice Centre" && $title->productCode!=12 && $title->productCode!=13 && $title->productCode!=2}
 		{if $expiringDate == $title->expiryDate|truncate:10:""}
 			<div style="background:url(http://www.clarityenglish.com/images/email/dot_line.jpg) no-repeat bottom left; padding:5 0 10px 0; margin:0 0 10px 0">
 		   	{include file='file:includes/titleTemplateDetails.tpl' method='image' enabled='on'}
@@ -34,7 +55,7 @@
 				{/if}
 				Version: {$languageName}<br/>
 			{/if}
-			{* If it is an AA RM, don't say anything here *}
+			
 			{if $title->name == "Results Manager"} 
 				{if $title->licenceType == 1}
 					Number of teachers: {$title->maxTeachers}<br/>
@@ -49,9 +70,12 @@
 			</div>
 		{/if}
 	{/if}
+	{/if}
 {/foreach}
 {foreach name=orderDetails from=$account->titles item=title}
-	{if $title->expiryDate|truncate:10:"" >= $oneMonthAgo && !$title->name|stristr:"Practice Centre" && $title->productCode!=12 && $title->productCode!=13}
+	{if ($title->productCode=='9' && $hasTBv10 == 'true') || ($title->productCode=='33' && $hasARv10 == 'true') || ($title->productCode=='39' && $hasCP1v10 == 'true') || ($title->productCode=='59')}
+	{else}
+	{if $title->expiryDate|truncate:10:"" >= $oneMonthAgo && !$title->name|stristr:"Practice Centre" && $title->productCode!=12 && $title->productCode!=13 && $title->productCode!=2}
 		{if $expiringDate != $title->expiryDate|truncate:10:""}
 			<div style="background:url(http://www.clarityenglish.com/images/email/dot_line.jpg) no-repeat bottom left; padding:5 0 10px 0; margin:0 0 10px 0">
 		 	{include file='file:includes/titleTemplateDetails.tpl' method='image' enabled='on'}
@@ -78,7 +102,7 @@
 				{/if}
 				Version: {$languageName}<br/>
 			{/if}
-			{* If it is an AA RM, don't say anything here *}
+			
 			{if $title->name == "Results Manager"} 
 				{if $title->licenceType == 1}
 					Number of teachers: {$title->maxTeachers}<br/>
@@ -92,5 +116,6 @@
 			<a style="background-color:{$highlightColor}">Expiry date: {format_ansi_date ansiDate=$title->expiryDate}</a><br/>
 			</div>
 		{/if}
+	{/if}
 	{/if}
 {/foreach}

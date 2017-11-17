@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Welcome to ClarityLifeSkills.com</title>
 	<!-- <from>%22ClarityLifeSkills%22 %3Cadmin@claritylifeskills.com%3E</from> -->
-	<!-- <bcc>support@claritylifeskills.com,accounts@clarityenglish.com</bcc> -->
+	<!-- <bcc>support@claritylifeskills.com,admin@claritylifeskills.com,accounts@clarityenglish.com</bcc> -->
 </head>
 <body style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:10px 0 0 0; padding:0; color:#000000;">
 <div style="width:600px; margin:0 auto; padding:0;">

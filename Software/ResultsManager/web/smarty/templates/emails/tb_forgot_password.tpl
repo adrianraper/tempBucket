@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Tense Buster grammar course password reminder</title>
-<!-- <from>%22ClarityEnglish%22 %3Csupport@clarityenglish.com%3E</from> -->
+<!-- <from>%22Clarity English%22 %3Cadmin@clarityenglish.com%3E</from> -->
 <style>@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);</style>
 
 </head>

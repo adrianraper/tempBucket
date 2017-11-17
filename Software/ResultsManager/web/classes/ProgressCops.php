@@ -51,10 +51,9 @@ class ProgressCops {
 		SET @productCode = 52;
 		-- First worldwide (all) average
 		INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_UnitId, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
-		SELECT @productCode, F_CourseID, null, AVG(F_Score) as AverageScore, AVG(if(F_Duration>3600,3600,F_Duration)) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide'
+		SELECT @productCode, F_CourseID, null, AVG(nullif(F_Score,-1)) as AverageScore, AVG(if(F_Duration>3600,3600,F_Duration)) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide'
 		FROM T_Score
 		WHERE F_ProductCode = @productCode
-		AND F_Score>=0
 		GROUP BY F_CourseID;
 		-- Then each country in turn
 		SET @country = 'Hong Kong';

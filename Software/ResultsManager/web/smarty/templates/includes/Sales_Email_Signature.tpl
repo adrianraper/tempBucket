@@ -3,8 +3,8 @@
   <tr align="left" valign="top">
     <td width="470" height="10" class="style1">
 		Best regards<br/>
-		Nicole Lung<br/>
-		(Marketing Executive)<br/>
+		Jennifer Sin<br/>
+		(Specialist: ICT for English)<br/>
 	</td>
   </tr>
   <tr>

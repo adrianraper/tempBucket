@@ -204,7 +204,7 @@ EOD;
             $sql = $reportBuilder->buildReportSQL();
         }
         // Debug if you want to see the SQL that will be executed to get data for the report
-		echo $sql.'<br/>'; exit();
+		//echo $sql.'<br/>'; exit();
 		$rows = $this->db->GetArray($sql);
 
 		// gh#1523 Now is the time to blank out the scores for anyone who completed the test but has no licence

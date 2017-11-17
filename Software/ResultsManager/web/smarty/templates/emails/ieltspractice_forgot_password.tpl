@@ -72,6 +72,7 @@
                         <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">
                  	Cynthia Lau<br />
                     IELTSpractice Support Team</p>
+
              
              
            </div>
@@ -87,19 +88,18 @@
   <tr>
         <td width="10" background="http://www.clarityenglish.com/images/email/ieltspractice/bg_btm_left.jpg">            </td>
         <td width="579"  bgcolor="#343434">
-       <div style="padding:20px 48px;">
+       <div style="padding:20px 48px; color:#FFFFFF;">
          
             
             
-             <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#FFFFFF; line-height:18px; font-weight:bold;">Clarity Language Consultants Ltd<br />(UK and Hong Kong since 1992)</p>
+             <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#FFFFFF; line-height:18px; font-weight:bold;">Clarity Language Consultants Ltd<br />(UK and Hong Kong since 1992)</p>
 			  
-		 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#FFFFFF; line-height:18px;">
+			 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#FFFFFF; line-height:18px;">
                 T: (+852) 2791 1787 | F: (+852) 2791 6484<br />
-            E: <a href="mailto:info@clarityenglish.com" style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; color:#FFFFFF;">info@clarityenglish.com </a>| W: <a href="http://www.clarityenglish.com" target="_blank" style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; color:#FFFFFF;">www.ClarityEnglish.com</a></p> 
+              E: <a href="mailto:support@ieltspractice.com" style="color:#FFFFFF;">support@ieltspractice.com</a> | W: <a href="http://www.IELTSpractice.com" target="_blank" style="color:#FFFFFF;">www.IELTSpractice.com</a>              </p> 
               
-               <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0; padding:0; color:#FFFFFF; line-height:18px;">
-               Your privacy is important to us. Please review the Clarity English privacy
-policy by clicking here: <a href="http://www.clarityenglish.com/disclaimer.php" target="_blank" style="color:#FFFFFF;">http://www.clarityenglish.com/disclaimer.php</a></p>
+               <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; padding:0; color:#FFFFFF; line-height:18px;">Your privacy is important to us. Please review IELTSpractice.com privacy
+policy by clicking here: <a href="http://www.ieltspractice.com/terms.php" target="_blank" style="color:#FFFFFF;">http://www.ieltspractice.com/terms.php</a></p>
     </div>
         
         

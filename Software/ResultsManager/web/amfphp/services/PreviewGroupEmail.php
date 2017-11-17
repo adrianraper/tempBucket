@@ -251,7 +251,7 @@ array_push($userEmailArray, $adminEmail);
         </ul>
     </div>
     <div class="w3-container w3-cell w3-card-2 w3-padding-0">
-        <div class="w3-container w3-margin w3-hover-shadow" style="height:720px">
+        <div class="w3-container w3-margin w3-hover-shadow" style="height:760px">
                 <div id="emailContents"><?php echo $emailContents; ?></div>
                 <div><strong>Notes</strong>&nbsp;&nbsp;<i class="fa fa-edit promptWithIcon" style="font-size:20px"></i>
                 </div>

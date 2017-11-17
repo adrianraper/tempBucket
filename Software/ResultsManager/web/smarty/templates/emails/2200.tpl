@@ -13,6 +13,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Extend your Road to IELTS subscription</title>
 	<!-- <from>%22IELTSPractice.com%22 %3Csupport@ieltspractice.com%3E</from> -->
+	<!-- <bcc>support@ieltspractice.com</bcc> -->
 </head>
 <BODY style="BACKGROUND-COLOR: #e5e5e5; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; FONT-SIZE: 13px">
 <TABLE border=0 cellSpacing=0 cellPadding=0 width=600 background="http://www.clarityenglish.com/images/email/ieltspractice/bg.jpg"

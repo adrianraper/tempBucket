@@ -1,9 +1,4 @@
-<!--
-{* Name: Dynamic Placement Test invitation *}
-{* Description: Invitation and instructions on how to take the DPT *}
-{* $testDetail should include an administrator email or name, along with any customised instructions *}
-{* Parameters: $user, $testDetail *}
--->
+<!-- Dynamic Placement Test invitation -->
 {assign var='testDetail' value=$templateData->test}
 {assign var='emailDetails' value=$templateData->emailDetails}
 <p>
@@ -31,7 +26,8 @@ The test will take 30 minutes.</p>
 <p style="margin-bottom: 0"><strong>How to take the test</strong><br/>
 You can take the test on a desktop/laptop or a tablet/smartphone.
 <ol style="margin-top: 0; margin-bottom: 0">
-    <li>For desktop/laptop go to <a href="https://dpt.clarityenglish.com"><strong>dpt.clarityenglish.com</strong></a> in your browser.</li>
+    <li>For any device go to <a href="https://dpt.clarityenglish.com"><strong>dpt.clarityenglish.com</strong></a> in your browser.</li>
+    or
     <li>For tablet/phone download the app from the <a href="https://itunes.apple.com/hk/app/dynamic-placement-test/id1179218583?mt=8&amp;ign-mpt=uo%3D4" target="_blank" style=" font-size:0.9em;">Apple App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.clarityenglish.ctp_wrapper&hl=en" target="_blank" style=" font-size:0.9em;">Google Play</a>. Search for <strong>Dynamic Placement Test</strong>.</li>
 </ol>
 Sign in and try section 1 of the test to make sure it runs properly.<br/>

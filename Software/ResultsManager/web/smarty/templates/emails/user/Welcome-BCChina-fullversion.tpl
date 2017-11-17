@@ -32,7 +32,7 @@
             
             
             <div style="margin:10px 0; padding:10px 20px; background-color:#CCCCCC; width: 240px;">
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:0; margin:0; color:#000000; line-height:18px;">邮箱: {$email}</p>
+            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:0; margin:0; color:#000000; line-height:18px;">登录帐号: {$studentID}</p>
             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:0; margin:0; line-height:18px;">密码: {$password}</p>
             
             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:0; margin:0; line-height:18px;">有效期至: {$expiryDate}</p>
@@ -64,7 +64,7 @@
             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">Welcome to the  Road to IELTS online preparation platform <strong>(Full version)</strong>. You can click  <a href="http://roadtoielts.chinaielts.org/area1/RoadToIELTS2/Start-{$productCode}.php?prefix={$prefix}" target="_blank">here</a> or on the button below and login with your email and password.</p>
             
 			<div style="margin:10px 0; padding:10px 20px; background-color:#CCCCCC; width: 240px;">
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:0; margin:0; color:#000000; line-height:18px;">Email: {$email}</p>
+            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:0; margin:0; color:#000000; line-height:18px;">ID: {$studentID}</p>
             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:0; margin:0; line-height:18px;">Password: {$password}</p>
             
             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:0; margin:0; line-height:18px;">Expiry date: {$expiryDate}</p>

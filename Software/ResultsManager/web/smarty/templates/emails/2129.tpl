@@ -16,7 +16,8 @@
 		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; margin:0; padding:0 0 2px 0; color:#12384d; font-weight:bold; font-size:18px; background:url(http://www.ClarityLifeSkills.com/email/title_line.jpg) no-repeat bottom left;">Don't miss out!</p>
 		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; margin:0 0 10px 0; padding:0; font-weight:bold; font-size:14px; color:#12384d;">Your subscription will expire in a week.</p>
 		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Dear {$account->adminUser->name}</p>
-		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Your subscription to ClarityLifeSkills.com will expire in seven days! Before your subscription ends, log in to <a href="http://www.ClarityLifeSkills.com" target="_blank">www.ClarityLifeSkills.com</a> and take advantage of what's on offer. If you'd like to renew your subscription, please send a quick reply to this email.</p>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Your subscription to ClarityLifeSkills.com will expire in seven days! Before your subscription ends, log in to <a href="http://www.ClarityLifeSkills.com" target="_blank">www.ClarityLifeSkills.com</a> and take advantage of what's on offer. </p>
+        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Unfortunately, at this time, we will not be offering any renewal option. ClarityLifeSkills.com is undergoing some important redevelopment and we're working on developing a better English learning experience for you. Thank you for your support!</p>
 <!-- 
 -- Email signature 
 -->

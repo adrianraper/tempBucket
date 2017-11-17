@@ -1,6 +1,4 @@
-{* Name: Internal quotation request *}
-{* Description: Email 14a. Internal quotation request *}
-{* Variables: $account, $template_dir *}
+
 {assign var="quotationFile" value="`$template_dir`quotations/`$account->prefix`_`$expiryDate`_quotation.pdf"}
 {assign var='dateDiff' value='+77day'}
 <html>
@@ -12,7 +10,7 @@
     	<style type="text/css">
     		@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);
 			</style>
-	<!-- <from>%22Clarity English%22 %3Cadmin@clarityenglish.com%3E</from> -->
+	<!-- <from>%22ClarityEnglish%22 %3Cadmin@clarityenglish.com%3E</from> -->
 </head>
 <body text="#000000" style="margin:0; padding:0;">
 <div style="width:600px; margin:0 auto; padding:0;">

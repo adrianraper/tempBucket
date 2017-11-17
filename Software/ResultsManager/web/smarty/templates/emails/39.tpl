@@ -1,6 +1,4 @@
-{* Name: Expiry in 2 weeks *}
-{* Description: Email 16. Two weeks before expiry. *}
-{* Parameters: $account, $expiryDate, $template_dir *}
+
 <!--
 -- Script to count the number of titles related to this email for wording selection
 -- Note that some bug in smarty adds a space to the start of 
@@ -17,13 +15,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 {if $useWording == 'all'}
-	<title>Clarity English - Subscription reminder, 14 days left</title>
+	<title>ClarityEnglish - Subscription reminder, 14 days left</title>
 {elseif $useWording == 'one'}
-	<title>Clarity English - One program in your account expires in just 14 days</title>
+	<title>ClarityEnglish - One program in your account expires in just 14 days</title>
 {elseif $useWording == 'couple'}
-	<title>Clarity English - Two programs in your account expire in just 14 days</title>
+	<title>ClarityEnglish - Two programs in your account expire in just 14 days</title>
 {else}
-	<title>Clarity English - Some programs in your account expire in just 14 days</title>
+	<title>ClarityEnglish - Some programs in your account expire in just 14 days</title>
 {/if}
 	<!-- <from>%22Clarity English%22 %3Cadmin@clarityenglish.com%3E</from> -->
 	<!-- <bcc>admin@clarityenglish.com</bcc> -->
@@ -36,10 +34,10 @@
 </head>
 <body text="#000000" style="margin:0; padding:0;">
 <div style="width:600px; margin:0 auto; padding:0;">
-	<img src="http://www.clarityenglish.com/images/email/header_600_img.jpg" alt="Clarity English - subscription reminder, 14 days left" style="border:0; margin:0; text-align:center; font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px;">
+	<img src="http://www.clarityenglish.com/images/email/header_600_img.jpg" alt="ClarityEnglish - subscription reminder, 14 days left" style="border:0; margin:0; text-align:center; font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px;">
     <div style="width:500px; margin:a auto; padding:10px 50px 20px 50px;">
 	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:0 0 10px 0; padding:0; color:#000000;">Dear Colleague</p>
-    <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:700; font-size: 13px; line-height:18px; margin:0 0 5px 0; padding:0; color:#151745;">Clarity English Subscription: {$account->name}</p>
+    <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:700; font-size: 13px; line-height:18px; margin:0 0 5px 0; padding:0; color:#151745;">ClarityEnglish Subscription: {$account->name}</p>
 	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:0 0 10px 0; padding:0; color:#000000;">
 	This is a quick reminder that your subscription 
 {if $useWording == 'all'}
@@ -51,33 +49,37 @@
 {else}
 	for some of the programs below 
 {/if}
-	will end in just 14 days. I hope that you have found these Clarity resources useful and enjoyable over the last year, and that you will renew your subscription. If you would like to do this, please send me a quick email and I'll arrange for your account to be updated.
-		{* If there is a security string, it means you can do a direct start to usage stats *}
+	will end in just 14 days. I hope that you have found these Clarity resources useful and enjoyable over the last year, and that you will renew your subscription. If you would like to do this, please send a quick email to your Account Manager and we'll arrange for your account to be updated.
+		
 		{if ($session)}
 			If you would like to check your usage statistics, click <a href="http://www.ClarityEnglish.com/area1/ResultsManager/directUsageStats.php?session={$session}" target='_blank'>here</a></span>.
 		{/if}
 	</p>
-<!--
--- If we have created a quote, then attach it - or link to it
--->
-	{include file="file:includes/quotationDetails.tpl"}
 <!-- 
 -- Resellers' contact details - if any
 -->
 	{include file='file:includes/Reseller_Details.tpl' resellerCode=$account->resellerCode}
+<!--
+-- If we have created a quote, then attach it - or link to it
+-->
+	{include file="file:includes/quotationDetails.tpl"}
+
 <!-- 
 -- Email signature 
 -->
 	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:10px 0 10px 0; padding:0; color:#000000;">I'm looking forward to hearing from you.</p>
-     <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:10px 0 10px 0; padding:0; color:#000000;">Best regards<br>
-   Jennifer Sin
-    </p>
-	{include file='file:includes/SalesManager_Email_Signature.tpl'}
+
 <!-- 
 -- Section containing details of titles, highlighting those that are expiring related to this email
 -->
 	{include file='file:includes/Spacer_Before_Title_Details.tpl'}
 	{include file='file:includes/Title_Details_Section.tpl' dateDiff=$dateDiff useWording=$useWording}
+
+<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:10px 0 10px 0; padding:0; color:#000000;">Best regards<br>
+
+    </p>
+	{include file='file:includes/SalesManager_Email_Signature.tpl'}
+	
 <!-- 
 -- Email footer
 -->
