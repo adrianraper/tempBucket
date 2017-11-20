@@ -148,7 +148,7 @@ class CouloirService extends AbstractService {
                     $licenceType = "aa";
                     // sss#132 Most aa licences let you self-register
                     if ($account->titles[0]->loginModifier != Title::SIGNIN_BLOCKED) {
-                        $account->selfRegister = 128;
+                        $account->selfRegister = 21; // Default bits for name, email and password
                     }
                     break;
             }
@@ -161,8 +161,9 @@ class CouloirService extends AbstractService {
                 $utcDateTime = new DateTime();
                 $utcTimestamp = intval($utcDateTime->format('U'));
                 $aLittleLater = $utcTimestamp + (60 * 60);
-                // Pass the productCode and rootId in the token so the webpage knows its stuff
-                $selfRegToken = $this->authenticationCops->createToken(["exp" => $aLittleLater, "productCode" => $productCode, "rootId" => $account->id]);
+                // Pass the productCode and rootId in the token just so they can be returned
+                // sss#132 Send the required fields for the form to use
+                $selfRegToken = $this->authenticationCops->createToken(["exp" => $aLittleLater, "fields" => $account->selfRegister, "productCode" => $productCode, "rootId" => $account->id]);
             }
 
             // sss#304 Format return object
@@ -284,7 +285,7 @@ class CouloirService extends AbstractService {
 
         // Include default returns of null or empty objects as required by app
         $rc = array(
-            "user" => $user,
+            "user" => $user->couloirView(),
             "tests" => (isset($tests)) ? $tests : null,
             "token" => $token,
             "memory" => (isset($memory)) ? $memory : json_decode ("{}"));
@@ -337,30 +338,41 @@ class CouloirService extends AbstractService {
         $stubUser = new User();
         if ($loginOption & User::LOGIN_BY_NAME || $loginOption & User::LOGIN_BY_NAME_AND_ID) {
             $loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");
-            if (isset($loginObj["username"])) {
-                $loginKeyValue = $stubUser->name = $loginObj["username"];
+            if (isset($loginObj["login"])) {
+                $loginKeyValue = $stubUser->name = $loginObj["login"];
+                /// sss#132
+                if (isset($loginObj["email"])) {
+                    $stubUser->email = $loginObj["email"];
+                }
             } else {
                 throw $this->copyOps->getExceptionForId ("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
             }
         } elseif ($loginOption & User::LOGIN_BY_ID) {
             $loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
-            if (isset($loginObj["studentID"])) {
-                $loginKeyValue = $stubUser->studentID = $loginObj["studentID"];
+            if (isset($loginObj["login"])) {
+                $loginKeyValue = $stubUser->studentID = $loginObj["login"];
+                if (isset($loginObj["email"])) {
+                    $stubUser->email = $loginObj["email"];
+                }
             } else {
                 throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
             }
         } elseif ($loginOption & User::LOGIN_BY_EMAIL) {
             $loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
-            if (isset($loginObj["email"])) {
-                $loginKeyValue = $stubUser->email = $loginObj["email"];
+            if (isset($loginObj["login"])) {
+                $loginKeyValue = $stubUser->email = $loginObj["login"];
             } else {
                 throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
             }
         } else {
             throw $this->copyOps->getExceptionForId ( "errorInvalidLoginOption", array("loginOption" => $loginOption));
         }
-        $user = $this->manageableOps->getUserByKey($stubUser, $rootId, $loginOption);
+        // sss#132 Check that a required password has been sent
+        if ($account->verified && !isset($loginObj["password"])) {
+            throw $this->copyOps->getExceptionForId ( "errorPasswordEmpty");
+        }
 
+        $user = $this->manageableOps->getUserByKey($stubUser, $rootId, $loginOption);
         if ($user) {
             // A user already exists with these details, so throw an error as we can't add the new one
             throw $this->copyOps->getExceptionForId("errorDuplicateUser", array("name" => $stubUser->name, "loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
@@ -371,22 +383,17 @@ class CouloirService extends AbstractService {
         $adminUser->id = $account->getAdminUserID();
         $groups = $this->manageableOps->getUsersGroups($adminUser);
 
-        // Add any preset details to the user object
-        if (isset($loginObj["username"]))
-            $stubUser->name = $loginObj["username"];
-        if (isset($loginObj["studentID"]))
-            $stubUser->studentID = $loginObj["studentID"];
-        if (isset($loginObj["email"]))
-            $stubUser->email = $loginObj["email"];
-        if (isset($loginObj["password"]))
+        if (isset($loginObj["password"])) {
+            // sss#132 save the hashed password
             $stubUser->password = $loginObj["password"];
+        }
         $stubUser->registerMethod = "selfRegister";
         $stubUser->userType = User::USER_TYPE_STUDENT;
         // Use a minimal add user that has no authentication and user duplication checking
         $newUser = $this->manageableOps->minimalAddUser($stubUser, $groups[0], $rootId);
 
         // Now do a login for this user
-        return $this->login($loginKeyValue, $stubUser->password, $productCode, $rootId = null, $platform = null);
+        return $this->login($loginKeyValue, $stubUser->password, $productCode, $account->id, $platform = null);
     }
 
     public function updateActivity($token, $timestamp) {

@@ -128,6 +128,7 @@ EOD;
 				$rs->MoveFirst();
 				while ($userObj = $rs->FetchNextObj()) {
                     // ctp#80
+                    // sss#132 TODO Need to update to match hashed password if it exists
                     $dbPassword = ($loginOption & User::LOGIN_HASHED) ? md5($userObj->F_Email . $userObj->F_Password) : $userObj->F_Password;
 					if ($password == $dbPassword) {
 						$dbLoginObj = $userObj;
@@ -241,18 +242,21 @@ EOD;
 				throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
 		}
 		
-		// A special case to check that the password matches the case (by default MSSQL and MYSQL are case-insensitive)
-		// #341 Only check password if you have set this to be the case 
 		if ($verified) {
-		    // ctp#80
-            // ctp#230 Build the hash from the lowercase email
-            $dbPassword = ($loginOption & User::LOGIN_HASHED) ? md5(strtolower($dbLoginObj->F_Email) . $dbLoginObj->F_Password) : $dbLoginObj->F_Password;
-			if ($password != $dbPassword) {
-				//$logMessage = "login $keyValue wrong password, they typed $password, should be ".$dbLoginObj->F_Password;
-				//if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
-				//AbstractService::$debugLog->info($logMessage);
-				throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
-			}
+		    // sss#132 Since the password might be hashed or not do a run through
+            // If the email is not set - use an empty string for hashing
+            $salt = (isset($dbLoginObj->F_Email)) ? strtolower($dbLoginObj->F_Email) : '';
+            // 1. Couloir apps assume that the password they are sent is hashed, first see if the db version is too
+            if (!$password == $dbLoginObj->F_Password) {
+                // 2. It didn't match, so hash the db version to see if that matches
+                if (!$password == md5($salt . $dbLoginObj->F_Password)) {
+                    // 3. So maybe the password was sent as plain text (should be impossible for Couloir apps)
+                    if (!md5($salt . $password) == $dbLoginObj->F_Password) {
+                        // No pair matched, password just plain wrong
+                        throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
+                    }
+                }
+            }
 		}
 		
 		// gh#66 check that the retrieved record is the right type of user

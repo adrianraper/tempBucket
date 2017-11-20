@@ -28,6 +28,9 @@ class User extends Manageable {
 	var $registrationDate;
 	var $userProfileOption;
 	var $registerMethod;
+
+	// sss#323 For hashed passwords
+    var $salt;
 	
 	// gh#956
 	//var $memory;
@@ -113,7 +116,7 @@ class User extends Manageable {
 		$this->id = intval($obj->F_UserID);
 		$this->userID = intval($obj->F_UserID);
 		//$this->name = $this->apos_decode($obj->F_UserName);
-		$this->name = $obj->F_UserName;
+		$this->name = (isset($obj->F_UserName)) ? $obj->F_UserName : '';
 		$this->email = $obj->F_Email;
 		$this->password = $obj->F_Password;
 		$this->userType = $obj->F_UserType;
@@ -139,6 +142,8 @@ class User extends Manageable {
 		// gh#856
 		//$this->memory = ($obj->F_Memory) ? new SimpleXMLElement($obj->F_Memory) : null;
 		//$this->memory = $obj->F_Memory;
+        // ss#323
+        $this->salt = (isset($obj->F_Salt)) ? $obj->F_Salt : null;
 	}
 	
 	/**
@@ -154,7 +159,8 @@ class User extends Manageable {
 					F_ExpiryDate=?,F_StartDate=?,F_RegistrationDate=?,F_Birthday=?,
 					F_Countryv,F_City=?,
 					F_custom1=?,F_custom2=?,F_custom3=?,F_custom4=?,
-					F_FullName=?,F_ContactMethod=?,F_UserProfileOption=?,F_RegisterMethod=?
+					F_FullName=?,F_ContactMethod=?,F_UserProfileOption=?,F_RegisterMethod=?,
+					F_Salt=?
 			WHERE F_UserID=$userID
 EOD;
 		return $sql;
@@ -172,12 +178,14 @@ EOD;
 					F_ExpiryDate,F_StartDate,F_RegistrationDate,F_Birthday,
 					F_Country,F_City,
 					F_custom1,F_custom2,F_custom3,F_custom4,
-					F_FullName,F_ContactMethod,F_UserProfileOption,F_RegisterMethod)
+					F_FullName,F_ContactMethod,F_UserProfileOption,F_RegisterMethod,
+					F_Salt)
 			VALUES (?,?,?,?,?, 
 					?,?,?,?,
 					?,?,
 					?,?,?,?,
-					?,?,?,?)
+					?,?,?,?,
+					?)
 EOD;
 		return $sql;
 	}
@@ -189,7 +197,8 @@ EOD;
 					$this->country, $this->city,
 					$this->custom1, $this->custom2, $this->custom3, $this->custom4, 
 					$this->fullName, $this->contactMethod, $this->userProfileOption,
-					$this->registerMethod); 
+					$this->registerMethod,
+                    $this->salt);
 					//($this->memory) ? $this->memory->asXML() : null);
 					//$this->memory);
 	}
@@ -224,8 +233,10 @@ EOD;
 		$array['F_RegisterMethod'] = $this->registerMethod;
 		//$array['F_Memory'] = ($this->memory) ? $this->memory->asXML() : null;
 		//$array['F_Memory'] = $this->memory;
-		
-		return $array;
+        // ss#323
+        $array['F_Salt'] = $this->salt;
+
+        return $array;
 	}
 	
 	static function getSelectFields($db, $prefix = "u") {
@@ -250,8 +261,9 @@ EOD;
 						"$prefix.F_RegisterMethod",
 						"$prefix.F_ContactMethod",
 						//"$prefix.F_Memory", // gh#856
+                        "$prefix.F_Salt",
 						);
-		
+
 		return implode(",", $fields);
 	}
 	
@@ -355,10 +367,38 @@ EOD;
     public function publicView() {
         // This will permanently remove sensitive fields from this object
         $this->password = null;
+        $this->salt = null;
         $this->registerMethod = null;
         $this->birthday = null;
-        $this->registrationDate= null;
+        $this->registrationDate = null;
         return $this;
+    }
+    // Create a formatted version of user that contains only the fields couloir apps want
+    public function couloirView() {
+	    $formattedUser = array();
+	    foreach ($this as $key => $value) {
+	        switch ($key) {
+                case "id":
+                case "name":
+                case "birthday":
+                case "userType":
+                case "studentID":
+                case "expiryDate":
+                case "email":
+                case "birthday":
+                case "country":
+                case "city":
+                case "startDate":
+                case "contactMethod":
+                case "registrationDate":
+                case "userProfileOption":
+                case "registerMethod":
+                    $formattedUser[$key] = $value;
+                    break;
+                default:
+            }
+        }
+        return $formattedUser;
     }
 
 	/**
