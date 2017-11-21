@@ -122,7 +122,7 @@ class CouloirService extends AbstractService {
                 $loginOption = "none";
             } else {
                 switch ($account->loginOption) {
-                    case 8:
+                    case 2:
                         $loginOption = "id";
                         break;
                     case 1:

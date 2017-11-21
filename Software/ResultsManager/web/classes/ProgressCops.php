@@ -51,7 +51,7 @@ class ProgressCops {
 		SET @productCode = 52;
 		-- First worldwide (all) average
 		INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_UnitId, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
-		SELECT @productCode, F_CourseID, null, AVG(F_Score) as AverageScore, AVG(if(F_Duration>3600,3600,F_Duration)) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide' 
+		SELECT @productCode, F_CourseID, null, AVG(F_Score) as AverageScore, AVG(if(F_Duration>3600,3600,F_Duration)) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide'
 		FROM T_Score
 		WHERE F_ProductCode = @productCode
 		AND F_Score>=0
@@ -60,10 +60,9 @@ class ProgressCops {
 		SET @country = 'Hong Kong';
 		SET @country = 'India';
 		INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_UnitId, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
-		SELECT @productCode, s.F_CourseID, null, AVG(s.F_Score) as AverageScore, AVG(if(s.F_Duration>3600,3600,s.F_Duration)) as AverageDuration, COUNT(s.F_UserID) as Count, now(), @country 
+		SELECT @productCode, s.F_CourseID, null, AVG(nullif(F_Score,-1)) as AverageScore, AVG(if(s.F_Duration>3600,3600,s.F_Duration)) as AverageDuration, COUNT(s.F_UserID) as Count, now(), @country
 		FROM T_Score s, T_User u
 		WHERE s.F_ProductCode = @productCode
-		AND s.F_Score>=0
 		AND u.F_UserID = s.F_UserID
 		AND u.F_Country = @country
 		GROUP BY F_CourseID;
@@ -113,10 +112,9 @@ EOD;
 		/*
 		  SET @productCode = 55;
 		  INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_UnitID, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
-		  SELECT @productCode, F_CourseID, F_UnitID, AVG(F_Score) as AverageScore, AVG(if(F_Duration>3600,3600,F_Duration)) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide' 
+		  SELECT @productCode, F_CourseID, F_UnitID, AVG(nullif(F_Score,-1)) as AverageScore, AVG(if(F_Duration>3600,3600,F_Duration)) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide'
 		  FROM T_Score
 		  WHERE F_ProductCode = @productCode
-		  AND F_Score>=0
 		  GROUP BY F_CourseID, F_UnitID;
 		*/
 		$sql = 	<<<EOD
@@ -200,9 +198,13 @@ SQL;
      * Cap durations of each exercise at one hour (3600 seconds)
      */
     public function getUnitProgress($session) {
-        // F_ProductCode, F_CourseID, F_UnitID, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country
+        // sss#312 ignore non-marked exercises from the average score
         $sql = <<<SQL
-			SELECT F_UnitID as unitId, SUM(if(F_Duration>3600,3600,F_Duration)) as duration, AVG(if(F_Score<0,0,F_Score)) as averageScore, AVG(if(F_Duration>3600,3600,F_Duration)) as averageDuration, COUNT(F_UserID) as exerciseCount
+			SELECT F_UnitID as unitId, 
+			      SUM(if(F_Duration>3600,3600,F_Duration)) as duration, 
+			      AVG(nullif(F_Score, -1)) as averageScore, 
+			      AVG(if(F_Duration>3600,3600,F_Duration)) as averageDuration, 
+			      COUNT(F_UserID) as exerciseCount
 			FROM T_Score
 			WHERE F_ProductCode=?
 			AND F_UserID=?
