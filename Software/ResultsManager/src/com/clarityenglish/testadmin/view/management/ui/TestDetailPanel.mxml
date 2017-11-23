@@ -159,6 +159,7 @@
 						languageData.dataProvider.addItem({label:"العَرَبِيَّة", data:"AR"});
 						languageData.dataProvider.addItem({label:"deutsch", data:"DE"});
 						languageData.dataProvider.addItem({label:"italiano", data:"IT"});
+						languageData.dataProvider.addItem({label:"español", data:"ES"});
 					}
 					
 					for (var i:uint=0; i<languageData.dataProvider.length; i++) {
