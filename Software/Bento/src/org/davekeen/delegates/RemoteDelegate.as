@@ -81,7 +81,7 @@ public class RemoteDelegate extends EventDispatcher implements IDelegate {
             // Only call this once
             if (selectedEndpoint.selected) return;
 
-            trace("select endpoint " + selectedEndpoint.name);
+            //trace("select endpoint " + selectedEndpoint.name);
             for each (var endpoint:Endpoint in endpoints) {
                 if (endpoint.name == selectedEndpoint.name) {
                     endpoint.selected = true;
@@ -183,7 +183,7 @@ public class RemoteDelegate extends EventDispatcher implements IDelegate {
         }
 
         public function executeEndpoint(endpoint:Endpoint):AsyncToken {
-            //trace("executeEndpoint " + endpoint.name + " for " + operationName);
+            //trace("executeEndpoint " + endpoint.name + " on " + endpoint.remoteGateway + " for " + operationName);
             endpoint.waitForResult = true;
 
             var remoteObject = new RemoteObject();
@@ -196,11 +196,11 @@ public class RemoteDelegate extends EventDispatcher implements IDelegate {
                 url += "?" + encodeURI(getArray.join("&"));
             }
 
-            var channelSet = new ChannelSet();
+            var channelSet:ChannelSet = new ChannelSet();
             // gh#1331 For when we are talking to https for ios clearance
             if (url.indexOf('https') == 0) {
                 var secureAmfChannel:SecureAMFChannel = new SecureAMFChannel("amfphp", url);
-                channelSet.addChannel(amfChannel);
+                channelSet.addChannel(secureAmfChannel);
             } else {
                 var amfChannel:AMFChannel = new AMFChannel("amfphp", url);
                 channelSet.addChannel(amfChannel);

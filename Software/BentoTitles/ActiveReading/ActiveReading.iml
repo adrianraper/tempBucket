@@ -8,23 +8,23 @@
             <entry module-name="Bento" build-configuration-name="Bento">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="Mobile components" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="c568c4a3-0de6-41e9-b3cc-1e2ad1942c87">
-              <dependency linkage="Merged" />
-            </entry>
             <entry module-name="textLayout" build-configuration-name="textLayout">
               <dependency linkage="Merged" />
             </entry>
             <entry module-name="OSMF" build-configuration-name="OSMF">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="Mobile components" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="c568c4a3-0de6-41e9-b3cc-1e2ad1942c87">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="Flex4.16_AIR26.0" />
         </dependencies>
         <compiler-options>
-          <option name="additionalOptions" value="-debug=false" />
+          <option name="additionalOptions" value="-debug=true" />
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
@@ -36,15 +36,17 @@
             <entry module-name="Bento" build-configuration-name="Bento">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="bb2e3370-bc66-47a5-a6a5-41a327727768">
+            <entry module-name="textLayout" build-configuration-name="textLayout">
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="MX components" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="textLayout" build-configuration-name="textLayout">
+	    <entry library-id="bb2e3370-bc66-47a5-a6a5-41a327727768">
               <dependency linkage="Merged" />
             </entry>
+
+
           </entries>
           <sdk name="Flex4.16_AIR26.0" />
         </dependencies>

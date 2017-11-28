@@ -17,7 +17,7 @@
 	</channel-->
 	<sharedMedia />
 	<brandingMedia />
-	<endpoint name='dock'>
+	<xendpoint name='dock'>
 		<upgradeURL>http://www.ieltspractice.com</upgradeURL>
 		<pricesURL>http://www.clarityenglish.com/prices.php</pricesURL>
 		<registerURL>http://takeielts.britishcouncil.org/book-your-test/book-now</registerURL>
@@ -28,20 +28,20 @@
             <streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
         </channel>
         <contentPath>http://dock.contentbench/Content/</contentPath>
-	</endpoint>
+	</xendpoint>
 	<endpoint name='aws'>
 		<upgradeURL>http://www.ieltspractice.com</upgradeURL>
 		<pricesURL>http://www.clarityenglish.com/prices.php</pricesURL>
 		<registerURL>http://takeielts.britishcouncil.org/book-your-test/book-now</registerURL>
 		<getAccountURL>http://www.roadtoielts.com/</getAccountURL>
-		<remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+		<remoteGateway>https://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
 		<remoteService>IELTSService</remoteService>
         <channel name="ios-azure" caption="C">
             <streamingMedia>http://portalvhds99k5w60hsxq1q.blob.core.chinacloudapi.cn/</streamingMedia>
         </channel>
-        <contentPath>http://www.clarityenglish.com/Content/</contentPath>
+        <contentPath>https://www.clarityenglish.com/Content/</contentPath>
     </endpoint>
-    <endpoint name='china'>
+    <xendpoint name='china'>
         <upgradeURL>http://www.ieltspractice.com</upgradeURL>
         <pricesURL>http://www.clarityenglish.com/prices.php</pricesURL>
         <registerURL>http://takeielts.britishcouncil.org/book-your-test/book-now</registerURL>
@@ -52,6 +52,6 @@
             <streamingMedia>http://portalvhds99k5w60hsxq1q.blob.core.chinacloudapi.cn/</streamingMedia>
         </channel>
         <contentPath>http://dock.contentbench/Content/</contentPath>
-    </endpoint>
+    </xendpoint>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 </config>

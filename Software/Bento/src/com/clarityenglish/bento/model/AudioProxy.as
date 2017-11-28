@@ -6,32 +6,35 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.RecorderNotifications;
 	import com.clarityenglish.bento.model.adaptor.IRecorderAdaptor;
 	import com.clarityenglish.bento.view.recorder.events.RecorderEvent;
-import com.clarityenglish.common.CommonNotifications;
-import com.clarityenglish.common.model.CopyProxy;
-import com.clarityenglish.common.vo.config.BentoError;
+	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.vo.config.BentoError;
 
-import flash.events.ErrorEvent;
+	import flash.events.ErrorEvent;
 	import flash.events.Event;
-import flash.events.PermissionEvent;
-import flash.events.ProgressEvent;
+	import flash.events.ProgressEvent;
 	import flash.events.SampleDataEvent;
 	import flash.events.StatusEvent;
 	import flash.media.Microphone;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
 	import flash.net.URLRequest;
-import flash.permissions.PermissionStatus;
-import flash.system.Security;
+	import flash.system.Security;
 	import flash.system.SecurityPanel;
 	import flash.utils.ByteArray;
 	import flash.utils.setTimeout;
-	
+
 	import fr.kikko.lab.ShineMP3Encoder;
-	
+
 	import org.davekeen.util.PlayerUtils;
 	import org.puremvc.as3.interfaces.IProxy;
-import org.puremvc.as3.patterns.observer.Notifier;
-import org.puremvc.as3.patterns.proxy.Proxy;
+	import org.puremvc.as3.patterns.observer.Notifier;
+	import org.puremvc.as3.patterns.proxy.Proxy;
+
+    // gh#1556 Flex SDK does not include these, but needed by AIR SDK.
+    // So you must comment them out, and the code that uses them when compiling a swf for browser use
+    import flash.events.PermissionEvent;
+    import flash.permissions.PermissionStatus;
 
 	/**
 	 * A proxy
@@ -413,7 +416,7 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 		}
 		
 		/**
-		 * Configure the microphone.
+		 * Configure the microphone. Must switch this back to different version if using Flex SDK not AIR SDK
 		 * 
 		 * @param	idx
 		 */
@@ -431,8 +434,6 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 		}
 
         public function setMicrophone():Boolean {
-            //if (microphone)
-            //	microphone.removeEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
 
             // v4.0.1.2 Error checking
             if (!Microphone.isSupported) {
@@ -443,8 +444,7 @@ import org.puremvc.as3.patterns.proxy.Proxy;
                 //Security.showSettings(SecurityPanel.MICROPHONE);
             } else {
                 microphone = Microphone.getMicrophone();
-                trace("set microphone, Microphone.names=" + Microphone.names.toString() + " microphone.name=" + microphone.name + " muted=" + microphone.muted);
-
+				// gh#1556
                 if (Microphone.permissionStatus != PermissionStatus.GRANTED) {
                     microphone.addEventListener(PermissionEvent.PERMISSION_STATUS, function (e:PermissionEvent):void {
                         if (e.status == PermissionStatus.GRANTED) {
@@ -466,6 +466,8 @@ import org.puremvc.as3.patterns.proxy.Proxy;
                 } else {
                     connectMicrophone();
                 }
+
+                _recordEnabled = false;
             }
             return _recordEnabled;
         }

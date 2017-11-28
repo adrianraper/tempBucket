@@ -305,7 +305,7 @@
 			<key>UIRequiresPersistentWiFi</key> 
         	<string>YES</string>
         	<key>NSMicrophoneUsageDescription</key>
-            <string>Enable microphone acess for audio recording.</string>
+            <string>Enable microphone access for audio recording.</string>
 	        <key>UIPrerenderedIcon</key>
 	        <true/>
 	        <key>NSAppTransportSecurity</key>

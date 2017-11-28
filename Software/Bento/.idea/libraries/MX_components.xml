@@ -1,7 +1,6 @@
 <component name="libraryTable">
   <library name="MX components" type="flex">
     <CLASSES>
-      <root url="jar://C:/Flex/13.0_AIR16.0/frameworks/libs/mx/mx.swc!/" />
       <root url="jar://C:/Flex/Flex4.16_AIR26.0/frameworks/libs/mx/mx.swc!/" />
     </CLASSES>
     <JAVADOC />

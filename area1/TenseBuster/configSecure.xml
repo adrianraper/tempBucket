@@ -11,9 +11,9 @@
 	<brandingMedia />
 	<language>EN</language>
 
-	<contentPath>https://secure.clarityenglish.com/Content/</contentPath>
-	<remoteDomain>https://secure.clarityenglish.com/</remoteDomain>
-	<remoteGateway>https://secure.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<contentPath>https://www.clarityenglish.com/Content/</contentPath>
+	<remoteDomain>https://dock.projectbench/</remoteDomain>
+	<remoteGateway>https://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>TenseBusterService</remoteService>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 </config>

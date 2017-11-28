@@ -6,11 +6,11 @@
  */
 
 // You have to call a concrete service which implements BentoService
-require_once(dirname(__FILE__)."/IELTSService.php");
+require_once(dirname(__FILE__)."/ActiveReadingService.php");
 // Classes normally included in amfphp but need to be manually included here
 require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
 
-$thisService = new IELTSService();
+$thisService = new ActiveReadingService();
 ini_set('max_execution_time', 300); // 5 minutes
 
 header('Content-Type: text/plain; charset=utf-8');
@@ -19,7 +19,7 @@ function loadAPIInformation() {
 	global $thisService;
 
 	//$inputData = file_get_contents("php://input");
-	$inputData = '{"method":"getAccountSettings", "config":{"ip":"175.159.61.24", "prefix":"", "rootID":0, "productCode":52}, "dbHost":200}';
+	$inputData = '{"method":"getAccountSettings", "config":{"prefix":"Clarity", "rootID":0, "productCode":56}, "dbHost":2}';
 
     //$inputData = '{"method":"login", "loginObj":{"password": "dpt", "email":"nat@cat", "ip":"127.0.0.1"},
     //$inputData = '{"method":"login", "loginObj":{"password": "password", "email":"dandy@email", "ip":"127.0.0.1"},

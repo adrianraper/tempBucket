@@ -66,7 +66,7 @@
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
 
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/ielts.js"></script>
+    <script type="text/javascript" language="JavaScript" src="/Software/Common/ielts.js"></script>
 	<?php require '../phpToJavascriptVars.php'; ?>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/loadBento.js"></script>
 

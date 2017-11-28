@@ -1,16 +1,19 @@
 $(window).load(function() {
-	thisMovie("bento").focus();
+	if (thisMovie("bento"))
+        thisMovie("bento").focus();
 	
 	// gh#182 - apparently jQuery is weird with beforeunload so bind directly.
 	window.onbeforeunload = function() {
-		if (thisMovie("bento").isDirty()) {
-			return thisMovie("bento").getDirtyMessage();
-		}
-		
-		// TODO: #224 this should be removed and replaced with the new clean/dirty system at some point
-		if (thisMovie("bento").isExerciseDirty()) {
-			return "If you close this window now you may lose data you are working on and will need to start again.";
-		}
+        if (thisMovie("bento")) {
+            if (thisMovie("bento").isDirty()) {
+                return thisMovie("bento").getDirtyMessage();
+            }
+            
+            // TODO: #224 this should be removed and replaced with the new clean/dirty system at some point
+            if (thisMovie("bento").isExerciseDirty()) {
+                return "If you close this window now you may lose data you are working on and will need to start again.";
+            }
+        }
 	};
 	
 	// #295

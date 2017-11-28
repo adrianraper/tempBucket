@@ -13,7 +13,8 @@
 		}
 		
 		function onLoad() {
-			thisMovie("bento").focus();
+            if (thisMovie("bento"))
+			    thisMovie("bento").focus();
 		}
 		// *********
 		// *********
