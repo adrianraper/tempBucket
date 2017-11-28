@@ -21,7 +21,7 @@
           <sdk name="Flex4.16_AIR26.0" />
         </dependencies>
         <compiler-options>
-          <option name="additionalOptions" value="-debug=true" />
+          <option name="additionalOptions" value="-debug=false" />
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android />

@@ -24,7 +24,7 @@
           <sdk name="Flex4.16_AIR26.0" />
         </dependencies>
         <compiler-options>
-          <option name="additionalOptions" value="-debug=true" />
+          <option name="additionalOptions" value="-debug=false" />
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
@@ -42,11 +42,9 @@
             <entry library-name="MX components" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-	    <entry library-id="bb2e3370-bc66-47a5-a6a5-41a327727768">
+            <entry library-id="bb2e3370-bc66-47a5-a6a5-41a327727768">
               <dependency linkage="Merged" />
             </entry>
-
-
           </entries>
           <sdk name="Flex4.16_AIR26.0" />
         </dependencies>

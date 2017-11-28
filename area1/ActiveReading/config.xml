@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	<id>/area1/ActiveReading in localhost</id>
-	<dbHost>2</dbHost>
-	<productCode>56</productCode>
-	<useCacheBuster>true</useCacheBuster>
-	<courseFile>menu-{productVersion}.xml</courseFile>
-	<platform>browser</platform>
-	<disableAutoTimeout>true</disableAutoTimeout>
-	<sharedMedia />
-	<brandingMedia>http://dock.contentbench/CCB/{prefix}/assets/</brandingMedia>
-	<language>EN</language>
-	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+    <id>/area1/ActiveReading in localhost</id>
+    <dbHost>2</dbHost>
+    <productCode>56</productCode>
+    <useCacheBuster>true</useCacheBuster>
+    <courseFile>menu-{productVersion}.xml</courseFile>
+    <platform>browser</platform>
+    <disableAutoTimeout>true</disableAutoTimeout>
+    <sharedMedia/>
+    <language>EN</language>
+    <assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 
-	<endpoint name='dock'>
-		<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
-		<remoteService>ActiveReadingService</remoteService>
+    <endpoint name='dock'>
+        <remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+        <remoteService>ActiveReadingService</remoteService>
         <channel name="aws-streaming" caption="awsstreaming">
             <streamingMedia>https://s3-ap-southeast-1.amazonaws.com/clarity-video-streaming/</streamingMedia>
         </channel>
-		<contentPath>http://dock.contentbench/Content/</contentPath>
-	</endpoint>
-
+        <contentPath>http://dock.contentbench/Content/</contentPath>
+        <brandingMedia>http://dock.contentbench/CCB/{prefix}/assets/</brandingMedia>
+    </endpoint>
+    <endpoint name='https'>
+        <remoteGateway>https://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+        <remoteService>ActiveReadingService</remoteService>
+        <channel name='aws-streaming' caption='awsstreaming'>
+            <streamingMedia>https://s3-ap-southeast-1.amazonaws.com/clarity-video-streaming/</streamingMedia>
+        </channel>
+        <contentPath>https://www.clarityenglish.com/Content/</contentPath>
+    </endpoint>
 </config>
 

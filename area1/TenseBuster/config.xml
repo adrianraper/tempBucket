@@ -10,10 +10,17 @@
 	<sharedMedia />
 	<brandingMedia />
 	<language>EN</language>
-
-	<contentPath>http://dock.contentbench/Content/</contentPath>
-	<remoteDomain>http://dock.projectbench/</remoteDomain>
-	<remoteGateway>{remoteDomain}Software/ResultsManager/web/amfphp/</remoteGateway>
-	<remoteService>TenseBusterService</remoteService>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+
+    <endpoint name='dock'>
+        <remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+        <remoteService>TenseBusterService</remoteService>
+        <contentPath>http://dock.contentbench/Content/</contentPath>
+    </endpoint>
+    <endpoint name='https'>
+        <remoteGateway>https://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+        <remoteService>TenseBusterService</remoteService>
+        <contentPath>https://www.clarityenglish.com/Content/</contentPath>
+    </endpoint>
+
 </config>

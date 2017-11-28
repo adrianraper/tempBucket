@@ -17,7 +17,7 @@
 	</channel-->
 	<sharedMedia />
 	<brandingMedia />
-	<xendpoint name='dock'>
+	<endpoint name='dock'>
 		<upgradeURL>http://www.ieltspractice.com</upgradeURL>
 		<pricesURL>http://www.clarityenglish.com/prices.php</pricesURL>
 		<registerURL>http://takeielts.britishcouncil.org/book-your-test/book-now</registerURL>
@@ -28,7 +28,7 @@
             <streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
         </channel>
         <contentPath>http://dock.contentbench/Content/</contentPath>
-	</xendpoint>
+	</endpoint>
 	<endpoint name='aws'>
 		<upgradeURL>http://www.ieltspractice.com</upgradeURL>
 		<pricesURL>http://www.clarityenglish.com/prices.php</pricesURL>
