@@ -1614,11 +1614,6 @@ CREATE TABLE `T_SessionTrack` (
 
 INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
-VALUES (2452, '2017-09-28 00:00:00', 'Couloir licence and session tracking');
-
-
-INSERT INTO `T_DatabaseVersion`
-(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (2452, '2017-10-10 00:00:00', 'Couloir licences and sessions');
 
 -- sss#128
