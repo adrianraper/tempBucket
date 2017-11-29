@@ -247,11 +247,11 @@ EOD;
             // If the email is not set - use an empty string for hashing
             $salt = (isset($dbLoginObj->F_Email)) ? strtolower($dbLoginObj->F_Email) : '';
             // 1. Couloir apps assume that the password they are sent is hashed, first see if the db version is too
-            if (!$password == $dbLoginObj->F_Password) {
+            if ($password != $dbLoginObj->F_Password) {
                 // 2. It didn't match, so hash the db version to see if that matches
-                if (!$password == md5($salt . $dbLoginObj->F_Password)) {
+                if ($password != md5($salt . $dbLoginObj->F_Password)) {
                     // 3. So maybe the password was sent as plain text (should be impossible for Couloir apps)
-                    if (!md5($salt . $password) == $dbLoginObj->F_Password) {
+                    if (md5($salt . $password) != $dbLoginObj->F_Password) {
                         // No pair matched, password just plain wrong
                         throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
                     }
