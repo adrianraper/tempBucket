@@ -756,8 +756,12 @@ EOD;
 
         // Format: list the exercises that have been completed, removes duplicates too
         $exercisesDone = array();
-        foreach ($exercises as $exercise)
+        // sss#341
+        foreach ($exercises as $exercise) {
+            if ($exercise['F_ExerciseID'] == 0)
+                continue;
             $exercisesDone[$exercise['F_ExerciseID']] = true;
+        }
 
         return $exercisesDone;
     }

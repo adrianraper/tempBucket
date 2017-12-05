@@ -84,7 +84,7 @@ class LicenceCops {
             }
         }
 
-        return ["hasLicenseSlot" => true, "reconnectionWindow" => $reconnectionWindow, "inactivityWindow" => 15];
+        return ["hasLicenseSlot" => true, "reconnectionWindow" => $reconnectionWindow, "inactivityWindow" => $inactivityWindow];
     }
 
     /*
