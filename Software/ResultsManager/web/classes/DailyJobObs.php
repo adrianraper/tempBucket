@@ -291,6 +291,18 @@ SQL;
         return false;
     }
 
+    // sss#314 To create a Couloir licence if the user has an existing one
+    public function createCouloirLicence($userId, $rootId, $productCode, $licence, $earliestDate) {
+
+        // Extra check to make sure that this user doesn't have a new licence already for this title
+        if (!$this->licenceOps->checkExistingLicence($userId, $productCode, $licence)) {
+            $this->licenceOps->convertLicenceSlot($userId, $productCode, $rootId, $licence, $earliestDate);
+            AbstractService::$log->info("add a licence for " . $userId . " to " . $productCode);
+            return true;
+        }
+        return false;
+    }
+
     // For archiving sent emails.
 	// Expected to be run by a daily CRON job
 	function archiveSentEmails($database) {

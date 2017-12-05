@@ -6,7 +6,9 @@
 /*
  * Occasional jobs include
  *   averaging scores per country
+ *   adding already used licence slots when you move to Couloir
  */
+
 set_time_limit(12000);
 
 require_once(dirname(__FILE__) . "/MinimalService.php");
@@ -67,15 +69,16 @@ function runOccasionalJobs($period) {
              * This adds a licence to T_LicenceHolders based on existing records in T_Session
              * gh#1230
              */
+            /*
             // Loop round active accounts in them, ignore individuals as they never extend beyond a year
             $conditions['active'] = true;
             $conditions['individuals'] = false;
             $conditions['productCode'] = 61;
             $testingAccounts = array();
-            //$testingAccounts = array(14030,24691,35886,163);
-            $testingAccounts = array(163);
-            $blockedRoots = array(100, 101, 167, 168, 169, 170, 171, 14030, 14024, 14031);
-            $bigRoots = array(13754, 13865, 14223, 14302, 14374, 19855, 33662, 35886, 37999);
+            //$testingAccounts = array(10497,13244,13326,13516,13735,13931,14472,14565,14588,18897,20489,24793,26098,27993,32366,35356,36348,37278,39422,42327,42659,42979,43076,43250,44125,44909,45529,46676,47984,48220);
+            $testingAccounts = array(22732);
+            $blockedRoots = array(100,101,167,168,169,170,171,14030,14024,14031);
+            $bigRoots = array(13754,13865,14223,14302,14374,19855,33662,35886,37999,43873);
             //$bigRoots = array();
             $accounts = $thisService->accountOps->getAccounts($testingAccounts, $conditions);
             $rootIdRange = false;
@@ -149,7 +152,7 @@ function runOccasionalJobs($period) {
                             foreach ($sessionRecords as $session) {
                                 $userId = $session['userId'];
                                 $earliestDate = $session['earliestDate'];
-                                echo "userId ".$userId." earliest date $earliestDate $newLine";
+                                echo "userId " . $userId . " earliest date $earliestDate $newLine";
                                 if ($earliestDate) {
                                     $rc = $thisService->dailyJobOps->createNewStyleLicence($userId, $account->id, $title->productCode, $licence, $earliestDate);
                                     if ($rc)
@@ -158,22 +161,89 @@ function runOccasionalJobs($period) {
                             }
                         }
 
-                        /*
                         // This loop is for users who are STILL in RM. What about those who have been deleted yet
                         // have used up licences?? I should be reading the T_Session table and ignoring T_User
-                        foreach ($users as $user) {
-                            $userId = $user['userID'];
-                            $earliestDate = $thisService->licenceOps->checkEarliestOldStyleLicence($userId, $title->productCode);
-                            echo "userId ".$userId." earliest date $earliestDate $newLine";
-                            if ($earliestDate) {
-                                $rc = $thisService->dailyJobOps->createNewStyleLicence($userId, $account->id, $title->productCode, $licence, $earliestDate);
-                                echo "new licence is ".$rc."$newLine";
-                                if ($rc)
-                                    $counter++;
+                        //foreach ($users as $user) {
+                        //    $userId = $user['userID'];
+                        //    $earliestDate = $thisService->licenceOps->checkEarliestOldStyleLicence($userId, $title->productCode);
+                        //    echo "userId ".$userId." earliest date $earliestDate $newLine";
+                        //    if ($earliestDate) {
+                        //        $rc = $thisService->dailyJobOps->createNewStyleLicence($userId, $account->id, $title->productCode, $licence, $earliestDate);
+                        //        echo "new licence is ".$rc."$newLine";
+                        //        if ($rc)
+                        //            $counter++;
+                        //    }
+                        //}
+                        echo "&nbsp;&nbsp;&nbsp;&nbsp;Added $counter licences for " . $title->name . " in root " . $account->id . " to T_LicenceHolders$newLine";
+                    }
+                }
+            }
+            */
+            /*
+             * This adds a licence to T_CouloirLicenceHolders based on existing sss records in T_Session
+             * sss#314
+             */
+            // Loop round active accounts in them, ignore individuals as they will not upgrade mid term
+            $conditions['active'] = true;
+            $conditions['individuals'] = false;
+            $conditions['productCode'] = 49;
+            $newProductCode = 66;
+            $testingAccounts = array();
+            //$testingAccounts = array(14030,24691,35886,163);
+            $testingAccounts = array(163);
+            $blockedRoots = array(100, 101, 167, 168, 169, 170, 171, 14030, 14024, 14031);
+            $bigRoots = array(13754, 13865, 14223, 14302, 14374, 19855, 33662, 35886, 37999);
+            //$bigRoots = array();
+            $accounts = $thisService->accountOps->getAccounts($testingAccounts, $conditions);
+            $rootIdRange = false;
+            //$rootIdRange = array(1000,20000);
+
+            // Do a check of existing licence count
+            foreach ($accounts as $account) {
+                // Are there some accounts which we might as well block?
+                // LM, TD, all IP.com
+                if ($rootIdRange && isset($rootIdRange[1]) && (($account->id < $rootIdRange[0]) || ($account->id > $rootIdRange[1])))
+                    continue;
+                if (in_array($account->id, $blockedRoots))
+                    continue;
+                if (in_array($account->id, $bigRoots))
+                    continue;
+
+                foreach ($account->titles as $title) {
+                    $licence = new Licence();
+                    $licence->fromDatabaseObj($title);
+
+                    if (!$takeAction) {
+                        if (($licence->licenceType == Title::LICENCE_TYPE_TT) || ($licence->licenceType == Title::LICENCE_TYPE_LT)) {
+                            $oldStyleCount = $thisService->licenceOps->countUsedOldStyleLicences($account->id, $title->productCode, $licence);
+                            $newStyleCount = $thisService->licenceOps->countUsedLicences($account->id, $newProductCode, $licence);
+                            $newStyleTotal = $thisService->licenceOps->countTotalLicences($account->id, $newProductCode, $licence);
+                            //if ($oldStyleCount > 0 || $newStyleCount > 0 || $newStyleTotal > 0)
+                                echo "root " . $account->id . "&nbsp;&nbsp;&nbsp;&nbsp;pc=" . $title->productCode . "&nbsp;&nbsp;&nbsp;&nbsp;existing=" . $oldStyleCount . "&nbsp;&nbsp;&nbsp;&nbsp;new current=" . $newStyleCount . "&nbsp;&nbsp;&nbsp;&nbsp;new total=" . $newStyleTotal . "$newLine";
+                        }
+                    } else {
+                        // You could do a check to see to jump out if none of the users have used this title...
+                        $timesTitleUsed = $thisService->licenceOps->countTimesTitleUsed($account->id, $title->productCode);
+                        if ($timesTitleUsed == 0)
+                            continue;
+
+                        // Read all the earliest session records for this title (current licence method)
+                        $counter = 0;
+                        $sessionRecords = $thisService->licenceOps->checkEarliestOldStyleLicences($account->id, $title->productCode);
+                        if ($sessionRecords) {
+                            foreach ($sessionRecords as $session) {
+                                $userId = $session['userId'];
+                                $earliestDate = $session['earliestDate'];
+                                echo "userId " . $userId . " earliest date $earliestDate $newLine";
+                                if ($earliestDate) {
+                                    $rc = $thisService->dailyJobOps->createCouloirLicence($userId, $account->id, $newProductCode, $licence, $earliestDate);
+                                    if ($rc)
+                                        $counter++;
+                                }
                             }
                         }
-                        */
-                        echo "&nbsp;&nbsp;&nbsp;&nbsp;Added $counter licences for " . $title->name . " in root " . $account->id . " to T_LicenceHolders$newLine";
+
+                        echo "&nbsp;&nbsp;&nbsp;&nbsp;Added $counter licences for " . $title->name . " in root " . $account->id . " to T_CouloirLicenceHolders$newLine";
                     }
                 }
             }
@@ -188,7 +258,7 @@ $oneoff = true;
 // If you are running a one-off job, don't trigger the other regular actions
 if ($oneoff) {
     // Extra date check to ensure one-off is intentional
-    if (date("j") == 2 && date("n") == 6) {
+    if (date("j") == 5 && date("n") == 12) {
         runOccasionalJobs("oneoff");
     } else {
         echo "Set the date in RunOccasionalJobs to enable one-off run";

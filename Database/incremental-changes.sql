@@ -1629,18 +1629,13 @@ DELETE FROM T_ProductVersion WHERE F_ProductCode = 67;
 INSERT INTO `T_ProductVersion` VALUES 
 (67,'FV');
 
-ALTER TABLE `T_SessionTrack` ADD INDEX `Index_3` (`F_RootID`,`F_ProductCode`,`F_StartDateStamp`,`F_UserID`);
-ALTER TABLE `T_SessionTrack` ADD INDEX `Index_4` (`F_RootID`,`F_ProductCode`,`F_StartDateStamp`);
+-- ALTER TABLE `T_SessionTrack` ADD INDEX `Index_3` (`F_RootID`,`F_ProductCode`,`F_StartDateStamp`,`F_UserID`);
+-- ALTER TABLE `T_SessionTrack` ADD INDEX `Index_4` (`F_RootID`,`F_ProductCode`,`F_StartDateStamp`);
 
 -- sss#132, sss#323 actually no, just use F_Password and store either hashed or not in it
-/*
 ALTER TABLE `T_User` 
-  ADD COLUMN `F_HashedPassword` TEXT NULL DEFAULT NULL,
-  ADD COLUMN `F_Salt` TEXT NULL DEFAULT NULL AFTER `F_HashedPassword`; 
+  ADD COLUMN `F_Salt` TEXT NULL DEFAULT NULL AFTER `F_Password`; 
 ALTER TABLE `T_User_Expiry`  
-  ADD COLUMN `F_HashedPassword` TEXT NULL DEFAULT NULL,  
   ADD COLUMN `F_Salt` TEXT NULL DEFAULT NULL AFTER `F_Password`; 
 ALTER TABLE `T_User_Deleted`  
-  ADD COLUMN `F_HashedPassword` TEXT NULL DEFAULT NULL,
-  ADD COLUMN `F_Salt` TEXT NULL DEFAULT NULL AFTER `F_HashedPassword`; 
-*/
+  ADD COLUMN `F_Salt` TEXT NULL DEFAULT NULL AFTER `F_Password`; 

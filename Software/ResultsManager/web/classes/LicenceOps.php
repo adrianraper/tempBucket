@@ -234,15 +234,23 @@ SQL;
         $expungeDateStamp->modify('+'.$licence->licenceClearanceFrequency); // one licence period in the future
         $expungeDate = $expungeDateStamp->modify('-1 day')->format('Y-m-d 23:59:59'); // minus one day
 
-        $sql = <<<SQL
-			INSERT INTO T_LicenceHolders (F_UserID, F_RootID, F_ProductCode, F_StartDateStamp, F_EndDateStamp)
-			VALUES (?, ?, ?, ?, ?)
+        // sss#314 Is this a Couloir title?
+        if (in_array($productCode, array(66,67))) {
+            $sql = <<<SQL
+                INSERT INTO T_CouloirLicenceHolders (F_KeyID, F_RootID, F_ProductCode, F_StartDateStamp, F_EndDateStamp, F_LicenceType)
+                VALUES (?, ?, ?, ?, ?, ?)
 SQL;
-
-        // We want to return the newly created F_LicenceID (or the SQL error)
-        $bindingParams = array($userId, $rootId, $productCode, $earliestDate, $expungeDate);
+            $bindingParams = array($userId, $rootId, $productCode, $earliestDate, $expungeDate, Title::LICENCE_TYPE_LT);
+        } else {
+            $sql = <<<SQL
+                INSERT INTO T_LicenceHolders (F_UserID, F_RootID, F_ProductCode, F_StartDateStamp, F_EndDateStamp)
+                VALUES (?, ?, ?, ?, ?)
+SQL;
+            $bindingParams = array($userId, $rootId, $productCode, $earliestDate, $expungeDate);
+        }
         $rs = $this->db->Execute($sql, $bindingParams);
         if ($rs) {
+            // We want to return the newly created F_LicenceID (or the SQL error)
             $licenceId = $this->db->Insert_ID();
             if ($licenceId) {
                 return $licenceId;
@@ -254,8 +262,8 @@ SQL;
         } else {
             throw $this->copyOps->getExceptionForId("errorDatabaseWriting");
         }
-
     }
+
     /**
      * Count how many licences are currently in use
      */
@@ -540,24 +548,36 @@ EOD;
      * but haven't been cleared out yet.
      */
     function countTotalLicences($rootID, $productCode, $licence) {
+        // sss#290 Include couloir licence control
+        $title = new Title();
+        $title->productCode = $productCode;
+        if ($title->isTitleCouloir()) {
+            $licenceTableName = 'T_CouloirLicenceHolders';
+            $keyFieldName = 'F_KeyID';
+        } else {
+            $licenceTableName = 'T_LicenceHolders';
+            $keyFieldName = 'F_UserID';
+        }
+        $dateFieldName = 'F_StartDateStamp';
+
         $aYearAgo = $this->getNow();
         $aYearAgo->modify('-1 year');
         $earliestDate = $aYearAgo->format('Y-m-d');
 
         if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
             $sql = <<<EOD
-				SELECT COUNT(l.F_UserID) AS licencesUsed 
-				FROM T_LicenceHolders l, T_User u
-				WHERE l.F_UserID = u.F_UserID
-				AND l.F_StartDateStamp >= ?
+				SELECT COUNT(l.$keyFieldName) AS licencesUsed 
+				FROM $licenceTableName l, T_User u
+				WHERE l.$keyFieldName = u.F_UserID
+				AND l.$dateFieldName >= ?
 EOD;
         } else {
             // gh#604 Teacher records in session will now include root, so ignore them here
             // gh#1228 But that ignores deleted/archived users, so revert
             $sql = <<<EOD
-				SELECT COUNT(l.F_UserID) AS licencesUsed 
-				FROM T_LicenceHolders l
-				WHERE l.F_StartDateStamp >= ?
+				SELECT COUNT(l.$keyFieldName) AS licencesUsed 
+				FROM $licenceTableName l
+				WHERE l.$dateFieldName >= ?
 EOD;
         }
 
