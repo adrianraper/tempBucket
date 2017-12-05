@@ -13,6 +13,7 @@ $json = json_decode(file_get_contents('php://input'));
 /**
  * Pretend to pass variables for easier debugging
 
+$json = json_decode('{"appVersion":"0.10.14","command":"login","login":"dandelion","password":"c3ae35e6f2bddba4b092c476adf91ccd","productCode":"66","rootId":163,"token":null}');
 $json = json_decode('{"command":"login","appVersion":"0.9.10","login":"dandy@email","password":"cf44fcc8f5d27a7d4431b623eda91888","productCode":"66","rootId":163}');
 $json = json_decode('{"appVersion":"0.10.10","command":"getComparison","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUxMTI0OTY0NCwic2Vzc2lvbklkIjoiNDMwIn0.d5NEPkbwQ03tw3hHwcvRqnILwhvN-NRCceiBzfQy-9g"}');
 $json = json_decode('{"appVersion":"0.10.9","command":"addUser","email":"jonon@seagull.com","login":"Jonon Seagull","password":"34c9a6ae8bafe22f538970104d67609f",

@@ -245,7 +245,9 @@ EOD;
 		if ($verified) {
 		    // sss#132 Since the password might be hashed or not do a run through
             // If the email is not set - use an empty string for hashing
-            $salt = (isset($dbLoginObj->F_Email)) ? strtolower($dbLoginObj->F_Email) : '';
+            // sss#359 the salt is the loginKeyField, not the actual email
+            //$salt = (isset($dbLoginObj->F_Email)) ? strtolower($dbLoginObj->F_Email) : '';
+            $salt = $keyValue;
             // 1. Couloir apps assume that the password they are sent is hashed, first see if the db version is too
             if ($password != $dbLoginObj->F_Password) {
                 // 2. It didn't match, so hash the db version to see if that matches
