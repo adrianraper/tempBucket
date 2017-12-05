@@ -778,6 +778,9 @@ EOD;
         // sss#214 a score of -1 means it was not marked. The app wants this as null
         $exercisesDone = array();
         foreach ($exercises as $exercise) {
+            // sss#341
+            if ($exercise['F_ExerciseID'] == 0)
+                continue;
             // sss#280 Formatting for client api
             $scorePercent = (intval($exercise['F_Score']) >= 0) ? intval($exercise['F_Score']) : null;
             $dateDone = new DateTime($exercise['F_DateStamp']);

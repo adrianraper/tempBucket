@@ -290,6 +290,7 @@ try {
         throw new Exception("Empty request");
 
     $jsonResult = router($json);
+    /*
     switch ($json->command) {
         case "login":
         case "getTranslations":
@@ -300,12 +301,18 @@ try {
         default:
             AbstractService::$debugLog->info("CTP return " . json_encode($jsonResult));
     }
+    */
     // sss#256 put a success wrapper around the returning data
     $jsonWrapped = array("success" => true, "details" => $jsonResult);
-    if ($jsonResult == []) {
-        echo json_encode($jsonWrapped, JSON_FORCE_OBJECT);
-    } else {
+    // sss#344 This command requires a list even if empty
+    if ($json->command == "getScoreDetails" && $jsonResult == array()) {
         echo json_encode($jsonWrapped);
+    } else {
+        if ($jsonResult == []) {
+            echo json_encode($jsonWrapped, JSON_FORCE_OBJECT);
+        } else {
+            echo json_encode($jsonWrapped);
+        }
     }
 
     /*
