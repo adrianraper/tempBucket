@@ -348,6 +348,42 @@
 				<p>You have one minute to think about what you're going to say.</p>
 				<p>You can make some notes to help you if you wish.</p>]]>
 			</lit>
+			<lit name="taskRequirementEditableText7"><![CDATA[
+				<p>Describe an educational place you have visited and would like to go to again.</p>
+				<p lineHeight="28">You should say:</p>
+				<p lineHeight="28">where it is located</p>
+				<p>when you visited this place</p>
+				<p>what people can do there</p>
+				<p lineHeight="28">and explain why you would like to visit this place again.</p>
+				<br/>
+				<p>You will have to talk about the topic for 1 to 2 minutes.</p>
+				<p>You have one minute to think about what you're going to say.</p>
+				<p>You can make some notes to help you if you wish.</p>]]>
+			</lit>
+			<lit name="taskRequirementEditableText8"><![CDATA[
+				<p>Describe a person you know who often travels.</p>
+				<p lineHeight="28">You should say:</p>
+				<p lineHeight="28">who this person is</p>
+				<p>where you met this person</p>
+				<p>which places he/she has visited</p>
+				<p lineHeight="28">and explain why he/she often travels.</p>
+				<br/>
+				<p>You will have to talk about the topic for 1 to 2 minutes.</p>
+				<p>You have one minute to think about what you're going to say.</p>
+				<p>You can make some notes to help you if you wish.</p>]]>
+			</lit>
+			<lit name="taskRequirementEditableText9"><![CDATA[
+				<p>Describe a product you would like to buy if you had enough money.</p>
+				<p lineHeight="28">You should say:</p>
+				<p lineHeight="28">what the product is</p>
+				<p>where you would buy the product</p>
+				<p>how much you think the product would cost</p>
+				<p lineHeight="28">and explain why you would like to buy it.</p>
+				<br/>
+				<p>You will have to talk about the topic for 1 to 2 minutes.</p>
+				<p>You have one minute to think about what you're going to say.</p>
+				<p>You can make some notes to help you if you wish.</p>]]>
+			</lit>
 			<lit name="reflectionHeaderLabel">Reflection</lit>
 			<lit name="reflectionEditableText">
 				<![CDATA[
