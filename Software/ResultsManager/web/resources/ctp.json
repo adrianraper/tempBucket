@@ -17,7 +17,7 @@
         "ICantDoThis": "I can't do it.",
         "IncorrectValidateCode": "It looks like you have entered a wrong code. Check your test notice again, or get help from your test administrator.",
         "EmptyValidateCode": "Please input your validation code.",
-        "DeviceUnsupported": "You need a different device to take the test. Check with your test adminstrator.",
+        "DeviceUnsupported": "You need a different device to take the test. Check with your test adminstrator."
       }
     },
     {

@@ -188,7 +188,9 @@ function scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffse
     }
 }
 // ctp#60
+// sss release add default productCode which older DPT doesn't send
 function getTranslations($lang) {
     global $service;
-    return $service->getTranslations($lang);
+    $productCode = 63;
+    return $service->getTranslations($lang, $productCode);
 }

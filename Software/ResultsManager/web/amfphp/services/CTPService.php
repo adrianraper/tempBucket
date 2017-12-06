@@ -442,8 +442,8 @@ class CTPService extends BentoService {
     */
 
     // ctp#60 Literals file for DPT
-    public function getTranslations($lang) {
-        $literals = $this->copyOps->getLiteralsFromFile($lang);
+    public function getTranslations($lang, $productCode) {
+        $literals = $this->copyOps->getLiteralsFromFile($lang, $productCode);
         return $literals;
     }
 
