@@ -30,7 +30,7 @@ You can take the test on a desktop/laptop or a tablet/smartphone.
     or
     <li>For tablet/phone download the app from the <a href="https://itunes.apple.com/hk/app/dynamic-placement-test/id1179218583?mt=8&amp;ign-mpt=uo%3D4" target="_blank" style=" font-size:0.9em;">Apple App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.clarityenglish.ctp_wrapper&hl=en" target="_blank" style=" font-size:0.9em;">Google Play</a>. Search for <strong>Dynamic Placement Test</strong>.</li>
 </ol>
-Sign in and try section 1 of the test to make sure it runs properly.<br/>
+Sign in and try section 1 of the test to make sure it runs properly on your device.<br/>
 {if $testDetail->startType == 'code'}
     Your test administrator will give you the access code when the test is ready to start.
 {/if}

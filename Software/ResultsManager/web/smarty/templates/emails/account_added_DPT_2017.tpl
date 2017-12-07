@@ -68,7 +68,7 @@
 		<p style="font-family:  Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px; margin:0; padding:0; color:#000000;">Login name: {$account->adminUser->name}</p>
 		<p style="font-family:  Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px; margin:0; padding:0; color:#000000;">Password: {$account->adminUser->password}</p>
 	</div>
-	   <p style="font-family:  Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px;margin:0 0 10px 0;">Note that you should restrict access to the administrator account to a single person. This account gives access to all teacher and learner records and to all Add and Delete functions. It is the master account. The administrator can set up Teacher and Learner accounts, which you can allocate to others within your school. (The exact nature of these accounts is explained in the Results Manager for DPT user manual. Click <a href="http://www.clarityenglish.com/Software/ResultsManager/web/Help/Results Manager Guide.pdf" target="_blank">here</a> to read the User Guide.)</p>
+	   <p style="font-family:  Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px;margin:0 0 10px 0;">Note that you should restrict access to the administrator account to a single person. This account gives access to all teacher and learner records and to all Add and Delete functions. It is the master account. The administrator can set up Teacher and Learner accounts, which you can allocate to others within your school.</p>
      
   
 <!-- 
@@ -76,15 +76,16 @@
 -- Different sections for AA and LT
 -->
 <li style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px;margin:0 0 5px 0; color:#151745; font-weight:700;">Accessing the Admin Panel for the first time</li>
-<p style="font-family:  Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px;margin:0 0 10px 0;">First login at <a href="http://www.clarityenglish.com" target="_blank">www.ClarityEnglish.com</a>, using your administrator account. In order to activate the program, the first thing you need to do is to accept the terms and conditions, which  will automatically be shown to you.</p>
+<p style="font-family:  Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px;margin:0 0 10px 0;">First sign in at <a href="http://www.clarityenglish.com" target="_blank">www.ClarityEnglish.com</a>, using your administrator account. In order to activate the program, the first thing you need to do is to accept the terms and conditions, which  will automatically be shown to you.</p>
 
-<p style="font-family:  Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px;margin:0 0 10px 0;">Once you have done this, click on the Admin Panel icon. This is where you add groups, learners and teachers and where you create a test for the test takers. Click <a href="http://www.clarityenglish.com/support/user/pdf/dpt/DPT_TestAdminGuide.pdf" target="_blank">here</a> to read the Test Admin User Guide.</p>
+	<p style="font-family:  Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px;margin:0 0 10px 0;">Once you have done this, click on the Admin Panel icon. This is where you add groups, learners and teachers and where you create a test for the test takers.
+		Click <a href="http://www.clarityenglish.com/support/user/pdf/dpt/DPT_TestAdminGuide.pdf" target="_blank">here</a> to read the Admin Panel User Guide
+		or you can <a href="https://www.youtube.com/watch?v=ayE_GVV-uao&feature=youtu.be" target="_blank">watch a video.</a></p>
 
 <!-- 
 -- 4. Support
 -->
 <li style="font-family:'Oxygen',   Arial, Helvetica, sans-serif;  font-size: 1em; line-height:18px;margin:10px 0 5px 0; color:#151745; font-weight:700;">Support</li>
-	<p style="font-family:  Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px;margin:0 0 10px 0;">If you want to send your test takers instructions on how to access the DPT, click <a href="http://www.clarityenglish.com/support/user/pdf/dpt/DPT_UserGuide.pdf" target="_blank">here</a> to download the User Guide.</p>
 	<p style="font-family:  Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px;margin:0 0 10px 0;">If at any time you have queries, requests or suggestions, the Clarity Support team is here to help:</p>
 	<p style="font-family:  Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px;margin:0 0 10px 20px; padding:0; color:#000000;">
 	Email: <a href="mailto:support@clarityenglish.com">support@clarityenglish.com</a> <br />
@@ -101,7 +102,7 @@
 <!-- 
 -- Email signature 
 -->
-	<p style="font-family:  Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px;margin:0 0 10px 0;">Finally, may I take this opportunity to thank you for choosing Dynamic Placement Test. We will do everything we can to help you make it a great success with your colleagues and test takers.</p>
+	<p style="font-family:  Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px;margin:0 0 10px 0;">Finally, may I take this opportunity to thank you for choosing the Dynamic Placement Test. We will do everything we can to help you make it a great success with your colleagues and test takers.</p>
 	<p style="font-family:  Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px; margin:10px 0 10px 0; padding:0; color:#000000;">Best regards<br>
     Adrian
     </p>

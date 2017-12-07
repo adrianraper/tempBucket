@@ -19,7 +19,7 @@
         <p style="font-family: Arial, Helvetica, sans-serif; font-weight:700; font-size: 1em; margin:0 0 5px 0; padding:0; color:#000000;">Andrew Stokes</p>
         <p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">ClarityEnglish<br />
 		Hong Kong & United Kingdom<br />
-		Tel: +852 9731 0900<br />
+		Tel: +852 2791 1787 / +852 9731 0900<br />
 		Email: <a href="mailto:andrew.stokes@clarityenglish.com">andrew.stokes@clarityenglish.com</a>
 	  </p> </td>
   </tr>
@@ -61,6 +61,36 @@
   </tr>
 </table>
 
+{elseif $resellerCode=='47'}
+	<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+      <tr>
+        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        </td>
+      </tr>
+       <tr>
+    <td width="14" height="10" ></td>
+    <td width="96"  valign="top"></td>
+    <td width="10"></td>
+    <td width="240"></td>
+  </tr>   
+    <tr>
+    <td width="14" height="99"></td>
+    <td width="96" valign="top"><img src="http://www.clarityenglish.com/images/email/q_eltc.png" width="88" align="right" style="margin:2px 0 0 0;"/></td>
+    <td width="10"></td>
+    <td width="240" align="left" valign="top">
+
+        <p style="font-family: Arial, Helvetica, sans-serif; font-weight:700; font-size: 1em; margin:0 0 5px 0; padding:0; color:#000000;">Mr Andy Cowle</p>
+        <p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">ELT Connections<br />
+		United Kingdom<br />
+		Tel: +44 (0)7860 339420 <br />
+		Email: <a href="mailto:andy@eltconnections.com">andy@eltconnections.com</a>
+	  </p> </td>
+  </tr>
+    
+  <tr>
+    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+  </tr>
+</table>
 {elseif $resellerCode=='13'}
 	<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
