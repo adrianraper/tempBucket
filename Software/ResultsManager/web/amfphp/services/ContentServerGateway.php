@@ -92,6 +92,7 @@ function router($json) {
             try {
                 $sid = $service->authenticationCops->getSessionId($token);
             } catch (Exception $e) {
+                $sid = null;
             };
             return $sid;
         }, $json->tokens);
