@@ -87,21 +87,34 @@ function router($json) {
     if (isset($json->token))
         $sids = [$service->authenticationCops->getSessionId($json->token)];
     if (isset($json->tokens)) {
-        $sids = array_map(function($token) use ($service) {return $service->authenticationCops->getSessionId($token);}, $json->tokens);
+        // sss#361 Don't break if token is invalid
+        $sids = array_map(function ($token) use ($service) {
+            try {
+                $sid = $service->authenticationCops->getSessionId($token);
+            } catch (Exception $e) {
+            };
+            return $sid;
+        }, $json->tokens);
     }
-
     if (isset($sids)) {
         AbstractService::$debugLog->info("CSG " . $json->command . " for [" . implode(',', $sids) . "] at " . $localTimestamp);
     } else {
         AbstractService::$debugLog->info("CSG call " . $json->command);
     }
+
     switch ($json->command) {
-        case "acquireLicenseSlots": return acquireLicenceSlots($json->tokens);
-        case "releaseLicenseSlot": return releaseLicenceSlot($json->token, $json->timestamp);
-        case "updateActivity": return updateActivity($json->token, $json->timestamp);
-        case "getEncryptionKey": return getEncryptionKey($json->id);
-        case "dbCheck": return dbCheck();
-        default: throw new Exception("Unknown command");
+        case "acquireLicenseSlots":
+            return acquireLicenceSlots($json->tokens);
+        case "releaseLicenseSlot":
+            return releaseLicenceSlot($json->token, $json->timestamp);
+        case "updateActivity":
+            return updateActivity($json->token, $json->timestamp);
+        case "getEncryptionKey":
+            return getEncryptionKey($json->id);
+        case "dbCheck":
+            return dbCheck();
+        default:
+            throw new Exception("Unknown command");
     }
 }
 

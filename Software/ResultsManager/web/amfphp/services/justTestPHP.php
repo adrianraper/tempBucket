@@ -40,6 +40,7 @@
 
 	require_once(dirname(__FILE__)."/TB6weeksService.php");
 */
+/*
 function updateUrl($url) {
     if (stristr($_SERVER['HTTP_HOST'], 'dock.projectbench') !== false) {
         $baseDomain = 'http://dock.contentbench';
@@ -62,6 +63,18 @@ test(
     "https://clarityenglish.com.erm.lib.mcu.edu.tw:81/Content/TenseBuster10-NAmerican/",
     "http://www.clarityenglish.com/Content/TenseBuster10-NAmerican/"
 );
+*/
+$func = function($item) {
+    try {
+        if ($item == 0)
+            throw new Exception("Can't do 0");
+        return $item;
+    } catch (Exception $ex) {
+    }
+};
+
+$rs = array_map($func, array(1, 2, 3, 0, 5));
+print_r($rs);
 /*
 	require_once(dirname(__FILE__)."/MinimalService.php");
 	$dummy = new MinimalService();

@@ -409,18 +409,21 @@ class CouloirService extends AbstractService {
     // This reports whether each session in the array can get a licence slot
     public function checkLicenceSlots($tokens) {
         $func = function($token) {
-            // Pick the session id from the token
-            $session = $this->authenticationCops->getSession($token);
-
-            // gh#161 Delete all expired licences here to tidy up before grabbing each one
-            // TODO This clears for product code and root id. It might be worth making sure
-            // that you only do it once for each combination to save unnecessary calls.
-            $this->licenceCops->deleteExpiredLicenceSlots($session);
-
             // Simply, can this session get a licence or not?
+            // sss#361 Any exception means you don't have a licence slot anymore
             try {
+                // Pick the session id from the token
+                $session = $this->authenticationCops->getSession($token);
+
+                // gh#161 Delete all expired licences here to tidy up before grabbing each one
+                // TODO This clears for product code and root id. It might be worth making sure
+                // that you only do it once for each combination to save unnecessary calls.
+                // Indeed it would seem more sensible to deleteExpiredLicenceSlots once only for all roots and productCodes
+                $this->licenceCops->deleteExpiredLicenceSlots($session);
+
                 // Note American spelling for app API
                 return $this->licenceCops->checkCouloirLicenceSlot($session);
+
             } catch (Exception $e) {
                 return ["hasLicenseSlot" => false];
             }
