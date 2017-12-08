@@ -5,12 +5,12 @@
 :: http://help.adobe.com/en_US/AIR/1.5/devappshtml/WS13ACB483-1711-43c0-9049-0A7251630A7D.html
 
 :: Path to Flex SDK binaries
-set PATH=%PATH%;C:\Program Files\flex_sdk_4.1\bin
+set PATH=%PATH%;C:\Flex\Flex4.16_AIR26.0\bin
 
 :: Signature (see 'CreateCertificate.bat')
 :: The original certificate
-set CERTIFICATE=C:\ClarityCertificate2010.p12
-set SIGNING_OPTIONS=-storetype pkcs12 -keystore %CERTIFICATE%
+set CERTIFICATE=c:\certificates\ClarityCertificate2010.pfx
+set SIGNING_OPTIONS=-storetype pkcs12 -keystore %CERTIFICATE% -keypass Clarit163y -storepass Clarit163y
 if not exist %CERTIFICATE% goto certificate
 
 :: Output
@@ -19,7 +19,7 @@ set AIR_FILE=air/ClarityRecorder.air
 set AIR_FILE_NEW=air/ClarityRecorderRenew.air
 
 :: Call migration option, just need the name of the AIR
-echo Signing AIR setup using certificate %CERTIFICATE%.
+echo Renewing AIR setup using certificate %CERTIFICATE%.
 call adt -migrate %SIGNING_OPTIONS% %AIR_FILE% %AIR_FILE_NEW%
 if errorlevel 1 goto failed
 

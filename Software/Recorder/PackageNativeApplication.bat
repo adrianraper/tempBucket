@@ -5,12 +5,12 @@
 :: http://livedocs.adobe.com/flex/3/html/help.html?content=CommandLineTools_5.html#1035959
 
 :: Path to Flex SDK binaries
-set PATH=%PATH%;C:\Program Files\flex_sdk_4.1\bin
+set PATH=%PATH%;C:\Flex\Flex4.16_AIR26.0\bin
 
 :: Signature (see 'CreateCertificate.bat')
 :: set CERTIFICATE=SelfSigned.pfx
-set CERTIFICATE=C:\ClarityCertificate2012.p12
-set SIGNING_OPTIONS=-storetype pkcs12 -keystore %CERTIFICATE%
+set CERTIFICATE=c:\certificates\ClarityCertificate2019.pfx
+set SIGNING_OPTIONS=-storetype pkcs12 -keystore %CERTIFICATE% -keypass Clarit163y -storepass Clarit163y
 if not exist %CERTIFICATE% goto certificate
 
 :: Output

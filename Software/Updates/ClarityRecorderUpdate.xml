@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?> 
+	<update xmlns="http://ns.adobe.com/air/framework/update/description/3.0"> 
+		<versionNumber>4.0.2</versionNumber> 
+		<url>http://www.ClarityEnglish.com/Software/Recorder/bin/AIRClarityRecorder.air</url> 
+		<description><![CDATA[
+        This update will:
+         *Warn you if don't have a microphone that the program can use.
+  ]]></description> 
+	</update>

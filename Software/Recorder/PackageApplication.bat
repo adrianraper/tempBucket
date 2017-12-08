@@ -4,12 +4,12 @@
 :: More information:
 :: http://livedocs.adobe.com/flex/3/html/help.html?content=CommandLineTools_5.html#1035959
 
-:: Path to Flex SDK binaries
-set PATH=%PATH%;C:\Program Files\flex_sdk_4.1\bin
+:: Path to Flex SDK binaries (just once per session)
+set PATH=%PATH%;C:\Flex\Flex4.16_AIR26.0\bin
 
 :: Signature (see 'CreateCertificate.bat')
 :: set CERTIFICATE=SelfSigned.pfx
-set CERTIFICATE=C:\ClarityCertificate2012.p12
+set CERTIFICATE=c:\certificates\ClarityCertificate2019.pfx
 set SIGNING_OPTIONS=-storetype pkcs12 -keystore %CERTIFICATE% -keypass Clarit163y -storepass Clarit163y
 if not exist %CERTIFICATE% goto certificate
 
@@ -34,7 +34,7 @@ goto end
 :certificate
 echo Certificate not found: %CERTIFICATE%
 echo.
-echo Troubleshotting: 
+echo Troubleshooting: 
 echo A certificate is required, generate one using 'CreateCertificate.bat'
 echo.
 goto end
@@ -42,7 +42,7 @@ goto end
 :failed
 echo AIR setup creation FAILED.
 echo.
-echo Troubleshotting: 
+echo Troubleshooting: 
 echo did you configure the Flex SDK path in this Batch file?
 echo.
 
