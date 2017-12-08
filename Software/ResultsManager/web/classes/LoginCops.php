@@ -46,7 +46,8 @@ class LoginCops {
 			throw $this->copyOps->getExceptionForId("errorInvalidLoginOption", array("loginOption" => $loginOption));
 		}
         if (isset($login) && $login != '') {
-            $keyValue = $login;
+		    // sss#356 all sign in details are case-insensitive
+            $keyValue = strtolower($login);
         } else {
             throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
         }
@@ -128,9 +129,9 @@ EOD;
 				$rs->MoveFirst();
 				while ($userObj = $rs->FetchNextObj()) {
                     // ctp#80
-                    // sss#132 TODO Need to update to match hashed password if it exists
-                    $dbPassword = ($loginOption & User::LOGIN_HASHED) ? md5($userObj->F_Email . $userObj->F_Password) : $userObj->F_Password;
-					if ($password == $dbPassword) {
+                    //$dbPassword = ($loginOption & User::LOGIN_HASHED) ? md5($userObj->F_Email . $userObj->F_Password) : $userObj->F_Password;
+					//if ($password == $dbPassword) {
+                    if ($this->verifyPassword($password, $userObj->F_Password, $keyValue)) {
 						$dbLoginObj = $userObj;
 						$matches++;
 					}
@@ -243,23 +244,10 @@ EOD;
 		}
 		
 		if ($verified) {
-		    // sss#132 Since the password might be hashed or not do a run through
-            // If the email is not set - use an empty string for hashing
-            // sss#359 the salt is the loginKeyField, not the actual email
-            //$salt = (isset($dbLoginObj->F_Email)) ? strtolower($dbLoginObj->F_Email) : '';
-            $salt = $keyValue;
-            // 1. Couloir apps assume that the password they are sent is hashed, first see if the db version is too
-            if ($password != $dbLoginObj->F_Password) {
-                // 2. It didn't match, so hash the db version to see if that matches
-                if ($password != md5($salt . $dbLoginObj->F_Password)) {
-                    // 3. So maybe the password was sent as plain text (should be impossible for Couloir apps)
-                    if (md5($salt . $password) != $dbLoginObj->F_Password) {
-                        // No pair matched, password just plain wrong
-                        throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
-                    }
-                }
+            if (!$this->verifyPassword($password, $dbLoginObj->F_Password, $keyValue)) {
+                throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
             }
-		}
+        }
 		
 		// gh#66 check that the retrieved record is the right type of user
 		if (!in_array($dbLoginObj->F_UserType, $userTypes))
@@ -278,7 +266,24 @@ EOD;
 		// Return the $dbLoginObj so the specific service can continue with whatever action it likes
 		return $dbLoginObj;
 	}
-	
+
+	private function verifyPassword($typedPassword, $dbPassword, $salt) {
+        // sss#132 Since the password might be hashed or not do a run through
+        // If the email is not set - use an empty string for hashing
+        // sss#359 the salt is the loginKeyField, not the actual email
+        //$salt = (isset($dbLoginObj->F_Email)) ? strtolower($dbLoginObj->F_Email) : '';
+        // 1. Couloir apps assume that the password they are sent is hashed, first see if the db version is too
+        if ($typedPassword != $dbPassword) {
+            // 2. It didn't match, so hash the db version to see if that matches
+            if ($typedPassword != md5($salt . $dbPassword)) {
+                // 3. So maybe the password was sent as plain text (should be impossible for Couloir apps)
+                if (md5($salt . $typedPassword) != $dbPassword) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 	/**
 	 * Get the anonymous user from the database
      * TODO This seems utterly pointless - getting back basically a null record from the database
