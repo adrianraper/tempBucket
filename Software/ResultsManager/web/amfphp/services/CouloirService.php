@@ -2,42 +2,44 @@
 /**
  * Called from amfphp gateway from Flex
  */
-require_once(dirname(__FILE__)."/AbstractCouloirService.php");
-require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
-require_once(dirname(__FILE__)."/../../classes/TestCops.php");
-require_once(dirname(__FILE__)."/../../classes/UsageCops.php");
-require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
-require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
-require_once(dirname(__FILE__)."/../../classes/ProgressCops.php");
-require_once(dirname(__FILE__)."/../../classes/LoginCops.php");
-require_once(dirname(__FILE__)."/../../classes/LicenceCops.php");
-require_once(dirname(__FILE__)."/../../classes/AccountCops.php");
-require_once(dirname(__FILE__)."/../../classes/MemoryCops.php");
-require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
-require_once(dirname(__FILE__)."/../../classes/AuthenticationCops.php");
+require_once(dirname(__FILE__) . "/AbstractCouloirService.php");
+require_once(dirname(__FILE__) . "/../../classes/CopyOps.php");
+require_once(dirname(__FILE__) . "/../../classes/TestCops.php");
+require_once(dirname(__FILE__) . "/../../classes/UsageCops.php");
+require_once(dirname(__FILE__) . "/../../classes/ManageableOps.php");
+require_once(dirname(__FILE__) . "/../../classes/EmailOps.php");
+require_once(dirname(__FILE__) . "/../../classes/ProgressCops.php");
+require_once(dirname(__FILE__) . "/../../classes/LoginCops.php");
+require_once(dirname(__FILE__) . "/../../classes/LicenceCops.php");
+require_once(dirname(__FILE__) . "/../../classes/AccountCops.php");
+require_once(dirname(__FILE__) . "/../../classes/MemoryCops.php");
+require_once(dirname(__FILE__) . "/../../classes/ContentOps.php");
+require_once(dirname(__FILE__) . "/../../classes/TransformCops.php");
+require_once(dirname(__FILE__) . "/../../classes/PortfolioCops.php");
+require_once(dirname(__FILE__) . "/../../classes/AuthenticationCops.php");
 
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/Reportable.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Content.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Title.php");
+require_once(dirname(__FILE__) . "/vo/com/clarityenglish/common/vo/Reportable.php");
+require_once(dirname(__FILE__) . "/vo/com/clarityenglish/common/vo/content/Content.php");
+require_once(dirname(__FILE__) . "/vo/com/clarityenglish/common/vo/content/Title.php");
 
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Account.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Licence.php");
+require_once(dirname(__FILE__) . "/vo/com/clarityenglish/dms/vo/account/Account.php");
+require_once(dirname(__FILE__) . "/vo/com/clarityenglish/dms/vo/account/Licence.php");
 
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Manageable.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/User.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Group.php");
+require_once(dirname(__FILE__) . "/vo/com/clarityenglish/common/vo/manageable/Manageable.php");
+require_once(dirname(__FILE__) . "/vo/com/clarityenglish/common/vo/manageable/User.php");
+require_once(dirname(__FILE__) . "/vo/com/clarityenglish/common/vo/manageable/Group.php");
 
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/progress/Score.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/progress/ScoreDetail.php");
+require_once(dirname(__FILE__) . "/vo/com/clarityenglish/bento/vo/progress/Score.php");
+require_once(dirname(__FILE__) . "/vo/com/clarityenglish/bento/vo/progress/ScoreDetail.php");
 
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/session/SessionTrack.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/ScheduledTest.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/DPTConstants.php");
+require_once(dirname(__FILE__) . "/vo/com/clarityenglish/common/vo/session/SessionTrack.php");
+require_once(dirname(__FILE__) . "/vo/com/clarityenglish/common/vo/tests/ScheduledTest.php");
+require_once(dirname(__FILE__) . "/vo/com/clarityenglish/common/vo/tests/DPTConstants.php");
 
-require_once($GLOBALS['adodb_libs']."adodb-exceptions.inc.php");
-require_once($GLOBALS['adodb_libs']."adodb.inc.php");
-require_once(dirname(__FILE__) . "/Firebase/JWT/JWT.php");
-require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
+require_once($GLOBALS['adodb_libs'] . "adodb-exceptions.inc.php");
+require_once($GLOBALS['adodb_libs'] . "adodb.inc.php");
+require_once(dirname(__FILE__) . "/../../classes/vendor/Firebase/JWT/JWT.php");
+require_once(dirname(__FILE__) . "/../core/shared/util/Authenticate.php");
 
 
 class CouloirService extends AbstractService {
@@ -45,10 +47,10 @@ class CouloirService extends AbstractService {
     // The version of the app that called you
     private $appVersion;
 
-	function __construct() {
-		parent::__construct();
-		
-		// Set the title name for resources
+    function __construct() {
+        parent::__construct();
+
+        // Set the title name for resources
         // TODO This should be obsolete
         AbstractService::$title = "ctp";
 
@@ -62,7 +64,9 @@ class CouloirService extends AbstractService {
         $this->contentOps = new ContentOps($this->db);
         $this->authenticationCops = new AuthenticationCops($this->db);
         $this->memoryCops = new MemoryCops($this->db);
-	}
+        $this->transformCops = new TransformCops($this->db);
+        $this->portfolioCops = new PortfolioCops($this->db);
+    }
 
     public function changeDB($dbHost) {
         $this->changeDbHost($dbHost);
@@ -77,24 +81,28 @@ class CouloirService extends AbstractService {
         $this->contentOps = new ContentOps($this->db);
         $this->authenticationCops = new AuthenticationCops($this->db);
         $this->memoryCops = new MemoryCops($this->db);
+        $this->transformCops = new TransformCops($this->db);
+        $this->portfolioCops = new PortfolioCops($this->db);
     }
 
-	public function getAppVersion() {
-	    return $this->appVersion;
+    public function getAppVersion() {
+        return $this->appVersion;
     }
+
     public function setAppVersion($appVersion) {
-	    $this->appVersion = $appVersion;
+        $this->appVersion = $appVersion;
     }
+
     /*
      * Find an account that matches a prefix, IP or RU range.
      * sss#285 The ip is picked up by the server, not sent from client
-     * sss#374 referrer has to come from app
      */
-    public function getLoginConfig($productCode, $prefix, $referrer) {
+    public function getLoginConfig($productCode, $prefix) {
 
         // Pick up the ip and ru, if any, of the client
         $ip = $this->accountCops->getIP();
-        $ru = (is_null($referrer)) ? $this->accountCops->getRU() : $referrer;
+        $ru = $this->accountCops->getRU();
+        AbstractService::$debugLog->info("found the ru as " . $ru . " and ip as " . $ip);
 
         // Find the account, if one matches
         $account = $this->accountCops->getAccount($productCode, $prefix, $ip, $ru);
@@ -172,26 +180,27 @@ class CouloirService extends AbstractService {
             $selfRegister = $account->selfRegister;
             if (isset($account->id)) {
                 $returnAccount = array("lang" => $account->titles[0]->languageCode,
-                                "contentName" => $account->titles[0]->contentLocation,
-                                "rootId" => intval($account->id),
-                                "institutionName" => $account->name,
-                                "menuFilename" => "menu.json");
+                    "contentName" => $account->titles[0]->contentLocation,
+                    "rootId" => intval($account->id),
+                    "institutionName" => $account->name,
+                    "menuFilename" => "menu.json");
             }
         }
 
         // sss#288 sss#304
         $config = array("loginOption" => $loginOption,
-                        "verified" => ($verified) ? true : false,
-                        "allowSelfRegistration" => ($selfRegister > 0) ? true : false,
-                        "selfRegistrationToken" => ($selfRegister > 0) ? $selfRegToken : null,
-                        "licenseType" => $licenceType,
-                        "account" => $returnAccount);
+            "verified" => ($verified) ? true : false,
+            "allowSelfRegistration" => ($selfRegister > 0) ? true : false,
+            "selfRegistrationToken" => ($selfRegister > 0) ? $selfRegToken : null,
+            "licenseType" => $licenceType,
+            "account" => $returnAccount);
         return $config;
     }
+
     /*
      * Login checks the user, account, hidden content, creates a session and secures a licence
      */
-	public function login($login, $password, $productCode, $rootId = null, $platform = null) {
+    public function login($login, $password, $productCode, $rootId = null, $platform = null) {
 
         // sss#229 If the productCode is a comma delimited string '52,53' you need to handle it here
         // Until we get to a situation (Road to IELTS) that requires it, just assume a single integer
@@ -202,7 +211,7 @@ class CouloirService extends AbstractService {
             $account = $this->accountCops->getBentoAccount($rootId, $productCode);
 
             // Remove any other titles from the account
-            $account->titles = array_filter($account->titles, function($title) use ($productCode) {
+            $account->titles = array_filter($account->titles, function ($title) use ($productCode) {
                 return $title->productCode = intval($productCode);
             });
 
@@ -246,7 +255,7 @@ class CouloirService extends AbstractService {
         }
 
         // Check on hidden content at the product level for this group
-        $groupIdList =  implode(',', $this->manageableOps->getGroupParents($group->id));
+        $groupIdList = implode(',', $this->manageableOps->getGroupParents($group->id));
         if ($this->loginCops->isTitleBlockedByHiddenContent($groupIdList, $productCode)) {
             throw $this->copyOps->getExceptionForId("errorTitleBlockedByHiddenContent");
         }
@@ -261,7 +270,7 @@ class CouloirService extends AbstractService {
                 // For now, the app will only work if max of one test is returned.
                 // There is no test selection page so just drop everything except the first
                 if (count($tests) > 1)
-                    $tests = array_slice($tests,0,1);
+                    $tests = array_slice($tests, 0, 1);
                 $testId = $tests[0]->testId;
             }
         }
@@ -270,7 +279,7 @@ class CouloirService extends AbstractService {
         $session = $this->startCouloirSession($user, $rootId, $productCode, $testId);
 
         // Create a token that contains this session id
-        $token = $this->authenticationCops->createToken(["sessionId" => (string) $session->sessionId]);
+        $token = $this->authenticationCops->createToken(["sessionId" => (string)$session->sessionId]);
 
         // Grab a licence slot - this will send exception if none available
         // TODO if you catch an exception from this, you could then invalidate the session you just created
@@ -289,7 +298,7 @@ class CouloirService extends AbstractService {
             "user" => $user->couloirView(),
             "tests" => (isset($tests)) ? $tests : null,
             "token" => $token,
-            "memory" => (isset($memory)) ? $memory : json_decode ("{}"));
+            "memory" => (isset($memory)) ? $memory : json_decode("{}"));
 
         // sss#12 For a title that uses encrypted content, send the key
         if ($productCode == 63 || $productCode == 65) {
@@ -346,7 +355,7 @@ class CouloirService extends AbstractService {
                     $stubUser->email = $loginObj["email"];
                 }
             } else {
-                throw $this->copyOps->getExceptionForId ("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
+                throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
             }
         } elseif ($loginOption & User::LOGIN_BY_ID) {
             $loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
@@ -356,21 +365,21 @@ class CouloirService extends AbstractService {
                     $stubUser->email = $loginObj["email"];
                 }
             } else {
-                throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
+                throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
             }
         } elseif ($loginOption & User::LOGIN_BY_EMAIL) {
             $loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
             if (isset($loginObj["login"])) {
                 $loginKeyValue = $stubUser->email = $loginObj["login"];
             } else {
-                throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
+                throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
             }
         } else {
-            throw $this->copyOps->getExceptionForId ( "errorInvalidLoginOption", array("loginOption" => $loginOption));
+            throw $this->copyOps->getExceptionForId("errorInvalidLoginOption", array("loginOption" => $loginOption));
         }
         // sss#132 Check that a required password has been sent
         if ($account->verified && !isset($loginObj["password"])) {
-            throw $this->copyOps->getExceptionForId ( "errorPasswordEmpty");
+            throw $this->copyOps->getExceptionForId("errorPasswordEmpty");
         }
 
         $user = $this->manageableOps->getUserByKey($stubUser, $rootId, $loginOption);
@@ -407,9 +416,10 @@ class CouloirService extends AbstractService {
 
         return [];
     }
+
     // This reports whether each session in the array can get a licence slot
     public function checkLicenceSlots($tokens) {
-        $func = function($token) {
+        $func = function ($token) {
             // Simply, can this session get a licence or not?
             // sss#361 Any exception means you don't have a licence slot anymore
             try {
@@ -431,6 +441,7 @@ class CouloirService extends AbstractService {
         };
         return array_map($func, $tokens);
     }
+
     public function releaseLicenceSlot($token, $timestamp) {
         // Pick the session id from the token
         $session = $this->authenticationCops->getSession($token);
@@ -441,9 +452,9 @@ class CouloirService extends AbstractService {
         } catch (Exception $e) {
         }
         return [];
-	}
+    }
 
-	// sss#228 Write to the user's memory
+    // sss#228 Write to the user's memory
     public function memoryWrite($token, $key, $value) {
         // Pick the session from the token
         $session = $this->authenticationCops->getSession($token);
@@ -451,6 +462,7 @@ class CouloirService extends AbstractService {
         $this->memoryCops->set($key, $value, $session->userId, $session->productCode);
         return array();
     }
+
     // Clear the memory for this user of this title
     public function memoryClear($token) {
         // Pick the session from the token
@@ -460,7 +472,7 @@ class CouloirService extends AbstractService {
         return array();
     }
 
-	// Get details of all tests scheduled for this group
+    // Get details of all tests scheduled for this group
     public function getTests($group, $productCode) {
         return $this->testCops->getActiveTests($group->id, $productCode);
     }
@@ -511,7 +523,7 @@ class CouloirService extends AbstractService {
 
             // ctp#311 If you are running locally, implying no encryption in content server, send back an empty code
             // Locally working will not work if you DO set an access code on a scheduled test
-            if ($test->startType == 'timer' && stristr($_SERVER['SERVER_NAME'],'dock.projectbench') !== false)
+            if ($test->startType == 'timer' && stristr($_SERVER['SERVER_NAME'], 'dock.projectbench') !== false)
                 $test->groupId = '';
 
             // ctp#285 groupID needs to be a string
@@ -523,7 +535,7 @@ class CouloirService extends AbstractService {
     }
 
     // Create a session record that runs until the user signs-out (or is kicked out)
-    public function startCouloirSession($user, $rootId, $productCode, $uid=null) {
+    public function startCouloirSession($user, $rootId, $productCode, $uid = null) {
         return $this->progressCops->startCouloirSession($user, $rootId, $productCode, $uid);
     }
     /*
@@ -590,7 +602,7 @@ EOD;
             $forceScoreWriting = true;
             $this->progressCops->insertScore($score, $user, $forceScoreWriting);
 
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             // gh#166 Catch duplicate record exceptions - and just ignore!!
             $this->db->FailTrans();
             $this->db->CompleteTrans();
@@ -599,6 +611,45 @@ EOD;
             } else {
                 // gh#460 If you find that this is a duplicate, just quit whole process, but with no error
                 return [];
+            }
+        }
+
+        // sss#362 Any free writing questions need a special answer saving
+        $writingDetails = array();
+        foreach ($scoreObj->exerciseScore->questionScores as $answer) {
+            if ($answer->questionType != "FreeWritingQuestion")
+                continue;
+
+            // Only write details that have been answered - if not attempted leave them out
+            if ($answer->answerTimestamp === null)
+                continue;
+
+            // Convert timestamp to our usual date format
+            // ctp#380 Save UTC time
+            $answer->answerTimestamp = (isset($answer->answerTimestamp)) ? $this->timestampToAnsiString($answer->answerTimestamp) : null;
+            $writingDetails[] = new ScoreDetail($answer, $score);
+        }
+        if (count($writingDetails) > 0) {
+            foreach ($writingDetails as $writingDetail) {
+                // Need to move the related text into the data section
+                $data = $writingDetail->getState()->data;
+                $data->relatedText = $writingDetail->getState()->relatedTextContent;
+                $writingDetail->setStateData($data);
+
+                $this->progressCops->insertWritingDetail($writingDetail, $user, $session);
+
+                // Add any transforms for this answer to the queue
+                // TODO when there are more than one transform you should queue each in turn with dependencies if necessary
+                // so that you queue CreateGoogleDoc (id=123) then queue SendDocToMarker(dependency=123)
+                $text = $writingDetail->getState()->current;
+                $data = $writingDetail->getState()->data;
+                // move the transform name round a bit
+                $transform = $data->transforms[0]->name;
+                unset($data->transforms);
+                $data->text = $text;
+
+                $params = ["userId" => $user->userID, "uid" => $writingDetail->uid, "transform" => $transform, "data" => $data];
+                $this->transformCops->queueTransform($params);
             }
         }
 
@@ -677,11 +728,11 @@ EOD;
         $session = $this->authenticationCops->getSession($token);
 
         // For manual figuring out of a result, with more detail
-        if ($mode=='debug')
+        if ($mode == 'debug')
             return $this->progressCops->getTestResult($session, $mode);
 
         // gh#151 Has the result already been calculated for this session?
-        if (!$session->getResult() || $mode=='overwrite') {
+        if (!$session->getResult() || $mode == 'overwrite') {
             $session->setResult($this->progressCops->getTestResult($session, $mode));
 
             // ctp#261 Find the datestamp of the first real score in the test to update the session with
@@ -693,7 +744,7 @@ EOD;
 
         // gh#151 Have we closed the session?
         // sss#17
-        if ($session->status == SessionTrack::STATUS_OPEN || $mode=='overwrite') {
+        if ($session->status == SessionTrack::STATUS_OPEN || $mode == 'overwrite') {
             // ctp#261 Get the time the last score was written for this session
             $lastScore = $this->testCops->getLastScore($session->sessionId);
             $session->lastUpdateDateStamp = $lastScore->dateStamp;
@@ -707,7 +758,7 @@ EOD;
             $this->progressCops->updateCouloirSession($session);
 
         // With manual rescoring we always want to show the result
-        if ($mode=='overwrite')
+        if ($mode == 'overwrite')
             return $session->result;
 
         // ctp#173 Does the test administrator want the test takers to see a result?
@@ -732,7 +783,7 @@ EOD;
 
     // Pick up all the sessions for a particular test or test taker
     public function getSessionsForTest($sessionId, $email, $testId) {
-	    if ($testId)
+        if ($testId)
             return $this->testCops->getSessionsForTest($testId);
         if ($email)
             return $this->testCops->getSessionsFromEmail($email);
@@ -797,6 +848,7 @@ EOD;
         }
         return $exercisesDone;
     }
+
     // sss#17 For each unit that the user had worked on, summarise the progress
     public function getUnitProgress($token) {
         // Pick the session id from the token
@@ -812,6 +864,7 @@ EOD;
 
         return $unitsDone;
     }
+
     // sss#17 For each unit that the user had worked on, summarise the progress
     public function getUnitComparison($token, $mode) {
         // Pick the session from the token
@@ -864,4 +917,41 @@ EOD;
     public function dbCheck() {
         return ['database' => $GLOBALS['db']];
     }
+
+    // sss#364 What is in this user's portfolio?
+    public function getPortfolio($token, $uid = null) {
+        // Pick the session from the token
+        $session = $this->authenticationCops->getSession($token);
+
+        if ($session->userId < 0)
+            return array();
+
+        // If you didn't specify anything in uid, then assume you want everything for this productCode
+        if (!$uid)
+            $uid = $session->productCode;
+
+        // Retrieve the portfolio records for this user and this product
+        $records = $this->portfolioCops->getPortfolio($session->userId, $uid);
+
+        // Format to return as a list of exercises
+        $portfolio = array();
+        foreach ($records as $record) {
+            // The id must not conflict with anything else in menu.json - yet should not change once added
+            $generatedId = 'pf'.$record['F_PortfolioID'];
+            $portfolio[] = ['href' => $record['F_File'],
+                'thumbnailHref' => $record['F_Thumbnail'],
+                'caption' => $record['F_Caption'],
+                'exerciseType' => 'pdf',
+                'id' => $generatedId
+            ];
+        }
+        return $portfolio;
+    }
+
+    // sss#364 Add an item to the user's portfolio
+    // TODO should we be using the token?
+    public function addToPortfolio($userId, $uid, $file, $thumbnail, $caption) {
+        return $this->portfolioCops->addToPortfolio($userId, $uid, $file, $thumbnail, $caption);
+    }
+
 }

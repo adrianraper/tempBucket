@@ -1619,7 +1619,6 @@ CREATE TABLE `T_SessionTrack` (
   `F_Status` smallint NOT NULL DEFAULT '0',
   PRIMARY KEY (`F_SessionID`),
   KEY `Index_1` (`F_UserID`,`F_ProductCode`),
-  KEY `Index_2` (`F_RootID`,`F_ProductCode`),
   KEY `Index_3` (`F_RootID`,`F_ProductCode`,`F_StartDateStamp`,`F_UserID`),
   KEY `Index_4` (`F_RootID`,`F_ProductCode`,`F_StartDateStamp`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -1651,3 +1650,49 @@ ALTER TABLE `T_User_Expiry`
   ADD COLUMN `F_Salt` TEXT NULL DEFAULT NULL AFTER `F_Password`; 
 ALTER TABLE `T_User_Deleted`  
   ADD COLUMN `F_Salt` TEXT NULL DEFAULT NULL AFTER `F_Password`; 
+
+-- sss#362 save user free writing details
+DROP TABLE IF EXISTS `T_WritingDetail`;
+CREATE TABLE `T_WritingDetail` (
+  `F_DetailID` int NOT NULL AUTO_INCREMENT,
+  `F_UserID` int NOT NULL,
+  `F_UID` char(80) NOT NULL,
+  `F_ItemID` varchar(64) NOT NULL,
+  `F_SessionID` int NOT NULL,
+  `F_DateStamp` datetime DEFAULT NULL,
+  `F_Score` text DEFAULT NULL,
+  `F_Text` text,
+  `F_Data` text,
+  PRIMARY KEY (`F_DetailID`),
+  KEY `Index_1` (`F_UserID`,`F_UID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  
+DROP TABLE IF EXISTS `T_Portfolio`;
+CREATE TABLE `T_Portfolio` (
+  `F_PortfolioID` int NOT NULL AUTO_INCREMENT,
+  `F_UserID` int NOT NULL,
+  `F_UID` char(80) NOT NULL,
+  `F_DateStamp` datetime DEFAULT NULL,
+  `F_File` text,
+  `F_Thumbnail` text,
+  `F_Caption` text,
+  `F_Dropped` tinyint(1),
+  PRIMARY KEY (`F_PortfolioID`),
+  KEY `Index_1` (`F_UserID`,`F_UID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `T_PendingTransforms`;
+CREATE TABLE T_PendingTransforms (
+F_TransformID bigint(20) NOT NULL AUTO_INCREMENT,
+F_Data text,
+F_RequestTimestamp datetime DEFAULT NULL,
+F_RunTimestamp datetime DEFAULT NULL,
+F_DelayUntil datetime DEFAULT NULL,
+F_Attempts smallint DEFAULT 0,
+PRIMARY KEY (F_TransformID),
+  KEY `Index_1` (`F_RequestTimestamp` ASC)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  
+INSERT INTO `T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (2453, '2018-01-02 00:00:00', 'Free writing and portfolio tables');

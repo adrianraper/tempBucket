@@ -214,7 +214,6 @@ SQL;
         $rs = $this->db->GetArray($sql, $bindingParams);
 
         return $rs;
-
     }
 
     /**
@@ -1070,6 +1069,37 @@ EOD;
         if (!$rc)
             throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
 
+    }
+
+    /**
+     * sss#362
+     * Save a free writing answer in the database
+     * Trigger any workflow process that will transform this answer - or will this simply be cron controlled?
+     */
+    public function insertWritingDetail($writingDetail, $user, $session) {
+        $sqlData = array();
+        if (!$writingDetail->score) $writingDetail->score = '-1';
+        $text = $writingDetail->getState()->current;
+        $data = json_encode($writingDetail->getState()->data);
+
+        $sqlData[] = "(".$user->userID.", '".$writingDetail->uid."', '".$writingDetail->itemID."', ".$writingDetail->sessionID.", '".$writingDetail->dateStamp."'".
+            ", '".$writingDetail->score."', '".$text."', '".$data."')";
+        $sql = <<<EOD
+			INSERT INTO T_WritingDetail (F_UserID,F_UID,F_ItemID,F_SessionID,F_DateStamp,                                        
+                                         F_Score,F_Text,F_Data)
+			VALUES 
+EOD;
+        $sql .= implode(',', $sqlData);
+
+        try {
+            $rc = $this->db->Execute($sql);
+        } catch (Exception $e) {
+            if ($this->db->ErrorNo() == 1062)
+                throw $this->copyOps->getExceptionForId("errorDatabaseDuplicateRecord", array("msg" => $this->db->ErrorMsg()));
+            throw $e;
+        }
+        if (!$rc)
+            throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
     }
 
     /**

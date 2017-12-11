@@ -57,21 +57,21 @@ class ScoreDetail {
 	
 	public function setUID($value) {
 		$UIDArray = explode('.', $value);
-		//if (count($UIDArray)>0)
-		//	$this->productCode = $UIDArray[0];
 		if (count($UIDArray)>1)
 			$this->courseID = $UIDArray[1];
 		if (count($UIDArray)>2)
 			$this->unitID = $UIDArray[2];
 		if (count($UIDArray)>3)
 			$this->exerciseID = $UIDArray[3];
-		$this->uid = $this->getUID();
+		// sss#362 score detail doesn't hold productCode separately, so just leave it in uid
+		$this->uid = $value;
 	}
 	public function getUID() {
-		//$build = $this->productCode;
-        $build = '';
+        // sss#362 score detail doesn't hold productCode separately, so just leave it in uid
+        if (isset($this->uid))
+            return $this->uid;
 		if (isset($this->courseID))
-			$build .= '.'.$this->courseID;
+			$build = '0.'.$this->courseID;
 		if (isset($this->unitID))
 			$build .= '.'.$this->unitID;
 		if (isset($this->exerciseID))
@@ -93,6 +93,12 @@ class ScoreDetail {
     public function getState() {
         $detail = json_decode($this->detail);
         return $detail->state;
+    }
+    // TODO This should probably be setState, but all I want is to set the data bit of it
+    public function setStateData($data) {
+        $detail = json_decode($this->detail);
+        $detail->state->data = $data;
+        $this->detail = json_encode($detail);
     }
 
 	/**

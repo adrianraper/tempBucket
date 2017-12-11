@@ -9,7 +9,65 @@
 header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
+// Following for debug and logging dates and times
+// Pick up the current time and convert as if it came from app  (local timezone, microseconds)
+$utcDateTime = new DateTime();
+$utcTimestamp = $utcDateTime->format('U')*1000;
+$utcDateTime->setTimezone(new DateTimeZone('Asia/Hong_Kong'));
+$localDate = $utcDateTime->format('Y-m-d H:i:s');
+// Or simply set a date time that you want to test with
+//$localDate = '2017-09-01 11:33:00';
+$localDateTime = new DateTime($localDate);
+$localTimestamp = $localDateTime->format('U')*1000;
+//$GLOBALS['fake_now'] = '2017-10-10 09:00:00';
+
 $json = json_decode(file_get_contents('php://input'));
+/*
+if (is_null($json))
+    $json = json_decode('{"command": "scoreWrite",
+            "appVersion": "1.0.0",
+            "score": {
+                "uid": "66.2017066010000.2017066010200.2017066010202",
+                "exerciseScore": {
+                    "questionScores": [{
+                        "id": "12345678",
+                        "questionType": "FreeWritingQuestion",
+                        "state": {
+                            "data": {
+                                "template": "b27 self marking checklist",
+                                "caption": "Task 1 essay writing",
+                                "transforms": [{
+                                    "name": "CreateGoogleDoc"
+                                }]
+                            },
+                            "relatedTextContent": "What is the most important language to learn today?",
+                            "initial": "",
+                            "current": "Clearly English has a lead as a world language of commerce and law. Even in arts it is a leading language as so many books are translated into English."
+                        },
+                        "score": 0,
+                        "answerTimestamp": 1503026898929,
+                        "tags": []
+                    }],
+                    "exerciseMark": {
+                        "correctCount": 0,
+                        "incorrectCount": 0,
+                        "missedCount": 0
+                    },
+                    "duration": 92001,
+                    "submitTimestamp": '.$utcTimestamp.'
+                },
+                "anomalies": {
+                    "lostFocus": 0,
+                    "lostVisibility": 0
+                }
+            },
+            "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUxNTU1MTcwNSwic2Vzc2lvbklkIjoiNDc1In0.g59nN2gU7m-ycc8wQtB2UrMFH11j6AEXatS8MW1dxxs",
+            "localTimestamp": '.$utcTimestamp.',
+            "timezoneOffset": -480
+    }');
+*/
+//$json = json_decode('{"appVersion":"0.10.10","command":"getPortfolio","uid":"66.2017066010000", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUxNTExMzcyOSwic2Vzc2lvbklkIjoiNDY0In0.z2LPIn2KYaf_-sFcKI6CFbU2JS9fO71zL85gXNxfehQ"}');
+//$json = json_decode('{"appVersion":"1.0.0","command":"addToPortfolio","userId":27639,"uid":"66.2017066010000.2017066010200.2017066010202","file":"http://www.clarityenglish.com/pdf/niceone.pdf","thumbnail":"http://www.clarityenglish.com/images/niceone.png","caption":"Task 1 answer"}');
 /**
  * Pretend to pass variables for easier debugging
 
@@ -274,18 +332,6 @@ require_once(dirname(__FILE__)."/CouloirService.php");
 $service = new CouloirService();
 set_time_limit(360);
 
-// Following for debug and logging dates and times
-// Pick up the current time and convert as if it came from app  (local timezone, microseconds)
-$utcDateTime = new DateTime();
-$utcTimestamp = $utcDateTime->format('U')*1000;
-$utcDateTime->setTimezone(new DateTimeZone('Asia/Hong_Kong'));
-$localDate = $utcDateTime->format('Y-m-d H:i:s');
-// Or simply set a date time that you want to test with
-//$localDate = '2017-09-01 11:33:00';
-$localDateTime = new DateTime($localDate);
-$localTimestamp = $localDateTime->format('U')*1000;
-//$GLOBALS['fake_now'] = '2017-10-10 09:00:00';
-
 try {
     if (!$json)
         throw new Exception("Empty request");
@@ -305,8 +351,8 @@ try {
     */
     // sss#256 put a success wrapper around the returning data
     $jsonWrapped = array("success" => true, "details" => $jsonResult);
-    // sss#344 This command requires a list even if empty
-    if ($json->command == "getScoreDetails" && $jsonResult == array()) {
+    // sss#344 These commands requires a list even if empty
+    if (($json->command == "getScoreDetails" || $json->command == "getPortfolio") && $jsonResult == array()) {
         echo json_encode($jsonWrapped);
     } else {
         if ($jsonResult == []) {
@@ -437,6 +483,21 @@ function router($json) {
         case "getAnalysis": return getAnalysis($json->token);
         case "getScoreDetails": return getScoreDetails($json->token);
         case "dbCheck": return dbCheck();
+        // sss#362
+        // ["user" => $user->userID, "name" => "CreateGoogleDoc", "text" => $text, "template" => "b27 self checklist"]
+        case "callTransform": return callTransform($json);
+        // sss#364
+        case "getPortfolio":
+            if (!isset($json->uid)) $json->uid = null;
+            return getPortfolio($json->token, $json->uid);
+        case "addToPortfolio":
+            if (!isset($json->userId)) $json->userId = null;
+            if (!isset($json->uid)) $json->uid = null;
+            if (!isset($json->file)) $json->file = null;
+            if (!isset($json->thumbnail)) $json->thumbnail = null;
+            if (!isset($json->caption)) $json->caption = null;
+            return addToPortfolio($json->userId, $json->uid, $json->file, $json->thumbnail, $json->caption);
+        case "dbCheck": return dbCheck();
         default: throw new Exception("Unknown command ".$json->command);
     }
 }
@@ -517,6 +578,20 @@ function scoreWrite($token, $scoreObj, $localTimestamp, $clientTimezoneOffset=nu
 function getTranslations($lang, $productCode) {
     global $service;
     return $service->getTranslations($lang, $productCode);
+}
+// sss#362 This would normally be called from RunPendingTransforms, never by the app
+function callTransform($data) {
+    global $service;
+    return $service->transformCops->callTransform(json_encode($data));
+}
+// sss#364
+function getPortfolio($token, $uid = null) {
+    global $service;
+    return $service->getPortfolio($token, $uid);
+}
+function addToPortfolio($userId, $uid, $file, $thumbnail, $caption){
+    global $service;
+    return $service->addToPortfolio($userId, $uid, $file, $thumbnail, $caption);
 }
 // Just for testing new gateways
 function dbCheck() {
