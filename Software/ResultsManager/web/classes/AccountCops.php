@@ -70,22 +70,34 @@ class AccountCops {
         // sss#285 IP and RU licence control
         // If this account has IP control, match and accept or kick ou
         if ($account->licenceAttributes) {
+            // sss#373 IP or RU is sufficent, don't need to pass both
+            $blocked = "none";
             foreach ($account->licenceAttributes as $thisLicenceAttribute) {
                 if ($thisLicenceAttribute['licenceKey'] == 'IPrange') {
                     if ($thisLicenceAttribute['productCode'] == '' || stristr($thisLicenceAttribute['productCode'], $productCode) !== false) {
                         if (!$this->isIPInRange($ip, $thisLicenceAttribute['licenceValue'])) {
-                            throw $this->copyOps->getExceptionForId("errorIPDoesntMatch", array("ip" => $ip));
+                            $blocked = "ip";
+                        } else {
+                            $blocked = "none";
+                            break;
                         }
                     }
                 }
                 if ($thisLicenceAttribute['licenceKey'] == 'RUrange') {
                     if ($thisLicenceAttribute['productCode'] == '' || stristr($thisLicenceAttribute['productCode'], $productCode) !== false) {
                         if (!$this->isRUInRange($ru, $thisLicenceAttribute['licenceValue'])) {
-                            throw $this->copyOps->getExceptionForId("errorRUDoesntMatch", array("referrer" => ($ru) ? $ru : 'untraceable'));
+                            $blocked = "ru";
+                        } else {
+                            $blocked = "none";
+                            break;
                         }
                     }
                 }
             }
+            if ($blocked == "ip")
+                throw $this->copyOps->getExceptionForId("errorIPDoesntMatch", array("ip" => $ip));
+            if ($blocked == "ru")
+                throw $this->copyOps->getExceptionForId("errorRUDoesntMatch", array("referrer" => ($ru) ? $ru : 'untraceable'));
         }
 
         // sss#128
