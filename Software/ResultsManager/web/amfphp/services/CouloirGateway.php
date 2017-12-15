@@ -408,7 +408,9 @@ function router($json) {
         case "getLoginConfig":
             // sss#285
             if (!isset($json->prefix)) $json->prefix = null;
-            return getLoginConfig($json->productCode, $json->prefix);
+            // sss#374
+            if (!isset($json->referrer)) $json->referrer = null;
+            return getLoginConfig($json->productCode, $json->prefix, $json->referrer);
         // sss#177
         case "addUser":
             $loginObj = Array();
@@ -454,9 +456,9 @@ function login($login, $password, $productCode, $rootId, $platform = null) {
 // sss#61 Return login option details for this account
 // Returns exception if no account found - 223 is an expected one
 // sss#285
-function getLoginConfig($productCode, $prefix) {
+function getLoginConfig($productCode, $prefix, $referrer) {
     global $service;
-    return $service->getLoginConfig($productCode, $prefix);
+    return $service->getLoginConfig($productCode, $prefix, $referrer);
 }
 // sss#177 Add a new user to a self-registering account
 function addUser($selfRegistrationToken, $loginObj) {

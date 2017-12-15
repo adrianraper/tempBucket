@@ -383,7 +383,6 @@ EOD;
 				SELECT m.F_RootID as rootID
 				FROM T_Membership m
 				WHERE m.F_UserID = ?
-				WHERE m.F_UserID = ?
 EOD;
 		$rs = $this->db->Execute($sql, array($user->id));
 		

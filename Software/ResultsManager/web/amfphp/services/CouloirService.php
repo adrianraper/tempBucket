@@ -88,12 +88,13 @@ class CouloirService extends AbstractService {
     /*
      * Find an account that matches a prefix, IP or RU range.
      * sss#285 The ip is picked up by the server, not sent from client
+     * sss#374 referrer has to come from app
      */
-    public function getLoginConfig($productCode, $prefix) {
+    public function getLoginConfig($productCode, $prefix, $referrer) {
 
         // Pick up the ip and ru, if any, of the client
         $ip = $this->accountCops->getIP();
-        $ru = $this->accountCops->getRU();
+        $ru = (is_null($referrer)) ? $this->accountCops->getRU() : $referrer;
 
         // Find the account, if one matches
         $account = $this->accountCops->getAccount($productCode, $prefix, $ip, $ru);
