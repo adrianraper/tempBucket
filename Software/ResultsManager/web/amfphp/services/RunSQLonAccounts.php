@@ -510,7 +510,7 @@ function convertSessionRecord($dbObj) {
 // If you want to run specific triggers for specific days (for testing)
 // you can put 'date=-1' in the URL
 $testingTriggers = "";
-//$testingTriggers .= "Change expiry date";
+$testingTriggers .= "Change expiry date";
 //$testingTriggers .= "Add RM to all accounts";
 //$testingTriggers .= "terms and conditions";
 //$testingTriggers .= "Seed permissions and privacy for CCB";
@@ -518,7 +518,7 @@ $testingTriggers = "";
 //$testingTriggers .= "Restore archived users";
 //$testingTriggers .= "Clear orphans";
 //$testingTriggers .= "Convert TestSession to SessionTrack";
-$testingTriggers .= "map SSS old Ids to new Ids";
+//$testingTriggers .= "map SSS old Ids to new Ids";
 
 // One off for changing SSS ids in menu.json. Though could be useful as template for other such stuffs
 if (stristr($testingTriggers, "map SSS old Ids to new Ids")) {
@@ -713,11 +713,11 @@ if (stristr($testingTriggers, "Add RM to all accounts")) {
 if (stristr($testingTriggers, "Change expiry date")) {
 	// Extension can be a period or fixed date
 	$extension = "+1 month";
-	$extension = "2014-12-31"; // MUST be Y-m-d format, no need for time
-	$limit = '2013-12-31 23:59:59';  // MUST be Y-m-d 23:59:59 format, otherwise 00:00:00 assumed
+	$extension = "2018-01-31"; // MUST be Y-m-d format, no need for time
+	$limit = '2018-12-31 23:59:59';  // MUST be Y-m-d 23:59:59 format, otherwise 00:00:00 assumed
 	$conditions = array();
 	// HCT colleges
-	// $testingAccounts = array(14276,14277,14278,14279,14280,14281,14282,14283,14284,14286,14287,14288,14290,14291,14292);
+	$testingAccounts = array(14276,14277,14278,14279,14280,14281,14282,14283,14284,14286,14287,14288,14290,14291,14292);
 	// BC R2I Last Minute
 	// $testingAccounts = array(100,167,168,169,170,14030,14031);
 	// Others expiring Dec 31 2013
@@ -725,7 +725,7 @@ if (stristr($testingTriggers, "Change expiry date")) {
 	// Providence University Taiwan
 	// $testingAccounts = array(14818);
 	// BC LELT self hosted accounts
-	$testingAccounts = array(1,14028,14029,14030,14031,14032);
+	//$testingAccounts = array(1,14028,14029,14030,14031,14032);
 	$accounts = $dmsService->accountOps->getAccounts($testingAccounts, $conditions);
 	
 	if ($accounts) {
