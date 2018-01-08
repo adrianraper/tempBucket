@@ -196,6 +196,7 @@ EOD;
     /**
      * Grab a licence slot
      * gh#1230
+     * gh#1577 This must be being called too often as we end up with duplicates in T_LicenceHolders
      */
     public function setLicenceSlot($user, $productCode, $rootId, $licence) {
         $dateStamp = $this->getNow();
@@ -335,13 +336,16 @@ EOD;
 	function checkExistingLicence($userId, $productCode, $licence) {
 		// gh#125 Need exactly the same conditions here as with countUsedLicences
         // Have they taken a licence within the last [licence period]?
+        // gh#1577 Since licences are created with an expiry date, we should just use that
+        //         not try to figure out now minus the current licence period
         $dateStamp = $this->getNow();
-        $licencePeriodAgo = $dateStamp->modify('-'.$licence->licenceClearanceFrequency)->format('Y-m-d H:i:s');
-        AbstractService::$debugLog->info("licences used since ".$licencePeriodAgo);
+        $dateNow = $dateStamp->format('Y-m-d H:i:s');
+        //$licencePeriodAgo = $dateStamp->modify('-'.$licence->licenceClearanceFrequency)->format('Y-m-d H:i:s');
+        //AbstractService::$debugLog->info($userId . ": licences used since ".$licencePeriodAgo);
 		$sql = <<<EOD
 			SELECT * FROM T_LicenceHolders l
 			WHERE l.F_UserID = ?
-			AND l.F_StartDateStamp > ?
+			AND l.F_EndDateStamp > ?
 EOD;
 
 		// gh#1211 And the other old and new combinations
@@ -351,7 +355,7 @@ EOD;
 		} else {
 			$sql.= " AND l.F_ProductCode = ?";
 		}			
-		$bindingParams = array($userId, $licencePeriodAgo, $productCode);
+		$bindingParams = array($userId, $dateNow, $productCode);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		
 		// SQL error
@@ -360,11 +364,14 @@ EOD;
 		
 		switch ($rs->RecordCount()) {
 			case 0:
+                AbstractService::$debugLog->info("No existing licence for $userId in $productCode with expiry $dateNow");
 				return false;
 				break;
 			default:
 				// Valid login, return the last licence ID
-				return $rs->FetchNextObj()->F_LicenceID;
+                $licenceId = $rs->FetchNextObj()->F_LicenceID;
+                AbstractService::$debugLog->info("Got licence $licenceId for $userId in $productCode with expiry $dateNow");
+				return $licenceId;
 		}
 	}
 
@@ -545,7 +552,8 @@ EOD;
     /**
      * This is a count of all the people who can currently access the title.
      * It is probably more than licences used as it includes people who started in the previous licence period
-     * but haven't been cleared out yet.
+     * but have still got licences that are not expired.
+     * gh#1577 Simply count all licences in table as expired ones are removed daily
      */
     function countTotalLicences($rootID, $productCode, $licence) {
         // sss#290 Include couloir licence control
@@ -558,26 +566,27 @@ EOD;
             $licenceTableName = 'T_LicenceHolders';
             $keyFieldName = 'F_UserID';
         }
-        $dateFieldName = 'F_StartDateStamp';
+        //$dateFieldName = 'F_StartDateStamp';
 
-        $aYearAgo = $this->getNow();
-        $aYearAgo->modify('-1 year');
-        $earliestDate = $aYearAgo->format('Y-m-d');
+        //$aYearAgo = $this->getNow();
+        //$aYearAgo->modify('-1 year');
+        //$earliestDate = $aYearAgo->format('Y-m-d');
+        //AND l.$dateFieldName >= ?
 
         if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
             $sql = <<<EOD
 				SELECT COUNT(l.$keyFieldName) AS licencesUsed 
 				FROM $licenceTableName l, T_User u
 				WHERE l.$keyFieldName = u.F_UserID
-				AND l.$dateFieldName >= ?
 EOD;
         } else {
             // gh#604 Teacher records in session will now include root, so ignore them here
             // gh#1228 But that ignores deleted/archived users, so revert
+            // Add an unnecessary condition just to get WHERE and AND correct
             $sql = <<<EOD
 				SELECT COUNT(l.$keyFieldName) AS licencesUsed 
 				FROM $licenceTableName l
-				WHERE l.$dateFieldName >= ?
+				WHERE l.$keyFieldName >= 0
 EOD;
         }
 
@@ -598,7 +607,7 @@ EOD;
         } else {
             $sql.= " AND l.F_RootID = $rootID";
         }
-        $bindingParams = array($earliestDate, $productCode);
+        $bindingParams = array($productCode);
         $rs = $this->db->Execute($sql, $bindingParams);
 
         if ($rs && $rs->RecordCount() > 0) {
@@ -961,7 +970,7 @@ EOD;
 	/**
      * Utility to help with testing dates and times
      */
-	private function getNow() {
+	public function getNow() {
         $nowString = (isset($GLOBALS['fake_now'])) ? $GLOBALS['fake_now'] : 'now';
         return new DateTime($nowString, new DateTimeZone(TIMEZONE));
     }

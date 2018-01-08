@@ -9,7 +9,6 @@
  *   adding already used licence slots when you move to Couloir
  */
 
-set_time_limit(12000);
 
 require_once(dirname(__FILE__) . "/MinimalService.php");
 require_once(dirname(__FILE__) . "../../core/shared/util/Authenticate.php");
@@ -183,6 +182,7 @@ function runOccasionalJobs($period) {
              * This adds a licence to T_CouloirLicenceHolders based on existing sss records in T_Session
              * sss#314
              */
+            /*
             // Loop round active accounts in them, ignore individuals as they will not upgrade mid term
             $conditions['active'] = true;
             $conditions['individuals'] = false;
@@ -247,7 +247,66 @@ function runOccasionalJobs($period) {
                     }
                 }
             }
-            break;
+            */
+        // 9. Remove duplicates from T_LicenceHolders (#1577)
+        $conditions['active'] = true;
+        $conditions['individuals'] = false;
+        //$conditions['productCode'] = 61;
+        $testingAccounts = array();
+        $bigRoots = array();
+        $blockedRoots = array();
+        $testingAccounts = array(168);
+        //$blockedRoots = array(100,101,167,168,169,170,171,14030,14024,14031);
+        //$bigRoots = array(13754,13865,14223,14302,14374,19855,33662,35886,37999,43873);
+        $accounts = $thisService->accountOps->getAccounts($testingAccounts, $conditions);
+        $rootIdRange = false;
+        //$rootIdRange = array(1000,20000);
+
+        // Do a check of existing licence count
+        foreach ($accounts as $account) {
+            // Are there some accounts which we might as well block?
+            // LM, TD, all IP.com
+            if ($rootIdRange && isset($rootIdRange[1]) && (($account->id < $rootIdRange[0]) || ($account->id > $rootIdRange[1])))
+                continue;
+            if (in_array($account->id, $blockedRoots))
+                continue;
+            if (in_array($account->id, $bigRoots))
+                continue;
+
+            // Any users with duplicates?
+            $duplicatedUsers = $thisService->dailyJobOps->findDuplicateLicenceHolders($account->id);
+            echo "root " . $account->id . " has " . count($duplicatedUsers) ." users with duplicates $newLine";
+
+            // For each, leave the last one since the licence clearance date, remove the rest
+            $loopLimit = 0;
+            foreach ($duplicatedUsers as $duplicatedUser) {
+                if ($loopLimit>500)
+                    break;
+                $loopLimit++;
+                $licence = null;
+                foreach ($account->titles as $title) {
+                    if ($title->productCode == $duplicatedUser["productCode"]) {
+                        $licence = new Licence();
+                        $licence->fromDatabaseObj($title);
+                        break;
+                    }
+                }
+                if ($licence) {
+                    if ($takeAction) {
+                        $rc = $thisService->dailyJobOps->removeDuplicateLicenceHolders($duplicatedUser["userId"], $duplicatedUser["productCode"], $licence);
+                        echo "Deleted $rc licences for " . $duplicatedUser["userId"] . " for pc " . $duplicatedUser["productCode"] . " in root " . $account->id . "$newLine";
+                    } else {
+                        $rc = $thisService->dailyJobOps->countDuplicateLicenceHolders($duplicatedUser["userId"], $duplicatedUser["productCode"], $licence);
+                        echo "Duplicate $rc licences for " . $duplicatedUser["userId"] . " for pc " . $duplicatedUser["productCode"] . " in root " . $account->id . "$newLine";
+                    }
+                } else {
+                    echo "productCode ".$duplicatedUser["productCode"]." not found in " . $account->id . "$newLine";
+                }
+            }
+
+        }
+
+        break;
         default:
     }
 }
@@ -258,7 +317,7 @@ $oneoff = true;
 // If you are running a one-off job, don't trigger the other regular actions
 if ($oneoff) {
     // Extra date check to ensure one-off is intentional
-    if (date("j") == 5 && date("n") == 12) {
+    if (date("j") == 9 && date("n") == 1) {
         runOccasionalJobs("oneoff");
     } else {
         echo "Set the date in RunOccasionalJobs to enable one-off run";

@@ -49,3 +49,7 @@ area1/ResultsManager/*.csv
 area1/ResultsManager/*.xlsx
 useful regex expressions.txt
 Software/Recorder/air/
+Software/awssdk
+Software/ResultsManager/web/classes/vendor/phpseclib
+Software/ResultsManager/web/classes/vendor/google
+Software/Workflow

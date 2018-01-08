@@ -1592,6 +1592,18 @@ CREATE TABLE `T_CouloirLicenceHolders` (
   KEY `Index_2` (`F_RootID`,`F_ProductCode`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+-- gh#1577 and it's archive version
+DROP TABLE IF EXISTS `T_CouloirLicenceHoldersDeleted`;
+CREATE TABLE `T_CouloirLicenceHoldersDeleted` (
+  `F_LicenceID` int(11) NOT NULL,
+  `F_KeyID` int NOT NULL,
+  `F_RootID` int NOT NULL DEFAULT '0',
+  `F_ProductCode` smallint NOT NULL DEFAULT '0',
+  `F_StartDateStamp` datetime DEFAULT NULL,
+  `F_EndDateStamp` datetime DEFAULT NULL,
+  `F_LicenceType` smallint DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- new sesssion handling
 DROP TABLE IF EXISTS `T_SessionTrack`;
 CREATE TABLE `T_SessionTrack` (

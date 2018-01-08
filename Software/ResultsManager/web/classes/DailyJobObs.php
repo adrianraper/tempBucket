@@ -275,8 +275,27 @@ SQL;
 
         $this->db->CompleteTrans();
 
+        // And again for Couloir licences
+        $this->db->StartTrans();
+        $sql = <<<SQL
+			INSERT INTO $database.T_CouloirLicenceHoldersDeleted
+			SELECT * FROM $database.T_CouloirLicenceHolders 
+			WHERE F_EndDateStamp < ?;
+SQL;
+        $bindingParams = array($expiredDate);
+        $rs = $this->db->Execute($sql, $bindingParams);
+
+        $sql = <<<SQL
+			DELETE FROM $database.T_CouloirLicenceHolders
+			WHERE F_EndDateStamp < ?;
+SQL;
+        $rs = $this->db->Execute($sql, $bindingParams);
+        $recordCountCouloir = $this->db->Affected_Rows();
+
+        $this->db->CompleteTrans();
+
         // send back the number of deleted records
-        return $recordCount;
+        return $recordCount+$recordCountCouloir;
     }
 
     // gh#1230 To create a new licence if the user has an existing one
@@ -1781,5 +1800,99 @@ SQL;
             break;
             default:
         }
+    }
+    // gh#1577
+    function findDuplicateLicenceHolders($rootId) {
+        // Initialise
+        $userArray = array();
+
+        $sql = <<<SQL
+			select F_UserID, F_ProductCode, F_RootID, F_StartDateStamp, count(*) as counter 
+			from T_LicenceHolders
+            where F_RootID = ?
+            group by F_UserID, F_ProductCode
+SQL;
+        $bindingParams = array($rootId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+
+        // Loop round the recordset of groups/units
+        $savedCourseID = 0;
+        if ($rs->RecordCount() > 0) {
+            while ($dbObj = $rs->FetchNextObj()) {
+                if ($dbObj->counter <= 1)
+                    continue;
+                // Note this user
+                $userArray[] = array("userId" => $dbObj->F_UserID, "productCode" => $dbObj->F_ProductCode);
+            }
+        }
+        return $userArray;
+    }
+    function countDuplicateLicenceHolders($userId, $productCode, $licence) {
+        // Since T_LicenceHolders should not contain expired licences, you can just keep the oldest.
+        // Don't need to worry about the licence period.
+
+        // Get date of one licence period ago
+        $dateStamp = $this->licenceOps->getNow();
+        $licencePeriodAgo = $dateStamp->modify('-'.$licence->licenceClearanceFrequency)->format('Y-m-d H:i:s');
+
+        // Whilst debugging do extra counts
+        $sql = <<<SQL
+			select COUNT(F_LicenceID) as licences
+			from T_LicenceHolders
+            where F_UserID = ?
+            and F_ProductCode = ?
+            and F_StartDateStamp > ? 
+SQL;
+        $bindingParams = array($userId, $productCode, $licencePeriodAgo);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs->RecordCount() > 0) {
+            $dbObj = $rs->FetchNextObj();
+            $licences = $dbObj->licences;
+        } else {
+            $licences = 0;
+        }
+
+        return $licences;
+    }
+
+    function removeDuplicateLicenceHolders($userId, $productCode, $licence) {
+        // Get date of one licence period ago
+        $dateStamp = $this->licenceOps->getNow();
+        $licencePeriodAgo = $dateStamp->modify('-'.$licence->licenceClearanceFrequency)->format('Y-m-d H:i:s');
+
+        // Whilst debugging do extra counts
+        $initialLicences = $this->countDuplicateLicenceHolders($userId, $productCode, $licence);
+
+        // Find the min licence newer than this
+        $sql = <<<SQL
+			select MIN(F_LicenceID) as firstLicenceId
+			from T_LicenceHolders
+            where F_UserID = ?
+            and F_ProductCode = ?
+            and F_StartDateStamp > ? 
+SQL;
+        $bindingParams = array($userId, $productCode, $licencePeriodAgo);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs->RecordCount() > 0) {
+            $dbObj = $rs->FetchNextObj();
+            $keepLicenceID = $dbObj->firstLicenceId;
+        }
+
+        // Delete the rest
+        $sql = <<<SQL
+			DELETE  
+			from T_LicenceHolders
+            where F_UserID = ?
+            and F_ProductCode = ?
+            and F_StartDateStamp > ?
+            and F_LicenceID != ? 
+SQL;
+        $bindingParams = array($userId, $productCode, $licencePeriodAgo, $keepLicenceID);
+        $rs = $this->db->Execute($sql, $bindingParams);
+
+        // Whilst debugging do extra counts
+        $afterLicences = $this->countDuplicateLicenceHolders($userId, $productCode, $licence);;
+
+        return $initialLicences-$afterLicences;
     }
 }

@@ -9,7 +9,6 @@
  * archiving expired users from rack80829
  * archiving sent emails from T_PendingEmails
  */
-set_time_limit(300);
 
 require_once(dirname(__FILE__)."/MinimalService.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
@@ -19,6 +18,7 @@ if (isset($_SESSION['dbHost'])) unset($_SESSION['dbHost']);
 if (isset($_REQUEST['dbHost'])) $_SESSION['dbHost']=$_REQUEST['dbHost'];
 
 $thisService = new MinimalService();
+set_time_limit(300);
 
 date_default_timezone_set('UTC');
 if (!Authenticate::isAuthenticated()) {
@@ -167,11 +167,70 @@ function runDailyJobs($triggerDate = null) {
 	*/
     // 8. Archive expired licences
 
-    // Clean up the T_LicenceHolders, remove licences that have expired
+    // Clean up the T_LicenceHolders, remove licences that have expired + T_CouloirLicenceHolders
     $database = 'rack80829';
     $expiryDate = new DateTime('@'.$triggerDate);
     $rc = $thisService->dailyJobOps->archiveExpiredLicences($expiryDate->format('Y-m-d'), $database);
     echo "Archived $rc licences. $newLine";
+
+    /*
+	// 9. Remove duplicates from T_LicenceHolders (#1577)
+    $conditions['active'] = true;
+    $conditions['individuals'] = false;
+    $testingAccounts = array();
+    $bigRoots = array();
+    $blockedRoots = array();
+    $rootIdRange = false;
+    //$testingAccounts = array(168);
+    //$blockedRoots = array(100,101,167,168,169,170,171,14030,14024,14031);
+    //$bigRoots = array(13754,13865,14223,14302,14374,19855,33662,35886,37999,43873);
+    $rootIdRange = array(100,2000);
+    $accounts = $thisService->accountOps->getAccounts($testingAccounts, $conditions);
+
+    // Do a check of existing licence count
+    foreach ($accounts as $account) {
+        // Are there some accounts which we might as well block?
+        // LM, TD, all IP.com
+        if ($rootIdRange && isset($rootIdRange[1]) && (($account->id < $rootIdRange[0]) || ($account->id > $rootIdRange[1])))
+            continue;
+        if (in_array($account->id, $blockedRoots))
+            continue;
+        if (in_array($account->id, $bigRoots))
+            continue;
+
+        // Any users with duplicates?
+        $duplicatedUsers = $thisService->dailyJobOps->findDuplicateLicenceHolders($account->id);
+        echo "root " . $account->id . " has " . count($duplicatedUsers) ." users with duplicates $newLine";
+
+        // For each, leave the last one since the licence clearance date, remove the rest
+        $loopLimit = 0;
+        foreach ($duplicatedUsers as $duplicatedUser) {
+            if ($loopLimit>100)
+                break;
+            $loopLimit++;
+            $licence = null;
+            foreach ($account->titles as $title) {
+                if ($title->productCode == $duplicatedUser["productCode"]) {
+                    $licence = new Licence();
+                    $licence->fromDatabaseObj($title);
+                    break;
+                }
+            }
+            if ($licence) {
+                if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+                    $rc = $thisService->dailyJobOps->removeDuplicateLicenceHolders($duplicatedUser["userId"], $duplicatedUser["productCode"], $licence);
+                    echo "Deleted $rc licences for " . $duplicatedUser["userId"] . " for pc " . $duplicatedUser["productCode"] . " in root " . $account->id . "$newLine";
+                } else {
+                    $rc = $thisService->dailyJobOps->countDuplicateLicenceHolders($duplicatedUser["userId"], $duplicatedUser["productCode"], $licence);
+                    echo "Duplicate $rc licences for " . $duplicatedUser["userId"] . " for pc " . $duplicatedUser["productCode"] . " in root " . $account->id . "$newLine";
+                }
+            } else {
+                echo "productCode ".$duplicatedUser["productCode"]." not found in " . $account->id . "$newLine";
+            }
+        }
+
+    }
+    */
 
 }
 
