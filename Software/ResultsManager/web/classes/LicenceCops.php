@@ -269,7 +269,7 @@ EOD;
         if (!$rs) {
             throw $this->copyOps->getExceptionForId("errorDatabaseWriting");
         }
-        AbstractService::$debugLog->info("grabbedLicenceSlot for key=$keyId");
+        //AbstractService::$debugLog->info("grabbedLicenceSlot for key=$keyId");
         return true;
     }
 
@@ -336,55 +336,9 @@ EOD;
         $bindingParams = array($productCode, $rootId, $dateStamp, Title::LICENCE_TYPE_LT);
         $rs = $this->db->Execute($sql, $bindingParams);
         $count = $rs->FetchNextObj()->i;
-        AbstractService::$debugLog->info("countCurrentLicence=$count");
+        //AbstractService::$debugLog->info("countCurrentLicence=$count");
 
         return $count;
-    }
-
-    /**
-     * TODO Couloir Gateway will not be called for any title that can use old style licences, no remove this
-     *
-     * Does this user already have a licence for this product?
-     * Change to use T_Session for tracking licence use
-     * @param User $user
-     * @param Number $productCode
-     * @param Licence $licence
-     */
-    function checkExistingOldStyleLicence($userId, $productCode, $licence) {
-        // Is there a record in T_Session for this user/product since the date?
-        // v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
-        // gh#125 Need exactly the same conditions here as with countUsedLicences
-        $sql = <<<EOD
-			SELECT * FROM T_Session s
-			WHERE s.F_UserID = ?
-			AND s.F_StartDateStamp >= ?
-			AND s.F_Duration > 15
-EOD;
-
-        // gh#1211 And the other old and new combinations
-        $oldProductCode = $this->getOldProductCode($productCode);
-        if ($oldProductCode) {
-            $sql.= " AND s.F_ProductCode IN (?, $oldProductCode)";
-        } else {
-            $sql.= " AND s.F_ProductCode = ?";
-        }
-        $bindingParams = array($userId, $licence->licenceControlStartDate, $productCode);
-        $rs = $this->db->Execute($sql, $bindingParams);
-
-        // SQL error
-        if (!$rs)
-            throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
-
-        switch ($rs->RecordCount()) {
-            case 0:
-                return false;
-                break;
-            default:
-                // Valid login, return the last session ID
-                // Simply return that they have used a licence already
-                // return $rs->FetchNextObj()->F_SessionID;
-                return $userId;
-        }
     }
 
     /**
@@ -399,9 +353,10 @@ EOD;
     function checkExistingLicence($userId, $productCode, $licence) {
         // gh#125 Need exactly the same conditions here as with countUsedLicences
         // Have they taken a licence within the last [licence period]?
-        $dateStamp = AbstractService::getNow();
-        $licencePeriodAgo = $dateStamp->modify('-'.$licence->licenceClearanceFrequency)->format('Y-m-d H:i:s');
-        AbstractService::$debugLog->info("licences used since ".$licencePeriodAgo);
+        // gh#1577 Since licences are created with an expiry date, we should just use that
+        //         not try to figure out now minus the current licence period
+        $dateStamp = $this->getNow();
+        $dateNow = $dateStamp->format('Y-m-d H:i:s');
         $sql = <<<EOD
 			SELECT * FROM T_CouloirLicenceHolders l
 			WHERE l.F_KeyID = ?
@@ -415,7 +370,7 @@ EOD;
         } else {
             $sql.= " AND l.F_ProductCode = ?";
         }
-        $bindingParams = array($userId, $licencePeriodAgo, $productCode);
+        $bindingParams = array($userId, $dateNow, $productCode);
         $rs = $this->db->Execute($sql, $bindingParams);
 
         // SQL error
@@ -432,82 +387,6 @@ EOD;
         }
     }
 
-    /**
-     * This function is a one-off to pick up the oldest session (within the last year) - which is the current way of counting licences.
-     * Does this user have a current licence for this productCode?
-     * Will be deprecated as soon as new licence style implemented.
-     */
-    function checkEarliestOldStyleLicence($userId, $productCode) {
-        $aYearAgo = AbstractService::getNow();
-        $aYearAgo->modify('-1 year');
-        $earliestDate = $aYearAgo->format('Y-m-d');
-
-        $sql = <<<EOD
-            SELECT MIN(s.F_StartDateStamp) as earliestDate FROM T_Session s
-			WHERE s.F_UserID = ?
-			AND s.F_StartDateStamp >= ?
-			AND s.F_Duration > 15
-EOD;
-
-        // gh#1211 And the other old and new combinations
-        $oldProductCode = $this->getOldProductCode($productCode);
-        if ($oldProductCode) {
-            $sql.= " AND s.F_ProductCode IN (?, $oldProductCode)";
-        } else {
-            $sql.= " AND s.F_ProductCode = ?";
-        }
-        $bindingParams = array($userId, $earliestDate, $productCode);
-        $rs = $this->db->Execute($sql, $bindingParams);
-
-        // SQL error
-        if (!$rs)
-            throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
-
-        if ($rs->RecordCount() > 0) {
-            return $rs->FetchNextObj()->earliestDate;
-        } else {
-            return false;
-        }
-    }
-    /**
-     * This function is a one-off to pick up the oldest session (within the last year) - which is the current way of counting licences.
-     * Returns one record for each user in a root
-     * Will be deprecated as soon as new licence style implemented.
-     */
-    function checkEarliestOldStyleLicences($rootId, $productCode) {
-        $aYearAgo = AbstractService::getNow();
-        $aYearAgo->modify('-1 year');
-        $earliestDate = $aYearAgo->format('Y-m-d');
-
-        $sql = <<<EOD
-            SELECT s.F_UserID as userId, MIN(s.F_StartDateStamp) as earliestDate FROM T_Session s
-			WHERE s.F_RootID = ?
-			AND s.F_StartDateStamp >= ?
-			AND s.F_Duration > 15
-            and s.F_UserID > 0
-EOD;
-
-        // gh#1211 And the other old and new combinations
-        $oldProductCode = $this->getOldProductCode($productCode);
-        if ($oldProductCode) {
-            $sql.= " AND s.F_ProductCode IN (?, $oldProductCode)";
-        } else {
-            $sql.= " AND s.F_ProductCode = ?";
-        }
-        $sql.= " group by s.F_UserID";
-        $bindingParams = array($rootId, $earliestDate, $productCode);
-        $rs = $this->db->Execute($sql, $bindingParams);
-
-        // SQL error
-        if (!$rs)
-            throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
-
-        if ($rs->RecordCount() > 0) {
-            return $rs;
-        } else {
-            return false;
-        }
-    }
     /**
      * This function is a one-off to see if any users in this account used this title
      * gh#1230 Used to avoid lengthy checks
@@ -598,26 +477,23 @@ EOD;
      * This is a count of all the people who can currently access the title.
      * It is probably more than licences used as it includes people who started in the previous licence period
      * but haven't been cleared out yet.
+     * gh#1577 Simply count all licences in table as expired ones are removed daily
      */
     function countTotalLicences($rootID, $productCode, $licence) {
-        $aYearAgo = AbstractService::getNow();
-        $aYearAgo->modify('-1 year');
-        $earliestDate = $aYearAgo->format('Y-m-d');
-
         if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
             $sql = <<<EOD
 				SELECT COUNT(l.F_KeyID) AS licencesUsed 
 				FROM T_CouloirLicenceHolders l, T_User u
 				WHERE l.F_KeyID = u.F_UserID
-				AND l.F_StartDateStamp >= ?
 EOD;
         } else {
             // gh#604 Teacher records in session will now include root, so ignore them here
             // gh#1228 But that ignores deleted/archived users, so revert
+            // Add an unnecessary condition just to get WHERE and AND correct
             $sql = <<<EOD
 				SELECT COUNT(l.F_KeyID) AS licencesUsed 
 				FROM T_CouloirLicenceHolders l
-				WHERE l.F_StartDateStamp >= ?
+				WHERE l.F_KeyID >= 0
 EOD;
         }
 
@@ -638,63 +514,7 @@ EOD;
         } else {
             $sql.= " AND l.F_RootID = $rootID";
         }
-        $bindingParams = array($earliestDate, $productCode);
-        $rs = $this->db->Execute($sql, $bindingParams);
-
-        if ($rs && $rs->RecordCount() > 0) {
-            $licencesUsed = (int)$rs->FetchNextObj()->licencesUsed;
-        } else {
-            throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
-        }
-
-        return $licencesUsed;
-    }
-
-    /**
-     * Count the number of used licences for this root / product since the clearance date
-     */
-    function countUsedOldStyleLicences($rootID, $productCode, $licence) {
-        // Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
-        // v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
-        if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
-            $sql = <<<EOD
-            SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
-            FROM T_Session s, T_User u
-            WHERE s.F_UserID = u.F_UserID
-            AND s.F_StartDateStamp >= ?
-            AND s.F_Duration > 15
-            AND s.F_UserID > 0
-EOD;
-        } else {
-            // gh#604 Teacher records in session will now include root, so ignore them here
-            // gh#1228 But that ignores deleted/archived users, so revert
-            $sql = <<<EOD
-            SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
-            FROM T_Session s
-            WHERE s.F_StartDateStamp >= ?
-            AND s.F_Duration > 15
-            AND s.F_UserID > 0
-EOD;
-        }
-
-        // gh#1211 And the other old and new combinations
-        $oldProductCode = $this->getOldProductCode($productCode);
-        if ($oldProductCode) {
-            $sql.= " AND s.F_ProductCode IN (?, $oldProductCode)";
-        } else {
-            $sql.= " AND s.F_ProductCode = ?";
-        }
-
-        if (stristr($rootID,',')!==FALSE) {
-            $sql.= " AND s.F_RootID in ($rootID)";
-        } else if ($rootID=='*') {
-            // check all roots in that case - just for special cases, usually self-hosting
-            // Note that leaving the root empty would include teachers
-            $sql.= " AND s.F_RootID > 0";
-        } else {
-            $sql.= " AND s.F_RootID = $rootID";
-        }
-        $bindingParams = array($licence->licenceControlStartDate, $productCode);
+        $bindingParams = array($productCode);
         $rs = $this->db->Execute($sql, $bindingParams);
 
         if ($rs && $rs->RecordCount() > 0) {
@@ -841,12 +661,8 @@ EOD;
         $licence->findLicenceClearanceDate();
 
         // gh#1230
-        $account = $this->accountCops->getBentoAccount($rootID, $productCode);
-        if ($account->useOldLicenceCount) {
-            $count = $this->countUsedOldStyleLicences($rootID, $productCode, $licence);
-        } else {
-            $count = $this->countUsedLicences($rootID, $productCode, $licence);
-        }
+        //$account = $this->accountCops->getBentoAccount($rootID, $productCode);
+        $count = $this->countUsedLicences($rootID, $productCode, $licence);
         return $count;
         /*
         if (!$fromDateStamp)

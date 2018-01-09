@@ -98,7 +98,7 @@ try {
 	// Read and validate the data
 	// This will return an array of login requests
 	$apiInformation = loadAPIInformation();
-	AbstractService::$debugLog->info("api=".$apiInformation->toString());
+	//AbstractService::$debugLog->info("api=".$apiInformation->toString());
 	//echo "loaded API";
 	
 	// You might want a different dbHost which you have now got - so override the settings from config.php
@@ -118,7 +118,7 @@ try {
 				if ($user->email) {
 					if ($apiInformation->emailTemplateID) {
 						$loginService->subscriptionOps->sendUserEmail($user, $apiInformation);
-						AbstractService::$debugLog->info("sent email to ".$user->email.' using '.$apiInformation->emailTemplateID);
+						//AbstractService::$debugLog->info("sent email to ".$user->email.' using '.$apiInformation->emailTemplateID);
 					}
 					
 				} else {
@@ -322,10 +322,10 @@ try {
 				// If we want to send an email on adding a new user, do it here
 				if ($apiInformation->emailTemplateID) {
 					$loginService->subscriptionOps->sendUserEmail($user, $apiInformation);
-					AbstractService::$debugLog->info("queued email to ".$user->email.' using '.$apiInformation->emailTemplateID);
+					//AbstractService::$debugLog->info("queued email to ".$user->email.' using '.$apiInformation->emailTemplateID);
 				}
 			} else {
-				AbstractService::$debugLog->info("returned existing user ".$user->name." expires on ".$user->expiryDate);
+				//AbstractService::$debugLog->info("returned existing user ".$user->name." expires on ".$user->expiryDate);
 				//update the user information if it is changed
 				$loginService->updateUserInformation($apiInformation, $user);
 			}

@@ -98,9 +98,9 @@ function router($json) {
         }, $json->tokens);
     }
     if (isset($sids)) {
-        AbstractService::$debugLog->info("CSG " . $json->command . " for [" . implode(',', $sids) . "] at " . $localTimestamp);
+        //AbstractService::$controlLog->info("CSG " . $json->command . " for [" . implode(',', $sids) . "] at " . $localTimestamp);
     } else {
-        AbstractService::$debugLog->info("CSG call " . $json->command);
+        //AbstractService::$controlLog->info("CSG call " . $json->command);
     }
 
     switch ($json->command) {

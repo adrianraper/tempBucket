@@ -388,7 +388,7 @@ function router($json) {
 
     $localDateTime = new DateTime();
     $localTimestamp = $localDateTime->format('Y-m-d H:i:s');
-    AbstractService::$debugLog->info("CTP ".$json->command." at ".$localTimestamp);
+    //AbstractService::$debugLog->info("CTP ".$json->command." at ".$localTimestamp);
     switch ($json->command) {
         case "logout": return logout($json->token);
         case "login":
