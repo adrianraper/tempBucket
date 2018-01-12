@@ -42,92 +42,125 @@ class DailyJobObs {
 			
 		// Find all the users who we want to expire
 		// Note you can't pass rootList in bindingParams as it appears as a quoted string in that case
+        // gh#1579 Worry about doing too much at once
 		$sql = <<<SQL
 			SELECT * FROM $database.T_User u, $database.T_Membership m 
 			WHERE u.F_ExpiryDate <= ?
 			AND u.F_UserID = m.F_UserID
 			AND m.F_RootID in ($rootList)
+            ORDER BY u.F_RegistrationDate ASC
+            LIMIT 0,1000;
 SQL;
 		$rs = $this->db->Execute($sql, $bindingParams);
 
 		// Loop round the recordset, inserting to *_Expiry then deleting the related records for each userID
 		if ($rs->RecordCount() > 0) {
 			while ($dbObj = $rs->FetchNextObj()) {
-				
-				$this->db->StartTrans();
-				
-				$userID = $dbObj->F_UserID;
-				$bindingParams = array($userID);
-				
-				// gh#359
-				if ($userID < 1) {
-					AbstractService::$debugLog->notice("Request to delete user $userID repulsed! DailyJobOps.archiveExpiredUsers");
-					continue 1;
-				}
-				 
-				$sql = <<<SQL
+
+			    // gh#1579 Catch exceptions and clear that transaction
+                try {
+                    $this->db->StartTrans();
+
+                    $userID = $dbObj->F_UserID;
+                    $bindingParams = array($userID);// gh#359
+                    if ($userID < 1) {
+                        AbstractService::$debugLog->notice("Request to delete user $userID repulsed! DailyJobOps.archiveExpiredUsers");
+                        continue 1;
+                    }
+
+                    $sql = <<<SQL
 					INSERT INTO $database.T_Membership_Expiry
 					SELECT * FROM $database.T_Membership 
 					WHERE F_UserID = ?;
 SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
-				$sql = <<<SQL
+                    $rc = $this->db->Execute($sql, $bindingParams);
+                    // gh#1579 I think that all exceptions are caught by adodb, so the following is no need. But it is safe.
+                    if (!$rc)
+                        throw new Exception($this->db->error);
+
+                    $sql = <<<SQL
 					DELETE FROM $database.T_Membership
 					WHERE F_UserID = ?;
 SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
-				
-				$sql = <<<SQL
+                    $rc = $this->db->Execute($sql, $bindingParams);
+                    if (!$rc)
+                        throw new Exception($this->db->error);
+                    $sql = <<<SQL
+                    
 					INSERT INTO $database.T_Session_Expiry
 					SELECT * FROM $database.T_Session 
 					WHERE F_UserID = ?;
 SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
-				$sql = <<<SQL
+                    $rc = $this->db->Execute($sql, $bindingParams);
+                    if (!$rc)
+                        throw new Exception($this->db->error);
+
+                    $sql = <<<SQL
 					DELETE FROM $database.T_Session
 					WHERE F_UserID = ?;
 SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
+                    $rc = $this->db->Execute($sql, $bindingParams);
+                    if (!$rc)
+                        throw new Exception($this->db->error);
 
-				$sql = <<<SQL
+                    $sql = <<<SQL
 					INSERT INTO $database.T_Score_Expiry
 					SELECT * FROM $database.T_Score 
 					WHERE F_UserID = ?;
 SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
-				$sql = <<<SQL
+                    $rc = $this->db->Execute($sql, $bindingParams);
+                    if (!$rc)
+                        throw new Exception($this->db->error);
+
+                    $sql = <<<SQL
 					DELETE FROM $database.T_Score
 					WHERE F_UserID = ?;
 SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
+                    $rc = $this->db->Execute($sql, $bindingParams);// gh#1550
+                    if (!$rc)
+                        throw new Exception($this->db->error);
 
-                // gh#1550
-                $sql = <<<SQL
+                    $sql = <<<SQL
 					INSERT INTO $database.T_ScoreDetail_Expiry
 					SELECT * FROM $database.T_ScoreDetail 
 					WHERE F_UserID = ?;
 SQL;
-                $rc = $this->db->Execute($sql, $bindingParams);
-                $sql = <<<SQL
+                    $rc = $this->db->Execute($sql, $bindingParams);
+                    if (!$rc)
+                        throw new Exception($this->db->error);
+
+                    $sql = <<<SQL
 					DELETE FROM $database.T_ScoreDetail
 					WHERE F_UserID = ?;
 SQL;
-                $rc = $this->db->Execute($sql, $bindingParams);
+                    $rc = $this->db->Execute($sql, $bindingParams);
+                    if (!$rc)
+                        throw new Exception($this->db->error);
 
-                $sql = <<<SQL
+                    $sql = <<<SQL
 					INSERT INTO $database.T_User_Expiry
 					SELECT * FROM $database.T_User 
 					WHERE F_UserID = ?;
 SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
-				$sql = <<<SQL
+                    $rc = $this->db->Execute($sql, $bindingParams);
+                    if (!$rc)
+                        throw new Exception($this->db->error);
+
+                    $sql = <<<SQL
 					DELETE FROM $database.T_User
 					WHERE F_UserID = ?;
 SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
-				
-				$this->db->CompleteTrans();
-			}
+                    $rc = $this->db->Execute($sql, $bindingParams);
+                    if (!$rc)
+                        throw new Exception($this->db->error);
+
+                    $this->db->CompleteTrans();
+
+                } catch (Exception $e) {
+                    $this->db->RollbackTrans();
+                    // But try to keep going for clearing other records
+                }
+            }
 		}
 		
 		// send back the number of archived users

@@ -9,7 +9,6 @@
  * archiving expired users from rack80829
  * archiving sent emails from T_PendingEmails
  */
-set_time_limit(300);
 
 require_once(dirname(__FILE__)."/MinimalService.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
@@ -19,6 +18,7 @@ if (isset($_SESSION['dbHost'])) unset($_SESSION['dbHost']);
 if (isset($_REQUEST['dbHost'])) $_SESSION['dbHost']=$_REQUEST['dbHost'];
 
 $thisService = new MinimalService();
+set_time_limit(3600);
 
 date_default_timezone_set('UTC');
 /*
@@ -37,13 +37,13 @@ if (isset($_SERVER["SERVER_NAME"])) {
 }
 
 // Which section do you want to test?
-$testingSection = 'archiveExpiredRoadToIELTS';
 $testingSection = 'archiveExpiredAccounts';
 $testingSection = 'archiveOldUsers';
 $testingSection = 'EmailMeCBuilder';
 $testingSection = 'archiveSentEmails';
 $testingSection = 'countCBuilderActivity';
 $testingSection = 'updateTB6weeksSubscriptions';
+$testingSection = 'archiveExpiredRoadToIELTS';
 
 // NOTE: Sometime convert all away from timestamps to DateTime objects
 function addDaysToTimestamp($timestamp, $days) {
