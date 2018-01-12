@@ -180,6 +180,11 @@
 				if (testOnClass is User) {
 					detailedReportSection.visible = detailedReportSection.includeInLayout = true;
 				}
+				// gh#1555
+				if (testOnClass is Group && onReportables.length==1) {
+					TraceUtils.myTrace("adding detailed option for group report");
+					detailedReportSection.visible = detailedReportSection.includeInLayout = true;
+				}
 				// gh#777 For group reporting offer inactive users option
 				if (testOnClass is Group)
 					includeInactiveUsersCheckBox.visible = includeInactiveUsersCheckBox.includeInLayout = true;
