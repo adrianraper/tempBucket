@@ -118,6 +118,10 @@
 			helpTextLabel.text = copyProvider.getCopyForId("helpArea");
 			
 			selectTitleLabel.text = copyProvider.getCopyForId("selectTitleLabel");
+			useAdminPanelLabel.text = copyProvider.getCopyForId("useAdminPanelLabel");
+			useAdminPanelTitle.title = copyProvider.getCopyForId("useAdminPanelTitle");
+			firstStepTitle.title = copyProvider.getCopyForId("firstStepTitle");			
+
 			// Merge all course counts to one screen
 			//courseUserCounts.setCopyProvider(copyProvider);
 			//courseTimeCounts.setCopyProvider(copyProvider);
@@ -155,6 +159,10 @@
 			// Be safe and set the from date to 00:00:00 even though that is the default
 			//var endDate:Date = new Date(toDateField.selectedDate.setHours(23, 59, 59, 999));
 			//var fromDate:Date = new Date(fromDateField.selectedDate.setHours(0, 0, 0, 0));
+			// gh#1581 Don't give usage stats for DPT
+			if (selectedTitle.productCode == 63) {
+				return;
+			}
 			TraceUtils.myTrace("usageStats for " + selectedTitle.name + " from " + measureStartDate + " to " + measureEndDate);
 			//dispatchEvent(new TitleEvent(TitleEvent.TITLE_CHANGE, selectedTitle, fromDateField.selectedDate, endDate, true));
 			dispatchEvent(new TitleEvent(TitleEvent.TITLE_CHANGE, selectedTitle, measureStartDate, measureEndDate, true));
@@ -165,12 +173,11 @@
 				someCourseCounts.courseUserCountsLabel.text = copyProvider.getCopyForId("activityUserCountsA");
 			} else if (selectedTitle.productCode == 1001){
 				someCourseCounts.courseUserCountsLabel.text = copyProvider.getCopyForId("activityUserCountsB");
-			}else if (selectedTitle.productCode == 9 || selectedTitle.productCode == 46 || selectedTitle.productCode == 33 || selectedTitle.productCode == 45){
+			} else if (selectedTitle.productCode == 9 || selectedTitle.productCode == 46 || selectedTitle.productCode == 33 || selectedTitle.productCode == 45){
 				someCourseCounts.courseUserCountsLabel.text = copyProvider.getCopyForId("courseUserCountsB");
-			}
-			else if (selectedTitle.productCode == 37) {
+			} else if (selectedTitle.productCode == 37) {
 				someCourseCounts.courseUserCountsLabel.text = copyProvider.getCopyForId("courseUserCountsC");
-			}else{
+			} else{
 				someCourseCounts.courseUserCountsLabel.text = copyProvider.getCopyForId("courseUserCountsA");
 			}
 		}
@@ -768,7 +775,7 @@
 			<mx:VBox width="100%" height="100%" id="displays" minWidth="0" minHeight="0"
 					verticalAlign="center" horizontalAlign="left" 
 					verticalScrollPolicy="on"
-					visible="{titleList.selectedItem != null}" includeInLayout="{titleList.selectedItem != null}" >
+					visible="{titleList.selectedItem != null &amp;&amp;  titleList.selectedItem.productCode != 63}" includeInLayout="{titleList.selectedItem != null &amp;&amp; titleList.selectedItem.productCode != 63}" >
 					<!-- paddingLeft="20" paddingTop="20": this works nicely for getting a printed margin, but looks bad on screen, how to do it dynamically? -->
 				<mx:TextArea id="printHeaderTextArea" visible="false" includeInLayout="false" width="100%" borderThickness="0" />
 				<ui:UserTypeCounts width="99%" id="userTypeCounts" visible="{titleList.selectedItem != null}" includeInLayout="{titleList.selectedItem != null}" />
@@ -796,8 +803,17 @@
 				<ui:ManyCourseCounts width="99%" id="manyCourseCounts" visible="{titleList.selectedItem != null &amp;&amp; coursesInTitle==MANY_COURSES}" includeInLayout="{titleList.selectedItem != null &amp;&amp; coursesInTitle==MANY_COURSES}" />
 				<ui:FailedLoginCounts width="99%" id="failedLoginCounts2" />						
 			</mx:VBox>
-			<mx:TitleWindow title="First step" paddingTop="20" width="50%" height="100" verticalAlign="top" visible="{titleList.selectedItem == null}" includeInLayout="{titleList.selectedItem == null}">
+			<mx:TitleWindow id="firstStepTitle" paddingTop="20" width="50%" height="100" verticalAlign="top" 
+							visible="{titleList.selectedItem == null}" includeInLayout="{titleList.selectedItem == null}">
 				<mx:Label id="selectTitleLabel" fontWeight="bold" />
+			</mx:TitleWindow>
+			<mx:TitleWindow id="useAdminPanelTitle" paddingTop="20" width="50%" height="120" verticalAlign="top" 
+							visible="{titleList.selectedItem != null &amp;&amp; titleList.selectedItem.productCode == 63}" 
+							includeInLayout="{titleList.selectedItem != null &amp;&amp; titleList.selectedItem.productCode == 63}"
+							verticalScrollPolicy="off">
+				<mx:Text id="useAdminPanelLabel"
+							 selectable="false" 
+							 width="90%" height="80" />
 			</mx:TitleWindow>
 		</mx:VBox>
 	</mx:HDividedBox>
