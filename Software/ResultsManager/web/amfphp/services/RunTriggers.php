@@ -81,8 +81,12 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 		$trigger->condition->notProductCode = '12,13';
 
         // gh#1422 Temporary hack to stop Practical Writing trial accounts from triggering a renewal reminder
-        if ($msgType == 1)
-            $trigger->condition->notProductCode = '61';
+        //if ($msgType == 1)
+        //    $trigger->condition->notProductCode = '61';
+
+        // gh#1581 Stop usage stats triggering for DPT
+        if ($msgType == 2)
+            $trigger->condition->notProductCode = '63';
 
         $triggerResults = $dmsService->triggerOps->applyCondition($trigger, $triggerDate);
 		echo count($triggerResults) .' accounts for '.$trigger->name.$newLine;
@@ -249,7 +253,12 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 								}
 							}
 						}
-	
+						// gh#1581 If the only title is RM, don't send anything
+                        if ((count($account->titles) == 1) && ($account->titles[0]->productCode == 2)) {
+                            echo $account->name.' only has RM'.$newLine;
+                            continue 1;
+                        }
+
 						// This will write a record to the database, and tell us the securityString. Only do it if you are sending the email as well
 						// Now change to get the security code, and only add if it doesn't exist
 						/*

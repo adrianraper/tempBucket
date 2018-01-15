@@ -8,12 +8,6 @@
  * email templates that need to be sent when something happens or becomes true
  * database updates that are fired when something happens
  */
-// Warning - this script takes a long time to run, can you override the timeout without nasty consequences? 
-// It actually takes about 15 minutes to send 318 emails out. Do I need to extend it that long?
-// At 2 minutes it worked, so I suspect that it queues everything within the processing time.
-//ini_set('max_execution_time', 300); // 5 minutes
-set_time_limit(300);
-
 require_once(dirname(__FILE__)."/DMSService.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
 
@@ -22,6 +16,11 @@ if (isset($_SESSION['dbHost'])) unset($_SESSION['dbHost']);
 if (isset($_REQUEST['dbHost'])) $_SESSION['dbHost']=$_REQUEST['dbHost'];
 
 $dmsService = new DMSService();
+
+// Warning - this script takes a long time to run, can you override the timeout without nasty consequences?
+// It actually takes about 15 minutes to send 318 emails out. Do I need to extend it that long?
+// At 2 minutes it worked, so I suspect that it queues everything within the processing time.
+set_time_limit(300);
 
 // Session start done in DMSService
 //session_start();
@@ -75,14 +74,18 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 			$trigger->rootID = $_REQUEST['rootID'];
 		} else {
 			//$trigger->rootID = Array(5,7,28,163,10719,11091);
-			//$trigger->rootID = Array(10719);
+			$trigger->rootID = Array(10758,10759);
 		}
 		// Ignore Road to IELTS v1 until all expired or removed
 		$trigger->condition->notProductCode = '12,13';
 
         // gh#1422 Temporary hack to stop Practical Writing trial accounts from triggering a renewal reminder
-        if ($msgType == 1)
-            $trigger->condition->notProductCode = '61';
+        //if ($msgType == 1)
+        //    $trigger->condition->notProductCode = '61';
+
+        // gh#1581 Stop usage stats triggering for DPT
+        if ($msgType == 2)
+            $trigger->condition->notProductCode = '63';
 
         $triggerResults = $dmsService->triggerOps->applyCondition($trigger, $triggerDate);
 		echo count($triggerResults) .' accounts for '.$trigger->name.$newLine;
@@ -249,6 +252,11 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 								}
 							}
 						}
+						// gh#1581 If the only title is RM, don't send anything
+                        if ((count($account->titles) == 1) && ($account->titles[0]->productCode == 2)) {
+                            echo $account->name.' only has RM'.$newLine;
+                            continue 1;
+                        }
 	
 						// This will write a record to the database, and tell us the securityString. Only do it if you are sending the email as well
 						// Now change to get the security code, and only add if it doesn't exist
@@ -327,14 +335,14 @@ echo $GLOBALS['db'].$newLine;
 // If you want to run specific triggers for specific days (to catch up for days when this was not run for instance)
 $testingTriggers = "";
 //$testingTriggers .= "subscription reminders";
-//$testingTriggers .= "usage stats";
+$testingTriggers .= "usage stats";
 //$testingTriggers .= "support";
 //$testingTriggers .= "quotations";
 //$testingTriggers .= "trial reminders";
 //$testingTriggers .= "terms and conditions";
 //$testingTriggers .= "EmailMe";
 //$testingTriggers = "justThese";
-$testingTriggers .= "oneoffActions";
+//$testingTriggers .= "oneoffActions";
 
 $fixedDateShift = 0;
 

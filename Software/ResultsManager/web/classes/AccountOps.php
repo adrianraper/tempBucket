@@ -400,23 +400,37 @@ SQL;
 		//NetDebug::trace("accounts=".$accountsRS->RecordCount());
 		//echo "accounts=".$accountsRS->RecordCount();
 		$result = array();
-		
-		if ($accountsRS->RecordCount() > 0) {
+
+        // v3.3. Just to prevent warnings
+        if (!isset($conditions['productCode'])) $conditions['productCode'] = null;
+        if (!isset($conditions['notProductCode'])) $conditions['notProductCode'] = null;
+        if (!isset($conditions['expiryDate'])) $conditions['expiryDate'] = null;
+
+        // gh#1581 Block some titles - will have been sent as notProductCode
+        if ($conditions['notProductCode']) {
+            // TODO explode an array and make all -ve
+            if (!is_array($conditions['notProductCode']))
+                $notProductCodes = array($conditions['notProductCode']);
+            if ($conditions['productCode'] && !is_array($conditions['productCode']))
+                $conditions['productCode'] = array($conditions['productCode']);
+            foreach ($notProductCodes as $notProductCode) {
+                $conditions['productCode'][] = -$notProductCode;
+            }
+        }
+
+        if ($accountsRS->RecordCount() > 0) {
 			while ($accountObj = $accountsRS->FetchNextObj()) {
 				// Create the account object
 				$account = $this->_createAccountFromObj($accountObj);
-				
-				// v3.3. Just to prevent warnings
-				if (!isset($conditions['productCode'])) $conditions['productCode'] = null;
-				if (!isset($conditions['expiryDate'])) $conditions['expiryDate'] = null;
-				// Add the titles for this account (based on expiry date if desired)
-				// Or should I get back all titles - which would be better for subscription reminders
-				//$account->addTitles($this->contentOps->getTitles($account->id, $onExpiryDate));
-				// v3.3 Confirm - we want all titles back, not just expiring ones. The reminder email can sort it out.
-				//$account->addTitles($this->contentOps->getTitles($account->id, $conditions['expiryDate'], $conditions['productCode']));
+
+                // Add the titles for this account (based on expiry date if desired)
+                // Or should I get back all titles - which would be better for subscription reminders
+                //$account->addTitles($this->contentOps->getTitles($account->id, $onExpiryDate));
+                // v3.3 Confirm - we want all titles back, not just expiring ones. The reminder email can sort it out.
+                //$account->addTitles($this->contentOps->getTitles($account->id, $conditions['expiryDate'], $conditions['productCode']));
 				$account->addTitles($this->contentOps->getTitles($account->id, null, $conditions['productCode']));
 				//$account->addTitles($this->contentOps->getTitles($account->id));
-				
+
 				// Get the admin user (if there is one) for this account and add it into the object
 				if ($account->getAdminUserID()) {
 					$account->adminUser = $this->manageableOps->getUserById($account->getAdminUserID());

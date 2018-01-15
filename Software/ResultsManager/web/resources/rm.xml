@@ -178,6 +178,12 @@
 			<!--lit name="courseTimeLabelMinutesSeconds">Minutes and seconds</lit-->
 			<lit name="courseTimeLabelMinutesSeconds">Minutes</lit>
 			<lit name="selectTitleLabel">Click on a title to see its usage statistics.</lit>
+            <lit name="useAdminPanelLabel">To see the number of tests used in your Dynamic Placement Test account, please access the separate DPT Admin Panel.</lit>
+            <!--  
+            <lit name="useAdminPanelLabel"><![CDATA[To see the number of tests used in your Dynamic Placement Test account, please access the separate <a href="https://dpt.clarityenglish.com/admin" target="_blank">DPT Admin Panel</a>.]]></lit>
+             -->
+			<lit name="useAdminPanelTitle">Use Admin Panel for Dynamic Placement Test</lit>
+            <lit name="firstStepTitle">First step</lit>
 			<lit name="licenceStatistics">About the licence</lit>
 			<!-- Add licence clearance date and change formatting
 			<lit name="licenceExpiryDate">Licence expiry date</lit>
@@ -671,8 +677,6 @@
             <lit name="buyMoreLicences">Buy more tests</lit>
             
             <lit name="generateTestadminReportWindowTitle">What do you want to include in the report?</lit>
-            <lit name="reportFilterStep">Add filters to block some results.</lit>
-            <lit name="includeInactiveUsersCheckBox">Show users who have not taken the test?</lit>
             <lit name="testReport">Display</lit>
             <lit name="sendEmailAlert">Send out the {emailType} email to {userCount} people?</lit>
             <lit name="sendEmailWarnAboutNoEmailSingle">There is one person without an email address in the group. They will be ignored.</lit>
