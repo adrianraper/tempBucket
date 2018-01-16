@@ -88,7 +88,8 @@ class AbstractService {
 		AbstractService::$controlLog = &Log::factory($controlLogType, $controlLogTarget, null, $conf);
 		
 		// Create the operation classes
-		$this->copyOps = new CopyOps();
+        // gh#390 CopyOps needs to do db access now
+		$this->copyOps = new CopyOps($this->db);
 
 	}
 

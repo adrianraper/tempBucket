@@ -1651,3 +1651,10 @@ ALTER TABLE `T_User_Expiry`
   ADD COLUMN `F_Salt` TEXT NULL DEFAULT NULL AFTER `F_Password`; 
 ALTER TABLE `T_User_Deleted`  
   ADD COLUMN `F_Salt` TEXT NULL DEFAULT NULL AFTER `F_Password`; 
+
+-- for new Tense Buster product
+INSERT INTO `T_Product` (`F_ProductCode`, `F_ProductName`) VALUES ('68', 'Tense Buster V11');
+INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('68', 'FV');
+INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('68', 'DEMO');
+INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLocation`) VALUES ('68', 'EN','tb');
+INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLocation`) VALUES ('68', 'NAMEN','tb-na');

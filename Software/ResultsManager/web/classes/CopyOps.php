@@ -168,20 +168,26 @@ class CopyOps {
      */
     /**
      * sss#155
+     * sss#390 Read from database
      */
     public function getLiteralsFromFile($lang, $productCode = null) {
         switch ($productCode) {
-            case 67:
-                $code = 'b27';
-                break;
-            case 66:
-                $code = 'sss';
-                break;
             case 63:
                 $code = 'ctp'; // TODO change this
                 break;
             default:
-                $code = $productCode;
+                $sql = <<<EOD
+                  SELECT * FROM T_ProductLanguage
+        	      WHERE F_ProductCode=?
+                  AND F_LanguageCode='EN'
+EOD;
+                $bindingParams = array($productCode);
+                $rs = $this->db->Execute($sql, $bindingParams);
+                if ($rs && $rs->RecordCount() > 0) {
+                    $code = $rs->FetchNextObj()->F_ContentLocation;
+                } else {
+                    throw new Exception("$productCode literals file not found");
+                }
         }
         if (!file_exists($this->getFilename('json', $code)))
             throw new Exception($this->getFilename('json', $code)." file not found");

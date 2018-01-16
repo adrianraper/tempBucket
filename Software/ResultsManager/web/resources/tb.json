@@ -1,0 +1,11 @@
+{
+  "languages": [
+    {
+      "language": "en",
+      "caption": "English",
+      "literals": {
+        "ThankYouLabel": "Thank you for using Tense Buster"
+      }
+    }
+  ]
+}
