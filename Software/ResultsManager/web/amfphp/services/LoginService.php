@@ -126,7 +126,7 @@ class LoginService extends AbstractService {
 		// if a period is set, calculate the expiryDate based on that
 		} elseif ($loginDetails->subscriptionPeriod) {
 			// parse the period
-			sscanf($loginDetails->subscriptionPeriod, "%d%s", $periodValue, $periodUnit);
+			$rc = sscanf($loginDetails->subscriptionPeriod, "%d%s", $periodValue, $periodUnit);
 			if ($periodValue && $periodValue>0 && $periodUnit) {
 				switch ($periodUnit) {
 					case "y":
@@ -240,7 +240,8 @@ class LoginService extends AbstractService {
 	
 	public function getAccountFromRootID($loginDetails) {
 		// Should only be one account returned
-		return array_shift($this->accountOps->getAccounts(array($loginDetails->rootID)));
+        $accounts = $this->accountOps->getAccounts(array($loginDetails->rootID));
+		return array_shift($accounts);
 	}
 	
 	public function getAccountFromUser($user) {

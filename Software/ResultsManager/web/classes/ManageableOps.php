@@ -1727,7 +1727,21 @@ EOD;
 EOD;
 		return $this->db->GetOne($sql, array($userId));
 	}
-	
+    /**
+     * This returns the root ID that a given group is in.
+     */
+    function getRootIdForGroupId($groupId) {
+        // Find parents of the group as top one always has a user/membership link
+        $parents = $this->getGroupParents($groupId);
+        $topGroup = array_reverse($parents)[0];
+        $sql = <<<EOD
+			   SELECT m.F_RootID
+			   FROM T_Membership m
+			   WHERE m.F_GroupID=?
+EOD;
+        return $this->db->GetOne($sql, array($topGroup));
+    }
+
 	/**
 	 * This returns a group. 
 	 * Added for loginGateway, though I don't see why it isn't here already!

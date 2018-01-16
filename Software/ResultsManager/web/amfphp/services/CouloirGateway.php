@@ -244,6 +244,7 @@ if ($json && !isset($json->appVersion)) {
     // If I simply use a header to redirect, I lose my request body.
     // stackoverflow suggests to use curl instead
     // https://stackoverflow.com/questions/22437548/php-how-to-redirect-forward-http-request-with-header-and-body
+    // Also note how that answer has different option if headers get all bound into the content. See /script/LoginGateway.php
     //header('Location: '.$newURL);
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_POST, true);
