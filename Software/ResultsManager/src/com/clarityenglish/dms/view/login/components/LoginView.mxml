@@ -24,8 +24,8 @@
 		private var facebrian:Class;
 		[Embed(source="/../assets/Christine.png")]
 		private var facechristine:Class;
-		[Embed(source="/../assets/Jessie.png")]
-		private var facejessie:Class;
+		[Embed(source="/../assets/Andrew.png")]
+		private var faceandrew:Class;
 		[Embed(source="/../assets/Nicole.png")]
 		private var facenicole:Class;
 		[Embed(source="/../assets/Sky.png")]
@@ -121,10 +121,10 @@
 					case "christine":
 						userFace.source = new facechristine();
 						break;
-					case "jessie":
-						userFace.source = new facejessie();
+					case "andrew":
+						userFace.source = new faceandrew();
 						break;
-					case "nicole":
+					case "charlotte":
 						userFace.source = new facenicole();
 						break;
 					case "sky":
