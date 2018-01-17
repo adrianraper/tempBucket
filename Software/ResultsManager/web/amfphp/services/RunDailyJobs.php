@@ -122,7 +122,6 @@ function runDailyJobs($triggerDate = null) {
 		}
 	}
 	*/
-	/*
 	// 5. Archive sent emails
 
 	// Clean up the T_PendingEmails, remove everything that has been sent
@@ -130,15 +129,22 @@ function runDailyJobs($triggerDate = null) {
 	$rc = $thisService->dailyJobOps->archiveSentEmails($database);
 	echo "Archived $rc sent emails. $newLine";
 
+	// Then every so often clear out the T_SentEmails table - currently to an archive table
+    /*
+        INSERT INTO T_SentEmails_Archive
+			SELECT * FROM T_SentEmails
+			WHERE F_SentTimestamp < '2017-06-01';
+        DELETE FROM T_SentEmails
+			WHERE F_SentTimestamp < '2017-06-01';
+    */
+	/*
 	// 6. Count the amount of CCB material and activity for each account
-
 	// Grab the materials data from XML, session data from SQL and write summary to the db
 	$database = 'rack80829';
 	$rc = $thisService->dailyJobOps->monitorCBBActivity($database);
 	echo "$rc accounts active yesterday. $newLine";	
 	*/
-	/*
-	// 7. Update TB6weeks bookmarks 
+	// 7. Update TB6weeks bookmarks
 	// a. Loop round all accounts that have productCode=59 (and are active)
 	$productCode = 59;
 	$trigger = new Trigger();
@@ -147,24 +153,26 @@ function runDailyJobs($triggerDate = null) {
 	//$trigger->condition->customerType = '1'; // If we want to limit this to libraries
 	
 	$triggerResults = $thisService->triggerOps->applyCondition($trigger, $triggerDate);
+    echo "Check ".count($triggerResults)." TB6weeks accounts$newLine";
 	foreach ($triggerResults as $account) {
 		
 		// b. For each user in this account, update their subscription, if they have one.
-		echo "TB6weeks check account ".$account->prefix."$newLine";
 		$emailArray = $thisService->dailyJobOps->updateSubscriptionBookmarks($account, $productCode, $triggerDate);
-		if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
-			// Send the emails
-			$thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
-			echo "Sent ".count($emailArray)." emails. $newLine";
-				
-		} else {
-			// Or print on screen
-			foreach($emailArray as $email) {
-				echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($trigger->templateID, $email["data"])."<hr/>";
-			}
+		if (count($emailArray) > 0) {
+            if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+                // Send the emails
+                $thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
+                echo "TB6weeks account ".$account->prefix." sent ".count($emailArray)." emails$newLine";
+
+            } else {
+                // Or print on screen
+                foreach($emailArray as $email) {
+                    echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($trigger->templateID, $email["data"])."<hr/>";
+                }
+            }
 		}
 	}
-	*/
+	/*
     // 8. Archive expired licences
 
     // Clean up the T_LicenceHolders, remove licences that have expired + T_CouloirLicenceHolders
@@ -172,7 +180,7 @@ function runDailyJobs($triggerDate = null) {
     $expiryDate = new DateTime('@'.$triggerDate);
     $rc = $thisService->dailyJobOps->archiveExpiredLicences($expiryDate->format('Y-m-d'), $database);
     echo "Archived $rc licences. $newLine";
-
+    */
     /*
 	// 9. Remove duplicates from T_LicenceHolders (#1577)
     $conditions['active'] = true;

@@ -378,7 +378,6 @@ SQL;
 		
 		// send back the number of archived emails
 		return $recordCount;
-		
 	}
 	
 	/*
