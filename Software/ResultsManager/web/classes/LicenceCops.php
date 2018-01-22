@@ -159,7 +159,8 @@ class LicenceCops {
                 }
 
                 // Count to see how many this account is currently using
-                $usedLicences = $this->countCurrentLicences($productCode, $rootId);
+                // gh#1577 pass licence type
+                $usedLicences = $this->countCurrentLicences($productCode, $rootId, $licence->licenceType);
                 if ($usedLicences >= $licence->maxStudents) {
                     $this->failLicenceSlot($user, $rootId, $productCode, $licence, null, $this->copyOps->getCodeForId("errorConcurrentLicenceFull"));
 
@@ -233,16 +234,11 @@ class LicenceCops {
         $dateStamp = AbstractService::getNow();
         $dateNow = $dateStamp->format('Y-m-d H:i:s');
         $expungeDateStamp = AbstractService::getNow();
+        // gh#1577 switch the order to mirror other calls, and add _I and _SINGLE
         switch ($licence->licenceType) {
-            case Title::LICENCE_TYPE_LT:
-                $expungeDateStamp->modify('+'.$licence->licenceClearanceFrequency); // one licence period in the future
-                $licenceEndDate = $expungeDateStamp->modify('-1 day')->format('Y-m-d 23:59:59'); // minus one day
-                $keyId = $userId;
-                break;
             case Title::LICENCE_TYPE_AA:
             case Title::LICENCE_TYPE_CT:
             case Title::LICENCE_TYPE_NETWORK:
-            default:
                 $keyId = $sessionId;
                 // sss#161 Delete any existing licence for this session before you add a new one.
                 // Just as a safety check. REALLY?
@@ -258,7 +254,18 @@ EOD;
                     throw $this->copyOps->getExceptionForId("errorCantClearLicences");
                 }
 
+                // The licence will end in 2 minutes
                 $licenceEndDate = $expungeDateStamp->modify('+'.(LicenceCops::AA_LICENCE_EXTENSION).' secs')->format('Y-m-d H:i:s');
+                break;
+
+            case Title::LICENCE_TYPE_SINGLE:
+            case Title::LICENCE_TYPE_I:
+            case Title::LICENCE_TYPE_LT:
+            case Title::LICENCE_TYPE_TT:
+                $keyId = $userId;
+                // The licence will end 1 day less than a year (or other licence clearance frequency)
+                $expungeDateStamp->modify('+'.$licence->licenceClearanceFrequency); // one licence period in the future
+                $licenceEndDate = $expungeDateStamp->modify('-1 day')->format('Y-m-d 23:59:59'); // minus one day
                 break;
         }
         $sql = <<<EOD
@@ -314,15 +321,16 @@ EOD;
             return true;
         }
         //AbstractService::$debugLog->info("checkCurrentLicence fail for key=$keyId > $dateStamp");
+        AbstractService::$debugLog->info("No existing licence for $keyId in $productCode with expiry > $dateStamp");
+
         return false;
     }
     /**
      * Count how many licences are currently in use
      * Although this is designed to count AA licences, if the account was switched from LT to AA
      * the existing LT licences are going to stick around for a year and will be continually counted.
-     * TODO should we count only by AA licence type? Or is this only a problem for testing accounts?
      */
-    private function countCurrentLicences($productCode, $rootId) {
+    private function countCurrentLicences($productCode, $rootId, $licenceType) {
         $dateStampNow = AbstractService::getNow();
         //$dateStamp = $dateStampNow->modify('-1 day')->format('Y-m-d H:i:s');
         $dateStamp = $dateStampNow->format('Y-m-d H:i:s');
@@ -331,60 +339,14 @@ EOD;
         	WHERE F_ProductCode=?
 		    AND F_RootID=?
             AND F_EndDateStamp>?
-            AND NOT F_LicenceType=?
+            AND F_LicenceType=?
 EOD;
-        $bindingParams = array($productCode, $rootId, $dateStamp, Title::LICENCE_TYPE_LT);
+        $bindingParams = array($productCode, $rootId, $dateStamp, $licenceType);
         $rs = $this->db->Execute($sql, $bindingParams);
         $count = $rs->FetchNextObj()->i;
         //AbstractService::$debugLog->info("countCurrentLicence=$count");
 
         return $count;
-    }
-
-    /**
-     *
-     * Does this user already have a licence for this product?
-     * Change to use T_Session for tracking licence use
-     * gh#1230 Change to use T_CouloirLicenceHolders
-     * @param User $user
-     * @param Number $productCode
-     * @param Licence $licence
-     */
-    function checkExistingLicence($userId, $productCode, $licence) {
-        // gh#125 Need exactly the same conditions here as with countUsedLicences
-        // Have they taken a licence within the last [licence period]?
-        // gh#1577 Since licences are created with an expiry date, we should just use that
-        //         not try to figure out now minus the current licence period
-        $dateStamp = $this->getNow();
-        $dateNow = $dateStamp->format('Y-m-d H:i:s');
-        $sql = <<<EOD
-			SELECT * FROM T_CouloirLicenceHolders l
-			WHERE l.F_KeyID = ?
-			AND l.F_StartDateStamp > ?
-EOD;
-
-        // gh#1211 And the other old and new combinations
-        $oldProductCode = $this->getOldProductCode($productCode);
-        if ($oldProductCode) {
-            $sql.= " AND l.F_ProductCode IN (?, $oldProductCode)";
-        } else {
-            $sql.= " AND l.F_ProductCode = ?";
-        }
-        $bindingParams = array($userId, $dateNow, $productCode);
-        $rs = $this->db->Execute($sql, $bindingParams);
-
-        // SQL error
-        if (!$rs)
-            throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
-
-        switch ($rs->RecordCount()) {
-            case 0:
-                return false;
-                break;
-            default:
-                // Valid login, return the last licence ID
-                return $rs->FetchNextObj()->F_LicenceID;
-        }
     }
 
     /**
@@ -421,7 +383,7 @@ EOD;
     }
 
     /**
-     * Count the number of used licences for this root / product since the clearance date
+     * Count the number of used (tracking) licences for this root / product since the clearance date
      */
     function countUsedLicences($productCode, $rootId, $licence) {
         // Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
@@ -433,6 +395,7 @@ EOD;
 				FROM T_CouloirLicenceHolders l, T_User u
 				WHERE l.F_KeyID = u.F_UserID
 				AND l.F_StartDateStamp >= ?
+                AND l.F_LicenceType = ?
 EOD;
         } else {
             // gh#604 Teacher records in session will now include root, so ignore them here
@@ -441,6 +404,7 @@ EOD;
 				SELECT COUNT(l.F_KeyID) AS licencesUsed 
 				FROM T_CouloirLicenceHolders l
 				WHERE l.F_StartDateStamp >= ?
+                AND l.F_LicenceType = ?
 EOD;
         }
 
@@ -461,7 +425,7 @@ EOD;
         } else {
             $sql.= " AND l.F_RootID = $rootId";
         }
-        $bindingParams = array($licence->licenceControlStartDate, $productCode);
+        $bindingParams = array($licence->licenceControlStartDate, $licence->licenceType, $productCode);
         $rs = $this->db->Execute($sql, $bindingParams);
 
         if ($rs && $rs->RecordCount() > 0) {
@@ -589,6 +553,9 @@ EOD;
                 $keyId = $sessionId;
                 break;
             case Title::LICENCE_TYPE_LT:
+            case Title::LICENCE_TYPE_TT:
+            case Title::LICENCE_TYPE_I:
+            case Title::LICENCE_TYPE_SINGLE:
                 // You can't release an LT licence slot
                 return true;
                 break;
