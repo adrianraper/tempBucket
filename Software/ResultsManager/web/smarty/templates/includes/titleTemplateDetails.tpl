@@ -12,8 +12,7 @@
 	{assign var='titleImage' value='sss'}
 	{assign var='startPageFolder' value='StudySkillsSuccessV9'}
 {elseif $title->name|stristr:"Study Skills Success"}
-	{assign var='titleImage' value='g'}
-	{assign var='startPageFolder' value='xx'}
+	{assign var='titleImage' value='sssv11'}
 {elseif $title->name|stristr:"Author Plus"}
 	{assign var='titleImage' value='ap'}
 	{assign var='startPageFolder' value='AuthorPlus'}

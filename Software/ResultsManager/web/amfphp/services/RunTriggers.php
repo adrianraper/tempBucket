@@ -142,7 +142,10 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 					foreach ($triggerResults as $result) {
 						// gh#733
 						try {
-							// v3.6 You now get email addresses from T_AccountEmails.
+                            // gh#1588 Might need licence attributes in the email
+                            $result->addLicenceAttributes($dmsService->accountOps->getAccountLicenceDetails($result->id));
+
+                            // v3.6 You now get email addresses from T_AccountEmails.
 							// So look up T_AccountEmails with the account root and the message type that we are trying to send
 							// Then all matching emails will get this. 
 							//echo 'getMessages for id='.$result->id.' and type='.$trigger->messageType.$newLine;
@@ -259,7 +262,10 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
                             continue 1;
                         }
 
-						// This will write a record to the database, and tell us the securityString. Only do it if you are sending the email as well
+                        // gh#1588 Might need licence attributes in the email
+                        $account->addLicenceAttributes($dmsService->accountOps->getAccountLicenceDetails($account->id));
+
+                        // This will write a record to the database, and tell us the securityString. Only do it if you are sending the email as well
 						// Now change to get the security code, and only add if it doesn't exist
 						/*
 						if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {

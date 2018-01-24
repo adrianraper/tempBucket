@@ -1,3 +1,40 @@
+{foreach name=licenceStuff from=$account->licenceAttributes item=licenceAttribute}
+	{if isset($licenceAttribute->licenceKey)}	<!-- For Email 	-->
+	{if $licenceAttribute->licenceKey == "IPrange"}
+		{assign var='hasIP' value='true'}
+		{assign var='IPrange' value=$licenceAttribute->licenceValue}
+	{/if}
+	{if $licenceAttribute->licenceKey == "barcode"}
+		{assign var='hasBarcode' value='true'}
+		{assign var='barcode' value=$licenceAttribute->licenceValue}
+		{/if}
+	{if $licenceAttribute->licenceKey == "AccountManagerEmail"}
+		{assign var='hasAccountManagerEmail' value='true'}
+		{assign var='AccountManagerEmail' value=$licenceAttribute->licenceValue}
+		{/if}	
+	{if $licenceAttribute->licenceKey == "AccountManagerName"}
+		{assign var='hasAccountManagerName' value='true'}
+		{assign var='AccountManagerName' value=$licenceAttribute->licenceValue}
+		{/if}	
+	{else} 		<!-- For preview -->
+		{if $licenceAttribute.licenceKey == "IPrange"}
+			{assign var='hasIP' value='true'}
+			{assign var='IPrange' value=$licenceAttribute.licenceValue}
+		{/if}
+		{if $licenceAttribute.licenceKey == "barcode"}
+			{assign var='hasBarcode' value='true'}
+			{assign var='barcode' value=$licenceAttribute.licenceValue}
+		{/if}
+		{if $licenceAttribute.licenceKey == "AccountManagerEmail"}
+			{assign var='hasAccountManagerEmail' value='true'}
+			{assign var='AccountManagerEmail' value=$licenceAttribute.licenceValue}
+		{/if}
+		{if $licenceAttribute.licenceKey == "AccountManagerName"}
+			{assign var='hasAccountManagerName' value='true'}
+			{assign var='AccountManagerName' value=$licenceAttribute.licenceValue}
+		{/if}
+	{/if}
+{/foreach}
 {if $resellerCode=='12'}
 	<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
@@ -16,11 +53,11 @@
     <td width="10"></td>
     <td width="240" align="left" valign="top">
 
-        <p style="font-family: Arial, Helvetica, sans-serif; font-weight:700; font-size: 1em; margin:0 0 5px 0; padding:0; color:#000000;">Andrew Stokes</p>
+        <p style="font-family: Arial, Helvetica, sans-serif; font-weight:700; font-size: 1em; margin:0 0 5px 0; padding:0; color:#000000;">Charlotte Kwok</p>
         <p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">ClarityEnglish<br />
-		Hong Kong & United Kingdom<br />
-		Tel: +852 2791 1787 / +852 9731 0900<br />
-		Email: <a href="mailto:andrew.stokes@clarityenglish.com">andrew.stokes@clarityenglish.com</a>
+		Hong Kong<br />
+		Tel: +852 2791 1787 <br />
+		<a href="mailto:Charlotte.Kwok@clarityenglish.com">Charlotte.Kwok@clarityenglish.com</a>
 	  </p> </td>
   </tr>
     
@@ -52,7 +89,7 @@
         <p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">ClarityEnglish<br />
 		Hong Kong office<br />
 		Tel: +852 9731 0900 <br />
-		Email: <a href="mailto:andrew.stokes@clarityenglish.com">andrew.stokes@clarityenglish.com</a>
+		<a href="mailto:andrew.stokes@clarityenglish.com">andrew.stokes@clarityenglish.com</a>
 	  </p> </td>
   </tr>
     
@@ -83,7 +120,7 @@
         <p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">ELT Connections<br />
 		United Kingdom<br />
 		Tel: +44 (0)7860 339420 <br />
-		Email: <a href="mailto:andy@eltconnections.com">andy@eltconnections.com</a>
+		<a href="mailto:andy@eltconnections.com">andy@eltconnections.com</a>
 	  </p> </td>
   </tr>
     
@@ -113,7 +150,7 @@
         <p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">ClarityEnglish<br />
 		Hong Kong office <br />
 		Tel: +852 9731 0900 <br />
-		Email: <a href="mailto:andrew.stokes@clarityenglish.com">andrew.stokes@clarityenglish.com</a>
+		<a href="mailto:andrew.stokes@clarityenglish.com">andrew.stokes@clarityenglish.com</a>
 	  </p> </td>
   </tr>
     
@@ -144,7 +181,7 @@
         <p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">ClarityEnglish<br />
 		Hong Kong office <br />
 		Tel: +852 2791 1787<br />
-		Email: <a href="mailto:adrian.raper@clarityenglish.com">adrian.raper@clarityenglish.com</a>
+		<a href="mailto:adrian.raper@clarityenglish.com">adrian.raper@clarityenglish.com</a>
 	  </p> </td>
   </tr>
     
@@ -176,7 +213,7 @@
         <p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">Electronic Information Solutions Inc.<br />
 		Philippines<br />
 		Tel: +632 843 6571/ +632 845 3507<br />
-		Email: <a href="mailto:joy.berroya@eisi.com.ph ">joy.berroya@eisi.com.ph </a>
+		<a href="mailto:joy.berroya@eisi.com.ph ">joy.berroya@eisi.com.ph </a>
 	  </p> </td>
   </tr>
     
@@ -205,7 +242,7 @@
         <p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">Rosanna doo<br />
 		Slovenia<br />
 		Tel: +386 (0)59 33 44 00<br />
-		Email: <a href="mailto:rossana@t-2.net">rossana@t-2.net</a>
+		<a href="mailto:rossana@t-2.net">rossana@t-2.net</a>
 	  </p> </td>
   </tr>
     
@@ -236,8 +273,7 @@
         <p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">Vietnam Book Promotion Service<br />
 		Vietnam<br />
 		Tel: [84] 8 3507 4706<br />
-        
-		Email: <a href="mailto:thao@vietnambookpromotion.com">thao@vietnambookpromotion.com</a>
+		<a href="mailto:thao@vietnambookpromotion.com">thao@vietnambookpromotion.com</a>
 	  </p> </td>
   </tr>
     
@@ -272,7 +308,7 @@
 		Cienytec Ltda<br />
 		Colombia<br />
 		Tel: +57 1 467 2719<br />
-		Email: <a href="mailto: ricardo.ospina@cienytec.com">ricardo.ospina@cienytec.com</a>
+		<a href="mailto: ricardo.ospina@cienytec.com">ricardo.ospina@cienytec.com</a>
 		</p>   </td>
   </tr>
   <tr>
@@ -304,7 +340,7 @@
 		eTFL Solutions<br />
 		Spain<br />
 		Tel: +34 693 614 390<br />
-		Email: <a href="mailto: maribel@etfl.es">maribel@etfl.es</a>	</p>   </td>
+		<a href="mailto: maribel@etfl.es">maribel@etfl.es</a>	</p>   </td>
   </tr>
     <tr>
       <td valign="top"></td>
@@ -337,7 +373,7 @@
 		Bookery<br />
 		Australia<br />
 		Tel: +61 3 8417 9500<br />
-		Email: <a href="mailto: info@bookery.com.au">info@bookery.com.au</a>	</p>   </td>
+		<a href="mailto: info@bookery.com.au">info@bookery.com.au</a>	</p>   </td>
   </tr>
     <tr>
       <td valign="top"></td>
@@ -373,7 +409,7 @@
 		Young India Films<br />
 		India<br />
 		Tel: [91] 44-2829 5693<br />
-		Email: <a href="mailto: info@youngindiafilms.in">info@youngindiafilms.in</a>
+		<a href="mailto: info@youngindiafilms.in">info@youngindiafilms.in</a>
 	  </p>  </td>
   </tr>
     
@@ -407,7 +443,7 @@
 		Celestron Ltda<br />
 		Chile<br />
 		Tel: 2-2640404<br />
-		Email: <a href="mailto: valdenegro@celestron.cl">valdenegro@celestron.cl</a>
+		<a href="mailto: valdenegro@celestron.cl">valdenegro@celestron.cl</a>
 	  </p> </td>
   </tr>
     
@@ -440,7 +476,7 @@
 		Edict Electronics Sdn Bhd<br />
 		Malaysia<br />
 		Tel: [60] 3 8319 1101<br />
-		Email: <a href="mailto: isaac@edict.com.my">isaac@edict.com.my</a>
+		<a href="mailto: isaac@edict.com.my">isaac@edict.com.my</a>
 	  </p> </td>
   </tr>
     
@@ -470,11 +506,10 @@
 		<p style="font-family: Arial, Helvetica, sans-serif; font-weight:700; font-size: 1em; margin:0 0 5px 0; padding:0; color:#000000;">Virginia Westwood </strong></p>
 		<p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">
 		Protea Textware Pty Ltd<br />
-           
             Australia<br />
 		Tel: (08) 9192 8390<br />
 		Mobile: 0408 971 446<br />
-		Email: <a href="mailto: orders@proteatextware.com.au">orders@proteatextware.com.au</a>
+		<a href="mailto: orders@proteatextware.com.au">orders@proteatextware.com.au</a>
       </p></td>
   </tr>
     
@@ -506,7 +541,7 @@
 		NAS Software Inc.<br />
 		Canada<br />
 		Tel: [1] 905-764-8079<br />
-		Email: <a href="mailto: sam@nas.ca">sam@nas.ca</a>
+		<a href="mailto: sam@nas.ca">sam@nas.ca</a>
 	  </p> </td>
   </tr>
     
@@ -539,7 +574,7 @@
 		<p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">SOLUSI Educational Technology<br />
 		Indonesia<br />
 		Tel: [62] 61-733 1286<br />
-		Email: <a href="mailto:ervida@solusieducationaltechnology.com">ervida@solusieducationaltechnology.com</a><br />
+		<a href="mailto:ervida@solusieducationaltechnology.com">ervida@solusieducationaltechnology.com</a><br />
 	  </p> </td>
   </tr>
     
@@ -575,7 +610,7 @@
 		<p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">Premium Education<br />
 		Mexico<br />
 		Tel: +52 55 3028 4158<br />
-		Email: <a href="mailto:elizabeth.pena@premium-ed.com">elizabeth.pena@premium-ed.com</a><br />
+		<a href="mailto:elizabeth.pena@premium-ed.com">elizabeth.pena@premium-ed.com</a><br />
 	  </p> </td>
   </tr>
     
@@ -608,7 +643,7 @@
 		<p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">Tech Solutions FZE<br />
 		GCC<br />
 		Mob: [971] 50 9332421<br />
-		Email: <a href="mailto: subramoni.iyer@techsolutionsfze.com">subramoni.iyer@techsolutionsfze.com</a><br />
+		<a href="mailto: subramoni.iyer@techsolutionsfze.com">subramoni.iyer@techsolutionsfze.com</a><br />
 	  </p> </td>
   </tr>
     
@@ -641,7 +676,7 @@
         <p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">Win Hoe Company Limited<br />
 		Taiwan<br />
 		Tel: [886] 4-2451-8175<br />
-		Email: <a href="mailto:kima@winhoe.com">kima@winhoe.com</a>
+		<a href="mailto:kima@winhoe.com">kima@winhoe.com</a>
 	  </p> </td>
   </tr>
     
@@ -672,7 +707,7 @@
         <p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">Encomium Publications, Inc.<br />
 		USA<br />
 		Tel: +1 (513) 871-4377<br />
-		Email: <a href="mailto:maryam@encomium.com">maryam@encomium.com</a>
+		<a href="mailto:maryam@encomium.com">maryam@encomium.com</a>
 	  </p> </td>
   </tr>
     
@@ -680,7 +715,36 @@
     <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
   </tr>
 </table>
+{elseif $resellerCode=='48'}
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+      <tr>
+        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        </td>
+      </tr>
+       <tr>
+    <td width="14" height="10" ></td>
+    <td width="96"  valign="top"></td>
+    <td width="10"></td>
+    <td width="240"></td>
+  </tr>   
+    <tr>
+    <td width="14" height="99"></td>
+    <td width="96" valign="top"><img src="http://www.clarityenglish.com/images/email/q_BC.png" width="88" align="right" style="margin:2px 0 0 0;"/></td>
+    <td width="10"></td>
+    <td width="240" align="left" valign="top">
 
+      {if $hasAccountManagerEmail=='true' && $hasAccountManagerName=='true'}
+        <p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">{$AccountManagerName}<br>{$AccountManagerEmail}</p>
+		{else}	
+		<p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">Please contact your local <br>British Council office.</p>
+		{/if}
+	</td>
+  </tr>
+    
+  <tr>
+    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+  </tr>
+</table>
 
     
 {/if}      
