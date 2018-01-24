@@ -652,6 +652,7 @@
                     <p>The Full Version has so much more!</p>
                 ]]>
             </lit>
+			<lit name="weWouldLabel">We would love to know what you think.</lit>
 			<lit name="creditCaptionLabel">Credits and acknowledgements</lit>
 			<lit name="upgradeLabel">Thinking of upgrading to the</lit>
 			<lit name="fullVersionLabel">full version?</lit>
