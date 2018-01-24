@@ -36,21 +36,22 @@ set_time_limit(MAX_EXECUTION_TIME);
 function loadAPIInformation() {
 	global $thisService;
 
-    $output = (isset($_GET['output'])) ? $_GET['output'] : "export"; // or json, excel, text
-    $filter = (isset($_GET['filter'])) ? $_GET['filter'] : "gauge1"; // a1-r1.html, gauge, gauge1, a1, l1, can do regex ONLY FROM FILE, not from browser parameters
+    $output = (isset($_GET['output'])) ? $_GET['output'] : "excel"; // or json, excel, text
+    $filter = (isset($_GET['filter'])) ? $_GET['filter'] : ""; // a1-r1.html, gauge, gauge1, a1, l1, can do regex ONLY FROM FILE, not from browser parameters
     $unitname = (isset($_GET['unitname'])) ? $_GET['unitname'] : ""; // Gauge, Track A etc
     if ($unitname == "") $unitname = (isset($_GET['unitName'])) ? $_GET['unitName'] : ""; // old case style
     $method = (isset($_GET['method'])) ? $_GET['method'] : ""; // checkContentIntegrity etc
-    $outputFilename = (isset($_GET['file'])) ? $_GET['file'] : "export-full-remote-test"; // export-gauge-Bahrain etc
+    $outputFilename = (isset($_GET['file'])) ? $_GET['file'] : ""; // export-gauge-Bahrain etc
 
-	//$inputData = file_get_contents("php://input");
-	//$inputData = '{"method":"getRecordsForItemId","id":"4386248d-db3e-4c11-ae4f-0e4194cbe067","dbHost":2}';
-	//inputData = '{"method":"itemAnalysisWithData","dbHost":2}';
-	//$inputData = '{"method":"itemAnalysis","dbHost":200}';
+	$inputData = file_get_contents("php://input");
+	//$inputData = '{"method":"xxgetRecordsForItemId","id":"4386248d-db3e-4c11-ae4f-0e4194cbe067","dbHost":2}';
+	//$inputData = '{"method":"itemAnalysisWithData","dbHost":2}';
+	//$inputData = '{"method":"itemAnalysis","dbHost":2}';
 	$inputData = '{"method":"getCandidateAnswers","dbHost":200}';
     //$inputData = '{"method":"grabData", "targetHost":2, "sourceHost":3}';
-    //$inputData = '{"method":"checkContentIntegrity", "check":"tags", "filter":"/a[12]+-l/", "dbHost":3}';
+    //$inputData = '{"method":"checkContentIntegrity", "check":"tags", "filter":"/a[12]+-l/", "dbHost":2}';
     //$inputData = '{"method":"makeNewItemId","dbHost":3}';
+    //$inputData = '{"method":"seeWhiteList","dbHost":200}';
 
 	$postInformation = json_decode($inputData, true);
 	if (!$postInformation) 
@@ -61,7 +62,7 @@ function loadAPIInformation() {
     $postInformation['output'] = (isset($postInformation['output'])) ? $postInformation['output'] : $output;
     $postInformation['filter'] = (isset($postInformation['filter'])) ? $postInformation['filter'] : $filter;
     $postInformation['unitname'] = (isset($postInformation['unitname'])) ? $postInformation['unitname'] :  $unitname;
-    $postInformation['$outputFilename'] = (isset($postInformation['$outputFilename'])) ? $postInformation['$outputFilename'] : $outputFilename;
+    $postInformation['outputFilename'] = (isset($postInformation['outputFilename'])) ? $postInformation['outputFilename'] : $outputFilename;
 
 	// First check mandatory fields exist
 	if (!isset($postInformation['method'])) {
@@ -104,6 +105,14 @@ function iagOutput($file, $qid, $qtype, $root, $context, $readingText, $tags, $a
     global $apiInformation;
     global $outputStream;
     global $outputFilename;
+
+    // We don't usually want the full path, just the actual filename.
+    // This pattern fails if the path has . in it (/folder/inner.folder/filename.ext)
+    $pattern = '/([\w-]+?)\./i';
+    $matched = preg_match($pattern, $file, $matches);
+    if ($matched>0)
+        $file = $matches[1];
+
     switch ($apiInformation['output']) {
         case 'text':
         case 'excel':
@@ -156,6 +165,7 @@ function testTakerOutput($uid, $qidScore, $result) {
             file_put_contents($outputFilename, $builtLine . "$newline", FILE_APPEND | LOCK_EX);
             break;
         case 'browser':
+        default:
             echo $builtLine . "$newline";
             break;
     }
@@ -183,7 +193,7 @@ try {
     $contentFolder = dirname(__FILE__).'/../../../../../../../Testbench';
     $titleFolder = $contentFolder.'/content-ppt';
     // If you haven't set a specific output name, make one up from the filters
-    $specificName = (isset($apiInformation['$outputFilename'])) ? $apiInformation['$outputFilename'] : false;
+    $specificName = (isset($apiInformation['outputFilename'])) ? $apiInformation['outputFilename'] : false;
     if (!$specificName) $specificName = 'export-'.(isset($apiInformation['unitname'])) ? $apiInformation['unitname'] : false;
     if (!$specificName) $specificName = 'export-'.(isset($apiInformation['filter'])) ? $apiInformation['filter'] : false;
     if (!$specificName) $specificName = 'export-'.date('jS-F-Y');
@@ -227,10 +237,26 @@ try {
             $log = true;
     }
 
+    // Add a whitelist of testIds that are considered valid
+    //$whiteList = '(75,366,364,358,345,338,330,328,327,274,273,251,238,229,226,225,78,68,65,64,63,62,61,60,59,58,57,51,50,49,48,47,46,45,44,43)';
+    //$whiteList = '(714,700,697,688,685,678,664,654,643,638,631,629,624,620,575,551,538,501,500,497,485,484,449,404,377,371,364,358,345,338,330,273)';
+    //$whiteList = '(714)';
+    //$whiteList = '(484, 638)'; // AsiaU TOEIC comparison tests
+    // Add a whitelist of testIds that are considered valid
+    // Nothing from root 49040 (trials)
+    //$whiteList = '(366,364,358,345,338,330,328,327,274,273,251,238,229,226,225,78,68,65,64,63,62,61,60,59,58,57,51,50,49,48,47,46,45,44,43)';
+    //$whiteList = '(1021,1017,1011,1010,1008,1004,997,996,992,991,987,984,983,982,977,976,975,973,972,966,961,955,952,944,936,935,934,933,932,931,928,927,926,925,922,918,917,916,913,912,911,910,909,907,906,905,904,903,902,901,900,899,898,897,896,893,888,885,884,883,882,881,880,879,878,876,874,872,871,870,869,868,867,865,864,863,862,861,860,859,858,857,856,854,853,852,851,850,849,848,847,838,836,815,814,807,806,805,803,793,785,784,783,782,779,774,771,769,768,767,766,764,763,762,760,759,758,757,755,754,753,752,751,750,749,748,747,746,745,744,743,742,741,740,739,737,736,735,734,732,731,730,729,728,726,725,724,722,721,720,719,718,717,711,710,706,705,700,699,698,697,696,688,685,683,678,677,674,667,664,661,656,654,649,648,647,643,639,638,631,630,629,625,624,620,612,611,610,609,608,607,606,605,604,603,590,579,575,563,558,555,551,550,538,524,512,502,501,500,499,497,494,490,488,485,484,473,449,439,431,426,425,416,410,407,404,402,396,395,394,393,392,391,390,389,388,387,386,385,381,380,379,378,377,376,375,371,366,364,358,345,338,330,328,327,274,273,251,238,229,226,225,78,68,65,64,63,62,61,60,59,58,57,51,50,49,48,47,46,45,44,43)';
+    $thisService->itemAnalysisOps->setWhiteList($thisService->itemAnalysisOps->getTestsForWhiteList());
+
     switch ($apiInformation['method']) {
-		case 'getRecordsForItemId':
-			$rc = $thisService->internalQueryOps->getScoreDetailsForItemId($apiInformation['id']);
-			break;
+        // Not implemented
+		//case 'getRecordsForItemId':
+		//	$rc = $thisService->internalQueryOps->getScoreDetailsForItemId($apiInformation['id']);
+		//	break;
+
+        case 'seeWhiteList':
+            echo implode(',',$thisService->itemAnalysisOps->getWhiteList());
+            break;
 
         case 'makeNewItemId':
             $allIds = array();

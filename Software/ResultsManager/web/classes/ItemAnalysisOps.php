@@ -7,6 +7,7 @@ class ItemAnalysisOps {
      * Get data from the original database into a smaller one, then anaylsis it
 	 */
 	var $db;
+	var $whiteList;
 	
 	function ItemAnalysisOps($db) {
 		$this->db = $db;
@@ -21,6 +22,15 @@ class ItemAnalysisOps {
 	function changeDB($db) {
 		$this->db = $db;
 	}
+
+    public function setWhiteList($list) {
+	    $this->whiteList = $list;
+    }
+    public function getWhiteList() {
+	    if (!isset($this->whiteList))
+	        throw new Exception("The white list must be set, even to []");
+        return $this->whiteList;
+    }
 
     public function itemAnalysis($apiInformation, $titleFolder) {
 	    $files = $this->getFilesFromMenu($apiInformation, $titleFolder);
@@ -538,16 +548,13 @@ class ItemAnalysisOps {
 
     // Get all the data for test takers in the tests we are counting
     public function getTestTakerResults() {
-        // Add a whitelist of testIds that are considered valid
-        //$whiteList = '(75,366,364,358,345,338,330,328,327,274,273,251,238,229,226,225,78,68,65,64,63,62,61,60,59,58,57,51,50,49,48,47,46,45,44,43)';
-        //$whiteList = '(714,700,697,688,685,678,664,654,643,638,631,629,624,620,575,551,538,501,500,497,485,484,449,404,377,371,364,358,345,338,330,273)';
-        //$whiteList = '(714)';
-        $whiteList = '(484, 638)'; // AsiaU TOEIC comparison tests
+	    $inWhiteList = '('.implode(',',$this->getWhiteList()).')';
         $sql = <<<EOD
-            select d.F_UserID as uid, d.F_ItemID as qid, (CASE WHEN d.F_Score is null THEN 0 ELSE d.F_Score END) as score, t.F_Result as result 
+            select d.F_UserID as uid, d.F_ItemID as qid, d.F_Score as score, t.F_Result as result 
             FROM T_ScoreDetail d, T_TestSession t
-            WHERE t.F_TestID in $whiteList
+            WHERE t.F_TestID in $inWhiteList
             AND t.F_SessionID = d.F_SessionID
+            AND d.F_Score is not null
             order by uid, qid;
 EOD;
         $bindingParams = array();
@@ -559,16 +566,14 @@ EOD;
         // We can't know the number of times the question has been presented and not attempted
         // as we don't write scoreDetails for such a case. Should we?
         // COUNT(*) presented,
-        // Add a whitelist of testIds that are considered valid
-        // Nothing from root 49040 (trials)
-        //$whiteList = '(366,364,358,345,338,330,328,327,274,273,251,238,229,226,225,78,68,65,64,63,62,61,60,59,58,57,51,50,49,48,47,46,45,44,43)';
-        $whiteList = '(1021,1017,1011,1010,1008,1004,997,996,992,991,987,984,983,982,977,976,975,973,972,966,961,955,952,944,936,935,934,933,932,931,928,927,926,925,922,918,917,916,913,912,911,910,909,907,906,905,904,903,902,901,900,899,898,897,896,893,888,885,884,883,882,881,880,879,878,876,874,872,871,870,869,868,867,865,864,863,862,861,860,859,858,857,856,854,853,852,851,850,849,848,847,838,836,815,814,807,806,805,803,793,785,784,783,782,779,774,771,769,768,767,766,764,763,762,760,759,758,757,755,754,753,752,751,750,749,748,747,746,745,744,743,742,741,740,739,737,736,735,734,732,731,730,729,728,726,725,724,722,721,720,719,718,717,711,710,706,705,700,699,698,697,696,688,685,683,678,677,674,667,664,661,656,654,649,648,647,643,639,638,631,630,629,625,624,620,612,611,610,609,608,607,606,605,604,603,590,579,575,563,558,555,551,550,538,524,512,502,501,500,499,497,494,490,488,485,484,473,449,439,431,426,425,416,410,407,404,402,396,395,394,393,392,391,390,389,388,387,386,385,381,380,379,378,377,376,375,371,366,364,358,345,338,330,328,327,274,273,251,238,229,226,225,78,68,65,64,63,62,61,60,59,58,57,51,50,49,48,47,46,45,44,43)';
+        $inWhiteList = '('.implode(',',$this->getWhiteList()).')';
+
         $sql = <<<EOD
             select sum(CASE WHEN d.F_Score is not null THEN 1 ELSE 0 END) as attempts, 
                     sum(CASE WHEN d.F_Score > 0 THEN 1 ELSE 0 END) as correct
             FROM T_ScoreDetail d, T_TestSession t
             WHERE d.F_ItemID=?
-            AND t.F_TestID in $whiteList
+            AND t.F_TestID in $inWhiteList
             AND t.F_SessionID = d.F_SessionID;
 EOD;
         $bindingParams = array($itemId);
@@ -594,7 +599,7 @@ EOD;
             FROM T_ScoreDetail d, T_TestSession t
             WHERE d.F_ItemID=?
             AND d.F_Score = -1
-            AND t.F_TestID in $whiteList
+            AND t.F_TestID in $inWhiteList
             AND t.F_SessionID = d.F_SessionID;
 EOD;
         $bindingParams = array($itemId);
@@ -654,4 +659,22 @@ EOD;
         return $rc;
     }
 
+    public function getTestsForWhiteList() {
+        $sql = <<<EOD
+            select t.F_TestID as testId from T_ScheduledTests t
+              where exists
+                (select 1 
+                 from T_TestSession 
+                 where F_TestID = t.F_TestID
+                 and F_RootID not in (163,14417,49040,47454,54333)
+                 and F_CompletedDateStamp > '2017-01-01')
+            order by F_TestID asc;
+EOD;
+        $bindingParams = array();
+        $rs = $this->db->GetArray($sql, $bindingParams);
+        $ars =  array_map(function($record) {
+            return $record['testId'];
+        }, $rs);
+        return $ars;
+    }
 }
