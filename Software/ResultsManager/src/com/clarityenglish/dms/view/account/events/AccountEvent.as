@@ -18,6 +18,7 @@
 		public static const SET_EMAIL_TO_LIST:String = "set_email_to_list";
 		public static const GENERATE_REPORT:String = "generate_report";
 		public static const SHOW_IN_RESULTS_MANAGER:String = "show_in_results_manager";
+		public static const SHOW_IN_ADMIN_PANEL:String = "show_in_admin_panel";
 		public static const GET_ACCOUNTS:String = "get_accounts";
 		public static const CHANGE_ACCOUNT_TYPE:String = "change_account_type";
 		

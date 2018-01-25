@@ -53,7 +53,7 @@
 				
 				logoutButton.label = copyProvider.getCopyForId("logoutButton");
 				brandingLabel.text = copyProvider.getCopyForId("dmsApplicationName") + " " + Constants.version;
-				brandingLabel.text += ' connected to ' + Constants.dbDetails;
+				brandingLabel.text += ' from ' + Constants.dbDetails;
 				
 			}
 			

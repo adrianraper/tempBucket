@@ -17,7 +17,11 @@ package com.clarityenglish.dms.controller {
 			var e:AccountEvent = note.getBody() as AccountEvent;
 			
 			var accountProxy:AccountProxy = facade.retrieveProxy(AccountProxy.NAME) as AccountProxy;
-			accountProxy.showInResultsManager(e.account);
+			if (e.type == AccountEvent.SHOW_IN_ADMIN_PANEL) {
+				accountProxy.showInAdminPanel(e.account);
+			} else {
+				accountProxy.showInResultsManager(e.account);
+			}
 		}
 		
 	}

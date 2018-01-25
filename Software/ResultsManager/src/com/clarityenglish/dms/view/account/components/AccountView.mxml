@@ -105,6 +105,7 @@
 			accountCMManager.addEventListener(AccountEvent.ADD_TO_EMAIL_TO_LIST, onChangeEmailToList);
 			accountCMManager.addEventListener(AccountEvent.SET_EMAIL_TO_LIST, onChangeEmailToList);
 			accountCMManager.addEventListener(AccountEvent.SHOW_IN_RESULTS_MANAGER, onShowInResultsManager);
+			accountCMManager.addEventListener(AccountEvent.SHOW_IN_ADMIN_PANEL, onShowInResultsManager);
 			
 			// Setup the show/hide columns VBox
 			for each (var dataGridColumn:DataGridColumn in dataGrid.columns) {

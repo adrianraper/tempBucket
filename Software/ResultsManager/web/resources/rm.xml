@@ -497,6 +497,7 @@
 			<lit name="addToEmailListMenuItem">Add to email list</lit>
 			<lit name="setAsEmailListMenuItem">Set as email list</lit>
 			<lit name="openInRMMenuItem">Open in Results Manager...</lit>
+            <lit name="openInAPMenuItem">Open in Admin Panel...</lit>
 			
 			<lit name="save">Save</lit>
 			

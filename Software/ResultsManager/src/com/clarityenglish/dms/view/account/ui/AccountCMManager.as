@@ -2,6 +2,7 @@
 	import com.clarityenglish.common.events.SearchEvent;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.interfaces.CopyReceiver;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.Constants;
 	import com.clarityenglish.dms.view.account.events.AccountEvent;
@@ -29,6 +30,7 @@
 		private var addToEmailListMenuItem:ContextMenuItem;
 		private var setAsEmailListMenuItem:ContextMenuItem;
 		private var openInRMMenuItem:ContextMenuItem;
+		private var openInAPMenuItem:ContextMenuItem;
 		
 		public function AccountCMManager(target:InteractiveObject) {
 			super(target);
@@ -44,6 +46,7 @@
 			addToEmailListMenuItem = add("", function(e:Event):void { dispatchEvent(new AccountEvent(AccountEvent.ADD_TO_EMAIL_TO_LIST, null, null, true)); }, true );
 			setAsEmailListMenuItem = add("", function(e:Event):void { dispatchEvent(new AccountEvent(AccountEvent.SET_EMAIL_TO_LIST, null, null, true)); } );
 			openInRMMenuItem = add("", function(e:Event):void { dispatchEvent(new AccountEvent(AccountEvent.SHOW_IN_RESULTS_MANAGER, null, null, true)); }, true);
+			openInAPMenuItem = add("", function(e:Event):void { dispatchEvent(new AccountEvent(AccountEvent.SHOW_IN_ADMIN_PANEL, null, null, true)); } );
 		}
 		
 		public function setCopyProvider(copyProvider:CopyProvider):void{
@@ -57,6 +60,7 @@
 			addToEmailListMenuItem.caption = copyProvider.getCopyForId("addToEmailListMenuItem");
 			setAsEmailListMenuItem.caption = copyProvider.getCopyForId("setAsEmailListMenuItem");
 			openInRMMenuItem.caption = copyProvider.getCopyForId("openInRMMenuItem");
+			openInAPMenuItem.caption = copyProvider.getCopyForId("openInAPMenuItem");
 		}
 		
 		private function configureMenuItems():void {
@@ -80,6 +84,14 @@
 			var account:Account =  (selectedItems[0] as Account);
 			if (account.accountStatus == 11)
 				archiveAccountMenuItem.enabled = false;
+			// Have you got DPT as a title?
+			openInAPMenuItem.enabled = false;
+			for (var idx:int = 0; idx<account.titles.length; idx++) {
+				if (account.titles[idx].id == '63') {
+					openInAPMenuItem.enabled = true;
+					break;
+				}
+			}
 		}
 		
 		/**

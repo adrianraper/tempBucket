@@ -51,6 +51,7 @@ package com.clarityenglish.dms.view.account {
 			accountView.addEventListener(AccountEvent.ADD_TO_EMAIL_TO_LIST, onChangeEmailToList);
 			accountView.addEventListener(AccountEvent.SET_EMAIL_TO_LIST, onChangeEmailToList);
 			accountView.addEventListener(AccountEvent.SHOW_IN_RESULTS_MANAGER, onShowInResultsManager);
+			accountView.addEventListener(AccountEvent.SHOW_IN_ADMIN_PANEL, onShowInResultsManager);
 			accountView.addEventListener(AccountEvent.GET_ACCOUNTS, onGetAccounts);
 			accountView.addEventListener(AccountEvent.CHANGE_ACCOUNT_TYPE, onChangeAccountType);
 		}

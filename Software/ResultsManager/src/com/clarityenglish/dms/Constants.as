@@ -11,7 +11,7 @@
 		 * The version of the software, used to tie bugs and version control together.
 		 * Keep this in sync with RM since there is so much common code.
 		 */
-		public static var version:String = "3.7.27";
+		public static var version:String = "3.7.28";
 		
 		/** Making this false activates various debug and test friendly attributes in the application */
 		public static function get DEBUG_MODE():Boolean {
@@ -23,6 +23,10 @@
 		public static function get RESULTS_MANAGER_URL():String {
 			//include "/../../../return_resultsmanager_url.txt";
 			return 'ResultsManager/Start.php';
+		}
+		public static function get ADMIN_PANEL_URL():String {
+			//include "/../../../return_resultsmanager_url.txt";
+			return 'https://dpt.clarityenglish.com/admin';
 		}
 		
 		/** This is overridden by any passed parameter */

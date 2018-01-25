@@ -123,6 +123,17 @@ package com.clarityenglish.dms.model {
 			urlRequest.data = postVariables;
 			navigateToURL(urlRequest, "_blank");			
 		}
+		public function showInAdminPanel(account:Account):void {
+			var urlRequest:URLRequest = new URLRequest(Constants.ADMIN_PANEL_URL);
+			urlRequest.method = URLRequestMethod.GET;
+			
+			var postVariables:URLVariables = new URLVariables();
+			postVariables.username = account.adminUser.name;
+			postVariables.password = account.adminUser.password;
+			
+			urlRequest.data = postVariables;
+			navigateToURL(urlRequest, "_blank");			
+		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		
