@@ -54,7 +54,7 @@
 		// *********
 		
 		var startControl = webShare + "/Software/ResultsManager/web/";
-		var argList = "?version=3.7.27"
+		var argList = "?version=3.7.28"
 		
 		// see whether variables have come from command line or, preferentially, session variables
 		var jsUserName = swfobject.getQueryParamValue("username");
@@ -81,8 +81,8 @@
 		swfobject.embedSWF(startControl + "DMSApplication.swf" + argList, "altContent", "100%", "100%", "9.0.45", expressInstall, flashvars, params, attr);
 	</script>
 	<style type="text/css">
-		html, body { height:100%; }
-		body { 	margin: 0px}
+		html, body { height:100%; width:100%; }
+		body { margin: 2px; }
 	</style>
 </head>
 <body onload="onLoad()">

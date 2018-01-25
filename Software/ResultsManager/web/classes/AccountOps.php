@@ -330,6 +330,8 @@ SQL;
 							$selectBuilder->addWhere("t.F_ProductCode = '".substr($value,3)."'");
 							$needsAccountsTable = true;
 						} else {
+						    // gh#859
+                            $value = str_replace("'", "\'", $value);
 							if (stristr($value, '%') === FALSE) {
 								$selectBuilder->addWhere("a.F_Name like '%$value%'");
 							} else {

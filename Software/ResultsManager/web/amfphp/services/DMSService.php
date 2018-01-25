@@ -132,24 +132,19 @@ class DMSService extends AbstractService {
 	public function login($username, $password, $rootID = null) {
 		
 		// #353 This first call might change the dbHost that the session uses
-		if ($dbHost)
-			$this->initDbHost($dbHost);
+		//if ($dbHost)
+		//	$this->initDbHost($dbHost);
 
 		// Only users of type USER_TYPE_DMS are allowed to login to DMS
 		$loginObj = $this->loginOps->login($username, $password, array(User::USER_TYPE_DMS, User::USER_TYPE_DMS_VIEWER), $rootID);
 		
-		//NetDebug::trace('originalStartPage='.$_SESSION['originalStartpage'].'!');
-		if (isset($_SESSION['dbHost'])) {
-			NetDebug::trace('DMSService session.dbHost='.$_SESSION['dbHost']);
-		} else {
-			NetDebug::trace('DMSService session.dbHost not set');
-		}
 		// We don't want to tell anyone the password of the connection string
 		$pattern = '/([a-zA-Z0-9]+):\/\/([a-zA-Z0-9]+):([a-zA-Z0-9]+)@([a-zA-Z0-9-_.]+)\/([a-zA-Z0-9]+)/';
 		$replace = '\1://\2:********@\4/\5';
-		$dbDetails = preg_replace($pattern, $replace, $GLOBALS['db']);
-		NetDebug::trace('db used '.$dbDetails);
-		
+		// Actually we only need to see the first bit of the host to let us identify. If you display the whole thing it is too long.
+        $replace = '@\4';
+        $dbDetails = preg_replace($pattern, $replace, $GLOBALS['db']);
+
 		if ($loginObj) {
 			// Set the identity and rootID for logging. Also see the above constructor
 			AbstractService::$log->setIdent($loginObj->F_UserID);
