@@ -22,9 +22,9 @@ function loadAPIInformation() {
 	global $loginService;
 	
 	$inputData = file_get_contents("php://input");
-    $inputData = '{"method":"addUser",
-        "rootID":10719,"groupID":74543,"country":"Vietnam","loginOption":1,"subscriptionPeriod":"1year","adminPassword":"aff5WCqaHLzeW7mIZ0gj",
-        "studentID":"vus-1234","name":"VUS Adrian 10","email":"adrian.10@vus.edu.vn","password":"xxxx"}';
+    //$inputData = '{"method":"addUser",
+    //    "rootID":10719,"groupID":74543,"country":"Vietnam","loginOption":1,"subscriptionPeriod":"1year","adminPassword":"aff5WCqaHLzeW7mIZ0gj",
+    //    "studentID":"vus-1234","name":"VUS Adrian 10","email":"adrian.10@vus.edu.vn","password":"xxxx"}';
 	$postInformation = json_decode($inputData, true);
 	if (!$postInformation)
         returnError(1, "Error decoding data: ".json_last_error().': '.$inputData);
@@ -138,13 +138,16 @@ try {
 				if ($apiInformation->adminPassword != $dbPassword)
 					returnError(251, $account->name);
 			}
-			
-			// Find the user if you can
+
+            // Find the user if you can
 			$user = $loginService->getUser($apiInformation);
 			
 			if ($user==false) {
-				if (!isset($group))
-					$group = $loginService->getGroup($apiInformation, $account);
+				if (!isset($group)) {
+                    AbstractService::$debugLog->info("LoginGateway look up group ".$apiInformation->groupID);
+                    $group = $loginService->getGroup($apiInformation, $account);
+                    AbstractService::$debugLog->info("LoginGateway try to add to group ".$group->name);
+                }
 					
 				if ($group==false) {
 					// Autogroup. We need to add new groups
@@ -184,7 +187,7 @@ try {
 	}
 
 	// Send back data.
-	echo json_encode(array("success"=>"true"));
+	echo json_encode(array("success"=>"true", "details"=>array("userId"=>$user->id, "groupId"=>$group->name)));
 	
 } catch (Exception $e) {
 	returnError($e->getCode(), $e->getMessage());
