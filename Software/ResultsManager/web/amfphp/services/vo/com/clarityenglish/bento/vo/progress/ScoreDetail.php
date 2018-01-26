@@ -48,7 +48,10 @@ class ScoreDetail {
             $detailString['questionType'] = $answerObj->questionType;
             $detailString['state'] = $answerObj->state;
             $detailString['tags'] = $answerObj->tags;
+
             $this->detail = json_encode($detailString);
+            // dpt#468
+            $this->detail = str_replace("'", "\'", $this->detail);
         }
 
         // ctp#216 Write the time sent by the device for when the answer was selected  - null means not answered
