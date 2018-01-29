@@ -54,6 +54,7 @@ function runOccasionalJobs($period) {
         case 'monthly':
             /*
              * This averages all scores for a title in all countries and populates T_ScoreCache
+             *
             $productCodes = array(52,53);
             $from = new DateTime();
             // The default is to take the last year's data
@@ -248,7 +249,9 @@ function runOccasionalJobs($period) {
                 }
             }
             */
-        // 9. Remove duplicates from T_LicenceHolders (#1577)
+        /**
+         * This removes duplicates from T_LicenceHolders (#1577)
+         *
         $conditions['active'] = true;
         $conditions['individuals'] = false;
         //$conditions['productCode'] = 61;
@@ -305,6 +308,36 @@ function runOccasionalJobs($period) {
             }
 
         }
+	*/
+        /*
+         * This expires all students in a group (and its subgroups)
+         */
+        $groupId = 104267; // HCT Rak Al Khaimah Mens College 'Archived'
+        $groupId = 44555; // HCT Rak Al Khaimah Mens College 'Archived'
+        $recursive = true;
+        $takeAction = true;
+
+        $topGroup = $thisService->manageableOps->getGroup($groupId);
+        if ($recursive) {
+            $groups = $thisService->manageableOps->getGroupSubgroups($groupId);
+        } else {
+            $groups = array($groupId);
+        }
+        $from = new DateTime();
+        $fromDate = $from->format('Y-m-d');
+        $rc = 0;
+        foreach ($groups as $groupId) {
+            if ($takeAction) {
+                $rc += $thisService->manageableOps->expireUsersInGroup($groupId, $fromDate);
+            } else {
+                $rc += $thisService->manageableOps->countUsersInOneGroup($groupId);
+            }
+        }
+        if ($takeAction) {
+            echo "Expired $rc users in group " . $topGroup->name . " on $fromDate $newLine";
+        } else {
+            echo "Expire $rc users in group " . $topGroup->name . " on $fromDate $newLine";
+        }
 
         break;
         default:
@@ -317,7 +350,7 @@ $oneoff = true;
 // If you are running a one-off job, don't trigger the other regular actions
 if ($oneoff) {
     // Extra date check to ensure one-off is intentional
-    if (date("j") == 9 && date("n") == 1) {
+    if (date("j") == 29 && date("n") == 1) {
         runOccasionalJobs("oneoff");
     } else {
         echo "Set the date in RunOccasionalJobs to enable one-off run";

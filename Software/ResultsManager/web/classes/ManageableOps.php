@@ -2606,5 +2606,38 @@ EOD;
         }
     }
 
+    /*
+     * Expire all users in the given group
+     */
+    public function expireUsersInGroup($groupId, $fromDate) {
+        $sql = <<<EOD
+                UPDATE T_User u
+                JOIN T_Membership m
+                ON (u.F_UserID = m.F_UserID
+                AND m.F_GroupID = ?)
+                SET F_ExpiryDate = ?;
+EOD;
+        $bindingParams = array($groupId, $fromDate);
+        $rc = $this->db->Execute($sql, $bindingParams);
+        return $this->db->Affected_Rows();
+    }
+
+    /*
+     * Count all users in the given group
+     */
+    public function countUsersInOneGroup($groupId) {
+        $sql = <<<EOD
+                SELECT COUNT(*) as UserCount FROM T_Membership m
+                WHERE m.F_GroupID = ?
+EOD;
+        $bindingParams = array($groupId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs) {
+            return $rs->FetchNextObj()->UserCount;
+        } else {
+            return 0;
+        }
+    }
+
 }
 

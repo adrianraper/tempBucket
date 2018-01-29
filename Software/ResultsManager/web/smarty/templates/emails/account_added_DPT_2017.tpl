@@ -1,7 +1,3 @@
-<!--
--- Script to count the number of titles related to this email for wording selection
--- Note that some bug in smarty adds a space to the start of 
--->
 {assign var='dateDiff' value='0day'}
 {include file="file:includes/expiringTitles.tpl" assign=useWording}
 {assign var='useWording' value=$useWording|strip:''}
@@ -80,7 +76,7 @@
 
 	<p style="font-family:  Arial, Helvetica, sans-serif; font-size: 1em; line-height:18px;margin:0 0 10px 0;">Once you have done this, click on the Admin Panel icon. This is where you add groups, learners and teachers and where you create a test for the test takers.
 		Click <a href="http://www.clarityenglish.com/support/user/pdf/dpt/DPT_TestAdminGuide.pdf" target="_blank">here</a> to read the Admin Panel User Guide
-		or you can <a href="https://www.youtube.com/watch?v=ayE_GVV-uao&feature=youtu.be" target="_blank">watch a video.</a></p>
+		or you can <a href="https://www.youtube.com/watch?v=v4oO5v9BT5Q&feature=youtu.be" target="_blank">watch a video.</a></p>
 
 <!-- 
 -- 4. Support

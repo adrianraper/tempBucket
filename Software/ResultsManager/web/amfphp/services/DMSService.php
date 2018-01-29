@@ -128,6 +128,9 @@ class DMSService extends AbstractService {
 			$this->manageableOps->changeDB($this->db);
 		}
 	}
+	public function changeDb($dbHost) {
+	    $this->initDbHost($dbHost);
+    }
 	
 	public function login($username, $password, $rootID = null) {
 		

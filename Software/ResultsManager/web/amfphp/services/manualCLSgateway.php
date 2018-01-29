@@ -221,7 +221,7 @@ EOD;
 		
 			// Then add or update the account (skip if just testing)
 			if (!$apiInformation->transactionTest) {
-				$dmsService->subscriptionOps->saveAccount($account);
+				$dmsService->subscriptionOps->saveAccount($account, $apiInformation);
 				
 				// make the root of the changed account explicit in the log
 				AbstractService::$log->setRootID($account->id);
