@@ -549,6 +549,7 @@ class ItemAnalysisOps {
     // Get all the data for test takers in the tests we are counting
     public function getTestTakerResults() {
 	    $inWhiteList = '('.implode(',',$this->getWhiteList()).')';
+	    $inWhiteList = '(1142)';
         $sql = <<<EOD
             select d.F_UserID as uid, d.F_ItemID as qid, d.F_Score as score, t.F_Result as result 
             FROM T_ScoreDetail d, T_TestSession t

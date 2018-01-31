@@ -53,3 +53,4 @@ Software/awssdk
 Software/ResultsManager/web/classes/vendor/phpseclib
 Software/ResultsManager/web/classes/vendor/google
 Software/Workflow
+/selenium
