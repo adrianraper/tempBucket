@@ -223,8 +223,9 @@ class CTPService extends BentoService {
         $scoreDetails = array();
         foreach ($scoreObj->exerciseScore->questionScores as $answer) {
             // Only write details that have been answered - if not attempted leave them out
-            if ($answer->answerTimestamp === null)
-                continue;
+            // dpt#469 Included presented but not attempted
+            //if ($answer->answerTimestamp === null)
+            //    continue;
 
             // Convert timestamp to our usual date format
             // ctp#380 Save UTC time

@@ -250,6 +250,7 @@ SQL;
 
         // 1. Get all the detailed answers that are part of the test
         // ctp#366 Exclude duplicates for each item
+        // dpt#469 ignore not attempted details
         $sql = <<<SQL
             SELECT sd.*
         	FROM T_ScoreDetail sd
@@ -257,6 +258,7 @@ SQL;
               SELECT F_SessionID as id, F_ItemID as itemID, MIN(F_DateStamp) as firstRecord
 		      FROM T_ScoreDetail
 		      WHERE F_SessionID=?
+              AND F_Score is not null
 SQL;
         $sql .= " AND F_UnitID in ('".implode("','",$includeUnitIDs)."')";
         $sql .= <<<SQL
@@ -1048,9 +1050,11 @@ EOD;
             if (!$scoreDetail->exerciseID) $scoreDetail->exerciseID = 'null';
             if (!$scoreDetail->courseID) $scoreDetail->courseID = 'null';
             if (!$scoreDetail->score) $scoreDetail->score = 'null';
+            // dpt#469 Included presented but not attempted, datestamp will be null
+            $quotedDateStamp = ($scoreDetail->dateStamp) ? "'".$scoreDetail->dateStamp."'" : 'null';
             $sqlData[] = "(".$user->userID.", ".$rootID.", ".$scoreDetail->sessionID.
                 ", ".$scoreDetail->unitID.", '".$scoreDetail->exerciseID."'".
-                ", '".$scoreDetail->itemID."', ".$scoreDetail->score.", '".$scoreDetail->detail."', '".$scoreDetail->dateStamp."')";
+                ", '".$scoreDetail->itemID."', ".$scoreDetail->score.", '".$scoreDetail->detail."', ".$quotedDateStamp.")";
         }
         $sql = <<<EOD
 			INSERT INTO T_ScoreDetail (F_UserID,F_RootID,F_SessionID,F_UnitID,F_ExerciseID,F_ItemID,F_Score,F_Detail,F_DateStamp)

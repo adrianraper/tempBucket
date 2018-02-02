@@ -974,9 +974,11 @@ EOD;
             if (!$scoreDetail->exerciseID) $scoreDetail->exerciseID = 'null';
             if (!$scoreDetail->courseID) $scoreDetail->courseID = 'null';
             if (!$scoreDetail->score) $scoreDetail->score = 'null';
+            // dpt#469 Included presented but not attempted, datestamp will be null
+            $quotedDateStamp = ($scoreDetail->dateStamp) ? "'".$scoreDetail->dateStamp."'" : 'null';
             $sqlData[] = "(".$user->userID.", ".$rootID.", ".$scoreDetail->sessionID.
                 ", ".$scoreDetail->unitID.", '".$scoreDetail->exerciseID."'".
-                ", '".$scoreDetail->itemID."', ".$scoreDetail->score.", '".$scoreDetail->detail."', '".$scoreDetail->dateStamp."')";
+                ", '".$scoreDetail->itemID."', ".$scoreDetail->score.", '".$scoreDetail->detail."', ".$quotedDateStamp.")";
         }
         $sql = <<<EOD
 			INSERT INTO T_ScoreDetail (F_UserID,F_RootID,F_SessionID,F_UnitID,F_ExerciseID,F_ItemID,F_Score,F_Detail,F_DateStamp)

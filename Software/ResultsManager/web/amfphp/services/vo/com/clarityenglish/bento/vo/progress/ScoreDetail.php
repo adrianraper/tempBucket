@@ -44,18 +44,23 @@ class ScoreDetail {
 
             // Merge other answer attributes into a detail json object
             // "{'type':".$answerObj->type.", 'state':".$answerObj->state.", 'tags:'".$answerObj->tags."}"
-            $detailString = array();
-            $detailString['questionType'] = $answerObj->questionType;
-            $detailString['state'] = $answerObj->state;
-            $detailString['tags'] = $answerObj->tags;
+            // dpt#469 Presented but not attempted don't need any detail
+            if ($answerObj->answerTimestamp == null) {
+                $this->detail = null;
+            } else {
+                $detailString = array();
+                $detailString['questionType'] = $answerObj->questionType;
+                $detailString['state'] = $answerObj->state;
+                $detailString['tags'] = $answerObj->tags;
 
-            $this->detail = json_encode($detailString);
-            // dpt#468
-            $this->detail = str_replace("'", "\'", $this->detail);
+                $this->detail = json_encode($detailString);
+                // dpt#468
+                $this->detail = str_replace("'", "\'", $this->detail);
+            }
         }
 
         // ctp#216 Write the time sent by the device for when the answer was selected  - null means not answered
-        $this->dateStamp = (isset($answerObj->answerTimestamp)) ? $answerObj->answerTimestamp : null;
+        $this->dateStamp = $answerObj->answerTimestamp;
     }
 	
 	public function setUID($value) {
