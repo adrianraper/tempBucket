@@ -225,7 +225,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 					foreach ($triggerResults as $result) {
 						// The email should go to the reseller (cc to Clarity)
 						$resellerEmail = $dmsService->accountOps->getResellerEmail($result->resellerCode);
-						$emailData = array("account" => $result, "expiryDate" => $trigger->condition->expiryDate, "template_dir" => $GLOBALS['smarty_template_dir']);
+						$emailData = array("account" => $result, "expiryDate" => $trigger->condition->expiryDate);
 						echo "<b>Email: ".$resellerEmail."</b>".$newLine.$dmsService->emailOps->fetchEmail($trigger->templateID, $emailData)."<hr/>";
 					}
 				}
@@ -341,10 +341,10 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 echo $GLOBALS['db'].$newLine;
 // If you want to run specific triggers for specific days (to catch up for days when this was not run for instance)
 $testingTriggers = "";
-$testingTriggers .= "subscription reminders";
+//$testingTriggers .= "subscription reminders";
 //$testingTriggers .= "usage stats";
 //$testingTriggers .= "support";
-//$testingTriggers .= "quotations";
+$testingTriggers .= "quotations";
 //$testingTriggers .= "trial reminders";
 //$testingTriggers .= "terms and conditions";
 //$testingTriggers .= "EmailMe";

@@ -288,6 +288,14 @@ SQL;
 							$selectBuilder->addWhere("a.F_ResellerCode = '".$value."'");
 						}
 						break;
+                    case 'notReseller':
+                    case 'notResellerID':
+                        if (stristr($value, ",")) {
+                            $selectBuilder->addWhere("a.F_ResellerCode NOT IN (".$value.")");
+                        } else {
+                            $selectBuilder->addWhere("NOT a.F_ResellerCode = '".$value."'");
+                        }
+                        break;
 					// v3.5 Subscription reminders need start date for first few emails - and they are only based on RM
 					case 'startDate':
 						//echo "startDate set to $value";

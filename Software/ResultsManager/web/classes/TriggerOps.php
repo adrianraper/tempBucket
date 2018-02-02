@@ -106,7 +106,8 @@ class TriggerOps {
 				if (isset($trigger->condition->startDay)) $accountConditions["startDay"] = $trigger->condition->startDay;
 				// v3.6
 				if (isset($trigger->condition->resellerID)) $accountConditions["resellerID"] = $trigger->condition->resellerID;
-				
+				if (isset($trigger->condition->notResellerID)) $accountConditions["notResellerID"] = $trigger->condition->notResellerID;
+
 				// These next conditions are not account conditions, but are for searching users within the found accounts
 				//if (isset($trigger->condition->contactMethod)) $accountConditions["contactMethod"] = $trigger->condition->contactMethod;
 				//if (isset($trigger->condition->userStartDate)) $accountConditions["userStartDate"] = $trigger->condition->userStartDate;

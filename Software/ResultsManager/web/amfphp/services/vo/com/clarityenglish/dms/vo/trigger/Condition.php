@@ -34,6 +34,7 @@ class Condition {
 	var $userExpiryDate;
 	// v3.6 For IELTSPractice.com
 	var $resellerID;
+	var $notResellerID;
 	// v3.6 For overriding opt out of emails
 	var $optOutEmails;
 	// gh#769
@@ -112,8 +113,10 @@ class Condition {
 		if (isset($conditionArray['userExpiryDate'])) 
 			$this->userExpiryDate = $this->evaluateDateVariables($conditionArray['userExpiryDate']);
 		// v3.6
-		if (isset($conditionArray['resellerID'])) 
-			$this->resellerID = $conditionArray['resellerID'];
+        if (isset($conditionArray['resellerID']))
+            $this->resellerID = $conditionArray['resellerID'];
+        if (isset($conditionArray['notResellerID']))
+            $this->notResellerID = $conditionArray['notResellerID'];
 		// v3.6
 		if (isset($conditionArray['optOutEmails'])) 
 			$this->optOutEmails = $conditionArray['optOutEmails'];
