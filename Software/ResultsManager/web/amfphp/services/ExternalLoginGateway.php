@@ -25,6 +25,8 @@ function loadAPIInformation() {
     //$inputData = '{"method":"addUser",
     //    "rootID":10719,"groupID":74543,"country":"Vietnam","loginOption":1,"subscriptionPeriod":"1year","adminPassword":"aff5WCqaHLzeW7mIZ0gj",
     //    "studentID":"vus-1234","name":"VUS Adrian 10","email":"adrian.10@vus.edu.vn","password":"xxxx"}';
+    //$inputData = '{"method": "updateUser","rootID": 10719,"groupID": 74544,"email":"adrian.10@vus.edu.vn",
+    //                "adminPassword": "aff5WCqaHLzeW7mIZ0gj","name":"VUS Adrian 10", "studentID":"vus-1234-new"}';
 	$postInformation = json_decode($inputData, true);
 	if (!$postInformation)
         returnError(1, "Error decoding data: ".json_last_error().': '.$inputData);
@@ -53,6 +55,9 @@ function returnError($errCode, $data = null) {
 		case 200:
             $msg = 'No such user '.$data;
 			break;
+        case 207:
+            $msg = 'User expired '.$data;
+            break;
 		case 250:
             $msg = 'You must send a password for the account '.$data;
 			break;
@@ -99,6 +104,67 @@ try {
 		$loginService->changeDb($apiInformation->dbHost);
 	
 	switch ($apiInformation->method) {
+	    // This can move the user to a different group, and change their details
+        case 'updateUser':
+            $account = $loginService->getAccountFromRootID($apiInformation);
+            // To cope with old style session
+            Session::set('rootID', $account->id);
+            $apiInformation->loginOption = $account->loginOption;
+
+            // Authentication. You can only use this API if the account has the special licence attribute
+            if (!isset($apiInformation->adminPassword)) {
+                returnError(250, $account->name);
+            } else {
+                $licenceAttributes = $loginService->accountOps->getAccountLicenceDetails($account->id, null, 2);
+                $dbPassword = '';
+                foreach ($licenceAttributes as $attribute) {
+                    if ($attribute["licenceKey"] == "APIpassword")
+                        $dbPassword = $attribute["licenceValue"];
+                }
+                if ($apiInformation->adminPassword != $dbPassword)
+                    returnError(251, $account->name);
+            }
+
+            if ($apiInformation->groupID) {
+                $group = $loginService->manageableOps->getGroup($apiInformation->groupID);
+
+                // Check that the found group is in the right account
+                $groupRootId = $loginService->manageableOps->getRootIdForGroupId($group->id);
+                if ($groupRootId != $account->id)
+                    returnError(210, $group->name);
+            }
+
+            // Find the user if you can
+            $user = $loginService->getUser($apiInformation);
+
+            if ($user==false) {
+                returnError(200, $apiInformation->studentID);
+
+            } elseif ($user->expiryDate < date('Y-m-d H:m:s', time())) {
+                returnError(207, $user->expiryDate);
+
+            } else {
+                // Do we need to move the user?
+                if ($group)
+                    $rc = $loginService->manageableOps->moveUsers(array($user), $group);
+
+                // Do we need to update any details?
+                if ((isset($apiInformation->email) && ($apiInformation->email != $user->email)) ||
+                    (isset($apiInformation->name) && ($apiInformation->name != $user->name)) ||
+                    (isset($apiInformation->password) && ($apiInformation->password != $user->password)) ||
+                    (isset($apiInformation->studentID) && ($apiInformation->studentID != $user->studentID))) {
+                    if (isset($apiInformation->email))
+                        $user->email = $apiInformation->email;
+                    if (isset($apiInformation->name))
+                        $user->name = $apiInformation->name;
+                    if (isset($apiInformation->studentID))
+                        $user->studentID = $apiInformation->studentID;
+
+                    $rc = $loginService->manageableOps->updateUsers(array($user), $account->id);
+                }
+            }
+            break;
+
 		case 'addUser':
 		case 'addUserAutoGroup':
 
@@ -187,7 +253,7 @@ try {
 	}
 
 	// Send back data.
-	echo json_encode(array("success"=>"true", "details"=>array("userId"=>$user->id, "groupId"=>$group->name)));
+	echo json_encode(array("success"=>"true", "details"=>array("userId"=>$user->id, "groupName"=>$group->name)));
 	
 } catch (Exception $e) {
 	returnError($e->getCode(), $e->getMessage());
