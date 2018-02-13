@@ -479,7 +479,8 @@ class CouloirService extends AbstractService {
 
             // Remove any scheduled tests this user has already completed
             // Let some emails repeat a test for testing purposes
-            if ($completedTests && stripos($user->email, '@dpt') === false) {
+            // dpt#479 Change pattern for internal testing emails that let you repeat
+            if ($completedTests && stripos($group->manageables[0]->email, '@c.e.com') === false) {
                 foreach ($completedTests as $completedTest) {
                     if ($test->testId == $completedTest->contentId) {
                         unset($tests[$key]);
