@@ -1191,11 +1191,12 @@ CREATE TABLE `T_EditedContent_Deleted` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 DROP TABLE IF EXISTS `T_User_Deleted`;
 CREATE TABLE `T_User_Deleted` (
-  `F_UserID` int(10),
+  `F_UserID` int(10) NOT NULL DEFAULT '0',
   `F_UserName` varchar(64) DEFAULT NULL,
   `F_UserSettings` int(10) DEFAULT '0',
   `F_Password` varchar(32) DEFAULT NULL,
-  `F_StudentID` varchar(32) DEFAULT NULL,
+  `F_Salt` text,
+  `F_StudentID` varchar(64) DEFAULT NULL,
   `F_Email` varchar(128) DEFAULT NULL,
   `F_Birthday` datetime DEFAULT NULL,
   `F_Country` varchar(64) DEFAULT NULL,
@@ -1219,6 +1220,7 @@ CREATE TABLE `T_User_Deleted` (
   `F_RegisterMethod` char(16) DEFAULT NULL,
   `F_ContactMethod` varchar(255) DEFAULT NULL,
   `F_InstanceID` text,
+  `F_TimeZoneOffset` float(3,1) DEFAULT '0.0',
   `F_Memory` mediumtext,
   PRIMARY KEY (`F_UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1658,3 +1660,69 @@ INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('68', 
 INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('68', 'DEMO');
 INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLocation`) VALUES ('68', 'EN','tb');
 INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLocation`) VALUES ('68', 'NAMEN','tb-na');
+
+-- gh#1591
+CREATE TABLE `T_AccountEmails_Deleted` (
+  `F_RootID` int(11) NOT NULL,
+  `F_Email` varchar(256) DEFAULT NULL,
+  `F_MessageType` smallint(5) unsigned DEFAULT '1',
+  `F_AdminUser` tinyint(1) unsigned DEFAULT '0',
+  KEY `Index_1` (`F_RootID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `T_AccountRoot_Deleted` (
+  `F_RootID` int(10) NOT NULL,
+  `F_Name` varchar(128) NOT NULL,
+  `F_Prefix` varchar(12) DEFAULT NULL,
+  `F_Email` varchar(1024) DEFAULT NULL,
+  `F_Logo` varchar(128) DEFAULT NULL,
+  `F_TermsConditions` smallint(5) DEFAULT '0',
+  `F_AccountStatus` smallint(5) DEFAULT '0',
+  `F_InvoiceNumber` varchar(32) DEFAULT NULL,
+  `F_ResellerCode` smallint(5) DEFAULT '0',
+  `F_AdminUserID` int(10) DEFAULT NULL,
+  `F_Reference` varchar(1024) DEFAULT NULL,
+  `F_Verified` smallint(5) NOT NULL DEFAULT '1',
+  `F_SelfRegister` smallint(5) NOT NULL DEFAULT '0',
+  `F_LoginOption` smallint(5) NOT NULL DEFAULT '1',
+  `F_AccountType` smallint(5) NOT NULL DEFAULT '1',
+  `F_SelfHost` tinyint(4) DEFAULT '0',
+  `F_SelfHostDomain` varchar(64) DEFAULT NULL,
+  `F_OptOutEmails` tinyint(4) NOT NULL DEFAULT '0',
+  `F_OptOutEmailDate` datetime DEFAULT NULL,
+  `F_CustomerType` smallint(5) DEFAULT '0',
+  `F_UseOldLicenceCount` smallint(5) DEFAULT '0',
+  KEY `Index_1` (`F_RootID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `T_Accounts_Deleted` (
+  `F_RootID` int(10) NOT NULL,
+  `F_ProductCode` smallint(5) NOT NULL,
+  `F_MaxStudents` int(10) NOT NULL DEFAULT '1',
+  `F_MaxAuthors` int(10) NOT NULL DEFAULT '1',
+  `F_MaxTeachers` int(10) NOT NULL DEFAULT '0',
+  `F_MaxReporters` int(10) NOT NULL DEFAULT '0',
+  `F_ExpiryDate` datetime NOT NULL,
+  `F_ContentLocation` varchar(128) DEFAULT NULL,
+  `F_LanguageCode` varchar(8) NOT NULL DEFAULT 'EN',
+  `F_ProductVersion` varchar(8) DEFAULT NULL,
+  `F_MGSRoot` varchar(128) DEFAULT NULL,
+  `F_StartPage` varchar(128) DEFAULT NULL,
+  `F_LicenceFile` varchar(128) DEFAULT NULL,
+  `F_LicenceStartDate` datetime DEFAULT NULL,
+  `F_LicenceType` int(10) NOT NULL DEFAULT '1',
+  `F_Checksum` varchar(256) DEFAULT NULL,
+  `F_DeliveryFrequency` int(10) DEFAULT NULL,
+  `F_LicenceClearanceDate` datetime DEFAULT NULL,
+  `F_LicenceClearanceFrequency` varchar(16) DEFAULT NULL,
+  `F_LoginModifier` smallint(6) DEFAULT NULL,
+  KEY `Index_1` (`F_RootID`,`F_ProductCode`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `T_LicenceAttributes_Deleted` (
+  `F_RootID` int(10) NOT NULL,
+  `F_Key` varchar(128) NOT NULL,
+  `F_Value` varchar(2048) NOT NULL,
+  `F_ProductCode` int(10) DEFAULT NULL,
+  KEY `Index_1` (`F_RootID`,`F_Key`,`F_ProductCode`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+

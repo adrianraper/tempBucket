@@ -714,8 +714,55 @@ EOD;
 				// Can I see what I have got for my manageables? Yes, Charles will show this.
 				//return $group;
 			}
-			
-			// Delete the titles associated with the root id
+
+            // gh#1591 Archive not just delete
+            $bindingParams = array($account->id);
+            $sql = <<<SQL
+			SELECT * FROM T_Accounts_Deleted WHERE F_RootID=?;
+SQL;
+            $rc = $this->db->Execute($sql, $bindingParams);
+            if ($rc->RecordCount() == 0) {
+                $sql = <<<SQL
+				INSERT INTO T_Accounts_Deleted
+				SELECT * FROM T_Accounts WHERE F_RootID=?;
+SQL;
+                $rc = $this->db->Execute($sql, $bindingParams);
+            }
+            $sql = <<<SQL
+			SELECT * FROM T_LicenceAttributes_Deleted WHERE F_RootID=?;
+SQL;
+            $rc = $this->db->Execute($sql, $bindingParams);
+            if ($rc->RecordCount() == 0) {
+                $sql = <<<SQL
+				INSERT INTO T_LicenceAttributes_Deleted
+				SELECT * FROM T_LicenceAttributes WHERE F_RootID=?;
+SQL;
+                $rc = $this->db->Execute($sql, $bindingParams);
+            }
+            $sql = <<<SQL
+			SELECT * FROM T_AccountEmails_Deleted WHERE F_RootID=?;
+SQL;
+            $rc = $this->db->Execute($sql, $bindingParams);
+            if ($rc->RecordCount() == 0) {
+                $sql = <<<SQL
+				INSERT INTO T_AccountEmails_Deleted
+				SELECT * FROM T_AccountEmails WHERE F_RootID=?;
+SQL;
+                $rc = $this->db->Execute($sql, $bindingParams);
+            }
+            $sql = <<<SQL
+			SELECT * FROM T_AccountRoot_Deleted WHERE F_RootID=?;
+SQL;
+            $rc = $this->db->Execute($sql, $bindingParams);
+            if ($rc->RecordCount() == 0) {
+                $sql = <<<SQL
+				INSERT INTO T_AccountRoot_Deleted
+				SELECT * FROM T_AccountRoot WHERE F_RootID=?;
+SQL;
+                $rc = $this->db->Execute($sql, $bindingParams);
+            }
+
+            // Delete the titles associated with the root id
 			$this->db->Execute("DELETE FROM T_Accounts WHERE F_RootID=?", array($account->id));
 			
 			// Delete any licence attributes
@@ -730,7 +777,7 @@ EOD;
 		
 		// make the root of the changed account explicit in the log
 		AbstractService::$log->setRootID($account->id);
-		AbstractService::$controlLog->info("Deleted account name=".$account->name.", id=".$account->id.", by user=".Session::get('userID'));
+		AbstractService::$controlLog->info("Archived account name=".$account->name.", id=".$account->id.", by user=".Session::get('userID'));
 		
 		$this->db->CompleteTrans();
 	}

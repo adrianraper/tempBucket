@@ -183,7 +183,7 @@ class DMSService extends AbstractService {
 		//if (!ini_get('safe_mode')) { 
 		//	ini_set('max_execution_time', 60); // in seconds
 		//}
-		set_time_limit(60);
+		//set_time_limit(60);
 		return $this->accountOps->getAccounts($accountIDArray, $conditions, $sortOrder);
 	}
 	

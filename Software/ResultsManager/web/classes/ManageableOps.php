@@ -725,7 +725,7 @@ EOD;
 		$this->db->StartTrans();
 		
 		foreach ($manageablesArray as $manageable) {
-            set_time_limit(60);
+            //set_time_limit(60);
 			// gh#448
 			AbstractService::$controlLog->info('userID '.Session::get('userID').' wants to delete a '.get_class($manageable).' with id='.$manageable->id.' and name='.$manageable->name);
 			
