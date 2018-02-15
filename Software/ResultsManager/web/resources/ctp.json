@@ -95,20 +95,24 @@
     {
       "language": "ar",
       "literals": {
+	    "TestNotOpened": "لم يبدأ الامتحان بعد. حاول مرة أخرى فى {date} الساعة {time}.",
         "NotAnsweredQuestions": "لقد نسيت {count} أسئلة.|لقد نسيت سؤالا",
+		"TestClosed": " تم غلق الامتحان فى {date} الساعة {time}.",
         "IncorrectQuestions": "يجب أن تحل هذه الأسئلة بشكل صحيح قبل أن تنتقل إلى التالي.",
-        "Access": "الدخول",
+        "Access": "رمز الدخول",
         "Code": "Code",
         "Result": "النتيجة",
-        "Reset": "Reset",
+        "Reset": "إعادة للوضع السابق",
         "EnterCode": "ادخل الرمز لتبدأ الإمتحان",
         "SendingScores": "يقوم النظام بتقديم إجاباتك. لا تغادر الصفحة قبل أن ترى نتيجتك أو عندما يخبرك المشرف بذلك.",
-        "FinishedTest": "The test is completed and the result has been sent to your test administrator.",
+        "FinishedTest": "انتهى الامتحان وتم ارسال النتيجة إلى منسق الامتحان.",
         "ICantDoThis": "لا أستطيع حل هذه.",
         "IncorrectValidateCode": "يبدو أنك أدخلت رمزا خاطئا. تفحص إشعار الفحص خاصتك مرة أخرى أو أطلب المساعدة من مشرف الإمتحان.",
         "EmptyValidateCode": "الرجاء إدخال رمز التحقق خاصتك",
+		"ICantDoThis": "لا أستطيع حل هذه.",
         "DeviceUnsupported": "أنت بحاجة لجهاز مختلف لإستخدام هذا التطبيق. اتصل مع فريق الدعم خاصتك.",
         "Uploading": "رفع"
+		"FinishedTest": "انتهى الامتحان وتم ارسال النتيجة إلى منسق الامتحان.",
       }
     }
   ]
