@@ -72,7 +72,7 @@ class ReportOps {
 			
 		} else {
 			// For content based reports, just ignore editedContent?
-		}
+        }
 		
 		// Variable bindings to static classes (e.g. $myClassString::getStuff()) not supported < PHP 5.3.0 so create temporary object
 		$tempOnClass = new $onClass();
@@ -140,8 +140,27 @@ class ReportOps {
 					//throw new Exception("Unknown report option ".$reportOpt);
 			}
 		}
-		
-		// v3.4 Summary (test) reports want sessionID to allow grouping
+        // gh#1593 For DPT summary, show student ID simply based on data in that column
+        // Or can I always assume it is there and then hide it in xslt if not? No: xslt too messy to attempt at present
+        if (stripos($template,'dptsummary') !== false) {
+            foreach ($forReportableIDObjects as $idObject) {
+                if (isset($idObject['Group']))
+                    $groupIDs[] = $idObject['Group'];
+            }
+            $groupsInString = implode(",", $groupIDs);
+            $sql = <<<EOD
+				SELECT count(u.F_UserID) as stdDetails
+				FROM T_Membership m, T_User u
+				WHERE m.F_GroupID IN ($groupsInString)
+				AND m.F_UserID = u.F_UserID
+				AND u.F_UserType = 0
+                AND u.F_StudentID <> '' 
+EOD;
+            $rs = $this->db->GetRow($sql);
+            $opts[ReportBuilder::SHOW_STUDENTID] = ($rs['stdDetails'] >= 1);
+        }
+
+        // v3.4 Summary (test) reports want sessionID to allow grouping
 		if (stripos($template,"summary")!==false) {
 			$opts[ReportBuilder::SHOW_SESSIONID] = true;
 			// And they may want email to be displayed
@@ -158,7 +177,7 @@ class ReportOps {
 		$reportBuilder = new ReportBuilder($this->db);
 		foreach ($opts as $opt => $value)
 			$reportBuilder->setOpt($opt, $value);
-		
+
 		// gh#777 Even if you are reporting on a group you might need userIDs for detailed queries
 		$forUsers = $reportBuilder->getOpt(ReportBuilder::FOR_USERS);
 		if (!$forUsers && ($forGroups = $reportBuilder->getOpt(ReportBuilder::FOR_GROUPS))) {
@@ -237,7 +256,14 @@ EOD;
                 // But for now with a fixed dpt report it is ok
                 $sql = <<<EOD
                 select g.F_GroupName groupName,u.F_UserName userName,u.F_Email email, 
-                       null duration, null start_date, null completed_date, null result
+                       
+EOD;
+                // gh#1593
+                if ($reportBuilder->getOpt(ReportBuilder::SHOW_STUDENTID)) {
+                    $sql .= "u.F_StudentID studentID, ";
+                }
+                $sql .= <<<EOD
+                    null duration, null start_date, null completed_date, null result
                     from T_Groupstructure g,  T_Membership m, T_User u
                     WHERE u.F_UserID = m.F_UserID
                     AND g.F_GroupID = m.F_GroupID

@@ -59,6 +59,8 @@
 						<xsl:if test="report/row/@groupName">headerString.push("#text_filter");sortTypes.push("str");</xsl:if>
 						<xsl:if test="report/row/@userName">headerString.push("#text_filter");sortTypes.push("str");</xsl:if>
 						<xsl:if test="report/row/@email">headerString.push("#text_filter");sortTypes.push("str");</xsl:if>
+                        // gh#1593 Allow student ID
+						<xsl:if test="report/row/@studentID">headerString.push("#text_filter");sortTypes.push("str");</xsl:if>
 
 						<xsl:if test="report/row/@duration">sortTypes.push("duration_custom");</xsl:if>
 						<xsl:if test="report/row/@start_date">sortTypes.push("date");</xsl:if>

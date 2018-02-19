@@ -141,15 +141,14 @@ $onClass = "Group";
 $forClass = "Title";
 Session::set('rootID', 163);
 */
-/*
-$forReportablesIDObjects = json_decode(stripslashes('[{"Group":"73399"}]'), true);
-$template="CEFSummary";
-$opts=json_decode(stripslashes('{"includeInactiveUsers":false,"includeStudentID":false,"headers":{"forReportDetail":"Jordan, Makani phase 2","forReportLabel":"Group(s)","onReport":"LearnEnglish Level Test","dateRange":"","onReportLabel":"Title(s)","attempts":"Last only"},"detailedReport":false,"attempts":"last"}'), true);
-$onReportablesIDObjects=json_decode(stripslashes('[{"Title":"36","Course":"1242806791546"}]'), true);
+$forReportablesIDObjects = json_decode(stripslashes('[{"Group":"35026"},{"ScheduledTest":"82"}]'), true);
+$template="DPTSummary";
+$opts=json_decode(stripslashes('{"headers":{"dateRange":"","onReportLabel":"Report","forReportLabel":"Test caption","onReport":"Dynamic Placement Test","forReportDetail":"Feb test"},"detailedReport":true,"includeInactiveUsers":true,"includeStudentID":false,"timezoneOffset":-480}'), true);
+$onReportablesIDObjects=json_decode(stripslashes('[{"Course":"63","Title":"63"}]'), true);
 $nocache="233557";
 $forClass="Group";
 $onClass="Title";
-*/
+
 // Protect against directory traversal
 // PHP 5.3
 $pattern = '/..\//';
