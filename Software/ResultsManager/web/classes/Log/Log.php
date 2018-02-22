@@ -449,10 +449,33 @@ class Log
             }
         } else if (is_bool($message) || $message === NULL) {
             $message = var_export($message, true);
+
+        // gh#1562 Also allow JSON format
+        } else {
+            $result = json_decode($message);
+            if (json_last_error() === JSON_ERROR_NONE) {
+                if (isset($result->message)) {
+                    $message = $result->message;
+                } else {
+                    $message = '';
+                }
+            }
         }
 
         /* Otherwise, we assume the message is a string. */
         return $message;
+    }
+
+    function _extractData($message) {
+        $result = json_decode($message);
+        if (json_last_error() === JSON_ERROR_NONE) {
+            if (isset($result->message)) {
+                unset($result->message);
+            }
+            return $result;
+        } else {
+            return false;
+        }
     }
 
     /**

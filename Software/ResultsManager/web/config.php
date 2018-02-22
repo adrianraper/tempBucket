@@ -86,6 +86,8 @@ $GLOBALS['smarty_cache_dir'] = $smartyRoot."/cache/";
 $GLOBALS['smarty_plugins_dir'] = $smartyRoot."/plugins/";
 // gh#857 Used for different types of logging in production or development
 $GLOBALS['logType'] = 'file'; // or 'db' or 'null'
-$GLOBALS['debugLogType'] = 'file'; // or 'db' or 'null'
-$GLOBALS['controlLogType'] = 'file'; // or 'db' or 'null'
+$GLOBALS['debugLogType'] = 'file';
+$GLOBALS['controlLogType'] = 'file';
+$GLOBALS['dashboardLogType'] = 'graylog';
 $GLOBALS['logs_dir'] = $GLOBALS['common_dir'].'/logs/';
+$GLOBALS['graylogEndpoint'] = 'https://logs.clarityenglish.com:12201/gelf';

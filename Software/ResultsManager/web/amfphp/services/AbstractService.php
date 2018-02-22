@@ -24,6 +24,7 @@ class AbstractService {
 	static $debugLog;
 	// gh#448
 	static $controlLog;
+	static $dashboardLog;
 
 	function __construct() {
 		// This deals with a date bug in AdoDB MSSQL driver
@@ -71,7 +72,9 @@ class AbstractService {
 			$debugLogType = $GLOBALS['debugLogType'];
 		if (isset($GLOBALS['controlLogType']))
 			$controlLogType = $GLOBALS['controlLogType'];
-			
+        if (isset($GLOBALS['dashboardLogType']))
+            $dashboardLogType = $GLOBALS['dashboardLogType'];
+
 		if ($logType == 'file') {
 			$logTarget = $GLOBALS['logs_dir'].'log.txt';
 		} else if ($logType == 'db') {
@@ -98,8 +101,17 @@ class AbstractService {
 			$controlLogTarget = null;
 		}
 		AbstractService::$controlLog = &Log::factory($controlLogType, $controlLogTarget, null, $conf);
-		
-		// Create the operation classes
+
+        if ($dashboardLogType == 'file') {
+            $dashboardLogTarget = $GLOBALS['logs_dir'].'dashboard.log';
+        } else if ($dashboardLogType == 'graylog') {
+            $dashboardLogTarget = $GLOBALS['graylogEndpoint'];
+        } else {
+            $logTarget = null;
+        }
+        AbstractService::$dashboardLog = &Log::factory($dashboardLogType, $dashboardLogTarget, null, $conf);
+
+        // Create the operation classes
 		$this->copyOps = new CopyOps();
 
 	}

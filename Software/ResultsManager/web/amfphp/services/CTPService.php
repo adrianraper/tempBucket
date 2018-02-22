@@ -9,7 +9,6 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/Scheduled
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/TestSession.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/tests/DPTConstants.php");
 
-
 class CTPService extends BentoService {
 
     // The version of the app that called you

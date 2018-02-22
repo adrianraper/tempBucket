@@ -1,0 +1,7 @@
+{
+    "require": {
+        "monolog/monolog": "^1.0",
+        "firebase/php-jwt": "5.0",
+        "graylog2/gelf-php": "~1.5"
+    }
+}

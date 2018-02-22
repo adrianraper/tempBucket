@@ -20,8 +20,8 @@ try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
     /*
-    $json = json_decode('{"command":"getTranslations","lang":"zh-tw"}');
     $json = json_decode('{"command":"login","email":"dandy@dpt","password":"2e93f6f5de7b09f1987ae0b9e5b3f383","productCode":63,"platform":"Chrome 58.0.3029.110 on Windows 10 64-bit","appVersion":"0.6.1"}');
+    $json = json_decode('{"command":"getTranslations","lang":"zh-tw"}');
     $json = json_decode('{"command":"getTestResult","appVersion":"0.7.4","testID":"49","sessionID":"177","mode":"overwrite"}');
     $json = json_decode('{"command":"login","email":"dandy@dpt","password":"2e93f6f5de7b09f1987ae0b9e5b3f383","productCode":63,"appVersion":"0.6.1"}');
     $json = json_decode('{"command":"getTestResult","appVersion":"0.7.4","testID":"35","sessionID":"166","mode":"overwrite"}');
@@ -164,8 +164,7 @@ function login($email, $password, $productCode, $platform = null) {
     global $service;
     // ctp#428
     try {
-        AbstractService::$controlLog->setIdent($email);
-        $rc = AbstractService::$controlLog->info("Attempt login from $platform");
+        $rc = AbstractService::$dashboardLog->info('{"message":"Attempt login from DPT", "platform":"'.$platform.'", "email":"'.$email.'"}');
     } catch (Exception $e) {
         // do nothing
     }
