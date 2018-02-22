@@ -2,8 +2,43 @@
 class PROGRESS {
 	// This duplicates information normally held in T_ProductLanguage, and is used for 
 	// registering network titles which won't hold that information.
-	private $productInformation = array (1 => array ('name' => "Author Plus", 'place' => "" ), 2 => array ('name' => "Results Manager", 'place' => "" ), 3 => array ('name' => "Study Skills Success", 'place' => "StudySkillsSuccess" ), 9 => array ('name' => "Tense Buster", 'place' => "TenseBuster" ), 10 => array ('name' => "Business Writing", 'place' => "BusinessWriting" ), 11 => array ('name' => "Reactions!", 'place' => "Reactions" ), 12 => array ('name' => "Road to IELTS Academic", 'place' => "RoadToIELTS-Academic" ), 13 => array ('name' => "Road to IELTS General Training", 'place' => "RoadToIELTS-General" ), 14 => array ('name' => "BULATS", 'place' => "BULATS" ), 15 => array ('name' => "GEPT", 'place' => "GEPT" ), 16 => array ('name' => "Holistic English", 'place' => "HolisticEnglish" ), 17 => array ('name' => "L'amour des temps", 'place' => "LamourDesTemps" ), 18 => array ('name' => "EGU", 'place' => "EGU" ), 19 => array ('name' => "AGU", 'place' => "AGU" ), 20 => array ('name' => "My Canada", 'place' => "MyCanada" ), 33 => array ('name' => "Active Reading", 'place' => "ActiveReading" ), 34 => array ('name' => "Peacekeeper", 'place' => "Peacekeeper" ), 35 => array ('name' => "Call Center Communication Skills", 'place' => "CCCS" ), 37 => array ('name' => "Clarity English Success", 'place' => "ClarityEnglishSuccess" ), 38 => array ('name' => "It's Your Job, Practice Centre", 'place' => "ItsYourJob" ), 39 => array ('name' => "Clear Pronunciation", 'place' => "ClearPronunciation" ), 40 => array ('name' => "English for Hotel Staff", 'place' => "EnglishForHotelStaff" ), 41 => array ('name' => "Sun On Japanese", 'place' => "SunOnJapanese" ), 42 => array ('name' => "Language Key Hotel Test", 'place' => "LanguageKey" ), 43 => array ('name' => "Customer Service Communication Skills", 'place' => "CSCS" ), 44 => array ('name' => "Practical Placement Test", 'place' => "ClarityTest" ), 47 => array ('name' => "HCT's i-Read", 'place' => "i-Read" ), 48 => array ('name' => "Access UK", 'place' => "AccessUK" ), 49 => array ('name' => "Study Skills Success V9", 'place' => "StudySkillsSuccessV9" ), 50 => array ('name' => "Clear Pronunciation 2", 'place' => "ClearPronunciation2" ), 52 => array ('name' => "Road to IELTS 2 Academic", 'place' => "RoadToIELTS2" ), 53 => array ('name' => "Road to IELTS 2 General Training", 'place' => "RoadToIELTS2" ), 55 => array ('name' => "Tense Buster V10", 'place' => "TenseBuster" ), 56 => array ('name' => "Active Reading V10", 'place' => "ActiveReading" ), 57 => array ('name' => "Clear Pronunciation Sounds", 'place' => "ClearPronunciation" ), 58 => array ('name' => "Clear Pronunciation Speech", 'place' => "ClearPronunciation" ), 60 => array ('name' => "Study Skills Success V10", 'place' => "StudySkillsSuccess" ), 61 => array ('name' => "Practical Writing", 'place' => "PracticalWriting" ), 62 => array ('name' => "Business Writing V10", 'place' => "BusinessWriting" ), 1001 => array ('name' => "It's Your Job", 'place' => "ItsYourJob" ) );
-	
+	private $productInformation = array(
+		1	=>	array('name' => "Author Plus", 'place' => ""),
+		2	=>	array('name' => "Results Manager", 'place' => ""),
+		3	=>	array('name' => "Study Skills Success", 'place' => "StudySkillsSuccess"),
+		9	=>	array('name' => "Tense Buster", 'place' => "TenseBuster"),
+		10	=>	array('name' => "Business Writing", 'place' => "BusinessWriting"),
+		11	=>	array('name' => "Reactions!", 'place' => "Reactions"),
+		12	=>	array('name' => "Road to IELTS Academic", 'place' => "RoadToIELTS-Academic"),
+		13	=>	array('name' => "Road to IELTS General Training", 'place' => "RoadToIELTS-General"),
+		14	=>	array('name' => "BULATS", 'place' => "BULATS"),
+		15	=>	array('name' => "GEPT", 'place' => "GEPT"),
+		16	=>	array('name' => "Holistic English", 'place' => "HolisticEnglish"),
+		17	=>	array('name' => "L'amour des temps", 'place' => "LamourDesTemps"),
+		18	=>	array('name' => "EGU", 'place' => "EGU"),
+		19	=>	array('name' => "AGU", 'place' => "AGU"),
+		20	=>	array('name' => "My Canada", 'place' => "MyCanada"),
+		33	=>	array('name' => "Active Reading", 'place' => "ActiveReading"),
+		34	=>	array('name' => "Peacekeeper", 'place' => "Peacekeeper"),
+		35	=>	array('name' => "Call Center Communication Skills", 'place' => "CCCS"),
+		37	=>	array('name' => "Clarity English Success", 'place' => "ClarityEnglishSuccess"),
+		38	=>	array('name' => "It's Your Job, Practice Centre", 'place' => "ItsYourJob"),
+		39	=>	array('name' => "Clear Pronunciation", 'place' => "ClearPronunciation"),
+		40	=>	array('name' => "English for Hotel Staff", 'place' => "EnglishForHotelStaff"),
+		41	=>	array('name' => "Sun On Japanese", 'place' => "SunOnJapanese"),
+		42	=>	array('name' => "Language Key Hotel Test", 'place' => "LanguageKey"),
+		43	=>	array('name' => "Customer Service Communication Skills", 'place' => "CSCS"),
+		44	=>	array('name' => "Practical Placement Test", 'place' => "ClarityTest"),
+		47	=>	array('name' => "HCT's i-Read", 'place' => "i-Read"),
+		48	=>	array('name' => "Access UK", 'place' => "AccessUK"),
+		49	=>	array('name' => "Study Skills Success V9", 'place' => "StudySkillsSuccessV9"),
+		50	=>	array('name' => "Clear Pronunciation 2", 'place' => "ClearPronunciation2"),
+		52	=>	array('name' => "Road to IELTS 2 Academic", 'place' => "RoadToIELTS2"),
+		53	=>	array('name' => "Road to IELTS 2 General Training", 'place' => "RoadToIELTS2"),
+		61	=>	array('name' => "Practical Writing", 'place' => "PracticalWriting"),
+		1001=>	array('name' => "It's Your Job", 'place' => "ItsYourJob")
+	);
+	 
 	function PROGRESS() {
 	}
 	
@@ -580,9 +615,15 @@ EOD;
 		if ($rs->RecordCount () > 0) {
 			// v6.5.6.5 Wouldn't it be cleaner to do a while loop with FetchNextObj?
 			// And isn't it most likely to be an error if there are multiple?
-			foreach ( $rs as $k => $row ) {
-				$userExpiryTimestamp = $row ['formattedDate'];
-				$node .= "<user userID='{$row['F_UserID']}' " . "name='{$row['F_UserName']}' " . "email='{$row['F_Email']}' " . "expiryDate='{$userExpiryTimestamp}' " . "userProfileOption='{$row['F_UserProfileOption']}' " . "password='{$row['F_Password']}' " . "studentID='{$row['F_StudentID']}'/>";
+			foreach($rs as $k=>$row) {
+				$userExpiryTimestamp = $row['formattedDate'];
+				$node .= "<user userID='{$row['F_UserID']}' "
+					."name='{$row['F_UserName']}' "
+					."email='{$row['F_Email']}' "
+					."expiryDate='{$userExpiryTimestamp}' "
+					."userProfileOption='{$row['F_UserProfileOption']}' "
+					."password='{$row['F_Password']}' "
+					."studentID='{$row['F_StudentID']}'/>";
 			}
 		} else {
 			// Is it really an exception if no records are found?
@@ -598,10 +639,14 @@ EOD;
 	function getUserByEmail(&$vars, &$node) {
 		global $db;
 		// Go get this user - if it exists
-		$rs = $this->selectUserByEmail ( $vars );
-		if ($rs->RecordCount () > 0) {
-			foreach ( $rs as $k => $row ) {
-				$node .= "<user userID='{$row['F_UserID']}' " . "name='{$row['F_UserName']}' " . "email='{$row['F_Email']}' " . "password='{$row['F_Password']}' " . "studentID='{$row['F_StudentID']}'/>";
+		$rs = $this->selectUserByEmail($vars);
+		if ($rs->RecordCount() > 0) {
+			foreach($rs as $k=>$row) {
+				$node .= "<user userID='{$row['F_UserID']}' "
+					."name='{$row['F_UserName']}' "
+					."email='{$row['F_Email']}' "
+					."password='{$row['F_Password']}' "
+					."studentID='{$row['F_StudentID']}'/>";
 			}
 		} else {
 			throw new Exception ( "Query failed" );
@@ -621,9 +666,10 @@ EOD;
 		//		$node .= "<user userID='{$row[F_USERID]}' "
 		//			."rootID='{$row[F_ROOTID]}'/>";
 		//	}
-		$thisRoot = $this->selectRootIDViaGroupID ( $vars );
+		$thisRoot = $this->selectRootIDViaGroupID($vars);
 		if ($thisRoot) {
-			$node .= "<user userID='" . $vars [USERID] . "' " . "rootID='$thisRoot'/>";
+			$node .= "<user userID='".$vars[USERID]."' "
+					."rootID='$thisRoot'/>";
 		} else {
 			// Where is this exception caught? It would be better to send back an expected error format
 			//throw new Exception("Query failed");
@@ -855,12 +901,18 @@ EOD;
 		$bindingParams = array ($uid, $cid );
 		$rs = $db->Execute ( $sql, $bindingParams );
 		// Expecting zero or lots of records
-		if ($rs->RecordCount () > 0) {
-			foreach ( $rs as $k => $row ) {
-				$node .= "<score datestamp='" . $row ["F_DateStamp"] . "' ";
-				$node .= "userID='{$vars['USERID']}' ";
-				$node .= "testUnits='{$row['F_TestUnits']}' ";
-				$node .= "itemID='{$row['F_ExerciseID']}' " . "unit='{$row['F_UnitID']}' " . "score='{$row['F_Score']}' " . "duration='{$row['F_Duration']}' " . "correct='{$row['F_ScoreCorrect']}' " . "wrong='{$row['F_ScoreWrong']}' " . "skipped='{$row['F_ScoreMissed']}' />";
+		if ($rs->RecordCount() > 0)  {
+			foreach($rs as $k=>$row) {
+				$node .= "<score datestamp='".$row["F_DateStamp"]."' ";
+				$node .=  "userID='{$vars['USERID']}' ";
+				$node .=  "testUnits='{$row['F_TestUnits']}' ";
+				$node .= "itemID='{$row['F_ExerciseID']}' "
+					."unit='{$row['F_UnitID']}' "
+					."score='{$row['F_Score']}' "
+					."duration='{$row['F_Duration']}' "
+					."correct='{$row['F_ScoreCorrect']}' "
+					."wrong='{$row['F_ScoreWrong']}' "
+					."skipped='{$row['F_ScoreMissed']}' />";
 			}
 		}
 		$rs->Close ();
@@ -951,11 +1003,14 @@ EOD;
 		$rs = $db->Execute ( $sql, $bindingParams );
 		
 		// Expecting zero or lots of records
-		if ($rs->RecordCount () > 0) {
-			foreach ( $rs as $k => $row ) {
-				$thisScore = $row ['AvgScore'];
-				$thisCount = $row ['NumberDone'];
-				$node .= "<score itemID='{$row['F_ExerciseID']}' " . "unit='{$row['F_UnitID']}' " . "score='{$thisScore}' " . "count='{$thisCount}' />";
+		if ($rs->RecordCount() > 0)  {
+			foreach($rs as $k=>$row) {
+				$thisScore = $row['AvgScore'];
+				$thisCount = $row['NumberDone'];
+				$node .= "<score itemID='{$row['F_ExerciseID']}' "
+					."unit='{$row['F_UnitID']}' "
+					."score='{$thisScore}' "
+					."count='{$thisCount}' />";
 			}
 		}
 		$rs->Close ();
@@ -1208,15 +1263,11 @@ EOD;
 	// v6.5.6 Used to get data for a certificate/summary that isn't in the scaffold. Likely to be very product dependent
 	function getSpecificStats(&$vars, &$node) {
 		global $db;
-		
-		$pc = $vars ['PRODUCTCODE'];
-		if (isset ( $vars ['ROOTID'] ))
-			$root = $vars ['ROOTID'];
-		if (isset ( $vars ['ITEMID'] ))
-			$exerciseID = $vars ['ITEMID'];
-		if (isset ( $vars ['SESSIONID'] ))
-			$sid = $vars ['SESSIONID'];
-		
+
+		$pc = $vars['PRODUCTCODE'];
+		if (isset($vars['ROOTID'])) $root = $vars['ROOTID'];
+		if (isset($vars['ITEMID'])) $exerciseID = $vars['ITEMID'];
+		if (isset($vars['SESSIONID'])) $sid = $vars['SESSIONID'];
 		// To make testing quicker
 		//$sid='1514840';
 		//$cid = $vars['COURSEID'];
@@ -1353,15 +1404,12 @@ EOD;
 	// v6.6.0.5 Just to write a specific detail record
 	function writeSpecificStats(&$vars, &$node) {
 		global $db;
-		
-		$pc = $vars ['PRODUCTCODE'];
-		if (isset ( $vars ['ROOTID'] ))
-			$root = $vars ['ROOTID'];
-		if (isset ( $vars ['ITEMID'] ))
-			$exerciseID = $vars ['ITEMID'];
-		if (isset ( $vars ['SESSIONID'] ))
-			$sid = $vars ['SESSIONID'];
-		$uid = $vars ['USERID'];
+
+		$pc = $vars['PRODUCTCODE'];
+		if (isset($vars['ROOTID'])) $root = $vars['ROOTID'];
+		if (isset($vars['ITEMID'])) $exerciseID = $vars['ITEMID'];
+		if (isset($vars['SESSIONID'])) $sid = $vars['SESSIONID'];
+		$uid = $vars['USERID'];
 		
 		// For CSTDI certificate we need a sequence number
 		if ($root == 10127 || $root == 14449) {
@@ -1522,12 +1570,9 @@ EOD;
 				$itemID = $detail = $score = null;
 				foreach ( $item->attributes () as $a => $b ) {
 					//echo "attributes ".$a."=".$b;
-					if ($a == 'itemID')
-						$itemid = ( int ) $b;
-					if ($a == 'detail')
-						$detail = ( string ) $b;
-					if ($a == 'score')
-						$score = ( int ) $b;
+					if ($a=='itemID') $itemid = (int)$b;
+					if ($a=='detail') $detail = (string)$b;
+					if ($a=='score') $score = (int)$b;
 				}
 				$node .= "<note>insert detail for question $itemid=$detail</note>";
 				$rC = $this->insertScoreDetail ( $vars, $itemid, $detail, $score );
@@ -2091,8 +2136,12 @@ EOD;
 		} else {
 			$eid = $vars ['ITEMID'];
 		}
-		$userID = $vars ['USERID'];
-		$bindingParams = array ($userID, $date, $vars ['UNITID'], $vars ['SESSIONID'], $eid, $vars ['TESTUNITS'], $vars ['SCORE'], $vars ['CORRECT'], $vars ['WRONG'], $vars ['SKIPPED'], $vars ['DURATION'] );
+		$userID = $vars['USERID'];
+		$bindingParams = array($userID, $date,
+				$vars['UNITID'], $vars['SESSIONID'], $eid,
+				$vars['TESTUNITS'],
+				$vars['SCORE'], $vars['CORRECT'], $vars['WRONG'], $vars['SKIPPED'],
+				$vars['DURATION']);
 		// Insert a new session
 		//v6.3.6 F_ExerciseID converted from longint to double (Access), bigint (MySQL and SQLServer)
 		// v6.5.5.3 Added F_CourseID to T_Score
@@ -2398,7 +2447,7 @@ EOD;
 			case 1 :
 				$dbObj = $rs->FetchNextObj ();
 				break;
-			default :
+			default:
 				return false;
 		}
 		// If the scratch pad is empty, PHP will end up interpreting this as false - generating an err node.
@@ -2428,11 +2477,12 @@ EOD;
 		global $db;
 		// v6.4.2.7 Let username be case insensitive - it seems that MySQL and PHP make it case sensitive by default
 		// v6.5.5.2 This will fail to match with some Turkish characters
-		$name = strtoupper ( $vars ['NAME'] );
-		$studentID = strtoupper ( $vars ['STUDENTID'] );
+        // gh#1594
+		$name = $vars['NAME'];
+		$studentID = $vars['STUDENTID'];
 		// v6.5.6.5 Allow email to be the unique field used for login
-		if (isset ( $vars ['EMAIL'] ))
-			$email = strtoupper ( $vars ['EMAIL'] );
+		if (isset($vars['EMAIL']))
+			$email = $vars['EMAIL'];
 		$rootID = $vars ['ROOTID'];
 		// v6.5.6 use adodb functions for this database specific stuff instead
 		//if (strpos($vars['DBDRIVER'],"mssql")>=0 || strpos($vars['DBDRIVER'],"sqlite")>=0) {
@@ -2441,22 +2491,22 @@ EOD;
 		//} else {
 		//	$sqlCaseFunction = "UCASE";
 		//}
-		$bindingParams = array ();
+		$bindingParams = array();
 		if ($searchType == "name") {
-			$whereClause = "WHERE {$db->upperCase}(u.F_UserName)=? ";
+			$whereClause = "WHERE u.F_UserName=? ";
 			$bindingParams [] = $name;
 		} else if ($searchType == "email") {
-			$whereClause = "WHERE {$db->upperCase}(u.F_Email)=? ";
+			$whereClause = "WHERE u.F_Email=? ";
 			$bindingParams [] = $email;
 		} else {
 			// v6.4.2 If you are adding both, then neither of them should be present
 			// v6.5.5.0 (ES) need brackets round this OR
 			if ($searchType == "both") {
-				$whereClause = "WHERE ({$db->upperCase}(u.F_UserName)=? OR {$db->upperCase}(u.F_StudentID)=? )";
+				$whereClause = "WHERE (u.F_UserName=? OR u.F_StudentID=? )";
 				$bindingParams [] = $name;
 				$bindingParams [] = $studentID;
 			} else {
-				$whereClause = "WHERE {$db->upperCase}(u.F_StudentID)=? ";
+				$whereClause = "WHERE u.F_StudentID=? ";
 				$bindingParams [] = $studentID;
 			}
 		}
@@ -3207,11 +3257,12 @@ EOD;
 		// Go get this user - if it exists
 		// v6.5.5.5 Bad name
 		//$rs = $this->selectUserDetail($vars);
-		$rs = $this->selectUserDetailByStudentID ( $vars );
-		if ($rs->RecordCount () > 0) {
-			foreach ( $rs as $k => $row ) {
-				$userRegDate = $row ['F_RegistrationDate'];
-				$node .= "<user userID='" . $row ['F_UserID'] . "' " . "regDate='{$userRegDate}'/>";
+		$rs = $this->selectUserDetailByStudentID($vars);
+		if ($rs->RecordCount() > 0) {
+			foreach($rs as $k=>$row) {
+				$userRegDate = $row['F_RegistrationDate'];
+				$node .= "<user userID='".$row['F_UserID']."' "
+					."regDate='{$userRegDate}'/>";
 			}
 		} else {
 			//throw new Exception("Registration date query failed");
@@ -3232,10 +3283,12 @@ EOD;
 			FROM T_Session
 			WHERE F_UserID=? AND F_CourseID=?
 EOD;
-		$rs = $db->Execute ( $sql, $bindingParams );
-		if ($rs->RecordCount () > 0) {
-			foreach ( $rs as $k => $row ) {
-				$node .= "<user userID='{$userID}' " . "startDate='" . $row ['STARTDATE'] . "' " . "endDate='" . $row ['ENDDATE'] . "'/>";
+		$rs = $db->Execute($sql, $bindingParams);
+		if ($rs->RecordCount() > 0) {
+			foreach($rs as $k=>$row) {
+				$node .= "<user userID='{$userID}' "
+					."startDate='".$row['STARTDATE']."' "
+					."endDate='".$row['ENDDATE']."'/>";
 			}
 		} else {
 			//throw new Exception("Registration date query failed");
@@ -3632,8 +3685,7 @@ EOD;
 			return false;
 		} else {
 			return true;
-		}
-		;
+		};
 	}
 	// v6.5.6 Only called if you inserted a new user, but then the membership record wasn't inserted for some reason.
 	function deleteUser($userID) {
@@ -3649,8 +3701,7 @@ EOD;
 			return false;
 		} else {
 			return true;
-		}
-		;
+		};
 	}
 	
 	// v6.5.5.5 For network versions
@@ -3804,15 +3855,14 @@ EOD;
 	}
 	function updateAccountInfo(&$vars, &$node) {
 		global $db;
-		$licences = $vars ['LICENCES'];
-		$checkSum = $vars ['CHECKSUM'];
-		if (isset ( $vars ['EMUCHECKSUM'] ))
-			$EmuCheckSum = $vars ['EMUCHECKSUM'];
-		$today = substr ( $vars ['DATESTAMP'], 0, 10 ) . ' 00:00:00';
-		$expiryDate = $vars ['EXPIRYDATE'];
-		$rootID = $vars ['ROOTID'];
-		$productCode = $vars ['PRODUCTCODE'];
-		$languageCode = $vars ['LANGUAGECODE'];
+		$licences = $vars['LICENCES'];
+		$checkSum = $vars['CHECKSUM'];
+		if (isset($vars['EMUCHECKSUM'])) $EmuCheckSum = $vars['EMUCHECKSUM'];
+		$today = substr($vars['DATESTAMP'],0,10).' 00:00:00';
+		$expiryDate = $vars['EXPIRYDATE'];
+		$rootID = $vars['ROOTID'];
+		$productCode = $vars['PRODUCTCODE'];
+		$languageCode = $vars['LANGUAGECODE'];
 		// CD152B Add in product version as separate from language code 
 		$productVersion = $vars ['PRODUCTVERSION'];
 		$licenceType = $vars ['LICENCETYPE'];
@@ -3832,8 +3882,7 @@ EOD;
 				}
 				break;
 			case "EN" :
-				if ($productCode != 38)
-					$contentFolder .= "-International";
+			if ($productCode!=38) $contentFolder .= "-International";
 				break;
 		}
 		$vars ['ContentLocation'] = $contentFolder;
@@ -4184,33 +4233,34 @@ EOD;
 	function selectUserWithoutRoot(&$vars, $searchType) {
 		global $db;
 		
+        // gh#1594 Remove all UPPER
 		switch ($searchType) {
 			case "userID" :
-				$userID = $vars ['USERID'];
-				$whereClause = " AND u.F_UserID=? ";
-				$bindingParams = array ($userID );
+				$userID = $vars['USERID'];
+				$whereClause = " u.F_UserID=? ";
+				$bindingParams = array($userID);
 				break;
 			case "email" :
-				$email = strtoupper ( $vars ['EMAIL'] );
-				$whereClause = " AND {$db->upperCase}(u.F_Email)=?";
-				$bindingParams = array ($email );
+				$email = $vars['EMAIL'];
+				$whereClause = " u.F_Email=?";
+				$bindingParams = array($email);
 				break;
 			case "id" :
-				$studentID = strtoupper ( $vars ['STUDENTID'] );
-				$whereClause = " AND {$db->upperCase}(u.F_StudentID)=?";
-				$bindingParams = array ($studentID );
+				$studentID = $vars['STUDENTID'];
+				$whereClause = " u.F_StudentID=?";
+				$bindingParams = array($studentID);
 				break;
 			case "both" :
-				$name = strtoupper ( $vars ['NAME'] );
-				$studentID = strtoupper ( $vars ['STUDENTID'] );
-				$whereClause = " AND {$db->upperCase}(u.F_UserName)=? AND {$db->upperCase}(u.F_StudentID)=?";
-				$bindingParams = array ($name, $studentID );
+				$name = $vars['NAME'];
+				$studentID = $vars['STUDENTID'];
+				$whereClause = " u.F_UserName=? AND u.F_StudentID=?";
+				$bindingParams = array($name, $studentID);
 				break;
 			case "name" :
 			default :
-				$name = strtoupper ( $vars ['NAME'] );
-				$whereClause = " AND {$db->upperCase}(u.F_UserName)=?";
-				$bindingParams = array ($name );
+				$name = $vars ['NAME'];
+				$whereClause = " u.F_UserName=?";
+				$bindingParams = array($name);
 				break;
 		}
 		
@@ -4242,15 +4292,15 @@ EOD;
 			$rs = $db->Execute($sql);
 		}
 		*/
+        // gh#1594
 		$sql = <<<EOD
-				SELECT DISTINCT(u.F_UserID), u.*, m.F_RootID as RootID, a.F_Prefix as Prefix
-				FROM T_User u, T_Membership m, T_Accounts t, T_AccountRoot a
-				WHERE u.F_UserID = m.F_UserID
-				AND m.F_RootID = t.F_RootID
-				AND m.F_RootID = a.F_RootID
-				$whereClause
+				SELECT u.*, m.F_RootID as RootID, a.F_Prefix as Prefix
+				FROM T_User u
+                LEFT JOIN T_Membership m on u.F_UserID = m.F_UserID
+                LEFT JOIN T_AccountRoot a on m.F_RootID = a.F_RootID
+				WHERE $whereClause
 EOD;
-		$rs = $db->Execute ( $sql, $bindingParams );
+		$rs = $db->Execute($sql, $bindingParams);
 		// Send back all details, multiple records handled in parent call
 		return $rs;
 	}
@@ -4291,26 +4341,27 @@ EOD;
 	// AR Added for smarter forgot password lookup
 	function forgotPassword(&$vars, &$node) {
 		global $db;
-		$email = strtoupper ( $vars ['EMAIL'] );
+		$email = $vars['EMAIL'];
 		
 		// First find any and all users who have this registered email address, and which account they are in
+        // gh#1594
 		$sql = <<<EOD
 		SELECT r.F_RootID, r.F_Name, r.F_AccountStatus, u.F_UserName, u.F_StudentID, u.F_Password, MAX(a.F_ExpiryDate) as AccountExpiryDate
 		FROM T_User u, T_Membership m, T_AccountRoot r, T_Accounts a
-		WHERE {$db->upperCase}(u.F_Email)=?
+		WHERE u.F_Email=?
 		AND u.F_UserID = m.F_UserID
 		AND m.F_RootID = a.F_RootID
 		AND m.F_RootID = r.F_RootID
 		GROUP BY a.F_RootID
 EOD;
-		$bindingParams = array ($email );
-		$rs = $db->Execute ( $sql, $bindingParams );
+		$bindingParams = array($email);
+		$rs = $db->Execute( $sql, $bindingParams );
 		if ($rs) {
 			foreach ( $rs as $k => $row ) {
 				// Find each account that this email is registered in, check that it is an active account
 				// Is it better to match active, or not suspended?
 				//if (strtotime($row['AccountExpiryDate'])>time() && $row['F_AccountStatus']==2)	{
-				$name = $row ['F_UserName'];
+				$name = $row['F_UserName'];
 				if (strtotime ( $row ['AccountExpiryDate'] ) > time () && $row ['F_AccountStatus'] != 3) {
 					$studentID = $row ['F_StudentID'];
 					$password = $row ['F_Password'];
@@ -4322,7 +4373,7 @@ EOD;
 				}
 			}
 		}
-		$rs->Close ();
+		$rs->Close();
 		return true;
 	}
 	
