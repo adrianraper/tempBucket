@@ -432,6 +432,7 @@ function router($json) {
         // sss#155
         case "getTranslations":
             if (!isset($json->productCode)) $json->productCode = null;
+            $json->lang = strtolower($json->lang);
             return getTranslations($json->lang, $json->productCode);
         case "getCoverage": return getCoverage($json->token);
         case "getComparison": return getComparison($json->token, $json->mode);

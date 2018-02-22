@@ -14,7 +14,7 @@
         "EmptyLogin": "Please input a correct email address.",
         "IncorrectLogin": "Your email or password is incorrect. Please try again.",
         "ConnectToInternet": "Please connect to the Internet.",
-        "OnlineModeWarning": "The app is running in the online mode. Make sure you have a stable Internet connection.",
+        "OnlineModeWarning": "The app is running online. Make sure you have a good connection.",
         "Downloading": "Downloading",
         "Ok": "OK",
         "Back": "Back",
@@ -72,7 +72,7 @@
         "IntroductionVideo": "Introduction video",
         "CompareCaption": "Compare your average score in a unit to everyone else's.",
         "AnalysisCaption": "Time spent in each unit",
-        "ExerciseLoadError": "A problem occurred whilst loading this exercise. An error notification has been sent to ClarityEnglish.",
+        "ExerciseLoadError": "A problem occurred while loading this exercise. A note has been sent to ClarityEnglish.",
         "ForgotPasswordLink": "https://www.clarityenglish.com/support/forgotPassword.php",
         "NoProgress": "Progress Report is only available to registered accounts. If you would like to check your progress, please create an account on the sign-in page.",
         "CompletionAmount": "{completion} of {total} completed",
@@ -89,9 +89,7 @@
       "language": "namen",
       "caption": "North American English",
       "literals": {
-        "Marking": "Scoring",
-        "ExerciseLoadError": "A problem occurred while loading this exercise. An error notification has been sent to ClarityEnglish.",
-        "LicenceInvalidReset": "Your license has been dropped and you have been signed out. Please try again."
+        "Marking": "Scoring"
       }
     },
     {
