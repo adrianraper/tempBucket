@@ -53,14 +53,13 @@ class LoginCops {
         }
 
 		// #503
-		$selectFields = array("g.F_GroupID as groupID",
+        // gh#1596 SQL query performance
+		$selectFields = array("m.F_GroupID as groupID",
 							  "m.F_RootID as rootID",
 							  "u.*");
 		$sql  = "SELECT ".join(",", $selectFields);
 		$sql .=	<<<EOD
-				FROM T_User u LEFT JOIN 
-				T_Membership m ON m.F_UserID = u.F_UserID LEFT JOIN
-				T_Groupstructure g ON m.F_GroupID = g.F_GroupID 
+				FROM T_User u LEFT JOIN T_Membership m ON m.F_UserID = u.F_UserID  
 EOD;
 		
 		// Check password in the code afterwards

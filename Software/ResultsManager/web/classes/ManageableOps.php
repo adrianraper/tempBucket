@@ -1513,12 +1513,11 @@ EOD;
 		}
 		// gh#164 No need to join on membership if you don't have a rootID
 		// gh#653 Might be duplicate membership records so just grab unique userIDs
-		if ($rootID != null) {
+        // gh#1596 SQL query performance
+        if ($rootID != null) {
 			$sql  = "SELECT DISTINCT ".User::getSelectFields($this->db);
 			$sql .= <<<EOD
-					FROM T_User u LEFT JOIN 
-					T_Membership m ON m.F_UserID = u.F_UserID LEFT JOIN
-					T_Groupstructure g ON m.F_GroupID = g.F_GroupID 
+					FROM T_User u LEFT JOIN T_Membership m ON m.F_UserID = u.F_UserID 
 					$whereClause
 					AND m.F_RootID=?
 EOD;

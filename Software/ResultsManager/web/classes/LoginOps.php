@@ -65,14 +65,13 @@ class LoginOps {
             $password = $loginObj['password'];
 
 		// #503
-		$selectFields = array("g.F_GroupID as groupID",
+        // gh#1596 SQL query performance
+        $selectFields = array("m.F_GroupID as groupID",
 							  "m.F_RootID as rootID",
 							  "u.*");
 		$sql  = "SELECT ".join(",", $selectFields);
 		$sql .=	<<<EOD
-				FROM T_User u LEFT JOIN 
-				T_Membership m ON m.F_UserID = u.F_UserID LEFT JOIN
-				T_Groupstructure g ON m.F_GroupID = g.F_GroupID 
+				FROM T_User u LEFT JOIN T_Membership m ON m.F_UserID = u.F_UserID 
 EOD;
 		
 		// Check password in the code afterwards
@@ -170,14 +169,15 @@ EOD;
 					continue;
 					
 				// 3. What about by account attributes?
-                // gh#1531 You are only looking at accounts with the tragetted productCode
-				$rs->MoveFirst();
+                // gh#1531 You are only looking at accounts with the targetted productCode
+                $rs->MoveFirst();
 				while ($userObj = $rs->FetchNextObj())
 					$userIDArray[] = $userObj->F_UserID;
 				$userIDList = join(',', $userIDArray);
 				
 				// requires a SQL look up on the accounts for each user
-				$selectFields = array("g.F_GroupID as groupID",
+                // gh#1596 SQL query performance
+				$selectFields = array("m.F_GroupID as groupID",
 								"m.F_RootID as rootID",
 								"a.F_ProductVersion as productVersion",
                                 "a.F_ProductCode as productCode",
@@ -185,10 +185,9 @@ EOD;
 								"u.*");
 				$sql  = "SELECT ".join(",", $selectFields);
 				$sql .= <<<EOD
-					from T_User u, T_Membership m, T_Groupstructure g, T_Accounts a
+					from T_User u, T_Membership m, T_Accounts a
 					where a.F_RootID = m.F_RootID
 					and m.F_UserID = u.F_UserID
-					and g.F_GroupID = m.F_GroupID
 					and u.F_UserID in ($userIDList)
 					and a.F_ProductCode in ($productCode);
 EOD;
@@ -385,16 +384,15 @@ EOD;
 		// I suspect that for a network login it can be made simpler as there will only be 1 root.
 		// v3.4.1 Need to pass back name to pick up 'correct' capitalisation
 		if ($GLOBALS['dbms'] == 'pdo_sqlite') {
-			$sql = <<<EOD
-				SELECT g.F_GroupID, m.F_RootID,
+            // gh#1596 SQL query performance
+            $sql = <<<EOD
+				SELECT m.F_GroupID, m.F_RootID,
 						u.F_UserType, u.F_UserID, u.F_Password, u.F_StartDate UserStartDate, u.F_ExpiryDate UserExpiryDate,
 						u.F_UserName,
 						a.F_ExpiryDate ProductExpiryDate,a.F_LanguageCode,a.F_MaxTeachers,a.F_MaxAuthors,a.F_MaxReporters,a.F_LicenceType				
 				FROM T_User u 
 					LEFT JOIN 
-						T_Membership m ON m.F_UserID = u.F_UserID
-					LEFT JOIN
-						T_Groupstructure g ON m.F_GroupID = g.F_GroupID 					
+						T_Membership m ON m.F_UserID = u.F_UserID										
 					LEFT JOIN
 						T_Accounts a ON a.F_RootID = m.F_RootID				
 				WHERE a.F_ProductCode=?
@@ -409,7 +407,8 @@ EOD;
 			// AR I also want to know the login user's ID back in RM. Hmm, I think I was able to pick this up anyway without it being in the selectFields. How?
 			// No, I don't think it was being properly passed. Anyway, it is now.
 			// ctp#214
-			$selectFields = array("g.F_GroupID",
+            // gh#1596 SQL query performance
+            $selectFields = array("m.F_GroupID",
 								  "m.F_RootID",
 								  "u.F_UserType",
 								  "u.F_UserName",
@@ -432,9 +431,7 @@ EOD;
 			
 			$sql  = "SELECT ".join(",", $selectFields);
 			$sql .=	<<<EOD
-					FROM T_User u LEFT JOIN 
-					T_Membership m ON m.F_UserID = u.F_UserID LEFT JOIN
-					T_Groupstructure g ON m.F_GroupID = g.F_GroupID 
+					FROM T_User u LEFT JOIN T_Membership m ON m.F_UserID = u.F_UserID  
 EOD;
 			
 			// Only add in the titles fields if $productCode is specified (i.e. this is not DMS)
