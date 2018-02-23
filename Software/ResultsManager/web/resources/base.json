@@ -89,7 +89,9 @@
       "language": "namen",
       "caption": "North American English",
       "literals": {
-        "Marking": "Scoring"
+        "Marking": "Scoring",
+        "ExerciseLoadError": "A problem occurred while loading this exercise. An error notification has been sent to ClarityEnglish.",
+        "LicenceInvalidReset": "Your license has been dropped and you have been signed out. Please try again."
       }
     },
     {
