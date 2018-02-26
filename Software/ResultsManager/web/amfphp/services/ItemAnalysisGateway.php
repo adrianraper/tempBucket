@@ -38,6 +38,7 @@ function loadAPIInformation() {
 
     $output = (isset($_GET['output'])) ? $_GET['output'] : "excel"; // or json, excel, text
     $filter = (isset($_GET['filter'])) ? $_GET['filter'] : ""; // a1-r1.html, gauge, gauge1, a1, l1, can do regex ONLY FROM FILE, not from browser parameters
+    $tags = (isset($_GET['tags'])) ? $_GET['tags'] : ""; // "A1^word-placement, A1,word-placement"
     $unitname = (isset($_GET['unitname'])) ? $_GET['unitname'] : ""; // Gauge, Track A etc
     if ($unitname == "") $unitname = (isset($_GET['unitName'])) ? $_GET['unitName'] : ""; // old case style
     $method = (isset($_GET['method'])) ? $_GET['method'] : ""; // checkContentIntegrity etc
@@ -45,13 +46,13 @@ function loadAPIInformation() {
 
 	$inputData = file_get_contents("php://input");
 	//$inputData = '{"method":"xxgetRecordsForItemId","id":"4386248d-db3e-4c11-ae4f-0e4194cbe067","dbHost":2}';
-	//$inputData = '{"method":"itemAnalysisWithData","dbHost":2}';
 	//$inputData = '{"method":"itemAnalysis","dbHost":2}';
-	$inputData = '{"method":"getCandidateAnswers","dbHost":200}';
+    $inputData = '{"method":"distractorAnalysis","dbHost":200}';
+	//$inputData = '{"method":"getCandidateAnswers","dbHost":200}';
     //$inputData = '{"method":"grabData", "targetHost":2, "sourceHost":3}';
     //$inputData = '{"method":"checkContentIntegrity", "check":"tags", "filter":"/a[12]+-l/", "dbHost":2}';
     //$inputData = '{"method":"makeNewItemId","dbHost":3}';
-    //$inputData = '{"method":"seeWhiteList","dbHost":200}';
+    //$inputData = '{"method":"seeWhiteList","dbHost":2}';
 
 	$postInformation = json_decode($inputData, true);
 	if (!$postInformation) 
@@ -61,6 +62,7 @@ function loadAPIInformation() {
     $postInformation['method'] = (isset($postInformation['method'])) ? $postInformation['method'] : $method;
     $postInformation['output'] = (isset($postInformation['output'])) ? $postInformation['output'] : $output;
     $postInformation['filter'] = (isset($postInformation['filter'])) ? $postInformation['filter'] : $filter;
+    $postInformation['tags'] = (isset($postInformation['tags'])) ? $postInformation['tags'] : $tags;
     $postInformation['unitname'] = (isset($postInformation['unitname'])) ? $postInformation['unitname'] :  $unitname;
     $postInformation['outputFilename'] = (isset($postInformation['outputFilename'])) ? $postInformation['outputFilename'] : $outputFilename;
 
@@ -99,7 +101,7 @@ function logit($message) {
     AbstractService::$log->notice($message);
 }
 
-function iagOutput($file, $qid, $qtype, $root, $context, $readingText, $tags, $attempts) {
+function iagOutput($file, $qid, $qtype, $root, $context, $readingText, $tags) {
     global $tab;
     global $newline;
     global $apiInformation;
@@ -118,17 +120,16 @@ function iagOutput($file, $qid, $qtype, $root, $context, $readingText, $tags, $a
         case 'excel':
         case 'export':
             $tagsString = (is_array($tags)) ? implode(',', $tags) : (string) $tags;
-            $ia1 = (isset($attempts['attempted'])) ? $attempts['attempted'] : 0;
-            $ia2 = (isset($attempts['correct'])) ? $attempts['correct'] : 0;
-            $ia3 = (isset($attempts['distractors'])) ? json_encode($attempts['distractors']) : '';
-            file_put_contents($outputFilename, $file . $tab . $qid . $tab . $qtype . $tab . $tagsString . $tab . $ia1 . $tab . $ia2 . $tab . $ia3. $tab . nlstripper($root) . $tab . nlstripper($context) . $tab . nlstripper($readingText) . "$newline", FILE_APPEND | LOCK_EX);
+            //$ia1 = (isset($attempts['correctIdx'])) ? $attempts['correctIdx'] : 0;
+            //$ia2 = (isset($attempts['answers'])) ? $attempts['answers'] : '';
+            file_put_contents($outputFilename, $file . $tab . $qid . $tab . $qtype . $tab . $tagsString . $tab . $tab . nlstripper($root) . $tab . nlstripper($context) . $tab . nlstripper($readingText) . "$newline", FILE_APPEND | LOCK_EX);
             break;
         case 'browser':
             $tagsString = (is_array($tags)) ? implode(',', $tags) : (string) $tags;
-            $ia1 = (isset($attempts['attempted'])) ? $attempts['attempted'] : 0;
-            $ia2 = (isset($attempts['correct'])) ? $attempts['correct'] : 0;
-            $ia3 = (isset($attempts['distractors'])) ? json_encode($attempts['distractors']) : '';
-            echo $file . $tab . $qid . $tab . $qtype . $tab . $tagsString . $tab . $ia1 . $tab . $ia2 . $tab . $ia3. $tab . nlstripper($root) . $tab . nlstripper($context) . $tab . nlstripper($readingText) . "$newline";
+            //$ia1 = (isset($attempts['attempted'])) ? $attempts['attempted'] : 0;
+            //$ia2 = (isset($attempts['correct'])) ? $attempts['correct'] : 0;
+            //$ia3 = (isset($attempts['distractors'])) ? json_encode($attempts['distractors']) : '';
+            echo $file . $tab . $qid . $tab . $qtype . $tab . $tagsString . $tab . nlstripper($root) . $tab . nlstripper($context) . $tab . nlstripper($readingText) . "$newline";
             break;
         case 'json':
             $outputStream[] = '{"file":"'
@@ -145,8 +146,9 @@ function iagOutput($file, $qid, $qtype, $root, $context, $readingText, $tags, $a
                 nlstripper($context).
                 '", "root":"'
                 .nlstripper($root).
-                '", "ia":'
-                .json_encode($attempts).
+                '"'.
+                //'", "ia":'
+                //.json_encode($attempts).
                 '}';
             break;
     }
@@ -158,6 +160,24 @@ function testTakerOutput($uid, $qidScore, $result) {
     global $outputStream;
     global $outputFilename;
     $builtLine = $uid . $tab . implode($tab, $qidScore) . $tab . $result;
+    switch ($apiInformation['output']) {
+        case 'text':
+        case 'excel':
+        case 'export':
+            file_put_contents($outputFilename, $builtLine . "$newline", FILE_APPEND | LOCK_EX);
+            break;
+        case 'browser':
+        default:
+            echo $builtLine . "$newline";
+            break;
+    }
+}
+function distractorOutput($uid, $qtype, $idx, $answers) {
+    global $tab;
+    global $newline;
+    global $apiInformation;
+    global $outputFilename;
+    $builtLine = $uid . $tab . $qtype . $tab . $idx . $tab. implode($tab, $answers);
     switch ($apiInformation['output']) {
         case 'text':
         case 'excel':
@@ -229,7 +249,7 @@ try {
 
             // Write a header record (if not done by individual method)
             if ($apiInformation['method'] != 'getCandidateAnswers')
-                iagOutput('Filename','Item id','Q Type','Options', 'Context','Reading text','Tags',array('attempted' => 'Attempts','correct' =>'Correct','distractors' => 'Distractors'));
+                iagOutput('Filename','Item id','Q Type','Options', 'Context','Reading text','Tags',array('correctIdx' => 'correct','answers' =>'Answers'));
             break;
         default:
             header('Content-Type: text/html; charset=utf-8');
@@ -246,6 +266,8 @@ try {
     // Nothing from root 49040 (trials)
     //$whiteList = '(366,364,358,345,338,330,328,327,274,273,251,238,229,226,225,78,68,65,64,63,62,61,60,59,58,57,51,50,49,48,47,46,45,44,43)';
     //$whiteList = '(1021,1017,1011,1010,1008,1004,997,996,992,991,987,984,983,982,977,976,975,973,972,966,961,955,952,944,936,935,934,933,932,931,928,927,926,925,922,918,917,916,913,912,911,910,909,907,906,905,904,903,902,901,900,899,898,897,896,893,888,885,884,883,882,881,880,879,878,876,874,872,871,870,869,868,867,865,864,863,862,861,860,859,858,857,856,854,853,852,851,850,849,848,847,838,836,815,814,807,806,805,803,793,785,784,783,782,779,774,771,769,768,767,766,764,763,762,760,759,758,757,755,754,753,752,751,750,749,748,747,746,745,744,743,742,741,740,739,737,736,735,734,732,731,730,729,728,726,725,724,722,721,720,719,718,717,711,710,706,705,700,699,698,697,696,688,685,683,678,677,674,667,664,661,656,654,649,648,647,643,639,638,631,630,629,625,624,620,612,611,610,609,608,607,606,605,604,603,590,579,575,563,558,555,551,550,538,524,512,502,501,500,499,497,494,490,488,485,484,473,449,439,431,426,425,416,410,407,404,402,396,395,394,393,392,391,390,389,388,387,386,385,381,380,379,378,377,376,375,371,366,364,358,345,338,330,328,327,274,273,251,238,229,226,225,78,68,65,64,63,62,61,60,59,58,57,51,50,49,48,47,46,45,44,43)';
+    //$whiteList = array(484, 638);
+    //$thisService->itemAnalysisOps->setWhiteList($whiteList);
     $thisService->itemAnalysisOps->setWhiteList($thisService->itemAnalysisOps->getTestsForWhiteList());
 
     switch ($apiInformation['method']) {
@@ -321,8 +343,11 @@ try {
             break;
 
         case 'itemAnalysis':
-		case 'itemAnalysisWithData':
             $rc = $thisService->itemAnalysisOps->itemAnalysis($apiInformation, $titleFolder);
+            break;
+
+        case 'distractorAnalysis':
+            $rc = $thisService->itemAnalysisOps->distractorAnalysis($apiInformation, $titleFolder);
             break;
 	}
 

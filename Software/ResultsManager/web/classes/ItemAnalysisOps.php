@@ -38,14 +38,22 @@ class ItemAnalysisOps {
             $this->readItemsFromExercise($file, $apiInformation, $titleFolder);
         }
     }
-    // Read all items that could possibly be in the test (based on files)
+    public function distractorAnalysis($apiInformation, $titleFolder) {
+        $files = $this->getFilesFromMenu($apiInformation, $titleFolder);
+        $qids = [];
+        foreach ($files as $file) {
+            $qids = array_merge($qids, $this->readItemsFromFile($file, $apiInformation, $titleFolder));
+        }
+        $this->readDistractorsForItems($qids);
+    }
+        // Read all items that could possibly be in the test (based on files)
     // Read all results from valid tests, sort by user then item
     // For each user, retrieve their score for each of the list of items (if any) and output
     public function getCandidateAnswers($apiInformation, $titleFolder) {
         $files = $this->getFilesFromMenu($apiInformation, $titleFolder);
         $qids = [];
         foreach ($files as $file) {
-            $qids = array_merge($qids, $this->readItemsFromDB($file, $apiInformation, $titleFolder));
+            $qids = array_merge($qids, $this->readItemsFromFile($file, $apiInformation, $titleFolder));
         }
         $this->readDataForItems($qids);
     }
@@ -463,10 +471,10 @@ class ItemAnalysisOps {
                 }
                 // Query the database to get attempt information for item analysis
                 // You might skip this if you just want header information about the items, not the data
-                if ($apiInformation["method"] == "itemAnalysisWithData")
-                    $attempts = $this->iaAttempts($qid);
+                //if ($apiInformation["method"] == "itemAnalysisWithData")
+                //    $attempts = $this->iaAttempts($qid);
 
-                iagOutput($file, $qid, $qtype, $root, $context, $readingText, $tags, $attempts);
+                iagOutput($file, $qid, $qtype, $root, $context, $readingText, $tags);
                 if (isset($newhtml)) {
                     $newhtml->clear();
                     unset($newhtml);
@@ -480,7 +488,7 @@ class ItemAnalysisOps {
     }
 
     // Get a list of all the items that can be included in the test
-    protected function readItemsFromDB($file, $apiInformation, $titleFolder) {
+    protected function readItemsFromFile($file, $apiInformation, $titleFolder) {
 
 	    $qids = [];
         $html = file_get_html($titleFolder . '/' . $file);
@@ -491,11 +499,49 @@ class ItemAnalysisOps {
             // For each question in the model, pick the item id and save
             $qids = [];
             foreach ($model->questions as $question) {
-                $qids[] = $question->id;
+                // Filter by tag if you want
+                if (isset($apiInformation['tags'])) {
+                    $tags = $apiInformation['tags'];
+                    // If there are many tags, are they AND or OR
+                    $andTags = explode('^', $tags); // You can't put & or + in the query line!
+                    $orTags = explode(',', $tags);
+                    if (count($andTags) > 1) {
+                        // each andTag must exist
+                        foreach ($andTags as $tag) {
+                            if (!in_array($tag, $question->tags))
+                                continue 2;
+                        }
+                        $qids[] = $question->id;
+                    } else {
+                        // any orTag must exist
+                        foreach ($orTags as $tag) {
+                            if (in_array($tag, $question->tags))
+                                break;
+                        }
+                        $qids[] = $question->id;
+                    }
+                } else {
+                    $qids[] = $question->id;
+                }
             }
         }
         return $qids;
     }
+    protected function readDistractorsForItems($qids) {
+
+        // First a header record
+        distractorOutput('id', 'qType', 'cIdx', array('answers'));
+
+	    foreach ($qids as $qid) {
+            $distractors = $this->iaAttempts($qid);
+
+            // Now we have an array of items, each with a count of the selected distractors
+            // Need to format each line so that the items are in the right order and ones the user didn't see are included
+            $answersArray = explode(',', $distractors['answers']);
+            distractorOutput($qid, $distractors['qtype'], $distractors['correctIdx'], $answersArray);
+        }
+    }
+
     protected function readDataForItems($qids) {
 
         // For each test-taker in the valid tests - this is a matrix of users and results
@@ -563,98 +609,132 @@ EOD;
     }
 
     // Count the number of times this item id has been attempted
+    // dpt#487 Show the times each answer (correct plus distractors) has been chosen
     public function iaAttempts($itemId) {
-        // We can't know the number of times the question has been presented and not attempted
-        // as we don't write scoreDetails for such a case. Should we?
-        // COUNT(*) presented,
         $inWhiteList = '('.implode(',',$this->getWhiteList()).')';
 
-        $sql = <<<EOD
-            select sum(CASE WHEN d.F_Score is not null THEN 1 ELSE 0 END) as attempts, 
-                    sum(CASE WHEN d.F_Score > 0 THEN 1 ELSE 0 END) as correct
-            FROM T_ScoreDetail d, T_TestSession t
-            WHERE d.F_ItemID=?
-            AND t.F_TestID in $inWhiteList
-            AND t.F_SessionID = d.F_SessionID;
-EOD;
-        $bindingParams = array($itemId);
-        $rs = $this->db->Execute($sql, $bindingParams);
-        if ($rs) {
-            $dbObj = $rs->FetchNextObj();
-            //$rc['presented'] = intval($dbObj->presented);
-            $rc['attempted'] = ($dbObj->attempts) ? intval($dbObj->attempts) : 0;
-            $rc['correct'] = ($dbObj->correct) ? intval($dbObj->correct) : 0;
-        } else {
-            //$rc['presented'] = 0;
-            $rc['attempted'] = 0;
-            $rc['correct'] = 0;
-        }
-
-        // Find the pattern for the top 3 errors
-        // First word placement...
-        // {"questionType":"FreeDragQuestion","state":{..."current":[{"dropTargetIdx":2,"answerIdx":null}]},"tags":["A2","word-placement"]}
+        // {"questionType":"DragQuestion","state":{..."current":[{"dropTargetIdx":2,"answerIdx":null}]},"tags":["A2","word-placement"]}
         // a score of -1 means it was attempted and got wrong - always true??
-        $wrongPatterns = array();
+        $answerPatterns = array();
         $sql = <<<EOD
 			SELECT *  
             FROM T_ScoreDetail d, T_TestSession t
             WHERE d.F_ItemID=?
-            AND d.F_Score = -1
             AND t.F_TestID in $inWhiteList
             AND t.F_SessionID = d.F_SessionID;
 EOD;
         $bindingParams = array($itemId);
         $rs = $this->db->Execute($sql, $bindingParams);
         if ($rs) {
-            $wrongPatterns = array();
-            $j = 0;
+            $specialSort = false;
             while ($dbObj = $rs->FetchNextObj()) {
-                $wrongs = array();
+                //$answers = array();
                 $scoreDetail = new ScoreDetail();
                 $scoreDetail->fromDatabaseObj($dbObj);
                 $detail = json_decode($scoreDetail->detail);
                 $qtype = $detail->questionType;
+                $rc['qtype'] = $qtype;
                 $state = $detail->state;
                 switch ($qtype) {
                     case 'MultipleChoiceQuestion':
-                        if (isset($state[0]))
-                            $wrongs[0] = $state[0];
+                        if (isset($state[0])) {
+                            if (isset($answerPatterns[$state[0]])) {
+                                $answerPatterns[$state[0]]++;
+                            } else {
+                                $answerPatterns[$state[0]] = 1;
+                            }
+                        }
+                        // Note the correct index (only needs to be done once really)
+                        if (intval($scoreDetail->score) > 0)
+                            $rc['correctIdx'] = $state[0];
                         break;
                     case 'DropdownQuestion':
-                        $wrongs[0] = $state;
+                        // NOTE this should really be held identically to mc I think
+                        if (isset($answerPatterns[$state])) {
+                            $answerPatterns[$state]++;
+                        } else {
+                            $answerPatterns[$state] = 1;
+                        }
+                        // Note the correct index (only needs to be done once really)
+                        if (intval($scoreDetail->score) > 0)
+                            $rc['correctIdx'] = $state;
+                        break;
                         break;
                     case 'DragQuestion':
-                        if (isset($state[0]->draggableIdx))
-                            $wrongs[0] = $state[0]->draggableIdx;
+                        if (isset($state[0]->draggableIdx)) {
+                            if (isset($answerPatterns[$state[0]->draggableIdx])) {
+                                $answerPatterns[$state[0]->draggableIdx]++;
+                            } else {
+                                $answerPatterns[$state[0]->draggableIdx] = 1;
+                            }
+                            // Note the correct index (only needs to be done once really)
+                            if (intval($scoreDetail->score) > 0)
+                                $rc['correctIdx'] = $state[0]->draggableIdx;
+                        }
                         break;
                     case 'FreeDragQuestion':
                         $current = $state->current;
-                        foreach ($current as $answer) {
-                            // This is for word placement
-                            if (is_null($answer->answerIdx)) {
-                                $wrongs[0] = $answer->dropTargetIdx;
-                            } else {
-                                // This is for any reorganisation
-                                $wrongs[$answer->answerIdx] = $answer->dropTargetIdx;
+                        // Note - need a way to differentiate between word placement and sentence reconstruction
+                        if ($state->initial == []) {
+                            foreach ($current as $answer) {
+                                if (isset($answerPatterns[$answer->dropTargetIdx])) {
+                                    $answerPatterns[$answer->dropTargetIdx]++;
+                                } else {
+                                    $answerPatterns[$answer->dropTargetIdx] = 1;
+                                }
+                                // TODO I have no idea what multiple answers in current would indicate...
+                                if (intval($scoreDetail->score) > 0)
+                                    $rc['correctIdx'] = $answer->dropTargetIdx;
                             }
+                        } else {
+                            // This is for sentence reconstruction
+                            // The correct is always listed first, just as idx=0
+                            if (intval($scoreDetail->score) > 0) {
+                                if (isset($answerPatterns[0])) {
+                                    $answerPatterns[0]++;
+                                } else {
+                                    $answerPatterns[0] = 1;
+                                }
+                            } else {
+                                // What pattern did they make (wrongly)?
+                                $thisPattern = [];
+                                foreach ($current as $answer) {
+                                    $thisPattern[] = $answer->dropTargetIdx;
+                                }
+                                $patternString = implode(',', $thisPattern);
+                                // And tally up the number who did this pattern
+                                if (isset($answerPatterns[$patternString])) {
+                                    $answerPatterns[$patternString]++;
+                                } else {
+                                    $answerPatterns[$patternString] = 1;
+                                }
+                            }
+                            $specialSort = true;
                         }
                         break;
                     default:
                 }
-                $pattern = array();
-                for ($i = 0; $i < count($wrongs); $i++) {
-                    $pattern[] = $wrongs[$i] + 1; // Make it 1 based so easier to read
-                }
-                $wrongPatterns[$j] = implode(',', $pattern);
-                $j++;
+
             }
-        }
-        if (count($wrongPatterns) > 0) {
-            // Find unique values and count them
-            $summary = array_count_values($wrongPatterns);
-            arsort($summary);
-            // But only worth reporting top (5?) results?
-            $rc['distractors'] = array_slice($summary, 0,5, true);
+            $sortedAnswers = array();
+            if ($specialSort) {
+                // TODO For now I don't know how to display the incorrect sequence. Perhaps it doesn't matter unless
+                // there is an item that too many people get wrong in the same way. Then we can look at that item in detail.
+                foreach ($answerPatterns as $key => $value) {
+                    // Only write out patterns which more than x people choose
+                    if ($value > 2)
+                        $sortedAnswers[] = $value;
+                }
+            } else {
+                if (count($answerPatterns) >= 1) {
+                    $maxKey = max(array_keys($answerPatterns));
+                    for ($i = 0; $i <= $maxKey; $i++) {
+                        $sortedAnswers[] = (isset($answerPatterns[$i])) ? $answerPatterns[$i] : 0;
+                    }
+                }
+            }
+            $pattern = implode(',', $sortedAnswers);
+            $rc['answers'] = $pattern;
         }
 
         return $rc;
