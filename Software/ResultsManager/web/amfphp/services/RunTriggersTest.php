@@ -77,15 +77,16 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 			//$trigger->rootID = Array(10758,10759);
 		}
 		// Ignore Road to IELTS v1 until all expired or removed
-		$trigger->condition->notProductCode = '12,13';
+        //$trigger->condition->notProductCode = (isset($trigger->condition->notProductCode)) ? $trigger->condition->notProductCode . ',12,13' : '12,13';
 
         // gh#1422 Temporary hack to stop Practical Writing trial accounts from triggering a renewal reminder
         //if ($msgType == 1)
         //    $trigger->condition->notProductCode = '61';
 
-        // gh#1581 Stop usage stats triggering for DPT
-        if ($msgType == 2)
-            $trigger->condition->notProductCode = '63';
+        // gh#1581 1602 Stop usage stats and subscription reminders triggering for DPT
+        if ($msgType == 2 || $msgType == 1) {
+            $trigger->condition->notProductCode = (isset($trigger->condition->notProductCode)) ? $trigger->condition->notProductCode . ',63' : '63';
+        }
 
         $triggerResults = $dmsService->triggerOps->applyCondition($trigger, $triggerDate);
 		echo count($triggerResults) .' accounts for '.$trigger->name.$newLine;
@@ -340,8 +341,8 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 echo $GLOBALS['db'].$newLine;
 // If you want to run specific triggers for specific days (to catch up for days when this was not run for instance)
 $testingTriggers = "";
-//$testingTriggers .= "subscription reminders";
-$testingTriggers .= "usage stats";
+$testingTriggers .= "subscription reminders";
+//$testingTriggers .= "usage stats";
 //$testingTriggers .= "support";
 //$testingTriggers .= "quotations";
 //$testingTriggers .= "trial reminders";
@@ -391,6 +392,7 @@ if (stripos($testingTriggers, "subscription reminders") !== false) {
 	// Now this information is in the trigger table
 	//$subscriptionTriggers = array(1, 6, 7, 8, 32, 33, 34, 36, 38, 39, 40, 41, 42); // account subscription reminders
 	$subscriptionTriggers = null;
+    $subscriptionTriggers = array(41); // account subscription reminders
 	$msgType = 1; // subscription reminders
 	if (isset($_REQUEST['date'])) {
 		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
