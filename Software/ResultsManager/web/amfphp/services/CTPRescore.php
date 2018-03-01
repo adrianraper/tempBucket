@@ -25,12 +25,14 @@ $service->changeDB($thisHost);
 // If you want to really do a rescore and change the database, mode=overwrite
 $mode = (isset($_GET['mode'])) ? $_GET['mode'] : 'debug';
 
-if ($requestedSessionID == null && $requestedTestID == null && $testTakerEmail == null)
-    throw new Exception("Parameter should be sessionID=xx, testID=xx or email=x@y.z");
+//if ($requestedSessionID == null && $requestedTestID == null && $testTakerEmail == null)
+//    throw new Exception("Parameter should be sessionID=xx, testID=xx or email=x@y.z");
 
 try {
     $json = json_decode('{"command":"getTestResults","sessionID":"'.$requestedSessionID.'","testID":"'.$requestedTestID.'","email":"'.$testTakerEmail.'","mode":"'.$mode.'"}');
-
+    $json = json_decode('{"command":"getTestResults","sessionID":"222","mode":"debug"}');
+    /*
+    */
     if (!$json)
         throw new Exception("Empty request");
 

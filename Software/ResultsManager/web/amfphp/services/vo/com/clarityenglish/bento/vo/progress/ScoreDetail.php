@@ -60,7 +60,7 @@ class ScoreDetail {
         }
 
         // ctp#216 Write the time sent by the device for when the answer was selected  - null means not answered
-        $this->dateStamp = $answerObj->answerTimestamp;
+        $this->dateStamp = (isset($answerObj->answerTimestamp)) ? $answerObj->answerTimestamp : null;
     }
 	
 	public function setUID($value) {

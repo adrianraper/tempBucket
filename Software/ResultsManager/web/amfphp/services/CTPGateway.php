@@ -20,9 +20,9 @@ try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
     /*
+    $json = json_decode('{"command":"getTestResult","appVersion":"1.1.3","sessionID":"220","mode":"debug"}');
     $json = json_decode('{"command":"login","email":"dandy@dpt","password":"2e93f6f5de7b09f1987ae0b9e5b3f383","productCode":63,"platform":"Chrome 58.0.3029.110 on Windows 10 64-bit","appVersion":"0.6.1"}');
     $json = json_decode('{"command":"getTranslations","lang":"zh-tw"}');
-    $json = json_decode('{"command":"getTestResult","appVersion":"0.7.4","testID":"49","sessionID":"177","mode":"overwrite"}');
     $json = json_decode('{"command":"login","email":"dandy@dpt","password":"2e93f6f5de7b09f1987ae0b9e5b3f383","productCode":63,"appVersion":"0.6.1"}');
     $json = json_decode('{"command":"getTestResult","appVersion":"0.7.4","testID":"35","sessionID":"166","mode":"overwrite"}');
     $json = json_decode('{"command":"login","email":"asra@hct","password":"c15521c9a6e45e0192345f66a34bd634","productCode":63}');
@@ -107,16 +107,33 @@ try {
     echo json_encode(array("error" => $e->getMessage(), "code" => $e->getCode()));
 } catch (Exception $e) {
     switch ($e->getCode()) {
-        // ctp#75
+        // ctp#75 dpt#488 More codes are expected and handled
         case 200:
+        case 201:
+        case 203:
+        case 204:
         case 205:
         case 206:
         case 207:
         case 208:
+        case 209:
         case 210:
         case 213:
         case 214:
         case 215:
+        case 217:
+        case 218:
+        case 220:
+        case 221:
+        case 224:
+        case 300:
+        case 301:
+        case 303:
+        case 304:
+        case 306:
+        case 311:
+        case 312:
+        case 313:
             headerDateWithStatusCode(401);
             break;
         default:
