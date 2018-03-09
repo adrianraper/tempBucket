@@ -313,7 +313,7 @@ public class RemoteDelegate extends EventDispatcher implements IDelegate {
         }
         // We have waited long enough for endpoints to respond, go ahead with whatever we have
         private function waitNoMore(event:TimerEvent):void {
-            trace("stop waiting for endpoints to respond");
+            //trace("stop waiting for endpoints to respond");
             for each (var endpoint:Endpoint in endpoints)
                 closeRemoteObject(endpoint.remoteObject);
 
@@ -328,7 +328,7 @@ public class RemoteDelegate extends EventDispatcher implements IDelegate {
         }
         // Are there any endpoints still waiting for a response?
         private function waitForFaults(event:TimerEvent):void {
-            trace("check for outstanding calls for " + operationName);
+            //trace("check for outstanding calls for " + operationName);
             // Is there anything in the remoteObjects collection that is not nullifed?
             for each (var endpoint:Endpoint in endpoints) {
                 if (endpoint.waitForResult) {
@@ -342,7 +342,10 @@ public class RemoteDelegate extends EventDispatcher implements IDelegate {
                 faultTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, waitNoMore);
                 faultTimer = null;
             }
+            // m#9 Can we check here to see if this is an internet connection blip and if yes
+            // display a nice warning not fatal, and do nothing else until they try again?
             if (responder) responder.onDelegateFault(operationName, firstFault);
+
             // gh#1561 This seems to never be used, but very naughty to just comment it out here
             //if (dispatchEvents) dispatchEvent(event);
 

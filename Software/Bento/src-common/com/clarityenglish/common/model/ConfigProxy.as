@@ -620,6 +620,11 @@ import mx.styles.StyleManager;
                 var authenticationError:BentoError = BentoError.create(fault);
                 authenticationError.errorContext = copyProxy.getCopyForId("errorLostAuthentication");
                 sendNotification(CommonNotifications.BENTO_ERROR, authenticationError);
+            // m#9 cope with internet connection blips?
+            } else if (fault.faultCode == 'Client.Error.MessageSend' || fault.faultString == 'Send failed') {
+                var connectionError:BentoError = BentoError.create(fault, false);
+                connectionError.errorContext = copyProxy.getCopyForId("errorLostConnection");
+                sendNotification(CommonNotifications.BENTO_ERROR, connectionError, "warning");
             } else {
 
                 switch (operation) {

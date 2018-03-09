@@ -7,6 +7,7 @@
             <!-- Errors -->
             <lit name="errorUnknown" code="100">Unknown error</lit>
             <lit name="errorLostAuthentication" code="101">You have been timed out. Please start again. Remember, help is always available at support@clarityenglish.com</lit>
+            <lit name="errorLostConnection" code="104">Connection to internet lost, try again.</lit>
             <!-- gh#1292 -->
             <lit name="userAccessError" code="102">You do not have permission for these users. ({ids})</lit>
             <lit name="errorTokenInvalid" code="103">You need to sign-in again as your authentication is lost.</lit>
@@ -92,7 +93,7 @@
             <lit name="problemLabel"></lit> <!-- "Sorry, there is a problem" is hardcoded in ShowErrorCommand -->
             
             <lit name="stdErrorTitle">Sorry, you can’t keep going...</lit>
-            <lit name="stdWarningTitle">FYI...</lit>
+            <lit name="stdWarningTitle">Something is wrong...</lit>
 
             <!-- Loading -->
             <lit name="loadingLabel">loading...</lit>

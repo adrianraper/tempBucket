@@ -175,6 +175,7 @@ class AbstractService {
 	
 	// Authentication & security
 	public function beforeFilter($function_called) {
+	    //return false;
 		// These functions can be called without logging in
 		// TODO. Too many are having to go in here - why aren't I validating my login?
 		/*

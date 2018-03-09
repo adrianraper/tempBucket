@@ -492,6 +492,16 @@ import flash.events.TimerEvent;
                 authenticationError.errorContext = copyProxy.getCopyForId("errorLostAuthentication");
                 sendNotification(CommonNotifications.BENTO_ERROR, authenticationError);
 
+            // m#9 cope with internet connection blips?
+            } else if (fault.faultCode == 'Client.Error.MessageSend' || fault.faultString == 'Send failed') {
+                // If this is a regular updateLicence call, you can't tell someone to 'try again'
+                // as they didn't do anything, so just suppress these errors altogether
+                if (operation != "updateLicence") {
+                    var connectionError:BentoError = BentoError.create(fault, false);
+                    connectionError.errorContext = copyProxy.getCopyForId("errorLostConnection");
+                    sendNotification(CommonNotifications.BENTO_ERROR, connectionError, "warning");
+                }
+
             } else {
                 switch (operation) {
                     case "login":

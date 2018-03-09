@@ -99,14 +99,19 @@ import flash.events.Event;
 		
 		public function onDelegateFault(operation:String, fault:Fault):void {
             var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
-
             var delegateError:BentoError = BentoError.create(fault);
 
-            if (fault.faultCode == 'AMFPHP_AUTHENTICATE_ERROR' || fault.faultString == 'errorLostAuthentication')
-                delegateError.errorContext = copyProxy.getCopyForId("errorLostAuthentication");
-
-            sendNotification(CommonNotifications.BENTO_ERROR, delegateError);
-            sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
+            // m#9 cope with internet connection blips?
+            if (fault.faultCode == 'Client.Error.MessageSend' || fault.faultString == 'Send failed') {
+                var connectionError:BentoError = BentoError.create(fault, false);
+                connectionError.errorContext = copyProxy.getCopyForId("errorLostConnection");
+                sendNotification(CommonNotifications.BENTO_ERROR, connectionError, "warning");
+            } else {
+                if (fault.faultCode == 'AMFPHP_AUTHENTICATE_ERROR' || fault.faultString == 'errorLostAuthentication')
+                    delegateError.errorContext = copyProxy.getCopyForId("errorLostAuthentication");
+                sendNotification(CommonNotifications.BENTO_ERROR, delegateError);
+                sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
+            }
 		}
 	}
 }
