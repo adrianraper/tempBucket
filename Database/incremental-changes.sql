@@ -1221,6 +1221,7 @@ CREATE TABLE `T_User_Deleted` (
   `F_ContactMethod` varchar(255) DEFAULT NULL,
   `F_InstanceID` text,
   `F_Memory` mediumtext,
+  `F_TimeZoneOffset` float(3,1) DEFAULT '0.0',
   PRIMARY KEY (`F_UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 DROP TABLE IF EXISTS `T_Membership_Deleted`;
@@ -1781,5 +1782,44 @@ VALUES (1,'Subscription reminder 30 days',NULL,NULL,'1','method=getAccounts&expi
 (65,'Your Road to IELTS has been upgraded',NULL,NULL,'r2i_upgrade_2016_followup','method=getAccounts&accountType=1&notLicenceType=5&productCode=52,53&active=true',NULL,NULL,'email','oneoff',4),
 (66,'Protea create a quotation',NULL,NULL,'66','method=getAccounts&expiryDate={now}+11w&accountType=1&notLicenceType=5&resellerID=28',NULL,NULL,'internalEmail','daily',0);
 
-
-
+-- Bring definition up to date (just add in all above changes)
+CREATE TABLE `T_User` (
+  `F_UserID` int(10) NOT NULL AUTO_INCREMENT,
+  `F_UserName` varchar(64) DEFAULT NULL,
+  `F_UserSettings` int(10) DEFAULT '0',
+  `F_Password` varchar(32) DEFAULT NULL,
+  `F_Salt` text,
+  `F_StudentID` varchar(64) DEFAULT NULL,
+  `F_Email` varchar(128) DEFAULT NULL,
+  `F_Birthday` datetime DEFAULT NULL,
+  `F_Country` varchar(64) DEFAULT NULL,
+  `F_custom1` varchar(64) DEFAULT NULL,
+  `F_custom2` varchar(64) DEFAULT NULL,
+  `F_custom3` varchar(64) DEFAULT NULL,
+  `F_custom4` varchar(64) DEFAULT NULL,
+  `F_ScratchPad` text,
+  `F_FullName` varchar(255) DEFAULT NULL,
+  `F_AccountStatus` int(10) DEFAULT NULL,
+  `F_UserType` smallint(5) DEFAULT NULL,
+  `F_UserProfileOption` int(10) DEFAULT NULL,
+  `F_UniqueName` smallint(5) DEFAULT NULL,
+  `F_ActivationKey` varchar(20) DEFAULT NULL,
+  `F_RegistrationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `F_ExpiryDate` datetime DEFAULT NULL,
+  `F_City` varchar(64) DEFAULT NULL,
+  `F_StartDate` datetime DEFAULT NULL,
+  `F_LicenceID` bigint(19) DEFAULT NULL,
+  `F_UserIP` varchar(50) DEFAULT NULL,
+  `F_RegisterMethod` char(16) DEFAULT NULL,
+  `F_ContactMethod` varchar(255) DEFAULT NULL,
+  `F_InstanceID` text,
+  `F_TimeZoneOffset` float(3,1) DEFAULT '0.0',
+  `F_Memory` mediumtext,
+  PRIMARY KEY (`F_UserID`),
+  UNIQUE KEY `Index_7` (`F_UserType`,`F_UserID`,`F_ExpiryDate`),
+  UNIQUE KEY `Index_8` (`F_UserName`,`F_UserID`,`F_StudentID`),
+  KEY `index_01` (`F_UserID`,`F_UserName`),
+  KEY `index_03` (`F_UserID`,`F_UserType`),
+  KEY `index_02` (`F_UserType`),
+  KEY `index_04` (`F_UserType`,`F_UserID`,`F_UserName`)
+) ENGINE=InnoDB AUTO_INCREMENT=2626240 DEFAULT CHARSET=utf8;
