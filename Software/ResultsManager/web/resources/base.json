@@ -85,7 +85,32 @@
         "IncorrectEmail": "Incorrect email address"
       }
     },
-	{
+    {
+      "language": "es",
+      "caption": "español",
+      "literals": {
+        "Uploading": "Cargar",
+        "Email": "Correo Electrónico",
+        "Password": "Contraseña",
+        "Login": "Acceder",
+        "Logout": "Desconectar",
+        "EmptyLogin": "Por favor, introduzca su correo electrónico y contraseña",
+        "IncorrectLogin": "Su correo electrónico o contraseña no es correcto, Por favor, inténtelo de nuevo",
+        "ConnectToInternet": "Por favor, conéctese a Internet",
+        "Downloading": "Descargando",
+        "Ok": "De acuerdo",
+        "Back": "Volver",
+        "Submit": "Enviar",
+        "Finish": "Finalizar",
+        "Start": "Empezar",
+        "DownloadError": "Error descargando el contenido. Automáticamente en unos pocos segundos, se empezará de nuevo a descargar…",
+        "DeviceUnsupported": "Necesita un dispositivo diferente para utilizar esta app. Consulte con su equipo de soporte.",
+        "TryAgain": "Inténtelo de nuevo",
+        "Reset": "Reinicie",
+        "Next": "Siguiente"
+      }
+    },
+    {
       "language": "namen",
       "caption": "North American English",
       "literals": {
@@ -168,10 +193,10 @@
         "Password": "密碼",
         "Login": "登入",
         "Downloading": "正在下載",
-		"EmptyLogin": "請輸入你的電郵地址。",
+        "EmptyLogin": "請輸入你的電郵地址。",
         "IncorrectLogin": "電郵地址或密碼不正確。",
         "ConnectToInternet": "請確認連接到網絡。",
-		"DownloadError": "下載錯誤。",
+        "DownloadError": "下載錯誤。",
         "TryAgain": "再試一次。",
         "Ok": "確定",
         "Next": "下一頁",
