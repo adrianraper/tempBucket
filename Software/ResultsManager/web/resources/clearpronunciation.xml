@@ -55,7 +55,16 @@
 			<br/>confident that you can read the phonemic symbols you will
 			<br/>see in a dictionary.</p>
 			]]></lit>
-			
+
+			<!-- Animation script -->
+			<lit name="voicedRichEditableText"><![CDATA[
+				<p><span fontWeight="bold">voiced sound: </span>use your vocal cords</p>
+			]]></lit>
+			<lit name="unvoicedRichEditableText"><![CDATA[
+				<p><span fontWeight="bold">unvoiced sound: </span>don't use your vocal cords</p>
+			]]>
+			</lit>
+
 			<!-- Settings -->
 			<lit name="settingsLabel">Choose the channel that plays the video best in your current location.</lit>
 			

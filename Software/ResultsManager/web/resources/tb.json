@@ -4,7 +4,13 @@
       "language": "en",
       "caption": "English",
       "literals": {
-        "ThankYouLabel": "Thank you for using Tense Buster"
+        "LearningObjectives": "Learning objective",
+        "WatchVideo": "Watch the introduction video",
+        "StartPractice": "Start learning!",
+        "VideoTranscript": "Video transcripts",
+        "AudioTranscript": "Audio transcripts",
+        "ThankYouLabel": "Thank you for using Tense Buster",
+        "Portfolio": "Your portfolio"
       }
     }
   ]

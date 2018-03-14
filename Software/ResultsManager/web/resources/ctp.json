@@ -20,6 +20,26 @@
         "DeviceUnsupported": "You need a different device to take the test. Check with your test adminstrator."
       }
     },
+	{
+      "language": "es",
+      "literals": {
+        "TestNotOpened": "El test no ha empezado todavía. Intente de nuevo en {date} a {time}.",
+        "TestClosed": "El test se cerró en {date} a {time}.",
+        "NotAnsweredQuestions": "Ha dejado una pregunta sin responder.|Ha dejado {count} preguntas sin responder.",
+        "IncorrectQuestions": "Debe responder correctamente a estas preguntas antes de que pueda seguir.",
+        "Access": "Código de acceso",
+        "Code": "Código",
+        "Result": "Resultado",
+        "Reset": "Reinicie",
+        "EnterCode": "Escriba el código para empezar el test.",
+        "SendingScores": "El test ha finalizado y se están enviando las respuestas. No salga del test hasta que vea el resultado o hasta que se lo notifique el administrador.",
+        "FinishedTest": "El test está finalizado y el resultado ha sido enviado a su administrador.",
+        "ICantDoThis": "No puedo hacerlo.",
+        "IncorrectValidateCode": "Parece que ha entrado un código erróneo. Compruebe de nuevo la comunicación del test o solicite ayuda al administrador del test.",
+        "EmptyValidateCode": "Por favor, inserte su código de validación.",
+        "DeviceUnsupported": "Necesita un dispositivo diferente para utilizar esta app. Consulte con su equipo de soporte."
+      }
+    },
     {
       "language": "de",
       "literals": {
