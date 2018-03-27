@@ -33,7 +33,7 @@
         "Reset": "Reinicie",
         "EnterCode": "Escriba el código para empezar el test.",
         "SendingScores": "El test ha finalizado y se están enviando las respuestas. No salga del test hasta que vea el resultado o hasta que se lo notifique el administrador.",
-        "FinishedTest": "El test está finalizado y el resultado ha sido enviado a su administrador.",
+        "FinishedTest": "El test ha finalizado, el resultado ha sido enviado a su administrador.",
         "ICantDoThis": "No puedo hacerlo.",
         "IncorrectValidateCode": "Parece que ha entrado un código erróneo. Compruebe de nuevo la comunicación del test o solicite ayuda al administrador del test.",
         "EmptyValidateCode": "Por favor, inserte su código de validación.",
@@ -115,22 +115,22 @@
     {
       "language": "ar",
       "literals": {
-	    "TestNotOpened": "لم يبدأ الامتحان بعد. حاول مرة أخرى فى {date} الساعة {time}.",
+        "TestNotOpened": "لم يبدأ الامتحان بعد. حاول مرة أخرى فى {date} الوقت {time}.",
         "NotAnsweredQuestions": "لقد نسيت {count} أسئلة.|لقد نسيت سؤالا",
-		"TestClosed": " تم غلق الامتحان فى {date} الساعة {time}.",
-        "IncorrectQuestions": "يجب أن تحل هذه الأسئلة بشكل صحيح قبل أن تنتقل إلى التالي.",
+        "TestClosed": "تم إغلاق الامتحان فى {date} الوقت {time}.",
+        "IncorrectQuestions": "يجب أن تحل هذه الأسئلة بشكل صحيح قبل أن تبدأ الامتحان.",
         "Access": "رمز الدخول",
-        "Code": "Code",
         "Result": "النتيجة",
-        "Reset": "إعادة للوضع السابق",
-        "EnterCode": "ادخل الرمز لتبدأ الإمتحان",
-        "SendingScores": "يقوم النظام بتقديم إجاباتك. لا تغادر الصفحة قبل أن ترى نتيجتك أو عندما يخبرك المشرف بذلك.",
-        "IncorrectValidateCode": "يبدو أنك أدخلت رمزا خاطئا. تفحص إشعار الفحص خاصتك مرة أخرى أو أطلب المساعدة من مشرف الإمتحان.",
-        "EmptyValidateCode": "الرجاء إدخال رمز التحقق خاصتك",
-		"ICantDoThis": "لا أستطيع حل هذه.",
-        "DeviceUnsupported": "أنت بحاجة لجهاز مختلف لإستخدام هذا التطبيق. اتصل مع فريق الدعم خاصتك.",
-        "Uploading": "رفع",
-		"FinishedTest": "انتهى الامتحان وتم ارسال النتيجة إلى منسق الامتحان."
+        "Reset": "العودة للبداية",
+        "EnterCode": "أدخل الرمز لتبدأ الإمتحان",
+        "SendingScores": "لقد انتهيت من الامتحان يقوم النظام بإرسال إجاباتك. لا تغادر الصفحة قبل أن ترى نتيجتك أو عندما يخبرك المشرف بذلك.",
+        "FinishedTest": "انتهى الامتحان وتم ارسال النتيجة إلى منسق الامتحان.",
+        "ICantDoThis": "لا أستطيع حل هذا.",
+        "IncorrectValidateCode": "يبدو أنك أدخلت رمزا خاطئاً. تفحص إشعار الخاص بك مرة أخرى أو أطلب المساعدة من مشرف الإمتحان.",
+        "EmptyValidateCode": "الرجاء إدخال رمز التحقق الخاص بك",
+        "ICantDoThis": "لا أستطيع حل هذا.",
+        "DeviceUnsupported": "أنت بحاجة لجهاز مختلف لإجراء هذا الامتحان. اتصل مع فريق الدعم الخاص بك.",
+        "Uploading": "تحميل"
       }
     }
   ]
