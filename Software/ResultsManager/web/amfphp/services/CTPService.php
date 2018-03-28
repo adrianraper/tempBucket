@@ -302,7 +302,8 @@ class CTPService extends BentoService {
         }
 
         // gh#151 Have we closed the session?
-        if (!$session->completedDateStamp || $mode=='overwrite') {
+        // but don't do anything if the session didn't start
+        if ((!$session->completedDateStamp && $session->startedDateStamp) || $mode=='overwrite') {
             // ctp#261 Get the time the last score was written for this session
             $lastScore = $this->testOps->getLastScore($sessionId);
             $session->completedDateStamp = $lastScore->dateStamp;
@@ -351,6 +352,11 @@ class CTPService extends BentoService {
             return $sessions;
         }
         return array();
+    }
+
+    // Get all tests for a customer
+    public function getTestsForRoot($rootId) {
+	    return $this->testOps->getTestsForRoot($rootId);
     }
 
     /**

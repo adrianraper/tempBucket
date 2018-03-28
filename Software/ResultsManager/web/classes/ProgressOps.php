@@ -305,7 +305,7 @@ SQL;
 SQL;
                 $bindingParams = array($record->F_UserID);
                 $innerRs = $this->db->Execute($innerSql, $bindingParams);
-                if ($innerRs) {
+                if ($innerRs && $innerRs->recordCount() > 0) {
                     $userObj = $innerRs->FetchNextObj();
                     $email = $userObj->F_Email;
                 } else {
@@ -545,8 +545,11 @@ SQL;
             $result = "U";
 
         // dpt#470 recalibrate the relative numeric
-        //$rn = $gaugeCorrect + $trackCorrect + $hurdle;
-        $rn = $this->rnMapper($result, $track, $trackCorrect, $trackBonusCorrect, $gaugeCorrect, $trackTags, $gaugeTags);
+        if ($result == "U") {
+            $rn = 0;
+        } else {
+            $rn = $this->rnMapper($result, $track, $trackCorrect, $trackBonusCorrect, $gaugeCorrect, $trackTags, $gaugeTags);
+        }
         $rc = array("level" => $result, "numeric" => $rn);
 
         // ctp#438 Report the test path

@@ -284,6 +284,7 @@ Ahora, haz clic en el botón 'Comenzar el examen' que aparece a la izquierda.
 <language name="Spanish" code="ES" mediaFolder="EN">
 <group name="labels">
 <lit name="specialIntroduction">Introducción</lit>
+<lit name="minutes">[x] mins</lit>
 </group>
 <group name="messages">
 <lit name="specialIntroduction">El examen de nivel comienza con 15 preguntas generales. (7min)

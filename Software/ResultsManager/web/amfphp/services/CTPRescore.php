@@ -28,39 +28,48 @@ $mode = (isset($_GET['mode'])) ? $_GET['mode'] : 'debug';
 //if ($requestedSessionID == null && $requestedTestID == null && $testTakerEmail == null)
 //    throw new Exception("Parameter should be sessionID=xx, testID=xx or email=x@y.z");
 
-try {
-    //$json = json_decode('{"command":"getTestResults","sessionID":"'.$requestedSessionID.'","testID":"'.$requestedTestID.'","email":"'.$testTakerEmail.'","mode":"'.$mode.'"}');
-    //$json = json_decode('{"command":"getTestResults","sessionID":"222","mode":"debug"}');
-    /*
-    */
-    if (!$json)
-        throw new Exception("Empty request");
-
-    echo json_encode(router($json));
-    flush();
-} catch (UserAccessException $e) {
-    header(':', false, 403);
-    echo json_encode(array("error" => $e->getMessage(), "code" => $e->getCode()));
-} catch (Exception $e) {
-    switch ($e->getCode()) {
-        // ctp#75
-        case 200:
-        case 205:
-        case 206:
-        case 207:
-        case 208:
-        case 210:
-        case 213:
-        case 214:
-        case 215:
-            header(':', false, 401);
-            break;
-        default:
-            header(':', false, 500);
-    }
-    echo json_encode(array("error" => $e->getMessage(), "code" => $e->getCode()));
+// If you are doing it for a whole account...
+$rootID = (isset($_GET['rootID'])) ? $_GET['rootID'] : null;
+if ($rootID) {
+    // get all the test IDs
+    $testIDs = getTestIDs($rootID);
+} else {
+    $testIDs = array($requestedTestID);
 }
+foreach ($testIDs as $testID) {
+    try {
+        $json = json_decode('{"command":"getTestResults","sessionID":"' . $requestedSessionID . '","testID":"' . $testID . '","email":"' . $testTakerEmail . '","mode":"' . $mode . '"}');
+        /*
+        $json = json_decode('{"command":"getTestResults","sessionID":"222","mode":"debug"}');
+        */
+        if (!$json)
+            throw new Exception("Empty request");
 
+        echo json_encode(router($json));
+        flush();
+    } catch (UserAccessException $e) {
+        header(':', false, 403);
+        echo json_encode(array("error" => $e->getMessage(), "code" => $e->getCode()));
+    } catch (Exception $e) {
+        switch ($e->getCode()) {
+            // ctp#75
+            case 200:
+            case 205:
+            case 206:
+            case 207:
+            case 208:
+            case 210:
+            case 213:
+            case 214:
+            case 215:
+                header(':', false, 401);
+                break;
+            default:
+                header(':', false, 500);
+        }
+        echo json_encode(array("error" => $e->getMessage(), "code" => $e->getCode()));
+    }
+}
 function router($json) {
 
     // Conversion between general Couloir data and Bento formats
@@ -73,7 +82,13 @@ function router($json) {
 
     if (!isset($json->mode))
     	$json->mode = null;
-    	
+    if (!isset($json->email))
+        $json->email = null;
+    if (!isset($json->testID))
+        $json->testID = null;
+    if (!isset($json->sessionID))
+        $json->sessionID = null;
+
     switch ($json->command) {
         case "getTestResults": return getTestResults($json->sessionID, $json->email, $json->testID, $json->mode);
         case "getTranslations": return getTranslations($json->lang);
@@ -97,4 +112,10 @@ function getTestResults($sessionID, $email, $testID, $mode = null) {
 function getTranslations($lang) {
     global $service;
     return $service->getTranslations($lang);
+}
+
+// If you want to rescore all tests for an account
+function getTestIDs($rootId) {
+    global $service;
+    return $service->getTestsForRoot($rootId);
 }

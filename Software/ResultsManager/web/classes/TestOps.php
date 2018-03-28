@@ -207,6 +207,22 @@ EOD;
 	    return $sessions;
     }
 
+    function getTestsForRoot($rootId) {
+        $testIds = array();
+        $sql = <<<EOD
+			SELECT DISTINCT(F_TestID) 
+			FROM T_TestSession
+			WHERE F_RootID=?
+            AND F_Result is not null
+EOD;
+        $bindingParams = array($rootId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs && $rs->RecordCount() > 0)
+            while ($dbObj = $rs->FetchNextObj())
+                $testIds[] = $dbObj->F_TestID;
+        return $testIds;
+    }
+
     // ctp#261 Find the first real score written for this session (so not including requirements)
     public function getFirstScore($sessionId) {
 	    // This works because the first 'exercise' in gauge is the instructions. You get a score
