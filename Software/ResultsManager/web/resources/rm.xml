@@ -458,7 +458,7 @@
             <lit name="report_licences">Licences used</lit>
             <lit name="report_sessions">Times run</lit>
 			<!-- gh#1505 -->
-			<lit name="report_result">CEF</lit>
+			<lit name="report_result">CEFR</lit>
             <lit name="report_testsCompleted">Tests taken</lit>
             <lit name="report_completedTime">Test completed</lit>
 			<lit name="report_localTime">Times</lit>
@@ -643,7 +643,7 @@
             <lit name="testCodeLabel">Access code</lit>
             <lit name="testTimeLabel">Time based</lit>
             <lit name="testCaptionLabel">Test name</lit>
-            <lit name="testShowResultLabel">Show test-takers their CEF result after the test?</lit>
+            <lit name="testShowResultLabel">Show test-takers their CEFR level after the test?</lit>
             <lit name="testPanel">Test schedule details</lit>
             <lit name="yesButton">Yes</lit>
             <lit name="noButton">No</lit>

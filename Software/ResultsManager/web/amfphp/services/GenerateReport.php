@@ -210,7 +210,7 @@ function dptResultFormatter($result, $format) {
             }
             // Then add the numeric sub-score
             if (isset($json->numeric))
-                $formattedResult .= ' (dpt: '.$json->numeric.')';
+                $formattedResult .= ' (RN: '.$json->numeric.')';
             break;
         default:
             $formattedResult = $result;
