@@ -44,7 +44,7 @@ $GLOBALS['rmail_smtp_username'] = "adrian.raper@clarityenglish.com";
 $GLOBALS['rmail_smtp_password'] = "Ce2015@smtp";
 
 /* The 'from' field of auto-sent emails */
-$GLOBALS['rmail_from'] = "Clarity English <support@clarityenglish.com>";
+$GLOBALS['rmail_from'] = "ClarityEnglish <support@clarityenglish.com>";
 
 $GLOBALS['data_dir'] = "../../../../ContentBench/Content";
 $GLOBALS['ap_data_dir'] = "../../../../ContentBench/ap";
