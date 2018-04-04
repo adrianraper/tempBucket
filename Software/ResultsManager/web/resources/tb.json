@@ -10,7 +10,10 @@
         "VideoTranscript": "Video transcripts",
         "AudioTranscript": "Audio transcripts",
         "ThankYouLabel": "Thank you for using Tense Buster",
-        "Portfolio": "Your portfolio"
+        "Portfolio": "Your portfolio",
+        "ThankYouLabel": "Thank you for using Tense Buster",
+        "CoverageProgressBarTitle": "Overall coverage {totalCoverage}%",
+        "CoverageInstruction": "Move your cursor over to see which exercises they are."
       }
     }
   ]
