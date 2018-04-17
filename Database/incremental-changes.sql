@@ -1749,7 +1749,7 @@ VALUES (1,'Subscription reminder 30 days',NULL,NULL,'1','method=getAccounts&expi
 (26,'Its Your Job. Unit 10 email',NULL,NULL,'2140','method=getAccounts&productCode=1001&userStartDate={now}-9f&contactMethod=email',NULL,'2010-05-01 00:00:00','email','daily',1),
 (30,'Early warning system',NULL,NULL,'100','method=getAccounts',NULL,'2011-07-19 00:00:00','email','weekly',1),
 (32,'Subscription reminder start+7d',NULL,NULL,'32','method=getAccounts&startDate={now}-7d&notCustomerType=1&accountType=1&notLicenceType=5&notResellerID=28',NULL,NULL,'email','daily',1),
-(33,'Subscription reminder usage stats',NULL,NULL,'20','method=getAccounts&startDay={day}&notCustomerType=1&accountType=1&notLicenceType=5&selfHost=false&active=true&optOutEmails=false',NULL,NULL,'usageStats','daily',2),
+(33,'Subscription reminder usage stats',NULL,NULL,'20','method=getAccounts&startDay={day}&notCustomerType=1&accountType=1&notLicenceType=5&notResellerID=28&selfHost=false&active=true&optOutEmails=false',NULL,NULL,'usageStats','daily',2),
 (34,'Support start+1.5m',NULL,NULL,'34','method=getAccounts&startDate={now}-1.5m&notCustomerType=1&accountType=1&notLicenceType=5&notResellerID=28',NULL,NULL,'email','daily',4),
 (35,'Support start+6.5m',NULL,NULL,'35','method=getAccounts&startDate={now}-6.5m&notCustomerType=1&accountType=1&notLicenceType=5&notResellerID=28','2011-12-31 00:00:00',NULL,'email','daily',4),
 (36,'Subscription reminder end-2.5m',NULL,NULL,'36','method=getAccounts&expiryDate={now}+10w&notCustomerType=1&accountType=1&notLicenceType=5&notResellerID=28',NULL,NULL,'email','daily',1),
@@ -1763,7 +1763,7 @@ VALUES (1,'Subscription reminder 30 days',NULL,NULL,'1','method=getAccounts&expi
 (45,'IELTSpractice.com 7d',NULL,NULL,'2200','method=getAccounts&expiryDate={now}+7d&licenceType=5&resellerID=36',NULL,NULL,'email','daily',1),
 (46,'IELTSpractice.com 1d',NULL,NULL,'2201','method=getAccounts&expiryDate={now}-1d&licenceType=5&resellerID=36',NULL,NULL,'email','daily',1),
 (48,'Library reminder start+7d',NULL,NULL,'library/32','method=getAccounts&startDate={now}-7d&customerType=1&accountType=1&notLicenceType=5&notResellerID=28',NULL,NULL,'email','daily',1),
-(49,'Library reminder usage stats',NULL,NULL,'library/20','method=getAccounts&startDay={day}&customerType=1&accountType=1&notLicenceType=5&selfHost=false&active=true&optOutEmails=false',NULL,NULL,'usageStats','daily',2),
+(49,'Library reminder usage stats',NULL,NULL,'library/20','method=getAccounts&startDay={day}&customerType=1&accountType=1&notLicenceType=5&notResellerID=28&selfHost=false&active=true&optOutEmails=false',NULL,NULL,'usageStats','daily',2),
 (50,'Library support start+1.5m',NULL,NULL,'library/34','method=getAccounts&startDate={now}-1.5m&customerType=1&accountType=1&notLicenceType=5&notResellerID=28',NULL,NULL,'email','daily',4),
 (51,'Library support start+6.5m',NULL,NULL,'library/35','method=getAccounts&startDate={now}-6.5m&customerType=1&accountType=1&notLicenceType=5&notResellerID=28','2011-12-31 00:00:00',NULL,'email','daily',4),
 (52,'Library reminder end-2.5m',NULL,NULL,'library/36','method=getAccounts&expiryDate={now}+10w&customerType=1&accountType=1&notLicenceType=5&notResellerID=28',NULL,NULL,'email','daily',1),
@@ -1823,3 +1823,9 @@ CREATE TABLE `T_User` (
   KEY `index_02` (`F_UserType`),
   KEY `index_04` (`F_UserType`,`F_UserID`,`F_UserName`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2626240 DEFAULT CHARSET=utf8;
+
+DELETE FROM T_Triggers WHERE F_TriggerID in (33,49);
+INSERT INTO `T_Triggers` (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`) 
+VALUES
+(33,'Subscription reminder usage stats',NULL,NULL,'20','method=getAccounts&startDay={day}&notCustomerType=1&accountType=1&notLicenceType=5&notResellerID=28&selfHost=false&active=true&optOutEmails=false',NULL,NULL,'usageStats','daily',2),
+(49,'Library reminder usage stats',NULL,NULL,'library/20','method=getAccounts&startDay={day}&customerType=1&accountType=1&notLicenceType=5&notResellerID=28&selfHost=false&active=true&optOutEmails=false',NULL,NULL,'usageStats','daily',2);
