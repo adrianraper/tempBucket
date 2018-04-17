@@ -269,7 +269,6 @@ SQL;
             // No answers have been saved. Exception?
             return null;
 
-        // TODO Currently you don't get records from the query that are presented not attempted, but we should
         $totalCorrect = $totalWrong = $totalSkipped = 0;
         $trackCorrect = $trackWrong = $trackBonusCorrect = 0;
         $gaugeCorrect = $gaugeOneCorrect = $gaugeTwoCorrect = $gaugeBonusCorrect = $gaugeWrong = 0;

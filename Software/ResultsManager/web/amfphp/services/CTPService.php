@@ -286,13 +286,16 @@ class CTPService extends BentoService {
         // Get the session record
         $session = $this->testOps->getTestSession($sessionId);
 
+        // Figure out the result
+        $thisResult = $this->progressOps->getTestResult($session, $mode);
+
         // For manual figuring out of a result, with more detail
         if ($mode=='debug')
-            return $this->progressOps->getTestResult($session, $mode);
+            return $thisResult;
 
         // gh#151 Has the result already been calculated for this session?
         if (!$session->result || $mode=='overwrite') {
-            $session->result = $this->progressOps->getTestResult($session, $mode);
+            $session->result = $thisResult;
 
             // ctp#261 Find the datestamp of the first real score in the test to update the session with
             // ctp#391 No need to change session record for start datestamp
