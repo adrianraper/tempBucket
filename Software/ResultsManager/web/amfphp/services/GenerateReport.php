@@ -141,6 +141,7 @@ $onClass = "Group";
 $forClass = "Title";
 Session::set('rootID', 163);
 */
+/*
 $forReportablesIDObjects = json_decode(stripslashes('[{"Group":"35026"},{"ScheduledTest":"82"}]'), true);
 $template="DPTSummary";
 $opts=json_decode(stripslashes('{"headers":{"dateRange":"","onReportLabel":"Report","forReportLabel":"Test caption","onReport":"Dynamic Placement Test","forReportDetail":"Feb test"},"detailedReport":true,"includeInactiveUsers":true,"includeStudentID":false,"timezoneOffset":-480}'), true);
@@ -148,7 +149,7 @@ $onReportablesIDObjects=json_decode(stripslashes('[{"Course":"63","Title":"63"}]
 $nocache="233557";
 $forClass="Group";
 $onClass="Title";
-
+*/
 // Protect against directory traversal
 // PHP 5.3
 $pattern = '/..\//';

@@ -245,8 +245,19 @@ EOD;
                 }
             }
         }
-		
-		// gh#777 Run a second query to add all users in a group who haven't got any score records
+        // m#159 I can't do anything other than set a number here.
+        if (stripos($template,'dptsummary') !== false) {
+            $numRows = count($rows);
+            for ($i=0; $i < $numRows; $i++) {
+                // A duration >30 usually means you ran the test on two devices, starting on one and finishing on the other
+                // It doesn't make any sense to show more than 30 mins.
+                if (isset($rows[$i]['duration']) && intval($rows[$i]['duration']) > 2100) {
+                    $rows[$i]['duration'] = 1800;
+                }
+            }
+        }
+
+        // gh#777 Run a second query to add all users in a group who haven't got any score records
 		if ($reportBuilder->getOpt(ReportBuilder::SHOW_INACTIVE_USERS)) {
             if (stripos($template,'dptsummary') !== false) {
                 $thisTestId = $reportBuilder->getOpt(ReportBuilder::FOR_TESTID);
@@ -322,7 +333,6 @@ EOD;
 		// Or it might be a better idea to do the necessary processing (summing, weighting etc) in here as PHP will be easier thatn XSL (for most stuff).
         // Dynamic Placement Test
         if (stripos($template,'dptsummary') !== false) {
-            // The result will have been calculated already by the application server
 
         // Clarity's Practical Placement Test (ClarityTestSummary and 3levelTestSummary)
         } elseif (strpos($template,'TestSummary') !== false) {
@@ -942,7 +952,7 @@ SQL;
 		} else if (isset($courseID)) {
 			$title = $this->getTitleForCourseID($courseID);
 		} else {
-			return $row;
+            return $row;
 		}
 		
 		if (isset($title->name)) {
@@ -1062,7 +1072,7 @@ SQL;
 			//$row['start_date'] = date("M j Y H:i", $timeStamp);
 			$row['start_date'] = DateTime::createFromFormat('Y-m-d H:i:s', $row['start_date'])->format('M j Y H:i');
 		}
-		
+
 		return $row;
 	}
 	

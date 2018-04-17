@@ -316,7 +316,7 @@
 					</xsl:call-template>
 				</div>
                 <xsl:if test="report/row/@result = '****'">
-				    <p>Results marked **** are saved but not enough tests have been purchased to see them.<br/>Contact Clarity to buy some more and these results will be shown.</p>
+				    <p>Results marked **** are saved but not enough tests have been purchased to see them.<br/>Contact ClarityEnglish to buy more and these results will be shown.</p>
                 </xsl:if>
 				<br/>
 							
