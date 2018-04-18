@@ -174,7 +174,8 @@ class Group extends Manageable {
 		
 		foreach (Group::getXMLSerializableFields() as $attribute)
 			if ($node->getAttribute($attribute))
-				$group->$attribute = $node->getAttribute($attribute);
+                // m#172
+				$group->$attribute = trim($node->getAttribute($attribute));
 		
 		return $group;
 	}

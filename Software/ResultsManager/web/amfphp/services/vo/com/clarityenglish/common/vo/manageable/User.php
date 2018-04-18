@@ -409,7 +409,8 @@ EOD;
 		
 		foreach (User::getXMLSerializableFields() as $attribute)
 			if ($node->getAttribute($attribute))
-				$user->$attribute = User::unserializeAttribute($attribute, $node->getAttribute($attribute));
+			    // m#172
+				$user->$attribute = trim(User::unserializeAttribute($attribute, $node->getAttribute($attribute)));
 		
 		return $user;
 	}
