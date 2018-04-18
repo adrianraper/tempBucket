@@ -166,7 +166,7 @@ class LoginService extends AbstractService {
 		$stubUser->trimDetails();
 		
 		// gh#164 pass loginOption to help with quick duplicate checking
-		return $this->manageableOps->addUser($stubUser, $group, $loginDetails->rootID, $loginDetails->loginOption);
+        return $this->manageableOps->addUser($stubUser, $group, $loginDetails->rootID, $loginDetails->loginOption);
 	}
 	/**
 	 * Return the group object given groupID or a user in that group

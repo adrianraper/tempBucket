@@ -7,18 +7,10 @@
 	
 	// These settings are domain dependent
 	$dbHost = "2";
-	if (strpos($domain, "fixbench")!==false) {
+	if (strpos($domain, "dock.projectbench")!==false) {
 		$prefix = "BCJPILA";
 		$rootID = "13901";
 		$groupID = "20294";
-	} elseif (strpos($domain, "claritymain")!==false) {
-		$prefix = "BCJPILA";
-		$rootID = "13563";
-		$groupID = "13737";
-	} elseif (strpos($domain, "claritydevelop")!==false) {
-		$prefix = "BCJPILA";
-		$rootID = "xx";
-		$groupID = "xx";
 	} else {
 		$prefix = "BCJPILA";
 		$rootID = "13982";

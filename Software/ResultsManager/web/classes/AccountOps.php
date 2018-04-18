@@ -1158,12 +1158,13 @@ EOD;
     }
 
 	public function getAccountFromPrefix($prefix) {
-
         $rootID = $this->getAccountRootID($prefix);
 
 		// now get the account (just one)
-		if ($rootID)
-			return array_shift($this->getAccounts(array($rootID)));
+		if ($rootID) {
+            $accounts = $this->getAccounts(array($rootID));
+            return array_shift($accounts);
+        }
 
         return null;
 	}

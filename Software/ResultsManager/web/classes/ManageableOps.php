@@ -160,8 +160,9 @@ class ManageableOps {
 
         // gh#653 Replace with conflictedUser
 		$rc = $this->isUserConflicted($user, $rootID, $loginOption);
-		
-		// This user cannot be added (probably because it does not have a unique key in this root context)
+        //AbstractService::$debugLog->info("LoginGateway addUser isConflicted ".$rc['returnCode']);
+
+        // This user cannot be added (probably because it does not have a unique key in this root context)
 		if ($rc['returnCode'] > 0) {
 			// TODO refactor with updateUser
 			switch ($rc['returnCode']) {
@@ -210,7 +211,7 @@ class ManageableOps {
 		// Add the auto-generated id to the original user object
 		$user->userID = $this->db->Insert_ID();
 		$user->id = (string)$parentGroup->id.'.'.$user->userID;
-		
+
 		// Now insert a record in the group membership table to say which parent group the user belongs to
 		// #340 SQLite doesn't like autoexecute
 		$sql = <<<EOD
