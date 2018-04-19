@@ -15,5 +15,10 @@ class PracticalWritingService extends BentoService {
 		// Set the title name for resources
 		AbstractService::$title = "practicalwriting";
 	}
+
+	// A fake function used to allow CouloirGateway to call this Bento service
+	public function setAppVersion($data) {
+
+    }
 	
 }

@@ -10,11 +10,11 @@ header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
 $json = json_decode(file_get_contents('php://input'));
+$json_error = json_last_error();
 /**
  * Pretend to pass variables for easier debugging
-
-$json = json_decode('{"command":"getCertificate","courseId":"2018068020000","courseName":"Lower Intermediate","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUyNTA3MDg4MSwic2Vzc2lvbklkIjoiNTI4In0.81pTL84D_Q411E52ZFmA9VR_vjV1-XvzZfmMczrmdoA","appVersion":"1.0.0"}');
-$json = json_decode('{"command":"login","appVersion":"1.0.0","login":"dandy@email","password":"1b623eda91888","productCode":"66","rootId":163}');
+$json = json_decode('{"command":"getMastery","userID":27639}');
+$json = json_decode('{"command":"login","email":"pinky@email","password":"password","timezoneOffset":"-480"}');
 $json = json_decode('{"appVersion":"0.10.14","command":"login","login":"dandelion","password":"c3ae35e6f2bddba4b092c476adf91ccd","productCode":"66","rootId":163,"token":null}');
 $json = json_decode('{"appVersion":"0.10.10","command":"getComparison","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUxMTI0OTY0NCwic2Vzc2lvbklkIjoiNDMwIn0.d5NEPkbwQ03tw3hHwcvRqnILwhvN-NRCceiBzfQy-9g"}');
 $json = json_decode('{"appVersion":"0.10.9","command":"addUser","email":"jonon@seagull.com","login":"Jonon Seagull","password":"34c9a6ae8bafe22f538970104d67609f",
@@ -234,36 +234,19 @@ $json = json_decode('{
 //1475543370002 - timestamp for 4th Oct about 9:04am
  */
 
-// sss#257 Detect if this request is aimed at PWVocabApp, and swiftly redirect if it is
+// sss#257 Detect if this request is aimed at PWVocabApp so that it can be handled specially later
 if ($json && !isset($json->appVersion)) {
-    $folder = substr($_SERVER['SCRIPT_NAME'],0,strrpos($_SERVER['SCRIPT_NAME'], 'CouloirGateway.php'));
-    $protocol = (stristr(strtolower($_SERVER['SERVER_PROTOCOL']),'https')) ? 'https://' : 'http://';
-    $host = $_SERVER['SERVER_NAME'];
-    $port = $_SERVER['SERVER_PORT'];
-    $gateway = 'PWVocabAppGateway.php';
-    $newURL = $protocol.$host.':'.$port.$folder.$gateway;
-    // If I simply use a header to redirect, I lose my request body.
-    // stackoverflow suggests to use curl instead
-    // https://stackoverflow.com/questions/22437548/php-how-to-redirect-forward-http-request-with-header-and-body
-    // Also note how that answer has different option if headers get all bound into the content. See /script/LoginGateway.php
-    //header('Location: '.$newURL);
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_POST, true);
-    // As the php://input stream can only be read once, put it into curl through postfields
-    // PHP5.6++ is supposed to let multiple reads, but it is fine for us
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($json));
-    curl_setopt($ch, CURLOPT_URL, $newURL);
-    curl_setopt($ch, CURLOPT_HEADER, true);
-    $headers = getallheaders();
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    if (isset($headers['Cookie'])) {
-        curl_setopt($ch, CURLOPT_COOKIE, $headers['Cookie']);
-    }
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, false);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
-    $response = curl_exec($ch);
-    exit;
+    $PWVocabApp = true;
+    require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
+    require_once(dirname(__FILE__)."/PracticalWritingService.php");
+    $service = new PracticalWritingService();
+    //AbstractService::$debugLog->info("PWVA" . json_encode($json));
+} else {
+    $PWVocabApp = false;
+    require_once(dirname(__FILE__)."/CouloirService.php");
+    $service = new CouloirService();
 }
+set_time_limit(60);
 
 // For setting the header when you want to send back an exception
 function headerDateWithStatusCode($statusCode) {
@@ -271,10 +254,6 @@ function headerDateWithStatusCode($statusCode) {
     $utcTimestamp = $utcDateTime->format('U')*1000;
     header("Date: ".$utcTimestamp, false, $statusCode);
 }
-
-require_once(dirname(__FILE__)."/CouloirService.php");
-$service = new CouloirService();
-set_time_limit(360);
 
 // Following for debug and logging dates and times
 // Pick up the current time and convert as if it came from app  (local timezone, microseconds)
@@ -289,9 +268,14 @@ $localTimestamp = $localDateTime->format('U')*1000;
 //$GLOBALS['fake_now'] = '2017-10-10 09:00:00';
 
 try {
+    if ($json_error !== JSON_ERROR_NONE)
+        throw new Exception("Passed request not valid json");
     if (!$json)
         throw new Exception("Empty request");
 
+    // m#173 Prefix all commands to handle vocab app differently
+    if ($PWVocabApp)
+        $json->command = 'PWVA'.$json->command;
     $jsonResult = router($json);
     /*
     switch ($json->command) {
@@ -305,16 +289,21 @@ try {
             AbstractService::$debugLog->info("CTP return " . json_encode($jsonResult));
     }
     */
+    // m#174 no wrapping for PWVocabApp
     // sss#256 put a success wrapper around the returning data
-    $jsonWrapped = array("success" => true, "details" => $jsonResult);
-    // sss#344 This command requires a list even if empty
-    if ($json->command == "getScoreDetails" && $jsonResult == array()) {
-        echo json_encode($jsonWrapped);
+    if ($PWVocabApp) {
+        echo json_encode($jsonResult);
     } else {
-        if ($jsonResult == []) {
-            echo json_encode($jsonWrapped, JSON_FORCE_OBJECT);
-        } else {
+        $jsonWrapped = array("success" => true, "details" => $jsonResult);
+        // sss#344 This command requires a list even if empty
+        if ($json->command == "getScoreDetails" && $jsonResult == array()) {
             echo json_encode($jsonWrapped);
+        } else {
+            if ($jsonResult == []) {
+                echo json_encode($jsonWrapped, JSON_FORCE_OBJECT);
+            } else {
+                echo json_encode($jsonWrapped);
+            }
         }
     }
 
@@ -362,9 +351,11 @@ try {
         default:
             headerDateWithStatusCode(500);
     }
-    echo json_encode(array("success" => false, "error" => array("message" => $e->getMessage(), "code" => (string) $e->getCode())));
-    // sss#236 If you need to run this code but the app is not implementing #256, include the next line and comment the above one
-    //echo json_encode(array("message" => $e->getMessage(), "code" => (string) $e->getCode()));
+    if ($PWVocabApp) {
+        echo json_encode(array("message" => $e->getMessage(), "code" => (string)$e->getCode()));
+    } else {
+        echo json_encode(array("success" => false, "error" => array("message" => $e->getMessage(), "code" => (string)$e->getCode())));
+    }
 }
 
 function router($json) {
@@ -392,6 +383,7 @@ function router($json) {
     $localDateTime = new DateTime();
     $localTimestamp = $localDateTime->format('Y-m-d H:i:s');
     //AbstractService::$debugLog->info("CTP ".$json->command." at ".$localTimestamp);
+
     switch ($json->command) {
         case "logout": return logout($json->token);
         case "login":
@@ -445,6 +437,14 @@ function router($json) {
             if (!isset($json->courseName)) $json->courseName = null;
             return getCertificate($json->token, $json->courseId, $json->courseName);
         case "dbCheck": return dbCheck();
+        // m#174
+        case "PWVAlogin":
+            if (!isset($json->email)) $json->email = null;
+            if (!isset($json->timezoneOffset)) $json->timezoneOffset = null;
+            return PWVAlogin($json->email, $json->password, $json->timezoneOffset);
+        case "PWVAupdateSession": return PWVAupdateSession($json->sessionID);
+        case "PWVAgetMastery": return PWVAgetMastery($json->userID);
+        case "PWVAwriteScore": return PWVAwriteScore($json->userID, $json->sessionID, $json->dateNow, $json->scoreObj);
         default: throw new Exception("Unknown command ".$json->command);
     }
 }
@@ -534,4 +534,56 @@ function getTranslations($lang, $productCode) {
 function dbCheck() {
     global $service;
     return $service->dbCheck();
+}
+// m#174 Calls unique to PWVocabApp. Will be useless once the app can be updated to call PWVocabAppGateway directly
+// or to use regular Couloir calls
+function PWVAlogin($email, $password, $timezoneOffset) {
+    global $service;
+    $rootID = null;
+    $productCode = 61;
+
+    // Fake a licence just to allow Bento to login with email - which gets the real licence (or does it?)
+    $minimalLicence = new Licence();
+    $minimalLicence->licenceType = 1;
+
+    // Login
+    $login = $service->login(
+        array("email" => $email, "password" => $password, "timezoneOffset" => $timezoneOffset),
+        User::LOGIN_BY_EMAIL,
+        true,
+        microtime(true) * 10000,
+        $minimalLicence, null, $productCode
+    );
+    $title = $login['account']->titles[0];
+    $user = $login['group']->manageables[0];
+
+    // Start a new session
+    $session = $service->startSession($user, $rootID, $productCode);
+    $sessionID = $session['sessionID'];
+
+    return array(
+        "user" => $user,
+        "title" => $title,
+        "sessionID" => $sessionID
+    );
+}
+
+function PWVAgetMastery($userID) {
+    global $service;
+    $productCode = 61;
+
+    return $service->progressOps->getMastery($userID, $productCode);
+}
+
+function PWVAwriteScore($userID, $sessionID, $dateNow, $scoreObj) {
+    global $service;
+    $user = $service->manageableOps->getUserById($userID);
+
+    return $service->writeScore($user, $sessionID, $dateNow, (array)$scoreObj);
+}
+
+function PWVAupdateSession($sessionID) {
+    global $service;
+
+    return $service->updateSession($sessionID);
 }

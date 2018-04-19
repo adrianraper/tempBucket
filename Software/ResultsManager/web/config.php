@@ -2,7 +2,7 @@
 
 // gh#1424 Set a longer max time, and then default for any normal call to 30 seconds
 //ini_set('max_execution_time', 120); // 2 minutes
-set_time_limit(30);
+set_time_limit(120);
 
 // gh#32 gh#1314
 if (isset($_GET['PHPSESSID']) && ($_GET['PHPSESSID']!='')) {
