@@ -235,8 +235,14 @@ SQL;
         $expungeDateStamp->modify('+'.$licence->licenceClearanceFrequency); // one licence period in the future
         $expungeDate = $expungeDateStamp->modify('-1 day')->format('Y-m-d 23:59:59'); // minus one day
 
+        $title = new Title();
+        $title->productCode = $productCode;
+        // m#175 Ignore Orchid titles
+        if ($title->isTitleOrchid())
+            return true;
+
         // sss#314 Is this a Couloir title?
-        if (in_array($productCode, array(66,67))) {
+        if ($title->isTitleCouloir()) {
             $sql = <<<SQL
                 INSERT INTO T_CouloirLicenceHolders (F_KeyID, F_RootID, F_ProductCode, F_StartDateStamp, F_EndDateStamp, F_LicenceType)
                 VALUES (?, ?, ?, ?, ?, ?)
@@ -504,8 +510,9 @@ EOD;
 		// v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
         // gh#1230 How many licences have been used since the licence clearance date?
 		if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
+            // m#175 Add a distinct filter in case the licence table includes duplicates
 			$sql = <<<EOD
-				SELECT COUNT(l.$keyFieldName) AS licencesUsed 
+				SELECT COUNT(DISTINCT(l.$keyFieldName)) AS licencesUsed 
 				FROM $licenceTableName l, T_User u
 				WHERE l.$keyFieldName = u.F_UserID
 				AND l.$dateFieldName >= ?
@@ -513,8 +520,9 @@ EOD;
 		} else {
 			// gh#604 Teacher records in session will now include root, so ignore them here
 			// gh#1228 But that ignores deleted/archived users, so revert
+            // m#175 Add a distinct filter in case the licence table includes duplicates
 			$sql = <<<EOD
-				SELECT COUNT(l.$keyFieldName) AS licencesUsed 
+				SELECT COUNT(DISTINCT(l.$keyFieldName)) AS licencesUsed 
 				FROM $licenceTableName l
 				WHERE l.$dateFieldName >= ?
 EOD;
@@ -836,7 +844,8 @@ EOD;
 		// gh#1230
         $account = $this->accountOps->getBentoAccount($rootID, $productCode);
         // sss#290 Override if this is a Couloir title as must be new licence handling
-        if ($account->useOldLicenceCount && !$title->isTitleCouloir()) {
+        // m#175 Orchid programs have to be old counting style
+        if ($title->isTitleOrchid() || ($account->useOldLicenceCount && !$title->isTitleCouloir())) {
             $count = $this->countUsedOldStyleLicences($rootID, $productCode, $licence);
         } else {
             $count = $this->countUsedLicences($rootID, $productCode, $licence);

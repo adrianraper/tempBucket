@@ -78,16 +78,16 @@ class Title extends Content {
 		}
 		
 	}
+	// m#175 Assume all new titles are/will be Couloir
 	public function isTitleCouloir() {
-        switch ($this->productCode) {
-            case 63:
-            case 66:
-            case 67:
-                return true;
-                break;
-            default:
-                return false;
-        }
+        if ($this->productCode > 62 && $this->productCode < 1000)
+            return true;
+        return false;
+    }
+    public function isTitleOrchid() {
+        if ($this->productCode < 52 || $this->productCode > 1000)
+        	return true;
+        return false;
     }
 
 	/**
