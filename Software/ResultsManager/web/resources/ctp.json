@@ -21,6 +21,26 @@
       }
     },
 	{
+      "language": "ja",
+      "literals": {
+        "TestNotOpened": "テストが始まっていません。再度 {date} {time} に試してください。",
+        "TestClosed": "このテストは実施期間が過ぎています。",
+        "NotAnsweredQuestions": "質問を１問飛ばしました。|質問を {count} 問飛ばしました。",
+        "IncorrectQuestions": "それらの問題に正解する必要があります。",
+        "Access": "アクセス",
+        "Code": "アクセスコード",
+        "Result": "テスト結果",
+        "Reset": "リセット",
+        "EnterCode": "テストを開始する為にコードをタイプして下さい。",
+        "SendingScores": "これでテストは終了です。スクリーンが変わるまで終了しないでください。",
+        "FinishedTest": "お疲れ様でした。これでテストは終了です。結果はご担当者様へ報告いたします。",
+        "ICantDoThis": "できました",
+        "IncorrectValidateCode": "間違ったコードを入力したようです。もう一度テストについての通知を確認して下さい。もしくは、テストの管理者の補助を受けて下さい。",
+        "EmptyValidateCode": "有効なコードを入力して下さい。",
+        "DeviceUnsupported": "異なるディバイスで再度試してください。"
+      }
+    },
+	{
       "language": "es",
       "literals": {
         "TestNotOpened": "El test no ha empezado todavía. Intente de nuevo en {date} a {time}.",

@@ -111,6 +111,31 @@
       }
     },
     {
+      "language": "ja",
+      "caption": "日本語",
+      "literals": {
+        "Uploading": "アップロード中",
+        "Email": "Eメール",
+        "Password": "パスワード",
+        "Login": "サインイン",
+        "Logout": "サインアウト",
+        "EmptyLogin": "Eメールとパスワードを入力して下さい。",
+        "IncorrectLogin": "Eメールかパスワードが正しくありません。もう一度試してください。",
+        "ConnectToInternet": "インターネットに接続してください。",
+        "Downloading": "ダウンロードしています",
+        "Ok": "ええ",
+        "Back": "戻る",
+        "Submit": "提出する",
+        "Finish": "終了",
+        "Start": "開始",
+        "DownloadError": "エラー。再度ダウンロードが始まります。",
+        "DeviceUnsupported": "異なるディバイスで再度試してください。",
+        "TryAgain": "もう一度やってみてください",
+        "Reset": "リセット",
+        "Next": "次"
+      }
+    },
+    {
       "language": "namen",
       "caption": "North American English",
       "literals": {
