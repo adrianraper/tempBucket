@@ -57,8 +57,8 @@ if ($plainView) {
 
 // Get the file
 $contentFolder = dirname(__FILE__).'/../../../../Contentbench/Content';
-$titleFolder = $contentFolder.'/StudySkillsSuccessV9-International';
-$titleFolderOut = $contentFolder.'/../Couloir/StudySkillsSuccess-International';
+$titleFolder = $contentFolder.'/MyCanada';
+$titleFolderOut = $contentFolder.'/../Couloir/MyCanada';
 
 // Add an extra loop to do all folders at once
 $topFolder = $titleFolder.'/Courses';
@@ -74,47 +74,52 @@ if ($batch && $handle1 = opendir($topFolder)) {
 			//$outURL='';
 			//echo "processing $courseFolder $newline";
 			$menuFile = $titleFolder.'/Courses/'.$courseFolder.'/menu.xml';
-			echo "processing $courseFolder/menu.xml $newline";
-			
-			/*
-			 * Merge this file with moveBySkill. So read the menu.xml here instead of the directory.
-			 * Then for each file, convert it and write out accordingly.
-			 *
-			if ($handle = opendir($exerciseFolder)) {
-				while (false !== ($file = readdir($handle))) {
-					//$exerciseID = substr($file,0,strpos($file,'.xml'));
-					// Only pick up files with just numbers, especially ignore *-new.xml
-					$pattern = '/^([\d]+).xml/is';
-					if (preg_match($pattern, $file, $matches)) {
-						//echo $exerciseFolder.$file."$newline";
-						convertExercise($matches[1]);
-					}
-			*/
-            try {
-			    $menuXML = simplexml_load_file($menuFile);
-            } catch (Exception $e) {
-                echo "Couldn't parse xml in $menufile, so need to skip it.$newline";
-                continue;
+            //$pattern = '/([\d]+)/i';
+            $pattern = '/1127356511328|1127357845125/i';
+            //$pattern = '/one.xml/is';
+            if (file_exists($menuFile) && preg_match($pattern, $menuFile, $matches)) {
+                echo "processing course $courseFolder $newline";
+
+                /*
+                 * Merge this file with moveBySkill. So read the menu.xml here instead of the directory.
+                 * Then for each file, convert it and write out accordingly.
+                 *
+                if ($handle = opendir($exerciseFolder)) {
+                    while (false !== ($file = readdir($handle))) {
+                        //$exerciseID = substr($file,0,strpos($file,'.xml'));
+                        // Only pick up files with just numbers, especially ignore *-new.xml
+                        $pattern = '/^([\d]+).xml/is';
+                        if (preg_match($pattern, $file, $matches)) {
+                            //echo $exerciseFolder.$file."$newline";
+                            convertExercise($matches[1]);
+                        }
+                */
+                try {
+                    $menuXML = simplexml_load_file($menuFile);
+                } catch (Exception $e) {
+                    echo "Couldn't parse xml in $menufile, so need to skip it.$newline";
+                    continue;
+                }
+                // For each node in the menu, get the filename
+                foreach ($menuXML->item as $unitNode) {
+                    $exerciseFolderOut = $titleFolderOut . '/exercises/';
+                    // Then loop for all exercises in that unit node
+                    foreach ($unitNode->item as $exercise) {
+                        $exerciseFile = $exercise['fileName'];
+                        $fromFile = $exerciseFolder . $exerciseFile;
+                        // Optional pattern matching on file name
+                        $pattern = '/([\d]+).xml/i';
+                        //$pattern = '/1127386318094|1127386318144/i';
+                        //$pattern = '/one.xml/is';
+                        if (file_exists($fromFile) && preg_match($pattern, $exerciseFile, $matches)) {
+                            $toFile = $exerciseFolderOut . $exerciseFile;
+                            // Change file type of output
+                            $toFile = str_replace('.xml', '.html', $toFile);
+                            convertExercise($fromFile, $toFile);
+                        }
+                    }
+                }
             }
-			// For each node in the menu, get the filename
-			foreach ($menuXML->item as $unitNode) {
-				$exerciseFolderOut = $titleFolderOut.'/exercises/';
-				// Then loop for all exercises in that unit node
-				foreach ($unitNode->item as $exercise) {
-					$exerciseFile = $exercise['fileName'];
-					$fromFile = $exerciseFolder.$exerciseFile;
-					// Optional pattern matching on file name
-                    $pattern = '/([\d]+).xml/i';
-                    //$pattern = '/1295412652483|1xx286875077446|1xx286875077772|1xx286875077666|1xx286875076366/i';
-                    //$pattern = '/one.xml/is';
-					if (file_exists($fromFile) && preg_match($pattern, $exerciseFile, $matches)) {
-    					$toFile = $exerciseFolderOut.$exerciseFile;
-    					// Change file type of output
-                        $toFile = str_replace('.xml', '.html', $toFile);
-    					convertExercise($fromFile, $toFile);
-					}
-				}
-			}
 		}
 	}
 	// In batch mode you have no interest in viewing an html rendering of the xml
@@ -211,6 +216,9 @@ function convertExercise($infile, $outfile) {
 		if ($xml->getName()=='exercise') {
 			$attr = $xml->attributes();
 			$type = $attr['type'];
+			// To quickly count how many countdown exercises, just skip everything else
+			//if ($attr['type'] != "Countdown")
+			//    return false;
 			echo 'type='.$attr['type']. "$newline";	
 		}
 	} catch (Exception $e) {
