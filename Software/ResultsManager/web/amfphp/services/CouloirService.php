@@ -431,6 +431,23 @@ class CouloirService extends AbstractService {
         };
         return array_map($func, $tokens);
     }
+
+	// m#202
+    public function releaseLicenceSlots($tokens, $timestamp) {
+        $func = function($token) use ($timestamp) {
+            // Pick the session id from the token
+            $session = $this->authenticationCops->getSession($token);
+            try {
+                $timestamp = $timestamp / 1000;
+                $this->progressCops->updateCouloirSession($session, $timestamp);
+                $this->licenceCops->releaseCouloirLicenceSlot($session, $timestamp);
+            } catch (Exception $e) {
+            }
+        };
+        array_map($func, $tokens);
+        return [];
+    }
+    // Deprecated by the above
     public function releaseLicenceSlot($token, $timestamp) {
         // Pick the session id from the token
         $session = $this->authenticationCops->getSession($token);
@@ -441,7 +458,7 @@ class CouloirService extends AbstractService {
         } catch (Exception $e) {
         }
         return [];
-	}
+    }
 
 	// sss#228 Write to the user's memory
     public function memoryWrite($token, $key, $value) {

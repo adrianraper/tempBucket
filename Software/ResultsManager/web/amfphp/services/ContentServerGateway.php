@@ -106,6 +106,8 @@ function router($json) {
     switch ($json->command) {
         case "acquireLicenseSlots":
             return acquireLicenceSlots($json->tokens);
+        case "releaseLicenseSlots":
+            return releaseLicenceSlots($json->tokens, $json->timestamp);
         case "releaseLicenseSlot":
             return releaseLicenceSlot($json->token, $json->timestamp);
         case "updateActivity":
@@ -136,6 +138,11 @@ function acquireLicenceSlots($tokens) {
 function releaseLicenceSlot($token, $utcTimestamp) {
     global $service;
     return $service->releaseLicenceSlot($token, $utcTimestamp);
+}
+// m#202
+function releaseLicenceSlots($tokens, $utcTimestamp) {
+    global $service;
+    return $service->releaseLicenceSlots($tokens, $utcTimestamp);
 }
 function getEncryptionKey($testId) {
     global $service;
