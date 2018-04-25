@@ -433,18 +433,33 @@ class CouloirService extends AbstractService {
     }
 
 	// m#202
-    public function releaseLicenceSlots($tokens, $timestamp) {
-        $func = function($token) use ($timestamp) {
+    public function releaseLicenceSlots($slots) {
+        $func = function($slot) {
+
+            if (isset($slot->token)) {
+                $token = $slot->token;
+            } else {
+                return false;
+            }
+            // Timestamp from licence server is milliseconds
+            if (isset($slot->timestamp)) {
+                $timestamp = $slot->timestamp / 1000;
+            } else {
+                // php default timestamp is seconds
+                $timestamp = time();
+            }
+
             // Pick the session id from the token
             $session = $this->authenticationCops->getSession($token);
             try {
-                $timestamp = $timestamp / 1000;
                 $this->progressCops->updateCouloirSession($session, $timestamp);
                 $this->licenceCops->releaseCouloirLicenceSlot($session, $timestamp);
+                //$sid = $this->authenticationCops->getSessionId($token);
+                //AbstractService::$debugLog->info("released licence for session " . $sid);
             } catch (Exception $e) {
             }
         };
-        array_map($func, $tokens);
+        array_map($func, $slots);
         return [];
     }
     // Deprecated by the above

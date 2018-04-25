@@ -35,6 +35,7 @@ try {
     $json = json_decode('{"command":"updateActivity","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNTkwMjA5Niwic2Vzc2lvbklkIjoiMjkxIn0.vyougpOHKi5ctolqh56e6f0fd5NEQp1rxtXCt3X9iNI","timestamp":'.$utcTimestamp.'}');
     $json = json_decode('{"command":"releaseLicenseSlot","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDI0NTM3Mywic2Vzc2lvbklkIjoiMjQ1In0.t_IJ-xCH5m94ZZUR7oSKa4KIMyfuDXf4GnYL3_TXleA","timestamp":'.$utcTimestamp.'}');
     $json = json_decode('{"command":"dbCheck"}');
+    $json = json_decode('{"command":"releaseLicenseSlots","slots":[{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDI0NTM3Mywic2Vzc2lvbklkIjoiMjQ1In0.t_IJ-xCH5m94ZZUR7oSKa4KIMyfuDXf4GnYL3_TXleA","timestamp":'.$utcTimestamp.'}]}');
     */
     if (!$json)
         throw new Exception("Empty request");
@@ -81,9 +82,11 @@ try {
 // Note American spelling of license in these calls which is converted to British licence from here on in
 function router($json) {
     global $service;
+    /*
+     * If you need to record session ids for token debugging
+     *
     $localDateTime = new DateTime();
     $localTimestamp = $localDateTime->format('Y-m-d H:i:s');
-    // Debugging of session ids
     if (isset($json->token))
         $sids = [$service->authenticationCops->getSessionId($json->token)];
     if (isset($json->tokens)) {
@@ -102,12 +105,12 @@ function router($json) {
     } else {
         //AbstractService::$controlLog->info("CSG call " . $json->command);
     }
-
+    */
     switch ($json->command) {
         case "acquireLicenseSlots":
             return acquireLicenceSlots($json->tokens);
         case "releaseLicenseSlots":
-            return releaseLicenceSlots($json->tokens, $json->timestamp);
+            return releaseLicenceSlots($json->slots);
         case "releaseLicenseSlot":
             return releaseLicenceSlot($json->token, $json->timestamp);
         case "updateActivity":
@@ -140,9 +143,9 @@ function releaseLicenceSlot($token, $utcTimestamp) {
     return $service->releaseLicenceSlot($token, $utcTimestamp);
 }
 // m#202
-function releaseLicenceSlots($tokens, $utcTimestamp) {
+function releaseLicenceSlots($slots) {
     global $service;
-    return $service->releaseLicenceSlots($tokens, $utcTimestamp);
+    return $service->releaseLicenceSlots($slots);
 }
 function getEncryptionKey($testId) {
     global $service;
