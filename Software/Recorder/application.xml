@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?> 
-<application xmlns="http://ns.adobe.com/air/application/2.0"> 
+<application xmlns="http://ns.adobe.com/air/application/3.7">
 	
 	<id>com.ClarityEnglish.ClarityRecorder</id> 
-	<version>4.0.1.5</version> 
-	<filename>ClarityRecorder</filename> 
+	<versionNumber>4.1.6</versionNumber> 
+	<filename>AIRClarityRecorder</filename> 
 	
 	<name>Clarity Recorder</name> 
 	<description>
@@ -13,7 +13,7 @@
 	
 	<initialWindow> 
 		<title>Clarity Recorder</title> 
-		<content>ClarityRecorder.swf</content> 
+		<content>AIRClarityRecorder.swf</content> 
 		<systemChrome>standard</systemChrome> 
 		<transparent>false</transparent> 
 		<visible>true</visible> 

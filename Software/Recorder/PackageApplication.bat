@@ -15,12 +15,13 @@ if not exist %CERTIFICATE% goto certificate
 
 :: Output
 if not exist air md air
-set AIR_FILE=air/ClarityRecorder.air
+set AIR_FILE=air/AIRClarityRecorder.air
 
 :: Input
 :: Make sure you don't include any .svn files in the folders
 set APP_XML=application.xml 
-set FILE_OR_DIR=-C bin ClarityRecorder.swf updateConfig.xml RecorderHelp.html images icons/CRIcon_128x128.png icons/CRIcon_48x48.png icons/CRIcon_32x32.png icons/CRIcon_16x16.png
+set FILE_OR_DIR=-C bin AIRClarityRecorder.swf RecorderHelp.html images icons/CRIcon_128x128.png icons/CRIcon_48x48.png icons/CRIcon_32x32.png icons/CRIcon_16x16.png
+::set FILE_OR_DIR=-C bin ClarityRecorder.swf updateConfig.xml RecorderHelp.html images icons/CRIcon_128x128.png icons/CRIcon_48x48.png icons/CRIcon_32x32.png icons/CRIcon_16x16.png
 
 echo Signing AIR setup using certificate %CERTIFICATE%.
 call adt -package %SIGNING_OPTIONS% %AIR_FILE% %APP_XML% %FILE_OR_DIR%
