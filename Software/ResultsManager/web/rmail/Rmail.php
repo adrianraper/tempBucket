@@ -146,7 +146,7 @@ class Rmail
         * Make sure the MIME version header is first.
         */
         $this->headers['MIME-Version'] = '1.0';
-        $this->headers['X-Mailer'] = 'Rmail <http://www.phpguru.org/>';
+        //$this->headers['X-Mailer'] = 'Rmail <http://www.phpguru.org/>';
     }
 
     /**
