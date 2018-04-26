@@ -1829,3 +1829,9 @@ INSERT INTO `T_Triggers` (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_Templ
 VALUES
 (33,'Subscription reminder usage stats',NULL,NULL,'20','method=getAccounts&startDay={day}&notCustomerType=1&accountType=1&notLicenceType=5&notResellerID=28&selfHost=false&active=true&optOutEmails=false',NULL,NULL,'usageStats','daily',2),
 (49,'Library reminder usage stats',NULL,NULL,'library/20','method=getAccounts&startDay={day}&customerType=1&accountType=1&notLicenceType=5&notResellerID=28&selfHost=false&active=true&optOutEmails=false',NULL,NULL,'usageStats','daily',2);
+
+-- For Tense Buster coming upgrade
+DELETE FROM T_Triggers where F_TriggerID=67;
+INSERT INTO `T_Triggers` (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`) 
+VALUES (67,'Tense Buster update announcement',NULL,NULL,'tb_upgrade_2018','method=getAccounts&productCode=55&notLicenceType=5&active=true',NULL,'2018-04-27,'email','oneoff',4);
+

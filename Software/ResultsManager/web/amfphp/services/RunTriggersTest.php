@@ -190,8 +190,17 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 				// If the request variable 'send' is not defined then just print the emails to the screen, don't actually send anything.  
 				// This is to prevent accidental sends when testing!
 				if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
-					// Send the emails
-					$dmsService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
+                    // Send the emails
+                    $dmsService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
+                } else if (isset($_REQUEST['action']) && strtolower($_REQUEST['action'])=='summary') {
+                    // Or summarise on screen
+                    foreach($emailArray as $email) {
+                        if (isset($email["cc"])) {
+                            echo "<b>Email: ".$email["to"].", cc: ".implode(',',$email["cc"])."</b>$newLine";
+                        } else {
+                            echo "<b>Email: ".$email["to"]."</b>$newLine";
+                        }
+                    }
 				} else {
 					// Or print on screen
 					foreach($emailArray as $email) {
@@ -344,12 +353,12 @@ $testingTriggers = "";
 //$testingTriggers .= "subscription reminders";
 //$testingTriggers .= "usage stats";
 //$testingTriggers .= "support";
-$testingTriggers .= "quotations";
+//$testingTriggers .= "quotations";
 //$testingTriggers .= "trial reminders";
 //$testingTriggers .= "terms and conditions";
 //$testingTriggers .= "EmailMe";
 //$testingTriggers = "justThese";
-//$testingTriggers .= "oneoffActions";
+$testingTriggers .= "oneoffActions";
 
 $fixedDateShift = 0;
 
@@ -368,7 +377,7 @@ if (date("w")==1) {
 if (stripos($testingTriggers, "oneoffActions")!==false) {
     //$triggerList = array(61);
     $triggerList = null; // find all weekly ones
-    $msgType = 4; // Nothing useful to send
+    $msgType = 4; // System messages (upgrade warnings)
     runTriggers($msgType, $triggerList, null, "oneoff");
 }
 if (stripos($testingTriggers, "weeklyActions")!==false) {
