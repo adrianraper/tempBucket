@@ -7,6 +7,7 @@ require_once(dirname(__FILE__)."/../../config.php");
 require_once($GLOBALS['adodb_libs']."adodb-exceptions.inc.php");
 require_once($GLOBALS['adodb_libs']."adodb.inc.php");
 
+require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/Session.php");
 require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
 require_once(dirname(__FILE__)."/../../classes/Log/Log.php");
@@ -112,7 +113,7 @@ class AbstractService {
         AbstractService::$dashboardLog = &Log::factory($dashboardLogType, $dashboardLogTarget, null, $conf);
 
         // Create the operation classes
-		$this->copyOps = new CopyOps();
+		$this->copyOps = new CopyOps($this->db);
 
 	}
 

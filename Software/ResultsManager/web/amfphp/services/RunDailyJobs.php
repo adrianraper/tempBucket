@@ -122,13 +122,14 @@ function runDailyJobs($triggerDate = null) {
 		}
 	}
 	*/
+	/*
 	// 5. Archive sent emails
 
 	// Clean up the T_PendingEmails, remove everything that has been sent
 	$database = 'rack80829';
 	$rc = $thisService->dailyJobOps->archiveSentEmails($database);
 	echo "Archived $rc sent emails. $newLine";
-
+    */
 	// Then every so often clear out the T_SentEmails table - currently to an archive table
     /*
         INSERT INTO T_SentEmails_Archive
@@ -151,8 +152,11 @@ function runDailyJobs($triggerDate = null) {
 	$trigger->templateID = 'user/TB6weeksNewUnit';
 	$trigger->parseCondition("method=getAccounts&active=true&productCode=$productCode");
 	//$trigger->condition->customerType = '1'; // If we want to limit this to libraries
-	
-	$triggerResults = $thisService->triggerOps->applyCondition($trigger, $triggerDate);
+    if (isset($_REQUEST['rootID']) && $_REQUEST['rootID']>0) {
+        $trigger->rootID = $_REQUEST['rootID'];
+    }
+
+    $triggerResults = $thisService->triggerOps->applyCondition($trigger, $triggerDate);
     echo "Check ".count($triggerResults)." TB6weeks accounts$newLine";
 	foreach ($triggerResults as $account) {
 		
@@ -164,6 +168,11 @@ function runDailyJobs($triggerDate = null) {
                 $thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
                 echo "TB6weeks account ".$account->prefix." sent ".count($emailArray)." emails$newLine";
 
+            } else if (isset($_REQUEST['action']) && strtolower($_REQUEST['action'])=='summary') {
+                // Or summarise on screen
+                foreach($emailArray as $email) {
+                    echo "<b>Email: ".$email["to"]."</b>$newLine";
+                }
             } else {
                 // Or print on screen
                 foreach($emailArray as $email) {
@@ -192,7 +201,7 @@ function runDailyJobs($triggerDate = null) {
     //$testingAccounts = array(168);
     //$blockedRoots = array(100,101,167,168,169,170,171,14030,14024,14031);
     //$bigRoots = array(13754,13865,14223,14302,14374,19855,33662,35886,37999,43873);
-    $rootIdRange = array(100,2000);
+    //$rootIdRange = array(1000,20000);
     $accounts = $thisService->accountOps->getAccounts($testingAccounts, $conditions);
 
     // Do a check of existing licence count
@@ -208,12 +217,12 @@ function runDailyJobs($triggerDate = null) {
 
         // Any users with duplicates?
         $duplicatedUsers = $thisService->dailyJobOps->findDuplicateLicenceHolders($account->id);
-        echo "root " . $account->id . " has " . count($duplicatedUsers) ." users with duplicates $newLine";
+        //echo "root " . $account->id . " has " . count($duplicatedUsers) ." users with duplicates $newLine";
 
         // For each, leave the last one since the licence clearance date, remove the rest
         $loopLimit = 0;
         foreach ($duplicatedUsers as $duplicatedUser) {
-            if ($loopLimit>100)
+            if ($loopLimit>1000)
                 break;
             $loopLimit++;
             $licence = null;
@@ -227,7 +236,7 @@ function runDailyJobs($triggerDate = null) {
             if ($licence) {
                 if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
                     $rc = $thisService->dailyJobOps->removeDuplicateLicenceHolders($duplicatedUser["userId"], $duplicatedUser["productCode"], $licence);
-                    echo "Deleted $rc licences for " . $duplicatedUser["userId"] . " for pc " . $duplicatedUser["productCode"] . " in root " . $account->id . "$newLine";
+                    //echo "Deleted $rc licences for " . $duplicatedUser["userId"] . " for pc " . $duplicatedUser["productCode"] . " in root " . $account->id . "$newLine";
                 } else {
                     $rc = $thisService->dailyJobOps->countDuplicateLicenceHolders($duplicatedUser["userId"], $duplicatedUser["productCode"], $licence);
                     echo "Duplicate $rc licences for " . $duplicatedUser["userId"] . " for pc " . $duplicatedUser["productCode"] . " in root " . $account->id . "$newLine";
