@@ -19,7 +19,7 @@ class AuthenticationCops {
 	 */
 	public function createToken($payload = []) {
         $token = array(
-            "iss" => "http://dock.projectbench",
+            "iss" => "clarityenglish.com",
             "iat" => time());
         $token = array_merge($token, $payload);
         return JWT::encode($token, $this::KEY, 'HS256');

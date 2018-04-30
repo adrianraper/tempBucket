@@ -175,6 +175,7 @@ SQL;
 		return array_filter(array_map('intval', $rs));
 	}
 
+
     /**
      * Get details of all exercises completed (marked)
      */
@@ -214,7 +215,29 @@ SQL;
         $rs = $this->db->GetArray($sql, $bindingParams);
 
         return $rs;
+    }
 
+    /**
+     * Get summary of progress at the course level
+     * m#11
+     */
+    public function getCourseProgress($session, $courseId) {
+        // TODO How to read the total number of exercises in a course?
+        $sql = <<<SQL
+			SELECT SUM(if(F_Duration>3600,3600,F_Duration)) as duration, 
+			      AVG(nullif(F_Score, -1)) as averageScore, 
+			      COUNT(DISTINCT(F_ExerciseID)) as exercisesDone,
+			      94 as exercisesTotal
+			FROM T_Score
+			WHERE F_ProductCode=?
+			AND F_UserID=?
+			AND F_CourseID=?
+SQL;
+
+        $bindingParams = array($session->productCode, $session->userId, $courseId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+
+        return $rs->FetchNextObj();
     }
 
     /**

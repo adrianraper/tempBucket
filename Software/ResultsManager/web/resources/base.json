@@ -85,7 +85,9 @@
         "InactivityTimeoutReset": "You have been inactive for too long and have been automatically signed out.",
         "NetworkError": "Unable to connect. Please check your Internet connection and try again.",
         "DifferentPassword": "Please retype your password.",
-        "IncorrectEmail": "Incorrect email address"
+        "IncorrectEmail": "Incorrect email address",
+        "BlockedDomain": "You can't run from this domain {domain}",
+        "CertificateOfAchievement": "Certificate of achievement"
       }
     },
     {

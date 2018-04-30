@@ -19,6 +19,7 @@ require_once(dirname(__FILE__)."/../../classes/AuthenticationCops.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/Reportable.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Content.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Title.php");
+require_once(dirname(__FILE__) . "/vo/com/clarityenglish/common/vo/content/Summary.php");
 
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Account.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Licence.php");
@@ -50,7 +51,7 @@ class CouloirService extends AbstractService {
 		
 		// Set the title name for resources
         // TODO This should be obsolete
-        AbstractService::$title = "ctp";
+        AbstractService::$title = "Couloir";
 
         $this->testCops = new TestCops($this->db);
         $this->progressCops = new ProgressCops($this->db);
@@ -62,6 +63,8 @@ class CouloirService extends AbstractService {
         $this->contentOps = new ContentOps($this->db);
         $this->authenticationCops = new AuthenticationCops($this->db);
         $this->memoryCops = new MemoryCops($this->db);
+        // m#11
+        $this->emailOps = new EmailOps($this->db);
 	}
 
     public function changeDB($dbHost) {
@@ -77,6 +80,7 @@ class CouloirService extends AbstractService {
         $this->contentOps = new ContentOps($this->db);
         $this->authenticationCops = new AuthenticationCops($this->db);
         $this->memoryCops = new MemoryCops($this->db);
+        $this->emailOps = new EmailOps($this->db);
     }
 
 	public function getAppVersion() {
@@ -778,6 +782,67 @@ EOD;
             return $sessions;
         }
         return array();
+    }
+
+    // m#11 Generate a certificate (html and pdf)
+    public function getCertificate($token, $courseId, $courseName) {
+        // Pick the session from the token
+        $session = $this->authenticationCops->getSession($token);
+
+        // Nothing needed for anonymous user
+        if ($session->userId < 0)
+            return array();
+
+        // Nothing we can do if no courseId given
+        if (!$courseId)
+            // Exception for invalid courseId - or should we assume it is the first course in the session->productCode?
+            return array();
+
+        // Retrieve the score records for this user and this product
+        $courseScore = $this->progressCops->getCourseProgress($session, $courseId);
+
+        // Nothing to do if NO exercises have been done
+        if ($courseScore->exercisesDone <= 0)
+            throw $this->copyOps->getExceptionForId("certificateBlocked", array("exercisesDone" => $courseScore->exercisesDone, "exercisesTotal" => $courseScore->exercisesTotal, "averageScore" => $courseScore->averageScore));
+
+        // Horrible hack for the moment
+        $user = $this->manageableOps->getUserByIdNotAuthenticated($session->userId);
+
+        // Get the metrics into a summary object
+        $courseScore->courseName = $courseName;
+
+        $certificate = new Summary();
+        $certificate->detail = $courseScore;
+        $certificate->user = $user;
+        $certificate->template = 'certificates/tb-01';
+        $certificate->caption = $this->copyOps->getCopyForId("CertificateOfAchievement");
+
+        // And put that into a token
+        $certToken = $this->authenticationCops->createToken(["data" => $certificate]);
+
+        // TODO where to hold these variables?
+        // Use the domain this script is running in, but whitelist it
+        $allowed_hosts = array('clarityenglish.com','dock.projectbench','claritydev');
+        $phpHost = $_SERVER['HTTP_HOST'];
+        $check = array_filter($allowed_hosts, function($value) use($phpHost) { return (stristr($phpHost, $value)!==FALSE); });
+        if (!isset($_SERVER['HTTP_HOST']) || !$check) {
+            throw $this->copyOps->getExceptionForId("errorBlockedDomain", array("domain" => $_SERVER['HTTP_HOST']));
+        }
+        // Create a url that is a dynamically created html certificate
+        $scheme = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
+        $host = $phpHost;
+        $path = '/Software/ResultsManager/web/amfphp/services/';
+        $script = 'GenerateCertificate.php';
+        $htmlCert = $scheme.$host.$path.$script.'?token='.$certToken;
+
+        // Create a url that is a dynamically created pdf from an html
+        $scheme = 'http://';
+        $host = 'pdf.clarityenglish.com:3050';
+        $path = '';
+        $script = '';
+        $pdfCert =  $scheme.$host.$path.$script.'?url='.$htmlCert;
+
+        return array("pdfHtml" => $htmlCert, "pdfUrl" => $pdfCert);
     }
 
     // sss#17 Which exercises has the user completed?

@@ -69,13 +69,13 @@
             <lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
             <lit name="errorVideoLoad" code="602">This URL isn't recognised as a compatible video source. Click 'share' under a YouTube video and copy the URL, something like http://youtu.be/oSn3i4vsGeY. Vimeo can be copied direct from the URL.</lit>
             <lit name="contentBlockedWarning" code="603">This device can't link to the content for this item. Please try to access the course from a computer browser.</lit>
-            
+            <lit name="certificateBlocked" code="604">You have not completed enough exercises to get a certificate.</lit>
+
             <lit name="errorSavingCourse" code="700">Error saving this course. Please contact support@clarityenglish.com. ({reason})</lit>
             <lit name="errorSecurity" code="701">Security error.</lit>
             <lit name="errorCourseDoesNotExist" code="702">This course does not exist.</lit>
             <lit name="errorSavingCourseDates" code="703">There is something wrong with the publishing settings for this course. Please check.</lit>
             <lit name="errorConcurrentCourseAccess" code="704">Somebody is already editing this course. Please try again later.</lit>
-            
             <lit name="errorUploadNotAuthenticated" code="705">This upload was not authenticated. Please contact support@clarityenglish.com.</lit>
             <lit name="errorUploadNoPOST" code="706">No data was found attached to this upload. Please contact support@clarityenglish.com.</lit>
             <lit name="errorExceedMaxFileSize" code="707">Your file is too big, please upload a file less than {sizeLimit}.</lit>

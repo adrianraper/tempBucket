@@ -1326,7 +1326,25 @@ EOD;
                 return $users[0];
         }
 	}
-	
+    /**
+     * This returns a specific user object defined by its ID, and skips authentication
+     */
+    function getUserByIdNotAuthenticated($userID) {
+        $sql  = "SELECT ".User::getSelectFields($this->db);
+        $sql .= <<<EOD
+            FROM T_User u
+            WHERE u.F_UserID=?
+EOD;
+        $bindingParams = array($userID);
+        $usersRS = $this->db->Execute($sql, $bindingParams);
+
+        if ($usersRS->RecordCount() == 1) {
+            return $this->_createUserFromObj($usersRS->FetchNextObj());
+        } else {
+            throw new Exception("Database error, user lost");
+        }
+    }
+
 	/**
 	 * This returns an array of users defined by the given id array
 	 */

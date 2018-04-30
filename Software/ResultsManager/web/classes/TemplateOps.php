@@ -57,10 +57,11 @@ class TemplateOps {
 		//$folder = ereg_replace("../", "", $folder);
 		$folder = str_replace("../", "", $folder);
 		$templateFolder = $GLOBALS['smarty_template_dir'].$folder."/";
-		$templateFile = $templateFolder.$templateID.".tpl";
-		//echo "checking $templateFile";
-		//AbstractService::$debugLog->warning("checking file ".$templateFile);
-		if (file_exists($templateFile)) {
+		$templateName = $templateFolder.$templateID;
+        // Cope with a filetype extension or not on the name
+        $templateName = (stristr($templateName, '.tpl')) ? $templateName : $templateName.'.tpl';
+
+        if (file_exists($templateName)) {
 			return true;
 		} else {
 			return false;
@@ -128,10 +129,13 @@ class TemplateOps {
 	
 	function fetchTemplate($templateName, $dataArray, $useCache=false) {
 		$smarty = $this->getSmarty();
-		
+
+		// Cope with a filetype extension or not on the name
+        $templateName = (stristr($templateName, '.tpl')) ? $templateName : $templateName.'.tpl';
+
 		if ($useCache) {
 		} else {
-			$smarty->clear_cache($templateName.".tpl");
+			$smarty->clear_cache();
 		}
 		// Add in the data arrays
 		foreach ($dataArray as $key => $value) {
@@ -144,10 +148,13 @@ class TemplateOps {
 		
 		// v3.4 And the template folder? This to allow you to do file_exists within a template.
 		$smarty->assign("template_dir", $smarty->template_dir);
-		return $smarty->fetch($templateName.".tpl");
+		return $smarty->fetch($templateName);
 	}
 	
 	function clearCache($templateName) {
+        // Cope with a filetype extension or not on the name
+        $templateName = (stristr($templateName, '.tpl')) ? $templateName : $templateName.'.tpl';
+
 		$smarty = $this->getSmarty();
 		$smarty->clear_cache($templateName.".tpl");
 	}
@@ -214,7 +221,5 @@ class TemplateOps {
 		
 		return "[Dictionary entry not found]";
 	}
-
 }
 
-?>
