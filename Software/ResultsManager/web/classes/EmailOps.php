@@ -176,8 +176,12 @@ class EmailOps {
    				
    				// It shouldn't happen, but if F_To is empty, just junk the email
    				if (!isset($email['to'])) {
-   					$errors[] = 'No TO field for email to account '.$email['data']['account']->name;	
-   					echo 'No TO field for email to account '.$email['data']['account']->name;	
+   				    if (isset($email['data']['account']->name)) {
+                        $errors[] = 'No TO field for email to account ' . $email['data']['account']->name;
+                        echo 'No TO field for email to account ' . $email['data']['account']->name;
+                    } else {
+                        echo 'Missing TO field for one email';
+                    }
    				} else {
 					$sql = 	<<<EOD
 							INSERT INTO T_PendingEmails

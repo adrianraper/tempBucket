@@ -8,6 +8,10 @@ require_once(dirname(__FILE__) . "../../core/shared/util/Authenticate.php");
 
 $thisService = new ClarityService();
 
+const MAX_EXECUTION_TIME = 3600;
+ini_set('max_execution_time', MAX_EXECUTION_TIME);
+set_time_limit(MAX_EXECUTION_TIME);
+
 // Initialize variables
 $errorCode = 0;
 $failReason = '';
@@ -43,7 +47,7 @@ $template = json_decode('{
 			"name": "Mrs Twaddle"
 		},
 		"test": {
-			"closeTime": "2017-01-31 00:00:00",
+			"closeTime": "2018-12-31 00:00:00",
 			"startType": "timer",
 			"productCode": "63",
 			"openTime": "2017-01-17 00:00:00",
@@ -86,6 +90,7 @@ if (!isset($groupIdArray[0])) {
 
 // Get the users from the group and their email addresses
 $userEmailArray = $thisService->dailyJobOps->getEmailsForGroup($groupIdArray, $template);
+// m#92 Is this the account admin or the person sending the email?
 $administratorEmail = (isset($template->data->administrator->email)) ? $template->data->administrator->email : 'support@clarityenglish.com';
 $administratorName = (isset($template->data->administrator->name)) ? $template->data->administrator->name : null;
 
@@ -97,29 +102,25 @@ if (count($selectedEmailArray) > 0) {
         $keyedEmails[$selectedEmail] = true;
     }
     $userEmailArray = array_intersect_key($userEmailArray, $keyedEmails);
-    /*
-    $trail = '';
-    foreach ($userEmailArray as $userEmail) {
-        $trail .= $userEmail['data']['user']->email." ";
-    };
-    print json_encode($trail);
-    exit();
-    */
 }
 
 // Note that the above does not reindex the array, so you might just have $userEmailArray[3] and $userEmailArray[31] set.
 $firstValue = reset($userEmailArray);
 
 // ctp#346 Add the test administrator to this list of email recipients for copy
-$adminEmail = array();
-$adminEmail['to'] = $administratorEmail;
-// Since we don't have a full user for the admin, just replace key bits
-$adminEmail['data']['user'] = new User();
-$adminEmail['data']['user']->name = $administratorName . ' (copy for reference)';
-$adminEmail['data']['user']->email = $administratorEmail;
-$adminEmail['data']['user']->password = '(hidden)';
-$adminEmail['data']['templateData'] = $firstValue['data']['templateData'];
-array_push($userEmailArray, $adminEmail);
+// m#92 The person sending the emails will get a summary of the action
+$summaryEmail = array();
+$summaryEmail['to'] = $administratorEmail;
+$summaryEmail['data'] = $firstValue['data'];
+$summaryEmail['data']['user'] = new User();
+$summaryEmail['data']['user']->name = $administratorName;
+$summaryEmail['data']['user']->email = $administratorEmail;
+$summaryEmail['data']['templateData']->numberScheduled = count($userEmailArray);
+$emailList = '';
+foreach ($userEmailArray as $userEmail) {
+    $emailList .= $userEmail['data']['user']->email."<br/>";
+};
+$summaryEmail['data']['templateData']->emailsScheduled = $emailList;
 
 // Get the email from the template and insert the selected user's details into it
 if ($queryMethod == "getTemplate") {
@@ -130,12 +131,13 @@ if ($queryMethod == "getTemplate") {
     $rc['emailContents'] = $emailContents;
 }
 
-// If required, actually send the email to everyone
-if ($send)
+// If required, actually send the email to test takers and the summary to the administrator
+if ($send) {
     $results = $thisService->emailOps->sendEmails("", $template->filename, $userEmailArray);
+    $rc = $thisService->emailOps->sendEmails("", 'summaries/dptScheduleSummary', array($summaryEmail));
+}
 
 $rc['error'] = $errorCode;
 $rc['message'] = $failReason;
 print json_encode($rc);
 exit();
-?>

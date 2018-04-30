@@ -210,7 +210,7 @@ array_push($userEmailArray, $adminEmail);
 <body>
 <div class="w3-cell-row">
     <div class="w3-container w3-cell w3-cell-middle w3-card-2" style="width:40%">
-        <img src="http://www.clarityenglish.com/images/program/DPTpage/DPT_TA_logo.png" alt="DPT logo"
+        <img src="https://www.clarityenglish.com/images/program/DPTpage/DPT_TA_logo.png" alt="DPT logo"
              class="w3-cell-middle w3-padding-8">
         &nbsp;&nbsp;<span><strong>Edit and send this email to test takers</strong></span>
     </div>
