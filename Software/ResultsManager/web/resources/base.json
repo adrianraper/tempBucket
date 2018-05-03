@@ -56,6 +56,8 @@
         "Compare": "Compare",
         "Analysis": "Analysis",
         "ScoreDetails": "Score Details",
+        "Certificate": "Certificate",
+        "CertificateErrorFailed": "To receive a certificate, you must first complete the level. So far you have completed {completion} exercises at this level and your average score is {averageScore}. Check My Coverage to see which exercise(s) you have or have not completed.",
         "Unit": "Unit",
         "Score": "Score",
         "Date": "Date",
