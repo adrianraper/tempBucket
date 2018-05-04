@@ -315,7 +315,7 @@
 			<lit name="taskRequirementEditableText4"><![CDATA[
 				<p>Describe something you own which is very important to you.</p>
 				<p lineHeight="28">You should say:</p>
-				<p lineHeight="28">where you go it from</p>
+				<p lineHeight="28">where you got it from</p>
 				<p>how long you have had it</p>
 				<p>what you use it for</p>
 				<p lineHeight="28">and explain why it is important to you.</p>
@@ -653,6 +653,7 @@
                 ]]>
             </lit>
 			<lit name="weWouldLabel">We would love to know what you think.</lit>
+			<lit name="thankYouLabel">from ClarityEnglish and British Council</lit>
 			<lit name="creditCaptionLabel">Credits and acknowledgements</lit>
 			<lit name="upgradeLabel">Thinking of upgrading to the</lit>
 			<lit name="fullVersionLabel">full version?</lit>

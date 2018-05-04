@@ -40,17 +40,14 @@
 			<s:VerticalLayout paddingTop="30" horizontalAlign="center"/>
 		</s:layout>
 		
-		<s:Group width="100%" height="440" top="30">
+		<s:Group width="100%" top="30">
 			<s:SWFLoader id="endLogo" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='CreditGraphic')" autoLoad="true" horizontalAlign="center" horizontalCenter="0" />
 			<s:Spacer height="0" />
 			<s:VGroup width="100%" horizontalAlign="center" paddingTop="80">
 				<s:SWFLoader source="@Embed(source='/skins/ielts/assets/credits.png')" horizontalAlign="center" horizontalCenter="0" />
 				<s:Spacer height="10" />
 				<s:Label id="thankYouLabel" fontSize="21" color="0x174A7D" fontWeight="bold" horizontalCenter="0" />
-				<s:Spacer height="0" />
-				<s:Label id="weWouldLabel" fontSize="21" color="0x174A7D" fontWeight="bold" click="clickHandler(event)" horizontalCenter="0" />
-				<s:Spacer height="0" />
-				<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='QuestionnairekButton')" click="clickHandler(event)" buttonMode="true" useHandCursor="true" width="313" horizontalCenter="0" />
+				<!-- m#232 remove questionnaire for now -->
 				<s:Spacer height="10" />
 				<s:RichText id="creditCaptionLabel" fontSize="21" horizontalCenter="0" />
 			</s:VGroup>

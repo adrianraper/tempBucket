@@ -77,7 +77,7 @@
         "ExerciseLoadError": "A problem occurred while loading this exercise. A note has been sent to ClarityEnglish.",
         "ForgotPasswordLink": "https://www.clarityenglish.com/support/forgotPassword.php",
         "NoProgress": "Progress Report is only available to registered accounts. If you would like to check your progress, please create an account on the sign-in page.",
-        "NotCompleteAnyExercise": "You have not completed any exercise in this level yet.",
+        "NotCompleteAnyExercise": "You have not completed any exercises in this level yet.",
         "CompletionAmount": "{completion} of {total} completed",
         "Worksheet": "Study sheets",
         "DisconnectedTimeoutReset": "You have been disconnected from the internet for too long and have been automatically signed out.",
