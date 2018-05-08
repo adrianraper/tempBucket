@@ -584,8 +584,7 @@ import mx.styles.StyleManager;
 						// just like accountExpired. But for now leave this here with other config errors.
 						var authenticated:Boolean = this.checkAuthentication();
 					}
-						trace("hello");
-	
+
 					if (!data) {
 						sendNotification(CommonNotifications.CONFIG_ERROR, "Unable to read from database"); // at this point copy can't have loaded so this is in English!
 						
