@@ -4,16 +4,8 @@
       "language": "en",
       "caption": "English",
       "literals": {
-        "LearningObjectives": "Learning objective",
-        "WatchVideo": "Watch the introduction video",
-        "StartPractice": "Start learning!",
-        "VideoTranscript": "Video transcripts",
-        "AudioTranscript": "Audio transcripts",
         "ThankYouLabel": "Thank you for using Tense Buster",
-        "Portfolio": "Your portfolio",
-        "ThankYouLabel": "Thank you for using Tense Buster",
-        "CoverageProgressBarTitle": "Overall coverage {totalCoverage}%",
-        "CoverageInstruction": "Move your cursor over to see which exercises they are."
+        "CoverageProgressBarTitle": "Overall coverage {totalCoverage}%"
       }
     }
   ]

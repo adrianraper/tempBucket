@@ -87,7 +87,10 @@
         "DifferentPassword": "Please retype your password.",
         "IncorrectEmail": "Incorrect email address",
         "BlockedDomain": "You can't run from this domain {domain}",
-        "CertificateOfAchievement": "Certificate of achievement"
+        "CertificateOfAchievement": "Certificate of achievement",
+        "Portfolio": "Your portfolio",
+        "VideoTranscript": "Video transcripts",
+        "AudioTranscript": "Audio transcripts"
       }
     },
     {
