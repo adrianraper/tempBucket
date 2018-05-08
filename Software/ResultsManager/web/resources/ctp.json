@@ -17,7 +17,8 @@
         "ICantDoThis": "I can't do it.",
         "IncorrectValidateCode": "It looks like you have entered a wrong code. Check your test notice again, or get help from your test administrator.",
         "EmptyValidateCode": "Please input your validation code.",
-        "DeviceUnsupported": "You need a different device to take the test. Check with your test adminstrator."
+        "DeviceUnsupported": "You need a different device to take the test. Check with your test adminstrator.",
+		"QuotaExceededWarning": "You don't have enough space to download this test. Please delete some data and try again. If you are in incognito or private mode, please try again in a normal browser window."
       }
     },
 	{
@@ -25,8 +26,8 @@
       "literals": {
         "TestNotOpened": "テストが始まっていません。再度 {date} {time} に試してください。",
         "TestClosed": "このテストは実施期間が過ぎています。",
-        "NotAnsweredQuestions": "質問を１問飛ばしました。|質問を {count} 問飛ばしました。",
-        "IncorrectQuestions": "それらの問題に正解する必要があります。",
+        "NotAnsweredQuestions": " 1問残っています。|{count} 問残っています。",
+        "IncorrectQuestions": "全問正解しないと先に進むことができません。",
         "Access": "アクセス",
         "Code": "アクセスコード",
         "Result": "テスト結果",
@@ -34,10 +35,11 @@
         "EnterCode": "テストを開始する為にコードをタイプして下さい。",
         "SendingScores": "これでテストは終了です。スクリーンが変わるまで終了しないでください。",
         "FinishedTest": "お疲れ様でした。これでテストは終了です。結果はご担当者様へ報告いたします。",
-        "ICantDoThis": "できました",
+        "ICantDoThis": "問題があり先に進めません",
         "IncorrectValidateCode": "間違ったコードを入力したようです。もう一度テストについての通知を確認して下さい。もしくは、テストの管理者の補助を受けて下さい。",
         "EmptyValidateCode": "有効なコードを入力して下さい。",
-        "DeviceUnsupported": "異なるディバイスで再度試してください。"
+        "DeviceUnsupported": "異なるデバイス、またはブラウザーで再度試してください。",
+		"QuotaExceededWarning": "このテストをダウンロードするのに十分なスペースがありません。履歴とWebサイトデータを消去しもう一度試してください。シークレットモードやプライベートブラウズを使用の場合、通常のブラウザーで試してください。"
       }
     },
 	{
@@ -116,10 +118,10 @@
         "EnterCode": "請輸入測試驗證碼。",
         "SendingScores": "測試已結束，系統正在上傳你的答案，請不要離開此頁。",
         "FinishedTest": "測試已結束，你的測試結果已傳送給測試管理員。",
-        "ICantDoThis": "無法運行",
-        "IncorrectValidateCode": "測試驗證碼不正確。請查閱你的測試通知，或向測試管理員尋求幫助。 ",
+        "ICantDoThis": "使用其他設備",
+        "IncorrectValidateCode": "測試驗證碼不正確。請查閱你的測試通知，或向測試管理員尋求協助。 ",
         "EmptyValidateCode": "請輸入測試驗證碼。",
-        "DeviceUnsupported": "請使用其他設備進行測試。如需幫助，請與測試管理員聯繫。"
+        "DeviceUnsupported": "請使用其他設備進行測試。如需協助，請與測試管理員聯繫。"
       }
     },
     {
