@@ -37,13 +37,15 @@ if (isset($_SERVER["SERVER_NAME"])) {
 }
 
 // Which section do you want to test?
-$testingSection = 'archiveExpiredAccounts';
-$testingSection = 'archiveOldUsers';
-$testingSection = 'EmailMeCBuilder';
-$testingSection = 'archiveSentEmails';
-$testingSection = 'countCBuilderActivity';
-$testingSection = 'updateTB6weeksSubscriptions';
-$testingSection = 'archiveExpiredRoadToIELTS';
+//$testingSection = 'archiveExpiredAccounts';
+//$testingSection = 'archiveOldUsers';
+//$testingSection = 'EmailMeCBuilder';
+//$testingSection = 'archiveSentEmails';
+//$testingSection = 'countCBuilderActivity';
+$testingSection = 'triggerTB6weeksUpdate';
+//$testingSection = 'archiveExpiredRoadToIELTS';
+//$testingSection = 'archiveExpiredLicences';
+//$testingSection = 'removeDuplicateLicences';
 
 // NOTE: Sometime convert all away from timestamps to DateTime objects
 function addDaysToTimestamp($timestamp, $days) {
@@ -146,34 +148,111 @@ function runDailyJobs($triggerDate = null) {
 		echo "$rc accounts active yesterday. $newLine";
 	}	
 	
-	// 7. Update TB6weeks bookmarks 
-	if ($testingSection == 'updateTB6weeksSubscriptions') {
+	// 7. Update TB6weeks bookmarks and send any new unit emails
+	if ($testingSection == 'triggerTB6weeksUpdate') {
         // a. Loop round all accounts that have productCode=59 (and are active)
         $productCode = 59;
         $trigger = new Trigger();
         $trigger->templateID = 'user/TB6weeksNewUnit';
         $trigger->parseCondition("method=getAccounts&active=true&productCode=$productCode");
         //$trigger->condition->customerType = '1'; // If we want to limit this to libraries
+        if (isset($_REQUEST['rootID']) && $_REQUEST['rootID'] > 0) {
+            $trigger->rootID = $_REQUEST['rootID'];
+        }
 
         $triggerResults = $thisService->triggerOps->applyCondition($trigger, $triggerDate);
+        echo "Check " . count($triggerResults) . " TB6weeks accounts$newLine";
         foreach ($triggerResults as $account) {
-            echo "TB6weeks check account ".$account->prefix."$newLine";
 
             // b. For each user in this account, update their subscription, if they have one.
             $emailArray = $thisService->dailyJobOps->updateSubscriptionBookmarks($account, $productCode, $triggerDate);
-            if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
-                // Send the emails
-                $thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
-                echo "Sent ".count($emailArray)." emails. $newLine";
+            if (count($emailArray) > 0) {
+                if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+                    // Send the emails
+                    $thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
+                    echo "TB6weeks account " . $account->prefix . " sent " . count($emailArray) . " emails$newLine";
 
-            } else {
-                // Or print on screen
-                foreach($emailArray as $email) {
-                    echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($trigger->templateID, $email["data"])."<hr/>";
+                } else if (isset($_REQUEST['action']) && strtolower($_REQUEST['action']) == 'summary') {
+                    // Or summarise on screen
+                    foreach ($emailArray as $email) {
+                        echo "<b>Email: " . $email["to"] . "</b>$newLine";
+                    }
+                } else {
+                    // Or print on screen
+                    foreach ($emailArray as $email) {
+                        echo "<b>Email: " . $email["to"] . "</b>" . $newLine . $thisService->emailOps->fetchEmail($trigger->templateID, $email["data"]) . "<hr/>";
+                    }
                 }
             }
         }
-	}
+    }
+    // 8. Archive expired licences
+	if ($testingSection == 'archiveExpiredLicences') {
+        // Clean up the T_LicenceHolders, remove licences that have expired + T_CouloirLicenceHolders
+        $database = 'rack80829';
+        $expiryDate = new DateTime('@' . $triggerDate);
+        $rc = $thisService->dailyJobOps->archiveExpiredLicences($expiryDate->format('Y-m-d'), $database);
+        echo "Archived $rc licences. $newLine";
+    }
+
+	// 9. Remove duplicates from T_LicenceHolders (#1577)
+    if ($testingSection == 'removeDuplicateLicences') {
+        $conditions['active'] = true;
+        $conditions['individuals'] = false;
+        $testingAccounts = array();
+        $bigRoots = array();
+        $blockedRoots = array();
+        $rootIdRange = false;
+        //$testingAccounts = array(168);
+        //$blockedRoots = array(100,101,167,168,169,170,171,14030,14024,14031);
+        //$bigRoots = array(13754,13865,14223,14302,14374,19855,33662,35886,37999,43873);
+        //$rootIdRange = array(1000,20000);
+        $accounts = $thisService->accountOps->getAccounts($testingAccounts, $conditions);
+
+        // Do a check of existing licence count
+        foreach ($accounts as $account) {
+            // Are there some accounts which we might as well block?
+            // LM, TD, all IP.com
+            if ($rootIdRange && isset($rootIdRange[1]) && (($account->id < $rootIdRange[0]) || ($account->id > $rootIdRange[1])))
+                continue;
+            if (in_array($account->id, $blockedRoots))
+                continue;
+            if (in_array($account->id, $bigRoots))
+                continue;
+
+            // Any users with duplicates?
+            $duplicatedUsers = $thisService->dailyJobOps->findDuplicateLicenceHolders($account->id);
+            //echo "root " . $account->id . " has " . count($duplicatedUsers) ." users with duplicates $newLine";
+
+            // For each, leave the last one since the licence clearance date, remove the rest
+            $loopLimit = 0;
+            foreach ($duplicatedUsers as $duplicatedUser) {
+                if ($loopLimit > 1000)
+                    break;
+                $loopLimit++;
+                $licence = null;
+                foreach ($account->titles as $title) {
+                    if ($title->productCode == $duplicatedUser["productCode"]) {
+                        $licence = new Licence();
+                        $licence->fromDatabaseObj($title);
+                        break;
+                    }
+                }
+                if ($licence) {
+                    if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+                        $rc = $thisService->dailyJobOps->removeDuplicateLicenceHolders($duplicatedUser["userId"], $duplicatedUser["productCode"], $licence);
+                        //echo "Deleted $rc licences for " . $duplicatedUser["userId"] . " for pc " . $duplicatedUser["productCode"] . " in root " . $account->id . "$newLine";
+                    } else {
+                        $rc = $thisService->dailyJobOps->countDuplicateLicenceHolders($duplicatedUser["userId"], $duplicatedUser["productCode"], $licence);
+                        echo "Duplicate $rc licences for " . $duplicatedUser["userId"] . " for pc " . $duplicatedUser["productCode"] . " in root " . $account->id . "$newLine";
+                    }
+                } else {
+                    echo "productCode " . $duplicatedUser["productCode"] . " not found in " . $account->id . "$newLine";
+                }
+            }
+        }
+    }
+
 }
 
 // Action

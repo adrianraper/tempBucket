@@ -168,11 +168,6 @@ function runDailyJobs($triggerDate = null) {
                 $thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
                 echo "TB6weeks account ".$account->prefix." sent ".count($emailArray)." emails$newLine";
 
-            } else if (isset($_REQUEST['action']) && strtolower($_REQUEST['action'])=='summary') {
-                // Or summarise on screen
-                foreach($emailArray as $email) {
-                    echo "<b>Email: ".$email["to"]."</b>$newLine";
-                }
             } else {
                 // Or print on screen
                 foreach($emailArray as $email) {

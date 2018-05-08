@@ -38,7 +38,7 @@
 	$_REQUEST['operation'] = 'getQuestions';
 	$_REQUEST['operation'] = 'correct1170Markup';
 
-	require_once(dirname(__FILE__)."/TB6weeksService.php");
+	require_once(dirname(__FILE__)."/xxTB6WeeksServicece.php");
 */
 /*
 function updateUrl($url) {

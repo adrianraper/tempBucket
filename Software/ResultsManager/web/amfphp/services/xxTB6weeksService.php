@@ -40,7 +40,7 @@ require_once(dirname(__FILE__)."/AbstractService.php");
 
 require_once($GLOBALS['common_dir'].'/encryptURL.php');
 
-class TB6weeksService extends AbstractService {
+class xxTB6WeeksService extends AbstractService {
 	
 	// var $productCode = 59;
 	var $dbHost = 2;
@@ -463,6 +463,6 @@ class TB6weeksService extends AbstractService {
 	
 }
 // To mimic amfphp handling
-$doIt = new TB6weeksService();
+$doIt = new xxTB6WeeksService();
 flush();
 exit();
