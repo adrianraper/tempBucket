@@ -384,6 +384,7 @@ import mx.styles.StyleManager;
 		 * @return 
 		 */
 		public function getDirectLogin():LoginEvent {
+
 			var loginOption:uint = getAccount() ? getAccount().loginOption : null;
 			var verified:Boolean = getAccount() ? ((getAccount().verified == Config.LOGIN_REQUIRE_PASSWORD) ? true : false) : false;
 			
@@ -441,9 +442,12 @@ import mx.styles.StyleManager;
 			if (this.getLicenceType() == Title.LICENCE_TYPE_AA) { // gh#165
 				// gh#300 Builder doesn't allow anonymous login
 				// gh#1090 An AA licence which blocks login just starts from here
-				if (config.remoteService.toLowerCase().indexOf("builder") < 0 && this.getConfig().noLogin == true) {
-					config.signInAs = Title.SIGNIN_ANONYMOUS;
-					return new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified);
+                // gh#1561 Possible that the endpoints have not responded yet
+				if (config.remoteService != null && config.remoteService.toLowerCase().indexOf("builder") < 0) {
+                    if (config.hasOwnProperty("noLogin") && config.noLogin == true) {
+                        config.signInAs = Title.SIGNIN_ANONYMOUS;
+                        return new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified);
+                    }
 				}
 			}
 				
