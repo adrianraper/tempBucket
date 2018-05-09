@@ -22,7 +22,7 @@
 		<pricesURL>http://www.clarityenglish.com/prices.php</pricesURL>
 		<registerURL>http://takeielts.britishcouncil.org/book-your-test/book-now</registerURL>
 		<getAccountURL>http://www.roadtoielts.com/</getAccountURL>
-		<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+		<remoteGateway>http://xdock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 		<remoteService>IELTSService</remoteService>
         <channel name='aws' caption='B'>
             <streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
