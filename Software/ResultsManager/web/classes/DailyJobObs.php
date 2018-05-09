@@ -863,7 +863,8 @@ SQL;
 			
 		// Find all users in this account with a subscription to this product
 		$users = $this->subscriptionOps->getSubscribedUsersInAccount($account, $productCode);
-		
+        $tbProductCode = $this->subscriptionOps->relatedProducts($productCode);
+
 		foreach ($users as $user) {
 			$subscription = $this->memoryOps->get('subscription', $productCode, $user->userID);
 				
@@ -885,21 +886,25 @@ SQL;
 				//$now = new DateTime(null, new DateTimeZone(TIMEZONE));
 				//$today = new DateTime($now->format('Y-m-d'. '00:00:00'));
 				$unitsAdded = 1;
-				
-				// TODO: Do we need a 'sensible' limit on number of units to add (in case start date was 1900 or something)
+
 				while ($keyDate <= $today) {
 					if ($keyDate == $today) {
 						// Need to update the relevant bookmark
 						$newBookmark = $this->subscriptionOps->getDirectStart($level, $unitsAdded, $productCode);
-						
-						// The subscription might have completed
-						if (!$newBookmark) {
+                        AbstractService::$debugLog->info("subscription for ".$user->email." startDate=$sd newBookmark=$newBookmark");
+
+						// The subscription might have completed all units, or gone [way] past the end date
+                        // m#242 Jump out in this case
+						if (!$newBookmark || $unitsAdded > 7) {
 							$subscription['valid'] = 'false';
 							$this->memoryOps->set('subscription', $subscription, $productCode, $user->userID);
+							// Erase the direct start so that all TB is now open
+                            $this->memoryOps->forget($user->userID, $tbProductCode, 'directStart');
+                            AbstractService::$debugLog->info("subscription cancelled");
+							continue 2;
 						}
 						
 						// Need to update the Tense Buster bookmark
-						$tbProductCode = $this->subscriptionOps->relatedProducts($productCode);
 						$this->memoryOps->set('directStart', $newBookmark, $tbProductCode, $user->userID);
 						
 						$crypt = new Crypt();
