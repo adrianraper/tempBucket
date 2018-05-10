@@ -214,7 +214,7 @@ this.AIRbrowserAPI.loadMovie("http://airdownload.adobe.com/air/browserapi/air.sw
 this.AIRbrowserAPILoaderInt = setInterval(this, "AIRbrowserAPILoadtest", 500);
 */
 var onlineChecker = new LoadVars();
-var onlineReference = "http://www.clarityenglish.com/Software/Common/Source/SQLServer/orchidServer.php";
+var onlineReference = "https://www.clarityenglish.com/Software/Common/Source/SQLServer/orchidServer.php";
 //Security.loadPolicyFile("http://www.clarityenglish.com/Software/Common/Source/crossdomain.xml")
 //var onlineReference = "http://claritymain/Software/Common/Source/SQLServer/orchidServer.php";
 //Security.loadPolicyFile("http://claritymain/Software/Common/Source/SQLServer/crossdomain.xml")
