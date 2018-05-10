@@ -29,7 +29,7 @@ try {
     // Decode the body
     $json = json_decode(file_get_contents('php://input'));
     /*
-    $json = json_decode('{"command":"getEncryptionKey","id":78}');
+    $json = json_decode('{"command":"getEncryptionKey","id":"68"}');
     $json = json_decode('{"command":"acquireLicenseSlots","tokens":["eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNjU5MzcyOCwic2Vzc2lvbklkIjoiOCJ9.e62Njadljh2vAweWivqvv3CaWAU7wZx0IOz3qtaTJj8",
                                                                   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNjQ3MjY4Niwic2Vzc2lvbklkIjoiMzA2In0.qDdsEn0Lfb0e4HSyJaK1Mh6YC0hYN-hodh0eu-NY23Y"]}');
     $json = json_decode('{"command":"updateActivity","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNTkwMjA5Niwic2Vzc2lvbklkIjoiMjkxIn0.vyougpOHKi5ctolqh56e6f0fd5NEQp1rxtXCt3X9iNI","timestamp":'.$utcTimestamp.'}');
@@ -149,6 +149,11 @@ function releaseLicenceSlots($slots) {
 }
 function getEncryptionKey($testId) {
     global $service;
+    // m#247 For tb/sss etc this is NOT a testId - it is a productCode+userId.
+    // And we expect to just return null. Need to figure out how DPT inside Couloir will handle this call
+    // For now just test to see the . and react with a null
+    if (stristr($testId, '.') !== false)
+        return null;
     return $service->testCops->getTestAccessCode($testId);
 }
 // Just for testing new gateways
