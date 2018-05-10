@@ -166,7 +166,7 @@ function runDailyJobs($triggerDate = null) {
             if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
                 // Send the emails
                 $thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
-                echo "TB6weeks account ".$account->prefix." sent ".count($emailArray)." emails$newLine";
+                echo "TB6weeks account ".$account->prefix." ".$account->id." sent ".count($emailArray)." emails$newLine";
 
             } else {
                 // Or print on screen

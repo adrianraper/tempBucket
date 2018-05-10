@@ -891,7 +891,7 @@ SQL;
 					if ($keyDate == $today) {
 						// Need to update the relevant bookmark
 						$newBookmark = $this->subscriptionOps->getDirectStart($level, $unitsAdded, $productCode);
-                        AbstractService::$debugLog->info("subscription for ".$user->email." startDate=$sd newBookmark=$newBookmark");
+                        AbstractService::$debugLog->info("TB6weeks ".$user->email." startDate=$sd newBookmark=$newBookmark");
 
 						// The subscription might have completed all units, or gone [way] past the end date
                         // m#242 Jump out in this case
@@ -900,7 +900,7 @@ SQL;
 							$this->memoryOps->set('subscription', $subscription, $productCode, $user->userID);
 							// Erase the direct start so that all TB is now open
                             $this->memoryOps->forget($user->userID, $tbProductCode, 'directStart');
-                            AbstractService::$debugLog->info("subscription cancelled");
+                            AbstractService::$debugLog->info("TB6weeks subscription cancelled");
 							continue 2;
 						}
 						
@@ -918,7 +918,7 @@ SQL;
 						$emailData = array("user" => $user, "level" => $level, "programBase" => $programBase, "startProgram" => $startProgram, "startProgress" => $startProgress, "dateDiff" => $f, "weekX" => $unitsAdded+1, "server" => $this->server, "prefix" => $account->prefix);
 						$thisEmail = array("to" => $toEmail, "data" => $emailData);
 						$emailArray[] = $thisEmail;
-						AbstractService::$debugLog->info("update user ".$user->email." to week $unitsAdded");
+						AbstractService::$debugLog->info("TB6weeks update ".$user->email." to week $unitsAdded");
 						
 						continue 2;
 					}

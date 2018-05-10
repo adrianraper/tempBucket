@@ -49,6 +49,7 @@ class EmailOps {
 			
 			// Loop through $emailArray sending one email per entry
 			foreach ($emailArray as $email) {
+			    AbstractService::$debugLog->info("TB6weeks sendEmails to ".$email['to']);
 				// Configure the Rmail object.  As there is no removeAttachments method we need to do this once per mail.
 				$mail = new Rmail();	
 				$mail->setHTMLCharset('UTF-8');
@@ -147,7 +148,8 @@ class EmailOps {
 				$ccList = implode(",",$ccArray);
 				$bccList = implode(",",$bccArray);
 				if (!$result) {
-					$logMsg = "Email error: ".$mail->errors[0]." sending $to with template $templateName";
+					$logMsg = "Email error: $to with template $templateName ".$mail->errors[0];
+                    AbstractService::$log->notice($logMsg);
 					// gh#226
 					throw new Exception($mail->errors[0]);
 					

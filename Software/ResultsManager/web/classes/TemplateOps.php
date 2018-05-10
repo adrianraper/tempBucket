@@ -135,7 +135,7 @@ class TemplateOps {
 
 		if ($useCache) {
 		} else {
-			$smarty->clear_cache();
+			$smarty->clear_cache($templateName);
 		}
 		// Add in the data arrays
 		foreach ($dataArray as $key => $value) {
