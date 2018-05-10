@@ -5,7 +5,8 @@
       "caption": "English",
       "literals": {
         "ThankYouLabel": "Thank you for using Tense Buster",
-        "CoverageProgressBarTitle": "Overall coverage {totalCoverage}%"
+        "CoverageProgressBarTitle": "Overall coverage {totalCoverage}%",
+        "CertificateTemplate": "tb-01"
       }
     }
   ]

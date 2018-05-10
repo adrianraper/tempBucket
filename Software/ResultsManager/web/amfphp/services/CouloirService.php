@@ -50,8 +50,8 @@ class CouloirService extends AbstractService {
 		parent::__construct();
 		
 		// Set the title name for resources
-        // TODO This should be obsolete
-        AbstractService::$title = "Couloir";
+        // TODO This should be obsolete - see m#232
+        AbstractService::$title = "ctp";
 
         $this->testCops = new TestCops($this->db);
         $this->progressCops = new ProgressCops($this->db);
@@ -814,7 +814,7 @@ EOD;
         $certificate = new Summary();
         $certificate->detail = $courseScore;
         $certificate->user = $user;
-        $certificate->template = 'certificates/tb-01';
+        $certificate->template = 'certificates/'.$this->copyOps->getCopyForId("CertificateTemplate");
         $certificate->caption = $this->copyOps->getCopyForId("CertificateOfAchievement");
 
         // And put that into a token
@@ -836,7 +836,7 @@ EOD;
         $htmlCert = $scheme.$host.$path.$script.'?token='.$certToken;
 
         // Create a url that is a dynamically created pdf from an html
-        $scheme = 'http://';
+        $scheme = 'https://';
         $host = 'pdf.clarityenglish.com:3050';
         $path = '';
         $script = '';

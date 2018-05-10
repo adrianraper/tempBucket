@@ -2,6 +2,8 @@
 <literals progam="CTP" version="1.0">
 	<language name="English International" code="EN" mediaFolder="EN">
 		<group name="group">
+            <lit name="CertificateOfAchievement">Certificate of Achievement</lit>
+            <lit name="CertificateTemplate">tb-01</lit>
 		</group>
 	</language>
 </literals>
