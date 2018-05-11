@@ -24,20 +24,18 @@ The test will take 30 minutes.</p>
     Password: <strong>{$user->password}</strong></p>
 
 <p style="margin-bottom: 0"><strong>How to take the test</strong><br/>
-You can take the test on a desktop/laptop or a tablet/smartphone.
-<ol style="margin-top: 0; margin-bottom: 0">
-    <li>For any device go to <a href="https://dpt.clarityenglish.com"><strong>dpt.clarityenglish.com</strong></a> in your browser.</li>
-    or
-    <li>For tablet/phone download the app from the <a href="https://itunes.apple.com/hk/app/dynamic-placement-test/id1179218583?mt=8&amp;ign-mpt=uo%3D4" target="_blank" style=" font-size:0.9em;">Apple App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.clarityenglish.ctp_wrapper&hl=en" target="_blank" style=" font-size:0.9em;">Google Play</a>. Search for <strong>Dynamic Placement Test</strong>.</li>
-</ol>
-Sign in and try section 1 of the test to make sure it runs properly on your device.<br/>
+You can take the test on a desktop/laptop or a tablet/smartphone.<br/>
+Go to <a href="https://dpt.clarityenglish.com"><strong>dpt.clarityenglish.com</strong></a> in your browser.<br/>
+Sign in and try section 1 of the test to make sure it runs properly on your device.
 {if $testDetail->startType == 'code'}
-    Your test administrator will give you the access code when the test is ready to start.
+    <br/>Your test administrator will give you the access code when the test is ready to start.
 {/if}
 </p>
 
 <p><strong>Important</strong><br/>
-    You will need <strong>headphones</strong> or <strong>earphones</strong> for the test.</p>
+    You will need <strong>headphones</strong> or <strong>earphones</strong> for the test.<br/>
+    The test downloads to your browser after sign-in. When you get to section 1 it is ready. You can close the browser and open it later.
+</p>
 
 {if $emailDetails && $emailDetails->notes}
     <p class="replaceInPreview"><strong>Notes</strong><br/>
