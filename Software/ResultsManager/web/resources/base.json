@@ -21,6 +21,7 @@
         "Submit": "Submit",
         "Finish": "Finish",
         "Start": "Start",
+        "Download": "Download",
         "DownloadError": "Error downloading content. Downloading will start again automatically in a few seconds...",
         "DeviceUnsupported": "You need a different device to run this program.",
         "InactivityWarning": "You have not used this application for a while. If you do not click below you will be automatically logged out.",
