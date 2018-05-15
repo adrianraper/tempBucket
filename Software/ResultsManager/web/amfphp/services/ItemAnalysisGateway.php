@@ -36,23 +36,28 @@ set_time_limit(MAX_EXECUTION_TIME);
 function loadAPIInformation() {
 	global $thisService;
 
-    $output = (isset($_GET['output'])) ? $_GET['output'] : "excel"; // or json, excel, text
+    $output = (isset($_GET['output'])) ? $_GET['output'] : "browser"; // or json, export
     $filter = (isset($_GET['filter'])) ? $_GET['filter'] : ""; // a1-r1.html, gauge, gauge1, a1, l1, can do regex ONLY FROM FILE, not from browser parameters
     $tags = (isset($_GET['tags'])) ? $_GET['tags'] : ""; // "A1^word-placement, A1,word-placement"
     $unitname = (isset($_GET['unitname'])) ? $_GET['unitname'] : ""; // Gauge, Track A etc
     if ($unitname == "") $unitname = (isset($_GET['unitName'])) ? $_GET['unitName'] : ""; // old case style
     $method = (isset($_GET['method'])) ? $_GET['method'] : ""; // checkContentIntegrity etc
-    $outputFilename = (isset($_GET['file'])) ? $_GET['file'] : ""; // export-gauge-Bahrain etc
+    $outputFilename = (isset($_GET['outputFilename'])) ? $_GET['outputFilename'] : ""; // export-gauge-Bahrain etc
 
 	$inputData = file_get_contents("php://input");
-	//$inputData = '{"method":"xxgetRecordsForItemId","id":"4386248d-db3e-4c11-ae4f-0e4194cbe067","dbHost":2}';
-	//$inputData = '{"method":"itemAnalysis","dbHost":2}';
-    $inputData = '{"method":"distractorAnalysis","dbHost":200}';
+    //$inputData = '{"method":"getTestData","output":"export","outputFilename":"Test NTU","testIds":[1742],"dbHost":200}';
+    //$inputData = '{"method":"seeWhiteList","output":"browser","cutoffDate":"2018-05-01","dbHost":200}';
+    //$inputData = '{"method":"checkContentIntegrity","output":"browser","check":"ids","filter":"gauge10", "dbHost":2}';
+    //$inputData = '{"method":"getRecordsForItemId","id":"4386248d-db3e-4c11-ae4f-0e4194cbe067","dbHost":2}';
+	//$inputData = '{"method":"getItemDetails","dbHost":2}';
+    //$inputData = '{"method":"distractorAnalysis","unitname":"Track C","testIds":[1701],"output":"browser","dbHost":200}';
+    //$inputData = '{"method":"distractorAnalysis","filter":"abto","testIds":[1701],"output":"browser","dbHost":200}';
 	//$inputData = '{"method":"getCandidateAnswers","dbHost":200}';
     //$inputData = '{"method":"grabData", "targetHost":2, "sourceHost":3}';
     //$inputData = '{"method":"checkContentIntegrity", "check":"tags", "filter":"/a[12]+-l/", "dbHost":2}';
     //$inputData = '{"method":"makeNewItemId","dbHost":3}';
     //$inputData = '{"method":"seeWhiteList","dbHost":2}';
+    //$inputData = '{"method":"distractorAnalysis","output":"export","filter":"gauge1","testIds":[1742],"outputFilename":"distractorsNTU","dbHost":200}';
 
 	$postInformation = json_decode($inputData, true);
 	if (!$postInformation) 
@@ -94,7 +99,6 @@ function returnError($errCode, $data = null) {
 
 	$returnInfo = array_merge($apiReturnInfo);
 	echo json_encode($returnInfo);
-	exit(0);
 }
 
 function logit($message) {
@@ -116,8 +120,6 @@ function iagOutput($file, $qid, $qtype, $root, $context, $readingText, $tags) {
         $file = $matches[1];
 
     switch ($apiInformation['output']) {
-        case 'text':
-        case 'excel':
         case 'export':
             $tagsString = (is_array($tags)) ? implode(',', $tags) : (string) $tags;
             //$ia1 = (isset($attempts['correctIdx'])) ? $attempts['correctIdx'] : 0;
@@ -161,8 +163,6 @@ function testTakerOutput($uid, $qidScore, $result) {
     global $outputFilename;
     $builtLine = $uid . $tab . implode($tab, $qidScore) . $tab . $result;
     switch ($apiInformation['output']) {
-        case 'text':
-        case 'excel':
         case 'export':
             file_put_contents($outputFilename, $builtLine . "$newline", FILE_APPEND | LOCK_EX);
             break;
@@ -179,8 +179,6 @@ function distractorOutput($uid, $qtype, $idx, $answers) {
     global $outputFilename;
     $builtLine = $uid . $tab . $qtype . $tab . $idx . $tab. implode($tab, $answers);
     switch ($apiInformation['output']) {
-        case 'text':
-        case 'excel':
         case 'export':
             file_put_contents($outputFilename, $builtLine . "$newline", FILE_APPEND | LOCK_EX);
             break;
@@ -217,7 +215,7 @@ try {
     if (!$specificName) $specificName = 'export-'.(isset($apiInformation['unitname'])) ? $apiInformation['unitname'] : false;
     if (!$specificName) $specificName = 'export-'.(isset($apiInformation['filter'])) ? $apiInformation['filter'] : false;
     if (!$specificName) $specificName = 'export-'.date('jS-F-Y');
-    $outputFilename = $contentFolder.'/'.$specificName.'.txt';
+    $outputFilename = $contentFolder.'/Item Analysis/'.$specificName.'.txt';
     $apiInformation['menuFile'] = $titleFolder.'/expanded-menu.json';
     //$outputFile = false;
 
@@ -226,18 +224,12 @@ try {
 		$thisService->changeDB($apiInformation['dbHost']);
 
     switch ($apiInformation['output']) {
-        case 'text':
-            header('Content-Type: text/plain; charset=utf-8');
-            $newline = "\n"; $tab = "\t";
-            $log = false;
-            break;
         case 'json':
             header('Content-Type: text/json; charset=utf-8');
             $newline = "\n"; $tab = "\t";
             $log = false;
             break;
         // Need to take full control of writing a file due to time issues
-        case 'excel':
         case 'export':
             //header("Content-Type: text/csv; charset=utf-8");
             //header("Content-Disposition: attachment; filename=\"export.csv\"");
@@ -248,7 +240,7 @@ try {
             //file_put_contents($outputFilename,"Hello");
 
             // Write a header record (if not done by individual method)
-            if ($apiInformation['method'] != 'getCandidateAnswers')
+            if ($apiInformation['method'] != 'distractorAnalysis')
                 iagOutput('Filename','Item id','Q Type','Options', 'Context','Reading text','Tags',array('correctIdx' => 'correct','answers' =>'Answers'));
             break;
         default:
@@ -257,18 +249,19 @@ try {
             $log = true;
     }
 
-    // Add a whitelist of testIds that are considered valid
-    //$whiteList = '(75,366,364,358,345,338,330,328,327,274,273,251,238,229,226,225,78,68,65,64,63,62,61,60,59,58,57,51,50,49,48,47,46,45,44,43)';
-    //$whiteList = '(714,700,697,688,685,678,664,654,643,638,631,629,624,620,575,551,538,501,500,497,485,484,449,404,377,371,364,358,345,338,330,273)';
-    //$whiteList = '(714)';
-    //$whiteList = '(484, 638)'; // AsiaU TOEIC comparison tests
-    // Add a whitelist of testIds that are considered valid
-    // Nothing from root 49040 (trials)
-    //$whiteList = '(366,364,358,345,338,330,328,327,274,273,251,238,229,226,225,78,68,65,64,63,62,61,60,59,58,57,51,50,49,48,47,46,45,44,43)';
-    //$whiteList = '(1021,1017,1011,1010,1008,1004,997,996,992,991,987,984,983,982,977,976,975,973,972,966,961,955,952,944,936,935,934,933,932,931,928,927,926,925,922,918,917,916,913,912,911,910,909,907,906,905,904,903,902,901,900,899,898,897,896,893,888,885,884,883,882,881,880,879,878,876,874,872,871,870,869,868,867,865,864,863,862,861,860,859,858,857,856,854,853,852,851,850,849,848,847,838,836,815,814,807,806,805,803,793,785,784,783,782,779,774,771,769,768,767,766,764,763,762,760,759,758,757,755,754,753,752,751,750,749,748,747,746,745,744,743,742,741,740,739,737,736,735,734,732,731,730,729,728,726,725,724,722,721,720,719,718,717,711,710,706,705,700,699,698,697,696,688,685,683,678,677,674,667,664,661,656,654,649,648,647,643,639,638,631,630,629,625,624,620,612,611,610,609,608,607,606,605,604,603,590,579,575,563,558,555,551,550,538,524,512,502,501,500,499,497,494,490,488,485,484,473,449,439,431,426,425,416,410,407,404,402,396,395,394,393,392,391,390,389,388,387,386,385,381,380,379,378,377,376,375,371,366,364,358,345,338,330,328,327,274,273,251,238,229,226,225,78,68,65,64,63,62,61,60,59,58,57,51,50,49,48,47,46,45,44,43)';
-    //$whiteList = array(484, 638);
-    //$thisService->itemAnalysisOps->setWhiteList($whiteList);
-    $thisService->itemAnalysisOps->setWhiteList($thisService->itemAnalysisOps->getTestsForWhiteList());
+    // This is a list of roots to avoid - allow no tests from these accounts - ever
+    $blackListRoots = array(163,14417,49040,47454,54333);
+    // This is a list of tests to avoid from otherwise good accounts
+    $blackListTests = array();
+
+    // If you have sent a list of test ids, then simply use them
+    if (isset($apiInformation['testIds']) && is_array($apiInformation['testIds'])) {
+        $thisService->itemAnalysisOps->setWhiteList($apiInformation['testIds']);
+    } else {
+        // If not, then build a list of tests that exclude blacklist accounts, blacklist tests and anything before a cutoff
+        $blackListDate = (isset($apiInformation['cutoffDate'])) ? $apiInformation['cutoffDate'] : null;
+        $thisService->itemAnalysisOps->setWhiteList($thisService->itemAnalysisOps->getTestsForWhiteList($blackListRoots, $blackListTests, $blackListDate));
+    }
 
     switch ($apiInformation['method']) {
         // Not implemented
@@ -338,12 +331,12 @@ try {
             $rc = $thisService->itemAnalysisOps->checkContent($apiInformation, $titleFolder);
 		    break;
 
-        case 'getCandidateAnswers';
+        case 'getTestData';
             $rc = $thisService->itemAnalysisOps->getCandidateAnswers($apiInformation, $titleFolder);
             break;
 
-        case 'itemAnalysis':
-            $rc = $thisService->itemAnalysisOps->itemAnalysis($apiInformation, $titleFolder);
+        case 'getItemDetails':
+            $rc = $thisService->itemAnalysisOps->getItemDetails($apiInformation, $titleFolder);
             break;
 
         case 'distractorAnalysis':
@@ -351,8 +344,8 @@ try {
             break;
 	}
 
-	if ($apiInformation['output'] == 'excel')
-	    logit("output to $outputFilename");
+	if ($apiInformation['output'] == 'export')
+	    echo "output to $outputFilename";
 
 	if ($outputStream) {
         echo '{"data":['.implode(',',$outputStream).']}';

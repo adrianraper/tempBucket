@@ -21,6 +21,15 @@
 	if (empty($bank)) echo 'bank is empty';
 	if (!isset($xml->product->bank)) echo 'bank is not isset';
 */
+    $answerPatterns = array(0 => 31, '1,2,3,4' => 1, '2,1,3,4' => 5, '3,1,2,4' => 2);
+    $a1 = ;
+    $a2 = array_values(array_slice($answerPatterns,1));
+    arsort($a2);
+    if (count($answerPatterns) > 1) {
+        $sortedAnswers = array_merge(array($answerPatterns[0]), $a2);
+    } else {
+        $sortedAnswers = $answerPatterns[0];
+    }
 /*
 	$_REQUEST['prefix'] = 'clarity';
 	$_REQUEST['productCode'] = '59';
@@ -64,6 +73,7 @@ test(
     "http://www.clarityenglish.com/Content/TenseBuster10-NAmerican/"
 );
 */
+/*
 $func = function($item) {
     try {
         if ($item == 0)
@@ -75,6 +85,7 @@ $func = function($item) {
 
 $rs = array_map($func, array(1, 2, 3, 0, 5));
 print_r($rs);
+*/
 /*
 	require_once(dirname(__FILE__)."/MinimalService.php");
 	$dummy = new MinimalService();
