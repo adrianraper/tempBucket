@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{if $emailDetails->subject}{unescape_string data=$emailDetails->subject}{else}Dynamic Placement Test{/if}</title>
-    <!-- <from>%22ClarityEnglish%22 %3Cadmin@clarityenglish.com%3E</from> -->
+    <!-- <from>%22ClarityEnglish%22 %3Cno-reply@clarityenglish.com%3E</from> -->
 </head>
 <body style="font-family: Sans-Serif; font-size: 15px">
 <p>
