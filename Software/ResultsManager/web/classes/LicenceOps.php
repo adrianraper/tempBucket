@@ -960,9 +960,6 @@ EOD;
 			case 56:
 				return 33;
 				break;
-			case 60:
-				return 49;
-				break;
 			case 58:
 				return 50;
 				break;
@@ -972,6 +969,13 @@ EOD;
 			case 62:
 				return 10;
 				break;
+			// m#268
+            case 66:
+                return 49;
+                break;
+            case 68:
+                return 55;
+                break;
 		}
 		return false;
 	}

@@ -1138,10 +1138,8 @@ EOD;
 					$courseType = 'bento';
 					$titleObj->indexFile = "menu-Speech-FullVersion.xml";
 					break;
-				case ($pid == 63): 
-				case ($pid == 64): 
-				case ($pid == 66):
-				case ($pid == 67):
+				// m#268 An arbitrary upper limit on the product code of Couloir titles...
+				case (63 <= $pid && $pid < 100):
 					$courseType = 'couloir';
 					$titleObj->indexFile = "course.xml";
 					break;

@@ -19,8 +19,8 @@ function loadAPIInformation() {
 
 	//$inputData = file_get_contents("php://input");
 	//$inputData = '{"method":"getAllManageablesFromRoot","username":"clarity","password":"ceonlin787e","dbHost":2}';
-	//$inputData = '{"method":"getContent","dbHost":2}';
-    $inputData = '{"method":"getUsageStats", "username":"nascanada", "password":"clarity","productCode":"50", "fromDate":"2017-09-01", "toDate":"2018-04-20", "dbHost":2}';
+	$inputData = '{"method":"getContent","dbHost":2}';
+    //$inputData = '{"method":"getUsageStats", "username":"nascanada", "password":"clarity","productCode":"50", "fromDate":"2017-09-01", "toDate":"2018-04-20", "dbHost":2}';
 
     // Do you want to fake a special date for testing?
     //$GLOBALS['fake_now'] = '2017-01-26 09:00:00';
@@ -104,9 +104,9 @@ try {
 
 	switch ($apiInformation['method']) {
         case 'getContent':
-            Session::set('rootID', 10757);
-            Session::set('userID', 13014);
-            Session::set('groupID', 10757);
+            Session::set('rootID', 163);
+            Session::set('userID', 9003);
+            Session::set('groupID', 163);
             $rc = $thisService->contentOps->getContent();
             break;
 
