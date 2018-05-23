@@ -311,8 +311,13 @@ EOD;
 				$thisUser->birthday = $apiInformation->subscription->birthday;
 			} 
 			$account->adminUser = $thisUser;
-		
-			// Should I add the account to the database now?
+
+			// m#281
+            if (isset($apiInformation->subscription->registerMethod)) {
+                $thisUser->registerMethod = $apiInformation->subscription->registerMethod;
+            }
+
+            // Should I add the account to the database now?
 			// We don't know titles yet, so just keep the account object, no need to add to database yet. 
 			// But must make sure that I know later whether to add/update the account
 			//$this->accountOps->addAccount($account);

@@ -39,9 +39,8 @@ class SubscriptionApi {
 	// These are picked up when you are creating an account
 	public $offerName; 
 	public $resellerEmail = '';
-	
+
 	function SubscriptionApi() {
-		
 	}
 	
 	public function createFromSentFields($info) {

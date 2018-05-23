@@ -32,8 +32,11 @@ class Subscription {
 	
 	// added to store the IP.com test date
 	public $birthday;
-	
-	public function Subscription($id = null) {
+
+    // m#281 For personal subscriptions on ce.com
+    public $registerMethod;
+
+    public function Subscription($id = null) {
 		
 		if ($id)
 			$this->id = $id;
@@ -66,7 +69,9 @@ class Subscription {
 		$this->orderRef = $obj->F_OrderRef;
 		$this->dateStamp = $obj->F_DateStamp;
 		$this->birthday = substr($obj->F_Birthday,0,10).' 00:00:00';
-	}		
+		// m#281
+		$this->registerMethod = $obj->F_RegisterMethod;
+	}
 	/**
 	 * Convert this object to an associative array ready to pass to AutoExecute.
 	 */
@@ -90,6 +95,8 @@ class Subscription {
 		$array['F_OrderRef'] = $this->orderRef;
 		$array['F_DateStamp'] = ($this->dateStamp) ? $this->dateStamp : date('Y-m-d H:i:s');
 		$array['F_Birthday'] = $this->birthday;
+        // m#281
+        $array['F_RegisterMethod'] = $this->registerMethod;
 
 		return $array;
 	}
@@ -152,6 +159,9 @@ class Subscription {
 		
 		if (isset($info['birthday']))
 			$this->birthday = $info['birthday'];
+		// m#281
+        if (isset($info['registerMethod']))
+            $this->registerMethod = $info['registerMethod'];
 	}
 	/**
 	 * If you want to print a subscription record

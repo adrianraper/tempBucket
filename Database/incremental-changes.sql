@@ -1833,5 +1833,8 @@ VALUES
 -- For Tense Buster coming upgrade
 DELETE FROM T_Triggers where F_TriggerID=67;
 INSERT INTO `T_Triggers` (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`) 
-VALUES (67,'Tense Buster update announcement',NULL,NULL,'tb_upgrade_2018','method=getAccounts&productCode=55&notLicenceType=5&active=true',NULL,'2018-04-27,'email','oneoff',4);
+VALUES (67,'Tense Buster update announcement',NULL,NULL,'tb_upgrade_2018','method=getAccounts&productCode=55&notLicenceType=5&active=true',NULL,'2018-04-27','email','oneoff',4);
 
+-- For CE.com home sales
+ALTER TABLE `T_Subscription` 
+ADD COLUMN `F_RegisterMethod` varchar(64) NULL DEFAULT NULL;
