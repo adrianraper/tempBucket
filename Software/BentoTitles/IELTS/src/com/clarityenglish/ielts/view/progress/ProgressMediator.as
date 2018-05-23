@@ -30,6 +30,10 @@ public class ProgressMediator extends BentoMediator implements IMediator {
 
         // This view runs off the menu xml so inject it here
         var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+        if (bentoProxy.menuXHTML == null) {
+            facade.sendNotification(BBNotifications.MENU_XHTML_RELOAD);
+            return;
+        }
         view.href = bentoProxy.menuXHTML.href;
 
         // Inject whether this is an anonymous user or not

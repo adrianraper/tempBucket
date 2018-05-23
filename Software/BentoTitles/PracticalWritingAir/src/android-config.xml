@@ -18,9 +18,9 @@
 	
 	<language>EN</language>
 
-	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
-	<remoteDomain>http://www.clarityenglish.com/</remoteDomain>
-	<remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<contentPath>https://www.clarityenglish.com/Content/</contentPath>
+	<remoteDomain>https://www.clarityenglish.com/</remoteDomain>
+	<remoteGateway>https://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>PracticalWritingService</remoteService>
 	
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
@@ -28,7 +28,7 @@
 	<rememberLogin>true</rememberLogin>
 	<disableAutoTimeout>true</disableAutoTimeout>
 	
-	<checkNetworkAvailabilityUrl>http://www.clarityenglish.com</checkNetworkAvailabilityUrl>
+	<checkNetworkAvailabilityUrl>https://www.clarityenglish.com</checkNetworkAvailabilityUrl>
 	<checkNetworkAvailabilityInterval>30</checkNetworkAvailabilityInterval>
 	<checkNetworkAvailabilityReconnectInterval>5</checkNetworkAvailabilityReconnectInterval>
 	

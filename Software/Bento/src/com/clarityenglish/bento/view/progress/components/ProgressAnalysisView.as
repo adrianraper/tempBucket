@@ -61,6 +61,7 @@ package com.clarityenglish.bento.view.progress.components {
 			super.commitProperties();
 			
 			if (!_type) return;
+			if (!menu) return;
 			
 			var targetNodes:XMLList;
 			if (_type == COURSE_BASED) {

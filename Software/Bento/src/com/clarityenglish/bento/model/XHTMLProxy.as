@@ -278,9 +278,16 @@ package com.clarityenglish.bento.model {
 			var href:Href = urlLoaders[urlLoader];
 			
 			log.info("IO error loading from href {0} - {1}", href, event.text);
-			sendNotification(BBNotifications.XHTML_LOAD_IOERROR, { href: href } );
             // gh#1340 You only want to send this if it is really the menu.xml which has failed to load, not just a regular exercise.
-			sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
+			if (href.type == Href.MENU_XHTML) {
+                sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
+            } else {
+                // m#9 I want to catch this and go back to the menu
+                //sendNotification(BBNotifications.XHTML_LOAD_IOERROR, { href: href } );
+                var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+                sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorLostConnectionLoadingFile", {}, false), "warning");
+            }
+            delete loadedResources[href];
 			delete urlLoaders[urlLoader];
 		}
 		
@@ -291,6 +298,7 @@ package com.clarityenglish.bento.model {
 			log.info("Security error loading from href {0} - {1}", href, event.text);
 			sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
 			delete urlLoaders[urlLoader];
+            delete loadedResources[href];
 		}
 		
 	}

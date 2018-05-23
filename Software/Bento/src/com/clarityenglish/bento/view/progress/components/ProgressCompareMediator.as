@@ -1,4 +1,5 @@
 package com.clarityenglish.bento.view.progress.components {
+    import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
@@ -6,7 +7,8 @@ package com.clarityenglish.bento.view.progress.components {
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.LoginProxy;
-	import com.clarityenglish.common.vo.content.Title;
+import com.clarityenglish.common.vo.config.BentoError;
+import com.clarityenglish.common.vo.content.Title;
 	
 	import mx.rpc.AsyncToken;
 	import mx.rpc.events.FaultEvent;
@@ -34,7 +36,11 @@ package com.clarityenglish.bento.view.progress.components {
 			
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			view.href = bentoProxy.menuXHTML.href;
+            if (bentoProxy.menuXHTML == null) {
+                facade.sendNotification(BBNotifications.MENU_XHTML_RELOAD);
+                return;
+            }
+            view.href = bentoProxy.menuXHTML.href;
 			
 			// gh#1166
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
@@ -58,7 +64,15 @@ package com.clarityenglish.bento.view.progress.components {
 				},
 				function(e:FaultEvent, data:AsyncToken):void {
 					var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
-					sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorCantLoadEveryoneSummary"));
+                    // m#9 cope with internet connection blips?
+                    if (e.fault.faultCode == 'Client.Error.MessageSend' || e.fault.faultString == 'Send failed') {
+                        var connectionError:BentoError = BentoError.create(e.fault, false);
+                        connectionError.errorContext = copyProxy.getCopyForId("errorLostConnection");
+                        sendNotification(CommonNotifications.BENTO_ERROR, connectionError, "warning");
+                    } else {
+
+                        sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorCantLoadEveryoneSummary"));
+                    }
 				}
 			));
 		}

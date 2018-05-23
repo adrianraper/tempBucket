@@ -55,7 +55,7 @@ package com.clarityenglish.bento.controller {
 					<state name={BBStates.STATE_TITLE}>
 						<transition action={CommonNotifications.LOGGED_OUT} target={BBStates.STATE_LOAD_ACCOUNT} />
 						<transition action={CommonNotifications.EXITED} target={BBStates.STATE_ENDING} />
-						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
+						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_LOAD_MENU} />
 					</state>
 					
 					<state name={BBStates.STATE_ENDING}>
