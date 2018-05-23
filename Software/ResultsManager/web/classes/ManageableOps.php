@@ -156,7 +156,7 @@ class ManageableOps {
 	function addUser($user, $parentGroup, $rootID = null, $loginOption = null) {
 		// Ensure that this user has permission to access the parent group
 		AuthenticationOps::authenticateGroups(array($parentGroup));
-        AbstractService::$debugLog->info("LoginGateway try to addUser to group ".$parentGroup->id);
+        //AbstractService::$debugLog->info("LoginGateway try to addUser to group ".$parentGroup->id);
 
         // gh#653 Replace with conflictedUser
 		$rc = $this->isUserConflicted($user, $rootID, $loginOption);

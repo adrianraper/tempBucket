@@ -374,9 +374,13 @@ class ClarityService extends AbstractService {
 		// gh#769 record source of registration
 		$today = new DateTime();
 		if (!isset($user->registrationDate))  $user->registrationDate = $today->format('Y-m-d H:i:s');
-		if (!isset($user->registerMethod)) $user->registerMethod = 'RM';
-		
-		return $this->manageableOps->addUser($user, $parentGroup);
+		// All gateways and APIs include registerMethod - only RM leaves it out
+		if (!isset($user->registerMethod))  $user->registerMethod = 'RM addUser';
+
+		// m#172 Trim user details (including the password if this was typed by a teacher in RM)
+		$user->trimDetails(($user->registerMethod == 'RM addUser'));
+
+        return $this->manageableOps->addUser($user, $parentGroup);
 	}
 	
 	public function updateGroups($groupsArray) {

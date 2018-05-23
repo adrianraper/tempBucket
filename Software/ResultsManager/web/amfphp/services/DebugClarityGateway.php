@@ -17,9 +17,9 @@ header('Content-Type: text/plain; charset=utf-8');
 function loadAPIInformation() {
 	global $thisService;
 
-	//$inputData = file_get_contents("php://input");
+	$inputData = file_get_contents("php://input");
 	//$inputData = '{"method":"getAllManageablesFromRoot","username":"clarity","password":"ceonlin787e","dbHost":2}';
-	$inputData = '{"method":"getContent","dbHost":2}';
+	//$inputData = '{"method":"addUser","username":" clarity ","password":"ceonlin787e","email":"adrian@clarinet ","groupID":163,"dbHost":2}';
     //$inputData = '{"method":"getUsageStats", "username":"nascanada", "password":"clarity","productCode":"50", "fromDate":"2017-09-01", "toDate":"2018-04-20", "dbHost":2}';
 
     // Do you want to fake a special date for testing?
@@ -103,6 +103,22 @@ try {
 		$thisService->changeDbHost($apiInformation['dbHost']);
 
 	switch ($apiInformation['method']) {
+	    // m#172
+        case 'addUser':
+            AuthenticationOps::$useAuthentication = false;
+
+            Session::set('rootID', 163);
+            Session::set('userID', 9003); // Mrs Twaddle
+
+            $user = new User();
+            $user->password = $apiInformation['password'];
+            $user->name = $apiInformation['username'];
+            $user->email = $apiInformation['email'];
+
+            $group = $thisService->manageableOps->getGroup($apiInformation['groupID']);
+            $rc = $thisService->addUser($user, $group);
+            break;
+
         case 'getContent':
             Session::set('rootID', 163);
             Session::set('userID', 9003);
@@ -135,7 +151,7 @@ try {
             throw new Exception('Couldn\'t handle method: '.$apiInformation['method']);
 	}
 
-	if (isset($rc['errCode']) && intval($rc['errCode']) > 0) {
+	if (is_array($rc) && isset($rc['errCode']) && intval($rc['errCode']) > 0) {
 		returnError($rc['errCode'], $rc['data']);
 	}
 

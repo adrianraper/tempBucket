@@ -152,7 +152,6 @@ class User extends Manageable {
 	function toSQLUpdate($userID) {
 		$this->setDefaultValues();
 		
-		//			F_Memory=?
 		$sql = <<<EOD
 			UPDATE T_User 
 			SET F_UserName=?,F_Email=?,F_Password=?,F_StudentID=?,F_UserType=?,
@@ -189,10 +188,29 @@ EOD;
 EOD;
 		return $sql;
 	}
-	
+
+    // m#172 Trim user details - include password if this is coming from addUser in RM user creation
+    function trimDetails($fromRM = false) {
+	    // Don't touch anything that is not a lengthy string
+        if ($this->name && is_string($this->name) && strlen($this->name) > 0)
+            $this->name = trim($this->name);
+        if ($this->email && is_string($this->email) && strlen($this->email) > 0)
+            $this->email = trim($this->email);
+        if ($this->studentID && is_string($this->studentID) && strlen($this->studentID) > 0)
+            $this->studentID = ($this->studentID) ? trim($this->studentID) : null;
+        if ($this->city && is_string($this->city) && strlen($this->city) > 0)
+            $this->city = ($this->city) ? trim($this->city) : null;
+        if ($this->country && is_string($this->country) && strlen($this->country) > 0)
+            $this->country = ($this->country) ? trim($this->country) : null;
+
+        if ($fromRM)
+            if ($this->password && is_string($this->password) && strlen($this->password) > 0)
+                $this->password = ($this->password) ? trim($this->password) : null;
+    }
+
 	// gh#956
 	function toBindingParams() {
-		return array($this->name, $this->email, $this->password, $this->studentID, $this->userType, 
+		return array($this->name, $this->email, $this->password, $this->studentID, $this->userType,
 					$this->expiryDate, $this->startDate, $this->registrationDate, $this->birthday,
 					$this->country, $this->city,
 					$this->custom1, $this->custom2, $this->custom3, $this->custom4, 
