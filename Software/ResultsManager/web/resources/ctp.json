@@ -107,21 +107,43 @@
     {
       "language": "zh-tw",
       "literals": {
-        "TestNotOpened": "測試尚未開始。請於{date}{time}再試一次。",
-        "TestClosed": "此測試已於{date}{time}結束.",
-        "NotAnsweredQuestions": "尚有一個問題沒有回答。|尚有{count}個問題沒有回答。",
-        "IncorrectQuestions": "請填寫所有正確答案。",
-        "Access": "測試驗證碼",
-        "Code": "驗證碼",
-        "Result": "測試結果",
-        "Reset": "重置測試",
-        "EnterCode": "請輸入測試驗證碼。",
-        "SendingScores": "測試已結束，系統正在上傳你的答案，請不要離開此頁。",
-        "FinishedTest": "測試已結束，你的測試結果已傳送給測試管理員。",
-        "ICantDoThis": "使用其他設備",
-        "IncorrectValidateCode": "測試驗證碼不正確。請查閱你的測試通知，或向測試管理員尋求協助。 ",
-        "EmptyValidateCode": "請輸入測試驗證碼。",
-        "DeviceUnsupported": "請使用其他設備進行測試。如需協助，請與測試管理員聯繫。"
+        "TestNotOpened": "此測驗尚未開始，請於 {date} {time} 再試一次。",
+        "TestClosed": "此測驗已結束。",
+        "NotAnsweredQuestions": "您有1題尚未完成。|您有 {count}題尚未完成。",
+        "IncorrectQuestions": "您必須全部答對才能進入下一階段。",
+        "Access": "準考密碼",
+        "Code": "準考密碼",
+        "Result": "測驗成績",
+        "Reset": "重新啟動",
+        "EnterCode": "請輸入準考密碼後進入正式測驗。",
+        "SendingScores": "您已完成測驗，系統正在上傳您的答案，請等待您的成績出現或請依照監考人員指示進行。",
+        "FinishedTest": "您已完成測驗，成績已上傳至考試單位。",
+        "ICantDoThis": "無法完成",
+        "IncorrectValidateCode": "您似乎輸入錯誤的準考密碼，請再次確認您的考試通知訊息，或與您的考試單位聯繫。",
+        "EmptyValidateCode": "請輸入有效的準考密碼。",
+        "DeviceUnsupported": "您需更換設備來進行測驗。請與您的監考人員聯繫。",
+		"QuotaExceededWarning": "您目前使用的設備儲存空間不足，請移除一些資料後再試一次。如果使用無痕式視窗模式或隱私視窗模式者，請再以正常模式進入。"
+      }
+    },
+	{
+      "language": "zh-cn",
+      "literals": {
+        "TestNotOpened": "此测验尚未开始，请于 {date} {time} 再试一次。",
+        "TestClosed": "此测验已结束。",
+        "NotAnsweredQuestions": "您有1题尚未完成。 |您有 {count}题尚未完成。",
+        "IncorrectQuestions": "您必须全部答对才能进入下一阶段。",
+        "Access": "准考密码",
+        "Code": "准考密码",
+        "Result": "测验成绩",
+        "Reset": "重新启动",
+        "EnterCode": "请输入准考密码后进入正式测验。",
+        "SendingScores": "您已完成测验，系统正在上传您的答案。请等待您的成绩出现或请依照监考人员指示进行。",
+        "FinishedTest": "您已完成测验，成绩已上传至考试单位。",
+        "ICantDoThis": "无法完成",
+        "IncorrectValidateCode": "您似乎输入错误的准考密码，请再次确认您的考试通知讯息，或与您的考试单位联系。",
+        "EmptyValidateCode": "请输入有效的准考密码。",
+        "DeviceUnsupported": "您需更换设备来进行测验。请与您的监考人员联系。",
+		"QuotaExceededWarning": "您目前使用的设备储存空间不足，请移除一些资料后再试一次。如果使用无痕式视窗模式或隐私视窗模式者，请再以正常模式进入。"
       }
     },
     {
