@@ -225,6 +225,7 @@
       "caption": "繁體中文",
       "literals": {
         "Email": "電郵地址/帳號",
+		"Uploading": "上載中...",
         "Password": "密碼",
         "Login": "登入",
         "Downloading": "下載中...",
@@ -247,6 +248,7 @@
       "caption": "简体中文",
       "literals": {
         "Email": "电邮地址/帐号",
+		"Uploading": "上传中...",
         "Password": "密码",
         "Login": "登入",
         "Downloading": "下载中...",
