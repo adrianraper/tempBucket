@@ -1927,4 +1927,59 @@ SQL;
 
         return $initialLicences-$afterLicences;
     }
+
+    // Find the completed tests since a particular date
+    function getCompletedTests($sinceWhen) {
+        $completions = array();
+
+        $sql = <<<SQL
+			select u.F_UserName as name, F_Email as email, t.F_RootID as rootId, t.F_Result as result 
+			from T_TestSession t, T_User u
+            where t.F_CompletedDateStamp > ?
+            and u.F_UserID = t.F_UserID
+            order by t.F_RootID asc;
+SQL;
+        $bindingParams = array($sinceWhen);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs->RecordCount() > 0) {
+            while ($dbObj = $rs->FetchNextObj()) {
+                $completions[] = $dbObj;
+            }
+        }
+        return $completions;
+    }
+    // Does an account want to get a summary email for test completions?
+    function requireSummaryTestEmail($rootId) {
+        $sql = <<<EOD
+				SELECT * 
+				FROM T_LicenceAttributes
+				WHERE F_RootID = ?
+EOD;
+        $bindingParams = array($rootId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs) {
+            if ($rs->RecordCount() <= 0) {
+                return false;
+            } else {
+                while ($dbObj = $rs->FetchNextObj()) {
+                     if ($dbObj->F_Key == 'dptSummaryCompletions')
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+    // Format array of data of names, emails and results
+    // Should probably be a map_array function in calling routine
+    function collateTestEmails($rootId, $completedTests) {
+        $data = [];
+        foreach ($completedTests as $completedTest) {
+            if ($completedTest->rootId == $rootId) {
+                $data[] = array('name' => $completedTest->name, 'email' => $completedTest->email, 'result' => $completedTest->result);
+            }
+            if ($completedTest->rootId > $rootId)
+                break;
+        }
+        return $data;
+    }
 }

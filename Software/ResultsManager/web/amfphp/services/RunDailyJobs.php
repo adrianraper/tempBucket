@@ -18,7 +18,7 @@ if (isset($_SESSION['dbHost'])) unset($_SESSION['dbHost']);
 if (isset($_REQUEST['dbHost'])) $_SESSION['dbHost']=$_REQUEST['dbHost'];
 
 $thisService = new MinimalService();
-set_time_limit(300);
+set_time_limit(300); // 5 mins of online processing
 
 date_default_timezone_set('UTC');
 if (!Authenticate::isAuthenticated()) {
@@ -36,6 +36,7 @@ if (isset($_SERVER["SERVER_NAME"])) {
 	$newLine = '<br/>';
 } else {
 	$newLine = "\n";
+    set_time_limit(3600); // 1 hour of batch processing
 }
 
 // NOTE: Sometime convert all away from timestamps to DateTime objects
@@ -145,6 +146,7 @@ function runDailyJobs($triggerDate = null) {
 	$rc = $thisService->dailyJobOps->monitorCBBActivity($database);
 	echo "$rc accounts active yesterday. $newLine";	
 	*/
+	/*
 	// 7. Update TB6weeks bookmarks
 	// a. Loop round all accounts that have productCode=59 (and are active)
 	$productCode = 59;
@@ -181,6 +183,7 @@ function runDailyJobs($triggerDate = null) {
             }
 		}
 	}
+	*/
 	/*
     // 8. Archive expired licences
 
@@ -248,15 +251,59 @@ function runDailyJobs($triggerDate = null) {
 
     }
     */
+	// 10. List everyone who completed a test yesterday, to send the account manager an email
+    // Get list of test completions ordered by account
+    $dateNow = new DateTime("@$triggerDate");
+    $shortTimeAgo = $dateNow->modify('-1day')->format('Y-m-d');
+    $completedTests = $thisService->dailyJobOps->getCompletedTests($shortTimeAgo);
+    $templateID = 'summaries/dptCompletedTests';
+
+    $matchRootId = (isset($_REQUEST['rootID']) && $_REQUEST['rootID'] > 0) ? $_REQUEST['rootID'] : null;
+
+    // Pull out the unique accounts
+    $lastId = 0;
+    $roots = array_unique(array_map(function($completedTest) {
+                return $completedTest->rootId;
+        }, $completedTests));
+
+    // b. For each account, see if they want a summary email of completions
+    foreach ($roots as $root) {
+        if ($matchRootId && $root!=$matchRootId)
+            continue;
+
+        $account = $thisService->manageableOps->getAccountRoot($root);
+
+        $requireSummaryEmail = $thisService->dailyJobOps->requireSummaryTestEmail($root);
+        if ($requireSummaryEmail) {
+            $adminUser = $thisService->manageableOps->getUserByIdNotAuthenticated($account->getAdminUserID());
+            $emailData = array("user" => $adminUser,
+                               "fromDate" => $shortTimeAgo,
+                               "completedTests" => $thisService->dailyJobOps->collateTestEmails($root, $completedTests));
+            $thisEmail = array("to" => $adminUser->email, "data" => $emailData);
+            $emailArray[] = $thisEmail;
+            if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+                // Send the emails
+                $thisService->emailOps->sendEmails("", $templateID, $emailArray);
+                echo "DPT results email to " . $account->name . "$newLine";
+
+            } else {
+                // Or print on screen
+                echo $thisService->emailOps->fetchEmail($templateID, $thisEmail["data"]) . "<hr/>";
+            }
+        }
+    }
 
 }
 
 // Action
+$now = new DateTime();
+echo "script started at " . $now->format("Y-m-d H:i:s") . "$newLine";
 if (isset($_REQUEST['date'])) {
 	runDailyJobs(addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 } else {
 	runDailyJobs();
 }
-
+$now = new DateTime();
+echo "script ended at ...... " . $now->format("H:i:s") . "$newLine";
 flush();
 exit(0);
