@@ -25,22 +25,29 @@ function loadAPIInformation() {
 	if (isset($_GET['subscriptionID'])) {
 		$subscriptionID = $_GET['subscriptionID'];
 	} else {
-		$subscriptionID = 1758;
+        throw new Exception('You must pass a subscriptionID');
 	} 
 	if (isset($_GET['method'])) {
 		$method = $_GET['method'];
 	} else {
 		$method = "addSubscription";
-	} 
-	//$inputData = file_get_contents("php://input");
+	}
+	// m#294
+    if (isset($_GET['paymentMethod'])) {
+        $paymentMethod = $_GET['paymentMethod'];
+    } else {
+        $paymentMethod = "unknown";
+    }
+    //$inputData = file_get_contents("php://input");
 	//$inputData = '{"method":"addSubscription","transactionTest":"false","name":"Mimi Rahima","email":"mimi.rahima.22@clarityenglish.com","offerID":59,"languageCode":"R2IHU","resellerID":21,"password":"sweetcustard","orderRef":"201200085","emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
 	//$inputData = '{"method":"saveSubscriptionDetails","email":"douglas.engelbert.2@clarityenglish.com","name":"Douglas Engelbert","country":"Hong Kong","languageCode":"R2IHU","resellerID":21,"orderRef":"201200085","password":"sweetcustard","offerID":59,"status":"initial"}';
 	//$inputData = '{"method":"updateSubscriptionStatus","subscriptionID":1034,"status":"paid"}';
 	/**
 	 * If you have the subscription ID from the table, you can use the following input. 
-	 * EmailTemplateID, paymentMethod andloginOption all need to be sent, you are unlikely to need to change them.
+	 * EmailTemplateID, paymentMethod and loginOption all need to be sent, you are unlikely to need to change them.
 	 */
-	$inputData = '{"method":"'.$method.'","subscriptionID":'.$subscriptionID.',"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
+	$inputData = '{"method":"'.$method.'","subscriptionID":'.$subscriptionID.',"emailTemplateID":"ieltspractice_welcome",
+	               "paymentMethod":"'.$paymentMethod.'","loginOption":128}';
 	
 	/**
 	 * If you are creating an account from scratch, use the the following input. 
