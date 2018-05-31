@@ -150,6 +150,7 @@ class CouloirService extends AbstractService {
                         break;
                 }
             }
+            // m#278 Don't force everything to be LT or AA - unless the app cares less about tt etc
             switch ($account->titles[0]->licenceType) {
                 case Title::LICENCE_TYPE_SINGLE:
                 case Title::LICENCE_TYPE_I:
@@ -217,8 +218,9 @@ class CouloirService extends AbstractService {
             $account = $this->accountCops->getBentoAccount($rootId, $productCode);
 
             // Remove any other titles from the account
+            // m#278 You only get one title back from getBentoAccount anyway...
             $account->titles = array_filter($account->titles, function($title) use ($productCode) {
-                return $title->productCode = intval($productCode);
+                return ($title->productCode == intval($productCode));
             });
 
             // What sort of licence is it?
@@ -289,7 +291,7 @@ class CouloirService extends AbstractService {
 
         // Grab a licence slot - this will send exception if none available
         // TODO if you catch an exception from this, you could then invalidate the session you just created
-        $licence = $this->licenceCops->acquireCouloirLicenceSlot($session);
+        $rc = $this->licenceCops->acquireCouloirLicenceSlot($session);
 
         // sss#192 Update the user with the instance id (using session id) to cope with only one user on one device
         if ($user->id > 0) {

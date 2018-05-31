@@ -222,6 +222,7 @@ class LicenceCops {
 
                 throw $this->copyOps->getExceptionForId("errorInvalidLicenceType");
         }
+
         return ["hasLicenseSlot" => true, "reconnectionWindow" => $reconnectionWindow, "inactivityWindow" => $inactivityWindow];
     }
     /**
@@ -276,7 +277,8 @@ EOD;
         if (!$rs) {
             throw $this->copyOps->getExceptionForId("errorDatabaseWriting");
         }
-        //AbstractService::$debugLog->info("grabbedLicenceSlot for key=$keyId");
+        //$licenceId = $this->db->Insert_ID();
+        //AbstractService::$debugLog->info("grab new licence ($licenceId) for key=$keyId in pc=$productCode");
         return true;
     }
 
@@ -317,11 +319,12 @@ EOD;
         $rs = $this->db->Execute($sql, $bindingParams);
         // If you got a few records back, it indicates something went wrong, but you DO still have a licence
         if ($rs && $rs->RecordCount() > 0) {
-            //AbstractService::$debugLog->info("checkCurrentLicence success for key=$keyId > $dateStamp");
+            //$licenceId = $rs->FetchNextObj()->F_LicenceID;
+            //AbstractService::$debugLog->info("got current licence ($licenceId) for key=$keyId in pc=$productCode (since $dateStamp)");
             return true;
         }
         //AbstractService::$debugLog->info("checkCurrentLicence fail for key=$keyId > $dateStamp");
-        AbstractService::$debugLog->info("No existing licence for $keyId in $productCode with expiry > $dateStamp");
+        //AbstractService::$debugLog->info("No existing licence for $keyId in pc=$productCode (since $dateStamp)");
 
         return false;
     }
@@ -433,7 +436,7 @@ EOD;
         } else {
             throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
         }
-
+        //AbstractService::$debugLog->info("count used licences=$licencesUsed");
         return $licencesUsed;
     }
 

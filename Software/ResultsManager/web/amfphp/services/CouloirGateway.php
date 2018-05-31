@@ -11,9 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
 $json = json_decode(file_get_contents('php://input'));
 $json_error = json_last_error();
-//$json = json_decode('{"appVersion":"1.3.2-dev","command":"login","login":"dandy@clarity","password":"93bc9620dea7442a898e5396b2b8e346","productCode":"66","rootId":163,"token":null}');
 /**
  * Pretend to pass variables for easier debugging
+//$json = json_decode('{"appVersion":"1.3.2-dev","command":"login","login":"dandy@clarity","password":"93bc9620dea7442a898e5396b2b8e346","productCode":"66","rootId":163,"token":null}');
+$json = json_decode('{"command":"login","appVersion":"1.0.0","login":"dandelion dev","password":"3938e4d558baf3f3ff9924a84ad66cd6","productCode":"68","rootId":10719}');
 $json = json_decode('{"command":"getCertificate","courseId":"2018068010000","courseName":"Elementary","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MjU5MjkyMTMsInNlc3Npb25JZCI6IjUzOCJ9.H7eI5vSe8aFFdaDYKBENFlxLeB5HGBQS2pHjh2axsWQ", "appVersion":"1.0"}');
 $json = json_decode('{"appVersion":"1.0","command":"login","login":"dandelion","password":"2bdc02c98d80ce8ff84f58a0140d5471","productCode":"68","rootId":163,"token":null}');
 $json = json_decode('{"command":"login","email":"pinky@email","password":"password","timezoneOffset":"-480"}');
@@ -31,13 +32,6 @@ $json = json_decode('{"command":"addUser","appVersion":"0.9.10","email":"donald-
 $json = json_decode('{"command":"getLoginConfig","productCode":"66","prefix":"Clarity"}');
 $json = json_decode('{"command":"getLoginConfig","appVersion":"0.9.10","productCode":"66","prefix":null}');
 $json = json_decode('{"command":"login","email":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":66}');
-$json = json_decode('{"command":"getScoreDetails","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNjQxNzk5Mywic2Vzc2lvbklkIjoiMzA0In0._P3S0Ll3960dwzV4S-WWWS4F-P_sQr3RwNz6V4HdxMo"}');
-$json = json_decode('{"command":"login","productCode":"66", "rootId":163}');
-$json = json_decode('{"command":"login","email":"dave@sss","password":"b36dd0fe2ba555a061660f857f842596","productCode":"66", "rootId":10719}');
-$json = json_decode('{"command":"getTranslations","lang":"de", "productCode":"66"}');
-$json = json_decode('{"command":"dbCheck"}');
-$json = json_decode('{"command":"login","email":"ferko.spits@email","password":"20863ef31d598f9c020c0d5b872e2fbe","productCode":"66", "rootId":163}');
-$json = json_decode('{"command":"login","email":"xx@noodles.hk","password":"68f1e135ba6167a2a4665b267d8fde39","productCode":"66", "rootId":163}');
 $json = json_decode('{"command":"getAccount","productCode":"66","prefix":"clarity"}');
 $json = json_decode('{"command":"getTestResult","appVersion":"1.1.0","testID":"73","sessionID":"201"}');
 $json = json_decode('{"command":"getScoreDetails","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDU5MTc0Niwic2Vzc2lvbklkIjoiMjQ2In0.MZlSRH6vJsa1ExDi4o17xWkVErQCa5-Iu9JYWXdJ_Ls"}');

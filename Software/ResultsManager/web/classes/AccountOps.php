@@ -662,10 +662,10 @@ EOD;
 	 * @param accountsArray An array of Account objects
 	 */
 	function updateAccounts($accountsArray) {
-		AbstractService::$log->setRootID($account->id);
 		$this->db->StartTrans();
 		
 		foreach ($accountsArray as $account) {
+            AbstractService::$log->setRootID($account->id);
 			AbstractService::$controlLog->info("Update account name=".$account->name.", id=".$account->id.", by user=".Session::get('userID'));
 			
 			if (!$this->isAccountValid($account))
