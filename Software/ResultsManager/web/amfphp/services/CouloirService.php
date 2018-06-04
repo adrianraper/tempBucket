@@ -272,7 +272,6 @@ class CouloirService extends AbstractService {
         $testId = null;
         if ($productCode == 63 || $productCode == 65) {
             // Get the tests that the user's group can take part in
-            // But remember that you DON'T pass the security access code back to the app
             $tests = $this->getTestsSecure($group, $productCode);
             if ($tests) {
                 // For now, the app will only work if max of one test is returned.
@@ -309,11 +308,12 @@ class CouloirService extends AbstractService {
             "memory" => (isset($memory)) ? $memory : json_decode ("{}"));
 
         // sss#12 For a title that uses encrypted content, send the key
-        if ($productCode == 63 || $productCode == 65) {
-            $rc["key"] = (string)$group->id;
-        } else {
-            $rc["key"] = null;
-        }
+        // Superseeded by m#1
+        //if ($productCode == 63 || $productCode == 65) {
+        //    $rc["key"] = (string)$group->id;
+        //} else {
+        //    $rc["key"] = null;
+        //}
 
         // sss#304 Return an account if login had to look one up
         if (isset($foundAccount)) {
@@ -568,6 +568,15 @@ class CouloirService extends AbstractService {
             // ctp#324 for app versions above x
             if (version_compare($this->getAppVersion(), '0.0.0', '>'))
                 $test->groupId = (string)$test->groupId;
+
+            // m#1 standardise the format of access code for decryption
+            // TODO I think we probably don't need to send back groupId in the test anymore now that we have this...
+            if ($test->startType == 'code') {
+                $test->access = array("type" => "auto", "code" => $test->groupId);
+            } else {
+                // Manual code entry (this is the default)
+                $test->access = array("type" => "manual");
+            }
         }
         return array_values($tests);
     }
