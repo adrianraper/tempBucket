@@ -12,7 +12,9 @@
 <p>Dear {$user->name}</p>
 <p>The following test-takers have completed their Dynamic Placement Test since {$fromDate} (UTC)</p>
 <ul>
-    {foreach from=$completedTests key=k item=test}
+    {assign var=testsString value=$completedTests|json_encode}
+    {assign var=testsArray value=$testsString|json_decode:true}
+    {foreach from=$testsArray key=k item=test}
         {assign var=result value=$test.result|json_decode:1}
         <li>{$test.name} got CEFR {$result.level} (RN: {$result.numeric})</li>
     {/foreach}

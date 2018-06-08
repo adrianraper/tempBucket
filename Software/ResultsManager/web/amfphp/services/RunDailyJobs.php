@@ -8,6 +8,7 @@
  * archiving expired users from GlobalRoadToIELTS and global_r2iv2 - stopped 18 Dec 2012
  * archiving expired users from rack80829
  * archiving sent emails from T_PendingEmails
+ * m#286 REMOVE those jobs whose purpose is to send emails to RunEmailSendingDailyJobs.php
  */
 
 require_once(dirname(__FILE__)."/MinimalService.php");
@@ -64,6 +65,8 @@ function runDailyJobs($triggerDate = null) {
 	$roots = array(100,101,167,168,169,170,171,14028,14030,14031);
 	$usersMoved = $thisService->dailyJobOps->archiveExpiredUsers($expiryDate, $roots, $database);
 	echo "Moved $usersMoved users from $database to expiry table. $newLine";
+$now = new DateTime();
+echo "script time " . $now->format("H:i:s") . "$newLine";
 	*/
 	/*
 	// 2. Archive expired titles from accounts
@@ -73,6 +76,8 @@ function runDailyJobs($triggerDate = null) {
 	$database = 'rack80829';
 	$accountsMoved = $thisService->dailyJobOps->archiveExpiredAccounts($expiryDate, $database);
 	echo "Moved $accountsMoved titles from $database to expiry table for $expiryDate. $newLine";	
+$now = new DateTime();
+echo "script time " . $now->format("H:i:s") . "$newLine";
 	*/
 	/*
 	// 3. Archive older users from some roots
@@ -82,47 +87,10 @@ function runDailyJobs($triggerDate = null) {
 	$roots = array(13982,14084,16180,14987);
 	$rc = $thisService->dailyJobOps->archiveOldUsers($roots,$regDate);
 	echo "Archived $rc LearnEnglish level test users who registered before $regDate. $newLine";	
+$now = new DateTime();
+echo "script time " . $now->format("H:i:s") . "$newLine";
 	*/
 	
-	// 4. EmailMe for Rotterdam
-	/*
-	// First task is to find units that start today, get all users in the groups the units are published for
-	// and send out the email.
-	// Date is UTC and this job runs at 16:00 UTC. So it should be based on units starting tomorrow.
-	// This means that Vancouver students will see the email the day before the unit is available, so wording
-	// in the email needs to include the date rather than 'now/today'.
-	$courseDate = date('Y-m-d', addDaysToTimestamp($triggerDate, 1));
-	$templateID = 'CCB/EmailMeUnitStart';
-	$emailArray = $thisService->dailyJobOps->getEmailsForGroupUnitStart($courseDate);
-	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
-		// Send the emails
-		$thisService->emailOps->sendEmails("", $templateID, $emailArray);
-		echo "Queued ".count($emailArray)." emails for units starting $courseDate. $newLine";
-			
-	} else {
-		// Or print on screen
-		echo count($emailArray)." emails for units starting $courseDate. $newLine";
-		foreach($emailArray as $email) {
-			echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
-		}
-	}
-	*/
-	/*
-	// Then repeat for courses that are published to start whenever a user first goes into them
-	$templateID = 'EmailMeUserFirstStart';
-	$emailArray = $thisService->dailyJobOps->getEmailsForUserFirstStart($expiryDate);
-	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
-		// Send the emails
-		$thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
-		echo "Sent ".count($emailArray)." emails for users starting $expiryDate. $newLine";
-			
-	} else {
-		// Or print on screen
-		foreach($emailArray as $email) {
-			echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
-		}
-	}
-	*/
 	/*
 	// 5. Archive sent emails
 
@@ -130,6 +98,8 @@ function runDailyJobs($triggerDate = null) {
 	$database = 'rack80829';
 	$rc = $thisService->dailyJobOps->archiveSentEmails($database);
 	echo "Archived $rc sent emails. $newLine";
+$now = new DateTime();
+echo "script time " . $now->format("H:i:s") . "$newLine";
     */
 	// Then every so often clear out the T_SentEmails table - currently to an archive table
     /*
@@ -145,44 +115,8 @@ function runDailyJobs($triggerDate = null) {
 	$database = 'rack80829';
 	$rc = $thisService->dailyJobOps->monitorCBBActivity($database);
 	echo "$rc accounts active yesterday. $newLine";	
-	*/
-	/*
-	// 7. Update TB6weeks bookmarks
-	// a. Loop round all accounts that have productCode=59 (and are active)
-	$productCode = 59;
-	$trigger = new Trigger();
-	$trigger->templateID = 'user/TB6weeksNewUnit';
-	$trigger->parseCondition("method=getAccounts&active=true&productCode=$productCode");
-	//$trigger->condition->customerType = '1'; // If we want to limit this to libraries
-    if (isset($_REQUEST['rootID']) && $_REQUEST['rootID']>0) {
-        $trigger->rootID = $_REQUEST['rootID'];
-    }
-
-    $triggerResults = $thisService->triggerOps->applyCondition($trigger, $triggerDate);
-    echo "Check ".count($triggerResults)." TB6weeks accounts$newLine";
-	foreach ($triggerResults as $account) {
-		
-		// b. For each user in this account, update their subscription, if they have one.
-		$emailArray = $thisService->dailyJobOps->updateSubscriptionBookmarks($account, $productCode, $triggerDate);
-		if (count($emailArray) > 0) {
-            if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
-                // Send the emails
-                $thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
-                echo "TB6weeks account ".$account->prefix." sent ".count($emailArray)." emails$newLine";
-
-            } else if (isset($_REQUEST['action']) && strtolower($_REQUEST['action'])=='summary') {
-                // Or summarise on screen
-                foreach($emailArray as $email) {
-                    echo "<b>Email: ".$email["to"]."</b>$newLine";
-                }
-            } else {
-                // Or print on screen
-                foreach($emailArray as $email) {
-                    echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($trigger->templateID, $email["data"])."<hr/>";
-                }
-            }
-		}
-	}
+$now = new DateTime();
+echo "script time " . $now->format("H:i:s") . "$newLine";
 	*/
 	/*
     // 8. Archive expired licences
@@ -192,8 +126,9 @@ function runDailyJobs($triggerDate = null) {
     $expiryDate = new DateTime('@'.$triggerDate);
     $rc = $thisService->dailyJobOps->archiveExpiredLicences($expiryDate->format('Y-m-d'), $database);
     echo "Archived $rc licences. $newLine";
+$now = new DateTime();
+echo "script time " . $now->format("H:i:s") . "$newLine";
     */
-    /*
 	// 9. Remove duplicates from T_LicenceHolders (#1577)
     $conditions['active'] = true;
     $conditions['individuals'] = false;
@@ -248,51 +183,7 @@ function runDailyJobs($triggerDate = null) {
                 echo "productCode ".$duplicatedUser["productCode"]." not found in " . $account->id . "$newLine";
             }
         }
-
     }
-    */
-	// 10. List everyone who completed a test yesterday, to send the account manager an email
-    // Get list of test completions ordered by account
-    $dateNow = new DateTime("@$triggerDate");
-    $shortTimeAgo = $dateNow->modify('-1day')->format('Y-m-d');
-    $completedTests = $thisService->dailyJobOps->getCompletedTests($shortTimeAgo);
-    $templateID = 'summaries/dptCompletedTests';
-
-    $matchRootId = (isset($_REQUEST['rootID']) && $_REQUEST['rootID'] > 0) ? $_REQUEST['rootID'] : null;
-
-    // Pull out the unique accounts
-    $lastId = 0;
-    $roots = array_unique(array_map(function($completedTest) {
-                return $completedTest->rootId;
-        }, $completedTests));
-
-    // b. For each account, see if they want a summary email of completions
-    foreach ($roots as $root) {
-        if ($matchRootId && $root!=$matchRootId)
-            continue;
-
-        $account = $thisService->manageableOps->getAccountRoot($root);
-
-        $requireSummaryEmail = $thisService->dailyJobOps->requireSummaryTestEmail($root);
-        if ($requireSummaryEmail) {
-            $adminUser = $thisService->manageableOps->getUserByIdNotAuthenticated($account->getAdminUserID());
-            $emailData = array("user" => $adminUser,
-                               "fromDate" => $shortTimeAgo,
-                               "completedTests" => $thisService->dailyJobOps->collateTestEmails($root, $completedTests));
-            $thisEmail = array("to" => $adminUser->email, "data" => $emailData);
-            $emailArray[] = $thisEmail;
-            if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
-                // Send the emails
-                $thisService->emailOps->sendEmails("", $templateID, $emailArray);
-                echo "DPT results email to " . $account->name . "$newLine";
-
-            } else {
-                // Or print on screen
-                echo $thisService->emailOps->fetchEmail($templateID, $thisEmail["data"]) . "<hr/>";
-            }
-        }
-    }
-
 }
 
 // Action
@@ -304,6 +195,6 @@ if (isset($_REQUEST['date'])) {
 	runDailyJobs();
 }
 $now = new DateTime();
-echo "script ended at ...... " . $now->format("H:i:s") . "$newLine";
+echo "script ended at ... " . $now->format("H:i:s") . "$newLine";
 flush();
 exit(0);

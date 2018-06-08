@@ -1,8 +1,4 @@
-{* Name: TB6weeks welcome *}
-{* Description: Email sent to subscriber to TB6weeks *}
-{* Parameters: $user, $ClarityLevel, $programBase, $startProgram, $startProgress, $dateDiff, $server *}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 {if $server == ''}{assign var='server' value='dock.projectbench'}{/if}
 
 {* sadly this can't go in an include as var assignment is lost in the main EVEN if you do scope=parent*}
@@ -191,14 +187,9 @@
   
   <tr>
     <td colspan="3"  height="28" bgcolor="#F1F1F1" align="center">
-    	<a href="http://{$server}/TenseBuster/6weeks/unsubscribe.php?prefix={$prefix}&email={$user->email}" target="_blank">Click here to unsubscribe your subscription.</a>
-    	
-        
-       
+    	<a href="http://{$server}/TenseBuster/6weeks/unsubscribe.php?prefix={$prefix}&email={$user->email}" target="_blank">Click here to unsubscribe.</a>
     </td>
   </tr>
-  
-  
 </table>
 
 </body>
