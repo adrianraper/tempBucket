@@ -101,7 +101,18 @@ class CouloirService extends AbstractService {
         $ru = (is_null($referrer)) ? $this->accountCops->getRU() : $referrer;
 
         // Find the account, if one matches
-        $account = $this->accountCops->getAccount($productCode, $prefix, $ip, $ru);
+        // m#271 Catch an exception when the prefix=account doesn't match ip or ru
+        //  so that you can just let them sign-in with an existing account
+        try {
+            $account = $this->accountCops->getAccount($productCode, $prefix, $ip, $ru);
+        } catch (Exception $e) {
+            if ($e->getCode() == $this->copyOps->getCodeForId("errorIPDoesntMatch") ||
+                $e->getCode() == $this->copyOps->getCodeForId("errorRUDoesntMatch")) {
+                $account = false;
+            } else {
+                throw $e;
+            }
+        }
 
         // gh#315 If no account and you didn't throw an exception, just means we can't find it from partial parameters
         // gh#1561 For consistency we should still alert this with an exception

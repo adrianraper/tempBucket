@@ -70,7 +70,7 @@ class AccountCops {
         // sss#285 IP and RU licence control
         // If this account has IP control, match and accept or kick ou
         if ($account->licenceAttributes) {
-            // sss#373 IP or RU is sufficent, don't need to pass both
+            // sss#373 IP or RU is sufficient, don't need to pass both
             $blocked = "none";
             foreach ($account->licenceAttributes as $thisLicenceAttribute) {
                 if ($thisLicenceAttribute['licenceKey'] == 'IPrange') {
