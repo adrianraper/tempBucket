@@ -54,7 +54,6 @@ function runDailyJobs($triggerDate = null) {
 	if (!$triggerDate) $triggerDate = time();
 
 	// 4. EmailMe for Rotterdam
-	/*
 	// First task is to find units that start today, get all users in the groups the units are published for
 	// and send out the email.
 	// Date is UTC and this job runs at 16:00 UTC. So it should be based on units starting tomorrow.
@@ -66,18 +65,16 @@ function runDailyJobs($triggerDate = null) {
 	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 		// Send the emails
 		$thisService->emailOps->sendEmails("", $templateID, $emailArray);
-		echo "Queued ".count($emailArray)." emails for units starting $courseDate. $newLine";
+		echo "Queued ".count($emailArray)." CCB emails for units starting $courseDate. $newLine";
 			
 	} else {
 		// Or print on screen
-		echo count($emailArray)." emails for units starting $courseDate. $newLine";
+		echo count($emailArray)." CCB emails for units starting $courseDate. $newLine";
 		foreach($emailArray as $email) {
 			echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
 		}
 	}
-    $now = new DateTime();
-    echo "email sending script time " . $now->format("H:i:s") . "$newLine";
-	*/
+
 	// 7. Update TB6weeks bookmarks
 	// a. Loop round all accounts that have productCode=59 (and are active)
 	$productCode = 59;
@@ -115,7 +112,7 @@ function runDailyJobs($triggerDate = null) {
 		}
 	}
     $now = new DateTime();
-    echo "email sending script time " . $now->format("H:i:s") . "$newLine";
+    //echo "email sending script time " . $now->format("H:i:s") . "$newLine";
 
 	// 10. List everyone who completed a test yesterday, to send the account manager an email
     // Get list of test completions ordered by account
@@ -162,13 +159,13 @@ function runDailyJobs($triggerDate = null) {
 
 // Action
 $now = new DateTime();
-echo "email sending script started at " . $now->format("Y-m-d H:i:s") . "$newLine";
+//echo "email sending script started at " . $now->format("Y-m-d H:i:s") . "$newLine";
 if (isset($_REQUEST['date'])) {
 	runDailyJobs(addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 } else {
 	runDailyJobs();
 }
 $now = new DateTime();
-echo "email sending script ended at ... " . $now->format("H:i:s") . "$newLine";
+//echo "email sending script ended at ... " . $now->format("H:i:s") . "$newLine";
 flush();
 exit(0);

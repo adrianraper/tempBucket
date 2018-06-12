@@ -863,8 +863,9 @@ SQL;
 			
 		// Find all users in this account with a subscription to this product
 		$users = $this->subscriptionOps->getSubscribedUsersInAccount($account, $productCode);
-		
-		foreach ($users as $user) {
+        $tbProductCode = $this->subscriptionOps->relatedProducts($productCode);
+
+        foreach ($users as $user) {
 			$subscription = $this->memoryOps->get('subscription', $productCode, $user->userID);
 				
 			if ($subscription['valid'] == 'true') {
@@ -891,13 +892,18 @@ SQL;
 					if ($keyDate == $today) {
 						// Need to update the relevant bookmark
 						$newBookmark = $this->subscriptionOps->getDirectStart($level, $unitsAdded, $productCode);
-						
-						// The subscription might have completed
-						if (!$newBookmark) {
-							$subscription['valid'] = 'false';
-							$this->memoryOps->set('subscription', $subscription, $productCode, $user->userID);
-						}
-						
+
+                        // The subscription might have completed all units, or gone [way] past the end date
+                        // m#242 Jump out in this case
+                        if (!$newBookmark || $unitsAdded > 7) {
+                            $subscription['valid'] = 'false';
+                            $this->memoryOps->set('subscription', $subscription, $productCode, $user->userID);
+                            // Erase the direct start so that all TB is now open
+                            $this->memoryOps->forget($user->userID, $tbProductCode, 'directStart');
+                            AbstractService::$debugLog->info("TB6weeks subscription cancelled for ".$user->userID);
+                            continue 2;
+                        }
+
 						// Need to update the Tense Buster bookmark
 						$tbProductCode = $this->subscriptionOps->relatedProducts($productCode);
 						$this->memoryOps->set('directStart', $newBookmark, $tbProductCode, $user->userID);
