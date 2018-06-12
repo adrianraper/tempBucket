@@ -905,7 +905,6 @@ SQL;
                         }
 
 						// Need to update the Tense Buster bookmark
-						$tbProductCode = $this->subscriptionOps->relatedProducts($productCode);
 						$this->memoryOps->set('directStart', $newBookmark, $tbProductCode, $user->userID);
 						
 						$crypt = new Crypt();

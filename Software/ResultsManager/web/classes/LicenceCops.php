@@ -12,9 +12,10 @@ class LicenceCops {
     // and for 5 minutes without any activity in the app.
     // The back end uses 2 minutes for expiry of AA if the licence server has forgotten a licence.
     const LICENCE_DELAY = 5;
-    const AA_LICENCE_EXTENSION = 120;
-    const AA_RECONNECTION_WINDOW = 60;
-    const AA_INACTIVITY_WINDOW = 300; // 30 days
+    const AA_LICENCE_EXTENSION = 150;
+    // sss#376
+    const AA_RECONNECTION_WINDOW = 300; // 60;
+    const AA_INACTIVITY_WINDOW = 1800; // 300;
     const LT_RECONNECTION_WINDOW = 2592000; // 30 days
     const LT_INACTIVITY_WINDOW = 2592000; // 30 days
 
