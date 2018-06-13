@@ -443,12 +443,13 @@ import mx.styles.StyleManager;
 				// gh#300 Builder doesn't allow anonymous login
 				// gh#1090 An AA licence which blocks login just starts from here
                 // gh#1561 Possible that the endpoints have not responded yet
-				if (config.remoteService != null && config.remoteService.toLowerCase().indexOf("builder") < 0) {
+				// m#307 Forget Builder!
+				//if (config.remoteService != null && config.remoteService.toLowerCase().indexOf("builder") < 0) {
                     if (config.hasOwnProperty("noLogin") && config.noLogin == true) {
                         config.signInAs = Title.SIGNIN_ANONYMOUS;
                         return new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified);
                     }
-				}
+				//}
 			}
 				
 			// #336 SCORM needs to be checked here as a form of direct start
@@ -525,9 +526,10 @@ import mx.styles.StyleManager;
 		public function isAccountJustAnonymous():Boolean {
 			if (this.getLicenceType() == Title.LICENCE_TYPE_AA && this.getConfig().noLogin == true) {
 				if (!isPlatformTablet()) {
-					if (config.remoteService.toLowerCase().indexOf("builder") < 0) {
+                    // m#307 Forget Builder
+					//if (config.remoteService.toLowerCase().indexOf("builder") < 0) {
 						return true;
-					}
+					//}
 				} else {
 					// gh#1090
 					if (!config.isReloadAccount) {
