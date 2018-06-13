@@ -305,6 +305,8 @@ class CouloirService extends AbstractService {
             "user" => $user->couloirView(),
             "tests" => (isset($tests)) ? $tests : null,
             "token" => $token,
+            // m#17 If there is a seed, it is buried in session
+            "seed" => $session->getSeed(),
             "memory" => (isset($memory)) ? $memory : json_decode ("{}"));
 
         // sss#12 For a title that uses encrypted content, send the key
@@ -559,10 +561,6 @@ class CouloirService extends AbstractService {
             $test->endTimestamp = $this->ansiStringToTimestamp($test->closeTime);
             $test->lang = strtolower($test->language);
 
-            // ctp#311 If you are running locally, implying no encryption in content server, send back an empty code
-            // Locally working will not work if you DO set an access code on a scheduled test
-            if ($test->startType == 'timer' && stristr($_SERVER['SERVER_NAME'],'dock.projectbench') !== false)
-                $test->groupId = '';
 
             // ctp#285 groupID needs to be a string
             // ctp#324 for app versions above x
@@ -570,12 +568,16 @@ class CouloirService extends AbstractService {
                 $test->groupId = (string)$test->groupId;
 
             // m#1 standardise the format of access code for decryption
-            // TODO I think we probably don't need to send back groupId in the test anymore now that we have this...
-            if ($test->startType == 'code') {
-                $test->access = array("type" => "auto", "code" => $test->groupId);
-            } else {
-                // Manual code entry (this is the default)
+            // ctp#311 If you are running locally, implying no encryption in content server, send back an empty code
+            // Locally working will not work if you DO set an access code on a scheduled test
+            if ($test->startType == 'timer' && stristr($_SERVER['SERVER_NAME'], 'dock.projectbench') !== false) {
+                $test->access = array("type" => "nocode");
+            } else if ($test->startType == 'code') {
+                // Access code entry
                 $test->access = array("type" => "manual");
+            } else {
+                // As it is a timer, auto send the groupId as a code
+                $test->access = array("type" => "auto", "code" => $test->groupId);
             }
         }
         return array_values($tests);
@@ -692,35 +694,26 @@ EOD;
                 }
             }
 
-            // If this is the first score, make sure the session includes the testId and the start time
-            // sss#17 testId is NOT sent in score
-            $isDirty = false;
-            //if (!$session->contentId) {
-            //    $session->contentId = $scoreObj->testID;
-            //    $isDirty = true;
-            //}
-
             // ctp#261 The start datestamp is the local device time of first exercise submission
             // ctp#380 Save UTC time
             // ctp#383 Only update session datestamps if this is the first exercise after the test has started.
             // Currently this means the instructions exercise
             // sss#12 Now use duration to hold the test time, so reset it to 0 when you get the score write for the instructions exercise
-            if ($tempExerciseID == DPTConstants::instructionsID) {
-                //$session->startedDateStamp = $this->timestampToLocalAnsiString($scoreObj->exerciseScore->submitTimestamp, $clientTimezoneOffset);
-                //$session->startedDateStamp = $this->timestampToAnsiString($scoreObj->exerciseScore->submitTimestamp);
+            // m#17 Change to first gauge exercise because time you spent in this gets added from (timestamp - lastUpdateTime)
+            // where lastUpdateTime was the end of the instructions - which is right.
+            if ($tempExerciseID == DPTConstants::gaugeOneExerciseID) {
                 $session->duration = 0;
-                $isDirty = true;
             }
 
-            // TODO Why is this only for DPT and DE?
-            if ($isDirty) {
-                try {
-                    $this->progressCops->updateCouloirSession($session);
-                } catch (Exception $e) {
-                    $this->db->FailTrans();
-                    throw $e;
-                }
-            }
+        }
+        // m#17 All Couloir titles update the session lastUpdateTime and duration
+        try {
+            $timestamp = intval($scoreObj->exerciseScore->submitTimestamp / 1000);
+            $this->progressCops->updateCouloirSession($session, $timestamp);
+        } catch (Exception $e) {
+            $this->db->FailTrans();
+            $this->db->CompleteTrans();
+            throw $e;
         }
 
         // Commit all the database inserts and updates
@@ -754,40 +747,44 @@ EOD;
         // gh#151 Have we closed the session?
         // sss#17
         if ($session->status == SessionTrack::STATUS_OPEN || $mode=='overwrite') {
-            // ctp#261 Get the time the last score was written for this session
-            $lastScore = $this->testCops->getLastScore($session->sessionId);
-            $session->lastUpdateDateStamp = $lastScore->dateStamp;
-            $session->duration = strtotime($session->lastUpdateDateStamp) - strtotime($session->startDateStamp);
             $session->status = SessionTrack::STATUS_CLOSED;
             $isDirty = true;
         }
 
         // Update if something changed
-        if ($isDirty)
-            $this->progressCops->updateCouloirSession($session);
+        if ($isDirty) {
+            //m#17 Session timestamp will have updated by last scoreWrite, no need to change by this call
+            // ctp#261 Get the time the last score was written for this session
+            //$lastScore = $this->testCops->getLastScore($session->sessionId);
+            //$timestamp = $lastScore->dateStamp / 1000;
+            $this->progressCops->updateCouloirSession($session, null, true);
+        }
 
         // With manual rescoring we always want to show the result
         if ($mode=='overwrite')
-            return $session->result;
+            return $session->getResult();
+
+        // m#17 Build a return result
+        $result = $session->getResult();
 
         // ctp#173 Does the test administrator want the test takers to see a result?
         $testSchedule = $this->testCops->getTest($session->contentId);
         if (!$testSchedule->showResult)
-            $session->result = array("level" => null, "showResult" => false);
+            $result = array("level" => null, "showResult" => false);
 
         // gh#1523 Are there enough licences left to send back the result?
         $licencesObj = $this->usageCops->getTestsUsed($session->productCode, $session->rootId);
         if (intval($licencesObj['purchased']) - intval($licencesObj['used']) <= 0)
-            $session->result = array("level" => null, "purchased" => $licencesObj['purchased'], "used" => $licencesObj['used']);
+            $result = array("level" => null, "purchased" => $licencesObj['purchased'], "used" => $licencesObj['used']);
 
         // ctp#400 Do you want to send back a caption and link for the last screen?
         if (isset($testSchedule->followUp)) {
             $followUp = json_decode($testSchedule->followUp);
             foreach ($followUp as $k => $v)
-                $session->result[$k] = $v;
+                $result[$k] = $v;
         }
 
-        return $session->result;
+        return $result;
     }
 
     // Pick up all the sessions for a particular test or test taker

@@ -72,12 +72,14 @@ class SessionTrack {
         return (isset($this->data["seed"])) ? $this->data["seed"] : null;
     }
     function setSeed($seed) {
-        $this->data["seed"] = $seed;
+        if (isset($seed))
+            $this->data["seed"] = $seed;
     }
     function getResult() {
         return (isset($this->data["result"])) ? $this->data["result"] : null;
     }
     function setResult($result) {
-        $this->data["result"] = $result;
+        if (isset($result))
+            $this->data["result"] = $result;
     }
 }

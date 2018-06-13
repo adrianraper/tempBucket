@@ -9,11 +9,25 @@
 header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
+// Following for debug and logging dates and times
+// Pick up the current time and convert as if it came from app  (local timezone, microseconds)
+$utcDateTime = new DateTime();
+$utcTimestamp = $utcDateTime->format('U')*1000;
+$utcDateTime->setTimezone(new DateTimeZone('Asia/Hong_Kong'));
+$localDate = $utcDateTime->format('Y-m-d H:i:s');
+// Or simply set a date time that you want to test with
+//$localDate = '2017-09-01 11:33:00';
+$localDateTime = new DateTime($localDate);
+$localTimestamp = $localDateTime->format('U')*1000;
+//$GLOBALS['fake_now'] = '2017-10-10 09:00:00';
+
 $json = json_decode(file_get_contents('php://input'));
 $json_error = json_last_error();
+//$json = json_decode('{"appVersion":"1.1.3-dev","command":"scoreWrite","localTimestamp":1528867718961,"score":{"uid":"63.2015063020000.2015063020001.2015063020003","exerciseScore":{"questionScores":[{"id":"7485edf5-3471-403b-935c-ed6f9d40dc93","questionType":"FreeDragQuestion","state":{"dropTargetIdxToAnswerIdxMap":[null,0,null,null,null,null,null,null,null,null],"initial":null,"current":1},"scores":[1],"mark":{"correctCount":1,"incorrectCount":0,"missedCount":0},"answerTimestamp":1528867672550,"tags":["A1","word-placement"]},{"id":"c3a8b965-2612-433d-a4e8-1e2c6baa8d72","questionType":"ReconstructionQuestion","state":{"draggableIdxToAnswerIdxMap":[3,2,4,1,0],"initial":[0,1,2,3,4],"current":[4,3,1,0,2]},"scores":[1],"mark":{"correctCount":1,"incorrectCount":0,"missedCount":0},"answerTimestamp":1528867681060,"tags":["A1","text-organisation"]},{"id":"4522e29d-6149-44a3-85ed-c96ee77f6765","questionType":"FreeDragQuestion","state":{"dropTargetIdxToAnswerIdxMap":[null,null,null,null,null,0,null],"initial":null,"current":5},"scores":[1],"mark":{"correctCount":1,"incorrectCount":0,"missedCount":0},"answerTimestamp":1528867683795,"tags":["A2","word-placement"]},{"id":"ac771676-4e9d-4ded-9267-437c66677533","questionType":"FreeDragQuestion","state":{"dropTargetIdxToAnswerIdxMap":[null,0,null,null,null,null,null],"initial":null,"current":1},"scores":[1],"mark":{"correctCount":1,"incorrectCount":0,"missedCount":0},"answerTimestamp":1528867687313,"tags":["A2","word-placement"]},{"id":"a3a76c27-825b-43a0-a192-36fb8a034da3","questionType":"ReconstructionQuestion","state":{"draggableIdxToAnswerIdxMap":[3,0,6,5,2,1,4],"initial":[0,1,2,3,4,5,6],"current":[1,5,4,0,6,3,2]},"scores":[1],"mark":{"correctCount":1,"incorrectCount":0,"missedCount":0},"answerTimestamp":1528867696835,"tags":["A2","sentence-reconstruction"]},{"id":"dfaa2714-f245-40a1-ad83-b5a8c8cf013e","questionType":"ReconstructionQuestion","state":{"draggableIdxToAnswerIdxMap":[1,4,0,2,3],"initial":[0,1,2,3,4],"current":[0,1,2,3,4]},"scores":[null],"mark":{"correctCount":0,"incorrectCount":0,"missedCount":1},"answerTimestamp":null,"tags":["A2","text-organisation"]},{"id":"bb3bb4d2-7fb1-48fb-a7f7-2047f9fe4780","questionType":"FreeDragQuestion","state":{"dropTargetIdxToAnswerIdxMap":[null,null,null,null,null,null,0,null,null,null,null],"initial":null,"current":6},"scores":[1],"mark":{"correctCount":1,"incorrectCount":0,"missedCount":0},"answerTimestamp":1528867705918,"tags":["B1","word-placement"]},{"id":"db5bb6ca-2c16-4ae5-bfa9-b2a2b5db0f3f","questionType":"FreeDragQuestion","state":{"dropTargetIdxToAnswerIdxMap":[null,null,0,null,null,null,null,null,null,null,null,null,null],"initial":null,"current":null},"scores":[null],"mark":{"correctCount":0,"incorrectCount":0,"missedCount":1},"answerTimestamp":null,"tags":["B1","word-placement"]},{"id":"4ddf28e1-d520-46a7-909f-9a655e6879f4","questionType":"ReconstructionQuestion","state":{"draggableIdxToAnswerIdxMap":[7,4,2,6,1,5,0,3],"initial":[0,1,2,3,4,5,6,7],"current":[0,1,2,3,4,5,6,7]},"scores":[null],"mark":{"correctCount":0,"incorrectCount":0,"missedCount":1},"answerTimestamp":null,"tags":["B1","sentence-reconstruction"]},{"id":"5a1ee2a3-126a-4bd4-90c9-0780a82c1d67","questionType":"ReconstructionQuestion","state":{"draggableIdxToAnswerIdxMap":[2,4,3,0,5,1],"initial":[0,1,2,3,4,5],"current":[0,1,2,3,4,5]},"scores":[null],"mark":{"correctCount":0,"incorrectCount":0,"missedCount":1},"answerTimestamp":null,"tags":["B1","text-organisation"]}],"exerciseMark":{"correctCount":6,"incorrectCount":0,"missedCount":4},"duration":41928,"submitTimestamp":'. $utcTimestamp .'},"anomalies":{}},"timezoneOffset":-480,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1Mjg4NjE4NTIsInNlc3Npb25JZCI6IjU5OSJ9.wBdh7nTsHtypN9cl8D1_B5RHhlrqcqNCYfgsOmiIN3w"}');
+//$json = json_decode('{"command":"getTestResult","appVersion":"1.1.3-dev","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1Mjg5NjE3NTksInNlc3Npb25JZCI6IjYwMyJ9.tAEz7TwS_Bi4_z-aqbdcktgmG9QjpRoeV1QXdn6d78k"}');
 /**
  * Pretend to pass variables for easier debugging
-//$json = json_decode('{"appVersion":"1.3.2-dev","command":"login","login":"dandy@clarity","password":"93bc9620dea7442a898e5396b2b8e346","productCode":"66","rootId":163,"token":null}');
+$json = json_decode('{"appVersion":"1.3.2-dev","command":"login","login":"dandy@clarity","password":"93bc9620dea7442a898e5396b2b8e346","productCode":"63","rootId":null,"token":null}');
 $json = json_decode('{"command":"login","appVersion":"1.0.0","login":"dandelion dev","password":"3938e4d558baf3f3ff9924a84ad66cd6","productCode":"68","rootId":10719}');
 $json = json_decode('{"command":"getCertificate","courseId":"2018068010000","courseName":"Elementary","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MjU5MjkyMTMsInNlc3Npb25JZCI6IjUzOCJ9.H7eI5vSe8aFFdaDYKBENFlxLeB5HGBQS2pHjh2axsWQ", "appVersion":"1.0"}');
 $json = json_decode('{"appVersion":"1.0","command":"login","login":"dandelion","password":"2bdc02c98d80ce8ff84f58a0140d5471","productCode":"68","rootId":163,"token":null}');
@@ -33,7 +47,6 @@ $json = json_decode('{"command":"getLoginConfig","productCode":"66","prefix":"Cl
 $json = json_decode('{"command":"getLoginConfig","appVersion":"0.9.10","productCode":"66","prefix":null}');
 $json = json_decode('{"command":"login","email":"dandy@email","password":"f7e41a12cd326daa74b73e39ef442119","productCode":66}');
 $json = json_decode('{"command":"getAccount","productCode":"66","prefix":"clarity"}');
-$json = json_decode('{"command":"getTestResult","appVersion":"1.1.0","testID":"73","sessionID":"201"}');
 $json = json_decode('{"command":"getScoreDetails","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUwNDU5MTc0Niwic2Vzc2lvbklkIjoiMjQ2In0.MZlSRH6vJsa1ExDi4o17xWkVErQCa5-Iu9JYWXdJ_Ls"}');
 $json = json_decode('{"command": "scoreWrite",
             "appVersion": "0.8.1",
@@ -135,98 +148,6 @@ $json = json_decode('{"command": "scoreWrite",
             "localTimestamp": '. $utcTimestamp .',
             "timezoneOffset": -480
     }');
-$json = json_decode('{
-"command": "scoreWrite",
-"appVersion": "1.1.0",
-"score": {
-    "uid": "63.2016063999.20166301999.2016063990",
-    "exerciseScore": {
-        "questionScores": [{
-            "id": "11124987-ae36-4d18-a3c3-df935dbf4447",
-            "questionType": "MultipleChoiceQuestion",
-            "state": {
-                "answerIdxToStringMap": ["orange",
-                "egg",
-                "apple",
-                "avocado"],
-                "selectedAnswerIdxs": [1]
-            },
-            "score": 1,
-            "answerTimestamp": 1503557450490,
-            "tags": []
-        },
-        {
-            "id": "5674435b-61f7-4222-9f77-b7b0c10d41ac",
-            "questionType": "DropdownQuestion",
-            "state": {
-                "answerIdxToStringMap": ["loves",
-                "prefers",
-                "thinks"],
-                "selectedAnswerIdx": 0
-            },
-            "score": 1,
-            "answerTimestamp": 1503557452500,
-            "tags": []
-        },
-        {
-            "id": "5674435b-61f7-4222-9f77-b7b0c10d41ad",
-            "questionType": "DropdownQuestion",
-            "state": {
-                "answerIdxToStringMap": ["love",
-                "prefer",
-                "think"],
-                "selectedAnswerIdx": 2
-            },
-            "score": 1,
-            "answerTimestamp": 1503557454598,
-            "tags": []
-        },
-        {
-            "id": "5674435b-61f7-4222-9f77-b7b0c10d41ae",
-            "questionType": "DropdownQuestion",
-            "state": {
-                "answerIdxToStringMap": ["listen",
-                "prefer",
-                "think"],
-                "selectedAnswerIdx": 1
-            },
-            "score": 1,
-            "answerTimestamp": 1503557456060,
-            "tags": []
-        },
-        {
-            "id": "b810a84f-01f7-49f5-8f23-062a257d709d",
-            "questionType": "DragQuestion",
-            "state": {
-                "draggableIdxToAnswerIdxMap": [0,
-                null,
-                null],
-                "draggableIdxToStringMap": ["take",
-                "go",
-                "endure"],
-                "draggableIdx": 0
-            },
-            "score": 1,
-            "answerTimestamp": 1503557457501,
-            "tags": []
-        }],
-        "exerciseMark": {
-            "correctCount": 5,
-            "incorrectCount": 0,
-            "missedCount": 0
-        },
-        "duration": 333743,
-        "submitTimestamp":  '. time()*1000 .'
-    },
-    "anomalies": {
-        "lostFocus": 1
-    }
-},
-"sessionID": "201",
-"localTimestamp": 1503557638530,
-"timezoneOffset": -480
-}');
-//1475543370002 - timestamp for 4th Oct about 9:04am
  */
 
 // sss#257 Detect if this request is aimed at PWVocabApp so that it can be handled specially later
@@ -249,18 +170,6 @@ function headerDateWithStatusCode($statusCode) {
     $utcTimestamp = $utcDateTime->format('U')*1000;
     header("Date: ".$utcTimestamp, false, $statusCode);
 }
-
-// Following for debug and logging dates and times
-// Pick up the current time and convert as if it came from app  (local timezone, microseconds)
-$utcDateTime = new DateTime();
-$utcTimestamp = $utcDateTime->format('U')*1000;
-$utcDateTime->setTimezone(new DateTimeZone('Asia/Hong_Kong'));
-$localDate = $utcDateTime->format('Y-m-d H:i:s');
-// Or simply set a date time that you want to test with
-//$localDate = '2017-09-01 11:33:00';
-$localDateTime = new DateTime($localDate);
-$localTimestamp = $localDateTime->format('U')*1000;
-//$GLOBALS['fake_now'] = '2017-10-10 09:00:00';
 
 try {
     if ($json_error !== JSON_ERROR_NONE)

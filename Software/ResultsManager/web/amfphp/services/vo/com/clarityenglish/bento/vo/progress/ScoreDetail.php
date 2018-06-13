@@ -37,8 +37,9 @@ class ScoreDetail {
         if ($answerObj) {
             if (isset($answerObj->id))
                 $this->itemID = $answerObj->id;
-            if (isset($answerObj->score))
-                $this->score = $answerObj->score;
+            // m#17 score is an array of values - though currently we don't have a use case for multi-score items
+            if (isset($answerObj->scores))
+                $this->score = (is_null($answerObj->scores[0])) ? 0 : $answerObj->scores[0];
             if (isset($answerObj->group))
                 $this->group = $answerObj->group;
 
@@ -65,26 +66,29 @@ class ScoreDetail {
 	
 	public function setUID($value) {
 		$UIDArray = explode('.', $value);
-		//if (count($UIDArray)>0)
-		//	$this->productCode = $UIDArray[0];
+		// m#17 why wouldn't the uid include the product code?
+		if (count($UIDArray)>0)
+			$this->productCode = $UIDArray[0];
 		if (count($UIDArray)>1)
 			$this->courseID = $UIDArray[1];
 		if (count($UIDArray)>2)
 			$this->unitID = $UIDArray[2];
 		if (count($UIDArray)>3)
 			$this->exerciseID = $UIDArray[3];
-		$this->uid = $this->getUID();
+		$this->uid = $value;
 	}
 	public function getUID() {
-		//$build = $this->productCode;
-        $build = '';
+        // m#17
+        if (isset($this->uid))
+            return $this->uid;
+        $build = array();
 		if (isset($this->courseID))
-			$build .= '.'.$this->courseID;
+			$build[] = $this->courseID;
 		if (isset($this->unitID))
-			$build .= '.'.$this->unitID;
+            $build[] = $this->unitID;
 		if (isset($this->exerciseID))
-			$build .= '.'.$this->exerciseID;
-		return $build; 
+            $build[] = $this->exerciseID;
+		return implode('.', $build);
 	}
 
     /**
