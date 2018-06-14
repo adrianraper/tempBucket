@@ -26,6 +26,7 @@ import flash.net.URLRequest;
         public var dbHost:Number;
         public var remoteGateway:String;
         public var remoteService:String;
+        public var remoteDomain:String;
         public var selected:Boolean;
         public var rejected:Boolean;
         public var channels:Array;
