@@ -207,7 +207,7 @@ class CouloirService extends AbstractService {
     /*
      * Login checks the user, account, hidden content, creates a session and secures a licence
      */
-	public function login($login, $password, $productCode, $rootId = null, $platform = null) {
+	public function login($login, $password, $productCode, $rootId = null, $platform = null, $apiToken = null) {
 
         // sss#229 If the productCode is a comma delimited string '52,53' you need to handle it here
         // Until we get to a situation (Road to IELTS) that requires it, just assume a single integer
@@ -239,10 +239,35 @@ class CouloirService extends AbstractService {
             // Check the validity of the user details for this product
             //$loginObj["password"] = $password;
             $loginOption = ((isset($account->loginOption)) ? $account->loginOption : User::LOGIN_BY_EMAIL) + User::LOGIN_HASHED;
+<<<<<<< .merge_file_a18332
             // m#16 SCORM needs this to be as set in the account
             $verified = (isset($account->verified)) ? $account->verified : true;
+=======
+
+            // m#16 If you are from SCORM it is as if you had sent an apiToken, perhaps one day you will
+            // For now, the only way you can tell is based on the specialised password that the app makes up
+            //const plaintext = login + (new Date().getUTCHours()).toString() + "h=F?9;";
+            //const password = CryptoJS.MD5(plaintext).toString(CryptoJS.enc.Hex);
+            $plaintext = $login . date('G') . "h=F?9;";
+            $dbPassword = md5($plaintext);
+            if ($this->loginCops->verifyPassword($password, $dbPassword, strtolower($login)))
+                $apiToken = true;
+
+            // m#316 If using apiToken, you do not need a password
+            $verified = !(isset($apiToken));
+
+>>>>>>> .merge_file_a13732
             $allowedUserTypes = array(User::USER_TYPE_TEACHER, User::USER_TYPE_ADMINISTRATOR, User::USER_TYPE_STUDENT, User::USER_TYPE_REPORTER);
-            $userObj = $this->loginCops->loginCouloir($login, $password, $loginOption, $verified, $allowedUserTypes, $rootId, $productCode);
+            // m#316 Catch no such user if apiToken in play
+            try {
+                $userObj = $this->loginCops->loginCouloir($login, $password, $loginOption, $verified, $allowedUserTypes, $rootId, $productCode);
+            } catch (Exception $e) {
+                if ($e->getCode() == $this->copyOps->getCodeForId("errorNoSuchUser") && $apiToken) {
+                    return $this->addApiUser($account, $login, $loginOption, $dbPassword, $productCode);
+                } else {
+                    throw $e;
+                }
+            }
         }
         $user = new User();
         $user->fromDatabaseObj($userObj);
@@ -334,6 +359,19 @@ class CouloirService extends AbstractService {
         return $rc;
     }
 
+    // m#316 Add a user whose details came from a validated api token
+    private function addApiUser($account, $login, $loginOption, $password, $productCode) {
+        $utcDateTime = new DateTime();
+        $utcTimestamp = intval($utcDateTime->format('U'));
+        $aLittleLater = $utcTimestamp + (1 * 60);
+        $selfRegToken = $this->authenticationCops->createToken(["exp" => $aLittleLater, "fields" => $account->selfRegister, "productCode" => $productCode, "rootId" => $account->id]);
+        $loginObj = Array();
+        $loginObj["email"] = $login . '@moodle';
+        $loginObj["login"] = $login;
+        $loginObj["password"] = $password;
+        return $this->addUser($selfRegToken, $loginObj);
+    }
+
     // sss#177 Add a user to a self-registering account
     public function addUser($token, $loginObj) {
         // Pick the productCode and rootId from the token
@@ -412,7 +450,7 @@ class CouloirService extends AbstractService {
         $newUser = $this->manageableOps->minimalAddUser($stubUser, $groups[0], $rootId);
 
         // Now do a login for this user
-        return $this->login($loginKeyValue, $stubUser->password, $productCode, $account->id, $platform = null);
+        return $this->login($loginKeyValue, $stubUser->password, $productCode, $account->id, null, null);
     }
 
     public function updateActivity($token, $timestamp) {

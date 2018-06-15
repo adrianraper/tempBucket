@@ -266,7 +266,7 @@ EOD;
 		return $dbLoginObj;
 	}
 
-	private function verifyPassword($typedPassword, $dbPassword, $salt) {
+	public function verifyPassword($typedPassword, $dbPassword, $salt) {
         // sss#132 Since the password might be hashed or not do a run through
         // If the email is not set - use an empty string for hashing
         // sss#359 the salt is the loginKeyField, not the actual email

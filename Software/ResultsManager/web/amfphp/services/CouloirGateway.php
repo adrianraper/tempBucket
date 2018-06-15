@@ -14,10 +14,9 @@ $json_error = json_last_error();
 //$json = json_decode('{"appVersion":"1.3.2-dev","command":"scoreWrite","localTimestamp":1532670099126,"score":{"uid":"66.2017066000000.2017066100000.2017066100203","exerciseScore":{"questionScores":[],"exerciseMark":{"correctCount":0,"incorrectCount":0,"missedCount":0},"duration":60,"submitTimestamp":1532670094082},"anomalies":{}},"timezoneOffset":-480,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzI2Njk2MjIsInNlc3Npb25JZCI6IjY1NCJ9.me1hL_AacxRtK0ghdOiaURKo0iHeDEDjqzdUrFilsOI"}');
 /**
  * Pretend to pass variables for easier debugging
-$json = json_decode('{"appVersion":"1.1.9","command":"getCertificate","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzAyNTA4ODcsInNlc3Npb25JZCI6IjYzNiJ9.sPdW-dsOYecmdvtza8_ZPaizbkSOn0raD-6fbMinDHQ","courseId":"2018068010000","courseName":"Elementary"}');
-$json = json_decode('{"command":"getCertificate","courseInfo":{"name":"Elementary","exercises":73},"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzAwNjM5NzgsInNlc3Npb25JZCI6IjYzNCJ9.3dfGKotWakqW42cOd8xdZCtaEXqklUm_TyJ8jXmrT14", "appVersion":"1.0"}');
-$json = json_decode('{"appVersion":"1.3.2-dev","command":"login","login":"dandy@clarity","password":"93bc9620dea7442a898e5396b2b8e346","productCode":"66","rootId":163,"token":null}');
+//$json = json_decode('{"appVersion":"1.3.2-dev","command":"login","login":"dandy@clarity","password":"93bc9620dea7442a898e5396b2b8e346","productCode":"66","rootId":163,"token":null}');
 $json = json_decode('{"command":"login","appVersion":"1.0.0","login":"dandelion dev","password":"3938e4d558baf3f3ff9924a84ad66cd6","productCode":"68","rootId":10719}');
+$json = json_decode('{"command":"getCertificate","courseId":"2018068010000","courseName":"Elementary","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MjU5MjkyMTMsInNlc3Npb25JZCI6IjUzOCJ9.H7eI5vSe8aFFdaDYKBENFlxLeB5HGBQS2pHjh2axsWQ", "appVersion":"1.0"}');
 $json = json_decode('{"appVersion":"1.0","command":"login","login":"dandelion","password":"2bdc02c98d80ce8ff84f58a0140d5471","productCode":"68","rootId":163,"token":null}');
 $json = json_decode('{"command":"login","email":"pinky@email","password":"password","timezoneOffset":"-480"}');
 $json = json_decode('{"appVersion":"0.10.10","command":"getComparison","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUxMTI0OTY0NCwic2Vzc2lvbklkIjoiNDMwIn0.d5NEPkbwQ03tw3hHwcvRqnILwhvN-NRCceiBzfQy-9g"}');
@@ -345,6 +344,9 @@ try {
             // Send back http header 200, but with failure in the JSON
             //headerDateWithStatusCode(401);
             break;
+        // Token errors
+        case 103:
+        case 104:
         default:
             headerDateWithStatusCode(500);
     }
@@ -368,6 +370,19 @@ function router($json) {
 
     if (!isset($json->mode))
         $json->mode = null;
+
+    // m#316 If an apiToken has been sent, confirm it and then use the payload to populate the regular json parameters
+    if (isset($json->apiToken)) {
+        $payload = $service->authenticationCops->getApiPayload($json->apiToken);
+        $key = (isset($payload->rootId)) ? $service->authenticationCops->getAccountApiKey($payload->rootId) : '0';
+        $service->authenticationCops->validateApiToken($json->apiToken, $key);
+
+        // Merge the payload into the regular parameters now it is validated
+        // Parameters that come from payload will overwrite those from outside
+        $json = (object) array_merge((array) $json, (array) $payload);
+    } else {
+        $json->apiToken = null;
+    }
 
     // Save the version of the app that called us
     $service->setAppVersion((isset($json->appVersion)) ? $json->appVersion : '0.0.0');
@@ -396,7 +411,7 @@ function router($json) {
             // ctp#428
             if (!isset($json->platform)) $json->platform = '*not passed from app*';
             if (!isset($json->rootId)) $json->rootId = null;
-            return login($json->login, $json->password, $json->productCode, $json->rootId, $json->platform);
+            return login($json->login, $json->password, $json->productCode, $json->rootId, $json->platform, $json->apiToken);
         case "getLoginConfig":
             // sss#285
             if (!isset($json->prefix)) $json->prefix = null;
@@ -453,7 +468,7 @@ function router($json) {
 }
 
 // In general, exceptions are thrown if something blocks login. Like an expired user or no licence slots.
-function login($login, $password, $productCode, $rootId, $platform = null) {
+function login($login, $password, $productCode, $rootId, $platform = null, $apiToken) {
     global $service;
     // ctp#428
     try {
@@ -462,7 +477,7 @@ function login($login, $password, $productCode, $rootId, $platform = null) {
     } catch (Exception $e) {
         // do nothing
     }
-    return $service->login($login, $password, $productCode, $rootId, $platform);
+    return $service->login($login, $password, $productCode, $rootId, $platform, $apiToken);
 }
 // sss#61 Return login option details for this account
 // Returns exception if no account found - 223 is an expected one

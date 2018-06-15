@@ -33,7 +33,21 @@ class AuthenticationCops {
         }
         return $payload;
     }
+    public function validateApiToken($token, $key) {
+        try {
+            $payload = JWT::decode($token, $key, array('HS256'));
+        } catch (Exception $e) {
+            throw $this->copyOps->getExceptionForId("errorApiTokenInvalid");
+        }
+        return true;
+    }
 
+    // m#316 Confirm and extract payload from an API token
+    public function getApiPayload($token) {
+        $tks = explode('.', $token);
+        list($headb64, $bodyb64, $cryptob64) = $tks;
+        return JWT::jsonDecode(JWT::urlsafeB64Decode($bodyb64));
+    }
     // Specialised function to pull out a session id from the token, if it exists
     public function getSessionId($token) {
 	    $payload = $this->getPayloadFromToken($token);
@@ -61,4 +75,17 @@ EOD;
 
         return $session;
     }
+    // m#316 Lookup the api key for a root
+    public function getAccountApiKey($rootId) {
+	    switch ($rootId) {
+            case 163:
+                $key = 'averysecretkey';
+                break;
+            default:
+                $key = $this::KEY;
+                break;
+        }
+        return $key;
+    }
+
 }
