@@ -145,7 +145,7 @@ class BentoService extends AbstractService {
         // This should leave http://pm.clarityenglish.com, http://www.roadtoielts.com, http:/dock.projectbench alone
 		//return preg_replace('/http(s?):\/\/([\w\.]+)?(clarityenglish\.com)([\w\.\-:\d]+)?/i', "http$1://$2$3", $url);
         // Domain that include hyphens are missed
-        preg_replace('/http(s?):\/\/.*clarityenglish[^\/]+\/(.*)?/i', "http$1://www.clarityenglish.com/$2", $url);
+        return preg_replace('/http(s?):\/\/.*clarityenglish[^\/]+\/(.*)?/i', "http$1://www.clarityenglish.com/$2", $url);
 	}
 	/**
 	 *
