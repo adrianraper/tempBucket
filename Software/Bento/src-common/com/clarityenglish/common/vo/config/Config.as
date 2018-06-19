@@ -648,7 +648,10 @@ public class Config {
         if (xml.dbHost.toString())	this.dbHost = xml.dbHost.toString();
         if (xml.assetFolder.toString())
             this.assetFolder = xml.assetFolder.toString();
-        // m#311 Set remoteDomain
+        // m#311 In case any other Bento process wants to read this from config later
+        // It is not needed by RemoteDelegate, but things like print might.
+        if (xml.remoteGateway.toString())
+            this.remoteGateway = xml.remoteGateway.toString();
         if (xml.remoteDomain.toString())
             this.remoteDomain = xml.remoteDomain.toString();
         if (xml.remoteService.toString())
