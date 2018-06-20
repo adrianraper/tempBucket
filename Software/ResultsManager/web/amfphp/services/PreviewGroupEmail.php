@@ -154,9 +154,9 @@ array_push($userEmailArray, $adminEmail);
             // Get all checkboxes in the id=emails
             var selectedEmailArray = [];
             var checkboxEmails = $("#emails [type=checkbox]");
-            console.log("checkbox array has " + checkboxEmails.length);
+            //console.log("checkbox array has " + checkboxEmails.length);
             for (var i = 0; i < checkboxEmails.length; i++) {
-                console.log("checkbox " + i + " is checked=" + checkboxEmails[i].checked);
+                //console.log("checkbox " + i + " is checked=" + checkboxEmails[i].checked);
                 if (checkboxEmails[i].checked)
                     selectedEmailArray.push(i);
             };
