@@ -59,10 +59,33 @@ class Account extends Reportable {
 	function addLicenceAttributes($a) {
 		$this->licenceAttributes = array_merge($a, $this->licenceAttributes);
 	}
-	
-	/*
-	 * Concatenate the parameter array onto our current array
-	 */
+
+	// m#190 Clean licence attributes that can safely be sent to an app
+    function cleanLicenceAttributes() {
+        $clean = array();
+        foreach ($this->licenceAttributes as $attribute) {
+            switch ($attribute['licenceKey']) {
+                case "IPrange":
+                case "RUrange":
+                case "action":
+                case "customisation":
+                    // allow these
+                    $clean[] = array('licenceKey' => $attribute['licenceKey'], 'licenceValue' => $attribute['licenceValue'], 'productCode' => $attribute['productCode']);
+                    break;
+
+                case "APIpassword":
+                case "dptSummaryCompletions":
+                    // specifically hide these
+                    break;
+                default:
+            }
+        }
+        $this->licenceAttributes = $clean;
+    }
+
+    /*
+     * Concatenate the parameter array onto our current array
+     */
 	function addTitles($t) {
 		// gh#254 add new titles to the end of the array
 		$this->titles = array_merge($this->titles, $t);

@@ -216,7 +216,10 @@ class BentoService extends AbstractService {
 		$configObj = array("databaseVersion" => $this->getDatabaseVersion(),
 							"uploadMaxFilesize" => $this->getUploadMaxFilesize(),
                             "ip" => (isset($config['ip'])) ? $config['ip'] : null);
-		
+
+		// m#190 Don't expose all licence attributes, only those that Bento apps need
+        $account->cleanLicenceAttributes();
+
 		// Set some session variables that other calls will use
 		Session::set('rootID', $account->id);
 		Session::set('productCode', $config['productCode']);		

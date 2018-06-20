@@ -403,7 +403,6 @@ EOD;
                 case "studentID":
                 case "expiryDate":
                 case "email":
-                case "birthday":
                 case "country":
                 case "city":
                 case "startDate":

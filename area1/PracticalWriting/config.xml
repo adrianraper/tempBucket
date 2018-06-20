@@ -23,8 +23,9 @@
 	<language>EN</language>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 
-	<endpoint name='https'>
-		<remoteGateway>https://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<endpoint name='http'>
+		<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+		<remoteDomain>http://dock.projectbench/</remoteDomain>
 		<remoteService>PracticalWritingService</remoteService>
 		<contentPath>https://www.clarityenglish.com/Content/</contentPath>
 	</endpoint>
