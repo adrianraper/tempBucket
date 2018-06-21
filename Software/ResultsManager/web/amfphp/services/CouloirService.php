@@ -239,7 +239,8 @@ class CouloirService extends AbstractService {
             // Check the validity of the user details for this product
             //$loginObj["password"] = $password;
             $loginOption = ((isset($account->loginOption)) ? $account->loginOption : User::LOGIN_BY_EMAIL) + User::LOGIN_HASHED;
-            $verified = true;
+            // m#16 SCORM needs this to be as set in the account
+            $verified = (isset($account->verified)) ? $account->verified : true;
             $allowedUserTypes = array(User::USER_TYPE_TEACHER, User::USER_TYPE_ADMINISTRATOR, User::USER_TYPE_STUDENT, User::USER_TYPE_REPORTER);
             $userObj = $this->loginCops->loginCouloir($login, $password, $loginOption, $verified, $allowedUserTypes, $rootId, $productCode);
         }
