@@ -94,7 +94,7 @@ class CouloirService extends AbstractService {
      * sss#285 The ip is picked up by the server, not sent from client
      * sss#374 referrer has to come from app
      */
-    public function getLoginConfig($productCode, $prefix, $referrer) {
+    public function getLoginConfig($productCode, $prefix, $referrer, $apiToken=null) {
 
         // Pick up the ip and ru, if any, of the client
         $ip = $this->accountCops->getIP();
@@ -116,7 +116,7 @@ class CouloirService extends AbstractService {
 
         // gh#315 If no account and you didn't throw an exception, just means we can't find it from partial parameters
         // gh#1561 For consistency we should still alert this with an exception
-        // sss#152 Return default parameters so that the app can go to personal signin
+        // sss#152 Return default parameters so that the app can go to personal sign-in
         // sss#304
         if (!$account) {
             //throw $this->copyOps->getExceptionForId("errorNoAccountFound");
@@ -184,14 +184,26 @@ class CouloirService extends AbstractService {
             }
 
             // sss#304 Format return object
-            $verified = $account->verified;
             $selfRegister = $account->selfRegister;
+            $verified = $account->verified;
+
             if (isset($account->id)) {
                 $returnAccount = array("lang" => $account->titles[0]->languageCode,
                                 "contentName" => $account->titles[0]->contentLocation,
                                 "rootId" => intval($account->id),
                                 "institutionName" => $account->name,
                                 "menuFilename" => "menu.json");
+
+                // m#316 Return expected payload of the apiToken in object
+                if ($apiToken) {
+                    // m#316 Never ask for password if using apiToken
+                    $verified = false;
+                    $payload = $this->authenticationCops->getApiPayload($apiToken);
+                    $apiLogin = array();
+                    if (isset($payload->login)) $apiLogin["login"] = $payload->login;
+                    if (isset($payload->startNode)) $apiLogin["startNode"] = $payload->startNode;
+                    if (isset($payload->enabledNode)) $apiLogin["enabledNode"] = $payload->enabledNode;
+                }
             }
         }
 
@@ -202,6 +214,10 @@ class CouloirService extends AbstractService {
                         "selfRegistrationToken" => ($selfRegister > 0) ? $selfRegToken : null,
                         "licenseType" => $licenceType,
                         "account" => $returnAccount);
+
+        // m#316 Add authenticated apiLogin if created
+        if (isset($apiLogin)) $config['apiLogin'] = $apiLogin;
+
         return $config;
     }
     /*
@@ -239,10 +255,6 @@ class CouloirService extends AbstractService {
             // Check the validity of the user details for this product
             //$loginObj["password"] = $password;
             $loginOption = ((isset($account->loginOption)) ? $account->loginOption : User::LOGIN_BY_EMAIL) + User::LOGIN_HASHED;
-<<<<<<< .merge_file_a18332
-            // m#16 SCORM needs this to be as set in the account
-            $verified = (isset($account->verified)) ? $account->verified : true;
-=======
 
             // m#16 If you are from SCORM it is as if you had sent an apiToken, perhaps one day you will
             // For now, the only way you can tell is based on the specialised password that the app makes up
@@ -253,16 +265,22 @@ class CouloirService extends AbstractService {
             if ($this->loginCops->verifyPassword($password, $dbPassword, strtolower($login)))
                 $apiToken = true;
 
-            // m#316 If using apiToken, you do not need a password
-            $verified = !(isset($apiToken));
+            // m#16 SCORM needs this to be as set from the account
+            // m#316 Never ask for password if using apiToken
+            if ($apiToken) {
+                $verified = false;
+            } elseif (isset($account->verified)) {
+                $verified = $account->verified;
+            } else {
+                $verified = true;
+            }
 
->>>>>>> .merge_file_a13732
             $allowedUserTypes = array(User::USER_TYPE_TEACHER, User::USER_TYPE_ADMINISTRATOR, User::USER_TYPE_STUDENT, User::USER_TYPE_REPORTER);
             // m#316 Catch no such user if apiToken in play
             try {
                 $userObj = $this->loginCops->loginCouloir($login, $password, $loginOption, $verified, $allowedUserTypes, $rootId, $productCode);
             } catch (Exception $e) {
-                if ($e->getCode() == $this->copyOps->getCodeForId("errorNoSuchUser") && $apiToken) {
+                if ($e->getCode() == $this->copyOps->getCodeForId("errorNoSuchUser") && isset($apiToken)) {
                     return $this->addApiUser($account, $login, $loginOption, $dbPassword, $productCode);
                 } else {
                     throw $e;
@@ -446,6 +464,8 @@ class CouloirService extends AbstractService {
         }
         $stubUser->registerMethod = "selfRegister";
         $stubUser->userType = User::USER_TYPE_STUDENT;
+        $now = new DateTime();
+        $stubUser->registrationDate = $now->format('Y-m-d H:i:s');
         // Use a minimal add user that has no authentication and user duplication checking
         $newUser = $this->manageableOps->minimalAddUser($stubUser, $groups[0], $rootId);
 

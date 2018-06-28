@@ -42,7 +42,7 @@ class AuthenticationCops {
         return true;
     }
 
-    // m#316 Confirm and extract payload from an API token
+    // m#316 Extract payload from an API token, no validation of the token
     public function getApiPayload($token) {
         $tks = explode('.', $token);
         list($headb64, $bodyb64, $cryptob64) = $tks;
@@ -75,10 +75,14 @@ EOD;
 
         return $session;
     }
-    // m#316 Lookup the api key for a root
-    public function getAccountApiKey($rootId) {
-	    switch ($rootId) {
-            case 163:
+    // m#316 Lookup the api key for a prefix
+    public function getAccountApiKey($id) {
+	    switch (strtolower($id)) {
+            case 'nms':
+                $key = 'NMS-65483-81654915';
+                break;
+            case 'clarity':
+            case 'dev':
                 $key = 'averysecretkey';
                 break;
             default:
