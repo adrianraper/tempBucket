@@ -6,7 +6,8 @@
       "literals": {
         "ThankYouLabel": "Thank you for using Tense Buster",
         "CoverageProgressBarTitle": "Overall coverage {totalCoverage}%",
-        "CertificateTemplate": "tb-01"
+        "CertificateTemplate": "tb-01",
+        "NoCertificateTemplate": "tb-02"
       }
     }
   ]

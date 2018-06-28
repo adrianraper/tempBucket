@@ -13,9 +13,10 @@ $json = json_decode(file_get_contents('php://input'));
 $json_error = json_last_error();
 /**
  * Pretend to pass variables for easier debugging
-//$json = json_decode('{"appVersion":"1.3.2-dev","command":"login","login":"dandy@clarity","password":"93bc9620dea7442a898e5396b2b8e346","productCode":"66","rootId":163,"token":null}');
+$json = json_decode('{"appVersion":"1.1.9","command":"getCertificate","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzAyNTA4ODcsInNlc3Npb25JZCI6IjYzNiJ9.sPdW-dsOYecmdvtza8_ZPaizbkSOn0raD-6fbMinDHQ","courseId":"2018068010000","courseName":"Elementary"}');
+$json = json_decode('{"command":"getCertificate","courseInfo":{"name":"Elementary","exercises":73},"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzAwNjM5NzgsInNlc3Npb25JZCI6IjYzNCJ9.3dfGKotWakqW42cOd8xdZCtaEXqklUm_TyJ8jXmrT14", "appVersion":"1.0"}');
+$json = json_decode('{"appVersion":"1.3.2-dev","command":"login","login":"dandy@clarity","password":"93bc9620dea7442a898e5396b2b8e346","productCode":"66","rootId":163,"token":null}');
 $json = json_decode('{"command":"login","appVersion":"1.0.0","login":"dandelion dev","password":"3938e4d558baf3f3ff9924a84ad66cd6","productCode":"68","rootId":10719}');
-$json = json_decode('{"command":"getCertificate","courseId":"2018068010000","courseName":"Elementary","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MjU5MjkyMTMsInNlc3Npb25JZCI6IjUzOCJ9.H7eI5vSe8aFFdaDYKBENFlxLeB5HGBQS2pHjh2axsWQ", "appVersion":"1.0"}');
 $json = json_decode('{"appVersion":"1.0","command":"login","login":"dandelion","password":"2bdc02c98d80ce8ff84f58a0140d5471","productCode":"68","rootId":163,"token":null}');
 $json = json_decode('{"command":"login","email":"pinky@email","password":"password","timezoneOffset":"-480"}');
 $json = json_decode('{"appVersion":"0.10.10","command":"getComparison","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUxMTI0OTY0NCwic2Vzc2lvbklkIjoiNDMwIn0.d5NEPkbwQ03tw3hHwcvRqnILwhvN-NRCceiBzfQy-9g"}');
@@ -428,9 +429,15 @@ function router($json) {
         case "getAnalysis": return getAnalysis($json->token);
         case "getScoreDetails": return getScoreDetails($json->token);
         case "getCertificate":
-            if (!isset($json->courseId)) $json->courseId = null;
-            if (!isset($json->courseName)) $json->courseName = null;
-            return getCertificate($json->token, $json->courseId, $json->courseName);
+            // m#322 Cope with old style sending of course information
+            if (!isset($json->courseInfo)){
+                if (isset($json->courseName) && isset($json->courseId)) {
+                    $json->courseInfo = json_decode('{"name":"'.$json->courseName.'", "id":"'.$json->courseId.'", "exercises":100}');
+                } else {
+                    $json->courseInfo = null;
+                }
+            }
+            return getCertificate($json->token, $json->courseInfo);
         case "dbCheck": return dbCheck();
         // m#174
         case "PWVAlogin":
@@ -498,9 +505,9 @@ function getScoreDetails($token) {
     return $service->getScoreDetails($token);
 }
 // m#11 App asking for a certificate
-function getCertificate($token, $courseId, $courseName) {
+function getCertificate($token, $courseInfo) {
     global $service;
-    return $service->getCertificate($token, $courseId, $courseName);
+    return $service->getCertificate($token, $courseInfo);
 }
 function getResult($token, $mode = null) {
     global $service;

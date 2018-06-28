@@ -799,7 +799,7 @@ EOD;
     }
 
     // m#11 Generate a certificate (html and pdf)
-    public function getCertificate($token, $courseId, $courseName) {
+    public function getCertificate($token, $courseInfo) {
         // Pick the session from the token
         $session = $this->authenticationCops->getSession($token);
 
@@ -808,27 +808,42 @@ EOD;
             return array();
 
         // Nothing we can do if no courseId given
-        if (!$courseId)
-            // Exception for invalid courseId - or should we assume it is the first course in the session->productCode?
-            return array();
+        if (!$courseInfo || !isset($courseInfo->id) || (isset($courseInfo->exercisesTotal) && $courseInfo->exercisesTotal<=0))
+            throw $this->copyOps->getExceptionForId("errorUnknown");
 
         // Retrieve the score records for this user and this product
-        $courseScore = $this->progressCops->getCourseProgress($session, $courseId);
+        $courseScore = $this->progressCops->getCourseProgress($session, $courseInfo->id);
+        $courseScore->courseName = $courseInfo->name;
+        $courseScore->exercisesTotal = $courseInfo->exercises;
+        // Make sure that non-marked exercises don't turn this into null rather than 0
+        $courseScore->averageScore = ($courseScore->averageScore) ? $courseScore->averageScore : 0;
 
-        // Nothing to do if NO exercises have been done
-        if ($courseScore->exercisesDone <= 0)
-            throw $this->copyOps->getExceptionForId("certificateBlocked", array("exercisesDone" => $courseScore->exercisesDone, "exercisesTotal" => $courseScore->exercisesTotal, "averageScore" => $courseScore->averageScore));
+        // m#322 Has the required coverage been hit? Set at 100% for everything for now
+        // but could be based on different titles
+        switch ($session->productCode) {
+            default:
+                if ($courseScore->exercisesDone < $courseScore->exercisesTotal)
+                    throw $this->copyOps->getExceptionForId("certificateBlocked", array("caption" => $courseScore->courseName, "exercisesDone" => $courseScore->exercisesDone, "exercisesTotal" => $courseScore->exercisesTotal, "averageScore" => $courseScore->averageScore));
+        }
+
+        // m#322 Or do you want different certificates?
+        $coverage = round(100 * $courseScore->exercisesDone / $courseScore->exercisesTotal);
+        //if ($coverage < 60) {
+        //    $certificateTemplate = $this->copyOps->getCopyForId("NoCertificateTemplate");
+        //} elseif ($coverage < 90) {
+        //    $certificateTemplate = $this->copyOps->getCopyForId("AlmostCertificateTemplate");
+        //} else {
+            $certificateTemplate = $this->copyOps->getCopyForId("CertificateTemplate");
+        //}
 
         // Horrible hack for the moment
         $user = $this->manageableOps->getUserByIdNotAuthenticated($session->userId);
 
         // Get the metrics into a summary object
-        $courseScore->courseName = $courseName;
-
         $certificate = new Summary();
         $certificate->detail = $courseScore;
         $certificate->user = $user;
-        $certificate->template = 'certificates/'.$this->copyOps->getCopyForId("CertificateTemplate");
+        $certificate->template = 'certificates/'.$certificateTemplate;
         $certificate->caption = $this->copyOps->getCopyForId("CertificateOfAchievement");
 
         // And put that into a token
