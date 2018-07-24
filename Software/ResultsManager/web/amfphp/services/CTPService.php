@@ -166,6 +166,12 @@ class CTPService extends BentoService {
     // Write the score from an exercise. This includes full details of each answer and anomalies
     public function scoreWrite($sessionId, $scoreObj, $localTimestamp, $clientTimezoneOffset = null) {
 
+	    // m#343
+        if (!$scoreObj->uid) {
+            AbstractService::$debugLog->err("Ignored score with blank uid sessionId");
+            return array("success" => true);
+        }
+
         $session = $this->testOps->getTestSession($sessionId);
         if (!$session)
             throw new Exception("No such saved session");
