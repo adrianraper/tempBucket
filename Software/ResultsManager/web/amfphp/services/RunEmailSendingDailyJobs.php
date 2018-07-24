@@ -7,7 +7,7 @@
  * m#286 Daily jobs that send emails
  *   obsolete Rotterdam EmailMe
  *   Tb6weeks notifications
- *   DPT completed tests
+ *   Summarise DPT completed tests
  */
 
 require_once(dirname(__FILE__)."/MinimalService.php");
@@ -18,7 +18,7 @@ if (isset($_SESSION['dbHost'])) unset($_SESSION['dbHost']);
 if (isset($_REQUEST['dbHost'])) $_SESSION['dbHost']=$_REQUEST['dbHost'];
 
 $thisService = new MinimalService();
-set_time_limit(300); // 5 mins of online processing
+set_time_limit(1800); // 30 mins of online processing
 
 date_default_timezone_set('UTC');
 if (!Authenticate::isAuthenticated()) {
@@ -54,6 +54,7 @@ function runDailyJobs($triggerDate = null) {
 	if (!$triggerDate) $triggerDate = time();
 
 	// 4. EmailMe for Rotterdam
+    $sectionStartTime = new DateTime();
 	// First task is to find units that start today, get all users in the groups the units are published for
 	// and send out the email.
 	// Date is UTC and this job runs at 16:00 UTC. So it should be based on units starting tomorrow.
@@ -65,18 +66,36 @@ function runDailyJobs($triggerDate = null) {
 	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 		// Send the emails
 		$thisService->emailOps->sendEmails("", $templateID, $emailArray);
-		echo "Queued ".count($emailArray)." CCB emails for units starting $courseDate. $newLine";
-			
+
 	} else {
 		// Or print on screen
-		echo count($emailArray)." CCB emails for units starting $courseDate. $newLine";
 		foreach($emailArray as $email) {
 			echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
 		}
 	}
+    /*
+    // Then repeat for courses that are published to start whenever a user first goes into them
+    $templateID = 'EmailMeUserFirstStart';
+    $emailArray = $thisService->dailyJobOps->getEmailsForUserFirstStart($expiryDate);
+    if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+        // Send the emails
+        $thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
+        echo "Sent ".count($emailArray)." emails for users starting $expiryDate. $newLine";
+
+    } else {
+        // Or print on screen
+        foreach($emailArray as $email) {
+            echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
+        }
+    }
+    */
+    echo "4. " .count($emailArray). " CCB emails for units starting $courseDate. $newLine";
+    $now = new DateTime();
+    echo "== section took " . ($sectionStartTime->diff($now)->format('%s')) . "s$newLine";
 
 	// 7. Update TB6weeks bookmarks
 	// a. Loop round all accounts that have productCode=59 (and are active)
+    $sectionStartTime = new DateTime();
 	$productCode = 59;
 	$trigger = new Trigger();
 	$trigger->templateID = 'user/TB6weeksNewUnit';
@@ -87,7 +106,7 @@ function runDailyJobs($triggerDate = null) {
     }
 
     $triggerResults = $thisService->triggerOps->applyCondition($trigger, $triggerDate);
-    echo "Check ".count($triggerResults)." TB6weeks accounts$newLine";
+    echo "7. Check ".count($triggerResults)." TB6weeks accounts$newLine";
 	foreach ($triggerResults as $account) {
 		
 		// b. For each user in this account, update their subscription, if they have one.
@@ -112,13 +131,15 @@ function runDailyJobs($triggerDate = null) {
 		}
 	}
     $now = new DateTime();
-    //echo "email sending script time " . $now->format("H:i:s") . "$newLine";
+    echo "== section took " . ($sectionStartTime->diff($now)->format('%s')) . "s$newLine";
 
 	// 10. List everyone who completed a test yesterday, to send the account manager an email
     // Get list of test completions ordered by account
+    $sectionStartTime = new DateTime();
     $dateNow = new DateTime("@$triggerDate");
     $shortTimeAgo = $dateNow->modify('-1day')->format('Y-m-d');
     $completedTests = $thisService->dailyJobOps->getCompletedTests($shortTimeAgo);
+    echo "10. ".count($completedTests)." DPT tests yesterday $newLine";
     $templateID = 'summaries/dptCompletedTests';
 
     $matchRootId = (isset($_REQUEST['rootID']) && $_REQUEST['rootID'] > 0) ? $_REQUEST['rootID'] : null;
@@ -155,17 +176,19 @@ function runDailyJobs($triggerDate = null) {
             }
         }
     }
+    $now = new DateTime();
+    echo "== section took " . ($sectionStartTime->diff($now)->format('%s')) . "s$newLine";
 }
 
 // Action
 $now = new DateTime();
-//echo "email sending script started at " . $now->format("Y-m-d H:i:s") . "$newLine";
+echo "email sending script started at " . $now->format("Y-m-d H:i:s") . "$newLine";
 if (isset($_REQUEST['date'])) {
 	runDailyJobs(addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 } else {
 	runDailyJobs();
 }
 $now = new DateTime();
-//echo "email sending script ended at ... " . $now->format("H:i:s") . "$newLine";
+echo "email sending script ended at ... " . $now->format("H:i:s") . "$newLine";
 flush();
 exit(0);

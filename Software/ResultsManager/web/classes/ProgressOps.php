@@ -813,7 +813,13 @@ SQL;
 
         // We want to return the newly created F_SessionID (or the SQL error)
         $bindingParams = array($userId, $dateNow, $dateSoon, self::MINIMUM_DURATION, $rootId, $productCode, $courseId);
-        $rs = $this->db->Execute($sql, $bindingParams);
+        // m#339
+        try {
+            $rs = $this->db->Execute($sql, $bindingParams);
+        } catch (Exception $e) {
+            throw $this->copyOps->getExceptionForId("errorDatabaseWriting");
+        }
+
         if ($rs) {
             $sessionId = $this->db->Insert_ID();
             if ($sessionId) {
