@@ -54,14 +54,17 @@
 		// *********
 		
 		var startControl = webShare + "/Software/ResultsManager/web/";
-		var argList = "?version=3.7.28"
+		var argList = "?version=3.7.32"
 		
 		// see whether variables have come from command line or, preferentially, session variables
 		var jsUserName = swfobject.getQueryParamValue("username");
 		var jsPassword = swfobject.getQueryParamValue("password");
-		var jsdbHost = swfobject.getQueryParamValue("dbHost");;
-		var flashvars = {
-			host: startControl,
+		var jsdbHost = swfobject.getQueryParamValue("dbHost");
+
+        var domain = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+        console.log("you are running from " + domain);
+        var flashvars = {
+			host: domain + "/Software/ResultsManager/web/", // This is the backend URL,
 			username: jsUserName,
 			password: jsPassword,
 			rootID: swfobject.getQueryParamValue("rootID"),
@@ -91,7 +94,7 @@
 		<p>This application requires Adobe's Flash player, running at least version 9.0.45.</p>
 		<p>It seems your browser doesn't have this.</p>
 		<p>Please download the latest Adobe Flash Player.</p>
-		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
+		<p><a href="https://www.adobe.com/go/getflashplayer"><img src="https://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
 		<p>If you still get this message, then your browser is stopping the scripts on this page from running.</p>
 	</div>
 <noscript>

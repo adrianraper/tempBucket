@@ -60,7 +60,7 @@
 		// *********
 		
 		var startControl = webShare + "/Software/ResultsManager/web/";
-		var argList = "?version=3.8.68"
+		var argList = "?version=3.8.85"
 		
 		// see whether variables have come from command line or, preferentially, session variables
 		if ("<?php echo $userName ?>".length>0) {
@@ -74,9 +74,11 @@
 			var jsPassword = swfobject.getQueryParamValue("password");
 		}
         var jsSessionID = "<?php echo $currentSessionID; ?>";
+        var domain = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+        console.log("you are running from " + domain);
 
 		var flashvars = {
-			host: startControl, // THIS MUST INCLUDE THE TRAILING SLASH!
+            host: domain + "/Software/ResultsManager/web/", // This is the backend URL,
 			username: jsUserName,
 			password: jsPassword,
 			rootID: swfobject.getQueryParamValue("rootID"),
@@ -106,7 +108,7 @@
 	<div align="center" id="altContent">
 		<p>This application requires Adobe's Flash player, but your browser can't run it or doesn't have it.</p>
 		<p>The most likely reason is that the browser is blocking Flash player.</p>
-		<p>Please download the latest Adobe Flash Player.<a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
+		<p>Please enable the latest Adobe Flash Player.<a href="https://www.adobe.com/go/getflashplayer"><img src="https://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
 	</div>
 <noscript>
 This application requires your browser to support javascript and to have Adobe's Flash player installed and not blocked.<br/>
