@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
 $json = json_decode(file_get_contents('php://input'));
 $json_error = json_last_error();
+//$json = json_decode('{"appVersion":"1.3.2-dev","command":"scoreWrite","localTimestamp":1532670099126,"score":{"uid":"66.2017066000000.2017066100000.2017066100203","exerciseScore":{"questionScores":[],"exerciseMark":{"correctCount":0,"incorrectCount":0,"missedCount":0},"duration":60,"submitTimestamp":1532670094082},"anomalies":{}},"timezoneOffset":-480,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzI2Njk2MjIsInNlc3Npb25JZCI6IjY1NCJ9.me1hL_AacxRtK0ghdOiaURKo0iHeDEDjqzdUrFilsOI"}');
 /**
  * Pretend to pass variables for easier debugging
 $json = json_decode('{"appVersion":"1.1.9","command":"getCertificate","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzAyNTA4ODcsInNlc3Npb25JZCI6IjYzNiJ9.sPdW-dsOYecmdvtza8_ZPaizbkSOn0raD-6fbMinDHQ","courseId":"2018068010000","courseName":"Elementary"}');

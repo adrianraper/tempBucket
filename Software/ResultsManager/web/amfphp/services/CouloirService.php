@@ -620,7 +620,8 @@ EOD;
             $score->score = -1;
         }
         // sss#134 app sends milliseconds
-        $score->duration = $scoreObj->exerciseScore->duration / 1000;
+        // m#347 round this up in case of fractions
+        $score->duration = ceil($scoreObj->exerciseScore->duration);
 
         $score->sessionID = $session->sessionId;
         $score->userID = $user->userID;
