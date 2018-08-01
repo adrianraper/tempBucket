@@ -221,9 +221,10 @@ class ClarityService extends AbstractService {
 			// added TW_CUTE 2014 11 05 
 			// added ELS 2015/08/17
 			// added BCVIETNAM
+            // m#353 remove ELS 1 Aug 2018 as we can't display students no matter what
 			if ((int)$loginObj->F_RootID == 14781 || (int)$loginObj->F_RootID == 19278 || (int)$loginObj->F_RootID == 26155 || 
 				(int)$loginObj->F_RootID == 13982 || (int)$loginObj->F_RootID == 13754 || (int)$loginObj->F_RootID == 22743
-				|| (int)$loginObj->F_RootID == 32366 || (int)$loginObj->F_RootID == 35886  || (int)$loginObj->F_RootID == 163
+				|| (int)$loginObj->F_RootID == 35886  || (int)$loginObj->F_RootID == 163
 				|| (int)$loginObj->F_RootID == 37281 || (int)$loginObj->F_RootID == 29130 || (int)$loginObj->F_RootID == 54360) {
 				Session::set('no_students', ($manageablesCount > 22000));
 			} else {
@@ -322,14 +323,15 @@ class ClarityService extends AbstractService {
         // Actually, it might make no difference to use new code for all calls
 		// There is some wastage if you are a teacher for one small group in a big account - but I think insignificant
 		// gh#671 No. The new method does NOT pick up for extra teacher groups. So revert back if you are not at the root
-        $groupIds = Session::get('groupIDs');
-        if (Session::get('rootGroupID') == $groupIds[0]) {
+        // m#353 Doing this special fromRoot call ignores the no_students stuff you carefully set up!
+        //$groupIds = Session::get('groupIDs');
+        //if (Session::get('rootGroupID') == $groupIds[0]) {
 			//AbstractService::$debugLog->info("New code as root group=".Session::get('rootGroupID')." and top group=".$groupIds[0]);
-			return $this->manageableOps->getAllManageablesFromRoot();
-        } else {
+		//	return $this->manageableOps->getAllManageablesFromRoot();
+        //} else {
 			//AbstractService::$debugLog->info("Going with the old method as root group=".Session::get('rootGroupID')." and top group=".$groupIds[0]);
 			return $this->manageableOps->getAllManageables();
-        }
+        //}
     }
 	
 	public function getContent($productCodes = null) {
