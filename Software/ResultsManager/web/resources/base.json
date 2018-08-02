@@ -15,6 +15,7 @@
         "EmptyLogin": "Please enter a full email address.",
         "EmptyLoginName": "Please enter your name.",
         "EmptyLoginId": "Please enter your ID.",
+        "EmptyPassword": "Please enter your password.",
         "IncorrectLogin": "Your email or password is incorrect. Please try again.",
         "ConnectToInternet": "Please connect to the Internet.",
         "OnlineModeWarning": "The app is running online. Make sure you have a good connection.",
