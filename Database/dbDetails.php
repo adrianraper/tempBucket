@@ -11,18 +11,10 @@ class DBDetails {
 				$this->password = "clarity123";
 				$this->dbname = "rack80829";
 				break;
-            // BC Rackspace
-			case 400:
-				$this->driver = "mysqli";
-				$this->host = "46.38.190.53";
-				$this->user = "clarity";
-				$this->password = "cl4r479@";
-				$this->dbname = "clarity";
-				break;
-			// Staging
+			// Staging Aurora
 			case 300:
 				$this->driver = "mysqli";
-				$this->host = "clarity-eu-db-staging.c8s4j19sgnql.eu-west-1.rds.amazonaws.com";
+				$this->host = "vivying-parallel-aurora-staging-test.c8s4j19sgnql.eu-west-1.rds.amazonaws.com";
 				$this->user = "clarity";
 				$this->password = "clarity123";
 				$this->dbname = "rack80829";

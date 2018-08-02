@@ -677,9 +677,9 @@ EOD;
         } else {
             $score->score = -1;
         }
-        // sss#134 app sends milliseconds
+        // sss#134 app sends milliseconds - database wants seconds
         // m#347 round this up in case of fractions
-        $score->duration = ceil($scoreObj->exerciseScore->duration);
+        $score->duration = ceil($scoreObj->exerciseScore->duration / 1000);
 
         $score->sessionID = $session->sessionId;
         $score->userID = $user->userID;
@@ -1061,6 +1061,8 @@ EOD;
     }
 
     public function dbCheck() {
-        return ['database' => $GLOBALS['db']];
+        $dbVersion = $this->authenticationCops->getDbVersion();
+        $ddDetails = new DBDetails($GLOBALS['dbHost']);
+        return ['database' => $ddDetails->getDetails(), 'version' => $dbVersion];
     }
 }

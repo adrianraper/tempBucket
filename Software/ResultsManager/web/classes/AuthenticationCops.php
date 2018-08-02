@@ -15,14 +15,19 @@ class AuthenticationCops {
     const KEY = 'clarity-couloir-authentication-key';
 
 	/**
-	 * Check that the token is valid
+	 * Create a token
 	 */
-	public function createToken($payload = []) {
+	public function createToken($payload, $key = null) {
+	    // If payload is a json object, convert it to an array
+        if (!is_array($payload)) {
+            $payload = json_decode(json_encode($payload), true);
+        }
         $token = array(
             "iss" => "clarityenglish.com",
             "iat" => time());
+        $key = ($key) ? $key : $this::KEY;
         $token = array_merge($token, $payload);
-        return JWT::encode($token, $this::KEY, 'HS256');
+        return JWT::encode($token, $key, 'HS256');
     }
 
     public function getPayloadFromToken($token) {
@@ -92,4 +97,16 @@ EOD;
         return $key;
     }
 
+    public function getDbVersion() {
+        $sql = <<<EOD
+            SELECT max(F_VersionNumber) as version FROM T_DatabaseVersion
+EOD;
+        $bindingParams = array();
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs) {
+            return $rs->FetchNextObj()->version;
+        } else {
+            throw $this->copyOps->getExceptionForId("databaseError");
+        }
+    }
 }
