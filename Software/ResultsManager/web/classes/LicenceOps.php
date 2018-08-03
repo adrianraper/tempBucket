@@ -494,6 +494,8 @@ EOD;
 	 * Count the number of used licences for this root / product since the clearance date
 	 */
 	function countUsedLicences($rootID, $productCode, $licence) {
+        $licencesUsed = 0;
+
 	    // sss#290 Include couloir licence control
         $title = new Title();
         $title->productCode = $productCode;
@@ -506,56 +508,54 @@ EOD;
         }
         $dateFieldName = 'F_StartDateStamp';
 
-		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
-		// v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
+        $sql = $this->buildSQLForCountUsedLicences($licence, $keyFieldName, $licenceTableName, $dateFieldName, $rootID);
+        $bindingParams = array($licence->licenceControlStartDate, $productCode);
+        $rs = $this->db->Execute($sql, $bindingParams);
+
+        if ($rs && $rs->RecordCount() > 0) {
+            $licencesUsed += (int)$rs->FetchNextObj()->licencesUsed;
+        } else {
+            throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
+        }
+
+		return $licencesUsed;
+	}
+    private function buildSQLForCountUsedLicences($licence, $keyFieldName, $licenceTableName, $dateFieldName, $rootID) {
+        // Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
+        // v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
         // gh#1230 How many licences have been used since the licence clearance date?
-		if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
+        if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
             // m#175 Add a distinct filter in case the licence table includes duplicates
-			$sql = <<<EOD
+            $sql = <<<EOD
 				SELECT COUNT(DISTINCT(l.$keyFieldName)) AS licencesUsed 
 				FROM $licenceTableName l, T_User u
 				WHERE l.$keyFieldName = u.F_UserID
 				AND l.$dateFieldName >= ?
 EOD;
-		} else {
-			// gh#604 Teacher records in session will now include root, so ignore them here
-			// gh#1228 But that ignores deleted/archived users, so revert
+        } else {
+            // gh#604 Teacher records in session will now include root, so ignore them here
+            // gh#1228 But that ignores deleted/archived users, so revert
             // m#175 Add a distinct filter in case the licence table includes duplicates
-			$sql = <<<EOD
+            $sql = <<<EOD
 				SELECT COUNT(DISTINCT(l.$keyFieldName)) AS licencesUsed 
 				FROM $licenceTableName l
 				WHERE l.$dateFieldName >= ?
 EOD;
-		}
-		
-		// gh#1211 And the other old and new combinations
-		$oldProductCode = $this->getOldProductCode($productCode);
-		if ($oldProductCode) {
-			$sql.= " AND l.F_ProductCode IN (?, $oldProductCode)";
-		} else {
-			$sql.= " AND l.F_ProductCode = ?";
-		}			
-							
-		if (stristr($rootID,',')!==FALSE) {
-			$sql.= " AND l.F_RootID in ($rootID)";
-		} else if ($rootID=='*') {
-			// check all roots in that case - just for special cases, usually self-hosting
-			// Note that leaving the root empty would include teachers
-			$sql.= " AND l.F_RootID > 0";
-		} else {
-			$sql.= " AND l.F_RootID = $rootID";
-		}
-		$bindingParams = array($licence->licenceControlStartDate, $productCode);
-		$rs = $this->db->Execute($sql, $bindingParams);
-		
-		if ($rs && $rs->RecordCount() > 0) {
-			$licencesUsed = (int)$rs->FetchNextObj()->licencesUsed;
-		} else {
-			throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
-		}
-				
-		return $licencesUsed;
-	}
+        }
+
+        $sql .= " AND l.F_ProductCode = ?";
+
+        if (stristr($rootID, ',') !== FALSE) {
+            $sql .= " AND l.F_RootID in ($rootID)";
+        } else if ($rootID == '*') {
+            // check all roots in that case - just for special cases, usually self-hosting
+            // Note that leaving the root empty would include teachers
+            $sql .= " AND l.F_RootID > 0";
+        } else {
+            $sql .= " AND l.F_RootID = $rootID";
+        }
+        return $sql;
+    }
 
     /**
      * This is a count of all the people who can currently access the title.
@@ -948,6 +948,7 @@ EOD;
     // sss#314 we can't mix old and new SSS as different licence control. Will need to migrate records instead.
 	public function getOldProductCode($pc) {
 		switch ($pc) {
+		    /* too old ones
 			case 52:
 				return 12;
 				break;
@@ -960,21 +961,27 @@ EOD;
 			case 56:
 				return 33;
 				break;
-			case 58:
-				return 50;
-				break;
 			case 57:
 				return 39;
+				break;
+		    */
+		    /* not happened
+			case 58:
+				return 50;
 				break;
 			case 62:
 				return 10;
 				break;
+		    */
 			// m#268
             case 66:
                 return 49;
                 break;
             case 68:
                 return 55;
+                break;
+            case 69:
+                return 56;
                 break;
 		}
 		return false;
