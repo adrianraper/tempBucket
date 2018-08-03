@@ -141,7 +141,6 @@ function runDailyJobs($triggerDate = null) {
     $completedTests = $thisService->dailyJobOps->getCompletedTests($shortTimeAgo);
     echo "10. ".count($completedTests)." DPT tests yesterday $newLine";
     $templateID = 'summaries/dptCompletedTests';
-
     $matchRootId = (isset($_REQUEST['rootID']) && $_REQUEST['rootID'] > 0) ? $_REQUEST['rootID'] : null;
 
     // Pull out the unique accounts
@@ -164,7 +163,8 @@ function runDailyJobs($triggerDate = null) {
                                "fromDate" => $shortTimeAgo,
                                "completedTests" => $thisService->dailyJobOps->collateTestEmails($root, $completedTests));
             $thisEmail = array("to" => $adminUser->email, "data" => $emailData);
-            $emailArray[] = $thisEmail;
+            // m#361
+            $emailArray = array($thisEmail);
             if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
                 // Send the emails
                 $thisService->emailOps->sendEmails("", $templateID, $emailArray);
