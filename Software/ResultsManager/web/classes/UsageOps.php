@@ -195,12 +195,17 @@ EOD;
 	 */
 	private function getAASessionCounts($title, $fromDate, $toDate) {
 
+        // m#269 Does this title need to pick up stats from older versions?
+        // OK to only go back one version
+        $oldProductCode = $this->licenceOps->getOldProductCode($title->id);
+
 	    // sss#290
         if ($title->isTitleCouloir()) {
             $tableName = 'T_SessionTrack';
         } else {
             $tableName = 'T_Session';
         }
+
 		// For HCT aggregated results, include all roots
 		$rootID = Session::get('rootID');
 		if ($rootID == 14292)
@@ -217,86 +222,72 @@ EOD;
 			$firstYear = $lastYear;
 			$lastYear = $switchYear;
 		}
-		if ($firstYear < 2008)
-			$firstYear=2008;
 		if ($lastYear > intval(date('Y')))
 			$lastYear = intval(date('Y'));
-			
-		// for each year, get the stats
-		// But we are sending a usage period with first and last dates, so shouldn't we respect these?
-		// No - ends up showing a wrong graph since Jan is always there
+
 		$statsArray = array();
-		for ($i = $firstYear; $i <= $lastYear; $i++) {
-			$j = $i + 1;
-			/*
-			if ($i == $firstYear) {
-				$startDate = $fromDate;
-			} else {
-				$startDate = $i;
-			}
-			if ($i == $lastYear) {
-				$endDate = $toDate;
-			} else {
-				$endDate = $j;
-			}
-			*/
-			//$startDate = $i;
-			//$endDate = $j;
-			//v3.6 datepart is not MySQL compatible
-			// options are date_format(F_StartDateStamp, %m) or month(F_StartDateStamp)
-			// Use adodb SQLDATE($fmt, $date)
-			//		select count(F_SessionID) sessionCount, datepart(m, F_StartDateStamp) month
-			//		select count(F_SessionID) sessionCount, month(F_StartDateStamp) month
-			//		select count(F_SessionID) sessionCount, $sqldatemonth month
-			// Or month is a common function to T-SQL and MySQL. Not SQLite though.
-			//v3.6 This fails in sqlite and the adodb functions don't have SQLDATE. 
-			// strftime('%m',F_StartDateStamp) is what we need.
-			if (strpos($GLOBALS['db'],"sqlite")!==false) {
-				$sqldatemonth = "strftime('%m',F_StartDateStamp) ";
-			} else {
-				$sqldatemonth = $this->db->SQLDATE('m', 'F_StartDateStamp');
-			}
-			
-			// gh#178 Not really this issue, just done at the same time!
-			// This also fails in sqlite for the F_StartDateStamp < '2014'
-			// needs to be '2014-01-01' which will be fine for MySQL too.
-			$sql = <<<EOD
-					select count(F_SessionID) sessionCount, $sqldatemonth month
-					from $tableName
-					where F_StartDateStamp>='$i-01-01'
-					and F_StartDateStamp<'$j-01-01'
-EOD;
-			if (stristr($rootID,',')!==FALSE) {
-				$sql.= " AND F_RootID in ($rootID)";
-			} else if ($rootID=='*') {
-				// check all roots in that case - just for special cases, usually self-hosting
-				// Note that leaving the root empty would include teachers
-				$sql.= " AND F_RootID > 0";
-			} else {
-				$sql.= " AND F_RootID = $rootID";
-			}
-			
-			// gh#1211 And the other old and new combinations
-			$oldProductCode = $this->licenceOps->getOldProductCode($title->id);
-			if ($oldProductCode) {
-				$sql.= " AND F_ProductCode IN (?, $oldProductCode)";
-			} else {
-				$sql.= " AND F_ProductCode = ?";
-			}
-						
-			$sql .= <<<EOD
-					group by $sqldatemonth
-					order by $sqldatemonth;
-EOD;
-			//NetDebug::trace("session graph sql=". $sql);
-			//$statsArray["$i"] = $this->db->GetArray($sql, array(Session::get('rootID'), $title->id, $i, $i+1));
-			$statsArray["$i"] = $this->db->GetArray($sql, array($title->id));
-		}
-		
-		//return array("2009"=>$rs2009, "2010"=>$rs2010);
+        // m#269 If there are two titles, do the old one first as it will have earliest months
+        if ($oldProductCode && $title->isTitleCouloir()) {
+            // Do the whole loop on T_Session for the old title
+            $sql = $this->buildSQLForGetSessionCounts("T_Session", $firstYear, $lastYear, $rootID);
+            $rs = $this->db->GetArray($sql, array($oldProductCode));
+            foreach ($rs as $r) {
+                if (!isset($statsArray[strval($r['year'])])) $statsArray[strval($r['year'])] = array();
+                $statsArray[strval($r['year'])][] = array('sessionCount' => intval($r['sessionCount']), 'month' => strval($r['month']));
+            }
+        }
+
+        $sql = $this->buildSQLForGetSessionCounts($tableName, $firstYear, $lastYear, $rootID);
+        $rs = $this->db->GetArray($sql, array($title->id));
+        foreach ($rs as $r) {
+            if (!isset($statsArray[strval($r['year'])])) $statsArray[strval($r['year'])] = array();
+            // Has this month already got anything in it?
+            $monthMerged = false;
+            foreach ($statsArray[strval($r['year'])] as &$m) {
+                if ($m['month'] == $r['month']) {
+                    $m['sessionCount'] += intval($r['sessionCount']);
+                    $monthMerged = true;
+                    break;
+                }
+            }
+            if (!$monthMerged)
+                $statsArray[strval($r['year'])][] = array('sessionCount' => intval($r['sessionCount']), 'month' => strval($r['month']));
+        }
+
 		return $statsArray;
 	}
-	
+	// Clumsy way for Bento and Couloir session tables to be checked
+    private function buildSQLForGetSessionCounts($tableName, $firstYear, $lastYear, $rootID) {
+        $sql = <<<EOD
+                select count(F_SessionID) as sessionCount, DATE_FORMAT(F_StartDateStamp,'%m') as month, DATE_FORMAT(F_StartDateStamp,'%Y') as year
+                from $tableName
+                where F_StartDateStamp >= '$firstYear-01-01'
+                and F_StartDateStamp <= '$lastYear-12-31 23:59:59'
+EOD;
+        if (stristr($rootID, ',') !== FALSE) {
+            $sql .= " AND F_RootID in ($rootID)";
+        } else if ($rootID == '*') {
+            // check all roots in that case - just for special cases, usually self-hosting
+            // Note that leaving the root empty would include teachers
+            $sql .= " AND F_RootID > 0";
+        } else {
+            $sql .= " AND F_RootID = $rootID";
+        }
+
+        // m#269 It is more than 2 years since we last launched a Bento upgrade, so can drop this now
+        //if ($oldProductCode) {
+        //	$sql.= " AND F_ProductCode IN (?, $oldProductCode)";
+        //} else {
+        $sql .= " AND F_ProductCode = ?";
+        //}
+
+        $sql .= <<<EOD
+             group by year,month
+             order by year,month
+EOD;
+        return $sql;
+    }
+
 	// Merge courseUserCounts and courseTimeCounts
 	// private function getCourseUserCounts($title, $fromDate, $toDate) {
 	private function getCourseCounts($title, $fromDate, $toDate) {
@@ -628,8 +619,13 @@ EOD;
 	}
 	
 	private function getOverLastYear($title, $fromDate, $toDate) {
-        
-		$fromDateStamp = $fromDate;
+
+        // m#269 Does this title need to pick up stats from older versions?
+        // OK to only go back one version
+        $oldProductCode = $this->licenceOps->getOldProductCode($title->id);
+        $rootID = Session::get('rootID');
+
+        $fromDateStamp = $fromDate;
 		$toDateStamp = $toDate;
         // sss#290
         if ($title->isTitleCouloir()) {
@@ -637,47 +633,45 @@ EOD;
         } else {
             $tableName = 'T_Session';
         }
-		// For HCT aggregated results, include all roots
-		$rootID = Session::get('rootID');
-		if ($rootID == 14292)
-			$rootID = '14276,14277,14278,14279,14280,14281,14282,14283,14284,14285,14286,14287,14288,14289,14290,14291,14292';
-		
-		// Tidy up the two SQL statements into one, with the HCT aggregated result
-		$secondsLimit = 10800; // 3 hours
-        // gh#1396 Change SQL for sqlite compatibility
-        // sss#290 Course id is not used in any way
+
+        $totalCourse = $totalDuration = 0;
+        // m#269 If there are two titles, do the old one first
+        if ($oldProductCode && $title->isTitleCouloir()) {
+            // Do the whole loop on T_Session for the old title
+            $sql = $this->buildSQLForGetOverLastYear("T_Session", $fromDateStamp, $toDateStamp, $rootID);
+            $rs = $this->db->GetArray($sql, array($oldProductCode));
+            if ($rs) {
+                $totalCourse = $rs[0]['totalCourse'];
+                $totalDuration = $rs[0]['totalDuration'];
+            }
+        }
+
+        $sql = $this->buildSQLForGetOverLastYear($tableName, $fromDateStamp, $toDateStamp, $rootID);
+        $rs = $this->db->GetArray($sql, array($title->id));
+        if ($rs) {
+            $totalCourse += $rs[0]['totalCourse'];
+            $totalDuration += $rs[0]['totalDuration'];
+        }
+
+		return array(array('totalCourse' => $totalCourse, 'totalDuration' => $totalDuration));
+	}
+    // m#269 Clumsy way for Bento and Couloir session tables to be checked
+    private function buildSQLForGetOverLastYear($tableName, $fromDateStamp, $toDateStamp, $rootID) {
+        $secondsLimit = 10800; // 3 hours
         // This is simply different dates that getCourseCounts total...
         $sql = <<<EOD
             SELECT COUNT(ss.F_SessionID) as totalCourse,
                 SUM(CASE WHEN ss.F_Duration>$secondsLimit THEN $secondsLimit ELSE ss.F_Duration END) as totalDuration
             FROM $tableName ss
-            WHERE ss.F_StartDateStamp >= ?
-            AND ss.F_StartDateStamp <= ?
+            WHERE ss.F_StartDateStamp >= '$fromDateStamp'
+            AND ss.F_StartDateStamp <= '$toDateStamp'
+            AND ss.F_RootID = $rootID
+            AND ss.F_ProductCode = ?
 EOD;
-		// gh#1211 And the other old and new combinations
-		$oldProductCode = $this->licenceOps->getOldProductCode($title->id);
-		if ($oldProductCode) {
-			$sql.= " AND ss.F_ProductCode IN (?, $oldProductCode)";
-		} else {
-			$sql.= " AND ss.F_ProductCode = ?";
-		}
-		
-		if (stristr($rootID,',')!==FALSE) {
-			$sql.= " AND ss.F_RootID in ($rootID)";
-		} else if ($rootID=='*') {
-			// check all roots in that case - just for special cases, usually self-hosting
-			// Note that leaving the root empty would include teachers
-			$sql.= " AND ss.F_RootID > 0";
-		} else {
-			$sql.= " AND ss.F_RootID = $rootID";
-		}
-		
-		$rs = $this->db->GetArray($sql, array($fromDateStamp, $toDateStamp, $title->id));
-		
-		return $rs;
-	}
-	
-	/**
+        return $sql;
+    }
+
+    /**
 	 * This function reads progress records to work out the learner's coverage of an array of reportables
 	 */
 	public function getCoverage($reportables, $startDate=0, $endDate=0, $userID, $singleStyle=null) {

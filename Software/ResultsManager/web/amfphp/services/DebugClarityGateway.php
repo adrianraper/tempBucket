@@ -20,7 +20,7 @@ function loadAPIInformation() {
 	$inputData = file_get_contents("php://input");
 	//$inputData = '{"method":"getAllManageablesFromRoot","username":"clarity","password":"ceonlin787e","dbHost":2}';
 	//$inputData = '{"method":"addUser","username":" clarity ","password":"ceonlin787e","email":"adrian@clarinet ","groupID":163,"dbHost":2}';
-    //$inputData = '{"method":"getUsageStats", "username":"nascanada", "password":"clarity","productCode":"50", "fromDate":"2017-09-01", "toDate":"2018-04-20", "dbHost":2}';
+    $inputData = '{"method":"getUsageStats", "username":"Mrs Twaddle", "password":"password","productCode":"68", "fromDate":"2017-09-01", "toDate":"2018-04-20", "dbHost":"200"}';
 
     // Do you want to fake a special date for testing?
     //$GLOBALS['fake_now'] = '2017-01-26 09:00:00';
