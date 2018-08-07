@@ -683,7 +683,14 @@ EOD;
 
         $score->sessionID = $session->sessionId;
         $score->userID = $user->userID;
-        $score->setUID($scoreObj->uid);
+
+        // m#364 Change format of item id sent by app
+        //$score->setUID($scoreObj->uid);
+        $score->productCode = $session->productCode;
+        $score->courseID = (isset($scoreObj->courseId)) ? $scoreObj->courseId : null;
+        $score->unitID = (isset($scoreObj->unitId)) ? $scoreObj->unitId : null;
+        $score->exerciseID = (isset($scoreObj->exerciseId)) ? $scoreObj->exerciseId : null;
+
         // ctp#216 This was the time the app managed to send the score to the server
         // ctp#380 Save as UTC
         // ctp#383 Use the submit timestamp rather than sent timestamp
