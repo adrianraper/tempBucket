@@ -685,11 +685,14 @@ EOD;
         $score->userID = $user->userID;
 
         // m#364 Change format of item id sent by app
-        //$score->setUID($scoreObj->uid);
-        $score->productCode = $session->productCode;
-        $score->courseID = (isset($scoreObj->courseId)) ? $scoreObj->courseId : null;
-        $score->unitID = (isset($scoreObj->unitId)) ? $scoreObj->unitId : null;
-        $score->exerciseID = (isset($scoreObj->exerciseId)) ? $scoreObj->exerciseId : null;
+        if (version_compare($this->getAppVersion(), '2.0.0', '<')) {
+            $score->setUID($scoreObj->uid);
+        } else {
+            $score->productCode = $session->productCode;
+            $score->courseID = (isset($scoreObj->courseId)) ? $scoreObj->courseId : null;
+            $score->unitID = (isset($scoreObj->unitId)) ? $scoreObj->unitId : null;
+            $score->exerciseID = (isset($scoreObj->exerciseId)) ? $scoreObj->exerciseId : null;
+        }
 
         // ctp#216 This was the time the app managed to send the score to the server
         // ctp#380 Save as UTC
@@ -1008,9 +1011,11 @@ EOD;
         $units = $this->progressCops->getUnitProgress($session);
 
         // Format: detail each exercise that has been completed
+        // m#317 Send back nodeId, not a specific unitId - currently can hardcode 'unit:'
+        $nodeIdPrefix = (version_compare($this->getAppVersion(), '2.0.0', '>=')) ? 'unit:' : '';
         $unitsDone = array();
         foreach ($units as $unit)
-            $unitsDone[$unit['unitId']] = intval($unit['duration']);
+            $unitsDone[$nodeIdPrefix.$unit['unitId']] = intval($unit['duration']);
 
         return $unitsDone;
     }
@@ -1031,12 +1036,14 @@ EOD;
 
         // Put the user and the everyone results in a similar format for merging
         // Note that the existing code for everyone returns old style index names (UnitID not unitId)
+        // m#317 Send back nodeId, not a specific unitId - currently can hardcode 'unit:'
+        $nodeIdPrefix = (version_compare($this->getAppVersion(), '2.0.0', '>=')) ? 'unit:' : '';
         $userUnits = array();
         foreach ($units as $unit)
-            $userUnits[$unit['unitId']] = ['averageScore' => $unit['averageScore']];
+            $userUnits[$nodeIdPrefix.$unit['unitId']] = ['averageScore' => $unit['averageScore']];
         $everyoneUnits = array();
         foreach ($everyone as $unit) {
-            $everyoneUnits[$unit['UnitID']] = ['averageScore' => $unit['AverageScore']];
+            $everyoneUnits[$nodeIdPrefix.$unit['UnitID']] = ['averageScore' => $unit['AverageScore']];
         }
 
         // Format and merge: unit summaries. Drive by everyone as that contains ALL units
