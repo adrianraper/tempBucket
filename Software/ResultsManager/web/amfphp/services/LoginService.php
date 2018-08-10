@@ -31,6 +31,13 @@ require_once(dirname(__FILE__)."/AbstractService.php");
 
 require_once($GLOBALS['common_dir'].'/encryptURL.php');
 
+require_once(dirname(__FILE__)."/../../../../Tools/classes/AuthenticationCops.php");
+require_once(dirname(__FILE__)."/../../../../Tools/classes/ToolsOps.php");
+
+require_once(dirname(__FILE__)."/Firebase/JWT/JWT.php");
+require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
+
+
 class LoginService extends AbstractService {
 	
 	var $db;
@@ -53,6 +60,9 @@ class LoginService extends AbstractService {
 		$this->subscriptionOps = new SubscriptionOps($this->db);
 		$this->accountOps = new AccountOps($this->db);
 
+        $this->toolsOps = new ToolsOps($this->db);
+        $this->authenticationCops = new AuthenticationCops($this->db);
+
 		// DMS has no restrictions on user/group access so disable manageable authentication
 		AuthenticationOps::$useAuthentication = false;
 	}
@@ -63,9 +73,20 @@ class LoginService extends AbstractService {
 		$this->manageableOps->changeDB($this->db);
 		$this->subscriptionOps->changeDB($this->db);
 		$this->accountOps->changeDB($this->db);
+
+        $this->toolsOps = new ToolsOps($this->db);
+        $this->authenticationCops = new AuthenticationCops($this->db);
 	}
-	
-	// Can you find this user?
+
+    public function readJWT($token) {
+        $payload = $this->authenticationCops->getApiPayload($token);
+        $key = (isset($payload->prefix)) ? $this->authenticationCops->getAccountApiKey($payload->prefix) : '0';
+        $this->authenticationCops->validateApiToken($token, $key);
+
+        return array("payload" => $this->authenticationCops->getPayloadFromToken($token, $key));
+    }
+
+    // Can you find this user?
 	public function getUser($loginDetails) {
 
 		if ($loginDetails->loginOption & User::LOGIN_BY_NAME ||
@@ -166,7 +187,7 @@ class LoginService extends AbstractService {
 		$stubUser->trimDetails();
 		
 		// gh#164 pass loginOption to help with quick duplicate checking
-        return $this->manageableOps->addUser($stubUser, $group, $loginDetails->rootID, $loginDetails->loginOption);
+		return $this->manageableOps->addUser($stubUser, $group, $loginDetails->rootID, $loginDetails->loginOption);
 	}
 	/**
 	 * Return the group object given groupID or a user in that group

@@ -8,11 +8,14 @@ header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
 $json = json_decode(file_get_contents('php://input'));
-$json_error = json_last_error();
+//$json = json_decode('{"command":"dbCheck"}');
+//$json = json_decode('{"command":"readJWT","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MzQyMTU3OTIsImlhdCI6MTUzNDEyOTU0NCwiaXNzIjoiY2xhcml0eWVuZ2xpc2guY29tIiwibG9naW4iOiJkb29saXR0bGVAbmF2aXRhcy5jb20iLCJwcmVmaXgiOiJOTVMiLCJwcm9kdWN0Q29kZSI6Njh9.lsjdy4KAE6_jxlBC_zbkojn9ImPNnzHs4C12g1D7PEM"}');
+//$json = json_decode('{"command":"readJWT","token":"eyJ0e.eyJpc3.O9kQ-jX"}');
 /**
  * Pretend to pass variables for easier debugging
 $json = json_decode('{"appVersion":"1.3.5","command":"createJWT","payload":{"iss":"clarityenglish.com", "iat":1508212111, "prefix":"Clarity", "login":"nathan@clarity", "startNode":"unit:2018068010300"}}');
  */
+$json_error = json_last_error();
 
 // For dedicated tool functions
 require_once(dirname(__FILE__)."/ToolsService.php");
@@ -56,7 +59,7 @@ try {
     switch ($e->getCode()) {
         // Token errors
         case 103:
-        case 104:
+        case 106:
         // ctp#75
         case 200:
         case 201:
@@ -106,6 +109,10 @@ function router($json) {
             if (!isset($json->payload)) $json->payload = null;
             if (!isset($json->key)) $json->key = null;
             return createJWT($json->payload, $json->key);
+        case "readJWT":
+            if (!isset($json->token)) $json->token = null;
+            //if (!isset($json->key)) $json->key = null;
+            return readJWT($json->token);
         case "dbCheck": return dbCheck();
         default: throw new Exception("Unknown command ".$json->command);
     }
@@ -113,14 +120,17 @@ function router($json) {
 
 function createJWT($payload, $key) {
     global $service;
-    try {
-        //AbstractService::$controlLog->setIdent($loginObj->email);
-        //AbstractService::$controlLog->info("Attempt login from $platform");
-    } catch (Exception $e) {
-        // do nothing
-    }
     return $service->createJWT($payload, $key);
 }
+function readJWT($token) {
+    global $service;
+    try {
+        return $service->readJWT($token);
+    } catch (Exception $e) {
+        throw new Exception("Invalid token. JWT:" . $e->getMessage());
+    }
+}
+
 // Just for testing new gateways
 function dbCheck() {
     global $service;

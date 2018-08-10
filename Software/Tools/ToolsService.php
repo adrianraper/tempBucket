@@ -4,7 +4,7 @@
  */
 require_once(dirname(__FILE__)."/../ResultsManager/web/amfphp/services/AbstractCouloirService.php");
 require_once(dirname(__FILE__)."/../ResultsManager/web/classes/CopyOps.php");
-require_once(dirname(__FILE__)."/../ResultsManager/web/classes/AuthenticationCops.php");
+require_once(dirname(__FILE__)."/classes/AuthenticationCops.php");
 
 require_once(dirname(__FILE__)."/classes/ToolsOps.php");
 
@@ -20,8 +20,8 @@ class ToolsService extends AbstractService {
 
 	function __construct() {
 		parent::__construct();
-		
-        AbstractService::$title = "tools";
+
+        AbstractService::$title = "rm";
 
         $this->toolsOps = new ToolsOps($this->db);
         $this->authenticationCops = new AuthenticationCops($this->db);
@@ -41,6 +41,13 @@ class ToolsService extends AbstractService {
 
     public function createJWT($payload, $key) {
 	    return array("token" => $this->authenticationCops->createToken($payload, $key));
+    }
+    public function readJWT($token) {
+        $payload = $this->authenticationCops->getApiPayload($token);
+        $key = (isset($payload->prefix)) ? $this->authenticationCops->getAccountApiKey($payload->prefix) : '0';
+        $this->authenticationCops->validateApiToken($token, $key);
+
+        return array("payload" => $this->authenticationCops->getPayloadFromToken($token, $key));
     }
     public function dbCheck() {
         return ['database' => $GLOBALS['db']];

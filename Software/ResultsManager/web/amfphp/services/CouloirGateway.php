@@ -316,7 +316,7 @@ try {
     switch ($e->getCode()) {
         // Token errors
         case 103:
-        case 104:
+        case 106:
         // ctp#75 m#346
         case 200:
         case 201:
