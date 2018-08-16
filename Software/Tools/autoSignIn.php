@@ -16,7 +16,7 @@ $json_error = json_last_error();
 /**
  * Pretend to pass variables for easier debugging
  */
-$json = json_decode('{"apiToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzQxMjk1NDQsImV4cCI6MTUzNDIxNTc5MiwicHJlZml4IjoiTk1TIiwibG9naW4iOiIzNjMxMDM1MTNAY2xhcml0eSIsInByb2R1Y3RDb2RlIjoiNjgifQ.HXEK_5qCkRAiVJ1LZPBGli5ADlIaPiTnztoYewtyQs4"}');
+//$json = json_decode('{"apiToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzQxMjk1NDQsImV4cCI6MTUzNDIxNTc5MiwicHJlZml4IjoiTk1TIiwibG9naW4iOiIzNjMxMDM1MTNAY2xhcml0eSIsInByb2R1Y3RDb2RlIjoiNjgifQ.HXEK_5qCkRAiVJ1LZPBGli5ADlIaPiTnztoYewtyQs4"}');
 
 if (!$json) {
     if (isset($_POST['apiToken'])) {
@@ -100,7 +100,7 @@ try {
 switch ($payload->productCode) {
     case 68:
         //$url = "https://tb.clarityenglish.com/#apiToken=".$json->apiToken;
-        $url = "https://tb.clarityenglish.com#prefix=".$payload->prefix."&login=".$payload->name."&password=".$payload->password."&reset";
+        $url = "https://tb-staging.clarityenglish.com#prefix=".$payload->prefix."&login=".$payload->name."&password=".$payload->password."&reset";
         break;
     case 63:
         $url = "https://dpt-staging.clarityenglish.com#prefix=".$payload->prefix."&login=".$payload->email."&password=".$payload->password."&reset";
@@ -108,12 +108,12 @@ switch ($payload->productCode) {
         $url .= "&online";
         break;
     case 66:
-        $url = "https://sss.clarityenglish.com#prefix=".$payload->prefix."&login=".$payload->name."&password=".$payload->password;
+        $url = "https://sss-staging.clarityenglish.com#prefix=".$payload->prefix."&login=".$payload->name."&password=".$payload->password;
         break;
     default:
         if ($payload->productCode == 57) $programStartPage = "ClearPronunciationV10/Start-sounds.php";
         if ($payload->productCode == 61) $programStartPage = "PracticalWriting/Start.php";
-        $url = "http://www.clarityenglish.com/area1/".$programStartPage."?prefix=".$payload->prefix."&email=".$payload->email."&password=".$payload->password;
+        $url = "https://www-staging.clarityenglish.com/area1/".$programStartPage."?prefix=".$payload->prefix."&email=".$payload->email."&password=".$payload->password;
         break;
 }
 forwardTo($url);

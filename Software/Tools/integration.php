@@ -152,7 +152,7 @@
                       <div class="lead-detail general-shadow">
                           <div class="row">
                               <div class="col-xs-4 price-thumbnail-box">
-                                  <img src="http://jwt.io/img/logo-asset.svg" class="img-responsive"/>
+                                  <img src="https://jwt.io/img/logo-asset.svg" class="img-responsive"/>
                               </div>
                               <div class="col-xs-8">
                                   <p id="JWT" class="general-text">

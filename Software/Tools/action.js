@@ -32,7 +32,7 @@ createJWT = function(productCode) {
     })
         .done(function( msg ) {
             $('#JWT').text = msg.details.token;
-            var url = "http://www-staging.clarityenglish.com/Software/Tools/autoSignIn.php?apiToken=" + msg.details.token;
+            var url = "http://dock.projectbench/Software/Tools/autoSignIn.php?apiToken=" + msg.details.token;
             console.log(url);
             window.open(url, '_blank');
         });

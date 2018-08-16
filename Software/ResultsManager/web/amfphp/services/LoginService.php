@@ -31,6 +31,7 @@ require_once(dirname(__FILE__)."/AbstractService.php");
 
 require_once($GLOBALS['common_dir'].'/encryptURL.php');
 
+// This can move to standard AuthenticationCops once production is up to date
 require_once(dirname(__FILE__)."/../../../../Tools/classes/AuthenticationCops.php");
 require_once(dirname(__FILE__)."/../../../../Tools/classes/ToolsOps.php");
 
