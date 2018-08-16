@@ -933,9 +933,9 @@ EOD;
         $script = 'GenerateCertificate.php';
         $htmlCert = $scheme.$host.$path.$script.'?token='.$certToken;
 
-        // Create a url that is a dynamically created pdf from an html
+        // #329 Create a url that is a dynamically created pdf from an html
         $scheme = 'https://';
-        $host = 'pdf.clarityenglish.com:3050';
+        $host = 'pdf.clarityenglish.com';
         $path = '';
         $script = '';
         $pdfCert =  $scheme.$host.$path.$script.'?url='.$htmlCert;
