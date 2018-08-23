@@ -1012,12 +1012,12 @@ EOD;
         if (!$user->userType == 0 && !$forceScoreWriting)
             $score->score = -1;
 
-        // Write anonymous records to an ancilliary table that will not slow down reporting
-        if ($score->userID < 1) {
-            $tableName = 'T_ScoreAnonymous';
-        } else {
-            $tableName = 'T_Score';
-        }
+        // #358 Write anonymous records to an ancilliary table that will not slow down reporting
+        //if ($score->userID < 1) {
+        //    $tableName = 'T_ScoreAnonymous';
+        //} else {
+        //    $tableName = 'T_Score';
+        //}
 
         // #340. This fails to insert or raise an error for SQLite
         //$dbObj = $score->toAssocArray();
