@@ -1,0 +1,30 @@
+Course Introduction &course=10000000
+  Unit Introduction &course=10000000&startingPoint=unit:10000010
+Course Consonants &course=10000001
+  Unit Pill Fill &course=10000001&startingPoint=unit:10000011
+  Unit Buy My &course=10000001&startingPoint=unit:10000021
+  Unit Tie Die &course=10000001&startingPoint=unit:10000031
+  Unit Ship Chip &course=10000001&startingPoint=unit:10000041
+  Unit Yet Jet &course=10000001&startingPoint=unit:10000051
+  Unit Game Came &course=10000001&startingPoint=unit:10000061
+  Unit Wail Veil &course=10000001&startingPoint=unit:10000071
+  Unit Think Sink &course=10000001&startingPoint=unit:10000081
+  Unit There Dare &course=10000001&startingPoint=unit:10000091
+  Unit Price Prize &course=10000001&startingPoint=unit:10000101
+  Unit Asia Hard &course=10000001&startingPoint=unit:10000111
+  Unit Ran Rang &course=10000001&startingPoint=unit:10000121
+  Unit Right Light &course=10000001&startingPoint=unit:10000131
+Course Vowels &course=10000002
+  Unit Ship Sheep &course=10000002&startingPoint=unit:10000012
+  Unit Head Had &course=10000002&startingPoint=unit:10000022
+  Unit Arrive &course=10000002&startingPoint=unit:10000032
+  Unit Luck Look &course=10000002&startingPoint=unit:10000042
+  Unit Hat Heart &course=10000002&startingPoint=unit:10000052
+  Unit But Boot &course=10000002&startingPoint=unit:10000062
+  Unit Who Her &course=10000002&startingPoint=unit:10000072
+  Unit Pot Port &course=10000002&startingPoint=unit:10000082
+Course Diphthongs &course=10000003
+  Unit Hair Hear &course=10000003&startingPoint=unit:10000013
+  Unit Pay Pie &course=10000003&startingPoint=unit:10000023
+  Unit Boy Buy &course=10000003&startingPoint=unit:10000033
+  Unit Know Now &course=10000003&startingPoint=unit:10000043

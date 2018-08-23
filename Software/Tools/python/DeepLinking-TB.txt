@@ -1,0 +1,38 @@
+Course Elementary &startingPoint=course:2018068010000
+  Unit Am, is, are (to be) &startNode=unit:2018068010100&enabledNode=unit:2018068010100
+  Unit Simple present &startNode=unit:2018068010200&enabledNode=unit:2018068010200
+  Unit Negatives (I don't go) &startNode=unit:2018068010300&enabledNode=unit:2018068010300
+  Unit Countable? &startNode=unit:2018068010400&enabledNode=unit:2018068010400
+  Unit Have got &startNode=unit:2018068010500&enabledNode=unit:2018068010500
+  Unit I, my, me &startNode=unit:2018068010600&enabledNode=unit:2018068010600
+  Unit Questions (does he?) &startNode=unit:2018068010700&enabledNode=unit:2018068010700
+  Unit A, an, the &startNode=unit:2018068010800&enabledNode=unit:2018068010800
+  Unit Some, any &startNode=unit:2018068010900&enabledNode=unit:2018068010900
+Course Lower Intermediate &startingPoint=course:2018068020000
+  Unit Simple present &startNode=unit:2018068020100&enabledNode=unit:2018068020100
+  Unit Simple past &startNode=unit:2018068020200&enabledNode=unit:2018068020200
+  Unit Present perfect &startNode=unit:2018068020300&enabledNode=unit:2018068020300
+  Unit Comparisons &startNode=unit:2018068020400&enabledNode=unit:2018068020400
+  Unit Present continuous &startNode=unit:2018068020500&enabledNode=unit:2018068020500
+  Unit Prepositions &startNode=unit:2018068020600&enabledNode=unit:2018068020600
+Course Intermediate &startingPoint=course:2018068030000
+  Unit The passive &startNode=unit:2018068030100&enabledNode=unit:2018068030100
+  Unit Will and going to &startNode=unit:2018068030200&enabledNode=unit:2018068030200
+  Unit Question tags &startNode=unit:2018068030300&enabledNode=unit:2018068030300
+  Unit Equality &startNode=unit:2018068030400&enabledNode=unit:2018068030400
+  Unit Relative clauses &startNode=unit:2018068030500&enabledNode=unit:2018068030500
+  Unit Conditionals &startNode=unit:2018068030600&enabledNode=unit:2018068030600
+Course Upper Intermediate &startingPoint=course:2018068040000
+  Unit Past continuous &startNode=unit:2018068040100&enabledNode=unit:2018068040100
+  Unit Conditionals &startNode=unit:2018068040200&enabledNode=unit:2018068040200
+  Unit Adjectives and adverbs &startNode=unit:2018068040300&enabledNode=unit:2018068040300
+  Unit Present perfect &startNode=unit:2018068040400&enabledNode=unit:2018068040400
+  Unit Modal verbs &startNode=unit:2018068040500&enabledNode=unit:2018068040500
+  Unit The future &startNode=unit:2018068040600&enabledNode=unit:2018068040600
+Course Advanced &startingPoint=course:2018068050000
+  Unit Reported speech &startNode=unit:2018068050100&enabledNode=unit:2018068050100
+  Unit Phrasal verbs &startNode=unit:2018068050200&enabledNode=unit:2018068050200
+  Unit Nouns &startNode=unit:2018068050300&enabledNode=unit:2018068050300
+  Unit Past perfect &startNode=unit:2018068050400&enabledNode=unit:2018068050400
+  Unit The passive &startNode=unit:2018068050500&enabledNode=unit:2018068050500
+  Unit Articles &startNode=unit:2018068050600&enabledNode=unit:2018068050600

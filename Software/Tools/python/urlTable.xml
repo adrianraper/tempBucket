@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group name="TB">
+	<CDO>http://dictionary.cambridge.org/search/british/?q=[x]</CDO>
+	<CDONAMEN>http://dictionary.cambridge.org/results.asp?searchword=[x]&amp;dict=A</CDONAMEN>
+</Group>
+<Group name="AR">
+	<CDO>http://www.google.com</CDO>
+	<CDONAMEN>http://www.yahoo.com</CDONAMEN>
+</Group>

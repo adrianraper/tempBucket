@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<product id="55>
+	<course id="1189057932446">
+		<unit oldid="1" newid="1192013076011" />
+		<unit oldid="2" newid="1192013076442" />
+		<unit oldid="3" newid="1192013076627" />
+		<unit oldid="4" newid="1192013076075" />
+		<unit oldid="5" newid="1192013076406" />
+		<unit oldid="6" newid="1192013076321" />
+		<unit oldid="7" newid="1192013076042" />
+		<unit oldid="8" newid="1192013076921" />
+		<unit oldid="9" newid="1192013076844" />
+	</course>
+	<course id="1189060123431">
+		<unit oldid="1" newid="1192625080036" />
+		<unit oldid="2" newid="1192625080950" />
+		<unit oldid="3" newid="1192625080536" />
+		<unit oldid="4" newid="1192625080479" />
+		<unit oldid="5" newid="1192625080483" />
+		<unit oldid="7" newid="1192625080519" />
+	</course>
+	<course id="1195467488046">
+		<unit oldid="1" newid="1195467532328" />
+		<unit oldid="2" newid="1195467532329" />
+		<unit oldid="3" newid="1195467532330" />
+		<unit oldid="4" newid="1195467532331" />
+		<unit oldid="5" newid="1195467532343" />
+		<unit oldid="6" newid="1192625080157" />
+	</course>
+	<course id="1190277377521">
+		<unit oldid="1" newid="1192625319573" />
+		<unit oldid="2" newid="1192625319203" />
+		<unit oldid="3" newid="1192625319744" />
+		<unit oldid="4" newid="1192625319263" />
+		<unit oldid="7" newid="1193054443818" />
+		<unit oldid="6" newid="1192625319990" />
+	</course>
+	<course id="1196935701119">
+		<unit oldid="1" newid="1196204720339" />
+		<unit oldid="2" newid="1196216926895" />
+		<unit oldid="3" newid="1196293510373" />
+		<unit oldid="4" newid="1196301393947" />
+		<unit oldid="5" newid="1196641272970" />
+		<unit oldid="6" newid="1196649107233" />
+	</course>
+</product>
