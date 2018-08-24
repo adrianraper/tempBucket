@@ -415,6 +415,9 @@ EOD;
                 default:
             }
         }
+        // m#407
+        if (is_null($formattedUser['email']))
+            $formattedUser['email'] = '';
         return $formattedUser;
     }
 
