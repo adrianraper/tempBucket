@@ -127,6 +127,7 @@ public class ProgressCertificateView extends BentoView {
         var coverage:Number = 0;
         var exerciseAmount:Number = 0;
         var totalExercise:Number = 0;
+        var aveScore:Number = 0;
         for (var i:Number = 0; i < totalCourse; i++) {
             var courseXML:XML = menu.course[i];
             var unitXMLList:XMLList = courseXML.unit.(@["class"] == "learning");
@@ -140,11 +141,12 @@ public class ProgressCertificateView extends BentoView {
             coverage += Number(courseXML.@coverage);
             aveScore += Number(courseXML.@averageScore);
         }
-        aveScore = aveScore / totalCourse;
+        aveScore = Math.ceil(aveScore / totalCourse);
         oopsVGroup.visible = false;
         certificateGroup.visible = false;
         printButton.visible = false;
-        if (coverage < 900) {
+        // m#405
+        if (coverage < 90) {
             oopsVGroup.visible = true;
             var notCompleteString:String = copyProvider.getCopyForId("notCompleteString", {exerciseAmount: exerciseAmount, totalExercise: totalExercise, aveScor: aveScore});
             var textFlow:TextFlow = TextFlowUtil.importFromString(notCompleteString);

@@ -49,7 +49,7 @@
         import mx.events.FlexEvent;
 
             protected function onInitialize(event:FlexEvent):void {
-                versionNumber = "10.1.41";
+                versionNumber = "10.1.42";
 
                 facade = PracticalWritingApplicationFacade.getInstance();
             }
