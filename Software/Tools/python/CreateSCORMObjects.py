@@ -6,7 +6,7 @@ import pathlib
 import fileinput
 import regex
 import sys
-import os
+import os, errno
 import shutil
 import json
 
@@ -30,18 +30,23 @@ productFolder = 'content-'+shortCodes.get(productCode, 'xxx')
 niceName = names.get(productCode, 'xxx')
 subdomain = shortCodes.get(productCode, 'xxx')
 
-template_folder = os.path.join('ContentBench','Content','SCORMtemplate')
+template_folder = os.path.join('ContentBench','Content','SCORMtemplateReleasing')
 temp_folder = os.path.join('c:\\Temp','SCORMbuilder')
-output_folder = os.path.join('t:\\TechnicalDelivery','Clarity','SCORM','Remote to CE.com','Couloir',prefix,nc(niceName))
-# output_folder = os.path.join('c:\\Temp','SCORM',prefix,nc(niceName))
+output_folder = os.path.join(r'\\ClarityStorage3\TechnicalTeam\TechnicalDelivery','Clarity','SCORM','Remote to CE.com','Couloir',prefix,nc(niceName))
 manifest_file_name = os.path.join(temp_folder, 'imsmanifest.xml')
 wrapper_file_name = os.path.join(temp_folder, 'SCORMWrapper.html')
 
 print('output_folder='+output_folder)
 # Make sure this folder exists and is empty
+# TODO This does not work if the folder exists as it takes too long to delete it
 if os.path.exists(output_folder):
   shutil.rmtree(output_folder)
-os.makedirs(output_folder)
+try:
+  #os.makedirs(output_folder)
+  pathlib.Path(output_folder).mkdir(parents=True, exist_ok=False)
+except OSError as e:
+  print(f'Error creating output folder {e.args}')
+  sys.exit()
 
 # This reads the title menu file and parses it as a JSON object
 menu_file_name = os.path.join('TestBench',productFolder,'menu.json')
