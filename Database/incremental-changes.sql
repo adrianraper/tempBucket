@@ -1838,3 +1838,75 @@ VALUES (67,'Tense Buster update announcement',NULL,NULL,'tb_upgrade_2018','metho
 -- For CE.com home sales
 ALTER TABLE `T_Subscription` 
 ADD COLUMN `F_RegisterMethod` varchar(64) NULL DEFAULT NULL;
+
+-- m#404 JWT token signing
+DROP TABLE IF EXISTS `T_AccountKeys`;
+CREATE  TABLE `T_AccountKeys` (
+  `F_Prefix` INT NOT NULL ,
+  `F_Key` VARCHAR(256) NULL ,
+  INDEX `Index_1` (`F_Prefix` ASC) );
+INSERT INTO `T_AccountKeys` (`F_Prefix`,`F_Key`) 
+VALUES 
+('Clarity','averysecretkey'),
+('DEV','averysecretkey'),
+('NMS','NMS-65483-81654915'),
+('SLSA','SLSA-55904-84357611');
+
+SELECT * FROM rack80829.T_Product;
+ALTER TABLE `T_Product` 
+ADD COLUMN `F_StartingPoint` varchar(256) NULL DEFAULT NULL;
+ALTER TABLE `T_Product` 
+ADD COLUMN `F_ArchitectureVersion` varchar(16) NULL DEFAULT NULL;
+UPDATE T_Product
+SET F_StartingPoint = 'https://tb.clarityenglish.com', 
+F_ProductImageURL = 'https://www.clarityenglish.com/images/program/tb/tb-icon.png',
+F_DisplayOrder = 1
+WHERE F_ProductCode = 68;
+UPDATE T_Product
+SET F_StartingPoint = 'https://sss.clarityenglish.com', 
+F_ProductImageURL = 'https://www.clarityenglish.com/images/program/sss/sss-icon.png',
+F_DisplayOrder = 1
+WHERE F_ProductCode = 66;
+-- Couloir titles
+UPDATE T_Product SET F_ArchitectureVersion = '4'
+WHERE F_ProductCode in (63,64,65,66,67,68,72,73);
+-- Bento titles
+UPDATE T_Product SET F_ArchitectureVersion = '3'
+WHERE F_ProductCode in (55,52,53,54,55,56,57,59,61);
+-- Orchid titles
+UPDATE T_Product SET F_ArchitectureVersion = '2'
+WHERE F_ProductCode <= 50
+or F_ProductCode>1000;
+
+delete from T_Product
+where F_ProductCode in (14,58,62);
+
+-- New Road to IELTS
+INSERT INTO `T_Product` (`F_ProductCode`, `F_ProductName`) VALUES ('72', 'Road to IELTS Academic');
+INSERT INTO `T_Product` (`F_ProductCode`, `F_ProductName`) VALUES ('73', 'Road to IELTS General Training');
+INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('72', 'FV');
+INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('72', 'DEMO');
+INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('72', 'LM');
+INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('72', 'TD');
+INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('72', 'Light');
+INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('72', 'LightRenewal');
+INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('73', 'FV');
+INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLocation`) VALUES ('72','EN','rti');
+INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLocation`) VALUES ('73','EN','rti');
+
+CREATE TABLE `T_Token` (
+  `F_Serial` varchar(64) NOT NULL,
+  `F_RootID` int(10) NOT NULL,
+  `F_GroupID` int(10) DEFAULT NULL,
+  `F_ExpiryDate` datetime DEFAULT NULL,
+  `F_Duration` int(5) DEFAULT NULL,
+  `F_ProductCode` smallint(5) NOT NULL,
+  `F_ProductVersion` varchar(8) DEFAULT NULL,
+  `F_CreateDate` datetime DEFAULT NOW(),
+  `F_ActivationDate` datetime DEFAULT NULL,
+  `F_ActivationMethod` varchar(32) DEFAULT NULL,
+  `F_Email` varchar(128) DEFAULT NULL,
+  `F_UserID` int(10) DEFAULT NULL,
+  PRIMARY KEY (`F_Serial`),
+  KEY `Index_1` (`F_RootID`),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

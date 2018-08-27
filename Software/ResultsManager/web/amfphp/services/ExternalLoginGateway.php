@@ -250,7 +250,7 @@ try {
 	}
 
 	// Send back data.
-	echo json_encode(array("success"=>"true", "details"=>array("userId"=>$user->id, "groupName"=>$group->name)));
+	echo json_encode(array("success"=>"true", "details"=>array("userId"=>$user->userID, "groupName"=>$group->name)));
 	
 } catch (Exception $e) {
 	returnError($e->getCode(), $e->getMessage());

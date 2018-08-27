@@ -412,9 +412,9 @@ function router($json) {
             if (!isset($json->login)) $json->login = null;
             if (!isset($json->password)) $json->password = null;
             // ctp#428
-            if (!isset($json->platform)) $json->platform = '*not passed from app*';
+            if (!isset($json->platform)) $json->platform = '*not passed*';
             if (!isset($json->rootId)) $json->rootId = null;
-            return login($json->login, $json->password, $json->productCode, $json->rootId, $json->platform, $json->apiToken);
+            return login($json->login, $json->password, $json->productCode, $json->rootId, $json->apiToken, $json->platform);
         case "getLoginConfig":
             // sss#285
             if (!isset($json->prefix)) $json->prefix = null;
@@ -471,7 +471,7 @@ function router($json) {
 }
 
 // In general, exceptions are thrown if something blocks login. Like an expired user or no licence slots.
-function login($login, $password, $productCode, $rootId, $platform = null, $apiToken = null) {
+function login($login, $password, $productCode, $rootId, $apiToken = null, $platform = null) {
     global $service;
     // ctp#428
     try {
@@ -480,7 +480,7 @@ function login($login, $password, $productCode, $rootId, $platform = null, $apiT
     } catch (Exception $e) {
         // do nothing
     }
-    return $service->login($login, $password, $productCode, $rootId, $platform, $apiToken);
+    return $service->login($login, $password, $productCode, $rootId, $apiToken);
 }
 // sss#61 Return login option details for this account
 // Returns exception if no account found - 223 is an expected one
@@ -492,7 +492,7 @@ function getLoginConfig($productCode, $prefix, $referrer, $apiToken) {
 // sss#177 Add a new user to a self-registering account
 function addUser($selfRegistrationToken, $loginObj) {
     global $service;
-    return $service->addUser($selfRegistrationToken, $loginObj);
+    return $service->addUserAndLogin($selfRegistrationToken, $loginObj);
 }
 // sss#228 write memory for this user from the app
 function memoryWrite($token, $key, $value) {

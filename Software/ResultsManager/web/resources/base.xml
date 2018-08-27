@@ -13,6 +13,8 @@
             <lit name="userAccessError" code="102">You do not have permission for these users. ({ids})</lit>
             <lit name="errorTokenInvalid" code="103">You need to sign-in again as your authentication is lost.</lit>
             <lit name="errorApiTokenInvalid" code="106">The passed api token is invalid.</lit>
+            <lit name="errorAccountNoApiToken" code="107">This account can't sign api tokens.</lit>
+            <lit name="errorToken" code="108">There is an error with the token.</lit>
 
             <lit name="errorNoSuchUser" code="200">Your {loginKeyField} is not registered. Please contact your administrator.</lit>
             <lit name="errorNoProductCode" code="201">No product code sent.</lit>
@@ -21,7 +23,7 @@
             <lit name="errorMultipleProductCodeInRoot" code="204">Duplicated titles in this account. (productCode={productCode})</lit>
             <lit name="errorNoProductCodeInRoot" code="205">Your account does not have access to this title. (product code={productCode} root={rootID})</lit>
             <lit name="errorWrongPassword" code="206">Your {loginKeyField} or password is not correct. Please try again.</lit>
-            <lit name="errorUserExpired" code="207">Your user account expired on {expiryDate}. Please contact your administrator.</lit>
+            <lit name="errorUserExpired" code="207">Your account expired on {expiryDate}. Please contact your administrator.</lit>
             <lit name="errorDuplicateUsers" code="208">More than one user matches this {loginKeyField}. Please contact your administrator.</lit>
             <lit name="errorNoAnonymousUser" code="209">No anonymous user registered.</lit>
             <lit name="errorNoSuchGroup" code="210">There is a problem with the group you are in. Please contact your administrator.</lit>

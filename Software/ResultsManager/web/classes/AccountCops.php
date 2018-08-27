@@ -127,21 +127,24 @@ SQL;
 
     /**
 	 * Bento specific function to getAccount details as need far less than RM and some RM bits are wrong
+     * m#404 Allow all titles to be returned if you don't limit product code
 	 */
-	function getBentoAccount($rootID, $productCode) {
+    function getBentoAccount($rootID, $productCode = null) {
 
         $dateStampNow = AbstractService::getNow();
         $dateNow = $dateStampNow->format('Y-m-d H:i:s');
 
         // gh#39 product code might be a comma delimited list.
 		// This is a small query, so no performance problems just doing the IN always.
-		$sql = <<< SQL
+        $sql = <<< SQL
 				SELECT r.*, t.* 
 				FROM T_AccountRoot r, T_Accounts t
 				WHERE r.F_RootID = ?
 				AND r.F_RootID = t.F_RootID
-				AND t.F_ProductCode in ($productCode);
 SQL;
+        if (!is_null($productCode))
+            $sql .= " AND t.F_ProductCode in ($productCode); ";
+
 		$bindingParams = array($rootID);
 		$rs = $this->db->Execute($sql, $bindingParams);
 
@@ -150,11 +153,11 @@ SQL;
 		
 		// It would be an error to have more or less than one account
 		// It would be an error to have more or less than one title in that account
-		if ($rs->RecordCount() > $numProductCodes) {
-			throw $this->copyOps->getExceptionForId("errorMultipleProductCodeInRoot", array("productCode" => $productCode));
-		} else if ($rs->RecordCount() == 0) {
-			throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array("productCode" => $productCode, "rootID" => $rootID));
-		} 
+        if (!is_null($productCode) && $rs->RecordCount() > $numProductCodes) {
+            throw $this->copyOps->getExceptionForId("errorMultipleProductCodeInRoot", array("productCode" => $productCode));
+        } else if ($rs->RecordCount() == 0) {
+            throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array("productCode" => $productCode, "rootID" => $rootID));
+        }
 
 		// Create the account object (just use the first record if multiple ones as they will all be the same account details)
 		$dbObj = $rs->FetchObj();
@@ -384,7 +387,7 @@ EOD;
 				FROM T_Membership m
 				WHERE m.F_UserID = ?
 EOD;
-		$rs = $this->db->Execute($sql, array($user->id));
+		$rs = $this->db->Execute($sql, array($user->userID));
 		
 		switch ($rs->RecordCount()) {
 			case 0:

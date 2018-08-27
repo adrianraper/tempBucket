@@ -60,17 +60,18 @@ class AccountOps {
 	/**
 	 * Bento specific function to getAccount details as need far less than RM and some RM bits are wrong
 	 */
-	function getBentoAccount($rootID, $productCode) {
+    function getBentoAccount($rootID, $productCode) {
 		
 		// gh#39 product code might be a comma delimited list. 
 		// This is a small query, so no performance problems just doing the IN always.
-		$sql = <<< SQL
+        $sql = <<< SQL
 				SELECT r.*, t.* 
 				FROM T_AccountRoot r, T_Accounts t
 				WHERE r.F_RootID = ?
 				AND r.F_RootID = t.F_RootID
 				AND t.F_ProductCode in ($productCode);
 SQL;
+
 		$bindingParams = array($rootID);
 		$rs = $this->db->Execute($sql, $bindingParams);
 
@@ -79,13 +80,13 @@ SQL;
 		
 		// It would be an error to have more or less than one account
 		// It would be an error to have more or less than one title in that account
-		if ($rs->RecordCount() > $numProductCodes) {
-			throw $this->copyOps->getExceptionForId("errorMultipleProductCodeInRoot", array("productCode" => $productCode));
-		} else if ($rs->RecordCount() == 0) {
-			throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array("productCode" => $productCode, "rootID" => $rootID));
-		} 
+        if ($rs->RecordCount() > $numProductCodes) {
+            throw $this->copyOps->getExceptionForId("errorMultipleProductCodeInRoot", array("productCode" => $productCode));
+        } else if ($rs->RecordCount() == 0) {
+            throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array("productCode" => $productCode, "rootID" => $rootID));
+        }
 
-		// Create the account object (just use the first record if multiple ones as they will all be the same account details)
+        // Create the account object (just use the first record if multiple ones as they will all be the same account details)
 		$dbObj = $rs->FetchObj();
 		$account = $this->_createAccountFromObj($dbObj);
 
