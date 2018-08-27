@@ -30,7 +30,7 @@ productFolder = 'content-'+shortCodes.get(productCode, 'xxx')
 niceName = names.get(productCode, 'xxx')
 subdomain = shortCodes.get(productCode, 'xxx')
 
-template_folder = os.path.join('ContentBench','Content','SCORMtemplateReleasing')
+template_folder = os.path.join('ContentBench','Content','SCORMtemplate')
 temp_folder = os.path.join('c:\\Temp','SCORMbuilder')
 output_folder = os.path.join(r'\\ClarityStorage3\TechnicalTeam\TechnicalDelivery','Clarity','SCORM','Remote to CE.com','Couloir',prefix,nc(niceName))
 manifest_file_name = os.path.join(temp_folder, 'imsmanifest.xml')

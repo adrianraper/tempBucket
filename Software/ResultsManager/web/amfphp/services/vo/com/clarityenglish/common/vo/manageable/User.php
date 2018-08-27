@@ -193,19 +193,19 @@ EOD;
     function trimDetails($fromRM = false) {
 	    // Don't touch anything that is not a lengthy string
         if ($this->name && is_string($this->name) && strlen($this->name) > 0)
-            $this->name = trim($this->name);
+            $this->name = $this->fullTrim($this->name);
         if ($this->email && is_string($this->email) && strlen($this->email) > 0)
-            $this->email = trim($this->email);
+            $this->email = $this->fullTrim($this->email);
         if ($this->studentID && is_string($this->studentID) && strlen($this->studentID) > 0)
-            $this->studentID = ($this->studentID) ? trim($this->studentID) : null;
+            $this->studentID = ($this->studentID) ? $this->fullTrim($this->studentID) : null;
         if ($this->city && is_string($this->city) && strlen($this->city) > 0)
-            $this->city = ($this->city) ? trim($this->city) : null;
+            $this->city = ($this->city) ? $this->fullTrim($this->city) : null;
         if ($this->country && is_string($this->country) && strlen($this->country) > 0)
-            $this->country = ($this->country) ? trim($this->country) : null;
+            $this->country = ($this->country) ? $this->fullTrim($this->country) : null;
 
         if ($fromRM)
             if ($this->password && is_string($this->password) && strlen($this->password) > 0)
-                $this->password = ($this->password) ? trim($this->password) : null;
+                $this->password = ($this->password) ? $this->fullTrim($this->password) : null;
     }
 
 	// gh#956
@@ -350,9 +350,15 @@ EOD;
 			case "registrationDate":
 				return date("Y/m/d", strtotime($this->$attribute));
 			default:
-				return $this->$attribute;
+			    // m#172
+                //AbstractService::$debugLog->info("trimmed $attribute is |".$this->fullTrim($this->$attribute)."|, last chr is ".ord(substr($this->$attribute,-1)));
+				return (is_string($this->$attribute)) ? $this->fullTrim($this->$attribute) : $this->$attribute;
 		}
 	}
+	// m#172 Also need to get rid of non-breaking white spaces
+	private function fullTrim($str){
+        return trim($str, " \t\n\r\0\x0b".chr(0xC2).chr(0xA0));
+    }
 	
 	private static function unserializeAttribute($attribute, $value) {
 		switch ($attribute) {
