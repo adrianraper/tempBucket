@@ -108,10 +108,13 @@ class Licence {
 
     /**
      * Utility to help with testing dates and times
+     * Been sucked into AbstractService
      */
+    /*
     private function getNow() {
         $nowString = (isset($GLOBALS['fake_now'])) ? $GLOBALS['fake_now'] : 'now';
         $now = new DateTime($nowString, new DateTimeZone(TIMEZONE));
         return $now->getTimestamp();
     }
+    */
 }	

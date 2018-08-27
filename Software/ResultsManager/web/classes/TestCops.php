@@ -21,6 +21,64 @@ class TestCops {
 		$this->db = $db;
 	}
 
+	public function getTestsSecure($group, $productCode) {
+        $tests = $this->getActiveTests($group->id, $productCode);
+
+        if (!$tests)
+            return array();
+
+        // Get a list of all scheduled tests that this user has completed (likely to be very small list)
+        $user = $group->manageables[0];
+        $completedTests = $this->getCompletedTests($user->id);
+        foreach ($tests as $key => $test) {
+
+            // Remove any scheduled tests this user has already completed
+            // Let some emails repeat a test for testing purposes
+            // dpt#479 Change pattern for internal testing emails that let you repeat
+            if ($completedTests && stripos($group->manageables[0]->email, '@c.e.com') === false) {
+                foreach ($completedTests as $completedTest) {
+                    if ($test->testId == $completedTest->contentId) {
+                        unset($tests[$key]);
+                        continue 2;
+                    }
+                }
+            }
+
+            // Strip out any security information
+            $test->startData = null;
+
+            // Get names in sync
+            $test->id = (string)$test->testId;
+            switch ($productCode) {
+                case 63:
+                    $test->contentName = "ppt";
+                    break;
+                case 64:
+                    $test->contentName = "lelt";
+                    break;
+                case 65:
+                    $test->contentName = "de";
+                    break;
+            }
+            $test->description = $test->caption;
+            $test->startTimestamp = AbstractService::ansiStringToTimestamp($test->openTime);
+            $test->endTimestamp = AbstractService::ansiStringToTimestamp($test->closeTime);
+            $test->lang = strtolower($test->language);
+
+            // ctp#311 If you are running locally, implying no encryption in content server, send back an empty code
+            // Locally working will not work if you DO set an access code on a scheduled test
+            if ($test->startType == 'timer' && stristr($_SERVER['SERVER_NAME'],'dock.projectbench') !== false)
+                $test->groupId = '';
+
+            // ctp#285 groupID needs to be a string
+            // ctp#324 for app versions above x
+            global $service;
+            if (version_compare($service->getAppVersion(), '0.0.0', '>'))
+                $test->groupId = (string)$test->groupId;
+        }
+        return array_values($tests);
+
+    }
     /**
      * Return all tests that this group is scheduled to take
      *  - admin panel will want all

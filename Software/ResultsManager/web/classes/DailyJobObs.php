@@ -1870,7 +1870,7 @@ SQL;
         // Don't need to worry about the licence period.
 
         // Get date of one licence period ago
-        $dateStamp = $this->licenceOps->getNow();
+        $dateStamp = AbstractService::getNow();
         $licencePeriodAgo = $dateStamp->modify('-'.$licence->licenceClearanceFrequency)->format('Y-m-d H:i:s');
 
         // Whilst debugging do extra counts
