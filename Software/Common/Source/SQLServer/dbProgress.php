@@ -878,6 +878,10 @@ EOD;
 		$uid = $vars ['USERID'];
 		$cid = $vars ['COURSEID'];
 		
+        // #341 no need for anonymous users to get back scores
+        if ($uid < 0)
+            return true;
+        
 		//Edward: modify query
 		if ($vars ['DATABASEVERSION'] > 4) {
 			// v6.5.6.6 Something wrong here as this query was the same as the old one below!
