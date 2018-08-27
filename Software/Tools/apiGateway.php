@@ -18,8 +18,8 @@ $json = json_decode('{"appVersion":"1.3.5","command":"createJWT","payload":{"iss
 $json_error = json_last_error();
 
 // For dedicated tool functions
-require_once(dirname(__FILE__)."/ToolsService.php");
-$service = new ToolsService();
+require_once(dirname(__FILE__) . "/apiService.php");
+$service = new apiService();
 set_time_limit(60);
 
 // For setting the header when you want to send back an exception

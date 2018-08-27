@@ -26,7 +26,7 @@ createJWT = function(productCode) {
     var data = { appVersion: "2", command: "createJWT", payload: { productCode: productCode, prefix: prefix, login: userIdentifier}, key: key };
     $.ajax({
         method: "POST",
-        url: "http://dock.projectbench/Software/Tools/ToolsGateway.php",
+        url: "http://dock.projectbench/Software/Tools/apiGateway.php",
         dataType: "json",
         data: JSON.stringify(data)
     })

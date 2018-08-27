@@ -326,7 +326,7 @@ function getPayloadFromToken($token) {
     $apiCall = json_encode($data);
     $domain = "https://www.clarityenglish.com";
     //$domain = "http://dock.projectbench";
-    $toolsGateway = $domain."/Software/Tools/ToolsGateway.php";
+    $toolsGateway = $domain."/Software/Tools/apiGateway.php";
 
     $ch = curl_init();
     $headers = getallheaders();
@@ -371,7 +371,7 @@ function dbCheck() {
     // Call ToolsGateway to read the token
     $data = array("command" => "dbCheck");
     $apiCall = json_encode($data);
-    $toolsGateway = "https://www.clarityenglish.com/Software/Tools/ToolsGateway.php";
+    $toolsGateway = "https://www.clarityenglish.com/Software/Tools/apiGateway.php";
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_POST, TRUE);
