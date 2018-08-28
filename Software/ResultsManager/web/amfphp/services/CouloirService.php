@@ -235,157 +235,7 @@ class CouloirService extends AbstractService {
      * Login checks the user, account, hidden content, creates a session and secures a licence
      */
 	public function login($login, $password, $productCode, $rootId = null, $platform = null, $apiToken = null) {
-
-        // sss#229 If the productCode is a comma delimited string '52,53' you need to handle it here
-        // Until we get to a situation (Road to IELTS) that requires it, just assume a single integer
-        $productCode = intval($productCode);
-
-        // If you know the account, pick it up
-        if ($rootId) {
-            $account = $this->accountCops->getBentoAccount($rootId, $productCode);
-
-            // Remove any other titles from the account
-            // m#278 You only get one title back from getBentoAccount anyway...
-            $account->titles = array_filter($account->titles, function($title) use ($productCode) {
-                return ($title->productCode == intval($productCode));
-            });
-
-            // What sort of licence is it?
-            $licenceType = $account->titles[0]->licenceType;
-
-        } else {
-            $account = null;
-            $licenceType = Title::LICENCE_TYPE_LT;
-        }
-
-        // sss#130 If an anonymous access is requested, build a null user
-        if ($licenceType == Title::LICENCE_TYPE_AA && (is_null($login))) {
-            $userObj = $this->loginCops->loginAnonymousCouloir($rootId, $productCode);
-
-        } else {
-            // Check the validity of the user details for this product
-            //$loginObj["password"] = $password;
-            $loginOption = ((isset($account->loginOption)) ? $account->loginOption : User::LOGIN_BY_EMAIL) + User::LOGIN_HASHED;
-
-            // m#16 If you are from SCORM it is as if you had sent an apiToken, perhaps one day you will
-            // For now, the only way you can tell is based on the specialised password that the app makes up
-            //const plaintext = login + (new Date().getUTCHours()).toString() + "h=F?9;";
-            //const password = CryptoJS.MD5(plaintext).toString(CryptoJS.enc.Hex);
-            $plaintext = $login . date('G') . "h=F?9;";
-            $dbPassword = md5($plaintext);
-            if ($this->loginCops->verifyPassword($password, $dbPassword, strtolower($login)))
-                $apiToken = true;
-
-            // m#16 SCORM needs this to be as set from the account
-            // m#316 Never ask for password if using apiToken
-            if ($apiToken) {
-                $verified = false;
-            } elseif (isset($account->verified)) {
-                $verified = $account->verified;
-            } else {
-                $verified = true;
-            }
-
-            $allowedUserTypes = array(User::USER_TYPE_TEACHER, User::USER_TYPE_ADMINISTRATOR, User::USER_TYPE_STUDENT, User::USER_TYPE_REPORTER);
-            // m#316 Catch no such user if apiToken in play
-            try {
-                $userObj = $this->loginCops->loginCouloir($login, $password, $loginOption, $verified, $allowedUserTypes, $rootId, $productCode);
-            } catch (Exception $e) {
-                if ($e->getCode() == $this->copyOps->getCodeForId("errorNoSuchUser") && isset($apiToken)) {
-                    return $this->addApiUser($account, $login, $loginOption, $dbPassword, $productCode);
-                } else {
-                    throw $e;
-                }
-            }
-        }
-        $user = new User();
-        $user->fromDatabaseObj($userObj);
-
-        // sss#130 This will cope with anonymous user
-        $groups = $this->manageableOps->getUsersGroups($user, $rootId);
-        $group = (isset($groups[0])) ? $groups[0] : null;
-        // Add the user into the group for standard Bento organisation
-        $group->addManageables(array($user));
-
-        // If we didn't know the root id, then we do now
-        if (!$rootId) {
-            $rootId = $this->manageableOps->getRootIdForUserId($user->id);
-
-            // sss#152 now that we know an account, we must check the validity of the title
-            $foundAccount = $this->accountCops->getBentoAccount($rootId, $productCode);
-            // sss#128
-            $foundAccount->titles[0]->contentLocation = $this->accountCops->getTitleContentLocation($productCode, $foundAccount->titles[0]->languageCode);
-        }
-
-        // Check on hidden content at the product level for this group
-        $groupIdList =  implode(',', $this->manageableOps->getGroupParents($group->id));
-        if ($this->loginCops->isTitleBlockedByHiddenContent($groupIdList, $productCode)) {
-            throw $this->copyOps->getExceptionForId("errorTitleBlockedByHiddenContent");
-        }
-
-        // sss#12 After standard Couloir login, DPT and DE also need to grab available tests
-        $testId = null;
-        if ($productCode == 63 || $productCode == 65) {
-            // Get the tests that the user's group can take part in
-            // But remember that you DON'T pass the security access code back to the app
-            $tests = $this->getTestsSecure($group, $productCode);
-            if ($tests) {
-                // For now, the app will only work if max of one test is returned.
-                // There is no test selection page so just drop everything except the first
-                if (count($tests) > 1)
-                    $tests = array_slice($tests,0,1);
-                $testId = $tests[0]->testId;
-            }
-        }
-
-        // Create a session
-        $session = $this->startCouloirSession($user, $rootId, $productCode, $testId);
-
-        // Create a token that contains this session id
-        $token = $this->authenticationCops->createToken(["sessionId" => (string) $session->sessionId]);
-
-        // Grab a licence slot - this will send exception if none available
-        // TODO if you catch an exception from this, you could then invalidate the session you just created
-        $rc = $this->licenceCops->acquireCouloirLicenceSlot($session);
-
-        // sss#192 Update the user with the instance id (using session id) to cope with only one user on one device
-        if ($user->id > 0) {
-            $rc = $this->loginCops->setInstanceId($user->id, $session->sessionId, $productCode);
-
-            // sss#228 Return the user's memory too
-            $memory = $this->memoryCops->getWholeMemory($user->id, $productCode);
-        }
-
-        // Include default returns of null or empty objects as required by app
-        $rc = array(
-            "user" => $user->couloirView(),
-            "tests" => (isset($tests)) ? $tests : null,
-            "token" => $token,
-            "memory" => (isset($memory)) ? $memory : json_decode ("{}"));
-
-        // sss#12 For a title that uses encrypted content, send the key
-        if ($productCode == 63 || $productCode == 65) {
-            $rc["key"] = (string)$group->id;
-        } else {
-            $rc["key"] = null;
-        }
-
-        // sss#304 Return an account if login had to look one up
-        if (isset($foundAccount)) {
-            // Remove other titles
-            $foundAccount->titles = array_filter($foundAccount->titles, function ($title) use ($productCode) {
-                return $title->productCode = intval($productCode);
-            });
-            $rc["account"] = array(
-                "lang" => $foundAccount->titles[0]->languageCode,
-                "contentName" => $foundAccount->titles[0]->contentLocation,
-                "rootId" => intval($foundAccount->id),
-                "institutionName" => $foundAccount->name,
-                "menuFilename" => "menu.json");
-        } else {
-            $rc["account"] = null;
-        }
-        return $rc;
+	    return $this->loginCops->login($login, $password, $productCode, $rootId, $platform, $apiToken);
     }
 
     // m#316 Add a user whose details came from a validated api token
@@ -403,85 +253,7 @@ class CouloirService extends AbstractService {
 
     // sss#177 Add a user to a self-registering account
     public function addUser($token, $loginObj) {
-        // Pick the productCode and rootId from the token
-        $json = $this->authenticationCops->getPayloadFromToken($token);
-        $productCode = isset($json->productCode) ? $json->productCode : null;
-        $rootId = isset($json->rootId) ? $json->rootId : null;
-        if (!$productCode || !$rootId) {
-            throw $this->copyOps->getExceptionForId("errorNoAccountFound");
-        }
-
-        // sss#229 If the productCode is a comma delimited string '52,53' you need to handle it here
-        // Until we get to a situation (Road to IELTS) that requires it, just assume a single integer
-        $productCode = intval($productCode);
-
-        // Check that there is not already a user with this information
-        // Name/Id has to be unique in the account
-        // Email has to be unique (this was not true in the past but it is better to require it now)
-        $account = $this->accountCops->getBentoAccount($rootId, $productCode);
-        $loginOption = ((isset($account->loginOption)) ? $account->loginOption : User::LOGIN_BY_EMAIL) + User::LOGIN_HASHED;
-
-        $stubUser = new User();
-        if ($loginOption & User::LOGIN_BY_NAME || $loginOption & User::LOGIN_BY_NAME_AND_ID) {
-            $loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");
-            if (isset($loginObj["login"])) {
-                $loginKeyValue = $stubUser->name = $loginObj["login"];
-                /// sss#132
-                if (isset($loginObj["email"])) {
-                    $stubUser->email = $loginObj["email"];
-                }
-            } else {
-                throw $this->copyOps->getExceptionForId ("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
-            }
-        } elseif ($loginOption & User::LOGIN_BY_ID) {
-            $loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
-            if (isset($loginObj["login"])) {
-                $loginKeyValue = $stubUser->studentID = $loginObj["login"];
-                if (isset($loginObj["email"])) {
-                    $stubUser->email = $loginObj["email"];
-                }
-            } else {
-                throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
-            }
-        } elseif ($loginOption & User::LOGIN_BY_EMAIL) {
-            $loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
-            if (isset($loginObj["login"])) {
-                $loginKeyValue = $stubUser->email = $loginObj["login"];
-            } else {
-                throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
-            }
-        } else {
-            throw $this->copyOps->getExceptionForId ( "errorInvalidLoginOption", array("loginOption" => $loginOption));
-        }
-        // sss#132 Check that a required password has been sent
-        if ($account->verified && !isset($loginObj["password"])) {
-            throw $this->copyOps->getExceptionForId ( "errorPasswordEmpty");
-        }
-
-        $user = $this->manageableOps->getUserByKey($stubUser, $rootId, $loginOption);
-        if ($user) {
-            // A user already exists with these details, so throw an error as we can't add the new one
-            throw $this->copyOps->getExceptionForId("errorDuplicateUser", array("name" => $stubUser->name, "loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
-        }
-
-        // Add the new user to the top-level group for this account
-        $adminUser = new User();
-        $adminUser->id = $account->getAdminUserID();
-        $groups = $this->manageableOps->getUsersGroups($adminUser);
-
-        if (isset($loginObj["password"])) {
-            // sss#132 save the hashed password
-            $stubUser->password = $loginObj["password"];
-        }
-        $stubUser->registerMethod = "selfRegister";
-        $stubUser->userType = User::USER_TYPE_STUDENT;
-        $now = new DateTime();
-        $stubUser->registrationDate = $now->format('Y-m-d H:i:s');
-        // Use a minimal add user that has no authentication and user duplication checking
-        $newUser = $this->manageableOps->minimalAddUser($stubUser, $groups[0], $rootId);
-
-        // Now do a login for this user
-        return $this->login($loginKeyValue, $stubUser->password, $productCode, $account->id, null, null);
+	    return $this->loginCops->addUser($token, $loginObj);
     }
 
     public function updateActivity($token, $timestamp) {
@@ -586,60 +358,7 @@ class CouloirService extends AbstractService {
 
     // Get details of the tests that this user can take part in, but without security details
     public function getTestsSecure($group, $productCode) {
-        $tests = $this->getTests($group, $productCode);
-
-        if (!$tests)
-            return array();
-
-        // Get a list of all scheduled tests that this user has completed (likely to be very small list)
-        $user = $group->manageables[0];
-        $completedTests = $this->testCops->getCompletedTests($user->id);
-        foreach ($tests as $key => $test) {
-
-            // Remove any scheduled tests this user has already completed
-            // Let some emails repeat a test for testing purposes
-            // dpt#479 Change pattern for internal testing emails that let you repeat
-            if ($completedTests && stripos($group->manageables[0]->email, '@c.e.com') === false) {
-                foreach ($completedTests as $completedTest) {
-                    if ($test->testId == $completedTest->contentId) {
-                        unset($tests[$key]);
-                        continue 2;
-                    }
-                }
-            }
-
-            // Strip out any security information
-            $test->startData = null;
-
-            // Get names in sync
-            $test->id = (string)$test->testId;
-            switch ($productCode) {
-                case 63:
-                    $test->contentName = "ppt";
-                    break;
-                case 64:
-                    $test->contentName = "lelt";
-                    break;
-                case 65:
-                    $test->contentName = "de";
-                    break;
-            }
-            $test->description = $test->caption;
-            $test->startTimestamp = $this->ansiStringToTimestamp($test->openTime);
-            $test->endTimestamp = $this->ansiStringToTimestamp($test->closeTime);
-            $test->lang = strtolower($test->language);
-
-            // ctp#311 If you are running locally, implying no encryption in content server, send back an empty code
-            // Locally working will not work if you DO set an access code on a scheduled test
-            if ($test->startType == 'timer' && stristr($_SERVER['SERVER_NAME'],'dock.projectbench') !== false)
-                $test->groupId = '';
-
-            // ctp#285 groupID needs to be a string
-            // ctp#324 for app versions above x
-            if (version_compare($this->getAppVersion(), '0.0.0', '>'))
-                $test->groupId = (string)$test->groupId;
-        }
-        return array_values($tests);
+	    return $this->testCops->getTestsSecure($group, $productCode);
     }
 
     // Create a session record that runs until the user signs-out (or is kicked out)
@@ -708,7 +427,7 @@ EOD;
         // ctp#216 This was the time the app managed to send the score to the server
         // ctp#380 Save as UTC
         // ctp#383 Use the submit timestamp rather than sent timestamp
-        $score->dateStamp = $this->timestampToAnsiString($scoreObj->exerciseScore->submitTimestamp);
+        $score->dateStamp = AbstractService::timestampToAnsiString($scoreObj->exerciseScore->submitTimestamp);
 
         // ctp#210
         // ctp#383 We might need to compare this exercise id against some constants later
@@ -745,7 +464,7 @@ EOD;
 
                 // Convert timestamp to our usual date format
                 // ctp#380 Save UTC time
-                $answer->answerTimestamp = (isset($answer->answerTimestamp)) ? $this->timestampToAnsiString($answer->answerTimestamp) : null;
+                $answer->answerTimestamp = (isset($answer->answerTimestamp)) ? AbstractService::timestampToAnsiString($answer->answerTimestamp) : null;
                 $scoreDetails[] = new ScoreDetail($answer, $score);
             }
             if (count($scoreDetails) > 0) {

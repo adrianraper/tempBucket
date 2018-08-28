@@ -42,7 +42,7 @@ class LicenceOps {
 		// Some checks are independent of licence type
 		// gh#815
 		//$dateNow = date('Y-m-d 23:59:59');
-		$dateStampNow = $this->getNow();
+		$dateStampNow = AbstractService::getNow();
 		$dateNow = $dateStampNow->format('Y-m-d 23:59:59');
         $aShortWhileAgo = $dateStampNow->modify('-'.(LicenceOps::LICENCE_DELAY * 60).' secs')->format('Y-m-d H:i:s');
         $aLongerWhileAgo = $dateStampNow->modify('-'.(LicenceOps::HIBERNATE_DELAY * 60).' secs')->format('Y-m-d H:i:s');
@@ -121,7 +121,7 @@ EOD;
                     }
 
 					// Insert this user in the licence control table
-                    $dateStampNow = $this->getNow();
+                    $dateStampNow = AbstractService::getNow();
                     $dateNow = $dateStampNow->format('Y-m-d H:i:s');
 					$userID = $user->userID; 
 					$sql = <<<EOD
@@ -199,9 +199,9 @@ EOD;
      * gh#1577 This must be being called too often as we end up with duplicates in T_LicenceHolders
      */
     public function setLicenceSlot($user, $productCode, $rootId, $licence) {
-        $dateStamp = $this->getNow();
+        $dateStamp = AbstractService::getNow();
         $dateNow = $dateStamp->format('Y-m-d H:i:s');
-        $expungeDateStamp = $this->getNow();
+        $expungeDateStamp = AbstractService::getNow();
         $expungeDateStamp->modify('+'.$licence->licenceClearanceFrequency); // one licence period in the future
         $expungeDate = $expungeDateStamp->modify('-1 day')->format('Y-m-d 23:59:59'); // minus one day
 
@@ -344,7 +344,7 @@ EOD;
         // Have they taken a licence within the last [licence period]?
         // gh#1577 Since licences are created with an expiry date, we should just use that
         //         not try to figure out now minus the current licence period
-        $dateStamp = $this->getNow();
+        $dateStamp = AbstractService::getNow();
         $dateNow = $dateStamp->format('Y-m-d H:i:s');
         //$licencePeriodAgo = $dateStamp->modify('-'.$licence->licenceClearanceFrequency)->format('Y-m-d H:i:s');
         //AbstractService::$debugLog->info($userId . ": licences used since ".$licencePeriodAgo);
@@ -387,7 +387,7 @@ EOD;
      * Will be deprecated as soon as new licence style implemented.
      */
     function checkEarliestOldStyleLicence($userId, $productCode) {
-        $aYearAgo = $this->getNow();
+        $aYearAgo = AbstractService::getNow();
         $aYearAgo->modify('-1 year');
         $earliestDate = $aYearAgo->format('Y-m-d');
 
@@ -424,7 +424,7 @@ EOD;
      * Will be deprecated as soon as new licence style implemented.
      */
     function checkEarliestOldStyleLicences($rootId, $productCode) {
-        $aYearAgo = $this->getNow();
+        $aYearAgo = AbstractService::getNow();
         $aYearAgo->modify('-1 year');
         $earliestDate = $aYearAgo->format('Y-m-d');
 
@@ -462,7 +462,7 @@ EOD;
      * gh#1230 Used to avoid lengthy checks
      */
     function countTimesTitleUsed($rootId, $productCode) {
-        $aYearAgo = $this->getNow();
+        $aYearAgo = AbstractService::getNow();
         $aYearAgo->modify('-1 year');
         $earliestDate = $aYearAgo->format('Y-m-d');
 
@@ -698,7 +698,7 @@ EOD;
 
 		// gh#815
 		//$dateNow = date('Y-m-d H:i:s');
-        $dateStampNow = $this->getNow();
+        $dateStampNow = AbstractService::getNow();
 		$dateNow = $dateStampNow->format('Y-m-d H:i:s');
 		
 		// The licence slot checking is based on licence type
@@ -815,7 +815,7 @@ EOD;
 		if ($reasonCode == null || $reasonCode == '')
 			$reasonCode = 0;
 
-        $dateStampNow = $this->getNow();
+        $dateStampNow = AbstractService::getNow();
 		$dateNow = $dateStampNow->format('Y-m-d H:i:s');
 		$bindingParams = array($ip, $dateNow, $rootID, $user->id, $productCode, $reasonCode);
 		$sql = <<<EOD
@@ -982,9 +982,12 @@ EOD;
 
 	/**
      * Utility to help with testing dates and times
+     * Sucked into AbstractService
      */
+	/*
 	public function getNow() {
         $nowString = (isset($GLOBALS['fake_now'])) ? $GLOBALS['fake_now'] : 'now';
         return new DateTime($nowString, new DateTimeZone(TIMEZONE));
     }
+	*/
 }

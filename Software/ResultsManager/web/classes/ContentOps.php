@@ -1753,9 +1753,9 @@ EOD;
 	public function getDetailsFromProductCode($productCode, $languageCode=null) {
 		$rs = $this->db->getRow("SELECT * FROM T_Product WHERE F_ProductCode=?", array($productCode));
 		$partialReturn =  array('name' => ($rs['F_ProductName']) ?  $rs['F_ProductName'] : "[Unknown product ID '$productCode']"
-					//,'softwareLocation' => $rs['F_SoftwareLocation']
+					,'logoHref' => ($rs['F_ProductImageURL']) ?  $rs['F_ProductImageURL'] : null
 					,'productCode' => $productCode
-					//,'contentLocation' => $rs['F_DefaultContentLocation']
+					,'architectureVersion' => (isset($rs['F_ArchitectureVersion'])) ?   $rs['F_ArchitectureVersion'] : null
 					);
 		// v3.3 get contentLocation from T_ProductLanguage
 		$sql = "SELECT * FROM T_ProductLanguage WHERE F_ProductCode=? ";

@@ -2228,7 +2228,33 @@ EOD;
 		//$user->id = $user->getIDForIDObject();
 		return $user;
 	}
-	
+
+	/*
+	 * m#404 Check if an email address is available for use
+	 *
+	 * Key is what to return if the email does exist - exception, or group/root that it is in?
+	 *
+	 */
+    public function getUsersByEmail($email) {
+        $sql = <<<EOD
+			SELECT u.* FROM T_User u, T_Membership m
+			WHERE u.F_UserID = m.F_UserID
+			AND U.F_Email = ?
+EOD;
+        $bindingParams = array($email);
+        $rs = $this->db->Execute($sql, $bindingParams);
+
+        $users = array();
+        if ($rs->RecordCount() > 0) {
+            while ($dbObj = $rs->FetchNextObj()) {
+                $user = new User();
+                $user->fromDatabaseObj($dbObj);
+                $users[] = $user->publicView();
+            }
+        }
+        return $users;
+    }
+
 	/**
 	 * Determine if the details you know about a new/updated user conflict with any existing user.
 	 * Returns false if no conflicts

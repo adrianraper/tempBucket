@@ -282,6 +282,174 @@ EOD;
         return true;
     }
 
+    // m#404 Detect if a user has a licence for a title
+    public function getUserCouloirLicence($productCode, $userId) {
+        $dateStampNow = AbstractService::getNow();
+        $dateStamp = $dateStampNow->format('Y-m-d H:i:s');
+        $sql = <<<EOD
+            SELECT * FROM T_CouloirLicenceHolders
+        	WHERE F_KeyID=?
+            AND F_ProductCode=?
+            AND F_EndDateStamp>?
+EOD;
+        $bindingParams = array($userId, $productCode, $dateStamp);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        // If you got a few records back, it indicates something went wrong, but you DO still have a licence
+        if ($rs && $rs->RecordCount() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    // m#404 Bento programs can use old or new licence forms
+    public function getUserOldLicence($productCode, $userId, $useOrchidLicence, $licence) {
+        if ($useOrchidLicence) {
+            $licenceID = $this->checkOrchidLicence($productCode, $userId, $licence);
+        } else {
+            $licenceID = $this->checkBentoLicence($productCode, $userId, $productCode);
+        }
+        return $licenceID;
+    }
+
+    public function countUsedOldLicences($productCode, $rootId, $useOrchidLicence, $licence) {
+        if ($useOrchidLicence) {
+            $count = $this->countOrchidLicences($productCode, $rootId, $licence);
+        } else {
+            $count = $this->countBentoLicences($productCode, $rootId, $licence);
+        }
+        return $count;
+    }
+    public function countBentoLicences($productCode, $rootId, $licence) {
+        // Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
+        // v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
+        // gh#1230 How many licences have been used since the licence clearance date?
+        if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
+            // m#175 Add a distinct filter in case the licence table includes duplicates
+            $sql = <<<EOD
+				SELECT COUNT(DISTINCT(l.F_UserID)) AS licencesUsed 
+				FROM T_LicenceHolders l, T_User u
+				WHERE l.F_UserID = u.F_UserID
+				AND l.F_StartDateStamp >= ?
+                AND l.F_ProductCode = ?
+                AND l.F_RootID = ?
+EOD;
+        } else {
+            // gh#604 Teacher records in session will now include root, so ignore them here
+            // gh#1228 But that ignores deleted/archived users, so revert
+            // m#175 Add a distinct filter in case the licence table includes duplicates
+            $sql = <<<EOD
+				SELECT COUNT(DISTINCT(l.F_UserID)) AS licencesUsed 
+				FROM T_LicenceHolders l
+				WHERE l.F_StartDateStamp >= ?
+                AND l.F_ProductCode = ?
+                AND l.F_RootID = ?
+EOD;
+        }
+
+        $bindingParams = array($licence->licenceControlStartDate, $productCode, $rootId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+
+        if ($rs && $rs->RecordCount() > 0) {
+            $licencesUsed = (int)$rs->FetchNextObj()->licencesUsed;
+        } else {
+            throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
+        }
+
+        return $licencesUsed;
+    }
+
+    // Copied from LicenceOps
+    public function countOrchidLicences($productCode, $rootId, $licence) {
+        // Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
+        // v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
+        if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
+            $sql = <<<EOD
+            SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
+            FROM T_Session s, T_User u
+            WHERE s.F_UserID = u.F_UserID
+            AND s.F_StartDateStamp >= ?
+            AND s.F_Duration > 15
+            AND s.F_UserID > 0
+            AND s.F_ProductCode = ?
+            AND s.F_RootID = ?
+EOD;
+        } else {
+            // gh#604 Teacher records in session will now include root, so ignore them here
+            // gh#1228 But that ignores deleted/archived users, so revert
+            $sql = <<<EOD
+            SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
+            FROM T_Session s
+            WHERE s.F_StartDateStamp >= ?
+            AND s.F_Duration > 15
+            AND s.F_UserID > 0
+            AND s.F_ProductCode = ?
+            AND s.F_RootID = ?
+EOD;
+        }
+        $bindingParams = array($licence->licenceControlStartDate, $productCode, $rootId);
+        $rs = $this->db->Execute($sql, $bindingParams);
+
+        if ($rs && $rs->RecordCount() > 0) {
+            $licencesUsed = (int)$rs->FetchNextObj()->licencesUsed;
+        } else {
+            throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
+        }
+
+        return $licencesUsed;
+
+    }
+
+    // Copied from LicenceOps so that this class can check up on old licences
+    public function checkOrchidLicence($productCode, $userId, $licence) {
+        $sql = <<<EOD
+        SELECT * FROM T_Session s
+        WHERE s.F_UserID = ?
+        AND s.F_StartDateStamp >= ?
+        AND s.F_Duration > 15
+        AND s.F_ProductCode = ?
+EOD;
+
+        $bindingParams = array($userId, $licence->licenceControlStartDate, $productCode);
+        $rs = $this->db->Execute($sql, $bindingParams);
+
+        // SQL error
+        if (!$rs)
+            throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
+
+        switch ($rs->RecordCount()) {
+            case 0:
+                return false;
+                break;
+            default:
+                return true;
+        }
+    }
+    public function checkBentoLicence($productCode, $userId) {
+        $dateStamp = AbstractService::getNow();
+        $dateNow = $dateStamp->format('Y-m-d H:i:s');
+        $sql = <<<EOD
+			SELECT * FROM T_LicenceHolders l
+			WHERE l.F_UserID = ?
+			AND l.F_EndDateStamp > ?
+            AND l.F_ProductCode = ?
+EOD;
+
+        $bindingParams = array($userId, $dateNow, $productCode);
+        $rs = $this->db->Execute($sql, $bindingParams);
+
+        // SQL error
+        if (!$rs)
+            throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
+
+        switch ($rs->RecordCount()) {
+            case 0:
+                return false;
+                break;
+            default:
+                return true;
+        }
+    }
+
     /*
      * Is there an active licence for this session or user?
      */
@@ -388,7 +556,7 @@ EOD;
     /**
      * Count the number of used (tracking) licences for this root / product since the clearance date
      */
-    function countUsedLicences($productCode, $rootId, $licence) {
+    public function countUsedLicences($productCode, $rootId, $licence) {
         // Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
         // v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
         // gh#1230 How many licences have been used since the licence clearance date?
@@ -753,6 +921,12 @@ EOD;
                 break;
             case 62:
                 return 10;
+                break;
+            case 72:
+                return 52;
+                break;
+            case 73:
+                return 53;
                 break;
         }
         return false;

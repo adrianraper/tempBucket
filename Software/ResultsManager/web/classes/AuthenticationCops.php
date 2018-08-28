@@ -81,22 +81,18 @@ EOD;
 
         return $session;
     }
-    // m#316 Lookup the api key for a prefix
-    public function getAccountApiKey($id) {
-	    switch (strtolower($id)) {
-            case 'nms':
-                $key = 'NMS-65483-81654915';
-                break;
-            case 'slsa':
-                $key = 'SLSA-55904-84357611';
-                break;
-            case 'clarity':
-            case 'dev':
-                $key = 'averysecretkey';
-                break;
-            default:
-                $key = $this::KEY;
-                break;
+    // m#316 Lookup the api key for an account
+    public function getAccountApiKey($prefix) {
+        $sql = <<<EOD
+            SELECT * FROM T_AccountKeys
+        	WHERE F_Prefix=?
+EOD;
+        $bindingParams = array($prefix);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        if ($rs) {
+            $key = $rs->FetchNextObj()->F_Key;
+        } else {
+            throw $this->copyOps->getExceptionForId("errorAccountNoApiToken");
         }
         return $key;
     }
