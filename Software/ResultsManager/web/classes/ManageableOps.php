@@ -273,7 +273,8 @@ EOD;
 			throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
 
 		// gh#448
-		AbstractService::$controlLog->info('userID '.Session::get('userID').' minimally added a user with id='.$user->userID.' to group '.$parentGroup->id);
+        $me = (Session::is_set('userID')) ? Session::get('userID') : 'someone';
+		AbstractService::$controlLog->info('userID '.$me.' minimally added a user with id='.$user->userID.' to group '.$parentGroup->id);
 
 		// Return the newly created user object
 		return $user;
@@ -690,7 +691,7 @@ EOD;
 					INSERT INTO T_Membership (F_UserID, F_GroupID, F_RootID)
 					VALUES (?,?,?) 
 EOD;
-				$bindingParams = array($user->userID, $parentGroup->id, ($rootID) ? $rootID : Session::get('rootID'));
+				$bindingParams = array($user->userID, $parentGroup->id, Session::get('rootID'));
 				$rc = $this->db->Execute($sql, $bindingParams);
 				if (!$rc)
 					throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
@@ -1500,20 +1501,24 @@ EOD;
 			$rootID = ($rootID) ? $rootID : Session::get('rootID');
 		}
 		$loginOption = ($loginOption) ? $loginOption : Session::get('loginOption');
-		
-		if ($loginOption == User::LOGIN_BY_NAME) {
+		// $loginOption & User::LOGIN_BY_EMAIL
+		if ($loginOption & User::LOGIN_BY_NAME) {
 			$whereClause = 'WHERE u.F_UserName=?';
 			$key = $stubUser->name;
 			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");			
-		} else if ($loginOption == User::LOGIN_BY_ID) {
+		} else if ($loginOption & User::LOGIN_BY_ID) {
 			$whereClause = 'WHERE u.F_StudentID=?';
 			$key = $stubUser->studentID;
 			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");			
-		} else if ($loginOption == User::LOGIN_BY_EMAIL) {
+		} else if ($loginOption & User::LOGIN_BY_EMAIL) {
 			$whereClause = 'WHERE u.F_Email=?';
 			$key = $stubUser->email;
-			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");			
-		} else if (isset($stubUser->name)) {
+			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
+        } else if (isset($stubUser->email)) {
+            $whereClause = 'WHERE u.F_Email=?';
+            $key = $stubUser->email;
+            $loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
+        } else if (isset($stubUser->name)) {
 			$whereClause = 'WHERE u.F_UserName=?';
 			$key = $stubUser->name;
 			$loginKeyField = $this->copyOps->getCopyForId("nameKeyfield");			
@@ -1521,10 +1526,6 @@ EOD;
 			$whereClause = 'WHERE u.F_StudentID=?';
 			$key = $stubUser->studentID;
 			$loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");			
-		} else if (isset($stubUser->email)) {
-			$whereClause = 'WHERE u.F_Email=?';
-			$key = $stubUser->email;
-			$loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");			
 		} else {
 			throw new Exception("Unspecified loginOption");
 		}
@@ -1665,8 +1666,23 @@ EOD;
 				return $users;
 		}
 	}
-		
-	/**
+
+    public function getEmailStatus($email) {
+        $users = $this->getUsersByEmail($email);
+        if (count($users) > 1) {
+            return array("status" => "duplicate");
+        } elseif (count($users) == 1) {
+            $dateStampNow = AbstractService::getNow();
+            $dateNow = $dateStampNow->format('Y-m-d H:i:s');
+            if (!is_null($users[0]->expiryDate) && $users[0]->expiryDate < $dateNow)
+                return array("status" => "expired");
+            return array("status" => "used");
+        } else {
+            return array("status" => "none");
+        }
+    }
+
+/**
 	 * Get all learners in a root
 	 */
 	function getAllLearners($rootID) {

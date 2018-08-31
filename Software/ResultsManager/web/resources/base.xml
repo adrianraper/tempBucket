@@ -14,6 +14,7 @@
             <lit name="errorTokenInvalid" code="103">You need to sign-in again as your authentication is lost.</lit>
             <lit name="errorApiTokenInvalid" code="106">The passed api token is invalid.</lit>
             <lit name="errorAccountNoApiToken" code="107">This account can't sign api tokens.</lit>
+            <lit name="errorToken" code="108">There is an error with the token.</lit>
 
             <lit name="errorNoSuchUser" code="200">Your {loginKeyField} is not registered. Please contact your administrator.</lit>
             <lit name="errorNoProductCode" code="201">No product code sent.</lit>

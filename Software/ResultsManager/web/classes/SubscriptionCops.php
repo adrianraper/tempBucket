@@ -662,13 +662,12 @@ EOD;
 
         $token = $this->getToken($serial);
         if (!$token)
-            throw new exception("No such token");
-
+            return array("status" => "invalid");
         if ($token->activationDate)
-            return array("status" => "used", "token" => $token);
+            return array("status" => "used");
         if ($token->expiryDate < $dateNow)
-            return array("status" => "expired", "token" => $token);
-        return array("status" => "ok", "token" => $token);
+            return array("status" => "expired");
+        return array("status" => "ok");
     }
     public function getToken($serial) {
         $sql = <<<EOD
@@ -681,8 +680,12 @@ EOD;
 
         if ($rs->RecordCount() == 1) {
             return new Token($rs->FetchNextObj());
+        } else {
+            $this->copyOps->getExceptionForId('errorToken');
         }
+        return false;
     }
+
     public function updateToken($token, $email, $userId) {
         $dateStampNow = AbstractService::getNow();
         $dateNow = $dateStampNow->format('Y-m-d H:i:s');

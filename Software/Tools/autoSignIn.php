@@ -1,7 +1,7 @@
 ﻿<?php
 /*
  * This page expects product, prefix and user details which it passes to the product start page.
- * The user is assumed to exists - so use integration.php if you are not sure about that.
+ * The user is assumed to exists - so use directStartGenerator.php if you are not sure about that.
  */
 
 /*

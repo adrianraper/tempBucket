@@ -83,23 +83,6 @@ class CouloirService extends AbstractService {
         $this->emailOps = new EmailOps($this->db);
     }
 
-	public function getAppVersion() {
-	    return $this->appVersion;
-    }
-    public function setAppVersion($appVersion) {
-        // We use php version_compare, which thinks that v1 is less than v1.0
-        // So make sure that the passed number is at least 3 sections long
-        $sections = explode('.', $appVersion);
-        switch (count($sections)) {
-            case 1:
-                $sections[1] = 0;
-            case 2:
-                $sections[2] = 0;
-                break;
-            default:
-        }
-	    $this->appVersion = implode('.', $sections);
-    }
     /*
      * Find an account that matches a prefix, IP or RU range.
      * sss#285 The ip is picked up by the server, not sent from client
@@ -235,7 +218,17 @@ class CouloirService extends AbstractService {
      * Login checks the user, account, hidden content, creates a session and secures a licence
      */
 	public function login($login, $password, $productCode, $rootId = null, $platform = null, $apiToken = null) {
-	    return $this->loginCops->login($login, $password, $productCode, $rootId, $platform, $apiToken);
+        // m#316 Catch no such user if apiToken in play
+        try {
+            return $this->loginCops->login($login, $password, $productCode, $rootId, $platform, $apiToken);
+        } catch (Exception $e) {
+            if ($e->getCode() == $this->copyOps->getCodeForId("errorNoSuchUser") && isset($apiToken)) {
+                $user = $this->addApiUser($account, $login, $loginOption, $dbPassword, $productCode);
+                return $this->loginCops->login($login, $password, $productCode, $rootId, $platform, $apiToken);
+            } else {
+                throw $e;
+            }
+        }
     }
 
     // m#316 Add a user whose details came from a validated api token
@@ -252,8 +245,18 @@ class CouloirService extends AbstractService {
     }
 
     // sss#177 Add a user to a self-registering account
-    public function addUser($token, $loginObj) {
-	    return $this->loginCops->addUser($token, $loginObj);
+    public function addUserAndLogin($token, $loginObj) {
+        // Pick the productCode and rootId from the token
+        $json = $this->authenticationCops->getPayloadFromToken($token);
+        $productCode = isset($json->productCode) ? $json->productCode : null;
+        $rootId = isset($json->rootId) ? $json->rootId : null;
+        $groupId = isset($json->groupId) ? $json->groupId : null;
+        if (!$productCode || !$rootId) {
+            throw $this->copyOps->getExceptionForId("errorNoAccountFound");
+        }
+
+        $user = $this->loginCops->addUser($productCode, $rootId, $groupId, $loginObj);
+        return $this->login($loginObj["login"], $user->password, $productCode, $rootId);
     }
 
     public function updateActivity($token, $timestamp) {
@@ -280,6 +283,14 @@ class CouloirService extends AbstractService {
                 // that you only do it once for each combination to save unnecessary calls.
                 // Indeed it would seem more sensible to deleteExpiredLicenceSlots once only for all roots and productCodes
                 $this->licenceCops->deleteExpiredLicenceSlots($session);
+
+                // sss#192 Check the instance id - does it still match the sign in one?
+                if ($session->userId > 0) {
+                    $instanceId = $this->loginCops->getInstanceId($session->userId, $session->productCode);
+                    if ($session->sessionId != $instanceId) {
+                        return ["hasLicenseSlot" => false];
+                    }
+                }
 
                 // Note American spelling for app API
                 return $this->licenceCops->checkCouloirLicenceSlot($session);

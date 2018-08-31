@@ -387,7 +387,7 @@ EOD;
 				FROM T_Membership m
 				WHERE m.F_UserID = ?
 EOD;
-		$rs = $this->db->Execute($sql, array($user->id));
+		$rs = $this->db->Execute($sql, array($user->userID));
 		
 		switch ($rs->RecordCount()) {
 			case 0:

@@ -15,6 +15,10 @@ class LoginCops {
 		$this->manageableOps = new ManageableOps($db);
 		$this->accountCops = new AccountCops($db);
 		$this->testCops = new TestCops($db);
+		$this->authenticationCops = new AuthenticationCops($db);
+		$this->licenceCops = new LicenceCops($db);
+		$this->memoryCops = new MemoryCops($db);
+		$this->progressCops = new ProgressCops($db);
 	}
 	
 	/**
@@ -409,7 +413,7 @@ EOD;
         return $blocked;
     }
     // Extracted from CouloirService
-    public function login($login, $password, $productCode, $rootId = null, $platform = null, $apiToken = null) {
+    public function login($login, $password, $productCode, $rootId = null, $apiToken = null) {
         // sss#229 If the productCode is a comma delimited string '52,53' you need to handle it here
         // Until we get to a situation (Road to IELTS) that requires it, just assume a single integer
         $productCode = intval($productCode);
@@ -434,7 +438,7 @@ EOD;
 
         // sss#130 If an anonymous access is requested, build a null user
         if ($licenceType == Title::LICENCE_TYPE_AA && (is_null($login))) {
-            $userObj = $this->loginCops->loginAnonymousCouloir($rootId, $productCode);
+            $userObj = $this->loginAnonymousCouloir($rootId, $productCode);
 
         } else {
             // Check the validity of the user details for this product
@@ -461,16 +465,7 @@ EOD;
             }
 
             $allowedUserTypes = array(User::USER_TYPE_TEACHER, User::USER_TYPE_ADMINISTRATOR, User::USER_TYPE_STUDENT, User::USER_TYPE_REPORTER);
-            // m#316 Catch no such user if apiToken in play
-            try {
-                $userObj = $this->loginCouloir($login, $password, $loginOption, $verified, $allowedUserTypes, $rootId, $productCode);
-            } catch (Exception $e) {
-                if ($e->getCode() == $this->copyOps->getCodeForId("errorNoSuchUser") && isset($apiToken)) {
-                    return $this->addApiUser($account, $login, $loginOption, $dbPassword, $productCode);
-                } else {
-                    throw $e;
-                }
-            }
+            $userObj = $this->loginCouloir($login, $password, $loginOption, $verified, $allowedUserTypes, $rootId, $productCode);
         }
         $user = new User();
         $user->fromDatabaseObj($userObj);
@@ -513,7 +508,7 @@ EOD;
         }
 
         // Create a session
-        $session = $this->startCouloirSession($user, $rootId, $productCode, $testId);
+        $session = $this->progressCops->startCouloirSession($user, $rootId, $productCode, $testId);
 
         // Create a token that contains this session id
         $token = $this->authenticationCops->createToken(["sessionId" => (string) $session->sessionId]);
@@ -563,7 +558,8 @@ EOD;
 
     }
     // m#404 Extracted from CouloirService so apiService can run it too
-    public function addUser($token, $loginObj) {
+    public function addUser($rootId, $groupId, $loginObj) {
+        /*
         // Pick the productCode and rootId from the token
         $json = $this->authenticationCops->getPayloadFromToken($token);
         $productCode = isset($json->productCode) ? $json->productCode : null;
@@ -571,15 +567,17 @@ EOD;
         if (!$productCode || !$rootId) {
             throw $this->copyOps->getExceptionForId("errorNoAccountFound");
         }
+        */
 
         // sss#229 If the productCode is a comma delimited string '52,53' you need to handle it here
         // Until we get to a situation (Road to IELTS) that requires it, just assume a single integer
-        $productCode = intval($productCode);
+        //$productCode = intval($productCode);
 
         // Check that there is not already a user with this information
         // Name/Id has to be unique in the account
         // Email has to be unique (this was not true in the past but it is better to require it now)
-        $account = $this->accountCops->getBentoAccount($rootId, $productCode);
+        //$account = $this->accountCops->getBentoAccount($rootId, $productCode);
+        $account = $this->manageableOps->getAccountRoot($rootId);
         $loginOption = ((isset($account->loginOption)) ? $account->loginOption : User::LOGIN_BY_EMAIL) + User::LOGIN_HASHED;
 
         $stubUser = new User();
@@ -588,9 +586,10 @@ EOD;
             if (isset($loginObj["login"])) {
                 $loginKeyValue = $stubUser->name = $loginObj["login"];
                 /// sss#132
-                if (isset($loginObj["email"])) {
+                if (isset($loginObj["email"]))
                     $stubUser->email = $loginObj["email"];
-                }
+                if (isset($loginObj["id"]))
+                    $stubUser->studentID = $loginObj["id"];
             } else {
                 throw $this->copyOps->getExceptionForId ("errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
             }
@@ -598,9 +597,10 @@ EOD;
             $loginKeyField = $this->copyOps->getCopyForId("IDKeyfield");
             if (isset($loginObj["login"])) {
                 $loginKeyValue = $stubUser->studentID = $loginObj["login"];
-                if (isset($loginObj["email"])) {
+                if (isset($loginObj["email"]))
                     $stubUser->email = $loginObj["email"];
-                }
+                if (isset($loginObj["name"]))
+                    $stubUser->name = $loginObj["name"];
             } else {
                 throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
             }
@@ -608,6 +608,11 @@ EOD;
             $loginKeyField = $this->copyOps->getCopyForId("emailKeyfield");
             if (isset($loginObj["login"])) {
                 $loginKeyValue = $stubUser->email = $loginObj["login"];
+                // Add the name if it was passed
+                if (isset($loginObj["name"]))
+                    $stubUser->name = $loginObj["name"];
+                if (isset($loginObj["id"]))
+                    $stubUser->name = $loginObj["id"];
             } else {
                 throw $this->copyOps->getExceptionForId ( "errorLoginKeyEmpty", array("loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
             }
@@ -625,10 +630,14 @@ EOD;
             throw $this->copyOps->getExceptionForId("errorDuplicateUser", array("name" => $stubUser->name, "loginOption" => $loginOption, "loginKeyField" => $loginKeyField));
         }
 
-        // Add the new user to the top-level group for this account
-        $adminUser = new User();
-        $adminUser->id = $account->getAdminUserID();
-        $groups = $this->manageableOps->getUsersGroups($adminUser);
+        // Add the new user to the top-level group for this account if one was not passed
+        if (isset($groupId)) {
+            $groups = array($this->manageableOps->getGroup($groupId));
+        } else {
+            $adminUser = new User();
+            $adminUser->id = $account->getAdminUserID();
+            $groups = $this->manageableOps->getUsersGroups($adminUser);
+        }
 
         if (isset($loginObj["password"])) {
             // sss#132 save the hashed password
@@ -636,12 +645,12 @@ EOD;
         }
         $stubUser->registerMethod = "selfRegister";
         $stubUser->userType = User::USER_TYPE_STUDENT;
-        $now = new DateTime();
-        $stubUser->registrationDate = $now->format('Y-m-d H:i:s');
+        $dateStampNow = AbstractService::getNow();
+        $dateNow = $dateStampNow->format('Y-m-d H:i:s');
+        $stubUser->registrationDate = $dateNow;
+
         // Use a minimal add user that has no authentication and user duplication checking
         $newUser = $this->manageableOps->minimalAddUser($stubUser, $groups[0], $rootId);
-
-        // Now do a login for this user
-        return $this->login($loginKeyValue, $stubUser->password, $productCode, $account->id, null, null);
+        return $newUser;
     }
 }

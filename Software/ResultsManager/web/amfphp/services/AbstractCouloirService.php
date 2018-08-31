@@ -22,7 +22,10 @@ class AbstractService {
 	// gh#448
 	static $controlLog;
 
-	function __construct() {
+    // The version of the app that called you
+    private $appVersion;
+
+    function __construct() {
 
 		// Small optimization
 		$ADODB_COUNTRECS = false;
@@ -126,7 +129,13 @@ class AbstractService {
         if ($GLOBALS['controlLogType'] == 'db')
             AbstractService::$controlLog->setTarget($this->db);
 	}
-	
+
+    public function getAppVersion() {
+        return $this->appVersion;
+    }
+    public function setAppVersion($appVersion) {
+        $this->appVersion = $appVersion;
+    }
 	/*
 	 * For converting microsecond timestamps in UTC to local time
 	 * TODO Add some protection in case we send a PHP timestamp to this (seconds not microseconds)

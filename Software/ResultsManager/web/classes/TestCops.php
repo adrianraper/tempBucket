@@ -72,7 +72,8 @@ class TestCops {
 
             // ctp#285 groupID needs to be a string
             // ctp#324 for app versions above x
-            if (version_compare($this->getAppVersion(), '0.0.0', '>'))
+            global $service;
+            if (version_compare($service->getAppVersion(), '0.0.0', '>'))
                 $test->groupId = (string)$test->groupId;
         }
         return array_values($tests);

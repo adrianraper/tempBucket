@@ -41,9 +41,6 @@ require_once($GLOBALS['common_dir'].'/encryptURL.php');
 
 class apiService extends AbstractService {
 
-    // The version of the app that called you
-    private $appVersion;
-
 	function __construct() {
 		parent::__construct();
 
@@ -72,13 +69,6 @@ class apiService extends AbstractService {
         $this->authenticationCops = new AuthenticationCops($this->db);
     }
 
-    public function getAppVersion() {
-        return $this->appVersion;
-    }
-    public function setAppVersion($appVersion) {
-        $this->appVersion = $appVersion;
-    }
-
     /*
      * This will try to find and verify this user. If successful it returns the user
      *  and limited group and account information.
@@ -88,42 +78,34 @@ class apiService extends AbstractService {
      * that can be passed back to the backend for progress or more detailed information.
      */
     public function signIn($email, $password) {
-        $stubUser = new User();
-        $stubUser->email = $email;
-        $user = $this->manageableOps->getUserByKey($stubUser, 0, User::LOGIN_BY_EMAIL);
-
-        if ($user == false)
-            // It is important to give no clue if the email or password was wrong. Just the combination.
-            throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginKeyField" => 'email'));
-
-        // TODO usertype, other blocks
-        if (!$this->loginCops->verifyPassword($password, $user->password, $email)) {
-            throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => User::LOGIN_BY_EMAIL, "loginKeyField" => 'email'));
-        }
-
-        // User validation
-        $dateStampNow = AbstractService::getNow();
-        $dateNow = $dateStampNow->format('Y-m-d H:i:s');
-        if (!is_null($user->expiryDate) && $user->expiryDate < $dateNow)
-            throw $this->copyOps->getExceptionForId("errorUserExpired", array("expiryDate" => $user->expiryDate));
-
-        // Build up an account that lists the titles
+        $user = $this->getUser($email, $password);
         $account = $this->manageableOps->getAccountFromUser($user);
-        $account = $this->accountCops->getBentoAccount($account->id);
-
         $group = $this->manageableOps->getUsersGroups($user)[0];
-        if (!isset($account) || !$account)
-            $account = new Account();
-        if (!isset($group) || !$group)
-            $group = new Group();
-
-        // Filter out any titles that this user can't access
-        // 2. the licence is 'token' and this user has not already used the title
-        // 3. the licence is full and this user has not already used the title
-        // 4. the group is blocked from hidden content to the whole title
 
         // Build links to programs this user CAN access
+        $links = $this->getLinks($user, $account, $group);
+
+        // Create an authentication token for this user
+        $payload = array("userId" => $user->userID, "prefix" => $account->prefix, "rootId" => $account->id, "groupId" => $group->id);
+        $token = $this->authenticationCops->createToken($payload);
+
+        return array('user' => $user, 'links' => $links, 'account' => $account, 'group' => $group, 'authentication' => $token);
+
+    }
+
+    /*
+     * This will look at all the titles in an account and build links to each that the user can access
+    // Filter out any titles that this user can't access
+    // 2. the licence is 'token' and this user has not already used the title
+    // 3. the licence is full and this user has not already used the title
+    // 4. the group is blocked from hidden content to the whole title
+     */
+    public function getLinks($user, $account, $group) {
+        $dateStampNow = AbstractService::getNow();
+        $dateNow = $dateStampNow->format('Y-m-d H:i:s');
         $links = array();
+
+        $account = $this->accountCops->getBentoAccount($account->id);
         foreach ($account->titles as $title) {
             $status = 'available';
             $productDetails = $this->contentOps->getDetailsFromProductCode($title->productCode);
@@ -142,7 +124,7 @@ class apiService extends AbstractService {
             // TODO Perhaps this should be a bigger call: getting number of licences, number used, number used by me
             // Which would be useful for other api calls too
             // [userHasLicence = boolean, licencesUsed = int, totalLicences = int, licenceType = int]
-            $licenceDetails = $this->getLicenceUsage($title->productCode, $user->id, $account->id, $productDetails['architectureVersion']);
+            $licenceDetails = $this->getLicenceUsage($title->productCode, $user->userID, $account->id, $productDetails['architectureVersion']);
             if (!$licenceDetails['userHasLicence']) {
                 // 2. the licence is 'token' and this user does not already have a licence
                 if ($title->licenceType == 'token')
@@ -194,13 +176,53 @@ class apiService extends AbstractService {
                 "icon" => $productDetails['logoHref'],
                 "status" => $status);
         }
+        return $links;
 
-        // Create an authentication token for this user
-        $payload = array("userId" => $user->id, "prefix" => $account->prefix, "rootId" => $account->id, "groupId" => $group->id);
-        $token = $this->authenticationCops->createToken($payload);
+    }
+    /**
+     * Get a valid user if you can
+     * TODO Cope with any identifier - though you might not know the account
+     *  IF you do not know the root you can get the loginOption, or just assume it is email
+     */
+    public function getUser($email, $password) {
+        $stubUser = new User();
+        $stubUser->email = $email;
+        $user = $this->manageableOps->getUserByKey($stubUser, 0, User::LOGIN_BY_EMAIL);
 
-        return array('user' => $user, 'links' => $links, 'account' => $account, 'group' => $group, 'authentication' => $token);
+        if ($user == false)
+            // It is important to give no clue if the email or password was wrong. Just the combination.
+            throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginKeyField" => 'email'));
 
+        // TODO usertype, other blocks
+        if (!$this->loginCops->verifyPassword($password, $user->password, $email)) {
+            throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => User::LOGIN_BY_EMAIL, "loginKeyField" => 'email'));
+        }
+
+        // User validation
+        $dateStampNow = AbstractService::getNow();
+        $dateNow = $dateStampNow->format('Y-m-d H:i:s');
+        if (!is_null($user->expiryDate) && $user->expiryDate < $dateNow)
+            throw $this->copyOps->getExceptionForId("errorUserExpired", array("expiryDate" => $user->expiryDate));
+
+        return $user;
+    }
+    /*
+     * Login checks the user, account, hidden content, creates a session and secures a licence
+     */
+    public function login($login, $password, $productCode, $rootId = null, $apiToken = null) {
+        // m#316 Catch no such user if apiToken in play
+        try {
+            return $this->loginCops->login($login, $password, $productCode, $rootId);
+        } catch (Exception $e) {
+            if ($e->getCode() == $this->copyOps->getCodeForId("errorNoSuchUser") && isset($apiToken)) {
+                $payload = $getUserDetailsFromToken($apiToken);
+                $user = $this->addApiUser($account, $login, $loginOption, $dbPassword, $productCode);
+                if ($user)
+                    return $this->loginCops->login($login, $password, $productCode, $rootId);
+            } else {
+                throw $e;
+            }
+        }
     }
 
     public function getLicenceUsageWrapper($token, $productCode) {
@@ -274,15 +296,18 @@ class apiService extends AbstractService {
     }
 
     // Checking if an email has already been used
-    public function checkEmail($email) {
-        return $this->manageableOps->getUsersByEmail($email);
+    public function getEmailStatus($email) {
+        return $this->manageableOps->getEmailStatus($email);
     }
 
     // Checking if a purchased token has already been used
     public function getTokenStatus($serial) {
+        //$rc = $this->getAppVersion();
         return $this->subscriptionCops->getTokenStatus($serial);
     }
-
+    public function getToken($serial) {
+        return $this->subscriptionCops->getToken($serial);
+    }
     /*
      * Generate tokens to be given to users for later activation
      *
@@ -306,36 +331,75 @@ class apiService extends AbstractService {
     public function activateToken($serial, $email, $name, $password) {
 
         // Decode the token
-        $token = $this->subscriptionCops->getToken($serial);
-        if (!is_null($token->activationDate))
-            throw new Exception("Token already used by another person");
+        $rc = $this->subscriptionCops->getTokenStatus($serial);
+        switch ($rc['status']) {
+            case 'used':
+                throw new Exception("Token already used by another person", 108);
+                break;
+            case 'expired':
+                throw new Exception("Token has expired", 108);
+                break;
+            case 'ok':
+                $token = $this->subscriptionCops->getToken($serial);
+                break;
+            case 'invalid':
+            default:
+                throw new Exception("Invalid token", 108);
+        }
 
         // If the email is not unique, assume that they are trying to add the token to that existing user's account
         $existingUsers = $this->manageableOps->getUsersByEmail($email);
         if (count($existingUsers) > 1) {
             throw new Exception("Email has aleady been used");
         } elseif (count($existingUsers) == 1) {
-            // Get the existing user and check the password
-            $rc = $this->signIn($email, $password);
-            $user = $rc['user'];
+            // Have we got the right password for this user?
+            $user = $existingUsers[0];
+            $rc = $this->loginCops->verifyPassword($password, $user->password);
+            if ($rc)
+                $this->copyOps->getExceptionForId('errorWrongPassword');
+            // TODO Is this user in the expected group/root?
         } else {
             // Add a new user first to the group/root specified in the token
-            $user = $this->addNewUser($email, $name, $password, $token->groupId, $token->rootId);
+            $user = $this->addUser($email, $name, $password, $token->rootId, $token->groupId);
         }
 
         // Finger the token
-        $rc = $this->subscriptionCops->updateToken($token, $email, $user->id);
+        $rc = $this->subscriptionCops->updateToken($token, $email, $user->userID);
 
         // Allocate the licence
         // TODO This does not check if this user ALREADY has a licence for this title
-        $session = new Session();
+        // If they do, then activating token should add [duration] to the existing licence end date
+        $session = new SessionTrack();
         $session->sessionId = 0;
-        $session->userId = $user->id;
+        $session->userId = $user->userID;
         $session->rootId = $token->rootId;
         $session->productCode = $token->productCode;
         // TODO for non-Couloir titles too please
         $rc = $this->licenceCops->acquireCouloirLicenceSlot($session);
 
+    }
+
+    // Create a user from a token - this would be the call from Couloir self registration screen
+    public function addUserFromToken($token, $loginObj) {
+        $payload = $this->authenticationCops->getPayloadFromToken($token);
+        //$productCode = isset($payload->productCode) ? $payload->productCode : null;
+        $rootId = isset($payload->rootId) ? $payload->rootId : null;
+        $groupId = isset($payload->groupId) ? $payload->groupId : null;
+        if (!$rootId) {
+            throw $this->copyOps->getExceptionForId("errorNoAccountFound");
+        }
+
+        $user = $this->loginCops->addUser($rootId, $groupId, $loginObj);
+
+    }
+    // Create a user from plain information - this would be the call from activateToken
+    public function addUser($email, $name, $password, $rootId, $groupId) {
+        // TODO This assumes loginOption is email and you also pass name
+        $loginObj = Array();
+        $loginObj["login"] = $email;
+        $loginObj["name"] = $name;
+        $loginObj["password"] = $password;
+        return $this->loginCops->addUser($rootId, $groupId, $loginObj);
     }
 
     // Utility functions

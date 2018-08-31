@@ -26,7 +26,6 @@ class LicenceCops {
         $this->manageableOps = new ManageableOps($db);
         $this->accountCops = new AccountCops($db);
         $this->contentOps = new ContentOps($db);
-        $this->loginCops = new LoginCops($db);
     }
 
     /**
@@ -77,12 +76,12 @@ class LicenceCops {
 
         }
         // sss#192 Check the instance id - does it still match the sign in one?
-        if ($userId > 0) {
-            $instanceId = $this->loginCops->getInstanceId($userId, $productCode);
-            if ($sessionId != $instanceId) {
-                return ["hasLicenseSlot" => false];
-            }
-        }
+        //if ($userId > 0) {
+        //    $instanceId = $this->loginCops->getInstanceId($userId, $productCode);
+        //    if ($sessionId != $instanceId) {
+        //        return ["hasLicenseSlot" => false];
+        //    }
+        //}
 
         return ["hasLicenseSlot" => true, "reconnectionWindow" => $reconnectionWindow, "inactivityWindow" => $inactivityWindow];
     }
@@ -774,7 +773,7 @@ EOD;
 
         $dateStampNow = AbstractService::getNow();
         $dateNow = $dateStampNow->format('Y-m-d H:i:s');
-        $bindingParams = array($ip, $dateNow, $rootID, $user->id, $productCode, $reasonCode);
+        $bindingParams = array($ip, $dateNow, $rootID, $user->userID, $productCode, $reasonCode);
         $sql = <<<EOD
 			INSERT INTO T_Failsession (F_UserIP, F_StartTime, F_RootID, F_UserID, F_ProductCode, F_ReasonCode)
 			VALUES (?, ?, ?, ?, ?, ?)

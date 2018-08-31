@@ -9,9 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
 $json = json_decode(file_get_contents('php://input'));
 //$json = json_decode('{"command":"generateTokens","quantity":2,"productCode":68,"rootId":163,"groupId":74548,"duration":90,"productVersion":"FV"}');
-//$json = json_decode('{"command":"checkEmail","email":"adrian@clarity"}');
-//$json = json_decode('{"command":"activateToken", "token":"9853-5602-0024-0", "email":"adrian@clarity", "name":"Peanuts", "password":"28e05e0207c6706531b2f60a6038ae8b"}');
-//$json = json_decode('{"command":"getTokenStatus", "token":"3208-5356-0209-7"}');
+//$json = json_decode('{"command":"addUser", "email":"panther@clarity", "name":"Panther", "password":"efe25101077219ef18ab80fc95bb31ca", "rootId":163, "groupId":74548}');
+//$json = json_decode('{"command":"activateToken","email":"leopard@clarity", "password":"123456789","name":"leopard","token":"7853-5602-0801-9","appVersion":"1"}');
+//$json = json_decode('{"appVersion":"1.3.2","command":"getTokenStatus", "token":"3208-5356-0209-7"}');
 //$json = json_decode('{"command":"getLicenceUsage","productCode":50,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzU1MjAzMDMsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.5taJkI1FVQv7lOLnrbfw7T1ow68ev4A-sfnpAI6MAAc"}');
 //$json = json_decode('{"command":"signin","email":"adrian@clarity","password":"28e05e0207c6706531b2f60a6038ae8b"}');
 //$json = json_decode('{"command":"getResult","productCode":63,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzU1MjAzMDMsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.5taJkI1FVQv7lOLnrbfw7T1ow68ev4A-sfnpAI6MAAc"}');
@@ -62,10 +62,13 @@ try {
 
 } catch (Exception $e) {
     switch ($e->getCode()) {
+        // General errors that you haven't added yet!
+        case 101:
         // Token errors
         case 103:
         case 106:
         case 107:
+        case 108:
         // ctp#75
         case 200:
         case 201:
@@ -130,10 +133,25 @@ function router($json) {
             if (!isset($json->token))
                 throw new Exception("Request is missing key information");
             return getTokenStatus($json->token);
-        case "checkemail":
+        case "gettoken":
+            if (!isset($json->token))
+                throw new Exception("Request is missing key information");
+            return getToken($json->token);
+        case "getemailstatus":
             if (!isset($json->email))
                 throw new Exception("Request is missing key information");
-            return checkEmail($json->email);
+            return getEmailStatus($json->email);
+        case "adduser":
+            if (!isset($json->email) || !isset($json->password) || !isset($json->rootId))
+                throw new Exception("Request is missing key information");
+            if (!isset($json->name)) $json->name = null;
+            if (!isset($json->groupId)) $json->groupId = null;
+            if (!isset($json->expiryDate)) $json->expiryDate = null;
+            return addUser($json->email, $json->name, $json->password, $json->rootId, $json->groupId);
+        case "getuser":
+            if (!isset($json->email))
+                throw new Exception("Request is missing key information");
+            return getUser($json->email, $json->password);
         case "signin":
             if (!isset($json->email) || !isset($json->password))
                 throw new Exception("Request is missing key information");
@@ -157,19 +175,38 @@ function router($json) {
     }
 }
 
-function signIn($email, $password) {
+// This is sign in to a portal
+function signIn($login, $password) {
     global $service;
-    return $service->signIn($service->cleanInputs($email, 'email'),
+    return $service->signIn($service->cleanInputs($login),
                             $service->cleanInputs($password, 'password'));
 }
-function checkEmail($email) {
+// This is sign in to a title
+function login($login, $password, $productCode, $rootId, $platform = null, $apiToken = null) {
     global $service;
-    return $service->checkEmail($service->cleanInputs($email, 'email'));
+    return $service->login($login, $password, $productCode, $rootId, $platform, $apiToken);
+}
+function getEmailStatus($email) {
+    global $service;
+    return $service->getEmailStatus($service->cleanInputs($email, 'email'));
+}
+function getUser($email, $password) {
+    global $service;
+    return $service->getUser($service->cleanInputs($email),
+                             $service->cleanInputs($password, 'password'));
+}
+function addUser($email, $name, $password, $rootId, $groupId) {
+    global $service;
+    return $service->addUser($email, $name, $password, $rootId, $groupId);
 }
 // This is tokens that customers purchase to subscribe to ClarityEnglish
 function getTokenStatus($token) {
     global $service;
     return $service->getTokenStatus($service->cleanInputs($token, 'token'));
+}
+function getToken($token) {
+    global $service;
+    return $service->getToken($service->cleanInputs($token, 'token'));
 }
 function generateTokens($quantity, $productCode, $rootId, $groupId, $duration, $productVersion, $expiryDate){
     global $service;
