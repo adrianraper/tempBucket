@@ -333,14 +333,7 @@ SQL;
 
     // gh#1230 To create a new licence if the user has an existing one
     public function createNewStyleLicence($userId, $rootId, $productCode, $licence, $earliestDate) {
-
-        // Extra check to make sure that this user doesn't have a new licence already for this title
-        if (!$this->licenceOps->checkExistingLicence($userId, $productCode, $licence)) {
-            $this->licenceOps->convertLicenceSlot($userId, $productCode, $rootId, $licence, $earliestDate);
-            AbstractService::$log->info("add a licence for " . $userId . " to " . $productCode);
-            return true;
-        }
-        return false;
+        return createCouloirLicence($userId, $rootId, $productCode, $licence, $earliestDate);
     }
 
     // sss#314 To create a Couloir licence if the user has an existing one

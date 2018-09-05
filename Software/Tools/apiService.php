@@ -402,6 +402,48 @@ class apiService extends AbstractService {
         return $this->loginCops->addUser($rootId, $groupId, $loginObj);
     }
 
+    // To count licences using old and new methods
+    // Assume that if you are a Couloir productCode, and are most interested in counting
+    // the old Bento version
+    public function countLicences($rootId, $newProductCode) {
+        $sessionCount = $bentoCount = $couloirCount = 0;
+        $oldProductCode = $this->licenceCops->getOldProductCode($newProductCode);
+        if ($oldProductCode)
+            $oldLicence = $this->accountCops->getLicenceDetails($rootId, $oldProductCode);
+        $newLicence = $this->accountCops->getLicenceDetails($rootId, $newProductCode);
+
+        // Assuming you found an old licence
+        if (isset($oldLicence) && $oldLicence) {
+            if (($oldLicence->licenceType == Title::LICENCE_TYPE_TT) || ($oldLicence->licenceType == Title::LICENCE_TYPE_LT)) {
+                $sessionCount = $this->licenceCops->countOrchidLicences($oldProductCode, $rootId, $oldLicence);
+                $bentoCount = $this->licenceCops->countBentoLicences($oldProductCode, $rootId, $oldLicence);
+            }
+        }
+        // Assuming you found a new licence
+        if ($newLicence) {
+            if (($newLicence->licenceType == Title::LICENCE_TYPE_TT) || ($newLicence->licenceType == Title::LICENCE_TYPE_LT)) {
+                $couloirCount = $this->licenceCops->countUsedLicences($newProductCode, $rootId, $newLicence);
+            }
+        }
+        return array("oldProductCode" => $oldProductCode, "newProductCode" => $newProductCode, "sessionCount" => $sessionCount, "bentoCount" => $bentoCount, "couloirCount" => $couloirCount, "licenceControlDate" => $oldLicence->licenceControlStartDate);
+    }
+    // To convert licences from Bento to Couloir so that a product update is smooth
+    public function convertLicences($rootId, $newProductCode) {
+        $oldProductCode = $this->licenceCops->getOldProductCode($newProductCode);
+        if (!$oldProductCode)
+            $oldProductCode = $newProductCode;
+
+        // The old and new licence must both be LT
+        $oldLicence = $this->accountCops->getLicenceDetails($rootId, $oldProductCode);
+        $newLicence = $this->accountCops->getLicenceDetails($rootId, $newProductCode);
+        if ((($oldLicence->licenceType == Title::LICENCE_TYPE_TT) || ($oldLicence->licenceType == Title::LICENCE_TYPE_LT)) &&
+            (($newLicence->licenceType == Title::LICENCE_TYPE_TT) || ($newLicence->licenceType == Title::LICENCE_TYPE_LT))) {
+            $newLicence->findLicenceClearanceDate();
+            return $this->licenceCops->convertSessionsIntoCouloirLicences($rootId, $oldProductCode, $newProductCode, $newLicence);
+        }
+        throw new Exception('Licence is AA so nothing to convert');
+    }
+
     // Utility functions
     public function cleanInputs($input, $inputType='generic') {
 

@@ -4,7 +4,8 @@
  * Implements sss#61, sss#82
  */
 
-class LicenceCops {
+class LicenceCops
+{
 
     var $db;
 
@@ -225,6 +226,7 @@ class LicenceCops {
 
         return ["hasLicenseSlot" => true, "reconnectionWindow" => $reconnectionWindow, "inactivityWindow" => $inactivityWindow];
     }
+
     /**
      * Grab a licence slot
      * gh#1230
@@ -257,7 +259,7 @@ EOD;
                 }
                 */
                 // The licence will end in 2 minutes
-                $licenceEndDate = $expungeDateStamp->modify('+'.(LicenceCops::AA_LICENCE_EXTENSION).' secs')->format('Y-m-d H:i:s');
+                $licenceEndDate = $expungeDateStamp->modify('+' . (LicenceCops::AA_LICENCE_EXTENSION) . ' secs')->format('Y-m-d H:i:s');
                 break;
 
             case Title::LICENCE_TYPE_SINGLE:
@@ -266,7 +268,7 @@ EOD;
             case Title::LICENCE_TYPE_TT:
                 $keyId = $userId;
                 // The licence will end 1 day less than a year (or other licence clearance frequency)
-                $expungeDateStamp->modify('+'.$licence->licenceClearanceFrequency); // one licence period in the future
+                $expungeDateStamp->modify('+' . $licence->licenceClearanceFrequency); // one licence period in the future
                 $licenceEndDate = $expungeDateStamp->modify('-1 day')->format('Y-m-d 23:59:59'); // minus one day
                 break;
         }
@@ -320,6 +322,7 @@ EOD;
         }
         return $count;
     }
+
     public function countBentoLicences($productCode, $rootId, $licence) {
         // Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
         // v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
@@ -397,7 +400,6 @@ EOD;
         }
 
         return $licencesUsed;
-
     }
 
     // Copied from LicenceOps so that this class can check up on old licences
@@ -425,6 +427,7 @@ EOD;
                 return true;
         }
     }
+
     public function checkBentoLicence($productCode, $userId) {
         $dateStamp = AbstractService::getNow();
         $dateNow = $dateStamp->format('Y-m-d H:i:s');
@@ -497,6 +500,7 @@ EOD;
 
         return false;
     }
+
     /**
      * Count how many licences are currently in use
      * Although this is designed to count AA licences, if the account was switched from LT to AA
@@ -540,9 +544,9 @@ EOD;
         // gh#1211 And the other old and new combinations
         $oldProductCode = $this->getOldProductCode($productCode);
         if ($oldProductCode) {
-            $sql.= " AND s.F_ProductCode IN (?, $oldProductCode)";
+            $sql .= " AND s.F_ProductCode IN (?, $oldProductCode)";
         } else {
-            $sql.= " AND s.F_ProductCode = ?";
+            $sql .= " AND s.F_ProductCode = ?";
         }
         $bindingParams = array($rootId, $earliestDate, $productCode);
         $rs = $this->db->Execute($sql, $bindingParams);
@@ -583,19 +587,19 @@ EOD;
         // gh#1211 And the other old and new combinations
         $oldProductCode = $this->getOldProductCode($productCode);
         if ($oldProductCode) {
-            $sql.= " AND l.F_ProductCode IN (?, $oldProductCode)";
+            $sql .= " AND l.F_ProductCode IN (?, $oldProductCode)";
         } else {
-            $sql.= " AND l.F_ProductCode = ?";
+            $sql .= " AND l.F_ProductCode = ?";
         }
 
-        if (stristr($rootId,',')!==FALSE) {
-            $sql.= " AND l.F_RootID in ($rootId)";
-        } else if ($rootId=='*') {
+        if (stristr($rootId, ',') !== FALSE) {
+            $sql .= " AND l.F_RootID in ($rootId)";
+        } else if ($rootId == '*') {
             // check all roots in that case - just for special cases, usually self-hosting
             // Note that leaving the root empty would include teachers
-            $sql.= " AND l.F_RootID > 0";
+            $sql .= " AND l.F_RootID > 0";
         } else {
-            $sql.= " AND l.F_RootID = $rootId";
+            $sql .= " AND l.F_RootID = $rootId";
         }
         $bindingParams = array($licence->licenceControlStartDate, $licence->licenceType, $productCode);
         $rs = $this->db->Execute($sql, $bindingParams);
@@ -636,19 +640,19 @@ EOD;
         // gh#1211 And the other old and new combinations
         $oldProductCode = $this->getOldProductCode($productCode);
         if ($oldProductCode) {
-            $sql.= " AND l.F_ProductCode IN (?, $oldProductCode)";
+            $sql .= " AND l.F_ProductCode IN (?, $oldProductCode)";
         } else {
-            $sql.= " AND l.F_ProductCode = ?";
+            $sql .= " AND l.F_ProductCode = ?";
         }
 
-        if (stristr($rootID,',')!==FALSE) {
-            $sql.= " AND l.F_RootID in ($rootID)";
-        } else if ($rootID=='*') {
+        if (stristr($rootID, ',') !== FALSE) {
+            $sql .= " AND l.F_RootID in ($rootID)";
+        } else if ($rootID == '*') {
             // check all roots in that case - just for special cases, usually self-hosting
             // Note that leaving the root empty would include teachers
-            $sql.= " AND l.F_RootID > 0";
+            $sql .= " AND l.F_RootID > 0";
         } else {
-            $sql.= " AND l.F_RootID = $rootID";
+            $sql .= " AND l.F_RootID = $rootID";
         }
         $bindingParams = array($productCode);
         $rs = $this->db->Execute($sql, $bindingParams);
@@ -668,13 +672,13 @@ EOD;
      * It is only relevant for AA licences that constantly check the date
      */
     // gh#1342
-    function extendLicence($sessionId, $timestamp=null) {
+    function extendLicence($sessionId, $timestamp = null) {
         $extendBy = LicenceCops::AA_LICENCE_EXTENSION;
 
         // gh#815 sss#161 You might be updating based on an activity message from a little while ago that just arrived
-        $dateStampNow = is_null($timestamp) ? AbstractService::getNow() : new DateTime('@'.intval($timestamp), new DateTimeZone(TIMEZONE));
+        $dateStampNow = is_null($timestamp) ? AbstractService::getNow() : new DateTime('@' . intval($timestamp), new DateTimeZone(TIMEZONE));
         // Set an extra x seconds on the licence
-        $dateNow = $dateStampNow->add(new DateInterval('PT'.$extendBy.'S'))->format('Y-m-d H:i:s');
+        $dateNow = $dateStampNow->add(new DateInterval('PT' . $extendBy . 'S'))->format('Y-m-d H:i:s');
 
         // sss#161 Check first that this IS an AA licence
         // TODO I think this is unnecessary, we won't call it for LT
@@ -711,6 +715,7 @@ EOD;
         $licence = $this->accountCops->getLicenceDetails($rootId, $productCode);
         return $this->dropLicenceSlot($productCode, $rootId, $sessionId, $userId, $licence, $timestamp);
     }
+
     /**
      * Drop a licence slot - this clears the record from the licence table
      * and closes the session tracking.
@@ -883,16 +888,16 @@ EOD;
         $fromDateStamp = strtotime($title->licenceClearanceDate);
 
         // You mustn't have a negative frequency otherwise the loop will be infinite
-        if (stristr($title->licenceClearanceFrequency, '-')!==FALSE)
-            $title->licenceClearanceFrequency = str_replace('-', '', $title-> licenceClearanceFrequency);
+        if (stristr($title->licenceClearanceFrequency, '-') !== FALSE)
+            $title->licenceClearanceFrequency = str_replace('-', '', $title->licenceClearanceFrequency);
         // Check that the frequency is valid
         if (!strtotime($title->licenceClearanceFrequency, $fromDateStamp) > 0)
             $title->licenceClearanceFrequency = '1 year';
 
         // Just in case we still have invalid data
         //NetDebug::trace("fromDateStamp=".$fromDateStamp.' which is '.strftime('%Y-%m-%d 00:00:00',$fromDateStamp));
-        $safetyCount=0;
-        while ($safetyCount<99 && strtotime($title->licenceClearanceFrequency, $fromDateStamp) < time()) {
+        $safetyCount = 0;
+        while ($safetyCount < 99 && strtotime($title->licenceClearanceFrequency, $fromDateStamp) < time()) {
             $fromDateStamp = strtotime($title->licenceClearanceFrequency, $fromDateStamp);
             $safetyCount++;
         }
@@ -915,17 +920,17 @@ EOD;
             case 56:
                 return 33;
                 break;
-            case 60:
-                return 49;
-                break;
-            case 58:
-                return 50;
-                break;
             case 57:
                 return 39;
                 break;
             case 62:
                 return 10;
+                break;
+            case 66:
+                return 49;
+                break;
+            case 68:
+                return 55;
                 break;
             case 72:
                 return 52;
@@ -933,8 +938,98 @@ EOD;
             case 73:
                 return 53;
                 break;
+            case 74:
+                return 61;
+                break;
+            case 75:
+                return 56;
+                break;
         }
         return false;
+    }
+
+    /**
+     * Read every session for this title in this root.
+     * For each user go through the sessions.
+     * Add the first as a licence record. Skip to a year later and add the next as a licence record. Loop.
+     * TODO if this is a big account, it might be better to first get all unique users, then get each of their records one by one.
+     * It would be a lot slower, but might avoid eating too much memory?
+     */
+    public function convertSessionsIntoCouloirLicences($rootId, $oldProductCode, $newProductCode, $licence) {
+        $sql = <<<EOD
+            SELECT s.F_UserID as userId, s.F_StartDateStamp as sessionDate FROM T_Session s
+			WHERE s.F_RootID = ?
+			AND s.F_Duration > 15
+            AND s.F_UserID > 0
+            AND s.F_ProductCode = ?
+            order by s.F_UserID, s.F_StartDateStamp asc
+EOD;
+        $bindingParams = array($rootId, $oldProductCode);
+        $rs = $this->db->Execute($sql, $bindingParams);
+
+        if ($rs->RecordCount() <= 0)
+            return array();
+
+        // Go through these records for each user
+        $lastUser = $blockedUser = $licenceCount = 0;
+        $licenceEndDate = new DateTime();
+        $blockedUsers = array();
+        while ($r = $rs->FetchNextObj()) {
+            $thisUser = $r->userId;
+            if ($thisUser != $lastUser) {
+                // This is the first record for this user
+                $lastUser = $thisUser;
+
+                // First check that there are no records for this user in couloir licence holders
+                $licences = $this->existCouloirLicences($thisUser, $newProductCode);
+                if ($licences) {
+                    $blockedUsers[] = $blockedUser = $thisUser;
+                    continue;
+                }
+                $licenceStartDate = $r->sessionDate;
+                $startDate = DateTime::createFromFormat('Y-m-d H:i:s', $licenceStartDate);
+                $startDate->add(DateInterval::createFromDateString($licence->licenceClearanceFrequency))->format('Y-m-d');
+                $licenceEndDate = $startDate->sub(DateInterval::createFromDateString('1 day'))->format('Y-m-d 23:59:59');
+                $this->addCouloirLicence($thisUser, $rootId, $newProductCode, $licenceStartDate, $licenceEndDate, $licence);
+                $licenceCount++;
+            } else {
+                if ($thisUser == $blockedUser)
+                    continue;
+
+                // This is another record for the same user, is it more than a year after the first?
+                if ($r->sessionDate > $licenceEndDate) {
+                    // Yes it is, so write another licence record
+                    $licenceStartDate = $r->sessionDate;
+                    $startDate = DateTime::createFromFormat('Y-m-d H:i:s', $licenceStartDate);
+                    $startDate->add(DateInterval::createFromDateString($licence->licenceClearanceFrequency))->format('Y-m-d');
+                    $licenceEndDate = $startDate->sub(DateInterval::createFromDateString('1 day'))->format('Y-m-d 23:59:59');
+                    $this->addCouloirLicence($thisUser, $rootId, $newProductCode, $licenceStartDate, $licenceEndDate, $licence);
+                    $licenceCount++;
+                }
+            }
+        }
+        return array('licencesAdded' => $licenceCount, 'productCode' => $newProductCode, 'rootId' => $rootId, 'blockedusers' => $blockedUsers);
+    }
+    private function addCouloirLicence ($thisUser, $rootId, $productCode, $licenceStartDate, $licenceEndDate, $licence) {
+        $sql = <<<EOD
+        INSERT INTO T_CouloirLicenceHolders (F_KeyID, F_RootID, F_ProductCode, F_StartDateStamp, F_EndDateStamp, F_LicenceType) VALUES
+        ($thisUser, $rootId, $productCode, '$licenceStartDate', '$licenceEndDate', $licence->licenceType)
+EOD;
+        $rs = $this->db->Execute($sql);
+        if (!$rs)
+            throw $this->copyOps->getExceptionForId("errorDatabaseWriting");
+    }
+
+    private function existCouloirLicences($userId, $productCode) {
+        $sql = <<<EOD
+            SELECT * FROM T_CouloirLicenceHolders l
+			WHERE l.F_KeyID = ?
+            AND l.F_ProductCode = ?
+EOD;
+        $bindingParams = array($userId, $productCode);
+        $rs = $this->db->Execute($sql, $bindingParams);
+
+        return ($rs->RecordCount() > 0);
     }
 
 }
