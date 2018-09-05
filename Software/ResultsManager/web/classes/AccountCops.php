@@ -441,10 +441,12 @@ EOD;
 				AND F_ProductCode=?
 EOD;
         $rs = $this->db->Execute($sql, array($rootId, $productCode));
-        if ($rs) {
+        if ($rs && $rs->RecordCount() == 1) {
             $licence = new Licence();
             $licence->fromDbRecordset($rs->FetchNextObj());
             return $licence;
+        } else {
+            $this->copyOps->getExceptionForId('errorNoProductCodeInRoot');
         }
     }
     /*

@@ -8,6 +8,7 @@ header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
 $json = json_decode(file_get_contents('php://input'));
+//$json = json_decode('{"command":"countLicences", "rootId":163, "productCode":72}');
 //$json = json_decode('{"command":"generateTokens","quantity":2,"productCode":68,"rootId":163,"groupId":74548,"duration":90,"productVersion":"FV"}');
 //$json = json_decode('{"command":"addUser", "email":"panther@clarity", "name":"Panther", "password":"efe25101077219ef18ab80fc95bb31ca", "rootId":163, "groupId":74548}');
 //$json = json_decode('{"command":"activateToken","email":"leopard@clarity", "password":"123456789","name":"leopard","token":"7853-5602-0801-9","appVersion":"1"}');
@@ -162,6 +163,15 @@ function router($json) {
         case "getresult":
             if (!isset($json->productCode)) $json->productCode = null;
             return getResult($json->token, $json->productCode);
+        case "convertlicences":
+            if (!isset($json->rootId) || !isset($json->productCode))
+                throw new Exception("Request is missing key information");
+            return convertLicences($json->rootId, $json->productCode);
+        case "countlicences":
+            if (!isset($json->rootId))
+                throw new Exception("Request is missing key information");
+            if (!isset($json->productCode)) $json->productCode = null;
+            return countLicences($json->rootId, $json->productCode);
         case "createjwt":
             if (!isset($json->payload)) $json->payload = null;
             if (!isset($json->key)) $json->key = null;
@@ -227,6 +237,14 @@ function getLicenceUsage($token, $productCode=null) {
 function getResult($token, $productCode=null) {
     global $service;
     return $service->getResult($token, $productCode);
+}
+function convertLicences($rootId, $productCode) {
+    global $service;
+    return $service->convertLicences($rootId, $productCode);
+}
+function countLicences($rootId, $productCode) {
+    global $service;
+    return $service->countLicences($rootId, $productCode);
 }
 function createJWT($payload, $key) {
     global $service;
