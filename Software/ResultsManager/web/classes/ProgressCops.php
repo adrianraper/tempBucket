@@ -105,6 +105,9 @@ EOD;
 	
 	/**
 	 * This method gets all users' progress records
+     * m#446 If you are working with Road to IELTS or other title that doesn't compare at unit level
+     * just pretend that the node is a unit when you write the record
+     * TODO write the code to get everyone's summary by SET in R2I
 	 */
 	function getEveryoneUnitSummary($productCode, $rootID=null) {
 		// For want of anywhere better to put it for the moment, this is the SQL to populate the cache table
@@ -196,7 +199,7 @@ SQL;
     /**
      * Get summary of progress at the unit level
      * Cap durations of each exercise at one hour (3600 seconds)
-     */
+     * m#446 Refactored into getNodeProgress
     public function getUnitProgress($session) {
         // sss#312 ignore non-marked exercises from the average score
         $sql = <<<SQL
@@ -215,6 +218,97 @@ SQL;
         $rs = $this->db->GetArray($sql, $bindingParams);
 
         return $rs;
+    }
+     */
+    /**
+     * m#446
+     * Get sum and average for one user grouped at any node level
+     */
+    public function getNodeProgress($session) {
+        // What level of hierarchy are we grouping at for this title?
+        $level = $this->getNodeLevel($session->productCode)['level'];
+        $sql = <<<SQL
+			SELECT *
+			FROM T_Score
+			WHERE F_ProductCode=?
+			AND F_UserID=?
+            ORDER BY F_ExerciseID
+SQL;
+
+        $bindingParams = array($session->productCode, $session->userId);
+        $rs = $this->db->GetArray($sql, $bindingParams);
+
+        // Now group by the node you want and sum and average
+        $build = $buildRow = array();
+        $lastNode = false;
+        foreach ($rs as $r) {
+            $thisNode = $this->parseNode($r['F_ExerciseID'], $level);
+            // Initialise if this is the first of a new node group
+            if ($thisNode != $lastNode) {
+                // If there is something to write out
+                if ($lastNode) {
+                    $buildRow['averageScore'] = ($buildRow['scoredExercises'] > 0) ? round($buildRow['totalScore'] / $buildRow['scoredExercises']) : 0;
+                    $build[] = $buildRow;
+                }
+                $lastNode = $thisNode;
+                $buildRow = array('nodeId' => $thisNode, 'scoredExercises' => 0, 'exerciseCount' => 0, 'duration' => 0, 'totalScore' => 0);
+            }
+            $buildRow['duration']+= ($r['F_Duration']>3600) ? 3600 : $r['F_Duration'];
+            $buildRow['exerciseCount']++;
+            if ($r['F_Score']>=0) {
+                $buildRow['scoredExercises']++;
+                $buildRow['totalScore']+= $r['F_Score'];
+            }
+        }
+        // write out the final row
+        $buildRow['averageScore'] = ($buildRow['scoredExercises'] > 0) ? round($buildRow['totalScore'] / $buildRow['scoredExercises']) : 0;
+        $build[] = $buildRow;
+        return $build;
+    }
+
+    public function getNodeLevel($pc) {
+        switch ($pc) {
+            case '72':
+            case '73':
+                $caption = 'set:';
+                $level = 3;
+                break;
+            case '68':
+            default:
+                $caption = 'unit:';
+                $level = 2;
+                break;
+        }
+        return array("caption" => $caption, "level" => $level);
+    }
+
+    // Given an exercise id, what course/unit/set/xxx is it in?
+    private function parseNode($exId, $level) {
+        // id is in format [publication year,4][productCode,3][course,2][unit,2][set,2][exercise,2]
+        // But you might not have 'set'
+        $publicationYear = substr($exId,0,4);
+        $productCode = substr($exId,4,3);
+        $course = substr($exId,7,2);
+        $unit = substr($exId,9,2);
+        $set = (strlen($exId) > 13) ? substr($exId,11,2) : null;
+        $exercise = substr($exId, -2);
+
+        // How long should the return id be?
+        // TODO for now assume that only set is optional, but later titles might need more flexibility
+        //$idLength = ($set) ? 15 : 13;
+        $idLength = strlen($exId);
+
+        switch ($level) {
+            case 1:
+                return str_pad($publicationYear.$productCode.$course, $idLength, '0', STR_PAD_RIGHT);
+                break;
+            case 2:
+                return str_pad($publicationYear.$productCode.$course.$unit, $idLength, '0', STR_PAD_RIGHT);
+                break;
+            case 3:
+                return str_pad($publicationYear.$productCode.$course.$unit.$set, $idLength, '0', STR_PAD_RIGHT);
+                break;
+        }
     }
 
     /**

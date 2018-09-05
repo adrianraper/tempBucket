@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
 $json = json_decode(file_get_contents('php://input'));
 $json_error = json_last_error();
-//$json = json_decode('{request}');
+//$json = json_decode('{"command":"xxx", "appVersion":"2.0.0"}');
 /**
  * Pretend to pass variables for easier debugging
 $json = json_decode('{"appVersion":"1.3.2","command":"getLoginConfig","productCode":"66","apiToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmVmaXgiOiJDbGFyaXR5IiwibG9naW4iOiJuYXRoYW5AbmF2aXRhcy5jb20uYXUiLCJzdGFydE5vZGUiOiIyMDE4MDY4MDUwMTAwIiwiZW5hYmxlZE5vZGUiOiIyMDE4MDY4MDUwMDAwIiwiaXNzIjoiY2xhcml0eWVuZ2xpc2guY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.dUW5eYY27LV1jbyCHh41DJphWJlw2PIhIa4J987piek"}');
