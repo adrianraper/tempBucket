@@ -72,7 +72,7 @@
             <lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
             <lit name="errorVideoLoad" code="602">This URL isn't recognised as a compatible video source. Click 'share' under a YouTube video and copy the URL, something like http://youtu.be/oSn3i4vsGeY. Vimeo can be copied direct from the URL.</lit>
             <lit name="contentBlockedWarning" code="603">This device can't link to the content for this item. Please try to access the course from a computer browser.</lit>
-            <lit name="certificateBlocked" code="604">You need to complete {caption} to get a certificate. You have done {exercisesDone} out of {exercisesTotal} and your average score is {averageScore}%. Go to Coverage to see what you need to do next.</lit>
+            <lit name="certificateBlocked" code="604">You need to complete {caption} to get a certificate. You have done {exercisesDone} out of {exercisesTotal} exercises and your average score is {averageScore}%. Go to Coverage to see what you need to do next.</lit>
 
             <lit name="errorSavingCourse" code="700">Error saving this course. Please contact support@clarityenglish.com. ({reason})</lit>
             <lit name="errorSecurity" code="701">Security error.</lit>
