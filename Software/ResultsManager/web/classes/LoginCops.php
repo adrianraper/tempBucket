@@ -412,8 +412,9 @@ EOD;
         }
         return $blocked;
     }
+    
     // Extracted from CouloirService
-    public function login($login, $password, $productCode, $rootId = null, $apiToken = null) {
+    public function login($login, $password, $productCode, $rootId = null, $apiToken = null, $platform = null) {
         // sss#229 If the productCode is a comma delimited string '52,53' you need to handle it here
         // Until we get to a situation (Road to IELTS) that requires it, just assume a single integer
         $productCode = intval($productCode);

@@ -390,15 +390,6 @@ function router($json) {
     // Save the version of the app that called us
     $service->setAppVersion((isset($json->appVersion)) ? $json->appVersion : '0.0.0');
 
-    // Just in case we are using the old SSS product code - will certainly be redundant by release date
-    if ((isset($json->productCode) && $json->productCode=='60')) {
-        throw new Exception("Using old SSS productCode=60");
-    }
-
-    $localDateTime = new DateTime();
-    $localTimestamp = $localDateTime->format('Y-m-d H:i:s');
-    //AbstractService::$debugLog->info("CTP ".$json->command." at ".$localTimestamp);
-
     switch ($json->command) {
         case "logout": return logout($json->token);
         case "login":
@@ -411,8 +402,8 @@ function router($json) {
             */
             if (!isset($json->login)) $json->login = null;
             if (!isset($json->password)) $json->password = null;
-            // ctp#428
-            if (!isset($json->platform)) $json->platform = '*not passed*';
+            // ctp#428 m#397
+            if (!isset($json->platform)) $json->platform = null;
             if (!isset($json->rootId)) $json->rootId = null;
             return login($json->login, $json->password, $json->productCode, $json->rootId, $json->apiToken, $json->platform);
         case "getLoginConfig":
@@ -480,7 +471,7 @@ function login($login, $password, $productCode, $rootId, $apiToken = null, $plat
     } catch (Exception $e) {
         // do nothing
     }
-    return $service->login($login, $password, $productCode, $rootId, $apiToken);
+    return $service->login($login, $password, $productCode, $rootId, $apiToken, $platform);
 }
 // sss#61 Return login option details for this account
 // Returns exception if no account found - 223 is an expected one

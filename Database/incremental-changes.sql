@@ -1894,7 +1894,9 @@ INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('73', 
 INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLocation`) VALUES ('72','EN','rti');
 INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLocation`) VALUES ('73','EN','rti');
 
+DROP TABLE IF EXISTS `T_Token`;
 CREATE TABLE `T_Token` (
+  `F_TokenID` int(10) NOT NULL AUTO_INCREMENT,
   `F_Serial` varchar(64) NOT NULL,
   `F_RootID` int(10) NOT NULL,
   `F_GroupID` int(10) DEFAULT NULL,
@@ -1907,6 +1909,7 @@ CREATE TABLE `T_Token` (
   `F_ActivationMethod` varchar(32) DEFAULT NULL,
   `F_Email` varchar(128) DEFAULT NULL,
   `F_UserID` int(10) DEFAULT NULL,
-  PRIMARY KEY (`F_Serial`),
-  KEY `Index_1` (`F_RootID`),
+  primary key `Index_1` (`F_TokenID`),
+  UNIQUE INDEX `Index_2` (`F_Serial`),
+  KEY `Index_3` (`F_RootID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

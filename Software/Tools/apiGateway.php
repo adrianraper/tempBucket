@@ -14,7 +14,7 @@ $json = json_decode(file_get_contents('php://input'));
 //$json = json_decode('{"command":"activateToken","email":"leopard@clarity", "password":"123456789","name":"leopard","token":"7853-5602-0801-9","appVersion":"1"}');
 //$json = json_decode('{"appVersion":"1.3.2","command":"getTokenStatus", "token":"3208-5356-0209-7"}');
 //$json = json_decode('{"command":"getLicenceUsage","productCode":50,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzU1MjAzMDMsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.5taJkI1FVQv7lOLnrbfw7T1ow68ev4A-sfnpAI6MAAc"}');
-//$json = json_decode('{"command":"signin","email":"adrian@clarity","password":"28e05e0207c6706531b2f60a6038ae8b"}');
+//$json = json_decode('{"command":"signin","email":"adrian@clarity", "password":"28e05e0207c6706531b2f60a6038ae8b"}');
 //$json = json_decode('{"command":"getResult","productCode":63,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzU1MjAzMDMsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.5taJkI1FVQv7lOLnrbfw7T1ow68ev4A-sfnpAI6MAAc"}');
 //$json = json_decode('{"command":"readJWT","token":"eyJ0e.eyJpc3.O9kQ-jX"}');
 /**
@@ -47,6 +47,9 @@ try {
         throw new Exception("Passed request not valid json");
     if (!$json)
         throw new Exception("Empty request");
+
+    if (isset($json->dbHost) &&  ($json->dbHost != $GLOBALS['dbHost']))
+        $service->changeDB($json->dbHost);
 
     $jsonResult = router($json);
     $jsonWrapped = array("success" => true, "details" => $jsonResult);
