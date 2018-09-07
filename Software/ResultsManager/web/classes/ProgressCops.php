@@ -41,6 +41,7 @@ class ProgressCops {
 	
 	/**
 	 * This method gets all users' progress records at the summary level
+     * m#446 This is no longer called by backend, but perhaps the BCEA dashboard does directly?
 	 */
 	function getEveryoneSummary($productCode, $country = 'Worldwide') {
 		// For want of anywhere better to put it for the moment, this is the SQL to populate the cache table
@@ -89,6 +90,7 @@ class ProgressCops {
 			    SELECT F_CourseID as id, MAX(F_DateStamp) as latest
 			    FROM T_ScoreCache
 			    WHERE F_ProductCode = ?
+    			AND F_UnitID is null
 			    AND F_Country = ?
 			    GROUP BY F_CourseID
 			) i ON sc.F_CourseID = i.id AND sc.F_DateStamp = i.latest
@@ -105,20 +107,14 @@ EOD;
 	
 	/**
 	 * This method gets all users' progress records
-     * m#446 If you are working with Road to IELTS or other title that doesn't compare at unit level
-     * just pretend that the node is a unit when you write the record
-     * TODO write the code to get everyone's summary by SET in R2I
-	 */
+    // For want of anywhere better to put it for the moment, this is the SQL to populate the cache table
+        SET @productCode = 55;
+        INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_UnitID, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
+        SELECT @productCode, F_CourseID, F_UnitID, AVG(nullif(F_Score,-1)) as AverageScore, AVG(if(F_Duration>3600,3600,F_Duration)) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide'
+        FROM T_Score
+        WHERE F_ProductCode = @productCode
+        GROUP BY F_CourseID, F_UnitID;
 	function getEveryoneUnitSummary($productCode, $rootID=null) {
-		// For want of anywhere better to put it for the moment, this is the SQL to populate the cache table
-		/*
-		  SET @productCode = 55;
-		  INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_UnitID, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
-		  SELECT @productCode, F_CourseID, F_UnitID, AVG(nullif(F_Score,-1)) as AverageScore, AVG(if(F_Duration>3600,3600,F_Duration)) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide'
-		  FROM T_Score
-		  WHERE F_ProductCode = @productCode
-		  GROUP BY F_CourseID, F_UnitID;
-		*/
 		$sql = 	<<<EOD
 			SELECT sc.F_CourseID as CourseID, sc.F_UnitID as UnitID, sc.F_AverageScore as AverageScore, sc.F_AverageDuration as AverageDuration, sc.F_Count as Count
 			FROM T_ScoreCache sc
@@ -138,6 +134,63 @@ EOD;
 		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
 	}
+     */
+    /**
+     * m#446 Get everyone's summary at multiple levels
+     */
+    function getEveryoneNodeSummary($productCode, $mode=null) {
+        global $service;
+        $country = (is_null($mode)) ? 'Worldwide' : $mode;
+        $nodeLevels = $this->getNodeLevels($productCode);
+
+        $nodes = array();
+        foreach ($nodeLevels as $nodeLevel) {
+            $nodeIdPrefix = (version_compare($service->getAppVersion(), '2.0.0', '>=')) ? $nodeLevel['caption'].':' : '';
+            if ($nodeLevel['level']==1) {
+                // This is to get course level summary
+                $sql = <<<EOD
+                    SELECT CONCAT('$nodeIdPrefix',sc.F_CourseID) as nodeId, sc.F_AverageScore as AverageScore, sc.F_AverageDuration as AverageDuration, sc.F_Count as Count, sc.F_Country as Country
+                    FROM T_ScoreCache sc
+                    INNER JOIN(
+                        SELECT F_CourseID as id, MAX(F_DateStamp) as latest
+                        FROM T_ScoreCache
+                        WHERE F_ProductCode = ?
+                        AND F_UnitID is null
+                        AND F_Country = ?
+                        GROUP BY F_CourseID
+                    ) i ON sc.F_CourseID = i.id AND sc.F_DateStamp = i.latest
+                    WHERE sc.F_ProductCode = ?
+                    AND sc.F_UnitID is null
+                    AND sc.F_Country = ?
+                    GROUP BY sc.F_CourseID
+                    ORDER BY sc.F_CourseID;
+EOD;
+            } else {
+                // This is to get unit or set level summary
+                $sql = <<<EOD
+                    SELECT CONCAT('$nodeIdPrefix',sc.F_UnitID) as nodeId, sc.F_AverageScore as AverageScore, sc.F_AverageDuration as AverageDuration, sc.F_Count as Count, sc.F_Country as Country
+                    FROM T_ScoreCache sc
+                    INNER JOIN(
+                        SELECT F_UnitID as id, max(F_DateStamp) as latest
+                        FROM T_ScoreCache
+                        WHERE F_ProductCode = ?
+                        AND F_Country = ?
+                        AND F_UnitID is not null
+                        GROUP BY F_UnitID
+                    ) i ON sc.F_UnitID = i.id AND sc.F_DateStamp = i.latest
+                    WHERE sc.F_ProductCode = ?
+                    AND F_Country = ?
+                    AND sc.F_UnitID is not null
+                    GROUP BY sc.F_UnitID
+                    ORDER BY sc.F_UnitID;
+EOD;
+            }
+            $bindingParams = array($productCode, $country, $productCode, $country);
+            $rs = $this->db->GetArray($sql, $bindingParams);
+            $nodes = array_merge($nodes, $rs);
+        }
+        return $nodes;
+    }
 	/**
 	 * This method gets the user's last record
 	 */
@@ -197,36 +250,15 @@ SQL;
     }
 
     /**
-     * Get summary of progress at the unit level
-     * Cap durations of each exercise at one hour (3600 seconds)
-     * m#446 Refactored into getNodeProgress
-    public function getUnitProgress($session) {
-        // sss#312 ignore non-marked exercises from the average score
-        $sql = <<<SQL
-			SELECT F_UnitID as unitId, 
-			      SUM(if(F_Duration>3600,3600,F_Duration)) as duration, 
-			      AVG(nullif(F_Score, -1)) as averageScore, 
-			      AVG(if(F_Duration>3600,3600,F_Duration)) as averageDuration, 
-			      COUNT(F_UserID) as exerciseCount
-			FROM T_Score
-			WHERE F_ProductCode=?
-			AND F_UserID=?
-            GROUP BY F_UnitID
-SQL;
-
-        $bindingParams = array($session->productCode, $session->userId);
-        $rs = $this->db->GetArray($sql, $bindingParams);
-
-        return $rs;
-    }
-     */
-    /**
      * m#446
-     * Get sum and average for one user grouped at any node level
+     * Get sum and average for one user grouped at any node level(s)
      */
     public function getNodeProgress($session) {
-        // What level of hierarchy are we grouping at for this title?
-        $level = $this->getNodeLevel($session->productCode)['level'];
+        global $service;
+
+        // What level of hierarchies are we grouping at for this title?
+        $nodes = $this->getNodeLevels($session->productCode);
+
         $sql = <<<SQL
 			SELECT *
 			FROM T_Score
@@ -239,47 +271,50 @@ SQL;
         $rs = $this->db->GetArray($sql, $bindingParams);
 
         // Now group by the node you want and sum and average
-        $build = $buildRow = array();
-        $lastNode = false;
-        foreach ($rs as $r) {
-            $thisNode = $this->parseNode($r['F_ExerciseID'], $level);
-            // Initialise if this is the first of a new node group
-            if ($thisNode != $lastNode) {
-                // If there is something to write out
-                if ($lastNode) {
-                    $buildRow['averageScore'] = ($buildRow['scoredExercises'] > 0) ? round($buildRow['totalScore'] / $buildRow['scoredExercises']) : 0;
-                    $build[] = $buildRow;
+        $build = array();
+        foreach ($nodes as $node) {
+            $level = $node['level'];
+            $nodeIdPrefix = (version_compare($service->getAppVersion(), '2.0.0', '>=')) ? $node['caption'].':' : '';
+            $buildRow = array();
+            $lastNode = false;
+            foreach ($rs as $r) {
+                $thisNode = $this->parseNode($r['F_ExerciseID'], $level);
+                // Initialise if this is the first of a new node group
+                if ($thisNode != $lastNode) {
+                    // If there is something to write out
+                    if ($lastNode) {
+                        $buildRow['averageScore'] = ($buildRow['scoredExercises'] > 0) ? round($buildRow['totalScore'] / $buildRow['scoredExercises']) : 0;
+                        $build[] = $buildRow;
+                    }
+                    $lastNode = $thisNode;
+                    $buildRow = array('nodeId' => $nodeIdPrefix.$thisNode, 'scoredExercises' => 0, 'exerciseCount' => 0, 'duration' => 0, 'totalScore' => 0);
                 }
-                $lastNode = $thisNode;
-                $buildRow = array('nodeId' => $thisNode, 'scoredExercises' => 0, 'exerciseCount' => 0, 'duration' => 0, 'totalScore' => 0);
+                $buildRow['duration'] += ($r['F_Duration'] > 3600) ? 3600 : $r['F_Duration'];
+                $buildRow['exerciseCount']++;
+                if ($r['F_Score'] >= 0) {
+                    $buildRow['scoredExercises']++;
+                    $buildRow['totalScore'] += $r['F_Score'];
+                }
             }
-            $buildRow['duration']+= ($r['F_Duration']>3600) ? 3600 : $r['F_Duration'];
-            $buildRow['exerciseCount']++;
-            if ($r['F_Score']>=0) {
-                $buildRow['scoredExercises']++;
-                $buildRow['totalScore']+= $r['F_Score'];
-            }
+            // write out the final row
+            $buildRow['averageScore'] = ($buildRow['scoredExercises'] > 0) ? round($buildRow['totalScore'] / $buildRow['scoredExercises']) : 0;
+            $build[] = $buildRow;
         }
-        // write out the final row
-        $buildRow['averageScore'] = ($buildRow['scoredExercises'] > 0) ? round($buildRow['totalScore'] / $buildRow['scoredExercises']) : 0;
-        $build[] = $buildRow;
         return $build;
     }
 
-    public function getNodeLevel($pc) {
+    public function getNodeLevels($pc) {
         switch ($pc) {
             case '72':
             case '73':
-                $caption = 'set:';
-                $level = 3;
+                $levels = array(array("caption" => 'course', "level" => 1), array("caption" => 'set', "level" => 3));
                 break;
             case '68':
             default:
-                $caption = 'unit:';
-                $level = 2;
+                $levels = array(array("caption" => 'unit', "level" => 2));
                 break;
         }
-        return array("caption" => $caption, "level" => $level);
+        return $levels;
     }
 
     // Given an exercise id, what course/unit/set/xxx is it in?

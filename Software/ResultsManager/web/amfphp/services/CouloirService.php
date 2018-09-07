@@ -87,7 +87,18 @@ class CouloirService extends AbstractService {
 	    return $this->appVersion;
     }
     public function setAppVersion($appVersion) {
-	    $this->appVersion = $appVersion;
+        // We use php version_compare, which thinks that v1 is less than v1.0
+        // So make sure that the passed number is at least 3 sections long
+        $sections = explode('.', $appVersion);
+        switch (count($sections)) {
+            case 1:
+                $sections[1] = 0;
+            case 2:
+                $sections[2] = 0;
+                break;
+            default:
+        }
+	    $this->appVersion = implode('.', $sections);
     }
     /*
      * Find an account that matches a prefix, IP or RU range.
@@ -1015,11 +1026,9 @@ EOD;
         // Format: detail each exercise that has been completed
         // m#317 Send back nodeId, not a specific unitId - currently can hardcode 'unit:'
         // What level of hierarchy are we grouping at for this title?
-        $level = $this->progressCops->getNodeLevel($session->productCode)['caption'];
-        $nodeIdPrefix = (version_compare($this->getAppVersion(), '2.0.0', '>=')) ? $level : '';
         $nodesDone = array();
         foreach ($nodes as $node)
-            $nodesDone[$nodeIdPrefix.$node['nodeId']] = intval($node['duration']);
+            $nodesDone[$node['nodeId']] = intval($node['duration']);
 
         return $nodesDone;
     }
@@ -1036,21 +1045,17 @@ EOD;
         // Retrieve the score records for this user and this product
         $nodes = $this->progressCops->getNodeProgress($session);
 
-        // Retrieve the summary for everyone
-        $everyone = $this->progressCops->getEveryoneUnitSummary($session->productCode);
+        // Retrieve the summaries for everyone
+        $everyone = $this->progressCops->getEveryoneNodeSummary($session->productCode);
 
         // Put the user and the everyone results in a similar format for merging
-        // Note that the existing code for everyone returns old style index names (UnitID not unitId)
-        // m#317 Send back nodeId, not a specific unitId - currently can hardcode 'unit:'
-        $level = $this->progressCops->getNodeLevel($session->productCode)['caption'];
-        $nodeIdPrefix = (version_compare($this->getAppVersion(), '2.0.0', '>=')) ? $level : '';
+        // m#446 m#317 Send back nodeId
         $userNodes = array();
         foreach ($nodes as $node)
-            $userNodes[$nodeIdPrefix.$node['nodeId']] = ['averageScore' => $node['averageScore']];
+            $userNodes[$node['nodeId']] = ['averageScore' => $node['averageScore']];
         $everyoneUnits = array();
-        foreach ($everyone as $unit) {
-            $everyoneUnits[$nodeIdPrefix.$unit['UnitID']] = ['averageScore' => $unit['AverageScore']];
-        }
+        foreach ($everyone as $unit)
+            $everyoneUnits[$unit['nodeId']] = ['averageScore' => $unit['AverageScore']];
 
         // Format and merge: unit summaries. Drive by everyone as that contains ALL units
         $nodesDone = array();
