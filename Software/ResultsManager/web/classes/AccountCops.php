@@ -149,7 +149,8 @@ SQL;
 		$rs = $this->db->Execute($sql, $bindingParams);
 
 		// gh#39 It would be an error to have more titles than the number of product codes
-		$numProductCodes = substr_count($productCode, ',') + 1;
+        if (!is_null($productCode))
+		    $numProductCodes = substr_count($productCode, ',') + 1;
 		
 		// It would be an error to have more or less than one account
 		// It would be an error to have more or less than one title in that account
@@ -174,16 +175,23 @@ SQL;
             $title->fromDatabaseObj($dbObj);
 
             // gh#1404 Is the checksum valid for this account?
-            if (!$this->_validateChecksum($title, $account))
+            if (!$this->_validateChecksum($title, $account)) {
+                // If you wanted all titles, then just ignore this one, otherwise it is an exception
+                if (is_null($productCode))
+                    continue;
                 throw $this->copyOps->getExceptionForId("errorTitleCorrupted", array("productCode" => $productCode));
-
+            }
             // sss#161 Are the dates valid for this title?
-            if ($title->licenceStartDate > $dateNow)
+            if ($title->licenceStartDate > $dateNow) {
+                if (is_null($productCode))
+                    continue;
                 throw $this->copyOps->getExceptionForId("errorLicenceHasntStartedYet");
-
-            if ($title->expiryDate < $dateNow)
+            }
+            if ($title->expiryDate < $dateNow) {
+                if (is_null($productCode))
+                    continue;
                 throw $this->copyOps->getExceptionForId("errorLicenceExpired", array("expiryDate" => $title->expiryDate));
-
+            }
             $account->addTitles(array($title));
 		}
 				

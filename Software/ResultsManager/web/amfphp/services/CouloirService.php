@@ -217,14 +217,14 @@ class CouloirService extends AbstractService {
     /*
      * Login checks the user, account, hidden content, creates a session and secures a licence
      */
-	public function login($login, $password, $productCode, $rootId = null, $platform = null, $apiToken = null) {
+	public function login($login, $password, $productCode, $rootId = null, $apiToken = null, $platform = null) {
         // m#316 Catch no such user if apiToken in play
         try {
             return $this->loginCops->login($login, $password, $productCode, $rootId, $platform, $apiToken);
         } catch (Exception $e) {
             if ($e->getCode() == $this->copyOps->getCodeForId("errorNoSuchUser") && isset($apiToken)) {
-                $user = $this->addApiUser($account, $login, $loginOption, $dbPassword, $productCode);
-                return $this->loginCops->login($login, $password, $productCode, $rootId, $platform, $apiToken);
+                $user = $this->addApiUser($rootId, $login, $password, $apiToken);
+                return $this->loginCops->login($login, $password, $productCode, $rootId, $apiToken, $platform);
             } else {
                 throw $e;
             }
@@ -232,31 +232,27 @@ class CouloirService extends AbstractService {
     }
 
     // m#316 Add a user whose details came from a validated api token
-    private function addApiUser($account, $login, $loginOption, $password, $productCode) {
-        $utcDateTime = new DateTime();
-        $utcTimestamp = intval($utcDateTime->format('U'));
-        $aLittleLater = $utcTimestamp + (1 * 60);
-        $selfRegToken = $this->authenticationCops->createToken(["exp" => $aLittleLater, "fields" => $account->selfRegister, "productCode" => $productCode, "rootId" => $account->id]);
+    private function addApiUser($rootId, $login, $password, $token) {
+        $payload = $this->authenticationCops->getPayloadFromToken($token);
+        $groupId = isset($payload->groupId) ? $payload->groupId : null;
+
         $loginObj = Array();
-        $loginObj["email"] = $login . '@moodle';
         $loginObj["login"] = $login;
         $loginObj["password"] = $password;
-        return $this->addUser($selfRegToken, $loginObj);
+        return $this->loginCops->addUser($rootId, $groupId, $loginObj);
     }
 
-    // sss#177 Add a user to a self-registering account
-    public function addUserAndLogin($token, $loginObj) {
-        // Pick the productCode and rootId from the token
-        $json = $this->authenticationCops->getPayloadFromToken($token);
-        $productCode = isset($json->productCode) ? $json->productCode : null;
-        $rootId = isset($json->rootId) ? $json->rootId : null;
-        $groupId = isset($json->groupId) ? $json->groupId : null;
-        if (!$productCode || !$rootId) {
+    // Create a user from a token - this would be the call from Couloir self registration screen
+    public function addUserFromToken($token, $loginObj) {
+        $payload = $this->authenticationCops->getPayloadFromToken($token);
+        //$productCode = isset($payload->productCode) ? $payload->productCode : null;
+        $rootId = isset($payload->rootId) ? $payload->rootId : null;
+        $groupId = isset($payload->groupId) ? $payload->groupId : null;
+        if (!$rootId) {
             throw $this->copyOps->getExceptionForId("errorNoAccountFound");
         }
 
-        $user = $this->loginCops->addUser($productCode, $rootId, $groupId, $loginObj);
-        return $this->login($loginObj["login"], $user->password, $productCode, $rootId);
+        return $this->loginCops->addUser($rootId, $groupId, $loginObj);
     }
 
     public function updateActivity($token, $timestamp) {
