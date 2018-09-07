@@ -134,7 +134,18 @@ class AbstractService {
         return $this->appVersion;
     }
     public function setAppVersion($appVersion) {
-        $this->appVersion = $appVersion;
+        // We use php version_compare, which thinks that v1 is less than v1.0
+        // So make sure that the passed number is at least 3 sections long
+        $sections = explode('.', $appVersion);
+        switch (count($sections)) {
+            case 1:
+                $sections[1] = 0;
+            case 2:
+                $sections[2] = 0;
+                break;
+            default:
+        }
+        $this->appVersion = implode('.', $sections);
     }
 	/*
 	 * For converting microsecond timestamps in UTC to local time

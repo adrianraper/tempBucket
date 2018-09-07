@@ -105,8 +105,8 @@ class apiService extends AbstractService {
         $dateNow = $dateStampNow->format('Y-m-d H:i:s');
         $links = array();
 
-        $account = $this->accountCops->getBentoAccount($account->id);
-        foreach ($account->titles as $title) {
+        $fullAccount = $this->accountCops->getBentoAccount($account->id);
+        foreach ($fullAccount->titles as $title) {
             $status = 'available';
             $productDetails = $this->contentOps->getDetailsFromProductCode($title->productCode);
 
@@ -209,16 +209,16 @@ class apiService extends AbstractService {
     /*
      * Login checks the user, account, hidden content, creates a session and secures a licence
      */
-    public function login($login, $password, $productCode, $rootId = null, $apiToken = null) {
+    public function login($login, $password, $productCode, $rootId = null, $apiToken = null, $platform = null) {
         // m#316 Catch no such user if apiToken in play
         try {
-            return $this->loginCops->login($login, $password, $productCode, $rootId);
+            return $this->loginCops->login($login, $password, $productCode, $rootId, $apiToken, $platform);
         } catch (Exception $e) {
             if ($e->getCode() == $this->copyOps->getCodeForId("errorNoSuchUser") && isset($apiToken)) {
                 $payload = $getUserDetailsFromToken($apiToken);
                 $user = $this->addApiUser($account, $login, $loginOption, $dbPassword, $productCode);
                 if ($user)
-                    return $this->loginCops->login($login, $password, $productCode, $rootId);
+                    return $this->loginCops->login($login, $password, $productCode, $rootId, $apiToken, $platform);
             } else {
                 throw $e;
             }
@@ -379,19 +379,6 @@ class apiService extends AbstractService {
 
     }
 
-    // Create a user from a token - this would be the call from Couloir self registration screen
-    public function addUserFromToken($token, $loginObj) {
-        $payload = $this->authenticationCops->getPayloadFromToken($token);
-        //$productCode = isset($payload->productCode) ? $payload->productCode : null;
-        $rootId = isset($payload->rootId) ? $payload->rootId : null;
-        $groupId = isset($payload->groupId) ? $payload->groupId : null;
-        if (!$rootId) {
-            throw $this->copyOps->getExceptionForId("errorNoAccountFound");
-        }
-
-        $user = $this->loginCops->addUser($rootId, $groupId, $loginObj);
-
-    }
     // Create a user from plain information - this would be the call from activateToken
     public function addUser($email, $name, $password, $rootId, $groupId) {
         // TODO This assumes loginOption is email and you also pass name
@@ -508,6 +495,8 @@ class apiService extends AbstractService {
         return array("payload" => $this->authenticationCops->getPayloadFromToken($token, $key));
     }
     public function dbCheck() {
-        return ['database' => $GLOBALS['db']];
+        $dbVersion = $this->authenticationCops->getDbVersion();
+        $ddDetails = new DBDetails($GLOBALS['dbHost']);
+        return ['database' => $ddDetails->getDetails(), 'version' => $dbVersion];
     }
 }
