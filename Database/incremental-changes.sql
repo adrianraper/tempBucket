@@ -1913,3 +1913,21 @@ CREATE TABLE `T_Token` (
   UNIQUE INDEX `Index_2` (`F_Serial`),
   KEY `Index_3` (`F_RootID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- new Active Reading and Practical Writing
+delete from T_Product where F_ProductCode=69;
+delete from T_ProductVersion where F_ProductCode=69;
+delete from T_ProductLanguage where F_ProductCode=69;
+INSERT INTO `T_Product` (`F_ProductCode`, `F_ProductName`, F_ProductImageURL, F_DisplayOrder, F_ArchitectureVersion) VALUES ('69', 'Active Reading V11','https://www.clarityenglish.com/images/program/ar/ar-icon.png',7,4);
+INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('69', 'FV');
+INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('69', 'DEMO');
+INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLocation`) VALUES ('69', 'EN','ar');
+INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLocation`) VALUES ('69', 'NAMEN','ar-na');
+delete from T_Product where F_ProductCode=70;
+delete from T_ProductVersion where F_ProductCode=70;
+delete from T_ProductLanguage where F_ProductCode=70;
+INSERT INTO `T_Product` (`F_ProductCode`, `F_ProductName`, F_ProductImageURL, F_DisplayOrder, F_ArchitectureVersion) VALUES ('70', 'Practical Writing','https://www.clarityenglish.com/images/program/pw/pw-icon.png',7,4);
+INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('70', 'FV');
+INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('70', 'DEMO');
+INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLocation`) VALUES ('70', 'EN','pw');
+INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLocation`) VALUES ('70', 'NAMEN','pw-na');

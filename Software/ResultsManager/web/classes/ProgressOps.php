@@ -875,7 +875,7 @@ EOD;
             if (($interval > self::SESSION_IDLE_THRESHOLD) ||
                 ($courseId && $rsObj->F_CourseID && ($rsObj->F_CourseID != $courseId))) {
                 $newSessionId = $this->startSession($userId, $rootId, $productCode, $courseId);
-                AbstractService::$debugLog->info("change session record $sessionId to $newSessionId - last updated at " . $lastUpdateAt->format('Y-m-d H:i:s') . ", $interval seconds ago");
+                //AbstractService::$debugLog->info("change session record $sessionId to $newSessionId - last updated at " . $lastUpdateAt->format('Y-m-d H:i:s') . ", $interval seconds ago");
                 return $newSessionId;
 
             } else {

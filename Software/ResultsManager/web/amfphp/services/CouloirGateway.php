@@ -238,7 +238,6 @@ if ($json && !isset($json->appVersion)) {
     require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
     require_once(dirname(__FILE__)."/PracticalWritingService.php");
     $service = new PracticalWritingService();
-    //AbstractService::$debugLog->info("PWVA" . json_encode($json));
 } else {
     $PWVocabApp = false;
     require_once(dirname(__FILE__)."/CouloirService.php");
@@ -255,14 +254,14 @@ function headerDateWithStatusCode($statusCode) {
 
 // Following for debug and logging dates and times
 // Pick up the current time and convert as if it came from app  (local timezone, microseconds)
-$utcDateTime = new DateTime();
-$utcTimestamp = $utcDateTime->format('U')*1000;
-$utcDateTime->setTimezone(new DateTimeZone('Asia/Hong_Kong'));
-$localDate = $utcDateTime->format('Y-m-d H:i:s');
+$timeStart = new DateTime();
+//$utcTimestamp = $utcDateTime->format('U')*1000;
+//$utcDateTime->setTimezone(new DateTimeZone('Asia/Hong_Kong'));
+//$localDate = $utcDateTime->format('Y-m-d H:i:s');
 // Or simply set a date time that you want to test with
 //$localDate = '2017-09-01 11:33:00';
-$localDateTime = new DateTime($localDate);
-$localTimestamp = $localDateTime->format('U')*1000;
+//$localDateTime = new DateTime($localDate);
+//$localTimestamp = $localDateTime->format('U')*1000;
 //$GLOBALS['fake_now'] = '2017-10-10 09:00:00';
 
 try {
@@ -316,7 +315,7 @@ try {
     switch ($e->getCode()) {
         // Token errors
         case 103:
-        case 106:
+        case 104:
         // ctp#75 m#346
         case 200:
         case 201:
@@ -359,6 +358,10 @@ try {
         echo json_encode(array("success" => false, "error" => array("message" => $e->getMessage(), "code" => (string)$e->getCode())));
     }
 }
+// m#484 For recording how long each call took and what it was
+$timeEnd = new DateTime();
+$duration = $timeEnd->diff($timeStart)->format('%s');
+AbstractService::$log->info("CG-call: duration=$duration call=" . substr(json_encode($json), 0, 100));
 
 function router($json) {
     global $service;
@@ -449,6 +452,8 @@ function router($json) {
             }
             return getCertificate($json->token, $json->courseInfo);
         case "dbCheck": return dbCheck();
+        case "acquireLicenseSlots":
+            return acquireLicenceSlots($json->tokens);
         // m#174
         case "PWVAlogin":
             if (!isset($json->email)) $json->email = null;
@@ -541,6 +546,12 @@ function scoreWrite($token, $scoreObj, $localTimestamp, $clientTimezoneOffset=nu
 function getTranslations($lang, $productCode) {
     global $service;
     return $service->getTranslations($lang, $productCode);
+}
+// This is not usually called from here as it goes through the licence server
+// but it makes it easier to test as an api call to also run from here
+function acquireLicenceSlots($tokens) {
+    global $service;
+    return $service->checkLicenceSlots($tokens);
 }
 // Just for testing new gateways
 function dbCheck() {

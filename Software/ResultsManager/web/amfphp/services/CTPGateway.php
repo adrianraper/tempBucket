@@ -181,7 +181,8 @@ function login($email, $password, $productCode, $platform = null) {
     global $service;
     // ctp#428
     try {
-        $rc = AbstractService::$dashboardLog->info('{"message":"Attempt login from DPT", "platform":"'.$platform.'", "email":"'.$email.'"}');
+        AbstractService::$controlLog->setIdent($email);
+        $rc = AbstractService::$controlLog->info("Attempt login from $platform");
     } catch (Exception $e) {
         // do nothing
     }

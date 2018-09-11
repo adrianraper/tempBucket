@@ -282,7 +282,6 @@ class CTPService extends BentoService {
 
         // If you want to test what happens if scores are written but CTP thinks they are not...
         //throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => "Fake error"));
-
         return array("success" => true);
     }
 

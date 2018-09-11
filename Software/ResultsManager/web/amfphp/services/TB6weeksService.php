@@ -85,7 +85,7 @@ class TB6weeksService extends AbstractService {
 		// To mimic amfphp handling
 		try {
 			
-			AbstractService::$debugLog->info("try ".$_REQUEST['operation']);
+			//AbstractService::$debugLog->info("try ".$_REQUEST['operation']);
 			
 			if (isset($_REQUEST['operation'])) {
 				$productCode = isset($_REQUEST['productCode']) ? $_REQUEST['productCode'] : null;
@@ -189,7 +189,7 @@ class TB6weeksService extends AbstractService {
 		if (!$productCode)
 			$productCode = Session::get('productCode');
 		
-		AbstractService::$debugLog->info("check if user has subscribed to productCode=$productCode");
+		//AbstractService::$debugLog->info("check if user has subscribed to productCode=$productCode");
 		$rc = $this->subscriptionOps->hasProductSubscription($user, $productCode);
 		if ($rc)
 			return json_encode('existing subscription');
@@ -243,7 +243,7 @@ class TB6weeksService extends AbstractService {
 		$users = $this->manageableOps->getUserFromEmail($stubUser->email);
 		if ($users) {
 			$user = $users[0];
-			AbstractService::$debugLog->info("change level for user: id=".$user->userID." name=".$user->name.' email='.$user->email);
+			//AbstractService::$debugLog->info("change level for user: id=".$user->userID." name=".$user->name.' email='.$user->email);
 			
 			// Check the password
 			if ($user->password == $stubUser->password) {
@@ -380,7 +380,7 @@ class TB6weeksService extends AbstractService {
 		
 		// Is this an existing user, or do we need to register a new one?
 		$user = $this->manageableOps->getOrAddUser($stubUser, $rootId, $groupId);
-		AbstractService::$debugLog->info("add/get user: id=".$user->userID." name=".$user->name.' email='.$user->email);
+		//AbstractService::$debugLog->info("add/get user: id=".$user->userID." name=".$user->name.' email='.$user->email);
 		Session::set('userID', $user->userID);
 		
 		$score = $this->testOps->checkAnswers($attempts, $answers);
