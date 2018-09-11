@@ -370,13 +370,13 @@ EOD;
 		
 		switch ($rs->RecordCount()) {
 			case 0:
-                AbstractService::$debugLog->info("No existing licence for $userId in $productCode with expiry $dateNow");
+                //AbstractService::$debugLog->info("No existing licence for $userId in $productCode with expiry $dateNow");
 				return false;
 				break;
 			default:
 				// Valid login, return the last licence ID
                 $licenceId = $rs->FetchNextObj()->F_LicenceID;
-                AbstractService::$debugLog->info("Got licence $licenceId for $userId in $productCode with expiry $dateNow");
+                //AbstractService::$debugLog->info("Got licence $licenceId for $userId in $productCode with expiry $dateNow");
 				return $licenceId;
 		}
 	}

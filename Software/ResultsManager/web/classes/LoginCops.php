@@ -294,6 +294,10 @@ EOD;
      * sss#130
 	 */
 	public function loginAnonymousCouloir() {
+	    $user = new User();
+	    $user->userID = -1;
+	    $user->name = 'anonymous';
+	    /*
         $sql = <<<EOD
 				SELECT * FROM T_User u
 				WHERE F_UserID=-1; 
@@ -306,6 +310,7 @@ EOD;
             throw $this->copyOps->getExceptionForId("errorNoAnonymousUser");
         }
         return $loginObj;
+	    */
 	}
 	
 	/**
@@ -439,7 +444,7 @@ EOD;
 
         // sss#130 If an anonymous access is requested, build a null user
         if ($licenceType == Title::LICENCE_TYPE_AA && (is_null($login))) {
-            $userObj = $this->loginAnonymousCouloir($rootId, $productCode);
+            $user = $this->loginAnonymousCouloir($rootId, $productCode);
 
         } else {
             // Check the validity of the user details for this product
@@ -467,9 +472,9 @@ EOD;
 
             $allowedUserTypes = array(User::USER_TYPE_TEACHER, User::USER_TYPE_ADMINISTRATOR, User::USER_TYPE_STUDENT, User::USER_TYPE_REPORTER);
             $userObj = $this->loginCouloir($login, $password, $loginOption, $verified, $allowedUserTypes, $rootId, $productCode);
+            $user = new User();
+            $user->fromDatabaseObj($userObj);
         }
-        $user = new User();
-        $user->fromDatabaseObj($userObj);
 
         // sss#130 This will cope with anonymous user
         $groups = $this->manageableOps->getUsersGroups($user, $rootId);

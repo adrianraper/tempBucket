@@ -235,7 +235,7 @@ EOD;
 				AbstractService::$log->notice("Created CLS subscription=".$account->name.", sub id=".$apiInformation->subscription->id.', for reseller='.$apiInformation->subscription->resellerID);
 				
 			} else {
-				AbstractService::$debugLog->warning("skip saving account and subscription for ".$account->name);
+				//AbstractService::$debugLog->warning("skip saving account and subscription for ".$account->name);
 			}
 			$apiInformation->subscription->status = 'Account created';
 			$apiInformation->subscription->rootID = $account->id;
@@ -244,7 +244,7 @@ EOD;
 			// If they want an email sent, do that
 			if (isset($apiInformation->emailTemplateID) && $apiInformation->emailTemplateID!='') {
 				$dmsService->subscriptionOps->sendEmail($account, $apiInformation);
-				AbstractService::$debugLog->info("sent email to ".$account->adminUser->email.' using '.$apiInformation->emailTemplateID);
+				//AbstractService::$debugLog->info("sent email to ".$account->adminUser->email.' using '.$apiInformation->emailTemplateID);
 			}
 		
 			// TODO: Whilst we log the new account, we should also send our accounts team an email
@@ -274,7 +274,7 @@ EOD;
 						//$dmsService->subscriptionOps->sendSupplierEmail($to, $emailTemplateID, $apiInformation, $attachment, $apiInformation->sendEmail);
 						//AbstractService::$log->notice("call sendSupplierEmail for ".$to);
 						$dmsService->subscriptionOps->sendSupplierEmail($to, $emailTemplateID, $apiInformation, $attachment);
-						AbstractService::$debugLog->info("sent email to ".$to.' using '.$emailTemplateID);
+						//AbstractService::$debugLog->info("sent email to ".$to.' using '.$emailTemplateID);
 						break;
 						
 					// For Edict, simply send them an email
@@ -282,7 +282,7 @@ EOD;
 						$to = 'info@edict.com.my';
 						$emailTemplateID = 'Gateway_notification';
 						$dmsService->subscriptionOps->sendSupplierEmail($to, $emailTemplateID, $apiInformation);
-						AbstractService::$debugLog->info("sent email to ".$to.' using '.$emailTemplateID);
+						//AbstractService::$debugLog->info("sent email to ".$to.' using '.$emailTemplateID);
 						break;
 					default:
 						break;
