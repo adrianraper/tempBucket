@@ -486,8 +486,9 @@ EOD;
             AND F_ProductCode=?
             AND F_RootID=?
             AND F_EndDateStamp>?
+            AND F_LicenceType=?
 EOD;
-        $bindingParams = array($keyId, $productCode, $rootId, $dateStamp);
+        $bindingParams = array($keyId, $productCode, $rootId, $dateStamp, $licence->licenceType);
         $rs = $this->db->Execute($sql, $bindingParams);
         // If you got a few records back, it indicates something went wrong, but you DO still have a licence
         if ($rs && $rs->RecordCount() > 0) {
@@ -932,6 +933,12 @@ EOD;
             case 68:
                 return 55;
                 break;
+            case 69:
+                return 56;
+                break;
+            case 70:
+                return 61;
+                break;
             case 72:
                 return 52;
                 break;
@@ -940,9 +947,6 @@ EOD;
                 break;
             case 74:
                 return 61;
-                break;
-            case 75:
-                return 56;
                 break;
         }
         return false;
@@ -1008,7 +1012,7 @@ EOD;
                 }
             }
         }
-        return array('licencesAdded' => $licenceCount, 'productCode' => $newProductCode, 'rootId' => $rootId, 'blockedusers' => $blockedUsers);
+        return array('licencesAdded' => $licenceCount, 'productCode' => $newProductCode, 'rootId' => $rootId, 'blockedUsers' => $blockedUsers);
     }
     private function addCouloirLicence ($thisUser, $rootId, $productCode, $licenceStartDate, $licenceEndDate, $licence) {
         $sql = <<<EOD

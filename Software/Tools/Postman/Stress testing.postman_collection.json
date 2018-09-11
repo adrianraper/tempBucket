@@ -1,0 +1,288 @@
+{
+	"info": {
+		"_postman_id": "c6553d12-10d6-487d-84ff-6b4c3cf73434",
+		"name": "Stress testing",
+		"description": "Calls to CouloirGateway that simulate lots of users running the apps",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AA multiple sign in",
+			"item": [
+				{
+					"name": "AA sign in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "183437c7-ec78-480f-9dca-e8c385889030",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"AA login succeeded\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(true);",
+									"});",
+									"",
+									"let tokens = JSON.parse(pm.environment.get(\"tokens\"));",
+									"if (tokens === null) {",
+									"    tokens = [];",
+									"}",
+									"tokens.push(pm.response.json().details.token);",
+									"pm.environment.set(\"tokens\", JSON.stringify(tokens));",
+									"console.log(\"added, so token count=\" + tokens.length);",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41a09c32-6d4f-4c8b-9084-89dd6eddc72e",
+								"type": "text/javascript",
+								"exec": [
+									"if (pm.info.iteration === 0) {",
+									"    pm.environment.set(\"tokens\", JSON.stringify([]));",
+									"    console.log(\"On first iteration\");",
+									"}",
+									"let tokens = JSON.parse(pm.environment.get(\"tokens\"));",
+									"",
+									"// init for the different accounts",
+									"pm.environment.set(\"productCode\", 68);",
+									"pm.environment.set(\"rootId\", 10719);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"appVersion\":\"1.3.2-dev\",\"command\":\"login\",\"productCode\":\"{{productCode}}\",\"rootId\":\"{{rootId}}\",\"anonymous\":true}"
+						},
+						"url": {
+							"raw": "{{domain}}{{couloirGateway}}",
+							"host": [
+								"{{domain}}{{couloirGateway}}"
+							]
+						},
+						"description": "Check user identity, right to use this account and get a licence slot."
+					},
+					"response": []
+				},
+				{
+					"name": "LT sign in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "183437c7-ec78-480f-9dca-e8c385889030",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"AA login succeeded\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(true);",
+									"});",
+									"",
+									"let tokens = JSON.parse(pm.environment.get(\"tokens\"));",
+									"if (tokens === null) {",
+									"    tokens = [];",
+									"}",
+									"tokens.push(pm.response.json().details.token);",
+									"pm.environment.set(\"tokens\", JSON.stringify(tokens));",
+									"console.log(\"added, so token count=\" + tokens.length);",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41a09c32-6d4f-4c8b-9084-89dd6eddc72e",
+								"type": "text/javascript",
+								"exec": [
+									"if (pm.info.iteration === 0) {",
+									"    pm.environment.set(\"tokens\", JSON.stringify([]));",
+									"    console.log(\"On first iteration\");",
+									"}",
+									"let tokens = JSON.parse(pm.environment.get(\"tokens\"));",
+									"",
+									"// init for the different accounts",
+									"pm.environment.set(\"productCode\", 68);",
+									"pm.environment.set(\"rootId\", 10719);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"appVersion\":\"1.3.2-dev\",\"command\":\"login\",\"productCode\":\"{{productCode}}\",\"rootId\":\"{{rootId}}\",\"anonymous\":true}"
+						},
+						"url": {
+							"raw": "{{domain}}{{couloirGateway}}",
+							"host": [
+								"{{domain}}{{couloirGateway}}"
+							]
+						},
+						"description": "Check user identity, right to use this account and get a licence slot."
+					},
+					"response": []
+				},
+				{
+					"name": "getCoverage",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "532327ed-5678-46fd-8d79-a87d100167d4",
+								"type": "text/javascript",
+								"exec": [
+									"//var token = pm.environment.get(\"token\");",
+									"//console.log(\"local is \" + token);",
+									"",
+									"let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzMxOTExNDMsInNlc3Npb25JZCI6IjM5NzkifQ.UtO8YbEivRzcyg9136GkcqXaQj7rMCrZn0DHA1NEl6k';",
+									"pm.environment.set(\"token\", token);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"appVersion\":\"1.1.9\",\"command\":\"getCoverage\",\"token\":\"{{token}}\"}"
+						},
+						"url": {
+							"raw": "{{domain}}{{couloirGateway}}",
+							"host": [
+								"{{domain}}{{couloirGateway}}"
+							]
+						},
+						"description": "use a token to get that user's progress records in the current title"
+					},
+					"response": []
+				},
+				{
+					"name": "acquireLicenseSlots",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "af080d3c-c6f8-4956-9749-f5b1bf31a12c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"acquireLicenseSlots succeeded\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(true);",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "88717d08-af30-4a1d-8d5e-e25518fcc2f8",
+								"type": "text/javascript",
+								"exec": [
+									"let tokens = JSON.parse(pm.environment.get(\"tokens\"));",
+									"console.log(\"acquireLicenseSlots, current token count=\" + tokens.length);",
+									"console.log(tokens);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"command\":\"acquireLicenseSlots\",\"appVersion\":\"1.0.0\",\"tokens\":{{tokens}}}"
+						},
+						"url": {
+							"raw": "{{domain}}{{couloirGateway}}",
+							"host": [
+								"{{domain}}{{couloirGateway}}"
+							]
+						},
+						"description": "Check user identity, right to use this account and get a licence slot."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a5b066be-e71d-47a0-8a34-d6045c5a1d2f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "19c2064a-7741-4ef9-a010-c37774d9f5b1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "e94fec11-17db-4357-9367-4470bfe47578",
+				"type": "text/javascript",
+				"exec": [
+					"// init for different accounts",
+					"pm.environment.set(\"productCode\", 68);",
+					"pm.environment.set(\"rootId\", 10719);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ed4416d4-9857-4a6a-87ad-7d5838295340",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

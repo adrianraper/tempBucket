@@ -16,7 +16,7 @@ class RandomizedTestTransform extends XmlTransform {
 		// gh#1408 Test if this is exercise needs random tests, if not just return the original
 		$questionBanks = $xmlDoc->getElementsByTagName("questionBank");
 		if (!$questionBanks) {
-			AbstractService::$debugLog->info("this is not a random test" . $href->getUrl());
+			//AbstractService::$debugLog->info("this is not a random test" . $href->getUrl());
 			return $xml;
 		}
 

@@ -72,7 +72,7 @@ class BentoService extends AbstractService {
         // But don't make a new lastActivity - that is only done during bento.login
         if (Session::get('lastActivity')) {
             if (time() - Session::get('lastActivity') > self::sessionLifetime) {
-                AbstractService::$debugLog->info('php session too old ' . Session::getSessionName() . ' user as ' . Authenticate::getAuthUser() . ' id=' . session_id());
+                //AbstractService::$debugLog->info('php session too old ' . Session::getSessionName() . ' user as ' . Authenticate::getAuthUser() . ' id=' . session_id());
                 // last request was too long ago
                 // tbh I don't think you need to do this as the error should throw you through logout
                 Session::clear();
@@ -130,7 +130,7 @@ class BentoService extends AbstractService {
         // gh#1172
         $updatedURL = $this->updateUrl($href->currentDir);
         if ($updatedURL != $href->currentDir)
-            AbstractService::$debugLog->notice("changed this url ".$href->currentDir." to $updatedURL");
+            //AbstractService::$debugLog->notice("changed this url ".$href->currentDir." to $updatedURL");
         $href->currentDir = $updatedURL;
 		return XmlUtils::buildXml($href, $this->db, $this);
 	}
