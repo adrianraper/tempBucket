@@ -363,11 +363,11 @@ EOD;
 		$rs = $this->db->Execute($sql, $bindingParams);
 		if ($rs && $rs->RecordCount() == 1) {
 			
-			// Use JSON to encode an array into a string for the database
+			// Use JSON to decode a JSON string from the database into an array
 			return json_decode($rs->FetchNextObj()->control, true);
 		}
 		
-		throw $this->copyOps->getExceptionForId("errorGetInstanceId", array("userID" => $userID));
+		throw $this->copyOps->getExceptionForId("errorGetInstanceId", array("userID" => $userId));
 	}
 
 	// TODO pass sessionId so that you can close it and release T_LicenceHolders

@@ -243,6 +243,7 @@ class LicenceCops {
                 $keyId = $sessionId;
                 // sss#161 Delete any existing licence for this session before you add a new one.
                 // Just as a safety check. REALLY?
+                /* m#493
                 $sql = <<<EOD
                     DELETE FROM T_CouloirLicenceHolders
                     WHERE F_ProductCode=?
@@ -254,7 +255,7 @@ EOD;
                 if (!$rs) {
                     throw $this->copyOps->getExceptionForId("errorCantClearLicences");
                 }
-
+                */
                 // The licence will end in 2 minutes
                 $licenceEndDate = $expungeDateStamp->modify('+'.(LicenceCops::AA_LICENCE_EXTENSION).' secs')->format('Y-m-d H:i:s');
                 break;
@@ -554,6 +555,8 @@ EOD;
             case Title::LICENCE_TYPE_CT:
             case Title::LICENCE_TYPE_NETWORK:
                 $keyId = $sessionId;
+                $dateStampNow = is_null($timestamp) ? AbstractService::getNow() : new DateTime('@'.intval($timestamp), new DateTimeZone(TIMEZONE));
+                $dateNow = $dateStampNow->format('Y-m-d H:i:s');
                 break;
             case Title::LICENCE_TYPE_LT:
             case Title::LICENCE_TYPE_TT:
@@ -563,13 +566,15 @@ EOD;
                 return true;
                 break;
         }
+        // m#493 Update the expiry date rather than delete the record
         $sql = <<<EOD
-            DELETE FROM T_CouloirLicenceHolders
+            UPDATE T_CouloirLicenceHolders
+            SET F_EndDateStamp=?
             WHERE F_KeyID=?
             AND F_RootID=?
             AND F_ProductCode=?
 EOD;
-        $bindingParams = array($keyId, $rootId, $productCode);
+        $bindingParams = array($dateNow, $keyId, $rootId, $productCode);
         $rs = $this->db->Execute($sql, $bindingParams);
         if (!$rs) {
             throw $this->copyOps->getExceptionForId("errorDatabaseWriting");

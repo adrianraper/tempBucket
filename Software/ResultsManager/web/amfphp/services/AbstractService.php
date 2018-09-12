@@ -207,7 +207,7 @@ class AbstractService {
 		
 		// If the user isn't authenticated then fail
         if (!Authenticate::isAuthenticated()) {
-            AbstractService::$debugLog->info('authenticate fail '.$function_called.' from '.Session::getSessionName().' sessionId='.session_id());
+            //AbstractService::$debugLog->info('authenticate fail '.$function_called.' from '.Session::getSessionName().' sessionId='.session_id());
             // ctp#372
             //throw $this->copyOps->getExceptionForId("errorLostAuthentication");
             return false;

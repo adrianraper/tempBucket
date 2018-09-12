@@ -507,7 +507,8 @@ class CouloirService extends AbstractService {
                 // TODO This clears for product code and root id. It might be worth making sure
                 // that you only do it once for each combination to save unnecessary calls.
                 // Indeed it would seem more sensible to deleteExpiredLicenceSlots once only for all roots and productCodes
-                $this->licenceCops->deleteExpiredLicenceSlots($session);
+                // m#493
+                //$this->licenceCops->deleteExpiredLicenceSlots($session);
 
                 // Note American spelling for app API
                 return $this->licenceCops->checkCouloirLicenceSlot($session);
