@@ -22,8 +22,7 @@ set_time_limit(360);
 
 // Just for testing
 // Pick up the current time and convert as if it came from app (microseconds)
-$utcDateTime = new DateTime();
-$utcTimestamp = $utcDateTime->format('U')*1000;
+$timeStart = new DateTime();
 
 try {
     // Decode the body
@@ -77,6 +76,17 @@ try {
             headerDateWithStatusCode(500);
     }
     echo json_encode(array("success" => false, "error" => array("message" => $e->getMessage(), "code" => (string) $e->getCode())));
+}
+
+// m#484 For recording how long each call took and what it was
+$timeEnd = new DateTime();
+$duration = $timeEnd->diff($timeStart)->format('%s');
+$ip = getUserIP();
+if ($json->command == "acquireLicenseSlots") {
+    $slotCount = count($json->tokens);
+    AbstractService::$log->info("CSG-call: duration=$duration ip=$ip call={\"slots\":$slotCount \"command\":\"acquireLicenseSlots\"");
+} else {
+    AbstractService::$log->info("CSG-call: duration=$duration call=" . substr(json_encode($json), 0, 100));
 }
 
 // Note American spelling of license in these calls which is converted to British licence from here on in
@@ -160,4 +170,17 @@ function getEncryptionKey($testId) {
 function dbCheck() {
     global $service;
     return $service->dbCheck();
+}
+function getUserIP() {
+    if( array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER) && !empty($_SERVER['HTTP_X_FORWARDED_FOR']) ) {
+        if (strpos($_SERVER['HTTP_X_FORWARDED_FOR'], ',')>0) {
+            $addr = explode(",",$_SERVER['HTTP_X_FORWARDED_FOR']);
+            return trim($addr[0]);
+        } else {
+            return $_SERVER['HTTP_X_FORWARDED_FOR'];
+        }
+    }
+    else {
+        return $_SERVER['REMOTE_ADDR'];
+    }
 }
