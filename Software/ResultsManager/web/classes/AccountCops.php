@@ -192,6 +192,11 @@ SQL;
                     continue;
                 throw $this->copyOps->getExceptionForId("errorLicenceExpired", array("expiryDate" => $title->expiryDate));
             }
+
+            // m#404 Add in product details to the title
+            // TODO Would it be more efficient to get these with the original call?
+            $title->addDetails($this->contentOps->getDetailsFromProductCode($title->productCode, $title->languageCode));
+
             $account->addTitles(array($title));
 		}
 				
@@ -386,36 +391,6 @@ EOD;
         return false;
     }
 
-	/**
-	 * Get an account when you know the user
-	 */
-	public function getAccountFromUser($user) {
-		$sql = 	<<<EOD
-				SELECT m.F_RootID as rootID
-				FROM T_Membership m
-				WHERE m.F_UserID = ?
-EOD;
-		$rs = $this->db->Execute($sql, array($user->userID));
-		
-		switch ($rs->RecordCount()) {
-			case 0:
-				// No membership record, should be impossible
-				return false;
-				break;
-			case 1:
-				// One record, good. Send back the root
-				$rootID = $rs->FetchNextObj()->rootID;
-				break;
-			default:
-				// Many records means we can't know which root this user belongs to, raise an error
-				return false;
-		}
-		
-		// now get the account (just one)
-		$accounts = $this->getAccounts(array($rootID));
-		return array_shift($accounts);
-	}
-	
 	/*
 	 * Utility function to get the rootID for a particular prefix
 	 */

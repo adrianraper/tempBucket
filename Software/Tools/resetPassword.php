@@ -1,46 +1,10 @@
- <?php
-    // Pick up the POST variables containing user information
-    // TODO make this a template - handlebars?
-    $authentication = json_decode($_POST['authentication']);
-    $user = json_decode($_POST['user']);
-    $links = json_decode($_POST['links']);
-    $account = json_decode($_POST['account']);
-    $json_error = json_last_error();
-    $welcomeText = $user->name . ", these are your programs";
-    $accountText = "Licenced to " . $account->name;
-    $getTestResult = false;
-
-    // link to and caption the programs
-    $linkHtml = '';
-    $linkTemplate = <<<HTML
-        <div class="text-center">
-           <a href="{linkHref}" target="_blank"><img class="logo" src="{logoHref}" /></a>
-           <p>{caption}</p>
-        </div>
-HTML;
-    $finds = array("{linkHref}","{logoHref}","{caption}");
-    foreach ($links as $link) {
-        $replaces = array($link->href, $link->icon, $link->status);
-        $linkHtml .= str_replace($finds, $replaces, $linkTemplate);
-    }
-
-    // Find the DPT result if done
-    $getTestResultScript = '';
-    foreach ($account->titles as $title) {
-        if ($title->productCode == 63) {
-            $getTestResultScript = <<<HTML
-                <script>getTestResult('$authentication');</script>
-HTML;
-        }
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ClarityEnglish example portal</title>
+    <title>ClarityEnglish reset password</title>
     <link rel="shortcut icon" href="https://www.clarityenglish.com/images/favicon.ico" type="image/x-icon"/>
     <meta name="robots" content="ALL">
     <meta name="Description" content="Integration examples for ClarityEnglish programs">
@@ -118,10 +82,8 @@ HTML;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://www.clarityenglish.com/bootstrap/js/bootstrap.min.js"></script>
-<!-- Specifically for this page -->
-<script src="action.js"></script>
-<? echo $getTestResultScript; ?>
-
+<!-- Specifically for this form -->
+<script src="actionResetPassword.js"></script>
 <body>
 
 <!--- code is from the inc_nav_simple.php--->
@@ -143,50 +105,47 @@ HTML;
                 <div class="lead-detail general-shadow">
                     <div class="row">
                         <div class="col-xs-8">
-                            <p id="welcomeText" class="general-text">
-                                <? echo $welcomeText; ?>
+                            <p class="general-text">
+                                Access and authentication
                             </p>
                         </div>
                     </div>
-                    <? echo $linkHtml; ?>
+                    <form id="userDetails">
+                        <p class="general-bold-tag">Choose a new password for your account</p>
+
+                        <div class="form-group">
+                            <p id="email" type="text" class="form-control general-text"></p>
+                        </div>
+                        <div class="form-group">
+                            <input id="newPassword" type="password" class="form-control general-text"
+                                   placeholder="new password">
+                        </div>
+                        <div class="form-group">
+                            <input id="confirmPassword" type="password" class="form-control general-text"
+                                   placeholder="retype new password">
+                        </div>
+                        <div class="general-button-box">
+                            <input type="button" class="btn btn-default general-input-btn input-bg-p" value="Reset" id="reset" name="reset" accesskey="g" tabindex="3">
+                        </div>
+                        <div id="status-box" class="lead-warn-field lead-warn-box">
+                            <p id="status-text" class="general-text">Status message</p>
+                        </div>
+
+                    </form>
                 </div>
                 <div class="lead-detail general-shadow">
                     <div class="row">
                         <div class="col-xs-8">
-                            <p id="dptStatus" class="general-text">
-                                The best place to start is DPT
+                            <p id="signinStatus" class="general-text">
+                                After resetting your password, go back to the program and sign in.
                             </p>
                         </div>
                     </div>
                 </div>
 
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="lead-detail general-shadow">
-                    <div class="row">
-                        <div class="col-xs-8">
-                            <p class="general-text">
-                                <? echo $authentication; ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="lead-detail general-shadow">
-                    <div class="row">
-                        <div class="col-xs-10">
-                            <p id="activateStatus" class="general-text">
-                                <? echo $accountText; ?>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="general-button-box">
-                        <input type="button" class="btn btn-default general-input-btn input-bg-p" value="Sign out" id="signout" name="Signout" accesskey="g" tabindex="3">
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 </html>

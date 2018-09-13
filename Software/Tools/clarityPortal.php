@@ -133,6 +133,30 @@
                 <div class="lead-detail general-shadow">
                     <div class="row">
                         <div class="col-xs-8">
+                            <p class="general-text">
+                                Forgot your password?
+                            </p>
+                        </div>
+                    </div>
+                    <form id="forgotDetails">
+                        <p class="general-bold-tag">What is your registered email?</p>
+
+                        <div class="form-group">
+                            <input id="forgotEmail" type="text" class="form-control general-text"
+                                   placeholder="email">
+                        </div>
+                        <div class="general-button-box">
+                            <input type="button" class="btn btn-default general-input-btn input-bg-p" value="Get reset email" id="forgot" name="forgot" accesskey="g" tabindex="3">
+                        </div>
+                        <div id="forgot-status-box" class="lead-warn-field lead-warn-box">
+                            <p id="status-text" class="general-text">Status message</p>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="lead-detail general-shadow">
+                    <div class="row">
+                        <div class="col-xs-8">
                             <p id="signinStatus" class="general-text">
                                 Access your ClarityEnglish programs by signing in.
                             </p>
@@ -151,7 +175,7 @@
                         </div>
                     </div>
                     <form id="tokenDetails">
-                        <p class="general-bold-tag">Add details of your token</p>
+                        <p class="general-bold-tag">Details of you and your token:</p>
 
                         <div class="form-group">
                             <input id="serial" type="text" class="form-control general-text"

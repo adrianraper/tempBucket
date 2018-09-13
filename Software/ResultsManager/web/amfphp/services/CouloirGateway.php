@@ -12,15 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 $json = json_decode(file_get_contents('php://input'));
 $json_error = json_last_error();
 //$json = json_decode('{"command":"xxx", "appVersion":"2.0.0"}');
+//$json = json_decode('{"command":"login","appVersion":"2.0.0","login":"spaghetti@dev","password":"3e912d53813a2dfaccb6e842408a59de","productCode":"68"}');
 /**
  * Pretend to pass variables for easier debugging
 $json = json_decode('{"appVersion":"1.3.2","command":"getLoginConfig","productCode":"66","apiToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmVmaXgiOiJDbGFyaXR5IiwibG9naW4iOiJuYXRoYW5AbmF2aXRhcy5jb20uYXUiLCJzdGFydE5vZGUiOiIyMDE4MDY4MDUwMTAwIiwiZW5hYmxlZE5vZGUiOiIyMDE4MDY4MDUwMDAwIiwiaXNzIjoiY2xhcml0eWVuZ2xpc2guY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.dUW5eYY27LV1jbyCHh41DJphWJlw2PIhIa4J987piek"}');
 $json = json_decode('{"appVersion":"1.3.2-dev","command":"scoreWrite","localTimestamp":1532670099126,"score":{"uid":"66.2017066000000.2017066100000.2017066100203","exerciseScore":{"questionScores":[],"exerciseMark":{"correctCount":0,"incorrectCount":0,"missedCount":0},"duration":60,"submitTimestamp":1532670094082},"anomalies":{}},"timezoneOffset":-480,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzI2Njk2MjIsInNlc3Npb25JZCI6IjY1NCJ9.me1hL_AacxRtK0ghdOiaURKo0iHeDEDjqzdUrFilsOI"}');
 $json = json_decode('{"appVersion":"1.3.2-dev","command":"login","login":"dandy@clarity","password":"93bc9620dea7442a898e5396b2b8e346","productCode":"66","rootId":163,"token":null}');
-$json = json_decode('{"command":"login","appVersion":"1.0.0","login":"dandelion dev","password":"3938e4d558baf3f3ff9924a84ad66cd6","productCode":"68","rootId":10719}');
 $json = json_decode('{"command":"getCertificate","courseId":"2018068010000","courseName":"Elementary","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MjU5MjkyMTMsInNlc3Npb25JZCI6IjUzOCJ9.H7eI5vSe8aFFdaDYKBENFlxLeB5HGBQS2pHjh2axsWQ", "appVersion":"1.0"}');
 $json = json_decode('{"appVersion":"1.0","command":"login","login":"dandelion","password":"2bdc02c98d80ce8ff84f58a0140d5471","productCode":"68","rootId":163,"token":null}');
-$json = json_decode('{"command":"login","email":"pinky@email","password":"password","timezoneOffset":"-480"}');
 $json = json_decode('{"appVersion":"0.10.10","command":"getComparison","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUxMTI0OTY0NCwic2Vzc2lvbklkIjoiNDMwIn0.d5NEPkbwQ03tw3hHwcvRqnILwhvN-NRCceiBzfQy-9g"}');
 $json = json_decode('{"appVersion":"0.10.9","command":"addUser","email":"jonon@seagull.com","login":"Jonon Seagull","password":"34c9a6ae8bafe22f538970104d67609f",
 "selfRegistrationToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kb2NrLnByb2plY3RiZW5jaCIsImlhdCI6MTUxMTIzMTQ1MCwiZXhwIjoxNTExMjM1MDUwLCJmaWVsZHMiOjIxLCJwcm9kdWN0Q29kZSI6IjY2Iiwicm9vdElkIjoiMTA3MTkifQ.QVDXFIuG3D9t1Rn7jWZgu-dHZ0AR9z9mt2GSd9Uy6qc",
@@ -243,7 +242,7 @@ if ($json && !isset($json->appVersion)) {
     require_once(dirname(__FILE__)."/CouloirService.php");
     $service = new CouloirService();
 }
-set_time_limit(60);
+set_time_limit(360);
 
 // For setting the header when you want to send back an exception
 function headerDateWithStatusCode($statusCode) {

@@ -20,6 +20,7 @@ require_once(dirname(__FILE__)."/../ResultsManager/web/amfphp/services/vo/com/cl
 require_once(dirname(__FILE__)."/../ResultsManager/web/amfphp/services/vo/com/clarityenglish/dms/vo/account/Licence.php");
 require_once(dirname(__FILE__)."/../ResultsManager/web/amfphp/services/vo/com/clarityenglish/dms/vo/account/Token.php");
 require_once(dirname(__FILE__)."/../ResultsManager/web/amfphp/services/vo/com/clarityenglish/common/vo/content/Title.php");
+require_once(dirname(__FILE__)."/../ResultsManager/web/amfphp/services/vo/com/clarityenglish/common/vo/tests/ScheduledTest.php");
 
 require_once(dirname(__FILE__)."/../ResultsManager/web/amfphp/services/vo/com/clarityenglish/dms/vo/trigger/EmailAPI.php");
 
@@ -79,7 +80,8 @@ class apiService extends AbstractService {
      */
     public function signIn($email, $password) {
         $user = $this->getUser($email, $password);
-        $account = $this->manageableOps->getAccountFromUser($user);
+        $rootId = $this->manageableOps->getAccountIdFromUser($user);
+        $account = $this->accountCops->getBentoAccount($rootId);
         $group = $this->manageableOps->getUsersGroups($user)[0];
 
         // Build links to programs this user CAN access
@@ -89,8 +91,9 @@ class apiService extends AbstractService {
         $payload = array("userId" => $user->userID, "prefix" => $account->prefix, "rootId" => $account->id, "groupId" => $group->id);
         $token = $this->authenticationCops->createToken($payload);
 
-        return array('user' => $user, 'links' => $links, 'account' => $account, 'group' => $group, 'authentication' => $token);
-
+        // What do you really want to return? Public views for objects
+        // But do we want titles in an account or group at all?
+        return array('user' => $user->publicView(), 'links' => $links, 'account' => $account->publicView(), 'group' => $group->publicView(), 'authentication' => $token);
     }
 
     /*
@@ -105,10 +108,8 @@ class apiService extends AbstractService {
         $dateNow = $dateStampNow->format('Y-m-d H:i:s');
         $links = array();
 
-        $fullAccount = $this->accountCops->getBentoAccount($account->id);
-        foreach ($fullAccount->titles as $title) {
+        foreach ($account->titles as $title) {
             $status = 'available';
-            $productDetails = $this->contentOps->getDetailsFromProductCode($title->productCode);
 
             // Just ignore Results Manager or any other admin tools
             if ($title->productCode == 2)
@@ -116,38 +117,46 @@ class apiService extends AbstractService {
 
             // 1. the title is expired - this is caught as an Exception in getBentoAccount above -
             // huh? you mean an expired title is not listed?
-            if ($title->expiryDate < $dateNow)
+            if ($title->expiryDate < $dateNow) {
                 $status = 'expired';
-
-            // For the next tests we need to know if this user already has a licence
-            // What sort of architecture does this title use?
-            // TODO Perhaps this should be a bigger call: getting number of licences, number used, number used by me
-            // Which would be useful for other api calls too
-            // [userHasLicence = boolean, licencesUsed = int, totalLicences = int, licenceType = int]
-            $licenceDetails = $this->getLicenceUsage($title->productCode, $user->userID, $account->id, $productDetails['architectureVersion']);
-            if (!$licenceDetails['userHasLicence']) {
-                // 2. the licence is 'token' and this user does not already have a licence
-                if ($title->licenceType == 'token')
-                    // Just drop this title
-                    continue;
-
-                // 3. the licence is full and this user does not already have a licence
-                switch ($title->licenceType) {
-                    case Title::LICENCE_TYPE_SINGLE:
-                    case Title::LICENCE_TYPE_I:
-                    case Title::LICENCE_TYPE_LT:
-                    case Title::LICENCE_TYPE_TT:
-                        if ($licenceDetails['usedLicences'] >= $title->maxStudents)
-                            $status = 'licenceFull';
-                        break;
-                }
             } else {
-                $status = 'active';
+                // For the next tests we need to know if this user already has a licence or can get one
+                // [userHasLicence = boolean, licencesUsed = int, totalLicences = int, licenceType = int]
+                $licenceDetails = $this->getLicenceUsage($title->productCode, $user, $account);
+                if (!$licenceDetails['userHasLicence']) {
+                    // 2. the licence is 'token' and this user does not already have a licence
+                    if ($title->licenceType == Title::LICENCE_TYPE_TOKEN) {
+                        $status = 'tokenRequired';
+
+                    } else {
+                        // 3. the licence is full and this user does not already have a licence
+                        switch ($title->licenceType) {
+                            case Title::LICENCE_TYPE_SINGLE:
+                            case Title::LICENCE_TYPE_I:
+                            case Title::LICENCE_TYPE_LT:
+                            case Title::LICENCE_TYPE_TT:
+                                if ($licenceDetails['usedLicences'] >= $title->maxStudents)
+                                    $status = 'licenceFull';
+                                break;
+                        }
+                    }
+                } else {
+                    $status = 'active';
+                }
             }
 
             // TODO should come from some config
+            $productDetails = array();
             switch ($title->productCode) {
                 case 63:
+                    // Additionally see if there is a scheduled test to be taken
+                    $tests = $this->testCops->getTestsSecure($group, $title->productCode);
+                    if (count($tests) > 0) {
+                        $status = 'scheduledTest';
+                    } else {
+                        // If there is no test, then drop the link
+                        continue 2;
+                    }
                     $productDetails['startingPoint'] = "https://dpt.clarityenglish.com";
                     $delimiter = "#";
                     break;
@@ -169,11 +178,11 @@ class apiService extends AbstractService {
                     $delimiter = "?";
                     break;
             }
-            $token = $this->createApiToken($user->email, $account, $title->productCode);
+            $token = $this->createApiToken($user->email, $account->prefix, $title->productCode);
             $params = ($token) ? $delimiter."apiToken=".$token : '';
             $links[] = array("productCode" => $title->productCode,
                 "href" => $productDetails['startingPoint'].$params,
-                "icon" => $productDetails['logoHref'],
+                "icon" => $title->logoHref,
                 "status" => $status);
         }
         return $links;
@@ -225,49 +234,47 @@ class apiService extends AbstractService {
         }
     }
 
-    public function getLicenceUsageWrapper($token, $productCode) {
+    public function getLicenceUseFromToken($token, $productCode) {
         $payload = $this->authenticationCops->getPayloadFromToken($token);
-        return $this->getLicenceUsage($productCode, $payload->userId, $payload->rootId);
+        // Since you have validated the token, you can get the user directly
+        $user = $this->manageableOps->getUserByIdNotAuthenticated($payload->userId);
+        $rootId = $this->manageableOps->getAccountIdFromUser($user);
+        $account = $this->accountCops->getBentoAccount($rootId, $productCode);
+
+        return $this->getLicenceUsage($productCode, $user, $account);
     }
     /*
-     * Check to see if a user has a licence and could get one if they wanted to
+     * Check to see if a user has a licence or could get one if they wanted to
      */
-    public function getLicenceUsage($productCode, $userId, $rootId, $architectureVersion=null) {
-        $version = ($architectureVersion) ? $architectureVersion : $this->contentOps->getDetailsFromProductCode($productCode)['architectureVersion'];
-        $account = $this->accountCops->getBentoAccount($rootId);
-        foreach ($account->titles as $title) {
-            if ($title->productCode == $productCode) {
-                $licence = new Licence();
-                $licence->fromDatabaseObj($title);
-                break;
-            }
-        }
+    public function getLicenceUsage($productCode, $user, $account) {
+       $title = $account->getTitleByProductCode($productCode);
+
         // Perhaps this account does not have this title...
-        if (!isset($licence)) {
+        if (!isset($title)) {
             $hasLicence = false;
             $usedLicences = 0;
         } else {
-            if (version_compare($version, '4', '>=')) {
+            if (version_compare($title->architectureVersion, '4', '>=')) {
                 // Check here to see if this user has a Couloir licence for this title
-                $hasLicence = $this->licenceCops->getUserCouloirLicence($productCode, $userId);
-                $usedLicences = $this->licenceCops->countUsedLicences($productCode, $rootId, $licence);
+                $hasLicence = $this->licenceCops->getUserCouloirLicence($productCode, $user->userID);
+                $usedLicences = $this->licenceCops->countUsedLicences($productCode, $account->id, $title);
 
-            } elseif (version_compare($version, '3', '>=')) {
+            } elseif (version_compare($title->architectureVersion, '3', '>=')) {
                 // Check here to see if this user has a Bento licence for this title
                 // Bento can have 'old' or 'new' style licences
-                $hasLicence = $this->licenceCops->getUserOldLicence($productCode, $userId, $account->useOldLicenceCount, $licence);
-                $usedLicences = $this->licenceCops->countUsedOldLicences($productCode, $rootId, $account->useOldLicenceCount, $licence);
+                $hasLicence = $this->licenceCops->getUserOldLicence($productCode, $user->userID, $account->useOldLicenceCount, $title);
+                $usedLicences = $this->licenceCops->countUsedOldLicences($productCode, $account->id, $account->useOldLicenceCount, $title);
 
             } else {
                 // Check here to see if this user has an Orchid licence for this title
-                $hasLicence = $this->licenceCops->checkOrchidLicence($productCode, $userId, $licence);
-                $usedLicences = $this->licenceCops->countOrchidLicences($productCode, $rootId, $licence);
+                $hasLicence = $this->licenceCops->checkOrchidLicence($productCode, $user->userID, $title);
+                $usedLicences = $this->licenceCops->countOrchidLicences($productCode, $account->id, $title);
             }
         }
         return array('userHasLicence' => $hasLicence,
                      'usedLicences' => $usedLicences,
-                     'maxLicences' => $licence->maxStudents,
-                     'licenceType' => $licence->licenceType);
+                     'maxLicences' => intval($title->maxStudents),
+                     'licenceType' => intval($title->licenceType));
     }
 
     /*
@@ -294,6 +301,26 @@ class apiService extends AbstractService {
             }
         }
     }
+    /*
+     * This returns any tests that a user is scheduled to take.
+     */
+    public function getScheduledTests($token, $productCode=null) {
+        // Read the token to get the user and their group
+        $payload = $this->authenticationCops->getPayloadFromToken($token);
+        if (isset($payload->userId) && isset($payload->groupId)) {
+            switch ($productCode) {
+                case 63:
+                default:
+                    // Are there any scheduled tests for this user?
+                    $group = $this->manageableOps->getGroup($payload->groupId);
+                    // Since you have validated the token, you can get the user directly
+                    $user = $this->manageableOps->getUserByIdNotAuthenticated($payload->userId);
+                    $group->addManageables($user);
+                    return $this->testCops->getTestsSecure($group, $productCode);
+                    break;
+            }
+        }
+    }
 
     // Checking if an email has already been used
     public function getEmailStatus($email) {
@@ -302,7 +329,6 @@ class apiService extends AbstractService {
 
     // Checking if a purchased token has already been used
     public function getTokenStatus($serial) {
-        //$rc = $this->getAppVersion();
         return $this->subscriptionCops->getTokenStatus($serial);
     }
     public function getToken($serial) {
@@ -326,10 +352,8 @@ class apiService extends AbstractService {
     /*
      * Activate a token by creating or finding the user
      * then registering the token to them and allocating a licence.
-     * Finish by calling signin for the [new] user.
      */
     public function activateToken($serial, $email, $name, $password) {
-
         // Decode the token
         $rc = $this->subscriptionCops->getTokenStatus($serial);
         switch ($rc['status']) {
@@ -350,13 +374,13 @@ class apiService extends AbstractService {
         // If the email is not unique, assume that they are trying to add the token to that existing user's account
         $existingUsers = $this->manageableOps->getUsersByEmail($email);
         if (count($existingUsers) > 1) {
-            throw new Exception("Email has aleady been used");
+            throw new Exception("Email has already been used");
         } elseif (count($existingUsers) == 1) {
             // Have we got the right password for this user?
             $user = $existingUsers[0];
-            $rc = $this->loginCops->verifyPassword($password, $user->password);
-            if ($rc)
-                $this->copyOps->getExceptionForId('errorWrongPassword');
+            $rc = $this->loginCops->verifyPassword($password, $user->password, $user->email);
+            if (!$rc)
+                throw $this->copyOps->getExceptionForId('errorWrongPassword', array('loginKeyField' => 'email'));
             // TODO Is this user in the expected group/root?
         } else {
             // Add a new user first to the group/root specified in the token
@@ -369,13 +393,16 @@ class apiService extends AbstractService {
         // Allocate the licence
         // TODO This does not check if this user ALREADY has a licence for this title
         // If they do, then activating token should add [duration] to the existing licence end date
+        // Use a fake session object to pass data to acquireLicenceSlot
         $session = new SessionTrack();
         $session->sessionId = 0;
         $session->userId = $user->userID;
         $session->rootId = $token->rootId;
         $session->productCode = $token->productCode;
+        $licence = $this->accountCops->getLicenceDetails($token->rootId, $token->productCode);
+
         // TODO for non-Couloir titles too please
-        $rc = $this->licenceCops->acquireCouloirLicenceSlot($session);
+        $rc = $this->licenceCops->allocateTokenLicenceSlot($session, $licence, $token);
 
     }
 
@@ -471,8 +498,7 @@ class apiService extends AbstractService {
         return $input;
     }
 
-    private function createApiToken($email, $account, $productCode) {
-        $prefix = $account->prefix;
+    private function createApiToken($email, $prefix, $productCode) {
         try {
             $key = $this->authenticationCops->getAccountApiKey($prefix);
         } catch (Exception $e) {
@@ -487,12 +513,45 @@ class apiService extends AbstractService {
     public function createJWT($payload, $key) {
 	    return array("token" => $this->authenticationCops->createToken($payload, $key));
     }
+    // This is for an apiToken that must include prefix and be signed by that account's private key
     public function readJWT($token) {
         $payload = $this->authenticationCops->getApiPayload($token);
         $key = (isset($payload->prefix)) ? $this->authenticationCops->getAccountApiKey($payload->prefix) : '0';
         $this->authenticationCops->validateApiToken($token, $key);
 
         return array("payload" => $this->authenticationCops->getPayloadFromToken($token, $key));
+    }
+    // This is to get payload from a general Clarity signed token
+    public function getTokenPayload($token) {
+        return array("payload" => $this->authenticationCops->getPayloadFromToken($token));
+    }
+    public function forgotPassword($email) {
+        $rc = $this->getEmailStatus($email);
+        if ($rc['status']!='used')
+            return $rc;
+        $payload = array("email" => $email);
+        // TODO Set a 1 hour/day expiry on this token
+        $jwt = $this->authenticationCops->createToken($payload);
+        return array('link' => '/Software/Tools/resetPassword.php?token='.$jwt);
+    }
+    public function changePassword($email, $password, $token) {
+        // Check that the token is valid and get it's contents
+        $payload = $this->authenticationCops->getPayloadFromToken($token);
+        if ($email != $payload->email)
+            throw new Exception("Invalid token");
+
+        $existingUsers = $this->manageableOps->getUsersByEmail($email);
+        if (count($existingUsers) > 1) {
+            throw new Exception("Email is not unique.");
+        } elseif (count($existingUsers) == 1) {
+            // Have we got the right password for this user?
+            $user = $existingUsers[0];
+            $rc = $this->manageableOps->changePassword($user, $password);
+        } else {
+            throw new Exception("Email not registered.");
+        }
+
+        return array('name' => $user->name);
     }
     public function dbCheck() {
         $dbVersion = $this->authenticationCops->getDbVersion();

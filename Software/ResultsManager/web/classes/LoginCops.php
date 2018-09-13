@@ -288,31 +288,7 @@ EOD;
         }
         return true;
     }
-	/**
-	 * Get the anonymous user from the database
-     * TODO This seems utterly pointless - getting back basically a null record from the database
-     * sss#130
-	 */
-	public function loginAnonymousCouloir() {
-	    $user = new User();
-	    $user->userID = -1;
-	    $user->name = 'anonymous';
-	    /*
-        $sql = <<<EOD
-				SELECT * FROM T_User u
-				WHERE F_UserID=-1; 
-EOD;
-        $rs = $this->db->Execute($sql);
 
-        if ($rs->RecordCount() > 0) {
-            $loginObj = $rs->FetchNextObj();
-        } else {
-            throw $this->copyOps->getExceptionForId("errorNoAnonymousUser");
-        }
-        return $loginObj;
-	    */
-	}
-	
 	/**
 	 * This function updates a user record with an instance ID
 	 * 
@@ -428,23 +404,18 @@ EOD;
         if ($rootId) {
             $account = $this->accountCops->getBentoAccount($rootId, $productCode);
 
-            // Remove any other titles from the account
-            // m#278 You only get one title back from getBentoAccount anyway...
-            $account->titles = array_filter($account->titles, function($title) use ($productCode) {
-                return ($title->productCode == intval($productCode));
-            });
-
             // What sort of licence is it?
             $licenceType = $account->titles[0]->licenceType;
-
+            $foundAccount = false;
         } else {
             $account = null;
             $licenceType = Title::LICENCE_TYPE_LT;
+            $foundAccount = true;
         }
 
         // sss#130 If an anonymous access is requested, build a null user
         if ($licenceType == Title::LICENCE_TYPE_AA && (is_null($login))) {
-            $user = $this->loginAnonymousCouloir($rootId, $productCode);
+            $user = $this->manageableOps->getAnonymousUser();
 
         } else {
             // Check the validity of the user details for this product
@@ -487,9 +458,9 @@ EOD;
             $rootId = $this->manageableOps->getRootIdForUserId($user->id);
 
             // sss#152 now that we know an account, we must check the validity of the title
-            $foundAccount = $this->accountCops->getBentoAccount($rootId, $productCode);
+            $account = $this->accountCops->getBentoAccount($rootId, $productCode);
             // sss#128
-            $foundAccount->titles[0]->contentLocation = $this->accountCops->getTitleContentLocation($productCode, $foundAccount->titles[0]->languageCode);
+            $account->titles[0]->contentLocation = $this->accountCops->getTitleContentLocation($productCode, $account->titles[0]->languageCode);
         }
 
         // Check on hidden content at the product level for this group
@@ -521,7 +492,7 @@ EOD;
 
         // Grab a licence slot - this will send exception if none available
         // TODO if you catch an exception from this, you could then invalidate the session you just created
-        $rc = $this->licenceCops->acquireCouloirLicenceSlot($session);
+        $rc = $this->licenceCops->acquireCouloirLicenceSlot($session, $account->titles[0]);
 
         // sss#192 Update the user with the instance id (using session id) to cope with only one user on one device
         if ($user->id > 0) {
@@ -547,15 +518,11 @@ EOD;
 
         // sss#304 Return an account if login had to look one up
         if (isset($foundAccount)) {
-            // Remove other titles
-            $foundAccount->titles = array_filter($foundAccount->titles, function ($title) use ($productCode) {
-                return $title->productCode = intval($productCode);
-            });
             $rc["account"] = array(
-                "lang" => $foundAccount->titles[0]->languageCode,
-                "contentName" => $foundAccount->titles[0]->contentLocation,
-                "rootId" => intval($foundAccount->id),
-                "institutionName" => $foundAccount->name,
+                "lang" => $account->titles[0]->languageCode,
+                "contentName" => $account->titles[0]->contentLocation,
+                "rootId" => intval($account->id),
+                "institutionName" => $account->name,
                 "menuFilename" => "menu.json");
         } else {
             $rc["account"] = null;

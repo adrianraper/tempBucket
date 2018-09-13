@@ -1250,14 +1250,14 @@ EOD;
 	 */
 	function getUsersGroups($user, $rootId = null) {
 	    // If this is a 'real' user, find the group they are in
-		if ($user->id > 0) {
+		if ($user->userID > 0) {
             $sql = <<<EOD
 			SELECT g.*
 			FROM T_Membership m, T_Groupstructure g
 			WHERE m.F_UserID = ?
 			AND m.F_GroupID = g.F_GroupID
 EOD;
-            $rs = $this->db->Execute($sql, array($user->id));
+            $rs = $this->db->Execute($sql, array($user->userID));
 
         // Otherwise for anonymous user, find the top level group for their root
         } else {
@@ -1302,6 +1302,9 @@ EOD;
 	 * This returns a specific user object defined by its ID
 	 */
 	function getUserById($userID) {
+	    if ($userID<0)
+	        return $this->getAnonymousUser();
+
         // gh#1292 Are you just trying to get yourself?
         if ($userID == Session::get('userID')) {
             // AbstractService::$debugLog->notice("getUserById recognised myself");
@@ -1326,10 +1329,19 @@ EOD;
                 return $users[0];
         }
 	}
+	public function getAnonymousUser() {
+        $user = new User();
+        $user->userID = -1;
+        $user->name = 'anonymous';
+        return $user;
+    }
     /**
      * This returns a specific user object defined by its ID, and skips authentication
      */
     function getUserByIdNotAuthenticated($userID) {
+        if ($userID<0)
+            return $this->getAnonymousUser();
+
         $sql  = "SELECT ".User::getSelectFields($this->db);
         $sql .= <<<EOD
             FROM T_User u
@@ -2245,6 +2257,11 @@ EOD;
 		return $user;
 	}
 
+	// m#404 Change password from api
+    public function changePassword($user, $newPassword) {
+	    $user->password = $newPassword;
+        return $this->db->AutoExecute("T_User", $user->toAssocArray(), "UPDATE", "F_UserID=".$user->userID);
+    }
 	/*
 	 * m#404 Check if an email address is available for use
 	 *
@@ -2265,7 +2282,7 @@ EOD;
             while ($dbObj = $rs->FetchNextObj()) {
                 $user = new User();
                 $user->fromDatabaseObj($dbObj);
-                $users[] = $user->publicView();
+                $users[] = $user;
             }
         }
         return $users;
@@ -2552,10 +2569,10 @@ EOD;
 	}
 
 	/**
-	 * Get the account that a user is in
+	 * Get the account root that a user is in
 	 * 
 	 */
-	public function getAccountFromUser($user) {
+	public function getAccountRootFromUser($user) {
 		$key = $user->userID;
 		
 		$sql = <<<EOD
@@ -2579,6 +2596,30 @@ EOD;
 				return null;
 		}
 	}
+
+    /*
+     * Find which account rootId a user is in
+     */
+    public function getAccountIdFromUser($user) {
+        $key = $user->userID;
+        $sql = <<<EOD
+				SELECT F_RootID as rootId
+				FROM T_Membership
+				WHERE F_UserID = ?
+EOD;
+        $bindingParams = array($key);
+        $rs = $this->db->Execute($sql, $bindingParams);
+        $recordCount = $rs->RecordCount();
+
+        switch ($recordCount) {
+            case 1:
+                return $rs->FetchNextObj()->rootId;
+                break;
+            default:
+                return null;
+        }
+
+    }
 
 	// Odd utility function for getting users from a root with no group structure
     // It is very slow to create all these new User objects, and all we need is userID
@@ -2648,6 +2689,8 @@ EOD;
      * Functions for Couloir that don't use authentication
      */
     // Need a way to get a user from an id without using authentication in manageableOps
+    // See getUserByIdNotAuthenticated
+    /*
     public function getCouloirUserFromID($id) {
         $sql  = "SELECT ".User::getSelectFields($this->db);
         $sql .= <<<EOD
@@ -2663,7 +2706,7 @@ EOD;
             throw new Exception("Database error, user lost");
         }
     }
-
+    */
     /*
      * Expire all users in the given group
      */
