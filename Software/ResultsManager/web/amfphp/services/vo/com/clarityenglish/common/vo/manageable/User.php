@@ -388,14 +388,31 @@ EOD;
 	}
 
 	// ctp#47 Hide any information that a normal app doesn't need to see
+    // m#484 Make non-destructive and selective rather than blocking
     public function publicView() {
-        // This will permanently remove sensitive fields from this object
-        $this->password = null;
-        $this->salt = null;
-        $this->registerMethod = null;
-        $this->birthday = null;
-        $this->registrationDate = null;
-        return $this;
+        $formattedUser = array();
+        foreach ($this as $key => $value) {
+            switch ($key) {
+                case "userID":
+                case "name":
+                case "birthday":
+                case "studentID":
+                case "expiryDate":
+                case "email":
+                case "country":
+                case "city":
+                case "startDate":
+                case "registrationDate":
+                case "registerMethod":
+                    $formattedUser[$key] = $value;
+                    break;
+                default:
+            }
+        }
+        // m#407
+        if (is_null($formattedUser['email']))
+            $formattedUser['email'] = '';
+        return $formattedUser;
     }
     // Create a formatted version of user that contains only the fields couloir apps want
     public function couloirView() {

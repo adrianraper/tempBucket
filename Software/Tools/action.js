@@ -35,6 +35,12 @@ $(function() {
             signin($('#login').val(), $('#password').val());
         }
     });
+    $("form#forgotDetails").keypress(function(e) {
+        console.log("clicked " + e);
+        if(e.which == 13) {
+            forgot($('#forgotEmail').val());
+        }
+    });
     $("form#tokenDetails").keypress(function(e) {
         console.log("clicked " + e);
         if(e.which == 13) {
@@ -47,19 +53,22 @@ $(function() {
         checkSerial($(this).val());
     });
 
-    // Once an activation email has been typed, see if it is already linked to an account
-    $('#activateEmail').on( "focusout", function(){
-        checkEmail($(this).val());
+    // Once any email has been typed, see if it is already linked to an account
+    $('#forgotEmail, #activateEmail').on( "focusout", function(){
+        checkEmail($(this));
     });
 
     // Sign in
     $('#signin').on( "click", function(){
         signin($('#login').val(), $('#password').val());
     });
-
     // Sign out
     $('#signout').on( "click", function(){
         signout();
+    });
+    // Forgot email
+    $('#forgot').on( "click", function(){
+        forgot($('#forgotEmail').val());
     });
 
     // Same passwords
@@ -129,9 +138,52 @@ var showAndHideEvents = function(event, msg) {
             $("#activate").prop('disabled', true);
             $("#activateStatus").text("That email can't be used.");
             break;
+        case "invalidRegisteredEmail":
+            $("#signinStatus").text("That email is not registered in our database.");
+            $("#forgot").prop('disabled', true);
+            break;
+        case "validRegisteredEmail":
+            $("#signinStatus").text("OK");
+            $("#forgot").prop('disabled', false);
+            break;
+        case "showForgotEmail":
+            $("#signinStatus").html("<p>Hi, click <a href='"+msg+"'>this link</a> to reset your password.</p>");
+            break;
+        case "gotResult":
+            $("#dptStatus").html("<p>Your CEFR level is "+msg+". Use this to guide your learning.</p>");
+            break;
 
         default:
     }
+}
+var forgot = function(email) {
+    showAndHideEvents('reset');
+    var data = {command:"forgotPassword", email:email};
+    console.log("call: " + data);
+    $.ajax({
+        method: "POST",
+        url: apiGatewayUrl,
+        dataType: "json",
+        data: JSON.stringify(data)
+    }).done(function(data, status, jqXHR) {
+        var success = data.success;
+        if (success) {
+            // Was it successful?
+            if (data.details.link == null) {
+               showAndHideEvents("invalidRegisteredEmail");
+            } else {
+                var link = data.details.link;
+                showAndHideEvents("showForgotEmail", link);
+            }
+            console.log(data.details);
+        } else {
+            showAndHideEvents("activateError", data.error.message);
+            console.log(data.error);
+        }
+    }).fail(function(jqXHR,status,err) {
+        $("#signinStatus").text(err.message);
+        console.log(err);
+    });
 }
 var matchPasswords = function(one, two){
     if (one != two) {
@@ -142,7 +194,7 @@ var matchPasswords = function(one, two){
 }
 var activate = function(serial, name, email, password) {
     showAndHideEvents('reset');
-    var hashedPassword = passwordHash(password, login);
+    var hashedPassword = passwordHash(password, email);
     var data = {command:"activateToken", email:email, password:hashedPassword, name:name, token:serial, appVersion:"1"};
     console.log("try to activate with " + data);
     $.ajax({
@@ -155,7 +207,31 @@ var activate = function(serial, name, email, password) {
         if (success) {
             showAndHideEvents("activate");
             console.log(data.details);
-            signin(email, password);
+            signin(email, hashedPassword);
+        } else {
+            showAndHideEvents("activateError", data.error.message);
+            console.log(data.error);
+        }
+    }).fail(function(jqXHR,status,err) {
+        $("#signinStatus").text(err.message);
+        console.log(err);
+    });
+}
+
+var getTestResult = function(token) {
+    showAndHideEvents('reset');
+    var data = {command:"getResult", token:token, productCode:63};
+    console.log("try to get test result" + JSON.stringify(data));
+    $.ajax({
+        method: "POST",
+        url: apiGatewayUrl,
+        dataType: "json",
+        data: JSON.stringify(data)
+    }).done(function(data, status, jqXHR) {
+        var success = data.success;
+        if (success) {
+            showAndHideEvents("gotResult", data.details.level);
+            console.log(data.details);
         } else {
             showAndHideEvents("activateError", data.error.message);
             console.log(data.error);
@@ -205,9 +281,10 @@ var signin = function(login, password) {
 var passwordHash = function(password, email) {
     return md5(email + password);
 }
-var checkEmail = function(email) {
+var checkEmail = function(field) {
+    var email = field.val();
     showAndHideEvents('reset');
-    var data = {command:"checkEmailStatus", email:email};
+    var data = {command:"getEmailStatus", email:email};
     $.ajax({
         method: "POST",
         url: apiGatewayUrl,
@@ -216,14 +293,21 @@ var checkEmail = function(email) {
     }).done(function( msg ) {
         var success = msg.success;
         if (success) {
-            if (msg.details.status == 'used') {
-                showAndHideEvents("existingAccount");
-                console.log(msg.details);
-            } else if (msg.details.status == 'new') {
-                showAndHideEvents("newAccount");
+            console.log(msg.details);
+            if (field.attr('id') == "forgotEmail") {
+                if (msg.details.status == 'used') {
+                    showAndHideEvents("validRegisteredEmail");
+                } else {
+                    showAndHideEvents("invalidRegisteredEmail");
+                }
             } else {
-                showAndHideEvents("invalidAccount");
-                console.log(msg.details.status);
+                if (msg.details.status == 'used') {
+                    showAndHideEvents("existingAccount");
+                } else if (msg.details.status == 'none') {
+                    showAndHideEvents("newAccount");
+                } else {
+                    showAndHideEvents("invalidAccount");
+                }
             }
         } else {
             showAndHideEvents("invalidAccount");

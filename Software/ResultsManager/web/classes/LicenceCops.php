@@ -56,6 +56,7 @@ class LicenceCops
             case Title::LICENCE_TYPE_I:
             case Title::LICENCE_TYPE_LT:
             case Title::LICENCE_TYPE_TT:
+            case Title::LICENCE_TYPE_TOKEN:
                 $reconnectionWindow = LicenceCops::LT_RECONNECTION_WINDOW;
                 $inactivityWindow = LicenceCops::LT_INACTIVITY_WINDOW;
                 break;
@@ -70,7 +71,7 @@ class LicenceCops
 
                 $activeLicence = $this->checkCurrentLicence($productCode, $rootId, $sessionId, $userId, $licence);
                 if ($activeLicence) {
-                    $this->extendLicence($sessionId);
+                    $this->extendLicence($sessionId, $licence->licenceType);
                 } else {
                     return ["hasLicenseSlot" => false];
                 }
@@ -88,6 +89,48 @@ class LicenceCops
         return ["hasLicenseSlot" => true, "reconnectionWindow" => $reconnectionWindow, "inactivityWindow" => $inactivityWindow];
     }
 
+    // m#404 This is the only way to get a licence to run a token title.
+    // If there is a licence available you will be allocated one
+    public function allocateTokenLicenceSlot($session, $licence, $token) {
+
+        $sessionId = $session->sessionId;
+        $userId = $session->userId;
+        $rootId = $session->rootId;
+        $productCode = $session->productCode;
+        $user = $this->manageableOps->getUserByIdNotAuthenticated($userId);
+
+        $dateStampNow = AbstractService::getNow();
+        $dateNow = $dateStampNow->format('Y-m-d H:i:s');
+        if ($licence->licenceStartDate > $dateNow)
+            throw $this->copyOps->getExceptionForId("errorLicenceHasntStartedYet");
+
+        if ($licence->expiryDate < $dateNow) {
+            // Write a record to the failure table
+            $this->failLicenceSlot($user, $rootId, $productCode, $licence, null, $this->copyOps->getCodeForId("errorLicenceExpired"));
+
+            throw $this->copyOps->getExceptionForId("errorLicenceExpired", array("expiryDate" => $licence->expiryDate));
+        }
+
+        // Do you already have a licence, in which case extend it by duration
+        // TODO this should actually be getCurrentLicence so that we can then find the end date and add duration to that
+        // BUG Currently this adds token duration to today, which is quite quite wrong
+        $activeLicence = $this->checkCurrentLicence($productCode, $rootId, $sessionId, $userId, $licence);
+        if ($activeLicence) {
+            $this->extendLicence($userId, $licence->licenceType, $token->duration);
+
+        } else {
+            $usedLicences = $this->countCurrentLicences($productCode, $rootId, $licence->licenceType);
+            if ($usedLicences >= $licence->maxStudents) {
+                $this->failLicenceSlot($user, $rootId, $productCode, $licence, null, $this->copyOps->getCodeForId("errorTrackingLicenceFull"));
+
+                throw $this->copyOps->getExceptionForId("errorTrackingLicenceFull");
+            }
+
+            // There is a free licence, so grab it
+            $this->grabLicenceSlot($productCode, $rootId, $sessionId, $userId, $licence, $token->duration);
+
+        }
+    }
     /*
      * Get a licence slot for this session
      *  Check the account to find the licence type and limits
@@ -98,15 +141,14 @@ class LicenceCops
      * Takes care of all database records related to the licence
      *
      */
-    function acquireCouloirLicenceSlot($session) {
+    function acquireCouloirLicenceSlot($session, $licence) {
 
         // For AA licences, userId will be a generic -1 - or the anonymous user for an account
         $sessionId = $session->sessionId;
         $userId = $session->userId;
-        $user = $this->manageableOps->getCouloirUserFromID($userId);
         $rootId = $session->rootId;
         $productCode = $session->productCode;
-        $licence = $this->accountCops->getLicenceDetails($rootId, $productCode);
+        $user = $this->manageableOps->getUserByIdNotAuthenticated($userId);
 
         // Some checks are independent of licence type
         // gh#815
@@ -128,6 +170,15 @@ class LicenceCops
 
         // Then licence slot checking is based on licence type
         switch ($licence->licenceType) {
+            // m#404 You can only use a token title if you already have a licence to it.
+            case  Title::LICENCE_TYPE_TOKEN:
+                $reconnectionWindow = LicenceCops::LT_RECONNECTION_WINDOW;
+                $inactivityWindow = LicenceCops::LT_INACTIVITY_WINDOW;
+                $activeLicence = $this->checkCurrentLicence($productCode, $rootId, $sessionId, $userId, $licence);
+                if (!$activeLicence)
+                    throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array('productCode' => $productCode, 'rootID' => $rootId));
+                break;
+
             case Title::LICENCE_TYPE_AA:
             case Title::LICENCE_TYPE_CT:
             case Title::LICENCE_TYPE_NETWORK:
@@ -150,7 +201,7 @@ class LicenceCops
                  */
                 $activeLicence = $this->checkCurrentLicence($productCode, $rootId, $sessionId, $userId, $licence);
                 if ($activeLicence) {
-                    $rc = $this->extendLicence($sessionId);
+                    $rc = $this->extendLicence($sessionId, $licence->licenceType);
                     if ($rc) {
                         // Licence slot found, get out of this case.
                         break;
@@ -231,7 +282,7 @@ class LicenceCops
      * Grab a licence slot
      * gh#1230
      */
-    public function grabLicenceSlot($productCode, $rootId, $sessionId, $userId, $licence) {
+    public function grabLicenceSlot($productCode, $rootId, $sessionId, $userId, $licence, $duration=null) {
 
         // The licence expiry date is very different for AA and LT.
         $dateStamp = AbstractService::getNow();
@@ -270,6 +321,13 @@ EOD;
                 // The licence will end 1 day less than a year (or other licence clearance frequency)
                 $expungeDateStamp->modify('+' . $licence->licenceClearanceFrequency); // one licence period in the future
                 $licenceEndDate = $expungeDateStamp->modify('-1 day')->format('Y-m-d 23:59:59'); // minus one day
+                break;
+
+            case Title::LICENCE_TYPE_TOKEN:
+                $keyId = $userId;
+                // The licence will end based on now + duration in the token
+                $expungeDateStamp->modify('+' . $duration . ' days'); // x days in the future
+                $licenceEndDate = $expungeDateStamp->format('Y-m-d 23:59:59');
                 break;
         }
         $sql = <<<EOD
@@ -474,6 +532,7 @@ EOD;
             case Title::LICENCE_TYPE_I:
             case Title::LICENCE_TYPE_LT:
             case Title::LICENCE_TYPE_TT:
+            case Title::LICENCE_TYPE_TOKEN:
                 $keyId = $userId;
                 // An LT licence is valid for a year (normally)
                 // $dateStampNow->modify('+'.$licence->licenceClearanceFrequency); // one licence period in the future
@@ -671,29 +730,18 @@ EOD;
      *
      * This function extends a licence record with a timestamp
      * It is only relevant for AA licences that constantly check the date
+     * m#404 Or for token licences that get extra days added to them
      */
     // gh#1342
-    function extendLicence($sessionId, $timestamp = null) {
-        $extendBy = LicenceCops::AA_LICENCE_EXTENSION;
+    function extendLicence($keyId, $licenceType, $duration = null) {
+        $dateStampNow = AbstractService::getNow();
+        if ($licenceType == Title::LICENCE_TYPE_TOKEN) {
+            $endDate = $dateStampNow->add(new DateInterval('P' . $duration . 'D'))->format('Y-m-d H:i:s');
 
-        // gh#815 sss#161 You might be updating based on an activity message from a little while ago that just arrived
-        $dateStampNow = is_null($timestamp) ? AbstractService::getNow() : new DateTime('@' . intval($timestamp), new DateTimeZone(TIMEZONE));
-        // Set an extra x seconds on the licence
-        $dateNow = $dateStampNow->add(new DateInterval('PT' . $extendBy . 'S'))->format('Y-m-d H:i:s');
-
-        // sss#161 Check first that this IS an AA licence
-        // TODO I think this is unnecessary, we won't call it for LT
-        /*
-        $sql = <<<EOD
-			SELECT * FROM T_CouloirLicenceHolders 
-			WHERE F_KeyID=?
-            AND F_LicenceType=?
-EOD;
-        $bindingParams = array($sessionId, Title::LICENCE_TYPE_AA);
-        $rs = $this->db->Execute($sql, $bindingParams);
-        if (!$rs || $rs->recordCount()==0)
-            return;
-        */
+        } else {
+            $extendBy = LicenceCops::AA_LICENCE_EXTENSION;
+            $endDate = $dateStampNow->add(new DateInterval('PT' . $extendBy . 'S'))->format('Y-m-d H:i:s');
+        }
         // Update the licence in the table
         // gh#1342
         $sql = <<<EOD
@@ -701,10 +749,10 @@ EOD;
 			SET F_EndDateStamp=?
 			WHERE F_KeyID=?
 EOD;
-        $bindingParams = array($dateNow, $sessionId);
+        $bindingParams = array($endDate, $keyId);
         $rs = $this->db->Execute($sql, $bindingParams);
         if (!$rs)
-            throw $this->copyOps->getExceptionForId("errorCantUpdateLicence", array("licenceID" => $sessionId));
+            throw $this->copyOps->getExceptionForId("errorCantUpdateLicence", array("licenceID" => $keyId));
         return true;
     }
 
@@ -736,6 +784,7 @@ EOD;
             case Title::LICENCE_TYPE_TT:
             case Title::LICENCE_TYPE_I:
             case Title::LICENCE_TYPE_SINGLE:
+            case Title::LICENCE_TYPE_TOKEN:
                 // You can't release an LT licence slot
                 return true;
                 break;

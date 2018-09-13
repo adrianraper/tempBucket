@@ -1931,3 +1931,6 @@ INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('70', 
 INSERT INTO `T_ProductVersion` (`F_ProductCode`, `F_VersionCode`) VALUES ('70', 'DEMO');
 INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLocation`) VALUES ('70', 'EN','pw');
 INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLocation`) VALUES ('70', 'NAMEN','pw-na');
+
+-- Add new licence type for 'Token'
+INSERT INTO `T_LicenceType` VALUES (8,'Token');

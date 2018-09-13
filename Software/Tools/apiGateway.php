@@ -8,13 +8,14 @@ header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
 $json = json_decode(file_get_contents('php://input'));
-//$json = json_decode('{"command":"countLicences", "rootId":163, "productCode":72}');
+//$json = json_decode('{"command":"getScheduledTests", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzcyNTk5MjYsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.grxY8Ji5vGp3daafKktVEWlgMRTI7DwmZQEnzxueVRk", "productCode":63}');
 //$json = json_decode('{"command":"generateTokens","quantity":2,"productCode":68,"rootId":163,"groupId":74548,"duration":90,"productVersion":"FV"}');
 //$json = json_decode('{"command":"addUser", "email":"panther@clarity", "name":"Panther", "password":"efe25101077219ef18ab80fc95bb31ca", "rootId":163, "groupId":74548}');
-//$json = json_decode('{"command":"activateToken","email":"leopard@clarity", "password":"123456789","name":"leopard","token":"7853-5602-0801-9","appVersion":"1"}');
+//$json = json_decode('{"command":"activateToken","token":"2853-6807-2040-3","email":"poisson@clarity", "password":"28e05e0207c6706531b2f60a6038ae8b","appVersion":"1"}');
+//$json = json_decode('{"appVersion":"1.3.2","command":"getEmailStatus", "email":"adrian@clarity"}');
 //$json = json_decode('{"appVersion":"1.3.2","command":"getTokenStatus", "token":"3208-5356-0209-7"}');
-//$json = json_decode('{"command":"getLicenceUsage","productCode":50,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzU1MjAzMDMsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.5taJkI1FVQv7lOLnrbfw7T1ow68ev4A-sfnpAI6MAAc"}');
-//$json = json_decode('{"command":"signin","email":"adrian@clarity", "password":"28e05e0207c6706531b2f60a6038ae8b"}');
+//$json = json_decode('{"command":"getLicenceUse","productCode":68,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzY4MDM3NjgsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.QaWptmQ5pFWrm415xxIKQAEu6MKu1KF7TP3YtxpYS7s"}');
+//$json = json_decode('{"command":"getUser","email":"adrian@clarity", "password":"28e05e0207c6706531b2f60a6038ae8b"}');
 //$json = json_decode('{"command":"getResult","productCode":63,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzU1MjAzMDMsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.5taJkI1FVQv7lOLnrbfw7T1ow68ev4A-sfnpAI6MAAc"}');
 //$json = json_decode('{"command":"readJWT","token":"eyJ0e.eyJpc3.O9kQ-jX"}');
 /**
@@ -132,6 +133,7 @@ function router($json) {
         case "activatetoken":
             if (!isset($json->token) || !isset($json->email))
                 throw new Exception("Request is missing key information");
+            if (!isset($json->name)) $json->name = '';
             return activateToken($json->token, $json->email, $json->name, $json->password);
         case "gettokenstatus":
             if (!isset($json->token))
@@ -160,12 +162,19 @@ function router($json) {
             if (!isset($json->email) || !isset($json->password))
                 throw new Exception("Request is missing key information");
             return signIn($json->email, $json->password);
-        case "getlicenceusage":
+        case "getlicenceuse":
             if (!isset($json->productCode)) $json->productCode = null;
-            return getLicenceUsage($json->token, $json->productCode);
+            return getLicenceUse($json->token, $json->productCode);
         case "getresult":
+            if (!isset($json->token))
+                throw new Exception("Request is missing key information");
             if (!isset($json->productCode)) $json->productCode = null;
             return getResult($json->token, $json->productCode);
+        case "getscheduledtests":
+            if (!isset($json->token))
+                throw new Exception("Request is missing key information");
+            if (!isset($json->productCode)) $json->productCode = null;
+            return getScheduledTests($json->token, $json->productCode);
         case "convertlicences":
             if (!isset($json->rootId) || !isset($json->productCode))
                 throw new Exception("Request is missing key information");
@@ -183,6 +192,17 @@ function router($json) {
             if (!isset($json->token)) $json->token = null;
             //if (!isset($json->key)) $json->key = null;
             return readJWT($json->token);
+        case "gettokenpayload":
+            if (!isset($json->token)) $json->token = null;
+            return getTokenPayload($json->token);
+        case "forgotpassword":
+            if (!isset($json->email))
+                throw new Exception("Request is missing key information");
+            return forgotPassword($json->email);
+        case "changepassword":
+            if (!isset($json->token) || !isset($json->email) || !isset($json->password))
+                throw new Exception("Request is missing key information");
+            return changePassword($json->email, $json->password, $json->token);
         case "dbcheck": return dbCheck();
         default: throw new Exception("Unknown command ".$json->command);
     }
@@ -206,7 +226,7 @@ function getEmailStatus($email) {
 function getUser($email, $password) {
     global $service;
     return $service->getUser($service->cleanInputs($email),
-                             $service->cleanInputs($password, 'password'));
+                             $service->cleanInputs($password, 'password'))->publicView();
 }
 function addUser($email, $name, $password, $rootId, $groupId) {
     global $service;
@@ -233,13 +253,17 @@ function activateToken($token, $email, $name, $password){
                                     $service->cleanInputs($password, 'password'));
     return $service->signIn($email, $password);
 }
-function getLicenceUsage($token, $productCode=null) {
+function getLicenceUse($token, $productCode=null) {
     global $service;
-    return $service->getLicenceUsageWrapper($token, $productCode);
+    return $service->getLicenceUseFromToken($token, $productCode);
 }
 function getResult($token, $productCode=null) {
     global $service;
     return $service->getResult($token, $productCode);
+}
+function getScheduledTests($token, $productCode=null) {
+    global $service;
+    return $service->getScheduledTests($token, $productCode);
 }
 function convertLicences($rootId, $productCode) {
     global $service;
@@ -260,6 +284,18 @@ function readJWT($token) {
     } catch (Exception $e) {
         throw new Exception("Invalid token. JWT:" . $e->getMessage());
     }
+}
+function getTokenPayload($payload) {
+    global $service;
+    return $service->getTokenPayload($payload);
+}
+function forgotPassword($email) {
+    global $service;
+    return $service->forgotPassword($email);
+}
+function changePassword($email, $password, $token) {
+    global $service;
+    return $service->changePassword($email, $password, $token);
 }
 
 // Just for testing new gateways
