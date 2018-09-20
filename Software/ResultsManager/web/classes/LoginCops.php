@@ -531,7 +531,7 @@ EOD;
 
     }
     // m#404 Extracted from CouloirService so apiService can run it too
-    public function addUser($rootId, $groupId, $loginObj) {
+    public function addUser($rootId, $groupId, $loginObj, $apiToken=null) {
         /*
         // Pick the productCode and rootId from the token
         $json = $this->authenticationCops->getPayloadFromToken($token);
@@ -551,6 +551,9 @@ EOD;
         // Email has to be unique (this was not true in the past but it is better to require it now)
         //$account = $this->accountCops->getBentoAccount($rootId, $productCode);
         $account = $this->manageableOps->getAccountRoot($rootId);
+        if ($apiToken)
+            $account->verified = false;
+
         $loginOption = ((isset($account->loginOption)) ? $account->loginOption : User::LOGIN_BY_EMAIL) + User::LOGIN_HASHED;
 
         $stubUser = new User();
@@ -608,7 +611,7 @@ EOD;
             $groups = array($this->manageableOps->getGroup($groupId));
         } else {
             $adminUser = new User();
-            $adminUser->id = $account->getAdminUserID();
+            $adminUser->userID = $account->getAdminUserID();
             $groups = $this->manageableOps->getUsersGroups($adminUser);
         }
 

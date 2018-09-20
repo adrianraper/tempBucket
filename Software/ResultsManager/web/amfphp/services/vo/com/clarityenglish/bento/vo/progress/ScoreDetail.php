@@ -32,6 +32,8 @@ class ScoreDetail {
                 $this->setUID($score->uid);
             if (isset($score->sessionID))
                 $this->sessionID = $score->sessionID;
+            if (isset($score->userID))
+                $this->userID = $score->userID;
         }
 
         if ($answerObj) {

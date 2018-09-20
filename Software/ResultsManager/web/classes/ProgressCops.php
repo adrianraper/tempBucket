@@ -1009,23 +1009,7 @@ EOD;
 	 * This method is called to insert a score record to the database 
 	 */
     // ctp#282 Force score to be written for any usertype
-	function insertScore($score, $user, $forceScoreWriting = false) {
-		// For teachers we will set score to -1 in the score record, so, are you a teacher?
-		if (!$user->userType == 0 && !$forceScoreWriting)
-			$score->score = -1;
-		
-		// Write anonymous records to an ancilliary table that will not slow down reporting
-		if ($score->userID < 1) {
-			$tableName = 'T_ScoreAnonymous';
-		} else {
-			$tableName = 'T_Score';
-		}
-
-		// #340. This fails to insert or raise an error for SQLite
-		//$dbObj = $score->toAssocArray();
-		//$rc = $this->db->AutoExecute($tableName, $dbObj, "INSERT");
-		//if (!$rc)
-		//	throw $this->copyOps->getExceptionForId("errorDatabaseWriting", $this->db->ErrorMsg());
+	function insertScore($score) {
 
 		$sql = <<<EOD
 			INSERT INTO T_Score (F_UserID,F_ProductCode,F_CourseID,F_UnitID,F_ExerciseID,
@@ -1059,10 +1043,7 @@ EOD;
      * This method is called to insert a score record to the database
      */
     // ctp#282 Force score to be written for any usertype
-    function insertScoreDetails($scoreDetails, $user, $forceScoreWriting = false) {
-        // For teachers we will not save any score details
-        if (!$user->userType == 0 && !$forceScoreWriting)
-            return;
+    function insertScoreDetails($scoreDetails) {
 
         $rootID = 'null'; // I don't think this needs to be in T_ScoreDetail does it?
         $sqlData = array();
@@ -1073,7 +1054,7 @@ EOD;
             if (!$scoreDetail->score) $scoreDetail->score = 'null';
             // dpt#469 Included presented but not attempted, datestamp will be null
             $quotedDateStamp = ($scoreDetail->dateStamp) ? "'".$scoreDetail->dateStamp."'" : 'null';
-            $sqlData[] = "(".$user->userID.", ".$rootID.", ".$scoreDetail->sessionID.
+            $sqlData[] = "(".$scoreDetail->userID.", ".$rootID.", ".$scoreDetail->sessionID.
                 ", ".$scoreDetail->unitID.", '".$scoreDetail->exerciseID."'".
                 ", '".$scoreDetail->itemID."', ".$scoreDetail->score.", '".$scoreDetail->detail."', ".$quotedDateStamp.")";
         }
