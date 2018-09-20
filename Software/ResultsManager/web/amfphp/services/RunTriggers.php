@@ -77,15 +77,9 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 			//$trigger->rootID = Array(5,7,28,163,10719,11091);
 			//$trigger->rootID = Array(13959);
 		}
-		// Ignore Road to IELTS v1 until all expired or removed
-		// $trigger->condition->notProductCode = '12,13';
 
-        // gh#1422 Temporary hack to stop Practical Writing trial accounts from triggering a renewal reminder
-        //if ($msgType == 1)
-        //    $trigger->condition->notProductCode = '61';
-
-        // gh#1581 1602 Stop usage stats and subscription reminders triggering for DPT
-        if ($msgType == 2 || $msgType == 1) {
+        // gh#1581 1602 m#514 Stop subscription reminders triggering for DPT
+        if ($msgType == 1) {
             $trigger->condition->notProductCode = (isset($trigger->condition->notProductCode)) ? $trigger->condition->notProductCode . ',63' : '63';
         }
 

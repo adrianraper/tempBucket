@@ -60,8 +60,9 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 	
 	// You may limit the triggers to those in an array of IDs
 	// New, and a particular type.
+    $niceTriggerDate = date("Y-m-d", $triggerDate);
 	$triggers = $dmsService->triggerOps->getTriggers($msgType, $triggerIDArray, $triggerDate, $frequency);
-	echo 'got '.count($triggers) .' '.$frequency.' triggers with type='.$msgType.$newLine;
+	echo 'got '.count($triggers) .' '.$frequency.' triggers with type='.$msgType." for ".$niceTriggerDate.$newLine;
 
 	// Run the condition of each trigger against the database and pull back all objects that meet the condition
 	foreach ($triggers as $trigger) {
@@ -73,7 +74,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 		if (isset($_REQUEST['rootID']) && $_REQUEST['rootID']>0) {
 			$trigger->rootID = $_REQUEST['rootID'];
 		} else {
-			//$trigger->rootID = Array(5,7,28,163,10719,11091);
+			$trigger->rootID = array(163,10103,10759);
 			//$trigger->rootID = Array(10758,10759);
 		}
 		// Ignore Road to IELTS v1 until all expired or removed
@@ -83,8 +84,8 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
         //if ($msgType == 1)
         //    $trigger->condition->notProductCode = '61';
 
-        // gh#1581 1602 Stop usage stats and subscription reminders triggering for DPT
-        if ($msgType == 2 || $msgType == 1) {
+        // gh#1581 1602 m#514 Stop subscription reminders triggering for DPT
+        if ($msgType == 1) {
             $trigger->condition->notProductCode = (isset($trigger->condition->notProductCode)) ? $trigger->condition->notProductCode . ',63' : '63';
         }
 
@@ -351,14 +352,14 @@ echo $GLOBALS['db'].$newLine;
 // If you want to run specific triggers for specific days (to catch up for days when this was not run for instance)
 $testingTriggers = "";
 //$testingTriggers .= "subscription reminders";
-//$testingTriggers .= "usage stats";
+$testingTriggers .= "usage stats";
 //$testingTriggers .= "support";
 //$testingTriggers .= "quotations";
 //$testingTriggers .= "trial reminders";
 //$testingTriggers .= "terms and conditions";
 //$testingTriggers .= "EmailMe";
 //$testingTriggers = "justThese";
-$testingTriggers .= "oneoffActions";
+//$testingTriggers .= "oneoffActions";
 
 $fixedDateShift = 0;
 
