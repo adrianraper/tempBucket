@@ -8,6 +8,7 @@ header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
 $json = json_decode(file_get_contents('php://input'));
+//$json = json_decode('{"command": "forgotPassword","email":"aeshan@gmail.com"}');
 //$json = json_decode('{"command":"getScheduledTests", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzcyNTk5MjYsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.grxY8Ji5vGp3daafKktVEWlgMRTI7DwmZQEnzxueVRk", "productCode":63}');
 //$json = json_decode('{"command":"generateTokens","quantity":2,"productCode":68,"rootId":163,"groupId":74548,"duration":90,"productVersion":"FV"}');
 //$json = json_decode('{"command":"addUser", "email":"panther@clarity", "name":"Panther", "password":"efe25101077219ef18ab80fc95bb31ca", "rootId":163, "groupId":74548}');
@@ -196,9 +197,10 @@ function router($json) {
             if (!isset($json->token)) $json->token = null;
             return getTokenPayload($json->token);
         case "forgotpassword":
+            if (!isset($json->signinUrl)) $json->signinUrl = null;
             if (!isset($json->email))
                 throw new Exception("Request is missing key information");
-            return forgotPassword($json->email);
+            return forgotPassword($json->email, $json->signinUrl);
         case "changepassword":
             if (!isset($json->token) || !isset($json->email) || !isset($json->password))
                 throw new Exception("Request is missing key information");
@@ -289,9 +291,9 @@ function getTokenPayload($payload) {
     global $service;
     return $service->getTokenPayload($payload);
 }
-function forgotPassword($email) {
+function forgotPassword($email, $url) {
     global $service;
-    return $service->forgotPassword($email);
+    return $service->forgotPassword($email, $url);
 }
 function changePassword($email, $password, $token) {
     global $service;

@@ -37,6 +37,7 @@ require_once(dirname(__FILE__)."/../ResultsManager/web/classes/LoginCops.php");
 require_once(dirname(__FILE__)."/../ResultsManager/web/classes/ProgressCops.php");
 require_once(dirname(__FILE__)."/../ResultsManager/web/classes/TestCops.php");
 require_once(dirname(__FILE__)."/../ResultsManager/web/classes/AuthenticationCops.php");
+require_once(dirname(__FILE__)."/../ResultsManager/web/classes/EmailOps.php");
 
 require_once($GLOBALS['common_dir'].'/encryptURL.php');
 
@@ -56,6 +57,7 @@ class apiService extends AbstractService {
         $this->progressCops = new ProgressCops($this->db);
         $this->testCops = new TestCops($this->db);
         $this->authenticationCops = new AuthenticationCops($this->db);
+        $this->emailOps = new EmailOps($this->db);
 	}
     public function changeDB($dbHost) {
         $this->changeDbHost($dbHost);
@@ -68,6 +70,7 @@ class apiService extends AbstractService {
         $this->progressCops = new ProgressCops($this->db);
         $this->testCops = new TestCops($this->db);
         $this->authenticationCops = new AuthenticationCops($this->db);
+        $this->emailOps = new EmailOps($this->db);
     }
 
     /*
@@ -327,6 +330,38 @@ class apiService extends AbstractService {
         return $this->manageableOps->getEmailStatus($email);
     }
 
+    // Check if this looks like an email we can send to
+    // And, perhaps, if it belongs to a user from a particular domain
+    // This is a deep function checking the account and user, expected to be called rarely from something like forgot password api
+    public function checkEmailValidity($email, $domainSigninUrl) {
+        // use an RFC email pattern form regexr community for pattern matching
+        $pattern = '~[a-z0-9!#$%&\'*+/=?^_`{|}\~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}\~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?~';
+        if (!preg_match($pattern, $email))
+            throw new Exception("We can't send to this email address.", 101);
+        if (!is_null($domainSigninUrl)) {
+            // get the user
+            $users = $this->manageableOps->getUsersByEmail($email);
+            if (count($users)!=1)
+                throw new Exception("This email is linked to multiple accounts. Contact support@clarityenglish.com", 101);
+            $user = $users[0];
+            // get their account
+            $account = $this->manageableOps->getAccountRootFromUser($user);
+
+            // The domain and the account type must match, otherwise it is an error
+            // So if you came from IP.com, your account must be from IP.com
+            if ($this->accountCops->isAccountIP($account) && stristr($domainSigninUrl, "ieltspractice.com")) {
+                return true;
+            } elseif ($this->accountCops->isAccountIP($account) || stristr($domainSigninUrl, "ieltspractice.com")) {
+                throw new Exception("This email is linked to ieltspractice.com", 101);
+            } elseif ($this->accountCops->isAccountLM($account) && stristr($domainSigninUrl, "roadtoielts.com")) {
+                return true;
+            } elseif ($this->accountCops->isAccountLM($account) || stristr($domainSigninUrl, "roadtoielts.com")) {
+                throw new Exception("This email is linked to roadtoielts.com", 101);
+            }
+        }
+        return true;
+    }
+
     // Checking if a purchased token has already been used
     public function getTokenStatus($serial) {
         return $this->subscriptionCops->getTokenStatus($serial);
@@ -525,14 +560,34 @@ class apiService extends AbstractService {
     public function getTokenPayload($token) {
         return array("payload" => $this->authenticationCops->getPayloadFromToken($token));
     }
-    public function forgotPassword($email) {
+    // Start the forgot password process. Send an email with a validated link.
+    // Requires the email to match the domain for IP.com and LastMinute
+    public function forgotPassword($email, $domainSigninUrl=null) {
+        if (is_null($domainSigninUrl))
+            $domainSigninUrl = 'https://www.clarityenglish.com/online';
         $rc = $this->getEmailStatus($email);
         if ($rc['status']!='used')
             return $rc;
-        $payload = array("email" => $email);
-        // TODO Set a 1 hour/day expiry on this token
+        $rc = $this->checkEmailValidity($email, $domainSigninUrl);
+        $dateStampNow = AbstractService::getNow();
+        $shortly = $dateStampNow->add(new DateInterval('P1D'))->format('U');
+        $payload = array("email" => $email, "signinUrl" => $domainSigninUrl, "exp" => intval($shortly));
         $jwt = $this->authenticationCops->createToken($payload);
-        return array('link' => '/Software/Tools/resetPassword.php?token='.$jwt);
+
+        // Generate the email
+        $emailData = array("link" => '\Software\Tools\resetPassword.php?token='.$jwt);
+        $emailArray = array(array("to" => $email, "data" => $emailData));
+        if (stristr($domainSigninUrl, "ieltspractice.com")) {
+            $templateID = 'forgotPasswordIP';
+        } elseif (stristr($domainSigninUrl, "roadtoielts.com")) {
+            $templateID = 'forgotPasswordLM';
+        } else {
+            $templateID = 'forgotPasswordCE';
+        }
+        $rc = $this->emailOps->sendEmails("", $templateID, $emailArray);
+
+        return true;
+        //'link' => '/Software/Tools/resetPassword.php?token='.$jwt;
     }
     public function changePassword($email, $password, $token) {
         // Check that the token is valid and get it's contents

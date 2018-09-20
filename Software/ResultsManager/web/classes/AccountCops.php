@@ -391,9 +391,21 @@ EOD;
         return false;
     }
 
-	/*
-	 * Utility function to get the rootID for a particular prefix
-	 */
+    // Is this an IP.com account?
+    public function isAccountIP($account) {
+        return preg_match('~^([0-9]+)$~', $account->prefix);
+    }
+    // Is this a LastMinute account?
+    public function isAccountLM($account) {
+        // F_Prefix in ('Global','SEAsia','AMESA','Europe','Americas','ClarityLM')
+        // F_RootID in (170,167,168,169,100,32319,14030)
+        $lmPrefixs = array('GLOBAL','SEAsia','AMESA','Europe','Americas','ClarityLM');
+        return in_array($account->prefix, $lmPrefixs);
+    }
+
+/*
+ * Utility function to get the rootID for a particular prefix
+ */
 	public function getAccountRootID($prefix) {
 		$lowerCasePrefix = strtolower($prefix);
 		$sql = 	<<<EOD

@@ -220,7 +220,7 @@ class CouloirService extends AbstractService {
 	public function login($login, $password, $productCode, $rootId = null, $apiToken = null, $platform = null) {
         // m#316 Catch no such user if apiToken in play
         try {
-            return $this->loginCops->login($login, $password, $productCode, $rootId, $platform, $apiToken);
+            return $this->loginCops->login($login, $password, $productCode, $rootId, $apiToken, $platform);
         } catch (Exception $e) {
             if ($e->getCode() == $this->copyOps->getCodeForId("errorNoSuchUser") && isset($apiToken)) {
                 $user = $this->addApiUser($rootId, $login, $password, $apiToken);
@@ -233,13 +233,13 @@ class CouloirService extends AbstractService {
 
     // m#316 Add a user whose details came from a validated api token
     private function addApiUser($rootId, $login, $password, $token) {
-        $payload = $this->authenticationCops->getPayloadFromToken($token);
+        $payload = $this->authenticationCops->getApiPayload($token);
         $groupId = isset($payload->groupId) ? $payload->groupId : null;
 
         $loginObj = Array();
         $loginObj["login"] = $login;
         $loginObj["password"] = $password;
-        return $this->loginCops->addUser($rootId, $groupId, $loginObj);
+        return $this->loginCops->addUser($rootId, $groupId, $loginObj, $token);
     }
 
     // Create a user from a token - this would be the call from Couloir self registration screen
@@ -397,7 +397,8 @@ EOD;
         // Pick the session from the token
         $session = $this->authenticationCops->getSession($token);
 
-        $user = $this->manageableOps->getCouloirUserFromID($session->userId);
+        // Since you have validated the token, you can get the user directly
+        $user = $this->manageableOps->getUserByIdNotAuthenticated($session->userId);
         if (!$user)
             throw new Exception("No such saved user");
 
@@ -445,8 +446,7 @@ EOD;
         // Write the summary score record
         try {
             // ctp#282 Force score to be written for any usertype
-            $forceScoreWriting = true;
-            $this->progressCops->insertScore($score, $user, $forceScoreWriting);
+            $this->progressCops->insertScore($score);
 
         } catch(Exception $e) {
             // gh#166 Catch duplicate record exceptions - and just ignore!!
@@ -478,7 +478,7 @@ EOD;
             if (count($scoreDetails) > 0) {
                 try {
                     // ctp#282 Force score to be written for any usertype
-                    $this->progressCops->insertScoreDetails($scoreDetails, $user, $forceScoreWriting);
+                    $this->progressCops->insertScoreDetails($scoreDetails);
                 } catch (Exception $e) {
                     // gh#166 Catch duplicate record exceptions - and just ignore!!
                     $this->db->FailTrans();
