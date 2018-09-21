@@ -38,6 +38,7 @@ require_once(dirname(__FILE__)."/../ResultsManager/web/classes/ProgressCops.php"
 require_once(dirname(__FILE__)."/../ResultsManager/web/classes/TestCops.php");
 require_once(dirname(__FILE__)."/../ResultsManager/web/classes/AuthenticationCops.php");
 require_once(dirname(__FILE__)."/../ResultsManager/web/classes/EmailOps.php");
+require_once(dirname(__FILE__)."/../ResultsManager/web/classes/ApiCops.php");
 
 require_once($GLOBALS['common_dir'].'/encryptURL.php');
 
@@ -58,6 +59,7 @@ class apiService extends AbstractService {
         $this->testCops = new TestCops($this->db);
         $this->authenticationCops = new AuthenticationCops($this->db);
         $this->emailOps = new EmailOps($this->db);
+        $this->apiCops = new ApiCops($this->db);
 	}
     public function changeDB($dbHost) {
         $this->changeDbHost($dbHost);
@@ -70,7 +72,7 @@ class apiService extends AbstractService {
         $this->progressCops = new ProgressCops($this->db);
         $this->testCops = new TestCops($this->db);
         $this->authenticationCops = new AuthenticationCops($this->db);
-        $this->emailOps = new EmailOps($this->db);
+        $this->apiCops = new ApiCops($this->db);
     }
 
     /*
@@ -239,9 +241,19 @@ class apiService extends AbstractService {
 
     public function getLicenceUseFromToken($token, $productCode) {
         $payload = $this->authenticationCops->getPayloadFromToken($token);
-        // Since you have validated the token, you can get the user directly
-        $user = $this->manageableOps->getUserByIdNotAuthenticated($payload->userId);
-        $rootId = $this->manageableOps->getAccountIdFromUser($user);
+
+        // You might send different information in the token
+        // Sending a root means you just want licence count for the whole account
+        // Sending a user means you want licence count for the whole account AND to know if this user has a licence
+        $rootId = (isset($payload->rootId) && $payload->rootId > 0) ? $payload->rootId : null;
+
+        if (!$rootId) {
+            // Since you have validated the token, you can get the user directly
+            $user = $this->manageableOps->getUserByIdNotAuthenticated($payload->userId);
+            $rootId = $this->manageableOps->getAccountIdFromUser($user);
+        } else {
+            $user = null;
+        }
         $account = $this->accountCops->getBentoAccount($rootId, $productCode);
 
         return $this->getLicenceUsage($productCode, $user, $account);
@@ -259,25 +271,26 @@ class apiService extends AbstractService {
         } else {
             if (version_compare($title->architectureVersion, '4', '>=')) {
                 // Check here to see if this user has a Couloir licence for this title
-                $hasLicence = $this->licenceCops->getUserCouloirLicence($productCode, $user->userID);
+                $hasLicence = (is_null($user)) ? null : $this->licenceCops->getUserCouloirLicence($productCode, $user->userID);
                 $usedLicences = $this->licenceCops->countUsedLicences($productCode, $account->id, $title);
 
             } elseif (version_compare($title->architectureVersion, '3', '>=')) {
                 // Check here to see if this user has a Bento licence for this title
                 // Bento can have 'old' or 'new' style licences
-                $hasLicence = $this->licenceCops->getUserOldLicence($productCode, $user->userID, $account->useOldLicenceCount, $title);
+                $hasLicence = (is_null($user)) ? null : $this->licenceCops->getUserOldLicence($productCode, $user->userID, $account->useOldLicenceCount, $title);
                 $usedLicences = $this->licenceCops->countUsedOldLicences($productCode, $account->id, $account->useOldLicenceCount, $title);
 
             } else {
                 // Check here to see if this user has an Orchid licence for this title
-                $hasLicence = $this->licenceCops->checkOrchidLicence($productCode, $user->userID, $title);
+                $hasLicence = (is_null($user)) ? null : $this->licenceCops->checkOrchidLicence($productCode, $user->userID, $title);
                 $usedLicences = $this->licenceCops->countOrchidLicences($productCode, $account->id, $title);
             }
         }
-        return array('userHasLicence' => $hasLicence,
-                     'usedLicences' => $usedLicences,
+        $rc = array('usedLicences' => $usedLicences,
                      'maxLicences' => intval($title->maxStudents),
                      'licenceType' => intval($title->licenceType));
+        if ($user) $rc['userHasLicence'] = $hasLicence;
+        return $rc;
     }
 
     /*
@@ -608,9 +621,15 @@ class apiService extends AbstractService {
 
         return array('name' => $user->name);
     }
+    public function runTestingDataInitialisation($token) {
+        $payload = $this->authenticationCops->getPayloadFromToken($token);
+        $dbDetails = new DBDetails($GLOBALS['dbHost']);
+        $rc = $this->apiCops->runTestingDataInitialisation();
+        return ['database' => $dbDetails->getDetails(), 'rowsAffected' => $rc];
+    }
     public function dbCheck() {
         $dbVersion = $this->authenticationCops->getDbVersion();
-        $ddDetails = new DBDetails($GLOBALS['dbHost']);
-        return ['database' => $ddDetails->getDetails(), 'version' => $dbVersion];
+        $dbDetails = new DBDetails($GLOBALS['dbHost']);
+        return ['database' => $dbDetails->getDetails(), 'version' => $dbVersion];
     }
 }

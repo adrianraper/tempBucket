@@ -176,7 +176,7 @@ class LicenceCops
                 $inactivityWindow = LicenceCops::LT_INACTIVITY_WINDOW;
                 $activeLicence = $this->checkCurrentLicence($productCode, $rootId, $sessionId, $userId, $licence);
                 if (!$activeLicence)
-                    throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array('productCode' => $productCode, 'rootID' => $rootId));
+                    throw $this->copyOps->getExceptionForId("errorTokenNotActivated");
                 break;
 
             case Title::LICENCE_TYPE_AA:

@@ -150,6 +150,7 @@ class CouloirService extends AbstractService {
                 case Title::LICENCE_TYPE_I:
                 case Title::LICENCE_TYPE_LT:
                 case Title::LICENCE_TYPE_TT:
+                case Title::LICENCE_TYPE_TOKEN:
                     $licenceType = "lt";
                     break;
                 case Title::LICENCE_TYPE_AA:

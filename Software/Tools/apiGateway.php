@@ -2,6 +2,11 @@
 /*
  * This is the entry point for api requests for Clarity tools
  *
+ * TODO Think about authentication. Calls will come from
+ *   customers who have a private key - they should be able to see and change their own data
+ *   public - you can see your own a little data (status of email/token etc)
+ *   an individual using a Clarity app - sign in to get a personal token then use that for getting your information
+ *   Clarity dashboards - require sign in to get a powerful token, then can do anything
  *
 */
 header('Content-type: application/json');
@@ -9,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
 $json = json_decode(file_get_contents('php://input'));
 //$json = json_decode('{"command": "forgotPassword","email":"aeshan@gmail.com"}');
+//$json = json_decode('{"command":"runTestingDataInitialisation", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzcyNTk5MjYsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.grxY8Ji5vGp3daafKktVEWlgMRTI7DwmZQEnzxueVRk"}');
 //$json = json_decode('{"command":"getScheduledTests", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzcyNTk5MjYsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.grxY8Ji5vGp3daafKktVEWlgMRTI7DwmZQEnzxueVRk", "productCode":63}');
 //$json = json_decode('{"command":"generateTokens","quantity":2,"productCode":68,"rootId":163,"groupId":74548,"duration":90,"productVersion":"FV"}');
 //$json = json_decode('{"command":"addUser", "email":"panther@clarity", "name":"Panther", "password":"efe25101077219ef18ab80fc95bb31ca", "rootId":163, "groupId":74548}');
@@ -205,6 +211,10 @@ function router($json) {
             if (!isset($json->token) || !isset($json->email) || !isset($json->password))
                 throw new Exception("Request is missing key information");
             return changePassword($json->email, $json->password, $json->token);
+        case "runtestingdatainitialisation":
+            if (!isset($json->token))
+                throw new Exception("Request is missing key information");
+            return runTestingDataInitialisation($json->token);
         case "dbcheck": return dbCheck();
         default: throw new Exception("Unknown command ".$json->command);
     }
@@ -299,7 +309,11 @@ function changePassword($email, $password, $token) {
     global $service;
     return $service->changePassword($email, $password, $token);
 }
-
+// Used by automated testing scripts
+function runTestingDataInitialisation($token) {
+    global $service;
+    return $service->runTestingDataInitialisation($token);
+}
 // Just for testing new gateways
 function dbCheck() {
     global $service;

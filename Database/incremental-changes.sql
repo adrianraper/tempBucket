@@ -1842,7 +1842,7 @@ ADD COLUMN `F_RegisterMethod` varchar(64) NULL DEFAULT NULL;
 -- m#404 JWT token signing
 DROP TABLE IF EXISTS `T_AccountKeys`;
 CREATE  TABLE `T_AccountKeys` (
-  `F_Prefix` INT NOT NULL ,
+  `F_Prefix` VARCHAR(12) NOT NULL ,
   `F_Key` VARCHAR(256) NULL ,
   INDEX `Index_1` (`F_Prefix` ASC) );
 INSERT INTO `T_AccountKeys` (`F_Prefix`,`F_Key`) 
@@ -1934,3 +1934,29 @@ INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLoc
 
 -- Add new licence type for 'Token'
 INSERT INTO `T_LicenceType` VALUES (8,'Token');
+
+-- Vivying new score table structure
+-- This is ONLY to be used to bring development environments into line with production
+DROP TABLE IF EXISTS `T_Score`;
+DROP TABLE IF EXISTS `T_Score_Deleted`;
+DROP TABLE IF EXISTS `T_Score_Expiry`;
+CREATE TABLE `T_Score` (
+  `F_ScoreID` int(11) NOT NULL AUTO_INCREMENT,
+  `F_UserID` int(11) NOT NULL,
+  `F_DateStamp` datetime NOT NULL,
+  `F_ExerciseID` bigint(20) NOT NULL,
+  `F_Score` int(11) NOT NULL,
+  `F_UnitID` bigint(20) NOT NULL,
+  `F_Duration` int(11) NOT NULL,
+  `F_ScoreCorrect` int(11) DEFAULT NULL,
+  `F_ScoreWrong` int(11) DEFAULT NULL,
+  `F_ScoreMissed` int(11) DEFAULT NULL,
+  `F_SessionID` int(11) NOT NULL,
+  `F_TestUnits` varchar(64) DEFAULT NULL,
+  `F_CourseID` bigint(20) NOT NULL DEFAULT '0',
+  `F_ProductCode` smallint(5) DEFAULT NULL,
+  PRIMARY KEY (`F_ScoreID`),
+  KEY `idx_SessionID` (`F_SessionID`),
+  KEY `idx_UserID_ProductCode` (`F_UserID`,`F_ProductCode`)
+) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
+

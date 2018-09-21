@@ -517,7 +517,7 @@ EOD;
         }
 
         // sss#304 Return an account if login had to look one up
-        if (isset($foundAccount)) {
+        if ($foundAccount) {
             $rc["account"] = array(
                 "lang" => $account->titles[0]->languageCode,
                 "contentName" => $account->titles[0]->contentLocation,
