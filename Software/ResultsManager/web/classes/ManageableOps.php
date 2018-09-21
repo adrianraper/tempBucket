@@ -1331,6 +1331,7 @@ EOD;
 	}
 	public function getAnonymousUser() {
         $user = new User();
+        $user->id = -1;
         $user->userID = -1;
         $user->name = 'anonymous';
         return $user;

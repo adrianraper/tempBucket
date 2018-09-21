@@ -12,7 +12,7 @@
 <body text="#000000" style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:0; padding:0;color:#000000;">
 {assign var=edge value=$link|strpos:"?token"}
 <div style="width:600px;">
-    <div style="width:500px; margin:a auto; padding:10px 50px 20px 50px;">
+    <div style="width:500px; margin:auto; padding:10px 50px 20px 50px;">
 
         <p style="margin: 0 0 10px 0;">Hello,</p>
         <p style="margin: 0 0 10px 0;">We have received a request to reset your password. Follow this link to set a new password:</p>
