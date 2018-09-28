@@ -13,8 +13,9 @@ header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
 $json = json_decode(file_get_contents('php://input'));
-//$json = json_decode('{"command": "forgotPassword","email":"aeshan@gmail.com"}');
-//$json = json_decode('{"command":"runTestingDataInitialisation", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzcyNTk5MjYsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.grxY8Ji5vGp3daafKktVEWlgMRTI7DwmZQEnzxueVRk"}');
+//$json = json_decode('{"command":"dbCheck", "dbHost":300}');
+//$json = json_decode('{"command":"getAuthenticatedUser", "email":"adrian@clarity", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzgxMDIzMjQsInByZWZpeCI6IkNsYXJpdHkifQ.mWKzLY0pFBn8lhynDCiZWb1ZuvnKrT4aF7El_iJlgLM"}');
+//$json = json_decode('{"command":"authenticateClarity", "password":"Sunshine1787"}');
 //$json = json_decode('{"command":"getScheduledTests", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzcyNTk5MjYsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.grxY8Ji5vGp3daafKktVEWlgMRTI7DwmZQEnzxueVRk", "productCode":63}');
 //$json = json_decode('{"command":"generateTokens","quantity":2,"productCode":68,"rootId":163,"groupId":74548,"duration":90,"productVersion":"FV"}');
 //$json = json_decode('{"command":"addUser", "email":"panther@clarity", "name":"Panther", "password":"efe25101077219ef18ab80fc95bb31ca", "rootId":163, "groupId":74548}');
@@ -23,7 +24,7 @@ $json = json_decode(file_get_contents('php://input'));
 //$json = json_decode('{"appVersion":"1.3.2","command":"getTokenStatus", "token":"3208-5356-0209-7"}');
 //$json = json_decode('{"command":"getLicenceUse","productCode":68,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzY4MDM3NjgsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.QaWptmQ5pFWrm415xxIKQAEu6MKu1KF7TP3YtxpYS7s"}');
 //$json = json_decode('{"command":"getUser","email":"adrian@clarity", "password":"28e05e0207c6706531b2f60a6038ae8b"}');
-//$json = json_decode('{"command":"getResult","productCode":63,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzU1MjAzMDMsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.5taJkI1FVQv7lOLnrbfw7T1ow68ev4A-sfnpAI6MAAc"}');
+//$json = json_decode('{"command":"getResult","productCode":63,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzgxMDU1NjAsInVzZXJJZCI6MTcyMTA1NiwicHJlZml4IjoiY2xhcml0eSIsInJvb3RJZCI6IjE2MyIsImdyb3VwSWQiOjEwMzc5fQ.QNLeIrq4YKwGCWjrS_5Qp8LYl4KnwziKda6LVXO8RhQ"}');
 //$json = json_decode('{"command":"readJWT","token":"eyJ0e.eyJpc3.O9kQ-jX"}');
 /**
  * Pretend to pass variables for easier debugging
@@ -165,6 +166,10 @@ function router($json) {
             if (!isset($json->email))
                 throw new Exception("Request is missing key information");
             return getUser($json->email, $json->password);
+        case "getauthenticateduser":
+            if (!isset($json->email) || !isset($json->token))
+                throw new Exception("Request is missing key information");
+            return getAuthenticatedUser($json->email, $json->token);
         case "signin":
             if (!isset($json->email) || !isset($json->password))
                 throw new Exception("Request is missing key information");
@@ -215,6 +220,10 @@ function router($json) {
             if (!isset($json->token))
                 throw new Exception("Request is missing key information");
             return runTestingDataInitialisation($json->token);
+        case "authenticateclarity":
+            if (!isset($json->password))
+                throw new Exception("Request is missing key information");
+            return authenticateClarity($json->password);
         case "dbcheck": return dbCheck();
         default: throw new Exception("Unknown command ".$json->command);
     }
@@ -309,10 +318,22 @@ function changePassword($email, $password, $token) {
     global $service;
     return $service->changePassword($email, $password, $token);
 }
+/*
+ * This set of calls require the caller to pass a Clarity authentication token
+ */
 // Used by automated testing scripts
-function runTestingDataInitialisation($token) {
+function authenticateClarity($password) {
     global $service;
-    return $service->runTestingDataInitialisation($token);
+    return $service->authenticateClarity($password);
+}
+function runTestingDataInitialisation($authenticationToken) {
+    global $service;
+    return $service->runTestingDataInitialisation($authenticationToken);
+}
+function getAuthenticatedUser($email, $authenticationToken) {
+    global $service;
+    $checkAuthentication = $service->readJWT($authenticationToken);
+    return $service->getAuthenticatedUser($email);
 }
 // Just for testing new gateways
 function dbCheck() {

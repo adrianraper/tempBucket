@@ -86,9 +86,9 @@ var changePassword = function(email, password, token) {
     });
 }
 var matchPasswords = function(one, two){
+    showAndHideEvents('reset');
     if (one != two) {
         showAndHideEvents("passwordsDifferent");
-        return false;
     }
 }
 var getTokenContents = function(token) {
@@ -96,7 +96,7 @@ var getTokenContents = function(token) {
     console.log("call: " + JSON.stringify(data));
     $.ajax({
         method: "POST",
-        url: "http://dock.projectbench/Software/Tools/apiGateway.php",
+        url: apiGatewayUrl,
         dataType: "json",
         data: JSON.stringify(data)
     }).done(function(data, status, jqXHR) {

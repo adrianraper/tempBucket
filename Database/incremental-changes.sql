@@ -1878,8 +1878,9 @@ UPDATE T_Product SET F_ArchitectureVersion = '2'
 WHERE F_ProductCode <= 50
 or F_ProductCode>1000;
 
-delete from T_Product
-where F_ProductCode in (14,58,62);
+delete from T_Product where F_ProductCode in (14,58,62);
+delete from T_ProductLanguage where F_ProductCode in (14,58,62);
+delete from T_ProductVersion where F_ProductCode in (14,58,62);
 
 -- New Road to IELTS
 INSERT INTO `T_Product` (`F_ProductCode`, `F_ProductName`) VALUES ('72', 'Road to IELTS Academic');
@@ -1895,24 +1896,25 @@ INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLoc
 INSERT INTO `T_ProductLanguage` (`F_ProductCode`, `F_LanguageCode`,`F_ContentLocation`) VALUES ('73','EN','rti');
 
 DROP TABLE IF EXISTS `T_Token`;
+-- DEFAULT CURRENT_TIMESTAMP doesn't work in staging db
 CREATE TABLE `T_Token` (
   `F_TokenID` int(10) NOT NULL AUTO_INCREMENT,
-  `F_Serial` varchar(64) NOT NULL,
+  `F_Serial` varchar(64) DEFAULT NULL,
   `F_RootID` int(10) NOT NULL,
   `F_GroupID` int(10) DEFAULT NULL,
   `F_ExpiryDate` datetime DEFAULT NULL,
   `F_Duration` int(5) DEFAULT NULL,
   `F_ProductCode` smallint(5) NOT NULL,
   `F_ProductVersion` varchar(8) DEFAULT NULL,
-  `F_CreateDate` datetime DEFAULT NOW(),
+  `F_CreateDate` datetime DEFAULT NULL,
   `F_ActivationDate` datetime DEFAULT NULL,
   `F_ActivationMethod` varchar(32) DEFAULT NULL,
   `F_Email` varchar(128) DEFAULT NULL,
   `F_UserID` int(10) DEFAULT NULL,
-  primary key `Index_1` (`F_TokenID`),
-  UNIQUE INDEX `Index_2` (`F_Serial`),
+  PRIMARY KEY (`F_TokenID`),
+  UNIQUE KEY `F_Serial` (`F_Serial`),
   KEY `Index_3` (`F_RootID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- new Active Reading and Practical Writing
 delete from T_Product where F_ProductCode=69;
@@ -1960,3 +1962,9 @@ CREATE TABLE `T_Score` (
   KEY `idx_UserID_ProductCode` (`F_UserID`,`F_ProductCode`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
+INSERT INTO `T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (2453, '2018-09-27 00:00:00', 'Token licences');
+Update `T_DatabaseVersion`
+set `F_VersionNumber` = 2396
+where F_VersionNumber = 2496;

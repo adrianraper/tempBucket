@@ -177,6 +177,31 @@ SQL;
 			SELECT * FROM T_SessionTrack
             WHERE F_UserID = ?
             AND F_Status = ? 
+            AND F_ProductCode = 63
+SQL;
+        $rs = $this->db->Execute($sql, $bindingParams);
+        switch ($rs->RecordCount()) {
+            case 0:
+                // There are no records
+                return false;
+                break;
+            default:
+                $testSessions = array();
+                while ($dbObj = $rs->FetchNextObj())
+                    $testSessions[] = new SessionTrack($dbObj);
+        }
+        return $testSessions;
+    }
+
+    // This will list all the scheduled tests a user has started and did not complete
+    // TODO F_Data = null will not catch F_Data={"seed":"12345"} - yet the test still has no result
+    // instead catch everything, after all there are no successes for this user if you called the above CompletedTests first
+    function getFailedTests($userId) {
+        $bindingParams = array($userId);
+        $sql = <<<SQL
+			SELECT * FROM T_SessionTrack
+            WHERE F_UserID = ?
+            AND F_ProductCode = 63
 SQL;
         $rs = $this->db->Execute($sql, $bindingParams);
         switch ($rs->RecordCount()) {
@@ -879,4 +904,60 @@ EOD;
     function encodeSafeChars($text) {
         return strtr($text, '+/=', '-_~');
     }
+    /*
+     * Whilst production DPT is still running with old session table
+     */
+    // This will list all the scheduled tests a user has completed
+    function oldGetCompletedTests($userId) {
+        $bindingParams = array($userId);
+        $sql = <<<SQL
+			SELECT * FROM T_TestSession
+            WHERE F_UserID = ?
+            AND F_CompletedDateStamp is not null 
+SQL;
+        $rs = $this->db->Execute($sql, $bindingParams);
+        switch ($rs->RecordCount()) {
+            case 0:
+                // There are no records
+                return false;
+                break;
+            default:
+                $testSessions = array();
+                while ($dbObj = $rs->FetchNextObj()) {
+                    $session = new SessionTrack($dbObj);
+                    $session->data = array('result' => ($dbObj->F_Result) ? json_decode($dbObj->F_Result) : '');
+                    $session->lastUpdateDateStamp =  ($dbObj->F_CompletedDateStamp && strtotime($dbObj->F_CompletedDateStamp) > 0) ? $dbObj->F_CompletedDateStamp : null;
+                    $testSessions[] = $session;
+                }
+        }
+        return $testSessions;
+    }
+
+    // This will list all the scheduled tests a user has started and did not complete
+    function oldGetFailedTests($userId) {
+        $bindingParams = array($userId);
+        $sql = <<<SQL
+			SELECT * FROM T_TestSession
+            WHERE F_UserID = ?
+            AND F_Result is null
+SQL;
+        $rs = $this->db->Execute($sql, $bindingParams);
+        switch ($rs->RecordCount()) {
+            case 0:
+                // There are no records
+                return false;
+                break;
+            default:
+                $testSessions = array();
+                while ($dbObj = $rs->FetchNextObj()) {
+                    $session = new SessionTrack($dbObj);
+                    $session->data = array('result' => ($dbObj->F_Result) ? json_decode($dbObj->F_Result) : '');
+                    $session->lastUpdateDateStamp =  ($dbObj->F_CompletedDateStamp && strtotime($dbObj->F_CompletedDateStamp) > 0) ? $dbObj->F_CompletedDateStamp : null;
+                    $testSessions[] = $session;
+                }
+        }
+        return $testSessions;
+    }
+
+
 }

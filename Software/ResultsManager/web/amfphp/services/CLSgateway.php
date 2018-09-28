@@ -49,7 +49,7 @@ function loadAPIInformation() {
 	
 	$inputData = file_get_contents("php://input");
 	//$inputData = '{"method":"addSubscription","transactionTest":"false","name":"Momi Rahima","country":"Hong Kong","email":"mimi.rahima.24@clarityenglish.com","offerID":59,"languageCode":"EN","productVersion":"R2IHU","resellerID":21,"password":"sweetcustard","orderRef":"201300001","emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128,"status":"initial"}';
-	$inputData = '{"method":"addSubscription","subscriptionID":54973,"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
+	//$inputData = '{"method":"addSubscription","subscriptionID":54973,"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
 	//$inputData = '{"method":"saveSubscriptionDetails","registerMethod":"CEHomeUser","email":"douglas.engelbert.26@clarityenglish.com","name":"Douglas Engelbert","country":"Hong Kong","languageCode":"EN","productVersion":"R2IHU","resellerID":21,"orderRef":"201200085","password":"sweetcustard","offerID":59,"status":"initial"}';
 	//$inputData = '{"method":"updateSubscriptionStatus","subscriptionID":1040,"status":"paid"}';
 	//$inputData = '{"method":"updateSubscription","subscriptionID":"3705","emailTemplateID":"ieltspractice_renew","paymentMethod":"paypal"}';

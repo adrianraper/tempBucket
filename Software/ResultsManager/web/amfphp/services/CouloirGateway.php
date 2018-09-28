@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 $json = json_decode(file_get_contents('php://input'));
 $json_error = json_last_error();
 //$json = json_decode('{"command":"xxx", "appVersion":"2.0.0"}');
-//$json = json_decode('{"appVersion":"1.3.2-dev","command":"login","login":"user_01@TD03.com","productCode":"68","rootId":"203","apiToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1Mzc5NDEyOTQsInByZWZpeCI6IlREMDMiLCJsb2dpbiI6InVzZXJfMDFAVEQwMy5jb20iLCJzdGFydE5vZGUiOiJ1bml0OjIwMTgwNjgwMTAxMDAiLCJlbmFibGVkTm9kZSI6ImNvdXJzZToyMDE4MDY4MDEwMDAwIn0.UZ4wzV1pPIQlejzge8BW_8Bsh_HAHhOwIN5-qMCsZ-M"}');
+//$json = json_decode('{"appVersion":"1.3.2-dev","command":"login","login":"user_01@TD01.com", "password":"5bbe3101701f49bd0b23eaec55f4aaad","productCode":"68","rootId":"201"}');
 /**
  * Pretend to pass variables for easier debugging
 $json = json_decode('{"appVersion":"1.3.2-dev","command":"scoreWrite","localTimestamp":1532670099126,"score":{"uid":"66.2017066000000.2017066100000.2017066100203","exerciseScore":{"questionScores":[],"exerciseMark":{"correctCount":0,"incorrectCount":0,"missedCount":0},"duration":60,"submitTimestamp":1532670094082},"anomalies":{}},"timezoneOffset":-480,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzI2Njk2MjIsInNlc3Npb25JZCI6IjY1NCJ9.me1hL_AacxRtK0ghdOiaURKo0iHeDEDjqzdUrFilsOI"}');
@@ -472,8 +472,10 @@ function login($login, $password, $productCode, $rootId, $apiToken = null, $plat
     global $service;
     // ctp#428
     try {
-        //AbstractService::$controlLog->setIdent($loginObj->email);
-        //AbstractService::$controlLog->info("Attempt login from $platform");
+        $msg = "Attempt login";
+        $message = json_encode(array("message" => $msg, "productCode" => $productCode, "login" => $login, "password" => $password, "rootId" => $rootId));
+        AbstractService::$dashboardLog->setIdent($login);
+        AbstractService::$dashboardLog->info($message);
     } catch (Exception $e) {
         // do nothing
     }

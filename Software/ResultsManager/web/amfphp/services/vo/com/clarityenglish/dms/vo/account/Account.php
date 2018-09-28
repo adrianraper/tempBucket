@@ -114,10 +114,10 @@ class Account extends Reportable {
 	 * Search through the titles in this account and return the one with the given product code
 	 */
 	function getTitleByProductCode($productCode) {
-		foreach ($this->titles as $title)
+		foreach ($this->titles as $title) {
 			if ($title->productCode == $productCode)
 				return $title;
-			
+		}	
 		return null;
 	}
 

@@ -441,7 +441,7 @@ EOD;
             $licence->fromDbRecordset($rs->FetchNextObj());
             return $licence;
         } else {
-            $this->copyOps->getExceptionForId('errorNoProductCodeInRoot');
+            throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array("productCode" => $productCode, "rootID" => $rootId));
         }
     }
     /*

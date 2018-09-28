@@ -11,10 +11,10 @@ class DBDetails {
 				$this->password = "clarity123";
 				$this->dbname = "rack80829";
 				break;
-			// Staging Aurora
+			// Staging 
 			case 300:
 				$this->driver = "mysqli";
-				$this->host = "vivying-parallel-aurora-staging-test.c8s4j19sgnql.eu-west-1.rds.amazonaws.com";
+				$this->host = "clarity-eu-db-staging.c8s4j19sgnql.eu-west-1.rds.amazonaws.com";
 				$this->user = "clarity";
 				$this->password = "clarity123";
 				$this->dbname = "rack80829";

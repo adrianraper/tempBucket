@@ -1,6 +1,7 @@
 // Definitions
 apiGatewayUrl = "http://dock.projectbench/Software/Tools/apiGateway.php"
 programsUrl = "http://dock.projectbench/Software/Tools/clarityPrograms.php"
+clarityAuthentication = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzgxMDg3OTEsInByZWZpeCI6IkNsYXJpdHkifQ.Ep32mRIuZqhtkq1YTyTwGUicuhfbkF2m0R1yJeU7WZY";
 
 // What to do and where to focus?
 // If you type in any of these fields, set Enter to mean
@@ -26,25 +27,26 @@ $(function() {
     $("#btnStartCP1").click(function() {
         prepareData(57);
     });
-    $("div#status-box").hide();
 
     // Pick up Enter and see what it means
     $("form#userDetails").keypress(function(e) {
-        console.log("clicked " + e);
         if(e.which == 13) {
             signin($('#login').val(), $('#password').val());
         }
     });
     $("form#forgotDetails").keypress(function(e) {
-        console.log("clicked " + e);
         if(e.which == 13) {
             forgot($('#forgotEmail').val());
         }
     });
     $("form#tokenDetails").keypress(function(e) {
-        console.log("clicked " + e);
         if(e.which == 13) {
             activate($('#serial').val(), $('#activateName').val(), $('#activateEmail').val(), $('#activatePassword').val());
+        }
+    });
+    $("form#dptDetails").keypress(function(e) {
+        if(e.which == 13) {
+            getUser($('#dptEmail').val(), clarityAuthentication);
         }
     });
 
@@ -70,6 +72,10 @@ $(function() {
     $('#forgot').on( "click", function(){
         forgot($('#forgotEmail').val());
     });
+    // DPT result
+    $('#dptResult').on( "click", function(){
+        getUser($('#dptEmail').val(), clarityAuthentication);
+    });
 
     // Same passwords
     $('#confirmPassword').on( "focusout", function(){
@@ -85,20 +91,20 @@ $(function() {
 var showAndHideEvents = function(event, msg) {
     switch (event) {
         case "reset":
-            $("#signinStatus").text("");
-            $("#activateStatus").text("");
+            $("#status").text("");
             break;
         case "wrongPassword":
-            $("#signinStatus").text("That email or password do not match.");
+            $("#status").text("That email or password do not match.");
             break;
         case "signin":
-            $("#signinStatus").text("Taking you to your program page.");
+            $("#status").text("Taking you to your program page.");
             break;
         case "activate":
-            $("#activateStatus").text("Taking you to your program page.");
+            $("#status").text("Taking you to your program page.");
             break;
-        case "activateError":
-            $("#activateStatus").text(msg);
+        case "generalError":
+            console.log(msg);
+            $("#status").text(msg);
             break;
         case "usedToken":
         case "invalidToken":
@@ -107,9 +113,9 @@ var showAndHideEvents = function(event, msg) {
             $("#activatePassword").prop('disabled', true);
             $("#confirmPassword").prop('disabled', true);
             if (msg && msg == 'used') {
-                $("#activateStatus").text("This token has already been used.");
+                $("#status").text("This token has already been used.");
             } else {
-                $("#activateStatus").text("Check your token, this is not valid.");
+                $("#status").text("Check your token, this is not valid.");
             }
             break;
         case "validToken":
@@ -117,45 +123,109 @@ var showAndHideEvents = function(event, msg) {
             $("#activateEmail").prop('disabled', false);
             $("#activatePassword").prop('disabled', false);
             $("#confirmPassword").prop('disabled', false);
-            $("#activateStatus").text("OK");
+            $("#status").text("OK");
             break;
         case "existingAccount":
             $("#activateName").prop('disabled', true);
             $("#activatePassword").prop('disabled', false);
             $("#confirmPassword").prop('disabled', true);
             $("#activatePassword").focus();
-            $("#activateStatus").text("That email already has an account. If it is you, please type your password.");
+            $("#status").text("That email already has an account. If it is you, please type your password.");
             break;
         case "newAccount":
             $("#activateName").prop('disabled', false);
             $("#confirmPassword").prop('disabled', false);
-            $("#activateStatus").text("OK");
+            $("#status").text("OK");
             break;
         case "invalidAccount":
             $("#activateName").prop('disabled', true);
             $("#activatePassword").prop('disabled', true);
             $("#confirmPassword").prop('disabled', true);
             $("#activate").prop('disabled', true);
-            $("#activateStatus").text("That email can't be used.");
+            $("#status").text("That email can't be used.");
             break;
         case "invalidRegisteredEmail":
-            $("#signinStatus").text("That email is not registered in our database.");
+            $("#status").text("That email is not registered in our database.");
             $("#forgot").prop('disabled', true);
             break;
         case "validRegisteredEmail":
-            $("#signinStatus").text("OK");
+            $("#status").text("OK");
             $("#forgot").prop('disabled', false);
             break;
-        case "showForgotEmail":
-            $("#signinStatus").html("<p>Hi, click <a href='"+msg+"'>this link</a> to reset your password.</p>");
+        case "sentForgotEmail":
+            $("#status").html("<p>We have sent you an email with a link to reset your password.</p>");
+            $("#forgot").prop('disabled', false);
             break;
-        case "gotResult":
-            $("#dptStatus").html("<p>Your CEFR level is "+msg+". Use this to guide your learning.</p>");
+        case "DPTresults":
+            // Format the result(s)
+            // [{"date":"2017-03-15 12:46:53","result":{"level":"B2","numeric":46}}]
+            var build='';
+            for (var i = 0; i < msg.length; i++) {
+                if (msg[i].hasOwnProperty('date')) {
+                    build += '<p>' + msg[i]['date'].substring(0,16);
+                }
+                if (msg[i].hasOwnProperty('result')) {
+                    build += ' CEFR: ' + msg[i]['result']['level'] + ' (RN: ' + msg[i]['result']['numeric'] + ')';
+                }
+                build += '</p>'
+            }
+            $("#status").html("<p>DPT result(s)</p>"+build);
             break;
 
         default:
     }
 }
+var getUser = function(email, clarityAuthentication) {
+    showAndHideEvents('reset');
+    var data = {command:"getAuthenticatedUser", email:email, token:clarityAuthentication};
+    console.log("call: " + data);
+    $.ajax({
+        method: "POST",
+        url: apiGatewayUrl,
+        dataType: "json",
+        data: JSON.stringify(data)
+    }).done(function(data, status, jqXHR) {
+        var success = data.success;
+        if (success) {
+            // Was it successful?
+            if (data.details.authentication) {
+                getDPTresult(email, data.details.authentication);
+            } else {
+                showAndHideEvents("invalidRegisteredEmail");
+            }
+            console.log(data.details);
+        } else {
+            showAndHideEvents("generalError", data.error.message);
+        }
+    }).fail(function(jqXHR,status,err) {
+        showAndHideEvents("generalError", err.message);
+    });
+}
+var getDPTresult = function(email, token) {
+    showAndHideEvents('reset');
+    var data = {command:"getResult", productCode:63, token:token};
+    console.log("call: " + data);
+    $.ajax({
+        method: "POST",
+        url: apiGatewayUrl,
+        dataType: "json",
+        data: JSON.stringify(data)
+    }).done(function(data, status, jqXHR) {
+        var success = data.success;
+        if (success) {
+            // Was it successful?
+            if (data.details) {
+                showAndHideEvents("DPTresults", data.details);
+            }
+            console.log(data.details);
+        } else {
+            showAndHideEvents("generalError", data.error.message);
+        }
+    }).fail(function(jqXHR,status,err) {
+        showAndHideEvents("generalError", err.message);
+    });
+}
+
 var forgot = function(email) {
     showAndHideEvents('reset');
     var data = {command:"forgotPassword", email:email};
@@ -169,25 +239,22 @@ var forgot = function(email) {
         var success = data.success;
         if (success) {
             // Was it successful?
-            if (data.details.link == null) {
-               showAndHideEvents("invalidRegisteredEmail");
+            if (data.details.status == 'sent') {
+                showAndHideEvents("sentForgotEmail");
             } else {
-                var link = data.details.link;
-                showAndHideEvents("showForgotEmail", link);
+                showAndHideEvents("invalidRegisteredEmail");
             }
             console.log(data.details);
         } else {
-            showAndHideEvents("activateError", data.error.message);
-            console.log(data.error);
+            showAndHideEvents("generalError", data.error.message);
         }
     }).fail(function(jqXHR,status,err) {
-        $("#signinStatus").text(err.message);
-        console.log(err);
+        showAndHideEvents("generalError", err.message);
     });
 }
 var matchPasswords = function(one, two){
     if (one != two) {
-        $("#activateStatus").text("Passwords don't match.");
+        $("#status").text("Passwords don't match.");
         console.log(one + '!=' + two);
         return false;
     }
@@ -209,12 +276,10 @@ var activate = function(serial, name, email, password) {
             console.log(data.details);
             signin(email, hashedPassword);
         } else {
-            showAndHideEvents("activateError", data.error.message);
-            console.log(data.error);
+            showAndHideEvents("generalError", data.error.message);
         }
     }).fail(function(jqXHR,status,err) {
-        $("#signinStatus").text(err.message);
-        console.log(err);
+        showAndHideEvents("generalError", err.message);
     });
 }
 
@@ -233,12 +298,10 @@ var getTestResult = function(token) {
             showAndHideEvents("gotResult", data.details.level);
             console.log(data.details);
         } else {
-            showAndHideEvents("activateError", data.error.message);
-            console.log(data.error);
+            showAndHideEvents("generalError", data.error.message);
         }
     }).fail(function(jqXHR,status,err) {
-        $("#signinStatus").text(err.message);
-        console.log(err);
+        showAndHideEvents("generalError", err.message);
     });
 }
 
@@ -259,7 +322,7 @@ var signin = function(login, password) {
     }).done(function(data, status, jqXHR) {
         var success = data.success;
         if (success) {
-            $("#signinStatus").text("You can access " +  data.details.links.length + " programs.");
+            $("#status").text("You can access " +  data.details.links.length + " programs.");
             console.log(data.details);
             // Create a hidden form with the user data and submit it to take you to the next page
             var f = document.getElementById('datatopass');
@@ -270,12 +333,10 @@ var signin = function(login, password) {
             f.authentication.value = JSON.stringify(data.details.authentication);
             f.submit();
         } else {
-            $("#signinStatus").text(data.error.message);
-            console.log(data.error);
+            showAndHideEvents("generalError", data.error.message);
         }
     }).fail(function(jqXHR,status,err) {
-        $("#signinStatus").text(err.message);
-        console.log(err);
+        showAndHideEvents("generalError", err.message);
     });
 }
 var passwordHash = function(password, email) {
@@ -311,11 +372,9 @@ var checkEmail = function(field) {
             }
         } else {
             showAndHideEvents("invalidAccount");
-            console.log(msg.details);
         }
     }).fail(function(jqXHR,status,err) {
-        $("#signinStatus").text(err);
-        console.log(err);
+        showAndHideEvents("generalError", err.message);
     });
 }
 
@@ -352,8 +411,7 @@ var checkSerial = function(serial) {
             console.log(msg.details);
         }
     }).fail(function(jqXHR,status,err) {
-        $("#signinStatus").text(err);
-        console.log(err);
+        showAndHideEvents("generalError", err.message);
     });
 }
 var checkDigit = function(str) {
@@ -388,7 +446,7 @@ var createJWT = function(productCode) {
     var data = { appVersion: "2", command: "createJWT", payload: { productCode: productCode, prefix: prefix, login: userIdentifier}, key: key };
     $.ajax({
         method: "POST",
-        url: "http://dock.projectbench/Software/Tools/apiGateway.php",
+        url: apiGatewayUrl,
         dataType: "json",
         data: JSON.stringify(data)
     }).done(function( msg ) {
@@ -397,8 +455,7 @@ var createJWT = function(productCode) {
         console.log(url);
         window.open(url, '_blank');
     }).fail(function(jqXHR,status,err) {
-        $("#signinStatus").text(err);
-        console.log(err);
+        showAndHideEvents("generalError", err.message);
     });
 }
 var prepareData = function(productCode) {
