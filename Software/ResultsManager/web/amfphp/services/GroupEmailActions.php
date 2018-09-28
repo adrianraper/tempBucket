@@ -8,7 +8,7 @@ require_once(dirname(__FILE__) . "../../core/shared/util/Authenticate.php");
 
 $thisService = new ClarityService();
 
-const MAX_EXECUTION_TIME = 3600;
+const MAX_EXECUTION_TIME = 300;
 ini_set('max_execution_time', MAX_EXECUTION_TIME);
 set_time_limit(MAX_EXECUTION_TIME);
 

@@ -425,7 +425,7 @@ EOD;
         $score->userID = $user->userID;
 
         // m#364 Change format of item id sent by app
-        if (version_compare($this->getAppVersion(), '2.0.0', '<')) {
+        if (isset($scoreObj->uid) && version_compare($this->getAppVersion(), '2.0.0', '<')) {
             $score->setUID($scoreObj->uid);
         } else {
             $score->productCode = $session->productCode;

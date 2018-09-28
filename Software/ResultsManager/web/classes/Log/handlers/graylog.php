@@ -18,7 +18,7 @@ class Log_graylog extends Log
      * @var string
      * @access private
      */
-    var $_server = 'http://127.0.0.1:12001';
+    var $_server = 'https://logs.clarityenglish.com:12001';
 
     /**
      * Constructs a new Log_graylog object.

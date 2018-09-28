@@ -2273,7 +2273,7 @@ EOD;
         $sql = <<<EOD
 			SELECT u.* FROM T_User u, T_Membership m
 			WHERE u.F_UserID = m.F_UserID
-			AND U.F_Email = ?
+			AND u.F_Email = ?
 EOD;
         $bindingParams = array($email);
         $rs = $this->db->Execute($sql, $bindingParams);

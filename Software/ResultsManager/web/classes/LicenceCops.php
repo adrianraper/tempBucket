@@ -805,6 +805,7 @@ EOD;
         return true;
     }
 
+    // m#475 m#493 Obsolete function
     public function deleteExpiredLicenceSlots($session) {
         $sessionId = $session->sessionId;
         $rootId = $session->rootId;
@@ -972,9 +973,6 @@ EOD;
                 break;
             case 57:
                 return 39;
-                break;
-            case 62:
-                return 10;
                 break;
             case 66:
                 return 49;

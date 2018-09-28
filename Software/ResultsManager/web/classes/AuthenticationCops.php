@@ -89,7 +89,7 @@ EOD;
 EOD;
         $bindingParams = array($prefix);
         $rs = $this->db->Execute($sql, $bindingParams);
-        if ($rs) {
+        if ($rs && $rs->RecordCount() == 1) {
             $key = $rs->FetchNextObj()->F_Key;
         } else {
             throw $this->copyOps->getExceptionForId("errorAccountNoApiToken");

@@ -40,12 +40,12 @@ class SessionTrack {
         $this->userId = intval($obj->F_UserID);
         $this->rootId = intval($obj->F_RootID);
         $this->productCode = intval($obj->F_ProductCode);
-        if ($obj->F_StartDateStamp && strtotime($obj->F_StartDateStamp) > 0) $this->startDateStamp = $obj->F_StartDateStamp;
-        if ($obj->F_LastUpdateDateStamp && strtotime($obj->F_LastUpdateDateStamp) > 0) $this->lastUpdateDateStamp = $obj->F_LastUpdateDateStamp;
+        if (isset($obj->F_StartDateStamp) && strtotime($obj->F_StartDateStamp) > 0) $this->startDateStamp = $obj->F_StartDateStamp;
+        if (isset($obj->F_LastUpdateDateStamp) && strtotime($obj->F_LastUpdateDateStamp) > 0) $this->lastUpdateDateStamp = $obj->F_LastUpdateDateStamp;
         $this->duration = intval($obj->F_Duration);
-        $this->contentId = $obj->F_ContentID;
-        $this->data = ($obj->F_Data) ? json_decode($obj->F_Data, true) : null;
-        $this->status = intval($obj->F_Status);
+        $this->contentId = (isset($obj->F_ContentID)) ? $obj->F_ContentID : null;
+        $this->data = (isset($obj->F_Data)) ? json_decode($obj->F_Data, true) : null;
+        $this->status = (isset($obj->F_Status)) ? intval($obj->F_Status) : null;
     }
 
     /**

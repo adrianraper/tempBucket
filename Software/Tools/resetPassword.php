@@ -125,7 +125,7 @@
                                    placeholder="retype new password">
                         </div>
                         <div class="general-button-box">
-                            <input type="button" class="btn btn-default general-input-btn input-bg-p" value="Reset" id="reset" name="reset" accesskey="g" tabindex="3">
+                            <input id="reset" type="button" class="btn btn-default general-input-btn input-bg-p" value="Reset" name="reset" accesskey="g" tabindex="3">
                         </div>
                         <div id="status-box" class="lead-warn-field lead-warn-box">
                             <p id="status-text" class="general-text">Status message</p>
@@ -136,7 +136,7 @@
                 <div class="lead-detail general-shadow">
                     <div class="row">
                         <div class="col-xs-8">
-                            <p id="signinStatus" class="general-text">
+                            <p id="resetStatus" class="general-text">
                                 After resetting your password, go back to the program and sign in.
                             </p>
                         </div>

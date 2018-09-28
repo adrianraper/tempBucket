@@ -88,6 +88,6 @@ $GLOBALS['smarty_plugins_dir'] = $smartyRoot."/plugins/";
 $GLOBALS['logType'] = 'file'; // or 'db' or 'null'
 $GLOBALS['debugLogType'] = 'file';
 $GLOBALS['controlLogType'] = 'file';
-$GLOBALS['dashboardLogType'] = 'graylog';
+$GLOBALS['dashboardLogType'] = 'file'; // graylog
 $GLOBALS['logs_dir'] = $GLOBALS['common_dir'].'/logs/';
 $GLOBALS['graylogEndpoint'] = 'https://logs.clarityenglish.com:12201/gelf';

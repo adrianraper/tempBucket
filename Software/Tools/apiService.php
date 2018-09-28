@@ -114,6 +114,7 @@ class apiService extends AbstractService {
         $links = array();
 
         foreach ($account->titles as $title) {
+            AbstractService::$debugLog->info("check title ".$title->productCode);
             $status = 'available';
 
             // Just ignore Results Manager or any other admin tools
@@ -127,7 +128,9 @@ class apiService extends AbstractService {
             } else {
                 // For the next tests we need to know if this user already has a licence or can get one
                 // [userHasLicence = boolean, licencesUsed = int, totalLicences = int, licenceType = int]
-                $licenceDetails = $this->getLicenceUsage($title->productCode, $user, $account);
+                //AbstractService::$debugLog->info("check licence for ".$title->productCode);
+                $licenceDetails = $this->getLicenceUsage($title, $user, $account);
+                //AbstractService::$debugLog->info("got licence ".$licenceDetails['maxLicences']);
                 if (!$licenceDetails['userHasLicence']) {
                     // 2. the licence is 'token' and this user does not already have a licence
                     if ($title->licenceType == Title::LICENCE_TYPE_TOKEN) {
@@ -220,6 +223,34 @@ class apiService extends AbstractService {
 
         return $user;
     }
+    /**
+     * Only to be called once you have authenticated the caller
+     *  This will get user details and an authentication token so you can make further calls as if you were that user
+     */
+    public function getAuthenticatedUser($email) {
+        $stubUser = new User();
+        $stubUser->email = $email;
+        $user = $this->manageableOps->getUserByKey($stubUser, 0, User::LOGIN_BY_EMAIL);
+
+        if ($user == false)
+            throw $this->copyOps->getExceptionForId("errorNoSuchUser", array("loginKeyField" => 'email'));
+
+        // Create an authentication token for this user
+        $rootId = $this->manageableOps->getAccountIdFromUser($user);
+        $account = $this->accountCops->getBentoAccount($rootId);
+        $group = $this->manageableOps->getUsersGroups($user)[0];
+        $payload = array("userId" => $user->userID, "prefix" => $account->prefix, "rootId" => $account->id, "groupId" => $group->id);
+        $token = $this->authenticationCops->createToken($payload);
+
+        return array('user' => $user->publicView(), 'authentication' => $token);
+    }
+    public function authenticateClarity($password) {
+        if ($password != 'Sunshine1787')
+            throw new Exception('You are not authorised to call this api');
+        $payload = array('prefix' => 'Clarity');
+        return array('authentication' => $this->createJWT($payload, 'averysecretkey'));
+    }
+
     /*
      * Login checks the user, account, hidden content, creates a session and secures a licence
      */
@@ -261,8 +292,7 @@ class apiService extends AbstractService {
     /*
      * Check to see if a user has a licence or could get one if they wanted to
      */
-    public function getLicenceUsage($productCode, $user, $account) {
-       $title = $account->getTitleByProductCode($productCode);
+    public function getLicenceUsage($title, $user, $account) {
 
         // Perhaps this account does not have this title...
         if (!isset($title)) {
@@ -271,26 +301,31 @@ class apiService extends AbstractService {
         } else {
             if (version_compare($title->architectureVersion, '4', '>=')) {
                 // Check here to see if this user has a Couloir licence for this title
-                $hasLicence = (is_null($user)) ? null : $this->licenceCops->getUserCouloirLicence($productCode, $user->userID);
-                $usedLicences = $this->licenceCops->countUsedLicences($productCode, $account->id, $title);
+                $hasLicence = (is_null($user)) ? null : $this->licenceCops->getUserCouloirLicence($title->productCode, $user->userID);
+                $usedLicences = $this->licenceCops->countUsedLicences($title->productCode, $account->id, $title);
+                /*
+                 * These calls are just too slow and of dubious interest
+                } elseif (version_compare($title->architectureVersion, '3', '>=')) {
+                    // Check here to see if this user has a Bento licence for this title
+                    // Bento can have 'old' or 'new' style licences
+                    $hasLicence = (is_null($user)) ? null : $this->licenceCops->getUserOldLicence($title->productCode, $user->userID, $account->useOldLicenceCount, $title);
+                    $usedLicences = $this->licenceCops->countUsedOldLicences($title->productCode, $account->id, $account->useOldLicenceCount, $title);
 
-            } elseif (version_compare($title->architectureVersion, '3', '>=')) {
-                // Check here to see if this user has a Bento licence for this title
-                // Bento can have 'old' or 'new' style licences
-                $hasLicence = (is_null($user)) ? null : $this->licenceCops->getUserOldLicence($productCode, $user->userID, $account->useOldLicenceCount, $title);
-                $usedLicences = $this->licenceCops->countUsedOldLicences($productCode, $account->id, $account->useOldLicenceCount, $title);
-
+                } else {
+                    // Check here to see if this user has an Orchid licence for this title
+                    $hasLicence = (is_null($user)) ? null : $this->licenceCops->checkOrchidLicence($title->productCode, $user->userID, $title);
+                    $usedLicences = $this->licenceCops->countOrchidLicences($title->productCode, $account->id, $title);
+                }
+                */
             } else {
-                // Check here to see if this user has an Orchid licence for this title
-                $hasLicence = (is_null($user)) ? null : $this->licenceCops->checkOrchidLicence($productCode, $user->userID, $title);
-                $usedLicences = $this->licenceCops->countOrchidLicences($productCode, $account->id, $title);
+                $hasLicence = null;
+                $usedLicences = null;
             }
         }
-        $rc = array('usedLicences' => $usedLicences,
+        return array('userHasLicence' => $hasLicence,
+                     'usedLicences' => $usedLicences,
                      'maxLicences' => intval($title->maxStudents),
                      'licenceType' => intval($title->licenceType));
-        if ($user) $rc['userHasLicence'] = $hasLicence;
-        return $rc;
     }
 
     /*
@@ -306,12 +341,39 @@ class apiService extends AbstractService {
         if ($payload->userId) {
             switch ($productCode) {
                 case 63:
-                    // Is there a DPT result for this student?
-                    $tests = $this->testCops->getCompletedTests($payload->userId);
-                    if ($tests)
-                        $result = $tests[0]->data['result'];
-                    $result['date'] = $tests[0]->lastUpdateDateStamp;
-                    return $result;
+                    // Is there a DPT result(s) for this student?
+                    // Whilst production is running on old DPT session handling
+                    if ((strpos($_SERVER['SERVER_NAME'], 'www-staging.clarityenglish.com') !== false) ||
+                        (strpos($_SERVER['SERVER_NAME'], 'www.clarityenglish.com') !== false)) {
+                        $tests = $this->testCops->oldGetCompletedTests($payload->userId);
+                    } else {
+                        $tests = $this->testCops->getCompletedTests($payload->userId);
+                    }
+                    if ($tests && count($tests) > 0) {
+                        $results = array();
+                        foreach ($tests as $test) {
+                            if (isset($test->data['result']))
+                                $results[] = array('date' => $test->lastUpdateDateStamp, 'result' => $test->data['result']);
+                        }
+                    }
+                    if (count($results) > 0)
+                        return $results;
+
+                    // OK, is there a failed attempt?
+                    // Whilst production is running on old DPT session handling
+                    if ((strpos($_SERVER['SERVER_NAME'], 'www-staging.clarityenglish.com') !== false) ||
+                        (strpos($_SERVER['SERVER_NAME'], 'www.clarityenglish.com') !== false)) {
+                        $tests = $this->testCops->oldGetFailedTests($payload->userId);
+                    } else {
+                        $tests = $this->testCops->getFailedTests($payload->userId);
+                    }
+                    if ($tests && count($tests) > 0) {
+                        $results = array();
+                        foreach ($tests as $test) {
+                            $results[] = array('date' => $test->startDateStamp, 'status' => 'failed to complete');
+                        }
+                    }
+                    return $results;
                     break;
                 default:
             }
@@ -348,14 +410,16 @@ class apiService extends AbstractService {
     // This is a deep function checking the account and user, expected to be called rarely from something like forgot password api
     public function checkEmailValidity($email, $domainSigninUrl) {
         // use an RFC email pattern form regexr community for pattern matching
-        $pattern = '~[a-z0-9!#$%&\'*+/=?^_`{|}\~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}\~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?~';
+        // Note that in Staging this is not case insensitive, but locally it is
+        $pattern = '~[a-z0-9!#$%&\'*+/=?^_`{|}\~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}\~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?~i';
         if (!preg_match($pattern, $email))
             throw new Exception("We can't send to this email address.", 101);
+        // get the user
+        $users = $this->manageableOps->getUsersByEmail($email);
+        if (count($users)!=1)
+            throw new Exception("This email is linked to multiple accounts. Contact support@clarityenglish.com", 101);
+        // match the account to the domain if you have one
         if (!is_null($domainSigninUrl)) {
-            // get the user
-            $users = $this->manageableOps->getUsersByEmail($email);
-            if (count($users)!=1)
-                throw new Exception("This email is linked to multiple accounts. Contact support@clarityenglish.com", 101);
             $user = $users[0];
             // get their account
             $account = $this->manageableOps->getAccountRootFromUser($user);
@@ -495,7 +559,7 @@ class apiService extends AbstractService {
         if (!$oldProductCode)
             $oldProductCode = $newProductCode;
 
-        // The old and new licence must both be LT
+        // The old and new licence must both exist and be LT
         $oldLicence = $this->accountCops->getLicenceDetails($rootId, $oldProductCode);
         $newLicence = $this->accountCops->getLicenceDetails($rootId, $newProductCode);
         if ((($oldLicence->licenceType == Title::LICENCE_TYPE_TT) || ($oldLicence->licenceType == Title::LICENCE_TYPE_LT)) &&
@@ -588,7 +652,7 @@ class apiService extends AbstractService {
         $jwt = $this->authenticationCops->createToken($payload);
 
         // Generate the email
-        $emailData = array("link" => '\Software\Tools\resetPassword.php?token='.$jwt);
+        $emailData = array("link" => '/Software/Tools/resetPassword.php?token='.$jwt);
         $emailArray = array(array("to" => $email, "data" => $emailData));
         if (stristr($domainSigninUrl, "ieltspractice.com")) {
             $templateID = 'forgotPasswordIP';
@@ -597,10 +661,13 @@ class apiService extends AbstractService {
         } else {
             $templateID = 'forgotPasswordCE';
         }
-        $rc = $this->emailOps->sendEmails("", $templateID, $emailArray);
-
-        return true;
-        //'link' => '/Software/Tools/resetPassword.php?token='.$jwt;
+        $errors = $this->emailOps->sendEmails("", $templateID, $emailArray);
+        if ($errors == array()) {
+            $rc = array('status' => 'sent');
+        } else {
+            throw new Exception("Trouble sending email");
+        }
+        return $rc;
     }
     public function changePassword($email, $password, $token) {
         // Check that the token is valid and get it's contents

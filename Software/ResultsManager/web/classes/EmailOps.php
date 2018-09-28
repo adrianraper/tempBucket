@@ -159,7 +159,6 @@ class EmailOps {
 				if (!$result) $errors[] = $mail->errors[0];
 			}
 		}
-		
 		// Return any errors
 		return $errors;
 	}

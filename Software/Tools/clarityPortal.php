@@ -124,10 +124,6 @@
                         <div class="general-button-box">
                             <input type="button" class="btn btn-default general-input-btn input-bg-p" value="Sign in" id="signin" name="Signin" accesskey="g" tabindex="3">
                         </div>
-                        <div id="status-box" class="lead-warn-field lead-warn-box">
-                            <p id="status-text" class="general-text">Status message</p>
-                        </div>
-
                     </form>
                 </div>
                 <div class="lead-detail general-shadow">
@@ -148,20 +144,27 @@
                         <div class="general-button-box">
                             <input type="button" class="btn btn-default general-input-btn input-bg-p" value="Get reset email" id="forgot" name="forgot" accesskey="g" tabindex="3">
                         </div>
-                        <div id="forgot-status-box" class="lead-warn-field lead-warn-box">
-                            <p id="status-text" class="general-text">Status message</p>
-                        </div>
-
                     </form>
                 </div>
                 <div class="lead-detail general-shadow">
                     <div class="row">
                         <div class="col-xs-8">
-                            <p id="signinStatus" class="general-text">
-                                Access your ClarityEnglish programs by signing in.
+                            <p class="general-text">
+                                Check a DPT result
                             </p>
                         </div>
                     </div>
+                    <form id="dptDetails">
+                        <p class="general-bold-tag">What is the candidate email?</p>
+
+                        <div class="form-group">
+                            <input id="dptEmail" type="text" class="form-control general-text"
+                                   placeholder="email">
+                        </div>
+                        <div class="general-button-box">
+                            <input id="dptResult" type="button" class="btn btn-default general-input-btn input-bg-p" value="Get DPT result" accesskey="g" tabindex="3">
+                        </div>
+                    </form>
                 </div>
 
             </div>
@@ -205,7 +208,7 @@
                 <div class="lead-detail general-shadow">
                     <div class="row">
                         <div class="col-xs-10">
-                            <p id="activateStatus" class="general-text">
+                            <p id="status" class="general-text">
                                 Buy a token from all good ELT distributors
                             </p>
                         </div>
