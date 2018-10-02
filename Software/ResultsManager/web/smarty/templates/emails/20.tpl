@@ -5,7 +5,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>ClarityEnglish - Usage statistics</title>
-		<!-- <from>%22Clarity English%22 %3Csupport@clarityenglish.com%3E</from> -->
+		<!-- <from>%22ClarityEnglish%22 %3Csupport@clarityenglish.com%3E</from> -->
 		<!-- <bcc>admin@clarityenglish.com</bcc> -->
         	<style type="text/css">
     		@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);

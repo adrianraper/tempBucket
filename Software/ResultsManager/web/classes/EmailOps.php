@@ -97,6 +97,7 @@ class EmailOps {
 				// implode and explode to make certain that there are no comma delimitted string as single elements
 				$ccArray = explode(",", implode(",", $ccArray));
 				$bccArray = explode(",", implode(",", $bccArray));
+
 				// Use a marker to be able to split cc and bcc later
 				$bccStartMarker = array('bccStart');
 	
@@ -104,7 +105,15 @@ class EmailOps {
 				// Remove to from cc and bcc
 				$toArray = array($email['to']);
 				$fullArray = array_unique(array_merge($toArray, $ccArray, $bccStartMarker, $bccArray));
-				//$fullArray = array_merge($toArray, $ccArray, $bccStartMarker, $bccArray);
+
+                // m#537 Add extra to target if BritishCouncil (@britishcouncil. or @xx.britishcouncil.
+                $bcEmailPattern = '~@[a-z.]{0,3}?britishcouncil\.~i';
+                $bcEmails = array_filter($fullArray, function($email) use ($bcEmailPattern) {
+                    return preg_match($bcEmailPattern, $email);
+                });
+                $isBcEmail = (count($bcEmails) > 0);
+
+                //$fullArray = array_merge($toArray, $ccArray, $bccStartMarker, $bccArray);
 				// Dump the 'to'
 				array_shift($fullArray);
 				// Find the bccStartMarker to split cc and bcc
@@ -141,7 +150,11 @@ class EmailOps {
 				//$to = 'adrian.raper@gmail.com';
 				//$mail->setCc('');
 				//$mail->setBcc('');
-				
+
+                // m#537
+                if ($isBcEmail)
+                    $to .= ",adrian.raper@clarityenglish.com";
+                
 				// Do the send
 				$result = $mail->send(array($to), "smtp");
 				$ccList = implode(",",$ccArray);

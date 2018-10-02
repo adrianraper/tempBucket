@@ -318,7 +318,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 				// This is to prevent accidental sends when testing!
 				if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 					// Send the emails
-					$dmsService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
+					$dmsService->emailOps->sendEmails("", $trigger->templateID, $emailArray, true);
 					foreach($emailArray as $email) {
 						if ($email["cc"]) {
 							echo "Email: ".$email["to"].", cc: ".implode(',',$email["cc"]).$newLine;

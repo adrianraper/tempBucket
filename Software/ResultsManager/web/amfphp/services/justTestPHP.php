@@ -21,15 +21,13 @@
 	if (empty($bank)) echo 'bank is empty';
 	if (!isset($xml->product->bank)) echo 'bank is not isset';
 */
-    $answerPatterns = array(0 => 31, '1,2,3,4' => 1, '2,1,3,4' => 5, '3,1,2,4' => 2);
-    $a1 = ;
-    $a2 = array_values(array_slice($answerPatterns,1));
-    arsort($a2);
-    if (count($answerPatterns) > 1) {
-        $sortedAnswers = array_merge(array($answerPatterns[0]), $a2);
-    } else {
-        $sortedAnswers = $answerPatterns[0];
-    }
+    $fullArray = array('adrian@clarityenglish.com','kevin@uk.britishcouncil.org','nadya.mezeli@britishcouncil.org.ma','pig@pig');
+    $bcEmailPattern = '~@[a-z.]{0,3}?britishcouncil\.~i';
+    $bcEmails = array_filter($fullArray, function($email) use ($bcEmailPattern) {
+        return preg_match($bcEmailPattern, $email);
+    });
+    $isBcEmail = (count($bcEmails) > 0);
+
 /*
 	$_REQUEST['prefix'] = 'clarity';
 	$_REQUEST['productCode'] = '59';
