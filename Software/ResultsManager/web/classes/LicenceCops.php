@@ -15,7 +15,8 @@ class LicenceCops {
     const AA_LICENCE_EXTENSION = 120;
     const AA_RECONNECTION_WINDOW = 60;
     const AA_INACTIVITY_WINDOW = 300; // 30 days
-    const LT_RECONNECTION_WINDOW = 2592000; // 30 days
+    // m#498 LT licences will not be checked by licence server as no need
+    const LT_RECONNECTION_WINDOW = null;
     const LT_INACTIVITY_WINDOW = 2592000; // 30 days
 
     //const HIBERNATE_DELAY = 15; // production = 2
