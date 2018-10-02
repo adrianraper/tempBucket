@@ -286,8 +286,9 @@ class apiService extends AbstractService {
             $user = null;
         }
         $account = $this->accountCops->getBentoAccount($rootId, $productCode);
+        $title = $account->titles[0];
 
-        return $this->getLicenceUsage($productCode, $user, $account);
+        return $this->getLicenceUsage($title, $user, $account);
     }
     /*
      * Check to see if a user has a licence or could get one if they wanted to
