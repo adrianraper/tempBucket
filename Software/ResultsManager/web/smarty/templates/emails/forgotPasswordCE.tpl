@@ -10,8 +10,10 @@
 
 </head>
 <body text="#000000" style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:0; padding:0;color:#000000;">
+<!--
 {assign var=edge value=$link|strpos:"?token"}
-<!-- {$link|truncate:$edge+15:"...":true} -->
+{$link|truncate:$edge+15:"...":true}
+-->
 <div style="width:600px;">
     <div style="width:500px; margin:auto; padding:10px 50px 20px 50px;">
 

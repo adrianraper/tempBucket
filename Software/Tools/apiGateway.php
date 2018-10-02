@@ -13,7 +13,7 @@ header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
 $json = json_decode(file_get_contents('php://input'));
-//$json = json_decode('{"command":"dbCheck", "dbHost":300}');
+//$json = json_decode('{"command":"getLicenceUse","appVersion":"1.0.0","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1Mzg0NjQxNTIsInJvb3RJZCI6MjAxfQ.9cg7zGPlqX3376-MHsM8ukq_Q_9EmD8VlSJh-tl1xKQ", "productCode":68}');
 //$json = json_decode('{"command":"getAuthenticatedUser", "email":"adrian@clarity", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzgxMDIzMjQsInByZWZpeCI6IkNsYXJpdHkifQ.mWKzLY0pFBn8lhynDCiZWb1ZuvnKrT4aF7El_iJlgLM"}');
 //$json = json_decode('{"command":"authenticateClarity", "password":"Sunshine1787"}');
 //$json = json_decode('{"command":"getScheduledTests", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzcyNTk5MjYsInVzZXJJZCI6MTEyNTksInByZWZpeCI6ImNsYXJpdHkiLCJyb290SWQiOiIxNjMiLCJncm91cElkIjoxMDM3OX0.grxY8Ji5vGp3daafKktVEWlgMRTI7DwmZQEnzxueVRk", "productCode":63}');
