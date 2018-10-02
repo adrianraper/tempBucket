@@ -65,16 +65,25 @@ class TestCops {
             $test->endTimestamp = AbstractService::ansiStringToTimestamp($test->closeTime);
             $test->lang = strtolower($test->language);
 
-            // ctp#311 If you are running locally, implying no encryption in content server, send back an empty code
-            // Locally working will not work if you DO set an access code on a scheduled test
-            if ($test->startType == 'timer' && stristr($_SERVER['SERVER_NAME'],'dock.projectbench') !== false)
-                $test->groupId = '';
-
             // ctp#285 groupID needs to be a string
             // ctp#324 for app versions above x
             global $service;
             if (version_compare($service->getAppVersion(), '0.0.0', '>'))
                 $test->groupId = (string)$test->groupId;
+
+            // m#1 standardise the format of access code for decryption
+            // ctp#311 If you are running locally, implying no encryption in content server, send back an empty code
+            // Locally working will not work if you DO set an access code on a scheduled test
+            if ($test->startType == 'timer' && stristr($_SERVER['SERVER_NAME'], 'dock.projectbench') !== false) {
+                $test->access = array("type" => "nocode");
+            } else if ($test->startType == 'code') {
+                // Access code entry
+                $test->access = array("type" => "manual");
+            } else {
+                // As it is a timer, auto send the groupId as a code
+                $test->access = array("type" => "auto", "code" => $test->groupId);
+            }
+
         }
         return array_values($tests);
 

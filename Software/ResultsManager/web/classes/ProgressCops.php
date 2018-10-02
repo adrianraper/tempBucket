@@ -830,7 +830,9 @@ EOD;
 
     /**
      * This method is called to insert a session record for a test
+     * m#17 It will be deprecated when DPT runs latest Couloir
      */
+    /*
     function startTestSession($user, $rootId, $productCode, $testId = null) {
         // ctp#195 Is there an unfinished session for this user/test already?
         // If there is, return it (or the last one) so that we can use the same seed to recreate the same test
@@ -893,6 +895,7 @@ EOD;
             throw $this->copyOps->getExceptionForId("errorDatabaseWriting");
         }
     }
+    */
     /**
      * This method is called to insert a session record for couloir
      * sss#17 will be superceded by common SessionTrack asap
@@ -946,6 +949,9 @@ EOD;
         $session->duration = SessionTrack::MINIMUM_DURATION;
         $session->contentId = $uid;
         $session->status = SessionTrack::STATUS_OPEN;
+        // m#17 ctp#195 Create a seed
+        $session->setSeed(uniqid());
+
         $rs = $this->db->AutoExecute("T_SessionTrack", $session->toAssocArray(), "INSERT");
         if ($rs) {
             $sessionId = $this->db->Insert_ID();
@@ -965,23 +971,30 @@ EOD;
      * Update a session record for Couloir
      * sss#17
      */
-    public function updateCouloirSession($session, $timestamp) {
+    public function updateCouloirSession($session, $timestamp, $forceUpdate = false) {
 
-        $newDateTime = new DateTime('@'.intval($timestamp), new DateTimeZone(TIMEZONE));
-        $lastDateTime = new DateTime($session->lastUpdateDateStamp, new DateTimeZone(TIMEZONE));
-        $secondsDifference = $newDateTime->format('U')-$lastDateTime->format('U');
+        // m#17 No timestamp means you are updating other parts of the session record
+        if ($timestamp) {
+            $newDateTime = new DateTime('@' . intval($timestamp), new DateTimeZone(TIMEZONE));
+            $lastDateTime = new DateTime($session->lastUpdateDateStamp, new DateTimeZone(TIMEZONE));
+            $secondsDifference = $newDateTime->format('U') - $lastDateTime->format('U');
 
-        // If this timestamp is just after the last one, add the time difference to the duration
-        // If the last timestamp is quite a while ago, assume they have not been doing anything
-        // and simply update the timestamp. This will be the first of at least 5 updates.
-        // If this timestamp is already in the past, just drop it
-        if ($secondsDifference < 0) {
-            return false;
-        } else if ($secondsDifference < SessionTrack::THINKING_DURATION) {
-            $session->duration += $secondsDifference;
+            // If this timestamp is just after the last one, add the time difference to the duration
+            if ($secondsDifference > 0 && $secondsDifference < SessionTrack::THINKING_DURATION) {
+                $session->duration += $secondsDifference;
+                $session->lastUpdateDateStamp = $newDateTime->format('Y-m-d H:i:s');
+
+                // If the last timestamp is quite a while ago, assume they have not been doing anything
+                // and simply update the timestamp without changing the duration.
+            } else if ($secondsDifference > SessionTrack::THINKING_DURATION) {
+                $session->lastUpdateDateStamp = $newDateTime->format('Y-m-d H:i:s');
+
+                // Timestamp is in the past, so just ignore it
+            } else {
+                if (!$forceUpdate)
+                    return false;
+            }
         }
-
-        $session->lastUpdateDateStamp = $newDateTime->format('Y-m-d H:i:s');
         $rs = $this->db->AutoExecute("T_SessionTrack", $session->toAssocArray(), "UPDATE", "F_SessionID=".$session->sessionId);
     }
 
@@ -1048,10 +1061,11 @@ EOD;
         $rootID = 'null'; // I don't think this needs to be in T_ScoreDetail does it?
         $sqlData = array();
         foreach($scoreDetails as $scoreDetail) {
-            if (!$scoreDetail->unitID) $scoreDetail->unitID = 'null';
-            if (!$scoreDetail->exerciseID) $scoreDetail->exerciseID = 'null';
-            if (!$scoreDetail->courseID) $scoreDetail->courseID = 'null';
-            if (!$scoreDetail->score) $scoreDetail->score = 'null';
+            // m#17
+            if (!isset($scoreDetail->unitID)) $scoreDetail->unitID = 'null';
+            if (!isset($scoreDetail->exerciseID)) $scoreDetail->exerciseID = 'null';
+            if (!isset($scoreDetail->courseID)) $scoreDetail->courseID = 'null';
+            if (!isset($scoreDetail->score)) $scoreDetail->score = 'null';
             // dpt#469 Included presented but not attempted, datestamp will be null
             $quotedDateStamp = ($scoreDetail->dateStamp) ? "'".$scoreDetail->dateStamp."'" : 'null';
             $sqlData[] = "(".$scoreDetail->userID.", ".$rootID.", ".$scoreDetail->sessionID.

@@ -473,7 +473,6 @@ EOD;
         $testId = null;
         if ($productCode == 63 || $productCode == 65) {
             // Get the tests that the user's group can take part in
-            // But remember that you DON'T pass the security access code back to the app
             $tests = $this->testCops->getTestsSecure($group, $productCode);
             if ($tests) {
                 // For now, the app will only work if max of one test is returned.
@@ -507,14 +506,17 @@ EOD;
             "user" => $user->couloirView(),
             "tests" => (isset($tests)) ? $tests : null,
             "token" => $token,
+            // m#17 If there is a seed, it is buried in session
+            "seed" => $session->getSeed(),
             "memory" => (isset($memory)) ? $memory : json_decode ("{}"));
 
         // sss#12 For a title that uses encrypted content, send the key
-        if ($productCode == 63 || $productCode == 65) {
-            $rc["key"] = (string)$group->id;
-        } else {
-            $rc["key"] = null;
-        }
+        // Superseeded by m#1
+        //if ($productCode == 63 || $productCode == 65) {
+        //    $rc["key"] = (string)$group->id;
+        //} else {
+        //    $rc["key"] = null;
+        //}
 
         // sss#304 Return an account if login had to look one up
         if ($foundAccount) {
