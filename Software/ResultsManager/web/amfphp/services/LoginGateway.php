@@ -21,7 +21,7 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getOrAddUser","studentID":"P10102928-170","name":"RAPER, Adrian","dbHost":2,"custom1":"Basic","custom2":"IMD","prefix":"CSTDI","loginOption":"8"}';
 	//$inputData = '{"method":"getOrAddUser","studentID":"5217-0123-4567","name":"asdf","password":"1234","email":"adrian@noodles.hk","groupID":"170","productCode":"52","subscriptionPeriod":"3m","emailTemplateID":"Welcome-BC-user","adminPassword":"clarity88","dbHost":102,"loginOption":2}';
 	//$inputData = '{"method":"getOrAddUser","dbHost":2,"prefix":"CSTDI","rootID":14449,"groupID":26271,"city":"Hong Kong","country":"Hong Kong","loginOption":2,"subscriptionPeriod":"1y","adminPassword":"57845612","studentID":"cstdi-1234","name":"RAPER, Adrian","custom1":"100","custom2":"21"}';
-	//$inputData = '{"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5","dbHost":102,"loginOption":"8"}';
+	//$inputData = '{"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5","dbHost":200,"loginOption":"128"}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","licenceType":5,"loginOption":128,"dbHost":20}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","loginOption":128,"dbHost":20}';
 	//$inputData = '{"method":"getOrAddUserAutoGroup", "prefix":"TW_TTU", "groupName":"noGroup", "name":"winhoey", "password":"testing", "teacherName":"TTU_Teacher", "adminPassword":"68777214", "dbHost":2, "city":"Taichung", "country":"Taiwan", "loginOption":1}';
@@ -351,9 +351,9 @@ try {
 	$returnInfo = array('user' => $user, 'account' => $account, 'group' => $group);
 
     // gh#1171
-    if ($apiInformation->encryptData)
+    if (isset($apiInformation->encryptData))
         $returnInfo['encryptedData'] = $apiInformation->toEncryptedString();
-    if ($subscription)
+    if (isset($subscription))
         $returnInfo['subscription'] = $subscription;
 
 	echo json_encode($returnInfo);

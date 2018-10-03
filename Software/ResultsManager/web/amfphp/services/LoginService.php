@@ -26,14 +26,11 @@ require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php");
 require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
 require_once(dirname(__FILE__)."/../../classes/MemoryOps.php");
+require_once(dirname(__FILE__)."/../../classes/AuthenticationCops.php");
 
 require_once(dirname(__FILE__)."/AbstractService.php");
 
 require_once($GLOBALS['common_dir'].'/encryptURL.php');
-
-// This can move to standard AuthenticationCops once production is up to date
-require_once(dirname(__FILE__)."/../../../../Tools/classes/AuthenticationCops.php");
-require_once(dirname(__FILE__)."/../../../../Tools/classes/ToolsOps.php");
 
 require_once(dirname(__FILE__)."/Firebase/JWT/JWT.php");
 require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
@@ -61,7 +58,7 @@ class LoginService extends AbstractService {
 		$this->subscriptionOps = new SubscriptionOps($this->db);
 		$this->accountOps = new AccountOps($this->db);
 
-        $this->toolsOps = new ToolsOps($this->db);
+        //$this->toolsOps = new ToolsOps($this->db);
         $this->authenticationCops = new AuthenticationCops($this->db);
 
 		// DMS has no restrictions on user/group access so disable manageable authentication
@@ -75,7 +72,7 @@ class LoginService extends AbstractService {
 		$this->subscriptionOps->changeDB($this->db);
 		$this->accountOps->changeDB($this->db);
 
-        $this->toolsOps = new ToolsOps($this->db);
+        //$this->toolsOps = new ToolsOps($this->db);
         $this->authenticationCops = new AuthenticationCops($this->db);
 	}
 
