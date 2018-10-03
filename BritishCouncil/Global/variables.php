@@ -18,5 +18,3 @@
 	// Will we write out lots of log messages?
 	$debugLog = true;
 	$debugFile = "ORS_start.log";
-
-?>

@@ -24,8 +24,7 @@ function loadAPIInformation() {
 	$inputData = file_get_contents("php://input");
     //AbstractService::$debugLog->info("inputData=$inputData");
     //$inputData = '{"method":"addUser","prefix":"Clarity","groupID":74548,"country":"Japan","loginOption":1,"subscriptionPeriod":"1month","adminPassword":"X1jsAD4rNksVcldXYJje","name":"why do you love me so","password":"ce787e0635","email":"341a730edc"}';
-    //$inputData = '{"method": "updateUser","rootID": 10719,"groupID": 74544,"email":"adrian.10@vus.edu.vn",
-    //                "adminPassword": "aff5WCqaHLzeW7mIZ0gj","name":"VUS Adrian 10", "studentID":"vus-1234-new"}';
+    //$inputData = '{"method": "updateUser","rootID":13982,"groupID":109791,"adminPassword":"uyHj8YtT7d8w89","studentID":"695596848","name":"newone"}';
 	$postInformation = json_decode($inputData, true);
 	if (!$postInformation)
         returnError(1, "Error decoding data: ".json_last_error().': '.$inputData);

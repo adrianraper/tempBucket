@@ -462,23 +462,23 @@ EOD;
 				switch ($rc['returnCode']) {
 					case User::LOGIN_BY_NAME:
 						if (isset($rc['conflictedUsers'])) {
-							throw new Exception($this->copyOps->getCopyForId("usernameExistsError", array(username => $user->name)));
+							throw new Exception($this->copyOps->getCopyForId("usernameExistsError", array('username' => $user->name)));
 						} else {
-							throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array(studentID => $user->studentID, email => $user->email)));							
+							throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array('studentID' => $user->studentID, 'email' => $user->email)));
 						}
 						break;
 					case User::LOGIN_BY_ID:
 						if (isset($rc['conflictedUsers'])) {
-							throw new Exception($this->copyOps->getCopyForId("studentIDExistsError", array(studentID => $user->studentID)));
+							throw new Exception($this->copyOps->getCopyForId("studentIDExistsError", array('studentID' => $user->studentID)));
 						} else {
-							throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array(username => $user->name, email => $user->email)));							
+							throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array('username' => $user->name, 'email' => $user->email)));
 						}
 						break;
 					case User::LOGIN_BY_EMAIL:
 						if (isset($rc['conflictedUsers'])) {
-							throw new Exception($this->copyOps->getCopyForId("emailExistsError", array(email => $user->email)));
+							throw new Exception($this->copyOps->getCopyForId("emailExistsError", array('email' => $user->email)));
 						} else {
-							throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array(username => $user->name, studentID => $user->studentID)));							
+							throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array('username' => $user->name, 'studentID' => $user->studentID)));
 						}
 				    	break;
 					default:
