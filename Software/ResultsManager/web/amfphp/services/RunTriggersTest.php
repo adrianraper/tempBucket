@@ -74,7 +74,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 		if (isset($_REQUEST['rootID']) && $_REQUEST['rootID']>0) {
 			$trigger->rootID = $_REQUEST['rootID'];
 		} else {
-			$trigger->rootID = array(163,10103,10759);
+			//$trigger->rootID = Array(5,7,28,163,10719,11091);
 			//$trigger->rootID = Array(10758,10759);
 		}
 		// Ignore Road to IELTS v1 until all expired or removed
@@ -84,9 +84,9 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
         //if ($msgType == 1)
         //    $trigger->condition->notProductCode = '61';
 
-        // gh#1581 1602 m#514 Stop subscription reminders triggering for DPT
+        // gh#1581 1602 m#514 Stop subscription reminders triggering for DPT or RM
         if ($msgType == 1) {
-            $trigger->condition->notProductCode = (isset($trigger->condition->notProductCode)) ? $trigger->condition->notProductCode . ',63' : '63';
+            $trigger->condition->notProductCode = (isset($trigger->condition->notProductCode)) ? $trigger->condition->notProductCode . ',2,63' : '2,63';
         }
 
         $triggerResults = $dmsService->triggerOps->applyCondition($trigger, $triggerDate);
@@ -122,13 +122,6 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 				break;
 				
 			case "email":
-				//foreach ($triggerResults as $account) {
-					// TODO: If you do it like this, you are calling emailOps->sendEmails multiple times, with extra overhead.
-					// Should use emailAPI and make sure that that can cope with an array of emails before working out whether
-					// to send or echo. And perhaps it could cope with start and stop rootIDs too.
-					//$emailData = array("account" => $account, "expiryDate" => $trigger->condition->expiryDate);
-					//$dmsService->emailOps->sendOrEchoEmail($account, $emailData, $trigger->templateID);
-				//}
 				$emailArray = array();
 				
 				if ($trigger->condition->method == 'getUsers') {
@@ -318,7 +311,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 				// This is to prevent accidental sends when testing!
 				if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 					// Send the emails
-					$dmsService->emailOps->sendEmails("", $trigger->templateID, $emailArray, true);
+					$dmsService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
 					foreach($emailArray as $email) {
 						if ($email["cc"]) {
 							echo "Email: ".$email["to"].", cc: ".implode(',',$email["cc"]).$newLine;
@@ -351,7 +344,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 echo $GLOBALS['db'].$newLine;
 // If you want to run specific triggers for specific days (to catch up for days when this was not run for instance)
 $testingTriggers = "";
-//$testingTriggers .= "subscription reminders";
+$testingTriggers .= "subscription reminders";
 $testingTriggers .= "usage stats";
 //$testingTriggers .= "support";
 //$testingTriggers .= "quotations";
@@ -402,7 +395,7 @@ if (stripos($testingTriggers, "subscription reminders") !== false) {
 	// Now this information is in the trigger table
 	//$subscriptionTriggers = array(1, 6, 7, 8, 32, 33, 34, 36, 38, 39, 40, 41, 42); // account subscription reminders
 	$subscriptionTriggers = null;
-    $subscriptionTriggers = array(41); // account subscription reminders
+    //$subscriptionTriggers = array(41); // account subscription reminders
 	$msgType = 1; // subscription reminders
 	if (isset($_REQUEST['date'])) {
 		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday

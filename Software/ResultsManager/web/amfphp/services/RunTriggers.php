@@ -78,9 +78,9 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 			//$trigger->rootID = Array(13959);
 		}
 
-        // gh#1581 1602 m#514 Stop subscription reminders triggering for DPT
+        // gh#1581 1602 m#514 Stop subscription reminders triggering for DPT or RM
         if ($msgType == 1) {
-            $trigger->condition->notProductCode = (isset($trigger->condition->notProductCode)) ? $trigger->condition->notProductCode . ',63' : '63';
+            $trigger->condition->notProductCode = (isset($trigger->condition->notProductCode)) ? $trigger->condition->notProductCode . ',2,63' : '2,63';
         }
 
         $triggerResults = $dmsService->triggerOps->applyCondition($trigger, $triggerDate);
@@ -116,13 +116,6 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 				break;
 				
 			case "email":
-				//foreach ($triggerResults as $account) {
-					// TODO: If you do it like this, you are calling emailOps->sendEmails multiple times, with extra overhead.
-					// Should use emailAPI and make sure that that can cope with an array of emails before working out whether
-					// to send or echo. And perhaps it could cope with start and stop rootIDs too.
-					//$emailData = array("account" => $account, "expiryDate" => $trigger->condition->expiryDate);
-					//$dmsService->emailOps->sendOrEchoEmail($account, $emailData, $trigger->templateID);
-				//}
 				$emailArray = array();
 				
 				if ($trigger->condition->method == 'getUsers') {
