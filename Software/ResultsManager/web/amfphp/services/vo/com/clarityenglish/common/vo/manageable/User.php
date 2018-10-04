@@ -32,8 +32,9 @@ class User extends Manageable {
 	// sss#323 For hashed passwords
     var $salt;
 	
-	// gh#956
-	//var $memory;
+	// gh#956 m#555
+    // Used just for importing extra fields to the database in T_Memory
+	var $memory = null;
 	
 	const USER_TYPE_DMS_VIEWER = -2;
 	const USER_TYPE_DMS = -1;
@@ -171,7 +172,6 @@ EOD;
 	function toSQLInsert() {
 		$this->setDefaultValues();
 		
-		//			F_Memory)
 		$sql = <<<EOD
 			INSERT INTO T_User (F_UserName,F_Email,F_Password,F_StudentID,F_UserType,
 					F_ExpiryDate,F_StartDate,F_RegistrationDate,F_Birthday,
@@ -387,33 +387,10 @@ EOD;
 		}
 	}
 
-	// ctp#47 Hide any information that a normal app doesn't need to see
-    // m#484 Make non-destructive and selective rather than blocking
+	// ctp#47 Hide any information that you don't want to return to a browser
     public function publicView() {
-        $formattedUser = array();
-        foreach ($this as $key => $value) {
-            switch ($key) {
-                case "userID":
-                case "name":
-                case "birthday":
-                case "studentID":
-                case "expiryDate":
-                case "email":
-                case "country":
-                case "city":
-                case "startDate":
-                case "registrationDate":
-                case "registerMethod":
-                    $formattedUser[$key] = $value;
-                    break;
-                default:
-            }
-        }
-        // m#407
-        if (is_null($formattedUser['email']))
-            $formattedUser['email'] = '';
-        return $formattedUser;
-    }
+        return $this->couloirView();
+	}
     // Create a formatted version of user that contains only the fields couloir apps want
     public function couloirView() {
 	    $formattedUser = array();

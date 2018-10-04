@@ -128,7 +128,19 @@ EOD;
 		return $memory;
 		//
     }
-    
+    public function publicView($userId = null, $productCode = null) {
+        $memory = $this->getWholeMemory($userId, $productCode);
+        foreach ($memory as $key => $value) {
+            switch ($key) {
+                case "demographics":
+                    unset($memory[$key]);
+                    break;
+                default:
+            }
+        }
+        return $memory;
+    }
+
     /**
      * Delete the user's memory, to a greater or lesser degree.
      * 

@@ -220,7 +220,19 @@ EOD;
 		$rc = $this->db->Execute($sql, $bindingParams);
 		if (!$rc)
 			throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
-			
+
+		// m#555 If the user has memory data, add it
+        if (isset($user->memory)) {
+            $sql = <<<EOD
+			INSERT INTO T_Memory (F_UserID,F_ProductCode,F_Key,F_Value)
+			VALUES (?,?,?,?) 
+EOD;
+            $bindingParams = array($user->userID, 2, 'demographics', $user->memory);
+            $rc = $this->db->Execute($sql, $bindingParams);
+            if (!$rc)
+                throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
+        }
+
 		// gh#164 Check that you haven't just added a duplicate before you commit the transaction
 		// Problems - this call uses Authenticate user - which we haven't set yet.
 		try {

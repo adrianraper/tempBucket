@@ -141,6 +141,14 @@ class UploadException extends Exception {
                     case "password":
                         $passwordCol = $field;
                         break;
+                    // m#555
+                    case "nationality":
+                    case "gender":
+                    case "age":
+                    case "L1":
+                        if (!isset($demographicsCol)) $demographicsCol = array();
+                        $demographicsCol[strtolower($value)] = $field;
+                        break;
                 }
             }
 
@@ -174,6 +182,8 @@ class UploadException extends Exception {
                 $user['id'] = (isset($idCol)) ? $data[$idCol] : null;
                 $user['email'] = (isset($emailCol)) ? $data[$emailCol] : null;
                 $user['password'] = (isset($passwordCol)) ? $data[$passwordCol] : null;
+                // m#555
+                if (isset($demographicsCol)) $user['memory'] = json_encode($demographicsCol);
 
                 // If the key id is blank, you can't import this user
                 switch ($loginOption) {
@@ -338,6 +348,8 @@ EOD;
                     $stubUser->password = $user['password'];
                 if (isset($user['email']))
                     $stubUser->email = $user['email'];
+                if (isset($user['memory']))
+                    $stubUser->memory = $user['memory'];
                 $thisService->manageableOps->minimalAddUser($stubUser, $thisGroup, $rootID, $loginOption);
             }
             flush();
