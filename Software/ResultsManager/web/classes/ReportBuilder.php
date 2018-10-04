@@ -370,13 +370,16 @@ EOD;
 		// updated for 2013/14/15/16/17
 		$rootID = Session::get('rootID');
 		$this->selectBuilder->addWhere("m.F_RootID = '$rootID'");
-		if ($rootID == '14781' || $rootID == '19278' || $rootID == '26155' || $rootID == '35886' || $rootID == '54360') {
+		if ($rootID == '14781' || $rootID == '19278' || $rootID == '26155' || $rootID == '35886' || $rootID == '43873' || $rootID == '54360' || $rootID == '65504') {
 			$this->addColumn("u.F_StudentID", "studentID");
 			$this->addColumn("u.F_Email", "email");
 			$this->addColumn("u.F_FullName", "fullName");
 			$this->addColumn("u.F_custom1", "studentsYear");
 			$this->addColumn("u.F_custom2", "correspondingFaculty");
-		}
+		} elseif ($rootID == '68026') {
+           $this->addColumn("u.F_StudentID", "studentID");
+        }
+		// m#549
 		// And BC Test summary wants email. Why not just add that to everything, surely the template can decide if it wants to use it?
 		// Sadly no, if you add it in, a normal report ends up using email instead of name :(
 		//if ($rootID == '14159') {
