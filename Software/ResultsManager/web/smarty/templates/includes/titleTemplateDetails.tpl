@@ -1,7 +1,9 @@
 
-{if $title->name|stristr:"Tense Buster"}
+{if $title->name|stristr:"Tense Buster V10"}
 	{assign var='titleImage' value='tb'}
 	{assign var='startPageFolder' value='TenseBuster'}
+{elseif $title->name|stristr:"Tense Buster"}
+	{assign var='titleImage' value='tbv11'}
 {elseif $title->name|stristr:"Results Manager"}
 	{assign var='titleImage' value='rm'}
 	{assign var='startPageFolder' value='ResultsManager'}
@@ -111,7 +113,10 @@
 		<a href="http://www.ClarityEnglish.com/area1/{$startPageFolder}/Player.php?prefix={$account->prefix}" target="_blank">http://www.ClarityEnglish.com/area1/{$startPageFolder}/Player.php?prefix={$account->prefix}</a></br>
 {elseif $title->productCode==59}
 		<a href="http://www.ClarityEnglish.com/TenseBuster/6weeks/index.php?prefix={$account->prefix}" target="_blank">http://www.ClarityEnglish.com/TenseBuster/6weeks/index.php?prefix={$account->prefix}</a></br>
-
+	{elseif $title->productCode==66}
+		<a href="https://sss.ClarityEnglish.com/#prefix={$account->prefix}" target="_blank">https://sss.ClarityEnglish.com/#prefix={$account->prefix}</a></br>
+	{elseif $title->productCode==68}
+		<a href="https://tb.ClarityEnglish.com/#prefix={$account->prefix}" target="_blank">https://tb.ClarityEnglish.com/#prefix={$account->prefix}</a></br>
 	{else}
 		<a href="http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start.php?prefix={$account->prefix}" target="_blank">http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start.php?prefix={$account->prefix}</a></br>
 	{/if}

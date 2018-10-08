@@ -2,12 +2,14 @@
 /*
  * This is the entry point for api requests from PWVocabApp to the backend
  *
+ * If I call https
+ * [http:error] [pid 9426] [client 220.246.69.26:42205] AH02428: Empty response header name, aborting request
  */
 header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
 $json = json_decode(file_get_contents('php://input'));
-$json = json_decode('{"command":"login","email":"pinky@email","password":"password","timezoneOffset":"-480"}');
+//$json = json_decode('{"command":"login","email":"pinky@email","password":"password","timezoneOffset":"-480"}');
 $json_error = json_last_error();
 
 require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");

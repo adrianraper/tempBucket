@@ -36,9 +36,9 @@
 	{/if}
 {/foreach}
 {if $resellerCode=='12'}
-	<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+	<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
    <tr>
@@ -49,7 +49,7 @@
   </tr>     
     <tr>
     <td width="14" height="99"></td>
-    <td width="96" valign="top"><img src="http://www.clarityenglish.com/images/email/q_clarityenglish.png" width="88" align="right" style="margin:2px 0 0 0;"/></td>
+    <td width="96" valign="top"><img src="https://www.clarityenglish.com/images/email/q_clarityenglish.png" width="88" align="right" style="margin:2px 0 0 0;"/></td>
     <td width="10"></td>
     <td width="240" align="left" valign="top">
 
@@ -62,15 +62,15 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
   </tr>
 </table>
 
 
 {elseif $resellerCode=='44'}
-	<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+	<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
        <tr>
@@ -81,7 +81,7 @@
   </tr>   
     <tr>
     <td width="14" height="99"></td>
-    <td width="96" valign="top"><img src="http://www.clarityenglish.com/images/email/q_clarityenglish.png" width="88" align="right" style="margin:2px 0 0 0;"/></td>
+    <td width="96" valign="top"><img src="https://www.clarityenglish.com/images/email/q_clarityenglish.png" width="88" align="right" style="margin:2px 0 0 0;"/></td>
     <td width="10"></td>
     <td width="240" align="left" valign="top">
 
@@ -94,14 +94,15 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
   </tr>
 </table>
 
-{elseif $resellerCode=='47'}
-	<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+
+{elseif $resellerCode=='49'}
+	<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
        <tr>
@@ -112,7 +113,38 @@
   </tr>   
     <tr>
     <td width="14" height="99"></td>
-    <td width="96" valign="top"><img src="http://www.clarityenglish.com/images/email/q_clarityenglish.png" width="88" align="right" style="margin:2px 0 0 0;"/></td>
+    <td width="96" valign="top"><img src="https://www.clarityenglish.com/images/email/q_clarityenglish.png" width="88" align="right" style="margin:2px 0 0 0;"/></td>
+    <td width="10"></td>
+    <td width="240" align="left" valign="top">
+
+        <p style="font-family: Arial, Helvetica, sans-serif; font-weight:700; font-size: 1em; margin:0 0 5px 0; padding:0; color:#000000;">Elinor Stokes</p>
+        <p style="font-family: Arial, Helvetica, sans-serif; font-weight:400; font-size: 1em; margin:0; padding:0; color:#000000;">ClarityEnglish<br />
+		Hong Kong office <br />
+		Tel: +852 2791 1787<br />
+		<a href="mailto:elinor.stokes@clarityenglish.com">elinor.stokes@clarityenglish.com</a>
+	  </p> </td>
+
+  </tr>
+    
+  <tr>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+  </tr>
+</table>
+{elseif $resellerCode=='47'}
+	<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+      <tr>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        </td>
+      </tr>
+       <tr>
+    <td width="14" height="10" ></td>
+    <td width="96"  valign="top"></td>
+    <td width="10"></td>
+    <td width="240"></td>
+  </tr>   
+    <tr>
+    <td width="14" height="99"></td>
+    <td width="96" valign="top"><img src="https://www.clarityenglish.com/images/email/q_clarityenglish.png" width="88" align="right" style="margin:2px 0 0 0;"/></td>
     <td width="10"></td>
     <td width="240" align="left" valign="top">
 
@@ -126,13 +158,13 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
   </tr>
 </table>
 {elseif $resellerCode=='13'}
-	<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+	<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
        <tr>
@@ -143,7 +175,7 @@
   </tr>   
     <tr>
     <td width="14" height="99"></td>
-    <td width="96" valign="top"><img src="http://www.clarityenglish.com/images/email/q_clarityenglish.png" width="88" align="right" style="margin:2px 0 0 0;"/></td>
+    <td width="96" valign="top"><img src="https://www.clarityenglish.com/images/email/q_clarityenglish.png" width="88" align="right" style="margin:2px 0 0 0;"/></td>
     <td width="10"></td>
     <td width="240" align="left" valign="top">
 
@@ -156,14 +188,14 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
   </tr>
 </table>
 
 {elseif $resellerCode=='46'}
-	<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+	<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
        <tr>
@@ -174,7 +206,7 @@
   </tr>   
     <tr>
     <td width="14" height="99"></td>
-    <td width="96" valign="top"><img src="http://www.clarityenglish.com/images/email/q_clarityenglish.png" width="88" align="right" style="margin:2px 0 0 0;"/></td>
+    <td width="96" valign="top"><img src="https://www.clarityenglish.com/images/email/q_clarityenglish.png" width="88" align="right" style="margin:2px 0 0 0;"/></td>
     <td width="10"></td>
     <td width="240" align="left" valign="top">
 
@@ -187,15 +219,15 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
   </tr>
 </table>
 
     
 {elseif $resellerCode=='45'}
-	<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+	<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
        <tr>
@@ -206,7 +238,7 @@
   </tr>   
     <tr>
     <td width="14" height="99"></td>
-    <td width="96" valign="top"><img src="http://www.clarityenglish.com/images/email/logo_elec_phil.jpg" width="88" align="right" style="margin:2px 0 0 0;"/></td>
+    <td width="96" valign="top"><img src="https://www.clarityenglish.com/images/email/logo_elec_phil.jpg" width="88" align="right" style="margin:2px 0 0 0;"/></td>
     <td width="10"></td>
     <td width="240" align="left" valign="top">
 
@@ -219,14 +251,14 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
   </tr>
 </table>
 
 {elseif $resellerCode=='15'}
-	<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+	<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="2" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="2" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
        <tr>
@@ -248,14 +280,14 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
   </tr>
 </table>
 
 {elseif $resellerCode=='37'}
-	<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+	<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
        <tr>
@@ -266,7 +298,7 @@
   </tr>   
     <tr>
     <td width="14" height="99"></td>
-    <td width="96" valign="top"><img src="http://www.clarityenglish.com/images/email/logo_vbps.jpg" width="88" align="right" style="margin:2px 0 0 0;"/></td>
+    <td width="96" valign="top"><img src="https://www.clarityenglish.com/images/email/logo_vbps.jpg" width="88" align="right" style="margin:2px 0 0 0;"/></td>
     <td width="10"></td>
     <td width="240" align="left" valign="top">
 
@@ -279,16 +311,16 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
   </tr>
 </table>
 
     
 
 {elseif $resellerCode=='42'}
-<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold;line-height:14px; ">Your Account Manager is:</p>        
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold;line-height:14px; ">Your Account Manager is:</p>        
 		</td>
       </tr>
       
@@ -300,7 +332,7 @@
   </tr>
       <tr>
     <td width="15" height="90" ></td>
-    <td width="99"  valign="top"><img src="http://www.clarityenglish.com/images/email/logo_cienytec.jpg" width="92" align="right" style="margin:2px 0 0 10px;" /></td>
+    <td width="99"  valign="top"><img src="https://www.clarityenglish.com/images/email/logo_cienytec.jpg" width="92" align="right" style="margin:2px 0 0 10px;" /></td>
     <td width="10"></td>
     <td width="236" align="left" valign="top">
   
@@ -313,15 +345,15 @@
 		</p>   </td>
   </tr>
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
     </tr>
 </table>
 
 
 {elseif $resellerCode=='43'}
-<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold;line-height:14px; ">Your Account Manager is:</p>        </td>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold;line-height:14px; ">Your Account Manager is:</p>        </td>
       </tr>
       
       <tr>
@@ -332,7 +364,7 @@
   </tr>
       <tr>
     <td width="15" height="90" ></td>
-    <td width="99"  valign="top"><img src="http://www.clarityenglish.com/images/email/logo_spain.jpg" width="90" align="right" style="margin:2px 0 0 0px;" /></td>
+    <td width="99"  valign="top"><img src="https://www.clarityenglish.com/images/email/logo_spain.jpg" width="90" align="right" style="margin:2px 0 0 0px;" /></td>
     <td width="10"></td>
     <td width="236" align="left" valign="top">
   
@@ -347,14 +379,14 @@
       <td valign="top"></td>
     </tr>
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
     </tr>
 </table>
 
 {elseif $resellerCode=='2'}
-<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold;line-height:14px; ">Your Account Manager is:</p>        </td>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold;line-height:14px; ">Your Account Manager is:</p>        </td>
       </tr>
       
       <tr>
@@ -365,7 +397,7 @@
   </tr>
       <tr>
     <td width="8" height="90" ></td>
-    <td width="99"  valign="top"><img src="http://www.clarityenglish.com/images/email/q_bookery.jpg" width="75" height="65" align="right" style="margin:2px 0 0 10px;" /></td>
+    <td width="99"  valign="top"><img src="https://www.clarityenglish.com/images/email/q_bookery.jpg" width="75" height="65" align="right" style="margin:2px 0 0 10px;" /></td>
     <td width="8"></td>
     <td width="247" align="left" valign="top">
   
@@ -380,16 +412,16 @@
       <td valign="top"></td>
     </tr>
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
     </tr>
 </table>
 
     
     
 {elseif $resellerCode=='11'}
-<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
   <tr>
@@ -401,7 +433,7 @@
 	
     <tr>
     <td width="9" height="99"></td>
-    <td width="99"  valign="top"><img src="http://www.clarityenglish.com/images/email/q_yif.jpg" width="83" height="74" align="right" style="margin:2px 0 0 0;" /></td>
+    <td width="99"  valign="top"><img src="https://www.clarityenglish.com/images/email/q_yif.jpg" width="83" height="74" align="right" style="margin:2px 0 0 0;" /></td>
     <td width="8"></td>
     <td width="244" align="left" valign="top">
 
@@ -415,15 +447,15 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
     </tr>
 </table>
 
     
 {elseif $resellerCode=='22'}
-<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
   <tr>
@@ -435,7 +467,7 @@
   
     <tr>
     <td width="9" height="98"></td>
-    <td width="99"  valign="top"><img src="http://www.clarityenglish.com/images/email/q_celestron.jpg" width="79" height="50" align="right" style="margin:2px 0 0 0;" /></td>
+    <td width="99"  valign="top"><img src="https://www.clarityenglish.com/images/email/q_celestron.jpg" width="79" height="50" align="right" style="margin:2px 0 0 0;" /></td>
     <td width="10"></td>
     <td width="242" align="left" valign="top">
     
@@ -449,14 +481,14 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
     </tr>
 </table>
     
 {elseif $resellerCode=='24'}
-<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold;line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold;line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
   <tr>
@@ -468,7 +500,7 @@
   
     <tr>
     <td width="11" height="100"></td>
-    <td width="97" valign="top"><img src="http://www.clarityenglish.com/images/email/q_edict.jpg" width="86" height="42" align="right" style="margin:2px 0 0 0;"/></td>
+    <td width="97" valign="top"><img src="https://www.clarityenglish.com/images/email/q_edict.jpg" width="86" height="42" align="right" style="margin:2px 0 0 0;"/></td>
     <td width="7"></td>
     <td width="245" align="left" valign="top">
       
@@ -482,14 +514,14 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
     </tr>
 </table>
     
 {elseif $resellerCode=='28'}
-<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
    <tr>
@@ -500,7 +532,7 @@
   </tr>   
     <tr>
     <td width="12" height="94"></td>
-    <td width="90" valign="top"><img src="http://www.clarityenglish.com/images/email/q_protea.jpg" width="75" height="71" align="right" style="margin:2px 0 0 0;"/></td>
+    <td width="90" valign="top"><img src="https://www.clarityenglish.com/images/email/q_protea.jpg" width="75" height="71" align="right" style="margin:2px 0 0 0;"/></td>
     <td width="10"></td>
     <td width="248" align="left" valign="top">
    
@@ -515,14 +547,14 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
     </tr>
 </table>
     
 {elseif $resellerCode=='7'}
-<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold;line-height:14px;  ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold;line-height:14px;  ">Your Account Manager is:</p>
         </td>
       </tr>
     <tr>
@@ -533,7 +565,7 @@
   </tr>     
     <tr>
     <td width="13" height="93"></td>
-    <td width="98"  valign="top"><img src="http://www.clarityenglish.com/images/email/q_nas.jpg" width="89" height="37" align="right" style="margin:2px 0 0 0;" /></td>
+    <td width="98"  valign="top"><img src="https://www.clarityenglish.com/images/email/q_nas.jpg" width="89" height="37" align="right" style="margin:2px 0 0 0;" /></td>
     <td width="12"></td>
     <td width="237" align="left" valign="top">
 
@@ -547,15 +579,15 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
     </tr>
 </table>
     
     
 {elseif $resellerCode=='14'}
-<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
  <tr>
@@ -566,7 +598,7 @@
   </tr>     
     <tr>
     <td width="12" height="96"></td>
-    <td width="88"  valign="top"><img src="http://www.clarityenglish.com/images/email/q_solusi.jpg" width="83" height="77" align="right" style="margin:2px 0 0 0;" /></td>
+    <td width="88"  valign="top"><img src="https://www.clarityenglish.com/images/email/q_solusi.jpg" width="83" height="77" align="right" style="margin:2px 0 0 0;" /></td>
     <td width="9"></td>
     <td width="251" align="left" valign="top">
    
@@ -580,7 +612,7 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
     </tr>
 </table>
 
@@ -589,9 +621,9 @@
 
     
 {elseif $resellerCode=='34'}
-<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
  <tr>
@@ -602,7 +634,7 @@
   </tr>     
     <tr>
     <td width="18" height="96"></td>
-    <td width="92"  valign="top"><img src="http://www.clarityenglish.com/images/email/logo_principalgris.png" width="92" align="right" style="margin:2px 0 0 0;" /></td>
+    <td width="92"  valign="top"><img src="https://www.clarityenglish.com/images/email/logo_principalgris.png" width="92" align="right" style="margin:2px 0 0 0;" /></td>
     <td width="9"></td>
     <td width="241" align="left" valign="top">
    
@@ -616,15 +648,15 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
     </tr>
 </table>
 
     
 {elseif $resellerCode=='38'}
-<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
  <tr>
@@ -635,7 +667,7 @@
   </tr>     
     <tr>
     <td width="18" height="96"></td>
-    <td width="76"  valign="top"><img src="http://www.clarityenglish.com/images/email/logo_lesol.png" width="70" align="right" style="margin:2px 0 0 0;" /></td>
+    <td width="76"  valign="top"><img src="https://www.clarityenglish.com/images/email/logo_lesol.png" width="70" align="right" style="margin:2px 0 0 0;" /></td>
     <td width="9"></td>
     <td width="257" align="left" valign="top">
    
@@ -649,16 +681,16 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
     </tr>
 </table>
     
 
     
 {elseif $resellerCode=='10'}
-<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
      <tr>
@@ -669,7 +701,7 @@
   </tr> 
     <tr>
     <td width="14" height="99"></td>
-    <td width="96" valign="top"><img src="http://www.clarityenglish.com/images/email/logo_winhoe.jpg" width="85" align="right" style="margin:2px 0 0 0;"/></td>
+    <td width="96" valign="top"><img src="https://www.clarityenglish.com/images/email/logo_winhoe.jpg" width="85" align="right" style="margin:2px 0 0 0;"/></td>
     <td width="10"></td>
     <td width="240" align="left" valign="top">
 
@@ -682,14 +714,14 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
   </tr>
 </table>
 
 {elseif $resellerCode=='17'}
-<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
          <tr>
@@ -700,7 +732,7 @@
   </tr> 
     <tr>
     <td width="14" height="99"></td>
-    <td width="104" valign="top"><img src="http://www.clarityenglish.com/images/email/q_encomium.jpg" width="95" align="right" style="margin:2px 0 0 0;"/></td>
+    <td width="104" valign="top"><img src="https://www.clarityenglish.com/images/email/q_encomium.jpg" width="95" align="right" style="margin:2px 0 0 0;"/></td>
     <td width="12"></td>
     <td width="230" align="left" valign="top">
   
@@ -713,13 +745,13 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
   </tr>
 </table>
 {elseif $resellerCode=='48'}
-<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="https://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px;margin: 0 0 12px 0;">
       <tr>
-        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
+        <td height="45" colspan="4" background="https://www.clarityenglish.com/images/email/q_top.jpg">  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-size: 1.1em; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold; line-height:14px; ">Your Account Manager is:</p>
         </td>
       </tr>
        <tr>
@@ -730,7 +762,7 @@
   </tr>   
     <tr>
     <td width="14" height="99"></td>
-    <td width="96" valign="top"><img src="http://www.clarityenglish.com/images/email/q_BC.png" width="88" align="right" style="margin:2px 0 0 0;"/></td>
+    <td width="96" valign="top"><img src="https://www.clarityenglish.com/images/email/q_BC.png" width="88" align="right" style="margin:2px 0 0 0;"/></td>
     <td width="10"></td>
     <td width="240" align="left" valign="top">
 
@@ -743,7 +775,7 @@
   </tr>
     
   <tr>
-    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    <td height="27" colspan="4" background="https://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
   </tr>
 </table>
 

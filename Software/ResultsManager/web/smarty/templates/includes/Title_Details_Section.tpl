@@ -9,26 +9,30 @@
 {assign var='hasARv10' value='false'}
 {assign var='hasCP1v10' value='false'}
 {assign var='hasSSSv11' value='false'}
+{assign var='hasTBv11' value='false'}
 {foreach name=orderDetails from=$account->titles item=title}
 	{if $title->productCode=='52' || $title->productCode=='53'}
 		{assign var='hasR2I' value='true'}
-	{/if}  
+	{/if}
 	{if $title->productCode=='55'}
 		{assign var='hasTBv10' value='true'}
 	{/if}
     {if $title->productCode=='56'}
 		{assign var='hasARv10' value='true'}
-	{/if} 
+	{/if}
     {if $title->productCode=='57'}
 		{assign var='hasCP1v10' value='true'}
 	{/if}
     {if $title->productCode=='66'}
 		{assign var='hasSSSv11' value='true'}
 	{/if}
+  {if $title->productCode=='68'}
+		{assign var='hasTBv11' value='true'}
+	{/if}
 {/foreach}
 {foreach name=orderDetails from=$account->titles item=title}
 
-    {if ($title->productCode=='9' && $hasTBv10 == 'true') || ($title->productCode=='33' && $hasARv10 == 'true') || ($title->productCode=='39' && $hasCP1v10 == 'true') || ($title->productCode=='59') ||($title->productCode=='63') || ($title->productCode=='65') || ($title->productCode=='49' && $hasSSSv11 == 'true')}
+	{if ($title->productCode=='55' && $hasTBv11 == 'true') || ($title->productCode=='33' && $hasARv10 == 'true') || ($title->productCode=='39' && $hasCP1v10 == 'true') || ($title->productCode=='59') ||($title->productCode=='63') || ($title->productCode=='65') || ($title->productCode=='49' && $hasSSSv11 == 'true')}
 	{else}
 	{if $title->expiryDate|truncate:10:"" >= $oneMonthAgo && !$title->name|stristr:"Practice Centre" && $title->productCode!=12 && $title->productCode!=13 && $title->productCode!=2}
 		{if $expiringDate == $title->expiryDate|truncate:10:""}
@@ -75,7 +79,7 @@
 	{/if}
 {/foreach}
 {foreach name=orderDetails from=$account->titles item=title}
-	{if ($title->productCode=='9' && $hasTBv10 == 'true') || ($title->productCode=='33' && $hasARv10 == 'true') || ($title->productCode=='39' && $hasCP1v10 == 'true') || ($title->productCode=='59') ||($title->productCode=='63') || ($title->productCode=='65') || ($title->productCode=='49' && $hasSSSv11 == 'true')}
+	{if ($title->productCode=='55' && $hasTBv11 == 'true') || ($title->productCode=='33' && $hasARv10 == 'true') || ($title->productCode=='39' && $hasCP1v10 == 'true') || ($title->productCode=='59') ||($title->productCode=='63') || ($title->productCode=='65') || ($title->productCode=='49' && $hasSSSv11 == 'true')}
 	{else}
 	{if $title->expiryDate|truncate:10:"" >= $oneMonthAgo && !$title->name|stristr:"Practice Centre" && $title->productCode!=12 && $title->productCode!=13 && $title->productCode!=2}
 		{if $expiringDate != $title->expiryDate|truncate:10:""}
