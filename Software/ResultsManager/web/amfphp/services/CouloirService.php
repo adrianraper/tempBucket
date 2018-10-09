@@ -182,12 +182,42 @@ class CouloirService extends AbstractService {
             $selfRegister = $account->selfRegister;
             $verified = $account->verified;
 
+            // m#558 Customised menu names
+            switch ($productCode) {
+                case 72:
+                case 73:
+                    $module = ($productCode==72) ? 'ac' : 'gt';
+                    switch ($account->titles[0]->productVersion) {
+                        case 'R2IFV':
+                        case 'FV':
+                            $version = 'full';
+                            break;
+                        case 'R2ILM':
+                        case 'LM':
+                            $version = 'lm';
+                            break;
+                        case 'R2ITD':
+                        case 'TD':
+                            $version = 'free';
+                            break;
+                        case 'Speed':
+                            $version = 'speed';
+                            break;
+                        default:
+                            $version = 'demo';
+                    }
+                    $menuName = "menu-$module-$version.json";
+                    break;
+                default:
+                    $menuName = "menu.json";
+            }
+            
             if (isset($account->id)) {
                 $returnAccount = array("lang" => $account->titles[0]->languageCode,
                                 "contentName" => $account->titles[0]->contentLocation,
                                 "rootId" => intval($account->id),
                                 "institutionName" => $account->name,
-                                "menuFilename" => "menu.json");
+                                "menuFilename" => $menuName);
 
                 // m#316 Return expected payload of the apiToken in object
                 if ($apiToken) {
