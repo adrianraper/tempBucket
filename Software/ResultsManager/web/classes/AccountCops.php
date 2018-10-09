@@ -444,6 +444,40 @@ EOD;
             throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array("productCode" => $productCode, "rootID" => $rootId));
         }
     }
+    // m#558
+    public function getMenuName($productCode, $productVersion) {
+        switch ($productCode) {
+            case 72:
+            case 73:
+                $module = ($productCode==72) ? 'ac' : 'gt';
+                switch ($productVersion) {
+                    case 'R2IFV':
+                    case 'FV':
+                        $version = 'full';
+                        break;
+                    case 'R2ILM':
+                    case 'LM':
+                        $version = 'lm';
+                        break;
+                    case 'R2ITD':
+                    case 'TD':
+                        $version = 'free';
+                        break;
+                    case 'Speed':
+                        $version = 'speed';
+                        break;
+                    default:
+                        $version = 'demo';
+                }
+                return "menu-$module-$version.json";
+                break;
+            // case 63:
+            //   return "menu.json.hbs";
+            //   break;
+            default:
+                return "menu.json";
+        }
+    }
     /*
      * sss#285 Pick up the client's ip and ru from the request
      */

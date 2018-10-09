@@ -516,6 +516,9 @@ EOD;
             $rc["key"] = null;
         }
 
+        // m#558 Customised menu names
+        $menuName = $this->accountCops->getMenuName($productCode, $account->titles[0]->productVersion);
+
         // sss#304 Return an account if login had to look one up
         if ($foundAccount) {
             $rc["account"] = array(
@@ -523,7 +526,7 @@ EOD;
                 "contentName" => $account->titles[0]->contentLocation,
                 "rootId" => intval($account->id),
                 "institutionName" => $account->name,
-                "menuFilename" => "menu.json");
+                "menuFilename" => $menuName);
         } else {
             $rc["account"] = null;
         }
