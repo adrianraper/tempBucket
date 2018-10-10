@@ -46,7 +46,6 @@ try {
     //$jsonWrapped = array("success" => true, "details" => $jsonResult);
     // If you need to run this code but the content server is not implementing #256, include the next line
     $jsonWrapped = $jsonResult;
-    //AbstractService::$debugLog->info("CSG return ".json_encode($jsonWrapped));
     if ($jsonResult == []) {
         echo json_encode($jsonWrapped, JSON_FORCE_OBJECT);
     // sss#461 Code return as a string with quotes

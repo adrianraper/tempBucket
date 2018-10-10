@@ -56,8 +56,7 @@ class CTPService extends BentoService {
             microtime(true) * 10000, // instanceId - is this used for anything?
             new Licence(), null, $productCode, null, null, null
         );
-        // Make sure you only pass back public/reasonable information about the user
-        $user = $login['group']->manageables[0]->publicView();
+        $user = $login['group']->manageables[0];
         $rootID = $login['account']->id;
         $groupId = $login['group']->id;
 
@@ -79,8 +78,9 @@ class CTPService extends BentoService {
         }
 
         // sss#12 For a title that does not use encrypted content, don't send groupID as this is a decryption key
+        // make sure you only pass back public/reasonable information about the user
         $rc = array(
-            "user" => $user,
+            "user" => $user->publicview(),
             "session" => $session,
             "tests" => $tests,
             "sessionID" => (string) $session->sessionId);
