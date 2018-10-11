@@ -401,19 +401,24 @@ EOD;
                 case "id":
                 case "name":
                 case "fullName":
-                case "birthday":
                 case "userType":
                 case "studentID":
-                case "expiryDate":
                 case "email":
                 case "country":
                 case "city":
-                case "startDate":
                 case "contactMethod":
-                case "registrationDate":
                 case "userProfileOption":
                 case "registerMethod":
                     $formattedUser[$key] = $value;
+                    break;
+                case "birthday":
+                case "expiryDate":
+                case "startDate":
+                case "registrationDate":
+                    if ($value) {
+                        $datevalue = DateTime::createFromFormat('Y-m-d H:i:s', $value);
+                        $formattedUser[$key] = intval($datevalue->format('U'));
+                    }
                     break;
                 default:
             }

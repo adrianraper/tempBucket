@@ -1,0 +1,12 @@
+{
+  "languages": [
+    {
+      "language": "en",
+      "caption": "English",
+      "literals": {
+        "CompareCaption": "Check your scores in the {courseCaption} module.",
+        "Upgrade": "Upgrade to succeed"
+      }
+    }
+  ]
+}
