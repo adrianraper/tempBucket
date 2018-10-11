@@ -215,6 +215,10 @@ function router($json) {
             if (!isset($json->key)) $json->key = null;
             if (!isset($json->value)) $json->value = null;
             return memoryWrite($json->token, $json->key, $json->value);
+        // m#454
+        case "writeTestDate":
+            if (!isset($json->timestamp)) $json->timestamp = null;
+            return writeTestDate($json->token, $json->timestamp);
         // sss#228
         case "memoryClear":
             return memoryClear($json->token);
@@ -282,6 +286,11 @@ function addUser($selfRegistrationToken, $loginObj) {
 function memoryWrite($token, $key, $value) {
     global $service;
     return $service->memoryWrite($token, $key, $value);
+}
+// m#454 write test date
+function writeTestDate($token, $timestamp) {
+    global $service;
+    return $service->writeTestDate($token, $timestamp);
 }
 function memoryClear($token) {
     global $service;

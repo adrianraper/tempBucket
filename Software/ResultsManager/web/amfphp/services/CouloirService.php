@@ -352,13 +352,20 @@ class CouloirService extends AbstractService {
         $session = $this->authenticationCops->getSession($token);
 
         $this->memoryCops->set($key, $value, $session->userId, $session->productCode);
+        return array();
+    }
 
-        // m#454 For backwards compatibility, save testDate memory in user.birthday too
-        if ($key=='testDate') {
-            $user = $this->manageableOps->getUserByIdNotAuthenticated($session->userId);
-            $user->birthday = AbstractService::timestampToAnsiString($value);
-            $rc = $this->manageableOps->updateMinorUserDetail($user);
-        }
+    // m#454 write the test date into User until it is implemented in memory
+    public function writeTestDate($token, $timestamp) {
+        // Pick the session from the token
+        $session = $this->authenticationCops->getSession($token);
+
+        if (is_null($timestamp))
+            return array();
+
+        $user = $this->manageableOps->getUserByIdNotAuthenticated($session->userId);
+        $user->birthday = AbstractService::timestampToAnsiString($timestamp);
+        $rc = $this->manageableOps->updateMinorUserDetail($user);
         return array();
     }
 
