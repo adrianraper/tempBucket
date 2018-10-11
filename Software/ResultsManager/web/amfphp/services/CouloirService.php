@@ -444,6 +444,14 @@ EOD;
             $score->unitID = (isset($scoreObj->unitId)) ? $scoreObj->unitId : null;
             $score->exerciseID = (isset($scoreObj->exerciseId)) ? $scoreObj->exerciseId : null;
         }
+        // m#579 If an exercise is outside a course, we must fake it for the score table
+        // So make the id digits after course zero
+        if (is_null($score->courseID)) {
+            $score->courseID = substr($score->exerciseID,0, -6).'000000';
+        }
+        if (is_null($score->unitID)) {
+            $score->unitID = substr($score->exerciseID,0, -4).'0000';
+        }
 
         // ctp#216 This was the time the app managed to send the score to the server
         // ctp#380 Save as UTC
@@ -453,7 +461,7 @@ EOD;
         // ctp#210
         // ctp#383 We might need to compare this exercise id against some constants later
         $tempExerciseID = $score->exerciseID;
-        $score->exerciseID = floatval($score->exerciseID);
+        //$score->exerciseID = floatval($score->exerciseID);
 
         // Write the summary score record
         try {
