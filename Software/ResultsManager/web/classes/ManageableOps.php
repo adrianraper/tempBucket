@@ -2740,6 +2740,14 @@ EOD;
             return 0;
         }
     }
+    /*
+     * m#454 Update a minor field in a user (not key)
+     * Doesn't require any authentication. Use with care!
+     */
+    public function updateMinorUserDetail($user) {
+        $this->db->AutoExecute("T_User", $user->toAssocArray(), "UPDATE", "F_UserID=".$user->userID);
+        return $this->db->Affected_Rows();
+    }
 
 }
 
