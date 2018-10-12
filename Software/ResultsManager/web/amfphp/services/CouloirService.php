@@ -765,6 +765,7 @@ EOD;
         return $exercisesDone;
     }
     // sss#17 For each unit that the user had worked on, summarise the progress
+    // This is for the analysis report, time you have spent on each unit
     public function getUnitProgress($token) {
         // Pick the session id from the token
         $session = $this->authenticationCops->getSession($token);
@@ -774,18 +775,20 @@ EOD;
             return array();
 
         // Retrieve the score records for this user and this product
-        $units = $this->progressCops->getUnitProgress($session);
+        // $session->productCode
+        $nodes = $this->progressCops->getNodeProgress($session);
 
         // Format: detail each exercise that has been completed
         // m#317 Send back nodeId, not a specific unitId - currently can hardcode 'unit:'
-        $nodeIdPrefix = (version_compare($this->getAppVersion(), '2.0.0', '>=')) ? 'unit:' : '';
-        $unitsDone = array();
-        foreach ($units as $unit)
-            $unitsDone[$nodeIdPrefix.$unit['unitId']] = intval($unit['duration']);
+        // What level of hierarchy are we grouping at for this title?
+        $nodesDone = array();
+        foreach ($nodes as $node)
+            $nodesDone[$node['nodeId']] = intval($node['duration']);
 
-        return $unitsDone;
+        return $nodesDone;
     }
     // sss#17 For each unit that the user had worked on, summarise the progress
+    // This is for the compare report, your average score in each unit against everyone else
     public function getUnitComparison($token, $mode) {
         // Pick the session from the token
         $session = $this->authenticationCops->getSession($token);
@@ -795,33 +798,29 @@ EOD;
             return array();
 
         // Retrieve the score records for this user and this product
-        $units = $this->progressCops->getUnitProgress($session);
+        $nodes = $this->progressCops->getNodeProgress($session);
 
-        // Retrieve the summary for everyone
-        $everyone = $this->progressCops->getEveryoneUnitSummary($session->productCode);
+        // Retrieve the summaries for everyone
+        $everyone = $this->progressCops->getEveryoneNodeSummary($session->productCode);
 
         // Put the user and the everyone results in a similar format for merging
-        // Note that the existing code for everyone returns old style index names (UnitID not unitId)
-        // m#317 Send back nodeId, not a specific unitId - currently can hardcode 'unit:'
-        $nodeIdPrefix = (version_compare($this->getAppVersion(), '2.0.0', '>=')) ? 'unit:' : '';
-        $userUnits = array();
-        foreach ($units as $unit)
-            $userUnits[$nodeIdPrefix.$unit['unitId']] = ['averageScore' => $unit['averageScore']];
+        // m#446 m#317 Send back nodeId
+        $userNodes = array();
+        foreach ($nodes as $node)
+            $userNodes[$node['nodeId']] = ['averageScore' => $node['averageScore']];
         $everyoneUnits = array();
-        foreach ($everyone as $unit) {
-            $everyoneUnits[$nodeIdPrefix.$unit['UnitID']] = ['averageScore' => $unit['AverageScore']];
-        }
+        foreach ($everyone as $unit)
+            $everyoneUnits[$unit['nodeId']] = ['averageScore' => $unit['AverageScore']];
 
         // Format and merge: unit summaries. Drive by everyone as that contains ALL units
-        $unitsDone = array();
+        $nodesDone = array();
         foreach ($everyoneUnits as $key => $value) {
-            $userAverage = (isset($userUnits[$key])) ? $userUnits[$key]['averageScore'] : 0;
-            $unitsDone[$key] = ['youPercent' => round(floatval($userAverage)),
+            $userAverage = (isset($userNodes[$key])) ? $userNodes[$key]['averageScore'] : 0;
+            $nodesDone[$key] = ['youPercent' => round(floatval($userAverage)),
                 'worldPercent' => round(floatval($value['averageScore']))];
         }
-        return $unitsDone;
+        return $nodesDone;
     }
-
 
     // ctp#60 Literals file for DPT
     public function getTranslations($lang, $productCode) {

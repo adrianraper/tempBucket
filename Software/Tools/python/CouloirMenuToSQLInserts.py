@@ -7,7 +7,7 @@ import os
 import json
 
 os.chdir('d:\\TestBench')
-file_name = os.path.join('content-rti', 'menu-ac-full.json')
+file_name = os.path.join('content-rti', 'menu-gt-full.json')
 new_file_name = os.path.join('content-rti', 'T_ScoreCache inserts.txt')
 
 # This reads the file and parses it as a JSON object
@@ -30,5 +30,6 @@ with open(file_name, 'r') as file:
 with open(new_file_name, 'a') as file:
   for course in contents['courses']:
     if 'units' in course:
+      file.write('(@productCode,{},null,0,60,1000,@dateStamp,\'Worldwide\'),\n'.format(course['id']))
       for unit in course['units']:
         file.write('(@productCode,{},{},0,60,1000,@dateStamp,\'Worldwide\'),\n'.format(course['id'], unit['id']))
