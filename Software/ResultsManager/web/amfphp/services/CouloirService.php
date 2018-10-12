@@ -190,7 +190,8 @@ class CouloirService extends AbstractService {
                                 "contentName" => $account->titles[0]->contentLocation,
                                 "rootId" => intval($account->id),
                                 "institutionName" => $account->name,
-                                "menuFilename" => $menuName);
+                                "menuFilename" => $menuName,
+                                "version" => $account->titles[0]->productVersion);
 
                 // m#316 Return expected payload of the apiToken in object
                 if ($apiToken) {

@@ -526,7 +526,8 @@ EOD;
                 "contentName" => $account->titles[0]->contentLocation,
                 "rootId" => intval($account->id),
                 "institutionName" => $account->name,
-                "menuFilename" => $menuName);
+                "menuFilename" => $menuName,
+                "version" => $account->titles[0]->productVersion);
         } else {
             $rc["account"] = null;
         }
