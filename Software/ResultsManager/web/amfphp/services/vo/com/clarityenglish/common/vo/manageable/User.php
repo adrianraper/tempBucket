@@ -415,9 +415,10 @@ EOD;
                 case "expiryDate":
                 case "startDate":
                 case "registrationDate":
+                    // m#582 App uses milliseconds
                     if ($value) {
                         $datevalue = DateTime::createFromFormat('Y-m-d H:i:s', $value);
-                        $formattedUser[$key] = intval($datevalue->format('U'));
+                        $formattedUser[$key] = intval($datevalue->format('U'))*1000;
                     }
                     break;
                 default:

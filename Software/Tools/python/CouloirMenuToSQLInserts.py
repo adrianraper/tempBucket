@@ -32,4 +32,6 @@ with open(new_file_name, 'a') as file:
     if 'units' in course:
       file.write('(@productCode,{},null,0,60,1000,@dateStamp,\'Worldwide\'),\n'.format(course['id']))
       for unit in course['units']:
-        file.write('(@productCode,{},{},0,60,1000,@dateStamp,\'Worldwide\'),\n'.format(course['id'], unit['id']))
+        if 'sets' in unit:
+          for set in unit['sets']:
+            file.write('(@productCode,{},{},0,60,1000,@dateStamp,\'Worldwide\'),\n'.format(course['id'], set['id']))
