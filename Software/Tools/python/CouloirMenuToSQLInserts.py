@@ -1,4 +1,4 @@
-# run like > DeepLinkingCouloir.py menu.json DeepLinking-TB.txt
+# run like > menu-ac-full.json SQLInserts.txt
 # Converts a Couloir menu into more readable deep links
 import fileinput
 import regex
@@ -7,8 +7,9 @@ import os
 import json
 
 os.chdir('d:\\TestBench')
-file_name = os.path.join('content-rti', sys.argv[1])
-new_file_name = sys.argv[2]
+file_name = os.path.join('content-rti', 'menu-ac-full.json')
+new_file_name = os.path.join('content-rti', 'T_ScoreCache inserts.txt')
+
 # This reads the file and parses it as a JSON object
 with open(file_name, 'r') as file:
   contents = json.load(file)
@@ -26,8 +27,8 @@ with open(file_name, 'r') as file:
 # contents = regex.sub(r'<course .*?id="([\d]*?)" caption="([a-zA-Z -]*?)"[\S ]*?>',r'course \2 &course=\1',contents)
 
 # This iterates through every unit in every course writing out a new line in a file
-with open(new_file_name, 'w') as file:
+with open(new_file_name, 'a') as file:
   for course in contents['courses']:
-    file.write('Course {} &startingPoint=course:{}\n'.format(course['caption'], course['id']))
-    for unit in course['units']:
-      file.write('  Unit {} &startNode=unit:{}&enabledNode=unit:{}\n'.format(unit['caption'], unit['id'], unit['id']))
+    if 'units' in course:
+      for unit in course['units']:
+        file.write('(@productCode,{},{},0,60,1000,@dateStamp,\'Worldwide\'),\n'.format(course['id'], unit['id']))
