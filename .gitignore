@@ -38,3 +38,5 @@ Software/Recorder/air/
 Software/awssdk
 vendor
 /Software/Workflow
+.aws/credentials
+Software/Tools/aws_php_sdk/
