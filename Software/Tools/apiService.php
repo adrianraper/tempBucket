@@ -700,4 +700,38 @@ class apiService extends AbstractService {
         $dbDetails = new DBDetails($GLOBALS['dbHost']);
         return ['database' => $dbDetails->getDetails(), 'version' => $dbVersion];
     }
+    // Playing with ClarityEnglish.ai
+    public function getPrediction($review) {
+        // Attempt to talk to aws sdk
+        //$credentials = new Aws\Credentials\Credentials('key', 'secret');
+        $sharedConfig = [
+            'region' => 'eu-west-1',
+            'version' => 'latest',
+            'credentials' => [
+                'key'    => 'AKIAIOQ4W4KLDOZIWH6Q',
+                'secret' => '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',
+            ]
+        ];
+
+        // Create an SDK class used to share configuration across clients.
+        //$sdk = new Aws\Sdk($sharedConfig);
+
+        // Use an Aws\Sdk class to create the S3Client object.
+        //$s3Client = $sdk->createS3();
+
+        $mlClient = new Aws\MachineLearning\MachineLearningClient($sharedConfig);
+        $result = $mlClient->predict([
+            'MLModelId' => 'ml-QKDRpzvtcE0',
+            'PredictEndpoint' => 'https://realtime.machinelearning.eu-west-1.amazonaws.com',
+            'Record' => ['review' => $review],
+        ]);
+
+        // Read the key from the Aws/Result object
+        $a = $result->get('Prediction');
+        $exactPrediction = $a['predictedValue'];
+        $stars = round($exactPrediction);
+        $closeness = abs($exactPrediction - $stars);
+        $confidence = round((1 - $closeness) * 100);
+        return array("rating" => $stars, "confidence" => $confidence);
+    }
 }

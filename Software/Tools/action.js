@@ -1,7 +1,8 @@
 // Definitions
-apiGatewayUrl = "http://dock.projectbench/Software/Tools/apiGateway.php"
-programsUrl = "http://dock.projectbench/Software/Tools/clarityPrograms.php"
-clarityAuthentication = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1MzgxMDg3OTEsInByZWZpeCI6IkNsYXJpdHkifQ.Ep32mRIuZqhtkq1YTyTwGUicuhfbkF2m0R1yJeU7WZY";
+apiGatewayUrl = "https://www.clarityenglish.com/Software/Tools/apiGateway.php"
+awsGatewayUrl = "https://www.clarityenglish.com/Software/Tools/awsGateway.php"
+programsUrl = "https://www.clarityenglish.com/Software/Tools/clarityPrograms.php"
+clarityAuthentication = "xxx";
 
 // What to do and where to focus?
 // If you type in any of these fields, set Enter to mean
@@ -87,6 +88,11 @@ $(function() {
         activate($('#serial').val(), $('#activateName').val(), $('#activateEmail').val(), $('#activatePassword').val());
     });
 
+    // Predict a response
+    $('#predict').on( "click", function(){
+        predict($('#review').val());
+    });
+
 });
 var showAndHideEvents = function(event, msg) {
     switch (event) {
@@ -156,6 +162,10 @@ var showAndHideEvents = function(event, msg) {
             $("#status").html("<p>We have sent you an email with a link to reset your password.</p>");
             $("#forgot").prop('disabled', false);
             break;
+        case "gotPrediction":
+            $("#status").html("<p>Stars=" + msg['rating'] + " (confidence=" + msg['confidence'] + "%)</p>");
+            $("#predict").prop('disabled', false);
+            break;
         case "DPTresults":
             // Format the result(s)
             // [{"date":"2017-03-15 12:46:53","result":{"level":"B2","numeric":46}}]
@@ -216,6 +226,31 @@ var getDPTresult = function(email, token) {
             // Was it successful?
             if (data.details) {
                 showAndHideEvents("DPTresults", data.details);
+            }
+            console.log(data.details);
+        } else {
+            showAndHideEvents("generalError", data.error.message);
+        }
+    }).fail(function(jqXHR,status,err) {
+        showAndHideEvents("generalError", err.message);
+    });
+}
+var predict = function(review) {
+    showAndHideEvents('reset');
+    $("#predict").prop('disabled', true);
+    var data = {command:"getPrediction", text:review};
+    console.log("call: " + JSON.stringify(data));
+    $.ajax({
+        method: "POST",
+        url: awsGatewayUrl,
+        dataType: "json",
+        data: JSON.stringify(data)
+    }).done(function(data, status, jqXHR) {
+        var success = data.success;
+        if (success) {
+            // Was it successful?
+            if (data.details) {
+                showAndHideEvents("gotPrediction", data.details);
             }
             console.log(data.details);
         } else {
