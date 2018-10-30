@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") return;
 
 $json = json_decode(file_get_contents('php://input'));
 $json_error = json_last_error();
-//$json = json_decode('{"command":"xxx", "appVersion":"2.0.0"}');
+//$json = json_decode('{"command":"getAnalysis","appVersion":"2.0.0","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjbGFyaXR5ZW5nbGlzaC5jb20iLCJpYXQiOjE1NDA4NzkxNTEsInNlc3Npb25JZCI6IjY0NzE0In0.PVpUpfxVKCNR_B5C1yym-XeRabTu0ngMfakZdjILjsw"}');
 //$json = json_decode('{"appVersion":"1.3.2-dev","command":"login","login":"user_01@TD01.com", "password":"5bbe3101701f49bd0b23eaec55f4aaad","productCode":"68","rootId":"201"}');
 
 // sss#257 Detect if this request is aimed at PWVocabApp so that it can be handled specially later
@@ -309,7 +309,7 @@ function getComparison($token, $mode = 'worldwide') {
 // sss#17 Return a map of unit ids with the time spent on each
 function getAnalysis($token) {
     global $service;
-    return $service->getUnitProgress($token);
+    return $service->getAnalysis($token);
 }
 // sss#17 This returns a array of objects, each containing the exerciseId, the score (as a percent), the date and the duration (in seconds).
 function getScoreDetails($token) {

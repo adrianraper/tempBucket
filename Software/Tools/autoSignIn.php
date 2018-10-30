@@ -100,20 +100,20 @@ try {
 switch ($payload->productCode) {
     case 68:
         //$url = "https://tb.clarityenglish.com/#apiToken=".$json->apiToken;
-        $url = "https://tb-staging.clarityenglish.com#prefix=".$payload->prefix."&login=".$payload->name."&password=".$payload->password."&reset";
+        $url = "https://tb.clarityenglish.com#prefix=".$payload->prefix."&login=".$payload->name."&password=".$payload->password."&reset";
         break;
     case 63:
-        $url = "https://dpt-staging.clarityenglish.com#prefix=".$payload->prefix."&login=".$payload->email."&password=".$payload->password."&reset";
+        $url = "https://dpt.clarityenglish.com#prefix=".$payload->prefix."&login=".$payload->email."&password=".$payload->password."&reset";
         // Force online mode for DPT to solve downloading issues
         $url .= "&online";
         break;
     case 66:
-        $url = "https://sss-staging.clarityenglish.com#prefix=".$payload->prefix."&login=".$payload->name."&password=".$payload->password;
+        $url = "https://sss.clarityenglish.com#prefix=".$payload->prefix."&login=".$payload->name."&password=".$payload->password;
         break;
     default:
         if ($payload->productCode == 57) $programStartPage = "ClearPronunciationV10/Start-sounds.php";
         if ($payload->productCode == 61) $programStartPage = "PracticalWriting/Start.php";
-        $url = "https://www-staging.clarityenglish.com/area1/".$programStartPage."?prefix=".$payload->prefix."&email=".$payload->email."&password=".$payload->password;
+        $url = "https://www.clarityenglish.com/area1/".$programStartPage."?prefix=".$payload->prefix."&email=".$payload->email."&password=".$payload->password;
         break;
 }
 forwardTo($url);

@@ -766,7 +766,7 @@ EOD;
     }
     // sss#17 For each unit that the user had worked on, summarise the progress
     // This is for the analysis report, time you have spent on each unit
-    public function getUnitProgress($token) {
+    public function getAnalysis($token) {
         // Pick the session id from the token
         $session = $this->authenticationCops->getSession($token);
 

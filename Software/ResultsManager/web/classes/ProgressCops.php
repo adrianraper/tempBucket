@@ -260,6 +260,7 @@ SQL;
 
         // What level of hierarchies are we grouping at for this title?
         $nodes = $this->getNodeLevels($session->productCode);
+        $build = array();
 
         $sql = <<<SQL
 			SELECT *
@@ -272,37 +273,39 @@ SQL;
         $bindingParams = array($session->productCode, $session->userId);
         $rs = $this->db->GetArray($sql, $bindingParams);
 
-        // Now group by the node you want and sum and average
-        $build = array();
-        foreach ($nodes as $node) {
-            $level = $node['level'];
-            // m#578 Until app version corrected, only do this for R2I
-            //$nodeIdPrefix = (version_compare($service->getAppVersion(), '2.0.0', '>=')) ? $node['caption'].':' : '';
-            $nodeIdPrefix = ($session->productCode==72 || $session->productCode==73) ? $node['caption'].':' : '';
-            $buildRow = array();
-            $lastNode = false;
-            foreach ($rs as $r) {
-                $thisNode = $this->parseNode($r['F_ExerciseID'], $level);
-                // Initialise if this is the first of a new node group
-                if ($thisNode != $lastNode) {
-                    // If there is something to write out
-                    if ($lastNode) {
-                        $buildRow['averageScore'] = ($buildRow['scoredExercises'] > 0) ? round($buildRow['totalScore'] / $buildRow['scoredExercises']) : 0;
-                        $build[] = $buildRow;
+        // m#586
+        if (is_array($rs) && count($rs) > 1) {
+            // Now group by the node you want and sum and average
+            foreach ($nodes as $node) {
+                $level = $node['level'];
+                // m#578 Until app version corrected, only do this for R2I
+                //$nodeIdPrefix = (version_compare($service->getAppVersion(), '2.0.0', '>=')) ? $node['caption'].':' : '';
+                $nodeIdPrefix = ($session->productCode == 72 || $session->productCode == 73) ? $node['caption'] . ':' : '';
+                $buildRow = array();
+                $lastNode = false;
+                foreach ($rs as $r) {
+                    $thisNode = $this->parseNode($r['F_ExerciseID'], $level);
+                    // Initialise if this is the first of a new node group
+                    if ($thisNode != $lastNode) {
+                        // If there is something to write out
+                        if ($lastNode) {
+                            $buildRow['averageScore'] = ($buildRow['scoredExercises'] > 0) ? round($buildRow['totalScore'] / $buildRow['scoredExercises']) : 0;
+                            $build[] = $buildRow;
+                        }
+                        $lastNode = $thisNode;
+                        $buildRow = array('nodeId' => $nodeIdPrefix . $thisNode, 'scoredExercises' => 0, 'exerciseCount' => 0, 'duration' => 0, 'totalScore' => 0);
                     }
-                    $lastNode = $thisNode;
-                    $buildRow = array('nodeId' => $nodeIdPrefix.$thisNode, 'scoredExercises' => 0, 'exerciseCount' => 0, 'duration' => 0, 'totalScore' => 0);
+                    $buildRow['duration'] += ($r['F_Duration'] > 3600) ? 3600 : $r['F_Duration'];
+                    $buildRow['exerciseCount']++;
+                    if ($r['F_Score'] >= 0) {
+                        $buildRow['scoredExercises']++;
+                        $buildRow['totalScore'] += $r['F_Score'];
+                    }
                 }
-                $buildRow['duration'] += ($r['F_Duration'] > 3600) ? 3600 : $r['F_Duration'];
-                $buildRow['exerciseCount']++;
-                if ($r['F_Score'] >= 0) {
-                    $buildRow['scoredExercises']++;
-                    $buildRow['totalScore'] += $r['F_Score'];
-                }
+                // write out the final row
+                $buildRow['averageScore'] = ($buildRow['scoredExercises'] > 0) ? round($buildRow['totalScore'] / $buildRow['scoredExercises']) : 0;
+                $build[] = $buildRow;
             }
-            // write out the final row
-            $buildRow['averageScore'] = ($buildRow['scoredExercises'] > 0) ? round($buildRow['totalScore'] / $buildRow['scoredExercises']) : 0;
-            $build[] = $buildRow;
         }
         return $build;
     }
