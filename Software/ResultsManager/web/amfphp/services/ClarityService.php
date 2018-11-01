@@ -227,7 +227,7 @@ class ClarityService extends AbstractService {
                 || (int)$loginObj->F_RootID == 13982 || (int)$loginObj->F_RootID == 13754 || (int)$loginObj->F_RootID == 22743
 				|| (int)$loginObj->F_RootID == 35886 || (int)$loginObj->F_RootID == 163
 				|| (int)$loginObj->F_RootID == 37281 || (int)$loginObj->F_RootID == 29130 || (int)$loginObj->F_RootID == 54360
-                || (int)$loginObj->F_RootID == 14223) {
+                || (int)$loginObj->F_RootID == 14223 || (int)$loginObj->F_RootID == 61346) {
 				Session::set('no_students', ($manageablesCount > 22000));
 			} else {
 				Session::set('no_students', ($manageablesCount > $GLOBALS['max_manageables_for_student_display']));

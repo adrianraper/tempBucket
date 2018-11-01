@@ -233,11 +233,15 @@ SQL;
 		return array_filter(array_map('intval', $rs));
 	}
 
-
     /**
-     * Get details of all exercises completed (marked)
+     * Get details of all exercises completed
      */
     public function getExercisesCompleted($session) {
+        return $this->getScoreRecords($session->productCode, $session->userId);
+    }
+
+    // m#662 To enable this call to be cached and made more efficient
+    private function getScoreRecords($pc, $uid) {
         $sql = <<<SQL
 			SELECT *
 			FROM T_Score
@@ -245,8 +249,16 @@ SQL;
 			AND F_UserID=?
 SQL;
 
-        $bindingParams = array($session->productCode, $session->userId);
+        $bindingParams = array($pc, $uid);
         $rs = $this->db->GetArray($sql, $bindingParams);
+
+        // m#662 Sort the results by exerciseId in code instead of SQL
+        // ORDER BY F_ExerciseID
+        usort($rs, function($a, $b) {
+            if ($a['F_ExerciseID'] == $b['F_ExerciseID']) return 0;
+            if ($a['F_ExerciseID'] > $b['F_ExerciseID']) return 1;
+            return -1;
+        });
 
         return $rs;
     }
@@ -262,16 +274,7 @@ SQL;
         $nodes = $this->getNodeLevels($session->productCode);
         $build = array();
 
-        $sql = <<<SQL
-			SELECT *
-			FROM T_Score
-			WHERE F_ProductCode=?
-			AND F_UserID=?
-            ORDER BY F_ExerciseID
-SQL;
-
-        $bindingParams = array($session->productCode, $session->userId);
-        $rs = $this->db->GetArray($sql, $bindingParams);
+        $rs = $this->getScoreRecords($session->productCode, $session->userId);
 
         // m#586
         if (is_array($rs) && count($rs) > 1) {
