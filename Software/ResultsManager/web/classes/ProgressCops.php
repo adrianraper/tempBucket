@@ -295,6 +295,7 @@ SQL;
                         $lastNode = $thisNode;
                         $buildRow = array('nodeId' => $nodeIdPrefix . $thisNode, 'scoredExercises' => 0, 'exerciseCount' => 0, 'duration' => 0, 'totalScore' => 0);
                     }
+                    // m#650 Durations here limited to 1 hour
                     $buildRow['duration'] += ($r['F_Duration'] > 3600) ? 3600 : $r['F_Duration'];
                     $buildRow['exerciseCount']++;
                     if ($r['F_Score'] >= 0) {

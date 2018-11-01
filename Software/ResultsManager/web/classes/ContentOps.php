@@ -1788,5 +1788,24 @@ EOD;
 		//$partialReturn['productVersion'] = $rs['F_ProductVersion']; //Added by Dicky, 14/01/2013
 		return $partialReturn;
 	}
+
+	// m#560 To tell if an exercise is in the Practice Zone
+    // First hacked for use to block exercises from Score Details if they are not in PZ unit
+    // Totally dependent on consistent naming of ids in menu.json
+    /*
+    public function isInPracticeZone($productCode, $exerciseId) {
+	    switch ($productCode) {
+            case 72:
+            case 73:
+                // 201807202030101
+                if (intval($exerciseId) & 30000)
+                    return true;
+                return false;
+                break;
+            default:
+                return true;
+        }
+    }
+    */
 }
 

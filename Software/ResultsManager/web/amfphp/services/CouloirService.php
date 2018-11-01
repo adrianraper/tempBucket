@@ -733,9 +733,9 @@ EOD;
         return $exercisesDone;
     }
 
-    // sss#17 Which exercises has the user completed?, full details
+    // sss#17 Which exercises has the user completed? Full details
     public function getScoreDetails($token) {
-        // Pick the session  from the token
+        // Pick the session from the token
         $session = $this->authenticationCops->getSession($token);
 
         // m#328 Nothing needed for anonymous user
@@ -752,14 +752,20 @@ EOD;
             // sss#341
             if ($exercise['F_ExerciseID'] == 0)
                 continue;
+
+            // m#650 Hack for RTI to drop any 'exercises' that were not in Practice Zone
+            //if (!$this->contentOps->isInPracticeZone($session->productCode, $exercise['F_ExerciseID']))
+            //    continue;
+
             // sss#280 Formatting for client api
             $scorePercent = (intval($exercise['F_Score']) >= 0) ? intval($exercise['F_Score']) : null;
             $dateDone = new DateTime($exercise['F_DateStamp']);
             $dateDone = $dateDone->format('c');
+            // m#650 Limit a single exercise to 1 hour duration
             $exercisesDone[] = ['exerciseId' => $exercise['F_ExerciseID'],
                 'scorePercent' => $scorePercent,
                 'date' => $dateDone,
-                'duration' => intval($exercise['F_Duration'])
+                'duration' => intval(($exercise['F_Duration'] > 3600) ? 3600 : $exercise['F_Duration'])
             ];
         }
         return $exercisesDone;
