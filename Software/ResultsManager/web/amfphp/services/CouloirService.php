@@ -250,14 +250,16 @@ class CouloirService extends AbstractService {
     // Create a user from a token - this would be the call from Couloir self registration screen
     public function addUserFromToken($token, $loginObj) {
         $payload = $this->authenticationCops->getPayloadFromToken($token);
-        //$productCode = isset($payload->productCode) ? $payload->productCode : null;
+        $productCode = isset($payload->productCode) ? $payload->productCode : null;
         $rootId = isset($payload->rootId) ? $payload->rootId : null;
         $groupId = isset($payload->groupId) ? $payload->groupId : null;
         if (!$rootId) {
             throw $this->copyOps->getExceptionForId("errorNoAccountFound");
         }
 
-        return $this->loginCops->addUser($rootId, $groupId, $loginObj);
+        // m#681
+        $newUser = $this->loginCops->addUser($rootId, $groupId, $loginObj);
+        return $this->loginCops->login($loginObj["login"], $loginObj["password"], $productCode, $rootId);
     }
 
     public function updateActivity($token, $timestamp) {

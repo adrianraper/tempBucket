@@ -398,17 +398,21 @@ EOD;
 	    $formattedUser = array();
 	    foreach ($this as $key => $value) {
 	        switch ($key) {
-                case "id":
+	            // m#681 Empty values are strings not null
                 case "name":
                 case "fullName":
-                case "userType":
                 case "studentID":
                 case "email":
+                    $formattedUser[$key] = (is_null($value)) ? '' : $value;
+                    break;
+                case "userType":
+                    $formattedUser[$key] = (is_null($value)) ? 0 : $value;
+                    break;
                 case "country":
                 case "city":
                 case "contactMethod":
-                case "userProfileOption":
                 case "registerMethod":
+                case "userProfileOption":
                     $formattedUser[$key] = $value;
                     break;
                 case "birthday":
@@ -420,6 +424,10 @@ EOD;
                         $datevalue = DateTime::createFromFormat('Y-m-d H:i:s', $value);
                         $formattedUser[$key] = intval($datevalue->format('U'))*1000;
                     }
+                    break;
+                case "id":
+                    // m#681
+                    $formattedUser[$key] = $this->userID;
                     break;
                 default:
             }
