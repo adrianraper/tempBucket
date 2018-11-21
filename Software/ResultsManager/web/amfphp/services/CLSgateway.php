@@ -38,9 +38,10 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Subscripti
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Subscription.php");
 
 $dmsService = new DMSService();
-$nonApiInformation = array();
+//set_time_limit(360);
 
 // Core function is to read the data from the API, check account and add titles
+$nonApiInformation = array();
 
 // Account information will come in JSON format
 function loadAPIInformation() {
@@ -49,11 +50,11 @@ function loadAPIInformation() {
 	
 	$inputData = file_get_contents("php://input");
 	//$inputData = '{"method":"addSubscription","transactionTest":"false","name":"Momi Rahima","country":"Hong Kong","email":"mimi.rahima.24@clarityenglish.com","offerID":59,"languageCode":"EN","productVersion":"R2IHU","resellerID":21,"password":"sweetcustard","orderRef":"201300001","emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128,"status":"initial"}';
-	//$inputData = '{"method":"addSubscription","subscriptionID":54973,"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
+	//$inputData = '{"method":"addSubscription","subscriptionID":54981,"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128,"paymentRef":"12345678"}';
 	//$inputData = '{"method":"saveSubscriptionDetails","registerMethod":"CEHomeUser","email":"douglas.engelbert.26@clarityenglish.com","name":"Douglas Engelbert","country":"Hong Kong","languageCode":"EN","productVersion":"R2IHU","resellerID":21,"orderRef":"201200085","password":"sweetcustard","offerID":59,"status":"initial"}';
 	//$inputData = '{"method":"updateSubscriptionStatus","subscriptionID":1040,"status":"paid"}';
-	//$inputData = '{"method":"updateSubscription","subscriptionID":"3705","emailTemplateID":"ieltspractice_renew","paymentMethod":"paypal"}';
-	$postInformation= json_decode($inputData, true);	
+	//$inputData = '{"method":"updateSubscription","subscriptionID":54984,"prefix":"991591","emailTemplateID":"ieltspractice_renew","paymentMethod":"paypal"}';
+	$postInformation= json_decode($inputData, true);
 	if (!$postInformation) 
 		// TODO. Ready for PHP 5.3
 		//throw new Exception("Error decoding data: ".json_last_error().': '.$inputData);
@@ -325,17 +326,16 @@ EOD;
 				returnError(1, 'No subscription ID passed');
 			}
 
-			
 			// get the account (this relies on the method name having 'update' in it !)
 			$account = $dmsService->subscriptionOps->getAccountDetails($apiInformation);
 			if (!$account)
 				returnError(1, 'No account for '.$apiInformation->email);
 			
 			// Update the titles in this account
+            // Save original and new expiry dates just to send back for user display
 			$oldExpiryDate = $account->titles[0]->expiryDate;
-			$dmsService->subscriptionOps->addTitlesToAccount($account, $apiInformation);
-			$newExpiryDate = $account->titles[0]->expiryDate;
-			
+            $newExpiryDate = $dmsService->subscriptionOps->addTitlesToAccount($account, $apiInformation);
+
 			// Then add or update the account (skip if just testing)
 			if (!$apiInformation->transactionTest) {
 				$dmsService->subscriptionOps->saveAccount($account, $apiInformation);

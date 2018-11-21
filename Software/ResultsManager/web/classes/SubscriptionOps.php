@@ -327,17 +327,19 @@ EOD;
 	}
 	
 	// Work out what titles this offer will add to the account, and do it
+    // m#699 A title might be new or renewing. If new, the end date should match the latest one after renews.
 	public function addTitlesToAccount($account, $apiInformation) {
 
 		// First, what titles is the user buying with this offer? And what dates/numbers etc
 		$offerTitles = $this->getTitlesFromOffer($apiInformation);
-		//echo 'offer has '.count($offerTitles).' titles'.'<br/>';
-		
-		// Next, do any of these 'clash' with existing titles in the account
+
+		// Go through all the titles that are part of this purchase
+        // Initialise the final expiry from the first existing title
+        $latestExpiryDate = (count($account->titles)>0) ? $account->titles[0]->expiryDate : date('Y-m-d 23:59:59');
 		foreach ($offerTitles as $newTitle) {
-			//echo "offer title is ".$newTitle->productCode.'<br/>';
+			// Which ones are renewing?
+            $titleExists = false;
 			foreach ($account->titles as $title) {
-				//echo "Existing title is ".$title->productCode.' expiring on '.$title-> expiryDate.'<br/>';
 				if ($title->productCode == $newTitle->productCode) {
 					// The newTitle.expiryDate is based on offer duration from today.
 					// but the original subscription might have a few days left, so add them on
@@ -345,13 +347,30 @@ EOD;
 					// gh#272
 					$daysLeft = max(round($timeLeft / 86400), 0);
 					$newTitle->expiryDate = date('Y-m-d 23:59:59', strtotime('+'.$daysLeft.' days',strtotime($newTitle->expiryDate)));
+					if ($newTitle->expiryDate > $latestExpiryDate)
+					    $latestExpiryDate = $newTitle->expiryDate;
 					$account->removeTitles(array($title));
+                    $account->addTitles(array($newTitle));
+
+                    $titleExists = true;
+                    continue;
 				}
 			}
-			$account->addTitles(array($newTitle));
+			// So this is a new title
+            if (!$titleExists) {
+                if ($newTitle->expiryDate > $latestExpiryDate)
+                    $latestExpiryDate = $newTitle->expiryDate;
+                $account->addTitles(array($newTitle));
+            }
 		}
-		
-		return $account;
+        // Go again through all the titles in this purchase setting the same, latest, expiry date
+        foreach ($offerTitles as $title) {
+            $title->expiryDate = $latestExpiryDate;
+            $account->removeTitles(array($title));
+            $account->addTitles(array($title));
+        }
+
+		return $latestExpiryDate;
 	}
 	private function getTitlesFromOffer($apiInformation) {
 		// An offerID links a package, price, currency and duration (days)

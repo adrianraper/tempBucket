@@ -52,7 +52,7 @@ class ManageableOps {
 		$group->id = $this->db->Insert_ID();
 		
 		// gh#448
-		AbstractService::$controlLog->info('userID '.Session::get('userID').' added a group(s) with id='.$group->id.' to group '.$parentGroup->id);
+		AbstractService::$controlLog->info('userID '.Session::get('userID').' added a group(s) with id='.$group->id);
 		
 		// gh#769 If this account is for a distributor, can we send an email to the account manager as this  
 		// is quite likely to be the setting up of a trial

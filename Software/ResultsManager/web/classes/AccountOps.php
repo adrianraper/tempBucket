@@ -602,9 +602,8 @@ EOD;
 		}
 
 		// gh#653 useful to know if this is a home user account
-		if (count($account->titles) > 0 && $account->titles[0]->licenceType == Title::LICENCE_TYPE_I)
-			$homeUser = true;
-		
+        $homeUser = (count($account->titles) > 0 && $account->titles[0]->licenceType == Title::LICENCE_TYPE_I) ? true : false;
+
 		// If an admin user is specified (as it always will be except with self-hosted accounts) then create a group and user
 		if ($account->adminUser) {
 			// Create and add a new group

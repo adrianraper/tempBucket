@@ -41,7 +41,7 @@ class DBDetails {
 				$this->driver = "mysqli";
 				$this->host = "localhost";
 				$this->user = "clarity";
-				$this->password = "claritydb";
+				$this->password = "clarity123";
 				$this->dbname = "rack80829";
 				break;
 		}
