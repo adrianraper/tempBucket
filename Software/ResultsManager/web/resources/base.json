@@ -12,6 +12,7 @@
         "ConfirmPassword": "Confirm password",
         "Login": "Sign in",
         "Logout": "Sign out",
+        "EmptyRegister": "Please fill out the fields above.",
         "EmptyLogin": "Please enter a full email address.",
         "EmptyLoginName": "Please enter your name.",
         "EmptyLoginId": "Please enter your ID.",
@@ -82,7 +83,7 @@
         "AnalysisCaption": "Time spent in each unit",
         "ExerciseLoadError": "A problem occurred while loading this exercise. A note has been sent to ClarityEnglish.",
         "ForgotPasswordLink": "https://www.clarityenglish.com/support/forgotPassword.php",
-        "NoProgress": "Progress Report is only available to registered accounts. If you would like to check your progress, please create an account on the sign-in page.",
+        "NoProgress": "Progress Report is not available for anonymous users. If you would like to use this function, please create a personal account on the sign-in page.",
         "NotCompleteAnyExercise": "You have not completed any exercises in this level yet.",
         "CompletionAmount": "{completion} of {total} completed",
         "Worksheet": "Study sheets",
@@ -97,7 +98,8 @@
         "Portfolio": "Your portfolio",
         "VideoTranscript": "Video transcripts",
         "AudioTranscript": "Audio transcripts",
-        "Copyright": "© Clarity Language Consultants Ltd, 1993-2018. All rights reserved."
+        "Copyright": "© Clarity Language Consultants Ltd, 1993-2018. All rights reserved.",
+        "Set": "Set"
       }
     },
     {
