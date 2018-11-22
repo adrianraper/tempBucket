@@ -451,7 +451,7 @@ var createJWT = function(productCode) {
         data: JSON.stringify(data)
     }).done(function( msg ) {
         $('#JWT').text = msg.details.token;
-        var url = "http://dock.projectbench/Software/Tools/autoSignIn.php?apiToken=" + msg.details.token;
+        var url = "/Software/Tools/autoSignIn.php?apiToken=" + msg.details.token;
         console.log(url);
         window.open(url, '_blank');
     }).fail(function(jqXHR,status,err) {

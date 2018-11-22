@@ -40,3 +40,4 @@ vendor
 /Software/Workflow
 .aws/credentials
 Software/Tools/aws_php_sdk/
+Software/Tools/Postman
