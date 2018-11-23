@@ -15,7 +15,7 @@ function loadAPIInformation() {
 	global $loginService;
 	
 	$inputData = file_get_contents("php://input");
-	//$inputData = '{"method":"signInUser","name":"dandelion","password":"password","dbHost":2,"productCode":2,"rootID":163,"prefix":"Clarity","loginOption":1}';
+	$inputData = '{"method":"signInUser","email":"adrian@clarity","password":"password","dbHost":2,"productCode":56,"prefix":"Clarity","loginOption":128, "encryptData":true}';
 	//$inputData = '{"method":"getOrAddUser","studentID":"J0655013-170","name":"Vishna Vardhan Kompalli","email":"06.vishnu@gmail.com","dbHost":"2","productCode":52,"expiryDate":"2012-03-19 23:59:59","prefix":"BCHK","rootID":"10943","groupID":"170","loginOption":"2"}';
 	//$inputData = '{"method":"getOrAddUser","studentID":"P10102928-170","name":"dandelion","email":"adrian@clarityenglish.com","dbHost":101,"productCode":52,"expiryDate":"2012-02-19 23:59:59","prefix":"TEST","rootID":"14028","groupID":"22153","loginOption":"2","emailTemplateID":"BCHK-welcome"}';
 	//$inputData = '{"method":"getOrAddUser","studentID":"P10102928-170","name":"RAPER, Adrian","dbHost":2,"custom1":"Basic","custom2":"IMD","prefix":"CSTDI","loginOption":"8"}';
