@@ -425,7 +425,8 @@ EOD;
             throw new Exception("No such saved user");
 
         // ctp#337 Begin a transaction
-        $this->db->StartTrans();
+        // m#700 drop transaction wrapper
+        //$this->db->StartTrans();
 
         // Manipulate the score object from Couloir into Bento format
         $score = new Score();
@@ -479,9 +480,10 @@ EOD;
             $this->progressCops->insertScore($score);
 
         } catch(Exception $e) {
-            // gh#166 Catch duplicate record exceptions - and just ignore!!
-            $this->db->FailTrans();
-            $this->db->CompleteTrans();
+            // gh#1366 Catch duplicate record exceptions - and just ignore!!
+            // m#700 drop transaction wrapper
+            //$this->db->FailTrans();
+            //$this->db->CompleteTrans();
             if ($e->getCode() != $this->copyOps->getCodeForId('errorDatabaseDuplicateRecord')) {
                 throw $e;
             } else {
@@ -510,9 +512,10 @@ EOD;
                     // ctp#282 Force score to be written for any usertype
                     $this->progressCops->insertScoreDetails($scoreDetails);
                 } catch (Exception $e) {
-                    // gh#166 Catch duplicate record exceptions - and just ignore!!
-                    $this->db->FailTrans();
-                    $this->db->CompleteTrans();
+                    // gh#1366 Catch duplicate record exceptions - and just ignore!!
+                    // m#700 drop transaction wrapper
+                    //$this->db->FailTrans();
+                    //$this->db->CompleteTrans();
                     if ($e->getCode() != $this->copyOps->getCodeForId('errorDatabaseDuplicateRecord')) {
                         throw $e;
                     } else {
@@ -541,19 +544,20 @@ EOD;
                 $isDirty = true;
             }
 
-            // TODO Why is this only for DPT and DE?
             if ($isDirty) {
                 try {
                     $this->progressCops->updateCouloirSession($session);
                 } catch (Exception $e) {
-                    $this->db->FailTrans();
+                    // m#700 drop transaction wrapper
+                    //$this->db->FailTrans();
                     throw $e;
                 }
             }
         }
 
         // Commit all the database inserts and updates
-        $this->db->CompleteTrans();
+        // m#700 drop transaction wrapper
+        //$this->db->CompleteTrans();
 
         return [];
     }
