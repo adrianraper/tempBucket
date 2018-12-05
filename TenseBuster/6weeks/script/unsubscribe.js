@@ -13,7 +13,7 @@ $(document).ready(function() {
     } else {
         // Pass the prefix through to the home page
         $("#unsubscribe-two a[href]").attr("href", "index.php?prefix=" + prefix);
-        $("a.forgot").attr("href", "http://www.clarityenglish.com/support/forgotPassword.php?productCode=" + productCode + "&loginOption=128");
+        $("a.forgot").attr("href", "https://www.clarityenglish.com/support/forgotPassword.php?productCode=" + productCode + "&loginOption=128");
     }
     $("#userEmail").val(getURLParameter('email'));
 
@@ -31,27 +31,27 @@ $(document).ready(function() {
                     dataFilter: function(data, dataType) {
                         var decodedData = jQuery.parseJSON(data);
                         if (decodedData == 'new user') {
-                            console.log(decodedData + " is new");
+                            //console.log(decodedData + " is new");
                             //$("#errorMessage").text("This email doesn't have a subscription.");
                             return false;
 
                         } else if (decodedData.indexOf('user in wrong account') >= 0) {
-                            console.log(decodedData + " is in wrong account");
+                            //console.log(decodedData + " is in wrong account");
                             //$("#errorMessage").text("This email is linked to a different account. Use another.");
                             return false;
 
                         } else if (decodedData == 'no subscription') {
-                            console.log(decodedData + " existing user but no subscription");
+                            //console.log(decodedData + " existing user but no subscription");
                             existingSubscription = false;
                             return false;
 
                         } else if (decodedData == 'existing subscription') {
-                            console.log(decodedData + " existing");
+                            //console.log(decodedData + " existing");
                             existingSubscription = true;
                             return true;
 
                         } else {
-                            console.log(decodedData + " conflicts");
+                            //console.log(decodedData + " conflicts");
                             return false;
                         }
                     }
@@ -100,12 +100,12 @@ $(document).ready(function() {
             data: {operation: 'unsubscribe', productCode: productCode, user: "userEmail=" + userEmail + "&password=" + password},
             dataType: "json",
             error: function(jqXHR, textStatus, errorThrown) {
-                console.log('Error: ' + errorThrown);
+                //console.log('Error: ' + errorThrown);
                 $("#signIn").show();
                 $("#loadingMsg").hide();
             },
             success: function (data) {
-                console.log('Return of unsubscribe is ' + data);
+                //console.log('Return of unsubscribe is ' + data);
                 switch (data) {
                     case "wrong password":
                     case "no such user":

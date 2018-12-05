@@ -9,16 +9,16 @@ $(document).ready(function() {
     var existingSubscription = false;
     var existingUser = false;
 
-    console.log("load 6weeks.js");
+    //console.log("load 6weeks.js");
 
 
     if (!prefix) {
-        window.location = "http://www.clarityenglish.com/TenseBuster/6weeks/no-prefix.html";
+        window.location = "https://www.clarityenglish.com/TenseBuster/6weeks/no-prefix.html";
         return false;
     } else {
         // Pass the prefix through to the home page
         $("#results a[href]").attr("href", "index.php?prefix=" + prefix);
-        $("a.forgot").attr("href", "http://www.clarityenglish.com/support/forgotPassword.php?productCode=" + productCode + "&loginOption=128");
+        $("a.forgot").attr("href", "https://www.clarityenglish.com/support/forgotPassword.php?productCode=" + productCode + "&loginOption=128");
     }
 
     //Start page
@@ -83,7 +83,7 @@ $(document).ready(function() {
     });
 
     $(".btn-go-to-results").click(function() {
-        console.log("you said OK");
+        //console.log("you said OK");
         submitTestData();
     });
 
@@ -191,7 +191,7 @@ $(document).ready(function() {
         submitHandler: function(form) {
 
             // Feedback that the registration is happening
-            console.log('want to hide the register button');
+            //console.log('want to hide the register button');
             $("#signIn").hide();
             $("#loadingMsg").show();
 
@@ -225,7 +225,7 @@ $(document).ready(function() {
             data: JSON.stringify(loginAPI),
             dataType: "json",
             error: function(jqXHR, textStatus, errorThrown) {
-                console.log('Error: ' + errorThrown);
+                //console.log('Error: ' + errorThrown);
                 $("#errorMessage").text('Error: ' + errorThrown);
                 $(".button-below-msg-box").show();
                 $("#loadingMsg").hide();
@@ -245,7 +245,7 @@ $(document).ready(function() {
                         default:
                             message = data.message;
                     }
-                    console.log('Error: ' + data.error + ' ' + message);
+                    //console.log('Error: ' + data.error + ' ' + message);
                     $("#errorMessage").text(message);
                     $(".button-below-msg-box").show();
                     $("#loadingMsg").hide();
@@ -285,7 +285,7 @@ $(document).ready(function() {
 
     checkSubscription = function() {
         if (existingSubscription) {
-            console.log("trying to show color box");
+            //console.log("trying to show color box");
             // Show the existing subscription warning
             $.colorbox({
                 href: "#inline-level-reset",
@@ -304,7 +304,7 @@ $(document).ready(function() {
     // Send the test data to the server
     submitTestData = function() {
 
-        console.log("submitTestData");
+        //console.log("submitTestData");
 
         // get the answers
         var answers = '';
@@ -317,14 +317,14 @@ $(document).ready(function() {
             answers += '<input class="GapFillQuestion" id="' + $(this).attr("id") + '" value="' + $(this).val() + '" />';
         });
         //var answers = $('#testInputs').serialize();
-        console.log("answers=" + answers);
+        //console.log("answers=" + answers);
         $.ajax({
             type: "POST",
             url: "/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",
             data: {operation: 'submitAnswers', answers: answers, code: $("#codeHolder").text(), user: $("#loginForm").serialize(), prefix: prefix, productCode: productCode},
             dataType: "json",
             error: function(jqXHR, textStatus, errorThrown) {
-                console.log('Error: ' + errorThrown);
+                //console.log('Error: ' + errorThrown);
                 $("#errorMessage").text('Error: ' + errorThrown);
                 $(".button-below-msg-box").show();
                 $("#loadingMsg").hide();
@@ -332,7 +332,7 @@ $(document).ready(function() {
             },
             success: function (data) {
                 //var resultsData = jQuery.parseJSON(data);
-                console.log('Marked ' + data.score + '%, debug ' + data.debug + '; level ' + data.ClarityLevel + ' questions (' + data.correct + ',' + data.wrong + ',' + data.skipped + ')');
+                //console.log('Marked ' + data.score + '%, debug ' + data.debug + '; level ' + data.ClarityLevel + ' questions (' + data.correct + ',' + data.wrong + ',' + data.skipped + ')');
 
                 switch (data.ClarityLevel) {
                     case 'ELE':
@@ -371,11 +371,11 @@ $(document).ready(function() {
             data: {operation: 'getQuestions', exercise: '1193901049540.xml', prefix: prefix, productCode: productCode},
             dataType: "xml",
             error: function(jqXHR, textStatus, errorThrown) {
-                console.log('Error: ' + errorThrown);
+                //console.log('Error: ' + errorThrown);
                 $("#testPlaceholder").append(errorThrown);
             },
             success: function (xml) {
-                console.log('Read file successfully');
+                //console.log('Read file successfully');
 				$("#btn-go-to-register").show();
 				$("#leveltest-complete-bar").show();
 
@@ -383,9 +383,9 @@ $(document).ready(function() {
                 var noErrors = true;
                 $(xml).find("error").each(function () {
                     var message = $(this).attr("message");
-                    console.log('Error: ' + message);
+                    //console.log('Error: ' + message);
                     if (message.toLowerCase().indexOf('no account matches the prefix') >= 0)
-                        window.location = "http://www.clarityenglish.com/TenseBuster/6weeks/no-prefix.html";
+                        window.location = "https://www.clarityenglish.com/TenseBuster/6weeks/no-prefix.html";
                     $("#loadingText").html(message);
                     noErrors = false;
                 });

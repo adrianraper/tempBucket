@@ -1978,3 +1978,18 @@ where F_VersionNumber = 2496;
 
 INSERT INTO `T_DatabaseVersion` (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (2453, '2018-09-27 00:00:00', 'Token licences');
+
+-- To get tables upto the schemas set by db optimisation VC
+/*
+CREATE TABLE `T_AccountEmails` (
+  `F_RootID` int(11) NOT NULL,
+  `F_Email` varchar(256) DEFAULT NULL,
+  `F_MessageType` smallint(5) unsigned DEFAULT '1',
+  `F_AdminUser` tinyint(1) unsigned DEFAULT '0',
+  `F_AccountEmailsID` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`F_AccountEmailsID`),
+  KEY `Index_1` (`F_RootID`)
+) ENGINE=InnoDB AUTO_INCREMENT=58854 DEFAULT CHARSET=latin1;
+*/
+ALTER TABLE `T_AccountEmails_Deleted` 
+ADD COLUMN `F_AccountEmailsID` int(11) NOT NULL;

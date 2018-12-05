@@ -3,16 +3,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Change my level | Improve your grammar in 6 weeks</title>
-<link rel="icon" type="image/png" href="images/favicon.png" />
+<link rel="icon" type="image/png" href="/images/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="css/home.css"/>
 <link rel="stylesheet" type="text/css" href="css/colorbox.css"/>
 
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <!--include jQuery Validation Plugin-->
     <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
     <script src="script/jquery.colorbox-min.js"></script>
     <script src="script/changeLevel.js"></script>
-
+	<script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-873320-17', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
 </head>
 
 <body id="subpage">
@@ -64,7 +73,7 @@
                         
                          <input id="loadingMsg" class="button loading left" value="Please wait" type="submit" style="margin:0 auto; display:none;"  />
                         
-                        <a class="forgot left" href="http://www.clarityenglish.com/support/forgotPassword.php" target="_blank">Forgot your password?</a>
+                        <a class="forgot left" href="https://www.clarityenglish.com/support/forgotPassword.php" target="_blank">Forgot your password?</a>
                     </div>
 
                     <div class="button-below-msg-box" style="margin:15px 0 0 0;">
@@ -158,8 +167,8 @@
         <div class="clear"></div>
        <div id="footerline" class="bg-grey">
     		<div class="box">
-           	  <a href="http://www.ClarityEnglish.com" target="_blank" id="website">www.ClarityEnglish.com</a>
-       	<a href="http://www.ClarityEnglish.com" target="_blank"><img src="images/clarityenglish.jpg" border="0" /></a>           </div>
+           	  <a href="https://www.ClarityEnglish.com" target="_blank" id="website">www.ClarityEnglish.com</a>
+       	<a href="https://www.ClarityEnglish.com" target="_blank"><img src="images/clarityenglish.jpg" border="0" /></a>           </div>
     </div>
 
 

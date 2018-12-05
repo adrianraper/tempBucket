@@ -78,14 +78,15 @@ class TB6weeksService extends AbstractService {
 		//Session::set('rootID', 163);
 		//$_REQUEST['operation'] = "submitAnswers";
 		//$_REQUEST['productCode'] = "59";
-		//$_REQUEST['email'] = "adrian@noodles.hk";
+		//$_REQUEST['userEmail'] = "123456789@lpl.ca";
+        //$_REQUEST['prefix'] = "LPL";
 		//$_REQUEST['level'] = "UI";
 		//$_REQUEST['answers'] = "UI";
 		
 		// To mimic amfphp handling
 		try {
 			
-			//AbstractService::$debugLog->info("try ".$_REQUEST['operation']);
+			AbstractService::$debugLog->info("try ".$_REQUEST['operation']);
 			
 			if (isset($_REQUEST['operation'])) {
 				$productCode = isset($_REQUEST['productCode']) ? $_REQUEST['productCode'] : null;
@@ -413,9 +414,9 @@ class TB6weeksService extends AbstractService {
 		}
 
         $crypt = new Crypt();
-        $programBase = 'http://'.$this->server.'/area1/TenseBuster/Start.php';
+        $programBase = 'https://'.$this->server.'/area1/TenseBuster/Start.php';
         $parameters = 'prefix='.$prefix.'&email='.$user->email.'&password='.$user->password.'&username='.$user->name;
-		if ($RUrange)
+		if (isset($RUrange) && $RUrange)
 			$parameters .= '&RUrange='.$RUrange;
 
 		$startProgram = "?data=".$crypt->encodeSafeChars($crypt->encrypt($parameters));

@@ -13,9 +13,9 @@ $(document).ready(function() {
     } else {
         // Pass the prefix through to the home page
         $("#level-change-three a[href]").attr("href", "index.php?prefix=" + prefix);
-        $("a.forgot").attr("href", "http://www.clarityenglish.com/support/forgotPassword.php?productCode=" + productCode + "&loginOption=128");
+        $("a.forgot").attr("href", "https://www.clarityenglish.com/support/forgotPassword.php?productCode=" + productCode + "&loginOption=128");
     }
-    $("#userEmail").val(getURLParameter('email'));
+    $("#userEmail").val(decodeURIComponent(getURLParameter('email')));
 
     $(".page#level-change-one").addClass("slideRight").show();
     $(".button-below-msg-box").hide();
@@ -31,27 +31,27 @@ $(document).ready(function() {
                     dataFilter: function(data, dataType) {
                         var decodedData = jQuery.parseJSON(data);
                         if (decodedData == 'new user') {
-                            console.log(decodedData + " is new");
+                            //console.log(decodedData + " is new");
                             //$("#errorMessage").text("This email doesn't have a subscription.");
                             return false;
 
                         } else if (decodedData.indexOf('user in wrong account') >= 0) {
-                            console.log(decodedData + " is in wrong account");
+                            //console.log(decodedData + " is in wrong account");
                             //$("#errorMessage").text("This email is linked to a different account. Use another.");
                             return false;
 
                         } else if (decodedData == 'no subscription') {
-                            console.log(decodedData + " existing user but no subscription");
+                            //console.log(decodedData + " existing user but no subscription");
                             existingSubscription = false;
                             return false;
 
                         } else if (decodedData == 'existing subscription') {
-                            console.log(decodedData + " existing");
+                            //console.log(decodedData + " existing");
                             existingSubscription = true;
                             return true;
 
                         } else {
-                            console.log(decodedData + " conflicts");
+                            //console.log(decodedData + " conflicts");
                             return false;
                         }
                     }
@@ -125,7 +125,7 @@ $(document).ready(function() {
     // Check the subscription for this user
     checkSubscription = function() {
 
-        console.log("off to check subscription");
+        //console.log("off to check subscription");
 
         userEmail = $("#userEmail").val();
         password = $("#password").val();
@@ -145,7 +145,7 @@ $(document).ready(function() {
             data: JSON.stringify(loginAPI),
             dataType: "json",
             error: function(jqXHR, textStatus, errorThrown) {
-                console.log('Error: ' + errorThrown);
+                //console.log('Error: ' + errorThrown);
                 $("#errorMessage").text('Error: ' + errorThrown);
                 $("#signIn").show();
                 $("#loadingMsg").hide();
@@ -164,7 +164,7 @@ $(document).ready(function() {
                         default:
                             message = data.message;
                     }
-                    console.log('Error: ' + data.error + ' ' + message);
+                    //console.log('Error: ' + data.error + ' ' + message);
                     $("#errorMessage").text(message);
                     $(".button-below-msg-box").show();
                     $("#signIn").show();
@@ -172,7 +172,7 @@ $(document).ready(function() {
 
                 } else if (data.user) {
                     if (data.subscription) {
-                        console.log("got subscription for " + userEmail + " " + data.subscription.ClarityLevel);
+                        //console.log("got subscription for " + userEmail + " " + data.subscription.ClarityLevel);
                         if (data.subscription.week > 6) {
                             $("#weekMessage").text("completed");
                         } else {
@@ -202,7 +202,7 @@ $(document).ready(function() {
                         gotoConfirmation();
 
                     } else {
-                        console.log('No existing subscription');
+                        //console.log('No existing subscription');
                         $("#errorMessage").text("You don't have a subscription, please register.");
                         $("#loadingMsg").hide();
                     }
@@ -216,17 +216,17 @@ $(document).ready(function() {
 
         var newLevel = $("input[name='changelevel']:checked").val();
 
-        console.log("new level is " + newLevel + " and you are " + userEmail);
+        //console.log("new level is " + newLevel + " and you are " + userEmail);
         $.ajax({
             type: "POST",
             url: "/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",
             data: {operation: 'changeLevel', productCode: productCode, user: "userEmail=" + userEmail + "&password=" + password, level: newLevel},
             dataType: "json",
             error: function(jqXHR, textStatus, errorThrown) {
-                console.log('Error: ' + errorThrown);
+                //console.log('Error: ' + errorThrown);
             },
             success: function (data) {
-                console.log('Success: ' + data);
+                //console.log('Success: ' + data);
                 $("#validationMessage").text(data);
             }
         });
